@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,249 +12,599 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import hilog from '@ohos.hilog';
-import { Driver, ON } from '@ohos.UiTest';
-import { describe, it, expect } from '@ohos/hypium';
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-const TIME_THOUSAND = 1000;
-const TAG = '[Sample_Notification]';
-const DOMAIN = 0xF811
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level } from '@ohos/hypium';
+import { Driver, ON, Component, Point, MatchPattern } from '@kit.TestKit';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Want } from '@kit.AbilityKit';
+
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
+}
+
+async function getCenterPoint(comp: Component, offset: number): Promise<Point> {
+  // 获取文件控件边框
+  let rect = await comp.getBounds();
+  // 计算文字控件高度
+  let height = rect.bottom - rect.top;
+  // 获取文字控件中心点
+  let point: Point = await comp.getBoundsCenter();
+  point = { x: point.x, y: point.y - height * offset };
+  return point;
+}
 
 async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
+  let manage = delegator.getAppContext().resourceManager;
   let text = await manage.getStringValue(resource);
   return text;
 }
 
-export default function appTest() {
-  let driver = Driver.create();
-  describe('appTest', () => {
+let driver = Driver.create();
 
-    /*
-     * @tc.number: Notification_SetBadgeNumber_001
-     * @tc.name: Set corner markers
-     * @tc.desc: Set corner markers
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level Level 1
-     */
-    it('Notification_SetBadgeNumber_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_SetBadgeNumber_001_begin');
-      try {
-        await abilityDelegator.startAbility({
-          bundleName: "com.samples.notification",
-          abilityName: "EntryAbility"
-        });
-      } catch (err) {
-        expect(err.code).assertEqual(0);
-      }
-      await driver.delayMs(TIME_THOUSAND);
-      let btnUse = await driver.findComponent(ON.text(await getResourceString($r('app.string.enable_notification'))));
-      await btnUse.click();
-      await driver.delayMs(TIME_THOUSAND);
-      let buttonClick = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow_button'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await buttonClick.click();
-      let SetCorner = await driver.findComponent(ON.text(await getResourceString($r('app.string.set_badge_number'))));
-      await SetCorner.click();
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_text')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_text'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_SetBadgeNumber_001_end');
-      done();
-    });
-
-    /*
-     * @tc.number: Notification_BasicNotification_002
-     * @tc.name: Test regular text notifications
-     * @tc.desc: Test regular text notifications
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level Level 1
-     */
-    it('Notification_BasicNotification_002', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_BasicNotification_002_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.basic_notification'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await textBtn.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_text')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_text'))));
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_BasicNotification_002_end');
-      done();
-    });
-
-    /*
-     * @tc.number: Notification_LongNotification_003
-     * @tc.name: Test Long Text Notification
-     * @tc.desc: Test Long Text Notification
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level Level 1
-     */
-    it('Notification_LongNotification_003', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_LongNotification_003_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.long_notification'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await textBtn.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(682, 159);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_longText')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_longText'))))
-      await driver.click(344, 1092);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_LongNotification_003_end');
-      done();
-    });
-
-    /*
-     * @tc.number: Notification_MultilineNotification_004
-     * @tc.name: Test Multiline Text Notification
-     * @tc.desc: Test Multiline Text Notification
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level Level 1
-     */
-    it('Notification_MultilineNotification_004', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_MultilineNotification_004_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.multi_line_notification'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await textBtn.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(667, 166);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.line_01')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.line_01'))))
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_MultilineNotification_004_end');
-      done();
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
+    beforeAll(async () => {
+      const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      let want: Want = {
+        bundleName: 'com.sample.eventnotification',
+        abilityName: 'EntryAbility',
+        moduleName: 'entry'
+      };
+      delegator.startAbility(want);
+      await sleep(1000);
+      // Presets an action, which is performed only once before all test cases of the test suite start.
+      // This API supports only one parameter: preset action function.
+    })
+    beforeEach(() => {
+      // Presets an action, which is performed before each unit test case starts.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: preset action function.
+    })
+    afterEach(() => {
+      // Presets a clear action, which is performed after each unit test case ends.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: clear action function.
+    })
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
     })
 
-    /*
-     * @tc.number: Notification_PictureNotification_005
-     * @tc.name: Test Picture Notification
-     * @tc.desc: Test Picture Notification
-     * @tc.size: MediumTest
-     * @tc.type: Function
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0100
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0100
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
      * @tc.level Level 1
      */
-    it('Notification_PictureNotification_005', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_PictureNotification_005_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.picture_notification'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await textBtn.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(667, 166);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_briefText')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_briefText'))));
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_PictureNotification_005_end');
-      done();
-    })
+    it('SUB_SAMPLE_NOTIFICATION_0100', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.request_notify_auth'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.request_notify_auth'))));
+        await box2.click();
+        await sleep(1000);
+        let box3: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.request_consent'))));
+        await box3.click();
+        await sleep(1000);
+        done();
+      })
 
-    /*
-     * @tc.number: Notification_WantAgentStartAbility_006
-     * @tc.name: Test Launch Capability Notification
-     * @tc.desc: Test Launch Capability Notification
-     * @tc.size: MediumTest
-     * @tc.type: Function
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0200
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0200
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
      * @tc.level Level 1
      */
-    it('Notification_WantAgentStartAbility_006', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_WantAgentStartAbility_006_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.want_agent_start_ability'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await textBtn.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.click(323, 228);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.Second_Page')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.Second_Page'))));
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_WantAgentStartAbility_006_end');
-      done();
-    })
+    it('SUB_SAMPLE_NOTIFICATION_0200', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.reapply_notify_auth'))));
+        await box1.click();
+        await sleep(2000);
+        await driver.pressBack();
+        await sleep(3000);
+        done();
+      })
 
-    /*
-     * @tc.number: Notification_WantAgentCommonEvent_007
-     * @tc.name: Testing and publishing public event notifications
-     * @tc.desc: Testing and publishing public event notifications
-     * @tc.size: MediumTest
-     * @tc.type: Function
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0300
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0300
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
      * @tc.level Level 1
      */
-    it('Notification_WantAgentCommonEvent_007', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Notification_WantAgentCommonEvent_007_begin');
-      await driver.delayMs(TIME_THOUSAND);
-      try {
-        await abilityDelegator.startAbility({
-          bundleName: "com.samples.notification",
-          abilityName: "EntryAbility"
-        });
-      } catch (err) {
-        expect(err.code).assertEqual(0);
-      }
-      await driver.delayMs(TIME_THOUSAND);
-      let SetCorners = await driver.findComponent(ON.text(await getResourceString($r('app.string.want_agent_common_event'))));
-      await driver.delayMs(TIME_THOUSAND);
-      await SetCorners.click();
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 0, 180, 50, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.Test_Text')));
-      let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.Test_Text'))))
-      await driver.click(344, 1092);
-      await driver.delayMs(TIME_THOUSAND);
-      await driver.swipe(180, 50, 180, 0, 600);
-      await driver.delayMs(TIME_THOUSAND);
-      expect(result != null).assertTrue();
-      hilog.info(DOMAIN, TAG, 'Notification_WantAgentCommonEvent_007_end');
-      done();
-    })
+    it('SUB_SAMPLE_NOTIFICATION_0300', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.manage_notify_badge'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.increase_badge_count'))));
+        await box2.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
 
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0400
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0400
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0400', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.reduce_notify_badge'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0500
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0500
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0500', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.set_badge_nine'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0600
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0600
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0600', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.set_badge_eight'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0700
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0700
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0700', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.badge_count_neg'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0800
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0800
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0800', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.badge_count_pos'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0900
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0900
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0900', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_plaintext_notify'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1000
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1000
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1000', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.delete_badge_count'))));
+        await box1.click();
+        await sleep(1000);
+        driver.pressHome(1);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('Notification'));
+        let point: Point = await getCenterPoint(box3, 2);
+        driver.click(point.x, point.y);
+        await sleep(3000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1100
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1100
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1100', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.manage_notify_channel'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.create_channel_type'))));
+        await box2.click();
+        await sleep(1000);
+        let box3: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.get_channel_type'))));
+        await box3.click();
+        await sleep(1000);
+        let box4: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.delete_channel_type'))));
+        await box4.click();
+        await sleep(1000);
+        driver.pressBack();
+        await sleep(2000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1200
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1200
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1200', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_notify'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_plaintext_notify'))));
+        await box2.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(3000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1300
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1300
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1300', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_multi_line_notify'))));
+        await box1.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(5000);
+        let box2: Component = await driver.findComponent(ON.text('test_title', MatchPattern.CONTAINS));
+        await box2.click();
+        await sleep(1000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(3000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1400
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1400
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1400', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.check_progress_template_notify'))));
+        await box1.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1500
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1500
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1500', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_progress_notify'))));
+        await box1.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(3000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(3000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1600
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1600
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1600', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.add_notify_action'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_no_button_notify'))));
+        await box2.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(3000);
+        let box3: Component = await driver.findComponent(ON.text('no_button_notify', MatchPattern.CONTAINS));
+        await box3.click();
+        await sleep(1000);
+        let box4: Component = await driver.findComponent(ON.text('no_button_notify', MatchPattern.CONTAINS));
+        await box4.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1700
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1700
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1700', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_one_button_notify'))));
+        await box1.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(3000);
+        let box2: Component = await driver.findComponent(ON.text('one_button_notify', MatchPattern.CONTAINS));
+        await box2.click();
+        await sleep(1000);
+        let box3: Component = await driver.findComponent(ON.text('one_button_notify', MatchPattern.CONTAINS));
+        await box3.click();
+        await sleep(1000);
+        let box4: Component = await driver.findComponent(ON.text('open_the_app'));
+        await box4.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1800
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1800
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1800', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_two_button_notify'))));
+        await box1.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(3000);
+        let box2: Component = await driver.findComponent(ON.text('two_buttons_notify', MatchPattern.CONTAINS));
+        await box2.click();
+        await sleep(1000);
+        let box3: Component = await driver.findComponent(ON.text('two_buttons_notify', MatchPattern.CONTAINS));
+        await box3.click();
+        await sleep(1000);
+        let box4: Component = await driver.findComponent(ON.text('open_the_app'));
+        await box4.click();
+        await sleep(2000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_1900
+     * @tc.name SUB_SAMPLE_NOTIFICATION_1900
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_1900', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.update_notify'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_progress_notify'))));
+        await box2.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(2000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(2000);
+        let box3: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.update_notify'))));
+        await box3.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(2000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(2000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_2000
+     * @tc.name SUB_SAMPLE_NOTIFICATION_2000
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_2000', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.cancel_notify'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_plaintext_notify'))));
+        await box2.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(2000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(2000);
+        let box3: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.cancel_notify'))));
+        await box3.click();
+        await sleep(1000);
+        driver.swipe(1, 1, 1, 500);
+        await sleep(2000);
+        driver.swipe(1, 500, 1, 1);
+        await sleep(2000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_2100
+     * @tc.name SUB_SAMPLE_NOTIFICATION_2100
+     * @tc.desc Event notification sample warehouse and shared source document warehouse
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_2100', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.cross_device_clear_dup_notify'))));
+        await box1.click();
+        await sleep(1000);
+        let box2: Component =
+          await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_notify_with_msgid'))));
+        await box2.click();
+        await sleep(1000);
+        driver.pressBack();
+        await sleep(1000);
+        done();
+      })
   })
 }

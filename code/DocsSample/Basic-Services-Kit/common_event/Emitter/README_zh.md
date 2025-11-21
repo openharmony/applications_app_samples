@@ -1,4 +1,4 @@
-# 应用启动框架AppStartup
+# 使用Emitter进行线程间通信
 
 ### 介绍
 
