@@ -14,6 +14,7 @@
  */
 
 import testNapi from 'libentry.so';
+
 // [Start generate_key_ar]
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 1.确定密钥别名 */

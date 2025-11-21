@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start generate_key]
 /* 以下以生成ECC密钥为例 */
 #include "huks/native_huks_api.h"
