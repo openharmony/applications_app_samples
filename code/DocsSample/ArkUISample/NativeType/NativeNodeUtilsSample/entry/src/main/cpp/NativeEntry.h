@@ -61,8 +61,7 @@ namespace NativeModule {
         void DisposeRootNode()
         {
             // 从NodeContent上卸载组件并销毁Native组件。
-            if (handle_ == nullptr || root_ == nullptr)
-            {
+            if (handle_ == nullptr || root_ == nullptr) {
                 return;
             }
             OH_ArkUI_NodeContent_RemoveNode(handle_, root_->GetHandle());
