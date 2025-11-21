@@ -20,7 +20,7 @@
 #include <cstring>
 
 static OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-    uint32_t paramCount)
+                                   uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
@@ -127,7 +127,7 @@ static OH_Huks_Result VerifySignatureSM2(const struct OH_Huks_Blob *keyAlias,
 napi_value SignVerifyKeySM2SM3(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_SM3"),
-            (uint8_t *)"test_signVerify_SM2_SM3"};
+        (uint8_t *)"test_signVerify_SM2_SM3"};
     struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_SM2), 
                                   (uint8_t *)DATA_TO_SIGN_SM2};
     struct OH_Huks_ParamSet *genParamSet = nullptr;

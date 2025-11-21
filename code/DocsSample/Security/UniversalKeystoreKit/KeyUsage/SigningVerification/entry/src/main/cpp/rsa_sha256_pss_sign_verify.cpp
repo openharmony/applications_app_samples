@@ -138,7 +138,7 @@ napi_value SignVerifyKeyRsaSha256Pss(napi_env env, napi_callback_info info)
 
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsRsaPss,
-                                    sizeof(g_genSignVerifyParamsRsaPss) / sizeof(OH_Huks_Param));
+                                sizeof(g_genSignVerifyParamsRsaPss) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
@@ -149,7 +149,7 @@ napi_value SignVerifyKeyRsaSha256Pss(napi_env env, napi_callback_info info)
         }
 
         ohResult = InitParamSet(&verifyParamSet, g_verifyParamsRsaPss,
-                                    sizeof(g_verifyParamsRsaPss) / sizeof(OH_Huks_Param));
+                                sizeof(g_verifyParamsRsaPss) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

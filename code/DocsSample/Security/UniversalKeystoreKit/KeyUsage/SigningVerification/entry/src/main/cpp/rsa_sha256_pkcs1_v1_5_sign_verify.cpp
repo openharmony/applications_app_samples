@@ -20,7 +20,7 @@
 #include <cstring>
 
 static OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-                                    uint32_t paramCount)
+                                   uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
@@ -137,19 +137,19 @@ napi_value SignVerifyKeyRsaSha256Pkcs1V15(napi_env env, napi_callback_info info)
 
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsRsaPkcs1,
-                                    sizeof(g_genSignVerifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+                                sizeof(g_genSignVerifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
         ohResult = InitParamSet(&signParamSet, g_signParamsRsaPkcs1,
-                                    sizeof(g_signParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+                                sizeof(g_signParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
         ohResult = InitParamSet(&verifyParamSet, g_verifyParamsRsaPkcs1,
-                                    sizeof(g_verifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+                                sizeof(g_verifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
