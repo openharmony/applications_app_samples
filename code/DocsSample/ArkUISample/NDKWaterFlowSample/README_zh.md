@@ -1,10 +1,8 @@
-# ArkUI 滚动类 示例
+# 使用瀑布流
 
 ### 介绍
 
-本工程以 `ArkUI` (C-API)` 的方式实现瀑布流容器组件示例，演示原生节点的创建、复用、懒加载与 ETS 侧对接。该工程中展示的代码详细描述可查如下链接：
-
-1. [使用瀑布流](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-waterflow.md)。
+本工程以 `ArkUI (C-API)` 的方式实现[使用瀑布流](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-waterflow.md)，演示瀑布流容器组件原生节点的创建、复用、懒加载与 ETS 侧对接。
 
 ### 效果预览
 
