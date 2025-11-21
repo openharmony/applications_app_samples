@@ -16,7 +16,7 @@
 // [Start import_module]
 //  1.导入模块
 import { uniformTypeDescriptor } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_module]
 
 // [Start uniform_type_descriptor_test]
