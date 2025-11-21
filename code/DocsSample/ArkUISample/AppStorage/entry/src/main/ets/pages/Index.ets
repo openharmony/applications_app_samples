@@ -25,6 +25,10 @@ interface Ary {
 struct Index {
   ary: Ary[] = [
     {
+      name: 'PageOne',
+      path: 'pages/PageOne'
+    },
+    {
       name: 'PageTwo',
       path: 'pages/PageTwo'
     },
