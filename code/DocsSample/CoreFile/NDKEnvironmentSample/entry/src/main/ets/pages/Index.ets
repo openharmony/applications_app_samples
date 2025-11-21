@@ -105,6 +105,14 @@ struct Index {
             this.message += 'GetUserDocumentDirPathExample SUCCESS' + '\n';
           })
       }
+
+      Row() {
+        Button($r('app.string.GetUserDownloadDirSizeExample'))
+          .onClick(async () => {
+            testNapi.doGetUserDocumentDirPathExample();
+            this.message += 'GetUserDownloadDirSizeExample SUCCESS' + '\n';
+          })
+      }
     }
   }
 }

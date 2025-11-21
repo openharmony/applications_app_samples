@@ -22,7 +22,7 @@
 #include <filemanagement/environment/oh_environment.h>
 #include <hilog/log.h>
 #include <filemanagement/fileio/oh_fileio.h>
-
+#include <sys/stat.h>
 
 #undef LOG_TAG
 #define LOG_TAG "Sample_NDKEnvironment"
@@ -180,6 +180,33 @@ static napi_value DoGetUserDocumentDirPathExample(napi_env env, napi_callback_in
     return nullptr;
 }
 
+// [Start get_user_download_dir_size_example]
+void GetUserDownloadDirSizeExample()
+{
+    char *documentPath = nullptr;
+    FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
+    if (ret == 0) {
+        OH_LOG_INFO(LOG_APP, "Document Path=%{public}s", documentPath);
+        struct stat fileStat;
+        int result = stat(documentPath, &fileStat);
+        if (result == 0) {
+            OH_LOG_INFO(LOG_APP, "Document Size=%{public}ld", fileStat.st_size);
+        } else {
+            OH_LOG_ERROR(LOG_APP, "GetDocumentSize fail, error code is %{public}ld", result);
+        }
+        free(documentPath);
+    } else {
+        OH_LOG_ERROR(LOG_APP, "GetDocumentPath fail, error code is %{public}d", ret);
+    }
+}
+// [End get_user_download_dir_size_example]
+
+static napi_value DoGetUserDownloadDirSizeExample(napi_env env, napi_callback_info info)
+{
+    GetUserDownloadDirSizeExample();
+    return nullptr;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -194,6 +221,8 @@ static napi_value Init(napi_env env, napi_value exports)
                                        {"doGetUserDesktopDirPathExample", nullptr, DoGetUserDesktopDirPathExample,
                                         nullptr, nullptr, nullptr, napi_default, nullptr},
                                        {"doGetUserDocumentDirPathExample", nullptr, DoGetUserDocumentDirPathExample,
+                                        nullptr, nullptr, nullptr, napi_default, nullptr},
+                                       {"doGetUserDownloadDirSizeExample", nullptr, DoGetUserDownloadDirSizeExample,
                                         nullptr, nullptr, nullptr, napi_default, nullptr}
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
