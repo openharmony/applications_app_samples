@@ -18,6 +18,7 @@ import { notificationExtensionSubscription } from '@kit.NotificationKit';
 import { HashSet } from '@kit.ArkTS';
 import { connection } from '@kit.ConnectivityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 
 const DOMAIN = 0x0000;
 
