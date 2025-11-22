@@ -20,6 +20,7 @@
 #include <napi/common.h>
 #include <pthread.h>
 #include <future>
+#include <hilog/log.h>
 
 static constexpr int INT_ARG_2 = 2; // 入参索引
 static constexpr int INT_ARG_12 = 12; // 入参索引
@@ -34,6 +35,9 @@ static void *CreateArkRuntimeFunc(void *arg)
     if (ret != napi_ok) {
         return nullptr;
     }
+
+    napi_handle_scope scope;
+    napi_open_handle_scope(env, &scope);
 
     // 2. 加载自定义模块
     napi_value objUtils;
@@ -50,6 +54,8 @@ static void *CreateArkRuntimeFunc(void *arg)
         return nullptr;
     }
     ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
+
+    napi_close_handle_scope(env, scope);
 
     // 4. 销毁ArkTS环境
     ret = napi_destroy_ark_runtime(&env);
@@ -87,6 +93,13 @@ static void *RunEventLoopFunc(void *arg)
         return nullptr;
     }
 
+    napi_handle_scope scope;
+    ret = napi_open_handle_scope(env, &scope);
+    if (ret != napi_ok) {
+        napi_destroy_ark_runtime(&env);
+        return nullptr;
+    }
+
     // 2. 加载自定义的模块
     napi_value objectUtils;
     // 'com.example.myapplication' 为当前应用的bundleName
@@ -120,6 +133,18 @@ static void *RunEventLoopFunc(void *arg)
     } else {
         // 非阻塞式的处理任务，有可能队列中还没有任务就已经返回了
         napi_run_event_loop(env, napi_event_mode_nowait);
+    }
+
+    if (scope != nullptr) {
+        napi_close_handle_scope(env, scope);
+        scope = nullptr;
+    }
+    if (env != nullptr) {
+        napi_status destroy_ret = napi_destroy_ark_runtime(&env);
+        if (destroy_ret != napi_ok) {
+            OH_LOG_INFO(LOG_APP, "Failed to destroy ark runtime");
+        }
+        env = nullptr;
     }
     return nullptr;
 }
