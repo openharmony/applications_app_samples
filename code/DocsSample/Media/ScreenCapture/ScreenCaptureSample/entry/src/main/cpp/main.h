@@ -70,5 +70,5 @@ constexpr uint32_t DEFAULT_HEIGHT = 4096;
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
 // 录屏取码流surface模式
-int64_t lastFrameTimestampPts_ = 0;
-int64_t lastFrameEncodePts_ = 0;
+int64_t g_lastFrameTimestampPts = 0;
+int64_t g_lastFrameEncodePts = 0;
