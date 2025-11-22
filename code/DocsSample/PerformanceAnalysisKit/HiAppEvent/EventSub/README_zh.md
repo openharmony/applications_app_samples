@@ -48,7 +48,7 @@
 
 #### 使用说明
 
-请先按照工程目录添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
+请先按照[工程目录](#工程目录)添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
 
 ##### 1.事件订阅（ArkTS&C++）使用说明：订阅崩溃（APP_CRASH）事件
 
@@ -493,15 +493,15 @@ HiAppEvent eventInfo.params.log_over_limit=xx
 ```text
 entry/src/main
 ├─cpp
-│  ├─json
-│  │ └─json.h          	  // 自行添加
-│  │ └─json-forwards.h    // 自行添加
+│  ├─json                 // 自行创建文件夹
+│  │ └─json.h             // 按照使用说明章节中的步骤，自行添加
+│  │ └─json-forwards.h    // 按照使用说明章节中的步骤，自行添加
 │  ├─types
 │  │ └─libentry
 │  │   └─Index.d.ts		    // 定义ArkTS接口
 │  ├─CMakeLists.txt  		  // 导入so链接
 │  ├─napi_init.cpp  		  // 功能函数，观察者定义
-│  └─jsoncpp.cpp          // 自行添加
+│  └─jsoncpp.cpp          // 按照使用说明章节中的步骤，自行添加
 └─ets
    ├─entryability
    │ └─EntryAbility.ets		// 新增接口调用
@@ -529,8 +529,8 @@ entry/src/main
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例已适配API14版本SDK，版本号：5.0.2.58，镜像版本号：OpenHarmony5.0.2.58；
-3. 本示例需要使用DevEco Studio(5.0.3.910)及以上版本才可编译运行。
+2. 本示例已适配API 20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony 6.1.0.18；
+3. 本示例需要使用DevEco Studio 6.0.0 Release(6.0.0.868)及以上版本才可编译运行。
 
 ### 下载
 
