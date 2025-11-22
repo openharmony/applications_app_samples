@@ -138,14 +138,14 @@ struct Index {
       const documentViewPicker = new picker.DocumentViewPicker(context);
       documentViewPicker.select(documentSelectOptions).then((documentSelectResult: string[]) => {
         uris = documentSelectResult;
-        Logger.info('documentViewPicker.select to file succeed and uris are:' + uris);
+        console.info('documentViewPicker.select to file succeed and uris are:' + uris);
         // [StartExclude picker_select]
         if (uris.length > 0) {
           this.readDocumentFile(uris);
         }
         // [EndExclude picker_select]
       }).catch((err: BusinessError) => {
-        Logger.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
       });
       // [End picker_select]
     }catch (error) {
@@ -165,7 +165,7 @@ struct Index {
         // [Start document_fs_read_sync]
         let buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
         let readLen = fs.readSync(file.fd, buffer); // 读取文件内容
-        Logger.info('readSync data to file succeed and buffer size is:' + readLen);
+        console.info('readSync data to file succeed and buffer size is:' + readLen);
         fs.closeSync(file);
         // [End document_fs_read_sync]
       }
@@ -203,7 +203,7 @@ struct Index {
       // [End audio_select_picker]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
-      Logger.error(`Invoke audioViewPicker.select failed, code is ${error.code}, message is ${error.message}`);
+      console.error(`Invoke audioViewPicker.select failed, code is ${error.code}, message is ${error.message}`);
     }
   }
 
@@ -218,7 +218,7 @@ struct Index {
         // [Start fs_read_sync]
         const buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
         const readLen = fs.readSync(file.fd, buffer); // 读取文件内容
-        Logger.info('readSync data to file succeed and buffer size is:' + readLen);
+        console.info('readSync data to file succeed and buffer size is:' + readLen);
         // [StartExclude fs_read_sync]
         this.fileContent = `Read ${readLen} bytes from file.`; // 显示读取的字节数
         // [EndExclude fs_read_sync]
@@ -228,7 +228,7 @@ struct Index {
       // [End openmode_read_only]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
-      Logger.error(`Failed to read file, code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to read file, code is ${error.code}, message is ${error.message}`);
     }
   }
   
