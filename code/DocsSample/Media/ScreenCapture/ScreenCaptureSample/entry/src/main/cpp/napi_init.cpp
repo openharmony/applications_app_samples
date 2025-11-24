@@ -281,9 +281,14 @@ void ThreadVideoRunMethod()
              }
         lock.unlock();
         if (bufferInfo.buffer != nullptr) {
-            bufferInfo.attr.pts = (bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_CODEC_DATA)
-                                  ? 0
-                                  : (g_encContext->outputFrameCount_++ * 1000000 / sampleInfo_.frameRate);
+            if (g_lastFrameTimestampPts == 0) {
+                g_lastFrameTimestampPts = bufferInfo.attr.pts;
+                bufferInfo.attr.pts = 0;
+            } else {
+                g_lastFrameEncodePts += (bufferInfo.attr.pts - g_lastFrameTimestampPts) / MICROSECOND_PER_MILLISECOND;
+                g_lastFrameTimestampPts = bufferInfo.attr.pts;
+                bufferInfo.attr.pts = g_lastFrameEncodePts;
+            }
             g_muxer->WriteSample(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
         }
         OH_VideoEncoder_FreeOutputBuffer(g_videoEnc, bufferInfo.bufferIndex);
@@ -369,6 +374,8 @@ int GetInputSurface()
     result = OH_VideoEncoder_Start(g_videoEnc);
     isStarted_.store(true);
     m_scSurfaceIsRunning = true;
+    g_lastFrameTimestampPts = 0;
+    g_lastFrameEncodePts = 0;
     inputVideoThread_ = std::make_unique<std::thread>(ThreadVideoRunMethod);
     // 指定surface开始录屏
     result = OH_AVScreenCapture_StartScreenCaptureWithSurface(g_avCapture, nativeWindow);
