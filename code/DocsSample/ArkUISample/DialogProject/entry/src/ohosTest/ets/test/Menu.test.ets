@@ -74,6 +74,8 @@ export default function MenuTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testPopVibrateMenu end');
       done();
     })
