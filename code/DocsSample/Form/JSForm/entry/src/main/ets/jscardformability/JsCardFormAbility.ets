@@ -19,6 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
+
 // [End JSForm_JsCardFormAbility_import]
 // [Start JSForm_JsCardFormAbility_FormExtensionAbility]
 // [Start JSForm_JsCardFormAbility_onAddForm]
@@ -67,8 +68,9 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
   } catch (err) {
     hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo,
       err: ${JSON.stringify(err as BusinessError)}`);
-  };
+  }
 };
+
 // [EndExclude JSForm_JsCardFormAbility_onAddForm]
 // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
 // [EndExclude JSForm_JsCardFormAbility_onFormEvent]
@@ -95,6 +97,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   }
+
   // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
   // [StartExclude JSForm_JsCardFormAbility_onAddForm]
   onRemoveForm(formId: string): void {
@@ -103,6 +106,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 删除之前持久化的卡片实例数据
     deleteFormInfo(formId, this.context);
   }
+
   // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
   // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
   onUpdateForm(formId: string): void {
@@ -117,6 +121,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
+
   // [EndExclude JSForm_JsCardFormAbility_onFormEvent]
   // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
   onFormEvent(formId: string, message: string): void {
@@ -129,10 +134,12 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
     }
   }
+
   // [EndExclude JSForm_JsCardFormAbility_onAddForm]
   // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
   // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
 }
+
 // [End JSForm_JsCardFormAbility_onFormEvent]
 // [End JSForm_JsCardFormAbility_onAddForm]
 // [End JSForm_JsCardFormAbility_onRemoveForm]

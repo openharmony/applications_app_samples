@@ -22,6 +22,7 @@ const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude JSForm_EntryAbility]
 const DOMAIN = 0x0000;
+
 // [EndExclude JSForm_EntryAbility]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -39,6 +40,7 @@ export default class EntryAbility extends UIAbility {
       }
     }
   }
+
   // [StartExclude JSForm_EntryAbility]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -71,6 +73,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
   // [EndExclude JSForm_EntryAbility]
 }
+
 // [End JSForm_EntryAbility]

@@ -32,6 +32,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     let formData = {};
     return formBindingData.createFormBindingData(formData);
   }
+
   // [StartExclude set_form_next_refreshime]
   onUpdateForm(formId: string): void {
     // Called to notify the form provider to update a specified form.
@@ -48,6 +49,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
       hilog.error(DOMAIN_NUMBER, TAG, 'Operation updateForm failed. Cause: ' + error);
     });
   }
+
   // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
@@ -70,12 +72,15 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
          message: ${(err as BusinessError).message}`);
     }
   }
+
   // [StartExclude update_by_time_form_ability]
   onAcquireFormState(want: Want): formInfo.FormState {
     // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
+
   // [EndExclude update_by_time_form_ability]
 }
+
 // [End set_form_next_refreshime]
 // [End update_by_time_form_ability]

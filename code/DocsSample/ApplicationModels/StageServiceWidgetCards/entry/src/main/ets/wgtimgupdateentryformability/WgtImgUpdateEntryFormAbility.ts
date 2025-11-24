@@ -21,6 +21,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { http } from '@kit.NetworkKit';
+
 // [End refresh_import]
 // [Start network_file_refresh]
 // [Start local_file_refresh]
@@ -30,6 +31,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude local_file_refresh]
 const TEXT1: string = '刷新中...'
 const TEXT2: string = '刷新失败'
+
 // [EndExclude local_file_refresh]
 
 export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
@@ -61,6 +63,7 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     // 将fd封装在formData中并返回至卡片页面
     return formBindingData.createFormBindingData(formData);
   }
+
   // [StartExclude local_file_refresh]
   // [EndExclude network_file_refresh]
   async onFormEvent(formId: string, message: string): Promise<void> {
@@ -132,7 +135,9 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
+
   // [EndExclude local_file_refresh]
 }
+
 // [End local_file_refresh]
 // [End network_file_refresh]
