@@ -55,7 +55,6 @@ export default function CustomDialogTest() {
       await button_list.click();
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_nest')), MatchPattern.CONTAINS));
       await button_list1.click();
-
       let button_list2 = await driver.findComponent(ON.text('Click', MatchPattern.CONTAINS));
       await button_list2.click();
       let button_list3 = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
@@ -63,57 +62,67 @@ export default function CustomDialogTest() {
       let button_list4 = await driver.findComponent(ON.text('close', MatchPattern.CONTAINS));
       await button_list4.click();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(2000);
 
       let button_createCustomDialog1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateCustomDialogNew_title')), MatchPattern.CONTAINS));
       await button_createCustomDialog1.click();
+      await sleep(1000);
       let button_createCustomDialog1_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_createCustomDialog1_click.click();
       await driver.pressBack();
       await driver.pressBack();
+      await sleep(1000);
 
+      await driver.swipe(500, 1000, 500, 400);
+      await sleep(1000);
       let button_dialogInteractionUseConstructor = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseConstructor_title')), MatchPattern.CONTAINS));
       await button_dialogInteractionUseConstructor.click();
+      await sleep(1000);
       let button_dialogInteractionUseConstructor_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_dialogInteractionUseConstructor_click.click();
       let button_dialogInteractionUseConstructor_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
       await button_dialogInteractionUseConstructor_confirm.click();
       await driver.pressBack();
-
-      let stackList = await driver.findComponent(ON.type('List'));
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseButton_title'))));
+      await sleep(2000);
 
       let button_dialogInteractionUseButton = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseButton_title')), MatchPattern.CONTAINS));
       await button_dialogInteractionUseButton.click();
+      await sleep(1000);
       let button_dialogInteractionUseButton_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_dialogInteractionUseButton_click.click();
       let button_dialogInteractionUseButton_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
       await button_dialogInteractionUseButton_confirm.click();
       let button_dialogInteractionUseButton_return = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.click_and_return')), MatchPattern.CONTAINS));
       await button_dialogInteractionUseButton_return.click();
-      await sleep(1000);
+      await sleep(3000);
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(2000);
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogAnimationNew_title'))));
+      await driver.swipe(500, 1000, 500, 600);
+      await sleep(1000);
       let button_dialogAnimationNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAnimationNew_title')), MatchPattern.CONTAINS));
       await button_dialogAnimationNew.click();
+      await sleep(1000);
       let button_dialogAnimationNew_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_dialogAnimationNew_click.click();
       await driver.pressBack();
       await driver.pressBack();
+      await sleep(1000);
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogStyleNew_title'))));
       let button_dialogStyleNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogStyleNew_title')), MatchPattern.CONTAINS));
       await button_dialogStyleNew.click();
+      await sleep(1000);
       let button_dialogStyleNew_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_dialogStyleNew_click.click();
       await driver.pressBack();
       await driver.pressBack();
+      await sleep(1000);
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.NestDialogNew_title'))));
+      await driver.swipe(500, 1000, 500, 800);
+      await sleep(1000);
       let button_nestDialogNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.NestDialogNew_title')), MatchPattern.CONTAINS));
       await button_nestDialogNew.click();
+      await sleep(1000);
       let button_nestDialogNew_click = await driver.findComponent(ON.text('Click Me', MatchPattern.CONTAINS));
       await button_nestDialogNew_click.click();
       let button_nestDialogNew_open = await driver.findComponent(ON.text('Open Second Dialog Box and close this box', MatchPattern.CONTAINS));
@@ -123,18 +132,25 @@ export default function CustomDialogTest() {
       let button_nestDialogNew_close = await driver.findComponent(ON.text('Close Second Dialog Box', MatchPattern.CONTAINS));
       await button_nestDialogNew_close.click();
       await driver.pressBack();
+      await sleep(1000);
 
-      await stackList.scrollToBottom()
+      await driver.swipe(500, 1000, 500, 300);
+      await sleep(1000);
       let button_dialogWithPhysicalBack = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogWithPhysicalBack_title')), MatchPattern.CONTAINS));
       await button_dialogWithPhysicalBack.click();
+      await sleep(1000);
       let button_dialogWithPhysicalBack_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_dialogWithPhysicalBack_click.click();
       let button_dialogWithPhysicalBack_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
       await button_dialogWithPhysicalBack_confirm.click();
       await driver.pressBack();
+      await sleep(1000);
 
+      await driver.swipe(500, 1000, 500, 300);
+      await sleep(1000);
       let button_getDialogStatus = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.GetDialogStatus_title')), MatchPattern.CONTAINS));
       await button_getDialogStatus.click();
+      await sleep(1000);
       let button_button_getDialogStatus_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_button_getDialogStatus_click.click();
       let button_button_getDialogStatus_custom = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.search_by_dialog')), MatchPattern.CONTAINS));
@@ -144,10 +160,13 @@ export default function CustomDialogTest() {
       let button_button_getDialogStatus_close = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.close_widows')), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_close.click();
       await driver.pressBack();
-      await sleep(5000);
+      await sleep(1000);
 
+      await driver.swipe(500, 1000, 500, 300);
+      await sleep(1000);
       let button_dialogAvoidSoftKeyboard = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAvoidSoftKeyboard_title')), MatchPattern.CONTAINS));
       await button_dialogAvoidSoftKeyboard.click();
+      await sleep(1000);
       let text_dialogWithPhysicalBack_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
       await text_dialogWithPhysicalBack_open.click();
       await sleep(1000);

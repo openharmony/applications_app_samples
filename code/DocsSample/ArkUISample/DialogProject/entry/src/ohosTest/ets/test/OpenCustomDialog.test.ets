@@ -80,7 +80,6 @@ export default function OpenCustomDialogTest() {
       await sleep(3000);
       await driver.pressBack();
       await driver.pressBack();
-      await driver.pressBack();
       done()
     })
 
