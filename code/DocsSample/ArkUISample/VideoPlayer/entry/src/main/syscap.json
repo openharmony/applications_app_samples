@@ -7,6 +7,7 @@
   },
   "production": {
     "removedSysCaps": [
+      "SystemCapability.Security.DataTransitManager",
       "SystemCapability.HiviewDFX.HiDumper",
       "SystemCapability.Security.DeviceAuth",
       "SystemCapability.Multimedia.Media.AVTranscoder",

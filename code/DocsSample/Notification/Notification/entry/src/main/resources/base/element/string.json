@@ -2,135 +2,139 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module_Notification"
+      "value": "module description"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "Notification"
+      "value": "description"
     },
     {
       "name": "EntryAbility_label",
       "value": "Notification"
     },
     {
-      "name": "enable_notification",
-      "value": "Enable notification"
+      "name": "publish_one_button_notify",
+      "value": "发布携带一个按钮的通知"
     },
     {
-      "name": "set_badge_number",
-      "value": "Set badge number"
+      "name": "publish_two_button_notify",
+      "value": "发布携带两个按钮的通知"
     },
     {
-      "name": "basic_notification",
-      "value": "Basic notification"
+      "name": "publish_no_button_notify",
+      "value": "发布不携带按钮的通知"
     },
     {
-      "name": "long_notification",
-      "value": "Long notification"
+      "name": "ability_agent_create",
+      "value": "创建拉起UIAbility的WantAgent的WantAgentInfo信息"
     },
     {
-      "name": "multi_line_notification",
-      "value": "Multi line notification"
+      "name": "pub_event_agent",
+      "value": "创建发布公共事件的WantAgent的WantAgentInfo信息"
     },
     {
-      "name": "picture_notification",
-      "value": "Picture notification"
+      "name": "plain_text_notify",
+      "value": "发布普通文本类型通知"
     },
     {
-      "name": "progress_bar_notification",
-      "value": "Progress bar notification"
+      "name": "cancel_notify",
+      "value": "取消通知"
     },
     {
-      "name": "want_agent_start_ability",
-      "value": "WantAgent start ability notification"
+      "name": "pub_notify_with_msgid",
+      "value": "发布通知消息，通知消息中包含appMessageId字段"
     },
     {
-      "name": "want_agent_common_event",
-      "value": "WantAgent start common event"
+      "name": "request_notify_auth",
+      "value": "请求通知授权"
     },
     {
-      "name": "SecondAbility_desc",
-      "value": "Notification"
+      "name": "request_consent",
+      "value": "允许"
     },
     {
-      "name": "SecondAbility_label",
-      "value": "label"
+      "name": "manage_notify_badge",
+      "value": "管理通知角标"
     },
     {
-      "name": "thirdAbility_desc",
-      "value": "Notification"
+      "name": "manage_notify_channel",
+      "value": "管理通知渠道"
     },
     {
-      "name": "thirdAbility_label",
-      "value": "label"
+      "name": "publish_notify",
+      "value": "发布通知"
     },
     {
-      "name": "clickable_notification",
-      "value": "Clickable notification"
+      "name": "add_notify_action",
+      "value": "为通知添加行为意图"
     },
     {
-      "name": "notification_title",
-      "value": "Title"
+      "name": "update_notify",
+      "value": "更新通知"
     },
     {
-      "name": "notification_content",
-      "value": "Notification content"
+      "name": "cross_device_clear_dup_notify",
+      "value": "清除跨设备场景下的重复通知"
     },
     {
-      "name": "notification_additional",
-      "value": "Notification additional content"
+      "name": "increase_badge_count",
+      "value": "增加角标个数"
     },
     {
-      "name": "notification_long_text",
-      "value": "Notification long text"
+      "name": "reduce_notify_badge",
+      "value": "减少角标个数"
     },
     {
-      "name": "notification_brief_text",
-      "value": "Notification brief text,it is a summary of the contents of the notice."
+      "name": "set_badge_eight",
+      "value": "设置角标个数为8"
     },
     {
-      "name": "notification_expanded_title",
-      "value": "Notification expanded title"
+      "name": "set_badge_nine",
+      "value": "设置角标个数为9"
     },
     {
-      "name": "EntryAbility1_desc",
-      "value": "Notification"
+      "name": "badge_count_neg",
+      "value": "角标设置个数反例"
     },
     {
-      "name": "EntryAbility1_label",
-      "value": "label"
+      "name": "badge_count_pos",
+      "value": "角标设置个数正例"
     },
     {
-      "name": "webfont_text",
-      "value": "文本通知"
+      "name": "delete_badge_count",
+      "value": "清除通知"
     },
     {
-      "name": "allow_button",
-      "value": "allow"
+      "name": "create_channel_type",
+      "value": "创建社交通信类型的通知渠道"
     },
     {
-      "name": "development_guide_example",
-      "value": "development_guide_example"
+      "name": "get_channel_type",
+      "value": "查询社交通信类型的通知渠道"
     },
     {
-      "name": "kong_wu",
-      "value": " "
+      "name": "delete_channel_type",
+      "value": "删除社交通信类型的通知渠道"
     },
     {
-      "name": "EntryAbility666_desc",
-      "value": "description"
+      "name": "pub_plaintext_notify",
+      "value": "发布普通文本类型通知"
     },
     {
-      "name": "EntryAbility666_label",
-      "value": "label"
+      "name": "pub_multi_line_notify",
+      "value": "发布多行文本类型通知"
     },
     {
-      "name": "SecondPage",
-      "value": "Second Page"
+      "name": "check_progress_template_notify",
+      "value": "查询系统是否支持进度条模板"
     },
     {
-      "name": "empty",
-      "value": "empty"
+      "name": "pub_progress_notify",
+      "value": "发布进度条类型通知"
+    },
+    {
+      "name": "reapply_notify_auth",
+      "value": "再次申请通知授权"
     }
   ]
 }

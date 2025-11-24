@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建RenderNode组件并可以设置、获取、重置组件对应节点属性
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建RenderNode组件并可以设置、获取、重置组件对应节点属性，接口详情请参考[native_render.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-render-h.md)。
 
 ### 使用说明
 
@@ -31,6 +31,14 @@ entry/src/main/ets/
 |   |---index.ets                      // 应用主页面
 |   |---property.ets                      // RenderNode属性设置实现页面
 ```
+
+### 效果预览
+
+| 首页 | 应用页面                                           |
+| ---- | -------------------------------------------------------- |
+|      | <img src="./screenshots/device/render_index.png" width="300;" />       |
+|      | <img src="./screenshots/device/render_property.png" width="300;" /> |
+|      | <img src="./screenshots/device/render_custom.png" width="300;" /> |
 
 ### 具体实现
 - 本示例展示获取渲染组件接入页面的使用方式，使用CAPI新增的RenderNodeUtils相关能力，通过接口构造渲染树，设置渲染节点的绘制属性等，而后将其挂载在CAPI的CUSTOM节点下即可实现。

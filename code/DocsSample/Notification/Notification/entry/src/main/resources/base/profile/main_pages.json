@@ -1,6 +1,13 @@
 {
   "src": [
     "pages/Index",
-    "pages/Second"
+    "pages/RequestEnableNotification",
+    "pages/ManageNotificationBadges",
+    "pages/ManageNotificationWays",
+    "pages/PublishNotification",
+    "pages/AddWantAgent",
+    "pages/UpdateNotification",
+    "pages/CancelNotification",
+    "pages/ClearDuplicateNotifications"
   ]
 }

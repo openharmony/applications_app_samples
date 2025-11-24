@@ -40,7 +40,7 @@ function drawStrokeText(canvas: drawing.Canvas) {
   // 设置描边线宽
   pen.setStrokeWidth(3.0);
   // 设置描边颜色
-  pen.setColor(0xFF, 0xFF,  0x00, 0x00);
+  pen.setColor(0xFF, 0xFF, 0x00, 0x00);
   // 创建字型对象
   const font = new drawing.Font();
   // 设置字体大小
@@ -66,13 +66,13 @@ function drawChineseStrokeText(canvas: drawing.Canvas) {
   // 设置抗锯齿
   brush.setAntiAlias(true);
   // 设置描边颜色
-  brush.setColor(0xFF, 0xFF,  0xFF, 0xFF);
+  brush.setColor(0xFF, 0xFF, 0xFF, 0xFF);
 
   pen.setAntiAlias(true);
   // 设置描边线宽
   pen.setStrokeWidth(3.0);
   // 设置描边颜色
-  pen.setColor(0xFF, 0xFF,  0x00, 0x00);
+  pen.setColor(0xFF, 0xFF, 0x00, 0x00);
 
   // 创建字型对象
   const font = new drawing.Font();

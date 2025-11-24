@@ -1,11 +1,10 @@
-# @Once：初始化同步一次
+# @Computed装饰器：计算属性
 
 ### 介绍
 
-本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-once.md)装饰器的使用方法：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. @Once用于期望变量仅初始化同步数据源一次，之后不再继续同步变化的场景；
-2. 当@Once与@Param结合使用时，可以解除@Param无法在本地修改的限制，并能够触发UI刷新。此时，使用@Param和@Once的效果类似于@Local，但@Param和@Once还能接收外部传入的初始值；
+1. [@Computed装饰器：计算属性](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-Computed.md)
 
 ### 效果预览
 
@@ -14,15 +13,6 @@
 |-------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|
 | ![](screenshots/image1.png) | ![](screenshots/image2.png) | ![](screenshots/image3.png) | ![](screenshots/image4.png) | ![](screenshots/image5.png) |
 
-### 具体实现
-
-1. 到对应模块的官网文档，理解模块功能和使用说明
-
-2. 补充对应的代码片段，确保可以运行
-
-3. 拿真机，填写测试用例，运行项目
-
-4. 拿真机对用例进行自动测试
 
 ### 使用说明
 
@@ -38,6 +28,7 @@ entry/src/
 │   │   └── pages
 │   │       ├── Index.ets
 │   │       └── ComputedInitParam.ets
+│   │       └── ComputedProperty.ets
 │   │       └── ComputingPropertyResolution.ets
 │   │       └── CustomComponentUse.ets
 │   │       └── ObservedV2ClassUser.ets
@@ -52,6 +43,14 @@ entry/src/
 
 ```
 
+### 具体实现
+
+1. @ComponentV2中@Computed装饰getter方法，避免UI重复计算，依赖状态变化仅重算一次；
+
+2. @ObservedV2类中@Computed依赖@Trace变量，异步初始化，依赖变化自动重算；
+
+3. @Computed计算结果可初始化子组件@Param，依赖变化时自动同步
+
 ### 相关权限
 
 不涉及。
@@ -62,7 +61,7 @@ entry/src/
 
 ### 约束与限制
 
-1.本示例已适配API version 12及以上版本SDK。
+1.本示例已适配API version 20及以上版本SDK。
 
 ### 下载
 

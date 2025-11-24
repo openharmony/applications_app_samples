@@ -14,15 +14,15 @@
     },
     {
       "name": "button1",
-      "value": "订阅eventId为1的时间"
+      "value": "订阅eventId为1的事件"
     },
     {
       "name": "button2",
-      "value": "发送eventId为1的时间"
+      "value": "发送eventId为1的事件"
     },
     {
       "name": "button3",
-      "value": "取消订阅eventId为1的时间"
+      "value": "取消订阅eventId为1的事件"
     }
   ]
 }

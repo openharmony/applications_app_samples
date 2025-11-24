@@ -16,11 +16,14 @@
 // [Start custom_dialog_with_transition]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0000;
+
 @Entry
 @Component
 export struct CustomDialogComponentWithTransition {
   private customDialogComponentId: number = 0
+
   @Builder
   customDialogComponent() {
     Row({ space: 50 }) {
@@ -66,7 +69,8 @@ export struct CustomDialogComponentWithTransition {
                   this.customDialogComponentId = dialogId;
                 })
                 .catch((error: BusinessError) => {
-                  hilog.error(DOMAIN, 'testTag', `openCustomDialog error code is ${error.code}, message is ${error.message}`)
+                  hilog.error(DOMAIN, 'testTag',
+                    `openCustomDialog error code is ${error.code}, message is ${error.message}`)
                 })
             })
         }
@@ -76,4 +80,5 @@ export struct CustomDialogComponentWithTransition {
     }
   }
 }
+
 // [End custom_dialog_with_transition]

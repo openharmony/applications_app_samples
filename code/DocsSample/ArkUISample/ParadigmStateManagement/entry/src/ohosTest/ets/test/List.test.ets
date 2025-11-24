@@ -15,7 +15,7 @@
 import { MigrationDestination } from '../../../main/ets/pages/migrationDataObjectVariables/Index';
 import abilityTest from './Ability.test';
 import extendTest from './Extend.test';
-import InternalTest from './Internalmigrate';
+import InternalTest from './Internalmigrate.test';
 import localTest from './Local.test';
 import localBuilderTest from './LocalBuilder.test';
 import migrationTest from './MigrationDataObjectVariables.test';

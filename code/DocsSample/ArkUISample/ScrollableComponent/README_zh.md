@@ -4,13 +4,13 @@
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [创建列表 (List)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-list.md)。
-2. [创建弧形列表 (ArcList)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
-3. [创建网格 (Grid/GridItem)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-grid.md)。
-4. [创建瀑布流 (WaterFlow)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-waterflow.md)
-5. [创建轮播 (Swiper)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-looping.md)。
-6. [创建弧形轮播 (ArcSwiper)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
-7. [选项卡 (Tabs)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-navigation-tabs.md)
+1. [创建列表 (List)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-list.md)。
+2. [弧形列表 (ArcList)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
+3. [创建网格 (Grid/GridItem)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-grid.md)。
+4. [创建瀑布流 (WaterFlow)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-waterflow.md)
+5. [创建轮播 (Swiper)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-looping.md)。
+6. [创建弧形轮播 (ArcSwiper)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
+7. [选项卡 (Tabs)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-tabs.md)
 ### 效果预览
 
 | 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
@@ -193,7 +193,7 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API20版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
+2.本示例为Stage模型，支持API22版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
 
 3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 

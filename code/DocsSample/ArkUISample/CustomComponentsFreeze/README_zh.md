@@ -4,13 +4,7 @@
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接:
 
-### 1.[线性容器(Column)](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
-
-### 2.[文本显示器(Text)](https://docs.openharmony.cn/pages/v5.1/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
-
-### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
-
-### 4[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
+1. [自定义组件冻结功能（V1）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
 
 ### 效果预览
 | 页面1页面2跳转 | 页面2返回上一页 | TabContent创建 | LazyForEach中缓存的自定义组件进行冻结 | NavigationContentMsgStack会被设置成非激活态 |

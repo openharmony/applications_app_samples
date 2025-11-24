@@ -14,50 +14,55 @@
  */
 
 import { NodeContent } from '@kit.ArkUI';
-import render, { DestroyNativeRoot } from 'libentry.so';
+import render from 'libentry.so';
+
 @Entry
 @Component
-
 struct NativeCustomPage {
-  @State flag:boolean=true;
-  @State text:string='ShowNativeUI';
-  private nodeContent: NodeContent = new NodeContent();
-  private isNodeCreated: boolean = true;
+  @State flag: boolean = false;
+  @State text: string = 'HideNativeUI';
+  @State nodeContent: NodeContent = new NodeContent();
+
   onPageShow() {
     this.createNativeNodes();
   }
+
   onPageHide() {
     this.DestroyNativeRoot();
   }
+
   private createNativeNodes() {
-    if (render?.CreateNativeRoot && this.isNodeCreated) {
-      render.CreateNativeRoot(this.nodeContent);
-      this.isNodeCreated = true;
-    }
+    render.CreateNativeRoot(this.nodeContent);
   }
+
   private DestroyNativeRoot() {
-    if (render?.DestroyNativeRoot && !this.isNodeCreated) {
-      render.DestroyNativeRoot();
-      this.isNodeCreated = false;
-    }
+    render.DestroyNativeRoot();
   }
+
   build() {
     Column() {
       Row({ space: 16 }) {
-        Button('HideNativeUI')
-          .onClick(()=>{
-            this.flag=false;
-            DestroyNativeRoot();
+        Button(this.text)
+          .onClick(() => {
+            this.flag = !this.flag
+            if (this.flag) {
+              this.text = 'ShowNativeUI'
+              this.DestroyNativeRoot()
+            } else {
+              this.text = 'HideNativeUI'
+              this.createNativeNodes()
+            }
           })
       }
-       if(this.flag){
-         Column() {
-           ContentSlot(this.nodeContent);
-         }
-         .margin({top:50})
-         .flexGrow(1)
-         .padding(16)
-       }
+
+      if (!this.flag) {
+        Column() {
+          ContentSlot(this.nodeContent);
+        }
+        .margin({ top: 50 })
+        .flexGrow(1)
+        .padding(16)
+      }
     }
     .width('100%')
     .height('100%')

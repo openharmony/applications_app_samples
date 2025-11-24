@@ -1,4 +1,4 @@
-# StyledStringNDK
+# Text组件的文本绘制与显示
 
 ## 介绍
 

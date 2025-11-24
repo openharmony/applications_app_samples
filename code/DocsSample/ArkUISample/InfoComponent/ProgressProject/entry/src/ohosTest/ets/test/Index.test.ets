@@ -27,6 +27,12 @@ const TAG = '[Sample_Progressproject]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Progressproject_'
 
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let textString: string = await manage.getStringValue(resource);
+  return textString;
+}
+
 export default function IndexTest() {
   describe('IndexTest', () => {
     beforeAll(async () => {
@@ -56,11 +62,11 @@ export default function IndexTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressComponentsExist begin");
 
       // 验证标题文本
-      const linearText = await driver.findComponent(ON.text('Linear Progress'));
-      const ringText = await driver.findComponent(ON.text('Ring Progress'));
-      const scaleRingText = await driver.findComponent(ON.text('ScaleRing Progress'));
-      const eclipseText = await driver.findComponent(ON.text('Eclipse Progress'));
-      const capsuleText = await driver.findComponent(ON.text('Capsule Progress'));
+      const linearText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Linear_Progress'))));
+      const ringText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Ring_Progress'))));
+      const scaleRingText = await driver.findComponent(ON.text(await getResourceString($r('app.string.ScaleRing_Progress'))));
+      const eclipseText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Eclipse_Progress'))));
+      const capsuleText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Capsule_Progress'))));
       expect(linearText === null).assertFalse();
       expect(ringText === null).assertFalse();
       expect(scaleRingText === null).assertFalse();

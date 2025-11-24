@@ -40,6 +40,11 @@ public:
         return OH_ArkUI_RenderNodeUtils_RemoveRenderNode(handle_, child->GetHandle());
     }
 
+    int32_t ClearRenderNodeChildren()
+    {
+        return OH_ArkUI_RenderNodeUtils_ClearRenderNodeChildren(handle_);
+    }
+
     int32_t Invalidate()
     {
         return OH_ArkUI_RenderNodeUtils_Invalidate(handle_);

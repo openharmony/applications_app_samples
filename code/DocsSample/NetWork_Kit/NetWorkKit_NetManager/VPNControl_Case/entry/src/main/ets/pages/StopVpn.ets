@@ -14,7 +14,7 @@
  */
 
 // [Start stop_vpn_extension_ability_import]
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End stop_vpn_extension_ability_import]
