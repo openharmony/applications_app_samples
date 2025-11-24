@@ -2,7 +2,7 @@
 
 ### 介绍
 
-1. 本工程主要实现了对以下指南文档中 https://gitcode.com/slayyyy/OHDocs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-arkts.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 ####  AES256
 
@@ -56,7 +56,7 @@
 
 ### 介绍
 
-1. 本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 #### Call C/C++ AES256
 
@@ -146,7 +146,7 @@ entry/src/main/
 ```
 git init
 git config core.sparsecheckout true
-echo code/ocsSample/Security/UniversalKeystoreKit/KeyGenerationImport/KeyImport/DevelopmentGuidelines/ImportKeyPlainText > .git/info/sparse-checkout
+echo code/DocsSample/Security/UniversalKeystoreKit/KeyGenerationImport/KeyImport/DevelopmentGuidelines/ImportKeyPlainText > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

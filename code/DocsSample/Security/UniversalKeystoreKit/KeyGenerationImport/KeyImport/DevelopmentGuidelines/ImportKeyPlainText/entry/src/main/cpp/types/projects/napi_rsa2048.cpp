@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start import_keys_in_plaintext_RSA2048]
+// [Start import_keys_in_plaintext_RSA2048_cpp]
 /* 以下以明文导入RSA2048密钥为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -108,16 +108,16 @@ napi_value ImportRsaKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        /* Import Key */
+        /* 导入密钥 */
         char newKey[] = "test_rsa_import";
         struct OH_Huks_Blob newKeyAlias = {.size = (uint32_t)strlen(newKey), .data = (uint8_t *)newKey};
         ohResult = OH_Huks_ImportKeyItem(&newKeyAlias, testImportKeyParamSet, &publicKey);
     } while (0);
+    
     OH_Huks_FreeParamSet(&testImportKeyParamSet);
+    
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
-
     return ret;
 }
-
-// [End import_keys_in_plaintext_RSA2048]
+// [End import_keys_in_plaintext_RSA2048_cpp]

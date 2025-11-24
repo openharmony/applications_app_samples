@@ -21,5 +21,4 @@ napi_value ImportAesKey(napi_env env, napi_callback_info info);
 napi_value ImportRsaKey(napi_env env, napi_callback_info info);
 napi_value ImportX25519Key(napi_env env, napi_callback_info info);
 
-
 #endif //IMPORTKEYPLAINTEXT_FILE_H

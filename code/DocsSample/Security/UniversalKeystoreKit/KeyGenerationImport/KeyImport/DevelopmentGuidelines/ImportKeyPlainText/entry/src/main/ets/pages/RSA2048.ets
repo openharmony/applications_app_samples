@@ -114,9 +114,8 @@ async function testImport() {
   console.info(`testImport success`);
 }
 
-
-
 // [End import_keys_in_plaintext_RSA2048]
+
 let isKeyExist = false;
 
 let keyProperties: huks.HuksParam[] = [
