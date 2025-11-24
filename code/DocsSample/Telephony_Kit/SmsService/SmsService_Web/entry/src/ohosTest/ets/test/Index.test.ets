@@ -43,13 +43,13 @@ export default function IndexTest() {
             const driver = Driver.create();
             await driver.delayMs(1000);
 
-            //查找并点击'Send Sms'按钮
-            const button = await driver.findComponent(ON.text('Send Sms'));
+            //查找并点击'发送短信'按钮
+            const button = await driver.findComponent(ON.text('发送短信'));
             await button.click();
             await driver.delayMs(1000);
 
-            //验证是否跳转到拨号界面
-            await driver.assertComponentExist(ON.text('Hello World'));
+            //验证是否跳转到短信发送界面
+            await driver.assertComponentExist(ON.text('发送短信内容'));
             await driver.pressBack();
             done();
         });

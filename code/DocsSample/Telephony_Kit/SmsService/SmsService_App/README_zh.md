@@ -1,4 +1,4 @@
-# sms方式跳转到短信编辑界面
+# 应用内跳转到短信编辑界面
 
 ### 介绍
 
@@ -36,17 +36,7 @@ entry/src/ohosTest/
 ```
 ### 具体实现
 
-拉起方开发步骤
-从网页拉起
-
-网页中的超链接需要满足sms协议。示例如下：
-
-<a href="sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9">发送短信</a>
-实际开发时，需要将收件人号码替换为真实的号码，短信内容可以根据需要进行配置。
-
-从应用拉起
-
-保证sms字符串传入uri参数即可，在应用中page页面可通过 this.getUIContext().getHostContext() 获取context，在ability中可通过this.context获取context。
+应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力startAbility接口指定号码并跳转到发送短信页面的方式实现。
 
 
 

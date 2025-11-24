@@ -44,12 +44,12 @@ export default function IndexTest() {
             await driver.delayMs(1000);
 
             //查找并点击'Send Message'按钮
-            const button = await driver.findComponent(ON.text('Send Message'));
+            const button = await driver.findComponent(ON.text('发送短信'));
             await button.click();
             await driver.delayMs(1000);
 
             //验证是否跳转到拨号界面
-            await driver.assertComponentExist(ON.text('Hello World'));
+            await driver.assertComponentExist(ON.text('我是短信具体内容'));
             await driver.pressBack();
             done();
         });
