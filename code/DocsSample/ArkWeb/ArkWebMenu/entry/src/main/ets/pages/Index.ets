@@ -82,16 +82,6 @@ struct Index {
             })
         })
 
-      Button('scanQRCode')
-        .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({
-            url: 'pages/WebScanQRCode',
-          })
-            .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
-            })
-        })
-
       Button('disableLongPress')
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({
