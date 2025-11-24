@@ -4,8 +4,8 @@
 
 本示例展示了如何创建自定义弹窗，设置自定义弹窗的背景颜色、圆角半径、对齐方式、边框颜色、边框样式等功能。该工程中展示的接口详细描述可查如下链接：
 
-1. [通过创建弹窗控制器显示自定义弹窗](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-pop-up-window.md#通过创建弹窗控制器显示自定义弹窗)：在名为ArkUI_NativeDialogAPI_1的结构体中，定义了弹窗接口集合，用于实现各种弹窗控制。
-2. [通过创建自定义弹窗的内容对象显示自定义弹窗](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-pop-up-window.md#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下的弹窗接口在[native_dialog.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-dialog-h.md#函数)的函数中定义。
+1. [native_dialog.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-dialog-h.md)。  
+2. [构建弹窗](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-pop-up-window.md)。
 
 ## 效果预览
 
