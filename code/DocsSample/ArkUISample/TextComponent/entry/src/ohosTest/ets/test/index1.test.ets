@@ -79,6 +79,7 @@ export default function IndexTest1() {
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
+      await driver.delayMs(1000)
       console.info('uitest: testCreateApply end');
       done();
     })
