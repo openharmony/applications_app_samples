@@ -29,7 +29,7 @@ struct ToolBar {
     'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',
     'action': () => {}
   };
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
   @Builder
@@ -46,7 +46,7 @@ struct ToolBar {
   build() {
     Column() {
       // [EndExclude ToolBar]
-      Navigation(this.pageInfos) {
+      Navigation(this.navPathStack) {
         // [StartExclude ToolBar]
         TextInput({ placeholder: 'search...' })
           .width('90%')
@@ -65,7 +65,7 @@ struct ToolBar {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
                 .onClick(() => {
-                  this.pageInfos.pushPath({ name: 'NavDestinationTitle' + item });
+                  this.navPathStack.pushPath({ name: 'NavDestinationTitle' + item });
                 })
             }
           }, (item: number) => item.toString())
@@ -111,7 +111,7 @@ struct ToolBar {
 
 @Component
 export struct pageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -120,7 +120,7 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }
@@ -128,7 +128,7 @@ export struct pageOneTmp {
 
 @Component
 export struct pageTwoTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -137,7 +137,7 @@ export struct pageTwoTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }
@@ -145,7 +145,7 @@ export struct pageTwoTmp {
 
 @Component
 export struct pageThreeTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -154,7 +154,7 @@ export struct pageThreeTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }
