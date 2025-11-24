@@ -15,6 +15,9 @@
 9. [页面级弹出框](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-embedded-dialog.md)。
 10. [弹出框层级管理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-levelorder.md)。
 11. [弹出框控制器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-controller.md)。
+12. [不依赖UI组件的全局菜单 (openMenu)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-menu.md)。
+13. [弹出框焦点策略](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-focusable.md)。
+14. [不依赖UI组件的全局气泡提示 (openPopup)](https://gitcode.com/openharmony/docs/edit/master/zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md)。
 
 ### 效果预览
 
@@ -228,6 +231,24 @@ entry/src/ohosTest/
     * 在CustomDialogController内容区直接获取弹出框控制器。代码参考[DialogController.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/dialogcontroller/DialogController.ets)。
 
     * 使用控制器获取弹出框的状态。代码参考[DialogController.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/DialogProject/entry/src/main/ets/pages/customdialog/dialogcontroller/DialogController.ets)。
+
+12. 不依赖UI组件的全局菜单 (openMenu)
+
+    * 通过调用openMenu接口弹出菜单，需要提供用于定义自定义弹出框的内容ComponentContent。
+
+    * 通过调用openMenu接口弹出菜单，需要提供绑定组件的信息TargetInfo。若未传入有效的target，则无法弹出菜单。
+
+    * 通过调用openMenu接口弹出菜单，可以设置MenuOptions中的属性调整菜单样式。title属性不生效。preview参数仅支持设置MenuPreviewMode类型。
+
+13. 弹出框焦点策略
+
+    * openCustomDialog和CustomDialog支持通过focusable参数来管理弹出框是否获取焦点。
+
+14. 不依赖UI组件的全局气泡提示 (openPopup)
+
+    * 通过调用openPopup接口弹出其气泡，需要提供用于定义自定义弹出框的内容ComponentContent。
+    
+    * 可以设置PopupCommonOptions属性调整气泡样式
 
 
 ### 相关权限
