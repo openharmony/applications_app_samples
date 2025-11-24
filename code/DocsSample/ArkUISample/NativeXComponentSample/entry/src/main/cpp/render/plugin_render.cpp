@@ -23,6 +23,8 @@
 #include "../manager/plugin_manager.h"
 #include "plugin_render.h"
 
+#define EXPECTED_FRAME_RATE 30
+
 namespace NativeXComponentSample {
 namespace {
 void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -341,6 +343,44 @@ void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window
     }
 }
 
+void SampleCallback(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targettimestamp)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallback", "SampleCallback");
+}
+
+void SampleInputeventCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInputeventCallback", "SampleInputeventCallback");
+}
+
+HitTestMode SampleInterceptCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInterceptCallback", "SampleInterceptCallback");
+    return HTM_DEFAULT;
+}
+
+void SampleSurfaceShowCallback(OH_NativeXComponent *component, void* window)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleSurfaceShowCallback", "SampleSurfaceShowCallback");
+}
+
+bool SampleCallbackWithResult(OH_NativeXComponent *component, void* window)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallbackWithResult", "SampleCallbackWithResult");
+    return false;
+}
+
+void SampleAnalyzer(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleAnalyzer", "SampleAnalyzer");
+}
+
+void MyContentHandler(ArkUI_NodeContentEvent* event)
+{
+    // 处理内容变化
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "MyContentHandler", "MyContentHandler");
+}
+
 void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
 {
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
@@ -382,72 +422,37 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
         "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
         "touch info: max_touch_points_number = %{public}d", OH_MAX_TOUCH_POINTS_NUMBER);
-    bool isshowSample = 0;
-    if (isshowSample == 1) {
-        // 仅展示使用方法
-        ShowSample(component);
-    }
+    OnTouchEventPartTwo(component, window);
+    ArkUI_NodeHandle node; // 此处需要绑定node
+    void* userData; // 此处需要绑定userData
+    OH_ArkUI_XComponent_StartImageAnalyzer(node, userData, SampleAnalyzer);
+    OH_ArkUI_XComponent_StopImageAnalyzer(node);
+    // ArkUI_NodeContentCallback 的具体使用请搜索 OH_ArkUI_NodeContent_RegisterCallback
+    // ArkUI_NodeContentCallback callback1 = MyContentHandler;
+    return;
 }
 
-void SampleCallback(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targettimestamp)
+void PluginRender::OnTouchEventPartTwo(OH_NativeXComponent* component, void* window)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallback", "SampleCallback");
-}
-
-void SampleInputeventCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInputeventCallback", "SampleInputeventCallback");
-}
-
-HitTestMode SampleInterceptCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInterceptCallback", "SampleInterceptCallback");
-}
-
-void SampleSurfaceShowCallback(OH_NativeXComponent *component, void* window)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleSurfaceShowCallback", "SampleSurfaceShowCallback");
-}
-
-bool SampleCallbackWithResult(OH_NativeXComponent *component, void* window)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallbackWithResult", "SampleCallbackWithResult");
-    return false;
-}
-
-void SampleAnalyzer(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleAnalyzer", "SampleAnalyzer");
-}
-
-void myContentHandler(ArkUI_NodeContentEvent* event) {
-    // 处理内容变化
-}
-
-void PluginRender::ShowSample(OH_NativeXComponent* component)
-{
-    int32_t min = 0;
-    int32_t max = 0;
-    int32_t expected = 0;
+    int32_t min = EXPECTED_FRAME_RATE;
+    int32_t max = EXPECTED_FRAME_RATE;
+    int32_t expected = EXPECTED_FRAME_RATE;
     OH_NativeXComponent_ExpectedRateRange range = {.min = min, .max = max, .expected = expected};
     OH_NativeXComponent_SetExpectedFrameRateRange(component, &range);
     bool needSoftKeyboard = 0;
     OH_NativeXComponent_SetNeedSoftKeyboard(component, needSoftKeyboard);
-    ArkUI_AccessibilityProvider* sampleHandle; //此处需要绑定handle
-    OH_NativeXComponent_GetNativeAccessibilityProvider(component, &sampleHandle);
     OH_NativeXComponent_RegisterOnFrameCallback(component, SampleCallback);
     OH_NativeXComponent_UnregisterOnFrameCallback(component);
     ArkUI_UIInputEvent_Type type = ARKUI_UIINPUTEVENT_TYPE_UNKNOWN;
     OH_NativeXComponent_RegisterUIInputEventCallback(component, SampleInputeventCallback, type);
+    ArkUI_AccessibilityProvider* sampleHandle; // 此处需要绑定handle
+    OH_NativeXComponent_GetNativeAccessibilityProvider(component, &sampleHandle);
     OH_NativeXComponent_RegisterOnTouchInterceptCallback(component, SampleInterceptCallback);
     OH_NativeXComponent_RegisterSurfaceShowCallback(component, SampleSurfaceShowCallback);
     OH_NativeXComponent_RegisterSurfaceHideCallback(component, SampleSurfaceShowCallback);
     OH_NativeXComponent_RegisterKeyEventCallbackWithResult(component, SampleCallbackWithResult);
-    ArkUI_NodeHandle node;
-    void* userData;
-    OH_ArkUI_XComponent_StartImageAnalyzer(node, userData, SampleAnalyzer);
-    OH_ArkUI_XComponent_StopImageAnalyzer(node);
-    ArkUI_NodeContentCallback callback1 = myContentHandler;
+    OH_NativeXComponent_RegisterKeyEventCallbackWithResult(component, SampleCallbackWithResult);
+    return;
 }
 
 void PluginRender::RegisterCallback(OH_NativeXComponent* nativeXComponent)
