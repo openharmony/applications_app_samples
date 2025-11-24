@@ -27,6 +27,7 @@ struct Index {
       Row() {
         Button('button1')
           .id('button1')
+          .margin({ left: 70, right: 30 })
           .onKeyEvent((event) => {
             hilog.info(DOMAIN, TAG, BUNDLE + 'button1');
             return true;
@@ -60,6 +61,7 @@ struct Index {
     })
   }
 }
+
 // [End key_distribute_event]
 
 @Builder
