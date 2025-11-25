@@ -16,7 +16,7 @@
 // [Start import_keys_in_plaintext_RSA2048]
 /* 以下以导入RSA2048密钥的Callback操作使用为例。 */
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from "@kit.BasicServicesKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rsa2048KeyPairMaterial = new Uint8Array([
   0x01, 0x00, 0x00, 0x00, // 密钥算法(小端表示)huks.HuksKeyAlg.HUKS_ALG_RSA = 1。
@@ -65,7 +65,7 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 /* 1.确定密钥别名。 */
 let keyAlias = 'RSA_sample';
 /* 2.封装密钥属性集和密钥材料。 */
-let properties: Array<huks.HuksParam> = [{
+let properties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_RSA
 }, {
@@ -89,7 +89,7 @@ let options: huks.HuksOptions = {
 
 /* 3.明文导入密钥。 */
 async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
-  console.info("promise: enter importKeyItem");
+  console.info('promise: enter importKeyItem');
   let ret: boolean = false;
   try {
     await huks.importKeyItem(keyAlias, huksOptions)

@@ -15,7 +15,7 @@
 // [Start import_keys_in_plaintext_X25519]
 /* 以下以导入X25519密钥的Callback操作使用为例。 */
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from "@kit.BasicServicesKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // X25519的公钥数据。X25519密钥对中的私钥和公钥都是32字节（256位），关于算法原理请自行参考相关密码学资料。
 let x25519KeyPubMaterial = new Uint8Array([
@@ -26,7 +26,7 @@ let x25519KeyPubMaterial = new Uint8Array([
 /* 1.确定密钥别名。 */
 let keyAlias = 'X25519_Pub_import_sample';
 /* 2.封装密钥属性集和密钥材料。 */
-let properties: Array<huks.HuksParam> = [{
+let properties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_X25519
 }, {
@@ -50,7 +50,7 @@ let options: huks.HuksOptions = {
 
 /* 3.明文导入密钥。 */
 async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
-  console.info("promise: enter importKeyItem");
+  console.info('promise: enter importKeyItem');
   let ret: boolean = false;
   try {
     await huks.importKeyItem(keyAlias, huksOptions)

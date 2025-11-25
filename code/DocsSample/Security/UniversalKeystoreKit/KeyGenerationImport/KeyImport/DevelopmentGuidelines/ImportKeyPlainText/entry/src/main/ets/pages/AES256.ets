@@ -17,7 +17,7 @@
 
 /* 以下以导入AES256密钥的Callback操作使用为例。 */
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from "@kit.BasicServicesKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 密钥材料。 */
 let plainTextSize32 = new Uint8Array([
@@ -28,7 +28,7 @@ let plainTextSize32 = new Uint8Array([
 let keyAlias = 'AES256Alias_sample';
 
 /* 2.封装密钥属性集和密钥材料。 */
-let properties: Array<huks.HuksParam> = [{
+let properties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_AES
 }, {
@@ -46,7 +46,7 @@ let options: huks.HuksOptions = {
 
 /* 3.明文导入密钥。 */
 async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
-  console.info("promise: enter importKeyItem");
+  console.info('promise: enter importKeyItem');
   let ret: boolean = false;
   try {
     await huks.importKeyItem(keyAlias, huksOptions)
