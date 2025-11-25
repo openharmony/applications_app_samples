@@ -14,23 +14,24 @@
  */
 
 // [Start eventObserver_sample]
-  import { describe, it, TestType, Size, Level } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { Driver, UIElementInfo } from '@kit.TestKit';
+import { describe, it, Level, Size, TestType } from '@ohos/hypium';
+// 导入测试依赖kit
+import { Driver, UIElementInfo } from '@kit.TestKit';
 
-  export default function abilityTest() {
-    describe('eventObserver_sample', () => {
-      // 监听Toast控件出现
-      it("toastObserver", TestType.FUNCTION, async () => {
-        let driver = Driver.create();
-        let observer = driver.createUIEventObserver();
-        let callback = (uiElementInfo : UIElementInfo) => {
-          let bundleName = uiElementInfo.bundleName;
-          let text = uiElementInfo.text;
-          let type = uiElementInfo.type;
-        }
-        observer.once('toastShow', callback);
-      })
+export default function abilityTest() {
+  describe('eventObserver_sample', () => {
+    // 监听Toast控件出现
+    it('toastObserver', TestType.FUNCTION, async () => {
+      let driver = Driver.create();
+      let observer = driver.createUIEventObserver();
+      let callback = (uiElementInfo: UIElementInfo) => {
+        let bundleName = uiElementInfo.bundleName;
+        let text = uiElementInfo.text;
+        let type = uiElementInfo.type;
+      }
+      observer.once('toastShow', callback);
     })
-  }
-  // [End eventObserver_sample]
+  })
+}
+
+// [End eventObserver_sample]

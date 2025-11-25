@@ -14,7 +14,7 @@
 */
 
 // [Start ignoreMock_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -28,6 +28,7 @@ class ClassName {
     return '999999';
   }
 }
+
 export default function ignoreMockTest() {
   describe('ignoreMock_sample', () => {
     it('testMockfunc', 0, () => {
@@ -48,8 +49,9 @@ export default function ignoreMockTest() {
       // 现在对Mock后的两个函数的其中一个函数method_1进行还原处理
       mocker.ignoreMock(claser, claser.method_1);
       // 调用claser.method_1函数
-      expect(claser.method_1(123)).assertEqual('888888');// 断言执行通过
+      expect(claser.method_1(123)).assertEqual('888888'); // 断言执行通过
     })
   })
 }
+
 // [End ignoreMock_sample]

@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function afterReturnTest() {
   describe('afterReturn_sample', () => {
     it('afterReturnTest', 0, () => {
@@ -42,4 +43,5 @@ export default function afterReturnTest() {
     })
   })
 }
+
 // [End afterReturn_sample]

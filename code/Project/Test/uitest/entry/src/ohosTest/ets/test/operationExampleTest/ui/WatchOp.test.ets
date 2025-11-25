@@ -14,27 +14,29 @@
  */
 
 // [Start watchOp_sample]
-  import { describe, it, TestType, Size, Level, expect } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { Driver } from '@kit.TestKit';
-  // Error code when the device is not supported.
-  const CapabilityCode = 801;
+import { describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
+// 导入测试依赖kit
+import { Driver } from '@kit.TestKit';
 
-  export default function abilityTest() {
-    describe('watchOp_sample', () => {
-      // 手表场景，模拟表冠顺/逆时针旋转
-      it('crownRotate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-        let driver = Driver.create();
-        try {
-          // 顺时针旋转50格，旋转速度为30格/秒
-          await driver.crownRotate(50, 30);
-          // 逆时针旋转20格，旋转速度为30格/秒
-          await driver.crownRotate(-20, 30);
-        } catch (error) {
-          // driver.crownRotate接口仅在智能表设备上生效，其他设备调用时将抛出801错误码
-          expect(error.code).assertEqual(CapabilityCode);
-        }
-      })
+// Error code when the device is not supported.
+const CapabilityCode = 801;
+
+export default function abilityTest() {
+  describe('watchOp_sample', () => {
+    // 手表场景，模拟表冠顺/逆时针旋转，从API version 20开始支持
+    it('crownRotate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      let driver = Driver.create();
+      try {
+        // 顺时针旋转50格，旋转速度为30格/秒
+        await driver.crownRotate(50, 30);
+        // 逆时针旋转20格，旋转速度为30格/秒
+        await driver.crownRotate(-20, 30);
+      } catch (error) {
+        // driver.crownRotate接口仅在智能表设备上生效，其他设备调用时将抛出801错误码
+        expect(error.code).assertEqual(CapabilityCode);
+      }
     })
-  }
-  // [End watchOp_sample]
+  })
+}
+
+// [End watchOp_sample]

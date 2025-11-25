@@ -18,7 +18,7 @@
  * 支持版本 since 1.0.18 版本
  */
 
-import { describe, Assert, beforeAll, expect, Hypium, it } from '@ohos/hypium';
+import { Assert, beforeAll, describe, expect, Hypium, it } from '@ohos/hypium';
 
 // custom.ets
 interface customAssert extends Assert {
@@ -73,8 +73,8 @@ export default function customAssertTest() {
       Hypium.unregisterAssert(myAssertEqual);
       try {
         (expect(a) as customAssert).myAssertEqual(b);
-      }catch(e) {
-        expect(e.message).assertEqual("myAssertEqual is unregistered");
+      } catch (e) {
+        expect(e.message).assertEqual('myAssertEqual is unregistered');
       }
     })
   })

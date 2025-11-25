@@ -14,27 +14,29 @@
  */
 
 // [Start touchPadOp_sample]
-  import { describe, it, TestType, Size, Level, expect } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { Driver, UiDirection } from '@kit.TestKit';
-  // Error code when the device is not supported.
-  const DeviceErrorCode = 17000005;
+import { describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
+// 导入测试依赖kit
+import { Driver, UiDirection } from '@kit.TestKit';
 
-  export default function abilityTest() {
-    describe('touchPadOp_sample', () => {
-      // PC/2in1场景，模拟触摸板三指上滑（界面返回桌面），三指下滑（界面恢复窗口）操作
-      it('touchPadOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-        let driver = Driver.create();
-        try {
-          // 触摸板三指上滑返回桌面。
-          await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
-          // 触摸板三指下滑恢复窗口
-          await driver.touchPadMultiFingerSwipe(3, UiDirection.DOWN);
-        } catch (error) {
-          // 在不支持触摸板操作的设备上调用时，将抛出17000005错误码
-          expect(error.code).assertEqual(DeviceErrorCode);
-        }
-      })
+// Error code when the device is not supported.
+const DeviceErrorCode = 17000005;
+
+export default function abilityTest() {
+  describe('touchPadOp_sample', () => {
+    // PC/2in1场景，模拟触摸板三指上滑（界面返回桌面），三指下滑（界面恢复窗口）操作
+    it('touchPadOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      let driver = Driver.create();
+      try {
+        // 触摸板三指上滑返回桌面。
+        await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
+        // 触摸板三指下滑恢复窗口
+        await driver.touchPadMultiFingerSwipe(3, UiDirection.DOWN);
+      } catch (error) {
+        // 在不支持触摸板操作的设备上调用时，将抛出17000005错误码
+        expect(error.code).assertEqual(DeviceErrorCode);
+      }
     })
-  }
+  })
+}
+
 // [End touchPadOp_sample]

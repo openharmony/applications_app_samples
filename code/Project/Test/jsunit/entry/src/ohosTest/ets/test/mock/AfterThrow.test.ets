@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function afterThrowTest() {
   describe('afterThrow_sample', () => {
     it('testMockfunc', 0, () => {
@@ -44,4 +45,5 @@ export default function afterThrowTest() {
     })
   })
 }
+
 // [End afterThrow_sample]

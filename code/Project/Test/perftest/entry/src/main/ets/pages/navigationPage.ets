@@ -15,7 +15,6 @@
 
 @Component
 struct Page01 {
-
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -25,13 +24,13 @@ struct Page01 {
         .onClick(() => {
           this.pageInfos.pushPathByName('Page01', '');
         })
-        .margin({top: 10, bottom: 10})
+        .margin({ top: 10, bottom: 10 })
       Button($r('app.string.Dialog01_label'))
         .width('80%')
         .onClick(() => {
           this.pageInfos.pushPathByName('Dialog01', '');
         })
-        .margin({top: 10, bottom: 10})
+        .margin({ top: 10, bottom: 10 })
     }
     .title($r('app.string.Page01'))
   }
@@ -61,19 +60,19 @@ struct Dialog01 {
             .onClick(() => {
               this.pageInfos.pushPathByName('Page01', '');
             })
-            .margin({top: 10, bottom: 10})
+            .margin({ top: 10, bottom: 10 })
           Button($r('app.string.Dialog01_label'))
             .width('80%')
             .onClick(() => {
               this.pageInfos.pushPathByName('Dialog01', '');
             })
-            .margin({top: 10, bottom: 10})
+            .margin({ top: 10, bottom: 10 })
           Button($r('app.string.pop'))
             .width('80%')
             .onClick(() => {
               this.pageInfos.pop();
             })
-            .margin({top: 10, bottom: 10})
+            .margin({ top: 10, bottom: 10 })
         }
         .padding(10)
         .width(250)

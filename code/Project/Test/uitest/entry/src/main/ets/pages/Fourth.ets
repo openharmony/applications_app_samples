@@ -17,9 +17,8 @@ import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct Fourth
-{
-  private content: string = "Fourth Page";
+struct Fourth {
+  private content: string = 'Fourth Page';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

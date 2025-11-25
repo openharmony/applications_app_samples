@@ -14,7 +14,7 @@
  */
 
 // [Start displayOp_sample]
-import { describe, it, TestType, Size, Level } from '@ohos/hypium';
+import { describe, it, Level, Size, TestType } from '@ohos/hypium';
 // 导入测试依赖kit
 import { DisplayRotation, Driver, Point } from '@kit.TestKit';
 
@@ -34,4 +34,5 @@ export default function abilityTest() {
     })
   })
 }
+
 // [End displayOp_sample]

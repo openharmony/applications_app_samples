@@ -14,32 +14,33 @@
 */
 
 // [Start order2_sample]
-import { describe, beforeItSpecified, afterItSpecified, it, expect, Level } from '@ohos/hypium';
+import { afterItSpecified, beforeItSpecified, describe, expect, it, Level } from '@ohos/hypium';
 
 export default function exampleTest() {
-    
-  describe('order2_sample', () =>{
-   let testNumA : number = 1;
-   let testNumB : number = 1;
 
-   beforeItSpecified(['testExampleB'], () => {
+  describe('order2_sample', () => {
+    let testNumA: number = 1;
+    let testNumB: number = 1;
+
+    beforeItSpecified(['testExampleB'], () => {
       testNumB++;
     })
-   afterItSpecified(['testExampleA'], () => {
+    afterItSpecified(['testExampleA'], () => {
       testNumA++;
     })
-      
-    it('testExampleA',Level.LEVEL1, async (done: Function) => {
+
+    it('testExampleA', Level.LEVEL1, async (done: Function) => {
       expect(testNumA).assertEqual(1);
       expect(testNumB).assertEqual(1);
       done();
     })
 
-    it('testExampleB',Level.LEVEL1, async (done: Function) => {
+    it('testExampleB', Level.LEVEL1, async (done: Function) => {
       expect(testNumA).assertEqual(2);
       expect(testNumB).assertEqual(2);
       done();
     })
   })
 }
+
 // [End order2_sample]

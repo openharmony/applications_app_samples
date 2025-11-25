@@ -57,7 +57,7 @@
  * https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/application-test/arkxtest-guidelines.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E8%83%BD%E5%8A%9B%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B
  */
 
-import {describe, it, expect, TestType} from '@ohos/hypium';
+import { describe, expect, it, TestType } from '@ohos/hypium';
 
 export default function paramExampleTest() {
   describe('paramExampleTest', () => {
@@ -73,14 +73,14 @@ export default function paramExampleTest() {
     it('testDataDriverAsync', TestType.FUNCTION, async (done: Function, suitParam: SuitParam) => {
       let suitParam1 = suitParam.suiteParams1;
       let suitParam2 = suitParam.suiteParams2;
-      expect(suitParam1).assertEqual("suiteParams001");
-      expect(suitParam2).assertEqual("suiteParams002");
+      expect(suitParam1).assertEqual('suiteParams001');
+      expect(suitParam2).assertEqual('suiteParams002');
       done();
     });
 
     /**
      * @tc.number:paramExampleTest_002
-    * @tc.name: testDataDriverParam
+     * @tc.name: testDataDriverParam
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测delegator.startAbility接口打开指定Ability对象
      * @tc.done 异步用例执行完成回调函数
@@ -91,14 +91,15 @@ export default function paramExampleTest() {
       let suitParam2 = suitParam.suiteParams2;
       let spParam1 = suitParam.ts1;
       let spParam2 = suitParam.ts2;
-      expect(suitParam1).assertEqual("suiteParams001");
-      expect(suitParam2).assertEqual("suiteParams002");
-      expect(spParam1).assertEqual("ts1");
-      expect(spParam2).assertEqual("ts2");
+      expect(suitParam1).assertEqual('suiteParams001');
+      expect(suitParam2).assertEqual('suiteParams002');
+      expect(spParam1).assertEqual('ts1');
+      expect(spParam2).assertEqual('ts2');
       done();
     });
   });
 }
+
 interface SuitParam {
   suiteParams1: string,
   suiteParams2: string,

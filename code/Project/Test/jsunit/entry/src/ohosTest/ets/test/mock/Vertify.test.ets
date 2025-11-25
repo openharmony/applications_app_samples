@@ -28,6 +28,7 @@ class ClassName {
     return '999999';
   }
 }
+
 export default function verifyTest() {
   describe('verify_sample', () => {
     it('testMockfunc', 0, () => {
@@ -48,8 +49,9 @@ export default function verifyTest() {
       claser.method_2('111');
       claser.method_2('111', '222');
       // 对Mock后的两个函数进行验证，验证method_2,参数仅为'111'时执行过一次
-      mocker.verify('method_2',['111']).once(); // 断言执行通过
+      mocker.verify('method_2', ['111']).once(); // 断言执行通过
     })
   })
 }
+
 // [End verify_sample]

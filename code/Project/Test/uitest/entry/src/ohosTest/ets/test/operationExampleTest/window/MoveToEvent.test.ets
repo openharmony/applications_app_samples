@@ -13,21 +13,23 @@
 * limitations under the License.
 */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, DisplayRotation, Driver } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import Logger from '../../../util/Logger';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
-const TAG = "MoveTo_Test";
-const BUNDLE = "MoveTo_";
+const TAG = 'MoveTo_Test';
+const BUNDLE = 'MoveTo_';
+
 export default function MoveToEventTest() {
   describe('MoveToEventTest', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'EntryAbility'
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -38,27 +40,26 @@ export default function MoveToEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测 window1.moveTo 功能
      */
-    it("MoveTo_Test_001", TestType.FUNCTION, async (done: Function) => {
+    it('MoveTo_Test_001', TestType.FUNCTION, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Test_001 start');
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let window = await driver.findWindow({bundleName: bundleName});
-      try{
+      let window = await driver.findWindow({ bundleName: bundleName });
+      try {
         // 设置window状态
         await window.resume();
         await driver.delayMs(WAIT_UI_READYMS);
-        let window1 = await driver.findWindow({bundleName: bundleName});
+        let window1 = await driver.findWindow({ bundleName: bundleName });
         let bounds1 = await window1.getBounds();
 
         // 设置window移动 100， 100
-        await window1.moveTo(100,100);
+        await window1.moveTo(100, 100);
         await driver.delayMs(WAIT_UI_READYMS);
-        let window2 = await driver.findWindow({bundleName: bundleName});
+        let window2 = await driver.findWindow({ bundleName: bundleName });
         let bounds2 = await window2.getBounds();
         // 判断俩个window窗口大小是否相同
         expect(bounds1 != bounds2).assertTrue();
-      }
-      catch (err) {
+      } catch (err) {
         if (err.message == 'this device can not support this action') {
           expect(window != null).assertTrue();
         } else {

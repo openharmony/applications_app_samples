@@ -40,7 +40,7 @@
 *
  */
 
-import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, DisplayRotation, Driver, MatchPattern, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
@@ -49,20 +49,21 @@ import { display } from '@kit.ArkUI';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;
-const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const waitUiReadyMs : number = 1000;
+const arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const waitUiReadyMs: number = 1000;
 const TestTag = 'findExampleTest';
 
 
 async function startAbility(bundleName: string, abilityName: string) {
   await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`);
 }
+
 export default function findExampleTest() {
   describe('findExampleTest', () => {
-    beforeAll(async  () => {
+    beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'EntryAbility'
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -72,10 +73,10 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取单个组件
      */
-    it("findComponent_On_ID", TestType.FUNCTION, async (done: Function) => {
+    it('findComponent_On_ID', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let text  = await dr.findComponent(ON.id('idTest'));
+      let text = await dr.findComponent(ON.id('idTest'));
       expect(dr).not().assertNull();
       expect(await text.getId()).assertEqual('idTest');
       done();
@@ -86,14 +87,14 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取多个组件
      */
-    it("findComponents_On_ID", TestType.FUNCTION, async  (done: Function) => {
+    it('findComponents_On_ID', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let textArr  = await dr.findComponents(ON.id('scroll_item'));
+      let textArr = await dr.findComponents(ON.id('scroll_item'));
       expect(dr).not().assertNull();
       for (let index = 0; index < textArr.length; index++) {
         const element = textArr[index];
-        expect(await element.getText() ===  arr[index].toString()).assertTrue();
+        expect(await element.getText() === arr[index].toString()).assertTrue();
       }
       done();
     })
@@ -103,10 +104,10 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isBefore 获取单个组件
      */
-    it("findComponents_On_isBefore", TestType.FUNCTION, async  (done: Function) => {
+    it('findComponents_On_isBefore', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id('radio_test1')));
+      let radio = await dr.findComponent(ON.type('Radio').isBefore(ON.id('radio_test1')));
       expect(await radio.getType()).assertEqual('Radio');
       expect(await radio.getId()).assertEqual('radio_test');
       done();
@@ -117,10 +118,10 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isAfter 获取单个组件
      */
-    it("findComponents_On_isBefore_1", TestType.FUNCTION, async  (done: Function) => {
+    it('findComponents_On_isBefore_1', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type('Radio').isAfter(ON.id('radio_test')));
+      let radio = await dr.findComponent(ON.type('Radio').isAfter(ON.id('radio_test')));
       expect(await radio.getType()).assertEqual('Radio');
       expect(await radio.getId()).assertEqual('radio_test1');
       done();
@@ -146,14 +147,14 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ScrollSearch 获取单个组件
      */
-    it("findComponents_scrollSearch", TestType.FUNCTION, async  (done: Function) => {
+    it('findComponents_scrollSearch', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
       let scrollBar = await dr.findComponent(ON.type('Scroll'));
       await dr.delayMs(DELAYMS);
       let button = await scrollBar.scrollSearch(ON.text('1'));
       await dr.delayMs(DELAYMS);
-      expect(await button.getText()).assertEqual("1");
+      expect(await button.getText()).assertEqual('1');
       done();
     })
 
@@ -182,7 +183,7 @@ export default function findExampleTest() {
       let btn = await driver.findComponent(ON.within(ON.type('Scroll')).text('0'));
       let bounds1 = await scroll.getBounds();
       let bounds2 = await btn.getBounds();
-      expect(await btn.getText()).assertEqual("0");
+      expect(await btn.getText()).assertEqual('0');
       expect(bounds1.top < bounds2.top).assertTrue();
       expect(bounds1.bottom > bounds2.bottom).assertTrue();
       expect(bounds1.left < bounds2.right).assertTrue();
@@ -195,14 +196,14 @@ export default function findExampleTest() {
      * @tc.desc: 多屏获取组件对象，该接口从api20开始支持使用。
      */
     it('testBelongingDisplay', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
       await driver.delayMs(1000);
       let disPlay = display.getDefaultDisplaySync();
       try {
         let mainPage = await driver.findComponent(ON.belongingDisplay(disPlay.id).text('MainPage'));
         let msg = await mainPage.getText();
-        expect(msg).assertEqual('MainPage')
+        expect(msg).assertEqual('MainPage');
       } catch (error) {
         expect().assertFail();
       }
@@ -215,14 +216,14 @@ export default function findExampleTest() {
      * @tc.desc: 组件获取displayId，该接口从api20开始支持使用。
      */
     it('testGetDisplayId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
       await driver.delayMs(1000);
       let disPlay = display.getDefaultDisplaySync();
       try {
         let mainPage = await driver.findComponent(ON.belongingDisplay(disPlay.id).text('MainPage'));
         let disId = await mainPage.getDisplayId();
-        expect(disId).assertEqual(disPlay.id)
+        expect(disId).assertEqual(disPlay.id);
       } catch (error) {
         expect().assertFail();
       }
@@ -234,13 +235,13 @@ export default function findExampleTest() {
      * @tc.desc: 组件获取屏幕大小，该接口从api20开始支持使用。
      */
     it('testGetDisplaySizeWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      await startAbility(bundleName, 'DemoAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await startAbility(bundleName, 'DemoAbility');
+      let driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
       let disPlay = display.getDefaultDisplaySync();
-      let s = await driver.getDisplaySize(disPlay.id)
-      expect(s.x != 0).assertTrue()
-      expect(s.y != 0).assertTrue()
+      let s = await driver.getDisplaySize(disPlay.id);
+      expect(s.x != 0).assertTrue();
+      expect(s.y != 0).assertTrue();
     })
 
 
@@ -250,13 +251,13 @@ export default function findExampleTest() {
      * @tc.desc: 组件获取屏幕密度，该接口从api20开始支持使用。
      */
     it('testGetDisplayDensityWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      await startAbility(bundleName, 'DemoAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await startAbility(bundleName, 'DemoAbility');
+      let driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
       let disPlay = display.getDefaultDisplaySync();
-      let s = await driver.getDisplayDensity(disPlay.id)
-      expect(s.x != 0).assertTrue()
-      expect(s.y != 0).assertTrue()
+      let s = await driver.getDisplayDensity(disPlay.id);
+      expect(s.x != 0).assertTrue();
+      expect(s.y != 0).assertTrue();
     })
 
     /*
@@ -265,13 +266,13 @@ export default function findExampleTest() {
      * @tc.desc: 组件获取屏幕方向，该接口从api20开始支持使用。
      */
     it('testGetDisplayRotationWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      await startAbility(bundleName, 'DemoAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await startAbility(bundleName, 'DemoAbility');
+      let driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
       let disPlay = display.getDefaultDisplaySync();
-      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
-      await driver.delayMs(waitUiReadyMs)
-      let rotation = await driver.getDisplayRotation(disPlay.id)
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0);
+      await driver.delayMs(waitUiReadyMs);
+      let rotation = await driver.getDisplayRotation(disPlay.id);
       expect(rotation == DisplayRotation.ROTATION_0
         || rotation == DisplayRotation.ROTATION_90
         || rotation == DisplayRotation.ROTATION_180

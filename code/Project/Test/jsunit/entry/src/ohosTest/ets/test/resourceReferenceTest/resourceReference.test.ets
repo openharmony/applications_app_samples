@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, expect, it } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
@@ -48,7 +48,7 @@ export default function resourceReferenceTest() {
       expect(resDir != '').assertTrue();
       let resFileList = await fs.listFile(resDir);
       expect(resFileList).assertContain('test.txt');
-      let filePath = resDir + "/test.txt";
+      let filePath = resDir + '/test.txt';
       let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
       let arrayBuffer = new ArrayBuffer(4096);
       let readLen = await fs.read(file.fd, arrayBuffer);

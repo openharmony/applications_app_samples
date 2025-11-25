@@ -17,7 +17,7 @@
  * uitest对web页面内的控件进行查询和操作
  */
 
-import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import web_webview from '@ohos.web.webview';

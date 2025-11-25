@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -24,8 +25,8 @@ export default function PinchEventTest() {
   describe('PinchEventTest', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'PinchAbility'
+        bundleName: bundleName,
+        abilityName: 'PinchAbility'
       };
       await delegator.startAbility(want);
     })

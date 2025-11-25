@@ -43,10 +43,10 @@
  */
 
 // [Start assert_sample]
-import { describe, it, expect, Level } from '@ohos/hypium';
+import { describe, expect, it, Level } from '@ohos/hypium';
 
 export default function exampleTest() {
-  describe('ExampleTest', () =>{
+  describe('ExampleTest', () => {
     it('assertCloseTest', Level.LEVEL1, () => {
       let a: number = 100;
       let b: number = 0.1;
@@ -55,7 +55,7 @@ export default function exampleTest() {
     })
 
     it('assertContain_1', Level.LEVEL1, () => {
-      let a = "abc";
+      let a = 'abc';
       expect(a).assertContain('b');
     })
 
@@ -147,31 +147,32 @@ export default function exampleTest() {
       expect(a).assertDeepEquals(b);
     })
 
-    it("deepEquals_obj_success_1", Level.LEVEL1, () => {
-      const a: SampleTest = {x: 1};
-      const b: SampleTest = {x: 1};
+    it('deepEquals_obj_success_1', Level.LEVEL1, () => {
+      const a: SampleTest = { x: 1 };
+      const b: SampleTest = { x: 1 };
       expect(a).assertDeepEquals(b);
     })
 
-    it("deepEquals_regExp_success_0", Level.LEVEL1, () => {
-      const a: RegExp = new RegExp("/test/");
-      const b: RegExp = new RegExp("/test/");
+    it('deepEquals_regExp_success_0', Level.LEVEL1, () => {
+      const a: RegExp = new RegExp('/test/');
+      const b: RegExp = new RegExp('/test/');
       expect(a).assertDeepEquals(b);
     })
 
     it('assertPromiseIsPendingTest', Level.LEVEL1, async () => {
-      let p: Promise<void> = new Promise<void>(() => {});
+      let p: Promise<void> = new Promise<void>(() => {
+      });
       await expect(p).assertPromiseIsPending();
     })
 
     it('assertPromiseIsRejectedTest', Level.LEVEL1, async () => {
-      let info: PromiseInfo = {res: "no"};
+      let info: PromiseInfo = { res: 'no' };
       let p: Promise<PromiseInfo> = Promise.reject(info);
       await expect(p).assertPromiseIsRejected();
     })
 
     it('assertPromiseIsRejectedWithTest', Level.LEVEL1, async () => {
-      let info: PromiseInfo = {res: "reject value"};
+      let info: PromiseInfo = { res: 'reject value' };
       let p: Promise<PromiseInfo> = Promise.reject(info);
       await expect(p).assertPromiseIsRejectedWith(info);
     })
@@ -180,20 +181,20 @@ export default function exampleTest() {
       let p1: Promise<TypeError> = Promise.reject(new TypeError('number'));
       await expect(p1).assertPromiseIsRejectedWithError(TypeError);
     })
-    
+
     it('assertPromiseIsResolvedTest', Level.LEVEL1, async () => {
-      let info: PromiseInfo = {res: "result value"};
+      let info: PromiseInfo = { res: 'result value' };
       let p: Promise<PromiseInfo> = Promise.resolve(info);
       await expect(p).assertPromiseIsResolved();
     })
 
     it('assertPromiseIsResolvedWithTest', Level.LEVEL1, async () => {
-      let info: PromiseInfo = {res: "result value"};
+      let info: PromiseInfo = { res: 'result value' };
       let p: Promise<PromiseInfo> = Promise.resolve(info);
       await expect(p).assertPromiseIsResolvedWith(info);
     })
 
-    it("test_message", Level.LEVEL1, () => {
+    it('test_message', Level.LEVEL1, () => {
       expect(1).message('1 is not equal 2!').assertEqual(2); // fail
     })
   })
@@ -206,4 +207,5 @@ interface SampleTest {
 interface PromiseInfo {
   res: string;
 }
+
 // [End assert_sample]
