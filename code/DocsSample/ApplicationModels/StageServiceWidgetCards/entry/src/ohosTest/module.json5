@@ -19,7 +19,10 @@
     "type": "feature",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "tablet",
+      "default"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:test_pages",

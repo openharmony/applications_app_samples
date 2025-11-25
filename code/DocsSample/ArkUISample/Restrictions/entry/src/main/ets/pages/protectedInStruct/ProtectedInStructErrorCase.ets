@@ -16,25 +16,27 @@
 // [Start ProtectedInStruct_ErrorCase]
 @Entry
 @Component
-struct PISErrorAccessRestrictions  {
+struct ProtectedErrorAccessRestrictions {
   build() {
     Column() {
-      PISErrorComponentChild({regularValue: 'Hello'});
+      ProtectedErrorComponentChild({ regularValue: 'Hello' })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
 @Component
-struct PISErrorComponentChild  {
+struct ProtectedErrorComponentChild {
   // 此处使用protected修饰符时会出现告警日志
   protected regularValue: string = 'Hello';
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
+
 // [End ProtectedInStruct_ErrorCase]

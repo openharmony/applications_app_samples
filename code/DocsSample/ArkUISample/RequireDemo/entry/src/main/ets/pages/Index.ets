@@ -57,10 +57,10 @@ struct Index {
           .width('50%')
           .height('50vp')
           .margin({ top: '40vp' })
-          .id('Explame')
+          .id('Example')
           .onClick(() => {
             router.pushUrl({
-              url:'pages/Explame'
+              url:'pages/Example'
             })
           })
       }

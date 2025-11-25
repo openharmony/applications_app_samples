@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // xxx.ets
-// [End Line_Spacing]
+// [Start Line_Spacing]
 import { LengthMetrics } from '@kit.ArkUI';
 
 @Extend(Text)
@@ -35,8 +35,11 @@ export struct LineSpacing {
           .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
           .style()
       }
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Line_Spacing]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Set_text_line_spacing'))
+    // [EndExclude Line_Spacing]
   }
 }
 

@@ -16,24 +16,26 @@
 // [Start PrivateWithRequire_CorrectCase]
 @Entry
 @Component
-struct PWRCorrectAccessRestrictions  {
+struct PrivateCorrectAccessRestrictions {
   build() {
     Column() {
-      PWRCorrectComponentChild({propValue: 'Hello'});
+      PrivateCorrectComponentChild({ propValue: 'Hello' })
     }
-    .width('100%');
+    .width('100%')
   }
 }
+
 @Component
-struct PWRCorrectComponentChild  {
+struct PrivateCorrectComponentChild {
   @Require @Prop propValue: string = 'Hello';
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
-// [End PrivateWithRequire_CorrectCase]
 
+// [End PrivateWithRequire_CorrectCase]

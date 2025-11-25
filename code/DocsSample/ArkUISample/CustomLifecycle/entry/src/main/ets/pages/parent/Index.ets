@@ -14,7 +14,8 @@
  */
 
 // [Start nested_custom_components]
-// Index.ets
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct Parent {
@@ -23,24 +24,24 @@ struct Parent {
 
   // 组件生命周期
   aboutToAppear() {
-    console.info('Parent aboutToAppear');
+    hilog.info(0x0000, 'testTag', 'Parent aboutToAppear');
   }
 
   // 组件生命周期
   onDidBuild() {
-    console.info('Parent onDidBuild');
+    hilog.info(0x0000, 'testTag', 'Parent onDidBuild');
   }
 
   // 组件生命周期
   aboutToDisappear() {
-    console.info('Parent aboutToDisappear');
+    hilog.info(0x0000, 'testTag', 'Parent aboutToDisappear');
   }
 
   build() {
     Column() {
       // this.showChild为true，创建Child子组件，执行Child aboutToAppear
       if (this.showChild) {
-        Child();
+        Child()
       }
       Button('delete Child')
         .margin(20)
@@ -60,17 +61,17 @@ struct Child {
 
   // 组件生命周期
   aboutToDisappear() {
-    console.info('Child aboutToDisappear');
+    hilog.info(0x0000, 'testTag', 'Child aboutToDisappear');
   }
 
   // 组件生命周期
   onDidBuild() {
-    console.info('Child onDidBuild');
+    hilog.info(0x0000, 'testTag', 'Child onDidBuild');
   }
 
   // 组件生命周期
   aboutToAppear() {
-    console.info('Child aboutToAppear');
+    hilog.info(0x0000, 'testTag', 'Child aboutToAppear');
   }
 
   build() {

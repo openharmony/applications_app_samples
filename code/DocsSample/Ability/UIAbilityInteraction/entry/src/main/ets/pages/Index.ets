@@ -42,6 +42,7 @@ struct Index {
     .mode(NavigationMode.Stack)
     .height('100%')
     .width('100%')
+    .margin({top:250})
   }
 }
 // [End Index]

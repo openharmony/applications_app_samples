@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_lang]
 import { AbilityConstant, Configuration, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[EntryAbility]';
+const TAG: string = '[EnvAbility9]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 let systemLanguage: string | undefined; // 系统当前语言
 
-export default class EntryAbility extends UIAbility {
+export default class EnvAbility9 extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     systemLanguage = this.context.config.language; // UIAbility实例首次加载时，获取系统当前语言
     hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);
@@ -36,4 +36,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-// [End quick_start0]
+// [End envconf_lang]

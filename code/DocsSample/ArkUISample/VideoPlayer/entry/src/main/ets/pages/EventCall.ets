@@ -17,7 +17,7 @@
 // xxx.ets
 @Entry
 @Component
-struct eventCall {
+struct EventCall {
   private controller: VideoController = new VideoController();
   private previewUris: Resource = $r('app.media.preview');
   private innerResource: Resource = $rawfile('videoTest.mp4');

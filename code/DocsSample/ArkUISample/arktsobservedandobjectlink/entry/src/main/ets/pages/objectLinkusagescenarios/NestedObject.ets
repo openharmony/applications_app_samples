@@ -15,21 +15,21 @@
 // [Start Nested_Object]
 @Observed
 class Book {
- public name: string;
+  public name: string;
 
   constructor(name: string) {
     this.name = name;
-  };
-};
+  }
+}
 
 @Observed
 class Bag {
- public  book: Book;
+  public book: Book;
 
   constructor(book: Book) {
     this.book = book;
-  };
-};
+  }
+}
 
 @Component
 struct BookCard {
@@ -47,14 +47,14 @@ struct BookCard {
         .margin(10)
         .onClick(() => {
           this.book.name = 'C++';
-        });
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct NestedObjectIndex {
+struct Index {
   @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
@@ -69,10 +69,13 @@ struct NestedObjectIndex {
         .margin(10)
         .onClick(() => {
           this.bag.book.name = 'TS';
-        });
+        })
 
-      BookCard({ book: this.bag.book });
+      BookCard({ book: this.bag.book })
     }
   }
 }
+
 // [End Nested_Object]
+const nestedObjectIndex = Index;
+export default nestedObjectIndex;

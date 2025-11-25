@@ -14,52 +14,58 @@
  */
 
 // [Start dynamic_focus_blur]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_FocusAndBlurExample]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MyApp_FocusAndBlurExample';
+
 @Entry
 @Component
 export struct FocusAndBlurExample {
   build() {
     NavDestination() {
-    Column() {
-      Column({ space: 5 }) {
-        Row() { // 父节点Row1
-          Button('Button1') // 子节点Button1
-            .width(140)
-            .height(45)
-            .margin(5)
-            .onFocus(() => {
-              console.info('Button1 onFocus');
-            })
-            .onBlur(() => {
-              console.info('Button1 onBlur');
-            })
-        }
-        .onFocus(() => {
-          console.info('Row1 onFocus');
-        })
-        .onBlur(() => {
-          console.info('Row1 onBlur');
-        })
+      Column() {
+        Column({ space: 5 }) {
+          Row() { // 父节点Row1
+            Button('Button1') // 子节点Button1
+              .width(140)
+              .height(45)
+              .margin(5)
+              .onFocus(() => {
+                hilog.info(DOMAIN, TAG, BUNDLE + 'Button1 onFocus');
+              })
+              .onBlur(() => {
+                hilog.info(DOMAIN, TAG, BUNDLE + 'Button1 onBlur');
+              })
+          }
+          .onFocus(() => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'Row1 onFocus');
+          })
+          .onBlur(() => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'Row1 onBlur');
+          })
 
-        Row() { // 父节点Row2
-          Button('Button2') // 子节点Button2
-            .width(140)
-            .height(45)
-            .margin(5)
-            .onFocus(() => {
-              console.info('Button2 onFocus');
-            })
-            .onBlur(() => {
-              console.info('Button2 onBlur');
-            })
-        }
-        .onFocus(() => {
-          console.info('Row2 onFocus');
-        })
-        .onBlur(() => {
-          console.info('Row2 onBlur');
-        })
-      }.width('100%').margin({ top: 5 })
-    }.width('100%')
+          Row() { // 父节点Row2
+            Button('Button2') // 子节点Button2
+              .width(140)
+              .height(45)
+              .margin(5)
+              .onFocus(() => {
+                hilog.info(DOMAIN, TAG, BUNDLE + 'Button2 onFocus');
+              })
+              .onBlur(() => {
+                hilog.info(DOMAIN, TAG, BUNDLE + 'Button2 onBlur');
+              })
+          }
+          .onFocus(() => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'Row2 onFocus');
+          })
+          .onBlur(() => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'Row2 onBlur');
+          })
+        }.width('100%').margin({ top: 5 })
+      }.width('100%')
     }
     // [StartExclude dynamic_focus_blur]
     .backgroundColor('#f1f2f3')

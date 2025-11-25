@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_state_change_use_addMonitor]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorProblemStateChangeUseAddMonitor {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Page()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_state_change_use_addMonitor'))
-  }
-}
-
-// [Start monitor_problem_state_change_use_addMonitor]
 @ObservedV2
 class User {
   @Trace public age: number = 10;
@@ -44,7 +28,7 @@ struct Page {
   @Monitor('user.age')
   onChange(mon: IMonitor) {
     mon.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `onChange: User property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
     });
   }
@@ -68,3 +52,16 @@ struct Page {
   }
 }
 // [End monitor_problem_state_change_use_addMonitor]
+@Component
+export struct MonitorProblemStateChangeUseAddMonitor {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Page()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_state_change_use_addMonitor'))
+  }
+}

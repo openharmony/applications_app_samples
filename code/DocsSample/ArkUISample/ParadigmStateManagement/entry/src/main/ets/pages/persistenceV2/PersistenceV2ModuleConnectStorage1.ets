@@ -18,6 +18,7 @@
 import { PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 const DOMAIN = 0x0000;
 
@@ -28,9 +29,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 @ObservedV2
 class SampleChild {
-  // 不同模块应用持久化Key globalConnect1:点击的数量，默认为0，如果点击后退出再次进入，则默认为持久化的数量
   @Trace public childId: number = 0;
-  // 不同模块应用持久化Key connect2:点击的数量，默认为1，如果点击后退出再次进入，则默认为持久化的数量
   public groupId: number = 1;
 }
 
@@ -44,12 +43,11 @@ export class Sample {
 @Entry
 @ComponentV2
 struct Page1 {
-  // 进入当前页面后点击了多少次
   @Local refresh: number = 0;
-  // 使用key:global1连接，传入加密等级为EL1
+  // 使用key:globalConnect1连接，传入加密等级为EL1
   @Local p1: Sample =
-    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample() })!;
-  // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
+    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample(), areaMode: contextConstant.AreaMode.EL1 })!;
+  // 使用key:connect2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
   @Local p2: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -70,23 +68,22 @@ struct Page1 {
         .fontColor(Color.Red)
 
       /**************************** 跳转 **************************/
-      // $r('app.string.persistence_v2_module_connect_storage1_text') 需要更换为开发者所需的字符串资源文件
-      Button($r('app.string.persistence_v2_module_connect_storage1_text'))
+      Button('Jump to newModule')
         .onClick(() => { // 不同module之间使用，建议使用globalConnect
           let want: Want = {
             deviceId: '', // deviceId为空代表本设备
-            bundleName: 'com.example.myPersistenceV2', // 在app.json5中查看
-            moduleName: 'newModule', // 在需要跳转的module的module.json5中查看，非必选参数
-            abilityName: 'NewModuleAbility', // 跳转启动的ability，在跳转模块对应的ability.ets文件中查看
+            bundleName: 'com.samples.paradigmstatemanagement', // 在app.json5中查看
+            moduleName: 'demo', // 在需要跳转的module的module.json5中查看，非必选参数
+            abilityName: 'NewModuleAbility', // 跳转启动的ability，在需要跳转的module的module.json5中查看
             uri: 'src/main/ets/pages/Index'
-          }
+          };
           // context为调用方UIAbility的UIAbilityContext
           this.context.startAbility(want).then(() => {
             hilog.info(DOMAIN, 'testTag', '%{public}s', 'start ability success');
           }).catch((err: Error) => {
             hilog.error(DOMAIN, 'testTag', '%{public}s',
               `start ability failed. code is ${err.name}, message is ${err.message}`);
-          })
+          });
         })
     }
     .width('100%')

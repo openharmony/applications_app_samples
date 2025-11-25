@@ -15,9 +15,12 @@
 // [Start arkts_custom_components_freeze11]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
+
 // 定义一个Params类，用于传递参数
 class Params {
- public index: number = 0;
+  public index: number = 0;
 
   constructor(index: number) {
     this.index = index;
@@ -32,7 +35,7 @@ struct BuildNodeChild {
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message, this.index);
+    hilog.info(DOMAIN, TAG, `FreezeBuildNode builderNodeChild message callback func ${this.message},index:${this.index}`);
   }
 
   build() {
@@ -70,7 +73,7 @@ class TextNodeController extends NodeController {
 // 定义一个Index组件，它包含一个message属性和一个data数组
 @Entry
 @Component
-struct Constraints {
+struct Index {
   @StorageLink('buildNodeTest') message: string = 'hello';
   private data: number[] = [0, 1];
 
@@ -81,7 +84,6 @@ struct Constraints {
           .onClick(() => {
             this.message += 'a';
           })
-
         Tabs() {
           ForEach(this.data, (item: number) => {
             TabContent() {
@@ -104,7 +106,7 @@ struct FreezeBuildNode {
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message, this.index);
+    hilog.info(DOMAIN, TAG, `FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

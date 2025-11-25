@@ -14,24 +14,26 @@
  */
 // [Start Parent19_start]
 @Component
-struct Child19 {
+struct Child {
   // @Consume禁止本地初始化，当找不到对应的@Provide时抛出异常
   @Consume message: string;
 
   build() {
-    Text(this.message);
+    Text(this.message)
   }
 }
 
 @Entry
 @Component
-struct Parent19 {
+struct Parent {
   @Provide message: string = 'Hello World';
 
   build() {
     Column() {
-      Child19();
+      Child()
     }
   }
 }
 // [End Parent19_start]
+const parent19 = Parent;
+export default parent19;

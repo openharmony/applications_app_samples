@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 // [Start Parent7_start]
+const INITIAL_MYVAL = 10;
+
 @Component
-struct Child7 {
+struct Child {
   // @Link可以双向同步数据
   @Link val: number;
 
@@ -24,21 +26,23 @@ struct Child7 {
       Button('+1')
         .onClick(() => {
           this.val++;
-        });
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct Parent7 {
-  @State myVal: number = 10;
+struct Parent {
+  @State myVal: number = INITIAL_MYVAL;
 
   build() {
     Column() {
-      Text('parent: ' + this.myVal.toString());
-      Child7({ val: this.myVal });
+      Text('parent: ' + this.myVal.toString())
+      Child({ val: this.myVal })
     }
   }
 }
 // [End Parent7_start]
+const parent7 = Parent;
+export default parent7;

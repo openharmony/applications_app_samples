@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 // [Start appstorage_page_ten]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG: string = '[SampleAppStorage]';
 AppStorage.setOrCreate('propA', false);
 
 @Entry
 @Component
-struct PageTenIndex {
+struct PageStorageProp {
   @StorageProp('propA') @Watch('onChange') propA: boolean = false;
 
   onChange() {
-    console.info(`propA change`);
+    hilog.info(DOMAIN, TAG, `propA change`);
   }
 
   aboutToAppear(): void {
@@ -34,9 +38,10 @@ struct PageTenIndex {
       Button('change')
         .onClick(() => {
           AppStorage.setOrCreate('propA', false);
-          console.info(`propA: ${this.propA}`);
+          hilog.info(DOMAIN, TAG, `propA: ${this.propA}`);
         })
     }
   }
 }
+
 // [End appstorage_page_ten]

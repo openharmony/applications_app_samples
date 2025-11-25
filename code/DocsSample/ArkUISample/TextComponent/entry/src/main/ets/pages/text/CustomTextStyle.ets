@@ -27,16 +27,19 @@ export struct CustomTextStyle {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_1') }) {
             Column() {
               // [Start custom_text_align]
+              // 'app.string.TextAlign_Start'资源文件中的value值为'左对齐'
               Text($r('app.string.TextAlign_Start'))
                 .width(300)
                 .textAlign(TextAlign.Start)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.TextAlign_Center'资源文件中的value值为'中间对齐'
               Text($r('app.string.TextAlign_Center'))
                 .width(300)
                 .textAlign(TextAlign.Center)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.TextAlign_End'资源文件中的value值为'右对齐'
               Text($r('app.string.TextAlign_End'))
                 .width(300)
                 .textAlign(TextAlign.End)
@@ -61,21 +64,29 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_1'))
+              // 'app.string.CustomTextStyle_textContent_epsis'资源文件中的value值为
+              // '我是超长文本，超出的部分显示省略号 I am an extra long text, with ellipses displayed for any excess。'
+              Text($r('app.string.CustomTextStyle_textContent_epsis'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .maxLines(1)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_2'))
+              // 'app.string.CustomTextStyle_textContent_marq'资源文件中的value值为
+              // '当文本溢出其尺寸时，文本将滚动显示
+              // When the text overflows its dimensions,the text will scroll for displaying.'
+              Text($r('app.string.CustomTextStyle_textContent_marq'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.MARQUEE })
                 .maxLines(1)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_8'))
+              // 'app.string.CustomTextStyle_textContent_marq_def'资源文件中的value值为
+              // '当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项
+              // When the text overflows its dimensions, the text will scroll for displaying.'
+              Text($r('app.string.CustomTextStyle_textContent_marq_def'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.MARQUEE })
                 .maxLines(1)
@@ -118,22 +129,48 @@ export struct CustomTextStyle {
                   type: TextDecorationType.LineThrough,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
               Text('This is the text')
                 .decoration({
                   type: TextDecorationType.Overline,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
               Text('This is the text')
                 .decoration({
                   type: TextDecorationType.Underline,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DASHED
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DOTTED
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DOUBLE
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.WAVY,
+                  thicknessScale: 4
+                })
+                .borderWidth(1).padding(15).margin(5)
               // [End custom_text_line_and_color]
             }
           }
@@ -147,18 +184,21 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               Text('This is the text content with baselineOffset 30.')
                 .baselineOffset(30)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               Text('This is the text content with baselineOffset -20.')
                 .baselineOffset(-20)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               // [End custom_text_baseline_offset]
             }
           }
@@ -172,18 +212,21 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               Text('This is the text content with letterSpacing 3.')
                 .letterSpacing(3)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               Text('This is the text content with letterSpacing -1.')
                 .letterSpacing(-1)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+                .margin(5)
               // [End custom_text_letter_space]
             }
           }
@@ -191,34 +234,42 @@ export struct CustomTextStyle {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
             Column({ space: 8 }) {
               // [Start custom_the_size_of_text]
-              Text($r('app.string.CustomTextStyle_textContent_3'))
+              // 'app.string.CustomTextStyle_textContent_one_style'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为1'
+              Text($r('app.string.CustomTextStyle_textContent_one_style'))
                 .width(250)
                 .maxLines(1)
                 .maxFontSize(30)
                 .minFontSize(5)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_4'))
+                .margin(5)
+              // 'app.string.CustomTextStyle_textContent_two_style'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为2'
+              Text($r('app.string.CustomTextStyle_textContent_two_style'))
                 .width(250)
                 .maxLines(2)
                 .maxFontSize(30)
                 .minFontSize(5)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_5'))
+                .margin(5)
+              // 'app.string.CustomTextStyle_textContent_no_max'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为50'
+              Text($r('app.string.CustomTextStyle_textContent_no_max'))
                 .width(250)
                 .height(50)
                 .maxFontSize(30)
                 .minFontSize(15)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_6'))
+                .margin(5)
+              // 'app.string.CustomTextStyle_textContent_high'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为100'
+              Text($r('app.string.CustomTextStyle_textContent_high'))
                 .width(250)
                 .height(100)
                 .maxFontSize(30)
                 .minFontSize(15)
                 .border({ width: 1 })
                 .padding(10)
+                .margin(5)
               // [End custom_the_size_of_text]
             }
           }
@@ -231,18 +282,21 @@ export struct CustomTextStyle {
                 .padding(10)
                 .border({ width: 1 })
                 .padding(10)
+                .margin(5)
 
               // 文本全小写展示
               Text('This is the text content with textCase set to LowerCase.')
                 .textCase(TextCase.LowerCase)
                 .border({ width: 1 })
                 .padding(10)
+                .margin(5)
 
               // 文本全大写展示
               Text('This is the text content with textCase set to UpperCase.')
                 .textCase(TextCase.UpperCase)
                 .border({ width: 1 })
                 .padding(10)
+                .margin(5)
               // [End custom_the_text_by_text_case]
               // [Start custom_the_text_fontFamily]
               Text('This is the text content with fontFamily')
@@ -254,7 +308,8 @@ export struct CustomTextStyle {
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_9') }) {
             // [Start custom_the_text_by_copy_option]
-            Text($r('app.string.CustomTextStyle_textContent_7'))
+            // 'app.string.CustomTextStyle_textContent_incopy'资源文件中的value值为'这是一段可复制文本。'
+            Text($r('app.string.CustomTextStyle_textContent_incopy'))
               .fontSize(30)
               .copyOption(CopyOptions.InApp)
             // [End custom_the_text_by_copy_option]

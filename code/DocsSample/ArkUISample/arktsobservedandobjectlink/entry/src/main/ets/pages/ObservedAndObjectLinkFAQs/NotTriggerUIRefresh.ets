@@ -15,34 +15,35 @@
 // [Start Not_Trigger_UI_Refresh_Proxy]
 @Observed
 class Weather {
- public temperature:number;
+  public temperature: number;
 
-  constructor(temperature:number) {
+  constructor(temperature: number) {
     this.temperature = temperature;
-  };
+  }
 
-  static increaseTemperature(weather:Weather) {
+  static increaseTemperature(weather: Weather) {
     weather.temperature++;
-  };
-};
+  }
+}
 
 class Day {
- public weather:Weather;
- public week:string;
-  constructor(weather:Weather, week:string) {
+  public weather: Weather;
+  public week: string;
+
+  constructor(weather: Weather, week: string) {
     this.weather = weather;
     this.week = week;
-  };
-};
+  }
+}
 
 @Entry
 @Component
-struct NotTriggerUIRefreshParent {
+struct Parent {
   @State day1: Day = new Day(new Weather(15), 'Monday');
 
   build() {
-    Column({ space:10 }) {
-      Child({ weather: this.day1.weather});
+    Column({ space: 10 }) {
+      Child({ weather: this.day1.weather })
     }
     .height('100%')
     .width('100%')
@@ -53,29 +54,31 @@ struct NotTriggerUIRefreshParent {
 struct Child {
   @ObjectLink weather: Weather;
 
-  reduceTemperature (weather:Weather) {
+  reduceTemperature(weather: Weather) {
     weather.temperature--;
-  };
+  }
 
   build() {
-    Column({ space:10 }) {
+    Column({ space: 10 }) {
       Text(`The temperature of day1 is ${this.weather.temperature} degrees.`)
         .fontSize(20)
       Button('increaseTemperature')
-        .onClick(()=>{
+        .onClick(() => {
           // 通过赋值添加 Proxy 代理
           let weather1 = this.weather;
           Weather.increaseTemperature(weather1);
-        });
+        })
       Button('reduceTemperature')
-        .onClick(()=>{
+        .onClick(() => {
           // 通过赋值添加 Proxy 代理
           let weather2 = this.weather;
           this.reduceTemperature(weather2);
-        });
+        })
     }
     .height('100%')
     .width('100%')
   }
 }
 // [End Not_Trigger_UI_Refresh_Proxy]
+const notTriggerUIRefreshParent = Parent;
+export default notTriggerUIRefreshParent;

@@ -13,23 +13,24 @@
  * limitations under the License.
  */
 
-// [Start textImage_component]
-
 @Entry
 @Component
 export struct TextImageComponent {
   build() {
     NavDestination() {
+      // [Start textImage_component]
       Text() {
-        ImageSpan($r('app.media.startIcon'))
+        // $r('app.media.hot_sale')需要替换为开发者所需的资源文件。
+        ImageSpan($r('app.media.hot_sale'))
           .width(50)
           .height(30)
           .borderRadius(5)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
-        Span($r('app.string.TextImage_MixedLayout_Content_1'))
+        // 'app.string.surprise_price'资源文件中的value值为"惊喜价 ￥1299"
+        Span($r('app.string.surprise_price'))
           .fontSize(25)
           .fontColor(Color.Red)
-        Span($r('app.string.TextImage_MixedLayout_Content_2'))
+        Span('1599')
           .decoration({
             type: TextDecorationType.LineThrough,
             color: Color.Grey,
@@ -37,9 +38,9 @@ export struct TextImageComponent {
           })
           .fontSize(16)
       }.textVerticalAlign(TextVerticalAlign.CENTER)
+      // [End textImage_component]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
   }
 }
-// [End textImage_component]

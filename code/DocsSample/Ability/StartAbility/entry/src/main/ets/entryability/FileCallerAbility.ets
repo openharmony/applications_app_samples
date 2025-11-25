@@ -20,13 +20,13 @@ import { window } from '@kit.ArkUI';
 // [End file_caller_ability_import]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = 'ExpressAbility';
+const TAG = 'FileCallerAbility';
 const DOMAIN = 0x0000;
 
 // [Start file_caller_ability_start]
 // [Start file_caller_ability_create_request]
 // [Start file_caller_ability_get_url]
-export default class EntryAbility extends UIAbility {
+export default class FileCallerAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // 获取文件沙箱路径
     let filePath = this.context.filesDir + '/test.txt';

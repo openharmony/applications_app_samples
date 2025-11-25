@@ -14,10 +14,18 @@
  */
 
 // [Start default_drag]
+// [Start module_draggable_head]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
+// [End module_draggable_head]
+// [Start onDragEnd_start]
+// [StartExclude onDragEnd_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+// [Start drag_hilog_const]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0000;
+const TAG = 'DefaultDragError: ';
+// [End drag_hilog_const]
 
 @Entry
 @Component
@@ -32,10 +40,15 @@ export struct DefaultDrag {
   @Builder
   pixelMapBuilder() {
     Column() {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
       Image($r('app.media.startIcon'))
         .width(120)
         .height(120)
+        // [StartExclude default_drag]
+        // [StartExclude generate_pix_map]
         .backgroundColor(Color.Yellow)
+      // [EndExclude default_drag]
+      // [EndExclude generate_pix_map]
     }
   }
 
@@ -54,12 +67,12 @@ export struct DefaultDrag {
       callback(event);
       return true;
     } catch (e) {
-      console.log('getData failed, code: ' + (e as BusinessError).code + ', message: ' + (e as BusinessError).message);
+      hilog.error(DOMAIN, TAG, '%{public}s', (e as BusinessError).code + ', message: ' +
+      (e as BusinessError).message);
       return false;
     }
   }
 
-  // 获取UDMF数据，首次获取失败后添加1500ms延迟重试机制
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
     if (this.getDataFromUdmfRetry(event, callback)) {
       return;
@@ -68,35 +81,31 @@ export struct DefaultDrag {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
+
   // [End data_delayed_retry]
   // [EndExclude generate_pix_map]
 
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
     this.getUIContext().getComponentSnapshot().createFromBuilder(() => {
-      this.pixelMapBuilder()
+      this.pixelMapBuilder();
     },
       (error: Error, pixmap: image.PixelMap) => {
         if (error) {
-          console.log('error: ' + JSON.stringify(error));
+          hilog.error(DOMAIN, TAG, '%{public}s', JSON.stringify(error));
           return;
         }
         this.pixmap = pixmap;
-      })
+      });
   }
+
   // [End generate_pix_map]
 
-  // 长按50ms时提前准备自定义截图的pixmap
-  private PreDragChange(preDragStatus: PreDragStatus): void {
-    if (preDragStatus == PreDragStatus.ACTION_DETECTING_STATUS) {
-      this.getComponentSnapshot();
-    }
-  }
-
   build() {
+    // [StartExclude default_drag]
     NavDestination() {
       Column({ space: 12 }) {
-
+        // [EndExclude default_drag]
         Row() {
           Column() {
             Text('start Drag')
@@ -107,22 +116,27 @@ export struct DefaultDrag {
               .backgroundColor('#008888')
             Row() {
               // [Start module_draggable]
+              // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
               Image($r('app.media.app_icon'))
                 .width(100)
                 .height(100)
                 .draggable(true)
-                .margin({ left: 15 })
                 // [StartExclude module_draggable]
-                .visibility(this.imgState)// 绑定平行手势，可同时触发应用自定义长按手势
+                .margin({ left: 15 })
+                .visibility(this.imgState)
+                // 绑定平行手势，可同时触发应用自定义长按手势
                 // [Start bind_parallel_gesture]
                 .parallelGesture(LongPressGesture().onAction(() => {
-                  promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
+                  this.getUIContext()
+                    .getPromptAction()
+                    .showToast({ duration: 100, message: 'Long press gesture trigger' });
                 }))
-                  // [End bind_parallel_gesture]
+                // [End bind_parallel_gesture]
                 // [EndExclude module_draggable]
                 .onDragStart((event) => {
                   let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-                  data.imageUri = 'common/pic/img.png';
+                  // 'resources/base/media/app_icon.png'需要替换为开发者所需的图像资源文件
+                  data.imageUri = 'resources/base/media/app_icon.png';
                   let unifiedData = new unifiedDataChannel.UnifiedData(data);
                   event.setData(unifiedData);
 
@@ -130,24 +144,29 @@ export struct DefaultDrag {
                     pixelMap: this.pixmap,
                     extraInfo: 'this is extraInfo',
                   };
+                  // onDragStart回调函数中返回自定义拖拽背板图
                   return dragItemInfo;
                 })
-                  // [End module_draggable]
-                  // 提前准备拖拽自定义背板图
+                // [End module_draggable]
+                // 提前准备拖拽自定义背板图
                 // [Start set_custom_drag_status]
-                .onPreDrag((status: PreDragStatus) => {
-                  this.PreDragChange(status);
+                .onPreDrag((preDragStatus: PreDragStatus) => {
+                  if (preDragStatus == PreDragStatus.ACTION_DETECTING_STATUS) {
+                    this.getComponentSnapshot();
+                  }
                 })
                 // [End set_custom_drag_status]
                 // [Start set_on_drag_end]
+                // [EndExclude onDragEnd_start]
                 .onDragEnd((event) => {
                   // onDragEnd里取到的result值在接收方onDrop设置
                   if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-                    promptAction.showToast({ duration: 100, message: 'Drag Success' });
+                    this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
                   } else if (event.getResult() === DragResult.DRAG_FAILED) {
-                    promptAction.showToast({ duration: 100, message: 'Drag failed' });
+                    this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
                   }
                 })
+              // [End onDragEnd_start]
               // [End set_on_drag_end]
             }
 
@@ -166,10 +185,14 @@ export struct DefaultDrag {
                 .border({ color: Color.Black, width: 1 })// 控制角标显示类型为MOVE，即不显示角标
                 // [Start set_drag_behavior_move]
                 .onDragMove((event) => {
-                  event.setResult(DragResult.DROP_ENABLED)
-                  event.dragBehavior = DragBehavior.MOVE
-                  // [End set_drag_behavior_move]
+                  event.setResult(DragResult.DROP_ENABLED);
+                  event.dragBehavior = DragBehavior.COPY;
                 })
+                // [End set_drag_behavior_move]
+                // [Start drag_allow_drop]
+                .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK,
+                  uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
+                // [End drag_allow_drop]
                 // [Start allow_drag_type]
                 .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
                 // [End allow_drag_type]
@@ -185,7 +208,7 @@ export struct DefaultDrag {
                     this.imgState = Visibility.None;
                     // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
                     event.setResult(DragResult.DRAG_SUCCESSFUL);
-                  })
+                  });
                 })
               // [End set_on_drop_call]
             }
@@ -194,8 +217,8 @@ export struct DefaultDrag {
           .height('100%')
         }
         .height('100%')
-
       }
+      // [StartExclude default_drag]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
@@ -203,5 +226,8 @@ export struct DefaultDrag {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Drag_DefaultDrag_title'))
   }
+
+  // [EndExclude default_drag]
 }
+
 // [End default_drag]

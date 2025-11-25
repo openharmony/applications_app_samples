@@ -14,15 +14,12 @@
  */
 
 // [Start  dynamic_webview_component_loading]
+// main/ets/pages/Index.ets
 import { webview } from '@kit.ArkWeb';
 import { NodeController } from '@kit.ArkUI';
-import { createNode } from "./DynamicComponent";
-import { precompileWebview } from "./PrecompileWebview";
-import { businessWebview } from "./BusinessWebview";
-
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
+import { createNode } from './DynamicComponent';
+import { precompileWebview } from './PrecompileWebview';
+import { businessWebview } from './BusinessWebview';
 
 @Entry
 @Component
@@ -36,7 +33,7 @@ struct Index {
   aboutToAppear(): void {
     // 初始化用于注入本地资源的Web组件
     this.precompileNode = createNode(precompileWebview,
-      { url: resourceToString($r('app.string.web_path_one')) + 'empty.html', controller: this.precompileController});
+      { url: 'https://www.example.com/empty.html', controller: this.precompileController, context: this.getUIContext()});
   }
 
   build() {
@@ -45,8 +42,9 @@ struct Index {
       Button('加载页面')
         .onClick(() => {
           this.businessNode = createNode(businessWebview, {
-            url: resourceToString($r('app.string.web_path_one')) + 'business.html',
-            controller: this.businessController
+            url: 'https://www.example.com/business.html',
+            controller: this.businessController,
+            context: this.getUIContext()
           });
         })
       // 用于业务的Web组件

@@ -26,34 +26,41 @@ export struct TabsLayout {
           Tabs() {
             // [Start basic_layout_displays_one_content]
             TabContent() {
+              // app.string.homepage_content资源文件中的value值为“首页的内容”
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
             }
+            // app.string.homepage资源文件中的value值为“首页”
             .tabBar($r('app.string.homepage'))
             // [End basic_layout_displays_one_content]
 
             TabContent() {
+              // app.string.recommend_content资源文件中的value值为“推荐的内容”
               Text($r('app.string.recommend_content'))
                 .fontSize(30)
             }
+            // app.string.recommend资源文件中的value值为“推荐”
             .tabBar($r('app.string.recommend'))
 
             TabContent() {
+              // app.string.discover_content资源文件中的value值为“发现的内容”
               Text($r('app.string.discover_content'))
                 .fontSize(30)
             }
+            // app.string.discover资源文件中的value值为“发现”
             .tabBar($r('app.string.discover'))
 
             TabContent() {
+              // app.string.mine_content资源文件中的value值为“我的内容”
               Text($r('app.string.mine_content'))
                 .fontSize(30)
             }
+            // app.string.mine_content资源文件中的value值为“我的”
             .tabBar($r('app.string.mine'))
-            // [StartExclude basic_layout_displays_many_contents]
-          }.height(300)
-          // [EndExclude basic_layout_displays_many_contents]
+          }
+          // [End basic_layout_displays_many_contents]
+          .height(300)
         }
-        // [End basic_layout_displays_many_contents]
       }
       .width('100%')
       .height('100%')

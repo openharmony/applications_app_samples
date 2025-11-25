@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_apppage]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[MyAbility]';
+const TAG: string = '[EnvAbilityPage7]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct EnvAbilityPage7 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private callbackId: number = 0; // 注册订阅系统环境变化的ID
 
@@ -39,6 +39,7 @@ struct Index {
 
   // 页面展示
   build() {
+    //...
   }
 }
-// [End quick_start0]
+// [End envconf_apppage]

@@ -14,39 +14,29 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[Sample_Textcomponent]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'Textcomponent_';
-@ObservedV2
-class Name {
-  @Trace public count1: number = 1;
-  @Trace public count2: number = 2;
-  @Trace public count3: number = 3;
+@Entry
+@ComponentV2
+export struct ComputedProperty {
+  @Local count1: number = 1;
+  @Local count2: number = 2;
+  @Local count3: number = 3;
 
-  // [Start ComputedProperty]
+  // [Start computed_property]
   @Computed
   get sum() {
     return this.count1 + this.count2 + this.count3;
   }
-  // [End ComputedProperty]
-}
-
-const name: Name = new Name();
-
-@Entry
-@ComponentV2
-export struct ComputedProperty {
-  name1: Name = name;
+  // [End computed_property]
 
   build() {
     NavDestination() {
       Column() {
-        // [Start ComputedProperty]
-        Text(`${this.name1.count1 + this.name1.count2 + this.name1.count3}`) // 计算this.count1 + this.count2 + this.count3
-        Text(`${this.name1.count1 + this.name1.count2 + this.name1.count3}`) // 重复计算this.count1 + this.count2 + this.count3
-        Text(`${this.name1.sum}`) // 读取@Computed sum的缓存值，节省上述重复计算
-        Text(`${this.name1.sum}`) // 读取@Computed sum的缓存值，节省上述重复计算
-        // [End ComputedProperty]
+        // [Start computed_property_text]
+        Text(`${this.count1 + this.count2 + this.count3}`) // 计算this.count1 + this.count2 + this.count3
+        Text(`${this.count1 + this.count2 + this.count3}`) // 重复计算this.count1 + this.count2 + this.count3
+        Text(`${this.sum}`) // 读取@Computed sum的缓存值，节省上述重复计算
+        Text(`${this.sum}`) // 读取@Computed sum的缓存值，节省上述重复计算
+        // [End computed_property_text]
       }
     }
     .backgroundColor('#f1f2f3')

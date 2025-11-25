@@ -14,6 +14,7 @@
  */
 // [Start onCreate_Menu]
 // xxx.ets
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -24,7 +25,6 @@ const DOMAIN = 0x0000;
 export struct TextLayout {
   // [EndExclude onCreate_Menu]
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
-    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'customMenu1',
       icon: $r('app.media.app_icon'),
@@ -64,15 +64,15 @@ export struct TextLayout {
         //设置是否在文本布局过程中优化每行末尾的空格
         // [Start Last_space]
         Column() {
-          //启用优化行尾空格功能
-          Text('Trimmed space enabled')
+          // 启用优化行尾空格功能
+          Text('Trimmed space enabled     ')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 20 })
             .optimizeTrailingSpace(true)
             .textAlign(TextAlign.Center)
-          //不启用优化行尾空格功能
-          Text('Trimmed space disabled')
+          // 不启用优化行尾空格功能
+          Text('Trimmed space disabled     ')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 20 })
@@ -83,10 +83,10 @@ export struct TextLayout {
         // [End Last_space]
         Column() {
           // [Start text_VerticalAlign]
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
           Text() {
             Span('Hello')
               .fontSize(50)
-            // $r('app.media.startIcon')需要替换为开发者所需的资源文件
             ImageSpan($r('app.media.startIcon'))
               .width(30).height(30)
               .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
@@ -99,7 +99,7 @@ export struct TextLayout {
 
         Column() {
           // [Start copy_Option]
-          // $r('app.string.selected_menu')需要替换为开发者所需的资源文件
+          // 'app.string.selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
           Text($r('app.string.selected_menu'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
@@ -118,8 +118,10 @@ export struct TextLayout {
         }.margin({ top: 30 })
 
         Column() {
+          // 'app.string.Phone_number'资源文件中的value值为''电话号码：' + '(86) (755) ********' + '\n' +
+          // '链接：' + 'www.********.com' + '\n' + '邮箱：' + '***@example.com' + '\n' +
+          // '地址：' + 'XX省XX市XX区XXXX' + '\n' + '时间：' + 'XX年XX月XX日XXXX''
           Text(
-            // $r('app.string.Phone_number')需要替换为开发者所需的资源文件
             $r('app.string.Phone_number')
           )
             .fontSize(16)

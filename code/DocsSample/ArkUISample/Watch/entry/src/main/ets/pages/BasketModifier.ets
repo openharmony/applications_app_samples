@@ -47,11 +47,11 @@ struct BasketViewer {
     Column() {
       ForEach(this.shopBasket,
         (item: PurchaseItem) => {
-          Text(`Price: ${item.price.toFixed(2)} €`);
+          Text(`Price: ${item.price.toFixed(2)} €`)
         },
         (item: PurchaseItem) => item.id.toString()
       )
-      Text(`Total: ${this.totalPurchase.toFixed(2)} €`);
+      Text(`Total: ${this.totalPurchase.toFixed(2)} €`)
     }
   }
 }

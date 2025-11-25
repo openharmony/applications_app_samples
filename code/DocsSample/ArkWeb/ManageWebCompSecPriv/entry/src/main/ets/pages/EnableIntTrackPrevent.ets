@@ -28,13 +28,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.enableIntelligentTrackingPrevention(true);
-            console.log('enableIntelligentTrackingPrevention: true');
+            console.info('enableIntelligentTrackingPrevention: true');
           } catch (error) {
             console.error(
               `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: $r('app.string.web_path'), controller: this.controller });
+      Web({ src: 'www.example.com', controller: this.controller });
     }
   }
 }

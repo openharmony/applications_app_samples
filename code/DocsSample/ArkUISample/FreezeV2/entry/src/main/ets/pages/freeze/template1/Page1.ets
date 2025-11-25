@@ -13,9 +13,14 @@
  * limitations under the License.
  */
 // [Start freeze_template1_Page1_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const BOOK_INITIAL_NAME = '100';
+
 @ObservedV2
 export class Book {
-  @Trace public name: string = '100';
+  @Trace public name: string = BOOK_INITIAL_NAME;
 
   constructor(page: string) {
     this.name = page;
@@ -29,7 +34,7 @@ export struct Page1 {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {

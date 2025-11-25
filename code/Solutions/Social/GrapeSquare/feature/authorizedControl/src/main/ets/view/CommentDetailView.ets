@@ -170,14 +170,14 @@ struct TitleBar {
             .width($r('app.integer.layout_size_24'))
             .height($r('app.integer.layout_size_24'))
             .onClick(() => {
-              promptActionFn($r('app.string.feature_development'))
+              promptActionFn($r('app.string.feature_development'));
             })
           Image($r('app.media.ic_public_more'))
             .width($r('app.integer.layout_size_24'))
             .height($r('app.integer.layout_size_24'))
             .margin({ left: $r('app.integer.layout_size_24') })
             .onClick(() => {
-              promptActionFn($r('app.string.feature_development'))
+              promptActionFn($r('app.string.feature_development'));
             })
         }
         .padding({ right: $r('app.integer.layout_size_12') })
@@ -190,8 +190,6 @@ struct TitleBar {
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
-
-
   }
 }
 
@@ -311,7 +309,7 @@ struct CommentItem {
                 .height($r('app.integer.layout_size_26'))
                 .margin({ left: $r('app.integer.layout_size_10') })
                 .onClick(() => {
-                  promptActionFn($r('app.string.feature_development'))
+                  promptActionFn($r('app.string.feature_development'));
                 })
               Text(this.handleCount(this.commentsData.likeCount))
                 .margin({ right: $r('app.integer.layout_size_24') })
@@ -324,7 +322,7 @@ struct CommentItem {
                 .height($r('app.integer.layout_size_24'))
                 .margin({ right: $r('app.integer.layout_size_2') })
                 .onClick(() => {
-                  promptActionFn($r('app.string.feature_development'))
+                  promptActionFn($r('app.string.feature_development'));
                 })
             }.width($r('app.integer.layout_size_122')).alignItems(VerticalAlign.Center)
           }

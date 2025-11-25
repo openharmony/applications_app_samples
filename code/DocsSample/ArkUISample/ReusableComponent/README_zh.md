@@ -80,11 +80,6 @@ entry/src/main/
 |---ets
 |   |---pages
 |   |   |---Index.ets                                   // 应用主页面
-|   |   |---Index1.ets                                   // 应用主页面1
-|   |   |---Index2.ets                                   // 应用主页面2
-|   |   |---Index3.ets                                   // 应用主页面3
-|   |   |---Index4.ets                                   // 应用主页面4
-|   |   |---Index5.ets                                   // 应用主页面5
 |   |   |---ComponentContentNotSupportReusable.ets      // ComponentContent不支持传入\@Reusable装饰器装饰的自定义组件
 |   |   |---DynamicLayoutUpdate.ets                     // 动态布局更新
 |   |   |---ListScrollingWithIfStatements.ets           // 列表滚动-if使用场景
@@ -249,7 +244,7 @@ entry/src/main/
 
 2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.41，镜像版本号：OpenHarmony_6.0.0.41。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200, built on May 13, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

@@ -48,4 +48,5 @@ struct DateSample {
     }.width('100%')
   }
 }
+
 // [End appstorage_page_four]

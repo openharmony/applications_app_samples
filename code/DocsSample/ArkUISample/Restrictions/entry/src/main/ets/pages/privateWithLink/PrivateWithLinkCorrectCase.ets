@@ -16,31 +16,35 @@
 // [Start PrivateWithLink_CorrectCase]
 @Entry
 @Component
-struct PWLCAccessRestrictions  {
+struct PrivateWithLinkAccessRestrictions {
   @State linkValue: string = 'Hello';
-  @State objectLinkValue: PWLComponentObj  = new PWLComponentObj();
+  @State objectLinkValue: PrivateComponentObj = new PrivateComponentObj();
+
   build() {
     Column() {
-      PWLComponentChild({linkValue: this.linkValue, objectLinkValue: this.objectLinkValue});
+      PrivateWithLinkComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
 @Observed
-class PWLComponentObj  {
+class PrivateComponentObj {
   public count: number = 0;
 }
+
 @Component
-struct PWLComponentChild  {
+struct PrivateWithLinkComponentChild {
   @Link linkValue: string;
-  @ObjectLink objectLinkValue: PWLComponentObj;
+  @ObjectLink objectLinkValue: PrivateComponentObj;
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
+
 // [End PrivateWithLink_CorrectCase]

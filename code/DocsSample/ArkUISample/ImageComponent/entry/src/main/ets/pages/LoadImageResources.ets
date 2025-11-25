@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  [Start media_libraryfile]
+// 媒体库文件页面
+// [Start media_libraryfile]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-// [StartExclude media_libraryfile]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'Sample_imagecomponent';
-// [EndExclude media_libraryfile]
+
 @Entry
 @Component
 struct MediaLibraryFile {
   @State imgDatas: string[] = [];
+  // 使用PhotoViewPicker唤起图片选择器，选择图片并且渲染到页面中
   // 获取照片url集
   getAllImg() {
     try {
@@ -51,18 +51,18 @@ struct MediaLibraryFile {
   async aboutToAppear() {
     this.getAllImg();
   };
-  // 使用imgDatas的url加载图片。
+  // 使用imgDatas的url加载图片
   build() {
     Column() {
       Grid() {
         ForEach(this.imgDatas, (item:string) => {
           GridItem() {
             Image(item)
-              .width(200);
-          };
-        }, (item:string):string => JSON.stringify(item));
-      };
-    }.width('100%').height('100%');
-  };
+              .width(200)
+          }
+        }, (item:string):string => JSON.stringify(item))
+      }
+    }.width('100%').height('100%')
+  }
 }
-//  [End media_libraryfile]
+// [End media_libraryfile]

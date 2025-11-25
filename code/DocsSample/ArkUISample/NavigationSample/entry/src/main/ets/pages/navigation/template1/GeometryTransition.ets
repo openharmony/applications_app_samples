@@ -20,11 +20,12 @@ struct FromPage {
   build() {
     // [Start GeometryTransitionFromPage]
     // 起始页配置共享元素id
-    // [Start GeometryTransitionFromPage1]
+    // [Start GeometryTransitionFromPageOne]
     NavDestination() {
       Column() {
         // [StartExclude GeometryTransitionFromPage]
-        Button('跳转目的页')
+        // $r('app.string.ToPage')资源文件中的value值为“跳转到目的页”
+        Button($r('app.string.ToPage'))
           .width('80%')
           .height(40)
           .margin(20)
@@ -34,16 +35,16 @@ struct FromPage {
             });
           })
         // [EndExclude GeometryTransitionFromPage]
-        // [StartExclude GeometryTransitionFromPage1]
+        // [StartExclude GeometryTransitionFromPageOne]
         // $r('app.media.startIcon')需要替换为开发者所需的资源文件
         Image($r('app.media.startIcon'))
           .geometryTransition('sharedId')
           .width(100)
           .height(100)
-        // [EndExclude GeometryTransitionFromPage1]
+        // [EndExclude GeometryTransitionFromPageOne]
       }
     }.title('FromPage')
-    // [End GeometryTransitionFromPage1]
+    // [End GeometryTransitionFromPageOne]
     // [End GeometryTransitionFromPage]
   }
 }
@@ -76,11 +77,11 @@ struct GeometryTransition {
   @Builder
   PageBuilder(name: string) {
     if (name === 'FromPage'){
-      FromPage()
+      FromPage();
     } else if (name === 'ToPage'){
-      ToPage()
+      ToPage();
     }
-  };
+  }
   aboutToAppear(): void {
     this.navPathStack.pushPath({name: 'FromPage'});
   }

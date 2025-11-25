@@ -18,7 +18,7 @@ import { Want, AbilityConstant, UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = 'ExpressAbility';
+const TAG = 'FileHandlerAbility';
 const DOMAIN = 0x0000;
 
 export default class FileHandlerAbility extends UIAbility {

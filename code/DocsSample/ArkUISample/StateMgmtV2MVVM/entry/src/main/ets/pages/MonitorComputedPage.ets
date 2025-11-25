@@ -13,10 +13,10 @@
  * limitations under the License.
  *
 */
+// [Start Main_MonitorComputed]
+// src/main/ets/pages/MonitorComputedPage.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// src/main/ets/pages/7-MonitorComputed.ets
-// [Start Main_MonitorComputed]
 @ObservedV2
 class Task {
   public taskName: string = '';
@@ -34,17 +34,18 @@ struct TaskItem {
   @Event deleteTask: () => void = () => {};
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.debug(0x0000, 'testTag', '%{public}s', '任务' + this.task.taskName + '的完成状态从' + mon.value()?.before + '变为了' + mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
   }
 
   build() {
     Row() {
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
-      Button($r('app.string.Delete_task'))
+      Button('Delete')
         .onClick(() => this.deleteTask())
     }
     .onClick(() => this.task.isFinish = !this.task.isFinish)
@@ -74,10 +75,10 @@ struct TodoList {
 
   build() {
     Column() {
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin({ bottom: 10 })
-      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text('Unfinished task' + `：${this.tasksUnfinished}`)
       Repeat<Task>(this.tasks)
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
@@ -86,13 +87,13 @@ struct TodoList {
           })
         })
       Row() {
-        Button($r('app.string.Finish_all_tasks'))
+        Button('All Completed')
           .onClick(() => this.finishAll(true))
-        Button($r('app.string.Unfinish_all_tasks'))
+        Button('All Not Completed')
           .onClick(() => this.finishAll(false))
       }
       Row() {
-        TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
+        TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
         Button('+')

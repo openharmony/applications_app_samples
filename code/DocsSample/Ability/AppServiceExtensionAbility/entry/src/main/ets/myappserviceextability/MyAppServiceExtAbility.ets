@@ -16,7 +16,9 @@
 // [Start ability_app_service_one]
 // [Start ability_app_service_two]
 import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+// [StartExclude ability_app_service_two]
 import { rpc } from '@kit.IPCKit';
+// [EndExclude  ability_app_service_two]
 // [StartExclude ability_app_service_one]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [EndExclude  ability_app_service_one]
@@ -25,9 +27,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[MyAppServiceExtAbility]';
 // [StartExclude ability_app_service_two]
 const DOMAIN_NUMBER: number = 0xFF00;
-// [EndExclude  ability_app_service_two]
 
-// [StartExclude ability_app_service_two]
 class StubTest extends rpc.RemoteObject {
   constructor(des: string) {
     super(des);

@@ -16,7 +16,7 @@
 // [Start render_if]
 @Entry
 @Component
-struct ifExample {
+struct IfExample {
   @State count: number = 0;
 
   build() {

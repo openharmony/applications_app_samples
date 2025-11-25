@@ -16,7 +16,7 @@
 // [Start Twoway_Binding]
 @Entry
 @ComponentV2
-export struct TwowayBinding {
+struct Parent {
   @Provider() str: string = 'hello';
 
   build() {
@@ -45,3 +45,17 @@ struct Child {
   }
 }
 // [End Twoway_Binding]
+
+@Component
+export struct TwowayBinding {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Twoway_Binding'))
+  }
+}

@@ -101,7 +101,7 @@ struct Page4 {
 
           /*****************************不会改变数组本身API***************************/
           // slice：返回新的数组，根据start end对原数组的拷贝，不会改变原数组，所以直接调用slice不会触发UI刷新
-          // 可以构建用例为返回的浅拷贝的数据赋值给this.arrCollect,需要注意这里依然要调用makeObserved，否则this.arr被普通变量赋值后，会丧失观察能力
+          // 可以构建用例为返回的浅拷贝的数据赋值给this.arrCollect,需要注意这里依然要调用makeObserved，否则this.arrCollect被普通变量赋值后，会丧失观察能力
           Button('slice').onClick(() => {
             this.arrCollect = UIUtils.makeObserved(this.arrCollect.slice(0, 1));
           })

@@ -15,22 +15,22 @@
 // [Start Use_Mixture]
 // 以@State装饰器为例
 @ObservedV2
-class UseMixtureJob {
+class Job {
   @Trace public jobName: string = 'Teacher';
-};
+}
+
 @ObservedV2
-class UseMixtureInfo {
+class Info {
   @Trace public name: string = 'Tom';
-  // The 'age' property is decorated with @Trace, so its changes will trigger UI updates
   @Trace public age: number = 25;
-  public job: UseMixtureJob = new UseMixtureJob();
-};
+  public job: Job = new Job();
+}
+
 @Entry
-// @Component 需使用@ComponentV2
 @ComponentV2
-struct UseMixture {
-  // @State info: UseMixtureInfo = new UseMixtureInfo(); 无法混用，编译时报错
-  @Local info: UseMixtureInfo = new UseMixtureInfo();
+struct Index {
+  // @State info: Info = new Info(); 无法混用，编译时报错
+  @Local info: Info = new Info();
 
   build() {
     Column() {
@@ -40,12 +40,15 @@ struct UseMixture {
       Button('change age')
         .onClick(() => {
           this.info.age++;
-        });
+        })
       Button('Change job')
         .onClick(() => {
           this.info.job.jobName = 'Doctor';
-        });
+        })
     }
   }
 }
+
 // [End Use_Mixture]
+const useMixture = Index;
+export default useMixture;

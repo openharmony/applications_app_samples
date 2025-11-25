@@ -15,7 +15,7 @@
 //[Start RelativeContainerChildComponentId_start]
 @Entry
 @Component
-struct Index3 {
+struct ChildRefRelativeContainer {
   build() {
     Row() {
       RelativeContainer() {

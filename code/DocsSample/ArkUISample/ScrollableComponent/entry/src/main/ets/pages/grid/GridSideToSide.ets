@@ -40,11 +40,11 @@ export struct GridSideToSide {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-        // $r('app.string.GridSideToSide_title')需要替换为开发者所需的资源文件
+      Column({ space: 5 }) {
+        // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
         ComponentCard({ title: $r('app.string.GridSideToSide_title') }) {
           // [Start Control_scrolling_position]
-          Column(){
+          Column({ space: 5 }){
             Grid(this.scroller) {
               // [StartExclude Control_scrolling_position]
               LazyForEach(this.numbers, (day: string) => {
@@ -68,13 +68,14 @@ export struct GridSideToSide {
             .scrollBar(BarState.Off)
             // [EndExclude Control_scrolling_position]
             Row({ space: 20 }) {
+              // app.string.Previous_Page资源文件中的value值为‘上一页’
               Button($r('app.string.Previous_Page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
                     next: false
                   });
                 })
-
+              // app.string.Next_page资源文件中的value值为‘下一页’
               Button($r('app.string.Next_page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
@@ -91,6 +92,7 @@ export struct GridSideToSide {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
     .title($r('app.string.GridSideToSide_title'))
   }
 }

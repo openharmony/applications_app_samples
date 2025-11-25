@@ -14,28 +14,30 @@
  */
 // [Start Parent17_start]
 @Component
-struct Child17 {
+struct Child {
   // alias和属性名都为key，alias和属性名都可以匹配
   @Consume('text') childMessage: string;
   @Consume message: string;
 
   build() {
     Column() {
-      Text(this.childMessage);
-      Text(this.message); // Text是Hello World
+      Text(this.childMessage)
+      Text(this.message) // Text是Hello World
     }
   }
 }
 
 @Entry
 @Component
-struct Parent17 {
+struct Parent {
   @Provide('text') message: string = 'Hello World';
 
   build() {
     Column() {
-      Child17();
+      Child()
     }
   }
 }
 // [End Parent17_start]
+const parent17 = Parent;
+export default parent17;

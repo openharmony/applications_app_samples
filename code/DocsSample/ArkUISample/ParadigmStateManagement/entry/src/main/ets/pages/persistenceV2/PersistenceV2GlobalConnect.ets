@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 // [Start persistence_v2_global_connect]
 import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
@@ -26,14 +25,12 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 @ObservedV2
 class SampleChild {
-  // 应用持久化点击的数量，默认为0，如果点击后退出再次进入，则默认为持久化的数量
   @Trace public childId: number = 0;
-  // 应用持久化点击的数量，默认为1，如果点击后退出再次进入，则默认为持久化的数量
   public groupId: number = 1;
 }
 
 @ObservedV2
-export class Sample {
+export class SampleGlobalConnect {
   // 对于复杂对象需要@Type修饰，确保序列化成功
   @Type(SampleChild)
   @Trace public father: SampleChild = new SampleChild();
@@ -42,25 +39,26 @@ export class Sample {
 @Entry
 @ComponentV2
 struct Page1 {
-  // 进入当前页面后点击了Persist keys:及之后的内容多少次
   @Local refresh: number = 0;
   // key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
-  @Local p: Sample = PersistenceV2.globalConnect({ type: Sample, defaultCreator: () => new Sample() })!;
+  @Local p: SampleGlobalConnect =
+    PersistenceV2.globalConnect({ type: SampleGlobalConnect, defaultCreator: () => new SampleGlobalConnect() })!;
   // 使用key:global1连接，传入加密等级为EL1
-  @Local p1: Sample = PersistenceV2.globalConnect({
-    type: Sample,
+  @Local p1: SampleGlobalConnect = PersistenceV2.globalConnect({
+    type: SampleGlobalConnect,
     key: 'global1',
-    defaultCreator: () => new Sample(),
+    defaultCreator: () => new SampleGlobalConnect(),
     areaMode: contextConstant.AreaMode.EL1
   })!;
   // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
-  options: ConnectOptions<Sample> = { type: Sample, key: 'global2', defaultCreator: () => new Sample() };
-  @Local p2: Sample = PersistenceV2.globalConnect(this.options)!;
+  options: ConnectOptions<SampleGlobalConnect> =
+    { type: SampleGlobalConnect, key: 'global2', defaultCreator: () => new SampleGlobalConnect() };
+  @Local p2: SampleGlobalConnect = PersistenceV2.globalConnect(this.options)!;
   // 使用key:global3连接，直接写加密数值，范围只能在0-4，否则运行会crash,例如加密设置为EL3
-  @Local p3: Sample = PersistenceV2.globalConnect({
-    type: Sample,
+  @Local p3: SampleGlobalConnect = PersistenceV2.globalConnect({
+    type: SampleGlobalConnect,
     key: 'global3',
-    defaultCreator: () => new Sample(),
+    defaultCreator: () => new SampleGlobalConnect(),
     areaMode: 3
   })!;
 
@@ -68,7 +66,7 @@ struct Page1 {
     Column() {
       /**************************** 显示数据 **************************/
       // 被@Trace修饰的数据可以自动持久化进磁盘
-      Text('Key Sample: ' + this.p.father.childId.toString())
+      Text('Key SampleGlobalConnect: ' + this.p.father.childId.toString())
         .onClick(() => {
           this.p.father.childId += 1;
         })
@@ -101,10 +99,10 @@ struct Page1 {
         .fontSize(25)
 
       /**************************** remove接口 **************************/
-      Text('Remove key Sample: ' + 'refresh: ' + this.refresh)
+      Text('Remove key SampleGlobalConnect: ' + 'refresh: ' + this.refresh)
         .onClick(() => {
           // 删除这个key，会导致和p失去联系，之后p无法存储，即使reconnect
-          PersistenceV2.remove(Sample);
+          PersistenceV2.remove(SampleGlobalConnect);
           this.refresh += 1;
         })
         .fontSize(25)
@@ -140,18 +138,18 @@ struct Page1 {
         .fontSize(25)
 
       /**************************** save接口 **************************/
-      Text('not save key Sample: ' + this.p.father.groupId.toString() + ' refresh: ' + this.refresh)
+      Text('not save key SampleGlobalConnect: ' + this.p.father.groupId.toString() + ' refresh: ' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储
           this.p.father.groupId += 1;
           this.refresh += 1;
         })
         .fontSize(25)
-      Text('save key Sample: ' + this.p.father.groupId.toString() + ' refresh: ' + this.refresh)
+      Text('save key SampleGlobalConnect: ' + this.p.father.groupId.toString() + ' refresh: ' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;
-          PersistenceV2.save(Sample);
+          PersistenceV2.save(SampleGlobalConnect);
           this.refresh += 1;
         })
         .fontSize(25)

@@ -15,17 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebFocusManagement]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebFocusManagement_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'ActsAbilityTest begin');
+      console.info('ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -33,7 +29,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
+      console.info('get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -57,7 +53,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_WebFocusManagement_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebFocusManagement_001 begin');
+      console.info('processweb_WebFocusManagement_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebFocusManagementButton'));
@@ -68,9 +64,9 @@ export default function abilityTest() {
       await button1.click();
       await driver.delayMs(100);
       //获取所点击的web边框颜色
-      hilog.info(DOMAIN, TAG, BUNDLE, `Focused Web Component Info: ${getInspectorByKey('web1')}`);
+      console.info(`Focused Web Component Info: ${getInspectorByKey('web1')}`);
       const webJsonFocused1: boolean = JSON.parse(getInspectorByKey('web1'))['$attrs']['focused'];
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_setRenderProcessMode_001 end');
+      console.info('processweb_setRenderProcessMode_001 end');
 
       expect(webJsonFocused1).assertTrue();
 
@@ -78,17 +74,17 @@ export default function abilityTest() {
       await button2.click();
       await driver.delayMs(100);
       //获取所点击的web边框颜色
-      hilog.info(DOMAIN, TAG, BUNDLE, `Focused Web Component Info: ${getInspectorByKey('web1')}`);
+      console.info(`Focused Web Component Info: ${getInspectorByKey('web1')}`);
       const webJsonFocused2: boolean = JSON.parse(getInspectorByKey('web1'))['$attrs']['focused'];
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_setRenderProcessMode_001 end');
+      console.info('processweb_setRenderProcessMode_001 end');
 
       expect(webJsonFocused2).assertFalse();
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebFocusManagement_001 end');
+      console.info('processweb_WebFocusManagement_001 end');
       done();
     })
 
     it('processweb_WebFocusManagement2_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebFocusManagement2_001 begin');
+      console.info('processweb_WebFocusManagement2_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebFocusManagement2Button'));
@@ -97,9 +93,9 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
+      console.info('src: ' + src);
       expect(src).assertContain('test.html');
-      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebFocusManagement2_001 end');
+      console.info('processweb_WebFocusManagement2_001 end');
       done();
     })
   })

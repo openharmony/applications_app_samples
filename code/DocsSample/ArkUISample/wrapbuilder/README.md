@@ -1,4 +1,4 @@
-# com.samples.wrapbuilder
+# wrapBuilder：封装全局@Builder
 
 ## 介绍
 
@@ -19,14 +19,14 @@
 
 从API version 12开始，wrapBuilder支持在元服务中使用。
 
-[@ComponentV2装饰器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-componentV2.md)。
+[@ComponentV2装饰器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-create-custom-components.md#componentv2)。
 
 [wrapBuilder：封装全局@Builder](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-wrapBuilder.md)。
 
 ## 效果预览
-| 首页                                              | CustomDialogController_CAPI页面                             |OpenCustomDialog_CAPI页面                                              |
-| ---------------------------------------------------- |---------------------------------------------------------| ------------------------------------------------------- |
-| <img src="./screenshots/PageIndex.png" width="300"/> | <img src="./screenshots/PageOne.png" width="300"/> | <img src="./screenshots/PageThree.png" width="300"/> |
+| 首页                                              |OpenCustomDialog_CAPI页面                                              |
+| ---------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./screenshots/PageIndex.png" width="300"/> | <img src="./screenshots/PageThree.png" width="300"/> |
 
 
 ## 使用说明
@@ -51,7 +51,6 @@ wrapbuilder
     │   │       └── PageComponentV2.ets //示例：@ComponentV2装饰器：自定义组件
     │   │       ├── PageFive.ets  //示例5：重复定义wrapBuilder失效
     │   │       ├── PageFour.ets  //示例4：引用传递
-    │   │       ├── PageOne.ets   //示例1：wrapBuilder是一个模板函数，返回一个WrappedBuilder对象
     │   │       ├── PageThree.ets //示例3：@Builder方法赋值给变量在UI语法中使用
     │   │       └── PageTwo.ets   //示例2：@Builder方法赋值给变量
     │   ├── module.json5

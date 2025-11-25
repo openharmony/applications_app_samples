@@ -2,16 +2,8 @@
 
 ### 介绍
 
-
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
-
-1.[线性布局 (Column)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
-2.[文本显示 (Text/Span)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-components-text-display.md)
-
-### 效果预览
-
-![](screenshots/device/image1.jpeg)
-
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：  
+**1. [Environment：设备环境查询](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/EnvirommentProjet/README_zh.md)。**
 ### 具体实现
 1. 基本功能与原理
    核心作用：查询设备环境信息，使应用能根据运行环境动态调整行为
@@ -70,7 +62,10 @@ EnvirommentProjet
 │     │  │  ├─ entrybackupability
 │     │  │  │  └─ EntryBackupAbility.ets
 │     │  │  └─ pages
-│     │  │     └─ Index.ets          // 主页面
+│     │  │     └─ Index.ets                  // 导航页
+│     │  │     └─ AppliedLogic.ets           // 应用逻辑使用Environment页面
+│     │  │     └─ ShowDetails.ets            // 额外代码块页面
+│     │  │     └─ UiEnvironment.ets          // 从UI中访问Environment参数页面
 │     │  ├─ module.json5
 │     │  └─ resources
 │     │     ├─ base
@@ -112,6 +107,12 @@ EnvirommentProjet
 └─ README.md
 
 ```
+
+### 使用说明
+1. 需在 UIContext 明确时调用，可借 runScopedTask 指定上下文。
+2. UI 访问需用 envProp 存 AppStorage，再绑 @StorageProp。
+3. 应用逻辑从 AppStorage 取已存的环境参数判断场景。
+4. 环境参数只读，修改 @StorageProp 不回传 AppStorage。
 
 
 ### 相关权限

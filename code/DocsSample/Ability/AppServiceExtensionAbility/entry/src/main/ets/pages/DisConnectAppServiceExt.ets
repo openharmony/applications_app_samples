@@ -17,14 +17,14 @@ import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_AppServiceExtensionAbility]';
+const TAG: string = '[DisConnectAppServiceExt]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 let connectionId: number;
 
 @Entry
 @Component
-struct Page_AppServiceExtensionAbility {
+struct DisConnectAppServiceExt {
   build() {
     Column() {
       // [StartExclude app_ext_service_four_start]

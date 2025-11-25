@@ -2,7 +2,7 @@
   "src": [
     "pages/Index",
     "View/Page1",
-    "View/Page2",
+    "View/PageTwo",
     "View/TabContentTest",
     "View/LazyforEachTest",
     "View/MyNavigationTestStack",

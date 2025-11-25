@@ -16,7 +16,7 @@
 // [Start Drag_Drop]
 @Entry
 @ComponentV2
-struct DragDrop {
+struct Parent {
   @Local childX: number = 0;
   @Local childY: number = 1;
   @Provider() onDrag: (x: number, y: number) => void = (x: number, y: number) => {
@@ -47,3 +47,17 @@ struct Child {
   }
 }
 // [End Drag_Drop]
+
+@Component
+export struct DragDrop {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Drag_Drop'))
+  }
+}

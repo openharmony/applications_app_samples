@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import hilog from '../model/Logger'
-import { WifiView } from '../component/WifiView'
-import wifi from '@ohos.wifiManager'
+import hilog from '../model/Logger';
+import { WifiView } from '../component/WifiView';
+import wifi from '@ohos.wifiManager';
 
-const TAG = 'AvailableWiFi'
+const TAG = 'AvailableWiFi';
 let self: AvailableWifi | null = null;
 @Entry
 @Component
@@ -35,7 +35,7 @@ export struct AvailableWifi {
 
     if (this.isSwitchOn) {
       setTimeout(async () => {
-        this.wifilist = result
+        this.wifilist = result;
         await this.getScanInfos();
       }, 3000)
     }
@@ -104,7 +104,7 @@ export struct AvailableWifi {
             .id('switch')
             .onChange((isOn: boolean) => {
               hilog.info(`wifi swtich is: ${isOn}`);
-              this.wifilist = this.wifilisttest
+              this.wifilist = this.wifilisttest;
             })
         }
       }
@@ -116,7 +116,8 @@ export struct AvailableWifi {
           ListItem() {
             WifiView({ wifi: wifiItem })
           }
-        }, (wifiItem: wifi.WifiScanInfo) => JSON.stringify(wifiItem));
+        }, 
+        (wifiItem: wifi.WifiScanInfo) => JSON.stringify(wifiItem))
       }
     }
     .width('100%')

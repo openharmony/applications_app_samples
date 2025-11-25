@@ -14,28 +14,30 @@
  */
 // [Start Parent18_start]
 @ComponentV2
-struct Child18 {
+struct Child {
   // alias是唯一匹配的key，有alias情况下无法通过属性名匹配
   @Consumer('text') childMessage: string = 'default';
   @Consumer() message: string = 'default';
 
   build() {
     Column() {
-      Text(this.childMessage);
-      Text(this.message); // Text是default
+      Text(this.childMessage)
+      Text(this.message) // Text是default
     }
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent18 {
+struct Parent {
   @Provider('text') message: string = 'Hello World';
 
   build() {
     Column() {
-      Child18();
+      Child()
     }
   }
 }
 // [End Parent18_start]
+const parent18 = Parent;
+export default parent18;

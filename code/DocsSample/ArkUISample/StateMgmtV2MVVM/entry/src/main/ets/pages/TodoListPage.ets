@@ -14,11 +14,11 @@
  *
 */
 
-// src/main/ets/pages/TodoListPage.ets
 // [Start Main_TodoListPage]
+// src/main/ets/pages/TodoListPage.ets
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { common } from '@kit.AbilityKit';
-import { AppStorageV2, PersistenceV2, router } from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2 } from '@kit.ArkUI';
 import { Setting } from '../pages/SettingPage';
 import TitleView from '../view/TitleView';
 import ListView from '../view/ListView';
@@ -32,7 +32,6 @@ struct TodoList {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
-    this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
     if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
@@ -48,22 +47,6 @@ struct TodoList {
       TitleView({ tasksUnfinished: this.tasksUnfinished })
       ListView({ taskList: this.taskList, setting: this.setting });
       BottomView({ taskList: this.taskList });
-
-      Button('AppStorageV2', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({url:'pages/AppStorageV2'});
-        })
-
-      Button('Store data between two pages', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({url:'pages/Page1'});
-        })
     }
     .height('100%')
     .width('100%')

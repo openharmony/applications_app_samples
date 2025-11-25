@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/4-Event.ets
 // [Start Main_Event]
+// src/main/ets/pages/EventPage.ets
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -24,12 +24,13 @@ struct TaskItem {
 
   build() {
     Row() {
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
       Text(this.taskName)
         .decoration({ type: this.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
-      Button($r('app.string.Delete_task'))
+      Button('Delete')
         .onClick(() => this.deleteTask())
     }
     .onClick(() => this.isFinish = !this.isFinish)
@@ -43,7 +44,7 @@ struct TodoList {
   @Local newTaskName: string = '';
   build() {
     Column() {
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin({ bottom: 10 })
       ForEach(this.tasks, (task: string) => {
@@ -54,7 +55,7 @@ struct TodoList {
         })
       })
       Row() {
-        TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
+        TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
         Button('+')

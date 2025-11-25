@@ -1,8 +1,8 @@
-# ArkUI使用滚动类指南文档示例
+# UI国际化指南文档示例
 
 ### 介绍
 
-本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-color-effect.md)色彩的使用方法：
+本示例展示了[UI国际化](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-internationalization.md)的使用方法：
 
 使用说明：
 1. 该工程可以选择在模拟器和开发板上运行。
@@ -10,8 +10,8 @@
 3. 进入”DocsSample/ArkUISample/internationalization/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
 ### 效果预览
 
-| 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
-|------------------------------------|------------------------------------|------------------------------------|
+| 界面布局和边框设置                                 | 自定义绘制Canvas组件                            |
+|------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) |
 
 ### 使用说明
@@ -52,6 +52,14 @@ entry/src/ohosTest/
 ### 依赖
 
 不涉及。
+
+### 约束与限制
+
+1.本示例仅支持标准系统上运行, 支持设备：RK3568。
+
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0.47。
+
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858， built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

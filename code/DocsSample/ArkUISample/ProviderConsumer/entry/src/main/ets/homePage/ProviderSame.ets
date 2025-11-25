@@ -34,13 +34,13 @@ struct Parent {
   build() {
     Column() {
       Text(`${this.val2}`)
-      ProviderSame()
+      Child()
     }
   }
 }
 
 @ComponentV2
-export struct ProviderSame {
+struct Child {
   @Consumer() val: number = 0; // 20
 
   build() {
@@ -50,3 +50,17 @@ export struct ProviderSame {
   }
 }
 // [End Provider_Same]
+
+@Component
+export struct ProviderSame {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Provider_Same'))
+  }
+}

@@ -12,15 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start modal_transition_with_if]
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct ModalTransitionWithIf {
-  // [StartExclude modal_transition_with_if]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude modal_transition_with_if]
   private listArr: string[] = ['WLAN', this.context.resourceManager.getStringByNameSync('modal_transition_text29'),
     this.context.resourceManager.getStringByNameSync('modal_transition_text30'),
     this.context.resourceManager.getStringByNameSync('modal_transition_text31')];
@@ -79,7 +78,7 @@ struct ModalTransitionWithIf {
                 }
                 .alignItems(HorizontalAlign.Start)
 
-                Blank();
+                Blank()
 
                 Row()
                   .width(12)
@@ -167,7 +166,7 @@ struct ModalTransitionWithIf {
                   }
                   .alignItems(HorizontalAlign.Start)
 
-                  Blank();
+                  Blank()
 
                   Row()
                     .width(12)

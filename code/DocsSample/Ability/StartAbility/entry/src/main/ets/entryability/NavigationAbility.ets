@@ -21,7 +21,7 @@ import { window } from '@kit.ArkUI';
 const TAG = 'NavigationAbility';
 const DOMAIN = 0x0000;
 
-export default class EntryAbility extends UIAbility {
+export default class NavigationAbility extends UIAbility {
   private windowStage: window.WindowStage | null = null;
 
   private uri?: string;

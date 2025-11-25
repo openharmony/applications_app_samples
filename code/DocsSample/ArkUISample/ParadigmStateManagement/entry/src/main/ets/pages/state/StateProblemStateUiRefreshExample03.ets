@@ -15,7 +15,7 @@
 
 // [Start state_problem_state_ui_refresh_example_03]
 class Info {
-  public address: string = '杭州';
+  public address: string = 'Hangzhou';
 
   constructor(address: string) {
     this.address = address;
@@ -23,13 +23,13 @@ class Info {
 }
 
 class User {
-  public info: Info = new Info('天津');
+  public info: Info = new Info('Tianjin');
 }
 
 @Entry
 @Component
 struct Test {
-  @State info: Info = new Info('上海');
+  @State info: Info = new Info('Shanghai');
   @State user: User = new User();
 
   aboutToAppear(): void {
@@ -42,8 +42,8 @@ struct Test {
       Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.user.info = new Info('广州');
-          this.user.info.address = '北京';
+          this.user.info = new Info('Guangzhou');
+          this.user.info.address = 'Beijing';
         })
     }
   }

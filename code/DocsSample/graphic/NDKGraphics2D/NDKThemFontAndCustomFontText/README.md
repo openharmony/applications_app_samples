@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本工程主要实现了对以下指南文档中 [主题字体](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/graphics/theme-font-c.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源，以及除基本文字、排版属性之外，针对应用中不同文本的设计，开发者可能需要设置使用不同的绘制样式或能力，以凸显对应文本的独特表现或风格，此时可以结合使用多种绘制样式进行文本的渲染。
+本工程主要实现了对以下指南文档中[主题字体](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/graphics/theme-font-c.md)示例、[自定义字体](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/graphics/custom-font-c.md)示例和[系统字体](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/graphics/system-font-c.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源，以及除基本文字、排版属性之外，针对应用中不同文本的设计，开发者可能需要设置使用不同的绘制样式或能力，以凸显对应文本的独特表现或风格，此时可以结合使用多种绘制样式进行文本的渲染。
 
 ## 效果预览
 

@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-// [Start page_one_require_tart]
+// [Start page_one_require_start]
 @Entry
 @Component
-struct Index {
+struct PageOne {
   message: string = 'Hello World';
 
   build() {
     Column() {
-      Child_V1({ message: this.message })
+      ChildIndex({ message: this.message })
     }
   }
 }
 
 @Component
-struct Child_V1 {
+struct ChildIndex {
   @Require @State message: string;
 
   build() {
@@ -36,4 +36,4 @@ struct Child_V1 {
     }
   }
 }
-// [End page_one_require_tart]
+// [End page_one_require_start]

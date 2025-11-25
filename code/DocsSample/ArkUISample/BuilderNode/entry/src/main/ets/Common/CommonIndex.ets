@@ -24,7 +24,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // @Builder中为动态组件的具体组件内容。
 // Data为入参封装类。
 class Data{
-  public url: string = '';
+  public url: string = 'https://www.example.com';
   public controller: WebviewController = new webview.WebviewController();
 }
 // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染。
@@ -56,7 +56,7 @@ export class MyNodeController2 extends NodeController {
   // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中。
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
   makeNode(uiContext: UIContext): FrameNode | null {
-    hilog.info(0xF811, 'testTag', '%{public}s',' uicontext is undefined :' + (uiContext === undefined));
+    hilog.info(0xF811,'testTag','%{public}s',' uicontext is undefined :' + (uiContext === undefined));
     if (this.rootnode != null) {
       // 返回FrameNode节点。
       return this.rootnode.getFrameNode();
@@ -66,17 +66,17 @@ export class MyNodeController2 extends NodeController {
   }
   // 当布局大小发生变化时进行回调。
   aboutToResize(size: Size) {
-    hilog.info(0xF811, 'testTag', '%{public}s','aboutToResize width : ' + size.width  +  ' height : ' + size.height );
+    hilog.info(0xF811,'testTag','%{public}s','aboutToResize width : ' + size.width  +  ' height : ' + size.height );
   }
   // 当controller对应的NodeContainer在Appear的时候进行回调。
   aboutToAppear() {
-    hilog.info(0xF811, 'testTag', '%{public}s','aboutToAppear');
+    hilog.info(0xF811,'testTag','%{public}s','aboutToAppear');
     // 切换到前台后，不需要停止渲染。
     shouldInactive = false;
   }
   // 当controller对应的NodeContainer在Disappear的时候进行回调。
   aboutToDisappear() {
-    hilog.info(0xF811, 'testTag', '%{public}s','aboutToDisappear');
+    hilog.info(0xF811,'testTag','%{public}s','aboutToDisappear');
   }
   // 此函数为自定义函数，可作为初始化函数使用。
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容。
@@ -103,9 +103,9 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller);
   nodeMap.set(url, baseNode);
-}
+};
 // 自定义获取NodeController接口。
 export const getNWeb = (url : string) : MyNodeController2 | undefined => {
   return nodeMap.get(url);
-}
+};
 // [End Common_CommonIndex]

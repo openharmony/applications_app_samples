@@ -13,89 +13,29 @@
  * limitations under the License.
  */
 
-class BasicDataSource19 implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData19[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): StringData19 {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-
 // [Start ui_not_rerendered]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource19 extends BasicDataSource19 {
-  private dataArray: StringData19[] = [];
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+class UINoteRenderingSource extends GenericBasicDataSource<UINoteRenderingStringData> {
+  private dataArray: UINoteRenderingStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData19 {
+  public getData(index: number): UINoteRenderingStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData19): void {
+  public pushData(data: UINoteRenderingStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Observed
-class StringData19 {
+class UINoteRenderingStringData {
   public message: NestedString;
 
   constructor(message: NestedString) {
@@ -116,17 +56,17 @@ class NestedString {
 @Component
 struct UINotRerenderedWhenObjectLinkIsChanged {
   private moved: number[] = [];
-  private data: MyDataSource19 = new MyDataSource19();
+  private data: UINoteRenderingSource = new UINoteRenderingSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData19(new NestedString(`Hello ${i}`)));
+      this.data.pushData(new UINoteRenderingStringData(new NestedString(`Hello ${i}`)));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData19, index: number) => {
+      LazyForEach(this.data, (item: UINoteRenderingStringData, index: number) => {
         ListItem() {
           UINotRerenderedChildComponent({ data: item })
         }
@@ -134,7 +74,7 @@ struct UINotRerenderedWhenObjectLinkIsChanged {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
           item.message = new NestedString(item.message.message + '0');
         })
-      }, (item: StringData19, index: number) => item.message.message + index.toString())
+      }, (item: UINoteRenderingStringData, index: number) => item.message.message + index.toString())
     }
     .cachedCount(5)
   }
@@ -142,7 +82,7 @@ struct UINotRerenderedWhenObjectLinkIsChanged {
 
 @Component
 struct UINotRerenderedChildComponent {
-  @ObjectLink data: StringData19;
+  @ObjectLink data: UINoteRenderingStringData;
 
   build() {
     Row() {

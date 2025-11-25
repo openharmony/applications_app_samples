@@ -13,23 +13,26 @@
  * limitations under the License.
  */
 
-// [Start local_file_refresh]
+// [Start refresh_import]
+// entry/src/main/ets/wgtimgupdateentryformability/WgtImgUpdateEntryFormAbility.ts
 import { Want } from '@kit.AbilityKit';
-// [Start network_file_refresh]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [StartExclude local_file_refresh]
 import { http } from '@kit.NetworkKit';
-// [EndExclude local_file_refresh]
 
+// [End refresh_import]
+// [Start network_file_refresh]
+// [Start local_file_refresh]
+// entry/src/main/ets/wgtimgupdateentryformability/WgtImgUpdateEntryFormAbility.ts
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
- // [StartExclude local_file_refresh]
+// [StartExclude local_file_refresh]
 const TEXT1: string = '刷新中...'
 const TEXT2: string = '刷新失败'
- // [EndExclude local_file_refresh]
+
+// [EndExclude local_file_refresh]
 
 export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
   // [StartExclude network_file_refresh]
@@ -38,23 +41,21 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
     let tempDir = this.context.getApplicationContext().tempDir;
     hilog.info(DOMAIN_NUMBER, TAG, `tempDir: ${tempDir}`);
-    // 打开本地图片并获取其打开后的fd
     let imgMap: Record<string, number> = {};
     try {
-      // 打开本地图片并获取其打开后的fd
+      // 打开本地图片并获取其打开后的fd, FormExtensionAbility进程销毁时释放
       let file = fileIo.openSync(tempDir + '/' + 'head.PNG');
       imgMap['imgBear'] = file.fd;
     } catch (e) {
       hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
     }
-    ;
 
     class FormDataClass {
       text: string = 'Image: Bear';
       loaded: boolean = true;
-      // 卡片需要显示图片场景, 必须和下列字段formImages 中的key 'imgBear' 相同。
+      // 卡片需要显示图片场景,必须和下列字段formImages中的key 'imgBear'相同。
       imgName: string = 'imgBear';
-      // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), 'imgBear' 对应 fd
+      // 卡片需要显示图片场景,必填字段(formImages不可缺省或改名), 'imgBear'对应fd
       formImages: Record<string, number> = imgMap;
     }
 
@@ -62,6 +63,7 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     // 将fd封装在formData中并返回至卡片页面
     return formBindingData.createFormBindingData(formData);
   }
+
   // [StartExclude local_file_refresh]
   // [EndExclude network_file_refresh]
   async onFormEvent(formId: string, message: string): Promise<void> {
@@ -84,9 +86,9 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     class FormDataClass {
       text: string = 'Image: Bear' + fileName;
       loaded: boolean = true;
-      // 卡片需要显示图片场景, 必须和下列字段formImages 中的key fileName 相同。
+      // 卡片需要显示图片场景,必须和下列字段formImages中的key fileName相同。
       imgName: string = fileName;
-      // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), fileName 对应 fd
+      // 卡片需要显示图片场景,必填字段(formImages不可缺省或改名), fileName对应fd
       formImages: Record<string, number> = imgMap;
     }
 
@@ -114,7 +116,6 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
         } finally {
           fileIo.closeSync(imgFile);
         }
-        ;
       } catch (e) {
         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
       }
@@ -129,14 +130,14 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     }
     httpRequest.destroy();
   }
-  // [StartExclude network_file_refresh]
 
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
+
   // [EndExclude local_file_refresh]
-  // [EndExclude network_file_refresh]
 }
+
 // [End local_file_refresh]
 // [End network_file_refresh]

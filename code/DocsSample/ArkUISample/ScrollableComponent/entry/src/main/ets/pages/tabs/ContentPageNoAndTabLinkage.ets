@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start ContentPageNoAndTabLinkage]
 import { ComponentCard } from '../../common/Card';
+// [Start content_page_tab_linkage]
 @Entry
 @Component
 export struct ContentPageNoAndTabLinkage {
 
   @State selectIndex: number = 0;
-  @Builder tabBuilder(title: string, targetIndex: number) {
+  @Builder tabBuilder(title: Resource, targetIndex: number) {
     Column() {
       Text(title)
         .fontColor(this.selectIndex === targetIndex ? '#1698CE' : '#6B6B6B')
@@ -28,43 +28,58 @@ export struct ContentPageNoAndTabLinkage {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.ContentWillChange_titleContentOnAndTabSync')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        ComponentCard({ title: $r('app.string.ContentWillChange_titleContentOnAndTabSync') }) {
-          // [Start bottom_navigation]
+        // [StartExclude content_page_tab_linkage]
+        ComponentCard({ title: $r('app.string.ContentWillChange_titleContentAndTabSync') }) {
+        // [EndExclude content_page_tab_linkage]
           Tabs({ barPosition: BarPosition.End }) {
             TabContent() {
+              // app.string.homepage_content资源文件中的value值为“首页内容”
               Text($r('app.string.homepage_content')).width('100%').height('100%').backgroundColor('rgb(213,213,213)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
+            //app.string.homepage资源文件中的value值为“首页”
             }.tabBar(this.tabBuilder($r('app.string.homepage'), 0))
 
             TabContent() {
+              // app.string.discover_content资源文件中的value值为“发现内容”
               Text($r('app.string.discover_content')).width('100%').height('100%').backgroundColor('rgb(112,112,112)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
+            // app.string.discover资源文件中的value值为“发现”
             }.tabBar(this.tabBuilder($r('app.string.discover'), 1))
 
             TabContent() {
-              Text($r('app.string.recommend')).width('100%').height('100%').backgroundColor('rgb(39,135,217)')
+              // app.string.recommend_content资源文件中的value值为“推荐内容”
+              Text($r('app.string.recommend_content')).width('100%').height('100%').backgroundColor('rgb(39,135,217)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
-            }.tabBar(this.tabBuilder($r('app.string.recommend_content'), 2))
+            // app.string.recommend资源文件中的value值为“推荐”
+            }.tabBar(this.tabBuilder($r('app.string.recommend'), 2))
 
             TabContent() {
+              // app.string.mine_content资源文件中的value值为“我的内容”
               Text($r('app.string.mine_content')).width('100%').height('100%').backgroundColor('rgb(0,74,175)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
-            }.tabBar(this.tabBuilder($r('app.string.mine'), 3))
+            }
+            // app.string.mine资源文件中的value值为“我的”
+            .tabBar(this.tabBuilder($r('app.string.mine'), 3))
           }
           .animationDuration(0)
           .backgroundColor('#F1F3F5')
           .onSelected((index: number) => {
             this.selectIndex = index;
           })
+        // [StartExclude content_page_tab_linkage]
         }
+        // [EndExclude content_page_tab_linkage]
       }
       .width('100%')
+      // [StartExclude content_page_tab_linkage]
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude content_page_tab_linkage]
     }
+    // [StartExclude content_page_tab_linkage]
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.ContentWillChange_titleContentOnAndTabSync'))
+    .title($r('app.string.ContentWillChange_titleContentAndTabSync'))
+    // [EndExclude content_page_tab_linkage]
   }
 }
-// [End ContentPageNoAndTabLinkage]
+// [End content_page_tab_linkage]

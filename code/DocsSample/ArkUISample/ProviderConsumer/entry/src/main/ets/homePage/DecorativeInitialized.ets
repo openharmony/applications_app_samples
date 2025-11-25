@@ -39,13 +39,13 @@ struct Parent {
         this.val++;
       })
       Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
-      DecorativeInitialized({ val: this.val })
+      Child({ val: this.val })
     }.border({ width: 2, color: Color.Green })
   }
 }
 
 @ComponentV2
-export struct DecorativeInitialized {
+struct Child {
   @Require @Param val: number;
 
   build() {
@@ -55,3 +55,17 @@ export struct DecorativeInitialized {
   }
 }
 // [End Decorative_Initialized]
+
+@Component
+export struct DecorativeInitialized {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Initialized'))
+  }
+}

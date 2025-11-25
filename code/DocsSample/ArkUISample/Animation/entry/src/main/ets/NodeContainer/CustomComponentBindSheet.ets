@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start bind_custom_component]
+// CustomComponent.ets
 // 自定义占位节点，跨容器迁移能力
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
@@ -82,4 +83,4 @@ export const getMyNode = (): MyNodeController | undefined => {
   return myNode;
 }
 
-// [Start bind_custom_component]
+// [End bind_custom_component]

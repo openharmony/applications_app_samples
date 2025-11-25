@@ -22,13 +22,14 @@ struct TitleModeMini {
   @Builder
   NavigationTitle() {
     Column() {
-      Text('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      Text($r('app.string.mainTitle'))
         .fontColor('#182431')
         .fontSize(18)
         .lineHeight(36)
         .margin({ top: 6, left: 6 })
     }.alignItems(HorizontalAlign.Start)
-  };
+  }
 
   @Builder
   NavigationMenus() {
@@ -46,7 +47,7 @@ struct TitleModeMini {
         .margin({ left: 24 })
     }
     .margin({ top: 12, right: 24})
-  };
+  }
 
   build() {
     Column() {
@@ -59,10 +60,10 @@ struct TitleModeMini {
           .backgroundColor('#FFFFFF')
         // [EndExclude NavigationTitleModeMini]
       }
-      .title(this.NavigationTitle)
-      // [End NavigationTitleModeMini]
-      .menus(this.NavigationMenus)
       .titleMode(NavigationTitleMode.Mini)
+      // [End NavigationTitleModeMini]
+      .title(this.NavigationTitle)
+      .menus(this.NavigationMenus)
       .toolbarConfiguration([
         {
           value: $r('app.string.navigation_toolbar_add'),

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
+// [Start prop_seven_start]
 @Component
-  // [Start prop_seven_start]
 struct MyComponent {
   @Prop customCounter: number;
   @Prop customCounter2: number = 5;
@@ -49,34 +49,35 @@ struct MainProgram {
   @State mainCounter: number = 10;
 
   build() {
-      Column() {
-        Row() {
-          Column() {
-            // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-            MyComponent({ customCounter: this.mainCounter })
-            // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-            MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-          }
-        }
-
-        Row() {
-          Column() {
-            Button('Click to change number')
-              .width(288)
-              .height(40)
-              .margin({ left: 30, top: 12 })
-              .fontColor('#FFFFFF')
-              .onClick(() => {
-                this.mainCounter++;
-              })
-          }
+    Column() {
+      Row() {
+        Column() {
+          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }
       }
+
+      Row() {
+        Column() {
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF')
+            .onClick(() => {
+              this.mainCounter++;
+            })
+        }
+      }
+    }
   }
 }
+
 // [End prop_seven_start]
 
 @Builder
-export function MyMainProgramBuilder(){
+export function MyMainProgramBuilder() {
   MainProgram()
 }

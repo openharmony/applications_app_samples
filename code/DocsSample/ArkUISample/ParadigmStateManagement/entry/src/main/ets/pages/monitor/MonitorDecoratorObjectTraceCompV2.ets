@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_decorator_object_trace_comp_v2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorDecoratorObjectTraceCompV2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_object_trace_comp_v2'))
-  }
-}
-
-// [Start monitor_decorator_object_trace_comp_v2]
 class Info {
   public name: string;
   public age: number;
@@ -48,12 +32,12 @@ struct Index {
 
   @Monitor('info')
   infoChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `info change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `info change`);
   }
 
   @Monitor('info.name')
   infoPropertyChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `info name change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `info name change`);
   }
 
   build() {
@@ -71,3 +55,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_object_trace_comp_v2]
+@Component
+export struct MonitorDecoratorObjectTraceCompV2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_object_trace_comp_v2'))
+  }
+}

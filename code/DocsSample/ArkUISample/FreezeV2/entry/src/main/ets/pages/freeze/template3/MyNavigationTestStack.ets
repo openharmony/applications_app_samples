@@ -13,6 +13,13 @@
  * limitations under the License.
  */
 // [Start freeze_template3_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const PAGE_ONE_INDEX = 1;
+const PAGE_TWO_INDEX = 2;
+const PAGE_THREE_INDEX = 3;
+
 @Entry
 @ComponentV2
 struct MyNavigationTestStack {
@@ -20,7 +27,7 @@ struct MyNavigationTestStack {
   @Local message: number = 0;
 
   @Monitor('message') info() {
-    console.info(`freeze-test MyNavigation message callback ${this.message}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
@@ -57,7 +64,7 @@ struct MyNavigationTestStack {
 @ComponentV2
 struct PageOneStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @Local index: number = 1;
+  @Local index: number = PAGE_ONE_INDEX;
   @Param message: number = 0;
 
   build() {
@@ -86,7 +93,7 @@ struct PageOneStack {
 @ComponentV2
 struct PageTwoStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @Local index: number = 2;
+  @Local index: number = PAGE_TWO_INDEX;
   @Param message: number = 0;
 
   build() {
@@ -115,7 +122,7 @@ struct PageTwoStack {
 @ComponentV2
 struct PageThreeStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @Local index: number = 3;
+  @Local index: number = PAGE_THREE_INDEX;
   @Param message: number = 0;
 
   build() {
@@ -149,8 +156,8 @@ struct NavigationContentMsgStack {
   @Param index: number = 0;
 
   @Monitor('message') info() {
-    console.info(`freeze-test NavigationContent message callback ${this.message}`);
-    console.info(`freeze-test ---- called by content ${this.index}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test ---- called by content ${this.index}`);
   }
 
   build() {

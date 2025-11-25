@@ -15,9 +15,9 @@
 // [Start StateArrayLazy2_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
-class BasicDataSource9 implements IDataSource {
+class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: StringData[] = [];
 
@@ -75,7 +75,7 @@ class BasicDataSource9 implements IDataSource {
   }
 }
 
-class MyDataSource extends BasicDataSource9 {
+class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
 
   public totalCount(): number {
@@ -109,13 +109,13 @@ class StringData {
 
 @Entry
 @Component
-struct MyComponent9 {
+struct MyComponent {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
       // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.startIcon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 
@@ -135,7 +135,7 @@ struct MyComponent9 {
 
 @Component
 struct ChildComponent {
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
 
   build() {
     Column() {
@@ -150,3 +150,5 @@ struct ChildComponent {
   }
 }
 // [End StateArrayLazy2_start]
+const stateArrayLazy2Page = MyComponent;
+export default stateArrayLazy2Page;

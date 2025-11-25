@@ -1,9 +1,9 @@
-# ArkUI页面检查指南文档示例
+# 检查页面布局示例工程
 
 ## 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-inspector-overview.md)
-中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用inspectorDe双向定位能力，在DevEco
+本示例通过使用[检查页面布局](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-inspector-overview.md)
+中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用inspector双向定位能力，在DevEco
 Studio中快速定位组件、修改属性和调试组件，以提高开发效率。
 
 ### 效果预览

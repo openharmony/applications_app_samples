@@ -14,8 +14,7 @@
  */
 
 // NativeEntry.cpp
-#include <arkui/native_node_napi.h>
-#include <ArkUICustomNode.h>
+
 #include <ArkUITextNode.h>
 #include <ArkUITextInputNode.h>
 #include <ArkUIListItemAdapter.h>
@@ -23,17 +22,39 @@
 #include <ArkUIListItemNode.h>
 #include <CreateNode.h>
 #include <hilog/log.h>
-#include <js_native_api.h>
-#include "NativeEntry.h"
-#include "ArkUICustomContainerNode.h"
 #include "Drawing.h"
 #include <map>
 #include <thread>
-static napi_env g_env = nullptr;
-namespace NativeModule {
+// [Start arkUICustomNodeCpp_start]
+#include <arkui/native_node_napi.h>
+#include <arkui/native_type.h>
+#include <js_native_api.h>
 
+#include "NativeEntry.h"
+#include "ArkUICustomContainerNode.h"
+#include "ArkUICustomNode.h"
+
+// 全局环境变量声明
+static napi_env g_env = nullptr;
+// [StartExclude arkUICustomNodeCpp_start]
+// [Start Interface_entrance_mounting_file]
+#include "NativeEntry.h"
+#include "LazyTextListExample.h"
+#include <arkui/native_node_napi.h>
+#include <arkui/native_type.h>
+#include <js_native_api.h>
+#include <uv.h>
+// [Start normalTextListExample_start]
+// [EndExclude arkUICustomNodeCpp_start]
+namespace NativeModule {
+// [StartExclude Interface_entrance_mounting_file]
+// [StartExclude normalTextListExample_start]
+// [StartExclude arkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
+// [EndExclude arkUICustomNodeCpp_start]
+#define SIZE_150 150
+// [StartExclude arkUICustomNodeCpp_start]
 struct AsyncData {
     napi_env env;
     std::shared_ptr<ArkUINode> parent = nullptr;
@@ -362,7 +383,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     g_nodeMap.erase(contentHandle);
     return nullptr;
 }
-
+// [EndExclude normalTextListExample_start]
 std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
 {
     // 创建组件并挂载
@@ -386,38 +407,16 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
         textNode->SetHeight(height);
         textNode->SetBackgroundColor(0xFFfffacd);
         textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+        // 在当前节点注册布局回调
+        textNode->SetLayoutCallBack(i);
+        // 在当前节点注册绘制送显回调
+        textNode->SetDrawCallBack(i);
         listItem->InsertChild(textNode, i);
         list->AddChild(listItem);
     }
     return list;
 }
-
-// [Start Interface_entrance_mounting_file]
-napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    // 获取NodeContent
-    ArkUI_NodeContentHandle contentHandle;
-    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
-    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
-        //创建文本列表
-        auto list = CreateTextListExample();
-        //保持Native侧对象到管理类中，维护生命周期。
-        NativeEntry::GetInstance()->SetRootNode(list);
-    return nullptr;
-}
-
-napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
-{
-    // 从管理类中释放Native侧对象。
-    NativeEntry::GetInstance()->DisposeRootNode();
-    return nullptr;
-}
-// [End Interface_entrance_mounting_file]
+// [StartExclude normalTextListExample_start]
 napi_value GetContext(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -553,6 +552,7 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
 void NativeEntry::GetWindowName()
 {
     ArkUI_HostWindowInfo* windowInfo;
+    // 给windowInfo结构体赋值。
     auto result = OH_ArkUI_NodeUtils_GetWindowInfo(nodeHandle_, &windowInfo);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         return;
@@ -596,5 +596,74 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
+napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
 
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    // 创建自定义容器和自定义绘制组件。
+    auto node = std::make_shared<ArkUICustomContainerNode>();
+    // 浅灰色
+    node->SetBackgroundColor(0xFFD5D5D5);
+    auto customNode = std::make_shared<ArkUICustomNode>();
+    // 深灰色
+    customNode->SetBackgroundColor(0xFF707070);
+    customNode->SetWidth(SIZE_150);
+    customNode->SetHeight(SIZE_150);
+    node->AddChild(customNode);
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+    g_env = env;
+        // [StartExclude arkUICustomNodeCpp_start]
+        //创建文本列表
+        auto list = CreateTextListExample();
+        //保持Native侧对象到管理类中，维护生命周期。
+        NativeEntry::GetInstance()->SetRootNode(list);
+        // [EndExclude arkUICustomNodeCpp_start]
+    return nullptr;
+}
+// [EndExclude arkUICustomNodeCpp_start]
+// [EndExclude Interface_entrance_mounting_file]
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    // 创建自定义容器和自定义绘制组件。
+    auto node = std::make_shared<ArkUICustomContainerNode>();
+    node->SetBackgroundColor(0xFFD5D5D5); // 浅灰色
+    auto customNode = std::make_shared<ArkUICustomNode>();
+    customNode->SetBackgroundColor(0xFF707070); // 深灰色
+    customNode->SetWidth(SIZE_150);
+    customNode->SetHeight(SIZE_150);
+    node->AddChild(customNode);
+
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetRootNode(node);
+    g_env = env;
+    return nullptr;
+}
+
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
+{
+    // 从管理类中释放Native侧对象。
+    NativeEntry::GetInstance()->DisposeRootNode();
+    return nullptr;
+}
+// [EndExclude normalTextListExample_start]
 } // namespace NativeModule
+// [End normalTextListExample_start]
+// [End arkUICustomNodeCpp_start]
+// [End Interface_entrance_mounting_file]

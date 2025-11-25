@@ -19,12 +19,12 @@ import { buffer } from '@kit.ArkTS';
 import { fileIo, ReadOptions } from '@kit.CoreFileKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[Page_Context]';
+const TAG: string = '[ApplicationContextFile]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct ApplicationContextFile {
   @State message: string = 'Hello World';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -37,9 +37,9 @@ struct Index {
         // [EndExclude app_context_file_start]
         Button() {
           Text('create file')
-          // [StartExclude app_context_file_start]
+            // [StartExclude app_context_file_start]
             .width('50vp')
-          // [EndExclude app_context_file_start]
+            // [EndExclude app_context_file_start]
             .onClick(() => {
               let applicationContext = this.context.getApplicationContext();
               // 获取应用文件路径

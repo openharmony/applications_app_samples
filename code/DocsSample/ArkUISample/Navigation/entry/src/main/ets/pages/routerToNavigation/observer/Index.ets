@@ -14,11 +14,13 @@
  */
 
 // [Start observer_index]
+// EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { UIObserver, window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -36,10 +38,10 @@ export default class EntryAbility extends UIAbility {
         // NavDestinationState.ON_SHOWN = 0, NavDestinationState.ON_HIDE = 1
         if (info.state == 0) {
           // NavDestination组件显示时操作
-          hilog.info(DOMAIN, TAG, 'page ON_SHOWN:' + info.name.toString())
+          hilog.info(DOMAIN, TAG, 'page ON_SHOWN:' + info.name.toString());
         }
-      })
-    })
+      });
+    });
   }
 }
 // [End observer_index]

@@ -18,27 +18,29 @@ class ObjLink {
 
   constructor(a: string) {
     this.a = a;
-  };
-};
+  }
+}
+
 // [Start Observe_the_changes]
-class DecoratorDescriptionChild {
+class Child {
   public num: number;
 
   constructor(num: number) {
     this.num = num;
-  };
-};
+  }
+}
 
 @Observed
-class DecoratorDescriptionParent {
-  public child: DecoratorDescriptionChild;
+class Parent {
+  public child: Child;
   public count: number;
 
-  constructor(child: DecoratorDescriptionChild, count: number) {
+  constructor(child: Child, count: number) {
     this.child = child;
     this.count = count;
-  };
-};
+  }
+}
+
 // [End Observe_the_changes]
 
 @Entry
@@ -59,27 +61,27 @@ struct DecoratorDescription {
 struct DecoratorDescriptionHelloWorld {
   @ObjectLink objLink: ObjLink;
   // [Start Modify_and_change]
-  @ObjectLink parent: DecoratorDescriptionParent;
-  // [StartExclude Modify_and_change]
+  @ObjectLink parent: Parent;
+
   build() {
-    RelativeContainer() {
-      Button('')
+    Column() {
+      Button('click me')
         .onClick(() => {
-          // [EndExclude Modify_and_change]
           // 赋值变化可以被观察到
-          this.parent.child = new DecoratorDescriptionChild(5);
+          this.parent.child = new Child(5);
           this.parent.count = 5;
           // Child没有被@Observed装饰，其属性的变化观察不到
           this.parent.child.num = 5;
-          // [End Modify_and_change]
-
+          // [StartExclude Modify_and_change]
           // [Start Attribute_assignment]
           // 允许@ObjectLink装饰的数据属性赋值
-          this.objLink.a = '...'
+          this.objLink.a = '...';
           // [End Attribute_assignment]
-        });
+          // [EndExclude Modify_and_change]
+        })
     }
-    .height('100%')
-    .width('100%')
   }
+  // [End Modify_and_change]
 }
+
+export default DecoratorDescription;

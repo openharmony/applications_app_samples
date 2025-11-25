@@ -15,7 +15,6 @@
 
 // [Start calender_picker_dialog]
 // xxx.ets
-import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -45,7 +44,7 @@ export struct CalendarDialog {
                   backgroundColor: '#f7f7f7',
                   borderRadius: 10
                 },
-                onAccept: (date: Date)=>{
+                onAccept: (date: Date) => {
                   // 当弹出框再次弹出时显示选中的是上一次确定的日期
                   this.selectedDate = date;
                 }
@@ -58,9 +57,12 @@ export struct CalendarDialog {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude calender_picker_dialog]
     .backgroundColor('#f1f2f3')
+    // [EndExclude calender_picker_dialog]
     // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_calender'))
   }
 }
+
 // [End calender_picker_dialog]

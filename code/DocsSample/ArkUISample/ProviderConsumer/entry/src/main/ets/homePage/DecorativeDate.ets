@@ -16,7 +16,7 @@
 // [Start Decorative_Date]
 @Entry
 @ComponentV2
-export struct DecorativeDate {
+struct Parent {
   @Provider() selectedDate: Date = new Date('2021-08-08');
 
   build() {
@@ -42,6 +42,7 @@ export struct DecorativeDate {
     }
   }
 }
+
 @ComponentV2
 struct Child {
   @Consumer() selectedDate: Date = new Date('2022-07-07');
@@ -69,3 +70,17 @@ struct Child {
   }
 }
 // [End Decorative_Date]
+
+@Component
+export struct DecorativeDate {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Date'))
+  }
+}

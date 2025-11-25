@@ -14,21 +14,23 @@
  */
 // [Start Parent10_start]
 @ComponentV2
-struct Child10 {
+struct Child {
   @Param value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent10 {
+struct Parent {
   build() {
     Column() {
-      Child10({ value: 30 });
+      Child({ value: 30 })
     }
   }
 }
 // [End Parent10_start]
+const parent10 = Parent;
+export default parent10;

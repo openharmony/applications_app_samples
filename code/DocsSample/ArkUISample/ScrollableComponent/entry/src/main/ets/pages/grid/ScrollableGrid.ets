@@ -14,18 +14,24 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start build_scrollable_horizontally_grid_layouts]
 import common from '@ohos.app.ability.common';
+// [Start build_scrollable_horizontally_grid_layouts]
 @Entry
 @Component
 export struct ScrollableGrid {
-  @State services: Array<string> = [];
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
+  context = this.getUIContext().getHostContext();
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
+  @State services: Array<string> = [
+    // app.string.Live_Streaming资源文件中的value值为‘直播’
+    this.context!.resourceManager.getStringSync($r('app.string.Live_Streaming').id),
+    // app.string.Imported资源文件中的value值为‘进口’
+    this.context!.resourceManager.getStringSync($r('app.string.Imported').id)
+    ];
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
+  private bgColors: string[] = ['#3079fe', '#fea500', '#f45a43']
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const streaming = context.resourceManager.getStringByNameSync('Live_Streaming')
-    this.services.push(streaming)
-    const imported = context.resourceManager.getStringByNameSync('Imported')
-    this.services.push(imported)
     const categories = context.resourceManager.getStringByNameSync('Categories')
     this.services.push(categories)
     const recharge = context.resourceManager.getStringByNameSync('Recharge')
@@ -43,39 +49,51 @@ export struct ScrollableGrid {
     const more = context.resourceManager.getStringByNameSync('More')
     this.services.push(more)
   }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
   build() {
     // [StartExclude build_scrollable_horizontally_grid_layouts]
     NavDestination() {
       // [EndExclude build_scrollable_horizontally_grid_layouts]
-      Column({ space: 12 }) {
+
+      Column({ space: 5 }) {
         // [StartExclude build_scrollable_horizontally_grid_layouts]
+        // app.string.ScrollableGrid_titleHorizontal资源文件中的value值为‘横向可滚动网格布局示例’
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
+
           Grid() {
-            ForEach(this.services, (service: string) => {
+            ForEach(this.services, (service: string, index: number) => {
               GridItem() {
+                // [StartExclude build_scrollable_horizontally_grid_layouts]
                 Text(service)
-              }.backgroundColor('#FFF1F3F5').width('25%')
+                // [EndExclude build_scrollable_horizontally_grid_layouts]
+              }
+              .width('25%')
+              // [StartExclude build_scrollable_horizontally_grid_layouts]
+              .backgroundColor(this.bgColors[index % this.bgColors.length])
+              .borderRadius(50)
+              // [EndExclude build_scrollable_horizontally_grid_layouts]
             }, (service: string): string => service)
           }
+          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
+          .rowsGap(15)
+
           // [StartExclude build_scrollable_horizontally_grid_layouts]
           .height(200)
           .columnsGap(10)
           // [EndExclude build_scrollable_horizontally_grid_layouts]
-          .rowsGap(15)
-          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
-          // [StartExclude build_scrollable_horizontally_grid_layouts]
         }
-        // [EndExclude build_scrollable_horizontally_grid_layouts]
       }
+      // [StartExclude build_scrollable_horizontally_grid_layouts]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude build_scrollable_horizontally_grid_layouts]
+
     }
     .backgroundColor('#f1f2f3')
+    // app.string.ScrollableGrid_title资源文件中的value值为‘横向可滚动网格布局示例’
     .title($r('app.string.ScrollableGrid_title'))
-    // [EndExclude build_scrollable_horizontally_grid_layouts]
   }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
 }
 // [End build_scrollable_horizontally_grid_layouts]

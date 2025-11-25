@@ -48,4 +48,5 @@ struct LocalDateSample {
     }.width('100%')
   }
 }
-// [End localtorage_local_date_sample] 
+
+// [End localtorage_local_date_sample]

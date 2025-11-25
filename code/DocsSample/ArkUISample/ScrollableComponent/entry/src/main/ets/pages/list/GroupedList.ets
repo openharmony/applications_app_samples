@@ -30,10 +30,16 @@ export struct GroupedList {
   }
 
   build() {
+    // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.GroupedList_titleExample') }) {
-          List({ space: 12 }) {
+          // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
+          List(
+            // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
+            { space: 12 }
+            // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
+          ) {
             ListItemGroup({ header: this.itemHead('A') }) {
               // 循环渲染分组A的ListItem
               // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
@@ -60,14 +66,16 @@ export struct GroupedList {
               // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
             }
           }
+          // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
         }
       }
-      // [End set_the_head_component_of_the_list_grouping_by_header]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.GroupedList_title'))
+    // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
   }
 }
+// [End set_the_head_component_of_the_list_grouping_by_header]

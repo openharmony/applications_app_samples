@@ -56,7 +56,7 @@ export struct Card {
 
   build() {
     Row({ space: 12 }) {
-      this.content()
+      this.content();
     }
     .alignItems(this.verticalAlign)
     .backgroundColor('#fff')

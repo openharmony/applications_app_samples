@@ -14,13 +14,16 @@
  */
 
 // [Start widget_image_update_card]
+// entry/src/main/ets/widgetimageupdate/pages/WidgetImageUpdateCard.ets
 let storageWidgetImageUpdate = new LocalStorage();
 
 @Entry(storageWidgetImageUpdate)
 @Component
 struct WidgetImageUpdateCard {
+  // $r('app.string.loading')需要替换为开发者所需的资源文件
   @LocalStorageProp('text') text: ResourceStr = $r('app.string.loading');
   @LocalStorageProp('loaded') loaded: boolean = false;
+  // $r('app.string.imgName')需要替换为开发者所需的资源文件
   @LocalStorageProp('imgName') imgName: ResourceStr = $r('app.string.imgName');
 
   build() {
@@ -38,6 +41,7 @@ struct WidgetImageUpdateCard {
 
       Row() {
         Button() {
+          // $r('app.string.update')需要替换为开发者所需的资源文件
           Text($r('app.string.update'))
             .fontColor('#45A6F4')
             .fontSize(12)
@@ -59,8 +63,9 @@ struct WidgetImageUpdateCard {
       .justifyContent(FlexAlign.Center)
     }
     .width('100%').height('100%')
+    // $r('app.media.ImageDisp')需要替换为开发者所需的资源文件
     .backgroundImage(this.loaded ? 'memory://' + this.imgName : $r('app.media.ImageDisp'))
-    .backgroundImageSize(ImageSize.Cover) 
-  } 
+    .backgroundImageSize(ImageSize.Cover)
+  }
 }
 // [End widget_image_update_card]

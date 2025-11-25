@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 // [Start appstorage_page_two]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG: string = '[SampleAppStorage]';
+
 class Data {
   public code: number;
 
@@ -29,7 +34,7 @@ storage.setOrCreate('linkB', new Data(100));
 
 @Entry(storage)
 @Component
-struct TestPageTow {
+struct TestStorageProp {
   @StorageLink('propA') storageLink: number = 1;
   @StorageProp('propA') storageProp: number = 1;
   @StorageLink('propB') storageLinkObject: Data = new Data(1);
@@ -54,7 +59,7 @@ struct TestPageTow {
       // 依赖@StorageLink/@StorageProp才能建立起与自定义组件的联系，刷新UI
       Text(`change by AppStorage: ${AppStorage.get<number>('propA')}`)
         .onClick(() => {
-          console.info(`Appstorage.get: ${AppStorage.get<number>('propA')}`);
+          hilog.info(DOMAIN, TAG, `Appstorage.get: ${AppStorage.get<number>('propA')}`);
           AppStorage.set<number>('propA', 100);
         })
 
@@ -70,4 +75,5 @@ struct TestPageTow {
     }
   }
 }
+
 // [End appstorage_page_two]

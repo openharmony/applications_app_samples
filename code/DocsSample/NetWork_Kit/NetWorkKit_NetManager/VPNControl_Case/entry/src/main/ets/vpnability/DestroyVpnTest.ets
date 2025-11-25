@@ -14,8 +14,7 @@
 */
 
 // [Start destroy_vpn_ability]
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import { vpnExtension } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude destroy_vpn_ability]
 import { common } from '@kit.AbilityKit';

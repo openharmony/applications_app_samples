@@ -16,8 +16,8 @@
 // [Start Decorative_Array]
 @Entry
 @ComponentV2
-export struct DecorativeArray {
-  @Provider() count: number[] = [1,2,3];
+struct Parent {
+  @Provider() count: number[] = [1, 2, 3];
 
   build() {
     Row() {
@@ -45,7 +45,7 @@ export struct DecorativeArray {
 
 @ComponentV2
 struct Child {
-  @Consumer() count: number[] = [9,8,7];
+  @Consumer() count: number[] = [9, 8, 7];
 
   build() {
     Column() {
@@ -67,3 +67,17 @@ struct Child {
   }
 }
 // [End Decorative_Array]
+
+@Component
+export struct DecorativeArray {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Array'))
+  }
+}

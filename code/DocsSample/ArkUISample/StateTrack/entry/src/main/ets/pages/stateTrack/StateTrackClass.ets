@@ -15,7 +15,7 @@
 // [Start Index_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateTrack]';
 class Info {
   public name: string = 'Jack';
   public age: number = 12;

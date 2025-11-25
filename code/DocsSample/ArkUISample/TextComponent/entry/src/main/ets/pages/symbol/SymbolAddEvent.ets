@@ -18,9 +18,9 @@ import { ComponentCard } from '../../common/Card';
 @Entry
 @Component
 export struct SymbolGlyphSpanAddEvent {
-  // [Start symbol_glyph_span_add_event]
+  // [Start symbol_glyph_span_add_event_up]
   @State wifiColor: ResourceColor = Color.Black;
-  // [End symbol_glyph_span_add_event]
+  // [End symbol_glyph_span_add_event_up]
 
   build() {
     NavDestination() {
@@ -28,13 +28,13 @@ export struct SymbolGlyphSpanAddEvent {
         ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddEvent_title') }) {
           // [Start symbol_glyph_span_add_event]
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
-            .id('symbolGlyph1')
             .fontSize(96)
             .fontColor([this.wifiColor])
             .onClick(() => {
               this.wifiColor = Color.Gray;
             })
           // [End symbol_glyph_span_add_event]
+            .id('symbolGlyph1')
         }
       }
       .width('100%')

@@ -22,11 +22,12 @@ struct Index {
   // [Start get_content]
   // 初始化NodeContent对象。
   private rootSlot = new NodeContent();
-  // [StartExclude get_content]
   @State @Watch('changeNativeFlag') showNative: boolean = false;
+  // [StartExclude get_content]
   @State isModuleLoaded: boolean = false;
-
+  // [EndExclude get_content]
   changeNativeFlag(): void {
+    // [StartExclude get_content]
     if (nativeNode) {
       this.isModuleLoaded = true;
     }
@@ -34,26 +35,27 @@ struct Index {
       hilog.info(0x0000, 'testTag', 'CXX Please wait, native module is loading...');
       return;
     }
-
+    // [EndExclude get_content]
     if (this.showNative) {
-      // [EndExclude get_content]
       // 传递NodeContent对象用于Native创建组件的挂载显示
-      nativeNode?.createNativeRoot(this.rootSlot)
-      // [End get_content]
+      nativeNode?.createNativeRoot(this.rootSlot);
     } else {
+      // [StartExclude get_content]
       // 销毁NativeModule组件
-      nativeNode.destroyNativeRoot()
+      nativeNode.destroyNativeRoot();
+      // [EndExclude get_content]
     }
   }
+  // [End get_content]
 
   build() {
     Column() {
       Button(this.showNative ? 'Hide Native UI Animate' : 'Show Native UI Animate').onClick(() => {
-        this.showNative = !this.showNative
+        this.showNative = !this.showNative;
       })
       Row() {
         // 将NodeContent和ContentSlot占位组件绑定。
-        ContentSlot(this.rootSlot)
+        ContentSlot(this.rootSlot);
       }.layoutWeight(1)
     }
     .width('100%')

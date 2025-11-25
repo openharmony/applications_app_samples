@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,28 +13,25 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { Driver, ON } from '@ohos.UiTest';
 import { Logger } from '../utils/Logger';
 
 const DRIVER = Driver.create();
 
-let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-
 export default function updateTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsUpdateTest', () => {
     /**
      * 拉起应用
      * 自动化测试用例执行结束后，可通过该测试验证是否升级成功
      */
-    it('StartAbility_002', 0, async (done) => {
+    it('StartAbility_002', 0, async (done: Function) => {
       Logger.info('StartAbility_002 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      let abilityDelRegistry = abilityDelegatorRegistry.getAbilityDelegator();
       try {
-        await abilityDelegatorRegistry.startAbility({
+        await abilityDelRegistry.startAbility({
           bundleName: 'ohos.samples.workschedulerextensionability',
-          abilityName: 'MainAbility'
+          abilityName: 'TestAbility'
         });
         done();
       } catch (err) {

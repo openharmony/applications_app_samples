@@ -14,15 +14,17 @@
  */
 // [Start Inherited_Changes]
 @ObservedV2
-class FatherInheritance {
+class Father {
   @Trace public name: string = 'Tom';
 }
-class ChangesSon extends FatherInheritance {
+
+class Son extends Father {
 }
+
 @Entry
 @ComponentV2
-struct InheritedChanges {
-  son: ChangesSon = new ChangesSon();
+struct Index {
+  son: Son = new Son();
 
   build() {
     Column() {
@@ -30,8 +32,11 @@ struct InheritedChanges {
       Text(`${this.son.name}`)
         .onClick(() => {
           this.son.name = 'Jack';
-        });
+        })
     }
   }
 }
+
 // [End Inherited_Changes]
+const realizeObservation = Index;
+export default realizeObservation;

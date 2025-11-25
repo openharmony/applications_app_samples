@@ -26,7 +26,7 @@ export struct FocusOnclickExample {
         Button(this.name)
           .fontSize(30)
           .onClick(() => {
-            this.count++
+            this.count++;
             if (this.count % 2 === 0) {
               this.name = 'count is even number';
             } else {
@@ -37,6 +37,7 @@ export struct FocusOnclickExample {
     }
     // [StartExclude dynamic_focus_on_click]
     .backgroundColor('#f1f2f3')
+    // app.string.Focus_Index_FocusOnClick_title资源文件中的value值为'聚焦点击/FocusOnClick'
     .title($r('app.string.Focus_Index_FocusOnClick_title'))
     // [EndExclude dynamic_focus_on_click]
   }

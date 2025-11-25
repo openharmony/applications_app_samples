@@ -18,14 +18,19 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 
-export class PixelUtils {
-  public static uiContext : UIContext | undefined;
-  static setUIContext(uiContext : UIContext) : void {
-    PixelUtils.uiContext = uiContext;
+export class PixelUtil {
+  static uiContext: UIContext | undefined;
+
+  static setUIContext(uiContext: UIContext): void {
+    PixelUtil.uiContext = uiContext;
+  }
+
+  static removeUIContext(): void {
+    PixelUtil.uiContext = undefined;
   }
 
   static vp2px(vpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtil.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
@@ -34,7 +39,7 @@ export class PixelUtils {
   }
 
   static fp2px(fpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtil.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
@@ -43,7 +48,7 @@ export class PixelUtils {
   }
 
   lpx2px(lpxValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtil.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
@@ -51,4 +56,5 @@ export class PixelUtils {
     return _uiContext.lpx2px(lpxValue)
   }
 }
+
 // [End Common_Utils]

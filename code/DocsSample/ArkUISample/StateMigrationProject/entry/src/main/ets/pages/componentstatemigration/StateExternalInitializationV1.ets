@@ -14,22 +14,24 @@
  */
 // [Start Parent5_start]
 @Component
-struct Child5 {
+struct Child {
   @State value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
 @Entry
 @Component
-struct Parent5 {
+struct Parent {
   build() {
     Column() {
       // @State可以从外部初始化
-      Child5({ value: 30 });
+      Child({ value: 30 })
     }
   }
 }
 // [End Parent5_start]
+const parent5 = Parent;
+export default parent5;

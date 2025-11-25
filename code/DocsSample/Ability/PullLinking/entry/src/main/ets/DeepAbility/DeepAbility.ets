@@ -14,14 +14,14 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-// [Start quick_start0]
-// 以EntryAbility.ets为例
+// [Start deep_ability]
+// 以DeepAbility.ets为例
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
 
 const DOMAIN = 0x0000;
 
-export default class EntryAbility extends UIAbility {
+export default class DeepAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 从want中获取传入的链接信息。
     // 如传入的url为：link://www.example.com/programs?action=showall
@@ -32,10 +32,13 @@ export default class EntryAbility extends UIAbility {
       let action = urlObject.params.get('action');
       // 例如，当action为showall时，展示所有的节目。
       if (action === 'showall') {
+        // [StartExclude deep_ability]
+        hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+        // [EndExclude deep_ability]
       }
     }
   }
-// [End quick_start0]
+  // [StartExclude deep_ability]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -67,4 +70,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude deep_ability]
 }
+// [End deep_ability]

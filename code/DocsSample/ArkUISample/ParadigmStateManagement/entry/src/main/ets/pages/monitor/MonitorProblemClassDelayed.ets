@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_class_delayed]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorProblemClassDelayed {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_class_delayed'))
-  }
-}
-
-// [Start monitor_problem_class_delayed]
 @ObservedV2
 class InfoWrapper {
   public info?: Info;
@@ -41,7 +25,7 @@ class InfoWrapper {
 
   @Monitor('info.age')
   onInfoAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
@@ -60,7 +44,7 @@ struct Child {
   @Param @Require infoWrapper: InfoWrapper;
 
   aboutToDisappear(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Child aboutToDisappear', this.infoWrapper.info?.age);
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'Child aboutToDisappear', this.infoWrapper.info?.age);
   }
 
   build() {
@@ -90,7 +74,7 @@ struct Index {
         })
       Button('change number')
         .onClick(() => {
-          hilog.info(DOMAIN, 'testTag', '%{public}s', 'click to change age');
+          hilog.info(0xFF00, 'testTag', '%{public}s', 'click to change age');
           this.dataArray.forEach((info: Info) => {
             info.age += 100;
           });
@@ -109,3 +93,16 @@ struct Index {
   }
 }
 // [End monitor_problem_class_delayed]
+@Component
+export struct MonitorProblemClassDelayed {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_class_delayed'))
+  }
+}

@@ -49,6 +49,7 @@ export struct CreateButton {
           // [Start create_button_by_button_options]
           Button() {
             Row({ space: 4 }) {
+              // $r('sys.media.ohos_ic_back')需要替换为开发者需要的图片资源
               Image($r('sys.media.ohos_ic_back')).width(20).height(40).fillColor(0xffffff)
               Text('back').fontColor(0xffffff)
             }.alignItems(VerticalAlign.Center).justifyContent(FlexAlign.Center).width(90).height(40)
@@ -56,14 +57,14 @@ export struct CreateButton {
           // [End create_button_by_button_options]
 
           // [Start create_button_by_button_options2]
-          //注意图片不一致
           Button({ type: ButtonType.Normal, stateEffect: true }) {
             Row() {
-              Image($r('sys.media.ohos_ic_back')).width(20).height(40).margin({ left: 12 })
+              // $r('app.media.loading')需要替换为开发者需要的图片资源
+              Image($r('app.media.loading')).width(20).height(40).margin({ left: 12 })
               Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
             }.alignItems(VerticalAlign.Center)
           }.borderRadius(8).backgroundColor(0x317aff).width(90).height(40)
-          // [Start create_button_by_button_options2]
+          // [End create_button_by_button_options2]
         }
       }
       .width('100%')

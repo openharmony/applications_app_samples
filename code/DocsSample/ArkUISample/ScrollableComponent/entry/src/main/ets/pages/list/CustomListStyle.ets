@@ -35,12 +35,20 @@ class DividerTmp {
 export struct CustomListStyle {
   @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
 
+  // [StartExclude set_the_divider]
+  // [Start external_scroll_ctrl]
+  private listScroller: Scroller = new Scroller();
+  // [End external_scroll_ctrl]
+  // [EndExclude set_the_divider]
+
   build() {
     // [StartExclude set_the_divider]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomListStyle_titleContentSpacing') }) {
+          // [Start set_space]
           List({ space: 10 }) {
+            // [StartExclude set_space]
             ListItem() {
               Text('ListItem One')
             }
@@ -48,14 +56,21 @@ export struct CustomListStyle {
             ListItem() {
               Text('ListItem Two')
             }
+            // [EndExclude set_space]
           }
+          // [End set_space]
           .backgroundColor('#FFF1F3F5')
           .alignListItem(ListItemAlign.Center)
         }
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleDividerLines') }) {
           // [EndExclude set_the_divider]
-          List({ space: 10 }) {
+          List(
+            // [StartExclude set_the_divider]
+            { space: 10 }
+            // [EndExclude set_the_divider]
+          ) {
+            // [StartExclude set_the_divider]
             ListItem() {
               Text('ListItem One')
             }
@@ -63,15 +78,20 @@ export struct CustomListStyle {
             ListItem() {
               Text('ListItem Two')
             }
+            // [EndExclude set_the_divider]
           }
           .divider(this.egDivider)
+          // [StartExclude set_the_divider]
           .alignListItem(ListItemAlign.Center)
         }
-        // [End set_the_divider]
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleScrollbars') }) {
           // [Start add_a_scrollbar]
-          List({ space: 10 }) {
+          List(
+            // [StartExclude add_a_scrollbar]
+            { space: 10 }
+            // [EndExclude add_a_scrollbar]
+          ) {
             // [StartExclude add_a_scrollbar]
             ListItem() {
               Text('ListItem One')
@@ -93,6 +113,39 @@ export struct CustomListStyle {
           // [End add_a_scrollbar]
           .backgroundColor('#FFF1F3F5')
         }
+
+        ComponentCard({ title: $r('app.string.CustomListStyle_titleExternalScrollbars') }) {
+
+          Stack({ alignContent: Alignment.End }){
+            // [Start external_scroll_list]
+            // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
+            List({ scroller: this.listScroller }) {
+              // [StartExclude external_scroll_list]
+              ListItem() {
+                Text('ListItem One')
+              }.height(30)
+
+              ListItem() {
+                Text('ListItem Two')
+              }.height(30)
+
+              ListItem() {
+                Text('ListItem Three')
+              }.height(30)
+              // [EndExclude external_scroll_list]
+            }
+            // [End external_scroll_list]
+            .scrollBar(BarState.Off)
+            .backgroundColor('#FFF1F3F5')
+
+            // [Start external_scroll_bar]
+            // listScroller初始化ScrollBar组件的scroller参数，绑定listScroller与列表。
+            ScrollBar({ scroller: this.listScroller})
+            // [End external_scroll_bar]
+
+          }.height(60)
+
+        }
       }
       .width('100%')
       .height('100%')
@@ -100,5 +153,7 @@ export struct CustomListStyle {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CustomListStyle_title'))
+    // [EndExclude set_the_divider]
   }
 }
+// [End set_the_divider]

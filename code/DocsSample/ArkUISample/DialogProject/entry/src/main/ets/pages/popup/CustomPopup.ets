@@ -14,6 +14,7 @@
  */
 
 // [Start custom_popup]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct CustomPopupExample {
@@ -30,36 +31,32 @@ export struct CustomPopupExample {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
-        Column() {
-          Button('CustomPopupOptions')
-            .id('CustomPopupOptions')
-            .margin({ top: 300 })
-            .onClick(() => {
-              this.customPopup = !this.customPopup;
-            })
-            .bindPopup(this.customPopup, {
-              builder: this.popupBuilder, // 气泡的内容
-              placement: Placement.Bottom, // 气泡的弹出位置
-              popupColor: Color.Pink, // 气泡的背景色
-              onStateChange: (e) => {
-                if (!e.isVisible) {
-                  this.customPopup = false
-                }
+      Column() {
+        Button('CustomPopupOptions')
+          .id('CustomPopupOptions')
+          .margin({ top: 300 })
+          .onClick(() => {
+            this.customPopup = !this.customPopup;
+          })
+          .bindPopup(this.customPopup, {
+            builder: this.popupBuilder, // 气泡的内容
+            placement: Placement.Bottom, // 气泡的弹出位置
+            popupColor: Color.Pink, // 气泡的背景色
+            backgroundBlurStyle: BlurStyle.NONE,
+            onStateChange: (e) => {
+              if (!e.isVisible) {
+                this.customPopup = false
               }
-            })
-        }
-        .height('100%')
-
+            }
+          })
       }
-      .width('100%')
       .height('100%')
-      .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
-    // $r('app.string.custom_popup')需要替换为开发者所需的资源文件。
+    // [StartExclude custom_popup]
     .title($r('app.string.custom_popup'))
+
+    // [EndExclude custom_popup]
   }
 }
+
 // [End custom_popup]

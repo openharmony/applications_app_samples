@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start parent_require_tart]
+// [Start parent_require_start]
 @ObservedV2
 class Info {
   @Trace public name: string = '';
@@ -22,8 +22,8 @@ class Info {
 
 @ComponentV2
 struct ChildPage {
-  @Require @Param childInfo: Info = new Info();
-  @Require @Param stateValue: string = 'Hello';
+  @Require @Param childInfo: Info;
+  @Require @Param stateValue: string;
 
   build() {
     Column() {
@@ -79,4 +79,4 @@ struct ParentPage {
     }
   }
 }
-// [End parent_require_tart]
+// [End parent_require_start]

@@ -45,6 +45,7 @@ export struct Tap {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.singlegesture_TapGesture_title资源文件中的value值为'点击手势'
     .title($r('app.string.singlegesture_TapGesture_title'))
   }
 }

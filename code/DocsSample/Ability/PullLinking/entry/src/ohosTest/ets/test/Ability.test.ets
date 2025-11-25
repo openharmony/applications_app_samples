@@ -17,7 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_PullLinking]';
+const TAG = '[Sample_PullLinking]';
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -91,7 +91,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_OpenAppAbility2', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -121,7 +121,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_DeepOpenLinkAbility', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -151,7 +151,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_DeepStartAbility', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -181,7 +181,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_DeepWebAbility', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -211,7 +211,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_WantAppAbility1', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -241,7 +241,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_WantAppAbility2', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -271,7 +271,7 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_LoginAbility', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -301,14 +301,14 @@ export default function abilityTest() {
      * @tc.type      Function
      */
     it('SUB_ClearAbility', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER,TAG,'uitest: TestUiExample begin');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: TestUiExample begin');
       try {
         const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.pulllinking',
-          abilityName: 'clearAbility'
+          abilityName: 'ClearAbility'
         };
         await delegator.startAbility(want);
         // const ability: UIAbility = await delegator.getCurrentTopAbility();

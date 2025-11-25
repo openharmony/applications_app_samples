@@ -18,7 +18,7 @@ let mTop:Record<string,number> = { 'top': 50 }
 
 @Entry
 @Component
-struct StackExample1 {
+struct StackLayoutExample {
   build() {
     Column(){
       Stack({ }) {

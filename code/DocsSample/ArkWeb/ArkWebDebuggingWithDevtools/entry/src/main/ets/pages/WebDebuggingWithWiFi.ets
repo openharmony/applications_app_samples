@@ -15,11 +15,6 @@
 // [Start web_Debugging_Wireless]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-
-const TAG = '[Sample_DebuggingWireless]'
-const DOMAIN = 0xF811
-const BUNDLE = 'TextMenuItem_'
 const DEBUGGING_PORT: number = 8888;
 
 @Entry
@@ -32,8 +27,7 @@ struct WebComponent {
       // 配置Web开启无线调试模式，指定TCP Socket的端口。
       webview.WebviewController.setWebDebuggingAccess(true, DEBUGGING_PORT);
     } catch (error) {
-      hilog.error(DOMAIN, TAG,
-        BUNDLE + `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
   }
 

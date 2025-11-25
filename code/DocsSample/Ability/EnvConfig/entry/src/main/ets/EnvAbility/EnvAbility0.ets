@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start get_envconf]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-// [StartExclude  quick_start0]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_EnvConfig]';
-// [EndExclude  quick_start0]
-export default class EntryAbility extends UIAbility {
+const TAG = '[EnvAbility0]';
+
+export default class EnvAbility0 extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       let value = this.context.resourceManager.getConfigurationSync();
@@ -32,4 +32,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-// [End quick_start0]
+// [End get_envconf]

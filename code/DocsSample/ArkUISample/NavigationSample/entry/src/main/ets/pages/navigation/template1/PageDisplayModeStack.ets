@@ -22,7 +22,8 @@ struct PageDisplayModeStack {
   @Builder
   NavigationTitle() {
     Column() {
-      Text('主标题')
+      // $r('app.string.mainTitle')资源文件中的value值为“主标题”
+      Text($r('app.string.mainTitle'))
         .fontColor('#182431')
         .fontSize(30)
         .lineHeight(41)
@@ -46,7 +47,7 @@ struct PageDisplayModeStack {
         .margin({ left: 24 })
     }
     .margin({ top: 12, right: 24})
-  };
+  }
 
   build() {
     Column() {

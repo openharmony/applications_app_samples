@@ -14,39 +14,24 @@
  */
 
 // [Start trigger_aging_friendly_by_long_press]
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_SupportingAgingFriendly]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'SupportingAgingFriendly_';
+const NUMBER1 = 1;
+const NUMBER2 = 2;
+const NUMBER3 = 3;
 
 @Entry
 @Component
 struct SideBarContainerExample {
-  @State currentFontSizeScale: number = 1;
+  @State currentFontSizeScale: number = NUMBER1;
   normalIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
   selectedIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
-  @State arr: number[] = [1, 2, 3]; // 标签的数量和名字，一共3个标签, 01, 02,03
-  @State current: number = 1; // button所在的标签页Index01
+  @State arr: number[] = [NUMBER1, NUMBER2, NUMBER3];
+  @State current: number = NUMBER1;
   @State title: string = 'Index01';
-  // 设置字体大小
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      language: 'zh-Ch',
-      fontSizeScale: scale,
-    };
-    // 更新配置-字体大小
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (err) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `updateConfiguration fail, err: ${JSON.stringify(err)}`);
-      } else {
-        this.currentFontSizeScale = scale;
-        hilog.info(DOMAIN, TAG, BUNDLE + 'updateConfiguration success.');
-      }
-    });
-  }
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -68,30 +53,6 @@ struct SideBarContainerExample {
       .justifyContent(FlexAlign.SpaceEvenly)
       // $r('sys.color.mask_fifth')需要替换为开发者所需的资源文件
       .backgroundColor($r('sys.color.mask_fifth'))
-
-      Column() {
-        Text(this.title);
-        // $r('app.string.one_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.one_multiple')).onClick(() => {
-          this.setFontScale(1)
-        }).margin(10);
-
-        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.one_point_seven_five_multiple')).onClick(() => {
-          this.setFontScale(1.75)
-        }).margin(10);
-
-        // $r('app.string.two_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.two_multiple')).onClick(() => {
-          this.setFontScale(2)
-        }).margin(10);
-
-        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.three_point_two_multiple')).onClick(() => {
-          this.setFontScale(3.2)
-        }).margin(10);
-      }
-      .margin({ top: 50, left: 20, right: 30 });
     }
     .controlButton({
       icons: {

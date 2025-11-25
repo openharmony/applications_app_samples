@@ -12,18 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0001;
-const TAG = 'arktsobservedandobjectlink';
 // [Start ObjectLink_Supports_Union_Types]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG = 'ArkTSObservedAndObjectlink';
+
 @Observed
 class Source {
   public source: number;
 
   constructor(source: number) {
     this.source = source;
-  };
-};
+  }
+}
 
 @Observed
 class Data {
@@ -31,17 +33,17 @@ class Data {
 
   constructor(data: number) {
     this.data = data;
-  };
-};
+  }
+}
 
 @Entry
 @Component
-struct ObjectLinkSupportsUnionTypesParent {
+struct Parent {
   @State count: Source | Data | undefined = new Source(10);
 
   build() {
     Column() {
-      ObjectLinkSupportsUnionTypesChild({ count: this.count });
+      Child({ count: this.count })
 
       Button('change count property')
         .margin(10)
@@ -53,35 +55,35 @@ struct ObjectLinkSupportsUnionTypesParent {
             this.count.data += 1;
           } else {
             hilog.info(DOMAIN, TAG, `count is undefined, cannot change property`);
-          };
-        });
+          }
+        })
 
       Button('change count to Source')
         .margin(10)
         .onClick(() => {
           // 赋值为Source的实例
           this.count = new Source(100);
-        });
+        })
 
       Button('change count to Data')
         .margin(10)
         .onClick(() => {
           // 赋值为Data的实例
           this.count = new Data(100);
-        });
+        })
 
       Button('change count to undefined')
         .margin(10)
         .onClick(() => {
           // 赋值为undefined
           this.count = undefined;
-        });
+        })
     }.width('100%')
   }
 }
 
 @Component
-struct ObjectLinkSupportsUnionTypesChild {
+struct Child {
   @ObjectLink count: Source | Data | undefined;
 
   build() {
@@ -96,4 +98,7 @@ struct ObjectLinkSupportsUnionTypesChild {
     }.width('100%')
   }
 }
+
 // [End ObjectLink_Supports_Union_Types]
+const objectLinkSupportsUnionTypesParent = Parent;
+export default objectLinkSupportsUnionTypesParent;

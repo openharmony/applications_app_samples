@@ -16,16 +16,18 @@
 @Component
 struct ModuleComponent {
   @State aVar: number = 0;
+
   // [Start if_component]
   build() {
     Column() {
       // 正例：使用if判断
-      if(this.aVar > 10) {
+      if (this.aVar > 10) {
         Text('...')
       } else {
         Image('...')
       }
     }
   }
+
   // [End if_component]
 }

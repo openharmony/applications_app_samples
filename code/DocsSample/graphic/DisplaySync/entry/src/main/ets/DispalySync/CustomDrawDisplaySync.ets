@@ -12,27 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_sync_by_complete_example]
 // [Start display_sync_by_ui_import_module]
 import { displaySync } from '@kit.ArkGraphics2D';
 // [End display_sync_by_ui_import_module]
+// [StartExclude display_sync_by_complete_example]
 import { router } from '@kit.ArkUI';
+// [EndExclude display_sync_by_complete_example]
 
 // [Start display_sync_by_ui_complete_example]
 // [Start display_sync_create_object]
 @Entry
 @Component
 struct Index {
+  // [Start display_sync_create_text_component]
   // [StartExclude display_sync_create_object]
   @State drawFirstSize: number = 25;
   @State drawSecondSize: number = 25;
   // [EndExclude display_sync_create_object]
+
+  // [StartExclude display_sync_create_text_component]
   private backDisplaySyncSlow: displaySync.DisplaySync | undefined = undefined;
   private backDisplaySyncFast: displaySync.DisplaySync | undefined = undefined;
-// [End display_sync_create_object]
+  // [StartExclude display_sync_create_object]
   private isBigger_30: boolean = true;
   private isBigger_60: boolean = true;
+  // [EndExclude display_sync_create_text_component]
 
-  // [Start display_sync_create_text_component]
   @Builder
   doSomeRenderFirst() {
     Text('30')
@@ -172,6 +178,7 @@ struct Index {
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
         // [End display_sync_stop_per_frame_callback]
 
+        // [StartExclude display_sync_by_complete_example]
         Button('Back')
           .id('CustomDrawBack')
           .fontSize(14)
@@ -190,6 +197,7 @@ struct Index {
           .width('20%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+          // [EndExclude display_sync_by_complete_example]
       }
       .width('100%')
       .justifyContent(FlexAlign.Center)
@@ -198,5 +206,8 @@ struct Index {
       .layoutWeight(1)
     }
   }
+  // [EndExclude display_sync_create_object]
 }
+// [End display_sync_create_object]
 // [End display_sync_by_ui_complete_example]
+// [End display_sync_by_complete_example]

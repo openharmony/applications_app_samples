@@ -14,11 +14,12 @@
  */
 // [Start StateArrayBig_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class UiStyle3 {
+class UiStyle {
   public translateX: number = 0;
   public translateY: number = 0;
   public scaleX: number = 0.3;
@@ -38,15 +39,14 @@ class UiStyle3 {
 
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UiStyle3;
-
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;
   }
 
   build() {
-    Image($r('app.media.startIcon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -59,8 +59,8 @@ struct SpecialImage {
 }
 
 @Component
-struct PageChild3 {
-  @ObjectLink uiStyle: UiStyle3
+struct PageChild {
+  @ObjectLink uiStyle: UiStyle;
 
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn(): number {
@@ -90,7 +90,7 @@ struct PageChild3 {
       })
       Stack() {
         Column() {
-          Image($r('app.media.startIcon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.uiStyle.alpha)
             .scale({
               x: this.uiStyle.scaleX,
@@ -122,7 +122,7 @@ struct PageChild3 {
       .margin({ top: 50 })
       .borderRadius(this.uiStyle.borderRadius)
       .opacity(this.isRenderStack())
-      .backgroundColor('FFFFFF')
+      .backgroundColor('#FFFFFF')
       .width(this.uiStyle.width)
       .height(this.uiStyle.height)
       .translate({
@@ -141,7 +141,7 @@ struct PageChild3 {
               duration: 500
             }, () => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
-            })
+            });
           })
         Button('Scale')
           .borderRadius(20)
@@ -168,12 +168,12 @@ struct PageChild3 {
 
 @Entry
 @Component
-struct Page3 {
-  @State uiStyle: UiStyle3 = new UiStyle3();
+struct Page {
+  @State uiStyle: UiStyle = new UiStyle();
 
   build() {
     Stack() {
-      PageChild3({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -181,3 +181,5 @@ struct Page3 {
   }
 }
 // [End StateArrayBig_start]
+const stateArrayBigPage = Page;
+export default stateArrayBigPage;

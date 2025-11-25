@@ -15,43 +15,42 @@
 // [Start StateArrayObserve_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class Child6 {
+class Child {
   public count: number;
-
   constructor(count: number) {
-    this.count = count
+    this.count = count;
   }
 }
 
 @Observed
-class Child6List extends Array<Child6> {
-};
+class ChildList extends Array<Child> {
+}
 
 @Observed
-class Ancestor6 {
-  public childList: Child6List;
+class Ancestor {
+  public childList: ChildList;
 
-  constructor(childList: Child6List) {
+  constructor(childList: ChildList) {
     this.childList = childList;
   }
 
   public loadData() {
-    let tempList = [new Child6(1), new Child6(2), new Child6(3), new Child6(4), new Child6(5)];
+    let tempList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
     this.childList = tempList;
   }
 
   public clearData() {
-    this.childList = []
+    this.childList = [];
   }
 }
 
 @Component
-struct CompChild6 {
-  @Link childList: Child6List;
-  @ObjectLink child: Child6;
+struct CompChild {
+  @Link childList: ChildList;
+  @ObjectLink child: Child;
 
   build() {
     Row() {
@@ -67,8 +66,8 @@ struct CompChild6 {
         .backgroundColor(Color.Red)
         .onClick(() => {
           let index = this.childList.findIndex((item) => {
-            return item.count === this.child.count
-          })
+            return item.count === this.child.count;
+          });
           if (index !== -1) {
             this.childList.splice(index, 1);
           }
@@ -90,8 +89,8 @@ struct CompChild6 {
 }
 
 @Component
-struct CompList6 {
-  @ObjectLink @Watch('changeChildList') Child6List: Child6List;
+struct CompList {
+  @ObjectLink @Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
     hilog.info(DOMAIN_NUMBER, TAG, 'CompList ChildList change');
@@ -105,15 +104,14 @@ struct CompList6 {
   build() {
     Column() {
       List() {
-        ForEach(this.Child6List, (item: Child6, index) => {
+        ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            CompChild6({
-              childList: this.Child6List,
+            CompChild({
+              childList: this.childList,
               child: item
             })
               .opacity(this.isRenderCompChild(index))
           }
-
         })
       }
       .height('70%')
@@ -122,22 +120,22 @@ struct CompList6 {
 }
 
 @Component
-struct CompAncestor6 {
-  @ObjectLink Ancestor6: Ancestor6;
+struct CompAncestor {
+  @ObjectLink ancestor: Ancestor;
 
   build() {
     Column() {
-      CompList6({ Child6List: this.Ancestor6.childList })
+      CompList({ childList: this.ancestor.childList })
       Row() {
         Button('Clear')
           .onClick(() => {
-            this.Ancestor6.clearData()
+            this.ancestor.clearData();
           })
           .width(100)
           .margin({ right: 50 })
         Button('Recover')
           .onClick(() => {
-            this.Ancestor6.loadData()
+            this.ancestor.loadData();
           })
           .width(100)
       }
@@ -147,14 +145,16 @@ struct CompAncestor6 {
 
 @Entry
 @Component
-struct Page6 {
-  @State childList: Child6List = [new Child6(1), new Child6(2), new Child6(3), new Child6(4), new Child6(5)];
-  @State ancestor: Ancestor6 = new Ancestor6(this.childList)
+struct Page {
+  @State childList: ChildList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
+  @State ancestor: Ancestor = new Ancestor(this.childList);
 
   build() {
     Column() {
-      CompAncestor6({ Ancestor6: this.ancestor })
+      CompAncestor({ ancestor: this.ancestor })
     }
   }
 }
 // [End StateArrayObserve_start]
+const stateArrayObservedPage = Page;
+export default stateArrayObservedPage;

@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
 import { common, Want, wantConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,7 +21,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsInteractive {
+struct OpenAppPage1 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
@@ -50,4 +49,3 @@ struct Page_UIAbilityComponentsInteractive {
     }
   }
 }
-// [End quick_start0]

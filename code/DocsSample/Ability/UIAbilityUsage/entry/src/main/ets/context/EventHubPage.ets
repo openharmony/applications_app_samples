@@ -18,7 +18,7 @@ import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_EventHub {
+struct EventHubPage {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   startAbilityTest(): void {
@@ -41,9 +41,11 @@ struct Page_EventHub {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
 
-      Button($r('app.string.Start_UIAbilityB')).onClick((event: ClickEvent) => {
-        this.startAbilityTest();
-      })
+      // app.string.Start_UIAbilityB资源文件中的value值为'拉起UIAbilityB'
+      Button($r('app.string.Start_UIAbilityB'))
+        .onClick((event: ClickEvent) => {
+          this.startAbilityTest();
+        })
     }
     .justifyContent(FlexAlign.Center)
     // [EndExclude Page_EventHub]

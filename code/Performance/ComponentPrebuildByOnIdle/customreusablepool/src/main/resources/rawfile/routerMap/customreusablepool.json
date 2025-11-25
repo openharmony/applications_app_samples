@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "customreusablepool/BuilderNodePoolDemo",
+      "pageModule": "customreusablepool",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "builderNodePoolDemoRegister"
+    }
+  ]
+}

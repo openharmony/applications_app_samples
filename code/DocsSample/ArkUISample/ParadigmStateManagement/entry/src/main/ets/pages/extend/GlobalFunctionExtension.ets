@@ -27,7 +27,6 @@ export struct LocalGlobalFunctionExtension {
 }
 
 // [Start Extend_Global_Function_Extension_one]
-
 // @Extend(Text)可以支持Text的私有属性fontColor
 @Extend(Text)
 function fancy() {
@@ -40,6 +39,7 @@ function superFancyText(size: number) {
   .fontSize(size)
   .fancy()
 }
+// [End Extend_Global_Function_Extension_one]
 
 @Entry
 @Component
@@ -53,4 +53,3 @@ struct FancyUse {
     }
   }
 }
-// [End Extend_Global_Function_Extension_one]

@@ -46,9 +46,9 @@ entry/src/
 
 ### 具体实现
 
-* 目标应用配，配置参考：[module.json5](./entry/src/main/module.json5)
+* 目标应用配置参考：[module.json5](./entry/src/main/module.json5)
     * 在目标应用的module.json5中声明支持的 App Linking 规则，确保系统能将 HTTPS 链接匹配到该应用。
-    * AppLinking/entry/src/ohosTest/module.json5
+    * AppLinking/entry/src/main/module.json5
 * 全局上下文工具，源码参考：[GlobalContext.ets](./entry/src/main/ets/common/GlobalContext.ets)
     * 提供全局上下文访问能力，方便页面获取UIAbilityContext以调用openLink接口。
 * 调用方跳转逻辑，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)

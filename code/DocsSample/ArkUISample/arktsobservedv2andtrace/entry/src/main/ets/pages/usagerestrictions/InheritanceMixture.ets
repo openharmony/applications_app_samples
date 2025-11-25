@@ -17,25 +17,26 @@
 @ObservedV2
 class Job {
   @Trace public jobName: string = 'Teacher';
-};
+}
+
 @ObservedV2
-class InheritanceMixtureInfo {
+class Info {
   @Trace public name: string = 'Tom';
-  // Decorate the 'age' property with @Trace to enable its changes to trigger UI updates
   @Trace public age: number = 25;
   public job: Job = new Job();
-};
-class Message extends InheritanceMixtureInfo {
+}
+
+class Message extends Info {
   constructor() {
     super();
-  };
-};
+  }
+}
+
 @Entry
-// @Component 需使用@ComponentV2
 @ComponentV2
-struct InheritanceMixture {
+struct Index {
   // @State message: Message = new Message();  无法混用，运行时报错
-  @Local message: Message = new Message();
+  message: Message = new Message();
 
   build() {
     Column() {
@@ -45,12 +46,15 @@ struct InheritanceMixture {
       Button('change age')
         .onClick(() => {
           this.message.age++;
-        });
+        })
       Button('Change job')
         .onClick(() => {
           this.message.job.jobName = 'Doctor';
-        });
+        })
     }
   }
 }
+
 // [End Inheritance_Mixture]
+const inheritanceMixture = Index;
+export default inheritanceMixture;

@@ -20,6 +20,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @CustomDialog
 struct CustomDialogExample {
   controller?: CustomDialogController;
+
   build() {
     Column() {
       Column() {
@@ -36,25 +37,23 @@ struct CustomDialogExample {
 @Component
 export struct DialogAvoidSoftKeyboard {
   dialogController: CustomDialogController | null = new CustomDialogController({
-    builder: CustomDialogExample({
-    }),
+    builder: CustomDialogExample({}),
     autoCancel: true,
     gridCount: 4,
     showInSubWindow: true,
     isModal: true,
     customStyle: false,
     cornerRadius: 30,
-    alignment:DialogAlignment.Bottom,
+    alignment: DialogAlignment.Bottom,
     keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
     keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
   })
 
   build() {
-    // [StartExclude dialog_avoid_soft_key_board]
     NavDestination() {
-      // [EndExclude dialog_avoid_soft_key_board]
       Row() {
         Row({ space: 20 }) {
+          // $r('app.string.open_windows')资源文件中的value为'打开弹窗'
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {
@@ -66,9 +65,8 @@ export struct DialogAvoidSoftKeyboard {
         .width('100%')
       }
       .height('100%')
-      // [StartExclude dialog_avoid_soft_key_board]
     }
-    // [EndExclude dialog_avoid_soft_key_board]
   }
 }
+
 // [End dialog_avoid_soft_key_board]

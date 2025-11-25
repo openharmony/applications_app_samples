@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Cpp_ArkUIListItemNode]
+// ArkUIListItemNode.h
+// 提供列表项的封装类。
 #ifndef MYAPPLICATION_ARKUISTACKNODE_H
 #define MYAPPLICATION_ARKUISTACKNODE_H
 
@@ -24,7 +26,7 @@ public:
     ArkUIListItemNode()
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
 };
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_ARKUISTACKNODE_H
 // [End Cpp_ArkUIListItemNode]

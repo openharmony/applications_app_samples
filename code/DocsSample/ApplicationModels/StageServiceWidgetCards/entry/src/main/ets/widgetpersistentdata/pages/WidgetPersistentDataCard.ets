@@ -14,6 +14,7 @@
  */
 
 // [Start widget_persistent_data_card]
+// entry/src/main/ets/widgetpersistentdata/pages/WidgetPersistentDataCard.ets
 let storagePersis = new LocalStorage();
 
 @Entry(storagePersis)
@@ -34,6 +35,7 @@ struct WidgetPersistentDataCard {
       }.width('100%')
       .alignItems(HorizontalAlign.Start)
     }.width(this.FULL_WIDTH_PERCENT).height(this.FULL_HEIGHT_PERCENT)
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

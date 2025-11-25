@@ -13,27 +13,78 @@
  * limitations under the License.
  */
 
-// [Start languageCode]
-// 将设备languageCode存入AppStorage中
-Environment.envProp('languageCode', 'en');
+interface listItem {
+  router?: string;
+  name: string;
+  description?: string;
+};
+
+let demandList: listItem[] = [
+  {
+    name: 'UiEnvironment',
+    description: ' Access Environment parameters from the UI.',
+    router: 'pages/UiEnvironment',
+  },
+  {
+    name: 'AppliedLogic',
+    description: 'The application logic uses Environment..',
+    router: 'pages/AppliedLogic',
+  }
+];
 
 @Entry
 @Component
 struct Index {
-  @StorageProp('languageCode') languageCode: string = 'en';
-
+  @State bgColor: ResourceColor = '#39b5fa';
   build() {
-    Row() {
+    Column() {
       Column() {
-        // 输出当前设备的languageCode
-        Text(this.languageCode)
-        if (this.languageCode === 'zh'){
-          Text($r('app.string.EntryAbility_title1'))
-        }else {
-          Text('Hello!')
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(demandList, (listitem: listItem, index: number) => {
+            ListItem() {
+              Column({ space: 10 }) {
+                Text(listitem.name)
+                  .fontSize(20)
+                  .fontColor(this.bgColor)
+                  .maxLines(1)
+                Text(listitem.description)
+                  .width('100%')
+              }
+              .margin({ bottom: index >= demandList.length - 1 ? 100 : 0 })
+              .padding({
+                top: '3%',
+                right: '10.00%',
+                bottom: '5%',
+                left: '10.00%'
+              })
+              .width('100%')
+              .constraintSize({ minHeight: 100 })
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+              .onClick(() => {
+                if (!!listitem.router) {
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
+                }
+              })
+            }
+          })
         }
+        .listDirection(Axis.Vertical) // 排列方向
+        .scrollBar(BarState.Off)
+        .friction(0.6)
+        .divider({
+          strokeWidth: 2,
+          color: 0xFFFFFF,
+          startMargin: 20,
+          endMargin: 20
+        }) // 每行之间的分界线
+        .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+        .width('90%')
       }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#fff4f3f3')
+      .padding({ top: 5 })
     }
   }
 }
-// [End languageCode]

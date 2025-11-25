@@ -14,6 +14,7 @@
  */
 
 // [Start cors_loccross_two]
+// main/ets/pages/LocCrossOriginResAccSol_two.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -21,6 +22,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
 
   build() {
     Row() {
@@ -29,10 +31,10 @@ struct WebComponent {
           try {
             // 设置允许可以跨域访问的路径列表
             this.controller.setPathAllowingUniversalAccess([
-              getContext().resourceDir,
-              getContext().filesDir + '/example'
-            ]);
-            this.controller.loadUrl('file://' + getContext().resourceDir + '/index.html');
+              this.uiContext.getHostContext()!.resourceDir,
+              this.uiContext.getHostContext()!.filesDir + '/example'
+              ]);
+            this.controller.loadUrl('file://' + this.uiContext.getHostContext()!.resourceDir + '/index.html');
           } catch (error) {
             console.error(
               `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as   BusinessError).message}`);

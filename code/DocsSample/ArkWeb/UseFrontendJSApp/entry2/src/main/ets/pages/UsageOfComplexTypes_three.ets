@@ -26,7 +26,7 @@ class TestClass {
   }
 
   toString(param: String): void {
-    console.log('Web Component toString' + param);
+    console.info('Web Component toString' + param);
   }
 }
 

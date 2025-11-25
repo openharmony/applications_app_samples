@@ -27,7 +27,7 @@ class User {
 const data: User[] = [new User('Json', 10), new User('Eric', 15)];
 @Entry
 @ComponentV2
-export struct DecorativeComplex {
+struct Parent {
   @Provider('data') users: User[] = data;
 
   build() {
@@ -66,3 +66,17 @@ struct Child {
   }
 }
 // [End Decorative_Complex]
+
+@Component
+export struct DecorativeComplex {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Complex'))
+  }
+}

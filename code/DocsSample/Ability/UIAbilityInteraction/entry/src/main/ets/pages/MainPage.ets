@@ -15,32 +15,33 @@
 
 // [Start FuncAbilityA]
 // [Start FuncAbilityA_Result]
+// [Start FuncAbilityA_For_Result]
 // [Start FuncAbility_Cold]
 // [Start FuncAbility_Hot]
-// [Start FuncAbility_Window]
-import { AbilityConstant, bundleManager, common, StartOptions, Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+const TAG: string = '[MainPage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsInteractive {
+struct MainPage {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
       List({ initialIndex: 0, space: 8 }) {
 
-        // [StartExclude FuncAbility_Window]
         // [StartExclude FuncAbility_Hot]
         // [StartExclude FuncAbility_Cold]
         // [StartExclude FuncAbilityA_Result]
+        // [StartExclude FuncAbilityA_For_Result]
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA]
+            // app.string.Start_AbilityA资源文件中的value值为'StartFuncAbilityA'
             Button($r('app.string.Start_AbilityA'))
               .width('60%');
             // [EndExclude FuncAbilityA]
@@ -55,7 +56,8 @@ struct Page_UIAbilityComponentsInteractive {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                info: '来自EntryAbility Page_UIAbilityComponentsInteractive页面'
+                // app.string.main_page_return_info资源文件中的value值为'来自EntryAbility MainPage页面'
+                info: $r('app.string.main_page_return_info')
               },
             };
             // context为调用方UIAbility的UIAbilityContext
@@ -66,14 +68,18 @@ struct Page_UIAbilityComponentsInteractive {
             });
           })
         }
+        // [EndExclude FuncAbilityA_For_Result]
         // [EndExclude FuncAbilityA_Result]
 
         // [StartExclude FuncAbilityA]
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA_Result]
+            // [StartExclude FuncAbilityA_For_Result]
+            // app.string.Start_AbilityA_Result资源文件中的value值为'StartFuncAbilityAWithResult'
             Button($r('app.string.Start_AbilityA_Result'))
               .width('60%');
+            // [EndExclude FuncAbilityA_For_Result]
             // [EndExclude FuncAbilityA_Result]
           }
           .onClick(() => {
@@ -86,7 +92,8 @@ struct Page_UIAbilityComponentsInteractive {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                info: '来自EntryAbility UIAbilityComponentsInteractive页面'
+                // app.string.main_page_return_info资源文件中的value值为'来自EntryAbility MainPage页面'
+                info: $r('app.string.main_page_return_info')
               }
             };
             context.startAbilityForResult(want).then((data) => {
@@ -109,9 +116,11 @@ struct Page_UIAbilityComponentsInteractive {
         // [EndExclude FuncAbility_Cold]
 
         // [StartExclude FuncAbilityA_Result]
+        // [StartExclude FuncAbilityA_For_Result]
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Cold]
+            // app.string.Cold_Start_Page资源文件中的value值为'ColdStartPage'
             Button($r('app.string.Cold_Start_Page'))
               .width('60%');
             // [EndExclude FuncAbility_Cold]
@@ -141,6 +150,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Hot]
+            // app.string.Hot_Start_Page资源文件中的value值为'HotStartPage'
             Button($r('app.string.Hot_Start_Page'))
               .width('60%');
             // [EndExclude FuncAbility_Hot]
@@ -164,73 +174,40 @@ struct Page_UIAbilityComponentsInteractive {
             });
           })
         }
-        // [EndExclude FuncAbility_Window]
-
-        // [StartExclude FuncAbility_Hot]
-        ListItem() {
-          Row() {
-            // [StartExclude FuncAbility_Window]
-            Button('StartWindowMode')
-              .width('60%');
-            // [EndExclude FuncAbility_Window]
-          }
-          .onClick(() => {
-            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
-            let want: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.uiabilityinteraction',
-              moduleName: 'entry', // moduleName非必选
-              abilityName: 'HotStartAbility',
-              parameters: {
-                // 自定义信息
-                info: '来自EntryAbility Index页面'
-              }
-            };
-            let options: StartOptions = {
-              windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING,
-            };
-            // context为调用方UIAbility的UIAbilityContext
-            context.startAbility(want, options).then(() => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
-            }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-            });
-          })
-        }
-        // [EndExclude FuncAbility_Hot]
         // [EndExclude FuncAbility_Cold]
+        // [EndExclude FuncAbilityA_For_Result]
         // [EndExclude FuncAbilityA_Result]
         // [EndExclude FuncAbilityA]
       }
       // [StartExclude FuncAbilityA]
       // [StartExclude FuncAbilityA_Result]
+      // [StartExclude FuncAbilityA_For_Result]
       // [StartExclude FuncAbility_Cold]
       // [StartExclude FuncAbility_Hot]
-      // [StartExclude FuncAbility_Window]
       .alignListItem(ListItemAlign.Center)
-      // [EndExclude FuncAbility_Window]
       // [EndExclude FuncAbility_Hot]
       // [EndExclude FuncAbility_Cold]
+      // [EndExclude FuncAbilityA_For_Result]
       // [EndExclude FuncAbilityA_Result]
       // [EndExclude FuncAbilityA]
     }
     // [StartExclude FuncAbilityA]
     // [StartExclude FuncAbilityA_Result]
+    // [StartExclude FuncAbilityA_For_Result]
     // [StartExclude FuncAbility_Cold]
     // [StartExclude FuncAbility_Hot]
-    // [StartExclude FuncAbility_Window]
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
-    // [EndExclude FuncAbility_Window]
     // [EndExclude FuncAbility_Hot]
     // [EndExclude FuncAbility_Cold]
+    // [EndExclude FuncAbilityA_For_Result]
     // [EndExclude FuncAbilityA_Result]
     // [EndExclude FuncAbilityA]
   }
 }
-// [End FuncAbility_Window]
 // [End FuncAbility_Hot]
 // [End FuncAbility_Cold]
+// [End FuncAbilityA_For_Result]
 // [End FuncAbilityA_Result]
 // [End FuncAbilityA]

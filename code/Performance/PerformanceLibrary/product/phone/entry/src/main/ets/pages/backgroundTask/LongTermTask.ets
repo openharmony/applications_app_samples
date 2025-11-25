@@ -20,7 +20,7 @@ import { LongTermTaskView } from '@ohos/backgroundTask';
 struct LongTermTask {
   build() {
     Column() {
-      LongTermTaskView()
+      LongTermTaskView();
     }
   }
 }

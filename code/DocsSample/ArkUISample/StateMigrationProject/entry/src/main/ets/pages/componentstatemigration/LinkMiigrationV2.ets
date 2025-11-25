@@ -13,33 +13,37 @@
  * limitations under the License.
  */
 // [Start Parent8_start]
+const INITIAL_MYVAL = 10;
+
 @ComponentV2
-struct Child8 {
+struct Child {
   // @Param搭配@Event回调实现数据双向同步
   @Param val: number = 0;
   @Event addOne: () => void;
 
   build() {
     Column() {
-      Text('child: ' + this.val.toString());
+      Text('child: ' + this.val.toString())
       Button('+1')
         .onClick(() => {
           this.addOne();
-        });
+        })
     }
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent8 {
-  @Local myVal: number = 10;
+struct Parent {
+  @Local myVal: number = INITIAL_MYVAL;
 
   build() {
     Column() {
-      Text('parent: ' + this.myVal.toString());
-      Child8({ val: this.myVal, addOne: () => this.myVal++ });
+      Text('parent: ' + this.myVal.toString())
+      Child({ val: this.myVal, addOne: () => this.myVal++ })
     }
   }
 }
 // [End Parent8_start]
+const parent8 = Parent;
+export default parent8;

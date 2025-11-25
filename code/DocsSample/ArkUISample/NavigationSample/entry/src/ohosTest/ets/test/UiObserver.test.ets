@@ -30,7 +30,7 @@ export function UiObserverTest() {
   describe('Navigation_UiObserverTest', () => {
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.samples.navigation',
+        bundleName: 'com.samples.navigationsample',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);

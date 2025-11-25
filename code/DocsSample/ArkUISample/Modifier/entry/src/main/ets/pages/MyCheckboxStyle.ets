@@ -79,7 +79,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Checkbox({ name: $r('app.string.checkbox_status'), group: 'checkboxGroup' })
+        //选中和不选中按钮
+        Checkbox({ name: (getContext(this)).resourceManager.getStringSync($r('app.string.checkbox_status').id), group: 'checkboxGroup' })
           .select(true)
           .contentModifier(new MyCheckboxStyle(Color.Red))
           .onChange((value: boolean) => {

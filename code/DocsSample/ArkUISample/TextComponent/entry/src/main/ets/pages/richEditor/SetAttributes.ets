@@ -97,7 +97,7 @@ struct BindSelectionMenu {
           })
           // 绑定自定义菜单
           .width(300)
-          .height(300);
+          .height(300)
       }
     }
   }
@@ -113,26 +113,26 @@ struct BindSelectionMenu {
               startIcon: this.theme.cutIcon,
               content: resource.resourceToString($r('app.string.SetAttributes_Text_1')),
               labelInfo: 'Ctrl+X'
-            });
+            })
             MenuItem({
               startIcon: this.theme.copyIcon,
               content: resource.resourceToString($r('app.string.SetAttributes_Text_2')),
               labelInfo: 'Ctrl+C'
-            });
+            })
             MenuItem({
               startIcon: this.theme.pasteIcon,
               content: resource.resourceToString($r('app.string.SetAttributes_Text_3')),
               labelInfo: 'Ctrl+V'
-            });
+            })
           }
         }
       }
       .radius(this.theme.containerBorderRadius)
       .clip(true)
       .backgroundColor(Color.White)
-      .width(this.theme.defaultMenuWidth);
+      .width(this.theme.defaultMenuWidth)
     }
-    .width(this.theme.defaultMenuWidth);
+    .width(this.theme.defaultMenuWidth)
   }
   // [End richEditor_bindSelectionMenu]
 }
@@ -159,11 +159,11 @@ struct attr2 {
                 fontColor: Color.Black,
                 fontSize: 15
               }
-            });
+            })
           })
           .caretColor(Color.Orange)
           .width(300)
-          .height(300);
+          .height(300)
         // [End richEditor_color]
       }
     }
@@ -196,7 +196,7 @@ struct attr3 {
             }
           })
           .width(300)
-          .height(50);
+          .height(50)
         // [End richEditor_placeholder]
       }
     }
@@ -228,7 +228,7 @@ struct attr4 {
                 }
               })
           })
-          .maxLines(2);
+          .maxLines(2)
         // [End richEditor_maxLines]
       }
     }
@@ -252,7 +252,7 @@ struct attr5 {
         // $r('app.string.SetAttributes_Text_8')需要替换为开发者所需的资源文件
         RichEditor(this.options)
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
-          .maxLength(7);
+          .maxLength(7)
           // [End richEditor_maxLength]
       }
     }
@@ -277,8 +277,8 @@ struct attr6 {
                 fontColor: Color.Black,
                 fontSize: 15
               }
-            });
-          });
+            })
+          })
       }
     }
   }
@@ -312,11 +312,11 @@ struct Decoration {
                   thicknessScale: 6
                 }
               }
-            });
-          });
+            })
+          })
         // [End richEditor_decoration]
       }
-    }.width('100%');
+    }.width('100%')
   }
 }
 
@@ -403,7 +403,7 @@ struct SetTextVerticalAlign {
               imageStyle: {
                 size: [100, 100]
               }
-            });
+            })
             // $r('app.string.Demo_verticalAlignString')需要替换为开发者所需的资源文件
             this.controller.addTextSpan($r('app.string.Demo_verticalAlignString'), {
               style: {
@@ -415,8 +415,8 @@ struct SetTextVerticalAlign {
                 textVerticalAlign: TextVerticalAlign.CENTER,
                 leadingMargin: 16
               }
-            });
-          });
+            })
+          })
         // [End richEditor_textVerticalAlign]
       }
     }
@@ -451,15 +451,15 @@ struct EnableAutoSpacing {
                     fontColor: Color.Orange,
                     fontSize: 20
                   }
-                });
+                })
             })
-            .enableAutoSpacing(this.enableAutoSpace);
+            .enableAutoSpacing(this.enableAutoSpace)
           // [End richEditor_enableAutoSpacing]
           Button($r('app.string.Demo_autoSpacingButton'))
             .fontSize(20)
             .onClick(() => {
               this.enableAutoSpace = true;
-            });
+            })
         }
       }
     }
@@ -485,12 +485,12 @@ struct PrepareMenu {
       content: 'create1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('create1'),
-    };
+    }
     let item2: TextMenuItem = {
       content: 'create2',
       id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
-    };
+    }
     items.push(item1);
     items.unshift(item2);
     return items;
@@ -547,7 +547,7 @@ struct PrepareMenu {
           .height(50)
           .margin({ top: 100 })
           .borderWidth(1)
-          .borderColor(Color.Red);
+          .borderColor(Color.Red)
       }
     }
   }

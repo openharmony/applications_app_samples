@@ -14,9 +14,7 @@
  */
 
 // [Start trigger_aging_friendly_by_set_font_size]
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_SupportingAgingFriendly]';
 const DOMAIN = 0xF811;
@@ -56,20 +54,6 @@ struct TextPickerExample {
   @State showTriggered: string = '';
   private triggered: string = '';
   private maxLines: number = 3; // 最大的行数为3
-  // 设置字体大小
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      fontSizeScale: scale,
-    };
-
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (err) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `updateConfiguration fail, err: ${JSON.stringify(err)}`);
-      } else {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'updateConfiguration success.');
-      }
-    });
-  }
 
   linesNum(max: number): void {
     let items: string[] = this.triggered.split('\n').filter(item => item != '');
@@ -120,30 +104,7 @@ struct TextPickerExample {
           })
         })
         .margin({ top: 60 });
-
-      Row() {
-        // $r('app.string.one_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.one_multiple')).onClick(() => {
-          this.setFontScale(1)
-        }).margin(10);
-
-        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.one_point_seven_five_multiple')).onClick(() => {
-          this.setFontScale(1.75)
-        }).margin(10);
-
-        // $r('app.string.two_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.two_multiple')).onClick(() => {
-          this.setFontScale(2)
-        }).margin(10);
-
-        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的资源文件
-        Button($r('app.string.three_point_two_multiple')).onClick(() => {
-          this.setFontScale(3.2)
-        }).margin(10);
-      }.margin({ top: 50 });
     }
-
   }
 }
 // [End trigger_aging_friendly_by_set_font_size]

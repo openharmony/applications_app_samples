@@ -2,18 +2,17 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-basic-syntax-overview.md)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-### 1.[线性容器(Column)](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
+### 1.[线性容器(Column)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
 
-### 2.[文本显示器(Text)](https://docs.openharmony.cn/pages/v5.1/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
+### 2.[文本显示器(Text)](https://docs.openharmony.cn/pages/v6.0/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
 
-### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
+### 3.[Button](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 
-### 3[makeObserved接口：将非观察数据变为可观察数据](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-new-makeObserved.md)
+### 4.[makeObserved接口：将非观察数据变为可观察数据](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-makeObserved.md)
 
 ## 预览效果
-
 ```
 import { UIUtils } from '@kit.ArkUI';
 class Person {
@@ -88,24 +87,12 @@ makeObserved封装的观察对象，可以通过getTarget获取到其原始对�
 ![image1](![](screenshots/device/image10.jpeg)
 ![image1](![](screenshots/device/image11.jpeg)
 
-## 具体实现
-1. 导入UIUtils模块并使用makeObserved接口
-2. 处理不同类型数据的可观察转换
-3. 与状态管理装饰器(@Local等)配合使用
-4. 支持集合类型(collections.Array/Map/Set)的可观察转换
 
-亮点功能：
-- 与@Sendable装饰类配合使用，支持跨线程数据传递后的可观察转换
-- 处理JSON.parse返回的匿名对象的可观察转换
 
 ## 使用说明
-
 ### 1.在进入主页面后，点击页面按钮进行查看
 
 ## 工程目录结构
-
-
-
 ```
 MakeObserved
 ├─ AppScope
@@ -188,33 +175,37 @@ MakeObserved
 └─ README_zh.md
 
 ```
+## 具体实现
+1. 导入UIUtils模块并使用makeObserved接口
+2. 处理不同类型数据的可观察转换
+3. 与状态管理装饰器(@Local等)配合使用
+4. 支持集合类型(collections.Array/Map/Set)的可观察转换
+5. 为了将普通不可观察数据变为可观察数据，开发者可以使用makeObserved接口，makeObserved可以在@Trace无法标记的情况下使用。
 
-`````
+亮点功能：
+- 与@Sendable装饰类配合使用，支持跨线程数据传递后的可观察转换
+- 处理JSON.parse返回的匿名对象的可观察转换
+
 ### 相关权限
-
 不涉及。
 
 ### 依赖
-
 不涉及。
 
 ### 约束与限制
-
 .本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
 
 3.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行。
 
 ### 下载
-
 如需单独下载本工程，执行如下命令：
 
-````
+`````
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/MakeObserved > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
-````
 `````

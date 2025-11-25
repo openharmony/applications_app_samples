@@ -1,17 +1,18 @@
-# 状态管理指南文档示例
+# 状态管理优秀实践指南文档示例
 
 ### 介绍
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [状态管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-state-management-best-practices.md)。
+1. [状态管理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-state-management-best-practices.md)。
 
 ### 效果预览
 
-| 避免与否在for、while等循环逻辑中频繁读取状态变量的效果                                            | 使用临时变量替换状态变量或者直接操作状态变量的效果图                                            | 使用@ObjectLink和@Prop深拷贝的效果                                            | 使用状态变量或者不使用强行更新非状态变量的效果                                            | 精准与否控制状态变量关联的组件数的效果                                            | 
-| ------------------------------------ | --------------------------------------------- | --------------------------------------------------- | ------------------------------------ |
-| ![](screenshots/image1.png) | ![](screenshots/image1.png) | ![](screenshots/image2.png)
-| ![](screenshots/image3.png) | ![](screenshots/image4.png) |
+避免与否在for、while等循环逻辑中频繁读取状态变量的效果
+
+| 打印日志                | 打印日志1                    | 打印日志2                    | 打印                         |
+|-------------------------|----------------------------|-----------------------------|-----------------------------|
+|![](screenshots/image1.png)| ![](screenshots/image2.png)| ![](screenshots/image3.png) | ![](screenshots/image4.png) |
 
 ### 使用说明
 

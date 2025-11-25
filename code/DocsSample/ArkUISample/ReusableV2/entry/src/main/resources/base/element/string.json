@@ -11,45 +11,6 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
-    },{
-      "name": "EntryAbility_title1",
-      "value": "删除/创建Repeatcon"
-    },{
-      "name": "EntryAbility_title2",
-      "value": "增加元素"
-    },{
-      "name": "EntryAbility_title3",
-      "value": "删除元素"
-    },{
-      "name": "EntryAbility_title4",
-      "value": "更改元素"
-    },{
-      "name": "EntryAbility_title5",
-      "value": "改变condition"
-    },{
-      "name": "EntryAbility_title6",
-      "value": "回收/复用"
-    },{
-      "name": "EntryAbility_title7",
-      "value": "改值"
-    },{
-      "name": "EntryAbility_title8",
-      "value": "重置为本地初始值的变量"
-    },{
-      "name": "EntryAbility_title9",
-      "value": "重置为外部传入的变量"
-    },{
-      "name": "EntryAbility_title10",
-      "value": "根据父组件情况决定"
-    },{
-      "name": "EntryAbility_title11",
-      "value": "不被重置"
-    },{
-      "name": "EntryAbility_title12",
-      "value": "父组件变量"
-    },{
-      "name": "EntryAbility_title13",
-      "value": "点击修改"
     }
   ]
 }

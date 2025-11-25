@@ -57,4 +57,3 @@ struct DetailPara {
     .height('100%')
   }
 }
-// [End jump_detail]

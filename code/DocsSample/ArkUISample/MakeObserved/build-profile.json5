@@ -14,28 +14,14 @@
  */
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\master\\.ohos\\config\\default_MakeObserved_K_Adw1uT3Hjlzg_3O8zMe7RxT1cg6_N4vaX7KKkcSUA=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "00000019A035F97503EB063C9115600614BAA89624D49DDA51709BA4B2F1B6C2F5D9F0CB74DE5E94E8",
-          "profile": "C:\\Users\\master\\.ohos\\config\\default_MakeObserved_K_Adw1uT3Hjlzg_3O8zMe7RxT1cg6_N4vaX7KKkcSUA=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\master\\.ohos\\config\\default_MakeObserved_K_Adw1uT3Hjlzg_3O8zMe7RxT1cg6_N4vaX7KKkcSUA=.p12",
-          "storePassword": "000000198484B0C492D7AD3482E02320A8178E028ED97A0CA8B5E98CCB0EAA1033FA1951C759874477"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS",
+        "compileSdkVersion": 22,
+        "compatibleSdkVersion": 22,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,

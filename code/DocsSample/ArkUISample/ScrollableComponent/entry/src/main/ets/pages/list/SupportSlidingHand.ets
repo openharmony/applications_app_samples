@@ -15,21 +15,21 @@
 // [Start class_News]
 import { LengthMetrics } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
-// [Start class_News_content]
+// [Start class_news_content]
 class News {
   public id: string;
-  public title: string;
-  public content: string;
+  public title: ResourceStr;
+  public content: ResourceStr;
   public type: string;
 
-  constructor(id: string, title: string, content: string, type: string) {
+  constructor(id: string, title: ResourceStr, content: ResourceStr, type: string) {
     this.id = id;
     this.title = title;
     this.content = content;
     this.type = type;
   }
 }
-// [End class_News_content]
+// [End class_news_content]
 const FRICTION_SCALE: number = 4.2;
 const DEFAULT_FRICTION: number = 1;
 
@@ -37,20 +37,18 @@ const DEFAULT_FRICTION: number = 1;
 @Entry
 @Component
 export struct SupportSlidingHand {
-  // [Start NewsData]
+  // [Start news_data]
   @State newsData: Array<News> = [
-    new News('1', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
-      'short'),
-    new News('2', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
-      'short'),
-    new News('3', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
-      'long'),
-    new News('4', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
-      'short'),
-    new News('5', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
-      'long'),
+    // app.string.new_title 资源文件中的value值为'新闻标题'
+    // app.string.new_short 资源文件中的value值为'这是第一条短新闻，内容较少，快速滑动切换'
+    new News('1', $r('app.string.new_title'), $r('app.string.new_short'), 'short'),
+    new News('2', $r('app.string.new_title'), $r('app.string.new_short'), 'short'),
+    // app.string.new_long 资源文件中的value值为'这是第二条长新闻，内容较多，可以自由滑动查看完整内容。'
+    new News('3', $r('app.string.new_title'), $r('app.string.new_long'), 'long'),
+    new News('4', $r('app.string.new_title'), $r('app.string.new_short'), 'short'),
+    new News('5', $r('app.string.new_title'), $r('app.string.new_long'), 'long'),
   ];
-  // [End NewsData]
+  // [End news_data]
   // 当前显示的新闻的索引
   @State currentIndex: number = 0;
   private scrollerForList: Scroller = new Scroller();
@@ -99,25 +97,31 @@ export struct SupportSlidingHand {
         })
         .id('scrollToIndex')
         // 实现参考
-        // [Start scrollToIndex_scrollerForList]
+        // [Start scroll_index_scroller_list]
         .onWillStopDragging((velocity: number) => {
+          if (velocity < 0) {
+            // 向下滑动处理
+          } else {
+            // 向上滑动处理
+          }
+          // [StartExclude scroll_index_scroller_list]
           // 短新闻处理
           if (this.IsShortNews(this.currentIndex)) {
-            // [Start scrollToIndex]
-            if (velocity > 30) {
+            // [Start scroll_to_index]
+            if (velocity > 10) {
               this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START)
-            } else if (velocity < -30) {
+            } else if (velocity < -10) {
               this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START)
             }
-            // [End scrollToIndex]
+            // [End scroll_to_index]
             return;
           }
-          // [Start scrollerForList]
           // 长新闻处理
-          // [Start scrollerForList_rect]
+          // [Start scroller_for_list]
+          // [Start scroller_list_rect]
           let rect = this.scrollerForList.getItemRect(this.currentIndex);
-          // [End scrollerForList_rect]
-          if (velocity < -1000) {
+          // [End scroller_list_rect]
+          if (velocity < -30) {
             if (rect) {
               // 当前节点在页面内的剩余显示范围
               let leftRect = rect.y + rect.height;
@@ -132,7 +136,7 @@ export struct SupportSlidingHand {
                 return;
               }
             }
-          } else if (velocity > 1000) {
+          } else if (velocity > 30) {
             let leftRect = rect?.y + rect?.height;
             let mainPosition = velocity * DEFAULT_FRICTION / FRICTION_SCALE;
             if (leftRect + mainPosition > 0.75 * this.listHeight) {
@@ -140,9 +144,10 @@ export struct SupportSlidingHand {
               return;
             }
           }
-          // [End scrollerForList]
+          // [End scroller_for_list]
+          // [EndExclude scroll_index_scroller_list]
         })
-        // [End scrollToIndex_scrollerForList]
+        // [End scroll_index_scroller_list]
       }
       .width('100%')
       .height('100%')

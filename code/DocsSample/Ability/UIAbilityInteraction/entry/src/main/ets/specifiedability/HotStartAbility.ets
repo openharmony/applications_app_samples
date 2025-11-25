@@ -19,20 +19,20 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 // [StartExclude onNewWant]
 import { window, UIContext } from '@kit.ArkUI';
-
-const DOMAIN_NUMBER: number = 0xFF00;
-const TAG: string = '[EntryAbility]';
 // [EndExclude onNewWant]
+const DOMAIN_NUMBER: number = 0xFF00;
+const TAG: string = '[HotStartAbility]';
 
-export default class EntryAbility extends UIAbility {
+export default class HotStartAbility extends UIAbility {
   // [StartExclude onNewWant]
   private funcAbilityWant: Want | undefined = undefined;
   private uiContext: UIContext | undefined = undefined;
-
+  // [StartExclude HotAbility]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 接收调用方UIAbility传过来的参数
     this.funcAbilityWant = want;
   }
+  // [EndExclude HotAbility]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability

@@ -27,9 +27,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 @ObservedV2
 class SampleChild {
-  // 应用持久化Key connect2:点击的数量，默认为0，如果点击后退出再次进入，则默认为持久化的数量
   @Trace public childId: number = 0;
-  // 应用持久化save key Sample:点击的数量，默认为1，如果点击后退出再次进入，则默认为持久化的数量
   public groupId: number = 1;
 }
 
@@ -43,15 +41,14 @@ export class Sample {
 @Entry
 @ComponentV2
 struct Page1 {
-  // 进入当前页面后点击了save key Sample:多少次
   @Local refresh: number = 0;
-  // 使用key:connect2存储
-  @Local p: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
+  // 使用key:connect3存储
+  @Local p: Sample = PersistenceV2.connect(Sample, 'connect3', () => new Sample())!;
 
   build() {
-    Column({ space: 5 }) {
+    Column({space: 5}) {
       /**************************** 显示数据 **************************/
-      Text('Key connect2: ' + this.p.father.childId.toString())
+      Text('Key connect3: ' + this.p.father.childId.toString())
         .onClick(() => {
           this.p.father.childId += 1;
         })
@@ -59,12 +56,12 @@ struct Page1 {
         .fontColor(Color.Red)
 
       /**************************** save接口 **************************/
-      // 非状态变量需要借助状态变量refresh才能刷新
-      Text('save key Sample: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
+      // 未被@Trace装饰的变量需要借助状态变量refresh才能刷新
+      Text('save key connect3: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;
-          PersistenceV2.save('connect2');
+          PersistenceV2.save('connect3');
           this.refresh += 1;
         })
         .fontSize(25)

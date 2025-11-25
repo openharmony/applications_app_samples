@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 // [Start home_param1]
 class DataModelInfo {

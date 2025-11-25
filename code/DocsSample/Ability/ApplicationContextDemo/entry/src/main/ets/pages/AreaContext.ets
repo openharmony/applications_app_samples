@@ -14,12 +14,12 @@
  */
 
 // [Start scene_area_context_start]
-// Index.ets
+// AreaContext.ets
 import { contextConstant, common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_Context {
+struct AreaContext {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {

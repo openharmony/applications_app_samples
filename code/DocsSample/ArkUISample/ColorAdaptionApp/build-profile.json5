@@ -33,11 +33,13 @@
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
       }
+    ],
+    "signingConfigs": [
     ]
   },
   "modules": [

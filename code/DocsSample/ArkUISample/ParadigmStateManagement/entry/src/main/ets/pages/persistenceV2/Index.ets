@@ -21,7 +21,6 @@ import { PersistenceV2ConnectMigration1Decorator } from './PersistenceV2ConnectM
 import { PersistenceV2ConnectMigration2Decorator } from './PersistenceV2ConnectMigration2';
 import { PersistenceV2GlobalConnectDecorator } from './PersistenceV2GlobalConnect';
 import { PersistenceV2ModuleConnectStorage1Decorator } from './PersistenceV2ModuleConnectStorage1';
-import { PersistenceV2ModuleConnectStorage2Decorator } from './PersistenceV2ModuleConnectStorage2';
 
 
 export const PERSISTENCE_V2: string = 'persistence_v2';
@@ -42,10 +41,6 @@ const routes: Route[] = [
   {
     name: `${PERSISTENCE_V2}/PersistenceV2_ModuleConnectStorage1`,
     title: resource.resourceToString($r('app.string.persistence_v2_module_connect_storage1')),
-  },
-  {
-    name: `${PERSISTENCE_V2}/PersistenceV2_ModuleConnectStorage2`,
-    title: resource.resourceToString($r('app.string.persistence_v2_module_connect_storage2')),
   },
   {
     name: `${PERSISTENCE_V2}/PersistenceV2_ConnectMigration1`,
@@ -69,8 +64,6 @@ export function persistenceV2Destination(name: string) {
     PersistenceV2GlobalConnectDecorator()
   } else if (name === `${PERSISTENCE_V2}/PersistenceV2_ModuleConnectStorage1`) {
     PersistenceV2ModuleConnectStorage1Decorator()
-  } else if (name === `${PERSISTENCE_V2}/PersistenceV2_ModuleConnectStorage2`) {
-    PersistenceV2ModuleConnectStorage2Decorator()
   } else if (name === `${PERSISTENCE_V2}/PersistenceV2_ConnectMigration1`) {
     PersistenceV2ConnectMigration1Decorator()
   } else if (name === `${PERSISTENCE_V2}/PersistenceV2_ConnectMigration2`) {

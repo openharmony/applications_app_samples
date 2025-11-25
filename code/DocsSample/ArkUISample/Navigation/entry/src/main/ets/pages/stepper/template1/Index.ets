@@ -17,7 +17,7 @@
   .height(621)
   .margin({ top: 48, left: 12 })
   .borderRadius(24)
-  .backgroundColor('#FFFFFF')
+  .backgroundColor('#FFFFFF');
 }
 
 @Extend(Text) function itemTextStyle () {
@@ -25,7 +25,7 @@
   .fontSize(36)
   .fontWeight(500)
   .opacity(0.4)
-  .margin({ top: 82, bottom: 40 })
+  .margin({ top: 82, bottom: 40 });
 }
 
 @Entry

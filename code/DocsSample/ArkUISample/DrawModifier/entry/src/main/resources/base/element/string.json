@@ -31,6 +31,10 @@
     {
       "name": "TestNode",
       "value": "此文本是子节点"
+    },
+    {
+      "name": "Modifier",
+      "value": "Text组件绑定drawModifier"
     }
   ]
 }

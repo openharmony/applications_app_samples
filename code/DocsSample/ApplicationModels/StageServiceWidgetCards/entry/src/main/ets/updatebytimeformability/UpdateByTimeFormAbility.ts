@@ -13,27 +13,27 @@
  * limitations under the License.
  */
 
-// [Start update_by_time_form_ability]
 // [Start set_form_next_refreshime]
+// entry/src/main/ets/updatebytimeformability/UpdateByTimeFormAbility.ts
+// [Start update_by_time_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [StartExclude set_form_next_refreshime]
 import { Want } from '@kit.AbilityKit';
-// [EndExclude set_form_next_refreshime]
+
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [StartExclude update_by_time_form_ability]
-  // [StartExclude set_form_next_refreshime]
   onAddForm(want: Want): formBindingData.FormBindingData {
-    // Called to return a FormBindingData object.
+    // 卡片使用方创建卡片时触发，返回卡片数据绑定类
     let formData = {};
     return formBindingData.createFormBindingData(formData);
   }
 
+  // [StartExclude set_form_next_refreshime]
   onUpdateForm(formId: string): void {
     // Called to notify the form provider to update a specified form.
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}`);
@@ -49,10 +49,11 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
       hilog.error(DOMAIN_NUMBER, TAG, 'Operation updateForm failed. Cause: ' + error);
     });
   }
+
   // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
-    // Called when a specified message event defined by the form provider is triggered.
+    // 当卡片提供方的postCardAction接口的message事件被触发时调用
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
     try {
       // 设置过5分钟后更新卡片内容
@@ -70,16 +71,16 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
         `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code},
          message: ${(err as BusinessError).message}`);
     }
-    ;
   }
+
   // [StartExclude update_by_time_form_ability]
-  // [StartExclude set_form_next_refreshime]
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
-  // [EndExclude set_form_next_refreshime]
+
   // [EndExclude update_by_time_form_ability]
 }
+
 // [End set_form_next_refreshime]
 // [End update_by_time_form_ability]

@@ -26,7 +26,7 @@ struct WebComponent {
         .onClick(() => {
           webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
         })
-      Web({ src: $r('app.string.web_path'), controller: this.controller })
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }

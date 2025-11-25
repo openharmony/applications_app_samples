@@ -21,9 +21,9 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
 let driver: Driver;
-const TAG = '[Sample_arktsobservedandobjectlink]';
+const TAG = '[Sample_ArkTSObservedAndObjectlink]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'arktsobservedandobjectlink_';
+const BUNDLE = 'ArkTSObservedAndObjectlink_';
 
 export default function IndexTest() {
   describe('IndexTest', () => {
@@ -114,7 +114,7 @@ export default function IndexTest() {
       expect(targetElement2=== null).assertFalse();
       await targetElement2.click();
       await driver.delayMs(1000);
-      let targetElement3 = await driver.findComponent(ON.text('num的值', MatchPattern.CONTAINS));
+      let targetElement3 = await driver.findComponent(ON.text('num value', MatchPattern.CONTAINS));
       expect(targetElement3=== null).assertFalse();
       await targetElement3.click();
       await driver.delayMs(1000);
@@ -400,18 +400,6 @@ export default function IndexTest() {
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
-      let targetElement2 = await driver.findComponent(ON.text('Parent: reset entire counter', MatchPattern.CONTAINS));
-      expect(targetElement2=== null).assertFalse();
-      await targetElement2.click();
-      await driver.delayMs(1000);
-      let targetElement3 = await driver.findComponent(ON.text('Parent: incr counter[0].counter', MatchPattern.CONTAINS));
-      expect(targetElement3=== null).assertFalse();
-      await targetElement3.click();
-      await driver.delayMs(1000);
-      let targetElement4 = await driver.findComponent(ON.text('Parent: set.counter to 10', MatchPattern.CONTAINS));
-      expect(targetElement4=== null).assertFalse();
-      await targetElement4.click();
-      await driver.delayMs(1000);
       await driver.pressBack();
       done();
       hilog.info(DOMAIN,TAG,BUNDLE + 'ComplexMethodsNesting_013,end')

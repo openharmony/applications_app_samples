@@ -15,7 +15,7 @@
 
 // [Start article_list_view_two]
 @Observed
-class Article2 {
+class ArticleChangeChild {
   public id: string;
   public title: string;
   public brief: string;
@@ -33,26 +33,26 @@ class Article2 {
 
 @Entry
 @Component
-struct ArticleListView2 {
-  @State articleList: Array<Article2> = [
-    new Article2('001', 'Article 0', 'Abstract', false, 100),
-    new Article2('002', 'Article 1', 'Abstract', false, 100),
-    new Article2('003', 'Article 2', 'Abstract', false, 100),
-    new Article2('004', 'Article 4', 'Abstract', false, 100),
-    new Article2('005', 'Article 5', 'Abstract', false, 100),
-    new Article2('006', 'Article 6', 'Abstract', false, 100),
+struct ArticleListChangeView {
+  @State articleList: Array<ArticleChangeChild> = [
+    new ArticleChangeChild('001', 'Article 0', 'Abstract', false, 100),
+    new ArticleChangeChild('002', 'Article 1', 'Abstract', false, 100),
+    new ArticleChangeChild('003', 'Article 2', 'Abstract', false, 100),
+    new ArticleChangeChild('004', 'Article 4', 'Abstract', false, 100),
+    new ArticleChangeChild('005', 'Article 5', 'Abstract', false, 100),
+    new ArticleChangeChild('006', 'Article 6', 'Abstract', false, 100),
   ];
 
   build() {
     List() {
-      ForEach(this.articleList, (item: Article2) => {
+      ForEach(this.articleList, (item: ArticleChangeChild) => {
         ListItem() {
-          ArticleCard2({
+          ArticleCardChangeChild({
             article: item
           })
             .margin({ top: 20 })
         }
-      }, (item: Article2) => item.id)
+      }, (item: ArticleChangeChild) => item.id)
     }
     .padding(20)
     .scrollBar(BarState.Off)
@@ -61,8 +61,8 @@ struct ArticleListView2 {
 }
 
 @Component
-struct ArticleCard2 {
-  @ObjectLink article: Article2;
+struct ArticleCardChangeChild {
+  @ObjectLink article: ArticleChangeChild;
 
   handleLiked() {
     this.article.isLiked = !this.article.isLiked;

@@ -15,10 +15,6 @@
 // [Start DragArkTSPage]
 import { webview } from '@kit.ArkWeb'
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebDragInteraction]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebDragInteraction_';
 
 @Entry
 @Component
@@ -37,15 +33,15 @@ struct DragDrop {
         this.ports = this.controller.createWebMessagePorts();
         this.ports[1].onMessageEvent((result: webview.WebMessage) => {
           //ArkTS收到html传来的数据后的处理，可以先打日志确认下消息，双端的消息格式可以自己约定，能唯一识别就行
-          hilog.info(DOMAIN, TAG, BUNDLE, 'ETS receive Message: typeof (result) = ' + typeof (result) + ';' + result);
+          console.info('ETS receive Message: typeof (result) = ' + typeof (result) + ';' + result);
           //这里添加result中消息接收到后的处理,可进行耗时任务
         });
-        hilog.info(DOMAIN, TAG, BUNDLE, 'ETS postMessage set h5port ');
+        console.info('ETS postMessage set h5port ');
         //完成通信端口注册后，向前端发送注册完成消息，完成双向的端口绑定
         this.controller.postMessage('__init_port__', [this.ports[0]], '*');
       })// onDrop 可做简单逻辑，例如暂存一些关键数据
         .onDrop((dragEvent: DragEvent) => {
-          hilog.info(DOMAIN, TAG, BUNDLE, 'ETS onDrop!')
+          console.info('ETS onDrop!')
           let data: UnifiedData = dragEvent.getData();
           if(!data) {
             return false;
@@ -59,7 +55,7 @@ struct DragDrop {
             if (uriArr[i].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
               let plainText = uriArr[i] as unifiedDataChannel.PlainText;
               if (plainText.textContent) {
-                hilog.info(DOMAIN, TAG, BUNDLE, 'plainText.textContent: ', plainText.textContent);
+                console.info('plainText.textContent: ', plainText.textContent);
               }
             }
           }

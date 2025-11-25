@@ -17,6 +17,7 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, Component } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit'
+import { KeyCode } from '@kit.InputKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -25,6 +26,12 @@ let want: Want;
 const TAG = '[Sample_Progressproject]'
 const DOMAIN = 0xF811
 const BUNDLE = 'Progressproject_'
+
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let textString: string = await manage.getStringValue(resource);
+  return textString;
+}
 
 export default function IndexTest() {
   describe('IndexTest', () => {
@@ -55,11 +62,11 @@ export default function IndexTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressComponentsExist begin");
 
       // 验证标题文本
-      const linearText = await driver.findComponent(ON.text('Linear Progress'));
-      const ringText = await driver.findComponent(ON.text('Ring Progress'));
-      const scaleRingText = await driver.findComponent(ON.text('ScaleRing Progress'));
-      const eclipseText = await driver.findComponent(ON.text('Eclipse Progress'));
-      const capsuleText = await driver.findComponent(ON.text('Capsule Progress'));
+      const linearText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Linear_Progress'))));
+      const ringText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Ring_Progress'))));
+      const scaleRingText = await driver.findComponent(ON.text(await getResourceString($r('app.string.ScaleRing_Progress'))));
+      const eclipseText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Eclipse_Progress'))));
+      const capsuleText = await driver.findComponent(ON.text(await getResourceString($r('app.string.Capsule_Progress'))));
       expect(linearText === null).assertFalse();
       expect(ringText === null).assertFalse();
       expect(scaleRingText === null).assertFalse();
@@ -76,16 +83,14 @@ export default function IndexTest() {
      */
     it('testProgressIncrease', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressIncrease begin");
-
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
-      await driver.waitForIdle(500, 500);
-
+      const routerBtn = await driver.findComponent(ON.text('更新进度示例'));
+      await routerBtn.click();
+      await driver.delayMs(500);
       const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
       expect(increaseBtn === null).assertFalse();
       await increaseBtn.click();
       await driver.delayMs(500);
+      await driver.triggerKey(KeyCode.KEYCODE_BACK);
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressIncrease end");
       done();
     });
@@ -97,16 +102,16 @@ export default function IndexTest() {
      */
     it('testProgressMaxValue', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressMaxValue begin");
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
-      await driver.waitForIdle(500, 500);
+      const routerBtn = await driver.findComponent(ON.text('更新进度示例'));
+      await routerBtn.click();
+      await driver.delayMs(500);
       const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
       for (let i = 0; i < 25; i++) {
         await increaseBtn.click();
         await driver.delayMs(100);
       }
       await driver.delayMs(500);
+      await driver.triggerKey(KeyCode.KEYCODE_BACK);
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressDecrease end");
       done();
     });

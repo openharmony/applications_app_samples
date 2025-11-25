@@ -15,6 +15,7 @@
 @Entry
 @Component
 struct SingletonPage {
+  // app.string.single_display资源文件中的value值为'Singleton 演示效果'
   @State message: string | Resource = $r('app.string.single_display');
 
   build() {

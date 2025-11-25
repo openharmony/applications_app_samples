@@ -43,6 +43,7 @@ import { TabStopExample } from './TabStop';
 export const Focus_ROUTE_PREFIX: string = 'Focus_ROUTE_PREFIX';
 
 // [Start route_push]
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/onFocusBlur`,
@@ -159,7 +160,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Tab_Index_TabStop_title')),
     description: resource.resourceToString($r('app.string.Tab_Index_TabStop_description')),
   }
-]
+];
 // [End route_push]
 @Builder
 export function FocusDestination(name: string) {
@@ -221,26 +222,28 @@ struct FocusExample {
 
   build() {
     NavDestination() {
-      List({ space: 12 }) {
-        ForEach(routes, (route: Route) => {
-          ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
-          }
-          .width('100%')
-          .onClick(() => {
-            this.pathStack.pushPath({ name: route.name })
+     Scroll() {
+        List({ space: 12 }) {
+          ForEach(routes, (route: Route) => {
+            ListItem() {
+              CompletedRoutableCard({ title: route.title, description: route.description })
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathStack.pushPath({ name: route.name });
+            })
           })
-        })
+        }
+        .contentStartOffset(20)
+        .padding({ left: 16, right: 16 })
       }
-      .contentStartOffset(20)
-      .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    //$r('app.string.Focus_Index_title')需要替换为开发者所需的字符串资源文件
+    // $r('app.string.Focus_Index_title')资源文件中的value值为'焦点事件'
     .title($r('app.string.Focus_Index_title'))
   }
 }

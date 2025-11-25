@@ -20,7 +20,7 @@ import { NativeThreadsCallJSDemo } from '@ohos/nativethreadscalljs';
 struct NativeThreadsCallJS {
   build() {
     Column() {
-      NativeThreadsCallJSDemo()
+      NativeThreadsCallJSDemo();
     }
   }
 }

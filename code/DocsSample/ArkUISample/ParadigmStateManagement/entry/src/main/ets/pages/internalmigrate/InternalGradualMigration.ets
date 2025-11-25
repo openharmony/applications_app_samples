@@ -20,13 +20,13 @@ let storage: LocalStorage = new LocalStorage();
 
 @ObservedV2
 class V1StorageData {
-  @Trace public title: string = 'V1OldComponent'
+  @Trace public title: string = 'V1OldComponent';
 
   @Monitor('title')
   onStrChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
-        `${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+        `${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
       if (path === 'title') {
         storage.setOrCreate('title', this.title);
       }

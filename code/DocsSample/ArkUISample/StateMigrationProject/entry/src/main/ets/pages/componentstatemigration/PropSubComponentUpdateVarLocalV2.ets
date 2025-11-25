@@ -13,38 +13,39 @@
  * limitations under the License.
  */
 // [Start Parent16_start]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
+const PARENT_INITIAL_LOCAL_VALUE = 10;
 
 @ComponentV2
-struct Child16 {
+struct Child {
   @Local localValue: number = 0;
   @Param value: number = 0;
 
   @Monitor('value')
   onValueChange(mon: IMonitor) {
-    hilog.info(DOMAIN,TAG,`value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
     // 父组件value变化时，通知子组件value更新，回调Monitor函数，将更新的值覆写给本地的localValue
     this.localValue = this.value;
   }
 
   build() {
     Column() {
-      Text(`${this.localValue}`).fontSize(25);
+      Text(`${this.localValue}`).fontSize(25)
       Button('Child +100')
         .onClick(() => {
           // 改变localValue不会传递给父组件Parent
           this.localValue += 100;
-        });
+        })
     }
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent16 {
-  @Local value: number = 10;
+struct Parent {
+  @Local value: number = PARENT_INITIAL_LOCAL_VALUE;
 
   build() {
     Column() {
@@ -52,9 +53,11 @@ struct Parent16 {
         .onClick(() => {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
-        });
-      Child16({ value: this.value });
+        })
+      Child({ value: this.value })
     }
   }
 }
 // [End Parent16_start]
+const parent16 = Parent;
+export default parent16;

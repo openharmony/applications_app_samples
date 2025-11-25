@@ -14,7 +14,7 @@
  */
 
 // [Start article_list_view_one]
-class Article1 {
+class ArticleChangeSource {
   public id: string;
   public title: string;
   public brief: string;
@@ -28,30 +28,30 @@ class Article1 {
 
 @Entry
 @Component
-struct ArticleListView1 {
-  @State isListReachEnd: boolean = false;
-  @State articleList: Array<Article1> = [
-    new Article1('001', 'Article 1', 'Abstract'),
-    new Article1('002', 'Article 2', 'Abstract'),
-    new Article1('003', 'Article 3', 'Abstract'),
-    new Article1('004', 'Article 4', 'Abstract'),
-    new Article1('005', 'Article 5', 'Abstract'),
-    new Article1('006', 'Article 6', 'Abstract')
+struct ArticleListViewChangeSource {
+  isListReachEnd: boolean = false;
+  @State articleList: Array<ArticleChangeSource> = [
+    new ArticleChangeSource('001', 'Article 1', 'Abstract'),
+    new ArticleChangeSource('002', 'Article 2', 'Abstract'),
+    new ArticleChangeSource('003', 'Article 3', 'Abstract'),
+    new ArticleChangeSource('004', 'Article 4', 'Abstract'),
+    new ArticleChangeSource('005', 'Article 5', 'Abstract'),
+    new ArticleChangeSource('006', 'Article 6', 'Abstract')
   ];
 
   loadMoreArticles() {
-    this.articleList.push(new Article1('007', 'New Article', 'Abstract'));
+    this.articleList.push(new ArticleChangeSource('007', 'New Article', 'Abstract'));
   }
 
   build() {
     Column({ space: 5 }) {
       List() {
-        ForEach(this.articleList, (item: Article1) => {
+        ForEach(this.articleList, (item: ArticleChangeSource) => {
           ListItem() {
-            ArticleCard1({ article: item })
+            ArticleCardChangeSource({ article: item })
               .margin({ top: 20 })
           }
-        }, (item: Article1) => item.id)
+        }, (item: ArticleChangeSource) => item.id)
       }
       .onReachEnd(() => {
         this.isListReachEnd = true;
@@ -75,8 +75,8 @@ struct ArticleListView1 {
 }
 
 @Component
-struct ArticleCard1 {
-  @Prop article: Article1;
+struct ArticleCardChangeSource {
+  @Prop article: ArticleChangeSource;
 
   build() {
     Row() {

@@ -15,10 +15,7 @@
 // [Start ControlZoomByInput]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebManagementZooming]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebManagementZooming_';
+
 @Entry
 @Component
 struct WebComponent {
@@ -37,7 +34,7 @@ struct WebComponent {
           try {
             this.controller.zoom(this.factor);
           } catch (error) {
-            hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

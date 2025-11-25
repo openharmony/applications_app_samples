@@ -42,11 +42,11 @@ export default function abilityTest() {
     })
 
     /*
-     * 打开应用，点击 ImpNestedScroll 按钮
+     * 打开应用，点击 WebNestedScroll1 按钮
      * 设置滚动模式
      */
-    it('ImpNestedScroll', 0, async (done: Function) => {
-      console.info('uitest: ImpNestedScroll begin');
+    it('WebNestedScroll1', 30000, async (done: Function) => {
+      console.info('uitest: WebNestedScroll1 begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -59,35 +59,64 @@ export default function abilityTest() {
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       await driver.delayMs(1000);
 
-      const button1 = await driver.findComponent(ON.text('ImpNestedScroll'));
+      const button1 = await driver.findComponent(ON.text('WebNestedScroll1'));
       await button1.click();
       await driver.delayMs(500);
 
-      const button2 = await driver.findComponent(ON.text('SELF_ONLY'));
-      await button2.click();
+      await driver.swipe(649, 1934, 649, 697, 2000)
       await driver.delayMs(500);
 
-      const button3 = await driver.findComponent(ON.text('SELF_FIRST'));
-      await button3.click();
+      await driver.swipe(649, 1934, 649, 697, 2000)
+      await driver.delayMs(500)
+
+      await driver.swipe(649, 697, 649, 1934, 2000)
       await driver.delayMs(500);
 
-      const button4 = await driver.findComponent(ON.text('PARENT_FIRST'));
-      await button4.click();
+      await driver.swipe(649, 697, 649, 1934, 2000)
       await driver.delayMs(500);
-
-      const button5 = await driver.findComponent(ON.text('PARALLEL'));
-      await button5.click();
-      await driver.delayMs(500);
-
-      const web1 = await driver.findComponent(ON.type('Web'));
-      let src: string = await web1.getText();
-      expect(src).assertContain('www.example.com');
 
       await driver.pressBack();
-      console.info('uitest: ImpNestedScroll end');
+      console.info('uitest: WebNestedScroll1 end');
       done();
     });
+    /*
+     * 打开应用，点击 WebNestedScroll2 按钮
+     * 设置滚动模式
+     */
+    it('WebNestedScroll2', 30000, async (done: Function) => {
+      console.info('uitest: WebNestedScroll2 begin');
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      };
+      await delegator.startAbility(want);
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info('get top ability');
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      await driver.delayMs(1000);
 
+      const button1 = await driver.findComponent(ON.text('WebNestedScroll2'));
+      await button1.click();
+      await driver.delayMs(500);
+
+      await driver.swipe(649, 1934, 649, 697, 2000)
+      await driver.delayMs(500);
+
+      await driver.swipe(649, 1934, 649, 697, 2000)
+      await driver.delayMs(500)
+
+      await driver.swipe(649, 697, 649, 1934, 2000)
+      await driver.delayMs(500);
+
+      await driver.swipe(649, 697, 649, 1934, 2000)
+      await driver.delayMs(500);
+
+      await driver.pressBack();
+      console.info('uitest: WebNestedScroll2 end');
+      done();
+    });
     /*
      * 打开应用，点击 OnIntKbdAttachSysCustIn 按钮
      * 调用onInterceptKeyboardAttach来拦截系统软键盘的弹出
@@ -134,7 +163,7 @@ export default function abilityTest() {
 
       const web1 = await driver.findComponent(ON.type('Web'));
       let src: string = await web1.getText();
-      expect(src).assertContain('SetSKBModeIndex.html');
+      expect(src).assertContain('index.html');
 
       await driver.pressBack();
       console.info('uitest: SetSKBMode_one end');

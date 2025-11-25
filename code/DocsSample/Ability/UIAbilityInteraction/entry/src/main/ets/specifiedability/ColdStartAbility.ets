@@ -19,9 +19,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window, UIContext } from '@kit.ArkUI';
 
 const DOMAIN_NUMBER: number = 0xFF00;
-const TAG: string = '[EntryAbility]';
+const TAG: string = '[ColdStartAbility]';
 
-export default class EntryAbility extends UIAbility {
+export default class ColdStartAbility extends UIAbility {
   private funcAbilityWant: Want | undefined = undefined;
   private uiContext: UIContext | undefined = undefined;
 

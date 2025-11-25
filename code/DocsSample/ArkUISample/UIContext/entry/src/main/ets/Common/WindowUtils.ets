@@ -20,16 +20,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 
 export class WindowUIContextUtils {
-  public static activeUIContext : UIContext | undefined;
+  public static activeUIContext: UIContext | undefined;
 
-  static registerWindowCallback(windowClass: window.Window) : void {
+  static registerWindowCallback(windowClass: window.Window): void {
     try {
       windowClass.on('windowEvent', (event: window.WindowEventType) => {
         if (event === window.WindowEventType.WINDOW_ACTIVE) {
           try {
             let uiContext = windowClass.getUIContext();
             WindowUIContextUtils.activeUIContext = uiContext;
-          } catch(exception) {
+          } catch (exception) {
             hilog.error(DOMAIN, 'testTag', `Can't get UIContext, ${exception}`);
           }
         }
@@ -43,12 +43,12 @@ export class WindowUIContextUtils {
     windowClass.off('windowEvent');
   }
 
-  static setActiveUIContext(uiContext: UIContext) : void {
+  static setActiveUIContext(uiContext: UIContext): void {
     WindowUIContextUtils.activeUIContext = uiContext;
   }
 
   static vp2px(vpValue: number, uiContext?: UIContext): number {
-    let _uiContext = uiContext??WindowUIContextUtils.activeUIContext;
+    let _uiContext = uiContext ?? WindowUIContextUtils.activeUIContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       let displayClass = display.getDefaultDisplaySync();
       let density = displayClass.densityPixels;
@@ -58,4 +58,5 @@ export class WindowUIContextUtils {
     return _uiContext.vp2px(vpValue);
   }
 }
+
 // [End Common_WindowUtils]

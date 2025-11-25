@@ -1,5 +1,3 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -25,7 +23,7 @@ let toolTmp: NavigationMenuItem  = {
 @Entry
 @Component
 struct MenusThreeResource {
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
   @Builder
@@ -37,12 +35,12 @@ struct MenusThreeResource {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {
       // [EndExclude NavigationMenuThreeResource]
-      Navigation(this.pageInfos) {
+      Navigation(this.navPathStack) {
         // [StartExclude NavigationMenuThreeResource]
         TextInput({ placeholder: 'search...' })
           .width('90%')
@@ -61,7 +59,7 @@ struct MenusThreeResource {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
                 .onClick(() => {
-                  this.pageInfos.pushPath({ name: 'NavDestinationTitle' + item });
+                  this.navPathStack.pushPath({ name: 'NavDestinationTitle' + item });
                 })
             }
           }, (item: number) => item.toString())
@@ -72,7 +70,8 @@ struct MenusThreeResource {
       }
       .menus([toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuThreeResource]
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
     }
@@ -84,7 +83,7 @@ struct MenusThreeResource {
 
 @Component
 export struct pageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -93,8 +92,7 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop();
       return true;
     })
   }
@@ -102,7 +100,7 @@ export struct pageOneTmp {
 
 @Component
 export struct pageTwoTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -111,8 +109,7 @@ export struct pageTwoTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop();
       return true;
     })
   }
@@ -120,7 +117,7 @@ export struct pageTwoTmp {
 
 @Component
 export struct pageThreeTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -129,8 +126,7 @@ export struct pageThreeTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop();
       return true;
     })
   }

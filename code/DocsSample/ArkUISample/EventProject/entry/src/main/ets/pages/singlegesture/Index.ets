@@ -26,7 +26,7 @@ import { VolumeControlDemo } from './PanCombinationGesture';
 import resource from '../../common/resource';
 
 export const Gesture_ROUTE_PREFIX: string = 'gesture';
-//$r('app.string.xxx')需要替换为开发者所需的资源文件
+//$r('app.string.xxx')需要替换为开发者所需的文本资源文件
 
 const routes: Route[] = [
   {
@@ -70,7 +70,7 @@ const routes: Route[] = [
     description: resource.resourceToString($r('app.string.singlegesture_Index_Click_description')),
   }
 
-]
+];
 
 @Builder
 export function GestureDestination(name: string) {
@@ -123,7 +123,7 @@ struct GestureExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    //$r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+    // $r('app.string.singlegesture_Index_Pancom_title')资源文件中的value值为'滑动手势'
     .title($r('app.string.singlegesture_Index_Pancom_title'))
   }
 }

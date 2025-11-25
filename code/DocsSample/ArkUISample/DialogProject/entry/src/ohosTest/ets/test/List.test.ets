@@ -17,10 +17,18 @@ import IndexTest from './Index.test'
 import abilityTest from './Ability.test';
 import PopupTest from './Popup.test';
 import MenuTest from './Menu.test'
+import OpenCustomDialogTest from './OpenCustomDialog.test';
+import CustomDialogTest from './CustomDialog.test';
+import NewFixDialogTest from './FixedDialogNew.test';
+import DialogFocusStrategyTest from './DialogFocusStrategy.test';
 
 export default function testsuite() {
   abilityTest();
   IndexTest();
   PopupTest();
   MenuTest();
+  OpenCustomDialogTest();
+  CustomDialogTest();
+  NewFixDialogTest();
+  DialogFocusStrategyTest();
 }

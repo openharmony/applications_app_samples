@@ -14,13 +14,13 @@
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
+1. 通过运行Button1.test.ets测试用例，使页面从Index页面跳到Button1页面，按钮颜色由灰色变成绿色。
 
-2. 在组件目录选择详细的示例参考。
+2. 通过运行Button2.test.ets测试用例，使页面从Index页面跳到Button2页面，按钮颜色由灰色变成绿色。
 
-3. 进入示例界面，查看参考示例。
+3. 通过运行Button3.test.ets测试用例，使页面从Index页面跳到Button3页面，按钮颜色由蓝色变成灰色且按钮宽度变短，之后按钮恢复原样。
 
-4. 通过自动测试框架可进行测试及维护。
+4. 通过运行Button4.test.ets测试用例，使页面从Index页面跳到Button4页面，按钮颜色由绿色变成蓝色且边框颜色变成橙色，之后按钮恢复原样。
 
 ### 工程目录
 ```
@@ -32,10 +32,16 @@ entry/src/main/ets/
 |   |---ButtonModifier04.ets                   //定义ButtonModifier
 |---entryability
 |---pages
-|   |---AttributeDemo01.ets                         // 按钮主题切换与多态样式                          
-entry/src/ohosTest/
-|---ets
-|   |---Attribute.test.ets                       // 对应页面测试代码
+|   |---Button1.ets                         // 按钮主题切换与多态样式       
+|   |---Button2.ets                         // 按钮主题切换与多态样式  
+|   |---Button3.ets                         // 按钮主题切换与多态样式  
+|   |---Button4.ets                         // 按钮主题切换与多态样式                     
+entry/src/ohosTest/ets
+|---test
+|   |---Button1.test.ets                       // 对应页面测试代码
+|   |---Button2.test.ets                       // 对应页面测试代码
+|   |---Button3.test.ets                       // 对应页面测试代码
+|   |---Button4.test.ets                       // 对应页面测试代码
 ```
 ### 具体实现
 一、使用AttributeModifier实现按钮主题切换与多态样式：
@@ -82,7 +88,7 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：Mate 70 Pro。
 
-2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API20版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
 
 3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
 

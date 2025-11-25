@@ -14,7 +14,7 @@
  */
 @Component
 export struct ConditionView {
-  @State isShow: boolean = true
+  @State isShow: boolean = true;
 
   build() {
     Column() {

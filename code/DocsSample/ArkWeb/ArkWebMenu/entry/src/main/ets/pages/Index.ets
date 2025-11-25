@@ -15,11 +15,7 @@
 
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_WebMenu]'
-const DOMAIN = 0xF811
-const BUNDLE = 'WebMenu_'
 //Column space
 const COLUMN_SPACE: Length = 10;
 @Entry
@@ -33,7 +29,7 @@ struct Index {
             url: 'pages/WebTextMenuItem',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`)
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`)
             })
         })
       Button('contextMenu')
@@ -42,7 +38,7 @@ struct Index {
             url: 'pages/WebContextMenu',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -52,7 +48,7 @@ struct Index {
             url: 'pages/WebBindSelectionMenu',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -62,7 +58,7 @@ struct Index {
             url: 'pages/WebPreviewBuilder',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -72,7 +68,7 @@ struct Index {
             url: 'pages/WebSaveImage',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -82,7 +78,7 @@ struct Index {
             url: 'pages/WebEditMenuOptions',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -92,7 +88,7 @@ struct Index {
             url: 'pages/WebScanQRCode',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -102,7 +98,17 @@ struct Index {
             url: 'pages/WebDisableLongPress',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+            })
+        })
+      
+      Button('bindSelectionMenuText')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/WebBindSelectionMenuText',
+          })
+            .catch((error: BusinessError) => {
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

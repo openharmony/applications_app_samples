@@ -23,8 +23,10 @@
 #include "ArkUIListItemNode.h"
 #include "ArkUIListNode.h"
 #include "ArkUITextNode.h"
-#include "common/common.h"
 #include <hilog/log.h>
+#define SIZE_16 16
+#define SIZE_100 100
+#define COLOR_BACKGROUND 0xFFfffacd
 
 namespace NativeModule {
 

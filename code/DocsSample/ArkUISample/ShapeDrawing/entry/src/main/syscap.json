@@ -7,6 +7,7 @@
   },
   "production": {
     "removedSysCaps": [
+      "SystemCapability.Security.DataTransitManager",
       "SystemCapability.HiviewDFX.HiDumper",
       "SystemCapability.Security.DeviceAuth",
       "SystemCapability.Multimedia.Media.AVTranscoder",
@@ -18,7 +19,13 @@
       "SystemCapability.Advertising.Ads",
       "SystemCapability.Customization.EnterpriseDeviceManager",
       "SystemCapability.Security.DeviceSecurityLevel",
-      "SystemCapability.UserIAM.UserAuth.PinAuth"
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.Telephony.CellularData",
+      "SystemCapability.Telephony.CoreService",
+      "SystemCapability.Telephony.StateRegistry",
+      "SystemCapability.Telephony.SmsMms",
+      "SystemCapability.Telephony.CallManager",
+      "SystemCapability.BundleManager.AppDomainVerify"
     ]
   }
 }

@@ -14,11 +14,8 @@
  */
 
 // [Start cors_loccross_one]
+// main/ets/pages/LocCrossOriginResAccSol_one.ets
 import { webview } from '@kit.ArkWeb';
-
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
 
 @Entry
 @Component
@@ -27,8 +24,8 @@ struct Index {
   webviewController: webview.WebviewController = new webview.WebviewController();
   // 构造域名和本地文件的映射表
   schemeMap = new Map([
-    [resourceToString($r('app.string.web_path')) + '/index.html', 'index.html'],
-    [resourceToString($r('app.string.web_path')) + '/js/script.js', 'js/script.js'],
+    ['https://www.example.com/index.html', 'index.html'],
+    ['https://www.example.com/js/script.js', 'js/script.js'],
   ]);
   // 构造本地文件和构造返回的格式mimeType
   mimeTypeMap = new Map([
@@ -39,9 +36,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        // 针对本地index1.html,使用http或者https协议代替file协议或者resource协议，并且构造一个属于自己的域名。
+        // 针对本地index.html,使用http或者https协议代替file协议或者resource协议，并且构造一个属于自己的域名。
         // 本例中构造www.example.com为例。
-        Web({ src: resourceToString($r('app.string.web_path')) + '/index.html', controller: this.webviewController })
+        Web({ src: 'https://www.example.com/index.html', controller: this.webviewController })
           .javaScriptAccess(true)
           .fileAccess(true)
           .domStorageAccess(true)

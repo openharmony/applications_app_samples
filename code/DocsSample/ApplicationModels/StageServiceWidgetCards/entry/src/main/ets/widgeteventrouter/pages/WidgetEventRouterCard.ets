@@ -14,11 +14,13 @@
  */
 
 // [Start widget_event_router_card]
+// src/main/ets/widgeteventrouter/pages/WidgetEventRouterCard.ets
 @Entry
 @Component
 struct WidgetEventRouterCard {
   build() {
     Column() {
+      // $r('app.string.JumpLabel')需要替换为开发者所需的资源文件
       Text($r('app.string.JumpLabel'))
         .fontColor('#FFFFFF')
         .opacity(0.9)
@@ -27,6 +29,7 @@ struct WidgetEventRouterCard {
       Row() {
         Column() {
           Button() {
+            // $r('app.string.ButtonA_label')需要替换为开发者所需的资源文件
             Text($r('app.string.ButtonA_label'))
               .fontColor('#45A6F4')
               .fontSize(12)
@@ -45,6 +48,7 @@ struct WidgetEventRouterCard {
           })
 
           Button() {
+            // $r('app.string.ButtonB_label')需要替换为开发者所需的资源文件
             Text($r('app.string.ButtonB_label'))
               .fontColor('#45A6F4')
               .fontSize(12)
@@ -68,6 +72,7 @@ struct WidgetEventRouterCard {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

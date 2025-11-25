@@ -33,7 +33,7 @@ export default function CheckPage() {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
       const want: Want = {
-        bundleName: 'com.sample.checkpage',
+        bundleName: 'com.samples.checkpage',
         abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);

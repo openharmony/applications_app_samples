@@ -449,10 +449,6 @@
       "value": "内容页和页签联动示例"
     },
     {
-      "name": "ContentWillChange_titleContentOnAndTabSync",
-      "value": "内容页和页签不联动示例"
-    },
-    {
       "name": "ContentWillChange_titleSpecifiedTab",
       "value": "切换指定页签示例"
     },
@@ -467,10 +463,6 @@
     {
       "name": "ContentWillChange_description",
       "value": "示例展示使用了自定义导航栏后，自行实现页签切换逻辑。"
-    },
-    {
-      "name": "Content_titleContentOnAndTabSync",
-      "value": "示例展示使用了自定义导航栏后，内容和标签联动"
     },
     {
       "name": "AgeFriendlyTabs_title",
@@ -569,6 +561,10 @@
       "value": "添加滚动条"
     },
     {
+      "name": "CustomListStyle_titleExternalScrollbars",
+      "value": "添加外置滚动条"
+    },
+    {
       "name": "CustomListStyle_description",
       "value": "示例通过属性自定义设置列表的内容间距、分隔线、滚动条等样式。"
     },
@@ -617,8 +613,32 @@
       "value": "滑动离手事件"
     },
     {
+      "name": "Scroll_Title",
+      "value": "Scroll"
+    },
+    {
+      "name": "ScrollModifier_Title",
+      "value": "ScrollModifier"
+    },
+    {
       "name": "Support_Sliding_Hand_Event",
       "value": "支持滑动离手事件"
+    },
+    {
+      "name": "Support_ScrollSnapList_Hand_Event",
+      "value": "支持List限制位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapGrid_Hand_Event",
+      "value": "支持Grid限位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapWaterFlow_Hand_Event",
+      "value": "支持WaterFlow限位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapScroll_Hand_Event",
+      "value": "支持Scroll限位滚动事件"
     },
     {
       "name": "Today_Hot_News",
@@ -937,12 +957,28 @@
       "value": "自定义弧形列表样式"
     },
     {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_title",
+      "value": "设置数字导航点忽略导航点组件大小"
+    },
+    {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_description",
+      "value": "针对数字导航点，当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
       "name": "ArcListStyles_titleSpacing",
       "value": "自定义弧形列表项间距"
     },
     {
       "name": "ArcListStyles_titleScale",
       "value": "列表项关闭自动缩放"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_title",
+      "value": "保持可见内容位置不变"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_description",
+      "value": "Swiper通过设置maintainVisibleContentPosition属性，可在使用LazyForEach懒加载数据时（如通过onDataAdd新增数据），保持当前可见内容位置不变，避免因数据增删导致的视图跳动。"
     },
     {
       "name": "ArcListStyles_description",
@@ -1151,6 +1187,98 @@
     {
       "name": "Third_subassembly",
       "value": "第三个子组件"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "Personal_Basic_Information",
+      "value": "个人基本资料"
+    },
+    {
+      "name": "nick_name",
+      "value": "昵称"
+    },
+    {
+      "name": "avatar",
+      "value": "头像"
+    },
+    {
+      "name": "age",
+      "value": "年龄"
+    },
+    {
+      "name": "birthday",
+      "value": "生日"
+    },
+    {
+      "name": "gender",
+      "value": "性别"
+    },
+    {
+      "name": "Device_Information",
+      "value": "设备信息"
+    },
+    {
+      "name": "Application_usage_information",
+      "value": "应用使用信息"
+    },
+    {
+      "name": "data_you_voluntarily_uploaded",
+      "value": "您主动上传的数据"
+    },
+    {
+      "name": "Trading_and_asset_information",
+      "value": "交易与资产信息"
+    },
+    {
+      "name": "Other_materials",
+      "value": "其他资料"
+    },
+    {
+      "name": "say_something",
+      "value": "说点什么..."
+    },
+    {
+      "name": "welcome_live_room",
+      "value": "欢迎来到直播间"
+    },
+    {
+      "name": "system",
+      "value": "系统"
+    },
+    {
+      "name": "anchors",
+      "value": "主播"
+    },
+    {
+      "name": "hello_everyone",
+      "value": "大家好啊~"
+    },
+    {
+      "name": "new_title",
+      "value": "新闻标题"
+    },
+    {
+      "name": "new_short",
+      "value": "这是第一条短新闻，内容较少，快速滑动切换"
+    },
+    {
+      "name": "new_long",
+      "value": "这是第二条长新闻，内容较多，可以自由滑动查看完整内容。"
+    },
+    {
+      "name": "Dark_mode",
+      "value": "深色模式"
+    },
+    {
+      "name": "Light_mode",
+      "value": "浅色模式"
+    },
+    {
+      "name": "ContentWillChange_animationMode",
+      "value": "动态修改animationMode"
     }
   ]
 }

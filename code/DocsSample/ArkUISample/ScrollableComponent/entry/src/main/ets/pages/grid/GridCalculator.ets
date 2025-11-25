@@ -25,6 +25,17 @@ export struct GridCalculator {
   layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
+      // [StartExclude Set_numberrows_columns]
+      let key1: number = 16;
+      let key2: number = 15;
+      // [EndExclude Set_numberrows_columns]
+
+      if (index == key1) { // key1是“0”按键对应的index
+        return [6, 0, 1, 2];
+      } else if (index == key2) { // key2是“=”按键对应的index
+        return [5, 3, 2, 1];
+      }
+      // [StartExclude Set_numberrows_columns]
       if (index == 0) {
         return [2, 0, 1, 1];
       } else if (index == 1) {
@@ -55,20 +66,19 @@ export struct GridCalculator {
         return [5, 1, 1, 1];
       } else if (index == 14) {
         return [5, 2, 1, 1];
-      } else if (index == 15) {
-        return [5, 3, 2, 1];
-      } else if (index == 16) {
-        return [6, 0, 1, 2];
       } else if (index == 17) {
         return [6, 2, 1, 1];
       }
       return [0, 0, 2, 4];
+      // [EndExclude Set_numberrows_columns]
+      // 这里需要根据具体布局返回其他item的位置
     }
   }
   // [StartExclude Set_numberrows_columns]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // app.string.GridCalculator_title资源文件中的value值为‘计算器的按键布局’
         ComponentCard({ title: $r('app.string.GridCalculator_title') }) {
           // [EndExclude Set_numberrows_columns]
           Grid(undefined, this.layoutOptions) {
@@ -94,13 +104,12 @@ export struct GridCalculator {
           }
           .columnsTemplate('1fr 1fr 1fr 1fr')
           .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
-          // [StartExclude Set_numberrows_columns]
+          // [End Set_numberrows_columns]
+
           .rowsGap(8)
           .columnsGap(5)
           .width('100%')
           .height('80%')
-          // [EndExclude Set_numberrows_columns]
-          // [End Set_numberrows_columns]
         }
       }
     }

@@ -40,7 +40,7 @@ export struct Touch {
                 this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: ' +
                 event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:(' +
                 event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:' +
-                event.target.area.width + '\nheight:' + event.target.area.height
+                event.target.area.width + '\nheight:' + event.target.area.height;
               }
             })
           Button('Touch').height(50).width(200).margin(20)
@@ -58,7 +58,7 @@ export struct Touch {
                 this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: ' +
                 event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:(' +
                 event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:' +
-                event.target.area.width + '\nheight:' + event.target.area.height
+                event.target.area.width + '\nheight:' + event.target.area.height;
               }
             })
           Text(this.text)

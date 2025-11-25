@@ -12,20 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Common_UIContext]
+// [Start Common_PixelUtils]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
 export class PixelUtils {
-  public static uiContext : UIContext | undefined;
-  static setUIContext(uiContext : UIContext) : void {
+  public static uiContext: UIContext | undefined;
+
+  static setUIContext(uiContext: UIContext): void {
     PixelUtils.uiContext = uiContext;
   }
 
   static vp2px(vpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       let displayClass = display.getDefaultDisplaySync();
       let density = displayClass.densityPixels;
@@ -35,7 +36,7 @@ export class PixelUtils {
   }
 
   static fp2px(fpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
@@ -44,7 +45,7 @@ export class PixelUtils {
   }
 
   lpx2px(lpxValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
@@ -52,4 +53,5 @@ export class PixelUtils {
     return _uiContext.lpx2px(lpxValue)
   }
 }
-// [End Common_UIContext]
+
+// [End Common_PixelUtils]

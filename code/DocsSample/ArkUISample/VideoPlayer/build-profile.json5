@@ -39,6 +39,7 @@
         "name": "release"
       }
     ],
+    "signingConfigs": []
   },
   "modules": [
     {

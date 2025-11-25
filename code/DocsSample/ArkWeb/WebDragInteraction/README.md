@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [使用Web组件的拖拽功能与网页交互](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web_drag.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解ArkWeb的拖拽功能使应用能够在网页中实现元素的拖放，可以长按可拖拽的元素，将其拖至可放置的元素上，然后松手完成放置。
+本工程主要实现了对以下指南文档中 [使用Web组件的拖拽功能与网页交互](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web_drag.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解ArkWeb的拖拽功能使应用能够在网页中实现元素的拖放，可以长按可拖拽的元素，将其拖至可放置的元素上，然后松手完成放置。
 
 ### 在ArkTS侧实现拖拽相关逻辑
 

@@ -13,27 +13,29 @@
  * limitations under the License.
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
-const TAG = 'arktsobservedandobjectlink';
+const TAG = 'ArkTSObservedAndObjectlink';
+
 @Observed
 class Person {
- public name: string = '';
- public age: number = 0;
+  public name: string = '';
+  public age: number = 0;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  };
-};
+  }
+}
 
 @Observed
 class ClickEventJackInfo {
- public person: Person;
+  public person: Person;
 
   constructor(person: Person) {
     this.person = person;
-  };
-};
+  }
+}
 
 @Entry
 @Component
@@ -41,32 +43,32 @@ struct Parent {
   @State @Watch('onChange01') info: ClickEventJackInfo = new ClickEventJackInfo(new Person('Bob', 10));
 
   onChange01() {
-    hilog.info(DOMAIN,TAG,`:::onChange01: + ${this.info.person.name}`); // 2
+    hilog.info(DOMAIN, TAG, `:::onChange01: + ${this.info.person.name}`); // 2
   };
 
   build() {
     Column() {
       Text(this.info.person.name).height(40)
       // [Start ClickEvent_Jack]
-      ClickEventJackChild({
+      Child({
         per: this.info.person, clickEvent: () => {
-          hilog.info(DOMAIN,TAG,`:::clickEvent before ${this.info.person.name}`); // 1
+          hilog.info(DOMAIN, TAG, `:::clickEvent before ${this.info.person.name}`); // 1
           this.info.person.name = 'Jack';
-          hilog.info(DOMAIN,TAG,`:::clickEvent after ${this.info.person.name}`); // 3
+          hilog.info(DOMAIN, TAG, `:::clickEvent after ${this.info.person.name}`); // 3
         }
-      });
+      })
       // [End ClickEvent_Jack]
     }
   }
 }
 
 @Component
-struct ClickEventJackChild {
+struct Child {
   @ObjectLink @Watch('onChange02') per: Person;
   clickEvent?: () => void;
 
   onChange02() {
-    hilog.info(DOMAIN,TAG,`:::onChange02:${this.per.name}`); // 5
+    hilog.info(DOMAIN, TAG, `:::onChange02:${this.per.name}`); // 5
   }
 
   build() {
@@ -75,13 +77,14 @@ struct ClickEventJackChild {
         .height(40)
         .onClick(() => {
           this.onClickType();
-        });
+        })
     }
   }
 
   private onClickType() {
     if (this.clickEvent) {
       this.clickEvent();
-    };
-  };
+    }
+  }
 }
+export default Parent;

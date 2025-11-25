@@ -39,7 +39,7 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Text'));
+      await driver.assertComponentExist(ON.text('load font'));
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
@@ -61,12 +61,37 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Text'));
-      let drawTextBtn = await driver.findComponent(ON.text('Draw Text'));
-      // 点击'Draw Text'按钮
+      await driver.assertComponentExist(ON.text('load font'));
+      let drawTextBtn = await driver.findComponent(ON.text('load font'));
+      // 点击'load font'按钮
       await drawTextBtn.click();
       await driver.delayMs(1000);
       console.info(TAG, 'DrawCustomFontTEST_001 end');
+    })
+
+    /**
+     * 点击按钮，解注册自定义字体文本
+     */
+    it('DrawCustomFontTEST_002', 2, async () => {
+      console.info(TAG, 'DrawCustomFontTEST_002 begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.arkdrawing',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        console.info(TAG, `DrawCustomFontTEST_002 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('unload font'));
+      let drawTextBtn = await driver.findComponent(ON.text('unload font'));
+      // 点击'load font'按钮
+      await drawTextBtn.click();
+      await driver.delayMs(1000);
+      console.info(TAG, 'DrawCustomFontTEST_002 end');
     })
 
   })

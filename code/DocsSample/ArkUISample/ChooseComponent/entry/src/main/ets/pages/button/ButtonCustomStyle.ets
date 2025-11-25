@@ -55,7 +55,6 @@ export struct ButtonCustomStyle {
             .fontWeight(800)
           // [End custom_font_style]
 
-
           // [Start custom_font_style2]
           Button('font style', { type: ButtonType.Normal })
             .fontSize(20)
@@ -74,17 +73,17 @@ export struct ButtonCustomStyle {
           // [End custom_background_color]
           // [Start custom_background_color2]
           Button('background color').backgroundColor(0xF55A42)
-          // [Start custom_background_color2]
+          // [End custom_background_color2]
         }
 
         ComponentCard({
           title: $r('app.string.SetButtonType_titleFive'),
           description: $r('app.string.SetButtonType_descriptionFive')
         }) {
-          //图片需要更换,left使用方式做了修改
           // [Start custom_create_function_button]
           Button({ type: ButtonType.Circle, stateEffect: true }) {
-            Image($r('sys.media.ohos_ic_public_cancel')).width(30).height(30)
+            // $r('app.media.ic_public_delete_filled')需要替换为开发者需要的图片资源
+            Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
           }.width(55).height(55).margin({ 'left': 20 }).backgroundColor(0xF55A42)
           // [End custom_create_function_button]
         }

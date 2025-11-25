@@ -1,5 +1,21 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/scroll/ScrollSnap/List/ListIndex",
+    "pages/scroll/ScrollSnap/Grid/GridIndex",
+    "pages/scroll/ScrollSnap/Scroll/ScrollIndex",
+    "pages/scroll/ScrollSnap/WaterFlow/WaterFlowIndex",
+    "pages/scroll/ScrollSnap/List/ListIndex2",
+    "pages/scroll/ScrollSnap/Grid/GridIndex2",
+    "pages/scroll/ScrollSnap/Scroll/ScrollIndex2",
+    "pages/scroll/ScrollSnap/WaterFlow/WaterFlowIndex2",
+    "pages/scroll/ScrollModifier/List/ListIndex",
+    "pages/scroll/ScrollModifier/Grid/GridIndex",
+    "pages/scroll/ScrollModifier/Scroll/ScrollIndex",
+    "pages/scroll/ScrollModifier/WaterFlow/WaterFlowIndex",
+    "pages/scroll/ScrollModifier/List/ListIndex2",
+    "pages/scroll/ScrollModifier/Grid/GridIndex2",
+    "pages/scroll/ScrollModifier/Scroll/ScrollIndex2",
+    "pages/scroll/ScrollModifier/WaterFlow/WaterFlowIndex2"
   ]
 }

@@ -15,39 +15,33 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\X30060367\\.ohos\\config\\default_FileApiSample_QfzXgV_Y3xFRfKAEcaT_9Q9iRSbDymvmAA1_w5yLeWA=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A79A2DDD805AC5023344FB4C0AB70749CC203482499E85D7F91AD50A887A7BA572B5254A79092",
-          "profile": "C:\\Users\\X30060367\\.ohos\\config\\default_FileApiSample_QfzXgV_Y3xFRfKAEcaT_9Q9iRSbDymvmAA1_w5yLeWA=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\X30060367\\.ohos\\config\\default_FileApiSample_QfzXgV_Y3xFRfKAEcaT_9Q9iRSbDymvmAA1_w5yLeWA=.p12",
-          "storePassword": "0000001AEB875E4AEE3390DB0C17454395B9BBEB0F5C87CD35513DDB5CA0443F68C2835892016F95477F"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS",
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 20,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
-          "strictMode": {
-            "caseSensitiveCheck": true,
-            "useNormalizedOHMUrl": true
+          "externalNativeOptions": {
+            "abiFilters": [
+              "arm64-v8a",
+              "x86_64"
+            ],
+            "abiFilters": [
+              "arm64-v8a",
+              "x86_64",
+              "armeabi-v7a"
+            ]
           }
         }
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"

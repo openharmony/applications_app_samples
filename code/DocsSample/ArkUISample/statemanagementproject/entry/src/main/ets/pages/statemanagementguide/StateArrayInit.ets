@@ -14,55 +14,54 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class StateArrayInitChild {
+class Child {
   public count: number;
 
   constructor(count: number) {
-    this.count = count
+    this.count = count;
   }
 }
 
 @Observed
-class StateArrayInitChildList extends Array<StateArrayInitChild> {
-  constructor(children?: StateArrayInitChild[]) {
+class ChildList extends Array<Child> {
+  constructor(children?: Child[]) {
     super();
     if (children) {
       this.push(...children);
     }
   }
-};
+}
 
 @Observed
-class StateArrayInitAncestor {
-  public childList: StateArrayInitChildList;
-
-  constructor(childList: StateArrayInitChildList) {
+class Ancestor {
+  public childList: ChildList;
+  constructor(childList: ChildList) {
     this.childList = childList;
   }
 
   public loadData() {
     let tempList =
-      new StateArrayInitChildList([new StateArrayInitChild(1), new StateArrayInitChild(2), new StateArrayInitChild(3),
-        new StateArrayInitChild(4), new StateArrayInitChild(5)]);
+      new ChildList([new Child(1), new Child(2), new Child(3),
+        new Child(4), new Child(5)]);
     this.childList = tempList;
   }
 
   public clearData() {
-    this.childList = new StateArrayInitChildList();
+    this.childList = new ChildList();
   }
 }
 
 @Component
 struct StateArrayInit {
-  @Link childList: StateArrayInitChildList;
-  @ObjectLink stateArrayInitchild: StateArrayInitChild;
+  @Link childList: ChildList;
+  @ObjectLink child: Child;
 
   build() {
     Row() {
-      Text(this.stateArrayInitchild.count + '')
+      Text(this.child.count + '')
         .height(70)
         .fontSize(20)
         .borderRadius({ topLeft: 6, topRight: 6 })
@@ -72,8 +71,8 @@ struct StateArrayInit {
         .backgroundColor(Color.Red)
         .onClick(() => {
           let index = this.childList.findIndex((item) => {
-            return item.count === this.stateArrayInitchild.count
-          })
+            return item.count === this.child.count;
+          });
           if (index !== -1) {
             this.childList.splice(index, 1);
           }
@@ -93,7 +92,7 @@ struct StateArrayInit {
 
 @Component
 struct StateArrayInitCompList {
-  @ObjectLink @Watch('changeChildList') stateArrayInitchildList: StateArrayInitChildList;
+  @ObjectLink @Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
     hilog.info(DOMAIN_NUMBER, TAG, 'CompList ChildList change');
@@ -107,11 +106,11 @@ struct StateArrayInitCompList {
   build() {
     Column() {
       List() {
-        ForEach(this.stateArrayInitchildList, (item: StateArrayInitChild, index) => {
+        ForEach(this.childList, (item: Child, index) => {
           ListItem() {
             StateArrayInit({
-              childList: this.stateArrayInitchildList,
-              stateArrayInitchild: item
+              childList: this.childList,
+              child: item
             })
               .opacity(this.isRenderCompChild(index))
           }
@@ -124,21 +123,21 @@ struct StateArrayInitCompList {
 
 @Component
 struct StateArrayInitCompAncestor {
-  @ObjectLink stateArrayInitancestor: StateArrayInitAncestor;
+  @ObjectLink ancestor: Ancestor;
 
   build() {
     Column() {
-      StateArrayInitCompList({ stateArrayInitchildList: this.stateArrayInitancestor.childList })
+      StateArrayInitCompList({ childList: this.ancestor.childList })
       Row() {
         Button('Clear')
           .onClick(() => {
-            this.stateArrayInitancestor.clearData()
+            this.ancestor.clearData();
           })
           .width(100)
           .margin({ right: 50 })
         Button('Recover')
           .onClick(() => {
-            this.stateArrayInitancestor.loadData()
+            this.ancestor.loadData();
           })
           .width(100)
       }
@@ -149,15 +148,13 @@ struct StateArrayInitCompAncestor {
 @Entry
 @Component
 struct StateArrayInitPage {
-  // [StartExclude StateArrayInit_start]
-  @State childList: StateArrayInitChildList =
-    new StateArrayInitChildList([new StateArrayInitChild(1), new StateArrayInitChild(2), new StateArrayInitChild(3),
-      new StateArrayInitChild(4), new StateArrayInitChild(5)]);
-  @State ancestor: StateArrayInitAncestor = new StateArrayInitAncestor(this.childList)
-  // [StartExclude StateArrayInit_end]
+  // [Start StateArrayInit_start]
+  @State childList: ChildList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
+  @State ancestor: Ancestor = new Ancestor(this.childList);
+  // [End StateArrayInit_start]
   build() {
     Column() {
-      StateArrayInitCompAncestor({ stateArrayInitancestor: this.ancestor })
+      StateArrayInitCompAncestor({ ancestor: this.ancestor })
     }
   }
 }

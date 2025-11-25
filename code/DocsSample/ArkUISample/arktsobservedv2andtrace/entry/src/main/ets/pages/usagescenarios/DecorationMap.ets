@@ -14,14 +14,14 @@
  */
 // [Start Decoration_Map]
 @ObservedV2
-class MapInfo {
+class Info {
   @Trace public memberMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
-};
+}
 
 @Entry
 @ComponentV2
 struct MapSample {
-  info: MapInfo = new MapInfo();
+  info: Info = new Info();
 
   build() {
     Row() {
@@ -32,31 +32,33 @@ struct MapSample {
           Text(`${item[1]}`)
             .fontSize(30)
           Divider()
-        });
+        })
         Button('init map')
           .onClick(() => {
             this.info.memberMap = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
-          });
+          })
         Button('set new one')
           .onClick(() => {
             this.info.memberMap.set(4, 'd');
-          });
+          })
         Button('clear')
           .onClick(() => {
             this.info.memberMap.clear();
-          });
+          })
         Button('set the key: 0')
           .onClick(() => {
             this.info.memberMap.set(0, 'aa');
-          });
+          })
         Button('delete the first one')
           .onClick(() => {
             this.info.memberMap.delete(0);
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Decoration_Map]
+export default MapSample;

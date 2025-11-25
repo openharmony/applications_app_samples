@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -37,13 +40,13 @@ struct AnimatorTest {
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onFinish')
+      hilog.info(DOMAIN, this.TAG, 'backAnimator onFinish');
     }
     this.backAnimator.onRepeat = () => {
-      console.info(this.TAG, 'backAnimator repeat')
+      hilog.info(DOMAIN, this.TAG, 'backAnimator repeat');
     }
     this.backAnimator.onCancel = () => {
-      console.info(this.TAG, 'backAnimator cancel')
+      hilog.info(DOMAIN, this.TAG, 'backAnimator cancel');
     }
     this.backAnimator.onFrame = (value: number) => {
       this.wid = value
@@ -164,7 +167,7 @@ struct AnimatorTest {
                   })
                 }
               } else {
-                console.info(this.TAG, 'Animation not ended')
+                hilog.info(DOMAIN, this.TAG, 'Animation not ended');
               }
             })
         }

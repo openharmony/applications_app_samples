@@ -14,8 +14,7 @@
  */
 
 // [Start avoid_central_axis_menu]
-// $r('app.media.xxx')需要替换为开发者所需的资源文件。
-// $r('app.string.xxx')需要替换为开发者所需的资源文件。
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct SupportAvoidCentralAxisMenuExample {
@@ -40,6 +39,7 @@ export struct SupportAvoidCentralAxisMenuExample {
   @Builder
   MyMenu1() {
     Menu() {
+      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
@@ -114,8 +114,9 @@ export struct SupportAvoidCentralAxisMenuExample {
       .height('100%')
       .width('100%')
     }
-    .backgroundColor('#f1f2f3')
+    // [StartExclude avoid_central_axis_menu]
     .title($r('app.string.SupportAvoidCentralAxisMenu_title'))
+    // [EndExclude avoid_central_axis_menu]
   }
 }
 // [End avoid_central_axis_menu]

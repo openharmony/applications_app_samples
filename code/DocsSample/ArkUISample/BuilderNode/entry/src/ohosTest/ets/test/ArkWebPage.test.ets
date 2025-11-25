@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function ArkWebPageTest() {
   describe('ArkWebPageTest', () => {
@@ -36,34 +36,43 @@ export default function ArkWebPageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','ArkWebPageTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','ArkWebPageTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/ArkWebPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get ArkWebPage state pages:' + JSON.stringify(pages));
-        if (!('ArkWebPage' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get ArkWebPage pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get ArkWebPage state pages:' + JSON.stringify(pages));
+        if (('ArkWebPage' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get ArkWebPage pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push ArkWebPage page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push ArkWebPage page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','ArkWebPage beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','ArkWebPage beforeEach end');
     });
 
+    /*
+     * @tc.number     : ArkWebPage_01
+     * @tc.name       : ArkWebPageTest
+     * @tc.desc       : 测试ArkWeb组件提前进行离线预渲染
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('ArkWebPageTest', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: ArkWebPageTest begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: ArkWebPageTest begin');
       let driver = Driver.create();
       let componentButton1 = await driver.findComponent(ON.id('ArkWebPage'));
       await componentButton1.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -14,22 +14,22 @@
  *
 */
 
-// src/main/ets/pages/10-Builder.ets
 // [Start Main_Builder]
+// src/main/ets/pages/BuilderPage.ets
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace public taskName: string = 'Todo';
   @Trace public isFinish: boolean = false;
 }
 
-@Builder function actionButton(text: string|Resource, onClick:() => void) {
+@Builder function ActionButton(text: string|Resource, onClick:() => void) {
   Button(text, { buttonStyle: ButtonStyleMode.NORMAL })
     .onClick(onClick)
     .margin({ left: 10, right: 10, top: 5, bottom: 5 })
@@ -37,7 +37,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace public tasks: Task[] = [];
 
@@ -65,11 +65,12 @@ struct TaskItem {
   @Event deleteTask: () => void = () => {};
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.debug(0x0000, 'testTag', '%{public}s', '任务' + this.task.taskName + '的完成状态从' + mon.value()?.before + '变为了' + mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
   }
 
   build() {
     Row() {
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -77,7 +78,7 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
-      actionButton($r('app.string.Delete_task'), () => this.deleteTask())
+      ActionButton('Delete', () => this.deleteTask())
     }
     .height('7%')
     .width('90%')
@@ -96,7 +97,6 @@ struct TodoList {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
-    this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
     if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
@@ -115,10 +115,10 @@ struct TodoList {
 
   build() {
     Column() {
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin(10)
-      Text(`${this.context.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text('Unfinished task' + `：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
       Repeat<Task>(this.taskList.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
@@ -128,12 +128,12 @@ struct TodoList {
           }).margin(5)
         })
       Row() {
-        actionButton($r('app.string.Finish_all_tasks'), (): void => this.finishAll(true))
-        actionButton($r('app.string.Unfinish_all_tasks'), (): void => this.finishAll(false))
-        actionButton($r('app.string.Setting'), (): void => {
+        ActionButton('All Completed', (): void => this.finishAll(true))
+        ActionButton('All Not Completed', (): void => this.finishAll(false))
+        ActionButton('Setting', (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -141,10 +141,10 @@ struct TodoList {
       }
       .margin({ top: 10, bottom: 5 })
       Row() {
-        TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
+        TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
-        actionButton('+', (): void => {
+        ActionButton('+', (): void => {
           let newTask = new Task();
           newTask.taskName = this.newTaskName;
           this.taskList.tasks.push(newTask);

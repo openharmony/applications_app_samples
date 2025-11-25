@@ -15,9 +15,6 @@
 // [Start web_BindSelectionMenu]
 import { webview } from '@kit.ArkWeb';
 
-//substring index
-const SUBSTRING_INDEX: number = 19;
-
 interface PreviewBuilderParam {
   previewImage: Resource | string | undefined;
   width: number;
@@ -46,12 +43,12 @@ struct WebComponent {
   @Builder
   MenuBuilder() {
     Menu() {
-      MenuItem({ content: $r('app.string.copy'), })
+      MenuItem({ content: 'Copy', })
         .onClick(() => {
           this.result?.copy();
           this.result?.closeContextMenu();
         })
-      MenuItem({ content: $r('app.string.all'), })
+      MenuItem({ content: 'Select All', })
         .onClick(() => {
           this.result?.selectAll();
           this.result?.closeContextMenu();
@@ -83,7 +80,7 @@ struct WebComponent {
             this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
             this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
             if (event.param.getSourceUrl().indexOf('resource://rawfile/') == 0) {
-              this.previewImage = $rawfile(event.param.getSourceUrl().substr(SUBSTRING_INDEX));
+              this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
             } else {
               this.previewImage = event.param.getSourceUrl();
             }

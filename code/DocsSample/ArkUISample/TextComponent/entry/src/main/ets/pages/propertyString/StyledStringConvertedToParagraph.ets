@@ -73,12 +73,11 @@ class MyCustomSpan extends CustomSpan {
 @Component
 struct Index {
   @State fullText: string =
-    this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Full_text')) as string;
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Full_text') as string;
   @State originalText: string =
-    this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Original_text')) as string;
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Original_text') as string;
   @State afterTypesetting: string =
-    this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.After_typesetting')) as string;
-
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('After_typesetting') as string;
   str: string =
     'Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.';
   mutableStr2 = new MutableStyledString(this.str, [

@@ -20,13 +20,13 @@ import { webview } from '@kit.ArkWeb';
 
 export default class Entry1Ability extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log('EntryAbility onCreate');
+    console.info('EntryAbility onCreate');
     webview.WebviewController.initializeWebEngine();
     // 预连接时，需要將'https://www.example.com'替换成真实要访问的网站地址。
 
-    webview.WebviewController.prepareForPageLoad(this.context.resourceManager.getStringSync($r('app.string.web_path_one')), true, 2);
+    webview.WebviewController.prepareForPageLoad('https://www.example.com/', true, 2);
     AppStorage.setOrCreate('abilityWant', want);
-    console.log('EntryAbility onCreate done');
+    console.info('EntryAbility onCreate done');
   }
 
   // [StartExclude initialize_kernel_in_onCreate_and_pre_connect_to_homepage]

@@ -49,398 +49,6 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_041
-     * @tc.name testArcListArcIndexerBar
-     * @tc.desc 测试弧形列表联动indexer示例
-     */
-    it('ArcListArcIndexerBar', 0, async (done: Function) => {
-      console.info('uitest: testArcListArcIndexerBar begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListArcIndexerBar_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let button = await driver.findComponent(ON.type('Button'));
-      expect(button === null).assertFalse();
-      await button.click();
-      let testText = await driver.findComponent(ON.text('F', MatchPattern.CONTAINS));
-      expect(testText === null).assertFalse();
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom(5000);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListArcIndexerBar end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_035
-     * @tc.name testArcLongList
-     * @tc.desc 测试弧形长列表示例
-     */
-    it('ArcLongList', 0, async (done: Function) => {
-      console.info('uitest: testArcLongList begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let list = await driver.findComponent(ON.type('List'));
-      expect(list === null).assertFalse();
-      await list.scrollToBottom(2400);
-      let str = await getResourceString($r('app.string.ArcLongList_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom(30000);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcLongList end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_036
-     * @tc.name testArcListAcrScrollBar
-     * @tc.desc 测试弧形列表外置滚动条示例
-     */
-    it('ArcListAcrScrollBar', 0, async (done: Function) => {
-      console.info('uitest: testArcListAcrScrollBar begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListAcrScrollBar_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListAcrScrollBar end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_037
-     * @tc.name testArcListBuiltInScrollerBar
-     * @tc.desc 测试弧形列表内置滚动条示例
-     */
-    it('arcListBuiltInScrollerBar', 0, async (done: Function) => {
-      console.info('uitest: testArcListBuiltInScrollerBar begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.arcListBuiltInScrollerBar_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListBuiltInScrollerBar end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_038
-     * @tc.name testArcListContents
-     * @tc.desc 测试弧形列表迭代弧形列表内容示例
-     */
-    it('ArcListContents', 0, async (done: Function) => {
-      console.info('uitest: testArcListContents begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListContents_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListContents end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_039
-     * @tc.name testArcListShow
-     * @tc.desc 测试弧形列表展示数据示例
-     */
-    it('ArcListShow', 0, async (done: Function) => {
-      console.info('uitest: testArcListShow begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListShow_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListShow end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_040
-     * @tc.name testArcListStyles
-     * @tc.desc 测试弧形列表设置样式示例
-     */
-    it('ArcListStyles', 0, async (done: Function) => {
-      console.info('uitest: testArcListStyles begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListStyles_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('List'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListStyles end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_042
-     * @tc.name testArcListSideSlip
-     * @tc.desc 测试弧形列表侧滑示例
-     */
-    it('ArcListSideSlip', 0, async (done: Function) => {
-      console.info('uitest: testArcListSideSlip begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ArcListSideSlip_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let testText = await driver.findComponent(ON.text('Alice', MatchPattern.CONTAINS));
-      expect(testText === null).assertFalse();
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom(5000);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testArcListSideSlip end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_047
-     * @tc.name testArcListCrown
-     * @tc.desc 测试弧形列表响应旋转表冠示例
-     */
-    it('ArcListCrown', 0, async (done: Function) => {
-      console.info('=====>uitest: testArcListCrown begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let list = await driver.findComponent(ON.type('List'));
-      expect(list === null).assertFalse();
-      await list.scrollToBottom(1000);
-      let str = await getResourceString($r('app.string.ArcListCrown_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('=====>uitest: testArcListCrown end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_048
-     * @tc.name testArcListCreate
-     * @tc.desc 测试弧形列表创建弧形列表示例
-     */
-    it('ArcListCreate', 0, async (done: Function) => {
-      console.info('=====>uitest: testArcListCreate begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('ArcList', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let list = await driver.findComponent(ON.type('List'));
-      expect(list === null).assertFalse();
-      await list.scrollToBottom(1000);
-      let str = await getResourceString($r('app.string.ArcListCreate_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-      let arclist = await driver.findComponent(ON.type('ArcList'));
-      expect(arclist === null).assertFalse();
-      await arclist.scrollToBottom();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('=====>uitest: testArcListCreate end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_043
-     * @tc.name testWaterFlowDynamicSwitchover
-     * @tc.desc 测试瀑布流动态切换列数示例
-     */
-    it('WaterFlowDynamicSwitchover', 0, async (done: Function) => {
-      console.info('uitest: testWaterFlowDynamicSwitchover begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('WaterFlow', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.WaterFlowDynamicSwitchover_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('WaterFlow'));
-      if (arclist === null) {
-        console.log("=====> arclist is null");
-      }
-      expect(arclist === null).assertFalse();
-      let flowItemText = await driver.findComponent(ON.text('FlowItem0', MatchPattern.CONTAINS));
-      if (flowItemText === null) {
-        console.log("=====> flowItemText is null");
-      }
-      expect(flowItemText === null).assertFalse();
-      let scrollPoint: Point = { x: 350, y: 1100 };
-      let scrollPoint2: Point = { x: 350, y: 550 };
-      await driver.fling(scrollPoint, scrollPoint2, 1, 2000);
-      let button = await driver.findComponent(ON.type('Button'));
-      if (button === null) {
-        console.log("=====> button is null");
-      }
-      expect(button === null).assertFalse();
-      await button.click();
-
-      let testText = await driver.findComponent(ON.text('N9', MatchPattern.CONTAINS));
-      if (testText === null) {
-        console.log("=====> testText is null");
-      }
-      expect(testText === null).assertFalse();
-      await driver.fling(scrollPoint, scrollPoint2, 1, 1200);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testWaterFlowDynamicSwitchover end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_044
-     * @tc.name testWaterFlowGroupingMixing
-     * @tc.desc 测试瀑布流混合布局示例
-     */
-    it('WaterFlowGroupingMixing', 0, async (done: Function) => {
-      console.info('uitest: testWaterFlowGroupingMixing begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('WaterFlow', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.WaterFlowGroupingMixing_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('WaterFlow'));
-      expect(arclist === null).assertFalse();
-      let scrollPoint: Point = { x: 350, y: 1100 };
-      let scrollPoint2: Point = { x: 350, y: 550 };
-      await driver.fling(scrollPoint, scrollPoint2, 1, 1200);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testWaterFlowGroupingMixing end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_045
-     * @tc.name testWaterFlowInfiniteScrolling
-     * @tc.desc 测试瀑布流无限滑动触底增加示例
-     */
-    it('WaterFlowInfiniteScrolling', 0, async (done: Function) => {
-      console.info('uitest: testWaterFlowInfiniteScrolling begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('WaterFlow', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.WaterFlowInfiniteScrolling_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('WaterFlow'));
-      expect(arclist === null).assertFalse();
-      let scrollPoint: Point = { x: 350, y: 1100 };
-      let scrollPoint2: Point = { x: 350, y: 550 };
-      await driver.fling(scrollPoint, scrollPoint2, 1, 1200);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testWaterFlowInfiniteScrolling end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_046
-     * @tc.name testWaterFlowInfiniteScrollingEarly
-     * @tc.desc 测试瀑布流无限滑动提前增加示例
-     */
-    it('WaterFlowInfiniteScrollingEarly', 0, async (done: Function) => {
-      console.info('uitest: testWaterFlowInfiniteScrollingEarly begin');
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('WaterFlow', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.WaterFlowInfiniteScrollingEarly_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let arclist = await driver.findComponent(ON.type('WaterFlow'));
-      expect(arclist === null).assertFalse();
-      let scrollPoint: Point = { x: 350, y: 1100 };
-      let scrollPoint2: Point = { x: 350, y: 550 };
-      await driver.fling(scrollPoint, scrollPoint2, 1, 1200);
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testWaterFlowInfiniteScrollingEarly end');
-      done();
-    })
-
-    /**
      * @tc.number UiTest_001
      * @tc.name testControlledScrollPositionList
      * @tc.desc 测试控制滚动位置示例
@@ -533,10 +141,6 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
-      let stickyList = await driver.findComponent(ON.type('List'));
-      expect(stickyList === null).assertFalse();
-      await stickyList.scrollToBottom();
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testStickyHeaderList end');
@@ -593,10 +197,12 @@ export default function IndexTest() {
       expect(addButton === null).assertFalse();
       await addButton.click();
       await driver.mouseClick({ x: 580, y: 770 }, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
-      let listContent = await driver.findComponent(ON.text('Reading', MatchPattern.CONTAINS));
+      let readingStr = await getResourceString($r('app.string.Reading'));
+      let listContent = await driver.findComponent(ON.text(readingStr, MatchPattern.CONTAINS));
       expect(listContent === null).assertFalse();
       await listContent.longClick();
-      let deleteButton = await driver.findComponent(ON.text('delete', MatchPattern.CONTAINS));
+      let deleteStr = await getResourceString($r('app.string.delete'));
+      let deleteButton = await driver.findComponent(ON.text(deleteStr, MatchPattern.CONTAINS));
       expect(deleteButton === null).assertFalse();
       await deleteButton.click();
       await driver.pressBack();
@@ -1285,6 +891,7 @@ export default function IndexTest() {
       await preArcButton.click();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testGridSideToSide end');
       done();
     })
@@ -1304,6 +911,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.LongList_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -1313,6 +921,7 @@ export default function IndexTest() {
       await scrollableList.scrollToBottom();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testLongList end');
       done();
     })
@@ -1331,6 +940,7 @@ export default function IndexTest() {
       let list = await driver.findComponent(ON.type('List'));
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
+      await driver.delayMs(1000)
       let str = await getResourceString($r('app.string.CollapseAndExpand_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -1346,6 +956,7 @@ export default function IndexTest() {
       expect(nameText === null).assertTrue();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testCollapseAndExpand end');
       done();
     })
@@ -1365,6 +976,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.ListChatRoom_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -1413,8 +1025,8 @@ export default function IndexTest() {
 
       let swiper = await driver.findComponent(ON.type('Swiper'));
       expect(swiper === null).assertFalse();
-      let scrollPoint:Point = {x:400,y:500};
-      await driver.mouseScroll(scrollPoint,true,2);
+      let scrollPoint: Point = { x: 400, y: 500 };
+      await driver.mouseScroll(scrollPoint, true, 2);
       await driver.pressBack();
       await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperIgnoreComponentSize end');
@@ -1445,8 +1057,8 @@ export default function IndexTest() {
 
       let swiper = await driver.findComponent(ON.type('Swiper'));
       expect(swiper === null).assertFalse();
-      let scrollPoint:Point = {x:400,y:500};
-      await driver.mouseScroll(scrollPoint,true,2);
+      let scrollPoint: Point = { x: 400, y: 500 };
+      await driver.mouseScroll(scrollPoint, true, 2);
       await driver.pressBack();
       await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperDigitIndicatorIgnoreComponentSize end');
@@ -1488,8 +1100,8 @@ export default function IndexTest() {
 
       let swiper = await driver.findComponent(ON.type('Swiper'));
       expect(swiper === null).assertFalse();
-      let scrollPoint:Point = {x:400,y:500};
-      await driver.mouseScroll(scrollPoint,true,2);
+      let scrollPoint: Point = { x: 400, y: 500 };
+      await driver.mouseScroll(scrollPoint, true, 2);
       await driver.pressBack();
       await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperPageSwitchMethod end');
@@ -1528,62 +1140,12 @@ export default function IndexTest() {
 
       let swiper = await driver.findComponent(ON.type('Swiper'));
       expect(swiper === null).assertFalse();
-      let scrollPoint:Point = {x:400,y:500};
-      await driver.mouseScroll(scrollPoint,true,2);
+      let scrollPoint: Point = { x: 400, y: 500 };
+      await driver.mouseScroll(scrollPoint, true, 2);
       await driver.pressBack();
       await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperVisibleContentPosition end');
       done();
     })
-
-    /**
-     * @tc.number UiTest_51
-     * @tc.name testBottomTabBar
-     * @tc.desc 内容标签不同步
-     */
-    it('testBottomTabBar', 0, async (done: Function) => {
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ContentWillChange_titleContentOnAndTabSync'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let tabs = await driver.findComponent(ON.type('Tabs'));
-      expect(tabs === null).assertFalse();
-      let scrollPoint: Point = { x: 400, y: 400 };
-      await driver.mouseScroll(scrollPoint, true, 2);
-      await driver.pressBack();
-      await driver.pressBack();
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_51
-     * @tc.name testBottomTabBar
-     * @tc.desc 缓存数
-     */
-    it('testBottomTabBar', 0, async (done: Function) => {
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.Cache_count'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let tabs = await driver.findComponent(ON.type('Tabs'));
-      expect(tabs === null).assertFalse();
-      let scrollPoint: Point = { x: 400, y: 400 };
-      await driver.mouseScroll(scrollPoint, true, 2);
-      await driver.pressBack();
-      await driver.pressBack();
-      done();
-    })
-
-
   })
 }

@@ -12,20 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start structural_references]
-import { util } from '@kit.ArkTS';
-import { UIContext } from '@kit.ArkUI';
+
 import common from '@ohos.app.ability.common';
 
+// [Start structural_references]
+import { util } from '@kit.ArkTS';
+
+// 结构参考
 export class ToDo {
   public key: string = util.generateRandomUUID(true);
   public name: string;
+  public toDoData: ToDo[] = [];
 
   constructor(name: string) {
     this.name = name;
   }
 }
-
 // [End structural_references]
 
 @Component
@@ -42,8 +44,7 @@ export struct ToDoListItem {
         .fontSize(16)
         .width('80%')
         .margin({ left: 20 })
-      // [StartExclude enter_edit_mode]
-      // [Start is_EditMode]
+      // [Start is_edit_mode]
       if (this.isEditMode) {
         Checkbox()
           .onChange((isSelected) => {
@@ -57,9 +58,10 @@ export struct ToDoListItem {
             }
           })
       }
-      // [End is_EditMode]
+      // [End is_edit_mode]
       // [EndExclude enter_edit_mode]
     }
+    // [StartExclude enter_edit_mode]
     .backgroundColor('#FFF1F3F5')
     .width('100%')
     .height(40)
@@ -69,14 +71,15 @@ export struct ToDoListItem {
       GestureGroup(GestureMode.Exclusive,
         LongPressGesture()
           .onAction(() => {
-            this.isEditMode = true;
+            if (!this.isEditMode) {
+              this.isEditMode = true; //进入编辑模式
+            }
           })
       )
     )
+    // [End enter_edit_mode]
   }
 }
-
-// [End enter_edit_mode]
 
 @Entry
 @Component
@@ -156,9 +159,13 @@ export struct DeleteListItem {
             .backgroundColor('#FFF1F3F5')
             .borderRadius(12)
             .height(45)
-            // [Start implement_cachedCount]
-            List({ space: 12 }) {
-              // [StartExclude implement_cachedCount]
+            // [Start implement_cached_count]
+            List(
+              // [StartExclude implement_cached_count]
+              { space: 12 }
+              // [EndExclude implement_cached_count]
+            ) {
+              // [StartExclude implement_cached_count]
               ForEach(this.toDoData, (toDoItem: ToDo) => {
                 ListItem() {
                   // 将toDoData的每个数据放入到以model的形式放进ListItem里
@@ -169,9 +176,9 @@ export struct DeleteListItem {
                   })
                 }
               }, (toDoItem: ToDo) => toDoItem.name.toString())
-              // [EndExclude implement_cachedCount]
+              // [EndExclude implement_cached_count]
             }.cachedCount(3)
-            // [End implement_cachedCount]
+            // [End implement_cached_count]
           }
         }
         .alignItems(HorizontalAlign.Start)
@@ -183,18 +190,22 @@ export struct DeleteListItem {
         if (this.isEditMode) {
           Column({ space: 8 }) {
             // [Start implement_deletion]
-            Button('delete')
+            // app.string.delete 资源文件中的value值为'删除'
+            Button($r('app.string.delete'))
+            // [StartExclude implement_deletion]
               .width('90%')
               .backgroundColor(Color.Red)
+              // [EndExclude implement_deletion]
               .onClick(() => {
+                // this.toDoData为待办的列表项，可根据实际场景构造。点击后删除选中的列表项对应的toDoData数据
                 this.toDoData = this.toDoData.filter(toDoItem =>
                 !this.selectedItems.some(selectedItem => selectedItem.name === toDoItem.name));
                 this.isEditMode = false;
               })
+            // [End implement_deletion]
           }
         }
       }
-      // [End implement_deletion]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

@@ -19,6 +19,7 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct SymbolGlyphSpanAddToText {
   scroller: Scroller = new Scroller();
+  @State isActive: boolean = true;
 
   build() {
     NavDestination() {
@@ -31,9 +32,6 @@ export struct SymbolGlyphSpanAddToText {
                 .fontWeight(FontWeight.Normal)
                 .fontSize(96)
             }
-            // [StartExclude creat_symbol_span]
-            .id('1')
-            // [EndExclude creat_symbol_span]
             // [End creat_symbol_span]
           }
 
@@ -48,9 +46,6 @@ export struct SymbolGlyphSpanAddToText {
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_font_size]
-                .id('2')
-                // [EndExclude symbol_span_font_size]
               }
 
               Column() {
@@ -61,9 +56,6 @@ export struct SymbolGlyphSpanAddToText {
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_font_size]
-                .id('3')
-                // [EndExclude symbol_span_font_size]
               }
 
               Column() {
@@ -74,12 +66,8 @@ export struct SymbolGlyphSpanAddToText {
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_font_size]
-                .id('4')
-                // [EndExclude symbol_span_font_size]
               }
             }
-
             // [End symbol_span_font_size]
           }
 
@@ -93,9 +81,6 @@ export struct SymbolGlyphSpanAddToText {
                     .fontWeight(FontWeight.Lighter)
                     .fontSize(96)
                 }
-                // [StartExclude symbol_span_font_weight]
-                .id('5')
-                // [EndExclude symbol_span_font_weight]
               }
 
               Column() {
@@ -105,9 +90,6 @@ export struct SymbolGlyphSpanAddToText {
                     .fontWeight(FontWeight.Normal)
                     .fontSize(96)
                 }
-                // [StartExclude symbol_span_font_weight]
-                .id('6')
-                // [EndExclude symbol_span_font_weight]
               }
 
               Column() {
@@ -117,12 +99,8 @@ export struct SymbolGlyphSpanAddToText {
                     .fontWeight(FontWeight.Bold)
                     .fontSize(96)
                 }
-                // [StartExclude symbol_span_font_weight]
-                .id('7')
-                // [EndExclude symbol_span_font_weight]
               }
             }
-
             // [End symbol_span_font_weight]
           }
 
@@ -136,9 +114,6 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(96)
                     .fontColor([Color.Black])
                 }
-                // [StartExclude symbol_span_font_color]
-                .id('8')
-                // [EndExclude symbol_span_font_color]
               }
 
               Column() {
@@ -148,9 +123,6 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(96)
                     .fontColor([Color.Green])
                 }
-                // [StartExclude symbol_span_font_color]
-                .id('9')
-                // [EndExclude symbol_span_font_color]
               }
 
               Column() {
@@ -160,12 +132,8 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(96)
                     .fontColor([Color.Pink])
                 }
-                // [StartExclude symbol_span_font_color]
-                .id('10')
-                // [EndExclude symbol_span_font_color]
               }
             }
-
             // [End symbol_span_font_color]
           }
 
@@ -173,89 +141,114 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_rendering_strategy]
             Row() {
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_1'));
+                // 'app.string.single_color'资源文件中的value值为"单色"
+                Text($r('app.string.single_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_rendering_strategy]
-                .id('11')
-                // [EndExclude symbol_span_rendering_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_2'));
+                // 'app.string.multi_color'资源文件中的value值为"多色"
+                Text($r('app.string.multi_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_rendering_strategy]
-                .id('12')
-                // [EndExclude symbol_span_rendering_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_3'));
+                // 'app.string.hierarchical'资源文件中的value值为"分层"
+                Text($r('app.string.hierarchical'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
                     .fontColor([Color.Black, Color.Green, Color.White])
                 }
-                // [StartExclude symbol_span_rendering_strategy]
-                .id('13')
-                // [EndExclude symbol_span_rendering_strategy]
               }
             }
-
             // [End symbol_span_rendering_strategy]
           }
 
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddToText_title_6') }) {
-            // [Start symbol_span_effect_strategy]
-            Row() {
-              Column() {
-                Text($r('app.string.SymbolAddToText_Text_4'));
-                Text() {
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.NONE)
+            if (this.isActive) {
+              // [Start symbol_span_effect_strategy]
+              Row() {
+                Column() {
+                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  Text($r('app.string.no_action'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.NONE)
+                  }
                 }
-                // [StartExclude symbol_span_effect_strategy]
-                .id('14')
-                // [EndExclude symbol_span_effect_strategy]
-              }
 
-              Column() {
-                Text($r('app.string.SymbolAddToText_Text_5'));
-                Text() {
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.SCALE)
+                Column() {
+                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  Text($r('app.string.overall_scaling_animation_effect'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.SCALE)
+                  }
                 }
-                // [StartExclude symbol_span_effect_strategy]
-                .id('15')
-                // [EndExclude symbol_span_effect_strategy]
-              }
 
-              Column() {
-                Text($r('app.string.SymbolAddToText_Text_6'));
-                Text() {
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                Column() {
+                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  Text($r('app.string.hierarchical_animation'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                  }
                 }
-                // [StartExclude symbol_span_effect_strategy]
-                .id('16')
-                // [EndExclude symbol_span_effect_strategy]
               }
+              // [End symbol_span_effect_strategy]
+              .onClick(() => {
+                this.isActive = !this.isActive;
+              })
+            } else {
+              Row() {
+                Column() {
+                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  Text($r('app.string.no_action'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.NONE)
+                  }
+                }
+
+                Column() {
+                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  Text($r('app.string.overall_scaling_animation_effect'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.SCALE)
+                  }
+                }
+
+                Column() {
+                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  Text($r('app.string.hierarchical_animation'));
+                  Text() {
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                  }
+                }
+              }.onClick(() => {
+                this.isActive = !this.isActive;
+              })
             }
-
-            // [End symbol_span_effect_strategy]
           }
         }
         .width('100%')

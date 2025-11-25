@@ -15,7 +15,7 @@
 //[Start GridRowExample_start]
 @Entry
 @Component
-struct GridRowExample2 {
+struct GridRowExample {
   build() {
     GridRow({ columns: 12 }) {
       GridCol({ span: 12 }) {

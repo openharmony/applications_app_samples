@@ -16,7 +16,7 @@
 // [Start Decorative_Set]
 @Entry
 @ComponentV2
-export struct DecorativeSet {
+struct Parent {
   @Provider() message: Set<number> = new Set([1, 2, 3, 4]);
 
   build() {
@@ -42,6 +42,7 @@ export struct DecorativeSet {
     }
   }
 }
+
 @ComponentV2
 struct Child {
   @Consumer() message: Set<number> = new Set([1, 2, 3, 4, 5, 6]);
@@ -69,3 +70,17 @@ struct Child {
   }
 }
 // [End Decorative_Set]
+
+@Component
+export struct DecorativeSet {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Set'))
+  }
+}

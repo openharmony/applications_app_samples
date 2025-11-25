@@ -16,18 +16,20 @@
 @Builder
 export function PageOneBuilder(name: string, param: string) {
   PageOne({ name: name, value: param });
-};
+}
 
 @Component
 export struct PageOne {
   pathInfos: NavPathStack = new NavPathStack();
   name: string = '';
   @State value: string = '';
+  context = this.getUIContext().getHostContext();
 
   build() {
     NavDestination() {
       Column() {
-        Text(`${this.name}设置页面`)
+        // $r('app.string.settingPage')资源文件中的value值为“设置页面”
+        Text(`${this.name}${this.context!.resourceManager.getStringSync($r('app.string.settingPage').id)}`)
           .width('100%')
           .fontSize(20)
           .fontColor(0x333333)
@@ -45,7 +47,8 @@ export struct PageOne {
           .fontColor(0x666666)
           .textAlign(TextAlign.Center)
           .padding({ top: 45 })
-        Button('返回')
+        // $r('app.string.return')资源文件中的value值为“返回”
+        Button($r('app.string.return'))
           .width('50%')
           .height(40)
           .margin({ top: 50 })

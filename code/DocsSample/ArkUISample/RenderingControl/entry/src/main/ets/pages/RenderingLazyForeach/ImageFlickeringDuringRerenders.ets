@@ -13,82 +13,25 @@
  * limitations under the License.
  */
 
-class BasicDataSource6 implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData6[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): StringData6 {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-
 // [Start image_flickering_during_rerenders]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource6 extends BasicDataSource6 {
-  private dataArray: StringData6[] = [];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+class FliceringDataSource extends GenericBasicDataSource<ImageFliceringStringData> {
+  private dataArray: ImageFliceringStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData6 {
+  public getData(index: number): ImageFliceringStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData6): void {
+  public pushData(data: ImageFliceringStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
@@ -96,7 +39,7 @@ class MyDataSource6 extends BasicDataSource6 {
 
 // @Observed类装饰器 和 @ObjectLink 用于在涉及嵌套对象或数组的场景中进行双向数据同步
 @Observed
-class StringData6 {
+class ImageFliceringStringData {
   public message: string;
   public imgSrc: Resource;
 
@@ -109,25 +52,25 @@ class StringData6 {
 @Entry
 @Component
 struct ImageFlickeringDuringRerenders {
-  private data: MyDataSource6 = new MyDataSource6();
+  private data: FliceringDataSource = new FliceringDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
       // 此处'app.media.img'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-      this.data.pushData(new StringData6(`Hello ${i}`, $r('app.media.img')));
+      this.data.pushData(new ImageFliceringStringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData6, index: number) => {
+      LazyForEach(this.data, (item: ImageFliceringStringData, index: number) => {
         ListItem() {
           ImageFlickeringChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
         })
-      }, (item: StringData6, index: number) => index.toString()) // 键值不受message属性影响
+      }, (item: ImageFliceringStringData, index: number) => index.toString()) // 键值不受message属性影响
     }
     .cachedCount(5)
   }
@@ -136,12 +79,13 @@ struct ImageFlickeringDuringRerenders {
 @Component
 struct ImageFlickeringChildComponent {
   // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
-  @ObjectLink data: StringData6;
+  @ObjectLink data: ImageFliceringStringData;
 
   build() {
     Column() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
+          hilog.info(DOMAIN, TAG, 'appear: ${this.data.message}');
         })
       Image(this.data.imgSrc)
         .width(500)

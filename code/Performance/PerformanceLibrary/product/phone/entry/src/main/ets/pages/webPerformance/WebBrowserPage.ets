@@ -20,7 +20,7 @@ import { WebBrowser } from '@ohos/webPerformance';
 struct WebBrowserPage {
   build() {
     Column() {
-      WebBrowser({ getRouter: AppStorage.get('webPage') })
+      WebBrowser({ getRouter: AppStorage.get('webPage') });
     }
   }
 }

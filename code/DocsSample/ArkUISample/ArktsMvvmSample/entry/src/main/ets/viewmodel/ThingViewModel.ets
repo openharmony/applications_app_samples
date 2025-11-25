@@ -20,6 +20,7 @@ import ThingModel from '../model/ThingModel';
 export default class ThingViewModel {
   @Track public thingName: string = 'Todo';
   @Track public isFinish: boolean = false;
+  public context: Context = AppStorage.get('context')!;
 
   updateTask(thing: ThingModel) {
     this.thingName = thing.thingName;
@@ -31,7 +32,9 @@ export default class ThingViewModel {
   }
 
   addSuffixes(): void {
-    this.thingName += '啦';
+    // app.string.la_la资源文件中的value值为'啦'
+    this.thingName += this.context.resourceManager.getStringSync($r('app.string.la_la').id);
   }
 }
+
 // [End thing_view_model]

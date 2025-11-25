@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start NavigationMenuFour]
 let toolTmp: NavigationMenuItem  = {
@@ -24,7 +23,7 @@ let toolTmp: NavigationMenuItem  = {
 @Entry
 @Component
 struct MenusFour {
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
   @Builder
@@ -36,12 +35,12 @@ struct MenusFour {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {
       // [EndExclude NavigationMenuFour]
-      Navigation(this.pageInfos) {
+      Navigation(this.navPathStack) {
         // [StartExclude NavigationMenuFour]
         TextInput({ placeholder: 'search...' })
           .width('90%')
@@ -60,7 +59,7 @@ struct MenusFour {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
                 .onClick(() => {
-                  this.pageInfos.pushPath({ name: 'NavDestinationTitle' + item });
+                  this.navPathStack.pushPath({ name: 'NavDestinationTitle' + item });
                 })
             }
           }, (item: number) => item.toString())
@@ -69,9 +68,11 @@ struct MenusFour {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuFour]
       }
+      // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标
       .menus([toolTmp, toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuFour]
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
     }
@@ -83,7 +84,7 @@ struct MenusFour {
 
 @Component
 export struct pageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -92,8 +93,7 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }
@@ -101,7 +101,7 @@ export struct pageOneTmp {
 
 @Component
 export struct pageTwoTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -110,8 +110,7 @@ export struct pageTwoTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }
@@ -119,7 +118,7 @@ export struct pageTwoTmp {
 
 @Component
 export struct pageThreeTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+  @Consume('navPathStack') navPathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -128,8 +127,7 @@ export struct pageThreeTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
       return true;
     })
   }

@@ -16,8 +16,11 @@
 // [Start age_friendly_tab]
 import { abilityManager, Configuration } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction, uiAppearance } from '@kit.ArkUI';
+import { uiAppearance } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
+const TAG: string = 'AgeFriendlyTabs';
 @Entry
 @Component
 export struct AgeFriendlyTabs {
@@ -36,8 +39,8 @@ export struct AgeFriendlyTabs {
     };
     abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
       if (err) {
-        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
-        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` });
+        hilog.error(DOMAIN, TAG, 'updateConfiguration fail, err: %{public}s', JSON.stringify(err));
+        this.getUIContext().getPromptAction().showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` });
       } else {
         this.currentFontSizeScale = String(scale);
         if (scale > 1) {
@@ -45,8 +48,8 @@ export struct AgeFriendlyTabs {
         } else {
           this.fontSize = 15;
         }
-        console.log('updateConfiguration success.');
-        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` });
+        hilog.info(DOMAIN, TAG, 'updateConfiguration success.');
+        this.getUIContext().getPromptAction().showToast({ message: `scale:${scale}, updateConfiguration success.` });
       }
     });
   }
@@ -57,25 +60,23 @@ export struct AgeFriendlyTabs {
       mode = uiAppearance.DarkMode.ALWAYS_DARK;
     }
     if (mode == uiAppearance.getDarkMode()) {
-      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
+      hilog.info(DOMAIN, TAG, `TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
       return;
     }
     try {
       uiAppearance.setDarkMode(mode).then(() => {
-        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
+        hilog.info(DOMAIN, TAG, `TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
       }).catch((error: Error) => {
-        console.error(`TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
+        hilog.error(DOMAIN, TAG, `TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
       });
     } catch (error) {
       let message = (error as BusinessError).message;
-      console.error(`TitleDarkMode Set dark-mode failed, ${message}`);
+      hilog.error(DOMAIN, TAG, `TitleDarkMode Set dark-mode failed, ${message}`);
     }
   }
 
   build() {
-    // [StartExclude age_friendly_tab]
     NavDestination() {
-      // [EndExclude age_friendly_tab]
       Column() {
         Column() {
           Row() {
@@ -119,14 +120,16 @@ export struct AgeFriendlyTabs {
           }
 
           Row() {
-            Button('深色模式')
+            // app.string.Dark_mode资源文件中的value值为“深色模式”
+            Button($r('app.string.Dark_mode'))
               .margin({ top: 5, bottom: 5 })
               .fontSize(this.fontSize)
               .width('40%')
               .onClick(async () => {
                 this.darkMode(true);
               })
-            Button('浅色模式')
+            // app.string.Light_mode资源文件中的value值为“浅色模式”
+            Button($r('app.string.Light_mode'))
               .margin({ top: 5, bottom: 5 })
               .fontSize(this.fontSize)
               .width('40%')
@@ -139,38 +142,23 @@ export struct AgeFriendlyTabs {
         Column() {
           Tabs({ barPosition: BarPosition.End }) {
             TabContent() {
-              Column()
-                .width('100%')
-                .height('100%')
-                .backgroundColor(Color.Pink)
+              Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
-
             TabContent() {
-              Column()
-                .width('100%')
-                .height('100%')
-                .backgroundColor(Color.Yellow)
+              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
             }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
-
             TabContent() {
-              Column()
-                .width('100%')
-                .height('100%')
-                .backgroundColor(Color.Blue)
+              Column().width('100%').height('100%').backgroundColor(Color.Blue)
             }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
-
             TabContent() {
-              Column()
-                .width('100%')
-                .height('100%')
-                .backgroundColor(Color.Green)
+              Column().width('100%').height('100%').backgroundColor(Color.Green)
             }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
           }
           .vertical(false)
           .scrollable(true)
           .barMode(BarMode.Fixed)
           .onChange((index: number) => {
-            console.info(index.toString());
+            hilog.info(DOMAIN, TAG, index.toString());
           })
           .width('100%')
           .backgroundColor(0xF1F3F5)
@@ -178,8 +166,6 @@ export struct AgeFriendlyTabs {
         .margin({ top: 200 })
       }.width('100%')
     }
-    // [End age_friendly_tab]
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.AgeFriendlyTabs_title'))
   }
 }
+// [End age_friendly_tab]

@@ -17,10 +17,10 @@ let localStorageA: LocalStorage = new LocalStorage();
 localStorageA.setOrCreate('propA', 'propA');
 
 let localStorageB: LocalStorage = new LocalStorage();
-localStorageB.setOrCreate('PropB', 'PropB');
+localStorageB.setOrCreate('propB', 'propB');
 
 let localStorageC: LocalStorage = new LocalStorage();
-localStorageC.setOrCreate('PropC', 'PropC');
+localStorageC.setOrCreate('propC', 'propC');
 
 @Entry
 @Component
@@ -90,14 +90,14 @@ struct PageOneStack {
 @Component
 struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @LocalStorageLink('PropB') propB: string = 'Hello World';
+  @LocalStorageLink('propB') propB: string = 'Hello World';
 
   build() {
     NavDestination() {
       Column() {
         // 显示'Hello'，当前LocalStorage实例localStorageB没有propA对应的值，使用本地默认值'Hello'
         NavigationContentMsgStack()
-        // 显示'PropB'
+        // 显示'propB'
         Text(`${this.propB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -119,14 +119,14 @@ struct PageTwoStack {
 @Component
 struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @LocalStorageLink('PropC') propC: string = 'pageThreeStack';
+  @LocalStorageLink('propC') propC: string = 'pageThreeStack';
 
   build() {
     NavDestination() {
       Column() {
         // 显示'Hello'，当前LocalStorage实例localStorageC没有propA对应的值，使用本地默认值'Hello'
         NavigationContentMsgStack()
-        // 显示'PropC'
+        // 显示'propC'
         Text(`${this.propC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')

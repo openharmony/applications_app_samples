@@ -14,27 +14,29 @@
  */
 // [Start Observed_Limitations]
 @Observed
-class FatherLim {
- public son: SonLim;
+class Father {
+  public son: Son;
 
   constructor(name: string, age: number) {
-    this.son = new SonLim(name, age);
-  };
-};
+    this.son = new Son(name, age);
+  }
+}
+
 @Observed
-class SonLim {
- public name: string;
- public age: number;
+class Son {
+  public name: string;
+  public age: number;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  };
-};
+  }
+}
+
 @Entry
 @Component
-struct Limitations {
-  @State father: FatherLim = new FatherLim('John', 8);
+struct Index {
+  @State father: Father = new Father('John', 8);
 
   build() {
     Row() {
@@ -44,11 +46,14 @@ struct Limitations {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             this.father.son.age++;
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Observed_Limitations]
+const limitations = Index;
+export default limitations;

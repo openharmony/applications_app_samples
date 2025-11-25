@@ -13,91 +13,29 @@
  * limitations under the License.
  */
 
-// [Start basic_data_source]
-class BasicDataSource2 implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData2[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): StringData2 {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-// [End basic_data_source]
-
 // [Start changing_data_sub_properties]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource2 extends BasicDataSource2 {
-  private dataArray: StringData2[] = [];
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+class MySubDataSource extends GenericBasicDataSource<StringData> {
+  private dataArray: StringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData2 {
+  public getData(index: number): StringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData2): void {
+  public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Observed
-class StringData2 {
+class StringData {
   public message: string;
 
   constructor(message: string) {
@@ -108,32 +46,32 @@ class StringData2 {
 @Entry
 @Component
 struct ChangingDataSubproperties {
-  private data: MyDataSource2 = new MyDataSource2();
+  private data: MySubDataSource = new MySubDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData2(`Hello ${i}`));
+      this.data.pushData(new StringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData2, index: number) => {
+      LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          ChangingDataSubproperties_ChildComponent({ data: item })
+          ChangingDataSubpropertiesChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
         })
-      }, (item: StringData2, index: number) => index.toString())
+      }, (item: StringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }
 }
 
 @Component
-struct ChangingDataSubproperties_ChildComponent {
-  @ObjectLink data: StringData2;
+struct ChangingDataSubpropertiesChildComponent {
+  @ObjectLink data: StringData;
 
   build() {
     Row() {

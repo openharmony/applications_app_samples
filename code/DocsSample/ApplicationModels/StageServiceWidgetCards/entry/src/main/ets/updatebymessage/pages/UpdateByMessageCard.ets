@@ -20,6 +20,7 @@ let storageUpdateByMsg = new LocalStorage();
 @Entry(storageUpdateByMsg)
 @Component
 struct UpdateByMessageCard {
+  // $r('app.string.default_title')和$r('app.string.DescriptionDefault')需要替换为开发者所需的资源文件
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
   @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
 
@@ -40,7 +41,11 @@ struct UpdateByMessageCard {
       .alignItems(HorizontalAlign.Start)
 
       Row() {
+        // [StartExclude update_by_message_card]
+        // 添加一个按钮，资源文件定义请参见下方步骤4
+        // [EndExclude update_by_message_card]
         Button() {
+          // $r('app.string.update')需要替换为开发者所需的资源文件
           Text($r('app.string.update'))
             .fontColor('#45A6F4')
             .fontSize(12)
@@ -62,6 +67,7 @@ struct UpdateByMessageCard {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

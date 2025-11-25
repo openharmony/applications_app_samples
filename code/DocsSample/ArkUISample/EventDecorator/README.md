@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [@Event装饰器：规范组件输](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-new-event.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在@ComponentV2装饰的自定义组件中使用@Event装饰器。
+本工程主要实现了对以下指南文档中 [@Event装饰器：规范组件输出](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-event.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在@ComponentV2装饰的自定义组件中使用@Event装饰器。
 
 ### 更改父组件中变量
 

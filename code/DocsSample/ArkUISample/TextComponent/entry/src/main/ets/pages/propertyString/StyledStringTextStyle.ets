@@ -19,7 +19,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Component
 struct styled_string_demo2 {
   @State str: string =
-    this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.CreateApply_Text_3')) as string;
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('CreateApply_Text_3') as string;
   textStyleAttrs: TextStyle =
     new TextStyle({
       fontWeight: FontWeight.Bolder,

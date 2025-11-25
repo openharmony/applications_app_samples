@@ -12,14 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start setting_click]
 import { router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 @Entry
 @Component
 struct Login {
-  // [Start setting_click]
   // 在Setting页面中
   onJumpClick(): void {
     this.getUIContext().getRouter().pushUrl({
@@ -32,14 +34,12 @@ struct Login {
       hilog.error(DOMAIN, TAG, 'Invoke replaceUrl succeeded.');
     });
   }
-  // [End setting_click]
-
-  @State message: string = 'Setting Page';
 
   build() {
+    // [StartExclude setting_click]
     Row() {
       Column() {
-        Text(this.message)
+        Text('Setting Page')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button('Jump to Profile', { stateEffect: true, type: ButtonType.Capsule })
@@ -51,5 +51,7 @@ struct Login {
           })
       }.width('100%')
     }.height('100%')
+    // [EndExclude setting_click]
   }
 }
+// [End setting_click]

@@ -13,33 +13,32 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window'
+import { UIAbility, Want, AbilityConstant, abilityAccessCtrl } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI'
+import type { Permissions } from '@kit.AbilityKit';
 import { Logger } from '../utils/Logger'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import type { Permissions } from '@ohos.abilityAccessCtrl';
 import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem'
 
 const TAG: string = 'MainAbility'
 const VERSION: string = '1.0'
-const BUNDLE_NAME = 'ohos.samples.workschedulerextensionability'
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.INTERNET', 'ohos.permission.INSTALL_BUNDLE',
   'ohos.permission.NOTIFICATION_CONTROLLER']
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
       abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, PERMISSIONS);
+      console.info(`requestPermissionsFromUser`);
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
     AppStorage.SetOrCreate('filePath', this.context.filesDir)
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
-    WorkSchedulerSystem.handleNotification(BUNDLE_NAME)
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    WorkSchedulerSystem.handleNotification()
     let filePath = `${this.context.filesDir.split('/haps')[0]}/files`
-    WorkSchedulerSystem.startUpdateSample(VERSION, BUNDLE_NAME, filePath)
+    WorkSchedulerSystem.startUpdateSample(VERSION, filePath)
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')

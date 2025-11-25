@@ -12,24 +12,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import router from '@ohos.router';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   build() {
     RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+      Column() {
+        Button('explicitButton')
+          .width('50%')
+          .height('50vp')
+          .margin({ top: '40vp' })
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/ExplicitPage'
+            })
+          })
+
+        Button('implicitButton')
+          .width('50%')
+          .height('50vp')
+          .margin({ top: '40vp' })
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/ImplicitPage'
+            })
+          })
+      }
+      .height('100%')
+      .width('100%')
     }
     .height('100%')
     .width('100%')

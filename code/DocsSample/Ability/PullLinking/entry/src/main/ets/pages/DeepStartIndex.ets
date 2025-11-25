@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start deep_start]
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct DeepStartIndex {
   build() {
     Button('start ability', { type: ButtonType.Capsule, stateEffect: true })
       .width('87%')
@@ -31,7 +31,7 @@ struct Index {
       .onClick(() => {
         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let want: Want = {
-          uri: 'link://www.example.com'
+          uri: 'link://www.example.com' // 此处为实际应用链接
         };
 
         try {
@@ -46,4 +46,4 @@ struct Index {
       })
   }
 }
-// [End quick_start0]
+// [End deep_start]

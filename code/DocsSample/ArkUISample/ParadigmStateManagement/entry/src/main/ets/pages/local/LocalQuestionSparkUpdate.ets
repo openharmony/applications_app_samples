@@ -12,10 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Local_Question_Spark_Update]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
+@Entry
+@ComponentV2
+struct Index {
+  list: string[][] = [['a'], ['b'], ['c']];
+  @Local dataObjFromList: string[] = this.list[0];
 
+  @Monitor('dataObjFromList')
+  onStrChange(monitor: IMonitor) {
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'dataObjFromList has changed');
+  }
+
+  build() {
+    Column() {
+      Button('change to self').onClick(() => {
+        // 新值和本地初始化的值相同
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+// [End Local_Question_Spark_Update]
 @Component
 export struct LocalQuestionSparkUpdate {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,26 +49,3 @@ export struct LocalQuestionSparkUpdate {
     .title($r('app.string.local_question_spark_update'))
   }
 }
-
-// [Start Local_Question_Spark_Update]
-@Entry
-@ComponentV2
-struct Index {
-  list: string[][] = [['a'], ['b'], ['c']];
-  @Local dataObjFromList: string[] = this.list[0];
-
-  @Monitor('dataObjFromList')
-  onStrChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'dataObjFromList has changed');
-  }
-
-  build() {
-    Column() {
-      Button('change to self').onClick(() => {
-        // 新值和本地初始化的值相同
-        this.dataObjFromList = this.list[0];
-      })
-    }
-  }
-}
-// [End Local_Question_Spark_Update]

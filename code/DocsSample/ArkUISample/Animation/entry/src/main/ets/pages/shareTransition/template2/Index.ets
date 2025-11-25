@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start post_data]
+import { common } from '@kit.AbilityKit';
+
 class PostData {
   // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
@@ -26,28 +27,29 @@ class PostData {
 @Entry
 @Component
 struct Index {
-  // [StartExclude post_data]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude post_data]
   @State isExpand: boolean = false;
   @State @Watch('onItemClicked') selectedIndex: number = -1;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     {
       avatar: $r('app.media.flower'),
       name: 'Alice',
+      // 'app.string.shareTransition_text1'资源文件中的value值为'天气晴朗'
       message: this.context.resourceManager.getStringByNameSync('shareTransition_text1'),
       images: [$r('app.media.spring'), $r('app.media.tall_tree')]
     },
     {
       avatar: $r('app.media.sunset_sky'),
       name: 'Bob',
+      // 'app.string.shareTransition_text2'资源文件中的value值为'你好世界'
       message: this.context.resourceManager.getStringByNameSync('shareTransition_text2'),
       images: [$r('app.media.island')]
     },
     {
       avatar: $r('app.media.tall_tree'),
       name: 'Carl',
+      // 'app.string.shareTransition_text3'资源文件中的value值为'万物生长'
       message: this.context.resourceManager.getStringByNameSync('shareTransition_text3'),
       images: [$r('app.media.flower'), $r('app.media.sunset_sky'), $r('app.media.spring')]
     }];
@@ -70,7 +72,7 @@ struct Index {
         // 当点击了某个post后，会使其余的post消失下树
         if (!this.isExpand || this.selectedIndex === index) {
           Column() {
-            Post({ data: postData, selectedIndex: this.selectedIndex, index: index });
+            Post({ data: postData, selectedIndex: this.selectedIndex, index: index })
           }
           .width('100%')
           // 对出现消失的post添加透明度转场和位移转场效果
@@ -87,7 +89,6 @@ struct Index {
 
 @Component
 export default struct Post {
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @Link selectedIndex: number;
   @Prop data: PostData;
   @Prop index: number;
@@ -104,11 +105,11 @@ export default struct Post {
           .borderRadius(this.avatarSize / 2)
           .clip(true)
 
-        Text(this.data.name);
+        Text(this.data.name)
       }
       .justifyContent(FlexAlign.Start)
 
-      Text(this.data.message);
+      Text(this.data.message)
 
       Row({ space: 15 }) {
         ForEach(this.data.images, (imageResource: Resource, index: number) => {
@@ -120,7 +121,8 @@ export default struct Post {
       // 展开态下组件增加的内容
       if (this.isExpand) {
         Column() {
-          Text(this.context.resourceManager.getStringByNameSync('shareTransition_text4'))
+          // 'app.string.shareTransition_text1'资源文件中的value值为'评论区'
+          Text($r('app.string.shareTransition_text4'))
           // 对评论区文本添加出现消失转场效果
             .transition(TransitionEffect.OPACITY
               .animation({ duration: 350, curve: Curve.Friction }))

@@ -17,8 +17,8 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local progress: number = 496000;  // 初始进度，秒
-  @Local total: number = 27490000;   // 总时长，秒
+  @Local progress: number = 496000; // 初始进度，秒
+  @Local total: number = 27490000; // 总时长，秒
   @Local currentWidth: string = '100%';
   @Local currentHeight: string = '100%';
   private currentPosX: number = 0;
@@ -140,7 +140,7 @@ struct Index {
       //  $r('app.string.Increase_brightness') 需要替换为开发者所需的资源文件
       this.showMessage((offsetY > 0)
         ? this.context!.resourceManager.getStringSync($r('app.string.Reduce_brightness').id)
-        : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id) )
+        : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id))
       this.currentPosY = newY;
     };
   };
@@ -167,6 +167,7 @@ struct Index {
           Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id) + this.progress)
         }
         .width('100%').height('90%')
+
         Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
           Slider({
             value: this.progress,
@@ -189,9 +190,9 @@ struct Index {
               };
             })
             .margin({ left: 5 })
-            .trackColor(Color.Red)
-            .blockColor(Color.Yellow)
-            .selectedColor(Color.Orange)
+            .trackColor(Color.Blue)
+            .blockColor(Color.Gray)
+            .selectedColor(Color.White)
             .trackThickness(2)
             .flexShrink(1)
             .flexGrow(1)
@@ -249,6 +250,7 @@ struct Index {
     )
     .width(this.currentWidth)
     .height(this.currentHeight)
-  };
+  }
 }
+
 // [End gesture_recognition]

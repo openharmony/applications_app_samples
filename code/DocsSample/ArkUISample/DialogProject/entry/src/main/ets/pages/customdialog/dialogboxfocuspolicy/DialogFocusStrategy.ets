@@ -16,10 +16,12 @@
 // [Start dialog_focus]
 @Entry
 @Component
-export struct DialogFocusStrategy {
-  @State dialogIdIndex: number = 0;
+export struct Index {
   // [Start dialog_focus_text]
-  private message = 'dialog';
+  @State dialogIdIndex: number = 0;
+  //'dialog_message'资源文件中的value值为'弹窗'
+  private message: string =
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('dialog_message') as string;
 
   @Builder
   customDialogComponent() {

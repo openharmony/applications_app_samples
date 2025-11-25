@@ -21,8 +21,8 @@ import hilog from '@ohos.hilog';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 let driver: Driver;
 const DOMAIN = 0xF811;
-const TAG = '[Sample_Button_Component]'
-const BUNDLE = 'ButtonComponent'
+const TAG = '[Sample_Button_Component]';
+const BUNDLE = 'ButtonComponent';
 
 export default function ArcButtonTest() {
   describe('ArcButtonTest', () => {

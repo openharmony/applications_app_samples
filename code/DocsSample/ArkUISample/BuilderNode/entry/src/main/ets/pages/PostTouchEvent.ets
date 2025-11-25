@@ -31,7 +31,7 @@ function buttonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            hilog.info(0xF811, 'testTag', '%{public}s','TapGesture');
+            hilog.info(0xF811,'testTag','%{public}s','TapGesture');
           })
       )
   }
@@ -46,7 +46,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: 'this is a string' })
+    this.rootNode.build(this.wrapBuilder, { text: 'this is a string' });
     return this.rootNode.getFrameNode();
   }
 
@@ -55,7 +55,7 @@ class MyNodeController extends NodeController {
       return;
     }
     let result = this.rootNode.postTouchEvent(touchEvent);
-    hilog.info(0xF811, 'testTag', '%{public}s','result' + result);
+    hilog.info(0xF811,'testTag','%{public}s','result' + result);
   }
 }
 

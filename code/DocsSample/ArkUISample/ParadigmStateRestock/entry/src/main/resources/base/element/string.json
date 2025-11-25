@@ -53,14 +53,6 @@
       "value": "使用场景:在@ComponentV2装饰的自定义组件中使用@BuilderParam"
     },
     {
-      "name": "builder_param_scene_text_01",
-      "value": "全局 Builder: %s"
-    },
-    {
-      "name": "builder_param_scene_text_02",
-      "value": "局部 Builder :%s"
-    },
-    {
       "name": "builder_param_problem_not_refresh_opposite",
       "value": "常见问题:改变内容UI不刷新--反例"
     },

@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
-import PlayMusicDemo from '../../../main/ets/insightintents/UsePlayMusicIntents';
+import PlayMusicDemo from '../../../main/ets/insightintents/PlayMusicDemo';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;

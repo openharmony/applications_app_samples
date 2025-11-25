@@ -12,33 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Persistent_page_three]
-const MAX_NUM: number = 50; // 大字体尺寸
+// [Start Persistent_page_first]
+const MAX_NUM: number = 50;
 
+// [End Persistent_page_first]
 @Entry
 @Component
-struct testPageThree {
+struct TestPageThree {
   @State message: string = 'Hello World';
-  @StorageLink('aProp') aProp: number = 46;
+  @StorageLink('bProp') bProp: number = 46;
+
+  // 组件初始化并即将显示时执行（仅触发一次）
+  aboutToAppear() {
+    // [Start Persistent_page_three]
+    PersistentStorage.persistProp('aProp', 48);
+    if ((AppStorage.get<number>('aProp') ?? 0) > MAX_NUM) {
+      // 如果PersistentStorage存储的值超过50，设置为47
+      AppStorage.setOrCreate('aProp', 47);
+    }
+    // [End Persistent_page_three]
+  }
 
   build() {
     Row() {
       Column() {
         Text(this.message)
-        // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-        // 未修改时默认值为47
-        Text(`${this.aProp}`)
-          .onClick(() => {
-            this.aProp += 1;
-            const currentAProp = AppStorage.get<number>('aProp') ?? 0;
-            PersistentStorage.persistProp('aProp', currentAProp);
-            if (currentAProp > MAX_NUM) {
-              // 如果PersistentStorage存储的值超过50，设置为47
-              AppStorage.setOrCreate('aProp', 47);
-            }
-          })
+        Text(`${this.bProp}`)
       }
     }
   }
 }
-// [End Persistent_page_three]

@@ -153,11 +153,9 @@ export function PageTransitionTest() {
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('pushUrl'));
-      await aimComponent.click();
       await driver.delayMs(3000);
 
       aimComponent = await driver.findComponent(ON.text('back'));
-      await aimComponent.click();
       await driver.delayMs(3000);
       hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_005_end');
     })
@@ -177,11 +175,9 @@ export function PageTransitionTest() {
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('pushUrl'));
-      await aimComponent.click();
       await driver.delayMs(3000);
 
       aimComponent = await driver.findComponent(ON.text('back'));
-      await aimComponent.click();
       await driver.delayMs(3000);
       hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_006_end');
     })

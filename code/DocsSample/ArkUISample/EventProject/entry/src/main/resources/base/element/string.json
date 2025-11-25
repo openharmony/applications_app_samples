@@ -69,8 +69,12 @@
       "value": "按键事件"
     },
     {
+      "name": "Device_OnKeyPreventBubble_title",
+      "value": "阻止按键事件冒泡"
+    },
+    {
       "name": "Device_OnKeyPreIme_title",
-      "value": "按键事件"
+      "value": "屏蔽按键事件"
     },
     {
       "name": "Device_OnMouse_title",
@@ -591,6 +595,30 @@
     {
       "name": "Get_Focus",
       "value": "获得焦点"
+    },
+    {
+      "name": "OnKeyDistributeEvent_title",
+      "value": "分发按键事件"
+    },
+    {
+      "name": "Key_OnKeyDistributeEvent_Description",
+      "value": "使用onKeyEventDispatch分发按键事件到子组件，子组件使用onKeyEvent。"
+    },
+    {
+      "name": "OnKeyPreImeCommit_title",
+      "value": "回车提交"
+    },
+    {
+      "name": "OnKeyPreImeCommit_Description",
+      "value": "使用OnKeyPreIme实现回车提交（建议使用物理键盘）。"
+    },
+    {
+      "name": "Select_All",
+      "value": "全选"
+    },
+    {
+      "name": "Container_Coking",
+      "value": "容器获焦"
     }
   ]
 }

@@ -35,12 +35,34 @@ void CloseDialog();
 void OnButtonClicked(ArkUI_NodeEvent *event);
 void MainViewMethod(ArkUI_NodeContentHandle handle);
 
+// [Start dialog_create]
+ArkUI_NativeDialogHandle g_dialogController = nullptr;
+// [StartExclude dialog_create]
+// [Start show_dialog]
+void ShowDialog()
+{
+    // [EndExclude dialog_create]
+    ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
+    if (!g_dialogController) {
+        g_dialogController = dialogAPI->create();
+    }
+    // [End dialog_create]
+    auto contentNode = CreateDialogContent();
+    dialogAPI->setContent(g_dialogController, contentNode);
+    dialogAPI->setContentAlignment(g_dialogController, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
+    dialogAPI->setBackgroundColor(g_dialogController, 0xffffffff);
+    dialogAPI->setCornerRadius(g_dialogController, 6.0f, 6.0f, 6.0f, 6.0f);
+    dialogAPI->setModalMode(g_dialogController, false);
+    dialogAPI->setAutoCancel(g_dialogController, true);
+    dialogAPI->show(g_dialogController, false);
+}
+// [End show_dialog]
+
 // 创建可交互界面，点击Button后弹窗
 // [Start main_view]
 constexpr int32_t BUTTON_CLICK_ID = 1;
-bool g_isShown = false;
-ArkUI_NativeDialogHandle g_dialogController = nullptr;
-ArkUI_NodeHandle g_buttonNode;
+ArkUI_NodeHandle g_buttonNode = nullptr;
 
 void MainViewMethod(ArkUI_NodeContentHandle handle)
 {
@@ -63,7 +85,7 @@ void MainViewMethod(ArkUI_NodeContentHandle handle)
     ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
                                             .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(g_buttonNode, NODE_HEIGHT, &buttonHeightItem);
-    ArkUI_AttributeItem labelItem = {.string = "点击弹窗"};
+    ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box"};
     nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
     ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
     ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,
@@ -91,9 +113,10 @@ ArkUI_NodeHandle CreateDialogContent()
                                           .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
-    ArkUI_AttributeItem spanItem = {.string = "这是一个弹窗"};
+    ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
     nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanItem);
     ArkUI_NodeHandle imageSpan = nodeAPI->createNode(ARKUI_NODE_IMAGE_SPAN);
+    // 图片src/main/ets/pages/common/sky.jpg需要替换为开发者所需的资源文件
     ArkUI_AttributeItem imageSpanItem = {.string = "/pages/common/sky.jpg"};
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
@@ -110,26 +133,6 @@ ArkUI_NodeHandle CreateDialogContent()
 }
 // [End create_content]
 
-// [Start show_dialog]
-void ShowDialog()
-{
-    // [Start dialog_create]
-    ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
-    if (!g_dialogController) {
-        g_dialogController = dialogAPI->create();
-    }
-    // [End dialog_create]
-    auto contentNode = CreateDialogContent();
-    dialogAPI->setContent(g_dialogController, contentNode);
-    dialogAPI->setContentAlignment(g_dialogController, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
-    dialogAPI->setBackgroundColor(g_dialogController, 0xffffffff);
-    dialogAPI->setModalMode(g_dialogController, false);
-    dialogAPI->setAutoCancel(g_dialogController, true);
-    dialogAPI->show(g_dialogController, false);
-}
-// [End show_dialog]
-
 // [Start close_controller]
 void CloseDialog()
 {
@@ -142,6 +145,8 @@ void CloseDialog()
 
 // 触发controller弹窗
 // [Start controller_click]
+bool g_isShown = false;
+
 void OnButtonClicked(ArkUI_NodeEvent *event)
 {
     if (!event || !g_buttonNode) {
@@ -153,12 +158,12 @@ void OnButtonClicked(ArkUI_NodeEvent *event)
             OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
         if (g_isShown) {
             g_isShown = false;
-            ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Show Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             CloseDialog();
         } else {
             g_isShown = true;
-            ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Close Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             ShowDialog();
         }
@@ -209,8 +214,6 @@ void MainViewMethod(ArkUI_NodeContentHandle handle);
 void OpenDialogCallBack(int32_t dialogId);
 void OnButtonClicked(ArkUI_NodeEvent *event);
 
-ArkUI_NodeHandle g_buttonNode = nullptr;
-ArkUI_CustomDialogOptions* g_dialogOptions = nullptr;
 constexpr int32_t BUTTON_CLICK_ID = 1;
 bool g_isShown = false;
 
@@ -229,9 +232,10 @@ ArkUI_NodeHandle CreateDialogContent()
                                           .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
-    ArkUI_AttributeItem spanItem = {.string = "这是一个弹窗"};
+    ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
     nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanItem);
     ArkUI_NodeHandle imageSpan = nodeAPI->createNode(ARKUI_NODE_IMAGE_SPAN);
+    // 图片src/main/ets/pages/common/sky.jpg需要替换为开发者所需的资源文件
     ArkUI_AttributeItem imageSpanItem = {.string = "/pages/common/sky.jpg"};
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
@@ -249,6 +253,7 @@ ArkUI_NodeHandle CreateDialogContent()
 }
 
 // 触发dialogOptions弹窗
+ArkUI_CustomDialogOptions* g_dialogOptions = nullptr;
 // [Start open_dialogOption]
 int32_t g_id = 0;
 void OpenDialogCallBack(int32_t dialogId)
@@ -264,6 +269,7 @@ void OpenCustomDialog()
     }
     OH_ArkUI_CustomDialog_SetAlignment(g_dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
     OH_ArkUI_CustomDialog_SetBackgroundColor(g_dialogOptions, 0xffffffff);
+    OH_ArkUI_CustomDialog_SetCornerRadius(g_dialogOptions, 6.0f, 6.0f, 6.0f, 6.0f);
     OH_ArkUI_CustomDialog_SetModalMode(g_dialogOptions, false);
     OH_ArkUI_CustomDialog_SetAutoCancel(g_dialogOptions, true);
     OH_ArkUI_CustomDialog_SetBorderStyle(g_dialogOptions, ARKUI_BORDER_STYLE_SOLID,
@@ -278,6 +284,32 @@ void CloseCustomDialog()
     OH_ArkUI_CustomDialog_CloseDialog(g_id);
 }
 // [End close_option]
+
+ArkUI_NodeHandle g_buttonNode = nullptr;
+// [Start option_click]
+void OnButtonClicked(ArkUI_NodeEvent *event)
+{
+    if (!event || !g_buttonNode) {
+        return;
+    }
+    auto eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+    if (eventId == BUTTON_CLICK_ID) {
+        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+        if (g_isShown) {
+            g_isShown = false;
+            ArkUI_AttributeItem labelItem = {.string = "Show Dialog Box"};
+            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
+            CloseCustomDialog();
+        } else {
+            g_isShown = true;
+            ArkUI_AttributeItem labelItem = {.string = "Close Dialog Box"};
+            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
+            OpenCustomDialog();
+        }
+    }
+}
+// [End option_click]
 
 // 创建可交互界面，点击Button后弹窗
 void MainViewMethod(ArkUI_NodeContentHandle handle)
@@ -301,7 +333,7 @@ void MainViewMethod(ArkUI_NodeContentHandle handle)
     ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
                                             .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(g_buttonNode, NODE_HEIGHT, &buttonHeightItem);
-    ArkUI_AttributeItem labelItem = {.string = "点击弹窗"};
+    ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box"};
     nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
     ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
     ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,
@@ -313,31 +345,6 @@ void MainViewMethod(ArkUI_NodeContentHandle handle)
     OH_ArkUI_NodeContent_AddNode(handle, column);
 }
 
-// [Start option_click]
-void OnButtonClicked(ArkUI_NodeEvent *event)
-{
-    if (!event || !g_buttonNode) {
-        return;
-    }
-    auto eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
-    if (eventId == BUTTON_CLICK_ID) {
-        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
-            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
-        if (g_isShown) {
-            g_isShown = false;
-            ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
-            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
-            CloseCustomDialog();
-        } else {
-            g_isShown = true;
-            ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
-            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
-            OpenCustomDialog();
-        }
-    }
-}
-// [End option_click]
-
 // 退出时删除dialogController
 napi_value Dispose(napi_env env, napi_callback_info info)
 {
@@ -345,9 +352,7 @@ napi_value Dispose(napi_env env, napi_callback_info info)
     napi_get_undefined(env, &result); // 返回undefined表示void
 
     if (g_dialogOptions) {
-        // [Start dialog_disposeOption]
         OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOptions);
-        // [End dialog_disposeOption]
         g_dialogOptions = nullptr;
     }
     return result;
@@ -378,7 +383,6 @@ void OpenDialogCallBack(int32_t dialogId);
 void OnButtonClicked(ArkUI_NodeEvent *event);
 
 ArkUI_NodeHandle g_buttonNode = nullptr;
-ArkUI_CustomDialogOptions* g_dialogOptions = nullptr;
 constexpr int32_t BUTTON_CLICK_ID = 1;
 bool g_isShown = false;
 
@@ -389,9 +393,12 @@ void OpenDialogCallBack(int32_t dialogId)
     g_id = dialogId;
 }
 
+// [Start dialog_createOption]
+ArkUI_CustomDialogOptions* g_dialogOptions = nullptr;
+// [StartExclude dialog_createOption]
 void OpenTextDialog()
 {
-    // [Start dialog_createOption]
+    // [EndExclude dialog_createOption]
     auto textNode = std::make_shared<NativeModule::ArkUITextNode>();
     if (!g_dialogOptions) {
         g_dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(textNode->GetHandle());
@@ -434,7 +441,7 @@ void MainViewMethod(ArkUI_NodeContentHandle handle)
     ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
                                             .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(g_buttonNode, NODE_HEIGHT, &buttonHeightItem);
-    ArkUI_AttributeItem labelItem = {.string = "点击弹窗"};
+    ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box"};
     nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
     ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
     ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,
@@ -457,12 +464,12 @@ void OnButtonClicked(ArkUI_NodeEvent *event)
             OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
         if (g_isShown) {
             g_isShown = false;
-            ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Show Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             CloseCustomDialog();
         } else {
             g_isShown = true;
-            ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Close Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             OpenTextDialog();
         }
@@ -476,7 +483,9 @@ napi_value Dispose(napi_env env, napi_callback_info info)
     napi_get_undefined(env, &result); // 返回undefined表示void
 
     if (g_dialogOptions) {
+        // [Start dialog_disposeOption]
         OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOptions);
+        // [End dialog_disposeOption]
         g_dialogOptions = nullptr;
     }
     return result;
@@ -532,9 +541,10 @@ ArkUI_NodeHandle CreateDialogContent()
                                           .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
-    ArkUI_AttributeItem spanItem = {.string = "这是一个弹窗"};
+    ArkUI_AttributeItem spanItem = {.string = "This is a dialog box"};
     nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanItem);
     ArkUI_NodeHandle imageSpan = nodeAPI->createNode(ARKUI_NODE_IMAGE_SPAN);
+    // 图片src/main/ets/pages/common/sky.jpg需要替换为开发者所需的资源文件
     ArkUI_AttributeItem imageSpanItem = {.string = "/pages/common/sky.jpg"};
     nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
     ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
@@ -609,12 +619,12 @@ void OnButtonClicked(ArkUI_NodeEvent *event)
             OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
         if (g_isShown) {
             g_isShown = false;
-            ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Show Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             CloseDialog();
         } else {
             g_isShown = true;
-            ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
+            ArkUI_AttributeItem labelItem = {.string = "Close Dialog Box"};
             nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
             ShowDialog();
         }
@@ -643,7 +653,7 @@ void MainViewMethod(ArkUI_NodeContentHandle handle)
     ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
                                             .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(g_buttonNode, NODE_HEIGHT, &buttonHeightItem);
-    ArkUI_AttributeItem labelItem = {.string = "点击弹窗"};
+    ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box"};
     nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
     ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
     ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,

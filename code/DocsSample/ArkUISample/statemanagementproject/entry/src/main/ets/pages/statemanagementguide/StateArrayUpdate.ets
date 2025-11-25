@@ -15,7 +15,7 @@
 // [Start Information_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
 class InfoList extends Array<Info> {
@@ -76,7 +76,7 @@ struct Information {
 
 @Entry
 @Component
-struct Page2 {
+struct Page {
   @State infoList: InfoList = new InfoList();
   @State items: string[] = [];
 
@@ -117,3 +117,5 @@ struct Page2 {
   }
 }
 // [End Information_start]
+const stateArrayUpdatePage = Page;
+export default stateArrayUpdatePage;

@@ -12,11 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start state_problem_complex_solution_01]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-// [Start state_problem_complex_solution_01]
 @Observed
 class DataObj {
   public name: string = 'default name';
@@ -47,7 +45,7 @@ struct ConsumerChild {
   @Link @Watch('onDataObjChange') dataObj: DataObj;
 
   onDataObjChange() {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'dataObj changed');
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'dataObj changed');
   }
 
   build() {

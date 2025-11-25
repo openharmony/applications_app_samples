@@ -14,7 +14,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const DOMAIN = 0x0000;
 // [Start NavigationCreate]
 @Entry
 @Component
@@ -26,12 +25,10 @@ struct Index {
 
   registerInterception() {
     // [Start setInterception]
+    const DOMAIN = 0x0000;
     this.pageStack.setInterception({
       willShow: (from: NavDestinationContext | 'navBar', to: NavDestinationContext | 'navBar',
         operation: NavigationOperation, animated: boolean) => {
-        if (!this.isUseInterception) {
-          return;
-        }
         if (typeof to === 'string') {
           hilog.info(DOMAIN, 'testTag', 'target page is navigation home');
           return;

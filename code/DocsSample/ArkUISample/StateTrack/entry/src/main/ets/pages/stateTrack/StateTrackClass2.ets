@@ -15,7 +15,7 @@
 // [Start AddLog_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateTrack]';
 
 class LogTrack {
   @Track public str1: string;
@@ -33,7 +33,7 @@ class LogNotTrack {
 
   constructor(str1: string) {
     this.str1 = str1;
-    this.str2 = '世界';
+    this.str2 = 'World';
   }
 }
 
@@ -41,7 +41,7 @@ class LogNotTrack {
 @Component
 struct AddLog {
   @State logTrack: LogTrack = new LogTrack('Hello');
-  @State logNotTrack: LogNotTrack = new LogNotTrack('你好');
+  @State logNotTrack: LogNotTrack = new LogNotTrack('Hello');
 
   isRender(index: number) {
     hilog.info(DOMAIN_NUMBER, TAG, `Text ${index} is rendered`);
@@ -71,7 +71,7 @@ struct AddLog {
           .fontWeight(FontWeight.Bold)
         Button('change logNotTrack.str1')
           .onClick(() => {
-            this.logNotTrack.str1 = '再见';
+            this.logNotTrack.str1 = 'Bye';
           })
       }
       .width('100%')

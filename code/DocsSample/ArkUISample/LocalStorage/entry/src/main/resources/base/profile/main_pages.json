@@ -2,11 +2,10 @@
   "src": [
     "pages/Index",
     "pages/PageOneDoubleSYN",
-    "pages/PageTowSigleSYN",
+    "pages/PageTwoSigleSYN",
     "pages/PageTwoWaySYN",
     "pages/PageFourStateVariableSYN",
     "pages/PageFiveShare",
-    "pages/PageFiveShare2",
     "pages/PageSixLocalStorage",
     "pages/PageSixLocalStorageA",
     "pages/PageSixLocalStorageB",

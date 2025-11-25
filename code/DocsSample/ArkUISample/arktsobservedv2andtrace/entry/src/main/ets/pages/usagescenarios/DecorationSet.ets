@@ -14,14 +14,14 @@
  */
 // [Start Decoration_Set]
 @ObservedV2
-class SetInfo {
+class Info {
   @Trace public memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
-};
+}
 
 @Entry
 @ComponentV2
 struct SetSample {
-  info: SetInfo = new SetInfo();
+  info: Info = new Info();
 
   build() {
     Row() {
@@ -30,27 +30,29 @@ struct SetSample {
           Text(`${item[0]}`)
             .fontSize(30)
           Divider()
-        });
+        })
         Button('init set')
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);
-          });
+          })
         Button('set new one')
           .onClick(() => {
             this.info.memberSet.add(5);
-          });
+          })
         Button('clear')
           .onClick(() => {
             this.info.memberSet.clear();
-          });
+          })
         Button('delete the first one')
           .onClick(() => {
             this.info.memberSet.delete(0);
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Decoration_Set]
+export default SetSample;

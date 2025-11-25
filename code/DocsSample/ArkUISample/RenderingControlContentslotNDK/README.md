@@ -1,10 +1,8 @@
-# RenderingControlContentslotNDK
+# ContentSlot：混合开发
 
 ## 介绍
 
-本示例为使用C-API接口构建UI->[渲染控制的混合开发](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/rendering-control/arkts-rendering-control-contentslot.md)的配套示例工程。
-
-本示例展示了用于渲染并管理Native层使用C-API创建的组件。
+本示例为[ContentSlot：混合开发](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/rendering-control/arkts-rendering-control-contentslot.md)的配套示例工程，展示了用于渲染并管理Native层使用C-API创建的组件。
 
 ## 效果预览
 

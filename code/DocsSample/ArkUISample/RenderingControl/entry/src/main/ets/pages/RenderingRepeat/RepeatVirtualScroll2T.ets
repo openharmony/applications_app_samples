@@ -25,7 +25,7 @@ class Repeat006Clazz {
 
 @Entry
 @ComponentV2
-struct RepeatVirtualScroll2T {
+struct RepeatVirtualScroll {
   @Local simpleList: Array<Repeat006Clazz> = [];
   private exchange: number[] = [];
   private counter: number = 0;

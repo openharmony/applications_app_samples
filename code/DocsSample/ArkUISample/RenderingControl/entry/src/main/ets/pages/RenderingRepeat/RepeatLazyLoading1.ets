@@ -16,7 +16,7 @@
 // [Start repeat_lazy_loading_one]
 @Entry
 @ComponentV2
-struct RepeatLazyLoading1 {
+struct RepeatLazyLoadingLongData {
   // 假设数据源总长度较长，为1000。初始数组未提供数据。
   @Local arr: Array<string> = [];
   scroller: Scroller = new Scroller();

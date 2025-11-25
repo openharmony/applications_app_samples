@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start bindComponent_menu]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct BindComponentMenuExample {
@@ -21,7 +22,6 @@ export struct BindComponentMenuExample {
     Column() {
       Menu() {
         MenuItemGroup() {
-          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 1', labelInfo: '' })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 2', labelInfo: '' })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 3', labelInfo: '' })
@@ -49,8 +49,10 @@ export struct BindComponentMenuExample {
       .width('100%')
       .height('100%')
       .backgroundColor('#F5F5F5')
-    }.backgroundColor('#f1f2f3')
+    }
+    // [StartExclude bindComponent_menu]
     .title($r('app.string.BindComponentMenu_title'))
+    // [EndExclude bindComponent_menu]
   }
 }
 // [End bindComponent_menu]

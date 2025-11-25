@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start NumberOfCachesTabBar]
 import { ComponentCard } from '../../common/Card';
+// [Start number_of_caches_tabBar]
 @Entry
 @Component
 export struct NumberOfCachesTabBar {
   build() {
+    // [StartExclude number_of_caches_tabBar]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.Cache_count') }) {
-          // [Start top_navigation]
+          // [EndExclude number_of_caches_tabBar]
           Tabs({ barPosition: BarPosition.Start }) {
-            // [StartExclude top_navigation]
             TabContent() {
               MyComponent({ color: '#00CB87' })
             }.tabBar(SubTabBarStyle.of('green'))
@@ -48,9 +48,8 @@ export struct NumberOfCachesTabBar {
           .height(296)
           .backgroundColor('#F1F3F5')
           .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
-          // [EndExclude top_navigation]
+          // [StartExclude number_of_caches_tabBar]
         }
-        // [End top_navigation]
       }
       .width('100%')
       .height('100%')
@@ -58,6 +57,7 @@ export struct NumberOfCachesTabBar {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Cache_count'))
+    // [EndExclude number_of_caches_tabBar]
   }
 }
 
@@ -80,4 +80,4 @@ struct MyComponent {
       .backgroundColor(this.color)
   }
 }
-// [End NumberOfCachesTabBar]
+// [End number_of_caches_tabBar]

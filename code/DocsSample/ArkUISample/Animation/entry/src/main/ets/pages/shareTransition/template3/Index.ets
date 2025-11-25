@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start stack_index]
+// Index.ets
 import { createPostNode, getPostNode, PostNode } from './PostNode';
 import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 
@@ -31,7 +32,7 @@ struct Index {
         ForEach(this.listArray, (item: number) => {
           ListItem() {
             // 卡片折叠态
-            PostItem({ index: item, animationProperties: this.animationProperties });
+            PostItem({ index: item, animationProperties: this.animationProperties })
           }
         })
       }
@@ -40,7 +41,7 @@ struct Index {
 
       if (this.animationProperties.isExpandPageShow) {
         // 卡片展开态
-        ExpandPage({ animationProperties: this.animationProperties });
+        ExpandPage({ animationProperties: this.animationProperties })
       }
     }
     .key('rootStack')
@@ -70,7 +71,7 @@ struct PostItem {
 
   build() {
     Stack() {
-      NodeContainer(this.nodeController);
+      NodeContainer(this.nodeController)
     }
     .width('100%')
     .height(100)
@@ -102,7 +103,7 @@ struct ExpandPage {
 
   build() {
     Stack() {
-      NodeContainer(this.nodeController);
+      NodeContainer(this.nodeController)
     }
     .width('100%')
     .height(this.animationProperties.changedHeight ? '100%' : 100)
@@ -194,7 +195,7 @@ class AnimationProperties {
     this.positionX = this.uiContext.px2vp(clickedImageInfo.left - rootStackInfo.left);
     this.positionY = this.uiContext.px2vp(clickedImageInfo.top - rootStackInfo.top);
     this.calculatedTranslateX = this.uiContext.px2vp(rootStackInfo.left - clickedImageInfo.left) +
-    this.expandTranslateX;
+      this.expandTranslateX;
     this.calculatedTranslateY = this.uiContext.px2vp(rootStackInfo.top - clickedImageInfo.top) + this.expandTranslateY;
   }
 

@@ -36,10 +36,10 @@ export struct TabIndexFocusExample {
         }.tabIndex(2)
       }.width('100%')
     }
-  // [StartExclude dynamic_focus_tab_index_focus]
-  .backgroundColor('#f1f2f3')
-  .title($r('app.string.Tab_Index_TabIndexFocus_title'))
-  // [EndExclude dynamic_focus_tab_index_focus]
+    // [StartExclude dynamic_focus_tab_index_focus]
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Tab_Index_TabIndexFocus_title'))
+    // [EndExclude dynamic_focus_tab_index_focus]
   }
 }
 // [End dynamic_focus_tab_index_focus]

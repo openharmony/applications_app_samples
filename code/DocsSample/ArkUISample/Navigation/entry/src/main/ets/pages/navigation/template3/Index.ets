@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
+import { CustomTransition, AnimateCallback } from './CustomNavigationUtils';
 
 @Entry
 @Component
@@ -58,7 +58,7 @@ export struct NavigationExample3 {
             }
           },
           isInteractive: CustomTransition.getInstance().interactive
-        }
+        };
         return customAnimation;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -86,7 +86,7 @@ export struct NavigationExample3 {
               if (toParam.finish) {
                 toParam.finish(true, false);
               }
-            })
+            });
           } else {
             if (fromParam.start) {
               fromParam.start(true, true);
@@ -99,7 +99,7 @@ export struct NavigationExample3 {
               if (fromParam.finish) {
                 fromParam.finish(true, true);
               }
-            })
+            });
           }
         }
       };

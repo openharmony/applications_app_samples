@@ -26,15 +26,19 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: $r('app.string.web_path'), controller: this.webviewController})
+      Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
-          // 预获取时，需要將'https://www.example1.com/post?e=f&g=h'替换成真实要访问的网站地址。
+          // 预获取时，需要将'https://www.example1.com/post?e=f&g=h'替换成真实要访问的网站地址。
           webview.WebviewController.prefetchResource(
-            {url:resourceToString($r('app.string.web_path')) + '/post?e=f&g=h',
-              method:'POST',
-              formData:'a=x&b=y',},
-            [{headerKey:'c',
-              headerValue:'z',},],
+            {
+              url: 'https://www.example1.com/post?e=f&g=h',
+              method: 'POST',
+              formData: 'a=x&b=y',
+            },
+            [{
+              headerKey: 'c',
+              headerValue: 'z',
+            },],
             'KeyX', 500);
         })
     }

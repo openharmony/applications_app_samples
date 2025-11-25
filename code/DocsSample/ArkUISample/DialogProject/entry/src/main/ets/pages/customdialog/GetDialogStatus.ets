@@ -23,18 +23,21 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      Button($r('app.string.closeDialog_by_dialog'))
+      // $r('app.string.search_by_dialog')资源文件中的value为'点我查询弹窗状态:通过自定义组件自带controller'
+      Button($r('app.string.search_by_dialog'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
-            hilog.info(DOMAIN, 'testTag', 'state:' + this.getDialogController().getState())
+            hilog.info(DOMAIN, 'testTag', 'state:' + this.getDialogController().getState());
           } else {
-            hilog.info(DOMAIN, 'testTag', 'state: no exist')
+            hilog.info(DOMAIN, 'testTag', 'state: no exist');
           }
         }).margin(20)
-      Button($r('app.string.closeDialog_by_dialog_controller'))
+      // $r('app.string.search_by_dialog_controller')资源文件中的value为'点我查询弹窗状态:通过CustomDialogController'
+      Button($r('app.string.search_by_dialog_controller'))
         .onClick(() => {
-          hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState())
+          hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState());
         }).margin(20)
+      // $r('app.string.close_widows')资源文件中的value为'点我关闭弹窗'
       Button($r('app.string.close_widows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
@@ -56,9 +59,7 @@ export struct GetDialogStatus {
   })
 
   build() {
-    // [StartExclude get_dialog_status]
     NavDestination() {
-      // [EndExclude get_dialog_status]
       Column() {
         Button('click me')
           .onClick(() => {
@@ -67,9 +68,7 @@ export struct GetDialogStatus {
             }
           })
       }.width('100%').margin({ top: 5 })
-      // [StartExclude get_dialog_status]
     }
-    // [EndExclude get_dialog_status]
   }
 }
 // [End get_dialog_status]

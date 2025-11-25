@@ -13,26 +13,28 @@
  * limitations under the License.
  */
 // [Start Parent15_start]
+const PARENT_INITIAL_STATE_VALUE = 10;
+
 @Component
-struct Child15 {
+struct Child {
   @Prop localValue: number = 0;
 
   build() {
     Column() {
-      Text(`${this.localValue}`).fontSize(25);
+      Text(`${this.localValue}`).fontSize(25)
       Button('Child +100')
         .onClick(() => {
           // 改变localValue不会传递给父组件Parent
           this.localValue += 100;
-        });
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct Parent15 {
-  @State value: number = 10;
+struct Parent {
+  @State value: number = PARENT_INITIAL_STATE_VALUE;
 
   build() {
     Column() {
@@ -40,9 +42,11 @@ struct Parent15 {
         .onClick(() => {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
-        });
-      Child15({ localValue: this.value });
+        })
+      Child({ localValue: this.value })
     }
   }
 }
 // [End Parent15_start]
+const parent15 = Parent;
+export default parent15;

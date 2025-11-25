@@ -15,17 +15,21 @@
 @Entry
   // [Start Declarative_UI_description]
 @Component
-struct MyComponentBuildFunction {
+struct MyComponent {
   build() {
     // [StartExclude Declarative_UI_description]
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }
     .width('100%')
     .height('100%')
+
     // [EndExclude Declarative_UI_description]
   }
 }
+
 // [End Declarative_UI_description]
+const buildFunction = MyComponent;
+export default buildFunction;

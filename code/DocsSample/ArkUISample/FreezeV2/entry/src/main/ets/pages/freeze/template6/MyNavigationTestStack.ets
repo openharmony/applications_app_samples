@@ -13,17 +13,22 @@
  * limitations under the License.
  */
 // [Start freeze_template6_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAB_STATE_INITIAL_VALUE = 47;
+
 @ComponentV2
 struct ChildOfParamComponent {
   @Require @Param childVal: number;
 
   @Monitor('childVal') onChange(m: IMonitor) {
-    console.info(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.childVal}`);
+      Text(`Child Param： ${this.childVal}`)
     }
   }
 }
@@ -33,13 +38,13 @@ struct ParamComponent {
   @Require @Param val: number;
 
   @Monitor('val') onChange(m: IMonitor) {
-    console.info(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
     Column() {
-      Text(`val： ${this.val}`);
-      ChildOfParamComponent({childVal: this.val});
+      Text(`val： ${this.val}`)
+      ChildOfParamComponent({childVal: this.val})
     }
   }
 }
@@ -49,12 +54,12 @@ struct DelayComponent {
   @Require @Param delayVal1: number;
 
   @Monitor('delayVal1') onChange(m: IMonitor) {
-    console.info(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
     Column() {
-      Text(`Delay Param： ${this.delayVal1}`);
+      Text(`Delay Param： ${this.delayVal1}`)
     }
   }
 }
@@ -62,10 +67,10 @@ struct DelayComponent {
 @ComponentV2 ({freezeWhenInactive: true})
 struct TabsComponent {
   private controller: TabsController = new TabsController();
-  @Local tabState: number = 47;
+  @Local tabState: number = TAB_STATE_INITIAL_VALUE;
 
   @Monitor('tabState') onChange(m: IMonitor) {
-    console.info(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
   }
 
   build() {
@@ -73,16 +78,16 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          console.info('Button increment state value');
+          hilog.info(DOMAIN, 'testTag', 'Button increment state value');
           this.tabState = this.tabState + 1;
         })
 
       Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
         TabContent() {
-          ParamComponent({val: this.tabState});
+          ParamComponent({val: this.tabState})
         }.tabBar('Update')
         TabContent() {
-          DelayComponent({delayVal1: this.tabState});
+          DelayComponent({delayVal1: this.tabState})
         }.tabBar('DelayUpdate')
       }
       .vertical(false)
@@ -136,7 +141,7 @@ struct PageOneStack1 {
   build() {
     NavDestination() {
       Column() {
-        TabsComponent();
+        TabsComponent()
 
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')

@@ -14,6 +14,11 @@
  */
 
 // [Start onWillDismiss_Dismiss]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_SupportingAgingFriendly]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'SupportingAgingFriendly_';
 
 @Entry
 @Component
@@ -52,6 +57,7 @@ struct OnWillDismiss_Dismiss {
               primaryButton: {
                 value: 'cancel',
                 action: () => {
+                  hilog.info(DOMAIN, TAG, 'Callback when the cancel button is clicked');
                 }
               },
               secondaryButton: {
@@ -63,8 +69,12 @@ struct OnWillDismiss_Dismiss {
                 action: () => {
                   // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
                   dismissSheetAction.dismiss();
+                  hilog.info(DOMAIN, TAG, 'Callback when the ok button is clicked');
                 }
               },
+              cancel: () => {
+                hilog.info(DOMAIN, TAG, BUNDLE + 'onWillDismiss_Dismiss:' + 'AlertDialog Closed callbacks');
+              }
             }
           )
         })

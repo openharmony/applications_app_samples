@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_decorator_multi_watch_observed_v2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorDecoratorMultiWatchObservedV2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_multi_watch_observed_v2'))
-  }
-}
-
-// [Start monitor_decorator_multi_watch_observed_v2]
 @ObservedV2
 class Info {
   @Trace public name: string = 'Tom';
@@ -41,22 +25,22 @@ class Info {
   // name被@Trace装饰，能够监听变化
   @Monitor('name')
   onNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   // age未被@Trace装饰，不能监听变化
   @Monitor('age')
   onAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   // region与job均被@Trace装饰，能够监听变化
-  @Monitor('region','job')
+  @Monitor('region', 'job')
   onChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
@@ -89,3 +73,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_multi_watch_observed_v2]
+@Component
+export struct MonitorDecoratorMultiWatchObservedV2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_multi_watch_observed_v2'))
+  }
+}

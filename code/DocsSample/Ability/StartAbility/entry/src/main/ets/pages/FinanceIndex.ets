@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 // [Start finance_index_component]
 @Entry
 @Component
-struct Index {
+struct FinanceIndex {
   @State hideAbility: string = 'hideAbility';
 
   build() {

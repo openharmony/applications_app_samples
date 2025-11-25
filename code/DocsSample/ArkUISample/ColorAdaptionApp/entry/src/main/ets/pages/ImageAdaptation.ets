@@ -19,7 +19,7 @@ struct dark_light_color_adaptation {
 
   build() {
     RelativeContainer() {
-      Text('Use system-defined colors')
+      Text('Use app-defined colors')
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
 
       Image($rawfile('app.media.pic_svg.svg'))

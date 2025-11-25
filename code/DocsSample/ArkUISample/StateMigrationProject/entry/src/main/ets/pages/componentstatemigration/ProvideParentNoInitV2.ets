@@ -13,28 +13,32 @@
  * limitations under the License.
  */
 // [Start Parent22_start]
+const LOCAL_INITIAL_PARENT_VALUE = 42;
+
 @Entry
 @ComponentV2
-struct Parent22 {
-  @Local parentValue: number = 42;
+struct Parent {
+  @Local parentValue: number = LOCAL_INITIAL_PARENT_VALUE;
 
   build() {
     Column() {
       // @Provider禁止从父组件初始化，替代方案为先用@Param接受，再赋值给@Provider
-      Child22({ initialValue: this.parentValue });
+      Child({ initialValue: this.parentValue })
     }
   }
 }
 
 @ComponentV2
-struct Child22 {
+struct Child {
   @Param @Once initialValue: number = 0;
   @Provider() childValue: number = this.initialValue;
 
   build() {
     Column() {
-      Text(this.childValue.toString());
+      Text(this.childValue.toString())
     }
   }
 }
 // [End Parent22_start]
+const parent22 = Parent;
+export default parent22;

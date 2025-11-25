@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 // [Start ClipShapeExample_index]
-import { ClipShapeExampleA } from '../Comm/ClipShapeExampleA';
-import { ClipShapeExampleB } from '../Comm/ClipShapeExampleB';
-import { ClipShapeExampleC } from '../Comm/ClipShapeExampleC';
-import { ClipShapeExampleD } from '../Comm/ClipShapeExampleD';
 @Entry
 @Component
 struct Index {
@@ -33,13 +29,26 @@ struct Index {
       Column(){
         // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
         Text($r('app.string.EntryAbility_title1'))
-        ClipShapeExampleA()
+          .id('text1_title1')
+          .onClick(()=>{
+            this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample1'})
+          })
+
         Text($r('app.string.EntryAbility_title2'))
-        ClipShapeExampleB()
+          .id('text1_title2')
+          .onClick(()=>{
+            this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample2'})
+          })
         Text($r('app.string.EntryAbility_title3'))
-        ClipShapeExampleC()
+          .id('text1_title3')
+          .onClick(()=>{
+            this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample3'})
+          })
         Text($r('app.string.EntryAbility_title4'))
-        ClipShapeExampleD()
+          .id('text1_title4')
+          .onClick(()=>{
+            this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample4'})
+          })
       }
 
     }.width('100%')

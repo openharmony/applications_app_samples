@@ -13,88 +13,28 @@
  * limitations under the License.
  */
 
-class BasicDataSource13 implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData13[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): StringData13 {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-
 // [Start observing_nested_class_properties]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource13 extends BasicDataSource13 {
-  private dataArray: StringData13[] = [];
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+class PropertiesDataSource extends GenericBasicDataSource<ClassPropertiesStringData> {
+  private dataArray: ClassPropertiesStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData13 {
+  public getData(index: number): ClassPropertiesStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData13): void {
+  public pushData(data: ClassPropertiesStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
-class StringData13 {
+class ClassPropertiesStringData {
   public firstLayer: FirstLayer;
 
   constructor(firstLayer: FirstLayer) {
@@ -130,24 +70,24 @@ class ThirdLayer {
 @Entry
 @ComponentV2
 struct ObservingNestedClassProperties {
-  private data: MyDataSource13 = new MyDataSource13();
+  private data: PropertiesDataSource = new PropertiesDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData13(new FirstLayer(new SecondLayer(new ThirdLayer(`Hello ${i}`)))));
+      this.data.pushData(new ClassPropertiesStringData(new FirstLayer(new SecondLayer(new ThirdLayer(`Hello ${i}`)))));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData13, index: number) => {
+      LazyForEach(this.data, (item: ClassPropertiesStringData, index: number) => {
         ListItem() {
           Text(item.firstLayer.secondLayer.thirdLayer.fourthLayer).fontSize(50)
             .onClick(() => {
               item.firstLayer.secondLayer.thirdLayer.fourthLayer += '!';
             })
         }
-      }, (item: StringData13, index: number) => index.toString())
+      }, (item: ClassPropertiesStringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }

@@ -16,24 +16,25 @@
   // [Start Builder_decoration]
 @Component
 struct ParentComponent {
-  doSomeCalculations() {
-  }
-
   calcTextValue(): string {
     return 'Hello World';
   }
 
-  @Builder doSomeRender() {
+  @Builder
+  doSomeRender() {
     Text(`Hello World`)
   }
 
   build() {
     Column() {
       // 正例：可以调用
-      this.doSomeRender();
+      this.doSomeRender()
       // 正例：参数可以为调用TS方法的返回值
       Text(this.calcTextValue())
     }
   }
 }
+
 // [End Builder_decoration]
+const builderMethod = ParentComponent;
+export default builderMethod;

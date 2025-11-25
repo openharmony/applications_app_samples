@@ -12,51 +12,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0001;
-const TAG = 'arktsobservedv2andtrace';
 // [Start Inheritance_Class]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG = 'ArktsObservedV2AndTrace';
+
 @ObservedV2
 class GrandFather {
-  // The 'age' property is decorated with @Trace, so changes to its value will trigger UI updates
   @Trace public age: number = 0;
 
   constructor(age: number) {
     this.age = age;
-  };
-};
-class Father extends GrandFather{
+  }
+}
+
+class Father extends GrandFather {
   constructor(father: number) {
     super(father);
-  };
-};
+  }
+}
+
 class Uncle extends GrandFather {
   constructor(uncle: number) {
     super(uncle);
-  };
-};
+  }
+}
+
 class Son extends Father {
   constructor(son: number) {
     super(son);
-  };
-};
+  }
+}
+
 class Cousin extends Uncle {
   constructor(cousin: number) {
     super(cousin);
-  };
-};
+  }
+}
+
 @Entry
 @ComponentV2
-struct InheritanceClass {
+struct Index {
   son: Son = new Son(0);
   cousin: Cousin = new Cousin(0);
   renderTimes: number = 0;
 
   isRender(id: number): number {
-    hilog.info(DOMAIN, TAG,`id: ${id} renderTimes: ${this.renderTimes}`);
+    hilog.info(DOMAIN, TAG, `id: ${id} renderTimes: ${this.renderTimes}`);
     this.renderTimes++;
     return 40;
-  };
+  }
 
   build() {
     Row() {
@@ -70,15 +76,18 @@ struct InheritanceClass {
         Button('change Son age')
           .onClick(() => {
             this.son.age++;
-          });
+          })
         Button('change Cousin age')
           .onClick(() => {
             this.cousin.age++;
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Inheritance_Class]
+const inheritance = Index;
+export default inheritance;

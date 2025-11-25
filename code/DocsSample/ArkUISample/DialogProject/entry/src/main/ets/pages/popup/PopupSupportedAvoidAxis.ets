@@ -96,9 +96,10 @@ export struct SupportedAvoidAxisPopupExample {
       }
       .height('100%')
       .width('100%')
-    }.backgroundColor('#f1f2f3')
-    // $r('app.string.SupportedAvoidAxisPopupExample_title')需要替换为开发者所需的资源文件。
+    }
+    // [StartExclude supportedAvoidAxis_popup]
     .title($r('app.string.SupportedAvoidAxisPopupExample_title'))
+    // [EndExclude supportedAvoidAxis_popup]
   }
 }
 // [End supportedAvoidAxis_popup]

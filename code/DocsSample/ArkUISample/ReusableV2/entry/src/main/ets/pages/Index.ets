@@ -12,55 +12,59 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Interface_Description]
-import { router } from '@kit.ArkUI';
-
 @Entry
 @ComponentV2
 struct Index {
-
   build() {
     Column() {
-      Button('page1').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page1'})
-      })
-      Button('page2').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page2'})
-      })
-      Button('page3').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page3'})
-      })
-      Button('page4').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page4'})
-      })
-      Button('page5').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page5'})
-      })
-      Button('page6').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page6'})
-      })
-      Button('page7').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page7'})
-      })
-      Button('page8').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page8'})
-      })
-      Button('page9').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page9'})
-      })
-      Button('page10').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page10'})
-      })
-      Button('page11').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page11'})
-      })
-      Button('page12').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page11'})
-      })
-      Button('page13').onClick((event: ClickEvent) => {
-        router.pushUrl({url:'view/Page13'})
-      })
+      Button('ExamplePage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ExamplePage' });
+        })
+      Button('UsageRestrictionsPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/UsageRestrictionsPage' });
+        })
+      Button('RepeatTemplatePage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatTemplatePage' });
+        })
+      Button('AboutToRecyclePage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/AboutToRecyclePage' });
+        })
+      Button('ConditionPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ConditionPage' });
+        })
+      Button('ComputedPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComputedPage' });
+        })
+      Button('IMonitorValuePage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/IMonitorValuePage' });
+        })
+      Button('ComponentIfPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentIfPage' });
+        })
+      Button('RepeatPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatPage' });
+        })
+      Button('ComponentEachPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentEachPage' });
+        })
+      Button('ComponentForEachPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentForEachPage' });
+        })
+      Button('LazyForEachPage')
+        .onClick((event: ClickEvent) => {
+          this.getUIContext().getRouter().pushUrl({ url: 'view/LazyForEachPage' });
+        })
     }
   }
 }
-//[End Interface_Description]

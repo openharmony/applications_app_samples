@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_param_counter_example_2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorProblemParamCounterExample2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_param_counter_example_2'))
-  }
-}
-
-// [Start monitor_problem_param_counter_example_2]
 @ObservedV2
 class Info {
   public name: string = 'John';
@@ -40,10 +24,10 @@ class Info {
     return this.age; // age为状态变量
   }
 
-  @Monitor('myAge')
   // 监听非@Computed装饰的getter访问器
+  @Monitor('myAge')
   onPropertyChange() {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'age changed');
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'age changed');
   }
 }
 
@@ -62,3 +46,16 @@ struct Index {
   }
 }
 // [End monitor_problem_param_counter_example_2]
+@Component
+export struct MonitorProblemParamCounterExample2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_param_counter_example_2'))
+  }
+}

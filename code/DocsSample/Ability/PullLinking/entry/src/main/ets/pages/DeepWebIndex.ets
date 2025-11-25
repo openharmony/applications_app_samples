@@ -12,18 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start deep_web]
+// DeepWebIndex.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-// [StartExclude  quick_start0]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_PullLinking]';
-// [EndExclude  quick_start0]
+const TAG = '[Sample_PullLinking]';
+
 @Entry
 @Component
-struct WebComponent {
+struct DeepWebIndex {
   controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
@@ -36,7 +37,7 @@ struct WebComponent {
               .then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'openLink success.');
               }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG,`openLink failed, err: ${JSON.stringify(err)}.`);
+              hilog.error(DOMAIN_NUMBER, TAG, `openLink failed, err: ${JSON.stringify(err)}.`);
             });
             return true;
           }
@@ -46,4 +47,4 @@ struct WebComponent {
     }
   }
 }
-// [End quick_start0]
+// [End deep_web]

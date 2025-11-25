@@ -4,23 +4,17 @@
 
 本示例通过使用[ArkUI开发文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接:
 
-1.[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page)。
+1. [接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)
 
 ### 效果预览
 
-| 首页                      | 
+| 首页                        | 
 |---------------------------|
-| ![](pictures/image01.png) | 
+| ![](pictures/image01.gif) | 
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
-
-2. 在组件目录选择详细的示例参考。
-
-3. 进入示例界面，查看参考示例。
-
-4. 通过自动测试框架可进行测试及维护。
+1. 在主界面，点击按钮，会出现多行文本组件，且该界面可以滑动。
 
 ### 工程目录
 ```

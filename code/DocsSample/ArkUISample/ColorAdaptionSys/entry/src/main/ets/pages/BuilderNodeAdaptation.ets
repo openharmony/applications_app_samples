@@ -111,11 +111,17 @@ function updateColorMode() {
 @Component
 struct Index {
   @State message: string = 'hello';
+  @State colorText: string = 'light';
   private textNodeController: TextNodeController = new TextNodeController(this.message);
-  @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  // [Start prop_sys]
+  @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number =
+    ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  // [End prop_sys]
 // [EndExclude custom_node]
+  // [Start color_mode_change_appear]
   aboutToAppear(): void {
     // [StartExclude custom_node]
+    // [StartExclude color_mode_change_appear]
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
         hilog.info(DOMAIN, TAG, 'onMemoryLevel');
@@ -132,25 +138,42 @@ struct Index {
     // 设置应用深浅色跟随系统
     this.getUIContext()
       .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    //创建自定义节点并添加至map
+    // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
+    // [EndExclude color_mode_change_appear]
+    if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+      // 当前为浅色模式，资源初始化逻辑
+      // [StartExclude color_mode_change_appear]
+      this.colorText == 'light';
+      // [EndExclude color_mode_change_appear]
+    } else {
+      // 当前为深色模式，资源初始化逻辑
+      // [StartExclude color_mode_change_appear]
+      this.colorText == 'dark';
+      // [EndExclude color_mode_change_appear]
+    }
     // [EndExclude custom_node]
   }
+  // [End color_mode_change_appear]
 // [End custom_node]
+  // [Start color_mode_change]
   onColorModeChange(): void {
     if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
-      //当前为浅色模式，资源初始化逻辑
-      this.getUIContext()
-        .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+      // 当前为浅色模式，资源初始化逻辑
+      // [StartExclude color_mode_change]
+      this.colorText = 'light';
+      // [EndExclude color_mode_change]
     } else {
-      //当前为深色模式，资源初始化逻辑
-      this.getUIContext()
-        .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+      // 当前为深色模式，资源初始化逻辑
+      // [StartExclude color_mode_change]
+      this.colorText = 'dark';
+      // [EndExclude color_mode_change]
     }
   }
+  // [End color_mode_change]
 
   aboutToDisappear(): void {
-    //移除map中的引用，并将自定义节点释放
+    // 移除map中的引用，并将自定义节点释放
     this.textNodeController.deleteNode();
   }
 
@@ -170,6 +193,12 @@ struct Index {
           .onClick(() => {
             this.getUIContext()
               .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+          })
+        Button('Switch to Color Not Set')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext()
+              .setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
           })
       }
       .width('100%')

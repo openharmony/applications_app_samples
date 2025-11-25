@@ -14,11 +14,8 @@
  */
 
 // [Start compile_resource_allocation_information]
+// main/ets/pages/PrecompileConfig.ets 
 import { webview } from '@kit.ArkWeb'
-
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
 
 export interface Config {
   url:  string,
@@ -28,7 +25,7 @@ export interface Config {
 
 export let configs: Config[] = [
   {
-    url: resourceToString($r('app.string.web_path')),
+    url: 'https://www.example.com/example.js',
     localPath: 'example.js',
     options: {
       responseHeaders: [

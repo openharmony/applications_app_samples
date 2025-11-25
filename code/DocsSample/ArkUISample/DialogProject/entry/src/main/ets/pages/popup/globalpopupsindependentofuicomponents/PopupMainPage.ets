@@ -14,7 +14,6 @@
  */
 
 // [Start main_page]
-// entry/src/main/ets/components/MainPage.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, TargetInfo, PromptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -50,10 +49,10 @@ export class PromptActionClass {
     if (this.promptAction != null) {
       this.promptAction.openPopup(this.contentNode, this.target, this.options)
         .then(() => {
-          hilog.info(0x0000, 'popupMainPage', 'openPopup success');
+          hilog.info(0xFF00, 'popupMainPage', 'openPopup success');
         })
         .catch((err: BusinessError) => {
-          hilog.error(0x0000, 'popupMainPage', 'openPopup error: ' + err.code + ' ' + err.message);
+          hilog.error(0xFF00, 'popupMainPage', 'openPopup error: ' + err.code + ' ' + err.message);
         });
     }
   }
@@ -62,10 +61,10 @@ export class PromptActionClass {
     if (this.promptAction != null) {
       this.promptAction.closePopup(this.contentNode)
         .then(() => {
-          hilog.info(0x0000, 'popupMainPage', 'closePopup success');
+          hilog.info(0xFF00, 'popupMainPage', 'closePopup success');
         })
         .catch((err: BusinessError) => {
-          hilog.error(0x0000, 'popupMainPage', 'closePopup error: ' + err.code + ' ' + err.message);
+          hilog.error(0xFF00, 'popupMainPage', 'closePopup error: ' + err.code + ' ' + err.message);
         });
     }
   }
@@ -74,10 +73,10 @@ export class PromptActionClass {
     if (this.promptAction != null) {
       this.promptAction.updatePopup(this.contentNode, options, this.isPartialUpdate)
         .then(() => {
-          hilog.info(0x0000, 'popupMainPage', 'updatePopup success');
+          hilog.info(0xFF00, 'popupMainPage', 'updatePopup success');
         })
         .catch((err: BusinessError) => {
-          hilog.error(0x0000, 'popupMainPage', 'updatePopup error: ' + err.code + ' ' + err.message);
+          hilog.error(0xFF00, 'popupMainPage', 'updatePopup error: ' + err.code + ' ' + err.message);
         });
     }
   }

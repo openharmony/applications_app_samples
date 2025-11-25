@@ -21,7 +21,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct LinkFeature {
   build() {
     Button('start link', { type: ButtonType.Capsule, stateEffect: true })
       .width('87%')
@@ -29,7 +29,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let link: string = 'link://www.example.com';
+        let link: string = 'link://www.example.com'; // 此处为实际应用链接
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };

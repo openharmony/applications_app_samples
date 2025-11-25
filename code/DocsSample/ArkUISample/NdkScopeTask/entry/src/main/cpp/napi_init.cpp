@@ -24,13 +24,13 @@
 #define VALUE_400 400
 #define VALUE_1 1
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
-
+// [Start runtaskinscopethree_start]
+const uint32_t VALUE_2 = 250;
+const uint32_t VALUE_3 = 480;
+// [End runtaskinscopethree_start]
 namespace ConstIde {
 const uint32_t NUMBER_0 = 0;
 const uint32_t NUMBER_1 = 1;
-const uint32_t VALUE_2 = 250;
-const uint32_t VALUE_3 = 480;
-const uint32_t MARGIN_NUMBER_30 = 30;
 constexpr const char *K_LOG_DOMAIN = "Manager";
 }
 ArkUI_NativeNodeAPI_1* nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(

@@ -13,18 +13,14 @@
  * limitations under the License.
  */
 
-// [Start Main_UIContext]
-import { ContextUtils } from '../Common/ContextUtils';
+import { router, Router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { Router } from '@kit.ArkUI';
 
 const DOMAIN = 0xF811;
 
 @Entry
 @Component
 struct Index {
-  @State bgColor: Color = Color.Green
-
   aboutToAppear() {
     try {
       let router1 = this.getUIContext().getRouter();
@@ -35,19 +31,51 @@ struct Index {
   }
 
   build() {
-    Column() {
-      Text('getContext')
-        .backgroundColor(this.bgColor)
-        .fontSize(20)
-        .padding(5)
-        .onClick(() => {
-          let context = ContextUtils.getContext(this.getUIContext());
-          hilog.info(DOMAIN, 'testTag', `The context is ${context}`);
-          this.bgColor = Color.Blue
-        })
+    Column({ space: 10 }) {
+      Button('ContextPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/ContextPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('CalendarPickerDialogPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/CalendarPickerDialogPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('LocalStoragePage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/LocalStoragePage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('NewGlobal').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/NewGlobal',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('VpPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/VpPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('WindowTestPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/WindowTestPage',
+        }
+        routerInstance.pushUrl(options);
+      })
     }
     .height('100%')
     .width('100%')
   }
 }
-// [End Main_UIContext]

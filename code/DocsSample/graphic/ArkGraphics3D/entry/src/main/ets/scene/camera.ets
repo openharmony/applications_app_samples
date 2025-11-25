@@ -13,22 +13,28 @@
  * limitations under the License.
  */
 
+// [Start cam_header]
 import { Camera, Scene, SceneNodeParameters, SceneResourceFactory } from '@kit.ArkGraphics3D';
+// [End cam_header]
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 let globalScene: Scene | null = null;
 
 function createCameraPromise(): Promise<Camera> {
   return new Promise((resolve, reject) => {
     // Switched from .gltf to .glb; same content, different format
+    // [Start cam_load_and_factory]
     let scene: Promise<Scene> = Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'));
     scene.then(async (result: Scene) => {
+      // [StartExclude cam_load_and_factory]
       // Save loaded scene globally for reuse (e.g., in CameraPage)
       globalScene = result;
+      // [EndExclude cam_load_and_factory]
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneCameraParameter: SceneNodeParameters = { name: 'camera' };
+      // [StartExclude cam_load_and_factory]
       // Create a Camera.
+      // [Start cam_create_and_config]
       let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
       camera.then(async (cameraEntity: Camera) => {
         // Enable the camera node.
@@ -42,15 +48,22 @@ function createCameraPromise(): Promise<Camera> {
 
         // Set other camera parameters.
         // ...
+        // [StartExclude cam_create_and_config]
         resolve(cameraEntity);
+        // [EndExclude cam_create_and_config]
       }).catch((error: string) => {
-        logger.error('Camera create failed: ' + error + '.');
+        console.error('Camera create failed: ' + error + '.');
+        // [StartExclude cam_create_and_config]
         reject(error);
+        // [EndExclude cam_create_and_config]
       });
+      // [End cam_create_and_config]
+      // [EndExclude cam_load_and_factory]
     }).catch((error: string) => {
-        logger.error('Scene load failed: ' + error);
-        reject(error);
-      });
+      console.error('Scene load failed: ' + error);
+      reject(error);
+    });
+    // [End cam_load_and_factory]
   });
 }
 
@@ -79,14 +92,16 @@ struct CameraPage {
   }
 
   async init(): Promise<void> {
+    // [Start cam_init_bind]
     this.camera = await createCameraPromise();
     if (globalScene && this.camera) {
       this.scene = globalScene;
       this.positionX = this.camera.position.x;
       this.positionY = this.camera.position.y;
       this.positionZ = this.camera.position.z;
-      this.sceneOpt = { scene: globalScene, modelType: ModelType.SURFACE } as SceneOptions;
+      this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
     }
+    // [End cam_init_bind]
   }
 
   build() {
@@ -150,6 +165,7 @@ struct CameraPage {
 
         Column() {
           Text('Z-axis: ' + this.positionZ.toFixed(1)).fontSize(12)
+          // [Start cam_ui_sliders]
           Slider({
             value: this.positionZ,
             min: 5,
@@ -168,6 +184,7 @@ struct CameraPage {
               }
             })
             .width('100%')
+          // [End cam_ui_sliders]
         }
         .width('100%')
 

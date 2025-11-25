@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 // [Start Complex_nested_observation_levels]
-// Used to generate unique IDs for complex nesting completion related instances
-let complexNestingCompleteNextId = 1;
+let nextId = 1;
 
 @Observed
 class SubCounter {
@@ -22,37 +21,37 @@ class SubCounter {
 
   constructor(c: number) {
     this.counter = c;
-  };
-};
+  }
+}
 
 @Observed
-class ComplexNestingCompleteParentCounter {
+class ParentCounter {
   public id: number;
   public counter: number;
   public subCounter: SubCounter;
 
   incrCounter() {
     this.counter++;
-  };
+  }
 
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
-  };
+  }
 
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
-  };
+  }
 
   constructor(c: number) {
-    this.id = complexNestingCompleteNextId++;
+    this.id = nextId++;
     this.counter = c;
     this.subCounter = new SubCounter(c);
-  };
-};
+  }
+}
 
 @Component
-struct ComplexNestingCompleteCounterComp {
-  @ObjectLink value: ComplexNestingCompleteParentCounter;
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
 
   build() {
     Column({ space: 10 }) {
@@ -60,8 +59,8 @@ struct ComplexNestingCompleteCounterComp {
         .fontSize(25)
         .onClick(() => {
           this.value.incrCounter();
-        });
-      CounterChild({ subValue: this.value.subCounter });
+        })
+      CounterChild({ subValue: this.value.subCounter })
       Divider().height(2)
     }
   }
@@ -75,55 +74,50 @@ struct CounterChild {
     Text(`${this.subValue.counter}`)
       .onClick(() => {
         this.subValue.counter += 1;
-      });
+      })
   }
 }
 
 @Entry
 @Component
-struct ComplexNestingCompleteParentComp {
-  @State counter: ComplexNestingCompleteParentCounter[] = [
-    new ComplexNestingCompleteParentCounter(1),
-    new ComplexNestingCompleteParentCounter(2),
-    new ComplexNestingCompleteParentCounter(3)
-  ];
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
 
   build() {
     Row() {
       Column() {
-        ComplexNestingCompleteCounterComp({ value: this.counter[0] });
-        ComplexNestingCompleteCounterComp({ value: this.counter[1] });
-        ComplexNestingCompleteCounterComp({ value: this.counter[2] });
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
-          (item: ComplexNestingCompleteParentCounter) => {
-            ComplexNestingCompleteCounterComp({ value: item })
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
           },
-          (item: ComplexNestingCompleteParentCounter) => item.id.toString()
-        );
+          (item: ParentCounter) => item.id.toString()
+        )
         Divider().height(5)
         Text('Parent: reset entire counter')
           .fontSize(20).height(50)
           .onClick(() => {
-            this.counter = [
-              new ComplexNestingCompleteParentCounter(1),
-              new ComplexNestingCompleteParentCounter(2),
-              new ComplexNestingCompleteParentCounter(3)
-            ];
-          });
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
         Text('Parent: incr counter[0].counter')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].incrCounter();
             this.counter[0].incrSubCounter(10);
-          });
+          })
         Text('Parent: set.counter to 10')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].setSubCounter(10);
-          });
+          })
       }
     }
   }
 }
+
 // [End Complex_nested_observation_levels]
+const complexNestingCompleteParentComp = ParentComp;
+export default complexNestingCompleteParentComp;

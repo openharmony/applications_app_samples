@@ -1,10 +1,11 @@
-# ArkUI使用文本控件指南文档示例
+# 多层级手势事件指南
 
 ### 介绍
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [多层级手势事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-gesture-events-multi-level-gesture.md)。
+### 示例文档
+[多层级手势事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-gesture-events-multi-level-gesture.md)。
 
 ### 效果预览
 不涉及
@@ -17,7 +18,7 @@
 4. **常见多级手势应用**：  
 单击 + 双击：适用于图片或文档查看场景，如双击放大、单击退出；  
 滑动 + 缩放：适用于图表场景，如滑动移动视图、双指缩放查看细节；  
-长按 + 滑动：适用于拖拽场景，如长按后滑动以移动元素位置，满足复杂交互需求。  
+长按 + 滑动：适用于拖拽场景，如长按后滑动以移动元素位置，满足复杂交互需求。
 
 ### 工程目录
 ```
@@ -54,7 +55,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony**_5.0.2.57。**
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
 
 3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 5.0.5.306， built on December 12, 2024)及以上版本才可编译运行。
 

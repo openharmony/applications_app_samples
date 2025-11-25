@@ -15,14 +15,14 @@
 // [Start StateArrayForeach_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class StyleList12 extends Array<TextStyles12> {
-};
+class StyleList extends Array<TextStyles> {
+}
 
 @Observed
-class TextStyles12 {
+class TextStyles {
   public fontSize: number;
 
   constructor(fontSize: number) {
@@ -32,12 +32,12 @@ class TextStyles12 {
 
 @Entry
 @Component
-struct Page12 {
-  @State styleList: StyleList12 = new StyleList12();
+struct Page {
+  @State styleList: StyleList = new StyleList();
 
   aboutToAppear() {
     for (let i = 15; i < 50; i++) {
-      this.styleList.push(new TextStyles12(i));
+      this.styleList.push(new TextStyles(i));
     }
   }
 
@@ -52,7 +52,7 @@ struct Page12 {
           hilog.info(DOMAIN_NUMBER, TAG, 'change font size');
         })
       List() {
-        ForEach(this.styleList, (item: TextStyles12) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text('Hello World')
               .fontSize(item.fontSize)
@@ -63,3 +63,5 @@ struct Page12 {
   }
 }
 // [End StateArrayForeach_start]
+const stateArrayForeachPage = Page;
+export default stateArrayForeachPage;

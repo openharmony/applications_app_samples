@@ -53,4 +53,4 @@ struct PageBuilderIncorrectUsage {
     .padding(50)
   }
 }
-// [Start dynamic_rerendering_with_component_v2_incorrect_usage]
+// [End dynamic_rerendering_with_component_v2_incorrect_usage]

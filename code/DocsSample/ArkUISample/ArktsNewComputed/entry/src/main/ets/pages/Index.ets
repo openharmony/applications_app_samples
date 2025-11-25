@@ -16,18 +16,19 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { RoutableCard } from '../common/Card';
 import { Route } from '../common/Route';
-import resource from '../common/resource';
-import { CustomComponentUse } from './CustomComponentUse';
-import { ObservedV2ClassUser } from './ObservedV2ClassUser';
+import resource from '../common/Resource';
+import { CustomComponentUseFunc as CustomComponentUse } from './CustomComponentUse';
+import { ObservedV2ClassUserFunc as ObservedV2ClassUser } from './ObservedV2ClassUser';
 import { ComputingPropertyResolution } from './ComputingPropertyResolution';
 import { ComputedInitParam } from './ComputedInitParam';
+import { ComputedProperty } from './ComputedProperty';
 
 const routes: Route[] = [
-    {
-      name: 'CustomComponentUse',
-      title: resource.resourceToString($r('app.string.computed_desc_1')),
-      description: ''
-    },
+  {
+    name: 'CustomComponentUse',
+    title: resource.resourceToString($r('app.string.computed_desc_1')),
+    description: ''
+  },
   {
     name: 'ObservedV2ClassUser',
     title: resource.resourceToString($r('app.string.computed_desc_2')),
@@ -43,18 +44,26 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.computed_title_3')),
     description: $r('app.string.computed_desc_4')
   },
+  {
+    name: 'ComputedProperty',
+    title: resource.resourceToString($r('app.string.computed_property_title')),
+    description: ''
+  },
+
 ];
 
 @Builder
 function computedDestination(name: string) {
   if (name.startsWith('CustomComponentUse')) {
     CustomComponentUse();
-  }else if(name.startsWith('ObservedV2ClassUser')){
+  } else if (name.startsWith('ObservedV2ClassUser')) {
     ObservedV2ClassUser();
-  }else if(name.startsWith('ComputingPropertyResolution')){
+  } else if (name.startsWith('ComputingPropertyResolution')) {
     ComputingPropertyResolution();
-  }else if(name.startsWith('ComputedInitParam')){
+  } else if (name.startsWith('ComputedInitParam')) {
     ComputedInitParam();
+  } else if (name.startsWith('ComputedProperty')) {
+    ComputedProperty();
   }
 }
 

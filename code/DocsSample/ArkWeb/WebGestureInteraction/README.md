@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [使用Web组件的手势与应用交互](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-gesture.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在移动端或支持触控的Web应用中，如何通过触摸屏与页面交互。
+本工程主要实现了对以下指南文档中 [使用Web组件的手势与应用交互](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-gesture.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在移动端或支持触控的Web应用中，如何通过触摸屏与页面交互。
 
 ### ArkWeb手势与ArkUI手势
 

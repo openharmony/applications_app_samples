@@ -17,10 +17,10 @@
 @Entry
 @Component
 export struct OnClickGesture {
-  private judgeCount: number = 0
+  private judgeCount: number = 0;
 
   increaseJudgeGuard(): void {
-    this.judgeCount++
+    this.judgeCount++;
   }
 
   build() {
@@ -32,15 +32,15 @@ export struct OnClickGesture {
             .height('50%')
             .backgroundColor(Color.Grey)
             .onClick(() => { // 1. 子组件上注册了点击事件，正常情况下点击在子组件上时，优先得到响应
-              console.info('Clicked on child')
-              this.increaseJudgeGuard()
+              console.info('Clicked on child');
+              this.increaseJudgeGuard();
             })
             .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
               // 3. 当数字增长为5的倍数时禁用子组件上的点击手势，这样父组件上的点击可以得到响应
               if (this.judgeCount % 5 == 0 && gestureInfo.type == GestureControl.GestureType.CLICK) {
-                return GestureJudgeResult.REJECT
+                return GestureJudgeResult.REJECT;
               } else {
-                return GestureJudgeResult.CONTINUE
+                return GestureJudgeResult.CONTINUE;
               }
             })
         }
@@ -51,8 +51,8 @@ export struct OnClickGesture {
         .gesture(
           TapGesture() // 2. 父组件上注册了点击手势，正常情况下点击在子组件区域时，父组件上的手势优先级低于子组件
             .onAction(() => {
-              console.info('Clicked on parent')
-              this.increaseJudgeGuard()
+              console.info('Clicked on parent');
+              this.increaseJudgeGuard();
             }))
       }
       .height('100%')
@@ -60,7 +60,7 @@ export struct OnClickGesture {
       .justifyContent(FlexAlign.Center)
     }
     .backgroundColor('#f1f2f3')
-    //$r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
+    // $r('app.string.singlegesture_Index_Click_title')资源文件中的value值为'点击事件'
     .title($r('app.string.singlegesture_Index_Click_title'))
   }
 }

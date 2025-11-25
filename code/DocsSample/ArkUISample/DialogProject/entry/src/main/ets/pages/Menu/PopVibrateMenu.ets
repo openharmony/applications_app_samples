@@ -14,9 +14,9 @@
  */
 
 import { PromptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// $r('app.media.xxx')需要替换为开发者所需的资源文件。
-// $r('app.string.xxx')需要替换为开发者所需的资源文件。
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 class Tmp {
   private iconStr2: ResourceStr = $r('app.media.app_icon')
 
@@ -43,8 +43,11 @@ export struct PopVibrateMenuExample  {
   @Builder
   MyMenu() {
     Menu() {
+      // 'app.string.menu_single'资源文件中的value值为"菜单选项单级"。
       MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_single') })
+      // 'app.string.menu_forbid'资源文件中的value值为"菜单不可选择"。
       MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_forbid') }).enabled(false)
+      // 'app.string.menu_more'资源文件中的value值为"菜单选项多级"。
       MenuItem({
         startIcon: this.iconStr,
         content: $r('app.string.menu_more'),
@@ -52,15 +55,18 @@ export struct PopVibrateMenuExample  {
         // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
         builder: this.SubMenu
       })
+      // 'app.string.menu_subtitle'资源文件中的value值为"小标题"。
       MenuItemGroup({ header: $r('app.string.menu_subtitle') }) {
+        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
         MenuItem({ content: $r('app.string.menu_selection') })
           .selectIcon(true)
           .selected(this.select)
           .onChange((selected) => {
-            console.info('menuItem select' + selected);
+            hilog.info(0xFF00, 'DialogProject', 'menuItem select' + selected);
             let str: Tmp = new Tmp();
             str.set($r('app.media.app_icon'));
           })
+        // 'app.string.menu_more'资源文件中的value值为"菜单选项多级"。
         MenuItem({
           startIcon: $r('app.media.app_icon'),
           content: $r('app.string.menu_more'),
@@ -68,7 +74,7 @@ export struct PopVibrateMenuExample  {
           builder: this.SubMenu
         })
       }
-
+      // 'app.string.menu_single'资源文件中的value值为"菜单选项单级"。
       MenuItem({
         startIcon: this.iconStr2,
         content: $r('app.string.menu_single'),
@@ -81,9 +87,9 @@ export struct PopVibrateMenuExample  {
       Column({ space: 12 }) {
 
         // [Start popVibrate_menu]
-        Button($r('app.string.Click_for_menu'))
+        Button('click for Menu')
           .id('click for Menu')
-          .bindContextMenu(this.MyMenu, ResponseType.RightClick, { hapticFeedbackMode: HapticFeedbackMode.ENABLED})
+          .bindMenu(this.MyMenu, { hapticFeedbackMode: HapticFeedbackMode.ENABLED})
           // [End popVibrate_menu]
           .width(160)
           .height(50)
@@ -93,7 +99,8 @@ export struct PopVibrateMenuExample  {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
+    // [StartExclude popVibrate_menu]
     .title($r('app.string.PopVibrateMenu_title'))
+    // [EndExclude popVibrate_menu]
   }
 }

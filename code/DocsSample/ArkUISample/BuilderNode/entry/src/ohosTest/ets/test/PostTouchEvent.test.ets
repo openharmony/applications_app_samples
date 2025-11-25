@@ -19,10 +19,10 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { Router, router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
+
 
 export default function postTouchEventTest() {
   describe('postTouchEventTest', () => {
@@ -36,34 +36,43 @@ export default function postTouchEventTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','postTouchEventTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','postTouchEventTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/PostTouchEvent',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get postTouchEvent state pages:' + JSON.stringify(pages));
-        if (!('postTouchEvent' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get postTouchEvent pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get postTouchEvent state pages:' + JSON.stringify(pages));
+        if (('PostTouchEvent' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get postTouchEvent pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push postTouchEvent page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push postTouchEvent page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','postTouchEvent beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','postTouchEvent beforeEach end');
     });
 
+    /*
+     * @tc.number     : PostTouchEvent_01
+     * @tc.name       : postTouchEventTest_01
+     * @tc.desc       : 测试通过该接口向BuilderNode中绑定的组件注入触摸事件，实现事件的模拟转发。
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('postTouchEventTest_01', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: postTouchEventTest_01 begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: postTouchEventTest_01 begin');
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.id('onTouch'));
       await componentButton.click();
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

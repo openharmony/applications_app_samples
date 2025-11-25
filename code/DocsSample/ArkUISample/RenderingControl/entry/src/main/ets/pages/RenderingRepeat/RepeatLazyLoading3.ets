@@ -16,7 +16,7 @@
 // [Start repeat_lazy_loading_three]
 @Entry
 @ComponentV2
-struct RepeatLazyLoading3 {
+struct RepeatLazyLoadingInfinite {
   @Local arr: Array<string> = [];
   // 提供首屏显示所需的初始数据。
   aboutToAppear(): void {

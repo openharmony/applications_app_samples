@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import { KeyCode } from '@kit.InputKit';
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 // [Start focus_scope_navigation]
 @Entry
@@ -145,6 +142,7 @@ export struct FocusScopePriority {
     }
     // [StartExclude focus_scope_navigation]
     .backgroundColor('#f1f2f3')
+    // app.string.Focus_FocusScopePriority_title资源文件中的value值为'焦点组与获焦优先级'
     .title($r('app.string.Focus_FocusScopePriority_title'))
     // [EndExclude focus_scope_navigation]
   }

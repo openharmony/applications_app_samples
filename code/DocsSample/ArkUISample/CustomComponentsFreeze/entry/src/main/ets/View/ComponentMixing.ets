@@ -13,18 +13,23 @@
  * limitations under the License.
  */
 // [Start arkts_custom_components_freeze9]
+// index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
+const TAB_STATE_INITIAL_VALUE = 47;
+
 @Component
 struct ChildOfParamComponent {
   @Prop @Watch('onChange') childVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.childVal);
+    hilog.info(DOMAIN, TAG, `Appmonitor ChildOfParamComponent: childVal changed:${this.childVal}`);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.childVal}`);
+      Text(`Child Param: ${this.childVal}`)
     }
   }
 }
@@ -34,30 +39,28 @@ struct ParamComponent {
   @Prop @Watch('onChange') paramVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.paramVal);
+    hilog.info(DOMAIN, TAG, `Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
   }
 
   build() {
     Column() {
-      Text(`val： ${this.paramVal}`)
-      ChildOfParamComponent({ childVal: this.paramVal });
+      Text(`val: ${this.paramVal}`)
+      ChildOfParamComponent({ childVal: this.paramVal })
     }
   }
 }
-
-
 
 @Component
 struct DelayComponent {
   @Prop @Watch('onChange') delayVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.delayVal);
+    hilog.info(DOMAIN, TAG, `Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
   }
 
   build() {
     Column() {
-      Text(`Delay Param： ${this.delayVal}`);
+      Text(`Delay Param: ${this.delayVal}`)
     }
   }
 }
@@ -65,10 +68,10 @@ struct DelayComponent {
 @Component({ freezeWhenInactive: true })
 struct TabsComponent {
   private controller: TabsController = new TabsController();
-  @State @Watch('onChange') tabState: number = 47;
+  @State @Watch('onChange') tabState: number = TAB_STATE_INITIAL_VALUE;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.tabState);
+    hilog.info(DOMAIN, TAG, `Appmonitor TabsComponent: tabState changed:${this.tabState}`);
   }
 
   build() {
@@ -76,17 +79,15 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          hilog.info(0x0000, 'Button increment state valued', 'FreezeChild message callback func %{public}d, index: %{public}d');
+          hilog.info(DOMAIN, TAG, 'Button increment state value');
           this.tabState = this.tabState + 1;
         })
-
       Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
         TabContent() {
-          ParamComponent({ paramVal: this.tabState });
+          ParamComponent({ paramVal: this.tabState })
         }.tabBar('Update')
-
         TabContent() {
-          DelayComponent({ delayVal: this.tabState });
+          DelayComponent({ delayVal: this.tabState })
         }.tabBar('DelayUpdate')
       }
       .vertical(false)
@@ -104,13 +105,13 @@ struct TabsComponent {
 
 @Entry
 @Component
-struct ComponentMixing {
+struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
 
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      PageOneStack2()
+      PageOneStack()
     } else if (name === 'pageTwo') {
       PageTwoStack()
     }
@@ -136,14 +137,13 @@ struct ComponentMixing {
 }
 
 @Component
-struct PageOneStack2 {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {
     NavDestination() {
       Column() {
-        TabsComponent();
-
+        TabsComponent()
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)

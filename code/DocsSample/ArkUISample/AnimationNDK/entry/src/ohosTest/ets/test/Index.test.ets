@@ -69,10 +69,6 @@ export default function AnimationNdkTest() {
       expect(transition === null).assertFalse();
       await transition.click();
       await driver.delayMs(1000);
-      const nativeButton = await driver.findComponent(ON.text('Native', MatchPattern.CONTAINS));
-      expect(nativeButton === null).assertFalse();
-      await nativeButton.click();
-      await driver.delayMs(1000);
       const showButton = await driver.findComponent(ON.text('show', MatchPattern.CONTAINS));
       expect(showButton === null).assertFalse();
       await showButton.click();

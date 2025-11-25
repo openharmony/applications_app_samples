@@ -15,7 +15,7 @@
 // [Start ComputedV2_start]
 @Entry
 @ComponentV2
-struct Index2 {
+struct Index {
   @Local firstName: string = 'Li';
   @Local lastName: string = 'Hua';
 
@@ -26,12 +26,14 @@ struct Index2 {
 
   build() {
     Column() {
-      Text(this.fullName);
-      Text(this.fullName);
+      Text(this.fullName)
+      Text(this.fullName)
       Button('changed lastName').onClick(() => {
         this.lastName += 'a';
-      });
+      })
     }
   }
 }
 // [End ComputedV2_start]
+const index2 = Index;
+export default index2;

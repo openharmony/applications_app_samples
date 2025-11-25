@@ -16,8 +16,7 @@
 2. 异常处理
    根据上次退出的信息做相应的业务处理,包含以下处理：
    1. 对于不同的退出原因，开发者可以增加不同的处理逻辑。
-   2. 对于不同的退出原因，开发者可以增加不同的处理逻辑。
-   3. 根据异常退出时刻的时间戳，明确异常发生的时刻，便于问题定位。
+   2. 根据异常退出时刻的时间戳，明确异常发生的时刻，便于问题定位。
 
 ### 工程目录
 
@@ -44,7 +43,7 @@ entry/src/
 * 获取应用异常退出原因
     * 获取应用异常通过AbilityConstant.LaunchParam参数lastExitReason字段获取，具体源码参考：[ExitAbility1](./entry/src/main/ets/exitability/ExitAbility1.ets)
 * 获取应用异常退出原因类型：
-    * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility2](./entry/src/main/ets/exitability/ExitAbility2.ets)
+    * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility](./entry/src/main/ets/exitability/ExitAbility.ets)
 
 ### 相关权限
 

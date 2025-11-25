@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [End Builder_Node]
+// [Start Builder_Node]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
-  TestRemove();
+  TestRemove()
 }
 
 let globalBuilderNode: BuilderNode<[]> | null = null;
@@ -40,7 +40,7 @@ class TextNodeController extends NodeController {
     if (globalBuilderNode === null && this.uiContext) {
       globalBuilderNode = new BuilderNode(this.uiContext);
       // 构建BuilderNode，TestRemove作为子组件
-      globalBuilderNode.build(wrapBuilder<[]>(buildText), undefined, {enableProvideConsumeCrossing: true});
+      globalBuilderNode.build(wrapBuilder<[]>(buildText), undefined, { enableProvideConsumeCrossing: true });
     }
     if (this.rootNode && globalBuilderNode) {
       this.rootNode.appendChild(globalBuilderNode.getFrameNode());
@@ -62,15 +62,17 @@ class TextNodeController extends NodeController {
 
 @Entry
 @ComponentV2
-export struct RemoChildDisconnectProvider {
+struct RemoChildDisconnectProvider {
   @Provider() content: string = 'Index: hello world';
-  @Monitor('content') providerWatch() {
+  @Monitor('content')
+  providerWatch() {
     console.info(`Provider change ${this.content}`);
   }
+
   controllerIndex: TextNodeController = new TextNodeController();
 
   build() {
-    Column({space: 8}) {
+    Column({ space: 8 }) {
       Text(`Provider: ${this.content}`)
 
       // 添加BuilderNode，@Consumer与@Provider建立双向同步
@@ -96,7 +98,7 @@ export struct RemoChildDisconnectProvider {
         .onClick(() => {
           this.content += 'Pro';
         })
-      NodeContainer(this.controllerIndex);
+      NodeContainer(this.controllerIndex)
     }
     .width('100%')
     .height('100%')
@@ -106,7 +108,8 @@ export struct RemoChildDisconnectProvider {
 @ComponentV2
 struct TestRemove {
   @Consumer() content: string = 'default value';
-  @Monitor('content') consumerWatch() {
+  @Monitor('content')
+  consumerWatch() {
     console.info(`Consumer change ${this.content}`);
   }
 
@@ -127,3 +130,17 @@ struct TestRemove {
   }
 }
 // [End Builder_Node]
+
+@Component
+export struct BuilderNodeDemo {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      RemoChildDisconnectProvider()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Builder_Node'))
+  }
+}

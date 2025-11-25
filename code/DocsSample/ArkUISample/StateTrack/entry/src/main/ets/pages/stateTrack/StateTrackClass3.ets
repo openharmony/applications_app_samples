@@ -15,7 +15,7 @@
 // [Start addLog3_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateTrack]';
 class Log {
   @Track public logInfo: string;
   public owner: string;
@@ -36,7 +36,7 @@ class Log {
 
 @Entry
 @Component
-struct AddLog3 {
+struct AddLog {
   @State log: Log = new Log('origin info.');
 
   build() {
@@ -54,7 +54,6 @@ struct AddLog3 {
               ' reason: ' + this.log.reason);
             this.log.time = new Date();
             this.log.id++;
-
             this.log.logInfo += ' info.';
           })
       }
@@ -64,3 +63,5 @@ struct AddLog3 {
   }
 }
 // [End addLog3_start]
+const stateTrackClassPage = AddLog;
+export default stateTrackClassPage;

@@ -8,8 +8,8 @@
 
 | 首页 | navigation页面                                           |
 | ---- | -------------------------------------------------------- |
-|      | <img src="./screenshots/page_navigation.jpeg" width="300;" /> |
-|      | <img src="./screenshots/mappingDescriptor.jpeg" width="300;" /> |
+|      | ![](screenshots/page_navigation.jpg) |
+|      | ![](screenshots/mappingDescriptor.png) |
 
 ## 使用说明
 

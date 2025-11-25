@@ -18,18 +18,18 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[Page_UIAbilityComponentsBasicUsage]';
+const TAG = '[UIAbilityComponentsUsage]';
 const DOMAIN = 0xF811;
 @Entry
 @Component
-struct Page_UIAbilityComponentsBasicUsage {
+struct UIAbilityComponentsUsage {
   // 页面展示
   build() {
     Column() {
-      // [StartExclude  ui_ability_usage_start]
+      // [StartExclude ui_ability_usage_start]
       Text('usage start')
         .width('50vp')
-      // [EndExclude  ui_ability_usage_start]
+      // [EndExclude ui_ability_usage_start]
       Button('FuncAbilityB')
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext;

@@ -16,7 +16,7 @@
 // [Start Decorative_Map]
 @Entry
 @ComponentV2
-export struct DecorativeMap {
+struct Parent {
   @Provider() message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
@@ -46,6 +46,7 @@ export struct DecorativeMap {
     }
   }
 }
+
 @ComponentV2
 struct Child {
   @Consumer() message: Map<number, string> = new Map([[0, 'd'], [1, 'e'], [3, 'f']]);
@@ -77,3 +78,17 @@ struct Child {
   }
 }
 // [End Decorative_Map]
+
+@Component
+export struct DecorativeMap {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Decorative_Map'))
+  }
+}

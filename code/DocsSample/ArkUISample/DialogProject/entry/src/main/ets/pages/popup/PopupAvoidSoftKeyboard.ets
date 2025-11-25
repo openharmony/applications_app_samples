@@ -49,9 +49,10 @@ export struct AvoidSoftKeyboardPopupExample {
           .position({ x: 100, y: 300 })
       }
       .width('100%')
-    }.backgroundColor('#f1f2f3')
-    // $r('app.string.AvoidSoftKeyboardPopupExample_title')需要替换为开发者所需的资源文件。
+    }
+    // [StartExclude avoidSoftKeyboard_popup]
     .title($r('app.string.AvoidSoftKeyboardPopupExample_title'))
+    // [EndExclude avoidSoftKeyboard_popup]
   }
 }
 // [End avoidSoftKeyboard_popup]

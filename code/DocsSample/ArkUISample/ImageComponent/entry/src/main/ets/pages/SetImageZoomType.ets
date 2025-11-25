@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-//  [Start image_objectfit]
+// 设置图片缩放类型页面
+// [Start image_objectfit]
 @Entry
 @Component
 struct ImageScalingType {
@@ -21,68 +22,80 @@ struct ImageScalingType {
 
   build() {
     Scroll(this.scroller) {
-      Column() {
-        Row() {
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+      Row() {
+        Column() {
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内
             .objectFit(ImageFit.Contain)
-            .margin(15)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-          //  $r('app.media.ic_img_2')需要替换为开发者所需的资源文件
-          Image($r('app.media.ic_img_2'))
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界
             .objectFit(ImageFit.Cover)
-            .margin(15)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 自适应显示。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 自适应显示
             .objectFit(ImageFit.Auto)
-            .margin(15)
-            .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-        };
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
 
-        Row() {
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+        Column() {
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 不保持宽高比进行放大缩小，使得图片充满显示边界。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 不保持宽高比进行放大缩小，使得图片充满显示边界
             .objectFit(ImageFit.Fill)
-            .margin(15)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 保持宽高比显示，图片缩小或者保持不变。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 保持宽高比显示，图片缩小或者保持不变
             .objectFit(ImageFit.ScaleDown)
-            .margin(15)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 保持原有尺寸显示。
+            // 通过设置objectFit属性，可以使图片在高度和宽度确定的框内进行缩放
+            // 保持原有尺寸显示
             .objectFit(ImageFit.None)
-            .margin(15)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-        };
-      };
-    };
-  };
+            .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
+            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
+      }
+    }
+  }
 }
-//  [End image_objectfit]
+// [End image_objectfit]

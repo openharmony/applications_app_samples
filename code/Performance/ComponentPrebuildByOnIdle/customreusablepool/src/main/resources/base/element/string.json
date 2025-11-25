@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "customreusablepool_percent_100",
+      "value": "100%"
+    },{
+      "name": "customreusablepool_percent_60",
+      "value": "60%"
+    },{
+      "name": "customreusablepool_button_normal",
+      "value": "常规复用"
+    },{
+      "name": "customreusablepool_button_custom",
+      "value": "全局自定义组件复用池"
+    },{
+      "name": "customreusablepool_water_flow_background_color",
+      "value": "#FAEEE0"
+    }
+  ]
+}

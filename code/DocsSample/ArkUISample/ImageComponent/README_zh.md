@@ -7,21 +7,21 @@
 1. [显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-graphics-display.md)。
 ### 效果预览
 
-| 首页                                     | 可绘制描述符                               |
-|----------------------------------------|--------------------------------------|
-| ![](screenshots/device/image1.png)     | ![](screenshots/device/draw.gif)     |
-| 设置图片缩放类型                               | 图片插值                            |
-| ------------------------------------   | ------------------------------------ |
-| ![](screenshots/device/zoom.png)       | ![](screenshots/device/interpolation.png)   |
-| 设置图片重复样式                               | 设置图片渲染模式                            |
-| ------------------------------------   | ------------------------------------ |
-| ![](screenshots/device/repetition.png) | ![](screenshots/device/filter.png)   |
-| 设置图片解码尺寸                               | 为图片添加滤镜效果                            |
-| ------------------------------------   | ------------------------------------ |
-| ![](screenshots/device/sizi.png)       | ![](screenshots/device/image2.png)   |
+| 首页                                     | 可绘制描述符                                    |
+|----------------------------------------|-------------------------------------------|
+| ![](screenshots/device/image1.png)     | ![](screenshots/device/draw.jpeg)         |
+| 设置图片缩放类型                               | 图片插值                                      |
+| ------------------------------------   | ------------------------------------      |
+| ![](screenshots/device/zoom.png)       | ![](screenshots/device/interpolation.png) |
+| 设置图片重复样式                               | 设置图片渲染模式                                  |
+| ------------------------------------   | ------------------------------------      |
+| ![](screenshots/device/repetition.png) | ![](screenshots/device/filter.png)        |
+| 设置图片解码尺寸                               | 为图片添加滤镜效果                                 |
+| ------------------------------------   | ------------------------------------      |
+| ![](screenshots/device/sizi.png)       | ![](screenshots/device/one.png)           |
 | 事件调用                                   | 
 | ------------------------------------   | 
-| ![](screenshots/device/incident.png)       |
+| ![](screenshots/device/Event.png)      |
 
 ### 使用说明
 
@@ -81,7 +81,7 @@ entry/src/ohosTest/
 
 2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0.47。
 
-3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 6.0.0.47， built on October 21, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858， built on September 24, 2025)及以上版本才可编译运行。
 ### 下载
 
 如需单独下载本工程，执行如下命令：

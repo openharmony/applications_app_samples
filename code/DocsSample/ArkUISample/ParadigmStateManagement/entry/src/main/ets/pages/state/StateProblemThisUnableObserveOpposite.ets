@@ -12,11 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start state_problem_this_unable_observe_opposite]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-// [Start state_problem_this_unable_observe_opposite]
 @Entry
 @Component
 struct Index {
@@ -43,7 +41,7 @@ export class TestModel {
   constructor() {
     this.model = new Model(() => {
       this.isSuccess = true;
-      hilog.info(DOMAIN, 'testTag', '%{public}s', `this.isSuccess: ${this.isSuccess}`);
+      hilog.info(0xFF00, 'testTag', '%{public}s', `this.isSuccess: ${this.isSuccess}`);
     })
   }
 

@@ -45,14 +45,15 @@ struct Library {
   @State book: Book = new Book('100 secrets of C++', 765);
 
   build() {
-      Column() {
-        ReaderComp({ book: this.book })
-        ReaderComp({ book: this.book })
-      }
+    Column() {
+      ReaderComp({ book: this.book })
+      ReaderComp({ book: this.book })
+    }
   }
 }
+
 // [End prop_five_start]
 @Builder
-export function MyLibraryBuilder(){
+export function MyLibraryBuilder() {
   Library()
 }

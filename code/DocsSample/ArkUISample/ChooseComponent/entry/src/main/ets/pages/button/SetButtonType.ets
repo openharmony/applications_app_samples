@@ -91,6 +91,7 @@ export struct SetButtonType {
           Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true })
             .backgroundColor(0x317aff)
             .width(90)
+            .height(40)
           // [End create_rounded_rectangle_button]
         }
       }

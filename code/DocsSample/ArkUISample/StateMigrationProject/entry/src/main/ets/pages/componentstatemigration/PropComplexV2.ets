@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 // [Start Parent12_start]
+const APPLE_INITIAL_COUNT = 5;
+const ORANGE_INITIAL_COUNT = 10;
+
 @ObservedV2
-class Fruit2 {
-  @Trace public  apple: number = 5;
-  @Trace public orange: number = 10;
+class Fruit {
+  @Trace public apple: number = APPLE_INITIAL_COUNT;
+  @Trace public orange: number = ORANGE_INITIAL_COUNT;
 
   // 实现深拷贝，子组件不会修改父组件的数据
-  clone(): Fruit2 {
-    let newFruit: Fruit2 = new Fruit2();
+  clone(): Fruit {
+    let newFruit: Fruit = new Fruit();
     newFruit.apple = this.apple;
     newFruit.orange = this.orange;
     return newFruit;
@@ -28,38 +31,40 @@ class Fruit2 {
 }
 
 @ComponentV2
-struct Child12 {
-  @Param fruit: Fruit2 = new Fruit2();
+struct Child {
+  @Param fruit: Fruit = new Fruit();
 
   build() {
     Column() {
-      Text('child');
-      Text(this.fruit.apple.toString());
-      Text(this.fruit.orange.toString());
+      Text('child')
+      Text(this.fruit.apple.toString())
+      Text(this.fruit.orange.toString())
       Button('apple+1')
         .onClick(() => {
           this.fruit.apple++;
-        });
+        })
       Button('orange+1')
         .onClick(() => {
           this.fruit.orange++;
-        });
+        })
     }
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent12 {
-  @Local parentFruit: Fruit2 = new Fruit2();
+struct Parent {
+  @Local parentFruit: Fruit = new Fruit();
 
   build() {
     Column() {
-      Text('parent');
-      Text(this.parentFruit.apple.toString());
-      Text(this.parentFruit.orange.toString());
-      Child12({ fruit: this.parentFruit.clone() });
+      Text('parent')
+      Text(this.parentFruit.apple.toString())
+      Text(this.parentFruit.orange.toString())
+      Child({ fruit: this.parentFruit.clone() })
     }
   }
 }
 // [End Parent12_start]
+const parent12 = Parent;
+export default parent12;

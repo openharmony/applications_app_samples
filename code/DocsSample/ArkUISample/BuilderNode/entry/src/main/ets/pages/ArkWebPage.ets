@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// 使用NodeController的Page页。
-// Index.ets
 // [Start Main_ArkWebPage]
+// 使用NodeController的Page页。
+// pages/ArkWebPage.ets
 import { createNWeb, getNWeb } from '../Common/CommonIndex';
 
 @Entry
@@ -26,7 +25,7 @@ struct Index {
       Column() {
         // NodeContainer用于与NodeController节点绑定，rebuild会触发makeNode。
         // Page页通过NodeContainer接口绑定NodeController，实现动态组件页面显示。
-        NodeContainer(getNWeb(''))
+        NodeContainer(getNWeb('https://www.example.com'))
           .height('90%')
           .width('100%')
           .id('ArkWebPage')

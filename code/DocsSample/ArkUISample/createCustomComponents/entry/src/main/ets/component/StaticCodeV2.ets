@@ -13,22 +13,26 @@
  * limitations under the License.
  */
 @Entry
-// [Start Static_code_V2]
+  // [Start Static_code_V2]
 @ComponentV2
-struct MyComponentV2 {
+struct MyComponent {
   static a: string = '';
   // 静态代码块生效，a的值变为'hello world'
   static {
     this.a = 'hello world';
-  };
+  }
   // [StartExclude Static_code_V2]
   build() {
-      Column(){
-        Text(MyComponentV2.a)
-      }
-      .width('100%')
-      .height('100%')
+    Column() {
+      Text(MyComponent.a)
+    }
+    .width('100%')
+    .height('100%')
   }
+
   // [EndExclude Static_code_V2]
 }
+
 // [End Static_code_V2]
+const myComponentV2 = MyComponent;
+export default myComponentV2;

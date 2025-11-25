@@ -21,12 +21,12 @@
 #include <hilog/log.h>
 
 namespace NativeModule {
+// [Start ndknodequeryoperate1_start]
 const unsigned int VALUE_1 = 480;
 const unsigned int VALUE_2 = 300;
 const unsigned int VALUE_3 = 50;
     std::shared_ptr<ArkUIBaseNode> InquireUniqueId::GetNodeUniqueId()
     {
-        // [Start ndknodequeryoperate1_start]
         ArkUI_NativeNodeAPI_1* nodeAPI = NativeModuleInstance::GetInstance()->GetNativeNodeAPI();
         ArkUI_NodeHandle testNode = nodeAPI->createNode(ARKUI_NODE_COLUMN);
         ArkUI_NumberValue value[] = {VALUE_1};

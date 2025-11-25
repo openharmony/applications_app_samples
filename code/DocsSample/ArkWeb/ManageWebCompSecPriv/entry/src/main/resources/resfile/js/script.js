@@ -14,6 +14,7 @@
  */
 
 // [Start cors_script]
+// main/resources/resfile/js/script.js
 const body = document.body;
 const element = document.createElement('div');
 element.textContent = 'success';

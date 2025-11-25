@@ -18,7 +18,7 @@ import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsBasicUsage {
+struct UIAbilityComponentsBasicUsage {
   startAbilityTest(): void {
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let want: Want = {
@@ -29,13 +29,13 @@ struct Page_UIAbilityComponentsBasicUsage {
 
   // 页面展示
   build() {
-    // [StartExclude  ui_ability_basic_usage_start]
+    // [StartExclude ui_ability_basic_usage_start]
     Column(){
       Text('basic usage start')
         .width('50vp')
     }
     .width('100%')
-    // [EndExclude  ui_ability_basic_usage_start]
+    // [EndExclude ui_ability_basic_usage_start]
   }
 }
 // [End ui_ability_basic_usage_start]

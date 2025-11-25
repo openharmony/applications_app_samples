@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import fs from '@ohos.file.fs';
-import notificationManager from '@ohos.notificationManager';
-import Notification from '@ohos.notification';
-import bundle from '@ohos.bundle.installer';
-import account from '@ohos.account.osAccount';
-import workScheduler from '@ohos.resourceschedule.workScheduler';
-import http from '@ohos.net.http';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { notificationManager, notificationSubscribe } from '@kit.NotificationKit';
+
+import { installer } from '@kit.AbilityKit';
+import { osAccount, BusinessError } from '@kit.BasicServicesKit';
+import { workScheduler } from '@kit.BackgroundTasksKit';
+import { http } from '@kit.NetworkKit';
 import { Logger } from '../utils/Logger';
 
 const FILE_NAME = '/UpdateWorkScheduler.hap';
@@ -36,7 +36,7 @@ export namespace WorkSchedulerSystem {
   export function saveFile(pathDir: string, content: ArrayBuffer): void {
     try {
       let filePath = pathDir + FILE_NAME;
-      let fd = fs.openSync(filePath, 0o2 | 0o100).fd;
+      let fd = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).fd;
       fs.writeSync(fd, content);
       fs.closeSync(fd);
     } catch (err) {
@@ -47,14 +47,13 @@ export namespace WorkSchedulerSystem {
   /**
    * Sending a Notification.
    *
-   * @param bundleName Check the name of the application that has permission.
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
-  export async function handleNotification(bundleName: string): Promise<void> {
+  export async function handleNotification(): Promise<void> {
     await notificationManager.requestEnableNotification();
-    Notification.subscribe({
+    notificationSubscribe.subscribe({
       onConsume: (data) => {
-        if (data.request.content.normal.text === 'isReady') {
+        if (data.request.content.normal?.text === 'isReady') {
           AppStorage.SetOrCreate('isShowDialog', true);
         }
       }
@@ -72,16 +71,23 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
   export function publishNotification(title: string, text: string, additionalText: string): void {
-    notificationManager.publish({
+    Logger.info(`publishNotification start`);
+    let notificationRequest: notificationManager.NotificationRequest = {
       content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
           title,
           text,
           additionalText
         }
       }
+    }
+    notificationManager.publish(notificationRequest, (err: BusinessError) => {
+      if (err) {
+        Logger.error(`publishNotification failed`);
+      }
     })
+    Logger.info(`publishNotification success`);
   }
 
   /**
@@ -90,10 +96,10 @@ export namespace WorkSchedulerSystem {
    * @param filePath An array of paths to hold the installation package.
    * @permission ohos.permission.INSTALL_BUNDLE
    */
-  export async function installBundle(filePath: Array<string>): Promise<void> {
+  export async function installBundle(filePath: Array<string>, workInfo: workScheduler.WorkInfo): Promise<void> {
     try {
-      let bundleInstall = await bundle.getBundleInstaller();
-      let userId = await account.getAccountManager().getOsAccountLocalIdFromProcess();
+      let bundleInstall = await installer.getBundleInstaller();
+      let userId = await osAccount.getAccountManager().getOsAccountLocalId();
       bundleInstall.install(filePath, {
         userId: userId,
         installFlag: INSTALL_PARAMETER,
@@ -101,6 +107,7 @@ export namespace WorkSchedulerSystem {
       }, (status, statusMessage) => {
         Logger.info(`installBundle filepath is ${filePath}`);
         Logger.info(`installBundle code is ${status.code}, message is ${JSON.stringify(statusMessage)}`);
+        stopWork(workInfo);
       })
     } catch (err) {
       Logger.error(`installBundle failed, code is ${err.code}, message is ${err.message}`);
@@ -111,26 +118,46 @@ export namespace WorkSchedulerSystem {
    * Register the delayed task and pass the parameters.
    *
    * @param version Current application version.
-   * @param bundleName The name of the application package for which the task needs to be registered.
    * @param filePath Storage address of the application package.
    */
-  export async function startUpdateSample(version: string, bundleName: string, filePath: string): Promise<void> {
+  export async function startUpdateSample(version: string, filePath: string): Promise<void> {
+    // [Start startWork]
+    // [Start stopWork]
+    let workInfo: workScheduler.WorkInfo = {
+      workId: 1,
+      networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
+      bundleName: 'ohos.samples.workschedulerextensionability',
+      abilityName: 'WorkSchedulerAbility',
+      // [StartExclude startWork]
+      // [StartExclude stopWork]
+      parameters: {
+        version: version,
+        filePath: filePath
+      }
+      // [EndExclude startWork]
+      // [EndExclude stopWork]
+    }
+
+    // [StartExclude stopWork]
     try {
-      let workInfo = {
-        workId: 1,
-        bundleName: bundleName,
-        abilityName: 'WorkSchedulerAbility',
-        networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
-        parameters: {
-          version: version,
-          filePath: filePath
-        }
-      };
       workScheduler.startWork(workInfo);
+      console.info(`startWork success`);
     }
-    catch (err) {
-      Logger.error(`startWork failed, code is ${err.code}, message is ${err.message}`);
+    catch (error) {
+      console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
+    // [End startWork]
+  }
+
+  async function stopWork(workInfo: workScheduler.WorkInfo): Promise<void> {
+    // [EndExclude stopWork]
+    try {
+      workScheduler.stopWork(workInfo);
+      console.info(`stopWork success`);
+    } catch (error) {
+      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    }
+    // [End stopWork]
   }
 
   /**
@@ -140,14 +167,13 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.INTERNET
    */
   export async function getNewHap(url: string): Promise<http.HttpResponse> {
-    try {
-      return await http.createHttp().request(
-        url,
-        {
-          expectDataType: http.HttpDataType.ARRAY_BUFFER
-        });
-    } catch (err) {
+    let result = await http.createHttp().request(
+      url,
+      {
+        expectDataType: http.HttpDataType.ARRAY_BUFFER
+      }).catch((err: BusinessError) => {
       Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
-    }
+    });
+    return result as http.HttpResponse;
   }
 }

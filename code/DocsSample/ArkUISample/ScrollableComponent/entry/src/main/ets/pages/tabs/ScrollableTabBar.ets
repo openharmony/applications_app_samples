@@ -23,7 +23,8 @@ export struct ScrollableTabBar {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ScrollableTabBar_titleExample') }) {
           // [Start scrollable_tab_bar]
-          Tabs({ barPosition: BarPosition.Start  }) {
+          Tabs({ barPosition: BarPosition.Start }) {
+            // TabContent的内容：关注、视频、游戏、数码、科技、体育、影视、人文、艺术、自然、军事
             // [StartExclude scrollable_tab_bar]
             TabContent() {
               Text($r('app.string.FocusOn_content'))
@@ -82,12 +83,10 @@ export struct ScrollableTabBar {
             .tabBar($r('app.string.humanities'))
             // [EndExclude scrollable_tab_bar]
           }
-          // [StartExclude scrollable_tab_bar]
-          .barWidth(250)
-          .height(500)
-          // [EndExclude scrollable_tab_bar]
           .barMode(BarMode.Scrollable)
           // [End scrollable_tab_bar]
+          .barWidth(250)
+          .height(500)
         }
       }
       .width('100%')

@@ -39,9 +39,8 @@ struct MyImage1 {
   @Link modifier: CommonModifier;
 
   build() {
-    // 此处'app.media.img'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-    // $r('app.media.img')需要替换为开发者所需的资源文件
-    Image($r('app.media.img'))
+    // 此处'app.media.app_icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }
 }
@@ -50,7 +49,6 @@ struct MyImage1 {
 @Component
 struct Index {
   @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10);
-  // 点击按钮的次数
   index: number = 0;
 
   build() {

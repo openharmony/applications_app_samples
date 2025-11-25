@@ -13,32 +13,34 @@
  * limitations under the License.
  */
 
-//  [Start image_renderingmode]
+// 图片渲染模式页面
+// [Start image_renderingmode]
 @Entry
 @Component
 struct SetImageRenderingMode {
   build() {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
-        //  $r('app.media.example')需要替换为开发者所需的资源文件
+        // $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-          // 设置图片的渲染模式为原色
+          // 通过renderMode属性设置图片的渲染模式为原色或黑白
           .renderMode(ImageRenderMode.Original)
           .width(100)
           .height(100)
           .border({ width: 1 })
-            // overlay是通用属性，用于在组件上显示说明文字
-          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-        //  $r('app.media.example')需要替换为开发者所需的资源文件
+          // overlay接口暂不支持深色模式
+          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        // $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-          // 设置图片的渲染模式为黑白
+          // 通过renderMode属性设置图片的渲染模式为原色或黑白
           .renderMode(ImageRenderMode.Template)
           .width(100)
           .height(100)
           .border({ width: 1 })
-          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-      };
-    }.height(150).width('100%').padding({ top: 20,right: 10 });
-  };
+          // overlay接口暂不支持深色模式
+          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding({ top: 20,right: 10 })
+  }
 }
-//  [End image_renderingmode]
+// [End image_renderingmode]

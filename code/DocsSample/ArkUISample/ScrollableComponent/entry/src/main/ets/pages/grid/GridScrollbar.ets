@@ -20,9 +20,10 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct GridScrollbar {
   numbers: GridDataSource = new GridDataSource([]);
-  // [Start Add_external_scrollbar]
-  scroller: Scroller = new Scroller();
-  // [StartExclude Add_external_scrollbar]
+  // [Start Add_external_scrollbar_gridScroller]
+  private gridScroller: Scroller = new Scroller();
+  // [End Add_external_scrollbar_gridScroller]
+
   @State gridPosition: number = 0; //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   aboutToAppear() {
@@ -34,17 +35,16 @@ export struct GridScrollbar {
     }
     this.numbers = new GridDataSource(list);
   }
-  // [EndExclude Add_external_scrollbar]
   build() {
-    // [StartExclude Add_external_scrollbar]
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.GridScrollbar_title')需要替换为开发者所需的资源文件
+        // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
         ComponentCard({ title: $r('app.string.GridScrollbar_title') }) {
           Row({ space: 5 }) {
-            // [EndExclude Add_external_scrollbar]
-            Grid(this.scroller) {
-              // [StartExclude Add_external_scrollbar]
+            // [Start Add_external_scrollbar1]
+            // gridScroller初始化Grid组件的scroller参数，绑定gridScroller与网格。
+            Grid( this.gridScroller) {
+              // [StartExclude Add_external_scrollbar1]
               LazyForEach(this.numbers, (day: string) => {
                 GridItem() {
                   Text()
@@ -55,9 +55,9 @@ export struct GridScrollbar {
                     .textAlign(TextAlign.Center)
                 }
               }, (index: number) => index.toString())
-              // [EndExclude Add_external_scrollbar]
+              // [EndExclude Add_external_scrollbar1]
             }
-            // [StartExclude Add_external_scrollbar]
+            // [End Add_external_scrollbar1]
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
             .columnsGap(10)
             .rowsGap(10)
@@ -73,10 +73,11 @@ export struct GridScrollbar {
             .backgroundColor(0xFAEEE0)
             .height(300)
             .margin({left:10})
-            // [EndExclude Add_external_scrollbar]
-            ScrollBar({ scroller: this.scroller }).height(300)
-            // [End Add_external_scrollbar]
-            // [StartExclude Add_external_scrollbar]
+            // [Start Add_external_scrollbar2]
+            // gridScroller初始化ScrollBar组件的scroller参数，绑定gridScroller与滚动条。
+            ScrollBar({ scroller: this.gridScroller })
+            // [End Add_external_scrollbar2]
+              .height(300)
           }.width('100%').margin({ top: 5 })
         }
       }
@@ -84,8 +85,8 @@ export struct GridScrollbar {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    // [EndExclude Add_external_scrollbar]
     .backgroundColor('#f1f2f3')
+    // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
     .title($r('app.string.GridScrollbar_title'))
   }
 }

@@ -14,17 +14,25 @@
  */
 // [Start animator_template3_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
-import resource from '../../../common/resource';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG: string = '[AnimatorTest]';
 
 @Entry
 @Component
 struct Index {
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
   @State animatorOptions: AnimatorResult | undefined = undefined;
-  @State animatorStatus: Resource = $r('app.string.create');
+  // 'create'资源文件中的value值为'创建'
+  @State animatorStatus: string = 'create';
   begin: number = 0;
   end: number = 300;
   topWidth: number = 150;
   bottomHeight: number = 100;
+  // 自由落体运动的加速度系数
   g: number = 0.18;
   animatorOption: AnimatorOptions = {
     duration: 4000,
@@ -48,13 +56,16 @@ struct Index {
       }
     }
     this.animatorOptions.onCancel = () => {
-      this.animatorStatus = $r('app.string.cancel');
+      // 'cancel'资源文件中的value值为'取消'
+      this.animatorStatus = 'cancel';
     }
     this.animatorOptions.onFinish = () => {
-      this.animatorStatus = $r('app.string.complete');
+      // 'complete'资源文件中的value值为'完成'
+      this.animatorStatus = 'complete';
     }
     this.animatorOptions.onRepeat = () => {
-      console.log('repeat play');
+      // 'repeat'资源文件中的value值为'动画重复播放'
+      hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
   }
 
@@ -65,17 +76,22 @@ struct Index {
   build() {
     Column() {
       Column({ space: 30 }) {
+        // $r('app.string.play')资源文件中的value值为'播放'
         Button($r('app.string.play')).onClick(() => {
           this.animatorOptions?.play();
-          this.animatorStatus = $r('app.string.playing');
+          // 'playing'资源文件中的value值为'播放中'
+          this.animatorStatus = 'playing';
         }).width(80).height(35)
+        // $r('app.string.reset')资源文件中的value值为'重置'
         Button($r('app.string.reset')).onClick(() => {
           this.translateX = 0;
           this.translateY = 0;
         }).width(80).height(35)
+        // $r('app.string.pause')资源文件中的value值为'暂停'
         Button($r('app.string.pause')).onClick(() => {
           this.animatorOptions?.pause();
-          this.animatorStatus = $r('app.string.pause');
+          // 'pause'资源文件中的value值为'暂停'
+          this.animatorStatus = 'pause';
         }).width(80).height(35)
       }.width('100%').height('25%')
 
@@ -88,8 +104,8 @@ struct Index {
       .width('100%')
       .height('45%')
       .align(Alignment.Start)
-
-      Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
+      // 'animatorStatus'资源文件中的value值为'当前动画状态为:'
+      Text(this.manager.getStringByNameSync('animatorStatus') + this.manager.getStringByNameSync(this.animatorStatus))
     }.width('100%').height('100%')
   }
 }

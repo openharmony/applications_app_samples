@@ -19,7 +19,7 @@ import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_StartModel]';
+const TAG: string = '[SpecifiedPage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 function getInstance(): string {
@@ -28,7 +28,7 @@ function getInstance(): string {
 
 @Entry
 @Component
-struct Page_StartModel {
+struct SpecifiedPage {
   private KEY_NEW = 'KEY';
 
   build() {
@@ -40,6 +40,7 @@ struct Page_StartModel {
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
         // [EndExclude Page_StartModel]
+        // app.string.new_doc资源文件中的value值为'新建一个文档'
         Button($r('app.string.new_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})
@@ -66,6 +67,7 @@ struct Page_StartModel {
             this.KEY_NEW = this.KEY_NEW + 'a';
           })
 
+        // app.string.open_old_doc资源文件中的value值为'打开已保存文档'
         Button($r('app.string.open_old_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})

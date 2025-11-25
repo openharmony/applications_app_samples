@@ -223,14 +223,15 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.  本示例支持标准系统上运行，支持设备：RK3568；
+1. 本示例支持标准系统上运行，支持设备：RK3568；
 
 2. 本示例支持API20版本SDK，版本号：6.0.0.47；
 
-3.  本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年10月21日)编译运行；
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年10月21日)编译运行；
 
 4. 高等级APL特殊签名说明：无；
 
+5. 部分功能需要使用系统权限签名可以手动配置签名运行工程。手动签名文件放在StageServiceWidgetCards/signature目录下，配置部分字段Store password：123456，Key alias:oh-app1-key-v1，Key password:123456。
 
 ### 下载
 

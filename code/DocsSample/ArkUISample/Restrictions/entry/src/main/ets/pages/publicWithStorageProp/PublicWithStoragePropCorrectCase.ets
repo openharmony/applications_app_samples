@@ -16,29 +16,32 @@
 // [Start PublicWithStorageProp_CorrectCase]
 @Entry
 @Component
-struct PWPCorrectAccessRestrictions  {
+struct PublicCorrectAccessRestrictions {
   @Provide consumeValue: string = 'Hello';
+
   build() {
     Column() {
-      PWPCorrectComponentChild();
+      PublicCorrectComponentChild()
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
 @Component
-struct PWPCorrectComponentChild {
+struct PublicCorrectComponentChild {
   @LocalStorageProp('sessionLocalProp') localPropValue: string = 'Hello';
   @LocalStorageLink('sessionLocalLink') localLinkValue: string = 'Hello';
   @StorageProp('sessionProp') storagePropValue: string = 'Hello';
   @StorageLink('sessionLink') storageLinkValue: string = 'Hello';
   @Consume consumeValue: string;
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
+
 // [End PublicWithStorageProp_CorrectCase]

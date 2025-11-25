@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start Decorative_Object]
-// Used to generate unique IDs for ObjectInfo instances
 let nextId: number = 0;
 
 @ObservedV2
@@ -22,25 +21,24 @@ class Person {
 
   constructor(age: number) {
     this.age = age;
-  };
-};
+  }
+}
 
 @ObservedV2
-class ObjectInfo {
-  // Public property to hold the unique identifier of the instance
- public id: number = 0;
+class Info {
+  public id: number = 0;
   @Trace public personList: Person[] = [];
 
   constructor() {
     this.id = nextId++;
     this.personList = [new Person(0), new Person(1), new Person(2)];
-  };
-};
+  }
+}
 
 @Entry
 @ComponentV2
-struct DecorativeObject {
-  info: ObjectInfo = new ObjectInfo();
+struct Index {
+  info: Info = new Info();
 
   build() {
     Column() {
@@ -52,19 +50,19 @@ struct DecorativeObject {
           .fontSize(40)
           .onClick(() => {
             this.info.personList[0].age++;
-          });
+          })
 
         Text(`${this.info.personList[1].age}`)
           .fontSize(40)
           .onClick(() => {
             this.info.personList[1].age++;
-          });
+          })
 
         Text(`${this.info.personList[2].age}`)
           .fontSize(40)
           .onClick(() => {
             this.info.personList[2].age++;
-          });
+          })
       }
 
       Divider()
@@ -72,8 +70,11 @@ struct DecorativeObject {
       ForEach(this.info.personList, (item: Person, index: number) => {
         Text(`${index} ${item.age}`)
           .fontSize(40)
-      });
+      })
     }
   }
 }
+
 // [End Decorative_Object]
+const decorativeObject = Index;
+export default decorativeObject;

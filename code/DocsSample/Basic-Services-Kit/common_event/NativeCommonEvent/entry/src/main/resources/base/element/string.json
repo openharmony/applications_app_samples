@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NativeCommentEvent"
+    },
+    {
+      "name": "subscribe",
+      "value": "订阅事件"
+    },
+    {
+      "name": "abort",
+      "value": "中止当前的有序公共事件"
+    },
+    {
+      "name": "cancel",
+      "value": "取消当前有序公共事件的中止状态"
+    },
+    {
+      "name": "modify",
+      "value": "修改有序公共事件的内容"
+    },
+    {
+      "name": "unsubscribe",
+      "value": "取消订阅公共事件"
+    },
+    {
+      "name": "publish",
+      "value": "发布公共事件"
+    }
+  ]
+}

@@ -19,7 +19,7 @@
 @Entry
 // [EndExclude data_ability]
 @Component
-export struct dataAbility {
+export struct LocalVideoTwo {
   private controller: VideoController = new VideoController();
   private previewUris: Resource = $r('app.media.preview');
   private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10';

@@ -12,37 +12,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_limitation_last_listener_wins]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorLimitationLastListenerWins {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_limitation_last_listener_wins'))
-  }
-}
-
-// [Start monitor_limitation_last_listener_wins]
 @ObservedV2
 class Info {
   @Trace public name: string = 'Tom';
 
   @Monitor('name')
   onNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `onNameChange`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onNameChange`);
   }
 
   @Monitor('name')
   onNameChangeDuplicate(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `onNameChangeDuplicate`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onNameChangeDuplicate`);
   }
 }
 
@@ -61,3 +45,16 @@ struct Index {
   }
 }
 // [End monitor_limitation_last_listener_wins]
+@Component
+export struct MonitorLimitationLastListenerWins {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_limitation_last_listener_wins'))
+  }
+}

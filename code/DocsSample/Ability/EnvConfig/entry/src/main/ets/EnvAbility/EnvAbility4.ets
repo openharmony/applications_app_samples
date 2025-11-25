@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start env_setcolormode]
 // UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
 import { ShareExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
 
-export default class MyAbility extends ShareExtensionAbility {
+export default class EnvAbility4 extends ShareExtensionAbility {
   onForeground() {
     let uiExtensionContext = this.context;
     uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
   }
 }
-// [End quick_start0]
+// [End env_setcolormode]

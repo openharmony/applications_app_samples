@@ -16,7 +16,7 @@
 import { WorkerCallGlobalUsage } from '@ohos/ThreadCommunication';
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/ThreadCommunication/workers/Worker.ts");
+const workerInstance = new worker.ThreadWorker('entry/ets/pages/ThreadCommunication/workers/Worker.ts');
 
 @Entry
 @Component

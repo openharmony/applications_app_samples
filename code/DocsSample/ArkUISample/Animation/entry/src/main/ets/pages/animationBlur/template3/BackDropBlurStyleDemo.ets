@@ -21,7 +21,7 @@ struct BackDropBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            // $r('app.string.originalImage')需要替换为开发着所需要的资源文件
+            // $r('app.string.originalImage')资源文件中的value值为'原图'
             Text($r('app.string.originalImage'))
               .fontSize(20)
               .fontColor(Color.White)
@@ -32,10 +32,10 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
 
-          // $r('app.string.originalImage')需要替换为开发着所需要的资源文件
+          // $r('app.string.originalImage')资源文件中的value值为'原图'
           Text($r('app.string.originalImage'))
             .fontSize(12)
             .fontColor(Color.Black)
@@ -59,7 +59,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           // BlurStyle.Thin: 为组件添加轻薄材质模糊效果
           // ThemeColorMode.LIGHT: 固定使用浅色模式效果
@@ -94,7 +94,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.Regular, {
             colorMode: ThemeColorMode.LIGHT,
@@ -125,7 +125,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.Thick, {
             colorMode: ThemeColorMode.LIGHT,
@@ -156,7 +156,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.BACKGROUND_THIN, {
             colorMode: ThemeColorMode.LIGHT,
@@ -187,7 +187,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.BACKGROUND_REGULAR, {
             colorMode: ThemeColorMode.LIGHT,
@@ -218,7 +218,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.BACKGROUND_THICK, {
             colorMode: ThemeColorMode.LIGHT,
@@ -249,7 +249,7 @@ struct BackDropBlurStyleDemo {
           .height(100)
           .aspectRatio(1)
           .borderRadius(10)
-          // $r('app.media.bg')需要替换为开发着所需要的资源文件
+          // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
           .backgroundBlurStyle(BlurStyle.BACKGROUND_ULTRA_THICK, {
             colorMode: ThemeColorMode.LIGHT,

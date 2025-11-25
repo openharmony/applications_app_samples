@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start env_appsetcolor]
 import { UIAbility, ConfigurationConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-export default class MyAbility extends UIAbility {
+export default class EnvAbility2 extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -29,4 +29,4 @@ export default class MyAbility extends UIAbility {
     });
   }
 }
-// [End quick_start0]
+// [End env_appsetcolor]

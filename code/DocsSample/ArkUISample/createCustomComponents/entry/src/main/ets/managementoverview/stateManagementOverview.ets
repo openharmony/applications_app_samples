@@ -14,18 +14,17 @@
  */
 // [Start state_management_overview]
 @Component
-struct MyComponentOverview {
-  // State variable to track the current count value
+struct MyComponent {
   @State count: number = 0;
-  // Increment step value, determines how much to add to the count each time
   increaseBy: number = 1;
 
   build() {
     // [StartExclude state_management_overview]
-    Column(){
+    Column() {
       Text(`Count: ${this.count}`)
       Text(`increaseBy: ${this.increaseBy}`)
     }
+
     // [EndExclude state_management_overview]
   }
 }
@@ -34,11 +33,14 @@ struct MyComponentOverview {
 @Component
 struct Parent {
   build() {
-      Column() {
-        // 从父组件初始化，覆盖本地定义的默认值
-        MyComponentOverview({ count: 1, increaseBy: 2 })
-      }
+    Column() {
+      // 从父组件初始化，覆盖本地定义的默认值
+      MyComponent({ count: 1, increaseBy: 2 })
+    }
 
   }
 }
+
 // [End state_management_overview]
+const myComponentOverview = MyComponent;
+export default myComponentOverview;

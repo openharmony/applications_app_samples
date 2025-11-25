@@ -15,7 +15,7 @@
 //[Start RelativeContainerChildComponentOffset_start]
 @Entry
 @Component
-struct Index4 {
+struct ChildComponentOffsetExample {
   build() {
     Row() {
       RelativeContainer() {

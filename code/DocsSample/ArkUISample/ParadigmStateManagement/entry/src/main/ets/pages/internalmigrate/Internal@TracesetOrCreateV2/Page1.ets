@@ -24,7 +24,6 @@ const DOMAIN = 0x0000;
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
   pageStack: NavPathStack = new NavPathStack();
-  // 已经存储的页面级UI状态数字
   @Local count: number = this.storage.count;
 
   @Monitor('storage.count')

@@ -14,94 +14,97 @@
  */
 
 import { router } from '@kit.ArkUI'
+
 interface Ary {
-  path:string,
-  name:string
+  path: string,
+  name: string
 }
+
 @Entry
 @Component
 struct Index {
-  ary:Ary[]=[
+  ary: Ary[] = [
     {
-      name:'PageOne',
-      path:'pages/PageOne'
+      name: 'PageOne',
+      path: 'pages/PageOne'
     },
     {
-      name:'PageTwo',
-      path:'pages/PageTow'
+      name: 'PageTwo',
+      path: 'pages/PageTwo'
     },
     {
-      name:'PageThree',
-      path:'pages/PageThree'
+      name: 'PageThree',
+      path: 'pages/PageThree'
     },
     {
-      name:'PageFour',
-      path:'pages/PageFour'
+      name: 'PageFour',
+      path: 'pages/PageFour'
     },
     {
-      name:'PageFive',
-      path:'pages/PageFive'
+      name: 'PageFive',
+      path: 'pages/PageFive'
     },
     {
-      name:'PageSix',
-      path:'pages/PageSix'
+      name: 'PageSix',
+      path: 'pages/PageSix'
     },
     {
-      name:'PageSeven',
-      path:'pages/PageSeven'
+      name: 'PageSeven',
+      path: 'pages/PageSeven'
     },
     {
-      name:'PageEight',
-      path:'pages/PageEight'
+      name: 'PageEight',
+      path: 'pages/PageEight'
     },
     {
-      name:'PageNine',
-      path:'pages/PageNine'
+      name: 'PageNine',
+      path: 'pages/PageNine'
     },
     {
-      name:'PageTen',
-      path:'pages/PageTen'
+      name: 'PageTen',
+      path: 'pages/PageTen'
     },
     {
-      name:'PageEleven',
-      path:'pages/PageEleven'
+      name: 'PageEleven',
+      path: 'pages/PageEleven'
     },
     {
-      name:'PageTwelve',
-      path:'pages/PageTwelve'
+      name: 'PageTwelve',
+      path: 'pages/PageTwelve'
     },
     {
-      name:'PageThirteen',
-      path:'pages/PageThirteen'
+      name: 'PageThirteen',
+      path: 'pages/PageThirteen'
     },
     {
-      name:'PageFourteen',
-      path:'pages/PageFourteen'
+      name: 'PageFourteen',
+      path: 'pages/PageFourteen'
     },
     {
-      name:'PageFifteen',
-      path:'pages/PageFifteen'
+      name: 'PageFifteen',
+      path: 'pages/PageFifteen'
     },
     {
-      name:'PageSixteen',
-      path:'pages/PageSixteen'
+      name: 'PageSixteen',
+      path: 'pages/PageSixteen'
     },
     {
-      name:'PageSeventeen',
-      path:'pages/PageSeventeen'
+      name: 'PageSeventeen',
+      path: 'pages/PageSeventeen'
     },
     {
-      name:'PageEighteen',
-      path:'pages/PageEighteen'
+      name: 'PageEighteen',
+      path: 'pages/PageEighteen'
     },
   ]
+
   build() {
     Scroll() {
       Column({ space: 2 }) {
-        ForEach(this.ary,(item:Ary)=>{
+        ForEach(this.ary, (item: Ary) => {
           Button(item.name)
             .onClick(() => this.getUIContext().getRouter().pushUrl({ url: item.path }))
-        },(item:Ary)=>item.name)
+        }, (item: Ary) => item.name)
       }
       .width('100%')
     }

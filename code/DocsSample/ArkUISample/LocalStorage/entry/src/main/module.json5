@@ -17,6 +17,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
+    "routerMap": "$profile:router_map",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default"

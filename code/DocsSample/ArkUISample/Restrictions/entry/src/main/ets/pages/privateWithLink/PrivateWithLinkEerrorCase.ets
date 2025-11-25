@@ -13,36 +13,40 @@
  * limitations under the License.
  */
 
-// [Start PrivateWithLinkEerrorCase]
+// [Start PrivateWithLink_EerrorCase]
 @Entry
 @Component
-struct PWLErrorAccessRestrictions{
+struct PrivateWithLinkErrorAccessRestrictions {
   @State linkValue: string = 'Hello';
-  @State objectLinkValue: PWLErrorComponentObj = new PWLErrorComponentObj();
+  @State objectLinkValue: PrivateErrorComponentObj = new PrivateErrorComponentObj();
+
   build() {
     Column() {
-      PWLErrorComponentChild({linkValue: this.linkValue, objectLinkValue: this.objectLinkValue});
+      PrivateWithLinkErrorComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
 @Observed
-class PWLErrorComponentObj  {
+class PrivateErrorComponentObj {
   public count: number = 0;
 }
+
 @Component
-struct PWLErrorComponentChild  {
+struct PrivateWithLinkErrorComponentChild {
   // 此处使用private修饰符时会出现告警日志
   @Link private linkValue: string;
   // 此处使用private修饰符时会出现告警日志
-  @ObjectLink private objectLinkValue: PWLErrorComponentObj;
+  @ObjectLink private objectLinkValue: PrivateErrorComponentObj;
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
-// [End PrivateWithLinkEerrorCase]
+
+// [End PrivateWithLink_EerrorCase]

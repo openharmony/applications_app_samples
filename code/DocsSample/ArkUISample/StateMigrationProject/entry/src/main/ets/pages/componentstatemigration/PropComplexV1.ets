@@ -13,43 +13,48 @@
  * limitations under the License.
  */
 // [Start Parent11_start]
-class Fruit1 {
-  public apple: number = 5;
-  public orange: number = 10;
+const APPLE_INITIAL_COUNT = 5;
+const ORANGE_INITIAL_COUNT = 10;
+
+class Fruit {
+  public apple: number = APPLE_INITIAL_COUNT;
+  public orange: number = ORANGE_INITIAL_COUNT;
 }
 
 @Component
-struct Child11 {
+struct Child {
   // @Prop传递Fruit类，当子类修改属性，父类不受影响
-  @Prop fruit: Fruit1;
+  @Prop fruit: Fruit;
 
   build() {
     Column() {
-      Text('child apple: ' + this.fruit.apple.toString());
-      Text('child orange: ' + this.fruit.orange.toString());
+      Text('child apple: ' + this.fruit.apple.toString())
+      Text('child orange: ' + this.fruit.orange.toString())
       Button('apple+1')
         .onClick(() => {
           this.fruit.apple++;
-        });
+        })
       Button('orange+1')
         .onClick(() => {
           this.fruit.orange++;
-        });
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct Parent11 {
-  @State parentFruit: Fruit1 = new Fruit1();
+struct Parent {
+  @State parentFruit: Fruit = new Fruit();
 
   build() {
     Column() {
-      Text('parent apple: ' + this.parentFruit.apple.toString());
-      Text('parent orange: ' + this.parentFruit.orange.toString());
-      Child11({ fruit: this.parentFruit });
+      Text('parent apple: ' + this.parentFruit.apple.toString())
+      Text('parent orange: ' + this.parentFruit.orange.toString())
+      Child({ fruit: this.parentFruit })
     }
   }
 }
 // [End Parent11_start]
+const parent11 = Parent;
+export default parent11;

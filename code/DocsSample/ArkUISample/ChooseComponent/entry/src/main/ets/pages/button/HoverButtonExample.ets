@@ -13,16 +13,14 @@
  * limitations under the License.
  */
 
-
+// [Start hover_button_example]
 // xxx.ets
 @Entry
 @Component
 export struct HoverButtonExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   build() {
-    // [StartExclude hover_button_example]
     NavDestination() {
-      // [EndExclude hover_button_example]
       Stack() {
         List({ space: 20, initialIndex: 0 }) {
           ForEach(this.arr, (item: number) => {
@@ -39,8 +37,8 @@ export struct HoverButtonExample {
         }.width('90%')
 
         Button() {
-          //注意图片需要替换
-          Image($r('sys.media.ohos_ic_public_add'))
+          // $r('app.media.ic_public_add')需要替换为开发者需要的图片资源
+          Image($r('app.media.ic_public_add'))
            .width(50)
            .height(50)
         }
@@ -56,9 +54,7 @@ export struct HoverButtonExample {
       .height('100%')
       .backgroundColor(0xDCDCDC)
       .padding({ top: 5 })
-      // [StartExclude hover_button_example]
     }
-    // [EndExclude hover_button_example]
   }
 }
-// [End button_case_1]
+// [End hover_button_example]

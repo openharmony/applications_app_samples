@@ -16,13 +16,13 @@
 // [Start custom_dialog_with_key_board_distance]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { LengthMetrics } from '@kit.ArkUI'
-import resource from '../../common/resource';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0000;
 
 @Entry
 @Component
-export struct customDialogWithKeyboardAvoidDistance {
+export struct CustomDialogWithKeyboardAvoidDistance {
   @Builder
   customDialogComponent() {
     Column() {
@@ -34,32 +34,31 @@ export struct customDialogWithKeyboardAvoidDistance {
   }
 
   build() {
-    // [StartExclude custom_dialog_with_key_board_distance]
     NavDestination() {
-      // [EndExclude custom_dialog_with_key_board_distance]
       Row() {
         Row({ space: 20 }) {
+          // $r('app.string.open_windows')资源文件中的value为'打开弹窗'
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {
               this.getUIContext().getPromptAction().openCustomDialog({
                 builder: () => {
-                  this.customDialogComponent()
+                  this.customDialogComponent();
                 },
                 alignment: DialogAlignment.Bottom,
                 keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
                 keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
               }).catch((error: BusinessError) => {
-                hilog.error(DOMAIN, 'testTag', `openCustomDialog error code is ${error.code}, message is ${error.message}`)
+                hilog.error(DOMAIN, 'testTag',
+                  `openCustomDialog error code is ${error.code}, message is ${error.message}`);
               })
             })
         }
         .width('100%')
       }
       .height('100%')
-      // [StartExclude custom_dialog_with_key_board_distance]
     }
-    // [EndExclude custom_dialog_with_key_board_distance]
   }
 }
-// [end custom_dialog_with_key_board_distance]
+
+// [End custom_dialog_with_key_board_distance]

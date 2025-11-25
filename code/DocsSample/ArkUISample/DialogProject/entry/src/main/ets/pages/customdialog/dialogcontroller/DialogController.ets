@@ -17,7 +17,7 @@
 import { ComponentContent, promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
+const DOMAIN = 0x0000;
 // [Start dialog_params]
 class Params {
   public text: string = '';
@@ -36,7 +36,7 @@ class Params {
 struct MyComponent {
   build() {
     Column({ space: 5 }) {
-      // $r('app.string.closeDialog_by_custom')需要替换为开发者所需的字符串资源文件
+      // 'app.string.closeDialog_by_custom'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'。
       Button($r('app.string.closeDialog_by_custom'))
         .onClick(() => {
           let dialogController: promptAction.DialogController = this.getDialogController();
@@ -57,7 +57,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(30)
     if (params.dialogController !== undefined) {
-      // $r('app.string.closeDialog_by_controller')需要替换为开发者所需的字符串资源文件
+      // 'app.string.closeDialog_by_controller'资源文件中的value值为'点我关闭弹窗：通过外部传递的DialogController'。
       Button($r('app.string.closeDialog_by_controller'))
         .onClick(() => {
           params.dialogController.close();
@@ -80,10 +80,10 @@ struct CustomDialogExample {
 
   build() {
     Column({ space: 5 }) {
-      // $r('app.string.my_content')需要替换为开发者所需的字符串资源文件
+      // 'app.string.my_content'资源文件中的value值为'我是内容'。
       Text($r('app.string.my_content'))
         .fontSize(30)
-      // $r('app.string.closeDialog_by_dialog')需要替换为开发者所需的字符串资源文件
+      // 'app.string.closeDialog_by_dialog'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'。
       Button($r('app.string.closeDialog_by_dialog'))
         .onClick(() => {
           let dialogController: PromptActionDialogController = this.getDialogController();
@@ -119,7 +119,7 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        // $r('app.string.closeDialog_by_outside')需要替换为开发者所需的字符串资源文件
+        // 'app.string.closeDialog_by_outside'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'。
         Button($r('app.string.closeDialog_by_outside'))
           .onClick(() => {
             dialogController.close();
@@ -141,14 +141,14 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogId !== undefined) {
-        // $r('app.string.closeDialog_by_id')需要替换为开发者所需的字符串资源文件
+        // 'app.string.closeDialog_by_id'资源文件中的value值为'点击关闭弹窗：通过DialogID'。
         Button($r('app.string.closeDialog_by_id'))
           .onClick(() => {
             this.getUIContext().getPromptAction().closeCustomDialog(dialogId);
           })
       }
       if (dialogController !== undefined) {
-        // $r('app.string.closeDialog_by_dialog_controller')需要替换为开发者所需的字符串资源文件
+        // 'app.string.closeDialog_by_dialog_controller'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'。
         Button($r('app.string.closeDialog_by_dialog_controller'))
           .onClick(() => {
             dialogController.close();
@@ -166,9 +166,10 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        Button('Click me to check the pop-up status')
+        // 'app.string.click_check_status'资源文件中的value值为'点我查询弹窗状态'。
+        Button($r('app.string.click_check_status'))
           .onClick(() => {
-            hilog.info(0x0000, 'dialogController', 'state:' + dialogController.getState());
+            hilog.info(DOMAIN, 'dialogController', 'state:' + dialogController.getState());
           })
       }
     }
@@ -178,12 +179,13 @@ export struct DialogController {
     .backgroundColor('#FFF0F0F0')
   }
 
-  // [Start dialog_component_get_state]
+  // [End dialog_component_get_state]
 
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        Button('OpenCustomDialogWithController Dialog')
+        // 'app.string.open_custom_dialog_with_controller'资源文件中的value值为'OpenCustomDialogWithController弹窗'。
+        Button($r('app.string.open_custom_dialog_with_controller'))
           .onClick(() => {
             // [Start content_node]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
@@ -192,34 +194,37 @@ export struct DialogController {
                 new Params(this.message, dialogController));
             this.getUIContext().getPromptAction().openCustomDialogWithController(
               contentNode, dialogController, this.baseDialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController',
+              hilog.error(DOMAIN, 'dialogController',
                 'openCustomDialogWithController error: ' + err.code + ' ' + err.message);
             });
             // [End content_node]
           })
-        Button('PresentCustomDialog+CustomBuilder Dialog')
+        // 'app.string.present_custom_dialog'资源文件中的value值为'PresentCustomDialog+CustomBuilder弹窗'。
+        Button($r('app.string.present_custom_dialog'))
           .onClick(() => {
             // [Start dialog_controller_component]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
             this.getUIContext().getPromptAction().presentCustomDialog(() => {
               this.customDialogComponent(dialogController);
             }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
+              hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             });
             // [End dialog_controller_component]
           })
-        Button('PresentCustomDialog+CustomBuilderWithId Dialog')
+        // 'app.string.custom_builder_with_id'资源文件中的value值为'PresentCustomDialog+CustomBuilderWithId弹窗'。
+        Button($r('app.string.custom_builder_with_id'))
           .onClick(() => {
             // [Start dialog_controller_id]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
             this.getUIContext().getPromptAction().presentCustomDialog((dialogId: number) => {
               this.customDialogComponentWithId(dialogId, dialogController);
             }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
+              hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             });
             // [End dialog_controller_id]
           })
-        Button('CustomDialogController Dialog')
+        // 'app.string.custom_dialog_controller_dialog'资源文件中的value值为'CustomDialogController弹窗'。
+        Button($r('app.string.custom_dialog_controller_dialog'))
           .onClick(() => {
             // [Start custom_dialog_example_click]
             let customDialogController: CustomDialogController = new CustomDialogController({

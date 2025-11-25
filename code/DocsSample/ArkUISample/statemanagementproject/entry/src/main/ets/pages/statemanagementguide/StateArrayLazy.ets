@@ -15,17 +15,17 @@
 // [Start StateArrayLazy_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData2[] = [];
+  private originDataArray: StringData[] = [];
 
   public totalCount(): number {
     return 0;
   }
 
-  public getData(index: number): StringData2 {
+  public getData(index: number): StringData {
     return this.originDataArray[index];
   }
 
@@ -75,23 +75,23 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-class MyDataSource9 extends BasicDataSource {
-  private dataArray: StringData2[] = [];
+class MyDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData2 {
+  public getData(index: number): StringData {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData2): void {
+  public addData(index: number, data: StringData): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
-  public pushData(data: StringData2): void {
+  public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
@@ -101,9 +101,9 @@ class MyDataSource9 extends BasicDataSource {
   }
 }
 
-class StringData2 {
- public message: string;
- public imgSrc: Resource;
+class StringData {
+  public message: string;
+  public imgSrc: Resource;
 
   constructor(message: string, imgSrc: Resource) {
     this.message = message;
@@ -113,19 +113,19 @@ class StringData2 {
 
 @Entry
 @Component
-struct MyComponent8 {
-  private data: MyDataSource9 = new MyDataSource9();
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
       // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-      this.data.pushData(new StringData2(`Click to add ${i}`, $r('app.media.startIcon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData2, index: number) => {
+      LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
           Column() {
             Text(item.message).fontSize(20)
@@ -144,8 +144,10 @@ struct MyComponent8 {
           item.message += '0';
           this.data.reloadData();
         })
-      }, (item: StringData2, index: number) => JSON.stringify(item))
+      }, (item: StringData, index: number) => JSON.stringify(item))
     }.cachedCount(5)
   }
 }
 // [End StateArrayLazy_start]
+const stateArrayLazyPage = MyComponent;
+export default stateArrayLazyPage;

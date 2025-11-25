@@ -13,11 +13,17 @@
  * limitations under the License.
  */
 // [Start Displayed_Together]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 export struct DisplayedTogether {
-  @State fulltext: string =
-    'Hello, I am Text [gin]. Hello, I am [rolling_onthet_floor_laughing] Text, [slightly_stmiling_face] Hello, I am Text [gin]';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_Full_Text'资源文件中的value值为
+  // '你好我是Text[grin]，你好我[rolling_on_the_floor_laughing]是Text，[slightly_smiling_face]你好我是Text[grin]'
+  @State fulltext: string = this.manager.getStringByNameSync('Text_Full_Text');
 
   static classifyTextAndEmojis(input: string): Map<string, string[]> {
     const emojiRegex = /\[([a-zA-Z_]+)\]/g; // 根据实际情况编写正则表达式
@@ -46,15 +52,14 @@ export struct DisplayedTogether {
 
   static getEmojiImg(emojis: string[]): Resource[] { // 根据正则匹配结果返回自定义表情资源
     let emojisImg: Resource[] = []
-    // $r('app.media.app_icon')需要替换为开发者所需的资源文件。
     for (let i = 0; i < emojis.length; i++) {
       switch (emojis[i]) {
         case 'rolling_on_the_floor_laughing':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.rolling_on_the_floor_laughing'))
         case 'slightly_smiling_face':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.slightly_smiling_face'))
         case 'grin':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.grin'))
         default:
       }
     }
@@ -62,40 +67,47 @@ export struct DisplayedTogether {
   }
 
   build() {
-    Column() {
-      TextInput({
-        placeholder: 'The user inputs text with emojis, such as: Hello [grin]'
-      })
+    NavDestination() {
+      Column() {
+        // 'app.string.Text_emoji'资源文件中的value值为'用户输入带表情的文本，例如：你好[grin]'
+        TextInput({
+          placeholder: $r('app.string.Text_emoji')
+        })
+          .width('80%')
+          .padding(10)
+          .border({ width: 1, color: '#EEEEEE' })
+          .onChange((value: string) => {
+            // 输入变化时，更新 fulltext
+            this.fulltext = value;
+          });
+
+        Text() {
+          ForEach(DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('text'),
+            (item: string, index: number) => { // 展示文本和自定义表情资源
+              Span(item)
+                .fontSize(18)
+                .fontColor('#666666')
+                .fontWeight(FontWeight.Regular)
+
+              ImageSpan(DisplayedTogether.getEmojiImg(
+                DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('emojis'))[index])
+                .verticalAlign(ImageSpanAlignment.BOTTOM)
+                .height(24)
+            })
+        }
         .width('80%')
-        .padding(10)
-        .border({ width: 1, color: '#EEEEEE' })
-        .onChange((value: string) => {
-          // 输入变化时，更新 fulltext
-          this.fulltext = value;
-        });
-
-      Text() {
-        ForEach(DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('text'),
-          (item: string, index: number) => { // 展示文本和自定义表情资源
-            Span(item)
-              .fontSize(18)
-              .fontColor('#666666')
-              .fontWeight(FontWeight.Regular)
-
-            ImageSpan(DisplayedTogether.getEmojiImg(
-              DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('emojis'))[index])
-              .verticalAlign(ImageSpanAlignment.BOTTOM)
-              .height(24)
-          })
+        .padding(15)
       }
-      .width('80%')
-      .padding(15)
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .padding(20)
     }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .padding(20)
+    // [StartExclude Displayed_Together]
+    .backgroundColor('#f1f 2f3')
+    .title($r('app.string.Displayed_Together_description'))
+    // [EndExclude Displayed_Together]
   }
 }
 

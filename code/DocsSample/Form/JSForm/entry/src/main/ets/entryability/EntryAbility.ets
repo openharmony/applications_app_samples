@@ -13,14 +13,16 @@
  * limitations under the License.
  */
 // [Start JSForm_EntryAbility]
+// entry/src/main/ets/entryability/EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG: string = 'EtsCardEntryAbility';
+const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude JSForm_EntryAbility]
 const DOMAIN = 0x0000;
+
 // [EndExclude JSForm_EntryAbility]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -28,16 +30,17 @@ export default class EntryAbility extends UIAbility {
       let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
       // 获取router事件中传递的info参数
       if (params.info === 'router info') {
-        // 执行业务逻辑
+        // 执行业务逻辑，由用户自行实现
         hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
       }
       // 获取router事件中传递的message参数
       if (params.message === 'router message') {
-        // 执行业务逻辑
+        // 执行业务逻辑，由用户自行实现
         hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
       }
     }
   }
+
   // [StartExclude JSForm_EntryAbility]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -70,6 +73,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
   // [EndExclude JSForm_EntryAbility]
 }
+
 // [End JSForm_EntryAbility]

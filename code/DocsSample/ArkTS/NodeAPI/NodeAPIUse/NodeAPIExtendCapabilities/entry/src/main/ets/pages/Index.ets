@@ -78,11 +78,11 @@ async function test01(): Promise<void> {
 }
 // [End ark_napi_coerce_to_native_binding_object]
 
-// [Start ark_napi_serialize_deserialize_delete_serialization_data]
+// [Start ark_napi_serialize_deserialize_delete_serialization_data_class]
 class Obj {
   numKey: number = 0;
 }
-// [StartExclude ark_napi_serialize_deserialize_delete_serialization_data]
+// [End ark_napi_serialize_deserialize_delete_serialization_data_class]
 
 @Entry
 @Component
@@ -146,8 +146,11 @@ struct Index {
                   // [Start ark_node_api_module_create_object_name_properties]
                   // ArkTS Object相关 napi_create_object_with_named_properties
                   let value2 = testNapi.createObjectWithNameProperties('ls');
-                  hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s',
-                    JSON.stringify(value2));
+                  try {
+                    hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value2));
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', 'TNode-API napi_create_object_with_named_properties: %{public}s', error.message);
+                  }
                   // [End ark_node_api_module_create_object_name_properties]
                   this.result = 'napiCreateObjectWithNamedPropertiesSuccess';
                 } else if (item === '4.napiRunScriptPath') {
@@ -172,7 +175,7 @@ struct Index {
                   test01();
                   this.result = 'napiCoerceToNativeBindingObjectSuccess';
                 } else if (item === '6.napiAboutSerialize') {
-                  // [EndExclude ark_napi_serialize_deserialize_delete_serialization_data]
+                  // [Start ark_napi_serialize_deserialize_delete_serialization_data]
                   // 序列化和反序列化
                   let obj: Obj = { numKey: 500 };
                   hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.aboutSerialize(obj));

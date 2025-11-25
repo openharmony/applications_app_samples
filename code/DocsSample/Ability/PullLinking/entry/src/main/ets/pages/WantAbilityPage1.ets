@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start want_page]
 import { common, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct WantAbilityPage1 {
   build() {
     Button('start link', { type: ButtonType.Capsule, stateEffect: true })
       .width('87%')
@@ -47,7 +47,7 @@ struct Index {
         //   hilog.error(DOMAIN_NUMBER, TAG, `Failed to startAbility. Code is ${paramError.code},\
         //   message is ${paramError.message}`);
         // }
-        let link: string = 'https://www.example.com';
+        let link: string = 'https://www.example.com'; // 此处为实际应用链接
         let openLinkOptions: OpenLinkOptions = {
           // 匹配的abilities选项是否需要通过App Linking域名校验，匹配到唯一配置过的应用ability
           appLinkingOnly: true,
@@ -68,4 +68,4 @@ struct Index {
       })
   }
 }
-// [End quick_start0]
+// [End want_page]

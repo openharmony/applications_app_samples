@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
 import { common } from '@kit.AbilityKit';
 
 export class GlobalContext {
@@ -26,4 +25,3 @@ export class GlobalContext {
     return GlobalContext.context;
   }
 }
-// [End quick_start0]

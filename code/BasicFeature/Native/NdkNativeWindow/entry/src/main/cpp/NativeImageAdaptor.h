@@ -85,6 +85,7 @@ private:
     std::queue<NativeWindowBuffer *> bufferAttached_;
     bool isAutoConsumer_;
     bool isSingleBufferMode_ = false;
+    OHIPCParcel* parcel_ = nullptr;
 };
 }
 #endif // NdkNativeWindow_NativeImageAdaptor_H

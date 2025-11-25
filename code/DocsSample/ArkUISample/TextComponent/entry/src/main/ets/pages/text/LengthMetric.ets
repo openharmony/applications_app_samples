@@ -14,13 +14,20 @@
  */
 // [Start Length_Metric]
 import { LengthMetrics } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 export struct LengthMetric {
-  @State message: string = 'This is a long text with extra long sections folded and labeled before and after';
-  @State frontTag: string = 'Front label';
-  @State backTag: string = 'Post label';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_Add_Tags_Front_and_Post'资源文件中的value值为'这是一段长文本，超长部分折行，前后添加标签'
+  @State message: string = this.manager.getStringByNameSync('Text_Add_Tags_Front_and_Post');
+  // 'Text_Add_Tags_Front'前标签'
+  @State frontTag: string = this.manager.getStringByNameSync('Text_Add_Tags_Front');
+  // 'Text_Add_Tags_Post'资源文件中的value值为'后标签'
+  @State backTag: string = this.manager.getStringByNameSync('Text_Add_Tags_Post');
   @State frontPaddingVp: number = 20;
   @State backPaddingVp: number = 10;
   @State fontTagWidthVp: Length = 0;
@@ -58,7 +65,7 @@ export struct LengthMetric {
     // 后标签offsetX的偏移量backOffsetVpX=frontTag+message最后一行的宽度
     this.backOffsetVpX =
       this.getUIContext().px2vp((paragraphArr[paragraphArr.length-1].getLineWidth(linesFrontTagPlusMessage - 1)))
-    // 后标签offsetY的偏移量backOffsetVpY=frontTag+message总高度-最后一行的高度。
+    // 后标签offsetY的偏移量backOffsetVpY=frontTag+message总高度-最后一行的高度
     let heightFrontTagPlusMessageVp = 0;
     for (let i = 0; i < paragraphArr.length; ++i) {
       heightFrontTagPlusMessageVp += this.getUIContext().px2vp(paragraphArr[i].getHeight());
@@ -94,8 +101,11 @@ export struct LengthMetric {
       .height('100%')
       .width('90%')
       .padding('5%')
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Length_Metric]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Length_Metric'))
+    // [EndExclude Length_Metric]
   }
 }
 

@@ -17,13 +17,14 @@
 @Entry
 @Component
 struct FocusOnclickExample {
-  @State text: string = ''
-  @State number:number = 0
+  @State text: string = '';
+  @State number:number = 0;
 
   build() {
     Column() {
       Text(this.text)
         .margin({bottom:20})
+      // app.string.button资源文件中的value值为'按钮'
       Button($r('app.string.button'))
         .responseRegion([
           {
@@ -41,7 +42,7 @@ struct FocusOnclickExample {
         ])
         .onClick(() => {
           this.number++;
-          this.text = 'button' + this.number + 'clicked'
+          this.text = 'button' + this.number + 'clicked';
         })
         .width(200)
     }.width('100%').justifyContent(FlexAlign.Center)

@@ -4,14 +4,14 @@
 
 本示例通过使用[ArkUI指南文档](https://gitCode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [触屏事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-touch-screen-event.md)
-2. [键鼠事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-device-input-event.md)
-3. [焦点事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-focus-event.md)
-4. [拖拽事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-drag-event.md)
-5. [单一手势](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md)
-6. [组合手势](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md)
-7. [手势拦截](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-gesture-judge.md)
-8. [统一拖拽](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/EventProject)
+1. [触屏事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-touch-screen-event.md)
+2. [键鼠事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-device-input-event.md)
+3. [支持焦点处理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-events-focus-event.md)
+4. [支持统一拖拽](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-events-drag-event.md)
+5. [单一手势](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md)
+6. [组合手势](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md)
+7. [手势冲突处理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-gesture-events-gesture-judge.md)
+8. [支持键盘输入事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-interaction-development-guide-keyboard.md)
 ### 效果预览
 
 | 首页                                 | 交互类组件目录                            | 单一手势示例                             |
@@ -100,26 +100,14 @@ entry/src/ohosTest/
 ```
 
 ### 具体实现
-<<<<<<< TJS
-
-1、选择目标组件
-确定要在哪个 UI 组件上绑定手势（如 Column、Text、Image 等）。
-调用 .gesture() 方法
-使用 .gesture(Gesture) 方法将手势绑定到组件上。
-2、创建手势对象
-调用对应的手势构造函数，如 TapGesture()、PanGesture() 等，可传入参数配置行为。
-注册事件回调
-通过 .onAction()、.onActionStart()、.onActionUpdate()、.onActionEnd() 等方法监听手势状态变化。
-3、更新状态或执行逻辑
-在回调中修改 @State 变量、触发动画、调用函数等。
-
-=======
-焦点：指向当前应用界面上唯一的一个可交互元素，当用户使用键盘、电视遥控器、车机摇杆/旋钮等非指向性输入设备与应用程序进行间接交互时，基于焦点的导航和交互是重要的输入手段。
-焦点链：在应用的组件树形结构中，当一个组件获得焦点时，从根节点到该组件节点的整条路径上的所有节点都会处于焦点状态，形成一条连续的焦点链。
-走焦：指焦点在应用内的组件之间转移的行为。这一过程对用户是透明的，但开发者可以通过监听onFocus（焦点获取）和onBlur（焦点失去）事件来捕捉这些变化。关于走焦的具体方式和规则，详见走焦规范。
-焦点激活态：焦点激活是用来显示当前获焦组件焦点框的视觉样式。
-焦点传递规则:焦点传递是指当用户激活应用焦点系统时，焦点如何从根节点逐级向下传递到具体组件的过程。
->>>>>>> master
+1. 触屏事件指当手指/手写笔在组件上按下、滑动、抬起时触发的回调事件。包括点击事件、拖拽事件和触摸事件。
+2. 键鼠事件指键盘，鼠标外接设备的输入事件。支持的鼠标事件包含通过外设鼠标、触控板触发的事件。
+3. 使用外接键盘的按键走焦（TAB键/Shift+TAB键/方向键）、使用requestFocus申请焦点、clearFocus清除焦点、focusOnTouch点击申请焦点等接口导致的焦点转移。焦点激活态：焦点激活是用来显示当前获焦组件焦点框的视觉样式。 焦点传递规则:焦点传递是指当用户激活应用焦点系统时，焦点如何从根节点逐级向下传递到具体组件的过程。
+4. 从一个组件位置拖出（drag）数据并将其拖入（drop）到另一个组件位置，以触发响应。在这一过程中，拖出方提供数据，而拖入方负责接收和处理数据。这一操作使用户能够便捷地移动、复制或删除指定内容。
+5. 可以通过在拖动手势的回调函数中修改组件的布局位置信息来实现组件的拖动。
+6. Column组件上绑定了translate属性，通过修改该属性可以设置组件的位置移动。然后在该组件上绑定LongPressGesture和PanGesture组合而成的Sequence组合手势。当触发LongPressGesture时，更新显示的数字。当长按后进行拖动时，根据拖动手势的回调函数，实现组件的拖动。
+7. 嵌套滚动、通过过滤组件响应手势的范围来优化交互体验。手势拦截主要采用手势触发控制和手势响应控制两种方式实现。
+8. 物理按键产生的按键事件为非指向性事件，与触摸等指向性事件不同，其事件并没有坐标位置信息，所以其会按照一定次序向获焦组件进行派发，大多数文字输入场景下，按键事件都会优先派发给输入法进行处理，以便其处理文字的联想和候选词，应用可以通过onKeyPreIme提前感知事件。
 ### 相关权限
 
 不涉及。

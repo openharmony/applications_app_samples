@@ -26,7 +26,6 @@ const DOMAIN = 0x0000
 export async function defaultConfigRdbStoreTs() {
 
   // [Start defaultConfigRdbStoreTs]
-
   let store: relationalStore.RdbStore | undefined = undefined;
   let context = getContext();
 
@@ -40,9 +39,8 @@ export async function defaultConfigRdbStoreTs() {
     hilog.info(DOMAIN, 'Encryption', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.error(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
-
   // [End defaultConfigRdbStoreTs]
 }
 
@@ -51,10 +49,9 @@ export async function defaultConfigRdbStoreTs() {
 export async function customizedConfigRdbStoreTs() {
 
   // [Start customizedConfigRdbStoreTs]
-
   let store: relationalStore.RdbStore | undefined = undefined;
   let context = getContext();
-  // 初始化需要使用的密钥
+  // 初始化需要使用的密钥，示例中使用硬编码密钥仅用于演示目的， 实际应用中应使用安全的密钥管理服务
   let key = new Uint8Array(32);
   for (let i = 0; i < 32; i++) {
     key[i] = i;
@@ -79,17 +76,17 @@ export async function customizedConfigRdbStoreTs() {
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     if (store == null) {
-      hilog.info(DOMAIN, 'Encryption', 'Failed to get RdbStore.');
+      hilog.error(DOMAIN, 'Encryption', 'Failed to get RdbStore.');
     } else {
       hilog.info(DOMAIN, 'Encryption', 'Succeeded in getting RdbStore.');
     }
     // 调用完后需要将密钥清零
     CRYPTO_PARAM.encryptionKey.fill(0);
+    key.fill(0);
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.error(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
-
   // [End customizedConfigRdbStoreTs]
 }
 

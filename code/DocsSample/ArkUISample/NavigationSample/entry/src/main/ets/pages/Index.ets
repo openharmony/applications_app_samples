@@ -64,7 +64,6 @@ struct Index {
         { name: 'template1/PageOne', label: $r('app.string.systemRoutingTable') },
         { name: 'template1/CustomRoutingTable', label: $r('app.string.customRoutingTable') },
         { name: 'template7/PageOne', label: $r('app.string.onReadyParam_text7') },
-        { name: 'template7/PageTwo', label: $r('app.string.onResultParam_text7') },
         { name: 'template1/NavigationExample', label: $r('app.string.navigationExample') },
         { name: 'template2/Index', label: $r('app.string.stepperIndex_text2') },
         { name: 'template4/Index', label: $r('app.string.stepperIndex_text4') },
@@ -120,9 +119,9 @@ struct Index {
           } else {
             this.selection = route.name;
           }
-        });
+        })
     })
-  };
+  }
 
   aboutToAppear(): void{
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);

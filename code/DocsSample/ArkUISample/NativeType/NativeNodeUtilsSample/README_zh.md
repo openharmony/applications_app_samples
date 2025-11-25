@@ -2,35 +2,41 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建IMAGE组件并可以设置、获取、重置组件对应节点属性，对已创建的IMAGE组件进行销毁操作。该工程中代码详细描述可参考：
-[显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
-
-
-### 效果预览
-
-| 首页                                     | 设置图像内容顺时针旋转90度显示                   | 自定义绘制内容                       |自定义绘制前景背景|
-|----------------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| ![](screenshots/NativeNode.png) |![](screenshots/device/result.png) | ![](screenshots/DrawPage.png) | ![](screenshots/NativeUI.png)
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的通用类型接口。接口详情请参考[native_node.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)。
 
 ### 使用说明
 
-1. 在主界面，可以点击“选择节点类型”，创建需要的组件。
+1. 在主界面，可以点击不同的按钮，查看不同的示例。
 
-2. 选择组件对应的“选择节点属性”菜单列。
+2. 点击多线程创建组件，跳转查看多线程创建组件示例。
 
-3. 通过文本输入，设置属性值。
+3. 点击自定义属性测试，跳转查看组件使用自定义属性的示例。
 
-4. 点击“设置属性值”，查看效果。
+4. 点击懒加载页面，查看懒加载页面示例。
 
-5. 点击“获取属性值”，查看已设置的属性值。
+5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
-6. 点击“重置”，清除设置的属性。
+6. 点击“展示自定义绘制页面”，查看绘画效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
-7. 点击“清理”，移除创建的组件节点。
+7. 点击"展示自定义绘制容器页面"，查看容器效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
-8. 点击“展示绘画页面”，查看绘画效果。
+## 效果预览
 
-9. 点击：“返回”，返回到主页面。
+| 首页 | 应用页面                                           |
+| ---- | -------------------------------------------------------- |
+|      | <img src="./screenshots/NativeNodePage.png" width="300;" />       |
+|      | <img src="./screenshots/DrawPage.png" width="300;" /> |
+|      | <img src="./screenshots/NativeUI.png" width="300;" /> |
+
+### 具体实现
+
+- 本示例实现了多线程创建组件的功能，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
+
+- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时接口调用。
+
+- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能消耗。
+
+- 自定义绘制实现：自定义节点的创建，通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册过程中，需将事件注册为绘制事件，通过查阅ArkUI_NodeCustomEventType枚举值获取事件类型及含义。 创建自定义节点：通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册时，将自定义节点、事件类型、事件ID和UserData作为参数传入。在回调函数中，通过获取自定义事件的事件类型、事件ID和UserData来执行不同的逻辑。
 
 ### 工程目录
 ```
@@ -45,25 +51,16 @@ entry/src/main/cpp
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---entry.ets                      // 应用主页面
-|   |---drawPage         
-|   |   |---DrawPage.ets               // 自定义绘制页
-|   |---NativeUI         
-|   |   |---NativeUIPage.ets           // 自定义绘制背景前景              
-entry/src/ohosTest/
-|---ets
-|   |---index.test.ets                 // 示例代码测试代码
+|   |   |drawPage
+        ---DrawPage.ets                // 自定义绘制页面
+|   |   |nativeUI
+        ---NativeUI.ets                // 自定义绘制容器页面
+|   |---customproperty.ets             // 自定义属性用例demo
+|   |---customproperty.ets             // 自定义属性用例demo
+|   |---entry.ets                      // 多线程创建组件demo
+|   |---index.ets                      // 应用主页面
+|   |---nodeadapter.ets                // 懒加载列表demo
 ```
-
-### 具体实现
-
-1. 在[Index.ets](entry%2Fsrc%2Fmain%2Fets%2Fpages%2FIndex.ets)文件中，通过点击按钮创建IMAGE组件节点，并通过文本输入框设置、获取、重置属性值。
-2. 在[Index.d.ts](entry%2Fsrc%2Fmain%2Fcpp%2Ftypes%2Flibentry%2FIndex.d.ts)文件中，定义napi对外接口。
-3. 在[napi_init.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fnapi_init.cpp)文件中，实现Index.d.ts中对外的接口。
-4. 在[manager.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fmanager.cpp)文件中，通过调用ArkUI的接口实现创建、设置、获取、重置组件属性。
-5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateDrawNode方法实现自定义绘制内容。
-5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateNativeRoot方法实现自定义绘制前景背景。
-5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateDrawNode方法实现隐藏自定义绘制前景背景。
 
 ### 相关权限
 
@@ -77,7 +74,7 @@ entry/src/ohosTest/
 
 1.本示例支持标准系统上运行, 支持设备：RK3568等。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_5.0.2.57。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.56，镜像版本号：OpenHarmony_6.0.2.56。
 
 ### 下载
 
@@ -86,7 +83,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/NativeNodeSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/NativeNodeUtilsSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

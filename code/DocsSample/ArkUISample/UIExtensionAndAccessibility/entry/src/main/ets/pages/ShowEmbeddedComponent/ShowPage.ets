@@ -15,34 +15,43 @@
 
 import render from 'libentry.so';
 import { NodeContent } from '@kit.ArkUI';
-import { UIContext } from '@kit.ArkUI';
+
+export const EMBEDDED_COMPONENT_ROUTE_PREFIX: string = 'ShowEmbeddedComponent';
+
+@Builder
+export function ShowEmbedded(name: string) {
+  if (name == EMBEDDED_COMPONENT_ROUTE_PREFIX) {
+    ShowPage();
+  }
+}
 
 @Entry
 @Component
 export struct ShowPage {
   private nodeContent: NodeContent = new NodeContent();
+
   onPageShow(): void {
     render.embeddedNode(this.nodeContent);
   }
+
   build() {
-    Column({ space: 16 }) {
-      Button('back')
-        .onClick(()=>{
-          const uiContext: UIContext = this.getUIContext();
-          const router = uiContext.getRouter();
-          router.back();
-        })
-      Text('ShowPage content')
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-      Column() {
-        ContentSlot(this.nodeContent)
+    NavDestination() {
+      Column({ space: 16 }) {
+        Text('ShowPage content')
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Column() {
+          ContentSlot(this.nodeContent);
+        }
+        .layoutWeight(1)
+        .width('100%')
       }
-      .layoutWeight(1)
       .width('100%')
+      .height('100%')
+      .padding(16)
     }
     .width('100%')
     .height('100%')
-    .padding(16)
+    .title('ShowEmbeddedComponent')
   }
 }

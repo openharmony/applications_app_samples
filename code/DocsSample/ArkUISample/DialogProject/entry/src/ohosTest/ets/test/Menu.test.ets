@@ -74,6 +74,8 @@ export default function MenuTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testPopVibrateMenu end');
       done();
     })
@@ -175,6 +177,84 @@ export default function MenuTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       console.info('uitest: testBindComponentMenu end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_005
+     * @tc.name testCreateDefaultMenu
+     * @tc.desc 测试创建默认样式的菜单示例
+     * @tc.level: Level 1
+     */
+    it('testCreateDefaultMenu', Level.LEVEL1, async (done: Function) => {
+      console.info('uitest: testCreateDefaultMenu begin');
+      let driver = Driver.create();
+      let button_list =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await driver.delayMs(1000);
+
+      await driver.swipe(100, 800, 100, 0);
+
+      let TextButton =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateDefaultMenu_title')),
+          MatchPattern.CONTAINS));
+      expect(TextButton === null).assertFalse();
+      await TextButton.click();
+      await driver.delayMs(1000);
+
+      let PopupOptionsButton = await driver.findComponent(ON.id('click for Menu', MatchPattern.CONTAINS));
+      expect(PopupOptionsButton === null).assertFalse();
+      await PopupOptionsButton.click();
+      await driver.delayMs(1000);
+
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      console.info('uitest: testCreateDefaultMenu end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_006
+     * @tc.name testBuilderCustomMenu
+     * @tc.desc 测试使用@Builder自定义菜单内容示例
+     * @tc.level: Level 1
+     */
+    it('testBuilderCustomMenu', Level.LEVEL1, async (done: Function) => {
+      console.info('uitest: testBuilderCustomMenu begin');
+      let driver = Driver.create();
+      let button_list =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await driver.delayMs(1000);
+
+      await driver.swipe(100, 800, 100, 0);
+
+      let TextButton =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.BuilderCustomMenu_title')),
+          MatchPattern.CONTAINS));
+      expect(TextButton === null).assertFalse();
+      await TextButton.click();
+      await driver.delayMs(1000);
+
+      let PopupOptionsButton = await driver.findComponent(ON.id('click for Menu', MatchPattern.CONTAINS));
+      expect(PopupOptionsButton === null).assertFalse();
+      await PopupOptionsButton.click();
+      await driver.delayMs(1000);
+
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      console.info('uitest: testBuilderCustomMenu end');
       done();
     })
   })

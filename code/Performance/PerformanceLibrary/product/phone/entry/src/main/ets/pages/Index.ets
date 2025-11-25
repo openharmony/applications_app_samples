@@ -46,7 +46,5 @@ struct Index {
       .justifyContent(FlexAlign.Center)
     }.width($r('app.string.layout_100_percent'))
     .height($r('app.string.layout_100_percent'))
-
-    // .justifyContent(FlexAlign.Center)
   }
 }

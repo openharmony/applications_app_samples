@@ -13,25 +13,28 @@
  * limitations under the License.
  */
 // [Start example1_start]
-class Child3 {
-  public value: number = 10;
+const INITIAL_VALUE = 10;
+
+class Child {
+  public value: number = INITIAL_VALUE;
 }
 
 @Component
 @Entry
-struct example1 {
-  @State child: Child3 = new Child3();
+struct Example {
+  @State child: Child = new Child();
 
   build() {
     Column() {
-      Text(this.child.value.toString());
+      Text(this.child.value.toString())
       // @State可以观察第一层变化
       Button('value+1')
         .onClick(() => {
           this.child.value++;
-
-        });
+        })
     }
   }
 }
 // [End example1_start]
+const example1 = Example;
+export default example1;

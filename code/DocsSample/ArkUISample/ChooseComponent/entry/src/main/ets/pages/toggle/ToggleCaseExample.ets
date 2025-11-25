@@ -24,9 +24,7 @@ export struct ToggleSample {
   pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    // [StartExclude the_example_of_bluetooth]
     NavDestination() {
-      // [EndExclude the_example_of_bluetooth]
       Column({ space: 8 }) {
         Column({ space: 8 }) {
           Text('Bluetooth Mode: ' + this.message)
@@ -36,7 +34,7 @@ export struct ToggleSample {
             Blank()
             // [Start create_toggle_case]
             Toggle({ type: ToggleType.Switch })
-              .id('toggle')
+              .id('toggle') // 请开发者替换为实际的id
               .onChange((isOn: boolean) => {
                 if (isOn) {
                   // [StartExclude create_toggle_case]
@@ -62,11 +60,9 @@ export struct ToggleSample {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude the_example_of_bluetooth]
     }
-    // [EndExclude the_example_of_bluetooth]
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')��Ҫ�滻Ϊ������������ַ�����Դ�ļ�
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.ToggleCaseExample_title'))
   }
 }

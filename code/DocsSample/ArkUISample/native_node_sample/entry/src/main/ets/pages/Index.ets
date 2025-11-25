@@ -26,7 +26,7 @@ interface ListCategories {
 struct MenuIndex {
   private items: ListCategories[] =
     [
-      { title: 'Text', url: 'pages/page_text', id: '' },
+      { title: '文本输入类', url: 'pages/page_text', id: '' },
       { title: 'Swiper', url: 'pages/page_swiper', id: '' },
       { title: 'WaterFlow', url: 'pages/page_waterflow', id: '' },
       { title: 'Grid', url: 'pages/PageGrid', id: '' },

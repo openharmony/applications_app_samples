@@ -47,8 +47,10 @@ export struct SelectionChange {
         this.end = -1;
       })
     }
+    // [StartExclude Selection_Change]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Selection_Change'))
+    // [EndExclude Selection_Change]
   }
 }
 

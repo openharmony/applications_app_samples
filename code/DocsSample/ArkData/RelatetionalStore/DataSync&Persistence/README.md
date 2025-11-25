@@ -14,7 +14,7 @@
 
 使用说明：
 
-1. 在主页面中通过点击相应的按钮，。
+1. 在主页面中通过点击相应的按钮。
 
 ### 工程目录
 
@@ -28,9 +28,9 @@
             │  ├─entrybackupability
             │  └─pages
             │       │─datapersistence       
-            │       │   rdbDataPersistence.ets  //数据持久化
+            │       │   rdbDataPersistence.ets  // 数据持久化
             │       │─datasync
-            │       │   rdbDataSync.ets         //数据跨设备特性
+            │       │   rdbDataSync.ets         // 数据跨设备特性
             │       │─Index.ets			        // 主页面，代码参考页面
             └─resources
                 ├─base						    // 资源文件,内容为英文

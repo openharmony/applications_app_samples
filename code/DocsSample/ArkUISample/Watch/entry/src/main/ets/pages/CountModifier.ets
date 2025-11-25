@@ -24,7 +24,7 @@ struct TotalView {
   }
 
   build() {
-    Text(`Total: ${this.total}`);
+    Text(`Total: ${this.total}`)
   }
 }
 
@@ -37,9 +37,9 @@ struct CountModifier {
     Column() {
       Button('add to basket')
         .onClick(() => {
-          this.count++
+          this.count++;
         })
-      TotalView({ count: this.count });
+      TotalView({ count: this.count })
     }
   }
 }

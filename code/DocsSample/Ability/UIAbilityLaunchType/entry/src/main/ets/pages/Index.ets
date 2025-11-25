@@ -33,6 +33,7 @@ struct Index {
           this.message = 'Welcome';
         })
 
+      // app.string.singletonAbility资源文件中的value值为'启动单实例模式UIAbility'
       Button($r('app.string.singletonAbility'))
         .margin({top: 8})
         .onClick(() => {
@@ -51,6 +52,7 @@ struct Index {
           })
         })
 
+      // app.string.multitonAbility资源文件中的value值为'启动多实例模式UIAbility'
       Button($r('app.string.multitonAbility'))
         .margin({top: 8})
         .onClick(() => {
@@ -69,6 +71,7 @@ struct Index {
           })
         })
 
+      // app.string.specifiedAbility资源文件中的value值为'启动指定实例模式UIAbility'
       Button($r('app.string.specifiedAbility'))
         .margin({top: 8})
         .onClick(() => {

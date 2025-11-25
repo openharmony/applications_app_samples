@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start sequence_identification]
+// xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'Sample_gesturegroup';
-// [Start sequence_identification]
-// xxx.ets
 @Entry
 @Component
 struct sequenceIdentification {
@@ -78,7 +78,7 @@ struct sequenceIdentification {
         .onCancel(() => {
           hilog.info(DOMAIN, TAG,'sequence gesture canceled');
         })
-    );
-  };
+    )
+  }
 }
 // [End sequence_identification]

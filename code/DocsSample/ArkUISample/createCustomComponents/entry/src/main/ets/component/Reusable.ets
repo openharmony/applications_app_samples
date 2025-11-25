@@ -16,10 +16,10 @@
   // [Start Reusable_MyComponent]
 @Reusable
 @Component
-struct MyComponentReusable {
+struct MyComponent {
   // [StartExclude Reusable_MyComponent]
   build() {
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -27,6 +27,10 @@ struct MyComponentReusable {
     .width('100%')
     .height('100%')
   }
+
   // [EndExclude Reusable_MyComponent]
 }
+
 // [End Reusable_MyComponent]
+const myComponentReusable = MyComponent;
+export default myComponentReusable;

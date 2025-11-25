@@ -1,6 +1,6 @@
 {
   "src": [
-    "pages/Index",
+    "pages/MainPage",
     "pages/relativecontainerlayout/RelativeContainerParentComponentId",
     "pages/relativecontainerlayout/RelativeContainerSiblingComponentId",
     "pages/relativecontainerlayout/RelativeContainerChildComponentId",

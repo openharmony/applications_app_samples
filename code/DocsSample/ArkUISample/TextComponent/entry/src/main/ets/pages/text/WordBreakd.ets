@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 // [Start Word_Break]
-import { util } from '@kit.ArkTS';
-import { UIContext } from '@kit.ArkUI';
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 export struct WordBreakd {
-  @State message: string = 'Hello World! honorificabilitudinitatibus!';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_WordBreak'资源文件中的value值为'混合Hello World! honorificabilitudinitatibus'
+  @State message: string = this.manager.getStringByNameSync('Text_WordBreak');
   build() {
     NavDestination() {
     Column() {
@@ -37,8 +39,11 @@ export struct WordBreakd {
     .width(300)
     .border({ width: 1, color: Color.Blue})
     .margin({left: 30, top: 50})
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Word_Break]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Word_Break'))
+    // [EndExclude Word_Break]
   }
 }
 // [End Word_Break]

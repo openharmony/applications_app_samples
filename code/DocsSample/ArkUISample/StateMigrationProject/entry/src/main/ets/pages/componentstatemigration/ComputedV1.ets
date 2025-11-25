@@ -15,19 +15,21 @@
 // [Start ComputedV1_start]
 @Entry
 @Component
-struct Index1 {
+struct Index {
   @State firstName: string = 'Li';
   @State lastName: string = 'Hua';
 
   build() {
     Column() {
-      Text(this.lastName + ' ' + this.firstName);
-      Text(this.lastName + ' ' + this.firstName);
+      Text(this.lastName + ' ' + this.firstName)
+      Text(this.lastName + ' ' + this.firstName)
       Button('changed lastName').onClick(() => {
         this.lastName += 'a';
-      });
+      })
 
     }
   }
 }
 // [End ComputedV1_start]
+const index1 = Index;
+export default index1;

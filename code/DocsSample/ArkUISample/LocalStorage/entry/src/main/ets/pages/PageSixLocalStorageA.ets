@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 // [Start localtorage_page_six_local_storageA]
-let localStorage1A: LocalStorage = new LocalStorage();
-localStorage1A.setOrCreate('propA', 'propA');
+let localStorageInstance: LocalStorage = new LocalStorage();
+localStorageInstance.setOrCreate('propA', 'propA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('propB', 'propB');
+let localStorageChange: LocalStorage = new LocalStorage();
+localStorageChange.setOrCreate('propB', 'propB');
 
-@Entry(localStorage1A)
+@Entry(localStorageInstance)
 @Component
-struct AIndex {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
+struct Index {
+  // 'PropA'，和localStorageInstance中'PropA'的双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
 
@@ -32,8 +32,8 @@ struct AIndex {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        AChild(localStorage2)
+        // 使用LocalStorage 实例localStorageChange
+        ChildOne(localStorageChange)
       }
       .width('100%')
     }
@@ -42,11 +42,15 @@ struct AIndex {
 }
 
 @Component
-struct AChild {
+struct ChildOne {
   build() {
     Text('hello')
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
   }
 }
+
 // [End localtorage_page_six_local_storageA]
+const nestedObjectIndex = Index;
+
+export default nestedObjectIndex;

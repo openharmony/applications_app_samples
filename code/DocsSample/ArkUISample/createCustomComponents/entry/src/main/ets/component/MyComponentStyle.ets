@@ -14,21 +14,25 @@
  */
 // [Start Custom_style]
 @Component
-struct ChildComponentCustom {
+struct ChildComponent {
   build() {
     Button(`Hello World`)
   }
 }
+
 @Entry
 @Component
-struct MyComponentStyle {
+struct MyComponent {
   build() {
-      Row() {
-        ChildComponentCustom()
-          .width(200)
-          .height(300)
-          .backgroundColor(Color.Red)
-      }
+    Row() {
+      ChildComponent()
+        .width(200)
+        .height(300)
+        .backgroundColor(Color.Red)
+    }
   }
 }
+
 // [End Custom_style]
+const myComponentStyle = MyComponent;
+export default myComponentStyle;

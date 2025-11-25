@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import { hilog } from '@kit.PerformanceAnalysisKit'
+
 @Entry
 @Component
 struct Index {
@@ -34,7 +36,7 @@ struct Index {
 
   // [Start segment12]
   fn = () => {
-    console.info(`counter: ${this.counter}`);
+    hilog.info(0x0000, 'Declarative UI Description', `counter: ${this.counter}`);
     this.counter++;
   };
 
@@ -67,6 +69,7 @@ struct Index {
 
         // [Start segment4]
         Image(this.imagePath)
+        // 此处需要替换为开发者所需的正确url
         Image('https://' + this.imageUrl)
         Text(`count: ${this.count}`)
         // [End segment4]
@@ -142,7 +145,7 @@ struct Index {
               .height(100)
             Button('click +1')
               .onClick(() => {
-                console.info('+1 clicked!');
+                hilog.info(0x0000, 'Declarative UI Description', '+1 clicked!');
               })
           }
         }

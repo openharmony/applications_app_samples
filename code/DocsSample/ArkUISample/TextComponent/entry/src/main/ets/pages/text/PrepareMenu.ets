@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start Prepare_Menu]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
 // xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
@@ -23,7 +24,6 @@ export struct PrepareMenu {
   @State text: string = 'Text editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
-    // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -57,7 +57,6 @@ export struct PrepareMenu {
     }
     return false;
   }
-  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
@@ -87,8 +86,11 @@ export struct PrepareMenu {
     }
     .width('90%')
     .margin('5%')
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Prepare_Menu]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Prepare_Menu'))
+    // [EndExclude Prepare_Menu]
   }
 }
 // [End Prepare_Menu]

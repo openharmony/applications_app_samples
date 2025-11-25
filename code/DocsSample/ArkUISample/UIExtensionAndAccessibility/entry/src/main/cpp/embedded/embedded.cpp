@@ -16,7 +16,6 @@
 #include <hilog/log.h>
 #include "arkui/native_node_napi.h"
 #include "arkui/native_interface.h"
-#include "common/common.h"
 #include "napi/native_api.h"
 #include "embedded.h"
 //[Start embeddedComponentCTest_start]
@@ -27,6 +26,12 @@
 // 注册事件
 void onError(int32_t code, const char *name, const char *message) {}
 void onTerminated(int32_t code, AbilityBase_Want *want) {}
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+#define SIZE_300 300
+#define SIZE_401 401
+#define SIZE_480 480
+//[StartExclude embeddedComponentCTest_start]
+
 napi_value embeddedNode(napi_env env, napi_callback_info info)
 {
     size_t argCnt = 1;
@@ -38,6 +43,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     ArkUI_NodeContentHandle nodeContentHandle = nullptr;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle);
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    //[EndExclude embeddedComponentCTest_start]
     // 创建节点
     ArkUI_NodeHandle embeddedNode = nodeAPI->createNode(ARKUI_NODE_EMBEDDED_COMPONENT);
     // 设置属性
@@ -61,7 +67,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     nodeAPI->setAttribute(embeddedNode, NODE_EMBEDDED_COMPONENT_OPTION, &itemobjembeddedNode);
 
     // 设置基本属性，如宽高
-    ArkUI_NumberValue value[] = {480};
+    ArkUI_NumberValue value[] = {SIZE_480};
     ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
     value[0].f32 = SIZE_300;
     nodeAPI->setAttribute(embeddedNode, NODE_WIDTH, &item);
@@ -78,6 +84,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
 
     // 上树
     nodeAPI->addChild(column, embeddedNode);
+    //[End embeddedComponentCTest_start]
     int32_t result = OH_ArkUI_NodeContent_AddNode(nodeContentHandle, column);
     napi_value retValue = 0;
     napi_create_int32(env, result, &retValue);
@@ -92,4 +99,3 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     }
     return exports;
 }
-//[End embeddedComponentCTest_start]

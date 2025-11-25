@@ -45,9 +45,9 @@ export struct WorseUseVisibility {
                 .fontSize($r('app.integer.font_size_20'))
                 .width($r("app.string.layout_100_percent"))
                 .textAlign(TextAlign.Center)
-            }, (item: number) => item.toString())
+            }, (item: number) => item.toString());
           }
-        }.visibility(this.isVisible ? Visibility.Visible : Visibility.None)// 使用显隐控制，启动时即使组件处于隐藏状态，也会创建
+        }.visibility(this.isVisible ? Visibility.Visible : Visibility.None); // 使用显隐控制，启动时即使组件处于隐藏状态，也会创建
       }
     }
   }

@@ -14,17 +14,18 @@
  */
 // [Start Observe_Changes]
 @ObservedV2
-class SonChang {
-  // The age attribute, tracked for changes to trigger UI updates
+class Son {
   @Trace public age: number = 100;
 }
-class FatherChang {
- public son: SonChang = new SonChang();
+
+class Father {
+  public son: Son = new Son();
 }
+
 @Entry
 @ComponentV2
-struct ObserveChanges {
-  father: FatherChang = new FatherChang();
+struct Index {
+  father: Father = new Father();
 
   build() {
     Column() {
@@ -32,8 +33,11 @@ struct ObserveChanges {
       Text(`${this.father.son.age}`)
         .onClick(() => {
           this.father.son.age++;
-        });
+        })
     }
   }
 }
+
 // [End Observe_Changes]
+const observeChanges = Index;
+export default observeChanges;

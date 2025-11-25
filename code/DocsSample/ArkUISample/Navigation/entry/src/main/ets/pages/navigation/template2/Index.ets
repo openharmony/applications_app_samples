@@ -61,7 +61,7 @@ struct NavigationExample2 {
         }
         console.log(`current navigation mode is ${mode}`);
       }
-    })
+    });
   }
 
   build() {

@@ -17,6 +17,7 @@
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
 import { formInfo, formProvider, FormExtensionAbility } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// Constants实现参考“互动卡片动效工具函数实现”小节
 import { Constants } from '../common/Constants';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -52,7 +53,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
     try {
       formProvider.requestOverflow(formId, {
         // 动效申请范围
-        area: { left: left, top: top, width: width, height: height },
+        area: {
+          left: left,
+          top: top,
+          width: width,
+          height: height
+        },
         // 动效持续时间
         duration: duration,
         // 指定是否使用系统提供的默认切换动效

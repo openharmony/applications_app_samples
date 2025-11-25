@@ -58,9 +58,7 @@ export struct CustomDialogAnimation {
   }
 
   build() {
-    // [StartExclude custom_dialog_animation]
     NavDestination() {
-      // [EndExclude custom_dialog_animation]
       Column() {
         Button('CustomDialogController animate')
           .width('100%')
@@ -69,9 +67,7 @@ export struct CustomDialogAnimation {
             this.animationController?.open();
           })
       }
-      // [StartExclude custom_dialog_animation]
     }
-    // [EndExclude custom_dialog_animation]
   }
 }
 // [End custom_dialog_animation]

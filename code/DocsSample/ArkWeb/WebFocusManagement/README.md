@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [Web组件焦点管理](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-focus.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解如何利用Web组件的焦点管理功能，有效管理Web组件的聚焦与失焦，同时利用H5侧的W3C标准接口，管理网页界面上唯一可交互的元素聚焦与失焦。
+本工程主要实现了对以下指南文档中 [Web组件焦点管理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-focus.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解如何利用Web组件的焦点管理功能，有效管理Web组件的聚焦与失焦，同时利用H5侧的W3C标准接口，管理网页界面上唯一可交互的元素聚焦与失焦。
 
 ### Web组件与ArkUI组件焦点控制
 

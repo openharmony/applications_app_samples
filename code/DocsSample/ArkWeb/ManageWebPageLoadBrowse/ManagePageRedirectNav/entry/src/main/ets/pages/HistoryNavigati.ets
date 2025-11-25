@@ -29,7 +29,7 @@ struct WebComponent {
             this.webviewController.backward();
           }
         })
-      Web({ src: $r('app.string.web_path'), controller: this.webviewController });
+      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController });
     }
   }
 }

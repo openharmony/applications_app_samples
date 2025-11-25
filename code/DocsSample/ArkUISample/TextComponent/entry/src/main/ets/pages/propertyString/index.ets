@@ -39,10 +39,6 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.StyledStringStyle_title_3')),
   },
   {
-    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringDecorationStyle`,
-    title: resource.resourceToString($r('app.string.StyledStringStyle_title_3')),
-  },
-  {
     name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringBaselineOffsetStyle`,
     title: resource.resourceToString($r('app.string.StyledStringStyle_title_4')),
   },

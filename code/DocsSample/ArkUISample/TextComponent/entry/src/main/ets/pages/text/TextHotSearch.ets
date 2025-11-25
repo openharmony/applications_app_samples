@@ -22,17 +22,22 @@ export struct TextHotSearch {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude the_text_fact_example]
+        // 'app.string.TextHotSearch_title_1'资源文件中的value值为'热搜榜示例'
         ComponentCard({ title: $r('app.string.TextHotSearch_title_1') }) {
+          // [EndExclude the_text_fact_example]
           Column() {
             Row() {
               Text('1').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
-              Text($r('app.string.TextHotSearch_textContent_1'))
+              // 'app.string.TextHotSearch_textContent_one'资源文件中的value值为'我是热搜词条1'
+              Text($r('app.string.TextHotSearch_textContent_one'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
                 .maxLines(1)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .fontWeight(300)
-              Text($r('app.string.TextHotSearch_textContent_2'))
+              // 'app.string.TextHotSearch_textContent_two'资源文件中的value值为'爆'
+              Text($r('app.string.TextHotSearch_textContent_two'))
                 .margin({ left: 6 })
                 .textAlign(TextAlign.Center)
                 .fontSize(10)
@@ -46,14 +51,16 @@ export struct TextHotSearch {
 
             Row() {
               Text('2').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
-              Text($r('app.string.TextHotSearch_textContent_3'))
+              // 'app.string.TextHotSearch_textContent_three'资源文件中的value值为'我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2'
+              Text($r('app.string.TextHotSearch_textContent_three'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
                 .fontWeight(300)
                 .constraintSize({ maxWidth: 200 })
                 .maxLines(1)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
-              Text($r('app.string.TextHotSearch_textContent_4'))
+              // 'app.string.TextHotSearch_textContent_four'资源文件中的value值为'热'
+              Text($r('app.string.TextHotSearch_textContent_four'))
                 .margin({ left: 6 })
                 .textAlign(TextAlign.Center)
                 .fontSize(10)
@@ -67,14 +74,16 @@ export struct TextHotSearch {
 
             Row() {
               Text('3').fontSize(14).fontColor(Color.Orange).margin({ left: 10, right: 10 })
-              Text($r('app.string.TextHotSearch_textContent_5'))
+              // 'app.string.TextHotSearch_textContent_five'资源文件中的value值为'我是热搜词条3'
+              Text($r('app.string.TextHotSearch_textContent_five'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
                 .fontWeight(300)
                 .maxLines(1)
                 .constraintSize({ maxWidth: 200 })
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
-              Text($r('app.string.TextHotSearch_textContent_4'))
+              // 'app.string.TextHotSearch_textContent_four'资源文件中的value值为'热' 
+              Text($r('app.string.TextHotSearch_textContent_four'))
                 .margin({ left: 6 })
                 .textAlign(TextAlign.Center)
                 .fontSize(10)
@@ -88,7 +97,8 @@ export struct TextHotSearch {
 
             Row() {
               Text('4').fontSize(14).fontColor(Color.Grey).margin({ left: 10, right: 10 })
-              Text($r('app.string.TextHotSearch_textContent_6'))
+              // 'app.string.TextHotSearch_textContent_six'资源文件中的value值为'我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4'
+              Text($r('app.string.TextHotSearch_textContent_six'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
                 .fontWeight(300)
@@ -97,14 +107,18 @@ export struct TextHotSearch {
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
             }.width('100%').margin(5)
           }.width('100%')
+        // [StartExclude the_text_fact_example]
         }
+        // [EndExclude the_text_fact_example]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude the_text_fact_example]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextHotSearch_title'))
+    // [EndExclude the_text_fact_example]
   }
 }
 // [End the_text_fact_example]

@@ -17,8 +17,8 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct TransitionEffectDemo {
-  // [Start transition_animation]
   @State isPresent: boolean = false;
+  // [Start transition_animation]
   // 出现时会是所有转场效果的出现效果叠加，消失时会是所有消失转场效果的叠加
   // 说明各个effect跟随的动画参数
   private effect: object =
@@ -40,7 +40,6 @@ struct TransitionEffectDemo {
   build() {
     Stack() {
       if (this.isPresent) {
-        // [Start set_transition_effects]
         Column() {
           Text('Test')
             .fontWeight(FontWeight.Bold)
@@ -54,7 +53,6 @@ struct TransitionEffectDemo {
         .backgroundColor(0xf56c6c)
         // 第二步：将转场效果通过transition接口设置到组件
         .transition(this.effect)
-        // [End set_transition_effects]
       }
 
       // 边框
@@ -67,7 +65,6 @@ struct TransitionEffectDemo {
           color: Color.Black
         })
 
-      // [Start transition_method]
       Column() {
         Button('Click1')
           .margin({ bottom: 10 })
@@ -84,7 +81,6 @@ struct TransitionEffectDemo {
             })
           })
       }
-      // [End transition_method]
       .margin({ top: 320 })
     }
     .width('100%')

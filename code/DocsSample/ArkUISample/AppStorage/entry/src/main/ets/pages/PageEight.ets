@@ -14,6 +14,10 @@
  */
 // [Start appstorage_page_eight]
 import { emitter } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG: string = '[SampleAppStorage]';
 
 let nextId: number = 0;
 
@@ -33,8 +37,10 @@ class ViewData {
 @Entry
 @Component
 struct Gallery {
-  //$r('app.media.startIcon')需要替换为开发者所需的资源文件;
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon'))];
+  // $r('app.media.startIcon')需要替换为开发者所需的资源文件;
+  dataList: Array<ViewData> =
+    [new ViewData('flower', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon')),
+      new ViewData('OMG', $r('app.media.startIcon'))];
   scroller: Scroller = new Scroller();
   private preIndex: number = -1;
 
@@ -62,7 +68,7 @@ struct Gallery {
             emitter.emit(innerEvent, eventData);
 
             if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`);
+              hilog.info(DOMAIN, TAG, `preIndex: ${this.preIndex}, index: ${item.id}, black`);
               let innerEvent: emitter.InnerEvent = { eventId: this.preIndex };
               // 取消选中态：红变黑
               let eventData: emitter.EventData = {
@@ -114,4 +120,5 @@ export struct TapImage {
     }
   }
 }
+
 // [End appstorage_page_eight]

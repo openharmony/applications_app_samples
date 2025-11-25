@@ -21,7 +21,7 @@ export struct BindSelectionMenu {
   build() {
     NavDestination() {
       Column() {
-        // $r('app.string.xxx')需要替换为开发者所需的资源文件
+        // 'app.string.display_the_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
         Text($r('app.string.display_the_selected_menu'), { controller: this.controller })
           .fontSize(30)
           .copyOption(CopyOptions.InApp)
@@ -34,17 +34,20 @@ export struct BindSelectionMenu {
             }
           })
       }
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Bind_SelectionMenu]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Bind_SelectionMenu'))
+    // [EndExclude Bind_SelectionMenu]
   }
   // [End Bind_SelectionMenu]
   // [Start Right_ClickTextCustomMenu]
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
   @Builder
   RightClickTextCustomMenu() {
     Column() {
       Menu() {
         MenuItemGroup() {
-          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'CustomMenu One', labelInfo: '' })
             .onClick(() => {
               // 使用closeSelectionMenu接口关闭菜单
@@ -58,4 +61,3 @@ export struct BindSelectionMenu {
   }
   // [End Right_ClickTextCustomMenu]
 }
-// [End General_Events]

@@ -12,41 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Used to generate unique IDs for ComplexMethodsMethodsNesting related instances
-let complexMethodsNestingNextId = 1;
+// [Start Complex_Methods_Nesting]
+let nextId = 1;
 
 @Observed
-class ComplexMethodsNestingSubCounter {
- public counter: number;
+class SubCounter {
+  public counter: number;
 
   constructor(c: number) {
     this.counter = c;
-  };
-};
+  }
+}
 
 @Observed
 class ParentCounter {
- public id: number;
- public counter: number;
- public subCounter: ComplexMethodsNestingSubCounter;
+  public id: number;
+  public counter: number;
+  public subCounter: SubCounter;
 
   incrCounter() {
     this.counter++;
-  };
+  }
 
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
-  };
+  }
 
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
-  };
+  }
 
   constructor(c: number) {
-    this.id = complexMethodsNestingNextId++;
+    this.id = nextId++;
     this.counter = c;
-    this.subCounter = new ComplexMethodsNestingSubCounter(c);
-  };
+    this.subCounter = new SubCounter(c);
+  }
 }
 
 
@@ -54,78 +54,31 @@ class ParentCounter {
 @Component
 struct ParentComp {
   @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
-
   build() {
     Row() {
-      Column() {
-        // [Start Complex_Methods_Nesting]
-        ComplexMethodsNestingCounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-        // [StartExclude Complex_Methods_Nesting]
-        ComplexMethodsNestingCounterComp({ value: this.counter[1] });
-        ComplexMethodsNestingCounterComp({ value: this.counter[2] });
-        Divider().height(5)
-        ForEach(this.counter,
-          (item: ParentCounter) => {
-            ComplexMethodsNestingCounterComp({ value: item })
-          },
-          (item: ParentCounter) => item.id.toString()
-        );
-        Divider().height(5)
-        Text('Parent: reset entire counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter = [
-              new ParentCounter(1),
-              new ParentCounter(2),
-              new ParentCounter(3)
-            ];
-          })
-        Text('Parent: incr counter[0].counter')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].incrCounter();
-            this.counter[0].incrSubCounter(10);
-          });
-        Text('Parent: set.counter to 10')
-          .fontSize(20).height(50)
-          .onClick(() => {
-            this.counter[0].setSubCounter(10);
-          });
-      }
+        CounterComp({ value: this.counter[0] }) // ParentComp组件传递 ParentCounter 给 CounterComp 组件
     }
   }
 }
+
 @Component
-struct ComplexMethodsNestingCounterComp {
-  // [EndExclude Complex_Methods_Nesting]
+struct CounterComp {
   @ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
-  // [StartExclude Complex_Methods_Nesting]
-
   build() {
-    Column({ space: 10 }) {
-      Text(`${this.value.counter}`)
-        .fontSize(25)
-        .onClick(() => {
-          this.value.incrCounter();
-        });
-      // [EndExclude Complex_Methods_Nesting]
       // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
-      ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter });
-      // [StartExclude Complex_Methods_Nesting]
-      Divider().height(2)
-    }
+      CounterChild({ subValue: this.value.subCounter })
   }
 }
 
 @Component
-struct ComplexMethodsNestingCounterChild {
-  // [EndExclude Complex_Methods_Nesting]
-  @ObjectLink subValue: ComplexMethodsNestingSubCounter; // @ObjectLink 接收 SubCounter
-  // [End Complex_Methods_Nesting]
+struct CounterChild {
+  @ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
   build() {
     Text(`${this.subValue.counter}`)
       .onClick(() => {
         this.subValue.counter += 1;
-      });
+      })
   }
 }
+// [End Complex_Methods_Nesting]
+export default ParentComp;

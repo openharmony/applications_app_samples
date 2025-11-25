@@ -18,6 +18,7 @@
 // [Start napi_create_queue_async_work]
 static constexpr int INT_ARGS_2 = 2; // 入参索引
 
+// 调用方提供的data context，该数据会传递给execute和complete函数
 struct CallbackData {
     napi_async_work asyncWork = nullptr;
     napi_ref callbackRef = nullptr;

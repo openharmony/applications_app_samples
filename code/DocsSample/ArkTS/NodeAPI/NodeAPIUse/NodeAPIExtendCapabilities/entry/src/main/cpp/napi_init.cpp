@@ -82,11 +82,13 @@ static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_inf
     const napi_value values[] = {
         argv[0],
     };
-    napi_property_descriptor desc[] = {{"name", nullptr, nullptr, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"name", nullptr, nullptr,
+                                        nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_status status = napi_create_object_with_named_properties(
-        env, &obj, sizeof(desc) / sizeof(desc[0]), key, values);
+        env, &obj, sizeof(desc) / sizeof(desc[0]), key, values
+    );
     if (status != napi_ok) {
-        return argv[0];
+        return nullptr;
     }
     return obj;
 }
@@ -383,7 +385,7 @@ static napi_value GetSendableObject(napi_env env, napi_callback_info info)
     napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
     return obj;
 }
-// [End napi_create_sendable_object_with_properties
+// [End napi_create_sendable_object_with_properties]
 // [Start napi_create_sendable_array]
 // Sendable相关 napi_create_sendable_array
 static napi_value GetSendableArray(napi_env env, napi_callback_info info)
@@ -401,7 +403,7 @@ static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info in
     napi_create_sendable_array_with_length(env, 1, &result);
     return result;
 }
-// End napi_create_sendable_array_with_length]
+// [End napi_create_sendable_array_with_length]
 // [Start napi_create_sendable_arraybuffer]
 // Sendable相关 napi_create_sendable_arraybuffer
 static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info)

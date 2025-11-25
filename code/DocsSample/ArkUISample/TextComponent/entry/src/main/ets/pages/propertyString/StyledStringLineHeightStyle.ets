@@ -21,7 +21,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 struct styled_string_demo6 {
   @State str: string =
     this.getUIContext()
-      .getHostContext()?.resourceManager.getStringSync($r('app.string.StyledStringStyle_Text_5')) as string;
+      .getHostContext()?.resourceManager.getStringByNameSync('StyledStringStyle_Text_5') as string;
   mutableStyledString: MutableStyledString = new MutableStyledString(this.str, [
     {
       start: 8,

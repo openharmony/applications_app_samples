@@ -13,70 +13,69 @@
  * limitations under the License.
  */
 // [Start Basic_nesting]
-class BasicNestingParent {
- public parentId: number;
+class Parent {
+  public parentId: number;
 
   constructor(parentId: number) {
     this.parentId = parentId;
-  };
+  }
 
   getParentId(): number {
     return this.parentId;
-  };
+  }
 
   setParentId(parentId: number): void {
     this.parentId = parentId;
-  };
-};
+  }
+}
 
 @Observed
-class BasicNestingChild {
- public childId: number;
+class Child {
+  public childId: number;
 
   constructor(childId: number) {
     this.childId = childId;
-  };
+  }
 
   getChildId(): number {
     return this.childId;
-  };
+  }
 
   setChildId(childId: number): void {
     this.childId = childId;
-  };
-};
+  }
+}
 
-class Cousin extends BasicNestingParent {
-  // The ID value assigned to the cousin (fixed as 47)
- public cousinId: number = 47;
- public child: BasicNestingChild;
+class Cousin extends Parent {
+  public cousinId: number = 47;
+  public child: Child;
 
   constructor(parentId: number, cousinId: number, childId: number) {
     super(parentId);
     this.cousinId = cousinId;
-    this.child = new BasicNestingChild(childId);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
     return this.cousinId;
-  };
+  }
 
   setCousinId(cousinId: number): void {
     this.cousinId = cousinId;
-  };
+  }
 
   getChild(): number {
     return this.child.getChildId();
-  };
+  }
 
   setChild(childId: number): void {
-    return this.child.setChildId(childId);
-  };
+    this.child.setChildId(childId);
+  }
 }
 
 @Component
 struct ViewChild {
-  @ObjectLink child: BasicNestingChild;
+  @ObjectLink child: Child;
 
   build() {
     Column({ space: 10 }) {
@@ -84,7 +83,7 @@ struct ViewChild {
       Button('Change childId')
         .onClick(() => {
           this.child.setChildId(this.child.getChildId() + 1);
-        });
+        })
     }
   }
 }
@@ -100,20 +99,21 @@ struct MyView {
       Button('Change Parent.parentId')
         .onClick(() => {
           this.cousin.parentId += 1;
-        });
+        })
 
       Text(`cousinId: ${this.cousin.cousinId}`)
       Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
-        });
+        })
 
       ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
       Button('Change Cousin.Child.childId')
         .onClick(() => {
           this.cousin.child.childId += 1;
-        });
+        })
     }
   }
 }
 // [End Basic_nesting]
+export default MyView;

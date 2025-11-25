@@ -73,8 +73,8 @@ struct NavDest {
         : Array<NavDestinationTransition> | undefined => {
         console.log('[NavDestinationTransition]', 'reached delegate in frontend, op: ' + op + ', isEnter: ' + isEnter);
 
-        let transitionOneEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOne, empty now!'); }
-        let transitionOneFinishEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); }
+        let transitionOneEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOne, empty now!'); };
+        let transitionOneFinishEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); };
         let transitionOneDuration: number = 500;
         if (op === NavigationOperation.PUSH) {
           if (isEnter) {
@@ -83,14 +83,14 @@ struct NavDest {
             transitionOneEvent = () => {
               console.log('[NavDestinationTransition]', 'transitionOne, push & isEnter');
               this.y = '0';
-            }
+            };
           } else {
             // EXIT_PUSH
             this.y = '0';
             transitionOneEvent = () => {
               console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
               this.y = '0';
-            }
+            };
             transitionOneDuration = 450;
           }
         } else if (op === NavigationOperation.POP) {
@@ -100,14 +100,14 @@ struct NavDest {
             transitionOneEvent = () => {
               console.log('[NavDestinationTransition]', 'transitionOne, pop & isEnter');
               this.y = '0';
-            }
+            };
           } else {
             // EXIT_POP
             this.y = '0';
             transitionOneEvent = () => {
               console.log('[NavDestinationTransition]', 'transitionOne, pop & !isEnter');
               this.y = '100%';
-            }
+            };
           }
         } else {
           console.log('[NavDestinationTransition]', '----- NOT-IMPL BRANCH of NAV-DESTINATION CUSTOM TRANSITION -----');
@@ -121,7 +121,7 @@ struct NavDest {
           onTransitionEnd: transitionOneFinishEvent
         };
 
-        let transitionTwoEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); }
+        let transitionTwoEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); };
         let transitionTwo: NavDestinationTransition = {
           duration: 1000,
           delay: 0,

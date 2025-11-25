@@ -354,11 +354,15 @@
     },
     {
       "name": "component_temp_label1",
-      "value": "示例1（Scroll组件滑动动效）"
+      "value": "示例1（使用组件默认动画）"
     },
     {
       "name": "component_temp_label2",
-      "value": "示例2（List组件动态替换动效）"
+      "value": "示例2（Scroll组件滑动动效）"
+    },
+    {
+      "name": "component_temp_label3",
+      "value": "示例3（List组件动态替换动效）"
     },
     {
       "name": "animatableProperty_label",
@@ -603,6 +607,18 @@
     {
       "name": "modal_transition_text37",
       "value": "共享"
+    },
+    {
+      "name": "drag",
+      "value": "拖动小球"
+    },
+    {
+      "name": "location",
+      "value": "点击位置:"
+    },
+    {
+      "name": "repeat",
+      "value": "动画重复播放"
     }
   ]
 }

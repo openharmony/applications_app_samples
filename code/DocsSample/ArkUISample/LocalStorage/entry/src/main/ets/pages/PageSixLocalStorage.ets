@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- // [Start localtorage_page_six_local_storage]
-let localStorage1: LocalStorage = new LocalStorage();
-localStorage1.setOrCreate('propA', 'propA');
+// [Start localtorage_page_six_local_storage]
+let localStorageOne: LocalStorage = new LocalStorage();
+localStorageOne.setOrCreate('propA', 'propA');
 
-let localStorage2A: LocalStorage = new LocalStorage();
-localStorage2A.setOrCreate('propB', 'propB');
+let localStorageTwo: LocalStorage = new LocalStorage();
+localStorageTwo.setOrCreate('propB', 'propB');
 
-@Entry(localStorage1)
+@Entry(localStorageOne)
 @Component
 struct TestIndex {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
+  // 'PropA'，和localStorageOne中'propA'的双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
 
@@ -32,8 +32,8 @@ struct TestIndex {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        Child6({ count: this.count }, localStorage2A)
+        // 使用LocalStorage 实例localStorageTwo
+        ChildSix({ count: this.count }, localStorageTwo)
       }
       .width('100%')
     }
@@ -43,9 +43,9 @@ struct TestIndex {
 
 
 @Component
-struct Child6 {
+struct ChildSix {
   @Link count: number;
-  //  'Hello World'和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+  //  'Hello World'和localStorageTwo中'propB'的双向同步，如果localStorageTwo中没有'propB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') propB: string = 'Hello World';
 
   build() {
@@ -54,4 +54,5 @@ struct Child6 {
       .fontWeight(FontWeight.Bold)
   }
 }
+
 // [End localtorage_page_six_local_storage]

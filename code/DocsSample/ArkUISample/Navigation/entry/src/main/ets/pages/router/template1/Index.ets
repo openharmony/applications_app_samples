@@ -41,7 +41,7 @@ struct Index {
     let options: router.RouterOptions = {
       url: 'pages/router/template1/second',
       params: new RouterParams('This is the value of the first page', [12, 45, 78])
-    }
+    };
     // 建议使用this.getUIContext().getRouter().pushUrl()
     router.pushUrl(options)
       .then(() => {
@@ -49,7 +49,7 @@ struct Index {
       })
       .catch((err: ESObject) => {
         console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-      })
+      });
   }
 
   build() {
@@ -65,7 +65,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')

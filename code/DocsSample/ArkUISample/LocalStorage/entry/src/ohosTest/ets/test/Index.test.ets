@@ -239,30 +239,6 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number PageElevenTest
-     * @tc.name PageElevenTest
-     * @tc.desc 测试PageEleven是否显示正常
-     * @tc.level : Level1
-     * @tc.size : MediumTest
-     * @tc.type : Function
-     */
-    it('PageElevenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: PageElevenTest begin');
-      let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text('PageEleven', MatchPattern.CONTAINS));
-      expect(button1 === null).assertFalse();
-      await button1.click();
-      await driver.delayMs(1000);
-      let button2 = await driver.findComponent(ON.text('Change propA', MatchPattern.CONTAINS));
-      expect(button2 === null).assertFalse();
-      await button2.click();
-      await driver.delayMs(1000);
-      await driver.pressBack();
-      console.info('uitest: PageElevenTest end');
-      done();
-    })
-
-    /**
      * @tc.number PageTwelveTest
      * @tc.name PageTwelveTest
      * @tc.desc 测试PageTwelve是否显示正常

@@ -13,7 +13,15 @@
  * limitations under the License.
  */
 
-import { ComponentContent, PromptAction, promptAction, UIContext } from '@kit.ArkUI';
+import {
+  ComponentContent,
+  Popup,
+  PopupButtonOptions,
+  PopupIconOptions,
+  PopupTextOptions,
+  PromptAction,
+  UIContext
+} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -31,17 +39,47 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 // [Start build_text]
 @Builder
 export function buildText(params: Params) {
-  Menu() {
-    MenuItem({ startIcon: $r('app.media.app_icon') }).width(32).height(32).borderRadius(10)
-    MenuItem({ content: 'This is a Popup title 1' })
-    MenuItem({ content: 'This is a Popup title 2' })
-    MenuItem({ content: 'confirm' }).onClick(() => {
-      hilog.error(0x0000, 'globalOpenMenu', 'confirm button click');
-    })
-    MenuItem({ content: 'cancel' }).onClick(() => {
-      hilog.info(0x0000, 'globalOpenMenu', 'cancel button click');
-    })
-  }
+  Popup({
+    // 类型设置图标内容
+    icon: {
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
+      image: $r('app.media.app_icon'),
+      width: 32,
+      height: 32,
+      fillColor: Color.White,
+      borderRadius: 10
+    } as PopupIconOptions,
+    // 设置文字内容
+    title: {
+      text: `This is a Popup title 1`,
+      fontSize: 20,
+      fontColor: Color.Black,
+      fontWeight: FontWeight.Normal
+    } as PopupTextOptions,
+    // 设置文字内容
+    message: {
+      text: `This is a Popup message 1`,
+      fontSize: 15,
+      fontColor: Color.Black
+    } as PopupTextOptions,
+    // 设置按钮内容
+    buttons: [{
+      text: 'confirm',
+      action: () => {
+        hilog.info(0xFF00, 'globalOpenMenu', 'confirm button click');
+      },
+      fontSize: 15,
+      fontColor: Color.Black,
+    },
+      {
+        text: 'cancel',
+        action: () => {
+          hilog.info(0xFF00, 'globalOpenMenu', 'cancel button click');
+        },
+        fontSize: 15,
+        fontColor: Color.Black
+      },] as [PopupButtonOptions?, PopupButtonOptions?]
+  })
 }
 
 let contentNode: ComponentContent<Object> =
@@ -57,7 +95,7 @@ export struct OpenPopup {
   public promptAction: PromptAction = this.uiContext.getPromptAction();
   // [Start content_node]
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message);
+    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message, { nestingBuilderSupported: true });
   // [End content_node]
   // [Start menu_options]
   private options: MenuOptions = { enableArrow: true, placement: Placement.Bottom };
@@ -68,40 +106,43 @@ export struct OpenPopup {
     let frameNode: FrameNode | null = this.uiContext.getFrameNodeByUniqueId(this.getUniqueId());
     let targetId = frameNode?.getChild(0)?.getUniqueId();
     // [Start open_menu]
-    this.promptAction.openMenu(this.contentNode, { id: targetId }, {
-      enableArrow: true
-    })
+    this.getUIContext().getPromptAction()
+      .openMenu(this.contentNode, { id: targetId }, {
+        enableArrow: true
+      })
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'openMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'openMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
       });
     // [End open_menu]
   }
 
   updateMenu() {
     // [Start update_menu]
-    this.promptAction.updateMenu(this.contentNode, {
-      enableArrow: false
-    }, true)
+    this.getUIContext().getPromptAction()
+      .updateMenu(this.contentNode, {
+        enableArrow: false
+      }, true)
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'updateMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'updateMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
       });
     // [End update_menu]
   }
 
   closeMenu() {
     // [Start close_menu]
-    this.promptAction.closeMenu(this.contentNode)
+    this.getUIContext().getPromptAction()
+      .closeMenu(this.contentNode)
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'closeMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'closeMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
       });
     // [End close_menu]
   }
@@ -113,7 +154,7 @@ export struct OpenPopup {
           .margin({ top: 50, left: 100 })
           .onClick(() => {
             // [Start frame_node]
-            let frameNode: FrameNode | null = this.uiContext.getFrameNodeByUniqueId(this.getUniqueId());
+            let frameNode: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(this.getUniqueId());
             let targetId = frameNode?.getChild(0)?.getUniqueId();
             // [End frame_node]
             this.openMenu();

@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start navigation_page_two]
+// PageTwo.ets
 import { CustomTransition } from '../../../CustomTransition/CustomNavigationUtils';
 import { AnimationProperties } from '../../../CustomTransition/AnimationProperties';
 import { RectInfoInPx } from '../../../utils/ComponentAttrUtils';
@@ -30,13 +30,9 @@ export struct PageTwo {
   @State pageInfos: NavPathStack = new NavPathStack();
   @State animationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
-  // [StartExclude navigation_page_two]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude navigation_page_two]
   private pageId: number = -1;
   private shouldDoDefaultTransition: boolean = false;
-  private prePageDoFinishTransition: () => void = () => {
-  };
+  private prePageDoFinishTransition: () => void = () => {};
   private cardItemInfo: RectInfoInPx = new RectInfoInPx();
   @StorageProp('windowSizeChanged') @Watch('unRegisterNavParam') windowSizeChangedTime: number = 0;
   @StorageProp('onConfigurationUpdate') @Watch('unRegisterNavParam') onConfigurationUpdateTime: number = 0;
@@ -70,13 +66,14 @@ export struct PageTwo {
           Column({ space: 20 }) {
             NodeContainer(this.myNodeController);
             if (this.animationProperties.showDetailContent) {
-              Text(this.context.resourceManager.getStringByNameSync('shareTransition_text8'))
+              // 'app.string.shareTransition_text8'资源文件中的value值为'展开态内容'
+              Text($r('app.string.shareTransition_text8'))
                 .fontSize(20)
                 .transition(TransitionEffect.OPACITY)
                 .margin(30)
             }
           }
-          .alignItems(HorizontalAlign.Start);
+          .alignItems(HorizontalAlign.Start)
         }
         .position({ y: this.animationProperties.positionValue });
       }

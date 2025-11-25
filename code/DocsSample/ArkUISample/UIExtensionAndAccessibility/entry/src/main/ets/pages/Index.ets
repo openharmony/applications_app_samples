@@ -22,7 +22,7 @@ import { EMBEDDED_ROUTE_PREFIX, EmbeddedDestination } from './EmbeddedComponent/
 import { SCREEN_ROUTE_PREFIX, FullScreenDestination } from './FullScreenLaunchComponent/Index';
 import { ISOLATED_ROUTE_PREFIX, IsolatedDestination } from './IsolatedComponent/Index';
 import { ACCESSIBILITY_ROUTE_PREFIX, AccessibilityDestination } from './UniversalAttributesAccessibility/Index';
-import { UIContext } from '@kit.ArkUI';
+import { EMBEDDED_COMPONENT_ROUTE_PREFIX, ShowEmbedded } from './ShowEmbeddedComponent/ShowPage';
 
 const routes: Route[] = [
   {
@@ -44,8 +44,11 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_UniversalAttributesAccessibility')),
     name: ACCESSIBILITY_ROUTE_PREFIX
+  },
+  {
+    title: 'ShowPage',
+    name: EMBEDDED_COMPONENT_ROUTE_PREFIX
   }
-
 ]
 
 @Builder
@@ -60,6 +63,8 @@ function Destination(name: string) {
     IsolatedDestination(name);
   } else if (name.startsWith(ACCESSIBILITY_ROUTE_PREFIX)) {
     AccessibilityDestination(name);
+  } else if (name.startsWith(EMBEDDED_COMPONENT_ROUTE_PREFIX)) {
+    ShowEmbedded(name);
   }
 }
 
@@ -119,15 +124,7 @@ struct Index {
         .navDestination(Destination)
         .height('80%')
       }
-      Button('showPage')
-        .onClick(()=>{
-          const uiContext: UIContext = this.getUIContext();
-          const router = uiContext.getRouter();
-          router.pushUrl({
-            url:'pages/ShowEmbeddedComponent/ShowPage'
-          })
-        })
     }
-      .height('100%')
+    .height('100%')
   }
 }

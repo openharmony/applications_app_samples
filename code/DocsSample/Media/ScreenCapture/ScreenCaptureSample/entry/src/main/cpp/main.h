@@ -68,3 +68,9 @@ constexpr uint32_t DEFAULT_WIDTH = 4096;
 constexpr uint32_t DEFAULT_HEIGHT = 4096;
 // 配置视频颜色格式（必须）
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
+
+// 录屏取码流surface模式
+const int MICROSECOND_PER_MILLISECOND = 1000;
+
+int64_t g_lastFrameTimestampPts = 0;
+int64_t g_lastFrameEncodePts = 0;

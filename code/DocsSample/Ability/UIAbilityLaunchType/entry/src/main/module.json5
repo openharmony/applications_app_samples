@@ -12,23 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start singleton]
+// [Start multiton]
+// [Start specified]
 {
   "module": {
+    // [StartExclude singleton]
+    // [StartExclude multiton]
+    // [StartExclude specified]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "srcEntry": "./ets/abilitystage/MyAbilityStage.ets",
     "deviceTypes": [
-      "phone",
-      "tablet",
-      "2in1"
+      "phone"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [EndExclude specified]
+    // [EndExclude multiton]
+    // [EndExclude singleton]
     "abilities": [
+      // [StartExclude multiton]
+      // [StartExclude singleton]
       {
+        "launchType": "specified",
+        // [StartExclude specified]
         "name": "SpecifiedAbility",
         "srcEntry": "./ets/specifiedability/SpecifiedAbility.ets",
         "description": "$string:specifiedAbility_desc",
@@ -37,9 +48,10 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:white",
         "exported": true,
-        "launchType": "specified",
         "continuable": true
+        // [EndExclude specified]
       },
+      // [StartExclude specified]
       {
         "name": "SpecifiedFirstAbility",
         "srcEntry": "./ets/specifiedability/SpecifiedFirstAbility.ets",
@@ -64,7 +76,10 @@
         "launchType": "specified",
         "continuable": true
       },
+      // [EndExclude multiton]
       {
+        "launchType": "multiton",
+        // [StartExclude multiton]
         "name": "MultitonAbility",
         "srcEntry": "./ets/multitonability/MultitonAbility.ets",
         "description": "$string:multitonAbility_desc",
@@ -72,10 +87,14 @@
         "label": "$string:multitonAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:white",
-        "exported": true,
-        "launchType": "multiton"
+        "exported": true
+        // [EndExclude multiton]
       },
+      // [EndExclude singleton]
+      // [StartExclude multiton]
       {
+        "launchType": "singleton",
+        // [StartExclude singleton]
         "name": "SingletonAbility",
         "srcEntry": "./ets/singletonability/SingletonAbility.ets",
         "description": "$string:singletonAbility_desc",
@@ -84,8 +103,9 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:white",
         "exported": true,
-        "launchType": "singleton"
+        // [EndExclude singleton]
       },
+      // [StartExclude singleton]
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
@@ -106,6 +126,12 @@
           }
         ]
       }
+      // [EndExclude singleton]
+      // [EndExclude multiton]
+      // [EndExclude specified]
     ]
   }
 }
+// [End specified]
+// [End multiton]
+// [End singleton]

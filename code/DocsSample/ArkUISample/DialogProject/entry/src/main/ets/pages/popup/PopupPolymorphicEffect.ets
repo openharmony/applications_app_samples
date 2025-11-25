@@ -15,6 +15,7 @@
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 // [Start polymorphicEffect_popup]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct PolymorphicEffectPopupExample {
@@ -73,9 +74,10 @@ export struct PolymorphicEffectPopupExample {
       }
       .width('100%')
       .justifyContent(FlexAlign.Center)
-    }.backgroundColor('#f1f2f3')
-    // $r('app.string.PolymorphicEffectPopupExample_title')需要替换为开发者所需的资源文件。
+    }
+    // [StartExclude polymorphicEffect_popup]
     .title($r('app.string.PolymorphicEffectPopupExample_title'))
+    // [EndExclude polymorphicEffect_popup]
   }
 }
 
@@ -88,7 +90,6 @@ struct PopupItemChild {
 
   build() {
     Row({ space: 8 }) {
-      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.startIcon'))
         .width(24)
         .height(24)

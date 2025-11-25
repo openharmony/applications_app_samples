@@ -17,14 +17,14 @@ import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-const BUNDLE = 'Navigation_'
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const BUNDLE = 'Navigation_';
 const TAG = '[Sample_Navigation_]';
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-let aimComponent : Component
+let aimComponent : Component;
 
 export function SideBarContainerTest() {
   describe('Navigation_SideBarContainerTest', () => {
@@ -46,7 +46,7 @@ export function SideBarContainerTest() {
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('Index'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
     })
 
     /*
@@ -66,26 +66,26 @@ export function SideBarContainerTest() {
       aimComponent = await driver.findComponent(ON.type('Button'));
       await aimComponent.click();
       await driver.delayMs(1000);
-      aimComponent = await driver.findComponent(ON.text('Index01'))
+      aimComponent = await driver.findComponent(ON.text('Index01'));
       expect(aimComponent).assertNull();
 
       aimComponent = await driver.findComponent(ON.type('Button'));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('Index01'))
-      expect(aimComponent)
+      aimComponent = await driver.findComponent(ON.text('Index01'));
+      expect(aimComponent);
 
-      aimComponent = await driver.findComponent(ON.text('Index02'))
-      await aimComponent.click()
+      aimComponent = await driver.findComponent(ON.text('Index02'));
+      await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('Index03'))
-      await aimComponent.click()
+      aimComponent = await driver.findComponent(ON.text('Index03'));
+      await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('Index01'))
-      await aimComponent.click()
+      aimComponent = await driver.findComponent(ON.text('Index01'));
+      await aimComponent.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Navigation_SideBarContainerTest_001_end');
     })

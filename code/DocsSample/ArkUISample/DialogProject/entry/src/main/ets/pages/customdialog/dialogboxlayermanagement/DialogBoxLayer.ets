@@ -19,6 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const INDEX: number = 0;
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -29,7 +30,9 @@ export struct DialogBoxLayer {
   @Builder
   normalCustomDialog(index: number) {
     Column() {
-      Text('Normal Dialog' + index).fontSize(30)
+      // 'open_normal_dialog'资源文件中的value值为'我是普通弹窗'。
+      Text(this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('open_normal_dialog') as string +
+        index).fontSize(30)
     }.height(400).padding(5).justifyContent(FlexAlign.SpaceBetween)
   }
 
@@ -39,9 +42,11 @@ export struct DialogBoxLayer {
   @Builder
   topCustomDialog() {
     Column() {
-      Text('Pinned Popup').fontSize(30)
+      // 'app.string.top_dialog'资源文件中的value值为'我是置顶弹窗'。
+      Text($r('app.string.top_dialog')).fontSize(30)
       Row({ space: 50 }) {
-        Button('Open standard popup')
+        // 'app.string.open_dialog'资源文件中的value值为'点我打开普通弹窗'。
+        Button($r('app.string.open_dialog'))
           .onClick(() => {
             // [Start open_custom_dialog]
             this.getUIContext().getPromptAction().openCustomDialog({
@@ -51,7 +56,7 @@ export struct DialogBoxLayer {
               levelOrder: LevelOrder.clamp(0),
             })
               .catch((err: BusinessError) => {
-                hilog.error(0x0000, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + '' + err.message);
+                hilog.error(DOMAIN, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + '' + err.message);
               });
             // [End open_custom_dialog]
             this.dialogIndex++;
@@ -66,17 +71,20 @@ export struct DialogBoxLayer {
     NavDestination() {
       Row() {
         Column({ space: 5 }) {
-          Button('Click the popup')
+          // 'app.string.click_dialog'资源文件中的value值为'点击弹窗'。
+          Button($r('app.string.click_dialog'))
             .fontSize(20)
             .onClick(() => {
+              // [Start open_top_custom_dialog]
               this.getUIContext().getPromptAction().openCustomDialog({
                 builder: () => {
                   this.topCustomDialog();
                 },
                 levelOrder: LevelOrder.clamp(100000)
               }).catch((err: BusinessError) => {
-                hilog.error(0x0000, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + ' ' + err.message);
+                hilog.error(DOMAIN, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + ' ' + err.message);
               });
+              // [End open_top_custom_dialog]
             })
         }.width('100%')
       }

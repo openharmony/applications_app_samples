@@ -13,25 +13,29 @@
  * limitations under the License.
  */
 @Entry
-// [Start Static_code_V1]
+  // [Start Static_code_V1]
 @Component
-struct MyComponentCodeV1 {
+struct MyComponent {
   static a: string = '';
   // 静态代码块不生效，a的值仍为空字符串''
   static {
     this.a = 'hello world';
-  };
+  }
   // [StartExclude Static_code_V1]
   build() {
-      Column(){
-        // $r('app.string.static_code')需要替换为开发者所需的资源文件
-        Text(MyComponentCodeV1.a === '' ? $r('app.string.static_code') : MyComponentCodeV1.a)
-      }
-      .width('100%')
-      .height('100%')
+    Column() {
+      // app.string.static_code资源文件中的value值为'静态代码块不生效'
+      Text(MyComponent.a === '' ? $r('app.string.static_code') : MyComponent.a)
+    }
+    .width('100%')
+    .height('100%')
   }
+
   // [EndExclude Static_code_V1]
 }
-// [End Static_code_V1]
+
+  // [End Static_code_V1]
+const myComponentCodeV1 = MyComponent;
+export default myComponentCodeV1;
 
 

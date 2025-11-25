@@ -96,7 +96,7 @@ function updateColorMode() {
   builderNodeMap.forEach((value, index) => {
     // 通知BuilderNode环境变量改变
     value.updateConfiguration();
-  })
+  });
 }
 
 @Entry
@@ -109,13 +109,13 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        hilog.info(0xF811, 'testTag', '%{public}s','onMemoryLevel');
+        hilog.info(0xF811,'testTag','%{public}s','onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        hilog.info(0xF811, 'testTag', '%{public}s','onConfigurationUpdated ' + JSON.stringify(config));
+        hilog.info(0xF811,'testTag','%{public}s','onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
-    }
+    };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
     //创建自定义节点并添加至map

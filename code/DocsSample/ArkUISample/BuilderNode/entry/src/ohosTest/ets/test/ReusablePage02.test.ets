@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function ReusablePage02Test() {
   describe('ReusablePage02Test', () => {
@@ -36,34 +36,43 @@ export default function ReusablePage02Test() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','ReusablePage02Test beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','ReusablePage02Test beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/ReusablePage02',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get ReusablePage02 state pages:' + JSON.stringify(pages));
-        if (!('ReusablePage02' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get ReusablePage02 pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get ReusablePage02 state pages:' + JSON.stringify(pages));
+        if (('ReusablePage02' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get ReusablePage02 pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push ReusablePage02 page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push ReusablePage02 page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','ReusablePage02 beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','ReusablePage02 beforeEach end');
     });
 
+    /*
+     * @tc.number     : ReusablePage02_01
+     * @tc.name       : ReusablePage02Test
+     * @tc.desc       : 测试使用@Reusable装饰器时，使用一个普通自定义组件包裹该自定义组件
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('ReusablePage02Test', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: ReusablePage02Test begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: ReusablePage02Test begin');
       let driver = Driver.create();
       let componentList = await driver.findComponent(ON.id('ReusablePage02'));
       await componentList.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

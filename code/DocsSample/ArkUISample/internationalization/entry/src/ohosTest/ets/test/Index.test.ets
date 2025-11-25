@@ -15,9 +15,8 @@
 
 import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MouseButton,MatchPattern, UiDirection, On } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
-import { Point } from '@ohos.UiTest';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;

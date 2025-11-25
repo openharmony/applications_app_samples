@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start Web_createNWeb]
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { createNWeb } from '../Common/CommonIndex';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -21,6 +22,7 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+//[StartExclude Web_createNWeb]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -33,15 +35,14 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
+// [EndExclude Web_createNWeb]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/FrameNode', (err) => {
-      // [Start Web_createNWeb]
-      createNWeb('', windowStage.getMainWindowSync().getUIContext());
-      // [End Web_createNWeb]
+    windowStage.loadContent('pages/Index', (err) => {
+      createNWeb('https://www.example.com', windowStage.getMainWindowSync().getUIContext());
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
@@ -49,7 +50,7 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
   }
-
+//[StartExclude Web_createNWeb]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
@@ -64,4 +65,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+// [EndExclude Web_createNWeb]
 }
+// [End Web_createNWeb]

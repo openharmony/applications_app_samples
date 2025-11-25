@@ -21,12 +21,14 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // 配置Web开启调试模式
     webview.WebviewController.setWebDebuggingAccess(true);
+    // 获取权限请求通知，点击onConfirm按钮后，拉起摄像头和麦克风。
     let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+    atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
       .then((data) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
@@ -39,10 +41,9 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        // 获取权限请求通知，点击onConfirm按钮后，拉起摄像头和麦克风。
         .onPermissionRequest((event) => {
           if (event) {
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'title',
               message: 'text',
               primaryButton: {

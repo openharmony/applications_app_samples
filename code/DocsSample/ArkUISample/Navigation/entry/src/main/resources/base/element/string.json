@@ -185,6 +185,15 @@
     }, {
       "name": "pageRouter_jump_text9_dialog",
       "value": "系统默认询问框-ShowDialog"
+    }, {
+      "name": "pageRouter_dialog_context",
+      "value": "您还没有完成支付，确定要返回吗？"
+    }, {
+      "name": "pageRouter_dialog_canceled",
+      "value": "取消"
+    }, {
+      "name": "pageRouter_dialog_confirmed",
+      "value": "确认"
     }
   ]
 }

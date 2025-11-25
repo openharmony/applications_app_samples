@@ -12,11 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start applink_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-export default class EntryAbility extends UIAbility {
+const DOMAIN_NUMBER = 0xF811;
+const TAG  = '[AppLinkEntryAbility]';
+
+export default class AppLinkEntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 从want中获取传入的链接信息。
     // 如传入的url为：https://www.example.com/programs?action=showall
@@ -27,9 +31,11 @@ export default class EntryAbility extends UIAbility {
       let action = urlObject.params.get('action');
       // 例如，当action为showall时，展示所有的节目。
       if (action === 'showall') {
-        // ...
+        // [StartExclude applink_ability]
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'AppLinkEntryAbility onCreate');
+        // [EndExclude applink_ability]
       }
     }
   }
 }
-// [End quick_start0]
+// [End applink_ability]

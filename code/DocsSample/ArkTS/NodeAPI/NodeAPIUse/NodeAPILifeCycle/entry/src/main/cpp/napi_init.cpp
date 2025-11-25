@@ -153,14 +153,12 @@ static napi_value CreateReference(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "napi_set_named_property fail");
         return nullptr;
     }
-    // [StartExclude napi_create_delete_reference]
     // 创建对ArkTS对象的引用
     status = napi_create_reference(env, obj, 1, &gRef);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_create_reference fail");
         return nullptr;
     }
-    // [EndExclude napi_create_delete_reference]
     // 增加传入引用的引用计数并返回生成的引用计数
     uint32_t result = 0;
     status = napi_reference_ref(env, gRef, &result);

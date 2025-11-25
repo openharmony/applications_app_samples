@@ -12,15 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start bind_sheet_demo]
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct BindSheetDemo {
-  // [StartExclude bind_sheet_demo]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_sheet_demo]
   // 半模态转场显示隐藏控制
   @State isShowSheet: boolean = false;
   private menuList: string[] = [this.context.resourceManager.getStringByNameSync('modal_transition_text14'),
@@ -43,7 +42,7 @@ struct BindSheetDemo {
             .backgroundColor(0xf1f1f1)
             .borderRadius(8)
             .margin(10)
-            .padding(10)
+            .padding(15)
         })
       }
       .padding({ top: 18 })
@@ -74,7 +73,7 @@ struct BindSheetDemo {
           }
           .alignItems(HorizontalAlign.Start)
 
-          Blank();
+          Blank()
 
           Row()
             .width(12)

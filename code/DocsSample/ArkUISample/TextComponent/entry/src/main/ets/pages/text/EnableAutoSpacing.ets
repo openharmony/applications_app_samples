@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // xxx.ets
-// [End Enable_AutoSpacing]
+// [Start Enable_AutoSpacing]
 @Entry
 @Component
 export struct EnableAutoSpacing {
@@ -23,11 +23,13 @@ export struct EnableAutoSpacing {
     NavDestination() {
     Column() {
       Row({ space: 20 }) {
+        // 'app.string.Enable_automatic_spacing'资源文件中的value值为'开启自动间距'
         Button($r('app.string.Enable_automatic_spacing'))
           .onClick(() => this.enableSpacing = true)
           .backgroundColor(this.enableSpacing ? '#4CAF50' : '#E0E0E0')
           .fontColor(this.enableSpacing ? Color.White : Color.Black)
 
+        // 'app.string.off_automatic_spacing'资源文件中的value值为'关闭自动间距'
         Button($r('app.string.off_automatic_spacing'))
           .onClick(() => this.enableSpacing = false)
           .backgroundColor(!this.enableSpacing ? '#F44336' : '#E0E0E0')
@@ -37,12 +39,15 @@ export struct EnableAutoSpacing {
       .justifyContent(FlexAlign.Center)
       .margin({ top: 30, bottom: 20 })
 
+      // 'app.string.Automatic_spacing_has_been_enabled'资源文件中的value值为'当前状态:已开启自动间距'
+      // 'app.string.Automatic_spacing_has_been_turned_off'资源文件中的value值为'当前状态:已关闭自动间距'
       Text(this.enableSpacing ? $r('app.string.Automatic_spacing_has_been_enabled') : $r('app.string.Automatic_spacing_has_been_turned_off'))
         .fontSize(16)
         .fontColor(this.enableSpacing ? '#4CAF50' : '#F44336')
         .margin({ bottom: 20 })
 
       // 设置是否应用中西文自动间距
+      // 'app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing'资源文件中的value值为'中西文Auto Spacing自动间距'
       Text($r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing'))
         .fontSize(24)
         .padding(15)
@@ -53,8 +58,11 @@ export struct EnableAutoSpacing {
     .width('100%')
     .height('100%')
     .padding(20)
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Enable_AutoSpacing]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Automatic_spacing'))
+    // [EndExclude Enable_AutoSpacing]
   }
 }
 // [End Enable_AutoSpacing]

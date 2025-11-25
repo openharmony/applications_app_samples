@@ -20,7 +20,7 @@ import { WebInitialized } from '@ohos/webPerformance';
 struct WebInitializedPage {
   build() {
     Column() {
-      WebInitialized()
+      WebInitialized();
     }
   }
 }

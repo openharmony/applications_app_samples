@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 // [Start MonitorExample2_start]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
 
 @Entry
 @ComponentV2
-struct MonitorExample2 {
+struct MonitorExample {
   @Local apple: number = 0;
   @Local orange: number = 0;
 
@@ -34,17 +34,19 @@ struct MonitorExample2 {
 
   build() {
     Column() {
-      Text(`apple count: ${this.apple}`);
-      Text(`orange count: ${this.orange}`);
+      Text(`apple count: ${this.apple}`)
+      Text(`orange count: ${this.orange}`)
       Button('add apple')
         .onClick(() => {
           this.apple++;
-        });
+        })
       Button('add orange')
         .onClick(() => {
           this.orange++;
-        });
+        })
     }
   }
 }
 // [End MonitorExample2_start]
+const monitorExample2 = MonitorExample;
+export default monitorExample2;

@@ -16,6 +16,7 @@
 // 嵌套类定义（保留原始结构）
 class Info {
   public value: string;
+
   constructor(value: string) {
     this.value = value;
   }
@@ -24,6 +25,7 @@ class Info {
 class Model {
   public value: string;
   public info: Info;
+
   constructor(value: string, info: Info) {
     this.value = value;
     this.info = info;
@@ -39,57 +41,56 @@ struct DataDisplay {
   @Prop modelData: Model;
 
   build() {
-      Column({ space: 25 }) {
-        // 2. 展示数组 title 数据
-        Column({ space: 10 }) {
-          // 用 Scroll 包裹数组项，避免数据过多溢出
-          Scroll() {
-            Column({ space: 8 }) {
-              // 遍历数组展示每一项
-              ForEach(this.title, (item: string, index: number) => {
-                Text(`The ${index + 1} is: ${item}`)
-                  .fontSize(14)
-                  .padding(5)
-                  .backgroundColor('#E8F4F8')
-                  .borderRadius(4);
-              }, (item: string, index: number) => `${index}-${item}`); // 唯一键
-            }
-            .padding(5);
+    Column({ space: 25 }) {
+      // 2. 展示数组 title 数据
+      Column({ space: 10 }) {
+        // 用 Scroll 包裹数组项，避免数据过多溢出
+        Scroll() {
+          Column({ space: 8 }) {
+            // 遍历数组展示每一项
+            ForEach(this.title, (item: string, index: number) => {
+              Text(`The ${index + 1} is: ${item}`)
+                .fontSize(14)
+                .padding(5)
+                .backgroundColor('#E8F4F8')
+                .borderRadius(4);
+            }, (item: string, index: number) => `${index}-${item}`); // 唯一键
           }
-          .height(150)
-          .width('100%')
-          .borderWidth(1)
-          .borderColor('#EEEEEE')
-          .borderRadius(6);
+          .padding(5);
         }
-        // 3. 数组操作按钮区
-        Column({ space: 10 }) {
-          // 按钮容器 Row：用链式方法设置换行
-          Row({ space: 5 }) {
-            // 按钮1：赋值为 ["1"]
+        .height(150)
+        .width('100%')
+        .borderWidth(1)
+        .borderColor('#EEEEEE')
+        .borderRadius(6);
+      }
 
-            Button('assign ["1"]')
-              .fontSize(8)
-              .onClick(() => this.title = ['1']);
+      // 3. 数组操作按钮区
+      Column({ space: 10 }) {
+        // 按钮容器 Row：用链式方法设置换行
+        Row({ space: 5 }) {
+          // 按钮1：赋值为 ["1"]
 
-            // 按钮2：第一项改为 "2"
-            Button('change to "2"')
-              .fontSize(8)
-              .onClick(() => this.title.length > 0 && (this.title[0] = '2'));
-            // 按钮4：新增 "3"
-            Button('insert "3"')
-              .fontSize(8)
-              .onClick(() => this.title.push('3'));
-            // 按钮3：删除最后一项
-            Button('delete')
-              .fontSize(8)
-              .onClick(() => this.title.pop());
+          Button('assign ["1"]')
+            .fontSize(8)
+            .onClick(() => this.title = ['1'])
 
-          }
-
+          // 按钮2：第一项改为 "2"
+          Button('change to "2"')
+            .fontSize(8)
+            .onClick(() => this.title.length > 0 && (this.title[0] = '2'))
+          // 按钮4：新增 "3"
+          Button('insert "3"')
+            .fontSize(8)
+            .onClick(() => this.title.push('3'))
+          // 按钮3：删除最后一项
+          Button('delete')
+            .fontSize(8)
+            .onClick(() => this.title.pop())
         }
       }
-      .padding(20);
+    }
+    .padding(20);
   }
 }
 
@@ -123,6 +124,6 @@ struct Test {
 // [End prop_eighteen_start]
 
 @Builder
-export function MyTestBuilder(){
+export function MyTestBuilder() {
   Test()
 }

@@ -14,20 +14,14 @@
  */
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON,MatchPattern} from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want;
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
-  let textString: string = await manage.getStringValue(resource);
-  return textString;
-}
+
 export default function IndexTest(){
   describe('IndexTest', () => {
-
     beforeAll(async () => {
       want = {
         bundleName: bundleName,
@@ -47,21 +41,17 @@ export default function IndexTest(){
      * @tc.size  : MediumTest
      *  @tc.type : Function
      */
-
     it("Index_Start", 0, async (done: Function) => {
       try {
         const want: Want = {
           bundleName: bundleName,
           abilityName: 'com.example.reusablev2'
         };
-
         // 启动 IndexAbility
         await delegator.startAbility(want);
         await sleep(2000);
-
         const ability: UIAbility = await delegator.getCurrentTopAbility();
         expect(ability.context.abilityInfo.name).assertEqual('IndexAbility');
-
         done();
       } catch (error) {
         console.error("Index test failed:", error);
@@ -79,21 +69,23 @@ export default function IndexTest(){
      */
     it('testStestSmakeObserved1_0101', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze1'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Page 1 Page 2 Jump', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-      sampleButton = await driver.findComponent(ON.id('firstPageText1'))
+      sampleButton = await driver.findComponent(ON.text('From first Page', MatchPattern.CONTAINS));
+      expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-      sampleButton = await driver.findComponent(ON.text('go to next page'))
+      sampleButton = await driver.findComponent(ON.text('go to next page'));
+      expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.pressBack();
       done();
     });
+
     /**
      * @tc.number :testStestSmakeObserved1_0102
      * @tc.name  :testStestSmakeObserved1_0102
@@ -104,12 +96,10 @@ export default function IndexTest(){
      */
     it('testStestSmakeObserved1_0102', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze2'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Page 2 Go back to the previous page', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
@@ -122,18 +112,16 @@ export default function IndexTest(){
      * @tc.size  : MediumTest
      *  @tc.type : Function
      */
-
     it('testStestSmakeObserved1_0103', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze3'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('TabContent creation', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     /**
      * @tc.number :testStestSmakeObserved1_0104
      * @tc.name  :testStestSmakeObserved1_0104
@@ -144,104 +132,93 @@ export default function IndexTest(){
      */
     it('testStestSmakeObserved1_0104', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze4'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Freeze custom components cached in LazyForEach', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     /**
      * @tc.number :testStestSmakeObserved1_0105
      * @tc.name  :testStestSmakeObserved1_0105
-     * @tc.desc  :测试打开collections.Map可以触发UI刷新的API有：set、clear、delete。
+     * @tc.desc  :测试打开collections.Map可以触发UI刷新的API有:set、clear、delete。
      * @tc.level :level1
      * @tc.size  : MediumTest
      *  @tc.type : Function
      */
     it('testStestSmakeObserved1_0105', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze5'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('NavigationContentMsStack will be set to inactive state', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     it('testStestSmakeObserved1_0106', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze6'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Mixed scenario of component reuse, if, and component freezing', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     it('testStestSmakeObserved1_0107', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze7'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('LazyForEach、 Mixed scenario of component reuse and component freezing', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     it('testStestSmakeObserved1_0108', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze8'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('LazyForEach、if、 Mixed scenario of component reuse and component freezing', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     it('testStestSmakeObserved1_0109', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze9'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Mixing Navigation and TabContent', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
-    it('testStestSmakeObserved1_01010', 0, async (done: Function) => {
+
+    it('testStestSmakeObserved1_0110', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze10'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Page and LazyForEach', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
+
     it('testStestSmakeObserved1_0111', 0, async (done: Function) => {
       let driver = Driver.create();
-      let str = await getResourceString($r('app.string.arkts_custom_components_freeze11'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await driver.findComponent(ON.text('Constraints', MatchPattern.CONTAINS));
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-
       await driver.pressBack();
       done();
     });
   })
 }
-
-
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));

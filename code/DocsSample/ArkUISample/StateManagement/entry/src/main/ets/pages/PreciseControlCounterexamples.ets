@@ -16,7 +16,6 @@
 // [Start precise_control_counterexamples]
 @Observed
 class Translate {
-  // The translation distance of the control component is 20.
   public translateX: number = 20;
 }
 @Component
@@ -65,8 +64,8 @@ struct Page {
           this.getUIContext().animateTo({
             duration: 50
           },()=>{
-            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
-          })
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
+          });
         })
     }
   }

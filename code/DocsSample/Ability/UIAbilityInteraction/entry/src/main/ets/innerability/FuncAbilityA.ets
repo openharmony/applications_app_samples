@@ -13,26 +13,26 @@
  * limitations under the License.
  */
 
-// [Start FuncAbilityA]
+// [Start Ability_FuncAbilityA]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-// [StartExclude FuncAbilityA]
+// [StartExclude Ability_FuncAbilityA]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
-// [EndExclude FuncAbilityA]
+// [EndExclude Ability_FuncAbilityA]
 
 export default class FuncAbilityA extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 接收调用方UIAbility传过来的参数
     let funcAbilityWant = want;
     let info = funcAbilityWant?.parameters?.info;
-    // [StartExclude FuncAbilityA]
+    // [StartExclude Ability_FuncAbilityA]
     hilog.info(DOMAIN, 'FuncAbilityA', '%{public}s', info);
-    // [EndExclude FuncAbilityA]
+    // [EndExclude Ability_FuncAbilityA]
   }
 
-  // [StartExclude FuncAbilityA]
+  // [StartExclude Ability_FuncAbilityA]
   onDestroy(): void {
     hilog.info(DOMAIN, 'FuncAbilityA', '%{public}s', 'Ability onDestroy');
   }
@@ -64,6 +64,6 @@ export default class FuncAbilityA extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'FuncAbilityA', '%{public}s', 'Ability onBackground');
   }
-  // [EndExclude FuncAbilityA]
+  // [EndExclude Ability_FuncAbilityA]
 }
-// [End FuncAbilityA]
+// [End Ability_FuncAbilityA]

@@ -19,7 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct Index {
+struct Start {
   build() {
     Column() {
       Row() {

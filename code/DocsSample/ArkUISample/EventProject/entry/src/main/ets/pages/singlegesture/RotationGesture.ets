@@ -60,6 +60,7 @@ export struct Rotation {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.singlegesture_RotationGesture_title资源文件中的value值为'旋转手势'
     .title($r('app.string.singlegesture_RotationGesture_title'))
   }
 }

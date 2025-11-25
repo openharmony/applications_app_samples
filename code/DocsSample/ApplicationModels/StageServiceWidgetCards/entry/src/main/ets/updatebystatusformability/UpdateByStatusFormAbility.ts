@@ -55,7 +55,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
   }
 
   // 当前卡片使用方不会涉及该场景，无需实现该回调函数
-  onCastToNormalForm(formId: string): void { }
+  onCastToNormalForm(formId: string): void {
+  }
 
   onUpdateForm(formId: string): void {
     let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');

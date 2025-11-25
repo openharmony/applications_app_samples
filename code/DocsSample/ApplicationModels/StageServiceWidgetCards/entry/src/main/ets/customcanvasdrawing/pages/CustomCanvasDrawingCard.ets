@@ -14,6 +14,7 @@
  */
 
 // [Start custom_drawing]
+// entry/src/main/ets/customcanvasdrawing/pages/CustomCanvasDrawingCard.ets
 @Entry
 @Component
 struct CustomCanvasDrawingCard {
@@ -52,6 +53,7 @@ struct CustomCanvasDrawingCard {
             let leftY = circleY - (radius / 4.5);
             this.context.beginPath();
             this.context.arc(leftX, leftY, leftR, 0, 2 * Math.PI, true);
+            this.context.closePath();
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
             this.context.stroke();
@@ -61,6 +63,7 @@ struct CustomCanvasDrawingCard {
             let rightY = circleY - (radius / 4.5);
             this.context.beginPath();
             this.context.arc(rightX, rightY, rightR, 0, 2 * Math.PI, true);
+            this.context.closePath();
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
             this.context.stroke();

@@ -16,8 +16,6 @@
 // [Start time_picker_dialog]
 // xxx.ets
 
-import { PromptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 export struct TimePickerDialogExample {
@@ -50,15 +48,18 @@ export struct TimePickerDialogExample {
               })
             })
         }.width('100%').margin({ top: 5 })
-
       }
+      // [StartExclude time_picker_dialog]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude time_picker_dialog]
     }
+    // [StartExclude time_picker_dialog]
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')��Ҫ�滻Ϊ������������ַ�����Դ�ļ�
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_time'))
+    // [EndExclude time_picker_dialog]
   }
 }
 // [End time_picker_dialog]

@@ -12,28 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0001;
-const TAG = 'arktsobservedandobjectlink';
 // [Start Object_Array]
-// Used to generate unique IDs for ObjectArrayInfo instances
-let arrayInfoNextID: number = 1;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG = 'ArkTSObservedAndObjectlink';
+let nextID: number = 1;
 
 @Observed
-class ObjectArrayInfo {
+class Info {
   public id: number;
   public info: number;
 
   constructor(info: number) {
-    this.id = arrayInfoNextID++;
+    this.id = nextID++;
     this.info = info;
-  };
-};
+  }
+}
 
 @Component
-struct ObjectArrayChild {
+struct Child {
   // 子组件Child的@ObjectLink的类型是Info
-  @ObjectLink info: ObjectArrayInfo;
+  @ObjectLink info: Info;
   label: string = 'ViewChild';
 
   build() {
@@ -43,41 +43,41 @@ struct ObjectArrayChild {
         .margin(10)
         .onClick(() => {
           this.info.info += 1;
-        });
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct ObjectArrayChildParent {
+struct Parent {
   // Parent中有@State装饰的Info[]
-  @State arrA: ObjectArrayInfo[] = [new ObjectArrayInfo(0), new ObjectArrayInfo(0)];
+  @State arrA: Info[] = [new Info(0), new Info(0)];
 
   build() {
     Column() {
       ForEach(this.arrA,
-        (item: ObjectArrayInfo) => {
-          ObjectArrayChild({ label: `#${item.id}`, info: item })
+        (item: Info) => {
+          Child({ label: `#${item.id}`, info: item })
         },
-        (item: ObjectArrayInfo): string => item.id.toString()
-      );
+        (item: Info): string => item.id.toString()
+      )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的Info的实例
-      ObjectArrayChild({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] });
-      ObjectArrayChild({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] });
+      Child({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] })
+      Child({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] })
 
       Button('ViewParent: reset array')
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA = [new ObjectArrayInfo(0), new ObjectArrayInfo(0)];
-        });
+          this.arrA = [new Info(0), new Info(0)];
+        })
       Button('ViewParent: push')
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA.push(new ObjectArrayInfo(0));
-        });
+          this.arrA.push(new Info(0));
+        })
       Button('ViewParent: shift')
         .width(320)
         .margin(10)
@@ -85,22 +85,25 @@ struct ObjectArrayChildParent {
           if (this.arrA.length > 0) {
             this.arrA.shift();
           } else {
-            hilog.info(DOMAIN,TAG,'length <= 0');
-          };
-        });
+            hilog.info(DOMAIN, TAG, 'length <= 0');
+          }
+        })
       Button('ViewParent: item property in middle')
         .width(320)
         .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)].info = 10;
-        });
+        })
       Button('ViewParent: item property in middle')
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA[Math.floor(this.arrA.length / 2)] = new ObjectArrayInfo(11);
-        });
+          this.arrA[Math.floor(this.arrA.length / 2)] = new Info(11);
+        })
     }
   }
 }
+
 // [End Object_Array]
+const objectArrayChildParent = Parent;
+export default objectArrayChildParent;

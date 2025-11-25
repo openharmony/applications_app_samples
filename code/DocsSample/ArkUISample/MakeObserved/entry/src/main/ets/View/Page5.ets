@@ -18,7 +18,7 @@ import { UIUtils } from '@kit.ArkUI';
 
 @Sendable
 class Info {
- public id: number = 0;
+  public id: number = 0;
 
   constructor(id: number) {
     this.id = id;

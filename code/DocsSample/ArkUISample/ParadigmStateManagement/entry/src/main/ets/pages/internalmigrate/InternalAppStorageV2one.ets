@@ -18,8 +18,7 @@ import { AppStorageV2 } from '@kit.ArkUI';
 
 @ObservedV2
 export class MyStorage {
-  // 页面级UI状态存储点击text文本的次数
-  @Trace public count: number = 0
+  @Trace public count: number = 0;
 }
 
 @Entry

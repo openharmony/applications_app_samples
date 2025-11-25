@@ -13,12 +13,21 @@
  * limitations under the License.
  */
 
-// [Start explicit_start]
-import { Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let wantInfo: Want = {
-  deviceId: '', // deviceId为空表示本设备
-  bundleName: 'com.example.myapplication',
-  abilityName: 'FuncAbility',
-};
-// [End explicit_start]
+const DOMAIN = 0x0000;
+
+export default class ExplicitAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  }
+
+  onDestroy(): void {
+    hilog.info(DOMAIN, 'ExplicitAbility', `ExplicitAbility onDestroy.`);
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(DOMAIN, 'ExplicitAbility', `Ability onWindowStageCreate.`);
+  }
+}

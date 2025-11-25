@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Cpp_NormalTextListExample]
+// NormalTextListExample.h
+
 #ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 #define MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 
@@ -26,6 +28,8 @@ namespace NativeModule {
 
 std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
 {
+    // 创建组件并挂载
+    // 1：使用智能指针创建List组件。
     auto list = std::make_shared<ArkUIListNode>();
     list->SetPercentWidth(1);
     list->SetPercentHeight(1);
@@ -34,6 +38,7 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
     const int fontSizes = 16;
     const int screenWidth = 300;
     const int defaultHeight = 100;
+    // 2：创建ListItem子组件并挂载到List上。
     for (int32_t i = 0; i < itemCount; ++i) {
         auto listItem = std::make_shared<ArkUIListItemNode>();
         auto textNode = std::make_shared<ArkUITextNode>();
@@ -50,7 +55,7 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
     }
     return list;
 }
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 // [End Cpp_NormalTextListExample]

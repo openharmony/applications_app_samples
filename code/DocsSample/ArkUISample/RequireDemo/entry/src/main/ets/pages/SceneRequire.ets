@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start scene_require_tart]
+// [Start scene_require_start]
 @Entry
 @Component
 struct SceneRequire {
@@ -45,20 +45,12 @@ struct SceneRequire {
 
 @Component
 struct Child {
-  @Builder
-  buildFunction() {
-    Column() {
-      Text('initBuilderParam')
-        .fontSize(30)
-    }
-  }
-
-  @Require regularValue: string = 'Hello';
-  @Require @State stateValue: string = 'Hello';
-  @Require @Provide provideValue: string = 'Hello';
+  @Require regularValue: string;
+  @Require @State stateValue: string;
+  @Require @Provide provideValue: string;
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
-  @Require @Prop initMessage: string = 'Hello';
+  @Require @BuilderParam initBuildTest: () => void;
+  @Require @Prop initMessage: string;
   @Require @Prop message: string;
 
   build() {
@@ -74,4 +66,4 @@ struct Child {
     .height('100%')
   }
 }
-// [End scene_require_tart]
+// [End scene_require_start]

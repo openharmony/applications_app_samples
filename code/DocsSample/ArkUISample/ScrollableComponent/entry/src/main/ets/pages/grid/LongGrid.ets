@@ -19,7 +19,7 @@ import { GridDataSource } from './GridDataSource';
 @Entry
 @Component
 export struct LongGrid {
-  numbers: GridDataSource = new GridDataSource([]);
+  dataSource: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller();
 
   aboutToAppear() {
@@ -29,32 +29,21 @@ export struct LongGrid {
         list.push(j.toString());
       }
     }
-    this.numbers = new GridDataSource(list);
+    this.dataSource = new GridDataSource(list);
   }
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.LongGrid_title')需要替换为开发者所需的资源文件
+        // app.string.LongGrid_title资源文件中的value值为‘性能优化’
         ComponentCard({ title: $r('app.string.LongGrid_title') }) {
           Column({ space: 5 }) {
             // [Start long_list]
-            Grid(this.scroller) {
-              LazyForEach(this.numbers, (day: string) => {
+            Grid() {
+              LazyForEach(this.dataSource, () => {
                 GridItem() {
-                  // [StartExclude long_list]
-                  Text(day)
-                    .fontSize(16)
-                    .backgroundColor(0xF9CF93)
-                    .width('100%')
-                    .height(80)
-                    .textAlign(TextAlign.Center)
-                  // [EndExclude long_list]
                 }
-              }
-                // [StartExclude long_list]
-              , (index: number) => index.toString())
-              // [EndExclude long_list]
+              })
             }
             .cachedCount(3)
             // [End long_list]
@@ -74,6 +63,7 @@ export struct LongGrid {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.LongGrid_title资源文件中的value值为‘性能优化’
     .title($r('app.string.LongGrid_title'))
   }
 }

@@ -21,6 +21,7 @@ class Data {
     this.code = code;
   }
 }
+
 // 创建新实例并使用给定对象初始化
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -48,6 +49,7 @@ struct Child {
     }
   }
 }
+
 // 使LocalStorage可从@Component组件访问
 @Entry(storage)
 @Component
@@ -69,9 +71,10 @@ struct Parent {
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
-      // @Component子组件自动获得对Parent LocalStorage实例的访问权限。
+      // @Component子组件自动获得对Parent LocalStorage实例的访问权限
       Child()
     }
   }
 }
+
 // [End localtorage_page_one_double_syn]

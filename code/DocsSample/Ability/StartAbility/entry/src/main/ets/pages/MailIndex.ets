@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 
 @Entry
 @Component
-struct Index {
+struct MailIndex {
   @State hideAbility: string = 'hideAbility'
 
   build() {

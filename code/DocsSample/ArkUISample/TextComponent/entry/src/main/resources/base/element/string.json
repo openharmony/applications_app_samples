@@ -18,7 +18,7 @@
     },
     {
       "name": "pageIndex_TextInput",
-      "value": "文本输入(TextInput/TextArea)"
+      "value": "文本输入(TextInput/TextArea/Search)"
     },
     {
       "name": "pageIndex_RichEditor",
@@ -77,23 +77,23 @@
       "value": "Span只能作为Text和RichEditor组件的子组件显示文本内容，可以在一个Text内添加多个Span来显示一段信息"
     },
     {
-      "name": "TextSpan_textContent_1",
+      "name": "TextSpan_textContent_text",
       "value": "我是Text"
     },
     {
-      "name": "TextSpan_textContent_2",
+      "name": "TextSpan_textContent_span",
       "value": "我是Span"
     },
     {
-      "name": "TextSpan_textContent_3",
+      "name": "TextSpan_textContent_span_one",
       "value": "我是Span1，"
     },
     {
-      "name": "TextSpan_textContent_4",
+      "name": "TextSpan_textContent_span_two",
       "value": "我是Span2"
     },
     {
-      "name": "TextSpan_textContent_5",
+      "name": "TextSpan_textContent_span_three",
       "value": "，我是Span3"
     },
     {
@@ -157,31 +157,31 @@
       "value": "textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。从API version 18开始，文本超长时设置跑马灯的方式展示时，支持设置跑马灯的配置项，比如开关、步长、循环次数、方向等"
     },
     {
-      "name": "CustomTextStyle_textContent_1",
+      "name": "CustomTextStyle_textContent_epsis",
       "value": "我是超长文本，超出的部分显示省略号 I am an extra long text, with ellipses displayed for any excess。"
     },
     {
-      "name": "CustomTextStyle_textContent_2",
+      "name": "CustomTextStyle_textContent_marq",
       "value": "当文本溢出其尺寸时，文本将滚动显示 When the text overflows its dimensions,the text will scroll for displaying."
     },
     {
-      "name": "CustomTextStyle_textContent_3",
+      "name": "CustomTextStyle_textContent_one_style",
       "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为1"
     },
     {
-      "name": "CustomTextStyle_textContent_4",
+      "name": "CustomTextStyle_textContent_two_style",
       "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为2"
     },
     {
-      "name": "CustomTextStyle_textContent_5",
+      "name": "CustomTextStyle_textContent_no_max",
       "value": "我的最大字号为30，最小字号为15，宽度为250,高度为50"
     },
     {
-      "name": "CustomTextStyle_textContent_6",
+      "name": "CustomTextStyle_textContent_high",
       "value": "我的最大字号为30，最小字号为15，宽度为250,高度为100"
     },
     {
-      "name": "CustomTextStyle_textContent_7",
+      "name": "CustomTextStyle_textContent_incopy",
       "value": "这是一段可复制文本。"
     },
     {
@@ -269,7 +269,7 @@
       "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
     },
     {
-      "name": "CustomTextStyle_textContent_8",
+      "name": "CustomTextStyle_textContent_marq_def",
       "value": "当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项 When the text overflows its dimensions, the text will scroll for displaying."
     },
     {
@@ -377,27 +377,27 @@
       "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果"
     },
     {
-      "name": "TextHotSearch_textContent_1",
+      "name": "TextHotSearch_textContent_one",
       "value": "我是热搜词条1"
     },
     {
-      "name": "TextHotSearch_textContent_2",
+      "name": "TextHotSearch_textContent_two",
       "value": "爆"
     },
     {
-      "name": "TextHotSearch_textContent_3",
+      "name": "TextHotSearch_textContent_three",
       "value": "我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2"
     },
     {
-      "name": "TextHotSearch_textContent_4",
+      "name": "TextHotSearch_textContent_four",
       "value": "热"
     },
     {
-      "name": "TextHotSearch_textContent_5",
+      "name": "TextHotSearch_textContent_five",
       "value": "我是热搜词条3"
     },
     {
-      "name": "TextHotSearch_textContent_6",
+      "name": "TextHotSearch_textContent_six",
       "value": "我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4"
     },
     {
@@ -482,7 +482,40 @@
     },
     {
       "name": "SetTextInputType_description",
-      "value": "TextInput有9种可选类型，示例中展示Normal基本输入模式和Password密码输入模式两种类型"
+      "value": "TextInput有以下类型可选择:Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式、USER_NAME用户名输入模式、NEW_PASSWORD新密码输入模式、NUMBER_PASSWORD纯数字密码输入模式、SCREEN_LOCK_PASSWORD锁屏应用密码输入模式、NUMBER_DECIMAL带小数点的数字输入模式、带URL的输入模式"
+
+    },
+    {
+      "name": "SetInputBoxMultiTypeStyle_title",
+      "value": "设置输入框多态样式"
+    },
+    {
+      "name": "SetInputBoxMultiTypeStyle_description",
+      "value": "TextInput、TextArea支持设置输入框多态样式"
+    },
+    {
+      "name": "NormalQuestion_title",
+      "value": "如何设置TextArea的文本最少展示行数并自适应高度"
+    },
+    {
+      "name": "NormalQuestion_description",
+      "value": "设置TextArea的初始高度来控制最少文本展示行数，当输入文本超过初始高度时，TextArea的高度自适应。"
+    },
+    {
+      "name": "NormalQuestion_AddInput",
+      "value": "增加输入"
+    },
+    {
+      "name": "NormalQuestion_change",
+      "value": "我是TextArea"
+    },
+    {
+      "name": "SetInputBoxMultiTypeStyle_title_1",
+      "value": "默认风格的输入框"
+    },
+    {
+      "name": "SetInputBoxMultiTypeStyle_title_2",
+      "value": "内联输入风格"
     },
     {
       "name": "CustomTextInputStyle_title",
@@ -502,14 +535,15 @@
     },
     {
       "name": "CustomTextInputStyle_description",
-      "value": "示例对输入框的提示文本、文本内容和背景颜色进行展示，更丰富的样式可以结合通用属性实现"
+      "value": "设置无输入时的提示文本、设置输入框当前的文本内容、添加backgroundColor改变输入框的背景颜色，更丰富的样式可以结合通用属性实现"
+
     },
     {
-      "name": "CustomTextInputStyle_textContent_1",
+      "name": "i_am_placeholder",
       "value": "我是提示文本"
     },
     {
-      "name": "CustomTextInputStyle_textContent_2",
+      "name": "i_am_current_text_content",
       "value": "我是当前文本内容"
     },
     {
@@ -522,7 +556,8 @@
     },
     {
       "name": "TextInputAddEvent_description",
-      "value": "文本框主要用于获取用户输入的信息，把信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的内容。用户也可以使用通用事件来进行相应的交互操作"
+      "value": "文本框主要用于获取用户输入的信息，并将信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的文本内容，绑定onSubmit事件可以获取回车提交的文本信息，绑定onTextSelectionChange事件可以获取文本选中时手柄的位置信息或者编辑时光标的位置信息等等。用户也可以使用通用事件进行相应的交互操作"
+
     },
     {
       "name": "TextInputAddEvent_textContent_1",
@@ -562,10 +597,10 @@
     },
     {
       "name": "KeyboardAvoidance_description",
-      "value": "示例中键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让"
+      "value": "键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让，若希望无滚动能力的容器组件也生效键盘避让，建议在组件外嵌套一层具有滚动能力的容器组件"
     },
     {
-      "name": "SelectMenu_textContent_1",
+      "name": "show_selected_menu",
       "value": "这是一段文本，用来展示选中菜单"
     },
     {
@@ -1029,6 +1064,14 @@
       "value": "添加到文本中"
     },
     {
+      "name": "SymbolGlyphSpanEffectStrategy_title",
+      "value": "SymbolSpan的动效策略"
+    },
+    {
+      "name": "SymbolGlyphSpanEffectStrategy_description",
+      "value": "通过effectStrategy属性设置SymbolSpan的动效策略"
+    },
+    {
       "name": "SymbolGlyphSpanAddToText_description",
       "value": "SymbolSpan可作为Text的子组件用于显示图标小符号。可以在一个Text组件内添加多个SymbolSpan，从而展示一串连续的图标。"
     },
@@ -1086,7 +1129,7 @@
     },
     {
       "name": "SymbolGlyphSpanAddToText_title_6",
-      "value": "通过effectStrategy属性设置SymbolSpan的动效策略"
+      "value": "通过设置SymbolEffect属性配置SymbolGlyph的动效\n点击可播放动画效果"
     },
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_title_1",
@@ -1181,11 +1224,11 @@
       "value": "setTypingStyle"
     },
     {
-      "name": "SymbolGlyphSpanCustomIconAnimation_Button_1",
+      "name": "off",
       "value": "关闭"
     },
     {
-      "name": "SymbolGlyphSpanCustomIconAnimation_Button_2",
+      "name": "on",
       "value": "播放"
     },
     {
@@ -1209,11 +1252,11 @@
       "value": "Sign in"
     },
     {
-      "name": "CreateApply_Text_1",
+      "name": "CreateApply_Text_Forty_Five",
       "value": "运动45分钟"
     },
     {
-      "name": "CreateApply_Text_2",
+      "name": "CreateApply_Text_Third_Five",
       "value": "运动35分钟"
     },
     {
@@ -1226,7 +1269,7 @@
     },
     {
       "name": "StyledStringImageAttachment_Text_1",
-      "value": "\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送"
+      "value": "\n品牌相纸 高清冲印30张\n限时直降5.15元 限量赠送"
     },
     {
       "name": "StyledStringImageAttachment_Text_2",
@@ -1238,7 +1281,7 @@
     },
     {
       "name": "StyledStringParagraphStyle_Text_2",
-      "value": "段落标题\\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。"
+      "value": "段落标题\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。"
     },
     {
       "name": "StyledStringSceneExample_Text_1",
@@ -1429,127 +1472,127 @@
       "value": "点击按钮，改变预设文本样式。"
     },
     {
-      "name": "SymbolAddToText_Text_1",
+      "name": "single_color",
       "value": "单色"
     },
     {
-      "name": "SymbolAddToText_Text_2",
+      "name": "multi_color",
       "value": "多色"
     },
     {
-      "name": "SymbolAddToText_Text_3",
+      "name": "hierarchical",
       "value": "分层"
     },
     {
-      "name": "SymbolAddToText_Text_4",
+      "name": "no_action",
       "value": "无动效"
     },
     {
-      "name": "SymbolAddToText_Text_5",
+      "name": "overall_scaling_animation_effect",
       "value": "整体缩放动效"
     },
     {
-      "name": "SymbolAddToText_Text_6",
+      "name": "hierarchical_animation",
       "value": "层级动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_1",
+      "name": "variable_color_animation",
       "value": "可变颜色动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_2",
+      "name": "bounce_animation",
       "value": "弹跳动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_3",
+      "name": "disable_animation",
       "value": "禁用动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_4",
+      "name": "quick_replacement_animation",
       "value": "快速替换动效"
     },
     {
-      "name": "SymbolSceneExample_Text_1",
+      "name": "play_in_order",
       "value": "顺序播放"
     },
     {
-      "name": "SymbolSceneExample_Text_2",
+      "name": "play_in_single_repeat",
       "value": "单曲循环"
     },
     {
-      "name": "SymbolSceneExample_Text_3",
+      "name": "shuffle_play",
       "value": "随机播放"
     },
     {
-      "name": "SymbolSceneExample_Text_4",
+      "name": "current_playlist",
       "value": "当前播放列表"
     },
     {
-      "name": "SymbolSceneExample_Text_5",
+      "name": "song",
       "value": "歌曲一"
     },
     {
-      "name": "SymbolSceneExample_Text_6",
+      "name": "song_again",
       "value": "歌曲二"
     },
     {
-      "name": "SymbolSceneExample_Text_7",
+      "name": "again_song",
       "value": "歌曲三"
     },
     {
-      "name": "SymbolSceneExample_Text_8",
+      "name": "song_repeat",
       "value": "歌曲四"
     },
     {
-      "name": "SymbolSceneExample_Text_9",
+      "name": "repeat_song",
       "value": "歌曲五"
     },
     {
-      "name": "SymbolSceneExample_Text_10",
+      "name": "song_play",
       "value": "歌曲六"
     },
     {
-      "name": "SymbolSceneExample_Text_11",
+      "name": "play_song",
       "value": "歌曲七"
     },
     {
-      "name": "SymbolShadowAndColor_Text_1",
+      "name": "shadow_ability",
       "value": "阴影能力"
     },
     {
-      "name": "SymbolShadowAndColor_Text_2",
+      "name": "radial_gradient",
       "value": "径向渐变"
     },
     {
-      "name": "SymbolSceneExample_Text_12",
+      "name": "last_song",
       "value": "关闭"
     },
     {
-      "name": "AIMenu_Text_1",
+      "name": "AIMenu_Text_One",
       "value": "电话号码：(86) (755) ********  \n \n 链接：www.********.com \n \n 邮箱：***@example.com\n \n 地址：XX省XX市XX区XXXX \n \n 时间：XX年XX月XX日XXXX"
     },
     {
-      "name": "CreateText_Text_1",
+      "name": "CreateText_Text_new",
       "value": "我是一段文本"
     },
     {
-      "name": "SelectMenu_Text_1",
+      "name": "SelectMenu_Text_customMenu",
       "value": "拦截 id: customMenu2 start:"
     },
     {
-      "name": "SelectMenu_Text_2",
+      "name": "SelectMenu_Text_copy",
       "value": "拦截 COPY start:"
     },
     {
-      "name": "SelectMenu_Text_3",
+      "name": "SelectMenu_Text_SelectionAll",
       "value": "不拦截 SELECT_ALL start:"
     },
     {
-      "name": "SelectMenu_Text_4",
+      "name": "SelectMenu_Text_Ejected",
       "value": "自定义选择菜单弹出时触发该回调"
     },
     {
-      "name": "SelectMenu_Text_5",
+      "name": "SelectMenu_Text_Close",
       "value": "自定义选择菜单关闭时触发该回调"
     },
     {
@@ -1569,7 +1612,7 @@
       "value": "通过ImageAttachment添加图片，TextStyle设置多种文本样式，实现商品详情信息展示的应用场景。"
     },
     {
-      "name": "TextImage_MixedLayout_Content_1",
+      "name": "surprise_price",
       "value": "惊喜价 ￥1299"
     },
     {
@@ -1581,15 +1624,15 @@
       "value": "搜索"
     },
     {
-      "name": "TextImageAttribute_Content_1",
+      "name": "print_photo",
       "value": "\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
     },
     {
-      "name": "TextImageAttribute_Content_2",
+      "name": "limited_time_discount",
       "value": "\n限时直降5.15元 限量增送"
     },
     {
-      "name": "TextImageAttribute_Content_3",
+      "name": "sales_volume",
       "value": "\n￥22.50 销量400万+"
     },{
       "name": "Service_MenuItems",
@@ -1605,7 +1648,7 @@
     },
     {
       "name": "Disable_MenuItems",
-      "value": "屏蔽文本选择菜单内指定的系统服务菜单项。"
+      "value": "屏蔽文本选择菜单内指定的系统服务菜单项一。"
     },
     {
       "name": "Disable_MenuItems_description",
@@ -1702,6 +1745,38 @@
     {
       "name": "Text_Long_Tow_description",
       "value": "可以把Text组件放在滚动容器Scroll里面，通过手势滑动来浏览全部文本。"
+    },
+    {
+      "name": "Text_Long_String",
+      "value": "这是一段超长文本"
+    },
+    {
+      "name": "Text_WordBreak",
+      "value": "混合Hello World! honorificabilitudinitatibus!"
+    },
+    {
+      "name": "Text_Adaptive_Layout",
+      "value": "混合Hello World! 多行文本 中英文数字混合 1282378283 ~"
+    },
+    {
+      "name": "Text_Add_Tags_Front_and_Post",
+      "value": "这是一段长文本，超长部分折行，前后添加标签"
+    },
+    {
+      "name": "Text_Add_Tags_Front",
+      "value": "前标签"
+    },
+    {
+      "name": "Text_Add_Tags_Post",
+      "value": "后标签"
+    },
+    {
+      "name": "Text_Full_Text",
+      "value": "你好我是Text[grin]，你好我[rolling_on_the_floor_laughing]是Text，[slightly_smiling_face]你好我是Text[grin]"
+    },
+    {
+      "name": "Text_emoji",
+      "value": "用户输入带表情的文本，例如：你好[grin]"
     }
   ]
 }

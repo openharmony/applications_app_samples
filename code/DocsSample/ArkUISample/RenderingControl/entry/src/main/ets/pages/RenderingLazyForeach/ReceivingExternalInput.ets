@@ -13,89 +13,29 @@
  * limitations under the License.
  */
 
-class BasicDataSource16 implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData16[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): StringData16 {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-
 // [Start receiving_external_input]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource16 extends BasicDataSource16 {
-  private dataArray: StringData16[] = [];
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
+
+class MyInputDataSource extends GenericBasicDataSource<InputStringData> {
+  private dataArray: InputStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData16 {
+  public getData(index: number): InputStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData16): void {
+  public pushData(data: InputStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @ObservedV2
-class StringData16 {
+class InputStringData {
   @Trace public message: string;
 
   constructor(message: string) {
@@ -106,24 +46,24 @@ class StringData16 {
 @Entry
 @ComponentV2
 struct ReceivingExternalInput {
-  data: MyDataSource16 = new MyDataSource16();
+  data: MyInputDataSource = new MyInputDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData16(`Hello ${i}`));
+      this.data.pushData(new InputStringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData16, index: number) => {
+      LazyForEach(this.data, (item: InputStringData, index: number) => {
         ListItem() {
           ReceivingExternalInputChildComponent({ data: item.message })
             .onClick(() => {
               item.message += '!';
             })
         }
-      }, (item: StringData16, index: number) => index.toString())
+      }, (item: InputStringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }

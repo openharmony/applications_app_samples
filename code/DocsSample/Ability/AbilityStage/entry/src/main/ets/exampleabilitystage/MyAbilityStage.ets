@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start my_examole_ability_start]
+// [Start my_example_ability_start]
 import { AbilityStage, Want } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
@@ -26,4 +26,4 @@ export default class MyAbilityStage extends AbilityStage {
     return 'MyAbilityStage';
   }
 }
-// [End my_examole_ability_start]
+// [End my_example_ability_start]

@@ -36,11 +36,7 @@ export struct StyledStringHtml {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -52,11 +48,14 @@ export struct StyledStringHtml {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
           Column() {
-            Text(undefined, { controller: this.controller1 }).height(100).id('text1')
+            Text(undefined, { controller: this.controller1 }).height(100)
             Row() {
+              //'app.string.StyledStringHtml_Button_1'资源文件中的value值为"添加属性字符串"
               Button($r('app.string.StyledStringHtml_Button_1')).onClick(() => {
+                //'app.string.StyledStringHtml_Text_1'资源文件中的value值为"属性字符串"
                 let mutableStyledString1: MutableStyledString =
                   new MutableStyledString(resource.resourceToString($r('app.string.StyledStringHtml_Text_1')), [{
                   start: 0,
@@ -74,17 +73,19 @@ export struct StyledStringHtml {
                 this.styledString = mutableStyledString1;
                 this.controller1.setStyledString(mutableStyledString1);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_2'资源文件中的value值为"toHtml"
               Button($r('app.string.StyledStringHtml_Button_2')).onClick(() => {
                 this.html = StyledString.toHtml(this.styledString);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_3'资源文件中的value值为"fromHtml"
               Button($r('app.string.StyledStringHtml_Button_3')).onClick(async () => {
                 let styledString = await StyledString.fromHtml(this.html);
                 this.controller2.setStyledString(styledString);
               }).margin(5)
             }
 
-            Text(undefined, { controller: this.controller2 }).height(100).id('text2')
-            Text(this.html).id('text3')
+            Text(undefined, { controller: this.controller2 }).height(100)
+            Text(this.html)
           }.width('100%')
         }
       }
@@ -93,6 +94,7 @@ export struct StyledStringHtml {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
     .title($r('app.string.StyledStringHtml_title'))
   }
 }

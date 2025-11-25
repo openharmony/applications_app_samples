@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
+// [Start prop_four_start]
 @Component
-  // [Start prop_four_start]
 struct Child {
   @Prop value: number = 0;
 
@@ -33,33 +33,33 @@ struct Index {
   @State arr: number[] = [1, 2, 3];
 
   build() {
-      Row() {
-        Column() {
-          Child({ value: this.arr[0] })
-          Child({ value: this.arr[1] })
-          Child({ value: this.arr[2] })
+    Row() {
+      Column() {
+        Child({ value: this.arr[0] })
+        Child({ value: this.arr[1] })
+        Child({ value: this.arr[2] })
 
-          Divider().height(5)
+        Divider().height(5)
 
-          ForEach(this.arr,
-            (item: number) => {
-              Child({ value: item })
-            },
-            (item: number) => item.toString()
-          )
-          Text('replace entire arr')
-            .fontSize(50)
-            .onClick(() => {
-              // 两个数组都包含项“3”。
-              this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
-            })
-        }
+        ForEach(this.arr,
+          (item: number) => {
+            Child({ value: item })
+          },
+          (item: number) => item.toString()
+        )
+        Text('replace entire arr')
+          .fontSize(50)
+          .onClick(() => {
+            // 两个数组都包含项“3”。
+            this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
+          })
       }
-      // [EndExclude prop_four_start]
+    }
   }
 }
+
 // [End prop_four_start]
 @Builder
-export function MyIndexBuilder(){
+export function MyIndexBuilder() {
   Index()
 }

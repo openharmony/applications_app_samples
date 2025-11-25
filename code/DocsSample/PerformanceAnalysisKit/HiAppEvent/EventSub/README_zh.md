@@ -14,9 +14,9 @@
 
 - [事件订阅（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-events-ndk.md)
 
-- [订阅崩溃事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
+- [订阅崩溃事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
 
-- [订阅崩溃事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
+- [订阅崩溃事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
 
 - [订阅卡死事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-arkts.md)
 
@@ -48,7 +48,7 @@
 
 #### 使用说明
 
-请先按照工程目录添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
+请先按照[工程目录](#工程目录)添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
 
 ##### 1.事件订阅（ArkTS&C++）使用说明：订阅崩溃（APP_CRASH）事件
 
@@ -84,7 +84,7 @@ AppEvent HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappe
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503514787492,"tz_":"","pid_":18178,"tid_":18178,"clickTime":100}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -112,7 +112,7 @@ AppEvents writeEvent ArkTS success
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503515278195,"tz_":"","pid_":18178,"tid_":18178,"clickTime":1503515278}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -150,6 +150,8 @@ HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1501890680817
 HiAppEvent eventInfo.params.crash_type=JsError
 HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.release_type=Release
+HiAppEvent eventInfo.params.cpu_abi=arm64-v8a
 HiAppEvent eventInfo.params.bundle_version=1.0.0
 HiAppEvent eventInfo.params.bundle_name=com.samples.eventsub
 HiAppEvent eventInfo.params.pid=2579
@@ -217,6 +219,8 @@ HiAppEvent eventInfo.name=APP_FREEZE
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1501891964864
 HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.release_type=Release
+HiAppEvent eventInfo.params.cpu_abi=arm64-v8a
 HiAppEvent eventInfo.params.bundle_version=1.0.0
 HiAppEvent eventInfo.params.bundle_name=com.samples.eventsub
 HiAppEvent eventInfo.params.process_name=com.samples.eventsub
@@ -352,9 +356,9 @@ HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"p
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnTrigger 													
+HiAppEvent eventInfo.WatcherType=OnTrigger
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -365,9 +369,9 @@ HiAppEvent eventInfo.params.type="stack-buffer-overflow"
 HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1609739933234_6628.log"]
 HiAppEvent eventInfo.params.log_over_limit=0
 // 以上为C++ OnTrigger观察者日志输出
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -413,9 +417,9 @@ HiAppEvent eventInfo.params.log_over_limit=0
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=MAIN_THREAD_JANK												    
+HiAppEvent eventInfo.name=MAIN_THREAD_JANK
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.pid=6628
@@ -450,7 +454,7 @@ HiAppEvent eventInfo.params.log_over_limit=0
 
 3.C++实现了onReceive观察者，ArkTS实现了onReceive观察者。
 
-##### 9.订阅任务执行超时事件（C/C++） 
+##### 9.订阅任务执行超时事件（C/C++）
 
 本示例主要展示了订阅任务执行超时事件的功能，包括构造任务执行超时事件及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该超时事件的订阅。
 
@@ -489,15 +493,15 @@ HiAppEvent eventInfo.params.log_over_limit=xx
 ```text
 entry/src/main
 ├─cpp
-│  ├─json
-│  │ └─json.h          	  // 自行添加
-│  │ └─json-forwards.h    // 自行添加
+│  ├─json                 // 自行创建文件夹
+│  │ └─json.h             // 按照使用说明章节中的步骤，自行添加
+│  │ └─json-forwards.h    // 按照使用说明章节中的步骤，自行添加
 │  ├─types
 │  │ └─libentry
 │  │   └─Index.d.ts		    // 定义ArkTS接口
 │  ├─CMakeLists.txt  		  // 导入so链接
 │  ├─napi_init.cpp  		  // 功能函数，观察者定义
-│  └─jsoncpp.cpp          // 自行添加
+│  └─jsoncpp.cpp          // 按照使用说明章节中的步骤，自行添加
 └─ets
    ├─entryability
    │ └─EntryAbility.ets		// 新增接口调用
@@ -525,8 +529,8 @@ entry/src/main
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例已适配API14版本SDK，版本号：5.0.2.58，镜像版本号：OpenHarmony5.0.2.58；
-3. 本示例需要使用DevEco Studio(5.0.3.910)及以上版本才可编译运行。
+2. 本示例已适配API 20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony 6.1.0.18；
+3. 本示例需要使用DevEco Studio 6.0.0 Release(6.0.0.868)及以上版本才可编译运行。
 
 ### 下载
 

@@ -14,10 +14,10 @@
  */
 // [Start localtorage_page_four_state_variable_syn]
 let count: Record<string, number> = { 'countStorage': 1 };
-let storage4: LocalStorage = new LocalStorage(count);
+let storageFour: LocalStorage = new LocalStorage(count);
 
 @Component
-struct Child4 {
+struct ChildFour {
   // 子组件实例的名字
   label: string = 'no name';
   // 和LocalStorage中“countStorage”的双向绑定数据
@@ -42,9 +42,9 @@ struct Child4 {
   }
 }
 
-@Entry(storage4)
+@Entry(storageFour)
 @Component
-struct Parent4 {
+struct ParentFour {
   @LocalStorageLink('countStorage') playCount: number = 0;
 
   build() {
@@ -72,7 +72,7 @@ struct Parent4 {
           .fontSize(12)
         Text(`countStorage ${this.playCount} incr by 1`)
           .onClick(() => {
-            storage4.set<number | undefined>('countStorage', Number(storage4.get<number>('countStorage')) + 1);
+            storageFour.set<number | undefined>('countStorage', Number(storageFour.get<number>('countStorage')) + 1);
           })
           .width(250)
           .height(60)
@@ -81,14 +81,15 @@ struct Parent4 {
       .width(300)
       .height(60)
 
-      Child4({ label: 'ChildA' })
-      Child4({ label: 'ChildB' })
+      ChildFour({ label: 'ChildA' })
+      ChildFour({ label: 'ChildB' })
 
-      Text(`playCount in LocalStorage for debug ${storage4.get<number>('countStorage')}`)
+      Text(`playCount in LocalStorage for debug ${storageFour.get<number>('countStorage')}`)
         .width(300)
         .height(60)
         .fontSize(12)
     }
   }
 }
+
 // [End localtorage_page_four_state_variable_syn]

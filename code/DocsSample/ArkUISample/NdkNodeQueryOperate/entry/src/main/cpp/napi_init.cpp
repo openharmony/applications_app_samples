@@ -26,11 +26,11 @@
 #include <js_native_api_types.h>
 // [StartExclude ndknodequeryoperate7_start]
 using namespace NativeModule;
-
+// [EndExclude ndknodequeryoperate7_start]
 const unsigned int NUMBER_2 = 2;
 const unsigned int NUMBER_WIDTH = 100;
 const unsigned int NUMBER_HEIGHT = 100;
-// [EndExclude ndknodequeryoperate7_start]
+
 static napi_value Add(napi_env env, napi_callback_info info)
 {
     size_t argc = NUMBER_2;

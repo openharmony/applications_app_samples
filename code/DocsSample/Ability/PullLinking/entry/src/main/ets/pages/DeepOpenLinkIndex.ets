@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start deep_open]
 import { common, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct DeepOpenLinkIndex {
   build() {
     Button('start link', { type: ButtonType.Capsule, stateEffect: true })
       .width('87%')
@@ -30,7 +30,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let link: string = 'link://www.example.com';
+        let link: string = 'link://www.example.com'; // 此处为实际应用链接
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };
@@ -48,4 +48,4 @@ struct Index {
       })
   }
 }
-// [End quick_start0]
+// [End deep_open]

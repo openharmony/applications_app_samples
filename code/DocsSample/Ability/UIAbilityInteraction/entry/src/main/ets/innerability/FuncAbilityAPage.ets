@@ -13,21 +13,22 @@
  * limitations under the License.
  */
 
-// [Start FuncAbilityA]
+// [Start FuncAbilityAPage]
 // [Start FuncAbilityB]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[Page_FromStageModel]';
+const TAG: string = '[FuncAbilityAPage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_FromStageModel {
+struct FuncAbilityAPage {
 
   build() {
     Column() {
       // [StartExclude FuncAbilityB]
+      // app.string.Stop_AbilityA资源文件中的value值为'StopFuncAbilityA'
       Button($r('app.string.Stop_AbilityA'))
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
@@ -39,17 +40,16 @@ struct Page_FromStageModel {
             }
           });
         })
-        // [StartExclude FuncAbilityA]
+        // [StartExclude FuncAbilityAPage]
         .margin({bottom: 8})
         .width('60%');
-      // [EndExclude FuncAbilityA]
       // [EndExclude FuncAbilityB]
 
-      // [StartExclude FuncAbilityA]
       List({ initialIndex: 0 }) {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityB]
+            // app.string.Stop_AbilityA_Result资源文件中的value值为'StopFuncAbilityAWithResult'
             Button($r('app.string.Stop_AbilityA_Result'))
               .width('60%');
             // [EndExclude FuncAbilityB]
@@ -64,7 +64,8 @@ struct Page_FromStageModel {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  info: $r('app.string.ability_return_info')
+                  // app.string.ability_return_info资源文件中的value值为'来自FuncAbility Index页面'
+                  info: context.resourceManager.getStringSync($r('app.string.ability_return_info').id)
                 },
               },
             };
@@ -80,16 +81,16 @@ struct Page_FromStageModel {
       // [StartExclude FuncAbilityB]
       .alignListItem(ListItemAlign.Center)
       // [EndExclude FuncAbilityB]
-      // [EndExclude FuncAbilityA]
+      // [EndExclude FuncAbilityAPage]
     }
-    // [StartExclude FuncAbilityA]
+    // [StartExclude FuncAbilityAPage]
     // [StartExclude FuncAbilityB]
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
     // [EndExclude FuncAbilityB]
-    // [EndExclude FuncAbilityA]
+    // [EndExclude FuncAbilityAPage]
   }
 }
 // [End FuncAbilityB]
-// [End FuncAbilityA]
+// [End FuncAbilityAPage]

@@ -22,7 +22,7 @@ struct StateIndex {
   build() {
     Column() {
       Row() {
-        // $r('app.string.all_tasks')需要替换为开发者所需的资源文件
+        // app.string.all_tasks资源文件中的value值为'全部待办'
         Text($r('app.string.all_tasks'))
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
@@ -33,17 +33,17 @@ struct StateIndex {
       // 待办事项
       Row({ space: 15 }) {
         if (this.isFinished) {
-          // $r('app.string.finished')需要替换为开发者所需的资源文件
+          // $r('app.media.finished')需要替换为开发者所需的资源文件
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         } else {
-          // $r('app.string.unfinished')需要替换为开发者所需的资源文件
+          // $r('app.media.unfinished')需要替换为开发者所需的资源文件
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
         }
-        // $r('app.string.learn_advanced_math')需要替换为开发者所需的资源文件
+        // app.string.all_learn_advanced_math资源文件中的value值为'学习高数'
         Text($r('app.string.learn_advanced_math'))
           .fontSize(24)
           .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
@@ -62,4 +62,5 @@ struct StateIndex {
     .backgroundColor('#90f1f3f5')
   }
 }
+
 // [End state_source_update_refresh]

@@ -18,10 +18,11 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "default",
-      "tablet"
+      "phone",
+      "tablet",
+      "2in1"
     ],
     "deliveryWithInstall": true,
-    "installationFree": false,
+    "installationFree": false
   }
 }

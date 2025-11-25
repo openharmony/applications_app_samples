@@ -20,7 +20,7 @@ import { AppStartupAfterOptimization } from '@ohos/smartPerfHost';
 struct AppStartupAfterOptimizationContainer {
   build() {
     Column() {
-      AppStartupAfterOptimization()
+      AppStartupAfterOptimization();
     }
   }
 }

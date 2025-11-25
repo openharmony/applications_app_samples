@@ -14,11 +14,6 @@
  */
 // [Start web_textMenuItem]
 import { webview } from '@kit.ArkWeb';
-import hilog from '@ohos.hilog';
-
-const TAG = '[Sample_TextMenuItem]'
-const DOMAIN = 0xF811
-const BUNDLE = 'TextMenuItem_'
 
 @Entry
 @Component
@@ -57,22 +52,22 @@ struct WebComponent {
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
       // 用户自定义行为
-      hilog.info(DOMAIN, TAG, BUNDLE + 'intercept id：CUT')
+      console.info('intercept id：CUT')
       return true; // 返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
       // 用户自定义行为
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Do not intercept id：COPY')
+      console.info('Do not intercept id：COPY')
       return false; // 返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
-      hilog.info(DOMAIN, TAG, BUNDLE + 'intercept id：customItem1')
-      return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
-    } else if (menuItem.id.equals(TextMenuItemId.of('customItem2'))){
+      console.info('intercept id：customItem1')
+      return true; // 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem2'))) {
       // 用户自定义行为
-      hilog.info(DOMAIN, TAG, BUNDLE + 'intercept id：customItem2')
+      console.info('intercept id：customItem2')
       return true;
     }
-    return false;// 返回默认值false
+    return false; // 返回默认值false
   }
 
   @State editMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }

@@ -202,12 +202,12 @@ export default function IndexTest() {
       done();
     })
 
-    it('testButtonCase1', 0, async (done: Function) => {
+    it('testButtonCaseTouch', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      let str = await getResourceString($r('app.string.ButtonCase1_title'));
+      let str = await getResourceString($r('app.string.ButtonCaseTouch_title'));
       let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(button_search === null).assertFalse();
       await button_search.click();
@@ -230,12 +230,12 @@ export default function IndexTest() {
       done();
     })
 
-    it('testButtonCase2', 0, async (done: Function) => {
+    it('testButtonCaseLogin', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      let str = await getResourceString($r('app.string.ButtonCase2_title'));
+      let str = await getResourceString($r('app.string.ButtonCaseLogin_title'));
       let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(button_search === null).assertFalse();
       await button_search.click();
@@ -375,13 +375,13 @@ export default function IndexTest() {
       let radio_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(radio_search === null).assertFalse();
       await radio_search.click();
-      let ringing_search = await driver.findComponent(ON.id('ringing', MatchPattern.CONTAINS));
+      let ringing_search = await driver.findComponent(ON.text('Ringing', MatchPattern.CONTAINS));
       expect(ringing_search === null).assertFalse();
       await ringing_search.click();
-      let vibration_search = await driver.findComponent(ON.id('vibration', MatchPattern.CONTAINS));
+      let vibration_search = await driver.findComponent(ON.text('Vibration', MatchPattern.CONTAINS));
       expect(vibration_search === null).assertFalse();
       await vibration_search.click();
-      let silent_search = await driver.findComponent(ON.id('silent', MatchPattern.CONTAINS));
+      let silent_search = await driver.findComponent(ON.text('Silent', MatchPattern.CONTAINS));
       expect(silent_search === null).assertFalse();
       await silent_search.click();
       await sleep(1000);

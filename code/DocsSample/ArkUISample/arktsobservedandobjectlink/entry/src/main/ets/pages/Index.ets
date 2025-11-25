@@ -18,8 +18,8 @@ class CreateRouter{
   constructor(pageName:string,routerName:string){
     this.pageName = pageName;
     this.routerName = routerName;
-  };
-};
+  }
+}
 const createRouterList: CreateRouter[] = [
   new CreateRouter('DecoratorDescriptionPage', 'pages/overview/DecoratorDescription'),
   new CreateRouter('ObservationChangeInheritancePage', 'pages/overview/ObservationChangeInheritance'),
@@ -57,11 +57,11 @@ struct Index {
             .backgroundColor('#f5f5f5')
             .onClick(() => {
               this.getUIContext().getRouter().pushUrl({
-                url: `${item.routerName}`,
+                url: `${item.routerName}`
               });
-            });
+            })
         }
-      }, (item:CreateRouter, index:number) => JSON.stringify(item));
+      }, (item:CreateRouter, index:number) => JSON.stringify(item))
     }
     .alignListItem(ListItemAlign.Center)
     .height('auto')

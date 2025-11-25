@@ -14,11 +14,6 @@
 */
 
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-
-const TAG = '[Sample_Date_Detector]'
-const DOMAIN = 0xF811
-const BUNDLE = 'DateDetector_'
 const COLUMN_SPACE: number = 10;
 
 @Entry
@@ -32,7 +27,7 @@ struct Index {
             url: 'pages/WebDataDetectorHighlighting',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
       Button('Long Press')
@@ -42,7 +37,7 @@ struct Index {
             url: 'pages/WebDataDetectorLongPress',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

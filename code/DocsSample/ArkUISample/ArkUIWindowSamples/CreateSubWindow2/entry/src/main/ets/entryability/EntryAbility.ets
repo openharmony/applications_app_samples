@@ -20,7 +20,7 @@ import { window } from '@kit.ArkUI';
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0X0000;
-const TAG : string = '[Sample_CreatSubWindow2]';
+const TAG: string = '[Sample_CreatSubWindow2]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

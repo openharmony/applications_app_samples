@@ -15,7 +15,8 @@
 // [Start HelloComponent_Hello]
 @Component
 struct HelloComponent {
-  @State message: string | Resource = 'Hello, World!';
+  @State message: string = 'Hello, World!';
+
   build() {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row() {
@@ -27,20 +28,22 @@ struct HelloComponent {
     }
   }
 }
+
 // [End HelloComponent_Hello]
 // [Start ArkUI_message]
 @Entry
 @Component
-struct ParentComponentUI {
+struct ParentComponent {
   build() {
-      Column() {
-        Text('ArkUI message')
-        HelloComponent({ message: 'Hello World!' });
-        Divider()
-        // $r('app.string.Hello_The_world')需要替换为开发者所需的资源文件
-        HelloComponent({ message: $r('app.string.Hello_The_world') });
-      }
+    Column() {
+      Text('ArkUI message')
+      HelloComponent({ message: 'Hello World!' })
+      Divider()
+      HelloComponent({ message: 'Hello ArkTS!' })
+    }
   }
 }
-// [End ArkUI_message]
 
+// [End ArkUI_message]
+const parentComponentUI = ParentComponent;
+export default parentComponentUI;

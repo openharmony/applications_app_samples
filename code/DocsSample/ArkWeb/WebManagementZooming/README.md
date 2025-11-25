@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [使用Web组件管理网页缩放](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-scale-zoom.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解Web组件支持手势缩放、鼠标滚轮、键盘缩放，以方便用户调整到舒适的显示大小。并对应用提供监听、控制页面缩放比例的功能，以便应用实现个性化的视觉效果。
+本工程主要实现了对以下指南文档中 [使用Web组件管理网页缩放](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-scale-zoom.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解Web组件支持手势缩放、鼠标滚轮、键盘缩放，以方便用户调整到舒适的显示大小。并对应用提供监听、控制页面缩放比例的功能，以便应用实现个性化的视觉效果。
 
 ### 使用说明
 

@@ -13,49 +13,50 @@
  * limitations under the License.
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
 class Child {
   public count: number;
 
   constructor(count: number) {
-    this.count = count
+    this.count = count;
   }
 }
 
 @Observed
-class ChildList7 extends Array<Child> {
-  static from(children: Child[]): ChildList7 {
-    const list = new ChildList7();
+class ChildList extends Array<Child> {
+  static from(children: Child[]): ChildList {
+    const list = new ChildList();
     list.push(...children);
     return list;
   }
-};
+}
 
 @Observed
-class Ancestor7 {
-  public childList: ChildList7;
+class Ancestor {
+  public childList: ChildList;
 
-  constructor(childList: ChildList7) {
+  constructor(childList: ChildList) {
     this.childList = childList;
   }
 
   // [Start StateArrayLoadDate_start]
   public loadData() {
-    const tempList = ChildList7.from([new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)]);
+    let tempList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
     this.childList = tempList;
   }
   // [End StateArrayLoadDate_start]
   public clearData() {
-    this.childList = new ChildList7();
+    this.childList = new ChildList();
   }
 }
 
 @Component
 struct StateArrayLoadDate {
-  @Link childList: ChildList7;
+  @Link childList: ChildList;
   @ObjectLink child: Child;
 
   build() {
@@ -87,8 +88,8 @@ struct StateArrayLoadDate {
 }
 
 @Component
-struct CompList7 {
-  @ObjectLink @Watch('changeChildList') childList: ChildList7;
+struct CompList {
+  @ObjectLink @Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
     hilog.info(DOMAIN_NUMBER, TAG, 'CompList ChildList changed');
@@ -119,18 +120,18 @@ struct CompList7 {
 
 @Component
 struct CompAncestor {
-  @ObjectLink ancestor7: Ancestor7;
+  @ObjectLink ancestor: Ancestor;
 
   build() {
     Column() {
-      CompList7({ childList: this.ancestor7.childList })
+      CompList({ childList: this.ancestor.childList })
       Row() {
         Button('Clear')
-          .onClick(() => this.ancestor7.clearData())
+          .onClick(() => this.ancestor.clearData())
           .width(100)
           .margin({ right: 50 })
         Button('Recover')
-          .onClick(() => this.ancestor7.loadData())
+          .onClick(() => this.ancestor.loadData())
           .width(100)
       }
     }
@@ -140,14 +141,13 @@ struct CompAncestor {
 @Entry
 @Component
 struct StateArrayLoadDatePage {
-  @State childList: ChildList7 = ChildList7.from([
-    new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)
-  ]);
-  @State ancestor: Ancestor7 = new Ancestor7(this.childList)
+  @State childList: ChildList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
+  @State ancestor: Ancestor = new Ancestor(this.childList);
 
   build() {
     Column() {
-      CompAncestor({ ancestor7: this.ancestor })
+      CompAncestor({ ancestor: this.ancestor })
     }
   }
 }
+export default StateArrayLoadDatePage;

@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_decorator_object_trace_observed_v2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorDecoratorObjectTraceObservedV2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_object_trace_observed_v2'))
-  }
-}
-
-// [Start monitor_decorator_object_trace_observed_v2]
 @ObservedV2
 class Inner {
   @Trace public num: number = 0;
@@ -42,7 +26,7 @@ class Outer {
 
   @Monitor('inner.num')
   onChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `inner.num change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
@@ -62,3 +46,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_object_trace_observed_v2]
+@Component
+export struct MonitorDecoratorObjectTraceObservedV2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_object_trace_observed_v2'))
+  }
+}

@@ -19,13 +19,14 @@ import { window } from '@kit.ArkUI';
 
 // [Start ComponentV2_page_componentV2]
 @Entry
-@ComponentV2
-struct ComponentV2Test {
+@ComponentV2 // 装饰器
+struct ComponentV2Test { // struct声明的数据结构
   @Local message: string = 'Hello World';
-  build() {
+  build() { // build定义的UI
     RelativeContainer() {
       Text(this.message)
         .id('HelloWorld')
+        // $r('app.float.page_text_font_size')需要替换为开发者所需的资源文件;
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .alignRules({

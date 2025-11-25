@@ -12,35 +12,19 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_param_positive_example_1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorProblemParamPositiveExample1 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_param_positive_example_1'))
-  }
-}
-
-// [Start monitor_problem_param_positive_example_1]
 @ObservedV2
 class Info {
   public name: string = 'John';
   @Trace public age: number = 24;
 
-  @Monitor('age')
   // 仅监听状态变量age
+  @Monitor('age')
   onPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
@@ -62,3 +46,16 @@ struct Index {
   }
 }
 // [End monitor_problem_param_positive_example_1]
+@Component
+export struct MonitorProblemParamPositiveExample1 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_param_positive_example_1'))
+  }
+}

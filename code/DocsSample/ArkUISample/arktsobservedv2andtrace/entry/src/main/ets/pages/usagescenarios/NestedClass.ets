@@ -12,55 +12,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0001;
-const TAG = 'arktsobservedv2andtrace';
 // [Start Nested_Class]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG = 'ArktsObservedV2AndTrace';
+
 @ObservedV2
 class Pencil {
   @Trace public length: number = 21; // 当length变化时，会刷新关联的组件
 }
+
 class Bag {
-  // Public property representing the width dimension
- public width: number = 50;
-  // Public property representing the height dimension
- public height: number = 60;
- public pencil: Pencil = new Pencil();
+  public width: number = 50;
+  public height: number = 60;
+  public pencil: Pencil = new Pencil();
 }
-class NestedClassSon {
-  // Public property storing the age value
- public age: number = 5;
- public school: string = 'some';
- public bag: Bag = new Bag();
+
+class Son {
+  public age: number = 5;
+  public school: string = 'some';
+  public bag: Bag = new Bag();
 }
 
 @Entry
 @ComponentV2
 struct Page {
-  son: NestedClassSon = new NestedClassSon();
-  // Variable to track the number of times the component has been rendered
+  son: Son = new Son();
   renderTimes: number = 0;
+
   isRender(id: number): number {
-    hilog.info(DOMAIN,TAG,`id: ${id} renderTimes: ${this.renderTimes}`);
+    hilog.info(DOMAIN, TAG, `id: ${id} renderTimes: ${this.renderTimes}`);
     this.renderTimes++;
     return 40;
-  };
+  }
 
   build() {
     Column() {
-      Text('pencil length'+ this.son.bag.pencil.length)
-        .fontSize(this.isRender(1))   // UINode (1)
+      Text('pencil length' + this.son.bag.pencil.length)
+        .fontSize(this.isRender(1)) // UINode (1)
       Button('change length')
         .onClick(() => {
           // 点击更改length值，UINode（1）会刷新
           this.son.bag.pencil.length += 100;
-        });
+        })
       Button('assign Son')
         .onClick(() => {
           // 由于变量son非状态变量，因此无法刷新UINode（1）
-          this.son = new NestedClassSon();
-        });
+          this.son = new Son();
+        })
     }
   }
 }
+
 // [End Nested_Class]

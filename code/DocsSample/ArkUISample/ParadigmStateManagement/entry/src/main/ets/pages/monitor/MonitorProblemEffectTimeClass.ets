@@ -12,25 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_effect_time_class]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorProblemEffectTimeClass {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_effect_time_class'))
-  }
-}
-
-// [Start monitor_problem_effect_time_class]
 @ObservedV2
 class Info {
   @Trace public message: string = 'not initialized';
@@ -41,7 +25,7 @@ class Info {
 
   @Monitor('message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
@@ -65,3 +49,16 @@ struct Index {
   }
 }
 // [End monitor_problem_effect_time_class]
+@Component
+export struct MonitorProblemEffectTimeClass {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_effect_time_class'))
+  }
+}

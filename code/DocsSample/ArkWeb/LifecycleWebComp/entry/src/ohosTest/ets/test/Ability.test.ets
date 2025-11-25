@@ -56,7 +56,7 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      expect(src).assertContain('index.html');
+      expect(src).assertContain('www.example.com');
 
       done();
     })

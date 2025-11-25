@@ -17,8 +17,8 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { openCustomDialog } from './openCustomDialog';
-import { customDialogComponentWithTransition } from './customDialogComponentWithTransition';
-import { customDialogWithKeyboardAvoidDistance } from './customDialogWithKeyboardAvoidDistance';
+import { CustomDialogComponentWithTransition } from './customDialogComponentWithTransition';
+import { CustomDialogWithKeyboardAvoidDistance } from './customDialogWithKeyboardAvoidDistance';
 import { OpenDialogAndUpdate } from './OpenDialogAndUpdate';
 
 export const CustomDialog_ROUTE_PREFIX: string = 'CustomDialog_ROUTE_PREFIX';
@@ -30,14 +30,14 @@ const routes: Route[] = [
     description: $r('app.string.Customdialog_des'),
   },
   {
-    name: `${CustomDialog_ROUTE_PREFIX}/customDialogComponentWithTransition`,
-    title: resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')),
-    description: $r('app.string.customDialogComponentWithTransition_desc'),
+    name: `${CustomDialog_ROUTE_PREFIX}/CustomDialogComponentWithTransition`,
+    title: resource.resourceToString($r('app.string.CustomDialogComponentWithTransition_title')),
+    description: $r('app.string.CustomDialogComponentWithTransition_desc'),
   },
   {
-    name: `${CustomDialog_ROUTE_PREFIX}/customDialogWithKeyboardAvoidDistance`,
-    title: resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')),
-    description: $r('app.string.customDialogWithKeyboardAvoidDistance_desc'),
+    name: `${CustomDialog_ROUTE_PREFIX}/CustomDialogWithKeyboardAvoidDistance`,
+    title: resource.resourceToString($r('app.string.CustomDialogWithKeyboardAvoidDistance_title')),
+    description: $r('app.string.CustomDialogWithKeyboardAvoidDistance_desc'),
   },
   {
     name: `${CustomDialog_ROUTE_PREFIX}/OpenDialogAndUpdate`,
@@ -53,9 +53,9 @@ export function CustomDialogDestination(name: string) {
   } else if (name === routes[0].name) {
     openCustomDialog();
   } else if (name === routes[1].name) {
-    customDialogComponentWithTransition();
+    CustomDialogComponentWithTransition();
   } else if (name === routes[2].name) {
-    customDialogWithKeyboardAvoidDistance();
+    CustomDialogWithKeyboardAvoidDistance();
   } else if (name === routes[3].name) {
     OpenDialogAndUpdate();
   }

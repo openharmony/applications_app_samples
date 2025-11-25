@@ -12,13 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [Start localstorage_export_one]
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
+// [StartExclude localstorage_export_one]
 const DOMAIN = 0x0000;
 
+// [EndExclude localstorage_export_one]
 export default class EntryAbility extends UIAbility {
+  para: Record<string, number> = {
+    'PropA': 47
+  };
+  storage: LocalStorage = new LocalStorage(this.para);
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 当前用例需要开发者手动修改为windowStage.loadContent('pages/PageFiveShare', this.storage);
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+
+  // [StartExclude localstorage_export_one]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -30,19 +46,6 @@ export default class EntryAbility extends UIAbility {
 
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
-  }
-
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
-        return;
-      }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
-    });
   }
 
   onWindowStageDestroy(): void {
@@ -59,4 +62,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
+  // [EndExclude localstorage_export_one]
 }
+
+// [End localstorage_export_one]

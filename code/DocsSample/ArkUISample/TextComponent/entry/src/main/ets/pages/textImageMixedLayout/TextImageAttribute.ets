@@ -13,15 +13,20 @@
  * limitations under the License.
  */
 
-
+// [Start textImage_attribute]
+// resourceGetString封装工具，从资源中获取字符串
+import resourceGetString from '../../common/resource';
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_Textcomponent]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Textcomponent_';
 
 @Entry
 @Component
-export struct TextImageAttribute {
-  // [Start textImage_attribute]
+struct styled_string_demo {
   @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State imagePixelMap3: image.PixelMap | undefined = undefined;
@@ -39,8 +44,9 @@ export struct TextImageAttribute {
   }]);
 
   async aboutToAppear() {
-    console.info('aboutToAppear initial imagePixelMap');
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
+    hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToAppear initial imagePixelMap');
+    // $r('app.media.sky')需要替换为开发者所需的资源文件。
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sky'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -65,7 +71,8 @@ export struct TextImageAttribute {
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_1')), [
+    // 'app.string.print_photo'资源文件中的value值为"\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
+    new MutableStyledString(resourceGetString.resourceToString($r('app.string.print_photo')), [
       {
         start: 0,
         length: 28,
@@ -79,7 +86,8 @@ export struct TextImageAttribute {
         styledValue: this.lineHeightStyle1
       }
     ]);
-  paragraphStyledString2: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_2')), [
+  // 'app.string.limited_time_discount'资源文件中的value值为"\n限时直降5.15元 限量增送"
+  paragraphStyledString2: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.limited_time_discount')), [
     {
       start: 0,
       length: 5,
@@ -111,7 +119,8 @@ export struct TextImageAttribute {
       styledValue: new TextStyle({ fontColor: Color.Grey, fontSize: LengthMetrics.vp(14) })
     }
   ]);
-  paragraphStyledString3: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_3')), [
+  // 'app.string.sales_volume'资源文件中的value值为"\n￥22.50 销量400万+"
+  paragraphStyledString3: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.sales_volume')), [
     {
       start: 0,
       length: 15,
@@ -157,44 +166,46 @@ export struct TextImageAttribute {
   ]);
 
   build() {
-    NavDestination() {
-      Row() {
-        Column({ space: 10 }) {
-          // [StartExclude textImage_attribute]
-          Text(undefined, { controller: this.controller })
-            .copyOption(CopyOptions.InApp)
-            .draggable(true)
-            .backgroundColor('#FFFFFF')
-            .borderRadius(5)
-            .width(210)
-
-          Button($r('app.string.textImageMixedLayout_content'))
-            .onClick(() => {
-              if (this.imagePixelMap !== undefined) {
-                this.mutableStr = new MutableStyledString(new ImageAttachment({
-                  value: this.imagePixelMap,
-                  size: { width: 210, height: 190 },
-                  verticalAlign: ImageSpanAlignment.BASELINE,
-                  objectFit: ImageFit.Fill,
-                  layoutStyle: {
-                    borderRadius: LengthMetrics.vp(5)
-                  }
-                }));
-                this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2);
-                this.paragraphStyledString1.appendStyledString(this.paragraphStyledString3);
-                this.mutableStr.appendStyledString(this.paragraphStyledString1);
-                this.controller.setStyledString(this.mutableStr);
-              }
-            })
-        }
-        .width('100%')
-        // [EndExclude textImage_attribute]
+    Row() {
+      Column({ space: 10 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .backgroundColor('#FFFFFF')
+          .borderRadius(5)
+          .width(210)
+        // 'app.string.textImageMixedLayout_content'资源文件中的value值为"点击查看商品详情"
+        Button($r('app.string.textImageMixedLayout_content'))
+          .onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              this.mutableStr = new MutableStyledString(new ImageAttachment({
+                value: this.imagePixelMap,
+                size: { width: 210, height: 190 },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Fill,
+                layoutStyle: {
+                  borderRadius: LengthMetrics.vp(5)
+                }
+              }));
+              this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2);
+              this.paragraphStyledString1.appendStyledString(this.paragraphStyledString3);
+              this.mutableStr.appendStyledString(this.paragraphStyledString1);
+              this.controller.setStyledString(this.mutableStr);
+            }
+          })
       }
-      .height('100%')
-      .backgroundColor('#F8F8FF')
-      // [End textImage_attribute]
+      .width('100%')
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.TextImage_MixedLayout_Text_2'))
+    .height('100%')
+    .backgroundColor('#F8F8FF')
   }
+}
+// [End textImage_attribute]
+@Builder
+export function TextImageAttribute() {
+  NavDestination() {
+    styled_string_demo()
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.TextImage_MixedLayout_Text_2'))
 }

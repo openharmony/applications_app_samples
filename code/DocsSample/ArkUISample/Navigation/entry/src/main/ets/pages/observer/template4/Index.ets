@@ -24,7 +24,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -38,11 +38,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc)
+    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc);
   }
 
   aboutToDisappear() {
-    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc)
+    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc);
   }
 
   build() {

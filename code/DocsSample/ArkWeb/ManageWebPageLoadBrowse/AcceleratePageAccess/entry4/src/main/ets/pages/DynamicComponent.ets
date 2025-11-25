@@ -13,20 +13,23 @@
  * limitations under the License.
  */
 // [Start underlying_code_required_for_dynamic_components]
+// main/ets/pages/DynamicComponent.ets 
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 export interface BuilderData {
   url: string;
   controller: WebviewController;
+  context: UIContext;
 }
 
-const storage = LocalStorage.getShared();
+let storage : LocalStorage | undefined = undefined;
 
 export class NodeControllerImpl extends NodeController {
   private rootNode: BuilderNode<BuilderData[]> | null = null;
   private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-  constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+  constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>,  context: UIContext) {
+  storage = context.getSharedLocalStorage();
     super();
     this.wrappedBuilder = wrappedBuilder;
   }
@@ -43,7 +46,7 @@ export class NodeControllerImpl extends NodeController {
       return;
     }
 
-    const uiContext: UIContext = storage.get<UIContext>('uiContext') as UIContext;
+    const uiContext: UIContext = storage!.get<UIContext>('uiContext') as UIContext;
     if (!uiContext) {
       return;
     }
@@ -53,7 +56,7 @@ export class NodeControllerImpl extends NodeController {
 }
 
 export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-  const baseNode = new NodeControllerImpl(wrappedBuilder);
+  const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
   baseNode.initWeb(data.url, data.controller);
   return baseNode;
 }

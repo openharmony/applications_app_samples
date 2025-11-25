@@ -33,7 +33,7 @@ export struct AlignContentFlex {
           .width($r('app.string.layout_5_percent'))
           .height($r('app.integer.layout_20'))
           .backgroundColor(item % 2 === 0 ? $r('app.color.txt_background_color1') : $r('app.color.txt_background_color2'))
-      }, (item: number) => item.toString())
+      }, (item: number) => item.toString());
     }
     .size({ width: $r('app.string.layout_100_percent'), height: $r('app.integer.layout_240') })
     .padding($r('app.integer.layout_10'))

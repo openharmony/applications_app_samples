@@ -16,24 +16,26 @@
 // [Start ProtectedInStruct_CorrectCase]
 @Entry
 @Component
-struct PISCorrectAccessRestrictions  {
+struct ProtectedCorrectAccessRestrictions {
   build() {
     Column() {
-      PISCorrectComponentChild({regularValue: 'Hello'});
+      ProtectedCorrectComponentChild({ regularValue: 'Hello' })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
 @Component
-struct PISCorrectComponentChild  {
+struct ProtectedCorrectComponentChild {
   regularValue: string = 'Hello';
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
-    };
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
+
 // [End ProtectedInStruct_CorrectCase]

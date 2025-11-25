@@ -310,19 +310,19 @@ export function BindSheetTest() {
       let endX = Math.floor(size.x * 0.5)
       let endY = Math.floor(size.y * 0.106)
 
-      await driver.swipe(startX, Math.floor(size.y * 0.6356), endX, endY);
+      await driver.swipe(startX, Math.floor(size.y * 0.6356), endX, endY, 3000);
       await driver.delayMs(1000);
 
-      await driver.swipe(startX, startY, endX, endY);
+      await driver.swipe(startX, startY, endX, endY, 3000);
       await driver.delayMs(1000);
 
-      await driver.swipe(startX, startY, endX, endY);
+      await driver.swipe(startX, startY, endX, endY, 3000);
       await driver.delayMs(1000);
 
-      await driver.swipe(startX, Math.floor(size.y * 0.282), endX, Math.floor(size.y * 0.6356));
+      await driver.swipe(startX, Math.floor(size.y * 0.282), endX, Math.floor(size.y * 0.6356), 3000);
       await driver.delayMs(1000);
 
-      await driver.swipe(startX, Math.floor(size.y * 0.53), endX, Math.floor(size.y * 0.8828));
+      await driver.swipe(startX, Math.floor(size.y * 0.53), endX, Math.floor(size.y * 0.8828), 3000);
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_010_end');
     })

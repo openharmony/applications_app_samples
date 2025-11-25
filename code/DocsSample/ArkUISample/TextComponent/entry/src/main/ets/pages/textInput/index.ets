@@ -26,8 +26,10 @@ import { SelectMenu } from './SelectMenu';
 import { AutoFill } from './AutoFill';
 import { SetProperty } from './SetProperty';
 import { CursorAvoidance } from './CursorAvoidance';
-import { ProhibitSelectionMenu } from './ProhibitSelectMenu';
+import { ProhibitSelectionMenu } from './disablemenu';
 import { SetTextMargin } from './SetTextMargin';
+import { SetInputMultiTypeStyle } from './SetInputMultiTypeStyle';
+import { NormalQuestion } from './NormalQuestion';
 
 export const INPUT_ROUTE_PREFIX: string = 'TextInput';
 
@@ -86,6 +88,16 @@ const routes: Route[] = [
     name: `${INPUT_ROUTE_PREFIX}/CursorAvoidance`,
     title: resource.resourceToString($r('app.string.CursorAvoidance_title')),
     description: $r('app.string.CursorAvoidance_description')
+  },
+  {
+    name: `${INPUT_ROUTE_PREFIX}/SetInputMultiTypeStyle`,
+    title: resource.resourceToString($r('app.string.SetInputBoxMultiTypeStyle_title')),
+    description: $r('app.string.SetInputBoxMultiTypeStyle_description')
+  },
+  {
+    name: `${INPUT_ROUTE_PREFIX}/NormalQuestion`,
+    title: resource.resourceToString($r('app.string.NormalQuestion_title')),
+    description: $r('app.string.NormalQuestion_description')
   }
 ];
 
@@ -115,6 +127,10 @@ export function TextInputDestination(name: string) {
     KeyboardAvoidance();
   } else if (name === routes[10].name) {
     CursorAvoidance();
+  } else if (name === routes[11].name) {
+    SetInputMultiTypeStyle();
+  } else if (name === routes[12].name) {
+    NormalQuestion();
   }
 }
 
@@ -142,7 +158,7 @@ struct TextInputExample {
       }.id('scroll_')
     }
     .backgroundColor('#f1f3f5')
-    .title('TextInput/TextArea', {
+    .title('TextInput/TextArea/Search', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })

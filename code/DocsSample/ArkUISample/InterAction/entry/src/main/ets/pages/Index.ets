@@ -21,21 +21,21 @@ import router from '@ohos.router';
 function cardPressedStyle() {
   .backgroundColor('rgba(0,0,0,0.1)')
   .opacity(1)
-  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
+  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 });
 }
 
 @Styles
 function cardNormalStyle() {
   .backgroundColor('rgba(0,0,0,0)')
   .opacity(1)
-  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
+  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 });
 }
 
 @Styles
 function cardDisabledStyle() {
   .backgroundColor('rgba(0,0,0,0)')
   .opacity(0.5)
-  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
+  .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 });
 }
 
 
@@ -43,7 +43,7 @@ function cardDisabledStyle() {
 @Component
 struct ComponentExtension {
   @Provide('router') router: NavPathStack = new NavPathStack();
-  //$r('app.string.xxx')需要替换为开发者所需的资源文件
+  // $r('app.string.xxx')需要替换为开发者所需的资源文件
   @State routes: RouteGroup[] = [
     {
       name: 'FocusOnclickExample',
@@ -192,7 +192,7 @@ struct ComponentExtension {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    router.pushUrl({ url: name })
+                    router.pushUrl({ url: name });
                   })
                 }
                 .width('100%')

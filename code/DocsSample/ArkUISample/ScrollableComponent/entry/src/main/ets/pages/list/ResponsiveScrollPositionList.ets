@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start respond_to_scroll_position]
+
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
 
+// [Start respond_to_scroll_position]
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -106,7 +107,6 @@ export let contactsGroups: object[] = [
     key: util.generateRandomUUID(true)
   } as ContactsGroup
 ];
-
 // [EndExclude respond_to_scroll_position]
 
 @Entry
@@ -114,9 +114,9 @@ export let contactsGroups: object[] = [
 export struct ResponsiveScrollPositionList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
+  // [StartExclude respond_to_scroll_position]
   private currentGroupTitle: string = ''; // 用于跟踪当前显示的分组标题
 
-  // [StartExclude respond_to_scroll_position]
   @Builder
   itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
@@ -126,7 +126,6 @@ export struct ResponsiveScrollPositionList {
       .width('100%')
       .padding(5)
   }
-
   // [EndExclude respond_to_scroll_position]
 
   build() {
@@ -135,13 +134,18 @@ export struct ResponsiveScrollPositionList {
       Column({ space: 12 }) {
         // $r('app.string.ResponsiveScrollPositionList_titleExample')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ResponsiveScrollPositionList_titleExample') }) {
+          // [EndExclude respond_to_scroll_position]
           // [EndExclude use_stack]
           Stack({ alignContent: Alignment.End }) {
             // 此为响应滚动位置示例List容器
-            // [Start respond_tolistScroller]
+            // [Start respond_to_list_scroller]
+            // [Start scroller_scroll_bar]
+            // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
             List({ scroller: this.listScroller }) {
+            // [End scroller_scroll_bar]
+              // [StartExclude respond_to_scroll_position]
               // [StartExclude use_foreach]
-              // [StartExclude respond_tolistScroller]
+              // [StartExclude respond_to_list_scroller]
               ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
                 ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                   // 循环渲染ListItem
@@ -152,22 +156,18 @@ export struct ResponsiveScrollPositionList {
                           Image(item.icon).width(40).height(40).margin(10)
                           Text(item.name).fontSize(20)
                         }.width('100%').justifyContent(FlexAlign.Start)
-
-                        // [EndExclude respond_to_scroll_position]
                       }
-
-                      // [StartExclude respond_to_scroll_position]
                     }, (item: Contact) => JSON.stringify(item))
                   }
                 }
               }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
-              // [EndExclude respond_tolistScroller]
+              // [EndExclude respond_to_list_scroller]
+              // [EndExclude respond_to_scroll_position]
             }
-            // [End respond_tolistScroller]
-            // [EndExclude respond_to_scroll_position]
+            // [End respond_to_list_scroller]
             .onScrollIndex((firstIndex: number) => {
-              // [StartExclude respond_to_scroll_position]
               // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
+              // [StartExclude respond_to_scroll_position]
               let group = contactsGroups[firstIndex] as ContactsGroup;
               this.currentGroupTitle = group.title;
               this.selectedIndex = alphabets.indexOf(this.currentGroupTitle);
@@ -180,8 +180,9 @@ export struct ResponsiveScrollPositionList {
               .onSelect((index: number) => {
                 this.listScroller.scrollToIndex(index);
               })
-            // [End respond_to_scroll_position]
-          }.height('90%')
+          }
+          // [StartExclude respond_to_scroll_position]
+          .height('90%')
         }
       }
       .width('100%')
@@ -190,5 +191,7 @@ export struct ResponsiveScrollPositionList {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ResponsiveScrollPositionList_title'))
+    // [EndExclude respond_to_scroll_position]
   }
 }
+// [End respond_to_scroll_position]

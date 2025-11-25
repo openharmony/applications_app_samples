@@ -12,17 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// 构造LocalStorage实例
 // [Start localtorage_page_two_way_syn]
-let para1: Record<string, number> = { 'PropA': 47 };
-let storage1: LocalStorage = new LocalStorage(para1);
+// 构造LocalStorage实例
+let paraOne: Record<string, number> = { 'PropA': 47 };
+let storageOne: LocalStorage = new LocalStorage(paraOne);
 // 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA: SubscribedAbstractProperty<object> = storage1.link('PropA');
+let linkToPropA: SubscribedAbstractProperty<object> = storageOne.link('PropA');
 
-@Entry
+@Entry(storageOne)
 @Component
-struct Parent2 {
-
+struct ParentTwo {
   // @LocalStorageLink('PropA')在Parent自定义组件中创建'PropA'的双向同步数据，初始值为47，因为在构造LocalStorage已经给“PropA”设置47
   @LocalStorageLink('PropA') storageLink: number = 1;
 
@@ -40,4 +39,5 @@ struct Parent2 {
     }
   }
 }
+
 // [End localtorage_page_two_way_syn]

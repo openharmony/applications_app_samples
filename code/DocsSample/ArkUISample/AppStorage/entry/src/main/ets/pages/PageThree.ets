@@ -53,7 +53,7 @@ struct StoragePropComponent {
 
 @Entry
 @Component
-struct TestPageThree {
+struct TestPageStorageLink {
   build() {
     Row() {
       Column() {
@@ -65,4 +65,5 @@ struct TestPageThree {
     .height('100%')
   }
 }
+
 // [End appstorage_page_three]

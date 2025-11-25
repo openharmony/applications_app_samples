@@ -20,7 +20,7 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 14,
+        "compileSdkVersion": 20,
         "compatibleSdkVersion": 14,
         "targetSdkVersion": 14,
         "runtimeOS": "OpenHarmony",
@@ -87,6 +87,18 @@
     {
       "name": "entry5",
       "srcPath": "./entry5",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "entry6",
+      "srcPath": "./entry6",
       "targets": [
         {
           "name": "default",

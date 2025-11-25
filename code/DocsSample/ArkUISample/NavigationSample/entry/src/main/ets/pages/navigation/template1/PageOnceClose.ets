@@ -21,16 +21,16 @@ struct PageOnceClose {
   // [End PageOnceClose]
   @Builder
   PageBuilder(name: string) {
-    MyComponent()
-  };
+    MyComponent();
+  }
 
   build() {
     Column() {
       Navigation(this.pageStack) {
         Button('push').onClick(() => {
-          // [Start PageOnceClose1]
+          // [Start PageOnceCloseOne]
           this.pageStack.pushPath({ name: 'MyComponent' }, false);
-          // [End PageOnceClose1]
+          // [End PageOnceCloseOne]
         })
       }
       .title('Navigation')
@@ -47,11 +47,12 @@ struct MyComponent {
   build() {
     NavDestination() {
       Column() {
-        Text('所属页面')
+        // $r('app.string.ToPage')需要替换为开发者所需的字符串资源文件
+        Text($r('app.string.ToPage'))
           .onClick(()=>{
-            // [Start PageOnceClose2]
+            // [Start PageOnceCloseTwo]
             this.pageStack.pop(false);
-            // [End PageOnceClose2]
+            // [End PageOnceCloseTwo]
           })
       }.width('100%').height('100%')
     }

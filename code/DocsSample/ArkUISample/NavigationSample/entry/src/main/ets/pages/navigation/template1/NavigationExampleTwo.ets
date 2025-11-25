@@ -23,7 +23,7 @@ export struct PageTwo {
   pathInfos: NavPathStack = new NavPathStack();
   name: string = '';
   private listArray: Array<string> = ['Projection', 'Print', 'VPN', 'Private DNS', 'NFC'];
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -72,7 +72,9 @@ export struct PageTwo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '页面设置参数');
+              // $r('app.string.pageSettingParam')资源文件中的value值为“页面设置参数”
+              this.pathInfos.pushPathByName(`${item}`,
+                this.context!.resourceManager.getStringSync($r('app.string.pageSettingParam').id));
             })
           }, (item: string): string => item)
         }

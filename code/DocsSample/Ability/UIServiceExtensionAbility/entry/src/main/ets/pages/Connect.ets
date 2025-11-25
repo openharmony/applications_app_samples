@@ -19,7 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct Index {
+struct Connect {
   comProxy: common.UIServiceProxy | null = null;
   connectCallback: common.UIServiceExtensionConnectCallback = {
     onData: (data: Record<string, Object>) => {

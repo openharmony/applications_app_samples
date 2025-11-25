@@ -197,6 +197,15 @@
       "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
     },
     {
+      "name": "TextPicker_cn_title",
+      "value": "文本滑动选择器中文弹窗"
+    },
+    {
+      "name": "TextPicker_cn_des",
+      "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
+    },
+
+    {
       "name": "ActionSheet_title",
       "value": "列表选择弹窗"
     },
@@ -237,14 +246,6 @@
       "value": "菜单选项"
     },
     {
-      "name": "menu_default",
-      "value": "默认样式"
-    },
-    {
-      "name": "menu_bind",
-      "value": "属性绑定"
-    },
-    {
       "name": "menu_rightClick",
       "value": "支持鼠标右键的菜单"
     },
@@ -270,7 +271,7 @@
     },
     {
       "name": "OpenMenu_des",
-      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
+      "value": "通过使用全局接口openMenu的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "Customdialog_title",
@@ -281,92 +282,28 @@
       "value": "由于CustomDialogController在使用上存在诸多限制，不支持动态创建也不支持动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的openCustomDialog接口来实现自定义弹出框。"
     },
     {
-      "name": "OverlayManager_demo1_title",
+      "name": "OverlayManager_component_title",
       "value": "设置浮层"
     },
     {
-      "name": "OverlayManager_demo1_des",
+      "name": "OverlayManager_component_des",
       "value": "在OverlayManager上新增指定节点（addComponentContent）、删除指定节点（removeComponentContent）、显示所有节点（showAllComponentContents）和隐藏所有节点（hideAllComponentContents）"
     },
     {
-      "name": "OverlayManager_demo1_button1",
-      "value": "递增componentContentIndex: "
-    },
-    {
-      "name": "OverlayManager_demo1_button2",
-      "value": "递减componentContentIndex: "
-    },
-    {
-      "name": "OverlayManager_demo1_button3",
-      "value": "增加ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button4",
-      "value": "递增arrayIndex: "
-    },
-    {
-      "name": "OverlayManager_demo1_button5",
-      "value": "递减arrayIndex: "
-    },
-    {
-      "name": "OverlayManager_demo1_button6",
-      "value": "删除ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button7",
-      "value": "显示ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button8",
-      "value": "隐藏ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button9",
-      "value": "显示所有ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button10",
-      "value": "隐藏所有ComponentContent"
-    },
-    {
-      "name": "OverlayManager_demo1_button11",
-      "value": "跳转页面"
-    },
-    {
-      "name": "OverlayManager_demo2_title",
+      "name": "OverlayManager_alert_title",
       "value": "弹出alertDialog弹窗"
     },
     {
-      "name": "OverlayManager_demo2_des",
+      "name": "OverlayManager_alert_des",
       "value": "显示一个始终在屏幕左侧的悬浮球，点击可以弹出alertDialog弹窗。"
     },
     {
-      "name": "OverlayManager_demo3_title",
+      "name": "OverlayManager_withOrder_title",
       "value": "新增指定节点addComponentContentWithOrder"
     },
     {
-      "name": "OverlayManager_demo3_des",
+      "name": "OverlayManager_withOrder_des",
       "value": "从API version 18开始，可以通过调用UIContext中getOverlayManager方法获取OverlayManager对象，并利用该对象在指定层级上新增指定节点（addComponentContentWithOrder），层次高的浮层会覆盖在层级低的浮层之上。"
-    },
-    {
-      "name": "Demo3_topDialogButton",
-      "value": "点击打开置顶弹窗"
-    },
-    {
-      "name": "Demo3_topDialog",
-      "value": "我是置顶弹窗"
-    },
-    {
-      "name": "Demo3_normalDialogButton",
-      "value": "点击打开普通弹窗"
-    },
-    {
-      "name": "Demo3_normalDialog",
-      "value": "我是普通弹窗"
-    },
-    {
-      "name": "Demo3_removeDialogButton",
-      "value": "点击移除弹窗"
     },
     {
       "name": "close_dialog",
@@ -553,51 +490,51 @@
       "value": "即时反馈提供了两种显示模式，分别为DEFAULT（显示在应用内）、TOP_MOST（显示在应用之上）。"
     },
     {
-      "name": "CreateCustomDialog1_title",
-      "value": "创建自定义弹出框1"
+      "name": "CreateCustomDialogNew_title",
+      "value": "创建自定义弹出框新页面"
     },
     {
-      "name": "CreateCustomDialog1_desc",
+      "name": "CreateCustomDialogNew_desc",
       "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
     },
     {
-      "name": "DialogInteraction2_title",
-      "value": "弹出框的交互2"
+      "name": "DialogInteractionUseConstructor_title",
+      "value": "弹出框的交互使用构造器"
     },
     {
-      "name": "DialogInteraction2_desc",
+      "name": "DialogInteractionUseConstructor_desc",
       "value": "页面内需要在构造器内进行接收，同时创建相应的函数操作。"
     },
     {
-      "name": "DialogInteraction3_title",
-      "value": "弹出框的交互3"
+      "name": "DialogInteractionUseButton_title",
+      "value": "弹出框的交互使用button"
     },
     {
-      "name": "DialogInteraction3_desc",
+      "name": "DialogInteractionUseButton_desc",
       "value": "可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。"
     },
     {
-      "name": "DialogAnimation1_title",
-      "value": "弹出框的动画1"
+      "name": "DialogAnimationNew_title",
+      "value": "弹出框的动画新页面"
     },
     {
-      "name": "DialogAnimation1_desc",
+      "name": "DialogAnimationNew_desc",
       "value": "弹出框通过定义openAnimation控制弹出框出现动画的持续时间，速度等参数。"
     },
     {
-      "name": "DialogStyle1_title",
-      "value": "弹出框的样式1"
+      "name": "DialogStyleNew_title",
+      "value": "弹出框的样式新页面"
     },
     {
-      "name": "DialogStyle1_desc",
+      "name": "DialogStyleNew_desc",
       "value": "通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。"
     },
     {
-      "name": "NestDialog1_title",
-      "value": "嵌套自定义弹出框1"
+      "name": "NestDialogNew_title",
+      "value": "嵌套自定义弹出框新页面"
     },
     {
-      "name": "NestDialog1_desc",
+      "name": "NestDialogNew_desc",
       "value": "通过第一个弹出框打开第二个弹出框时，最好将第二个弹出框定义在第一个弹出框的父组件处，通过父组件传给第一个弹出框的回调来打开第二个弹出框。"
     },
     {
@@ -629,19 +566,19 @@
       "value": "我是内容"
     },
     {
-      "name": "customDialogComponentWithTransition_title",
+      "name": "CustomDialogComponentWithTransition_title",
       "value": "为弹出框内容和蒙层设置不同的动画效果"
     },
     {
-      "name": "customDialogComponentWithTransition_desc",
+      "name": "CustomDialogComponentWithTransition_desc",
       "value": "当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，从API version 19开始，可通过BaseDialogOptions中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考组件内转场 (transition)。"
     },
     {
-      "name": "customDialogWithKeyboardAvoidDistance_title",
+      "name": "CustomDialogWithKeyboardAvoidDistance_title",
       "value": "设置弹出框避让软键盘的距离"
     },
     {
-      "name": "customDialogWithKeyboardAvoidDistance_desc",
+      "name": "CustomDialogWithKeyboardAvoidDistance_desc",
       "value": "为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。从API version 15开始，开发者可以利用BaseDialogOptions中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。"
     },
     {
@@ -697,22 +634,6 @@
       "value": "展示弹出框在蒙层显隐控制方面的能力。"
     },
     {
-      "name": "DefaultAndTopToast_defaultToast",
-      "value": "DEFAULT类型Toast"
-    },
-    {
-      "name": "DefaultAndTopToast_defaultToastMessage",
-      "value": "ok，我是DEFAULT toast"
-    },
-    {
-      "name": "DefaultAndTopToast_topToast",
-      "value": "TOPMOST类型Toast"
-    },
-    {
-      "name": "DefaultAndTopToast_topToastMessage",
-      "value": "ok，我是TOP_MOST toast"
-    },
-    {
       "name": "Scan_title",
       "value": "扫一扫"
     },
@@ -758,7 +679,7 @@
     },
     {
       "name": "hoverMode_start",
-      "value": "hoverMode开启"
+      "value": "hoverMode开启:"
     },
     {
       "name": "PopVibrateMenu_title",
@@ -825,8 +746,76 @@
       "value": "点击关闭弹窗：通过外部传递的DialogController"
     },
     {
+      "name": "search_by_dialog_controller",
+      "value": "点我查询弹窗状态:通过CustomDialogController "
+    },
+    {
+      "name": "search_by_dialog",
+      "value": "点我查询弹窗状态:通过自定义组件自带controller"
+    },
+    {
       "name": "close_widows",
       "value": "点我关闭弹窗"
+    },
+    {
+      "name": "dialog_message",
+      "value": "弹窗"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "click_check_status",
+      "value": "点我查询弹窗状态"
+    },
+    {
+      "name": "open_custom_dialog_with_controller",
+      "value": "OpenCustomDialogWithController弹窗"
+    },
+    {
+      "name": "present_custom_dialog",
+      "value": "PresentCustomDialog+CustomBuilder弹窗"
+    },
+    {
+      "name": "custom_builder_with_id",
+      "value": "PresentCustomDialog+CustomBuilderWithId弹窗"
+    },
+    {
+      "name": "custom_dialog_controller_dialog",
+      "value": "CustomDialogController弹窗"
+    },
+    {
+      "name": "top_dialog",
+      "value": "我是置顶弹窗"
+    },
+    {
+      "name": "open_dialog",
+      "value": "点我打开普通弹窗"
+    },
+    {
+      "name": "open_normal_dialog",
+      "value": "我是普通弹窗"
+    },
+    {
+      "name": "click_dialog",
+      "value": "点击弹窗"
+    },
+    {
+      "name": "CreateDefaultMenu_title",
+      "value": "创建默认样式的菜单"
+    },
+    {
+      "name": "CreateDefaultMenu_des",
+      "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
+    },
+    {
+      "name": "BuilderCustomMenu_title",
+      "value": "使用@Builder自定义菜单内容"
     }
   ]
 }

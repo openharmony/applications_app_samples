@@ -1,5 +1,3 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -14,17 +12,18 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const DOMAIN = 0x0000;
 // [Start NavigationModeSplit]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0000;
 @Entry
 @Component
 struct PageDisplayModeSplit {
   @State toolTmp: ToolbarItem = {
     'value': 'func',
-    'icon': 'resources/base/media/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
+    'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
     'action': () => {}
   };
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
   @Builder
@@ -36,11 +35,11 @@ struct PageDisplayModeSplit {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {
-      Navigation(this.pageInfos) {
+      Navigation(this.navPathStack) {
         TextInput({ placeholder: 'search...' })
           .width('90%')
           .height(40)
@@ -58,7 +57,7 @@ struct PageDisplayModeSplit {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
                 .onClick(() => {
-                  this.pageInfos.pushPath({ name: 'NavDestinationTitle' + item });
+                  this.navPathStack.pushPath({ name: 'NavDestinationTitle' + item });
                 })
             }
           }, (item: number) => item.toString())
@@ -66,7 +65,8 @@ struct PageDisplayModeSplit {
         .width('90%')
         .margin({ top: 12 })
       }
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
       .menus([
@@ -101,8 +101,8 @@ struct PageDisplayModeSplit {
 
 @Component
 export struct pageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
-
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -110,8 +110,10 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
+      // $r('app.string.returnValue')资源文件中的value值为“返回值”
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -119,8 +121,8 @@ export struct pageOneTmp {
 
 @Component
 export struct pageTwoTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
-
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -128,8 +130,10 @@ export struct pageTwoTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
+      // $r('app.string.returnValue')资源文件中的value值为“返回值”
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -137,8 +141,8 @@ export struct pageTwoTmp {
 
 @Component
 export struct pageThreeTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
-
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -146,8 +150,10 @@ export struct pageThreeTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈栈顶元素
+      // $r('app.string.returnValue')资源文件中的value值为“返回值”
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }

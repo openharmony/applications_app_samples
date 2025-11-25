@@ -14,14 +14,14 @@
  *
 */
 
-// src/main/ets/pages/1-Basic.ets
 // [Start Main_Basic]
+// src/main/ets/pages/BasicPage.ets
 @Entry
 @ComponentV2
 struct TodoList {
   build() {
     Column() {
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin({ bottom: 10 })
       Text('task1')

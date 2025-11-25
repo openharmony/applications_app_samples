@@ -25,17 +25,17 @@ export struct ifOrVisibilityHomeView {
   build() {
     Row() {
       Column() {
-        Text($r("app.string.choice_render_title"))
+        Text($r('app.string.choice_render_title'))
           .fontSize($r('app.integer.font_size_30'))
           .fontWeight(FontWeight.Bold)
           .margin({ top: $r('app.integer.layout_30') })
         ForEach(this.SceneDataArray, (item: SceneMsg, index: number) => {
           Button(item.title)
             .urlButtonFancy(item.uri)
-        }, (item: SceneMsg) => JSON.stringify(item))
+        }, (item: SceneMsg) => JSON.stringify(item));
       }
       .width('100%')
-      .height("100%")
+      .height('100%')
     }
     .height('100%')
   }
@@ -48,5 +48,5 @@ function urlButtonFancy(url: string) {
   .margin({ top: $r('app.integer.layout_30') })
   .onClick(() => {
     router.pushUrl({ url: url });
-  })
+  });
 }

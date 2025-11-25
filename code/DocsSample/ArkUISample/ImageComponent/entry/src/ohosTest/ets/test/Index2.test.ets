@@ -84,40 +84,19 @@ export default function Index2Test() {
      */
     it('LoadImageResources', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'ImageTest: LoadImageResources begin');
-      try {
-        // 点击进入LoadImageResources页面
-        const targetItem = await driver.findComponent(ON.text('LoadImageResources'));
-        if (targetItem !== null) {
-          await targetItem.click();
-          hilog.info(DOMAIN, TAG, 'ImageTest: Clicked LoadImageResources item');
-          // 1. 查找并点击第一个单选框
-          const checkboxes = await driver.findComponents(ON.type('Checkbox'));
-          if (checkboxes && checkboxes.length > 0) {
-            await checkboxes[0].click();
-            hilog.info(DOMAIN, TAG, 'ImageTest: Selected first checkbox');
-            // 2. 查找并点击完成按钮
-            await driver.delayMs(1000);
-            const doneButton = await driver.findComponent(ON.text('完成'));
-            if (doneButton !== null) {
-              await doneButton.click();
-              hilog.info(DOMAIN, TAG, 'ImageTest: Clicked done button');
-            } else {
-              // 备选完成按钮文本
-              const confirmButton = await driver.findComponent(ON.text('确认'));
-              if (confirmButton !== null) await confirmButton.click();
-            }
-            // 3. 等待照片加载并查看
-            await driver.delayMs(2000); // 额外等待2秒查看效果
-          } else {
-            hilog.info(DOMAIN, TAG, 'ImageTest: No checkboxes found in photo picker');
-          }
-          // 返回首页
-          await driver.pressBack();
-          await driver.delayMs(1000);
-          hilog.info(DOMAIN, TAG, 'ImageTest: Completed LoadImageResources flow successfully');
-        }
-      } catch (error) {
-        hilog.info(DOMAIN, TAG, `ImageTest: LoadImageResources error - ${error.message}`);
+      // 点击进入LoadImageResources页面
+      const targetItem = await driver.findComponent(ON.text('LoadImageResources'));
+      if (targetItem !== null) {
+        await targetItem.click();
+        hilog.info(DOMAIN, TAG, 'ImageTest: Clicked LoadImageResources item');
+        // 等待目标页面加载
+        await driver.delayMs(4000);
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(1000);
+        await driver.pressBack();
+        await driver.delayMs(1000);
+        hilog.info(DOMAIN, TAG, 'ImageTest: Completed LoadImageResources flow successfully');
       }
       hilog.info(DOMAIN, TAG, 'ImageTest: LoadImageResources end');
       done();

@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 // [Start freeze_template4_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+
 @Entry
 @ComponentV2
 struct RepeatVirtualScrollFreeze {
@@ -67,7 +71,7 @@ struct ChildComponent {
   @Monitor('bgColor')
   onBgColorChange(monitor: IMonitor) {
     // bgColor改变时，缓存池中组件不刷新，不会打印日志
-    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {

@@ -12,21 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@Component
-export struct LocalQuestionExpectedEffect {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.local_question_expected_effect'))
-  }
-}
-
 // [Start Local_Question_Expected_Effect]
+import { UIUtils } from '@kit.ArkUI';
+
 @Entry
 @ComponentV2
 struct Index {
@@ -40,12 +28,10 @@ struct Index {
         .margin(20)
         .onClick(() => {
           // 在执行动画前，存在额外的修改
-          this.w = 100;
-          this.h = 100;
-          this.message = 'Hello World';
-          animateToImmediately({
-            duration: 0
-          }, () => {
+          UIUtils.applySync(() => {
+            this.w = 100;
+            this.h = 100;
+            this.message = 'Hello World';
           })
           this.getUIContext().animateTo({
             duration: 1000
@@ -65,3 +51,16 @@ struct Index {
   }
 }
 // [End Local_Question_Expected_Effect]
+@Component
+export struct LocalQuestionExpectedEffect {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.local_question_expected_effect'))
+  }
+}

@@ -16,8 +16,13 @@
 import abilityTest from './Ability.test';
 import IndexTest from './index.test';
 import indexAdd from './indexAdd.test';
+import Index1Test from './index1.test';
+import indexTabs from './indexTabs.test';
+
 export default function testsuite() {
   abilityTest();
   IndexTest();
   indexAdd()
+  Index1Test();
+  indexTabs();
 }

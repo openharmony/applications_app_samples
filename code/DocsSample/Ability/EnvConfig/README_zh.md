@@ -31,17 +31,6 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── EnvAbility                      // 获取/设置环境变量
- │   │       ├── EnvAbility0.ets
- │   │       ├── EnvAbility1.ets
- │   │       ├── EnvAbility2.ets
- │   │       ├── EnvAbility3.ets
- │   │       ├── EnvAbility4.ets
- │   │       ├── EnvAbility5.ets
- │   │       ├── EnvAbility6.ets
- │   │       ├── EnvAbility7.ets
- │   │       ├── EnvAbility8.ets
- │   │       ├── EnvAbility9.ets
- │   │       ├── EnvAbility10.ets
  │   │   ├── MyAbility                       // 获取应用异常退出原因
  │   │       ├── MyAbility1.ets            
  │   │       ├── MyAbility2.ets

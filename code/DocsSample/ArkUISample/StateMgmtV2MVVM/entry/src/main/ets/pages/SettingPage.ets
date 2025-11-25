@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/SettingPage.ets
 // [Start Main_SettingPage]
+// src/main/ets/pages/SettingPage.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -32,17 +32,17 @@ struct SettingPage {
 
   build(){
     Column(){
-      Text($r('app.string.Setting'))
+      Text('Setting')
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
-        Text($r('app.string.Show_finished_tasks'))
+        Text('Show completed tasks')
         Toggle({ type: ToggleType.Switch, isOn:this.setting.showCompletedTask })
           .onChange((isOn) => {
             this.setting.showCompletedTask = isOn;
           })
       }
-      Button($r('app.string.Back'))
+      Button('Back to To do')
         .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }

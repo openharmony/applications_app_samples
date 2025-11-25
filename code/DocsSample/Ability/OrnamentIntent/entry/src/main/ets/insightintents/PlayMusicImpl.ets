@@ -15,7 +15,7 @@
 
 // [Start insight_intent_play_music]
 // `insight_intent.json`文件的"insightIntentsSrcEntry"字段的实现
-import { InsightIntentEntryExecutor, insightIntent, InsightIntentEntity, InsightIntentEntry } from '@kit.AbilityKit';
+import { InsightIntentEntryExecutor, insightIntent, InsightIntentEntry } from '@kit.AbilityKit';
 
 // 意图执行返回值数据格式定义
 class PlayMusicResultDef {
@@ -29,7 +29,7 @@ class PlayMusicResultDef {
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('app.media.viewLogistics'), // $r表示本地图标，需要在资源目录中定义
+  icon: $r('app.media.playMusic'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   abilityName: 'EntryAbility',
@@ -67,4 +67,5 @@ export default class PlayMusicImpl extends InsightIntentEntryExecutor<PlayMusicR
     return Promise.resolve(result);
   };
 }
+
 // [End insight_intent_play_music]

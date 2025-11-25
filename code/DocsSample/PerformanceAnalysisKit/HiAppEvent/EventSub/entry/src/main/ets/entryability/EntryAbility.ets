@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // [Start EventSub_EntryAbility_Header]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 // [Start PssLeakEvent_ArkTS_Header]
 // [Start AppEvent_Crash_Click_ArkTS_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { deviceInfo } from '@kit.BasicServicesKit';
 // [End AppEvent_Crash_Click_ArkTS_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End PssLeakEvent_ArkTS_Header]
@@ -98,11 +99,32 @@ export default class EntryAbility extends UIAbility {
     };
     // [End ArkTS_Add_Event_Params]
     // [Start Crash_ArkTS_Add_Event]
-    // 开发者可以设置事件的自定义参数
-    hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
+    // 构建崩溃事件的自定义参数
+    let crashParams: Record<string, hiAppEvent.ParamType> = {
+      "test_data": 100, //test_data为自定义数据，开发者可根据实际需求自定义params参数。
+    };
+    // 开发者可以设置崩溃事件的自定义参数
+    hiAppEvent.setEventParam(crashParams, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
+
+    if (deviceInfo.sdkApiVersion >= 20) {  // API Version 20及以后版本，支持设置崩溃日志配置参数
+      // 构建崩溃日志规格自定义参数
+      let crashConfigParams: Record<string, hiAppEvent.ParamType> = {
+        "extend_pc_lr_printing": true, // 使能扩展打印pc和lr寄存器附近的内存值
+        "log_file_cutoff_sz_bytes": 1024000, // 截断崩溃日志到1000KB
+        "simplify_vma_printing": true // 使能精简打印maps
+      };
+      // 开发者可以设置崩溃日志配置参数
+      hiAppEvent.setEventConfig(hiAppEvent.event.APP_CRASH, crashConfigParams).then(() => {
+        hilog.info(0x0000, 'testTag', `HiAppEvent success to set event config.`);
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+      });
+    }
+
     // [End Crash_ArkTS_Add_Event]
     // [Start FreezeEvent_ArkTS_Add_Event]
     // 开发者可以设置事件的自定义参数
@@ -113,7 +135,7 @@ export default class EntryAbility extends UIAbility {
     // [End FreezeEvent_ArkTS_Add_Event]
     // [Start CrashEvent_ArkTS_Add_Watcher]
     // 添加崩溃事件观察者
-    hiAppEvent.addWatcher({
+    let watcher: hiAppEvent.Watcher = {
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
       name: 'crashEventWatcher',
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了崩溃事件
@@ -140,9 +162,12 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['crash_type']}`);
             // 开发者可以获取到崩溃应用的前后台状态
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // 开发者可以获取到崩溃应用类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.release_type=${eventInfo.params['release_type']}`);
+            // 开发者可以获取到崩溃应用的二进制接口类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.cpu_abi=${eventInfo.params['cpu_abi']}`);
             // 开发者可以获取到崩溃应用的版本信息
-            hilog.info(0x0000, 'testTag',
-              `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // 开发者可以获取到崩溃应用的包名
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
             // 开发者可以获取到崩溃应用的进程id
@@ -150,21 +175,23 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
             // 开发者可以获取到崩溃事件发生的异常类型、异常原因和异常调用栈
-            hilog.info(0x0000, 'testTag',
-              `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // 开发者可以获取到崩溃事件发生时日志信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
-            // 开发者可以获取到崩溃事件发生时的故障日志文件
-            hilog.info(0x0000, 'testTag',
-              `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
-            hilog.info(0x0000, 'testTag',
-              `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
+            // 开发者可以获取到崩溃事件的故障进程存活时间
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_life_time=${eventInfo.params['process_life_time']}`);
+            // 开发者可以获取到崩溃事件发生时内存信息
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
+            // 开发者可以获取到崩溃事件发生时的崩溃日志文件
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
             // 开发者可以获取到崩溃事件的自定义数据test_data
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['testData']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
           }
         }
       }
-    });
+    };
+    hiAppEvent.addWatcher(watcher);
     // [End CrashEvent_ArkTS_Add_Watcher]
     // [Start FreezeEvent_ArkTS_Add_Watcher]
     // 添加卡死事件观察者
@@ -193,6 +220,10 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // 开发者可以获取到卡死应用的前后台状态
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // 开发者可以获取到卡死应用类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.release_type=${eventInfo.params['release_type']}`);
+            // 开发者可以获取到卡死应用的二进制接口类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.cpu_abi=${eventInfo.params['cpu_abi']}`);
             // 开发者可以获取到卡死应用的版本信息
             hilog.info(0x0000, 'testTag',
               `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
@@ -249,12 +280,14 @@ export default class EntryAbility extends UIAbility {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
-    // 完成自定义配置键值对赋值
-    let configParams: Record<string, hiAppEvent.ParamType> = {
-      'js_heap_logtype': 'event', // 仅获取事件
+    if (deviceInfo.sdkApiVersion >= 20) {  // API Version 20及以后版本，支持设置资源泄漏日志配置参数
+      // 完成自定义配置键值对赋值
+      let configParams: Record<string, hiAppEvent.ParamType> = {
+        'js_heap_logtype': 'event', // 仅获取事件
+      };
+      // 设置资源泄漏事件的自定义配置
+      hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     }
-    // 设置资源泄漏事件的自定义配置
-    hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     hiAppEvent.addWatcher({
       // 自定义观察者名称，系统会使用名称来标识不同的观察者
       name: 'pssLeakWatcher',
@@ -310,7 +343,7 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
-    // [End AppKillEvent_ArkTS_Add_Watcher] 
+    // [End AppKillEvent_ArkTS_Add_Watcher]
     // [Start AsanEvent_ArkTS_Add_Watcher]
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -426,6 +459,14 @@ export default class EntryAbility extends UIAbility {
     // 启动时，注册系统事件观察者
     testNapi.registerAppKillReceiveWatcher();
     // [End AppKillEvent_Call_Capi_Function]
+
+    // [Start Sys_Crash_Event_Call_Capi_Function]
+    // 在onCreate()函数中添加C API接口调用
+    // 启动时，注册崩溃事件观察者
+    testNapi.registerWatcherClickCrash();
+    // 启动时，注册按钮点击事件观察者
+    testNapi.registerWatcherCrashEvent();
+    // [End Sys_Crash_Event_Call_Capi_Function]
   }
 
   onDestroy(): void {

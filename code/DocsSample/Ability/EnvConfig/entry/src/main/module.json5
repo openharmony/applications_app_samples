@@ -207,7 +207,7 @@
       },
       {
         "name": "EnvAbility8",
-        "srcEntry": "./ets/EnvAbility/EnvAbility8.ets",
+        "srcEntry": "./ets/EnvAbilityStage/EnvAbilityStage.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
@@ -258,7 +258,7 @@
       },
       {
         "name": "EnvAbility10",
-        "srcEntry": "./ets/EnvAbility/EnvAbility10.ets",
+        "srcEntry": "./ets/EnvFormExtensionAbility/EnvFormExtensionAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",

@@ -14,13 +14,19 @@
  */
 
 // [Start prevent_bubbling]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_PreventBubbling]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MyApp_PreventBubbling';
+
 @Entry
 @ComponentV2
 struct PreventBubbling {
-
   build() {
     RelativeContainer() {
       Column() { // 父组件
+        // app.string.preventEvent资源文件中的value值为'如果点中了我，就阻止父组件收到触摸事件'
         Text($r('app.string.preventEvent'))
           .fontColor(Color.White)
           .height('40%')
@@ -29,15 +35,16 @@ struct PreventBubbling {
           .alignSelf(ItemAlign.Center)
           .padding(10)
           .margin(20)
-          .onTouch((event:TouchEvent)=>{
-            event.stopPropagation() // 子组件优先接收到触摸事件后，阻止父组件接收事件
+          .onTouch((event: TouchEvent) => {
+            event.stopPropagation(); // 子组件优先接收到触摸事件后，阻止父组件接收事件
           })
       }
       .justifyContent(FlexAlign.End)
       .backgroundColor(Color.Green)
       .height('100%')
       .width('100%')
-      .onTouch((event:TouchEvent)=>{
+      .onTouch((event: TouchEvent) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'touch event received on parent');
       })
     }
     .height('100%')

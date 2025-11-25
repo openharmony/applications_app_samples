@@ -16,13 +16,16 @@
 // [Start prop_three_start]
 class Info {
   public value: string;
+
   constructor(value: string) {
     this.value = value;
   }
 }
+
 class Model {
   public value: string;
   public info: Info;
+
   constructor(value: string, info: Info) {
     this.value = value;
     this.info = info;
@@ -50,9 +53,11 @@ struct PropDemo {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
+
     // [EndExclude prop_three_start]
   }
 }
+
 // [End prop_three_start]
 // 入口组件
 @Entry
@@ -68,6 +73,6 @@ struct PropDemoIndex {
 }
 
 @Builder
-export function MyPropDemoIndexBuilder(){
+export function MyPropDemoIndexBuilder() {
   PropDemoIndex()
 }

@@ -55,8 +55,8 @@ export struct ArcSwiperStyles {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
-            // [End styles_default]
           }
+          // [End styles_default]
         }
 
         ComponentCard({ title: $r('app.string.ArcSwiperStyles_titleCustomize') }) {

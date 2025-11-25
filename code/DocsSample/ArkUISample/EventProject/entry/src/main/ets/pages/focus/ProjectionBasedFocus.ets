@@ -19,21 +19,21 @@
 export struct ProjectAreaFocusExample {
   build() {
     NavDestination() {
-    Column() {
-      Column({ space: 5 }) {
-        Text('Wrap').fontSize(12).width('90%')
-        // 子组件多行布局
-        Flex({ wrap: FlexWrap.Wrap }) {
-          Button('1').width(140).height(50).margin(5)
-          Button('2').width(140).height(50).margin(5)
-          Button('3').width(140).height(50).margin(5)
-          Button('4').width(140).height(50).margin(5)
-          Button('5').width(140).height(50).margin(5)
-        }
-        .width('90%')
-        .padding(10)
-      }.width('100%').margin({ top: 5 })
-    }.width('100%')
+      Column() {
+        Column({ space: 5 }) {
+          Text('Wrap').fontSize(12).width('90%')
+          // 子组件多行布局
+          Flex({ wrap: FlexWrap.Wrap }) {
+            Button('1').width(140).height(50).margin(5)
+            Button('2').width(140).height(50).margin(5)
+            Button('3').width(140).height(50).margin(5)
+            Button('4').width(140).height(50).margin(5)
+            Button('5').width(140).height(50).margin(5)
+          }
+          .width('90%')
+          .padding(10)
+        }.width('100%').margin({ top: 5 })
+      }.width('100%')
     }
     // [StartExclude dynamic_focus_project_area]
     .backgroundColor('#f1f2f3')

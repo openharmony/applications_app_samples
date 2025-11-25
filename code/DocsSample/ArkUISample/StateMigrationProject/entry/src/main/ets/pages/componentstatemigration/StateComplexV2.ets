@@ -13,25 +13,29 @@
  * limitations under the License.
  */
 // [Start example2_start]
+const INITIAL_VALUE = 10;
+
 @ObservedV2
-class Child4 {
-  @Trace public value: number = 10;
+class Child {
+  @Trace public value: number = INITIAL_VALUE;
 }
 
 @ComponentV2
 @Entry
-struct example2 {
-  @Local child: Child4 = new Child4();
+struct Example {
+  @Local child: Child = new Child();
 
   build() {
     Column() {
-      Text(this.child.value.toString());
+      Text(this.child.value.toString())
       // @Local只能观察自身，需要给Child加上@ObservedV2和@Trace
       Button('value+1')
         .onClick(() => {
           this.child.value++;
-        });
+        })
     }
   }
 }
 // [End example2_start]
+const example2 = Example;
+export default example2;

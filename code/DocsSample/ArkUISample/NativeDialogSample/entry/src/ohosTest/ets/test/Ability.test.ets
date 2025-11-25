@@ -22,7 +22,7 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const TAG: string = '[Sample_com.example.nativedialogsample]';
+const TAG: string = '[Sample_nativedialogsample]';
 const DOMAIN: number = 0xFF00;
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();

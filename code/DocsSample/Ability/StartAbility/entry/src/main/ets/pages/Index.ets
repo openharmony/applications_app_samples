@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct MainPage {
+struct Index {
 
   build() {
     Row() {

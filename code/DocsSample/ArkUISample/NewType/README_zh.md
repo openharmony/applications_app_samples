@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了在一个Stage模型中，开发基于ArkTS UI的@Type装饰器：标记类属性的类型的应用。
+本示例展示了在一个Stage模型中，开发基于ArkTS UI的@Type装饰器：标记类属性的类型的应用，具体可参考[@Type装饰器：标记类属性的类型](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-type.md)。
 
 应用通过@Type配合PersistenceV2使用
 ### 效果预览
@@ -44,13 +44,13 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.  本示例支持标准系统上运行，支持设备：RK3568；
+1. 本示例支持标准系统上运行，支持设备：RK3568；
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.47；
+2. 本示例支持API20版本SDK，版本号：6.0.0.107，镜像版本号：OpenHarmony_6.0.0.47 Release。
 
-3.  本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2024年12月12日)编译运行；
+3. 本示例已支持使DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
-4. 高等级APL特殊签名说明：无；
+4. 高等级APL特殊签名说明：无。
 
 ### 下载
 

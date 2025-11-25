@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-import { KeyCode } from '@kit.InputKit';
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
-
 // [Start dynamic_focus_control_demo]
 @Entry
 @Component
@@ -25,8 +22,6 @@ export struct FocusControl {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
         Column({ space: 20 }) {
           Column({ space: 5 }) {
             Button('Button')
@@ -87,14 +82,10 @@ export struct FocusControl {
         }
         .width('100%')
         .height('100%')
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
     // [StartExclude dynamic_focus_control_demo]
     .backgroundColor('#f1f2f3')
+    // app.string.Focus_FocusController_title资源文件中的value值为'主动获焦/失焦'
     .title($r('app.string.Focus_FocusController_title'))
     // [EndExclude dynamic_focus_control_demo]
   }

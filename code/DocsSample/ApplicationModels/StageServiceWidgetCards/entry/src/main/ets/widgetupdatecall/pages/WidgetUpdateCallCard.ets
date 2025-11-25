@@ -20,12 +20,13 @@ let storageUpdateCall = new LocalStorage();
 @Component
 struct WidgetUpdateCallCard {
   @LocalStorageProp('formId') formId: string = '12400633174999288';
+  // $r('app.string.init')需要替换为开发者所需的资源文件
   @LocalStorageProp('calleeDetail') calleeDetail: ResourceStr = $r('app.string.init');
 
   build() {
     Column() {
       Column() {
-          Text(this.calleeDetail)
+        Text(this.calleeDetail)
           .fontColor('#FFFFFF')
           .opacity(0.9)
           .fontSize(14)
@@ -35,6 +36,7 @@ struct WidgetUpdateCallCard {
 
       Row() {
         Button() {
+          // $r('app.string.CalleeJumpLabel')需要替换为开发者所需的资源文件
           Text($r('app.string.CalleeJumpLabel'))
             .fontColor('#45A6F4')
             .fontSize(12)
@@ -61,6 +63,7 @@ struct WidgetUpdateCallCard {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

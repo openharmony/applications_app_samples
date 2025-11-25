@@ -17,7 +17,7 @@
 // xxx.ets
 @Entry
 @Component
-struct customizedControl {
+struct CustomizedControl {
   @State videoSrc: Resource = $rawfile('videoTest.mp4');
   @State previewUri: string = 'common/videoIcon.png';
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;

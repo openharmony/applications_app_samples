@@ -14,22 +14,24 @@
  */
 // [Start Parent6_start]
 @ComponentV2
-struct Child6 {
+struct Child {
   @Param @Once value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
 @Entry
 @ComponentV2
-struct Parent6 {
+struct Parent {
   build() {
     Column() {
       // @Local禁止从外部初始化，可以用@Param和@Once替代实现
-      Child6({ value: 30 });
+      Child({ value: 30 })
     }
   }
 }
 // [End Parent6_start]
+const parent6 = Parent;
+export default parent6;

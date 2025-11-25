@@ -53,23 +53,23 @@ struct Parent {
   @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
-      Column() {
-        Text(`Parent fruit ${this.fruit[0].price}`)
-          .onClick(() => {
-            this.fruit[0].price += 1;
-          })
+    Column() {
+      Text(`Parent fruit ${this.fruit[0].price}`)
+        .onClick(() => {
+          this.fruit[0].price += 1;
+        })
 
-        // @PropChild1本地没有初始化，必须从父组件初始化
-        PropChild1({ fruit: this.fruit[0] })
-        // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
-        PropChild2()
-        PropChild2({ fruit: this.fruit[0] })
-      }
+      // @PropChild1本地没有初始化，必须从父组件初始化
+      PropChild1({ fruit: this.fruit[0] })
+      // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
+      PropChild2()
+      PropChild2({ fruit: this.fruit[0] })
+    }
   }
 }
 
 // [End prop_fourteen_start]
 @Builder
-export function MyParentBuilder(){
+export function MyParentBuilder() {
   Parent()
 }

@@ -12,33 +12,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_decorator_last_write]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
-@Component
-export struct MonitorDecoratorLastWrite {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_last_write'))
-  }
-}
-
-// [Start monitor_decorator_last_write]
 @ObservedV2
 class Frequency {
-  // 监听的属性值，值的类型为数量
   @Trace public count: number = 0;
 
   @Monitor('count')
   onCountChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
@@ -67,3 +50,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_last_write]
+@Component
+export struct MonitorDecoratorLastWrite {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_last_write'))
+  }
+}

@@ -20,4 +20,4 @@ export default class Constants {
   public static readonly TEXT_TOTAL_NUM: number = 200;
   // 用于text数字循环取模
   public static readonly TEXT_CONTENT_DIVIDER: number = 10;
-}
+};

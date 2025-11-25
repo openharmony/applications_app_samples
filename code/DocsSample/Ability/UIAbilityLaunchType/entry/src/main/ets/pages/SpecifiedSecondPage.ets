@@ -15,6 +15,7 @@
 @Entry
 @Component
 struct SpecifiedSecondPage {
+  // app.string.old_doc资源文件中的value值为'已保存文档'
   @State message: string | Resource = $r('app.string.old_doc');
 
   build() {

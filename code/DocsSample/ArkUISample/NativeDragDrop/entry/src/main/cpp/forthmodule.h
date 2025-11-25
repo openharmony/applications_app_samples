@@ -48,21 +48,21 @@ void RegisterNodeEventForthReceiver1()
 
     // [Start on_touchIntercept]
     nodeAPI->addNodeEventReceiver(dragButton, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventForthReceiver called");
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "RegisterNodeEventForthReceiver called");
         auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
         auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
 
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
             // [Start set_dragAction]
             case NODE_ON_TOUCH_INTERCEPT: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_TOUCH_INTERCEPT EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_TOUCH_INTERCEPT EventReceiver");
                 // [StartExclude on_touchIntercept]
                 // 创建DragAction
                 action = OH_ArkUI_CreateDragActionWithNode(dragButton);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                     "OH_ArkUI_CreateDragActionWithNode returnValue = %{public}p", action);
                 // 设置pixelMap
                 std::vector<OH_PixelmapNative *> pixelVector;
@@ -75,7 +75,7 @@ void RegisterNodeEventForthReceiver1()
                 SetDragActionData();
                 // startDrag
                 int returnValue = OH_ArkUI_StartDrag(action);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                     "OH_ArkUI_StartDrag returnValue = %{public}d",
                     returnValue);
                 OH_ArkUI_DragAction_Dispose(action);
@@ -84,7 +84,7 @@ void RegisterNodeEventForthReceiver1()
             }
             // [StartExclude set_dragAction]
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN EventReceiver");
                 break;
             }
         }
@@ -109,7 +109,7 @@ void RegisterNodeEventForthReceiver2()
         switch (eventType) {
             // [Start get_dragAction]
             case NODE_ON_DROP: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DROP EventReceiver");
                 GetUdmfDataText(dragEvent);
                 OH_ArkUI_DragAction_UnregisterStatusListener(action);
                 break;
@@ -149,7 +149,7 @@ void ForthModule(ArkUI_NodeHandle &root)
 
     dragButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
     SetId(dragButton, "dragBt3");
-    SetCommonAttribute(dragButton, SIZE_80, SIZE_50, 0xFFFF0000, BLANK_20);
+    SetCommonAttribute(dragButton, 80.0f, 50.0f, 0xFFFF0000, 20.0f);
     SetButtonLabel(dragButton, "拖起");
     nodeAPI->registerNodeEvent(dragButton, NODE_ON_TOUCH_INTERCEPT, BUTTON_TOUCH, nullptr);
     // [End touch_intercept]
@@ -179,21 +179,21 @@ void SetDragActionData()
     OH_UdsPlainText_SetAbstract(plainText, "this is plainText Abstract example");
     OH_UdsPlainText_SetContent(plainText, "this is plainText Content example");
     returnStatus = OH_UdmfRecord_AddPlainText(record, plainText);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "dragTest OH_UdmfRecord_AddPlainText returnStatus = %{public}d", returnStatus);
     // 创建OH_UdmfData对象
     OH_UdmfData *data = OH_UdmfData_Create();
     // 向OH_UdmfData中添加OH_UdmfRecord
     returnStatus = OH_UdmfData_AddRecord(data, record);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "dragTest OH_UdmfData_AddRecord returnStatus = %{public}d", returnStatus);
     int returnValue = OH_ArkUI_DragAction_SetData(action, data);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetData returnValue = %{public}d", returnValue);
     // 注册拖拽状态监听回调
     OH_ArkUI_DragAction_RegisterStatusListener(action, data, &DragStatusListener);
 }
-// [Start set_dragAction]
+// [End set_dragAction]
 
 // [EndExclude get_dragAction]
 void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
@@ -203,7 +203,7 @@ void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
     // 创建OH_UdmfData对象
     OH_UdmfData *data = OH_UdmfData_Create();
     returnValue = OH_ArkUI_DragEvent_GetUdmfData(dragEvent, data);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragEvent_GetUdmfData returnValue = %{public}d", returnValue);
     // 判断OH_UdmfData是否有对应的类型
     bool resultUdmf = OH_UdmfData_HasType(data, UDMF_META_PLAIN_TEXT);
@@ -217,13 +217,13 @@ void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
             // 从OH_UdmfRecord中获取纯文本类型数据
             OH_UdsPlainText *plainTextValue = OH_UdsPlainText_Create();
             returnStatus = OH_UdmfRecord_GetPlainText(records[i], plainTextValue);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                 "dragTest OH_UdmfRecord_GetPlainText "
                 "returnStatus= %{public}d",
                 returnStatus);
             auto getAbstract = OH_UdsPlainText_GetAbstract(plainTextValue);
             auto getContent = OH_UdsPlainText_GetContent(plainTextValue);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                 "OH_UdsPlainText_GetAbstract = "
                 "%{public}s, OH_UdsPlainText_GetContent = "
                 "%{public}s",
@@ -232,12 +232,76 @@ void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
             OH_UdsPlainText_Destroy(plainTextValue);
         }
     } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
             "OH_UdmfData_HasType not contain UDMF_META_PLAIN_TEXT");
     }
     OH_UdmfData_Destroy(data);
 }
 // [End get_dragAction]
+
+void GetDragResult(ArkUI_DragEvent* dragEvent)
+{
+    ArkUI_DragResult result;
+    OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
+    if (result == ARKUI_DRAG_RESULT_SUCCESSFUL) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Successful!");
+        nodeAPI->resetAttribute(dragText1, NODE_TEXT_CONTENT);
+        SetText(dropText1, "drag me", TEXT_FONT_SIZE_20);
+    } else if (result == ARKUI_DRAG_RESULT_FAILED) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
+    }
+}
+
+void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
+{
+    // 预览图尺寸
+    float previewRectWidth = OH_ArkUI_DragEvent_GetPreviewRectWidth(dragEvent);
+    float previewRectHeight = OH_ArkUI_DragEvent_GetPreviewRectHeight(dragEvent);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE previewRectWidth = %{public}f; previewRectHeight = %{public}f",
+        previewRectWidth, previewRectHeight);
+    float previewTouchPointX = OH_ArkUI_DragEvent_GetPreviewTouchPointX(dragEvent);
+    float previewTouchPointY = OH_ArkUI_DragEvent_GetPreviewTouchPointY(dragEvent);
+    g_ss.str("");
+    g_ss << "previewTouchPointX/Y: " << previewTouchPointX << "/" << previewTouchPointY;
+    SetText(previewTouchPointText1, g_ss.str().c_str());
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE previewTouchPointX = %{public}f; previewTouchPointY = %{public}f",
+        previewTouchPointX, previewTouchPointY);
+    float touchPointXToWindow = OH_ArkUI_DragEvent_GetTouchPointXToWindow(dragEvent);
+    float touchPointYToWindow = OH_ArkUI_DragEvent_GetTouchPointYToWindow(dragEvent);
+    g_ss.str("");
+    g_ss << "touchPointX/YToWindow: " << touchPointXToWindow << "/" << touchPointYToWindow;
+    SetText(touchPointToWindowText1, g_ss.str().c_str());
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE touchPointXToWindow = %{public}f; touchPointYToWindow = %{public}f",
+        touchPointXToWindow, touchPointYToWindow);
+    float touchPointXToDisplay = OH_ArkUI_DragEvent_GetTouchPointXToDisplay(dragEvent);
+    float touchPointYToDisplay = OH_ArkUI_DragEvent_GetTouchPointYToDisplay(dragEvent);
+    g_ss.str("");
+    g_ss << "touchPointX/YToDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
+    SetText(touchPointToDisplayText1, g_ss.str().c_str());
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE touchPointXToDisplay = %{public}f; touchPointYToDisplay = %{public}f",
+        touchPointXToDisplay, touchPointYToDisplay);
+    float touchPointXToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(dragEvent);
+    float touchPointYToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(dragEvent);
+    g_ss.str("");
+    g_ss << "touchPointX/YToGlobalDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
+    SetText(touchPointToGlobalDisplayText1, g_ss.str().c_str());
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE touchPointXToGlobalDisplay = %{public}f; touchPointYToGlobalDisplay = %{public}f",
+        touchPointXToGlobalDisplay, touchPointYToGlobalDisplay);
+    float velocityX = OH_ArkUI_DragEvent_GetVelocityX(dragEvent);
+    float velocityY = OH_ArkUI_DragEvent_GetVelocityY(dragEvent);
+    float velocity = OH_ArkUI_DragEvent_GetVelocity(dragEvent);
+    g_ss.str("");
+    g_ss << "velocityX: " << velocityX << "  velocityY: " << velocityY << "  velocity: " << velocity;
+    SetText(velocityText1, g_ss.str().c_str());
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE velocityX = %{public}f; velocityY = %{public}f; velocity = %{public}f",
+        velocityX, velocityY, velocity);
+}
 
 } // namespace NativeXComponentSample
 

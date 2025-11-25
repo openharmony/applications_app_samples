@@ -18,7 +18,6 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
@@ -34,10 +33,8 @@ export default function ParentTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
-
 
     /**
      * @tc.number AnimatableExtendTest_001
@@ -45,7 +42,6 @@ export default function ParentTest() {
      * @tc.desc 测试AnimatableExtend装饰器是否显示正常
      */
     it('Parent_001', 0, async (done: Function) => {
-      console.info('uitest: Parent_001 begin');
       let driver = Driver.create();
       let button = await driver.findComponent(ON.text('生命周期', MatchPattern.CONTAINS));
       await button.click();
@@ -57,7 +53,6 @@ export default function ParentTest() {
       await button3.click();
       await driver.delayMs(2000);
       await driver.pressBack();
-      console.info('uitest: parent end');
       done();
     })
   })

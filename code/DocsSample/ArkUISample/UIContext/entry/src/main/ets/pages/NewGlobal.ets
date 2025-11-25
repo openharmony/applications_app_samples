@@ -38,4 +38,5 @@ struct Index {
     .width('100%')
   }
 }
+
 // [End Main_NewGlobal]
