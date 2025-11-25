@@ -14,7 +14,7 @@
 */
 
 // [Start mockStatic_sample]
-import { describe, it, expect, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -37,12 +37,13 @@ export default function staticTest() {
       // 期望被mock后的函数返回结果'mock_data'
       when(func_1)(ArgumentMatchers.any).afterReturn('mock_data');
       let mock_result = ClassName.method_1();
-      expect(mock_result).assertEqual('mock_data');// 断言执行通过
+      expect(mock_result).assertEqual('mock_data'); // 断言执行通过
       // 清除Mock能力
       mocker.clear(ClassName);
       let really_result1 = ClassName.method_1();
-      expect(really_result1).assertEqual('ClassName_method_1_call');// 断言执行通过
+      expect(really_result1).assertEqual('ClassName_method_1_call'); // 断言执行通过
     })
   })
 }
+
 // [End mockStatic_sample]

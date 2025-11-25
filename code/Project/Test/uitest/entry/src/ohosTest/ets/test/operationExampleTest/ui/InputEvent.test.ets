@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
@@ -23,7 +23,7 @@ const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 let test: string = '中文测试';
-const waitUiReadyMs : number = 1000;
+const waitUiReadyMs: number = 1000;
 const TestTag = 'InputEventTest';
 
 async function startAbility(bundleName: string, abilityName: string) {
@@ -31,25 +31,26 @@ async function startAbility(bundleName: string, abilityName: string) {
 }
 
 async function exitInputMethod() {
-  let driver = Driver.create()
-  let softKeyBoard = await driver.findComponent(ON.type('Canvas'))
+  let driver = Driver.create();
+  let softKeyBoard = await driver.findComponent(ON.type('Canvas'));
   if (softKeyBoard != null) {
-    await driver.pressBack()
+    await driver.pressBack();
   }
 }
+
 export default function InputEventTest() {
   describe('InputEventTest', () => {
-      beforeAll(async () => {
-      await  delegator.addAbilityMonitor({
+    beforeAll(async () => {
+      await delegator.addAbilityMonitor({
         abilityName: 'InputAbility',
         moduleName: bundleName,
       });
 
-        let want: Want = {
-          bundleName : bundleName,
-          abilityName : 'InputAbility'
-        };
-        await delegator.startAbility(want);
+      let want: Want = {
+        bundleName: bundleName,
+        abilityName: 'InputAbility'
+      };
+      await delegator.startAbility(want);
     })
 
     /**
@@ -58,7 +59,7 @@ export default function InputEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest inputText 功能
      */
-    it('clickEventTest_Input',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_Input', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let input = await driver.findComponent(ON.type('TextInput'));
@@ -72,11 +73,11 @@ export default function InputEventTest() {
 
     /**
      * @tc.number:InputEventTest_002
-    * @tc.name: clickEventTest_Input_zh
+     * @tc.name: clickEventTest_Input_zh
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest inputText 输入中文功能测试
      */
-    it('clickEventTest_Input_zh',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_Input_zh', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let input = await driver.findComponent(ON.type('TextInput'));
@@ -94,7 +95,7 @@ export default function InputEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 指定坐标位置inputText输入功能测试
      */
-    it('clickEventTest_Input_center',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_Input_center', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let input = await driver.findComponent(ON.type('TextInput'));
@@ -124,7 +125,7 @@ export default function InputEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let input_new = await driver.findComponent(ON.type('TextInput'));
       let text = await input_new.getText();
-      console.info("testClearText result :" + text);
+      console.info('testClearText result :' + text);
       expect(text).assertEqual('');
     })
 
@@ -135,21 +136,21 @@ export default function InputEventTest() {
      */
     it('InputEventTest_InputText', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       console.log(TestTag, 'InputEventTest_InputText start');
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
-      await driver.delayMs(2000)
-      let text = await driver.findComponent(ON.type('TextInput'))
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
+      await driver.delayMs(2000);
+      let text = await driver.findComponent(ON.type('TextInput'));
       if (text == null) {
-        let scorll = await driver.findComponent(ON.type('Scroll'))
-        text = await scorll.scrollSearch(ON.type('TextInput'))
+        let scorll = await driver.findComponent(ON.type('Scroll'));
+        text = await scorll.scrollSearch(ON.type('TextInput'));
       }
-      let center = await text.getBoundsCenter()
+      let center = await text.getBoundsCenter();
       await text.clearText();
       await driver.delayMs(2000);
-      await driver.inputText(center, '123', {paste:false, addition:false})
+      await driver.inputText(center, '123', { paste: false, addition: false });
       await driver.delayMs(2000);
-      let text1 = await driver.findComponent(ON.type('TextInput'))
-      expect(await text1.getText() == '123').assertTrue()
+      let text1 = await driver.findComponent(ON.type('TextInput'));
+      expect(await text1.getText() == '123').assertTrue();
       console.log(TestTag, 'InputEventTest_InputText over');
     })
 
@@ -160,24 +161,24 @@ export default function InputEventTest() {
      */
     it('InputEventTest_InputText2', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       console.log(TestTag, 'InputEventTest_InputText2 start');
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
-      await driver.delayMs(2000)
-      let text = await driver.findComponent(ON.type('TextInput'))
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
+      await driver.delayMs(2000);
+      let text = await driver.findComponent(ON.type('TextInput'));
       if (text == null) {
-        let scorll = await driver.findComponent(ON.type('Scroll'))
-        text = await scorll.scrollSearch(ON.type('TextInput'))
+        let scorll = await driver.findComponent(ON.type('Scroll'));
+        text = await scorll.scrollSearch(ON.type('TextInput'));
       }
-      await text.clearText()
-      await driver.delayMs(2000)
-      await exitInputMethod()
-      let center = await text.getBoundsCenter()
-      await driver.inputText(center, '123', {paste:true, addition:false})
-      await driver.delayMs(2000)
-      await exitInputMethod()
-      await driver.delayMs(2000)
-      let text1 = await driver.findComponent(ON.type('TextInput'))
-      expect(await text1.getText() == '123').assertTrue()
+      await text.clearText();
+      await driver.delayMs(2000);
+      await exitInputMethod();
+      let center = await text.getBoundsCenter();
+      await driver.inputText(center, '123', { paste: true, addition: false });
+      await driver.delayMs(2000);
+      await exitInputMethod();
+      await driver.delayMs(2000);
+      let text1 = await driver.findComponent(ON.type('TextInput'));
+      expect(await text1.getText() == '123').assertTrue();
       console.log(TestTag, 'InputEventTest_InputText2 over');
     })
 
@@ -188,35 +189,35 @@ export default function InputEventTest() {
      */
     it('InputEventTest_TriggerCombineKeysWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       console.log(TestTag, 'InputEventTest_TriggerCombineKeysWithId start');
-      await startAbility(bundleName, 'DemoAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await startAbility(bundleName, 'DemoAbility');
+      let driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
       let disPlay = display.getDefaultDisplaySync();
       console.log(`${TestTag}, InputEventTest_TriggerCombineKeysWithId disPlay is: ${JSON.stringify(disPlay)}`);
-      await driver.delayMs(1000)
-      let text = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'))
+      await driver.delayMs(1000);
+      let text = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'));
       if (text == null) {
-        let scorll = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('Scroll'))
-        text = await scorll.scrollSearch(ON.belongingDisplay(disPlay.id).type('TextInput'))
+        let scorll = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('Scroll'));
+        text = await scorll.scrollSearch(ON.belongingDisplay(disPlay.id).type('TextInput'));
       }
-      let center = await text.getBoundsCenter()
+      let center = await text.getBoundsCenter();
       // set pasteBoard data
-      await text.inputText('123')
-      await driver.delayMs(1000)
-      await driver.click(center.x, center.y)
-      await driver.delayMs(waitUiReadyMs)
-      await driver.triggerCombineKeys(2072, 2017, 0, disPlay.id)
-      await driver.delayMs(waitUiReadyMs)
-      await driver.triggerCombineKeys(2072, 2019, 0, disPlay.id)
-      await driver.delayMs(waitUiReadyMs)
+      await text.inputText('123');
+      await driver.delayMs(1000);
+      await driver.click(center.x, center.y);
+      await driver.delayMs(waitUiReadyMs);
+      await driver.triggerCombineKeys(2072, 2017, 0, disPlay.id);
+      await driver.delayMs(waitUiReadyMs);
+      await driver.triggerCombineKeys(2072, 2019, 0, disPlay.id);
+      await driver.delayMs(waitUiReadyMs);
       // clear and paste
-      let text2 = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'))
-      await text2.clearText()
-      await driver.delayMs(waitUiReadyMs)
-      await driver.triggerCombineKeys(2072, 2038, 0, disPlay.id)
-      await driver.delayMs(1000)
-      let text3 = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'))
-      expect(await text3.getText() == '123').assertTrue()
+      let text2 = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'));
+      await text2.clearText();
+      await driver.delayMs(waitUiReadyMs);
+      await driver.triggerCombineKeys(2072, 2038, 0, disPlay.id);
+      await driver.delayMs(1000);
+      let text3 = await driver.findComponent(ON.belongingDisplay(disPlay.id).type('TextInput'));
+      expect(await text3.getText() == '123').assertTrue();
       console.log(TestTag, 'InputEventTest_TriggerCombineKeysWithId over');
     })
   })

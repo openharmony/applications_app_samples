@@ -18,9 +18,10 @@
 struct Swipe {
   @State message: string = 'Hello World Swipe';
   private swiperController: SwiperController = new SwiperController();
-  private  result = ["jsunit", "uitest", "arkUI", "tdd"];
+  private result = ['jsunit', 'uitest', 'arkUI', 'tdd'];
   private scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   // private data: MyDataSource = new MyDataSource([])
   build() {
     Row() {
@@ -30,16 +31,22 @@ struct Swipe {
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
+
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .id("swiper_text")
+          .id('swiper_text')
         Swiper(this.swiperController) {
           ForEach(this.result, (item: string) => {
-            Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
+            Text(item)
+              .width('90%')
+              .height(160)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(30)
           }, (item: string) => item)
         }
-        .id("swiper")
+        .id('swiper')
         .cachedCount(2)
         .index(0)
         .autoPlay(false)
@@ -53,7 +60,8 @@ struct Swipe {
           this.message = this.result[index];
           console.info(index.toString());
         })
-        Column(){
+
+        Column() {
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {
               ForEach(this.arr, (item: number) => {
@@ -61,38 +69,48 @@ struct Swipe {
                   Text(item.toString())
                     .width('90%')
                     .height(100)
-                    .id("scroll_item_" + item)
+                    .id('scroll_item_' + item)
                     .backgroundColor('#3366CC')
                     .borderRadius(15)
                     .fontSize(16)
                     .textAlign(TextAlign.Center)
                     .margin({ top: 5 })
                 }
-              }, (item:string) => item)
+              }, (item: string) => item)
             }.margin({ right: 10 })
-          }.id("scroll_test")
+          }.id('scroll_test')
           .scrollBar(BarState.Off)
           .scrollable(ScrollDirection.Vertical)
-        }.height("300").width("100%")
-        Column(){
+        }.height('300').width('100%')
+
+        Column() {
           List({ space: 20, initialIndex: 0 }) {
             ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text('' + item)
-                  .width('100%').height(100).fontSize(16)
-                  .textAlign(TextAlign.Center).borderRadius(10).backgroundColor("#CC0000")
+                  .width('100%')
+                  .height(100)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .borderRadius(10)
+                  .backgroundColor('#CC0000')
               }.editable(true)
             }, (item: string) => item)
           }
           .listDirection(Axis.Vertical) // 排列方向
-          .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
+          .divider({
+            strokeWidth: 2,
+            color: 0xFFFFFF,
+            startMargin: 20,
+            endMargin: 20
+          }) // 每行之间的分界线
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .chainAnimation(false) // 联动特效关闭
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
             console.info('first' + firstIndex);
             console.info('last' + lastIndex);
           })
-        }.height("300").width("100%").backgroundColor("#99FF33")
+        }.height('300').width('100%').backgroundColor('#99FF33')
       }
       .width('100%')
     }.alignItems(VerticalAlign.Top)

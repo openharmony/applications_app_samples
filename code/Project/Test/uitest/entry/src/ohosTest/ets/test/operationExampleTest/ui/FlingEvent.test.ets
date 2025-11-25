@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, UiDirection } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import display from '@ohos.display';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-const delegator : AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-const bundleName : string = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs : number = 1000;
+const delegator: AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName: string = abilityDelegatorRegistry.getArguments().bundleName;
+const waitUiReadyMs: number = 1000;
 const WAIT_UI_READYMS = 1000;
 
 async function startAbility(bundleName: string, abilityName: string) {
@@ -33,8 +33,8 @@ export default function FlingEventTest() {
   describe('FlingEvent', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'FlingAbility'
+        bundleName: bundleName,
+        abilityName: 'FlingAbility'
       };
       await delegator.startAbility(want);
     })
@@ -50,9 +50,9 @@ export default function FlingEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let swiper = await driver.findComponent(ON.id('swiper'));
       let point = await swiper.getBounds();
-      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600);
+      await driver.fling({ x: point.left, y: 300 }, { x: point.right, y: 300 }, 20, 600);
       await driver.delayMs(WAIT_UI_READYMS);
-      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600);
+      await driver.fling({ x: point.left, y: 300 }, { x: point.right, y: 300 }, 20, 600);
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('swiper_text'));
       expect(await text.getText()).assertEqual('arkUI');
@@ -68,7 +68,7 @@ export default function FlingEventTest() {
     it('FlingEvent_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      await driver.fling({x:400, y:700},{x:400, y:200}, 20, 600 );
+      await driver.fling({ x: 400, y: 700 }, { x: 400, y: 200 }, 20, 600);
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('scroll_item'));
       expect(await text.getText()).not().assertEqual('0');
@@ -103,34 +103,34 @@ export default function FlingEventTest() {
      */
     it('FlingEvent_WithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       await startAbility(bundleName, 'DemoAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      let driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
       let disPlay = display.getDefaultDisplaySync();
       if (disPlay.id == 999) {
-        return
+        return;
       }
-      let window = await driver.findWindow({bundleName: bundleName})
+      let window = await driver.findWindow({ bundleName: bundleName })
       try {
-        await window.maximize()
-        await driver.delayMs(500)
+        await window.maximize();
+        await driver.delayMs(500);
       } catch (error) {
       }
-      await driver.fling(UiDirection.DOWN, 39000, disPlay.id)
-      await driver.delayMs(waitUiReadyMs)
-      let button = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('next page'))
-      expect (button).assertNull()
-      await driver.fling(UiDirection.LEFT, 39000, disPlay.id)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('1'))
-      expect (text).assertNull()
-      await driver.fling(UiDirection.RIGHT, 39000, disPlay.id)
-      await driver.delayMs(waitUiReadyMs)
-      let text2 = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('1'))
-      expect (text2).assertNull()
-      await driver.fling(UiDirection.UP, 39000, disPlay.id)
-      await driver.delayMs(2000)
-      let button2 = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('bottom'))
-      expect (button2 == null).assertTrue()
+      await driver.fling(UiDirection.DOWN, 39000, disPlay.id);
+      await driver.delayMs(waitUiReadyMs);
+      let button = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('next page'));
+      expect(button).assertNull();
+      await driver.fling(UiDirection.LEFT, 39000, disPlay.id);
+      await driver.delayMs(waitUiReadyMs);
+      let text = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('1'));
+      expect(text).assertNull();
+      await driver.fling(UiDirection.RIGHT, 39000, disPlay.id);
+      await driver.delayMs(waitUiReadyMs);
+      let text2 = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('1'));
+      expect(text2).assertNull();
+      await driver.fling(UiDirection.UP, 39000, disPlay.id);
+      await driver.delayMs(2000);
+      let button2 = await driver.findComponents(ON.belongingDisplay(disPlay.id).text('bottom'));
+      expect(button2 == null).assertTrue();
     })
   })
 }

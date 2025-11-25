@@ -1,0 +1,653 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ6ìif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+/*
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License")
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+import { promptAction, router } from '@kit.ArkUI';
+class Index extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__message = new ObservedPropertySimplePU('Hello World', this, "message");
+        this.__count = new ObservedPropertySimplePU(0, this, "count");
+        this.scroller = new Scroller();
+        this.arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.message !== undefined) {
+            this.message = params.message;
+        }
+        if (params.count !== undefined) {
+            this.count = params.count;
+        }
+        if (params.scroller !== undefined) {
+            this.scroller = params.scroller;
+        }
+        if (params.arr !== undefined) {
+            this.arr = params.arr;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__message.purgeDependencyOnElmtId(rmElmtId);
+        this.__count.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__message.aboutToBeDeleted();
+        this.__count.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get message() {
+        return this.__message.get();
+    }
+    set message(newValue) {
+        this.__message.set(newValue);
+    }
+    get count() {
+        return this.__count.get();
+    }
+    set count(newValue) {
+        this.__count.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.height('100%');
+            Row.backgroundColor('#FF3333');
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height('100%');
+            Column.alignItems(HorizontalAlign.Start);
+            Column.backgroundColor('#800000');
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(this.message);
+            Text.fontSize(10);
+            Text.fontWeight(FontWeight.Bold);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('Next');
+            Text.fontSize(10);
+            Text.fontWeight(FontWeight.Bold);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('after click');
+            Text.fontSize(10);
+            Text.fontWeight(FontWeight.Bold);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('idTest');
+            Text.id('idTest');
+            Text.fontSize(10);
+            Text.fontWeight(FontWeight.Bold);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.height('300');
+            Column.width('100%');
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Scroll.create(this.scroller);
+            Scroll.id('scroll_test');
+            Scroll.scrollBar(BarState.Off);
+            Scroll.scrollable(ScrollDirection.Vertical);
+        }, Scroll);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Flex.create({ direction: FlexDirection.Column });
+            Flex.margin({ right: 10 });
+        }, Flex);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = _item => {
+                const item = _item;
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Row.create();
+                }, Row);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(item.toString());
+                    Text.width('90%');
+                    Text.height(100);
+                    Text.id('scroll_item');
+                    Text.backgroundColor('#3366CC');
+                    Text.borderRadius(15);
+                    Text.fontSize(16);
+                    Text.textAlign(TextAlign.Center);
+                    Text.margin({ top: 5 });
+                }, Text);
+                Text.pop();
+                Row.pop();
+            };
+            this.forEachUpdateFunction(elmtId, this.arr, forEachItemGenFunction, (item) => item, false, false);
+        }, ForEach);
+        ForEach.pop();
+        Flex.pop();
+        Scroll.pop();
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.margin({ top: 10 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithChild();
+            Button.id('btnTest');
+            Button.onClick(() => {
+                router.replaceUrl({
+                    url: 'pages/Scroller'
+                });
+            });
+        }, Button);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('ButtonTest');
+        }, Text);
+        Text.pop();
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithChild();
+            Button.id('btnTest');
+            Button.onClick(() => {
+            });
+        }, Button);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('ButtonTest1');
+        }, Text);
+        Text.pop();
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('showToast', { type: ButtonType.Normal, stateEffect: true });
+            Button.borderRadius(8);
+            Button.backgroundColor(0x317aff);
+            Button.width(90);
+            Button.onClick(() => {
+                console.log('ButtonType.Normal');
+                promptAction.showToast({
+                    message: 'testMessage',
+                    duration: 2000
+                });
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('showDialog', { type: ButtonType.Normal, stateEffect: true });
+            Button.borderRadius(8);
+            Button.backgroundColor(0x317aff);
+            Button.width(90);
+            Button.onClick(() => {
+                console.log('ButtonType.Normal dialog');
+                promptAction.showDialog({
+                    title: 'testDialog',
+                    message: 'testMessage'
+                });
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithChild();
+            Button.id('drag');
+            Button.onClick(() => {
+                router.push({
+                    url: 'pages/Drag'
+                });
+            });
+        }, Button);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('Drag');
+        }, Text);
+        Text.pop();
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithChild();
+            Button.id('inch');
+            Button.onClick(() => {
+                router.push({
+                    url: 'pages/Pinch'
+                });
+            });
+            Button.margin({ left: 10 });
+        }, Button);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('Pinch');
+        }, Text);
+        Text.pop();
+        Button.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.margin({ top: 10 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Toggle.create({ type: ToggleType.Switch, isOn: false });
+            Toggle.selectedColor('#007DFF');
+            Toggle.switchPointColor('#FFFFFF');
+            Toggle.onChange((isOn) => {
+                console.info('Component status:' + isOn);
+            });
+            Toggle.id('Toggle_switch_false');
+        }, Toggle);
+        Toggle.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Toggle.create({ type: ToggleType.Switch, isOn: true });
+            Toggle.selectedColor('#007DFF');
+            Toggle.switchPointColor('#FFFFFF');
+            Toggle.onChange((isOn) => {
+                console.info('Component status:' + isOn);
+            });
+            Toggle.id('Toggle_switch_true');
+        }, Toggle);
+        Toggle.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.margin({ top: 10 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Checkbox.create({ name: 'checkbox1', group: 'checkboxGroup' });
+            Checkbox.select(true);
+            Checkbox.selectedColor(0xed6f21);
+            Checkbox.onChange((value) => {
+                console.info('Checkbox1 change is' + value);
+            });
+            Checkbox.id('check_test_checked');
+        }, Checkbox);
+        Checkbox.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Checkbox.create({ name: 'checkbox2', group: 'checkboxGroup' });
+            Checkbox.select(false);
+            Checkbox.selectedColor(0x39a2db);
+            Checkbox.onChange((value) => {
+                console.info('Checkbox2 change is' + value);
+            });
+            Checkbox.id('check_test_not_checked');
+        }, Checkbox);
+        Checkbox.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.margin({ top: 10 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Select.create([{ value: 'aaa', icon: '/common/1.png' },
+                { value: 'bbb', icon: '/common/2.png' },
+                { value: 'ccc', icon: '/common/3.png' },
+                { value: 'ddd', icon: '/common/4.png' }]);
+            Select.selected(2);
+            Select.value('TTT');
+            Select.font({
+                size: 30,
+                weight: 400,
+                family: 'serif',
+                style: FontStyle.Normal
+            });
+            Select.selectedOptionFont({
+                size: 40,
+                weight: 500,
+                family: 'serif',
+                style: FontStyle.Normal
+            });
+            Select.optionFont({
+                size: 30,
+                weight: 400,
+                family: 'serif',
+                style: FontStyle.Normal
+            });
+            Select.onSelect((index) => {
+                console.info('Select:' + index);
+            });
+        }, Select);
+        Select.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.margin({ top: 10 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Radio.create({ value: 'Radio1', group: 'radioGroup' });
+            Radio.checked(false);
+            Radio.id('radio_test');
+        }, Radio);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Radio.create({ value: 'Radio2', group: 'radioGroup' });
+            Radio.checked(true);
+            Radio.id('radio_test1');
+        }, Radio);
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('unit_jsunit');
+            Text.fontSize(30);
+            Text.fontWeight(FontWeight.Bold);
+            Gesture.create(GesturePriority.Low);
+            TapGesture.create({ count: 2 });
+            TapGesture.onAction(() => {
+                router.push({ url: 'pages/Swipe' });
+            });
+            TapGesture.pop();
+            Gesture.pop();
+        }, Text);
+        Text.pop();
+        Column.pop();
+        Row.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "Index";
+    }
+}
+registerNamedRoute(() => new Index(undefined, {}), "", { bundleName: "com.samples.test.uitest", moduleName: "entry", pagePath: "pages/Index", pageFullPath: "entry/src/main/ets/pages/Index", integratedHsp: "false", moduleType: "followWithHap" });
+//# sourceMappingURL=Index.js.mapÂ‘Ù5 hvigor_ignore_D:_lyp_SDK_20_ets_kits_@kit.ArkUI.d.tsÙ6D:\lyp\11-18\uitest\entry\src\main\ets\pages\Index.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂ¹D:\lyp\11-18\uitest\entry³D:\lyp\11-18\uitest¥entry¥1.0.0Ô  ¹D:\lyp\11-18\uitest\entryÔrCÜ «¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCacheÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚé/*
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License")
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+import { promptAction, router } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State count: number = 0;
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(10)
+          .fontWeight(FontWeight.Bold)
+        Text('Next')
+          .fontSize(10)
+          .fontWeight(FontWeight.Bold)
+        Text('after click')
+          .fontSize(10)
+          .fontWeight(FontWeight.Bold)
+        Text('idTest')
+          .id('idTest')
+          .fontSize(10)
+          .fontWeight(FontWeight.Bold)
+        Column() {
+          Scroll(this.scroller) {
+            Flex({ direction: FlexDirection.Column }) {
+              ForEach(this.arr, (item: number) => {
+                Row() {
+                  Text(item.toString())
+                    .width('90%')
+                    .height(100)
+                    .id('scroll_item')
+                    .backgroundColor('#3366CC')
+                    .borderRadius(15)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .margin({ top: 5 })
+                }
+              }, (item: string) => item)
+            }.margin({ right: 10 })
+          }.id('scroll_test')
+          .scrollBar(BarState.Off)
+          .scrollable(ScrollDirection.Vertical)
+        }.height('300').width('100%')
+
+        Row() {
+          Button() {
+            Text('ButtonTest')
+          }.id('btnTest')
+          .onClick(() => {
+            router.replaceUrl({
+              url: 'pages/Scroller'
+            });
+          })
+
+          Button() {
+            Text('ButtonTest1')
+          }.id('btnTest')
+          .onClick(() => {
+
+          })
+
+          Button('showToast', { type: ButtonType.Normal, stateEffect: true })
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .onClick(() => {
+              console.log('ButtonType.Normal');
+              promptAction.showToast({
+                message: 'testMessage',
+                duration: 2000
+              });
+            })
+          Button('showDialog', { type: ButtonType.Normal, stateEffect: true })
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .onClick(() => {
+              console.log('ButtonType.Normal dialog');
+              promptAction.showDialog({
+                title: 'testDialog',
+                message: 'testMessage'
+              })
+            });
+          Button() {
+            Text('Drag')
+          }.id('drag')
+          .onClick(() => {
+            router.push({
+              url: 'pages/Drag'
+            });
+          })
+
+          Button() {
+            Text('Pinch')
+          }.id('inch')
+          .onClick(() => {
+            router.push({
+              url: 'pages/Pinch'
+            });
+          })
+          .margin({ left: 10 })
+        }.margin({ top: 10 })
+
+        Row() {
+          Toggle({ type: ToggleType.Switch, isOn: false })
+            .selectedColor('#007DFF')
+            .switchPointColor('#FFFFFF')
+            .onChange((isOn: boolean) => {
+              console.info('Component status:' + isOn);
+            }).id('Toggle_switch_false')
+
+          Toggle({ type: ToggleType.Switch, isOn: true })
+            .selectedColor('#007DFF')
+            .switchPointColor('#FFFFFF')
+            .onChange((isOn: boolean) => {
+              console.info('Component status:' + isOn);
+            })
+            .id('Toggle_switch_true')
+
+        }.margin({ top: 10 })
+
+        Row() {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+            .select(true)
+            .selectedColor(0xed6f21)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is' + value);
+            }).id('check_test_checked')
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+            .select(false)
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value);
+            }).id('check_test_not_checked')
+
+        }.margin({ top: 10 })
+
+        Row() {
+          Select([{ value: 'aaa', icon: '/common/1.png' },
+            { value: 'bbb', icon: '/common/2.png' },
+            { value: 'ccc', icon: '/common/3.png' },
+            { value: 'ddd', icon: '/common/4.png' }])
+            .selected(2)
+            .value('TTT')
+            .font({
+              size: 30,
+              weight: 400,
+              family: 'serif',
+              style: FontStyle.Normal
+            })
+            .selectedOptionFont({
+              size: 40,
+              weight: 500,
+              family: 'serif',
+              style: FontStyle.Normal
+            })
+            .optionFont({
+              size: 30,
+              weight: 400,
+              family: 'serif',
+              style: FontStyle.Normal
+            })
+            .onSelect((index: number) => {
+              console.info('Select:' + index);
+            })
+        }.margin({ top: 10 })
+
+        Row() {
+          Radio({ value: 'Radio1', group: 'radioGroup' })
+            .checked(false).id('radio_test')
+          Radio({ value: 'Radio2', group: 'radioGroup' })
+            .checked(true).id('radio_test1')
+        }.margin({ top: 10 })
+
+        Text('unit_jsunit')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .gesture(
+            TapGesture({ count: 2 })
+              .onAction(() => {
+                router.push({ url: 'pages/Swipe' });
+              })
+          )
+      }
+      .width('100%').height('100%').alignItems(HorizontalAlign.Start).backgroundColor('#800000')
+    }
+    .height('100%').backgroundColor('#FF3333')
+  }
+}ÀÔrD‘ª@kit.ArkUIÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙ5 hvigor_ignore_D:_lyp_SDK_20_ets_kits_@kit.ArkUI.d.tsÔrF‘¯hostModulesInfo•ÔrG’²hostDependencyName®hostModuleNameª@kit.ArkUI¥entryGª@kit.ArkUI¥entryGª@kit.ArkUI¥entryGª@kit.ArkUI¥entryGª@kit.ArkUI¥entryÃªoh-resolveÂ“ÔrH–§version¤fileªsourceRoot§sources¥names¨mappings¨Index.js ‘©Index.etsÜ`‘”    ‘” š”   ” ”	 	” ” ” ” ”% %”1 1”2 2’” ” ‘”  ’”6 ”ÌC (’”4 ”5 ”” ” #”$ +”& -Ü ” ” ” ” ” ” !” "” $” %”  '”! (”# *”$ +”& -”' .”) 0”* 1”, 3”- 4”/ 6”0 7”1 8‘” 2’” 	” ’” 	” ’” 	” ’” 	” ‘” ’” ” –” ” ” ÌÍ” ÌÍ” ÌÍ” ÌÍ–” ” ” ÌÍ” ÌÍ#”  ÌÍ$”) ÌÍ-’” ” –” ” ” ÌË” ÌË” ÌË” ÌË–” ” ” ÌË” ÌË” ÌË”  ÌË"˜” ” ” ÌË$” ÌË.” ÌË/”- ÌË>”. ÌË?”3 ÌËÌD–” ” ” ÌËÌF”" ÌËÌU”# ÌËÌV”, ÌËÌ_–” ” ” ” ” ”$ –” ” ” ” ” ” ˜” ” ” ” ” ”&  ”' !”+ %’” ” ”” ” ” ” –” ” ”  ”  ”  ”  ˜” ” ” !” !” !”& ! ”' !!”+ !%’” ” ”” "” "” "”% "–” "” "” #” #” #” #˜” "” "” $” $” $”& $ ”' $!”+ $%’” "” "”” %” %” %”  %–” %” %” &” &” &” &–” %” %” '” '” '” '˜” %” %” (” (” (”& ( ”' (!”+ (%’” %” %’” )” )–” )” )” =
+” =” =” =–” )” )” =” =” =” =$–” *
+” *” *” *” *”' *–” *
+” *” :” :” :”# :˜” *
+” *” ;” ;” ;”% ;”& ;”) ;!˜” *
+” *” <” <” <”- <%”. <&”6 <.š” +” +” +” +”# +”% +”2 ++”3 +,”9 +2”; +4š” +” +” 9” 9” 9” 9” 9”! 9”# 9 ”% 9"’” ,” ,’” -” -—” .” .”  .”$ .”% .”- .$”/ .&–” .” .” /” /” /”$ / –” .” .” 0” 0”  0”# 0–” .” .” 1” 1” 1”) 1%–” .” .” 2”( 2$”) 2%”2 2.–” .” .” 3”% 3!”& 3"”( 3$–” .” .” 4”! 4”" 4”$ 4 ˜” .” .” 5”" 5”# 5”, 5(”- 5)”3 5/š” .” .” 6” 6”  6”" 6”% 6!”' 6#”( 6$”* 6&’” .” .’” -” -›”/ ,”3 ,”4 ,”7 ,”ÌQ 8”ÌR 8”ÌV 8”ÌX 8 ”ÌZ 8"”Ì[ 8#”Ì_ 8'’” ,” ,’” +” +’” *
+” *’” )” )’” ?” ?š” ?” ?” Ìx
+” Ìx” Ìx” Ìx” Ìx” Ìx”  Ìx”" Ìx’” Ì@
+” Ì@–” Ì@
+” Ì@” ÌB” ÌB” ÌB” ÌB—” Ì@
+” Ì@” ÌC” ÌC” ÌC” ÌC”  ÌC•” ÌD” ÌD” ÌD”! ÌD”" ÌD”” ÌE” ÌE” ÌE”) ÌE#“” ÌF” ÌF” ÌF’” ÌG
+” ÌG”” ÌA” ÌA” ÌA”$ ÌA’” ÌA” ÌA’” Ì@
+” Ì@’” ÌI
+” ÌI–” ÌI
+” ÌI” ÌK” ÌK” ÌK” ÌK—” ÌI
+” ÌI” ÌL” ÌL” ÌL” ÌL”  ÌL’” ÌN
+” ÌN”” ÌJ” ÌJ” ÌJ”% ÌJ’” ÌJ” ÌJ’” ÌI
+” ÌIÜ ” ÌP
+” ÌP”# ÌP”. ÌP”0 ÌP”2 ÌP ”6 ÌP$”8 ÌP&”ÌB ÌP0”ÌC ÌP1”ÌI ÌP7”ÌK ÌP9”ÌV ÌPÌD”ÌX ÌPÌF”Ì\ ÌPÌJ”Ì^ ÌPÌL–” ÌP
+” ÌP” ÌQ” ÌQ”  ÌQ”! ÌQ–” ÌP
+” ÌP” ÌR”" ÌR”# ÌR”+ ÌR%–” ÌP
+” ÌP” ÌS” ÌS” ÌS” ÌS—” ÌP
+” ÌP” ÌT” ÌT” ÌT” ÌT”  ÌT˜” ÌU” ÌU” ÌU” ÌU” ÌU”/ ÌU-”0 ÌU.”1 ÌU/•” ÌV” ÌV” ÌV”& ÌV$”' ÌV%”” ÌW” ÌW” ÌW”* ÌW&”” ÌX” ÌX” ÌX”" ÌX“” ÌY” ÌY” ÌY’” ÌZ” ÌZ’” ÌP
+” ÌPÜ ” Ì[
+” Ì[”# Ì[”/ Ì[”1 Ì[”3 Ì[!”7 Ì[%”9 Ì['”ÌC Ì[1”ÌD Ì[2”ÌJ Ì[8”ÌL Ì[:”ÌW Ì[ÌE”ÌY Ì[ÌG”Ì] Ì[ÌK”Ì_ Ì[ÌM–” Ì[
+” Ì[” Ì\” Ì\”  Ì\”! Ì\–” Ì[
+” Ì[” Ì]”" Ì]”# Ì]”+ Ì]%–” Ì[
+” Ì[” Ì^” Ì^” Ì^” Ì^—” Ì[
+” Ì[” Ì_” Ì_” Ì_” Ì_”  Ì_˜” Ì`” Ì`” Ì`” Ì`” Ì`”6 Ì`4”7 Ì`5”8 Ì`6•” Ìa” Ìa” Ìa”' Ìa%”( Ìa&”” Ìb” Ìb” Ìb”' Ìb#”” Ìc” Ìc” Ìc”* Ìc&“” Ìd” Ìd” Ìd’” Ìe” Ìe’” Ì[
+” Ì[’” Ìf
+” Ìf–” Ìf
+” Ìf” Ìh” Ìh” Ìh” Ìh—” Ìf
+” Ìf” Ìi” Ìi” Ìi” Ìi”  Ìi•” Ìj” Ìj” Ìj” Ìj” Ìj”” Ìk” Ìk” Ìk”% Ìk“” Ìl” Ìl” Ìl’” Ìm
+” Ìm”” Ìg” Ìg” Ìg” Ìg’” Ìg” Ìg’” Ìf
+” Ìf’” Ìo
+” Ìo–” Ìo
+” Ìo” Ìq” Ìq” Ìq” Ìq—” Ìo
+” Ìo” Ìr” Ìr” Ìr” Ìr”  Ìr•” Ìs” Ìs” Ìs” Ìs” Ìs”” Ìt” Ìt” Ìt”& Ìt “” Ìu” Ìu” Ìu’” Ìv
+” Ìvš” Ìo
+” Ìo” Ìw” Ìw” Ìw” Ìw”  Ìw”" Ìw”$ Ìw”& Ìw”” Ìp” Ìp” Ìp” Ìp’” Ìp” Ìp’” Ìo
+” Ìo’” ?” ?’” Ìz” Ìzš” Ìz” Ìz” ÌŠ
+” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ”  ÌŠ”" ÌŠž” Ì{
+” Ì{” Ì{” Ì{”  Ì{”" Ì{”, Ì{#”- Ì{$”3 Ì{*”5 Ì{,”9 Ì{0”; Ì{2”Ì@ Ì{7”ÌB Ì{9–” Ì{
+” Ì{” Ì|”  Ì|”! Ì|”* Ì|$–” Ì{
+” Ì{” Ì}”# Ì}”$ Ì}”- Ì}'™” Ì{
+” Ì{” Ì~” Ì~” Ì~” Ì~”! Ì~$”# Ì~&”% Ì~(š” Ì” Ì” Ì” Ì” Ì”0 Ì.”3 Ì1”7 Ì5”8 Ì6”9 Ì7’” Ì€” Ì€–” Ì{
+” Ì{” Ì€” Ì€” Ì€”+ Ì€'’” Ì{
+” Ì{ž” Ì‚
+” Ì‚” Ì‚” Ì‚”  Ì‚”" Ì‚”, Ì‚#”- Ì‚$”3 Ì‚*”5 Ì‚,”9 Ì‚0”; Ì‚2”? Ì‚6”ÌA Ì‚8–” Ì‚
+” Ì‚” Ìƒ”  Ìƒ”! Ìƒ”* Ìƒ$–” Ì‚
+” Ì‚” Ì„”# Ì„”$ Ì„”- Ì„'™” Ì‚
+” Ì‚” Ì…” Ì…” Ì…” Ì…”! Ì…$”# Ì…&”% Ì…(š” Ì†” Ì†” Ì†” Ì†” Ì†”0 Ì†.”3 Ì†1”7 Ì†5”8 Ì†6”9 Ì†7’” Ì‡” Ì‡–” Ì‚
+” Ì‚” Ìˆ” Ìˆ” Ìˆ”* Ìˆ$’” Ì‚
+” Ì‚’” Ìz” Ìz’” ÌŒ” ÌŒš” ÌŒ” ÌŒ” Ìš
+” Ìš” Ìš” Ìš” Ìš” Ìš”  Ìš”" Ìšœ” Ì
+” Ì” Ì” Ì”" Ì”$ Ì”/ Ì&”1 Ì(”6 Ì-”8 Ì/”ÌG Ì>”ÌI ÌÌ@–” Ì
+” Ì” ÌŽ” ÌŽ” ÌŽ”  ÌŽ–” Ì
+” Ì” Ì”" Ì”# Ì”+ Ì#™” Ì
+” Ì” Ì” Ì” Ì” Ì”$ Ì%”& Ì'”( Ì)š” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘”2 Ì‘0”5 Ì‘3”: Ì‘8”; Ì‘9”< Ì‘:’” Ì’” Ì’–” Ì
+” Ì” Ì’” Ì’” Ì’”, Ì’&’” Ì
+” Ìœ” Ì“
+” Ì“” Ì“” Ì“”" Ì“”$ Ì“”/ Ì“&”1 Ì“(”6 Ì“-”8 Ì“/”ÌG Ì“>”ÌI Ì“Ì@–” Ì“
+” Ì“” Ì”” Ì”” Ì””! Ì”–” Ì“
+” Ì“” Ì•”" Ì•”# Ì•”+ Ì•#™” Ì“
+” Ì“” Ì–” Ì–” Ì–” Ì–”$ Ì–%”& Ì–'”( Ì–)š” Ì—” Ì—” Ì—” Ì—” Ì—”2 Ì—0”5 Ì—3”: Ì—8”; Ì—9”< Ì—:’” Ì˜” Ì˜–” Ì“
+” Ì“” Ì˜” Ì˜” Ì˜”0 Ì˜*’” Ì“
+” Ì“’” ÌŒ” ÌŒ’” Ìœ” Ìœš” Ìœ” Ìœ” Ì¸
+” Ì¸” Ì¸” Ì¸” Ì¸” Ì¸”  Ì¸”" Ì¸” Ì
+” Ì” Ì” Ì” Ì”" Ì”$ Ì”) Ì ”+ Ì"”/ Ì&”1 Ì(”Ì@ Ì7”ÌB Ì9š” Ìž” Ìž” Ìž” Ìž” Ìž”  Ìž”$ Ìž ”& Ìž"”5 Ìž1”7 Ìž3š” ÌŸ” ÌŸ” ÌŸ” ÌŸ” ÌŸ”  ÌŸ”$ ÌŸ ”& ÌŸ"”5 ÌŸ1”7 ÌŸ3›” Ì ” Ì ” Ì ” Ì ” Ì ”  Ì ”$ Ì  ”& Ì "”5 Ì 1”7 Ì 3”8 Ì 4–” Ì
+” Ì” Ì¡” Ì¡” Ì¡” Ì¡–” Ì
+” Ì” Ì¢” Ì¢” Ì¢” Ì¢•” Ì
+” Ì” Ì£” Ì£” Ì£”” Ì¤” Ì¤” Ì¤” Ì¤”” Ì¥” Ì¥” Ì¥” Ì¥”” Ì¦” Ì¦” Ì¦” Ì¦–” Ì§” Ì§” Ì§”  Ì§”! Ì§”' Ì§%‘” Ì¨•” Ì
+” Ì” Ì©”% Ì©”& Ì© ”” Ìª” Ìª” Ìª” Ìª”” Ì«” Ì«” Ì«” Ì«”” Ì¬” Ì¬” Ì¬” Ì¬–” Ì­” Ì­” Ì­”  Ì­”! Ì­”' Ì­%‘” Ì®•” Ì
+” Ì” Ì¯” Ì¯” Ì¯”” Ì°” Ì°” Ì°” Ì°”” Ì±” Ì±” Ì±” Ì±”” Ì²” Ì²” Ì²” Ì²–” Ì³” Ì³” Ì³”  Ì³”! Ì³”' Ì³%‘” Ì´™” Ì
+” Ì” Ìµ” Ìµ” Ìµ” Ìµ”" Ìµ$”$ Ìµ&”& Ìµ(š” Ì¶” Ì¶” Ì¶” Ì¶” Ì¶”& Ì¶$”) Ì¶'”. Ì¶,”/ Ì¶-”0 Ì¶.’” Ì·” Ì·’” Ì
+” Ì’” Ìœ” Ìœ’” Ìº” Ìºš” Ìº” Ìº” Ì¿
+” Ì¿” Ì¿” Ì¿” Ì¿” Ì¿”  Ì¿”" Ì¿œ” Ì»
+” Ì»” Ì»” Ì»”  Ì»”" Ì»”* Ì»!”, Ì»#”1 Ì»(”3 Ì»*”? Ì»6”ÌA Ì»8–” Ì»
+” Ì»” Ì¼” Ì¼” Ì¼” Ì¼–” Ì»
+” Ì»” Ì¼” Ì¼” Ì¼”! Ì¼+œ” Ì½
+” Ì½” Ì½” Ì½”  Ì½”" Ì½”* Ì½!”, Ì½#”1 Ì½(”3 Ì½*”? Ì½6”ÌA Ì½8–” Ì½
+” Ì½” Ì¾” Ì¾” Ì¾” Ì¾–” Ì½
+” Ì½” Ì¾” Ì¾” Ì¾”" Ì¾+’” Ìº” Ìº”” ÌÁ” ÌÁ” ÌÁ”% ÌÁ–” ÌÁ” ÌÁ” ÌÂ” ÌÂ” ÌÂ” ÌÂ˜” ÌÁ” ÌÁ” ÌÃ” ÌÃ” ÌÃ”& ÌÃ ”' ÌÃ!”+ ÌÃ%˜” ÌÅ” ÌÅ” ÌÅ”  ÌÅ”% ÌÅ”' ÌÅ ”( ÌÅ!”* ÌÅ#—” ÌÅ” ÌÅ” ÌÆ” ÌÆ”  ÌÆ”# ÌÆ”% ÌÆœ” ÌÇ” ÌÇ” ÌÇ” ÌÇ” ÌÇ” ÌÇ”! ÌÇ!”# ÌÇ#”0 ÌÇ0”2 ÌÇ2”3 ÌÇ3”4 ÌÇ4’” ÌÈ” ÌÈ’” ÌÅ” ÌÅ’” ÌÁ” ÌÁ’” ” ’” ” ‘” ÌÎÔrI–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜi‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  ÌŽ ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ìž ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌÐ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  ÌÝ ‘”  ÌÞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìð ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìý ‘”  Ìþ ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ‘”  ÍE ‘”  ÍF ‘”  ÍG ‘”  ÍH ‘”  ÍI ‘”  ÍJ ‘”  ÍK ‘”  ÍL ‘”  ÍM ‘”  ÍN ‘”  ÍO ‘”  ÍP ‘”  ÍQ ‘”  ÍR ‘”  ÍS ‘”  ÍT ‘”  ÍU ‘”  ÍV ‘”  ÍW ‘”  ÍX ‘”  ÍY ‘”  ÍZ ‘”  Í[ ‘”  Í\ ‘”  Í] ‘”  Í^ ‘”  Í_ ‘”  Í` ‘”  Ía ‘”  Íb ‘”  Íc ‘”  Íd ‘”  Íe ‘”  Íf ‘”  Íg ‘”  Íh ÔrJ’§missing¦pluginÃ¦genAbcÂÔ  ÔrK”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrL•¤type¥start£endªspecifiers¦source±ImportDeclarationÍåÍ’ÔrM•¤type¥start£end¨imported¥local¯ImportSpecifierÍîÍúÔrN”¤type¥start£end¤nameªIdentifierÍîÍú¬promptActionNªIdentifierÍîÍú¬promptActionM¯ImportSpecifierÍüÍNªIdentifierÍüÍ¦routerNªIdentifierÍüÍ¦routerÔrO•¤type¥start£end¥value£raw§LiteralÍ
+Íª@kit.ArkUI¬'@kit.ArkUI'

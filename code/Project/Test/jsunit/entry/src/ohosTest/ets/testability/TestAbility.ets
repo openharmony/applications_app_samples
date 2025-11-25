@@ -23,45 +23,47 @@ import Logger from '../util/Logger';
 import { window } from '@kit.ArkUI';
 
 const TAG = 'testTag';
+
 export default class TestAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        Logger.info(TAG, "TestAbility onCreate");
-        Logger.info(TAG, "want param:" + JSON.stringify(want));
-        Logger.info(TAG, "launchParam:" + JSON.stringify(launchParam));
-        let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-        let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
-        Logger.info(TAG, "start run testcase!!!");
-        // 设置数据
-        Hypium.setData(data);
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    }
-// [End dataDriverAbility_sample]
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    Logger.info(TAG, 'TestAbility onCreate');
+    Logger.info(TAG, 'want param:' + JSON.stringify(want));
+    Logger.info(TAG, 'launchParam:' + JSON.stringify(launchParam));
+    let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
+    Logger.info(TAG, 'start run testcase!!!');
+    // 设置数据
+    Hypium.setData(data);
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  }
 
-    onDestroy() {
-        Logger.info('testTag', '%{public}s', 'TestAbility onDestroy');
-    }
+  // [End dataDriverAbility_sample]
 
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        Logger.info(TAG, "TestAbility onWindowStageCreate");
-        windowStage.loadContent('testability/pages/Index', (err, data) => {
-            if (err.code) {
-                Logger.error(TAG, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-                return;
-            }
-            Logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s',
-                JSON.stringify(data) ?? '');
-        });
-    }
+  onDestroy() {
+    Logger.info('testTag', '%{public}s', 'TestAbility onDestroy');
+  }
 
-    onWindowStageDestroy() {
-        Logger.info('testTag', '%{public}s', 'TestAbility onWindowStageDestroy');
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    Logger.info(TAG, 'TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err, data) => {
+      if (err.code) {
+        Logger.error(TAG, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      Logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s',
+        JSON.stringify(data) ?? '');
+    });
+  }
 
-    onForeground() {
-        Logger.info('testTag', '%{public}s', 'TestAbility onForeground');
-    }
+  onWindowStageDestroy() {
+    Logger.info('testTag', '%{public}s', 'TestAbility onWindowStageDestroy');
+  }
 
-    onBackground() {
-        Logger.info('testTag', '%{public}s', 'TestAbility onBackground');
-    }
+  onForeground() {
+    Logger.info('testTag', '%{public}s', 'TestAbility onForeground');
+  }
+
+  onBackground() {
+    Logger.info('testTag', '%{public}s', 'TestAbility onBackground');
+  }
 }

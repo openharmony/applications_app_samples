@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, UIElementInfo } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -24,8 +25,8 @@ export default function monitorEventTest() {
   describe('monitorEventTest', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'EntryAbility'
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -36,11 +37,11 @@ export default function monitorEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: toast监听测试
      */
-    it("testMonitor_toast", TestType.FUNCTION, async (done: Function) => {
+    it('testMonitor_toast', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let observer = await driver.createUIEventObserver();
-      let callback = (uiElementInfo : UIElementInfo) => {
+      let callback = (uiElementInfo: UIElementInfo) => {
         try {
           expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue();
           expect(uiElementInfo.text == 'testMessage').assertTrue();
@@ -50,7 +51,7 @@ export default function monitorEventTest() {
           expect().assertFail();
         }
       }
-      observer.once('toastShow', callback)
+      observer.once('toastShow', callback);
       let btn = await driver.findComponent(ON.text('showToast'));
       await btn.click();
       await driver.delayMs(WAIT_UI_READYMS * 2);
@@ -63,11 +64,11 @@ export default function monitorEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: dialog监听测试
      */
-    it("testMonitor_dialog", TestType.FUNCTION, async (done: Function) => {
+    it('testMonitor_dialog', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let observer = await driver.createUIEventObserver();
-      let callback = (uiElementInfo : UIElementInfo) => {
+      let callback = (uiElementInfo: UIElementInfo) => {
         try {
           expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue();
           expect(uiElementInfo.text == 'testDialogtestMessage').assertTrue();

@@ -14,7 +14,7 @@
 */
 
 // [Start clearMock_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -28,6 +28,7 @@ class ClassName {
     return '999999';
   }
 }
+
 export default function clearTest() {
   describe('clearMock_sample', () => {
     it('testMockfunc', 0, () => {
@@ -48,9 +49,10 @@ export default function clearTest() {
       // 还原obj上所有的Mock能力
       mocker.clear(claser);
       // 调用claser.method_1,claser.method_2函数，测试结果
-      expect(claser.method_1(123)).assertEqual('888888');// 断言执行通过
-      expect(claser.method_2(123)).assertEqual('999999');// 断言执行通过
+      expect(claser.method_1(123)).assertEqual('888888'); // 断言执行通过
+      expect(claser.method_2(123)).assertEqual('999999'); // 断言执行通过
     })
   })
 }
+
 // [End clearMock_sample]

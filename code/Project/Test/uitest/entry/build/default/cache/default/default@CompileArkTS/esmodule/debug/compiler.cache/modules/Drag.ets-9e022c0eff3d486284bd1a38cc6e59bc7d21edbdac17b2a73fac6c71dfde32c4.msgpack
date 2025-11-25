@@ -1,0 +1,555 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ3ö"use strict";
+if (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+class DragExample extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__numbers = new ObservedPropertyObjectPU(['one', 'two', 'three', 'four', 'five', 'six'], this, "numbers");
+        this.__text = new ObservedPropertySimplePU('', this, "text");
+        this.__bool = new ObservedPropertySimplePU(false, this, "bool");
+        this.__dragBool = new ObservedPropertySimplePU(false, this, "dragBool");
+        this.__appleVisible = new ObservedPropertySimplePU(Visibility.Visible, this, "appleVisible");
+        this.__orangeVisible = new ObservedPropertySimplePU(Visibility.Visible, this, "orangeVisible");
+        this.__bananaVisible = new ObservedPropertySimplePU(Visibility.Visible, this, "bananaVisible");
+        this.__select = new ObservedPropertySimplePU(0, this, "select");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.numbers !== undefined) {
+            this.numbers = params.numbers;
+        }
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.bool !== undefined) {
+            this.bool = params.bool;
+        }
+        if (params.dragBool !== undefined) {
+            this.dragBool = params.dragBool;
+        }
+        if (params.appleVisible !== undefined) {
+            this.appleVisible = params.appleVisible;
+        }
+        if (params.orangeVisible !== undefined) {
+            this.orangeVisible = params.orangeVisible;
+        }
+        if (params.bananaVisible !== undefined) {
+            this.bananaVisible = params.bananaVisible;
+        }
+        if (params.select !== undefined) {
+            this.select = params.select;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__numbers.purgeDependencyOnElmtId(rmElmtId);
+        this.__text.purgeDependencyOnElmtId(rmElmtId);
+        this.__bool.purgeDependencyOnElmtId(rmElmtId);
+        this.__dragBool.purgeDependencyOnElmtId(rmElmtId);
+        this.__appleVisible.purgeDependencyOnElmtId(rmElmtId);
+        this.__orangeVisible.purgeDependencyOnElmtId(rmElmtId);
+        this.__bananaVisible.purgeDependencyOnElmtId(rmElmtId);
+        this.__select.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__numbers.aboutToBeDeleted();
+        this.__text.aboutToBeDeleted();
+        this.__bool.aboutToBeDeleted();
+        this.__dragBool.aboutToBeDeleted();
+        this.__appleVisible.aboutToBeDeleted();
+        this.__orangeVisible.aboutToBeDeleted();
+        this.__bananaVisible.aboutToBeDeleted();
+        this.__select.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get numbers() {
+        return this.__numbers.get();
+    }
+    set numbers(newValue) {
+        this.__numbers.set(newValue);
+    }
+    get text() {
+        return this.__text.get();
+    }
+    set text(newValue) {
+        this.__text.set(newValue);
+    }
+    get bool() {
+        return this.__bool.get();
+    }
+    set bool(newValue) {
+        this.__bool.set(newValue);
+    }
+    get dragBool() {
+        return this.__dragBool.get();
+    }
+    set dragBool(newValue) {
+        this.__dragBool.set(newValue);
+    }
+    get appleVisible() {
+        return this.__appleVisible.get();
+    }
+    set appleVisible(newValue) {
+        this.__appleVisible.set(newValue);
+    }
+    get orangeVisible() {
+        return this.__orangeVisible.get();
+    }
+    set orangeVisible(newValue) {
+        this.__orangeVisible.set(newValue);
+    }
+    get bananaVisible() {
+        return this.__bananaVisible.get();
+    }
+    set bananaVisible(newValue) {
+        this.__bananaVisible.set(newValue);
+    }
+    get select() {
+        return this.__select.get();
+    }
+    set select(newValue) {
+        this.__select.set(newValue);
+    }
+    pixelMapBuilder(parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(this.text);
+            Text.width('50%');
+            Text.height(60);
+            Text.fontSize(16);
+            Text.borderRadius(10);
+            Text.textAlign(TextAlign.Center);
+            Text.backgroundColor(Color.Yellow);
+        }, Text);
+        Text.pop();
+        Column.pop();
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height('100%');
+            Column.padding({ top: 20 });
+            Column.margin({ top: 20 });
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('There are three Text elements here');
+            Text.fontSize(12);
+            Text.fontColor(0xCCCCCC);
+            Text.width('90%');
+            Text.textAlign(TextAlign.Start);
+            Text.margin(5);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('Show Item');
+            Button.id('show_item');
+            Button.onClick(() => {
+                this.appleVisible = Visibility.Visible;
+                this.bananaVisible = Visibility.Visible;
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Flex.create({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround });
+            Flex.border({ width: 1 });
+            Flex.width('90%');
+            Flex.padding({ top: 10, bottom: 10 });
+            Flex.margin(10);
+        }, Flex);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('apple');
+            Text.width('25%');
+            Text.height(35);
+            Text.fontSize(16);
+            Text.textAlign(TextAlign.Center);
+            Text.backgroundColor(0xAFEEEE);
+            Text.visibility(this.appleVisible);
+            Text.onDragStart(() => {
+                this.bool = true;
+                this.text = 'apple';
+                this.appleVisible = Visibility.Hidden;
+                return { builder: this.pixelMapBuilder.bind(this) };
+            });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('orange');
+            Text.width('25%');
+            Text.height(35);
+            Text.fontSize(16);
+            Text.textAlign(TextAlign.Center);
+            Text.backgroundColor(0xAFEEEE);
+            Text.visibility(this.orangeVisible);
+            Text.onDragStart(() => {
+                this.bool = true;
+                this.text = 'orange';
+                this.orangeVisible = Visibility.Hidden;
+                return { builder: this.pixelMapBuilder.bind(this) };
+            });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('banana');
+            Text.width('25%');
+            Text.height(35);
+            Text.fontSize(16);
+            Text.textAlign(TextAlign.Center);
+            Text.backgroundColor(0xAFEEEE);
+            Text.visibility(this.bananaVisible);
+            Text.onDragStart((event, extraParams) => {
+                console.log('Text onDragStarts, ' + extraParams);
+                this.bool = true;
+                this.text = 'banana';
+                this.bananaVisible = Visibility.Hidden;
+                return { builder: this.pixelMapBuilder.bind(this) };
+            });
+        }, Text);
+        Text.pop();
+        Flex.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('This is a List element');
+            Text.fontSize(12);
+            Text.fontColor(0xCCCCCC);
+            Text.width('90%');
+            Text.textAlign(TextAlign.Start);
+            Text.margin(15);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            List.create({ space: 20, initialIndex: 0 });
+            List.editMode(true);
+            List.height('50%');
+            List.width('90%');
+            List.border({ width: 1 });
+            List.divider({
+                strokeWidth: 2,
+                color: 0xFFFFFF,
+                startMargin: 20,
+                endMargin: 20
+            });
+            List.onDragEnter((event, extraParams) => {
+                console.log('List onDragEnter, ' + extraParams);
+            });
+            List.onDragMove((event, extraParams) => {
+                console.log('List onDragMove, ' + extraParams);
+            });
+            List.onDragLeave((event, extraParams) => {
+                console.log('List onDragLeave, ' + extraParams);
+            });
+            List.onDrop((event, extraParams) => {
+                if (extraParams == undefined) {
+                    return;
+                }
+                let jsonString = JSON.parse(extraParams);
+                if (this.bool) {
+                    this.numbers.splice(jsonString.insertIndex, 0, this.text);
+                    this.bool = false;
+                }
+                else if (this.dragBool) {
+                    this.numbers.splice(jsonString.selectedIndex, 1);
+                    this.numbers.splice(jsonString.insertIndex, 0, this.text);
+                    this.bool = false;
+                    this.dragBool = false;
+                }
+            });
+        }, List);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = _item => {
+                const item = _item;
+                {
+                    const itemCreation = (elmtId, isInitialRender) => {
+                        ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+                        ListItem.create(deepRenderFunction, true);
+                        if (!isInitialRender) {
+                            ListItem.pop();
+                        }
+                        ViewStackProcessor.StopGetAccessRecording();
+                    };
+                    const itemCreation2 = (elmtId, isInitialRender) => {
+                        ListItem.create(deepRenderFunction, true);
+                        ListItem.onDragStart((event, extraParams) => {
+                            if (extraParams == undefined) {
+                                return;
+                            }
+                            console.log('ListItem onDragStarts, ' + extraParams);
+                            let jsonString = JSON.parse(extraParams);
+                            this.dragBool = true;
+                            this.text = this.numbers[jsonString.selectedIndex];
+                            this.select = jsonString.selectedIndex;
+                            return { builder: this.pixelMapBuilder.bind(this) };
+                        });
+                    };
+                    const deepRenderFunction = (elmtId, isInitialRender) => {
+                        itemCreation(elmtId, isInitialRender);
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            Text.create('' + item);
+                            Text.width('100%');
+                            Text.height(80);
+                            Text.fontSize(16);
+                            Text.borderRadius(10);
+                            Text.textAlign(TextAlign.Center);
+                            Text.backgroundColor(0xAFEEEE);
+                        }, Text);
+                        Text.pop();
+                        ListItem.pop();
+                    };
+                    this.observeComponentCreation2(itemCreation2, ListItem);
+                    ListItem.pop();
+                }
+            };
+            this.forEachUpdateFunction(elmtId, this.numbers, forEachItemGenFunction, (item) => item, false, false);
+        }, ForEach);
+        ForEach.pop();
+        List.pop();
+        Column.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "DragExample";
+    }
+}
+registerNamedRoute(() => new DragExample(undefined, {}), "", { bundleName: "com.samples.test.uitest", moduleName: "entry", pagePath: "pages/Drag", pageFullPath: "entry/src/main/ets/pages/Drag", integratedHsp: "false", moduleType: "followWithHap" });
+//# sourceMappingURL=Drag.js.mapÂÙ5D:\lyp\11-18\uitest\entry\src\main\ets\pages\Drag.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂ¹D:\lyp\11-18\uitest\entry³D:\lyp\11-18\uitest¥entry¥1.0.0Ô  ¹D:\lyp\11-18\uitest\entryÔrCÜ «¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCacheÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚÒ/**
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@Entry
+@Component
+struct DragExample {
+  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
+  @State text: string = '';
+  @State bool: boolean = false;
+  @State dragBool: boolean = false;
+  @State appleVisible: Visibility = Visibility.Visible;
+  @State orangeVisible: Visibility = Visibility.Visible;
+  @State bananaVisible: Visibility = Visibility.Visible;
+  @State select: number = 0;
+
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Text(this.text)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
+    }
+  }
+
+  build() {
+    Column() {
+      Text('There are three Text elements here')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(5)
+      Button('Show Item')
+        .id('show_item')
+        .onClick(() => {
+          this.appleVisible = Visibility.Visible;
+          this.bananaVisible = Visibility.Visible;
+        })
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Text('apple')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
+          .visibility(this.appleVisible)
+          .onDragStart(() => {
+            this.bool = true;
+            this.text = 'apple';
+            this.appleVisible = Visibility.Hidden;
+            return this.pixelMapBuilder;
+          })
+        Text('orange')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
+          .visibility(this.orangeVisible)
+          .onDragStart(() => {
+            this.bool = true;
+            this.text = 'orange';
+            this.orangeVisible = Visibility.Hidden;
+            return this.pixelMapBuilder;
+          })
+        Text('banana')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
+          .visibility(this.bananaVisible)
+          .onDragStart((event: DragEvent, extraParams: string) => {
+            console.log('Text onDragStarts, ' + extraParams);
+            this.bool = true;
+            this.text = 'banana';
+            this.bananaVisible = Visibility.Hidden;
+            return this.pixelMapBuilder;
+          })
+      }.border({ width: 1 }).width('90%').padding({ top: 10, bottom: 10 }).margin(10)
+
+      Text('This is a List element')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(15)
+      List({ space: 20, initialIndex: 0 }) {
+        ForEach(this.numbers, (item: string) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(80)
+              .fontSize(16)
+              .borderRadius(10)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xAFEEEE)
+          }
+          .onDragStart((event: DragEvent | undefined, extraParams: string | undefined) => {
+            if (extraParams == undefined) {
+              return;
+            }
+            console.log('ListItem onDragStarts, ' + extraParams);
+            let jsonString: ObjTest = JSON.parse(extraParams);
+            this.dragBool = true;
+            this.text = this.numbers[jsonString.selectedIndex];
+            this.select = jsonString.selectedIndex;
+            return this.pixelMapBuilder;
+          })
+        }, (item: string) => item)
+      }
+      .editMode(true)
+      .height('50%')
+      .width('90%')
+      .border({ width: 1 })
+      .divider({
+        strokeWidth: 2,
+        color: 0xFFFFFF,
+        startMargin: 20,
+        endMargin: 20
+      })
+      .onDragEnter((event: DragEvent | undefined, extraParams: string | undefined) => {
+        console.log('List onDragEnter, ' + extraParams);
+      })
+      .onDragMove((event: DragEvent | undefined, extraParams: string | undefined) => {
+        console.log('List onDragMove, ' + extraParams);
+      })
+      .onDragLeave((event: DragEvent | undefined, extraParams: string | undefined) => {
+        console.log('List onDragLeave, ' + extraParams);
+      })
+      .onDrop((event: DragEvent | undefined, extraParams: string | undefined) => {
+        if (extraParams == undefined) {
+          return;
+        }
+        let jsonString: ObjTest = JSON.parse(extraParams);
+        if (this.bool) {
+          this.numbers.splice(jsonString.insertIndex, 0, this.text);
+          this.bool = false;
+        } else if (this.dragBool) {
+          this.numbers.splice(jsonString.selectedIndex, 1);
+          this.numbers.splice(jsonString.insertIndex, 0, this.text);
+          this.bool = false;
+          this.dragBool = false;
+        }
+      })
+    }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
+  }
+}
+
+interface ObjTest {
+  insertIndex: number,
+  selectedIndex: number
+}ÀA“ÔrD–§version¤fileªsourceRoot§sources¥names¨mappings§Drag.js ‘¨Drag.etsÜ<’” ” ‘”  ž”6 ”7 ”< #”> %”ÌC *”ÌE ,”ÌL 3”ÌN 5”ÌT ;”ÌV =”Ì\ ÌC”Ì^ ÌE”Ìc ÌJ”Ìd ÌK’”3 ”5 ’”3 ”8 ’”7 ”< "””; $”ÌE .”ÌF /”ÌM 6””< %”ÌF /”ÌG 0”ÌN 7””< %”ÌF /”ÌG 0”ÌN 7’”5 ”6 ‘”   ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” ” ’” ” 
+–” ” 
+” ” ” ”! –” ” 
+” 	” ” ” –” ” 
+”  	”  ”  ”  –” ” 
+” !	” !” !” !–” ” 
+” "	” "” "”  "˜” ” 
+” #	” #” #”$ #”% #”+ ##˜” ” 
+” $	”  $”! $”& $”' $”- $%’” ” 
+’” ” 
+‘” &‘” (’” )” )
+–” )” )
+” Ì¡” Ì¡” Ì¡” Ì¡–” )” )
+” Ì¡” Ì¡” Ì¡”  Ì¡!š” )” )
+” Ì¡#” Ì¡*” Ì¡+” Ì¡-”  Ì¡0”" Ì¡2”$ Ì¡4”& Ì¡6š” )” )
+” Ì¡8” Ì¡>” Ì¡?” Ì¡ÌA” Ì¡ÌD”! Ì¡ÌF”# Ì¡ÌH”% Ì¡ÌJ”” *” *
+” *”< */–” *” *
+” +	” +” +” +–” *” *
+” ,	” ,” ,”# ,–” *” *
+” -	” -” -” -˜” *” *
+” .	” .” .”$ .”% .”* ."–” *” *
+” /	” /” /” /’” *” *
+”” 0” 0”# 0”. 0–” 0” 0” 1	” 1” 1”! 1—” 0” 0” 2	” 2” 2” 2”  2™” 3
+” 3” 3”! 3”$ 3”. 3(”/ 3)”6 30”7 31™” 4
+” 4” 4”" 4”% 4”/ 4)”0 4*”7 41”8 42’” 5” 5	’” 0” 0Ü ” 6” 6
+” 6” 6”# 6”% 6”2 6%”3 6&”6 6)”8 6+”ÌB 65”ÌD 67”ÌM 6Ì@”ÌN 6ÌA”ÌT 6ÌG”ÌV 6ÌI”Ìd 6ÌW”Ìf 6ÌY”Ìo 6Ìb”Ìp 6Ìc”Ì{ 6Ìn”Ì} 6Ìpš” 6” 6
+” Ì_” Ì_” Ì_” Ì_” Ì_”! Ì_”" Ì_”$ Ì_–” 6” 6
+” Ì_” Ì_"” Ì_#” Ì_(ž” 6” 6
+” Ì_*” Ì_1” Ì_2” Ì_4” Ì_7”  Ì_9”" Ì_;”$ Ì_=”* Ì_ÌC”, Ì_ÌE”. Ì_ÌG”0 Ì_ÌI–” 6” 6
+” Ì_ÌK” Ì_ÌQ” Ì_ÌR” Ì_ÌT”” 7” 7” 7” 7–” 7” 7” 8” 8” 8” 8–” 7” 7” 9” 9” 9” 9–” 7” 7” :” :” :” :˜” 7” 7” ;” ;” ;”$ ;”% ;”+ ;%–” 7” 7” <”  <”! <”) <#˜” 7” 7” =” =” =”  =”! =”- ='—” 7” 7” >” >” >”  >”" >—” ?” ?” ?” ?” ?”  ?”! ?—” Ì@” Ì@” Ì@” Ì@” Ì@”# Ì@”$ Ì@ ™” ÌA” ÌA” ÌA”! ÌA”$ ÌA ”. ÌA*”/ ÌA+”5 ÌA1”6 ÌA2–” ÌB”" ÌB”& ÌB”' ÌB”6 ÌB'”ÌD ÌB(‘” ÌC’” 7” 7”” ÌD” ÌD” ÌD”  ÌD–” ÌD” ÌD” ÌE” ÌE” ÌE” ÌE–” ÌD” ÌD” ÌF” ÌF” ÌF” ÌF–” ÌD” ÌD” ÌG” ÌG” ÌG” ÌG˜” ÌD” ÌD” ÌH” ÌH” ÌH”$ ÌH”% ÌH”+ ÌH%–” ÌD” ÌD” ÌI”  ÌI”! ÌI”) ÌI#˜” ÌD” ÌD” ÌJ” ÌJ” ÌJ”  ÌJ”! ÌJ”. ÌJ(—” ÌD” ÌD” ÌK” ÌK” ÌK”  ÌK”" ÌK—” ÌL” ÌL” ÌL” ÌL” ÌL”  ÌL”! ÌL—” ÌM” ÌM” ÌM” ÌM” ÌM”$ ÌM ”% ÌM!™” ÌN” ÌN” ÌN”" ÌN”% ÌN!”/ ÌN+”0 ÌN,”6 ÌN2”7 ÌN3–” ÌO”" ÌO”& ÌO”' ÌO”6 ÌO'”ÌD ÌO(‘” ÌP’” ÌD” ÌD”” ÌQ” ÌQ” ÌQ”  ÌQ–” ÌQ” ÌQ” ÌR” ÌR” ÌR” ÌR–” ÌQ” ÌQ” ÌS” ÌS” ÌS” ÌS–” ÌQ” ÌQ” ÌT” ÌT” ÌT” ÌT˜” ÌQ” ÌQ” ÌU” ÌU” ÌU”$ ÌU”% ÌU”+ ÌU%–” ÌQ” ÌQ” ÌV”  ÌV”! ÌV”) ÌV#˜” ÌQ” ÌQ” ÌW” ÌW” ÌW”  ÌW”! ÌW”. ÌW(›” ÌQ” ÌQ” ÌX” ÌX” ÌX” ÌX”# ÌX(”% ÌX*”0 ÌX=”2 ÌX?”4 ÌXÌAš” ÌY” ÌY” ÌY” ÌY” ÌY”1 ÌY-”4 ÌY0”? ÌY;”Ì@ ÌY<”ÌA ÌY=—” ÌZ” ÌZ” ÌZ” ÌZ” ÌZ”  ÌZ”! ÌZ—” Ì[” Ì[” Ì[” Ì[” Ì[”$ Ì[ ”% Ì[!™” Ì\” Ì\” Ì\”" Ì\”% Ì\!”/ Ì\+”0 Ì\,”6 Ì\2”7 Ì\3–” Ì]”" Ì]”& Ì]”' Ì]”6 Ì]'”ÌD Ì](‘” Ì^’” ÌQ” ÌQ’” 6” 6
+”” Ìa” Ìa
+” Ìa”0 Ìa#–” Ìa” Ìa
+” Ìb	” Ìb” Ìb” Ìb–” Ìa” Ìa
+” Ìc	” Ìc” Ìc”# Ìc–” Ìa” Ìa
+” Ìd	” Ìd” Ìd” Ìd˜” Ìa” Ìa
+” Ìe	” Ìe” Ìe”$ Ìe”% Ìe”* Ìe"–” Ìa” Ìa
+” Ìf	” Ìf” Ìf” Ìf’” Ìa” Ìa
+œ” Ìg” Ìg
+” Ìg” Ìg” Ìg”! Ìg”# Ìg”% Ìg”1 Ìg$”3 Ìg&”4 Ìg'”6 Ìg)–” Ìg” Ìg
+” Ì” Ì” Ì” Ì–” Ìg” Ìg
+” Ì€” Ì€” Ì€” Ì€–” Ìg” Ìg
+” Ì” Ì” Ì” Ìš” Ìg” Ìg
+” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚”! Ì‚”" Ì‚”$ Ì‚•” Ìg” Ìg
+” Ìƒ” Ìƒ” Ìƒ”” Ì„” Ì„” Ì„” Ì„”” Ì…” Ì…” Ì…” Ì…”” Ì†” Ì†” Ì†” Ì†”” Ì‡” Ì‡” Ì‡” Ì‡‘” Ìˆ›” Ìg” Ìg
+” Ì‰” Ì‰” Ì‰” Ì‰”# Ì‰0”% Ì‰2”0 Ì‰ÌQ”2 Ì‰ÌS”4 Ì‰ÌUš” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ”0 ÌŠ(”3 ÌŠ+”> ÌŠ6”? ÌŠ7”Ì@ ÌŠ8’” Ì‹” Ì‹›” Ìg” Ìg
+” ÌŒ” ÌŒ” ÌŒ” ÌŒ”" ÌŒ/”$ ÌŒ1”/ ÌŒÌP”1 ÌŒÌR”3 ÌŒÌTš” Ì” Ì” Ì” Ì” Ì”/ Ì'”2 Ì*”= Ì5”> Ì6”? Ì7’” ÌŽ” ÌŽ›” Ìg” Ìg
+” Ì” Ì” Ì” Ì”# Ì0”% Ì2”0 ÌÌQ”2 ÌÌS”4 ÌÌUš” Ì” Ì” Ì” Ì” Ì”0 Ì(”3 Ì+”> Ì6”? Ì7”Ì@ Ì8’” Ì‘” Ì‘›” Ìg” Ìg
+” Ì’” Ì’” Ì’” Ì’” Ì’+”  Ì’-”+ Ì’ÌL”- Ì’ÌN”/ Ì’ÌP–” Ì“” Ì“” Ì“”# Ì“”, Ì“$”. Ì“&’” Ì”
+” Ì”‘” Ì•	›” Ì–” Ì–” Ì–”! Ì–"”% Ì–&”& Ì–'”+ Ì–,”, Ì–-”7 Ì–8”8 Ì–9”9 Ì–:–” Ì—” Ì—” Ì—” Ì—” Ì—” Ì—Ü ” Ì˜
+” Ì˜” Ì˜”  Ì˜”! Ì˜”' Ì˜”( Ì˜”2 Ì˜(”3 Ì˜)”> Ì˜4”Ì@ Ì˜6”ÌA Ì˜7”ÌC Ì˜9”ÌG Ì˜=”ÌH Ì˜>”ÌL Ì˜ÌB”ÌM Ì˜ÌC”ÌN Ì˜ÌD—” Ì™
+” Ì™” Ì™” Ì™”  Ì™”% Ì™”& Ì™‘” Ìš	–” Ìš” Ìš” Ìš” Ìš”& Ìš ”( Ìš"ž” Ì›
+” Ì›” Ì›”  Ì›”! Ì›”' Ì›”( Ì›”2 Ì›(”3 Ì›)”Ì@ Ì›6”ÌB Ì›8”ÌC Ì›9”ÌD Ì›:”ÌE Ì›;Ü ” Ìœ
+” Ìœ” Ìœ”  Ìœ”! Ìœ”' Ìœ”( Ìœ”2 Ìœ(”3 Ìœ)”> Ìœ4”Ì@ Ìœ6”ÌA Ìœ7”ÌC Ìœ9”ÌG Ìœ=”ÌH Ìœ>”ÌL ÌœÌB”ÌM ÌœÌC”ÌN ÌœÌD—” Ì
+” Ì” Ì” Ì”  Ì”% Ì”& Ì—” Ìž
+” Ìž” Ìž”! Ìž”$ Ìž”) Ìž”* Ìž ‘” ÌŸ	’” Ì ” Ì ’” Ìh” Ìh’” Ìi
+”$ Ìi›” Ìi
+”  Ìi”! Ìr”, Ìr”- Ìr”. Ìr”3 Ìr4”5 Ìr6”Ì@ ÌrÌU”ÌB ÌrÌW”ÌD ÌrÌY–” Ìs”  Ìs”+ Ìs”/ Ìs”8 Ìs(”: Ìs*’”  Ìt”' Ìt‘” Ìuš” Ìv”# Ìv”$ Ìv”' Ìv”( Ìv”ÌA Ìv1”ÌD Ìv4”ÌO Ìv?”ÌP ÌvÌ@”ÌQ ÌvÌA›” Ìw”  Ìw”* Ìw”- Ìw&”1 Ìw*”2 Ìw+”7 Ìw0”8 Ìw1”ÌC Ìw<”ÌD Ìw=”ÌE Ìw>—” Ìx”  Ìx”! Ìx”) Ìx”, Ìx”0 Ìx ”1 Ìx!ž” Ìy”  Ìy”! Ìy”% Ìy”( Ìy”, Ìy”- Ìy”4 Ìy$”5 Ìy%”? Ìy/”Ì@ Ìy0”ÌM Ìy=”ÌN Ìy>”ÌO Ìy?™” Ìz”  Ìz”! Ìz”' Ìz”* Ìz”4 Ìz$”5 Ìz%”ÌB Ìz2”ÌC Ìz3–” Ì{”. Ì{”2 Ì{”3 Ì{”ÌB Ì{'”ÌP Ì{(‘” Ì|–” Ìj”  Ìj”( Ìj”* Ìj”- Ìj”1 Ìj–” Ìj”  Ìj”! Ìk”& Ìk”' Ìk”- Ìk–” Ìj”  Ìj”! Ìl”' Ìl”( Ìl”* Ìl–” Ìj”  Ìj”! Ìm”) Ìm”* Ìm”, Ìm–” Ìj”  Ìj”! Ìn”- Ìn”. Ìn”0 Ìn˜” Ìj”  Ìj”! Ìo”* Ìo”+ Ìo”4 Ìo"”5 Ìo#”; Ìo)–” Ìj”  Ìj”! Ìp”0 Ìp”1 Ìp”9 Ìp'’” Ìj” Ìj’” Ìi
+”  Ìi’” Ìi
+” Ìi›”/ Ìh”3 Ìh”4 Ìh”; Ìh”ÌU Ì}”ÌV Ì}”ÌZ Ì}”Ì\ Ì}”Ì^ Ì}”Ì_ Ì}”Ìc Ì}!’” Ìh” Ìh’” Ìg” Ìg
+’” )” )
+‘” Ì¢ÔrE–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜE‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  ÌŽ ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ìž ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌÐ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  ÌÝ ‘”  ÌÞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìð ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìý ‘”  Ìþ ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ÔrF’§missing¦pluginÃ¦genAbcÂÔ  ÔrG”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache

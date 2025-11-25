@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function verifyTimesTest() {
   describe('verifyTimes_sample', () => {
     it('test_verify_times', 0, () => {
@@ -44,10 +45,11 @@ export default function verifyTimesTest() {
       claser.method_1('abc');
       claser.method_1();
       // 验证函数method_1且参数为'abc'时，执行过的次数是否为2
-      mocker.verify('method_1', ['abc']).times(2);// 断言执行通过
-       // 验证函数method_1且参数为空时，是否至少执行过2次
-      mocker.verify('method_1', []).atLeast(2);// 断言执行通过
+      mocker.verify('method_1', ['abc']).times(2); // 断言执行通过
+      // 验证函数method_1且参数为空时，是否至少执行过2次
+      mocker.verify('method_1', []).atLeast(2); // 断言执行通过
     })
   })
 }
+
 // [End verifyTimes_sample]

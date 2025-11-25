@@ -14,24 +14,25 @@
  */
 
 // [Start penOp_sample]
-  import { describe, it, TestType, Size, Level } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { Driver } from '@kit.TestKit';
+import { describe, it, Level, Size, TestType } from '@ohos/hypium';
+// 导入测试依赖kit
+import { Driver } from '@kit.TestKit';
 
-  export default function abilityTest() {
-    describe('penOp_sample', () => {
-      // 模拟手写笔单击、双击、长按、滑动操作
-      it('penOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-        let driver = Driver.create();
-        // 手写笔单击
-        await driver.penClick({x: 100, y: 100});
-        // 手写笔双击
-        await driver.penDoubleClick({x: 100, y: 100});
-        // 手写笔长按
-        await driver.penLongClick({x: 100, y: 100}, 0.5);
-        // 手写笔滑动
-        await driver.penSwipe({x: 100, y: 100}, {x: 100, y: 500}, 600, 0.5);
-      })
+export default function abilityTest() {
+  describe('penOp_sample', () => {
+    // 模拟手写笔单击、双击、长按、滑动操作
+    it('penOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      let driver = Driver.create();
+      // 手写笔单击
+      await driver.penClick({ x: 100, y: 100 });
+      // 手写笔双击
+      await driver.penDoubleClick({ x: 100, y: 100 });
+      // 手写笔长按
+      await driver.penLongClick({ x: 100, y: 100 }, 0.5);
+      // 手写笔滑动
+      await driver.penSwipe({ x: 100, y: 100 }, { x: 100, y: 500 }, 600, 0.5);
     })
-  }
-  // [End penOp_sample]
+  })
+}
+
+// [End penOp_sample]

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
@@ -21,17 +21,18 @@ import { BusinessError } from '@ohos.base';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
-const waitUiReadyMs : number = 1000;
+const waitUiReadyMs: number = 1000;
 
 async function startAbility(bundleName: string, abilityName: string) {
   await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`);
 }
+
 export default function clickEventTest() {
   describe('clickEventTest', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'clickAbility'
+        bundleName: bundleName,
+        abilityName: 'clickAbility'
       };
       await delegator.startAbility(want);
     })
@@ -42,14 +43,14 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest Component click 功能
      */
-    it('clickEventTest_click',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_click', TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(WAIT_UI_READYMS);
       let button = await dr.findComponent(ON.id('click_bt'));
       let text = await dr.findComponent(ON.id('result_text'));
       expect(await text.getText() == 'Hello World').assertTrue();
       await button.click();
-       let text1 = await dr.findComponent(ON.id('result_text'));
+      let text1 = await dr.findComponent(ON.id('result_text'));
       expect(await text1.getText() === 'singleClick').assertTrue();
       done();
     })
@@ -60,7 +61,7 @@ export default function clickEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest double click 功能
      */
-    it('clickEventTest_double_click',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_double_click', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let button = await driver.findComponent(ON.text('Click twice'));
@@ -98,16 +99,16 @@ export default function clickEventTest() {
      * @tc.desc: 检测uitest long click 功能 该接口从API 20开始支持。
      */
     it('clickEventTest_LongClickAt', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
+      let driver = Driver.create();
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('LongClick'));
-      let center = await button.getBoundsCenter()
-      await driver.longClickAt(center, 3000)
-      await driver.delayMs(waitUiReadyMs)
-      let newButton = await driver.findComponent(ON.text('longClick'))
-      let text = await newButton.getText()
-      expect(text == 'longClick').assertTrue()
-      await newButton.click()
+      let center = await button.getBoundsCenter();
+      await driver.longClickAt(center, 3000);
+      await driver.delayMs(waitUiReadyMs);
+      let newButton = await driver.findComponent(ON.text('longClick'));
+      let text = await newButton.getText();
+      expect(text == 'longClick').assertTrue();
+      await newButton.click();
     })
 
     /**
@@ -155,17 +156,17 @@ export default function clickEventTest() {
      * @tc.desc: 检测uitest 点击功能，该接口从api20开始支持使用。
      */
     it('clickEventTest_ClickAt', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
-      await driver.delayMs(waitUiReadyMs)
-      let Button = await driver.findComponent(ON.text('next page'))
-      let center = await Button.getBoundsCenter()
-      await driver.clickAt(center)
-      await driver.delayMs(waitUiReadyMs)
-      let newButton = await driver.findComponent(ON.text('back to index'))
-      let text = await newButton.getText()
-      expect(text == 'back to index').assertTrue()
-      await newButton.click()
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
+      await driver.delayMs(waitUiReadyMs);
+      let Button = await driver.findComponent(ON.text('next page'));
+      let center = await Button.getBoundsCenter();
+      await driver.clickAt(center);
+      await driver.delayMs(waitUiReadyMs);
+      let newButton = await driver.findComponent(ON.text('back to index'));
+      let text = await newButton.getText();
+      expect(text == 'back to index').assertTrue();
+      await newButton.click();
     })
 
     /**
@@ -174,21 +175,21 @@ export default function clickEventTest() {
      * @tc.desc: 检测uitest 双击功能，该接口从api20开始支持使用。
      */
     it('clickEventTest_DoubleClickAt', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
-      await driver.delayMs(waitUiReadyMs)
-      let Button = await driver.findComponent(ON.text('Click twice'))
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
+      await driver.delayMs(waitUiReadyMs);
+      let Button = await driver.findComponent(ON.text('Click twice'));
       if (Button == null) {
-        let scorll = await driver.findComponent(ON.type('Scroll'))
-        Button = await scorll.scrollSearch(ON.text('Click twice'))
+        let scorll = await driver.findComponent(ON.type('Scroll'));
+        Button = await scorll.scrollSearch(ON.text('Click twice'));
       }
-      let center = await Button.getBoundsCenter()
-      await driver.doubleClickAt(center)
-      await driver.delayMs(waitUiReadyMs)
-      let button = await driver.findComponent(ON.text('doubleClick'))
-      let text = await button.getText()
-      expect(text == 'doubleClick').assertTrue()
-      await button.click()
+      let center = await Button.getBoundsCenter();
+      await driver.doubleClickAt(center);
+      await driver.delayMs(waitUiReadyMs);
+      let button = await driver.findComponent(ON.text('doubleClick'));
+      let text = await button.getText();
+      expect(text == 'doubleClick').assertTrue();
+      await button.click();
     })
   })
 }

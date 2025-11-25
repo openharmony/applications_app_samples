@@ -32,8 +32,8 @@ import FindWindowAndOp from './operationExampleTest/window/FindWindowAndOp.test'
 import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test';
 import webOperateTest from './operationExampleTest/web/webOperate.test';
 import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
-import otherEvent from './operationExampleTest/ui/OtherEvent.test'
-import wearAbleEventTest from './operationExampleTest/ui/WearAbleEvent.test'
+import otherEvent from './operationExampleTest/ui/OtherEvent.test';
+import wearAbleEventTest from './operationExampleTest/ui/WearAbleEvent.test';
 import displayOp from './operationExampleTest/ui/DisplayOp.test';
 import eventObserver from './operationExampleTest/ui/EventObserver.test';
 import inputText from './operationExampleTest/ui/InputText.test';
@@ -72,7 +72,7 @@ export default function testsuite() {
   mouseAndKeyOp();
   penOp();
   screenCap();
-  screenCapEvent()
+  screenCapEvent();
   touchPadOp();
   touchScreenEvent();
   waitForCom();

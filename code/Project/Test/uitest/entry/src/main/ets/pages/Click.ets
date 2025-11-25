@@ -26,11 +26,11 @@ struct Click {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .id("result_text")
-        Button("singleClick")
-          .id("click_bt")
-          .onClick(() =>{
-            this.message = "singleClick";
+          .id('result_text')
+        Button('singleClick')
+          .id('click_bt')
+          .onClick(() => {
+            this.message = 'singleClick';
           })
         Button() {
           Text('Click twice')
@@ -40,11 +40,12 @@ struct Click {
         .type(ButtonType.Capsule)
         .margin({ top: 20 })
         .gesture(
-        TapGesture({ count: 2 })
-          .onAction(() => {
-            router.pushUrl({ url: 'pages/Third' });
-          })
+          TapGesture({ count: 2 })
+            .onAction(() => {
+              router.pushUrl({ url: 'pages/Third' });
+            })
         )
+
         Button() {
           Text('LongClick')
             .fontSize(25)

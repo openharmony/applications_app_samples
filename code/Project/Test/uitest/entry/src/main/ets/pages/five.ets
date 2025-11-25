@@ -25,33 +25,49 @@ struct five {
   @State bananaVisible: Visibility = Visibility.Visible;
   @State select: number = 0;
 
-  @Builder pixelMapBuilder() {
+  @Builder
+  pixelMapBuilder() {
     Column() {
       Text(this.text)
-        .width('50%').height(60).fontSize(16).borderRadius(10)
-        .textAlign(TextAlign.Center).backgroundColor(Color.Yellow)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
     }
   }
 
   build() {
     Column() {
       Text('There are three Text elements here')
-        .fontSize(12).fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(5)
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(5)
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-        Text('apple').width('25%').height(35).fontSize(16)
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('apple')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.appleVisible)
           .draggable(true)
-          .id("apple")
+          .id('apple')
           .onDragStart(() => {
             this.bool = true;
             this.text = 'apple';
             this.appleVisible = Visibility.Hidden;
             return this.pixelMapBuilder;
           })
-        Text('orange').width('25%').height(35).fontSize(16)
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('orange')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.orangeVisible)
           .draggable(true)
           .onDragStart(() => {
@@ -60,12 +76,16 @@ struct five {
             this.orangeVisible = Visibility.Hidden;
             return this.pixelMapBuilder;
           })
-        Text('banana').width('25%').height(35).fontSize(16)
-          .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+        Text('banana')
+          .width('25%')
+          .height(35)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(0xAFEEEE)
           .visibility(this.bananaVisible)
           .draggable(true)
           .onDragStart((event: DragEvent | undefined, extraParams: string | undefined) => {
-            console.log('Text onDragStarts, ' + extraParams)
+            console.log('Text onDragStarts, ' + extraParams);
             this.bool = true;
             this.text = 'banana';
             this.bananaVisible = Visibility.Hidden;
@@ -73,15 +93,22 @@ struct five {
           })
       }.border({ width: 1 }).width('90%').padding({ top: 10, bottom: 10 }).margin(10)
 
-      Text('This is a List element').fontSize(12)
-        .fontColor(0xCCCCCC).width('90%')
-        .textAlign(TextAlign.Start).margin(15)
+      Text('This is a List element')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .textAlign(TextAlign.Start)
+        .margin(15)
       List({ space: 20, initialIndex: 0 }) {
         ForEach(this.numbers, (item: string) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(80).fontSize(16).borderRadius(10)
-              .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
+              .width('100%')
+              .height(80)
+              .fontSize(16)
+              .borderRadius(10)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xAFEEEE)
           }
           .onDragStart((event: DragEvent | undefined, extraParams: string | undefined) => {
             if (extraParams == undefined) {
@@ -97,8 +124,15 @@ struct five {
         }, (item: string) => item)
       }
       .editMode(true)
-      .height('50%').width('90%').border({ width: 1 })
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
+      .height('50%')
+      .width('90%')
+      .border({ width: 1 })
+      .divider({
+        strokeWidth: 2,
+        color: 0xFFFFFF,
+        startMargin: 20,
+        endMargin: 20
+      })
       .onDragEnter((event: DragEvent | undefined, extraParams: string | undefined) => {
         console.log('List onDragEnter, ' + extraParams);
       })
@@ -108,7 +142,7 @@ struct five {
       .onDragLeave((event: DragEvent | undefined, extraParams: string | undefined) => {
         console.log('List onDragLeave, ' + extraParams);
       })
-      .onDrop((event: DragEvent  | undefined, extraParams: string | undefined) => {
+      .onDrop((event: DragEvent | undefined, extraParams: string | undefined) => {
         if (extraParams == undefined) {
           return;
         }
@@ -126,6 +160,7 @@ struct five {
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }
 }
+
 interface extraObj {
   insertIndex: number,
   selectedIndex: number

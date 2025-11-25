@@ -18,10 +18,11 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-  @State hoverText : string = 'jump'
-  @State pressure : number = 0.0
+  scroller: Scroller = new Scroller();
+  @State hoverText: string = 'jump';
+  @State pressure: number = 0.0;
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('MainPage')
@@ -38,7 +39,8 @@ struct ScrollExample {
                     duration: 60000
                   });
                 } catch (error) {
-                };
+                }
+                ;
               })
             Button('dialog').fontSize(25).fontWeight(FontWeight.Bold)
               .onClick(() => {
@@ -64,20 +66,21 @@ struct ScrollExample {
             .type(ButtonType.Capsule)
             .margin({ top: 20 })
             .onClick(() => {
-              router.push({ uri: 'pages/second' })
+              router.push({ uri: 'pages/second' });
             })
             .gesture(
               LongPressGesture({ repeat: false })
                 .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/Fourth' })
+                  router.push({ uri: 'pages/Fourth' });
                 })
             )
             .gesture(
               LongPressGesture({ repeat: false, duration: 1800 })
                 .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/fourth' })
+                  router.push({ uri: 'pages/fourth' });
                 })
             )
+
             Button() {
               Text('Click twice')
                 .fontSize(25)
@@ -88,15 +91,16 @@ struct ScrollExample {
             .gesture(
               TapGesture({ count: 1 })
                 .onAction(() => {
-                  router.push({ uri: 'pages/Third' })
+                  router.push({ uri: 'pages/Third' });
                 })
             )
             .gesture(
               LongPressGesture({ repeat: false })
                 .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/wearList' })
+                  router.push({ uri: 'pages/wearList' });
                 })
             )
+
             Button() {
               Text(this.hoverText)
                 .fontSize(25)
@@ -107,31 +111,32 @@ struct ScrollExample {
             .margin({ top: 20 })
             .onHover((isHover: boolean) => {
               if (isHover) {
-                this.hoverText = 'hover'
+                this.hoverText = 'hover';
               }
             })
             .onMouse((event: MouseEvent) => {
               switch (event.button) {
-                case MouseButton.Left :
-                  this.hoverText = 'left'
-                  break
-                case MouseButton.Right :
-                  this.hoverText = 'right'
-                  break
-                case MouseButton.Middle :
-                  this.hoverText = 'middle'
-                  break
+                case MouseButton.Left:
+                  this.hoverText = 'left';
+                  break;
+                case MouseButton.Right:
+                  this.hoverText = 'right';
+                  break;
+                case MouseButton.Middle:
+                  this.hoverText = 'middle';
+                  break;
               }
             })
             .onClick(() => {
-              router.push({ uri: 'pages/Pinch' })
+              router.push({ uri: 'pages/Pinch' });
             })
             .gesture(
               LongPressGesture({ repeat: false })
                 .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/Drag' })
+                  router.push({ uri: 'pages/Drag' });
                 })
             )
+
             Button() {
               Text('scroll')
                 .fontSize(25)
@@ -140,8 +145,9 @@ struct ScrollExample {
             .type(ButtonType.Capsule)
             .margin({ top: 20 })
             .onClick(() => {
-              router.push({ uri: 'pages/scroll' })
+              router.push({ uri: 'pages/scroll' });
             })
+
             Checkbox({ name: 'hi' })
               .size({ width: 30, height: 30 })
             TextInput({ placeholder: 'welcome', text: 'Hello World' })
@@ -151,7 +157,7 @@ struct ScrollExample {
               .fontSize(40)
               .enabled(true)
               .margin({ top: 20 })
-            ForEach(this.arr, (item:number) => {
+            ForEach(this.arr, (item: number) => {
               Text(item.toString())
                 .width('100%')
                 .height('30%')
@@ -160,7 +166,7 @@ struct ScrollExample {
                 .fontSize(80)
                 .textAlign(TextAlign.Center)
                 .margin({ top: 10 })
-            }, (item:string) => item)
+            }, (item: string) => item)
             Button() {
               Text('bottom')
                 .fontSize(25)
@@ -170,7 +176,7 @@ struct ScrollExample {
               top: 20, left: 150
             })
             .onClick(() => {
-              router.push({ uri: 'pages/second' })
+              router.push({ uri: 'pages/second' });
             })
           }.width('100%')
         }
@@ -184,6 +190,7 @@ struct ScrollExample {
       .onTouch((event) => {
         this.pressure = event.pressure;
       })
+
       Text(this.pressure.toFixed(1))
         .id('pressure')
         .fontSize(20)
