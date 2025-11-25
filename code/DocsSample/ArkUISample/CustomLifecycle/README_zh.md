@@ -5,7 +5,8 @@
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
 中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的自定义组件生命周期并合理使用。
 
-1. [自定义组件生命周期](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-page-custom-components-lifecycle.md)
+### 示例文档
+[自定义组件生命周期](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-page-custom-components-lifecycle.md)。
 
 ### 效果预览
 
@@ -72,7 +73,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/EventProject > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/CustomLifecycle > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

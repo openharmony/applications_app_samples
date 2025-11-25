@@ -14,7 +14,7 @@
 8. [@Provide装饰器和@Consume装饰器：与后代组件双向同步](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-provide-and-consume.md)
 9. [@Monitor装饰器：状态变量修改监听](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-monitor.md)
 10. [@State装饰器：组件内状态](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-state.md)
-11. [应用内状态变量及其它场景迁移指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-application-and-others.md)
+11. [应用内状态变量和其他场景迁移指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-application-and-others.md)
 ### 效果预览
 
 | 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |

@@ -15,7 +15,7 @@
 | OH_ArkUI_NodeUtils_GetChildWithExpandMode | 用不同的展开模式获取对应下标的子节点。 |
 
 ### 示例文档
-[节点查询](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-node-query-operate.md)。
+[查询和操作自定义节点](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-node-query-operate.md)。
 
 ## 效果预览
 <table>
@@ -41,13 +41,13 @@
 
 ### 查询节点uniqueId及通过uniqueId获取节点信息
 
-1. 基于[ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
+1. 基于[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
 2. 调用OH_ArkUI_NodeUtils_GetNodeUniqueId接口和OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId接口；
 3. 点击按钮，查看日志；
 
 ### 通过用户id获取节点信息
 
-1. 基于[ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
+1. 基于[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
 2. ArkTS侧接入Native组件；
 3. 创建Text节点并设置id属性，通过OH_ArkUI_NodeUtils_GetAttachedNodeHandleById接口拿到节点；
 4. 挂载Native节点；
@@ -55,7 +55,7 @@
 
 ### 移动节点
 
-1. 基于[ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
+1. 基于[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
 2. ArkTS侧接入Native组件；
 3. 创建Stack节点，通过OH_ArkUI_NodeUtils_MoveTo接口移动Stack节点；
 4. 挂载Native节点；
@@ -63,7 +63,7 @@
 
 ### 在当前即时帧触发节点属性更新
 
-1. 基于[ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
+1. 基于[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
 2. ArkTS侧接入Native组件；
 3. 设置组件属性；
 4. 挂载Native节点；
@@ -71,7 +71,7 @@
 
 ### 用不同的展开模式获取对应下标的子节点
 
-1. 基于[ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
+1. 基于[接入ArkTS页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)，创建前置工程；
 2. 通过ArkTS构造LazyForEach及ArkTS的下树节点；
 3. 通过OH_ArkUI_NodeUtils_GetAttachedNodeHandleById接口获取ArkTS组件，并通过懒展开模式获取对应的子组件信息；
 4. 查看日志打印的对应错误码返回是否正确；
