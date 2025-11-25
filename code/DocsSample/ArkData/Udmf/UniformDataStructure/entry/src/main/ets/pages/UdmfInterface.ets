@@ -16,7 +16,7 @@
 // [Start import_module]
 // 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_module]
 
 export function uniformDataStructure() {
