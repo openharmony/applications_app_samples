@@ -21,9 +21,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "5.1.1(19)",
-        "compatibleSdkVersion": "5.1.1(19)",
-        "runtimeOS": "HarmonyOS",
+        "targetSdkVersion": 19,
+        "compatibleSdkVersion": 19,
+        "compileSdkVersion": 19,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             // [StartExclude integrated_hsp_002]

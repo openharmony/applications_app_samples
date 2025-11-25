@@ -42,7 +42,7 @@ feature/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：tablet（平板或者平板模拟器）。
 
-2.本示例为Stage模型，支持API19版本SDK，版本号：5.1.1.212，镜像版本号：OpenHarmony_5.1.1.212。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.54，镜像版本号：OpenHarmony_6.0.2.54。
 
 3.本示例需要使用DevEco Studio 5.1.1 Release (Build Version: 5.1.1.840, built on September 5, 2025)及以上版本才可编译运行。
 

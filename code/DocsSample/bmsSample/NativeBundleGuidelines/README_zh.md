@@ -43,7 +43,7 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：PC/2in1（PC笔记本或者PC模拟器）。
 
-2.本示例为Stage模型，支持API21版本SDK，版本号：6.0.2.54，镜像版本号：OpenHarmony_6.0.2.54。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.54，镜像版本号：OpenHarmony_6.0.2.54。
 
 3.本示例需要使用DevEco Studio 5.1.1 Release (Build Version: 5.1.1.840, built on September 5, 2025)及以上版本才可编译运行。
 
