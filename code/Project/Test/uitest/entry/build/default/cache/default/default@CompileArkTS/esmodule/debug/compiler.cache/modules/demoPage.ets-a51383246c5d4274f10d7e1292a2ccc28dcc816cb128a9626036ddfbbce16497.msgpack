@@ -1,545 +1,0 @@
-Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ2if (!("finalizeConstruction" in ViewPU.prototype)) {
-    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
-}
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-import router from '@system.router';
-import promptAction from '@ohos.promptAction';
-class ScrollExample extends ViewPU {
-    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
-        super(parent, __localStorage, elmtId, extraInfo);
-        if (typeof paramsLambda === "function") {
-            this.paramsGenerator_ = paramsLambda;
-        }
-        this.scroller = new Scroller();
-        this.__hoverText = new ObservedPropertySimplePU('jump', this, "hoverText");
-        this.__pressure = new ObservedPropertySimplePU(0.0, this, "pressure");
-        this.arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-        this.setInitiallyProvidedValue(params);
-        this.finalizeConstruction();
-    }
-    setInitiallyProvidedValue(params) {
-        if (params.scroller !== undefined) {
-            this.scroller = params.scroller;
-        }
-        if (params.hoverText !== undefined) {
-            this.hoverText = params.hoverText;
-        }
-        if (params.pressure !== undefined) {
-            this.pressure = params.pressure;
-        }
-        if (params.arr !== undefined) {
-            this.arr = params.arr;
-        }
-    }
-    updateStateVars(params) {
-    }
-    purgeVariableDependenciesOnElmtId(rmElmtId) {
-        this.__hoverText.purgeDependencyOnElmtId(rmElmtId);
-        this.__pressure.purgeDependencyOnElmtId(rmElmtId);
-    }
-    aboutToBeDeleted() {
-        this.__hoverText.aboutToBeDeleted();
-        this.__pressure.aboutToBeDeleted();
-        SubscriberManager.Get().delete(this.id__());
-        this.aboutToBeDeletedInternal();
-    }
-    get hoverText() {
-        return this.__hoverText.get();
-    }
-    set hoverText(newValue) {
-        this.__hoverText.set(newValue);
-    }
-    get pressure() {
-        return this.__pressure.get();
-    }
-    set pressure(newValue) {
-        this.__pressure.set(newValue);
-    }
-    initialRender() {
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Flex.create({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center });
-        }, Flex);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('MainPage');
-            Text.fontSize(50);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Stack.create({ alignContent: Alignment.TopStart });
-            Stack.width('100%');
-            Stack.height('100%');
-            Stack.backgroundColor(0xDCDCDC);
-            Stack.onTouch((event) => {
-                this.pressure = event.pressure;
-            });
-        }, Stack);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Scroll.create(this.scroller);
-            Scroll.scrollable(ScrollDirection.Vertical);
-            Scroll.scrollBar(BarState.On);
-            Scroll.scrollBarColor(Color.Gray);
-            Scroll.scrollBarWidth(30);
-            Scroll.onScroll((xOffset, yOffset) => {
-            });
-        }, Scroll);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Column.create();
-            Column.width('100%');
-        }, Column);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithLabel('toast');
-            Button.fontSize(25);
-            Button.fontWeight(FontWeight.Bold);
-            Button.onClick(() => {
-                try {
-                    promptAction.showToast({
-                        message: 'toastShow',
-                        duration: 60000
-                    });
-                }
-                catch (error) {
-                }
-                ;
-            });
-        }, Button);
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithLabel('dialog');
-            Button.fontSize(25);
-            Button.fontWeight(FontWeight.Bold);
-            Button.onClick(() => {
-                AlertDialog.show({
-                    title: '',
-                    message: 'dialogShow',
-                    alignment: DialogAlignment.Bottom,
-                    confirm: {
-                        value: 'close',
-                        action: () => {
-                        }
-                    }
-                });
-            });
-        }, Button);
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithChild();
-            Button.key('my-key');
-            Button.type(ButtonType.Capsule);
-            Button.margin({ top: 20 });
-            Button.onClick(() => {
-                router.push({ uri: 'pages/second' });
-            });
-            Gesture.create(GesturePriority.Low);
-            LongPressGesture.create({ repeat: false });
-            LongPressGesture.onAction((event) => {
-                router.push({ uri: 'pages/Fourth' });
-            });
-            LongPressGesture.pop();
-            Gesture.pop();
-            Gesture.create(GesturePriority.Low);
-            LongPressGesture.create({ repeat: false, duration: 1800 });
-            LongPressGesture.onAction((event) => {
-                router.push({ uri: 'pages/fourth' });
-            });
-            LongPressGesture.pop();
-            Gesture.pop();
-        }, Button);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('next page');
-            Text.fontSize(25);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithChild();
-            Button.type(ButtonType.Capsule);
-            Button.margin({ top: 20 });
-            Gesture.create(GesturePriority.Low);
-            TapGesture.create({ count: 1 });
-            TapGesture.onAction(() => {
-                router.push({ uri: 'pages/Third' });
-            });
-            TapGesture.pop();
-            Gesture.pop();
-            Gesture.create(GesturePriority.Low);
-            LongPressGesture.create({ repeat: false });
-            LongPressGesture.onAction((event) => {
-                router.push({ uri: 'pages/wearList' });
-            });
-            LongPressGesture.pop();
-            Gesture.pop();
-        }, Button);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('Click twice');
-            Text.fontSize(25);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithChild();
-            Button.type(ButtonType.Capsule);
-            Button.key('jump');
-            Button.margin({ top: 20 });
-            Button.onHover((isHover) => {
-                if (isHover) {
-                    this.hoverText = 'hover';
-                }
-            });
-            Button.onMouse((event) => {
-                switch (event.button) {
-                    case MouseButton.Left:
-                        this.hoverText = 'left';
-                        break;
-                    case MouseButton.Right:
-                        this.hoverText = 'right';
-                        break;
-                    case MouseButton.Middle:
-                        this.hoverText = 'middle';
-                        break;
-                }
-            });
-            Button.onClick(() => {
-                router.push({ uri: 'pages/Pinch' });
-            });
-            Gesture.create(GesturePriority.Low);
-            LongPressGesture.create({ repeat: false });
-            LongPressGesture.onAction((event) => {
-                router.push({ uri: 'pages/Drag' });
-            });
-            LongPressGesture.pop();
-            Gesture.pop();
-        }, Button);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create(this.hoverText);
-            Text.fontSize(25);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithChild();
-            Button.type(ButtonType.Capsule);
-            Button.margin({ top: 20 });
-            Button.onClick(() => {
-                router.push({ uri: 'pages/scroll' });
-            });
-        }, Button);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('scroll');
-            Text.fontSize(25);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Button.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Checkbox.create({ name: 'hi' });
-            Checkbox.size({ width: 30, height: 30 });
-        }, Checkbox);
-        Checkbox.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            TextInput.create({ placeholder: 'welcome', text: 'Hello World' });
-            TextInput.type(InputType.Normal);
-            TextInput.width(300);
-            TextInput.height(50);
-            TextInput.fontSize(40);
-            TextInput.enabled(true);
-            TextInput.margin({ top: 20 });
-        }, TextInput);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            ForEach.create();
-            const forEachItemGenFunction = _item => {
-                const item = _item;
-                this.observeComponentCreation2((elmtId, isInitialRender) => {
-                    Text.create(item.toString());
-                    Text.width('100%');
-                    Text.height('30%');
-                    Text.backgroundColor(0xFFFFFF);
-                    Text.borderRadius(75);
-                    Text.fontSize(80);
-                    Text.textAlign(TextAlign.Center);
-                    Text.margin({ top: 10 });
-                }, Text);
-                Text.pop();
-            };
-            this.forEachUpdateFunction(elmtId, this.arr, forEachItemGenFunction, (item) => item, false, false);
-        }, ForEach);
-        ForEach.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Button.createWithChild();
-            Button.type(ButtonType.Capsule);
-            Button.margin({
-                top: 20, left: 150
-            });
-            Button.onClick(() => {
-                router.push({ uri: 'pages/second' });
-            });
-        }, Button);
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('bottom');
-            Text.fontSize(25);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Button.pop();
-        Column.pop();
-        Scroll.pop();
-        Stack.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create(this.pressure.toFixed(1));
-            Text.id('pressure');
-            Text.fontSize(20);
-        }, Text);
-        Text.pop();
-        this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('MainPage_End');
-            Text.fontSize(50);
-            Text.fontWeight(FontWeight.Bold);
-        }, Text);
-        Text.pop();
-        Flex.pop();
-    }
-    rerender() {
-        this.updateDirtyElements();
-    }
-    static getEntryName() {
-        return "ScrollExample";
-    }
-}
-registerNamedRoute(() => new ScrollExample(undefined, {}), "", { bundleName: "com.samples.test.uitest", moduleName: "entry", pagePath: "pages/demoPage", pageFullPath: "entry/src/main/ets/pages/demoPage", integratedHsp: "false", moduleType: "followWithHap" });
-//# sourceMappingURL=demoPage.js.mapÂ’Ù8 hvigor_ignore_D:_lyp_SDK_20_ets_api_@system.router.d.tsÙ< hvigor_ignore_D:_lyp_SDK_20_ets_api_@ohos.promptAction.d.tsÙ9D:\lyp\11-18\uitest\entry\src\main\ets\pages\demoPage.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂ¹D:\lyp\11-18\uitest\entry³D:\lyp\11-18\uitest¥entry¥1.0.0Ô  ¹D:\lyp\11-18\uitest\entryÔrCÜ «¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCacheÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚZ/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-import router from '@system.router';
-import promptAction from '@ohos.promptAction';
-
-@Entry
-@Component
-struct ScrollExample {
-  scroller: Scroller = new Scroller();
-  @State hoverText: string = 'jump';
-  @State pressure: number = 0.0;
-  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text('MainPage')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-      Stack({ alignContent: Alignment.TopStart }) {
-        Scroll(this.scroller) {
-          Column() {
-            Button('toast').fontSize(25).fontWeight(FontWeight.Bold)
-              .onClick(() => {
-                try {
-                  promptAction.showToast({
-                    message: 'toastShow',
-                    duration: 60000
-                  });
-                } catch (error) {
-                }
-                ;
-              })
-            Button('dialog').fontSize(25).fontWeight(FontWeight.Bold)
-              .onClick(() => {
-                AlertDialog.show(
-                  {
-                    title: '',
-                    message: 'dialogShow',
-                    alignment: DialogAlignment.Bottom,
-                    confirm: {
-                      value: 'close',
-                      action: () => {
-                      }
-                    }
-                  }
-                )
-              })
-            Button() {
-              Text('next page')
-                .fontSize(25)
-                .fontWeight(FontWeight.Bold)
-            }
-            .key('my-key')
-            .type(ButtonType.Capsule)
-            .margin({ top: 20 })
-            .onClick(() => {
-              router.push({ uri: 'pages/second' });
-            })
-            .gesture(
-              LongPressGesture({ repeat: false })
-                .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/Fourth' });
-                })
-            )
-            .gesture(
-              LongPressGesture({ repeat: false, duration: 1800 })
-                .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/fourth' });
-                })
-            )
-
-            Button() {
-              Text('Click twice')
-                .fontSize(25)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .margin({ top: 20 })
-            .gesture(
-              TapGesture({ count: 1 })
-                .onAction(() => {
-                  router.push({ uri: 'pages/Third' });
-                })
-            )
-            .gesture(
-              LongPressGesture({ repeat: false })
-                .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/wearList' });
-                })
-            )
-
-            Button() {
-              Text(this.hoverText)
-                .fontSize(25)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .key('jump')
-            .margin({ top: 20 })
-            .onHover((isHover: boolean) => {
-              if (isHover) {
-                this.hoverText = 'hover';
-              }
-            })
-            .onMouse((event: MouseEvent) => {
-              switch (event.button) {
-                case MouseButton.Left:
-                  this.hoverText = 'left';
-                  break;
-                case MouseButton.Right:
-                  this.hoverText = 'right';
-                  break;
-                case MouseButton.Middle:
-                  this.hoverText = 'middle';
-                  break;
-              }
-            })
-            .onClick(() => {
-              router.push({ uri: 'pages/Pinch' });
-            })
-            .gesture(
-              LongPressGesture({ repeat: false })
-                .onAction((event: GestureEvent) => {
-                  router.push({ uri: 'pages/Drag' });
-                })
-            )
-
-            Button() {
-              Text('scroll')
-                .fontSize(25)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .margin({ top: 20 })
-            .onClick(() => {
-              router.push({ uri: 'pages/scroll' });
-            })
-
-            Checkbox({ name: 'hi' })
-              .size({ width: 30, height: 30 })
-            TextInput({ placeholder: 'welcome', text: 'Hello World' })
-              .type(InputType.Normal)
-              .width(300)
-              .height(50)
-              .fontSize(40)
-              .enabled(true)
-              .margin({ top: 20 })
-            ForEach(this.arr, (item: number) => {
-              Text(item.toString())
-                .width('100%')
-                .height('30%')
-                .backgroundColor(0xFFFFFF)
-                .borderRadius(75)
-                .fontSize(80)
-                .textAlign(TextAlign.Center)
-                .margin({ top: 10 })
-            }, (item: string) => item)
-            Button() {
-              Text('bottom')
-                .fontSize(25)
-                .fontWeight(FontWeight.Bold)
-            }.type(ButtonType.Capsule)
-            .margin({
-              top: 20, left: 150
-            })
-            .onClick(() => {
-              router.push({ uri: 'pages/second' });
-            })
-          }.width('100%')
-        }
-        .scrollable(ScrollDirection.Vertical)
-        .scrollBar(BarState.On)
-        .scrollBarColor(Color.Gray)
-        .scrollBarWidth(30)
-        .onScroll((xOffset: number, yOffset: number) => {
-        })
-      }.width('100%').height('100%').backgroundColor(0xDCDCDC)
-      .onTouch((event) => {
-        this.pressure = event.pressure;
-      })
-
-      Text(this.pressure.toFixed(1))
-        .id('pressure')
-        .fontSize(20)
-      Text('MainPage_End')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-}
-
-ÀÔrD’®@system.router²@ohos.promptActionÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙ8 hvigor_ignore_D:_lyp_SDK_20_ets_api_@system.router.d.tsÔrF‘¯hostModulesInfo’ÔrG’²hostDependencyName®hostModuleName®@system.router¥entryG®@system.router¥entryÃªoh-resolveÂEAÃÙ< hvigor_ignore_D:_lyp_SDK_20_ets_api_@ohos.promptAction.d.tsF‘G²@ohos.promptAction¥entryÃªoh-resolveÂ“ÔrH–§version¤fileªsourceRoot§sources¥names¨mappings«demoPage.js ‘¬demoPage.etsÜ<‘”    ‘” –”   ” ” ” ”# #”$ $–”   ” ” ” ”- -”. .’” ” ‘”  ”” ” ”$ #”& %’”8 ”> #’”7 ”: Ü  ” ” ” ” ” ” !” "” $” %”  '”! (”# *”$ +”& -”' .”) 0”* 1”, 3”- 4”/ 6”1 8”3 :”5 <”7 >”9 Ì@”; ÌB”= ÌD”? ÌF”ÌA ÌH”ÌC ÌJ”ÌE ÌL”ÌF ÌM‘” .’” 	” ’” 	” ’” 	” ’” 	” ‘” Ü ” ” ” 	” ”# ”% ”2 #”3 $”9 *”; ,”ÌE 6”ÌG 8”ÌP ÌA”ÌQ ÌB”ÌW ÌH”ÌY ÌJ”Ìg ÌX”Ìi ÌZ”Ìr Ìc”Ìs Ìd”Ìy Ìj”Ì{ Ìl”” ” 
-” ”" –” ” 
-” 	” ” ” ˜” ” 
-” 	” ” ”& ”' ”+ #’” ” 
-š” ” ” ” ”' ”) ”2 %”3 &”; .”= 0–” ” ” Ì¼” Ì¼” Ì¼” Ì¼–” ” ” Ì¼” Ì¼” Ì¼” Ì¼#–” ” ” Ì¼%”! Ì¼4”" Ì¼5”* Ì¼=™” ” ” Ì½” Ì½” Ì½” Ì½”  Ì½”" Ì½”$ Ì½™” Ì¾” Ì¾” Ì¾” Ì¾”  Ì¾”% Ì¾”& Ì¾”. Ì¾&”/ Ì¾'’” Ì¿” Ì¿–” ” ” ” ” ”' ˜” ” ” Ì¶	” Ì¶” Ì¶”- Ì¶#”. Ì¶$”6 Ì¶,˜” ” ” Ì·	” Ì·” Ì·”% Ì·”& Ì·”( Ì·˜” ” ” Ì¸	”! Ì¸”" Ì¸”' Ì¸”( Ì¸”, Ì¸"–” ” ” Ì¹	”! Ì¹”" Ì¹”$ Ì¹›” ” ” Ìº	” Ìº” Ìº” Ìº”$ Ìº"”& Ìº$”- Ìº3”/ Ìº5”1 Ìº7’” Ì»” Ì»	’”  
-”  –”  
-”  ” Ì´” Ì´” Ì´” Ì´”” !” !”# !”* !–” !” !” !” !$” !%” !'˜” !” !” !)” !3” !4”( !>”) !?”- !ÌC—” !” !” "” "” "” "”  "’” #” #•” $”  $”! $”* $(”+ $)”” %” %”! %”, %(”” &”  &”" &”' &#“” '” '” '‘” (”” (” (” (” ( ‘” )’” *” *’” +” +’” !” !”” ,” ,”# ,”+ ,–” ,” ,” ,” ,%” ,&” ,(˜” ,” ,” ,*” ,4” ,5”( ,?”) ,Ì@”- ,ÌD—” ,” ,” -” -” -” -”  -•” .” .” .”  . ”! /”” 0” 0” 0” 0”” 1” 1” 1”) 1)–” 2” 2” 2”. 2.”/ 2/”5 25“” 3” 3” 3”” 4” 4” 4”& 4$•” 5” 5”  5”# 5!”% 5#’” 6” 6‘” 7“” 8” 9” 9’” :” :’” ,” ,’” ;” ;–” ;” ;” Ì@” Ì@” Ì@” Ì@˜” ;” ;” ÌA” ÌA” ÌA”" ÌA”# ÌA”* ÌA$š” ;” ;” ÌB” ÌB” ÌB” ÌB” ÌB”! ÌB”# ÌB”% ÌB—” ;” ;” ÌC” ÌC” ÌC” ÌC”  ÌCœ” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”! ÌD”# ÌD!”1 ÌD/”3 ÌD1”4 ÌD2”5 ÌD3’” ÌE” ÌE˜” ÌG” ÌG”$ ÌG”& ÌG!”, ÌG'”. ÌG)”3 ÌG.”5 ÌG0™” ÌG” ÌG” ÌH”% ÌH”& ÌH”' ÌH”, ÌH.”. ÌH0”0 ÌH2œ” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI ”! ÌI#”# ÌI%”1 ÌI3”3 ÌI5”4 ÌI6”5 ÌI7’” ÌJ” ÌJ’” ÌG” ÌGœ” ÌM” ÌM”$ ÌM”& ÌM!”, ÌM'”. ÌM)”3 ÌM.”5 ÌM0”= ÌM8”? ÌM:”ÌC ÌM>”ÌE ÌMÌ@™” ÌM” ÌM” ÌN”% ÌN”& ÌN”' ÌN”, ÌN.”. ÌN0”0 ÌN2œ” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO ”! ÌO#”# ÌO%”1 ÌO3”3 ÌO5”4 ÌO6”5 ÌO7’” ÌP” ÌP’” ÌM” ÌM”” <” <” <”# <–” <” <” =” =” =” =˜” <” <” >” >” >”& >&”' >'”+ >+’” <” <’” ;” ;’” ÌS” ÌS˜” ÌS” ÌS” ÌX” ÌX” ÌX”" ÌX”# ÌX”* ÌX$š” ÌS” ÌS” ÌY” ÌY” ÌY” ÌY” ÌY”! ÌY”# ÌY”% ÌY˜” Ì[” Ì[” Ì[”  Ì[”% Ì[ ”' Ì["”( Ì[#”* Ì[%—” Ì[” Ì[” Ì\” Ì\”  Ì\”# Ì\”% Ì\œ” Ì]” Ì]” Ì]” Ì]” Ì]” Ì] ”! Ì]#”# Ì]%”0 Ì]2”2 Ì]4”3 Ì]5”4 Ì]6’” Ì^” Ì^’” Ì[” Ì[˜” Ìa” Ìa”$ Ìa”& Ìa!”, Ìa'”. Ìa)”3 Ìa.”5 Ìa0™” Ìa” Ìa” Ìb”% Ìb”& Ìb”' Ìb”, Ìb.”. Ìb0”0 Ìb2œ” Ìc” Ìc” Ìc” Ìc” Ìc” Ìc ”! Ìc#”# Ìc%”3 Ìc5”5 Ìc7”6 Ìc8”7 Ìc9’” Ìd” Ìd’” Ìa” Ìa”” ÌT” ÌT” ÌT”% ÌT –” ÌT” ÌT” ÌU” ÌU” ÌU” ÌU˜” ÌT” ÌT” ÌV” ÌV” ÌV”& ÌV&”' ÌV'”+ ÌV+’” ÌT” ÌT’” ÌS” ÌS’” Ìg” Ìg˜” Ìg” Ìg” Ìl” Ìl” Ìl”" Ìl”# Ìl”* Ìl$–” Ìg” Ìg” Ìm” Ìm” Ìm” Ìmš” Ìg” Ìg” Ìn” Ìn” Ìn” Ìn” Ìn”! Ìn”# Ìn”% Ìn™” Ìg” Ìg” Ìo” Ìo” Ìo” Ìo”# Ìo&”% Ìo(”' Ìo*”” Ìp” Ìp” Ìp” Ìp—” Ìq” Ìq” Ìq”" Ìq”% Ìq!”, Ìq(”- Ìq)‘” Ìr’” Ìs” Ìs™” Ìg” Ìg” Ìt” Ìt” Ìt” Ìt”! Ìt'”# Ìt)”% Ìt+–” Ìu” Ìu” Ìu” Ìu”$ Ìu"”& Ìu$•” Ìv” Ìv”$ Ìv ”% Ìv!”) Ìv%—” Ìw” Ìw” Ìw”& Ìw ”) Ìw#”/ Ìw)”0 Ìw*’” Ìx” Ìx•” Ìy” Ìy”$ Ìy ”% Ìy!”* Ìy&—” Ìz” Ìz” Ìz”& Ìz ”) Ìz#”0 Ìz*”1 Ìz+’” Ì{” Ì{•” Ì|” Ì|”$ Ì| ”% Ì|!”+ Ì|'—” Ì}” Ì}” Ì}”& Ì} ”) Ì}#”1 Ì}+”2 Ì},’” Ì~” Ì~‘” Ì’” Ì€” Ì€—” Ìg” Ìg” Ì” Ì” Ì” Ì”  Ìœ” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚”! Ì‚”# Ì‚!”0 Ì‚.”2 Ì‚0”3 Ì‚1”4 Ì‚2’” Ìƒ” Ìƒ˜” Ì…” Ì…”$ Ì…”& Ì…!”, Ì…'”. Ì…)”3 Ì….”5 Ì…0™” Ì…” Ì…” Ì†”% Ì†”& Ì†”' Ì†”, Ì†.”. Ì†0”0 Ì†2œ” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡ ”! Ì‡#”# Ì‡%”/ Ì‡1”1 Ì‡3”2 Ì‡4”3 Ì‡5’” Ìˆ” Ìˆ’” Ì…” Ì…–” Ìh” Ìh” Ìh” Ìh” Ìh”& Ìh!–” Ìh” Ìh” Ìi” Ìi” Ìi” Ìi˜” Ìh” Ìh” Ìj” Ìj” Ìj”& Ìj&”' Ìj'”+ Ìj+’” Ìh” Ìh’” Ìg” Ìg’” Ì‹” Ì‹˜” Ì‹” Ì‹” Ì” Ì” Ì”" Ì”# Ì”* Ì$š” Ì‹” Ì‹” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘”! Ì‘”# Ì‘”% Ì‘—” Ì‹” Ì‹” Ì’” Ì’” Ì’” Ì’”  Ì’œ” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“”! Ì“”# Ì“!”1 Ì“/”3 Ì“1”4 Ì“2”5 Ì“3’” Ì”” Ì””” ÌŒ” ÌŒ” ÌŒ”  ÌŒ–” ÌŒ” ÌŒ” Ì” Ì” Ì” Ì˜” ÌŒ” ÌŒ” Ì” Ì” Ì”& Ì&”' Ì'”+ Ì+’” ÌŒ” ÌŒ’” Ì‹” Ì‹˜” Ì–” Ì–” Ì–” Ì–”" Ì–”$ Ì–”( Ì–!”* Ì–#” Ì–” Ì–” Ì—” Ì—” Ì—” Ì—”! Ì—”# Ì—”% Ì—”' Ì—!”- Ì—'”/ Ì—)”1 Ì—+”3 Ì—-’” Ì–” Ì–œ” Ì˜” Ì˜” Ì˜” Ì˜”* Ì˜#”, Ì˜%”5 Ì˜.”7 Ì˜0”; Ì˜4”= Ì˜6”ÌJ Ì˜ÌC”ÌL Ì˜ÌE˜” Ì˜” Ì˜” Ì™” Ì™” Ì™”$ Ì™”% Ì™”+ Ì™$–” Ì˜” Ì˜” Ìš” Ìš” Ìš” Ìš–” Ì˜” Ì˜” Ì›” Ì›” Ì›” Ì›–” Ì˜” Ì˜” Ìœ” Ìœ” Ìœ”! Ìœ–” Ì˜” Ì˜” Ì” Ì” Ì”" Ìš” Ì˜” Ì˜” Ì” Ì” Ì” Ì”" Ì”$ Ì”& Ì”( Ì!’” ÌŸ” ÌŸ—” Ì ” Ì ”  Ì ”$ Ì ”% Ì ”- Ì  ”/ Ì "–” Ì ” Ì ” Ì¡” Ì¡” Ì¡”% Ì¡–” Ì ” Ì ” Ì¢” Ì¢”  Ì¢”% Ì¢–” Ì ” Ì ” Ì£”( Ì£ ”) Ì£!”1 Ì£)–” Ì ” Ì ” Ì¤”% Ì¤”& Ì¤”( Ì¤ –” Ì ” Ì ” Ì¥”! Ì¥”" Ì¥”$ Ì¥˜” Ì ” Ì ” Ì¦”" Ì¦”# Ì¦”, Ì¦$”- Ì¦%”3 Ì¦+š” Ì ” Ì ” Ì§” Ì§”  Ì§”" Ì§”% Ì§”' Ì§”) Ì§!”+ Ì§#’” Ì ” Ì ›”/ ÌŸ”3 ÌŸ”4 ÌŸ”7 ÌŸ”ÌQ Ì¨”ÌR Ì¨”ÌV Ì¨”ÌX Ì¨”ÌZ Ì¨ ”Ì[ Ì¨!”Ì_ Ì¨%’” ÌŸ” ÌŸ’” Ì©” Ì©˜” Ì©” Ì©” Ì­” Ì­” Ì­”" Ì­”# Ì­”* Ì­%•” Ì©” Ì©” Ì®” Ì®” Ì®˜” Ì¯” Ì¯” Ì¯” Ì¯” Ì¯” Ì¯” Ì¯”" Ì¯ ‘” Ì°—” Ì©” Ì©” Ì±” Ì±” Ì±” Ì±”  Ì±œ” Ì²” Ì²” Ì²” Ì²” Ì²” Ì²”! Ì²”# Ì²!”1 Ì²/”3 Ì²1”4 Ì²2”5 Ì²3’” Ì³” Ì³”” Ìª” Ìª” Ìª”  Ìª–” Ìª” Ìª” Ì«” Ì«” Ì«” Ì«˜” Ìª” Ìª” Ì¬” Ì¬” Ì¬”& Ì¬&”' Ì¬'”+ Ì¬+’” Ìª” Ìª’” Ì©” Ì©’”  
-”  ’” ” ’” ” ›” ÌÁ” ÌÁ
-” ÌÁ” ÌÁ” ÌÁ”% ÌÁ”& ÌÁ”- ÌÁ ”. ÌÁ!”/ ÌÁ"”0 ÌÁ#–” ÌÁ” ÌÁ
-” ÌÂ	” ÌÂ” ÌÂ” ÌÂ–” ÌÁ” ÌÁ
-” ÌÃ	” ÌÃ” ÌÃ” ÌÃ’” ÌÁ” ÌÁ
-”” ÌÄ” ÌÄ
-” ÌÄ”& ÌÄ–” ÌÄ” ÌÄ
-” ÌÅ	” ÌÅ” ÌÅ” ÌÅ˜” ÌÄ” ÌÄ
-” ÌÆ	” ÌÆ” ÌÆ”& ÌÆ”' ÌÆ”+ ÌÆ#’” ÌÄ” ÌÄ
-’” ” ‘” ÌÈÔrI–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜE‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
- ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
- ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ÔrJ’§missing¦pluginÃ¦genAbcÂÔ  ÔrK”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache’ÔrL•¤type¥start£endªspecifiers¦source±ImportDeclarationÍïÍ‘ÔrM”¤type¥start£end¥local¶ImportDefaultSpecifierÍöÍüÔrN”¤type¥start£end¤nameªIdentifierÍöÍü¦routerÔrO•¤type¥start£end¥value£raw§LiteralÍÍ®@system.router°'@system.router'L±ImportDeclarationÍÍC‘M¶ImportDefaultSpecifierÍÍ(NªIdentifierÍÍ(¬promptActionO§LiteralÍ.ÍB²@ohos.promptAction´'@ohos.promptAction'
