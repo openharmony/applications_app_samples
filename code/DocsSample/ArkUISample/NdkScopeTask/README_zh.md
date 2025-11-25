@@ -5,7 +5,7 @@
 此示例展示了如何使用OH_ArkUI_RunTaskInScope接口实现多窗口场景下的跨实例组件操作。通过动态切换执行上下文，确保在页面PageB中安全地修改页面PageA创建的组件属性，避免因实例上下文不匹配导致的接口调用异常。
 
 ### 示例文档
-[组件操作](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-scope-task.md)。
+[在NDK中保证多实例场景功能正常](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-scope-task.md)。
 
 ### 使用说明
 1. 安装编译生成的hap包，并启动应用程序；
