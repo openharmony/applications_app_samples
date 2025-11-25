@@ -17,6 +17,6 @@ find_library(
     hilog_ndk.z
 )
 target_link_libraries(entry PUBLIC ${hilog-lib})
-#// [Start display_sync_add_lib]
+# [Start display_sync_add_lib]
 target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnative_window.so libace_ndk.z.so)
-#// [End display_sync_add_lib]
+# [End display_sync_add_lib]
