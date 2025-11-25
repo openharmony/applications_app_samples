@@ -22,7 +22,7 @@
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
-      "2in1"
+      "tablet"
     ],
     // [EndExclude startup_module]
     "appStartup": "$profile:startup_config", // 启动框架的配置文件
@@ -63,9 +63,9 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
-    ],
+    ]
     // [EndExclude startup_module]
   }
 }

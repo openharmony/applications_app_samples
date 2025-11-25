@@ -37,6 +37,7 @@
     "mainElement": "StartAbilityEntry",
     "deviceTypes": [
       "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
