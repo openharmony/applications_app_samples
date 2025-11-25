@@ -52,10 +52,7 @@ struct Index {
           this.message = 'func return: ' + func();
         })
       // [EndExclude har_package_011]
-      // [EndExclude har_package_012]
-
       // [StartExclude har_package_010]
-      // [StartExclude har_package_012]
       //引用HAR的native方法
       Button($r('app.string.native_add'))
         .id('nativeAdd')
