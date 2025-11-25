@@ -1502,7 +1502,20 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
-
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/demoShot.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/getAnonymousId.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/getAnonymousIdSync.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/getStringSync.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/getStringSyncAfter.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/localizationKitInterface.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/runTimeInterface.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/screenshots/wordBreak.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/AppScope/resources/base/media/app_icon.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/entry/src/main/resources/base/media/background.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/entry/src/main/resources/base/media/layered_image.json" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
+				<filteritem type="filepath" name="code/Performance/ReasonableUsingSystemInterfaces/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/Performance/ReasonableUsingSystemInterfaces"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
