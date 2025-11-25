@@ -20,7 +20,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -55,7 +55,7 @@
           ],
           "when": "inuse"
         }
-      },
+      }
     ],
     "abilities": [
       {
@@ -90,7 +90,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }
