@@ -46,7 +46,7 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
               // [End custom_text_align]
-            }
+            }.id('custom_text_style_sample_part1')
           }
 
           ComponentCard({
@@ -103,7 +103,7 @@ export struct CustomTextStyle {
                   marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
                 })
               // [End custom_text_overflow]
-            }
+            }.id('custom_text_style_sample_part2')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_3') }) {
@@ -118,7 +118,7 @@ export struct CustomTextStyle {
                 .padding(10)
                 .lineHeight(20)
               // [End custom_line_height]
-            }
+            }.id('custom_text_style_sample_part3')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_4') }) {
@@ -172,7 +172,7 @@ export struct CustomTextStyle {
                 })
                 .borderWidth(1).padding(15).margin(5)
               // [End custom_text_line_and_color]
-            }
+            }.id('custom_text_style_sample_part4')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_5') }) {
@@ -200,7 +200,7 @@ export struct CustomTextStyle {
                 .width('100%')
                 .margin(5)
               // [End custom_text_baseline_offset]
-            }
+            }.id('custom_text_style_sample_part5')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_6') }) {
@@ -228,7 +228,7 @@ export struct CustomTextStyle {
                 .width('100%')
                 .margin(5)
               // [End custom_text_letter_space]
-            }
+            }.id('custom_text_style_sample_part6')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
@@ -271,7 +271,7 @@ export struct CustomTextStyle {
                 .padding(10)
                 .margin(5)
               // [End custom_the_size_of_text]
-            }
+            }.id('custom_text_style_sample_part7')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_8') }) {
@@ -303,7 +303,7 @@ export struct CustomTextStyle {
                 .fontSize(30)
                 .fontFamily('HarmonyOS Sans')
               // [End custom_the_text_fontFamily]
-            }
+            }.id('custom_text_style_sample_part8')
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_9') }) {
@@ -313,6 +313,7 @@ export struct CustomTextStyle {
               .fontSize(30)
               .copyOption(CopyOptions.InApp)
             // [End custom_the_text_by_copy_option]
+              .id('custom_text_style_sample_part9')
           }
         }
         .width('100%')

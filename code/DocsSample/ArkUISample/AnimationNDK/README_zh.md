@@ -1,4 +1,4 @@
-# UseAnimationNDK
+# NDK使用动画效果示例
 
 ## 介绍
 
