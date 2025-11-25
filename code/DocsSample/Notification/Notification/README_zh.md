@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了在一个Stage模型中，开发者可借助Notification Kit将应用产生的通知直接在客户端本地推送给用户，本地通知根据通知类型及发布场景会产生对应的铃声、震动、横幅、锁屏、息屏、通知栏提醒和显示
+本示例展示了在一个Stage模型中，开发者可借助[Notification Kit（用户通知服务）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/Readme-CN.md)将应用产生的通知直接在客户端本地推送给用户，本地通知根据通知类型及发布场景会产生对应的铃声、震动、横幅、锁屏、息屏、通知栏提醒和显示
 
 
 ### 效果预览
@@ -26,7 +26,7 @@
 |----------------------------|-----------------------------|
 | ![image](screenshot/updateProgressNotification.png) | ![image](screenshot/cancelPlaintextNotification.png) |
 
-使用说明
+### 使用说明
 
 1. [请求通知授权](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-enable.md)，应用需要获取用户授权才能发送通知。
 
@@ -113,7 +113,7 @@ entry/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Notification/NotificationSample > .git/info/sparse-checkout
+echo code/DocsSample/Notification-Kit/Notification > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
