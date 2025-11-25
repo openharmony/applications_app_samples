@@ -15,72 +15,12 @@
 
 // [Start image_flickering_during_rerenders]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+import { GenericBasicDataSource } from './GenericBasicDataSource';
 const TAG = '[Sample_RenderingControl]';
 const DOMAIN = 0xF811;
 
-class ImageFliceringDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: ImageFliceringStringData[] = [];
-
-  public totalCount(): number {
-    return this.originDataArray.length;
-  }
-
-  public getData(index: number): ImageFliceringStringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    });
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    });
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    });
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    });
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    });
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    });
-  }
-}
-
-class FliceringDataSource extends ImageFliceringDataSource {
+class FliceringDataSource extends GenericBasicDataSource<ImageFliceringStringData> {
   private dataArray: ImageFliceringStringData[] = [];
 
   public totalCount(): number {
