@@ -6,7 +6,7 @@ statemanagementguide
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
 中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [合理使用属性](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/state-management/properly-use-state-management-to-develope.md)。
+1. [状态管理合理使用开发指导](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/state-management/properly-use-state-management-to-develope.md)。
 
 ### 1. [合理使用属性]
 
@@ -83,7 +83,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/StateManagementProject > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/statemanagementproject > .git/info/sparse-checkout
 git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
