@@ -17,7 +17,7 @@
 11. [弹出框控制器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-controller.md)。
 12. [不依赖UI组件的全局菜单 (openMenu)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-menu.md)。
 13. [弹出框焦点策略](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-focusable.md)。
-14. [不依赖UI组件的全局气泡提示 (openPopup)](https://gitcode.com/openharmony/docs/edit/master/zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md)。
+14. [不依赖UI组件的全局气泡提示 (openPopup)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md)。
 
 ### 效果预览
 
