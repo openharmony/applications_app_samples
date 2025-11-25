@@ -137,7 +137,6 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "No plain text data in pasteboard.");
     }
     OH_Pasteboard_Destroy(pasteboard);
-   
 }
 // [End pasteboard_native6]
 // [Start pasteboard_timelapse_Record2]
