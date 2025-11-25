@@ -41,7 +41,7 @@ export default function PerfTestTest() {
         metrics: metrics,
         actionCode: actionCode,
         resetCode: resetCode,
-        bundleName: "com.samples.test.perftest", // 定义被测应用包名，请开发者替换为实际包名
+        bundleName: 'com.samples.test.perftest', // 定义被测应用包名，请开发者替换为实际包名
         iterations: 10, // 定义测试迭代次数
         timeout: 20000  // 定义代码段单次执行超时时间
       };

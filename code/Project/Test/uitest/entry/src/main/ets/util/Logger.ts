@@ -14,7 +14,7 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = "[Sample_Test]";
+const TAG = '[Sample_Test]';
 
 class Logger {
   private domain: number;

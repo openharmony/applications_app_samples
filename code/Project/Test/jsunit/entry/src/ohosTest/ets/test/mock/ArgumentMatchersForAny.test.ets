@@ -38,8 +38,8 @@ export default function argumentMatchersAnyTest() {
       when(mockfunc)(ArgumentMatchers.any).afterReturn('1');
       // 传入不同参数验证是否符合预期
       expect(claser.method_1('test')).assertEqual('1'); // 断言执行通过
-      expect(claser.method_1("123")).assertEqual('1'); // 断言执行通过
-      expect(claser.method_1("true")).assertEqual('1'); // 断言执行通过
+      expect(claser.method_1('123')).assertEqual('1'); // 断言执行通过
+      expect(claser.method_1('true')).assertEqual('1'); // 断言执行通过
     })
   })
 }
