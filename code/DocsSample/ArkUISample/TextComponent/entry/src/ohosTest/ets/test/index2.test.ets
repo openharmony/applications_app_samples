@@ -15,7 +15,7 @@
 
 import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MatchPattern, Component } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MatchPattern, Component, On } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -31,6 +31,21 @@ async function getResourceString(resource: string): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager;
   let textString: string = await manage.getStringByName(resource);
   return textString;
+}
+
+async function searchInSwipe(condition: On): Promise<Component> {
+  let driver = Driver.create();
+  let list = await driver.findComponent(ON.type('List'));
+  let scroll = await driver.findComponent(ON.id('scroll_'));
+  let fatherComponent: Component;
+  if (list === null && scroll === null) {
+    throw Error('[TextComponent]: No scrollable components.')
+  } else if (scroll) {
+    fatherComponent = scroll;
+  } else {
+    fatherComponent = list;
+  }
+  return fatherComponent.scrollSearch(condition);
 }
 
 export default function Index2Test() {
@@ -285,22 +300,9 @@ export default function Index2Test() {
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await driver.delayMs(500);
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(500);
-      expect(scrollComponent === null).assertFalse();
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(500);
-      hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
-      await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 8000);
-      await driver.swipe(100, 1000, 100, 6000);
-      await driver.delayMs(500);
-      await driver.swipe(100, 1000, 100, 6000);
-      await driver.delayMs(500);
-      await driver.waitForIdle(500, 500);
-      await driver.delayMs(500);
       let str = await getResourceString('Height_AdaptivePolicy');
       await driver.delayMs(500);
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      let sampleButton = await searchInSwipe(ON.text(str, MatchPattern.CONTAINS));
       await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -469,11 +471,7 @@ export default function Index2Test() {
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
       await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(500);
-      hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
-      await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 14000);
-      await driver.waitForIdle(500, 500);
+      await scrollComponent.scrollToBottom(2000);
       await driver.delayMs(500);
       let str = await getResourceString('Text_Long_Tow');
       await driver.delayMs(500);
