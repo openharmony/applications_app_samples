@@ -24,7 +24,8 @@
 #include <database/rdb/relational_store_error_code.h>
 // [End vector_include]
 
-template <typename... Args> void Log(Args... args) {
+template <typename... Args> void Log(Args... args)
+{
     std::ostringstream oss;
     std::initializer_list<int>{(oss << args << " ", 0)...};
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "vector", "%{public}s", oss.str().c_str());
@@ -69,7 +70,7 @@ void VectorQueryWithBingArgs(OH_Rdb_Store *store_)
     // 推荐计算count的方式
     int rowCount = 0;
     while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
-        rowCount ++;
+        rowCount++;
         size_t count = 0;
         // floatvector数组是第二列数据，1表示列下标索引
         OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
@@ -87,7 +88,8 @@ void VectorSubquery(OH_Rdb_Store *store_)
     // [Start vector_OH_Rdb_ExecuteV2_subquery]
     // 子查询，创建第二张表
     OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS example(id text PRIMARY KEY);", nullptr, nullptr);
-    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, "select * from test where id in (select id from example);", nullptr);
+    char querySql[] = "select * from test where id in (select id from example);";
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, querySql, nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
@@ -161,7 +163,8 @@ void VectorQuery(OH_Rdb_Store *store_)
 void VectorCRUD(OH_Rdb_Store *store_)
 {
     // [Start vector_OH_Rdb_ExecuteV2_insert]
-    char createTableSql[] = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
+    char createTableSql[] = 
+        "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
     // 执行建表语句
     OH_Rdb_ExecuteByTrxId(store_, 0, createTableSql);
     

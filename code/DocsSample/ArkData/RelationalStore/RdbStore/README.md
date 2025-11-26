@@ -8,7 +8,7 @@
 
 | 首页                                                     |
 | -------------------------------------------------------- |
-| <img src="./browse/start.png" style="zoom:50%;" /> | 
+| <img src="./browse/start.png" style="zoom:50%;" />, <img src="./browse/second.png" style="zoom:50%;" /> | 
 
 使用说明：
 
@@ -25,8 +25,7 @@
             │         Index.d.ts            // 方法声明文件
             │     CMakeLists.txt            // C/C++编译配置文件
             ├─ets
-            │  ├─common
-            │  │      Logger.ts				// 打印工具类
+            │  ├─encryptedEStoreGuidelines  // 加密存储指导
             │  ├─entryability
             │  ├─entrybackupability
             │  └─pages
