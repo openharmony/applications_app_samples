@@ -85,7 +85,6 @@ function drawText(canvas: drawing.Canvas) {
     // 自定义绘制一串具有相同属性的一系列连续字形
     canvas.drawTextBlob(textBlob, 20, 100);
   }
-  // [End arkts_independent_shaping_text]
 }
 
 // 创建一个MyRenderNode类，并绘制文本。
