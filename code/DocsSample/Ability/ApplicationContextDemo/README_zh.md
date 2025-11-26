@@ -2,7 +2,7 @@
 
 ### 介绍
 
-[Context](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、area（文件分区）等。
+[应用上下文Context](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/application-context-stage.md) 是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、area（文件分区）等。
 
 ### 效果预览
 

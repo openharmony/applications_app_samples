@@ -1,7 +1,7 @@
 # UIAbility组件生命周期
 
 ### 介绍
-本示例展示了UIAbility的生命周期函数。当用户在执行应用启动、应用前后台切换、应用退出等操作时，系统会触发相关应用组件的生命周期回调。其中，UIAbility组件的核心生命周期回调包括[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)。作为一种包含UI的应用组件，UIAbility的生命周期不可避免地与[WindowStage](../../application-dev/windowmanager/application-window-stage.md)的生命周期存在关联关系。
+本示例展示了UIAbility的生命周期函数，包含[应用/组件级配置](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/application-component-configuration-stage.md)、[UIAbility组件概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/uiability-overview.md)、[UIAbility组件生命周期](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/uiability-lifecycle.md)。当用户在执行应用启动、应用前后台切换、应用退出等操作时，系统会触发相关应用组件的生命周期回调。其中，UIAbility组件的核心生命周期回调包括[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy)。作为一种包含UI的应用组件，UIAbility的生命周期不可避免地与[WindowStage](../../application-dev/windowmanager/application-window-stage.md)的生命周期存在关联关系。
 
 ### 效果预览
 ![UIAbility-Life-Cycle](./screenshots/lifecycle_1.png)
@@ -63,7 +63,7 @@ UIAbilityDemo/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityLifecycle > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
