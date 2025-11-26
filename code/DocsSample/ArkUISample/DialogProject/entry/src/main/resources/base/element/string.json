@@ -718,34 +718,6 @@
       "value": "菜单从API version 20开始支持基于绑定组件在指定位置弹出。通过设置水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置。与单独使用offset接口不同，此方法可使菜单覆盖显示在绑定组件上。需要指定弹出位置时，可使用ContextMenuOptions的anchorPosition属性进行设置。"
     },
     {
-      "name": "closeDialog_by_id",
-      "value": "点击关闭弹窗：通过DialogID"
-    },
-    {
-      "name": "closeDialog_by_outside",
-      "value": "点击关闭弹窗：通过外部传递的DialogController"
-    },
-    {
-      "name": "closeDialog_by_custom",
-      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
-    },
-    {
-      "name": "closeDialog_by_controller",
-      "value": "点我关闭弹窗：通过外部传递的DialogController"
-    },
-    {
-      "name": "my_content",
-      "value": "我是内容"
-    },
-    {
-      "name": "closeDialog_by_dialog",
-      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
-    },
-    {
-      "name": "closeDialog_by_dialog_controller",
-      "value": "点击关闭弹窗：通过外部传递的DialogController"
-    },
-    {
       "name": "search_by_dialog_controller",
       "value": "点我查询弹窗状态:通过CustomDialogController "
     },
