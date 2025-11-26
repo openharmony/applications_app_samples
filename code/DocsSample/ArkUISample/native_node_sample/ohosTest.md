@@ -48,3 +48,8 @@
 | CalenderPicker设置属性功能 | 应用位于首页 | 1.点击首页信息选择图片类按钮<br/>2.点击"选择节点类型"按钮选择"CALENDAR_PICKER"组件,点击下方"创建"按钮进行创建<br/>3.点击右侧"选择节点属性"选择类型"CALENDAR_PICKER"<br/>4.再选择要设置的属性类型,点击"设置属性值"按钮进行属性设置<br/>5.点击"获取属性值"按钮获取属性值 | 1.属性"TEXT_STYLE"、"SELECTED_DATE"设置后显示有变化<br/>2.其他属性设置后属性值能正常获取 | 否   | 验证通过 |
 | ImageAnimator设置属性功能 | 应用位于首页 | 1.点击首页信息选择图片类按钮<br/>2.点击"选择节点类型"按钮选择"IMAGE_ANIMATOR"组件,点击下方"创建"按钮进行创建<br/>3.点击右侧"选择节点属性"选择类型"IMAGE_ANIMATOR"<br/>4.再选择要设置的属性类型,点击"设置属性值"按钮进行属性设置<br/>5.点击"获取属性值"按钮获取属性值 | 1.属性"SRC"设置后组件能正常显示<br/>2.其他属性设置后属性值能正常获取 | 否   | 验证通过 |
 | <- 按钮                          | 应用位于首页 | 1.点击首页Form表单类按钮<br/>2.点击首页<- 按钮<br/>             | 返回上一层                                                   | 否       | 验证通过 |
+| 验证NODE_MONOPOLIZE_EVENT| 应用位于首页 | 1.点击首页Public按钮<br/>2.点击灰色矩形条 | 仅打印log：touch gray| 否    | 验证通过 |
+| 验证NODE_HOVER_EFFECT| 应用位于首页 | 1.点击首页Public按钮<br/>2.将鼠标移动到HOVER_EFFECT_SCALE上 | 按钮效果为HOVER_EFFECT_SCALE| 否 | 验证通过 |
+| 验证NODE_FOCUS_SCOPE_ID NODE_FOCUS_SCOPE_PRIORITY | 应用位于首页 | 1.点击首页Public按钮<br/>2.通过tab键将焦点移动到焦点组上<br/>3.点击方向上键 | 按钮button优先获焦且无法通过方向键将焦点移出焦点组| 否 | 验证通过 |
+| 验证NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD        | 应用位于首页 | 1.点击首页Public按钮<br/>2.点击disappear buttonTwo<br/>3.超出1vp阈值点击appear buttonTwo DISTANCE is 1| buttontwo消失后buttontwo不出现 | 否    | 验证通过 |
+| 验证NODE_ON_SIZE_CHANGE | 应用位于首页 | 1.点击首页Public按钮<br/> | 打印log：NODE_ON_SIZE_CHANGE | 否    | 验证通过 |
