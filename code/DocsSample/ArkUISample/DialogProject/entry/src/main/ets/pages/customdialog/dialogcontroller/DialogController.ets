@@ -38,7 +38,7 @@ class Params {
 struct MyComponent {
   build() {
     Column({ space: 5 }) {
-      Button('Close Dialog Box: Using Built-in DialogController')
+      Button('Close Dialog(Built-in Controller)')
         .onClick(() => {
           let dialogController: promptAction.DialogController = this.getDialogController();
           if (dialogController !== undefined) {
@@ -58,7 +58,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(30)
     if (params.dialogController !== undefined) {
-      Button('Close Dialog Box: Using Externally Passed DialogController')
+      Button('Close Dialog(External Controller)')
         .onClick(() => {
           params.dialogController.close();
         })
@@ -82,7 +82,7 @@ struct CustomDialogExample {
     Column({ space: 5 }) {
       Text('I am content')
         .fontSize(30)
-      Button('Close Dialog Box: Using Built-in DialogController')
+      Button('Close Dialog(Built-in Controller)')
         .onClick(() => {
           let dialogController: PromptActionDialogController = this.getDialogController();
           if (dialogController !== undefined) {
@@ -126,7 +126,7 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        Button('Close Dialog Box: Using Externally Passed DialogController')
+        Button('Close Dialog(External Controller)')
           .onClick(() => {
             dialogController.close();
           })
@@ -147,13 +147,13 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogId !== undefined) {
-        Button('Close Dialog Box: Using DialogID')
+        Button('Close Dialog(DialogID)')
           .onClick(() => {
             this.getUIContext().getPromptAction().closeCustomDialog(dialogId);
           })
       }
       if (dialogController !== undefined) {
-        Button('Close Dialog Box: Using Externally Passed DialogController')
+        Button('Close Dialog(External Controller)')
           .onClick(() => {
             dialogController.close();
           })
@@ -178,7 +178,7 @@ export struct DialogController {
           .onClick(() => {
             this.dialogState = dialogController.getState();
           })
-        Button('Close Dialog Box: Using Externally Passed DialogController')
+        Button('Close Dialog(External Controller)')
           .onClick(() => {
             dialogController.close();
           })
