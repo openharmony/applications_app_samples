@@ -17,27 +17,22 @@
 // [Start pasteboard_usedata]
 // [Start pasteboard_useudc]
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude pasteboard_usedata]
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
-
-// [End pasteboard_timelaps_PasteData1]
-// [StartExclude pasteboard_useudc]
 // [EndExclude pasteboard_usedata]
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-
+// [End pasteboard_timelaps_PasteData1]
 // [StartExclude pasteboard_usedata]
+// [StartExclude pasteboard_useudc]
 export namespace TestJs {
   // 使用基础数据类型进行复制粘贴
+  // [EndExclude pasteboard_usedata]
   export async function setPlainData(content: string): Promise<void> {
-    // [EndExclude pasteboard_usedata]
     let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, content);
     await systemPasteboard.setData(pasteData);
-    // [StartExclude pasteboard_usedata]
   }
-
   export async function getPlainData(type: string): Promise<string> {
-    // [EndExclude pasteboard_usedata]
     //从系统剪贴板中读取数据
     let data = await systemPasteboard.getData();
     let recordCount = data.getRecordCount();
@@ -47,9 +42,9 @@ export namespace TestJs {
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Get data success, record:' + record);
       result = record;
     }
-    // [End pasteboard_usedata]
     return result;
   }
+  // [End pasteboard_usedata]
 
   // 使用统一数据类型进行复制粘贴
   // [EndExclude pasteboard_useudc]

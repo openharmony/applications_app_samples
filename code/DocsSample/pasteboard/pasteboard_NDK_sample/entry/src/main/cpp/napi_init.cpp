@@ -14,19 +14,19 @@
  */
 
 #include "napi/native_api.h"
-#include <cstring>
 #include <database/pasteboard/oh_pasteboard_err_code.h>
 // [Start pasteboard_native2]
 #include <cstdio>
 // [Start pasteboard_timelapse_Record1]
+#include <cstring>
+#include <hilog/log.h>
 #include <database/pasteboard/oh_pasteboard.h>
 #include <database/udmf/udmf.h>
 #include <database/udmf/uds.h>
 // [End pasteboard_native2]
 #include <database/udmf/udmf_meta.h>
-// [End pasteboard_timelapse_Record1]
-#include <hilog/log.h>
 #include <accesstoken/ability_access_control.h>
+// [End pasteboard_timelapse_Record1]
 #undef LOG_TAG
 #define LOG_TAG "MY_LOG"
 // [Start pasteboard_native3]
@@ -41,9 +41,9 @@ static void PasteboardFinalizeImpl2(void* context)
     OH_LOG_INFO(LOG_APP, "callback: Pasteboard_Finalize");
 }
 // [End pasteboard_native3]
+// [Start pasteboard_native4]
 static void PasteboardTestObserver()
 {
-    // [Start pasteboard_native4]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     // 2. 创建一个剪贴板数据变更观察者实例
@@ -52,19 +52,18 @@ static void PasteboardTestObserver()
     OH_PasteboardObserver_SetData(observer, (void*)pasteboard, PasteboardNotifyImpl2, PasteboardFinalizeImpl2);
     // 4. 设置对剪贴板本端数据变化的订阅
     OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
-    // [End pasteboard_native4]
 }
+// [End pasteboard_native4]
+// [Start pasteboard_native5]
 static napi_value NAPI_Pasteboard_set(napi_env env, napi_callback_info info)
 {
     napi_value args[1];
     size_t argc = 1;
     napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
     char text[256];
     size_t value0Size;
     status = napi_get_value_string_utf8(env, args[0], text, sizeof(text), &value0Size);
 
-    // [Start pasteboard_native5]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     if (pasteboard == nullptr) {
@@ -78,28 +77,27 @@ static napi_value NAPI_Pasteboard_set(napi_env env, napi_callback_info info)
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     OH_UdmfRecord_AddPlainText(record, udsPlainText);
     OH_UdmfRecord_AddHtml(record, udsHtml);
-
     // 3. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord
     OH_UdmfData* data = OH_UdmfData_Create();
     OH_UdmfData_AddRecord(data, record);
-
     // 4. 将数据写入剪贴板
     OH_Pasteboard_SetData(pasteboard, data);
-
     // 5. 使用完销毁指针
     OH_UdsPlainText_Destroy(udsPlainText);
     OH_UdsHtml_Destroy(udsHtml);
     OH_UdmfRecord_Destroy(record);
     OH_UdmfData_Destroy(data);
     OH_Pasteboard_Destroy(pasteboard);
-    // [End pasteboard_native5]
+    // [StartExclude pasteboard_native5]
     napi_value result;
     napi_get_undefined(env, &result);
     return result;
+    // [EndExclude pasteboard_native5]
 }
+// [End pasteboard_native5]
+// [Start pasteboard_native6]
 static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
 {
-    // [Start pasteboard_native6]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     if (pasteboard == nullptr) {
@@ -139,8 +137,8 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "No plain text data in pasteboard.");
     }
     OH_Pasteboard_Destroy(pasteboard);
-    // [End pasteboard_native6]
 }
+// [End pasteboard_native6]
 // [Start pasteboard_timelapse_Record2]
 // 1. 获取数据时触发的提供剪贴板数据的回调函数。
 void* GetDataCallback(void* context, const char* type)
@@ -174,26 +172,23 @@ void SyncCallback(int errorCode)
     // 继续退出
 }
 // [End pasteboard_timelapse_Record3]
+// [Start pasteboard_timelapse_Record4]
 OH_Pasteboard* CreateAndSetPasteboardData()
 {
-    // [Start pasteboard_timelapse_Record4]
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
     OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
     OH_UdmfRecordProvider_SetData(provider, (void *)record, GetDataCallback, ProviderFinalizeCallback);
-
     // 6. 将provider绑定到record，并设置支持的数据类型。
     #define TYPE_COUNT 2
     const char* types[TYPE_COUNT] = {UDMF_META_PLAIN_TEXT, UDMF_META_HTML};
     OH_UdmfRecord_SetProvider(record, types, TYPE_COUNT, provider);
-
     // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
     OH_UdmfData* setData = OH_UdmfData_Create();
     if (setData != nullptr) {
         OH_UdmfData_AddRecord(setData, record);
     }
-
     // 8. 创建OH_Pasteboard对象，将数据写入剪贴板中。
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     if (setData != nullptr) {
@@ -202,9 +197,9 @@ OH_Pasteboard* CreateAndSetPasteboardData()
     OH_UdmfRecordProvider_Destroy(provider);
     OH_UdmfRecord_Destroy(record);
     OH_UdmfData_Destroy(setData);
-    // [End pasteboard_timelapse_Record4]
     return pasteboard;
 }
+// [End pasteboard_timelapse_Record4]
 // [Start pasteboard_timelapse_Record5]
 void ProcessRecordType(OH_UdmfRecord* record, const char* recordType)
 {
@@ -235,22 +230,18 @@ void ProcessRecord(OH_UdmfRecord* record)
     // 13. 查询OH_UdmfRecord中的数据类型。
     unsigned typeCount = 0;
     char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
-
     // 14. 遍历数据类型。
     for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeIndex) {
         const char* recordType = recordTypes[typeIndex];
         ProcessRecordType(record, recordType);
     }
 }
-// [StartExclude pasteboard_timelapse_Record5]
 
 static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
 {
     OH_Pasteboard* pasteboard = CreateAndSetPasteboardData();
-    // [EndExclude pasteboard_timelapse_Record5]
     // 9. 记录当前的剪贴板数据变化次数。
     uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
-
     // 10. 从剪贴板获取OH_UdmfData。
     int status = -1;
     bool hasPermission = OH_AT_CheckSelfPermission("ohos.permission.READ_PASTEBOARD");
@@ -262,13 +253,11 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
         // 处理错误情况，清理资源
         OH_LOG_ERROR(LOG_APP, "Failed to get data from pasteboard, status: %d\n", status);
     }
-
     // 11. 获取OH_UdmfData中的所有OH_UdmfRecord。
     unsigned int recordCount = 0;
     OH_UdmfRecord** getRecords = OH_UdmfData_GetRecords(getData, &recordCount);
     OH_UdsPlainText* udsText = nullptr;
     OH_UdsHtml* udsHtml = nullptr;
-
     // 12. 遍历OH_UdmfRecord。
     for (unsigned int recordIndex = 0; recordIndex < recordCount; ++recordIndex) {
         OH_UdmfRecord* record = getRecords[recordIndex];
@@ -293,9 +282,8 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
     OH_UdsHtml_Destroy(udsHtml);
     OH_UdmfData_Destroy(getData);
     OH_Pasteboard_Destroy(pasteboard);
-    // [End pasteboard_timelapse_Record7]
 }
-
+// [End pasteboard_timelapse_Record7]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
