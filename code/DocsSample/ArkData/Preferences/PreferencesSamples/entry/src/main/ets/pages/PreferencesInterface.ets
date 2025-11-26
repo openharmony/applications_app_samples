@@ -20,7 +20,9 @@ import EntryAbility from '../entryability/EntryAbility';
 import Logger from '../common/Logger';
 
 let dataPreferences: preferences.Preferences | undefined = undefined;
+// [Start DefineContext]
 const context = EntryAbility.getContext();
+// [Start DefineContext]
 
 export class PreferencesInterface {
   public GetPreferencesSync = (() => {
