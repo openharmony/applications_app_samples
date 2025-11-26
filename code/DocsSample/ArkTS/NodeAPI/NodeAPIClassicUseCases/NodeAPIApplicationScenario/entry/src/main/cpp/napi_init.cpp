@@ -16,7 +16,7 @@
 // [Start napi_ark_runtime_cpp]
 #include <pthread.h>
 #include "napi/native_api.h"
-// [StartExclute napi_ark_runtime_cpp]
+// [StartExclude napi_ark_runtime_cpp]
 #include <napi/common.h>
 #include <pthread.h>
 #include <future>
@@ -25,8 +25,8 @@
 static constexpr int INT_ARG_2 = 2; // 入参索引
 static constexpr int INT_ARG_12 = 12; // 入参索引
 static constexpr int INT_ARG_15 = 15; // 入参索引
-// [EndExclute napi_ark_runtime_cpp]
-// [StartExclute napi_call_threadsafe_function_with_priority_cpp]
+// [EndExclude napi_ark_runtime_cpp]
+// [StartExclude napi_call_threadsafe_function_with_priority_cpp]
 static void *CreateArkRuntimeFunc(void *arg)
 {
     // 1. 创建基础运行环境
@@ -70,7 +70,7 @@ static napi_value CreateArkRuntime(napi_env env, napi_callback_info info)
     pthread_join(tid, nullptr);
     return nullptr;
 }
-// [StartExclute napi_ark_runtime_cpp]
+// [StartExclude napi_ark_runtime_cpp]
 // [Start napi_event_loop_cpp]
 static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
 {
@@ -164,8 +164,8 @@ static napi_value RunEventLoop(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
-// [StartExclute napi_event_loop_cpp]
-// [EndExclute napi_call_threadsafe_function_with_priority_cpp]
+// [StartExclude napi_event_loop_cpp]
+// [EndExclude napi_call_threadsafe_function_with_priority_cpp]
 struct CallbackData {
     napi_threadsafe_function tsfn;
     napi_async_work work;
@@ -225,8 +225,8 @@ static napi_value CallThreadSafeWithPriority(napi_env env, napi_callback_info in
     napi_queue_async_work(env, callbackData->work);
     return nullptr;
 }
-// [EndExclute napi_event_loop_cpp]
-// [EndExclute napi_ark_runtime_cpp]
+// [EndExclude napi_event_loop_cpp]
+// [EndExclude napi_ark_runtime_cpp]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
