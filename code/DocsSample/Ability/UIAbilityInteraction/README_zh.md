@@ -3,14 +3,13 @@
 ### 介绍
 本示例主要介绍启动应用内的UIAbility组件的方式，UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility。
 
+1.[启动应用内的UIAbility组件](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/application-models/uiability-data-sync-with-ui.md)
+
 ### 效果预览
-首页
 
-![启动页](./screenshots/main.png)
-
-子页面
-
-![子页面](./screenshots/stop.png)
+| 首页         | 子页面                        |
+|----------------------------|----------------------------|
+| ![image](./screenshots/main.png) | ![image](./screenshots/stop.png) |
 
 ### 使用说明
 
@@ -81,7 +80,7 @@ UIAbility是系统调度的基本单元。在设备内的功能模块之间跳�
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityInteraction > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

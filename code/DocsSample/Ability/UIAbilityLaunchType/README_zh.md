@@ -3,18 +3,13 @@
 ### 介绍
 本示例展示了UIAbility不同的启动模式。UIAbility的启动模式是指UIAbility实例在启动时的不同呈现状态。针对不同的业务场景，系统提供了三种启动模式：
 
+1.[UIAbility组件启动模式](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/application-models/uiability-launch-type.md)
+
 ### 效果预览
-**单实例模式演示效果**
 
-![uiability-launch-type1](./screenshots/singleton.gif)
-
-**多实例模式演示效果** 
-
-![uiability-launch-type1](./screenshots/multiton.gif)
-
-**指定实例模式演示效果**
-
-![uiability-launch-type1](./screenshots/specified.gif)
+| 单实例模式演示效果                 | 多实例模式演示效果                 | 指定实例模式演示效果                  |
+|----------------------------|----------------------------|----------------------------|
+| ![uiability-launch-type1](./screenshots/singleton.gif) | ![uiability-launch-type1](./screenshots/multiton.gif) | ![uiability-launch-type1](./screenshots/specified.gif) |
 
 ### 使用说明
 
@@ -105,7 +100,7 @@ UIAbilityLaunchType/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityLaunchType > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

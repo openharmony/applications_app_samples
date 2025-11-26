@@ -3,6 +3,8 @@
 ### 介绍
 本示例展示了UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文UIAbilityContext。
 
+1.[UIAbility组件基本用法](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/application-models/uiability-usage.md)
+
 ### 效果预览
 不涉及
 
@@ -64,7 +66,7 @@ UIAbilityLaunchType/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityUsage > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

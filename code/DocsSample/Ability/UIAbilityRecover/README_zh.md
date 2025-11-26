@@ -3,6 +3,8 @@
 ### 介绍
 当应用后台运行时，可能由于系统资源管控等原因导致应用关闭、进程退出，应用直接退出可能会导致用户数据丢失。如果应用在UIAbilityContext中启用了UIAbility备份恢复功能，并对临时数据进行保存，则可以在应用退出后的下一次启动时恢复先前的状态和数据（包括应用的页面栈以及onSaveState接口中保存的数据），从而保证用户体验的连贯性。
 
+1.[UIAbility备份恢复](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/application-models/ability-recover-guideline.md)
+
 ### 效果预览
 不涉及
 
@@ -59,7 +61,7 @@ UIAbilityLaunchType/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityRecover > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
