@@ -163,7 +163,7 @@ void VectorQuery(OH_Rdb_Store *store_)
 void VectorCRUD(OH_Rdb_Store *store_)
 {
     // [Start vector_OH_Rdb_ExecuteV2_insert]
-    char createTableSql[] = 
+    char createTableSql[] =
         "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
     // 执行建表语句
     OH_Rdb_ExecuteByTrxId(store_, 0, createTableSql);

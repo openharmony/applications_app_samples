@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
         name: 'cstore.db',
         securityLevel: relationalStore.SecurityLevel.S3,
       },
-      storeId: "cstore.db"
+      storeId: 'cstore.db'
     };
     let eContext = await application.createModuleContext(this.context, "entry");
     eContext.area = contextConstant.AreaMode.EL5;
