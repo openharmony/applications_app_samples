@@ -22,6 +22,7 @@
 17. [弹簧曲线](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-spring-curve.md)。
 18. [模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-modal-transition.md)。
 19. [实现属性动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-attribute-animation-apis.md)。
+20. [出现/消失转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-enter-exit-transition.md)。
 
 
 ### 效果预览
@@ -295,8 +296,10 @@ entry/src/ohosTest/
    * bindContextMenu属性为组件绑定弹出式菜单，通过长按或右键点击触发。
    * bindPopup属性可为组件绑定弹窗，并设置弹窗，交互逻辑和显示状态。
    * 使用if语句实现模态转场。模态转场接口需要绑定到其他组件上，通过监听状态变量变化调起态界面。同时，也可以通过if语句，通过新增或删除组件实现模态转场效果。
-19. 实现属性动画：通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。源码参考：[animation/template1//Index.ets](code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/animation/template1/Index.ets)
+19. 实现属性动画：通过可动画属性改变引起UI上产生的连续视觉效果，即为属性动画。源码参考：[animation/template1/Index.ets](code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/animation/template1/Index.ets)
    * 属性动画是最基础易懂的动画，ArkUI提供三种动画接口animateTo、animation和keyframeAnimateTo驱动组件属性按照动画曲线等动画参数进行连续的变化，产生属性动画。
+20. 出现/消失转场：transition是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。源码参考：[compTransition/template3/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/compTransition/template3/Index.ets)
+   * 可以通过TransitionEffect对象的组合使用，定义出各式效果。
 
 
 
