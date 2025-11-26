@@ -332,7 +332,7 @@ struct FilePicker {
   // [Start dlp_getDLPSupportedFileTypes]
   getDLPSupportedFileTypes() {
     dlpPermission.getDLPSupportedFileTypes((err, result) => {
-      console.error('getDLPSupportedFileTypes: ' + JSON.stringify(err));
+      console.info('getDLPSupportedFileTypes: ' + JSON.stringify(err));
       console.info('getDLPSupportedFileTypes: ' + JSON.stringify(result));
       hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPSupportedFileTypes: ' + JSON.stringify(err));
       hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPSupportedFileTypes: ' + JSON.stringify(result));
