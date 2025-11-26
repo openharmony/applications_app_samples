@@ -69,7 +69,7 @@ ohos.permission.READ_IMAGEVIDEO
 
 2.本示例为Stage模型，已适配API version 11版本SDK;
 
-3.本示例需要使用DevEco Studio 4.1 Release及以上版本才可编译运行。
+3.本示例已支持使用DevEco Studio 6.0.0.848（构建版本：6.0.0.848，构建2025年10月17日）编译运行。
 
 ### 下载
 
