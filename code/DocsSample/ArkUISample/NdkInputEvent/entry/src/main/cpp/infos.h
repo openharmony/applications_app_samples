@@ -297,8 +297,6 @@ void ShowAxisInfos(ArkUI_UIInputEvent* inputEvent)
             g_ss << "scrollStep: " << scrollStep << std::endl;
             auto verticalAxisValue = OH_ArkUI_AxisEvent_GetVerticalAxisValue(inputEvent);
             g_ss << "verticalAxisValue: " << verticalAxisValue << std::endl;
-            auto hasAxis = OH_ArkUI_AxisEvent_HasAxis(inputEvent, UI_AXIS_TYPE_VERTICAL_AXIS);
-            g_ss << "HasAxis VERTICAL_AXIS: " << hasAxis << std::endl;
             break;
         }
         case UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD: {
