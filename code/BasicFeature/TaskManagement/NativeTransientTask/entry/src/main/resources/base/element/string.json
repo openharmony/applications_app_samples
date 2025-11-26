@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "Native短时任务管理"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "Native短时任务管理"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "Native短时任务"
     },
     {
       "name": "request_suspend_delay",
