@@ -3,6 +3,8 @@
 ### 介绍
 本示例展示了UIAbility组件与UI的数据同步功能。 EventHub是系统提供的基于发布-订阅模式实现的事件通信机制。通过事件名，实现了发送方和订阅方之间的解耦，支持不同业务模块间的高效数据传递和状态同步。 主要用于UIAbility组件与UI的数据通信。
 
+1.[UIAbility组件与UI的数据同步](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/application-models/uiability-data-sync-with-ui.md)
+
 ### 效果预览
 不涉及
 
@@ -59,7 +61,7 @@ UIAbilityLaunchType/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/UIAbilityDataSync > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
