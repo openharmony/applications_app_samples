@@ -19,9 +19,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS",
+        "targetSdkVersion": 20,
+        "compileSdkVersion":  20,
+        "compatibleSdkVersion":  20,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "nativeCompiler": "BiSheng",
           "strictMode": {
