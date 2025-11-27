@@ -33,17 +33,17 @@ struct Index {
             this.message = 'Welcome';
             hilog.info(DOMAIN, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
           })
-        // [Start in_app_hsp_007]
-        // library/src/main/ets/pages/Index.ets
-        // 正确用例
-        Image($r('app.media.example'))
-          .id('example')
-          .borderRadius('48px')
-        // // 错误用例
-        Image("../../resources/base/media/example.png")
-          .id('example')
-          .borderRadius('48px')
-        // [End in_app_hsp_007]
+// [Start in_app_hsp_007]
+// library/src/main/ets/pages/Index.ets
+// 正确用例
+Image($r('app.media.example'))
+  .id('example')
+  .borderRadius('48px')
+// // 错误用例
+Image("../../resources/base/media/example.png")
+  .id('example')
+  .borderRadius('48px')
+// [End in_app_hsp_007]
       }
       .width('100%')
     }
