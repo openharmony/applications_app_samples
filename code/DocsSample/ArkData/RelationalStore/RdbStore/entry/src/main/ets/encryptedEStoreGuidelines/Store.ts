@@ -55,7 +55,7 @@ export class Store {
         CODES: new Uint8Array([1, 2, 3, 4, 5]),
       };
       try {
-        await rdbStore.insert("EMPLOYEE", valueBucket);
+        await rdbStore.insert('EMPLOYEE', valueBucket);
         console.info(`ECDB_Encry insert success`);
       } catch (e) {
         let error = e as BusinessError;

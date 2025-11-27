@@ -67,7 +67,7 @@ export default class EntryAbility extends UIAbility {
       },
       storeId: 'cstore.db'
     };
-    let eContext = await application.createModuleContext(this.context, "entry");
+    let eContext = await application.createModuleContext(this.context, 'entry');
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       context: eContext,
