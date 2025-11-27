@@ -40,10 +40,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// ============================================================================
-// 步骤1：密钥生成模块
-// 功能：生成带PIN认证要求的SM4密钥
-// ============================================================================
+/* 步骤1：密钥生成模块 */
 const KEY_GENERATION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -79,9 +76,7 @@ const KEY_GENERATION_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 生成密钥
- */
+/* 生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -100,10 +95,8 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
   });
 }
 
-/**
- * 步骤1：生成SM4密钥
- */
-async function step1_GenerateKey(): Promise<void> {
+/* 生成SM4密钥 */
+async function step1GenerateKey(): Promise<void> {
   const generateOptions: huks.HuksOptions = {
     properties: KEY_GENERATION_PROPERTIES,
     inData: new Uint8Array([])
@@ -130,10 +123,7 @@ async function step1_GenerateKey(): Promise<void> {
   }
 }
 
-// ============================================================================
-// 步骤2：初始化会话模块
-// 功能：初始化加密会话并获取挑战值
-// ============================================================================
+/* 步骤2：初始化会话模块 - 初始化加密会话并获取挑战值 */
 const INIT_SESSION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -161,10 +151,9 @@ const INIT_SESSION_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 初始化会话
- */
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
+/* 初始化会话 */
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -182,10 +171,8 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
   });
 }
 
-/**
- * 步骤2：初始化会话并获取挑战值
- */
-async function step2_InitSession(): Promise<void> {
+/* 初始化会话并获取挑战值 */
+async function step2InitSession(): Promise<void> {
   const initOptions: huks.HuksOptions = {
     properties: INIT_SESSION_PROPERTIES,
     inData: new Uint8Array([])
@@ -214,14 +201,8 @@ async function step2_InitSession(): Promise<void> {
   }
 }
 
-// ============================================================================
-// 步骤3：用户认证模块
-// 功能：通过PIN码认证获取授权令牌
-// ============================================================================
-
-/**
- * 执行用户认证
- */
+/* 步骤3：用户认证模块 - 通过PIN码认证获取授权令牌 */
+/* 执行用户认证 */
 function performUserAuthentication(huksChallenge: Uint8Array): void {
   const authTypeList: userAuth.UserAuthType[] = [AUTH_TYPE];
   const authParam: userAuth.AuthParam = {
@@ -234,7 +215,7 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     title: 'PIN',
   };
 
-  // 获取认证实例
+  /* 获取认证实例 */
   let auth: userAuth.UserAuthInstance;
   try {
     auth = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -245,13 +226,13 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 
-  // 订阅认证结果
+  /* 订阅认证结果 */
   try {
     auth.on('result', {
       onResult(result) {
         console.info('用户认证成功，获取到令牌');
         authToken = result.token;
-        step4_EncryptWithToken();
+        step4EncryptWithToken();
       }
     });
     console.info('认证结果订阅成功');
@@ -261,7 +242,7 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 
-  // 开始认证
+  /* 开始认证 */
   try {
     auth.start();
     console.info('等待用户输入PIN码');
@@ -272,14 +253,8 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
   }
 }
 
-// ============================================================================
-// 步骤4：加密操作模块
-// 功能：使用认证令牌进行加密操作
-// ============================================================================
-
-/**
- * 加密参数配置
- */
+/* 步骤4：加密操作模块 - 使用认证令牌进行加密操作 */
+/* 加密参数配置 */
 const ENCRYPT_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -307,10 +282,9 @@ const ENCRYPT_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 更新会话
- */
-function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
+/* 更新会话 */
+function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array,
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.updateSession(handle, huksOptions, token, (error, data) => {
@@ -328,10 +302,9 @@ function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
   });
 }
 
-/**
- * 完成会话
- */
-function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
+/* 完成会话 */
+function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array,
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, token, (error, data) => {
@@ -349,16 +322,14 @@ function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
   });
 }
 
-/**
- * 步骤4：使用认证令牌进行加密
- */
-async function step4_EncryptWithToken(): Promise<void> {
+/* 使用认证令牌进行加密 */
+async function step4EncryptWithToken(): Promise<void> {
   const encryptOptions: huks.HuksOptions = {
     properties: ENCRYPT_PROPERTIES,
     inData: stringToUint8Array(CIPHER_IN_DATA)
   };
 
-  // 更新会话，传入认证令牌
+  /* 更新会话，传入认证令牌 */
   let throwObject: ThrowObject = { isThrow: true };
   try {
     await updateSession(sessionHandle, encryptOptions, authToken, throwObject)
@@ -379,7 +350,7 @@ async function step4_EncryptWithToken(): Promise<void> {
     throw err;
   }
 
-  // 完成会话，传入认证令牌
+  /* 完成会话，传入认证令牌 */
   throwObject = { isThrow: false };
   try {
     await finishSession(sessionHandle, encryptOptions, authToken, throwObject)
@@ -387,7 +358,7 @@ async function step4_EncryptWithToken(): Promise<void> {
         encryptedData = data.outData as Uint8Array;
         console.info('加密完成');
 
-        // 验证加密结果
+        /* 验证加密结果 */
         const originalData = stringToUint8Array(CIPHER_IN_DATA);
         if (encryptedData.toString() === originalData.toString()) {
           console.error('加密验证失败：加密数据与原始数据相同');
@@ -410,28 +381,12 @@ async function step4_EncryptWithToken(): Promise<void> {
   }
 }
 
-// ============================================================================
-// 主流程入口
-// 功能：执行完整的密钥生成、认证和加密流程
-// ============================================================================
-
-/**
- * 主函数：执行完整的认证加密流程
- *
- * 流程说明：
- * 1. 生成带PIN认证保护的SM4密钥
- * 2. 初始化加密会话，获取挑战值
- * 3. 使用挑战值进行PIN码认证
- * 4. 认证成功后，使用令牌进行加密操作
- *
- * 注意：步骤3和步骤4是异步的，认证成功后会自动触发加密操作
- */
+/* 主流程入口 - 执行完整的密钥生成、认证和加密流程 */
 async function main(): Promise<void> {
-    await step1_GenerateKey();
-    await step2_InitSession();
-    performUserAuthentication(challenge);
+  await step1GenerateKey();
+  await step2InitSession();
+  performUserAuthentication(challenge);
 }
-
 // [End user_authentication_and_access_control_guide]
 
 @Entry

@@ -42,11 +42,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// ============================================================================
-// 步骤1：密钥生成模块
-// 功能：生成带用户认证要求的SM4密钥
-// ============================================================================
-
+/* 步骤1：密钥生成模块 */
 const KEY_GENERATION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -86,9 +82,6 @@ const KEY_GENERATION_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 生成密钥
- */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -107,11 +100,8 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
   });
 }
 
-/**
- * 步骤1：生成SM4密钥
- * 该密钥具有用户认证保护，解密时需要PIN码认证
- */
-async function step1_GenerateKey(): Promise<void> {
+/* 生成SM4密钥 */
+async function step1GenerateKey(): Promise<void> {
   const generateOptions: huks.HuksOptions = {
     properties: KEY_GENERATION_PROPERTIES,
     inData: new Uint8Array([])
@@ -138,10 +128,7 @@ async function step1_GenerateKey(): Promise<void> {
   }
 }
 
-// ============================================================================
-// 步骤2：加密模块
-// 功能：使用生成的SM4密钥对数据进行加密
-// ============================================================================
+/* 步骤2：加密模块 */
 const ENCRYPTION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -169,10 +156,8 @@ const ENCRYPTION_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 初始化加密会话
- */
-function initEncryptSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
+function initEncryptSession(keyAlias: string, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -190,10 +175,8 @@ function initEncryptSession(keyAlias: string, huksOptions: huks.HuksOptions, thr
   });
 }
 
-/**
- * 完成加密会话
- */
-function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
+function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, (error, data) => {
@@ -211,17 +194,14 @@ function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions, thr
   });
 }
 
-/**
- * 步骤2：加密数据
- * 使用SM4密钥对明文进行加密，加密过程无需用户认证
- */
-async function step2_EncryptData(): Promise<void> {
+/* 加密数据 */
+async function step2EncryptData(): Promise<void> {
   const encryptOptions: huks.HuksOptions = {
     properties: ENCRYPTION_PROPERTIES,
     inData: new Uint8Array([])
   };
 
-  // 2.1 初始化加密会话
+  /* 初始化加密会话 */
   let throwObject: ThrowObject = { isThrow: true };
   try {
     await initEncryptSession(KEY_ALIAS, encryptOptions, throwObject)
@@ -244,7 +224,7 @@ async function step2_EncryptData(): Promise<void> {
     throw err;
   }
 
-  // 2.2 执行加密操作
+  /* 执行加密操作 */
   encryptOptions.inData = stringToUint8Array(CIPHER_IN_DATA);
   throwObject = { isThrow: true };
   try {
@@ -268,17 +248,9 @@ async function step2_EncryptData(): Promise<void> {
   }
 }
 
-// ============================================================================
-// 步骤3：用户认证模块
-// 功能：通过PIN码认证获取授权令牌
-// ============================================================================
-
-/**
- * 执行用户认证（PIN码）
- * 认证成功后会触发回调，获取authToken
- */
+/* 步骤3：用户认证模块 */
 function performUserAuthentication(huksChallenge: Uint8Array): void {
-  // 配置认证参数
+  /* 配置认证参数 */
   const authTypeList: userAuth.UserAuthType[] = [AUTH_TYPE];
   const authParam: userAuth.AuthParam = {
     challenge: huksChallenge,
@@ -290,7 +262,7 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     title: 'PIN',
   };
 
-  // 获取认证实例
+  /* 获取认证实例 */
   let auth: userAuth.UserAuthInstance;
   try {
     auth = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -301,14 +273,13 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 
-  // 订阅认证结果
+  /* 订阅认证结果 */
   try {
     auth.on('result', {
       onResult(result) {
         console.info('用户认证成功，获取到token: ' + JSON.stringify(result));
         authToken = result.token;
-        // 认证成功后，继续执行解密操作
-        step3_2_CompleteDecryption();
+        step32CompleteDecryption();
       }
     });
     console.info('认证结果订阅成功');
@@ -318,7 +289,6 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 
-  // 开始认证
   try {
     auth.start();
     console.info('认证流程已启动，等待用户输入PIN码...');
@@ -329,10 +299,7 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
   }
 }
 
-// ============================================================================
-// 步骤4：解密模块
-// 功能：初始化解密会话并使用认证令牌完成解密
-// ============================================================================
+/* 步骤4：解密模块 */
 const DECRYPTION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -360,10 +327,8 @@ const DECRYPTION_PROPERTIES: huks.HuksParam[] = [
   }
 ];
 
-/**
- * 初始化解密会话
- */
-function initDecryptSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
+function initDecryptSession(keyAlias: string, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -381,9 +346,6 @@ function initDecryptSession(keyAlias: string, huksOptions: huks.HuksOptions, thr
   });
 }
 
-/**
- * 完成解密会话（需要认证令牌）
- */
 function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
@@ -402,18 +364,15 @@ function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, tok
   });
 }
 
-/**
- * 步骤4.1：初始化解密会话并触发用户认证
- * 由于密钥设置了解密时需要用户认证，此步骤会获取挑战值并触发认证流程
- */
-async function step3_1_InitDecryptionAndAuth(): Promise<void> {
+/* 初始化解密会话并触发用户认证 */
+async function step31DecryptionAndAuth(): Promise<void> {
 
   const decryptOptions: huks.HuksOptions = {
     properties: DECRYPTION_PROPERTIES,
     inData: new Uint8Array([])
   };
 
-  // 初始化解密会话，获取挑战值
+  /* 初始化解密会话，获取挑战值 */
   let throwObject: ThrowObject = { isThrow: true };
   try {
     await initDecryptSession(KEY_ALIAS, decryptOptions, throwObject)
@@ -423,7 +382,7 @@ async function step3_1_InitDecryptionAndAuth(): Promise<void> {
         challenge = data.challenge as Uint8Array;
         console.info('获取到挑战值: ' + challenge.toString());
 
-        // 触发用户认证流程
+        /* 触发用户认证流程 */
         performUserAuthentication(challenge);
       })
       .catch((error: Error) => {
@@ -441,14 +400,8 @@ async function step3_1_InitDecryptionAndAuth(): Promise<void> {
   }
 }
 
-/**
- * 步骤4.2：完成解密操作
- * 使用认证令牌完成解密，并验证结果
- * 注意：此函数由用户认证成功后的回调触发
- */
-async function step3_2_CompleteDecryption(): Promise<void> {
-  console.info('=== 步骤3.3：完成解密操作 ===');
-
+/* 完成解密操作 */
+async function step32CompleteDecryption(): Promise<void> {
   const decryptOptions: huks.HuksOptions = {
     properties: DECRYPTION_PROPERTIES,
     inData: encryptedData // 使用之前加密的密文
@@ -461,7 +414,7 @@ async function step3_2_CompleteDecryption(): Promise<void> {
         decryptedData = data.outData as Uint8Array;
         console.info(`数据解密成功: ${JSON.stringify(data)}`);
 
-        // 验证解密结果
+        /* 验证解密结果 */
         const originalData = stringToUint8Array(CIPHER_IN_DATA);
         if (decryptedData.toString() === originalData.toString()) {
           console.info('解密验证成功！解密后的数据与原始明文一致');
@@ -484,26 +437,14 @@ async function step3_2_CompleteDecryption(): Promise<void> {
   }
 }
 
-/**
- * 主函数：执行完整的SM4加密解密流程
- *
- * 流程说明：
- * 1. 生成带用户认证保护的SM4密钥
- * 2. 使用密钥加密数据（无需认证）
- * 3. 初始化解密会话并进行用户认证
- *    - 3.1 初始化解密会话，获取挑战值
- *    - 3.2 使用挑战值进行PIN码认证
- *    - 3.3 认证成功后，使用令牌完成解密
- *
- * 注意：步骤3是异步的，用户认证完成后会自动触发解密操作
- */
+/* 主函数：执行完整的SM4加密解密流程 */
 async function main(): Promise<void> {
-    // 步骤1：生成密钥
-    await step1_GenerateKey();
-    // 步骤2：加密数据
-    await step2_EncryptData();
-    // 步骤3：初始化解密并进行用户认证
-    await step3_1_InitDecryptionAndAuth();
+    /* 步骤1：生成密钥 */
+    await step1GenerateKey();
+    /* 步骤2：加密数据 */
+    await step2EncryptData();
+    /* 步骤3：初始化解密并进行用户认证 */
+    await step31DecryptionAndAuth();
 }
 // [End generate_key_specify_fingerprint_access_control_and_auth_purpose]
 
