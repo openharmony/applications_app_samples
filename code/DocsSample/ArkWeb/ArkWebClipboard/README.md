@@ -15,12 +15,27 @@
 
 | Clipboard API demo                                        |
 |-----------------------------------------------------------|
-| <img src="./screenshots/webClipboard.gif" width="360;" /> |
+| <img src="./screenshots/webClipboard.gif" width="200;" /> |
 
 ##### 使用说明
 
 * 通过异步剪贴板接口read()和readText()方法访问系统剪贴板内容，需[申请访问剪贴板权限](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md)：ohos.permission.READ_PASTEBOARD。
-* 使用writeText、write等API将内容写入系统剪贴板。使用readText、read等API从系统剪贴板获取文本内容
+* 使用writeText、write等API将内容写入系统剪贴板。使用readText、read等API从系统剪贴板获取文本内容。
+
+### 通过W3C剪贴板事件接口与系统剪贴板交互
+
+#### 介绍
+
+[剪贴板事件（Clipboard Event）](https://www.w3.org/TR/clipboard-apis/#clipboard-events-and-interfaces)描述了与剪切板相关的cut、copy和paste事件。当用户执行剪切、复制或粘贴操作时，相应的事件将被触发。开发者可以通过监听这些事件，对系统剪贴板进行读写操作，或拦截默认行为，以更改复制或粘贴的结果。
+#### 效果预览
+
+| Clipboard Event监听示例                                            |
+|----------------------------------------------------------------|
+| <img src="./screenshots/webClipboardEvent.gif" width="200;" /> |
+
+##### 使用说明
+* 通过监听网页的复制、粘贴、剪切事件，获取到内容。
+* 使用navigator.clipboard 相关 API，访问剪贴板内容。
 
 #### 工程目录
 
@@ -36,27 +51,7 @@
 │           │   └── pages
 │           │       └── Index.ets                   // 主页
 │           └── resources                           // 应用资源文件
-```
 
-### 通过W3C剪贴板事件接口与系统剪贴板交互
-
-#### 介绍
-
-[剪贴板事件（Clipboard Event）](https://www.w3.org/TR/clipboard-apis/#clipboard-events-and-interfaces)描述了与剪切板相关的cut、copy和paste事件。当用户执行剪切、复制或粘贴操作时，相应的事件将被触发。开发者可以通过监听这些事件，对系统剪贴板进行读写操作，或拦截默认行为，以更改复制或粘贴的结果。
-#### 效果预览
-
-| Clipboard Event监听示例                                            |
-|----------------------------------------------------------------|
-| <img src="./screenshots/webClipboardEvent.gif" width="360;" /> |
-
-##### 使用说明
-* 通过监听网页的复制、粘贴、剪切事件，获取到内容。
-* 使用navigator.clipboard 相关 API，访问剪贴板内容。
-
-
-#### 工程目录
-
-```
 ├── entry2
 │   └── src
 │       └── main

@@ -72,7 +72,7 @@
 
 ##### 使用说明
 
-1. 使用CustomDialogController和ConfirmDialog组件拦截网页confirm弹窗，并添加了"禁止后不再提示"的勾选框功能
+1. 使用CustomDialogController和ConfirmDialog组件拦截网页confirm弹窗，并添加了"禁止后不再提示"的勾选框功能。
 2. 当网页调用window.confirm()时，会显示带勾选框的自定义确认对话框，用户可选择允许或禁止操作。
 
 ### 工程目录
@@ -137,6 +137,6 @@ entry2/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/ShowWebPageDialog > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb 
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git 
 git pull origin master
 ```
