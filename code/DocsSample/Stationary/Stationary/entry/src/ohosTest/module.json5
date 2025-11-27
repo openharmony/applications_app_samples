@@ -18,8 +18,7 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "phone",
-      "tablet"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false
