@@ -16,12 +16,12 @@
 @Entry
 @Component
 struct NavigationDemo {
-  @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
   private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
   context = this.getUIContext().getHostContext();
   build() {
     Column() {
-      Navigation(this.pathInfos) {
+      Navigation(this.navPathStack) {
         // $r('app.string.enterKeyWordsToSearch')需要替换为开发者所需的字符串资源文件
         TextInput({ placeholder: $r('app.string.enterKeyWordsToSearch') })
           .width('90%')
@@ -74,8 +74,8 @@ struct NavigationDemo {
             }
             .width('100%')
             .onClick(() => {
-              // $r('app.string.detailsPageParameters')资源文件中的value值为“详情页面参数”
-              this.pathInfos.pushPathByName(`${item}`,
+              // $r('app.string.detailsPageParameters')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“详情页面参数”
+              this.navPathStack.pushPathByName(`${item}`,
                 // 将name指定的NaviDestination页面信息入栈,传递的参数为param
                 this.context!.resourceManager.getStringSync($r('app.string.detailsPageParameters').id));
             })
@@ -89,7 +89,7 @@ struct NavigationDemo {
       }
       .width('100%')
       .mode(NavigationMode.Auto)
-      // $r('app.string.settings')资源文件中的value值为“设置”
+      // $r('app.string.settings')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“设置”
       .title($r('app.string.settings')) // 设置标题文字
     }
     .size({ width: '100%', height: '100%' })

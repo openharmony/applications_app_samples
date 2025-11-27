@@ -20,7 +20,7 @@ export function PageOneBuilder(name: string, param: string) {
 
 @Component
 export struct PageOne {
-  pathInfos: NavPathStack = new NavPathStack();
+  navPathStack: NavPathStack = new NavPathStack();
   name: string = '';
   @State value: string = '';
   context = this.getUIContext().getHostContext();
@@ -28,7 +28,7 @@ export struct PageOne {
   build() {
     NavDestination() {
       Column() {
-        // $r('app.string.settingPage')资源文件中的value值为“设置页面”
+        // $r('app.string.settingPage')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“设置页面”
         Text(`${this.name}${this.context!.resourceManager.getStringSync($r('app.string.settingPage').id)}`)
           .width('100%')
           .fontSize(20)
@@ -47,21 +47,21 @@ export struct PageOne {
           .fontColor(0x666666)
           .textAlign(TextAlign.Center)
           .padding({ top: 45 })
-        // $r('app.string.return')资源文件中的value值为“返回”
+        // $r('app.string.return')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“返回”
         Button($r('app.string.return'))
           .width('50%')
           .height(40)
           .margin({ top: 50 })
           .onClick(() => {
             //弹出路由栈栈顶元素，返回上个页面
-            this.pathInfos.pop();
+            this.navPathStack.pop();
           })
       }
       .size({ width: '100%', height: '100%' })
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
       // NavDestinationContext获取当前所在的导航控制器
-      this.pathInfos = ctx.pathStack;
+      this.navPathStack = ctx.pathStack;
     })
   }
 }

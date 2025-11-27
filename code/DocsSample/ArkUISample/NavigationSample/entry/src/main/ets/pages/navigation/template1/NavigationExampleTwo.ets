@@ -20,7 +20,7 @@ export function PageTwoBuilder(name: string) {
 
 @Component
 export struct PageTwo {
-  pathInfos: NavPathStack = new NavPathStack();
+  navPathStack: NavPathStack = new NavPathStack();
   name: string = '';
   private listArray: Array<string> = ['Projection', 'Print', 'VPN', 'Private DNS', 'NFC'];
   context = this.getUIContext().getHostContext();
@@ -72,8 +72,8 @@ export struct PageTwo {
             }
             .width('100%')
             .onClick(() => {
-              // $r('app.string.pageSettingParam')资源文件中的value值为“页面设置参数”
-              this.pathInfos.pushPathByName(`${item}`,
+              // $r('app.string.pageSettingParam')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“页面设置参数”
+              this.navPathStack.pushPathByName(`${item}`,
                 this.context!.resourceManager.getStringSync($r('app.string.pageSettingParam').id));
             })
           }, (item: string): string => item)
@@ -87,7 +87,7 @@ export struct PageTwo {
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
       // NavDestinationContext获取当前所在的导航控制器
-      this.pathInfos = ctx.pathStack;
+      this.navPathStack = ctx.pathStack;
     })
   }
 }
