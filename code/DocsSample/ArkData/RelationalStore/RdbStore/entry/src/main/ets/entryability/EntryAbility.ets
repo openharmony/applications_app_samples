@@ -75,7 +75,7 @@ export default class EntryAbility extends UIAbility {
         name: 'estore.db',
         securityLevel: relationalStore.SecurityLevel.S3,
       },
-      storeId: "estore.db",
+      storeId: 'estore.db',
     };
     // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
