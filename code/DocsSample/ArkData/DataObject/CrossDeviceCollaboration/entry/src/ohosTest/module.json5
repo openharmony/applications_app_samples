@@ -18,10 +18,7 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "phone",
-      "tablet",
-      "2in1",
-      "wearable"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false
