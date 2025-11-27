@@ -346,7 +346,8 @@ function initDecryptSession(keyAlias: string, huksOptions: huks.HuksOptions,
   });
 }
 
-function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
+function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array,
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, token, (error, data) => {
