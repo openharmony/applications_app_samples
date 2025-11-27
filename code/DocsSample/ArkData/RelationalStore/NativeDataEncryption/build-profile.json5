@@ -25,7 +25,6 @@
         "compatibleSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
-          "nativeCompiler": "BiSheng",
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true

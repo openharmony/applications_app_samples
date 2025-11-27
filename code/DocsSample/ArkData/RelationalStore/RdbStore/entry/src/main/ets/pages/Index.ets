@@ -46,8 +46,8 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width('50%')
+      .height('8%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         testNapi.add();
@@ -64,8 +64,8 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width('50%')
+      .height('8%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         testNapi.add();
@@ -74,8 +74,8 @@ struct Index {
       Button('encryptedEStore')
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width('50%')
+      .height('8%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         this.routePage();
