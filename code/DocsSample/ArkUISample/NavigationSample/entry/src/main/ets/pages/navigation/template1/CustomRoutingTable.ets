@@ -56,7 +56,7 @@ struct NavigationExample {
         .width('90%')
         .margin({ top: 12 })
       }
-      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件，资源文件中的value值为“主标题”
       .title($r('app.string.mainTitle'))
       .navDestination(this.pageMap)
       .mode(NavigationMode.Split)
@@ -78,7 +78,7 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈的栈顶元素
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件，资源文件中的value值为“返回值”
       hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
         JSON.stringify(popDestinationInfo));
       return true;
@@ -98,7 +98,7 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.navPathStack.pop(); // 弹出路由栈的栈顶元素
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件，资源文件中的value值为“返回值”
       hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
         JSON.stringify(popDestinationInfo));
       return true;
