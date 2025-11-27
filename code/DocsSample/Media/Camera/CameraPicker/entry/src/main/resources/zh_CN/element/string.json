@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CameraKitSample"
+    },
+    {
+      "name": "reason_camera",
+      "value": "允许应用在拍照录像场景中使用相机"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "允许应用在录像场景中使用麦克风"
+    },
+    {
+      "name": "200px",
+      "value": "200px"
+    },
+    {
+      "name": "120px",
+      "value": "120px"
+    },
+    {
+      "name": "100px",
+      "value": "100px"
+    },
+    {
+      "name": "60px",
+      "value": "60px"
+    },
+    {
+      "name": "50px",
+      "value": "50px"
+    },
+    {
+      "name": "40px",
+      "value": "40px"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "take_photos",
+      "value": "拍照"
+    },
+    {
+      "name": "videotape",
+      "value": "录像"
+    }
+  ]
+}
