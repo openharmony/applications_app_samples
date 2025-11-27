@@ -124,7 +124,6 @@ export default function abilityTest() {
       Logger.info(BUNDLE + 'NDKEnvironmentTest_004 end');
     })
 
-
     /**
      * @tc.number NDKEnvironmentTest_005
      * @tc.name NDKEnvironmentTest_005
@@ -157,6 +156,21 @@ export default function abilityTest() {
       Logger.info(BUNDLE + 'NDKEnvironmentTest_006 end');
     })
 
+    /**
+     * @tc.number NDKEnvironmentTest_007
+     * @tc.name NDKEnvironmentTest_007
+     * @tc.desc 获取用户Download目录大小
+     */
+    it(BUNDLE + 'environmentTest_007', 0, async () => {
+      Logger.info(BUNDLE + 'NDKEnvironmentTest_007 begin');
+      let str = await getResourceString($r('app.string.GetUserDownloadDirSizeExample'));
+      let driver: Driver = Driver.create();
+      await driver.assertComponentExist(ON.text(str));
+      let button: Component = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(DELAY_TIME);
+      Logger.info(BUNDLE + 'NDKEnvironmentTest_007 end');
+    })
 
   })
 }

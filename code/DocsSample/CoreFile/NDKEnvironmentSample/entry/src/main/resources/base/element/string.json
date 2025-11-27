@@ -37,6 +37,10 @@
       "value": "获取用户Document目录沙箱路径"
     },
     {
+      "name": "GetUserDownloadDirSizeExample",
+      "value": "获取用户Download目录大小"
+    },
+    {
       "name": "reason",
       "value": "testNdkEnvironmentSample"
     }
