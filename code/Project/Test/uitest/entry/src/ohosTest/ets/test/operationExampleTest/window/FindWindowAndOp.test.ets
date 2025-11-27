@@ -18,7 +18,7 @@ import { describe, expect, it, TestType } from '@ohos/hypium';
 // 导入测试依赖kit
 import { Driver } from '@kit.TestKit';
 
-// Error code when the device is not supported.
+// 设备不支持时的错误代码
 const DeviceErrorCode = 17000005;
 
 export default function abilityTest() {

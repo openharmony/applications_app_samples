@@ -14,7 +14,7 @@
  */
 
 // [Start eventObserver_sample]
-import { describe, it, Level, Size, TestType } from '@ohos/hypium';
+import { describe, it, TestType } from '@ohos/hypium';
 // 导入测试依赖kit
 import { Driver, UIElementInfo } from '@kit.TestKit';
 
