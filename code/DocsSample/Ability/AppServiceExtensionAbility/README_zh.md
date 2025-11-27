@@ -2,7 +2,7 @@
 
 ### 介绍
 
-AppServiceExtensionAbility 从 API version 20 开始支持的组件，旨在为应用程序提供后台服务。其它应用可以通过启动或连接该组件获取相应服务，界面的长期运行任务（例如数据监控、文件操作监听等）。
+[使用AppServiceExtensionAbility组件实现后台服务](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-service-extension-ability.md) 从 API version 20 开始支持的组件，旨在为应用程序提供后台服务。其它应用可以通过启动或连接该组件获取相应服务，界面的长期运行任务（例如数据监控、文件操作监听等）。
 
 ### 效果预览
 

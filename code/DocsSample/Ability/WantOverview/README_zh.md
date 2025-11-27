@@ -2,7 +2,7 @@
 
 ### 介绍
 
-Want是一种对象，用于在应用组件之间传递信息。
+[Want概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/want-overview.md) 文档中的Want是一种对象，用于在应用组件之间传递信息。
 
 ### 效果预览
 

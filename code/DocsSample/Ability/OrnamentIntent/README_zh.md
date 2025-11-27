@@ -1,7 +1,7 @@
 # 使用装饰器开发意图
 ### 介绍
 
-本示例展示了基于装饰器的功能集成实现方法：
+本示例展示了[使用装饰器开发意图](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/insight-intent-decorator-development.md)的功能集成实现方法：
 1. 通过装饰器开发意图，能够将现有功能快速接入系统入口。
 2. 将指南文档中装饰器开发意图的示例代码片段进行工程化落地，确保指南中的示例代码与 Sample 工程文件保持一致。
 
