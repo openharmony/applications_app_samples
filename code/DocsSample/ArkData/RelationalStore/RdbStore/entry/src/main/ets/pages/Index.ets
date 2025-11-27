@@ -14,18 +14,29 @@
  */
 
 import testNapi from 'libentry.so';
-
-const DOMAIN = 0x0000;
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
 
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'encryptedEStoreGuidelines/Index',
+    })
+      .then(() => {
+        console.info('succeeded');
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
   build() {
     Column() {
       Button() {
-        Text('getVectorStore_NDK')
+        Text('getRdbStore_NDK')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
           .alignRules({
@@ -35,11 +46,39 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width('50%')
+      .height('8%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         testNapi.add();
+      })
+
+      Button() {
+        Text('deviceAndDataLevel')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width('50%')
+      .height('8%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        testNapi.add();
+      })
+
+      Button('encryptedEStore')
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width('50%')
+      .height('8%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        this.routePage();
       })
     }
     .height('100%')

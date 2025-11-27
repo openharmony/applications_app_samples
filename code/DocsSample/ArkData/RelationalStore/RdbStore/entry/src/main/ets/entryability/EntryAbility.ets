@@ -13,51 +13,112 @@
  * limitations under the License.
  */
 
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+// [Start rdb_EntryAbility]
+import { AbilityConstant, contextConstant, UIAbility, Want, application } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { relationalStore } from '@kit.ArkData';
+import { ECStoreManager } from '../encryptedEStoreGuidelines/ECStoreManager';
+import { StoreInfo } from '../encryptedEStoreGuidelines/Store';
+import { Mover } from '../encryptedEStoreGuidelines/Mover';
+import { SecretKeyObserver } from '../encryptedEStoreGuidelines/SecretKeyObserver';
+import { commonEventManager } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const DOMAIN = 0x0000;
+export let storeManager = new ECStoreManager();
+export let e_secretKeyObserver = new SecretKeyObserver();
+let mover = new Mover();
+let subscriber: commonEventManager.CommonEventSubscriber;
+
+export function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+  if (!err) {
+    console.info('ECDB_Encrypt createSubscriber');
+    subscriber = commonEventSubscriber;
+    try {
+      commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+        if (err) {
+          console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+          console.info(`ECDB_Encrypt SubscribeCB ${data.code}`);
+          e_secretKeyObserver.updateLockStatus(data.code);
+        }
+      });
+    } catch (error) {
+      const err: BusinessError = error as BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+let cInfo: StoreInfo | null = null;
+let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let cContext = this.context;
+    cInfo = {
+      context: cContext,
+      config: {
+        name: 'cstore.db',
+        securityLevel: relationalStore.SecurityLevel.S3,
+      },
+      storeId: 'cstore.db'
+    };
+    let eContext = await application.createModuleContext(this.context, 'entry');
+    eContext.area = contextConstant.AreaMode.EL5;
+    eInfo = {
+      context: eContext,
+      config: {
+        name: 'estore.db',
+        securityLevel: relationalStore.SecurityLevel.S3,
+      },
+      storeId: 'estore.db',
+    };
+    // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
+    console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
-      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    } catch (err) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+      commonEventManager.createSubscriber({
+        events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
+      }, createCB);
+      console.info(`ECDB_Encry success subscribe`);
+    } catch (error) {
+      const err: BusinessError = error as BusinessError;
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+    storeManager.config(cInfo, eInfo);
+    storeManager.configDataMover(mover);
+    e_secretKeyObserver.initialize(storeManager);
   }
 
   onDestroy(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+// [End rdb_EntryAbility]

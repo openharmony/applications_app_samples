@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { rdbDataSync } from './datasync/rdbDataSync';
-import { rdbDataPersistence } from './datapersistence/rdbDataPersistence';
+import { rdbDataSync } from './datasync/RdbDataSync';
+import { rdbDataPersistence } from './datapersistence/RdbDataPersistence';
 
 @Entry
 @Component
