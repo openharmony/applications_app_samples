@@ -15,14 +15,27 @@
 {
   "app": {
     "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/wangh/.ohos/config/openharmony/default_ArkTsPointer_cCel9ig5iwV6L5g358LzpMHCCL0RdshAOHtQNly_Ds8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BF2B7D782A02A214DA4C6B1DCC3271D9AB89F21D6488DBEB697D848E0BF904C2502126B40F1108A",
+          "profile": "C:/Users/wangh/.ohos/config/openharmony/default_ArkTsPointer_cCel9ig5iwV6L5g358LzpMHCCL0RdshAOHtQNly_Ds8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/wangh/.ohos/config/openharmony/default_ArkTsPointer_cCel9ig5iwV6L5g358LzpMHCCL0RdshAOHtQNly_Ds8=.p12",
+          "storePassword": "0000001BB4FB7FBEAD0B074FD0FF21E334D35FDC1975C06009BCE8610D5AEBC4896CECD7519DF6FFB68914"
+        }
+      }
     ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS",
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 20,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,

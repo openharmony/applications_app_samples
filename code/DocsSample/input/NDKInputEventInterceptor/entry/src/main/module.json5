@@ -24,12 +24,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone",
-      "tablet",
-      "2in1",
-      "car",
-      "wearable",
-      "tv"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
