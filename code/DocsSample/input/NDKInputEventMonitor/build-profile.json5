@@ -15,19 +15,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\wangh\\.ohos\\config\\default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BFD3DEABF5E368F2F8DC2DE61FE77F46B5CB9676A3BED487B17EED79E7BB2A6EBA485E6F501D7F0",
-          "profile": "C:\\Users\\wangh\\.ohos\\config\\default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\wangh\\.ohos\\config\\default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.p12",
-          "storePassword": "0000001B1DED7E5470A1A618EF331B18E03C284817358E6A250357524BC940ED695556F96C181349EE5EB6"
-        }
-      }
     ],
     "products": [
       {
