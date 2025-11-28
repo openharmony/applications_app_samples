@@ -67,6 +67,10 @@
     {
       "name": "Builder_Node",
       "value": "@Consumer在跨BuilderNode场景下和@Provider建立双向同步过程"
+    },
+    {
+      "name": "app_name",
+      "value": "MakeCall"
     }
   ]
 }
