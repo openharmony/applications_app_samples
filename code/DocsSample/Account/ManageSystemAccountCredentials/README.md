@@ -6,7 +6,7 @@
 
 该工程中展示的代码详细描述可查如下链接：
 
-- [ 管理系统账号凭据](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-os-account-credential.md)
+- [ 管理系统账号凭据](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-os-account-credential-sys.md)
 
 ### 效果预览
 
@@ -47,13 +47,13 @@ entry/src/
 
 ### 相关权限
 
-[ohos.permission.MANAGE_USER_IDM](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanageuseridm)
+[ohos.permission.MANAGE_USER_IDM](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanageuseridm)
 
-[ohos.permission.ACCESS_PIN_AUTH](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccesspinauth)
+[ohos.permission.ACCESS_PIN_AUTH](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccesspinauth)
 
-[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
+[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
 
-[ohos.permission.USE_USER_IDM](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionuseuseridm)
+[ohos.permission.USE_USER_IDM](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionuseuseridm)
 
 ### 依赖
 
@@ -75,6 +75,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Account/ManageSystemAccountCredentials > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

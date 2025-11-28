@@ -2,11 +2,11 @@
 
 ### 介绍
 
-1.应用开发者可以使用[应用账号SDK](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md)管理本应用的账号数据。
+1.应用开发者可以使用[应用账号SDK](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md)管理本应用的账号数据。
 
 能力限制：应用卸载场景下，被卸载应用的账号数据会被删除；本地账号删除场景下，被删除本地账号下的所有应用的账号数据会被删除。
 
-2.实现对以下指南文件中 [管理应用账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-application-account.md#/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md)  示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
+2.实现对以下指南文件中 [管理应用账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-application-account.md#/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md)  示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -72,6 +72,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Account/ApplicationAccount > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
