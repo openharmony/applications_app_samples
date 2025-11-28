@@ -46,10 +46,8 @@ export struct KeyMenu {
   aboutToAppear(): void {
 
     inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr : inputMethodEngine.EditorAttribute) => {
-      console.log('zhelili')
       if (attr.immersiveMode == 1) {
         this.styleMode = 0
-        console.log('zhelili11', JSON.stringify(this.styleMode))
       } else {
         this.styleMode = 1
       }

@@ -17,11 +17,11 @@ import deviceInfo from '@ohos.deviceInfo';
 import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
 import { display } from '@kit.ArkUI';
 import windowManager from '@ohos.window';
-import Log from './Log';
+import Log from '../../model/Log';
 import { BusinessError } from '@ohos.base';
-import { GetHardKeyValue } from './HardKeyUtils';
+import { GetHardKeyValue } from '../../model/HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
-import { StyleConfiguration } from '../common/StyleConfiguration';
+import { StyleConfiguration } from '../../common/StyleConfiguration';
 
 
 interface DeviceSize {
@@ -35,7 +35,7 @@ interface CursorInfo {
   height: number
 }
 const previewContent: string  = 'hello world';
-const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
 // 定义不同设备的宽高，用于键盘显示适配不同设备
@@ -89,7 +89,6 @@ export class InputHandler {
     this.mKbController = kbController;
     this.mTextInputClient = textInputClient;
     let editorAttribute = this.mTextInputClient.getEditorAttribute();
-    this.addLog(`onInputStart editorAttribute = ${JSON.stringify(editorAttribute)}`);
     editorAttribute.then((res: inputMethodEngine.EditorAttribute) => {
       this.mEditorAttribute = res;
       AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
@@ -97,6 +96,7 @@ export class InputHandler {
 
       this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern +
         '; isTextPreviewSupported = ' + this.mEditorAttribute.isTextPreviewSupported);
+      this.addLog(`onInputStart editorAttribute enterKeyType : ${res.enterKeyType}, inputPattern : ${res.inputPattern}`);
     })
     try {
       this.addLog(`onInputStart sendPrivateCommand begin`);
@@ -136,7 +136,7 @@ export class InputHandler {
       this.mTextInputClient.finishTextPreview().then(() => {
         this.addLog('Succeeded in finishing text preview.');
       }).catch((err: BusinessError) => {
-        console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+        console.error(`Failed to finishTextPreview: ${err.code} ${err.message}`);
       });
     } else {
       this.addLog('sendKeyFunction this.mTextInputClient is undefined');
@@ -197,10 +197,10 @@ export class InputHandler {
           this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
             this.addLog('insertText preViewText Succeeded in setting preview text.');
           }).catch((err: BusinessError) => {
-            this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+            this.addLog(`insertText preViewText Failed to setPreviewText: ${err.code} ${err.message}`);
           });
         } catch (err) {
-          this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+          this.addLog(`insertText preViewText Failed to setPreviewText: ${err.code} ${err.message}`);
         }
       } else if (this.intputText.length > length + 1) {
         this.addLog('insertText this.intputText ' + this.intputText);
@@ -221,7 +221,7 @@ export class InputHandler {
             this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
               this.addLog('insertText preViewText Succeeded in setting preview text.');
             }).catch((err: BusinessError) => {
-              this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+              this.addLog(`insertText preViewText Failed to setPreviewText: ${err.code} ${err.message}`);
             });
           }
         }
@@ -240,7 +240,7 @@ export class InputHandler {
   }
 
   public setCursorInfo(info: CursorInfo): void {
-    this.addLog(`setCursorInfo info = ${JSON.stringify(info)}`);
+    this.addLog(`setCursorInfo info x : ${info.x}, y : ${info.y}`);
     this.cursorInfo = info;
   }
 
@@ -273,7 +273,7 @@ export class InputHandler {
   public selectByMovement(direction: inputMethodEngine.Direction): void {
     if (this.mTextInputClient !== undefined) {
       this.mTextInputClient.selectByMovement({ direction: direction }, (err: BusinessError) => {
-        this.addLog(`selectByMovement err is ${JSON.stringify(err)}`);
+        this.addLog(`selectByMovement err is ${err.code} ${err.message}`);
       });
     } else {
       this.addLog('selectByMovement this.mTextInputClient is undefined');
@@ -332,23 +332,15 @@ export class InputHandler {
   }
 
   public refreshInfo(): void {
-    this.addLog('refreshInfo');
     let showText = '';
-    this.addLog('refreshInfo1');
     if (this.mTextInputClient) {
       showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' + this.mTextInputClient.getBackward(5) + ']\n';
     }
-    this.addLog('refreshInfo2');
     showText += this.cursorInfo + "\n";
-    this.addLog('refreshInfo3');
     showText += this.selectInfo + "\n";
-    this.addLog('refreshInfo4');
     showText += this.textInfo + "\n";
-    this.addLog('refreshInfo5');
     showText += this.inputInfo;
-    this.addLog('refreshInfo6');
     AppStorage.set<string>('showLog', showText);
-    this.addLog('refreshInfo7');
     this.addLog('result is = ' + showText);
   }
 }
@@ -431,7 +423,7 @@ class KeyboardController {
     }
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
     AppStorage.setOrCreate('inputStyle', inputStyle);
-    InputMethodEngine.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
+    inputMethodAbility.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
       this.panel = panel;
       panel.resize(dWidth, keyHeight).then(() => {
         panel.moveTo(0, this.barPosition).then(() => {
@@ -446,7 +438,7 @@ class KeyboardController {
   private destroyPanel(): void {
     this.inputHandle.addLog('destroyPanel');
     if (this.panel) {
-      InputMethodEngine.destroyPanel(this.panel);
+      inputMethodAbility.destroyPanel(this.panel);
     }
   }
 
@@ -496,7 +488,7 @@ class KeyboardController {
           })
         }
       }).catch((err: BusinessError) => {
-        this.inputHandle.addLog('resizePanel-moveTo err' + JSON.stringify(err));
+        this.inputHandle.addLog(`resizePanel-moveTo err = ${err.code} ${err.message}`);
       })
     }
   }
@@ -510,27 +502,24 @@ class KeyboardController {
       this.inputHandle.addLog('screenChangeEvent');
       this.resizePanel();
     });
-    InputMethodEngine.on('inputStart', (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
+    inputMethodAbility.on('inputStart', (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
 
     // [Start input_case_input_KeyboardControllersetSubtype]
     // 设置监听子类型事件，改变输入法应用界面
-    InputMethodEngine.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-      this.inputHandle.addLog('GJ setSubtype inputMethodSubtype:' + inputMethodSubtype.id);
+    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
       if(inputMethodSubtype.id == 'InputMethodExtAbility') {
         AppStorage.setOrCreate('subtypeChange', 0);
-        this.inputHandle.addLog('GJ setSubtype subtypeChange:' + AppStorage.get('subtypeChange'));
       }
       if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
         AppStorage.setOrCreate('subtypeChange', 1);
-        this.inputHandle.addLog('GJ setSubtype subtypeChange:' + AppStorage.get('subtypeChange'));
       }
     });
     // [End input_case_input_KeyboardControllersetSubtype]
 
-    InputMethodEngine.on('inputStop', () => {
+    inputMethodAbility.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
       this.onDestroy();
       if (this.mContext) {
@@ -540,8 +529,8 @@ class KeyboardController {
 
     this.inputHandle.addLog('pre on privateCommand');
     try {
-      InputMethodEngine.on('privateCommand', (record : Record<string, inputMethodEngine.CommandDataType>) => {
-        this.inputHandle.addLog('keyboard privateCommand' + JSON.stringify(record));
+      inputMethodAbility.on('privateCommand', (record : Record<string, inputMethodEngine.CommandDataType>) => {
+        this.inputHandle.addLog(`keyboard privateCommand : ${record}`);
         Object.keys(record).forEach((key: string) => {
           this.inputHandle.addLog(`onPageShow private command key: ${key}, value: ${record[key]}`);
         })
@@ -602,7 +591,6 @@ class KeyboardController {
     } else {
       this.inputHandle.addLog(`keyCode down is intercepted: ${keyCode}}`);
     }
-    this.inputHandle.addLog(`onKeyDown: this.keyCodes =  ${JSON.stringify(this.keyCodes)}}`);
     if (this.isShiftKeyHold() && this.keyCodes.length === 2 && !this.isKeyCodeAZ(keyCode)) {
       this.isSpecialKeyPress = true;
       return false;
@@ -628,7 +616,6 @@ class KeyboardController {
     } else {
       this.inputHandle.addLog(`keyCode KeyUp is intercepted: ${keyCode}`);
     }
-    this.inputHandle.addLog(`OnKeyUp: this.keyCodes = ${JSON.stringify(this.keyCodes)}`);
 
     // For KEYCODE_DEL/KEYCODE_FORWARD_DEL, processed in OnKeyDown, so just intercept it
     if (keyCode === 2055 || keyCode === 2071 || (keyCode >= 2012 && keyCode <= 2016)) {
@@ -710,7 +697,7 @@ class KeyboardController {
   private unRegisterListener(): void {
     this.inputHandle.addLog('unRegisterListener');
 
-    InputMethodEngine.off('inputStop', () => {
+    inputMethodAbility.off('inputStop', () => {
       this.inputHandle.addLog('inputStop off');
     });
     if (this.mKeyboardDelegate) {

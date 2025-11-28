@@ -14,7 +14,7 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import { InputHandler } from '../model/KeyboardController';
+import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 

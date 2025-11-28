@@ -14,7 +14,7 @@
  */
 
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { InputHandler } from '../model/KeyboardController';
+import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { SubMenuType } from '../model/KeyboardKeyData';
 
 @Preview

@@ -15,7 +15,7 @@
 
 import { keySourceListType, } from '../model/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { InputHandler } from '../model/KeyboardController';
+import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 
 
 @Styles function pressedStyles() {
