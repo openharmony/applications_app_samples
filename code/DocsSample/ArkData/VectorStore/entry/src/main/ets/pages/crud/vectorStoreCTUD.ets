@@ -56,7 +56,7 @@ export async function getVectorStore() {
     const vectorValue: Float32Array = Float32Array.from([1.2, 2.3]);
     await store!.execute('insert into test VALUES(?, ?);', 0, [0, vectorValue]);
     // 不使用参数绑定
-    await store!.execute('insert into test VALUES(1, '[1.3, 2.4]');', 0, undefined);
+    await store!.execute("insert into test VALUES(1, '[1.3, 2.4]');", 0, undefined);
   } catch (err) {
     console.error(`execute insert failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -69,7 +69,7 @@ export async function getVectorStore() {
     const vectorValue1: Float32Array = Float32Array.from([2.1, 3.2]);
     await store!.execute('update test set repr = ? where id = ?', 0, [vectorValue1, 0]);
     // 不使用参数绑定
-    await store!.execute('update test set repr = '[5.1, 6.1]' where id = 0', 0, undefined);
+    await store!.execute("update test set repr = '[5.1, 6.1]' where id = 0", 0, undefined);
   } catch (err) {
     console.error(`execute update failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -99,7 +99,7 @@ export async function getVectorStore() {
     resultSet!.close();
 
     // 不使用参数绑定
-    const QUERY_SQL1 = 'select id, repr <-> '[6.2, 7.3]' as distance from test where id > 0 order by repr <-> '[6.2, 7.3]' limit 5;';
+    const QUERY_SQL1 = "select id, repr <-> '[6.2, 7.3]' as distance from test where id > 0 order by repr <-> '[6.2, 7.3]' limit 5;";
     resultSet = await store!.querySql(QUERY_SQL1);
     resultSet!.close();
   } catch (err) {
@@ -119,7 +119,7 @@ export async function getVectorStore() {
 
   // 聚合查询
   try {
-    let resultSet = await store!.querySql('select * from test where repr <-> '[1.0, 1.0]' > 0 group by id having max(repr <=> '[1.0, 1.0]');');
+    let resultSet = await store!.querySql("select * from test where repr <-> '[1.0, 1.0]' > 0 group by id having max(repr <=> '[1.0, 1.0]');");
     resultSet!.close();
   } catch (err) {
     console.error(`query failed, code is ${err.code}, message is ${err.message}`);
@@ -128,7 +128,7 @@ export async function getVectorStore() {
   // 多表查询
   try {
     // union all与union的区别在于union会将数据去重
-    let resultSet = await store!.querySql('select id, repr <-> '[1.5, 5.6]' as distance from test union select id, repr <-> '[1.5, 5.6]' as distance from test order by distance limit 5;');
+    let resultSet = await store!.querySql("select id, repr <-> '[1.5, 5.6]' as distance from test union select id, repr <-> '[1.5, 5.6]' as distance from test order by distance limit 5;");
     resultSet!.close();
   } catch (err) {
     console.error(`query failed, code is ${err.code}, message is ${err.message}`);
@@ -179,7 +179,7 @@ export async function getVectorStore() {
   // [Start vector_TS_execute_auto_dataAging]
   try {
      // 每隔五分钟执行写操作后，会触发数据老化任务
-     await store!.execute('CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');');
+     await store!.execute("CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');");
    } catch (err) {
      console.error(`configure data aging failed, code is ${err.code}, message is ${err.message}`);
    }
@@ -188,7 +188,7 @@ export async function getVectorStore() {
   // [Start vector_TS_execute_dataAging]
   try {
     // content列配置了数据压缩，并且配置了数据老化。
-    await store!.execute('CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');');
+    await store!.execute("CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');");
   } catch (err) {
     console.error(`configure data compress failed, code is ${err.code}, message is ${err.message}`);
   }
