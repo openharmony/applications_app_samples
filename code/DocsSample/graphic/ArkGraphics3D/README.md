@@ -114,9 +114,9 @@
 
 1.本示例仅支持在标准系统上运行；
 
-2.本示例为 Stage 模型，已适配 API version 14 版本 SDK，SDK 版本号（API Version 14 5.0.2.57）；
+2.本示例为 Stage 模型，已适配 API version 20 版本 SDK，SDK 版本号（API Version 20 6.0.0.47）；
 
-3.本示例需要使用 DevEco Studio 版本号（5.0.5.306）及以上版本才可编译运行。
+3.本示例需要使用 DevEco Studio 版本号（5.1.1）及以上版本才可编译运行。
 
 ## 下载
 
