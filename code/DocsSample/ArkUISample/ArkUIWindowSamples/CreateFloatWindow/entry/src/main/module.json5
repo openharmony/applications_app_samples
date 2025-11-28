@@ -19,7 +19,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default"
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
