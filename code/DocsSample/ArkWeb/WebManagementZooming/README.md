@@ -23,7 +23,7 @@
 
 ##### 使用说明
 
-1. 创建一个Web组件，通过WebviewController加载指定网页并禁用缩放功能.
+1. 创建一个Web组件，通过WebviewController加载指定网页并禁用缩放功能。
 
 #### 启用/禁用网页键盘鼠标缩放
 
@@ -151,6 +151,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebManagementZooming > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

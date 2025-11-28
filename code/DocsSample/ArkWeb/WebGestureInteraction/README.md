@@ -48,7 +48,7 @@ entry/src/main/
 |---|---pages
 |---|---|---DistinguishTwoGesture.ets
 |---|---|---Index.ets					// 首页
-|---|---|---ReturnLastWebPage.ets					// 首页
+|---|---|---ReturnLastWebPage.ets
 |---|---|---SetUserAgent.ets
 |---resources								// 静态资源
 |---ohosTest
@@ -87,6 +87,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebGestureInteraction > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

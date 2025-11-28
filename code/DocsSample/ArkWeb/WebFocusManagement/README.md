@@ -1,4 +1,4 @@
-# Web页面显示内容滚动
+# Web组件焦点管理
 
 ### 介绍
 
@@ -25,7 +25,7 @@
 
 #### 介绍
 
-1. 加载本地HTML文件并实现H5表单元素的焦点控制
+1. 加载本地HTML文件并实现H5表单元素的焦点控制。
 
 #### 效果预览
 
@@ -83,6 +83,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebFocusManagement > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb 
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git 
 git pull origin master
 ```
