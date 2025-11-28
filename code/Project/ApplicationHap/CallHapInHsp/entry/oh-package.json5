@@ -21,8 +21,8 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "inhar": "file:../inHar/build/default/outputs/default/inHar.har",
-    "calledhsp": "file:../calledHsp/build/default/outputs/default/calledHsp.har"
+    "inhar": "file:../inHar",
+    "calledhsp": "file:../calledHsp"
   }
 }
 

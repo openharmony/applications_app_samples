@@ -50,8 +50,6 @@ inHar/
 2. entry依赖HAR，实现了inHar的定义接口，依赖了calledHsp，并向calledHsp注册了接口实现类。
 3. calledHsp提供接口注册方法，调用HAP中的实现。
 
-#### 新增工程和模块
-
 ### 相关权限
 
 不涉及。
