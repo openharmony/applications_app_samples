@@ -3,7 +3,6 @@
     "pages/Index",
     "pages/AttachStateChangeCallbackRegister",
     "pages/DeviceList",
-    "pages/ApiTestPage",
-    "pages/DeviceConnectPage"
+    "pages/ApiTestPage"
   ]
 }

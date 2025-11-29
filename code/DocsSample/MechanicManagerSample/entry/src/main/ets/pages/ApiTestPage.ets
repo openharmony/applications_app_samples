@@ -120,7 +120,8 @@ async function rotateBySpeed() {
     // 获取最大旋转速度
     const maxSpeed = mechanicManager.getMaxRotationSpeed(mechId);
     console.info('Maximum rotation speed:', JSON.stringify(maxSpeed));
-    if (!maxSpeed || maxSpeed.yawSpeed === undefined || maxSpeed.pitchSpeed === undefined || maxSpeed.rollSpeed === undefined) {
+    if (!maxSpeed || maxSpeed.yawSpeed === undefined || maxSpeed.pitchSpeed === undefined ||
+      maxSpeed.rollSpeed === undefined) {
       console.error('Failed to retrieve maximum rotation speed or speed values are undefined.');
     }
     console.info('Maximum rotation speed:', maxSpeed);
@@ -309,7 +310,7 @@ struct ApiTestPage {
               .fontColor(Color.White)
           }.onClick(() => {
             router.pushUrl({
-              url: "pages/AttachStateChangeCallbackRegister",
+              url: 'pages/AttachStateChangeCallbackRegister',
             })
           }).fancy()
           .margin({top:50})
@@ -320,7 +321,7 @@ struct ApiTestPage {
               .fontColor(Color.White)
           }.onClick(() => {
             router.pushUrl({
-              url: "pages/DeviceList",
+              url: 'pages/DeviceList',
             })
           }).fancy();
 
@@ -484,6 +485,44 @@ struct ApiTestPage {
               mechanicManager.on('rotationAxesStatusChange', rotationAxesCallback);
               // [End on_rotationAxesStatusChange]
               logger.info(`${TAG} rotationAxesStatusChange on end.`);
+            }).margin({
+            top: 15
+          })
+
+          Button('rotateBySpeed-restriction')
+            .onClick(() => {
+              logger.info(`${TAG} rotateBySpeed restriction start.`);
+              try {
+                const mechId = savedMechanicIds[0]; // 假设使用第一个设备
+
+                // 获取速度控制最大持续时间
+                const maxTime = mechanicManager.getMaxRotationTime(mechId);
+                console.info('Maximum spin time:', maxTime);
+
+                // 获取最大旋转速度
+                const maxSpeed = mechanicManager.getMaxRotationSpeed(mechId);
+                console.info('Maximum rotation speed:', JSON.stringify(maxSpeed));
+                if (!maxSpeed || maxSpeed.yawSpeed === undefined || maxSpeed.pitchSpeed === undefined || maxSpeed.rollSpeed === undefined) {
+                  console.error('Failed to retrieve maximum rotation speed or speed values are undefined.');
+                }
+                console.info('Maximum rotation speed:', maxSpeed);
+
+                // 定义旋转速度和持续时间
+                const speed : mechanicManager.RotationSpeed = {
+                  yawSpeed: 0,
+                  pitchSpeed: 3.14,
+                  rollSpeed: 0
+                };
+                const duration = Math.min(maxTime, 5000); // 持续时间：最多5秒
+
+                console.info(`Rotation by speed result start`);
+                // 执行旋转
+                const result = mechanicManager.rotateBySpeed(mechId, speed, duration);
+                console.info(`Rotation by speed result: ${result}`);
+              } catch (err) {
+                console.error('Failed to rotate by speed:', err);
+              }
+              logger.info(`${TAG} rotateBySpeed restriction end.`);
             }).margin({
             top: 15
           })

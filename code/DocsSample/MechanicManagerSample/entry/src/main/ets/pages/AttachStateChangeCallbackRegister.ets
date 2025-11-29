@@ -119,7 +119,7 @@ struct AttachStateChangeCallbackRegister {
           }.onClick(() => {
             try {
               logger.info('去注册注册 - all');
-              mechanicManager.off("attachStateChange");
+              mechanicManager.off('attachStateChange');
               logger.info('去注册 - all: 成功');
             } catch (error) {
               let code: number = (error as BusinessError).code;

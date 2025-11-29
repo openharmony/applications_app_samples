@@ -42,7 +42,7 @@ struct Index {
         .margin({ bottom: 10 })
         .borderRadius($r('sys.float.ohos_id_corner_radius_menu'))
 
-      Button("北向接口")
+      Button('北向接口')
         .type(ButtonType.Capsule)
         .align(Alignment.Start)
         .onClick(()=>{
