@@ -502,7 +502,8 @@ struct ApiTestPage {
                 // 获取最大旋转速度
                 const maxSpeed = mechanicManager.getMaxRotationSpeed(mechId);
                 console.info('Maximum rotation speed:', JSON.stringify(maxSpeed));
-                if (!maxSpeed || maxSpeed.yawSpeed === undefined || maxSpeed.pitchSpeed === undefined || maxSpeed.rollSpeed === undefined) {
+                if (!maxSpeed || maxSpeed.yawSpeed === undefined || maxSpeed.pitchSpeed === undefined ||
+                  maxSpeed.rollSpeed === undefined) {
                   console.error('Failed to retrieve maximum rotation speed or speed values are undefined.');
                 }
                 console.info('Maximum rotation speed:', maxSpeed);
