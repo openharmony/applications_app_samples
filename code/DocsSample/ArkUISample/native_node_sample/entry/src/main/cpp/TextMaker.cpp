@@ -1140,6 +1140,15 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
+    // 创建文本内容基础控制器指针
+    auto controller{ OH_ArkUI_TextContentBaseController_Create() };
+    // 绑定text9到controller->node上
+    ArkUI_AttributeItem item_controller{ .object = controller };
+    nodeAPI->setAttribute(text9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &item_controller);
+    // 调用DeleteBackward删除文本内最后一个字符
+    OH_ArkUI_TextContentBaseController_DeleteBackward(controller);
+    // 销毁指针
+    OH_ArkUI_TextContentBaseController_Dispose(controller);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
