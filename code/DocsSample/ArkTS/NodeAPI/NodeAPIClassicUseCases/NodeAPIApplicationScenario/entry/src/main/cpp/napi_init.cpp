@@ -21,10 +21,14 @@
 #include <future>
 // [EndExclude napi_ark_runtime_cpp]
 // [EndExclude napi_event_loop_cpp]
+// [StartExclude napi_call_threadsafe_function_with_priority_cpp]
 #include <pthread.h>
+// [EndExclude napi_call_threadsafe_function_with_priority_cpp]
 // [StartExclude napi_ark_runtime_cpp]
 #include <hilog/log.h>
+// [StartExclude napi_call_threadsafe_function_with_priority_cpp]
 #include <napi/common.h>
+// [EndExclude napi_call_threadsafe_function_with_priority_cpp]
 // [StartExclude napi_event_loop_cpp]
 static constexpr int INT_ARG_2 = 2; // 入参索引
 static constexpr int INT_ARG_12 = 12; // 入参索引
@@ -107,7 +111,8 @@ static void *RunEventLoopFunc(void *arg)
     // 2. 加载自定义的模块
     napi_value objectUtils;
     // 'com.example.myapplication' 为当前应用的bundleName
-    ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.example.myapplication/entry", &objectUtils);
+    ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry",
+                                     &objectUtils);
     if (ret != napi_ok) {
         return nullptr;
     }
@@ -157,7 +162,7 @@ static napi_value RunEventLoop(napi_env env, napi_callback_info info)
 {
     pthread_t tid;
     size_t argc = 1;
-    napi_value argv[1] = {nullptr};
+    napi_value argv[1] = { nullptr };
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 
     bool flag = false;

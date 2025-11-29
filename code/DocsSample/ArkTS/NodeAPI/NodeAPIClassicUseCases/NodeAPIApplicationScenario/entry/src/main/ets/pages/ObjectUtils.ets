@@ -14,7 +14,7 @@
  */
 // [Start napi_ark_runtime_utils]
 export function Logger() {
-  console.log('print log');
+  console.info('print log');
 }
 // [End napi_ark_runtime_utils]
 // [Start napi_event_loop_utils]
