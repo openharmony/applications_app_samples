@@ -72,7 +72,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
     // [StartExclude key_event_monitor]
     std::ostringstream oss;
-    oss << "监听到按键事件 action:"  << event.action
+    oss << "Key event detected  action:"  << event.action
     << " keyCode: " << event.keyCode
     << " actionTime:" << event.actionTime;
     g_value = oss.str();
@@ -138,7 +138,7 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
     // [StartExclude mouse_event_monitor]
     std::ostringstream oss;
-    oss << "监听到鼠标事件 action:"  << event.action
+    oss << "Mouse event detected  action:"  << event.action
     << " displayX: " << event.displayX
     << " displayY:" << event.displayY
     << " button:" << event.button
@@ -156,9 +156,9 @@ static napi_value AddMouseEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude mouse_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "填加鼠标事件监听成功，返回码为" + std::to_string(ret);
+        message = "Mouse event monitor added successfully, return code: " + std::to_string(ret);
     } else {
-        message = "填加鼠标事件监听失败，返回码为" + std::to_string(ret);
+        message = "Failed to add mouse event monitor, return code: " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -172,9 +172,9 @@ static napi_value RemoveMouseEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude mouse_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "Remove mouse event monitor successfully, return " + std::to_string(ret);
+        message = "Remove mouse event monitor successfully, return code: " + std::to_string(ret);
     } else {
-        message = "Remove mouse event monitor failed, return " + std::to_string(ret);
+        message = "Remove mouse event monitor failed, return code: " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -203,7 +203,7 @@ void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
     // [StartExclude touch_event_monitor]
     std::ostringstream oss;
-    oss << "监听到触摸事件 action:"  << event.action
+    oss << "Touch event detected   action:"  << event.action
     << " displayX: " << event.displayX
     << " displayY:" << event.displayY
     << " id:" << event.id
@@ -219,9 +219,9 @@ static napi_value AddTouchEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude touch_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "填加触摸事件监听成功，返回码为" + std::to_string(ret);
+        message = "Touch event monitor added successfully, return code:" + std::to_string(ret);
     } else {
-        message = "填加触摸事件监听失败，返回码为" + std::to_string(ret);
+        message = "Failed to add touch event monitor, return code: " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -288,7 +288,7 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
     }
     // [StartExclude axis_event_monitor]
     std::ostringstream oss;
-    oss << "监听到轴事件 axisAction:"  << event.axisAction
+    oss << "Axis event detected   axisAction:"  << event.axisAction
     << " displayX:" << event.displayX
     << " displayY:" << event.displayY
     << " sourceType:" << event.sourceType
@@ -327,7 +327,7 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
     event.axisValues.insert(std::make_pair(AXIS_TYPE_ROTATE, value));
     // [StartExclude axis_event_monitor]
     std::ostringstream oss;
-    oss << "监听到捏合类型轴事件 axisAction:"  << event.axisAction
+    oss << "Pinch axis event detected   axisAction:"  << event.axisAction
     << " displayX: " << event.displayX
     << " displayY:" << event.displayY
     << " sourceType:" << event.sourceType
@@ -365,7 +365,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
     event.axisValues.insert(std::make_pair(AXIS_TYPE_SCROLL_HORIZONTAL, value));
     // [StartExclude axis_event_monitor]
     std::ostringstream oss;
-    oss << "监听到滚轮类型轴事件 axisAction:"  << event.axisAction
+    oss << "Scroll axis event detected   axisAction:"  << event.axisAction
     << " displayX: " << event.displayX
     << " displayY:" << event.displayY
     << " sourceType:" << event.sourceType
@@ -466,9 +466,9 @@ static napi_value RemoveScrollAxisEventMonitor(napi_env env, napi_callback_info 
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除滚轮事件监听成功，返回码为" + std::to_string(ret);
+        message = "Mouse event listener removed successfully, return code:" + std::to_string(ret);
     } else {
-        message = "移除滚轮事件监听失败，返回码为" + std::to_string(ret);
+        message = "Failed to remove mouse event listener, return code:" + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);

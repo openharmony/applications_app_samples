@@ -72,9 +72,9 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
     // [StartExclude key_event_interceptor]
     std::ostringstream oss;
-    oss << "监听到按键事件 action："  << event.action
-    << " keyCode： " << event.keyCode
-    << " actionTime：" << event.actionTime;
+    oss << "Key event detected   action:"  << event.action
+    << " keyCode: " << event.keyCode
+    << " actionTime: " << event.actionTime;
     g_value = oss.str();
     NotifyValueChange();
     // [EndExclude key_event_interceptor]
@@ -156,7 +156,7 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
     // [StartExclude input_event_interceptor]
     std::ostringstream oss;
-    oss << "监听到鼠标事件 action："  << event.action
+    oss << "Mouse event detected   action："  << event.action
     << " displayX： " << event.displayX
     << " displayY：" << event.displayY
     << " button：" << event.button
@@ -180,7 +180,7 @@ void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
     // [StartExclude input_event_interceptor]
     std::ostringstream oss;
-    oss << "监听到触摸事件 action："  << event.action
+    oss << "Touch event detected action："  << event.action
     << " displayX： " << event.displayX
     << " displayY：" << event.displayY
     << " id：" << event.id
@@ -223,7 +223,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
     }
     // [StartExclude input_event_interceptor]
     std::ostringstream oss;
-    oss << "监听到轴事件 axisAction："  << event.axisAction
+    oss << "Axis event detected axisAction："  << event.axisAction
     << " displayX： " << event.displayX
     << " displayY：" << event.displayY
     << " sourceType：" << event.sourceType
@@ -253,9 +253,9 @@ static napi_value AddEventInterceptor(napi_env env, napi_callback_info info)
     // [StartExclude input_event_interceptor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "填加输入事件拦截成功，返回码为" + std::to_string(ret);
+        message = "Input event interception added successfully, return code: " + std::to_string(ret);
     } else {
-        message = "填加输入事件拦截失败，返回码为" + std::to_string(ret);
+        message = "Failed to add input event interception, return code: " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -269,9 +269,9 @@ static napi_value RemoveEventInterceptor(napi_env env, napi_callback_info info)
     // [StartExclude input_event_interceptor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除输入拦截成功，返回码为" + std::to_string(ret);
+        message = "Input event interception removed successfully, return code: " + std::to_string(ret);
     } else {
-        message = "移除输入拦截失败，返回码为" + std::to_string(ret);
+        message = "Failed to remove input event interception, return code: " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
