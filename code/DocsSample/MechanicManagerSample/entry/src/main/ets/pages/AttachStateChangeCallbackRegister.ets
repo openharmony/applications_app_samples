@@ -65,7 +65,7 @@ struct AttachStateChangeCallbackRegister {
 
       Column() {
         Button() {
-          Text('注册 - 1')
+          Text('注册')
             .fontSize(20)
             .fontColor(Color.White)
         }.onClick(() => {
@@ -85,11 +85,12 @@ struct AttachStateChangeCallbackRegister {
           // 注册监听
           mechanicManager.on('attachStateChange', attachStateChangeCallback);
           // [End on_attachStateChange]
+          logger.info('attachStateChange on success.');
         }).fancy();
 
         Column() {
           Button() {
-            Text('去注册 - 1')
+            Text('去注册')
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
@@ -108,6 +109,7 @@ struct AttachStateChangeCallbackRegister {
             // 取消连接状态的监听
             mechanicManager.off('attachStateChange', attachStateChangeCallback);
             // [End off_attachStateChange]
+            logger.info('attachStateChange off success.');
           }).fancy();
 
           Button() {
@@ -118,28 +120,26 @@ struct AttachStateChangeCallbackRegister {
             try {
               logger.info('去注册注册 - all');
               mechanicManager.off("attachStateChange");
-              this.message = '去注册 - all: 成功';
               logger.info('去注册 - all: 成功');
             } catch (error) {
               let code: number = (error as BusinessError).code;
               let message: string = (error as BusinessError).message;
-              this.message = '去注册 - all: 失败, code: ' + code + ' message: ' + message;
               logger.error('去注册 - all: 失败, code: ' + code + ' message: ' + message);
             }
           }).fancy();
         }.width('45%');
       }.height('800px')
 
-        Column() {
-          Button() {
-            Text('返回')
-              .fontSize(20)
-              .fontColor(Color.White)
-          }.onClick(() => {
-            router.back();
-          }).fancy();
+      Column() {
+        Button() {
+          Text('返回')
+            .fontSize(20)
+            .fontColor(Color.White)
+        }.onClick(() => {
+          router.back();
+        }).fancy();
 
-        }.width('50%');
+      }.width('50%');
 
     }
   }
