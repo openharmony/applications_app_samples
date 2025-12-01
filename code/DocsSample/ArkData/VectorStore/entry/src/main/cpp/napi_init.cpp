@@ -68,6 +68,7 @@ void VectorQueryWithBingArgs(OH_Rdb_Store *store_)
         return;
     }
     while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        size_t count = 0;
         // floatvector数组是第二列数据，1表示列下标索引
         OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
         float test[count];
