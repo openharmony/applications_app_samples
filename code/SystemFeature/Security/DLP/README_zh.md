@@ -54,7 +54,7 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行。
-2. 本示例仅支持API22版本SDK。
+2. 本示例可在API21及其以上版本的full SDK上运行。
 3. 本示例需要使用@ohos.dlpPermission系统权限的系统接口。
 4. 需要链接DLP凭据服务器。
 
@@ -88,10 +88,9 @@ entry/src/main/ets/
    {
      "name": "default",
      "signingConfig": "default",
-     "compileSdkVersion": 22,
-     "compatibleSdkVersion": 22,
+     "compileSdkVersion": 21,
+     "compatibleSdkVersion": 21,
      "runtimeOS": "OpenHarmony",
-     "targetSdkVersion": 22
    }
 ],
 ```
