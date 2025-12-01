@@ -40,7 +40,7 @@ void VectorQueryWithoutBingArgs(OH_Rdb_Store *store_)
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
-    // 一般不推荐使用getRowCount，性能的冗余。建议调试或者维测时再使用
+    // getRowCount会导致性能冗余。建议仅在调试或者维测时再使用
     int rowCount = 0;
     cursor->getRowCount(cursor, &rowCount);
     while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
@@ -67,11 +67,8 @@ void VectorQueryWithBingArgs(OH_Rdb_Store *store_)
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
-    // 推荐计算count的方式
-    int rowCount = 0;
+
     while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
-        rowCount++;
-        size_t count = 0;
         // floatvector数组是第二列数据，1表示列下标索引
         OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
         float test[count];
