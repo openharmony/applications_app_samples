@@ -63,7 +63,6 @@ ArkUI_NodeHandle buttonUIState = nullptr;
 ArkUI_NodeHandle buttonArea = nullptr;
 ArkUI_NodeHandle buttonResponse = nullptr;
 ArkUI_NodeHandle textResponse = nullptr;
-ArkUI_NodeHandle rowTouchIntercept = nullptr;
 ArkUI_NodeHandle radioTwo = nullptr;
 ArkUI_NodeHandle nodeUIState = nullptr;
 int32_t g_globalStatesToSupported = static_cast<int32_t>(UI_STATE_NORMAL);
@@ -592,43 +591,89 @@ void CreateNodeVisibleAreaApproximateChangeRatio(ArkUI_NodeHandle &column)
     });
 }
 
-void SetRowAttribute(ArkUI_NodeHandle node)
+void SetColumnTouchEventAttribute(ArkUI_NodeHandle &node)
 {
-    ArkUI_NumberValue widthValue[] = {1};
-    ArkUI_AttributeItem widthItem = {widthValue, 1};
-    ArkUI_NumberValue heightValue[] = {100};
-    ArkUI_AttributeItem heightItem = {heightValue, 1};
-    Manager::nodeAPI_->setAttribute(node, NODE_WIDTH_PERCENT, &widthItem);
-    Manager::nodeAPI_->setAttribute(node, NODE_HEIGHT, &heightItem);
+    SetWidthPercent(node, 1);
+    SetHeightPercent(node, 1);
     Manager::nodeAPI_->registerNodeEvent(node, NODE_TOUCH_EVENT, TARGET_ID_2, nullptr);
+}
+
+void SetButtonTouchEventAttribute(ArkUI_NodeHandle &node)
+{
+    ArkUI_NumberValue btnWidthValue[] = {0.5};
+    ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+    ArkUI_NumberValue btnHeightValue[] = {60};
+    ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+    ArkUI_NumberValue btnMarginValue[] = {20};
+    ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+    Manager::nodeAPI_->setAttribute(node, NODE_WIDTH_PERCENT, &btnWidthItem);
+    Manager::nodeAPI_->setAttribute(node, NODE_HEIGHT, &btnHeightItem);
+    Manager::nodeAPI_->setAttribute(node, NODE_MARGIN, &btnMarginItem);
+}
+
+void SetAttributeAboutResponseRegionList(ArkUI_NodeHandle &node, int32_t attribute)
+{
+    ArkUI_NumberValue regionListVec[] = {
+        {.i32 = attribute},
+        {.f32 = 0.0},
+        {.f32 = 0.0},
+        {.f32 = 50},
+        {.f32 = 100}};
+    ArkUI_AttributeItem regionListItem = {.value = regionListVec, .size = 5};
+    Manager::nodeAPI_->setAttribute(node, NODE_RESPONSE_REGION_LIST, &regionListItem);
+}
+
+void AddColumnChildNode(ArkUI_NodeHandle &node)
+{
+    ArkUI_NodeHandle button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_AttributeItem buttonLabel1 = {.string = "left can be click, use finger"};
+    Manager::nodeAPI_->setAttribute(button1, NODE_BUTTON_LABEL, &buttonLabel1);
+    SetButtonTouchEventAttribute(button1);
+
+    ArkUI_NodeHandle button2 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_AttributeItem buttonLabel2 = {.string = "left can be click, use pen"};
+    Manager::nodeAPI_->setAttribute(button2, NODE_BUTTON_LABEL, &buttonLabel2);
+    SetButtonTouchEventAttribute(button2);
+
+    ArkUI_NodeHandle button3 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_AttributeItem buttonLabel3 = {.string = "left can be click, use mouse"};
+    Manager::nodeAPI_->setAttribute(button3, NODE_BUTTON_LABEL, &buttonLabel3);
+    SetButtonTouchEventAttribute(button3);
+
+    ArkUI_NodeHandle button4 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_AttributeItem buttonLabel4 = {.string = "left can be click, use all"};
+    Manager::nodeAPI_->setAttribute(button4, NODE_BUTTON_LABEL, &buttonLabel4);
+    SetButtonTouchEventAttribute(button4);
+
+    SetAttributeAboutResponseRegionList(button1, ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER);
+    Manager::nodeAPI_->registerNodeEvent(button1, NODE_ON_CLICK_EVENT, 1, nullptr);
+
+    SetAttributeAboutResponseRegionList(button2, ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_PEN);
+    Manager::nodeAPI_->registerNodeEvent(button2, NODE_ON_CLICK_EVENT, 1, nullptr);
+
+    SetAttributeAboutResponseRegionList(button3, ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_MOUSE);
+    Manager::nodeAPI_->registerNodeEvent(button3, NODE_ON_CLICK_EVENT, 1, nullptr);
+
+    SetAttributeAboutResponseRegionList(button4, ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL);
+    Manager::nodeAPI_->registerNodeEvent(button4, NODE_ON_CLICK_EVENT, 1, nullptr);
+
+    Manager::nodeAPI_->addChild(node, button1);
+    Manager::nodeAPI_->addChild(node, button2);
+    Manager::nodeAPI_->addChild(node, button3);
+    Manager::nodeAPI_->addChild(node, button4);
 }
 
 void CreateNodeTouchEvent(ArkUI_NodeHandle &column)
 {
-    CreateNodeWithCommonAttribute(column, "NODE_TOUCH_EVENT ", [](ArkUI_NodeHandle node) {
+    CreateNodeWithCommonAttribute(column, "NODE_TOUCH_EVENT && NODE_RESPONSE_REGION_LIST", [](ArkUI_NodeHandle node) {
         if (!Manager::nodeAPI_ || !node) {
             return;
         }
-        rowTouchIntercept = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
-        SetRowAttribute(rowTouchIntercept);
-        ArkUI_NodeHandle button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-        ArkUI_NumberValue btnWidthValue[] = {150};
-        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
-        ArkUI_NumberValue btnHeightValue[] = {60};
-        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
-        ArkUI_NumberValue btnMarginValue[] = {20};
-        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
-
-        ArkUI_AttributeItem buttonLabel1 = {.string = "button1"};
-        Manager::nodeAPI_->setAttribute(button1, NODE_BUTTON_LABEL, &buttonLabel1);
-
-        Manager::nodeAPI_->setAttribute(button1, NODE_WIDTH, &btnWidthItem);
-        Manager::nodeAPI_->setAttribute(button1, NODE_HEIGHT, &btnHeightItem);
-        Manager::nodeAPI_->setAttribute(button1, NODE_MARGIN, &btnMarginItem);
-        Manager::nodeAPI_->registerNodeEvent(button1, NODE_TOUCH_EVENT, 1, nullptr);
+        auto columnTouchIntercept = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+        SetColumnTouchEventAttribute(columnTouchIntercept);
         
-        Manager::nodeAPI_->addChild(rowTouchIntercept, button1);
-        Manager::nodeAPI_->addChild(node, rowTouchIntercept);
+        AddColumnChildNode(columnTouchIntercept);
+        Manager::nodeAPI_->addChild(node, columnTouchIntercept);
     });
 }
 
@@ -906,7 +951,7 @@ void AllRegisterNodeEventReceiverOne(int32_t targetId, ArkUI_NodeEvent *event)
             break;
         }
         case 1: {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo", "CreateNativeNode  button1 onTouch");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo", "NODE_RESPONSE_REGION_LIST button onclick");
             auto uiEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
             auto result = OH_ArkUI_PointerEvent_SetStopPropagation(uiEvent, true);
             break;
