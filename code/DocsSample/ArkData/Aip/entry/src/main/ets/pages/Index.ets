@@ -15,10 +15,8 @@
 
 // [Start import_the_aip_module]
 import { intelligence } from '@kit.ArkData';
-// [End import_the_aip_module]
-// [Start import_the_common_module]
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End import_the_common_module]
+// [End import_the_aip_module]
 
 // [Start aip_getTextEmbeddingModel_operating_parameter]
 let textConfig:intelligence.ModelConfig = {
