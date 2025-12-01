@@ -22,7 +22,7 @@
         "signingConfig": "default",
         "compatibleSdkVersion": "13",
         "compileSdkVersion": "13",
-        "runtimeOS": "HarmonyOS",
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,
