@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-// Start [theme_font_c_header]
+// [Start theme_font_c_header]
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_text_typography.h>
 #include <native_drawing/drawing_register_font.h>
-// End [theme_font_c_header]
+// [End theme_font_c_header]
 #include <native_buffer/native_buffer.h>
 #include <fstream>
 
@@ -165,29 +165,29 @@ void SampleBitMap::Create()
 
 void SampleBitMap::DrawCustomFontText()
 {
-    // Start [custom_font_c_custom_font_text_step1]
+    // [Start custom_font_c_custom_font_text_step1]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
-    // End [custom_font_c_custom_font_text_step1]
-    // Start [custom_font_c_custom_font_text_step2]
+    // [End custom_font_c_custom_font_text_step1]
+    // [Start custom_font_c_custom_font_text_step2]
     // 后续使用自定义字体时，需使用到该字体家族名
     const char* fontFamily = "myFamilyName"; 
     // 该路径是待注册的自定义字体文件在应用设备下的路径，确保该自定义字体文件已正确放置在该路径下
     const char* fontPath = "/system/fonts/NotoSerifTamil[wdth,wght].ttf"; 
-    // End [custom_font_c_custom_font_text_step2]
-    // Start [custom_font_c_custom_font_text_step3]
+    // [End custom_font_c_custom_font_text_step2]
+    // [Start custom_font_c_custom_font_text_step3]
     // 返回0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9文件损坏
     int errorCode = OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
-    // End [custom_font_c_custom_font_text_step3]
+    // [End custom_font_c_custom_font_text_step3]
     // 用于在字体管理器中注册字体缓冲区
     OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
-    // Start [custom_font_c_custom_font_text_step4]
+    // [Start custom_font_c_custom_font_text_step4]
     // 如果已经注册成功自定义字体，填入自定义字体的字体家族名
     const char* myFontFamilies[] = {"myFamilyName"}; 
     // 加入可使用的自定义字体
     OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
-    // End [custom_font_c_custom_font_text_step4]
+    // [End custom_font_c_custom_font_text_step4]
     
-    // Start [custom_font_c_custom_font_text_step5]
+    // [Start custom_font_c_custom_font_text_step5]
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(textStyle , OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     // 设置字体大小为60.0
@@ -209,9 +209,9 @@ void SampleBitMap::DrawCustomFontText()
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 将文本绘制到画布(0,100)上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
-    // End [custom_font_c_custom_font_text_step5]
+    // [End custom_font_c_custom_font_text_step5]
 
-    // Start [custom_font_c_custom_font_text_step6]
+    // [Start custom_font_c_custom_font_text_step6]
     // 注销对应的自定义字体
     OH_Drawing_UnregisterFont(fontCollection, fontFamily);
     OH_Drawing_TypographyCreate* handler1 = OH_Drawing_CreateTypographyHandler(typographyStyle, fontCollection);
@@ -225,7 +225,7 @@ void SampleBitMap::DrawCustomFontText()
     OH_Drawing_TypographyLayout(typography1, maxWidth);
     // 将文本绘制到画布(0,300)上
     OH_Drawing_TypographyPaint(typography1, cCanvas_, 0, 300);
-    // End [custom_font_c_custom_font_text_step6]
+    // [End custom_font_c_custom_font_text_step6]
 
     // 释放内存
     OH_Drawing_DestroyTypographyStyle(typographyStyle);
