@@ -15,6 +15,18 @@
 {
   "app": {
     "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/wangh/.ohos/config/openharmony/default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B5A47C41B3D96FFA6CB6EEAD73898A33DC8A964D71054AFD726DB578083517FDD27123F23E85A42",
+          "profile": "C:/Users/wangh/.ohos/config/openharmony/default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/wangh/.ohos/config/openharmony/default_NDKInputEventMonitor_hvCXTCRZovo52YZADiHcOdoh0az7_-FFT8khUoyuqHo=.p12",
+          "storePassword": "0000001B97F3BFDF0E43BF5A2A99CEC90D045D6B0F3AE809428E0FB52272E9B170A7BD4323A8F3839EACF7"
+        }
+      }
     ],
     "products": [
       {
