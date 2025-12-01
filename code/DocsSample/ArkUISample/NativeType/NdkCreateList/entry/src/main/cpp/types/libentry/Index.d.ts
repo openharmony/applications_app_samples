@@ -16,4 +16,5 @@
 // entry/src/main/cpp/types/libentry/Index.d.ts
 
 export const createNativeRoot: (content: Object) => void;
+export const createNativeNode: (content: Object) => void;
 export const destroyNativeRoot: () => void;

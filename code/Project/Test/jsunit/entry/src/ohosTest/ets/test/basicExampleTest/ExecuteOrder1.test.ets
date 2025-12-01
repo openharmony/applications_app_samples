@@ -14,47 +14,48 @@
 */
 
 // [Start order1_sample]
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, Level } from '@ohos/hypium';
 
 export default function exampleTest() {
-  
-  describe('order1_sample', () =>{
-    let testNumA : number = 1;
-    let testNumB : number = 1;
-    
+
+  describe('order1_sample', () => {
+    let testNumA: number = 1;
+    let testNumB: number = 1;
+
     beforeAll(() => {
       testNumA++;
     })
-  
+
     beforeEach(() => {
       testNumA++;
       testNumB++;
     })
- 
+
     afterEach(() => {
       testNumA++;
     })
-  
+
     afterAll(() => {
-      let expectValue : number = 5;
+      let expectValue: number = 5;
       expect(testNumA).assertEqual(expectValue);
     })
-     
-    it('testExampleA',Level.LEVEL1, async (done: Function) => {
-      let expectA : number = 3;
-      let expectB : number = 2;
+
+    it('testExampleA', Level.LEVEL1, async (done: Function) => {
+      let expectA: number = 3;
+      let expectB: number = 2;
       expect(testNumA).assertEqual(expectA);
       expect(testNumB).assertEqual(expectB);
       done();
     })
 
-    it('testExampleB',Level.LEVEL1, async (done: Function) => {
-      let expectA : number = 5;
-      let expectB : number = 3;
+    it('testExampleB', Level.LEVEL1, async (done: Function) => {
+      let expectA: number = 5;
+      let expectB: number = 3;
       expect(testNumA).assertEqual(expectA);
       expect(testNumB).assertEqual(expectB);
       done();
     })
   })
 }
+
 // [End order1_sample]

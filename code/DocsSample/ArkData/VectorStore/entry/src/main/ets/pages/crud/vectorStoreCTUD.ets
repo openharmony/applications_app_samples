@@ -39,15 +39,15 @@ export async function getVectorStore() {
   // [End vector_TS_isVectorSupported]
 
   // [EndExclude  vector_TS_getStore]
-  relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-    store = rdbStore;
+  try {
+    store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     // 建表语句，floatvector(2)代表repr的维度是2
     const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, repr floatvector(2));';
     // 第二个入参表示不开启显示事务，第三个参数undefined表示未使用参数绑定
     await store!.execute(SQL_CREATE_TABLE, 0, undefined);
-  }).catch((err: BusinessError) => {
+  } catch(err) {
     console.error(`Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
-  });
+  };
   // [End vector_TS_getStore]
 
   // [Start vector_TS_execute_insert]

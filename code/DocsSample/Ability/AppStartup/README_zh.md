@@ -4,7 +4,7 @@
 
 应用启动时通常需要执行一系列初始化启动任务，如果将启动任务都放在HAP的UIAbility组件的onCreate生命周期中，那么只能在主线程中依次执行，不但影响应用的启动速度，而且当启动任务过多时，任务之间复杂的依赖关系还会使得代码难以维护。
 
-AppStartup提供了一种应用启动方式，可以支持任务的异步启动。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，使启动任务的代码更简洁、清晰、易维护。
+AppStartup提供了一种应用启动方式，可以支持任务的异步启动。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，使启动任务的代码更简洁、清晰、易维护，详情可参考 [应用启动框架AppStartup](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-startup.md) 文档。
 
 ### 运行机制
 启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在构造AbilityStage过程中开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在AbilityStage创建完后调用startupManager.run方法，执行手动模式的启动任务。
@@ -76,7 +76,7 @@ entry/src/main/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 20版本SDK，版本号：6.0.0。
+2.本示例已适配API version 21版本SDK，版本号：6.0.0。
 
 3.本示例需要使用DevEco Studio 6.0 及以上版本才可编译运行。
 

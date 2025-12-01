@@ -20,11 +20,10 @@
     // [StartExclude startup_harmodule]
     "deviceTypes": [
       "default",
-      "tablet",
-      "2in1"
+      "tablet"
     ],
     // [EndExclude startup_harmodule]
-    "appStartup": "$profile:startup_config", // 启动框架的配置文件
+    "appStartup": "$profile:startup_config" // 启动框架的配置文件
   }
 }
 // [End startup_harmodule]

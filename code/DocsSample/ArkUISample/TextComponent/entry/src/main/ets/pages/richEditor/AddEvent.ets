@@ -400,13 +400,13 @@ export struct AddEvent {
     NavDestination() {
       Scroll(this.scroller) {
         Column({ space: 12 }) {
-          event1();
-          event2();
-          event3();
-          event4();
-          on_cut_copy_paste();
-          event6();
-          event7();
+          event1()
+          event2()
+          event3()
+          event4()
+          on_cut_copy_paste()
+          event6()
+          event7()
           // tmp();
 
         }

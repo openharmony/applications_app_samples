@@ -24,7 +24,7 @@ const DOMAIN = 0xF811
 let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-let aimComponent : Component
+let aimComponent : Component;
 
 export function NavigationTest() {
   describe('Navigation_NavigationTest', () => {
@@ -38,7 +38,7 @@ export function NavigationTest() {
 
       aimComponent = await driver.findComponent(ON.text('Navigation'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
     })
 
     afterEach(async () => {
@@ -46,7 +46,7 @@ export function NavigationTest() {
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('Index'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
     })
 
     /*
@@ -61,16 +61,16 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_001_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text1'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('TitleBar'))
-      expect(aimComponent)
+      aimComponent = await driver.findComponent(ON.type('TitleBar'));
+      expect(aimComponent);
 
-      aimComponent = await driver.findComponent(ON.type('ToolBar'))
-      expect(aimComponent)
+      aimComponent = await driver.findComponent(ON.type('ToolBar'));
+      expect(aimComponent);
 
-      aimComponent = await driver.findComponent(ON.type('NavBarContent'))
-      expect(aimComponent)
+      aimComponent = await driver.findComponent(ON.type('NavBarContent'));
+      expect(aimComponent);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_001_end');
     })
 
@@ -86,26 +86,26 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_002_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text2'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPathByName'))
+      aimComponent = await driver.findComponent(ON.text('pushPathByName'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('NavIndex'))
-      expect(aimComponent)
+      aimComponent = await driver.findComponent(ON.text('NavIndex'));
+      expect(aimComponent);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_002_end');
     })
 
@@ -121,21 +121,21 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_003_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text3'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPathByName'))
+      aimComponent = await driver.findComponent(ON.text('pushPathByName'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPathByName'))
+      aimComponent = await driver.findComponent(ON.text('pushPathByName'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPathByName'))
+      aimComponent = await driver.findComponent(ON.text('pushPathByName'));
       await aimComponent.click();
       await driver.delayMs(2000);
 
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
       await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_003_end');
@@ -153,34 +153,34 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_004_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text4'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('StartTest'))
+      aimComponent = await driver.findComponent(ON.text('StartTest'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pop'))
+      aimComponent = await driver.findComponent(ON.text('pop'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       await driver.pressBack();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_004_end');
     })
 
@@ -196,47 +196,31 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_005_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text5'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('switch color'))
+      aimComponent = await driver.findComponent(ON.text('switch color'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('switch blur'))
+      aimComponent = await driver.findComponent(ON.text('switch blur'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('switch blurOption'))
+      aimComponent = await driver.findComponent(ON.text('switch blurOption'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('push page'))
+      aimComponent = await driver.findComponent(ON.text('push page'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('switch color'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-      await aimComponent.click();
-      await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('switch blur'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('switch effect'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-      await aimComponent.click();
-      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_005_end');
     })
 
@@ -252,15 +236,15 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_006_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text6'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('Button'))
+      aimComponent = await driver.findComponent(ON.type('Button'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_006_end');
     })
 
@@ -276,39 +260,16 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_007_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text7'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_007_end');
     })
 
@@ -324,39 +285,15 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_008_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text8'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('pushPath'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_008_end');
     })
 
@@ -372,27 +309,27 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_009_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text9'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      let size = await driver.getDisplaySize()
-      let startX = Math.floor(size.x * 0.5)
-      let startY = Math.floor(size.y * 0.565)
-      let endX = Math.floor(size.x * 0.5)
-      let endY = Math.floor(size.y * 0.21186)
+      let size = await driver.getDisplaySize();
+      let startX = Math.floor(size.x * 0.5);
+      let startY = Math.floor(size.y * 0.565);
+      let endX = Math.floor(size.x * 0.5);
+      let endY = Math.floor(size.y * 0.21186);
 
       await driver.swipe(startX, startY, endX, endY);
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await driver.swipe(endX, endY, startX, startY);
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('BarStyle.STACK'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       await driver.swipe(startX, startY, endX, endY);
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await driver.swipe(endX, endY, startX, startY);
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_009_end');
     })
 
@@ -408,31 +345,15 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_010_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text10'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('to Page One'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('to Page One'));
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('to Page One'));
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_010_end');
     })
 
@@ -448,11 +369,11 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_011_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text11'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('跳转'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_011_end');
     })
 
@@ -468,47 +389,39 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_012_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text12'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('apply padding 20vp'));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('apply padding 32vp'));
-      await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       let Toggles = await driver.findComponents(ON.type('Toggle'));
       await Toggles[0].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[1].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[1].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[0].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('pushPage'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('apply padding 20vp'));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.text('apply padding 32vp'));
-      await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
       Toggles = await driver.findComponents(ON.type('Toggle'));
       await Toggles[0].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[1].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[1].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       await Toggles[0].click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_012_end');
     })
 
@@ -524,23 +437,15 @@ export function NavigationTest() {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_013_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text13'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('push next page'))
+      aimComponent = await driver.findComponent(ON.text('push next page'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
 
-      aimComponent = await driver.findComponent(ON.text('push next page'))
+      aimComponent = await driver.findComponent(ON.type('BackButton'));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      aimComponent = await driver.findComponent(ON.type('BackButton'))
-      await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(300);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_013_end');
     })
 

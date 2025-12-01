@@ -37,7 +37,9 @@ const createRouterList: CreateRouter[] = [
   new CreateRouter('DecorativeObjectPage', 'pages/usagescenarios/DecorativeObject'),
   new CreateRouter('DecorationMapPage', 'pages/usagescenarios/DecorationMap'),
   new CreateRouter('DecorationSetPage', 'pages/usagescenarios/DecorationSet'),
-  new CreateRouter('DecorateDatePage', 'pages/usagescenarios/DecorateDate')
+  new CreateRouter('DecorateDatePage', 'pages/usagescenarios/DecorateDate'),
+  new CreateRouter('RouterIndex', 'pages/faqs/RouterIndex'),
+  new CreateRouter('SerializationAndDeserialization', 'pages/faqs/SerializationAndDeserialization')
 ];
 
 @Entry

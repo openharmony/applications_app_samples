@@ -31,7 +31,7 @@ struct SearchResult {
         return;
       }
       hilog.error(DOMAIN, TAG, 'Invoke replaceUrl succeeded.');
-    })
+    });
   }
 
   build() {
@@ -50,7 +50,8 @@ struct SearchResult {
           })
       }.width('100%')
     }.height('100%')
+    // [EndExclude search_click]
   }
-  // [EndExclude search_click]
+
 }
 // [End search_click]

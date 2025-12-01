@@ -56,11 +56,11 @@ ohos.permission.READ_IMAGEVIDEO
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行，支持设备：RK3568;
+1.本示例仅支持标准系统上运行，支持设备：RK3568；
 
 2.本示例为Stage模型，已适配API version 11版本SDK;
 
-3.本示例需要使用DevEco Studio 4.1 Release及以上版本才可编译运行。
+3.本示例已支持使用DevEco Studio 6.0.0.848（构建版本：6.0.0.848，构建2025年10月17日）编译运行。
 
 ### 下载
 

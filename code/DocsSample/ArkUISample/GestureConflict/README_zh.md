@@ -73,9 +73,9 @@ entry/src/main/ets/
 
 1. 本示例支持标准系统上运行，支持设备：RK3568;
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.36;
+2. 本示例支持API20版本SDK，版本号：6.0.0.47;
 
-3. 本示例已支持使DevEco Studio 5.0.5 Release (构建版本：5.0.13.100，构建 2025年4月25日)编译运行
+3. 本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858， built on September 24, 2025)及以上版本才可编译运行。
 
 ## 下载
 

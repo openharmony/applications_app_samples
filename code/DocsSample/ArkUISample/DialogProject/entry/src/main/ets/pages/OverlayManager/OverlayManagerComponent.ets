@@ -15,7 +15,6 @@
 
 // [Start OverlayManager_Demo]
 import { ComponentContent, OverlayManager } from '@kit.ArkUI';
-import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[Sample_dialogproject]';
@@ -46,8 +45,6 @@ export struct OverlayManagerComponent {
   @State message: string = 'ComponentContent';
   private uiContext: UIContext = this.getUIContext();
   private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  private manager = this.context.resourceManager;
   @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
   @StorageLink('componentContentIndex') componentContentIndex: number = 0;
   @StorageLink('arrayIndex') arrayIndex: number = 0;
@@ -58,18 +55,15 @@ export struct OverlayManagerComponent {
     NavDestination() {
       // [EndExclude OverlayManager_Demo]
       Column({ space: 10 }) {
-        // 'OverlayManager_button_increase'资源文件中的value值为'递增componentContentIndex: '
-        Button(this.manager.getStringByNameSync('OverlayManager_button_increase') + this.componentContentIndex)
+        Button('Increment componentContentIndex:' + this.componentContentIndex)
           .onClick(() => {
             ++this.componentContentIndex;
           })
-        // 'OverlayManager_button_decrease'资源文件中的value值为'递减componentContentIndex: '
-        Button(this.manager.getStringByNameSync('OverlayManager_button_decrease') + this.componentContentIndex)
+        Button('Decrement componentContentIndex:' + this.componentContentIndex)
           .onClick(() => {
             --this.componentContentIndex;
           })
-        // 'OverlayManager_button_add'资源文件中的value值为'增加ComponentContent'
-        Button(this.manager.getStringByNameSync('OverlayManager_button_add') + this.contentArray.length)
+        Button('Add ComponentContent:' + this.contentArray.length)
           .onClick(() => {
             let componentContent = new ComponentContent(
               this.uiContext, wrapBuilder<[Params]>(builderText),
@@ -78,18 +72,15 @@ export struct OverlayManagerComponent {
             this.contentArray.push(componentContent);
             this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
           })
-        // 'OverlayManager_button_increaseIndex'资源文件中的value值为'递增arrayIndex: '
-        Button(this.manager.getStringByNameSync('OverlayManager_button_increaseIndex') + this.arrayIndex)
+        Button('Increment arrayIndex:' + this.arrayIndex)
           .onClick(() => {
             ++this.arrayIndex;
           })
-        // 'OverlayManager_button_decreaseIndex'资源文件中的value值为'递减arrayIndex: '
-        Button(this.manager.getStringByNameSync('OverlayManager_button_decreaseIndex') + this.arrayIndex)
+        Button('Decrement arrayIndex:' + this.arrayIndex)
           .onClick(() => {
             --this.arrayIndex;
           })
-        // 'OverlayManager_button_delete'资源文件中的value值为'删除ComponentContent'
-        Button(this.manager.getStringByNameSync('OverlayManager_button_delete') + this.arrayIndex)
+        Button('Delete ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
@@ -98,8 +89,7 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        // 'OverlayManager_button_show'资源文件中的value值为'显示ComponentContent'
-        Button(this.manager.getStringByNameSync('OverlayManager_button_show') + this.arrayIndex)
+        Button('Show ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray[this.arrayIndex];
@@ -108,8 +98,7 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        // 'OverlayManager_button_hide'资源文件中的value值为'隐藏ComponentContent'
-        Button(this.manager.getStringByNameSync('OverlayManager_button_hide') + this.arrayIndex)
+        Button('Hide ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray[this.arrayIndex];
@@ -118,19 +107,16 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        // 'app.string.OverlayManager_button_showAll'资源文件中的value值为'显示所有ComponentContent'
-        Button($r('app.string.OverlayManager_button_showAll'))
+        Button('Show All ComponentContent')
           .onClick(() => {
             this.overlayNode.showAllComponentContents();
           })
-        // 'app.string.OverlayManager_button_hideAll'资源文件中的value值为'隐藏所有ComponentContent'
-        Button($r('app.string.OverlayManager_button_hideAll'))
+        Button('Hide All ComponentContent')
           .onClick(() => {
             this.overlayNode.hideAllComponentContents();
           })
 
-        // 'app.string.OverlayManager_button_jump'资源文件中的value值为'跳转页面'
-        Button($r('app.string.OverlayManager_button_jump'))
+        Button('Go')
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
               url: 'pages/Second'

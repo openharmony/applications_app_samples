@@ -21,7 +21,7 @@ export default function NativeUIPageTest() {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     let driver = Driver.create();
     const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-    beforeAll(async() => {
+    beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
       const want: Want = {
@@ -35,7 +35,7 @@ export default function NativeUIPageTest() {
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     })
-    afterEach(async (done:Function) => {
+    afterEach(async (done: Function) => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
@@ -51,15 +51,16 @@ export default function NativeUIPageTest() {
     /**
      * @tc.number ArkUINativeUI_001
      * @tc.name NativeUITest_001
-     * @tc.desc 点击显示隐藏按钮
+     * @tc.desc 自定义绘制容器测试
      */
     it('NativeUIPageTest', 0, async () => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('ShowNativeUIPage'));
       await button.click();
-      await driver.delayMs(1000);
       const button1 = await driver.findComponent(ON.text('HideNativeUI'));
       await button1.click();
+      const button2 = await driver.findComponent(ON.text('ShowNativeUI'));
+      await button2.click();
       await driver.delayMs(1000);
     })
   })

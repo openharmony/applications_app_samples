@@ -28,6 +28,7 @@ class ClassName {
     });
   }
 }
+
 export default function mockPromiseTest() {
   describe('returnPromise_sample', () => {
     it('testMockfunc', 0, async (done: Function) => {
@@ -43,9 +44,10 @@ export default function mockPromiseTest() {
       }));
       // 执行Mock后的函数，即对定义的Promise进行后续执行
       let result = await claser.method_1('test');
-      expect(result).assertEqual("success something");// 断言执行通过
+      expect(result).assertEqual('success something'); // 断言执行通过
       done();
     })
   })
 }
+
 // [End returnPromise_sample]

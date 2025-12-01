@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import {Driver, ON} from '@ohos.UiTest'
+import { Driver, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-const delegator : AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-const bundleName : string = abilityDelegatorRegistry.getArguments().bundleName;
+const delegator: AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName: string = abilityDelegatorRegistry.getArguments().bundleName;
 // Error code when the device is not supported.
 const CapabilityCode = 801;
 
@@ -37,13 +37,13 @@ export default function wearAbleEventTest() {
      * @tc.desc: crownRotate test，该接口从api20开始支持使用。
      */
     it('testCrownRotate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
-      let driver = Driver.create()
-      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create();
+      await startAbility(bundleName, 'DemoAbility');
       await driver.delayMs(1000);
-      let btn = await driver.findComponent(ON.text('Click twice'))
+      let btn = await driver.findComponent(ON.text('Click twice'));
       if (btn == null) {
-        let scorll = await driver.findComponent(ON.type('Scroll'))
-        btn = await scorll.scrollSearch(ON.text('Click twice'))
+        let scorll = await driver.findComponent(ON.type('Scroll'));
+        btn = await scorll.scrollSearch(ON.text('Click twice'));
       }
       await btn.longClick();
       try {

@@ -26,7 +26,7 @@ export struct FocusOnclickExample {
         Button(this.name)
           .fontSize(30)
           .onClick(() => {
-            this.count++
+            this.count++;
             if (this.count % 2 === 0) {
               this.name = 'count is even number';
             } else {

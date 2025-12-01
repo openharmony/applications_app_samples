@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Camera"
+    },
+    {
+      "name": "reason_camera",
+      "value": "Allow the app to use the camera for photo and video recording scenarios"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "Allow the app to use the microphone for video recording scenarios"
+    },
+    {
+      "name": "200px",
+      "value": "200px"
+    },
+    {
+      "name": "120px",
+      "value": "120px"
+    },
+    {
+      "name": "100px",
+      "value": "100px"
+    },
+    {
+      "name": "60px",
+      "value": "60px"
+    },
+    {
+      "name": "50px",
+      "value": "50px"
+    },
+    {
+      "name": "40px",
+      "value": "40px"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "take_photos",
+      "value": "Photo"
+    },
+    {
+      "name": "videotape",
+      "value": "Video"
+    }
+  ]
+}

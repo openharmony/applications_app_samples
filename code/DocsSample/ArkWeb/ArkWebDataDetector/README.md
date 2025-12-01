@@ -26,7 +26,7 @@ Web组件内的H5页面加载完成后，自动识别并高亮标注页面内的
 
 #### 介绍
 
-使用分词长按预览功能时，需要额外配置[dataDetectorConfig](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md#datadetectorconfig20)
+使用分词长按预览功能时，需要额外配置[dataDetectorConfig](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md#datadetectorconfig20)。
 
 #### 效果预览
 
@@ -58,7 +58,7 @@ Web组件内的H5页面加载完成后，自动识别并高亮标注页面内的
 ```
 
 ### 具体实现
-* 使用Web组件的智能分词能力
+* 使用Web组件的智能分词能力。
 * ArkWeb提供了H5页面内的文本分词识别功能，这些功能需将[enableDataDetector](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md#enabledatadetector20)设置为true，默认为false。
 * 可识别的实体类型包括电话、链接、邮箱、地址和时间，详见[TextDataDetectorType](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#textdatadetectortype11%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)。
 * 设置文本识别配置[dataDetectorConfig](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md#datadetectorconfig20),如分词长按预览功。

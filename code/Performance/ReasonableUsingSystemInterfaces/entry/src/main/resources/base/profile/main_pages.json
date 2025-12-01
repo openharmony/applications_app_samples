@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/GetStringSyncAfter",
+    "pages/GetStringSync",
+    "pages/UsingWordBreak",
+    "pages/UsingZeroWidthSpace",
+    "pages/GetAnonymousIdSync",
+    "pages/GetAnonymousId",
+    "pages/RuntimeInterface",
+    "pages/LocalizationKitInterface"
+  ]
+}

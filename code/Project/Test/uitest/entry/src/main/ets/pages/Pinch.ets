@@ -16,8 +16,9 @@
 @Entry
 @Component
 struct ScreenExample {
-  @State  myScale: number = 1;
-  @State  myScaleOut: number = 1;
+  @State myScale: number = 1;
+  @State myScaleOut: number = 1;
+
   build() {
     Column() {
       Text(this.myScale.toString())
@@ -25,26 +26,26 @@ struct ScreenExample {
         .objectFit(ImageFit.Auto)
         .height(200)
         .width(200)
-        .id("pinch_ima")
+        .id('pinch_ima')
         .scale({ x: this.myScale, y: this.myScale, z: this.myScale })
         .gesture(
-        PinchGesture()
-          .onActionStart((event: GestureEvent) => {
-            console.info('Pinch start');
-          })
-          .onActionUpdate((event: GestureEvent) => {
-            this.myScale = event.scale;
-          })
-          .onActionEnd(() => {
-            console.info('Pinch end');
-          })
+          PinchGesture()
+            .onActionStart((event: GestureEvent) => {
+              console.info('Pinch start');
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.myScale = event.scale;
+            })
+            .onActionEnd(() => {
+              console.info('Pinch end');
+            })
         )
       Image($r('app.media.icon'))
         .objectFit(ImageFit.Auto)
         .height(200)
         .width(200)
-        .margin({top: 100})
-        .id("pinch_ima_out")
+        .margin({ top: 100 })
+        .id('pinch_ima_out')
         .scale({ x: this.myScaleOut, y: this.myScaleOut, z: this.myScaleOut })
         .gesture(
           PinchGesture()

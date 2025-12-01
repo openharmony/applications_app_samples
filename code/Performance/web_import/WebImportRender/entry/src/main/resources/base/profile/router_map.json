@@ -1,0 +1,12 @@
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/Second.ets",
+      "buildFunction": "PageTwoBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}

@@ -44,7 +44,7 @@ export struct CalendarDialog {
                   backgroundColor: '#f7f7f7',
                   borderRadius: 10
                 },
-                onAccept: (date: Date)=>{
+                onAccept: (date: Date) => {
                   // 当弹出框再次弹出时显示选中的是上一次确定的日期
                   this.selectedDate = date;
                 }
@@ -64,4 +64,5 @@ export struct CalendarDialog {
     .title($r('app.string.CustomDialog_calender'))
   }
 }
+
 // [End calender_picker_dialog]

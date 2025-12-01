@@ -18,8 +18,7 @@
 // [Start FuncAbilityA_For_Result]
 // [Start FuncAbility_Cold]
 // [Start FuncAbility_Hot]
-// [Start FuncAbility_Window]
-import { AbilityConstant, common, StartOptions, Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -35,7 +34,6 @@ struct MainPage {
     Column() {
       List({ initialIndex: 0, space: 8 }) {
 
-        // [StartExclude FuncAbility_Window]
         // [StartExclude FuncAbility_Hot]
         // [StartExclude FuncAbility_Cold]
         // [StartExclude FuncAbilityA_Result]
@@ -176,41 +174,6 @@ struct MainPage {
             });
           })
         }
-        // [EndExclude FuncAbility_Window]
-
-        // [StartExclude FuncAbility_Hot]
-        ListItem() {
-          Row() {
-            // [StartExclude FuncAbility_Window]
-            Button('StartWindowMode')
-              .width('60%');
-            // [EndExclude FuncAbility_Window]
-          }
-          .onClick(() => {
-            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
-            let want: Want = {
-              deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.samples.uiabilityinteraction',
-              moduleName: 'entry', // moduleName非必选
-              abilityName: 'HotStartAbility',
-              parameters: {
-                // 自定义信息
-                // app.string.index_return_info资源文件中的value值为'来自EntryAbility Index页面'
-                info: $r('app.string.index_return_info')
-              }
-            };
-            let options: StartOptions = {
-              windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING,
-            };
-            // context为调用方UIAbility的UIAbilityContext
-            context.startAbility(want, options).then(() => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
-            }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-            });
-          })
-        }
-        // [EndExclude FuncAbility_Hot]
         // [EndExclude FuncAbility_Cold]
         // [EndExclude FuncAbilityA_For_Result]
         // [EndExclude FuncAbilityA_Result]
@@ -221,9 +184,7 @@ struct MainPage {
       // [StartExclude FuncAbilityA_For_Result]
       // [StartExclude FuncAbility_Cold]
       // [StartExclude FuncAbility_Hot]
-      // [StartExclude FuncAbility_Window]
       .alignListItem(ListItemAlign.Center)
-      // [EndExclude FuncAbility_Window]
       // [EndExclude FuncAbility_Hot]
       // [EndExclude FuncAbility_Cold]
       // [EndExclude FuncAbilityA_For_Result]
@@ -235,11 +196,9 @@ struct MainPage {
     // [StartExclude FuncAbilityA_For_Result]
     // [StartExclude FuncAbility_Cold]
     // [StartExclude FuncAbility_Hot]
-    // [StartExclude FuncAbility_Window]
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
-    // [EndExclude FuncAbility_Window]
     // [EndExclude FuncAbility_Hot]
     // [EndExclude FuncAbility_Cold]
     // [EndExclude FuncAbilityA_For_Result]
@@ -247,7 +206,6 @@ struct MainPage {
     // [EndExclude FuncAbilityA]
   }
 }
-// [End FuncAbility_Window]
 // [End FuncAbility_Hot]
 // [End FuncAbility_Cold]
 // [End FuncAbilityA_For_Result]

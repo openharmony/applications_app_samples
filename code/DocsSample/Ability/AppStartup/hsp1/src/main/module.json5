@@ -24,11 +24,10 @@
     // [StartExclude startup_hsp1module]
     "deviceTypes": [
       "default",
-      "tablet",
-      "2in1"
+      "tablet"
     ],
     "deliveryWithInstall": true,
-    "pages": "$profile:main_pages",
+    "pages": "$profile:main_pages"
     // [EndExclude startup_hsp1module]
   }
 }

@@ -70,8 +70,8 @@ function serverReplyCustomEapData() {
     });
     // [EndExclude eap_case_reply_custom_eapData]
   }
-  // [End eap_case_reply_custom_eapData]
 }
+// [End eap_case_reply_custom_eapData]
 
 function unregCustomEapHandler() {
   // [EndExclude eap_case_unreg_custom_eapHandler]

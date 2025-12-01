@@ -7,7 +7,7 @@
     "pages/WebPreviewBuilder",
     "pages/WebSaveImage",
     "pages/WebEditMenuOptions",
-    "pages/WebScanQRCode",
-    "pages/WebDisableLongPress"
+    "pages/WebDisableLongPress",
+    "pages/WebBindSelectionMenuText"
   ]
 }

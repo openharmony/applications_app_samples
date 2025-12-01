@@ -20,3 +20,4 @@ export const doWriteUserDownloadDirPathExample: () => string;
 export const doGetUserDownloadDirPathExample: () => string;
 export const doGetUserDesktopDirPathExample: () => string;
 export const doGetUserDocumentDirPathExample: () => string;
+export const doGetUserDownloadDirSizeExample: () => string;

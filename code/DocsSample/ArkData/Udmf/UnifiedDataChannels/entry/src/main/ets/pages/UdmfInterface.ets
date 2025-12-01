@@ -15,7 +15,7 @@
 
 // [Start import_module]
 import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_module]
 
 // [Start import_unifiedData_object_module]

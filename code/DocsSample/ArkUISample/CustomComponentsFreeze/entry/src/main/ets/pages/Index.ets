@@ -30,14 +30,14 @@ struct Index {
     { name: 'Mixing Navigation and TabContent', path: 'View/ComponentMixing' },
     { name: 'Page and LazyForEach', path: 'View/ComponentMixing1' },
     { name: 'Constraints', path: 'View/Constraints' }
-  ]
+  ];
 
   build() {
     Column() {
       ForEach(this.lists, (item: Router, index: number) => {
         Button(item.name)
           .onClick(() => {
-            this.getUIContext().getRouter().pushUrl({ url: item.path })
+            this.getUIContext().getRouter().pushUrl({ url: item.path });
           })
       })
     }

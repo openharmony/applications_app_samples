@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 // [Start Child1_start]
+const INITIAL_VALUE = 10;
+
 @Entry
 @Component
 struct Child {
-  @State val: number = 10;
+  @State val: number = INITIAL_VALUE;
 
   build() {
     Text(this.val.toString())

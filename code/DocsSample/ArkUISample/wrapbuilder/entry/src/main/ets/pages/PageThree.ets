@@ -36,7 +36,7 @@ struct IndexItem {
   @Builder
   IndexItem() {
     ForEach(builderArr, (item: WrappedBuilder<[string, number]>) => {
-      item.builder('Hello World', 30)
+      item.builder('Hello World', 30);
     }
 
     )
@@ -45,7 +45,7 @@ struct IndexItem {
   build() {
     Row() {
       Column() {
-        this.IndexItem()
+        this.IndexItem();
       }
       .width('100%')
     }

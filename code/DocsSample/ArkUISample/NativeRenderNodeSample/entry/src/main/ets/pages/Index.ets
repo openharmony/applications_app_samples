@@ -24,17 +24,17 @@ struct Index {
       Column() {
         Button("RenderNode 节点操作demo").onClick(() => {
           router.push({
-            uri: 'pages/entry'
+            uri: 'pages/Entry'
           });
         })
         Button("RenderNode 属性设置demo").onClick(() => {
           router.push({
-            uri: 'pages/property'
+            uri: 'pages/Property'
           });
         })
         Button("RenderNode 自定义绘制demo").onClick(() => {
           router.push({
-            uri: 'pages/custom'
+            uri: 'pages/Custom'
           });
         })
       }.width('100%')

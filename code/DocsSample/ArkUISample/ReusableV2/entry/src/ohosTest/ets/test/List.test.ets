@@ -17,5 +17,5 @@ import IndexTest from './index.test';
 
 export default function testsuite() {
   abilityTest();
-  IndexTest()
+  IndexTest();
 }

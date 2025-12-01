@@ -14,13 +14,9 @@
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
-
-2. 在组件目录选择详细的示例参考。
-
-3. 进入示例界面，查看参考示例。
-
-4. 通过自动测试框架可进行测试及维护。
+1. 通过运行EnvironmentCallbackPage.test.ets测试用例，页面当中的留白区域变宽。
+2. 通过运行postTouchEvent.test.ets测试用例，使页面从Index页面跳到postTouchEvent页面，页面的下区域颜色由粉色变为蓝色。
+3. 通过运行inheritFreezeOptionsPage.test.ets测试用例，使页面从Index页面跳到inheritFreezeOptionsPage页面，各页面能正常跳转且文本更新次数后面的数字随着按钮的点击大小逐步增加。
 
 ### 工程目录
 ```
@@ -32,17 +28,26 @@ entry/src/main/ets/
 |   |---ArkWebPage.ets                             //BuilderNode结合ArkWeb组件实现预渲染页面  
 |   |---BuilderProxyNode01.ets                            //BuilderProxyNode导致树结构发生变化 
 |   |---BuilderProxyNode02.ets                                 //修复BuilderProxyNode导致树结构发生变化  
+|   |---BuilderProxyNode03.ets                                 //修复BuilderProxyNode导致树结构发生变化  
 |   |---EnvironmentCallbackPage.ets                                 //通过系统环境变化更新节点
 |   |---FrameNode.ets                               //创建组件树
+|   |---index.ets                                   //主页面
 |   |---InheritFreezeOptionsPage.ets                                 //设置BuilderNode继承冻结能力
+|   |---inheritFreezeRouterPage1.ets 
+|   |---inheritFreezeRouterPage2.ets                                     
 |   |---IsDisposedPage.ets                             //查询当前BuilderNode是否解除引用 
 |   |---LocalStoragePage.ets                             //BuilderNode中使用LocalStorage  
+|   |---NavigationPage.ets                            
 |   |---PostTouchEvent.ets                            //注入触摸事件 
 |   |---RenderNode.ets                                 //BuilderNode与RenderNode结合使用  
+|   |---RepeatPage.ets          
+|   |---RepeatTabPage.ets                               
 |   |---ReusablePage01.ets                                 //调用reuse和recycle接口实现节点复用能力
 |   |---ReusablePage02.ets                               //使用@Reusable装饰器
 |   |---RouterPage1.ets                                 //跨页面复用
 |   |---RouterPage2.ets                             //跨页面复用 
+|   |---RouterPage3.ets                             //跨页面复用 
+|   |---TabContentPage.ets                          
 |   |---WrappedBuilder.ets                           //更新组件树 
 entry/src/ohosTest/
 |---ets
@@ -52,13 +57,18 @@ entry/src/ohosTest/
 |   |---EnvironmentCallbackPage.test.ets                        // 页面对应测试代码
 |   |---FrameNode.test.ets                               // 页面对应测试代码
 |   |---InheritFreezeOptionsPage.test.ets                         // 页面对应测试代码
+|   |---inheritFreezeRouterPage.test.ets                         // 页面对应测试代码
 |   |---IsDisposedPage.test.ets                             // 页面对应测试代码 
 |   |---LocalStoragePage.test.ets                             // 页面对应测试代码  
+|   |---NavigationPage.test.ets                             // 页面对应测试代码  
 |   |---PostTouchEvent.test.ets                            // 页面对应测试代码 
 |   |---RenderNode.test.ets                                 // 页面对应测试代码 
+|   |---RepeatPage.test.ets                                 // 页面对应测试代码 
+|   |---RepeatTabPage.test.ets                                 // 页面对应测试代码 
 |   |---ReusablePage01.test.ets                                 // 页面对应测试代码
 |   |---ReusablePage02.test.ets                               // 页面对应测试代码
 |   |---RouterPage.test.ets                                 // 页面对应测试代码
+|   |---TabContentPage.test.ets                                 // 页面对应测试代码
 |   |---WrappedBuilder.test.ets                           // 页面对应测试代码 
 ```
 ### 具体实现
@@ -93,7 +103,7 @@ entry/src/ohosTest/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行, 支持设备：RK3568。
+1.本示例仅支持标准系统上运行, 支持设备：Mate 70 Pro、RK3568。
 
 2.本示例为Stage模型，支持API20版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
 

@@ -114,7 +114,7 @@ export struct menuExample  {
           .height(50)
 
         // [Start create_right_click_menu]
-        Button('click for Menu')
+        Button('Right-click for Menu')
           .bindContextMenu(this.MyMenu, ResponseType.RightClick)
           // [End create_right_click_menu]
           .width(160)

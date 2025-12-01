@@ -294,7 +294,7 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
     delete[] webTagValue;
 
     return nullptr;
-    // [EndtExclude parse_and_store_webtags]
+    // [EndExclude parse_and_store_webtags]
 }
 // [End parse_and_store_webtags]
 

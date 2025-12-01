@@ -16,12 +16,12 @@
 // [Start napi_event_loop_ets]
 // [Start napi_ark_runtime_ets]
 import testNapi from 'libentry.so';
-// [StartExclute napi_call_threadsafe_function_with_priority_ets]
-// [StartExclute napi_event_loop_ets]
-// [StartExclute napi_ark_runtime_ets]
+// [StartExclude napi_call_threadsafe_function_with_priority_ets]
+// [StartExclude napi_event_loop_ets]
+// [StartExclude napi_ark_runtime_ets]
 // [Start napi_thread_safety_ets]
 import nativeModule from 'libentry1.so';
-// [StartExclute napi_thread_safety_ets]
+// [StartExclude napi_thread_safety_ets]
 @Entry
 @Component
 struct Index {
@@ -35,7 +35,7 @@ struct Index {
       Button($r('app.string.createArkRuntime'))
         .width('70%')
         .onClick(() => {
-          // [EndExclute napi_ark_runtime_ets]
+          // [EndExclude napi_ark_runtime_ets]
           testNapi.createArkRuntime();
           // [End napi_ark_runtime_ets]
           this.message = 'ArkRuntime success';
@@ -43,7 +43,7 @@ struct Index {
       Button($r('app.string.runEventLoop'))
         .width('70%')
         .onClick(() => {
-          // [EndExclute napi_event_loop_ets]
+          // [EndExclude napi_event_loop_ets]
           testNapi.runEventLoop(true);
           // [End napi_event_loop_ets]
           this.message = 'EventLoop success';
@@ -51,7 +51,7 @@ struct Index {
       Button($r('app.string.CallThreadSafeWithPriority'))
         .width('70%')
         .onClick(() => {
-          // [EndExclute napi_call_threadsafe_function_with_priority_ets]
+          // [EndExclude napi_call_threadsafe_function_with_priority_ets]
           let callback = (a: number, b: number): number => {
             console.info('result is ' + (a + b))
             return a + b;
@@ -63,7 +63,7 @@ struct Index {
       Button($r('app.string.startThread'))
         .width('70%')
         .onClick(() => {
-          // [EndExclute napi_thread_safety_ets]
+          // [EndExclude napi_thread_safety_ets]
           let callback = (): Promise<string> => {
             return new Promise((resolve) => {
               setTimeout(() => {

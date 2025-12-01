@@ -43,13 +43,11 @@ public:
         nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_SWIPE_ACTION, &Item);
     }
     std::shared_ptr<ArkUINode> GetSwipeContent() const { return swipeContent_; }
-    std::list<std::shared_ptr<ArkUIBaseNode>> &GetChildren() { return children_; }
 
 private:
     ArkUI_ListItemSwipeActionOption *swipeAction_ = nullptr;
     ArkUI_ListItemSwipeActionItem *swipeItem_ = nullptr;
     std::shared_ptr<ArkUINode> swipeContent_ = nullptr;
-    std::list<std::shared_ptr<ArkUIBaseNode>> children_;
 };
 } // namespace NativeModule
 #endif // MYAPPLICATION_ARKUILISTITEMNODE_H

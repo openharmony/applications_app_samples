@@ -19,11 +19,11 @@ import { display, uiObserver, window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 function callBackFunc2(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag2 navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag2 navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 export default class EntryAbility extends UIAbility {
@@ -64,7 +64,7 @@ export default class EntryAbility extends UIAbility {
         } catch {
           return;
         }
-      })
+      });
     } catch {
       hilog.info(0x0000, 'testTag', '%{public}s', 'error');
       return;

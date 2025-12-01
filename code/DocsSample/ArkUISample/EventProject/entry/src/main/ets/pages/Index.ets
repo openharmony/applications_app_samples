@@ -112,7 +112,7 @@ struct Index {
     }
     return routes.filter((route: Route) => {
       return route.title.includes(this.condition);
-    })
+    });
   }
 
   @LocalBuilder

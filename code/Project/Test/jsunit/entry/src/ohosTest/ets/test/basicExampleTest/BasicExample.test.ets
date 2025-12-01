@@ -13,20 +13,22 @@
 * limitations under the License.
 */
 // [Start basic_sample]
-import { describe, it, expect, Level, Size, TestType } from '@ohos/hypium';
+import { describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
+
 export default function abilityTest() {
-  describe('ActsAbilityTest', () =>{
-  // 测试套名称为ActsAbilityTest
+  describe('ActsAbilityTest', () => {
+    // 测试套名称为ActsAbilityTest
     // 可根据此处设置的用例类型、用例规模、用例级别进行用例筛选
-    it('testExample',TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
-    // 测试用例名称为testExample
+    it('testExample', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      // 测试用例名称为testExample
       await sleep(500);
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       // 启动被测试Ability
@@ -43,4 +45,5 @@ export default function abilityTest() {
     })
   })
 }
+
 // [End basic_sample]

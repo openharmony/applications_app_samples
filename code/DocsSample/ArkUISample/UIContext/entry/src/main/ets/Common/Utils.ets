@@ -14,7 +14,6 @@
  */
 // [Start Common_Utils]
 // common/Utils.ets
-// common/Utils.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;

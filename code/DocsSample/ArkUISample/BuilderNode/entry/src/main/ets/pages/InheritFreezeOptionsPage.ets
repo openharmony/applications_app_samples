@@ -16,6 +16,9 @@
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const PAGE_ONE_INDEX = 1;
+const PAGE_TWO_INDEX = 2;
+
 class Params {
   public count: number = 0;
 
@@ -101,7 +104,7 @@ struct MyNavigationTestStack {
 @Component
 struct pageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @State index: number = 1;
+  @State index: number = PAGE_ONE_INDEX;
   @Link message: number;
   @Link logNumber: number;
 
@@ -135,7 +138,7 @@ struct pageOneStack {
 @Component
 struct pageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @State index: number = 2;
+  @State index: number = PAGE_TWO_INDEX;
   @Link message: number;
   @Link logNumber: number;
 

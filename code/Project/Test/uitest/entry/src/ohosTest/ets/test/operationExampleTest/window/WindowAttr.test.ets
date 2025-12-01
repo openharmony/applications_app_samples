@@ -26,21 +26,23 @@
 *
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import Logger from '../../../util/Logger';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 const TAG = 'WindowAttr_Test';
 const BUNDLE = 'WindowAttr_';
+
 export default function WindowAttr() {
-  describe('WindowAttr',  () => {
+  describe('WindowAttr', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'EntryAbility'
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -51,11 +53,11 @@ export default function WindowAttr() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 设置window指定的大小与方向测试
      */
-    it("WindowAttr_Test_001", TestType.FUNCTION, async (done: Function) => {
+    it('WindowAttr_Test_001', TestType.FUNCTION, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Test_001 start');
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let window = await driver.findWindow({bundleName: bundleName});
+      let window = await driver.findWindow({ bundleName: bundleName });
       // 获取widow bundle名称;
       let name = await window.getBundleName();
       // 断言bundleName

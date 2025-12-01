@@ -36,11 +36,7 @@ export struct StyledStringHtml {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
+    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent(resource.id);
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
@@ -55,7 +51,7 @@ export struct StyledStringHtml {
         //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
           Column() {
-            Text(undefined, { controller: this.controller1 }).height(100).id('text1')
+            Text(undefined, { controller: this.controller1 }).height(100)
             Row() {
               //'app.string.StyledStringHtml_Button_1'资源文件中的value值为"添加属性字符串"
               Button($r('app.string.StyledStringHtml_Button_1')).onClick(() => {
@@ -88,8 +84,8 @@ export struct StyledStringHtml {
               }).margin(5)
             }
 
-            Text(undefined, { controller: this.controller2 }).height(100).id('text2')
-            Text(this.html).id('text3')
+            Text(undefined, { controller: this.controller2 }).height(100)
+            Text(this.html)
           }.width('100%')
         }
       }

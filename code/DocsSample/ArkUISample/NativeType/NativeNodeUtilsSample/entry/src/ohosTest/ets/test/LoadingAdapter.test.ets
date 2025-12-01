@@ -52,7 +52,7 @@ export default function IndexTest() {
     it('testLinearGradientEffect',Level.LEVEL1, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(2000);
-      let openModel = await driver.findComponent(ON.id('Button'));
+      let openModel = await driver.findComponent(ON.text('ShowDrawPage'));
       await openModel.click()
       await driver.delayMs(2000)
       await driver.pressBack();

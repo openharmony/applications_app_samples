@@ -117,8 +117,8 @@ export struct AccessibilityText {
           .accessibilitySelected(undefined)
       }
       .height('100%')
+      //[StartExclude accessibility_text_start]
     }
-    //[StartExclude accessibility_text_start]
     .backgroundColor('#f1f2f3')
       // $r('app.media.UniversalAttributesAccessibility_title1')需要替换为开发者所需的文本资源文件
       .title($r('app.string.UniversalAttributesAccessibility_title1'))

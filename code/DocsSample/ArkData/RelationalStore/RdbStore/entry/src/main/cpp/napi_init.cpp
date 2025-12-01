@@ -68,6 +68,7 @@ void RdbInsert(OH_Rdb_Store *store_)
 void RdbDelete(OH_Rdb_Store *store_)
 {
     // [Start rdb_OH_Rdb_Delete]
+    // 删除
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
     if (predicates == NULL) {
         OH_LOG_ERROR(LOG_APP, "CreatePredicates failed.");

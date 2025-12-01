@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AllocateMemory",
+    "pages/DecodingPicture",
+    "pages/DecodingPixelMap",
+    "pages/EncodingPicture",
+    "pages/EncodingPixelMap",
+    "pages/ImageReceiver",
+    "pages/EditExif"
+  ]
+}

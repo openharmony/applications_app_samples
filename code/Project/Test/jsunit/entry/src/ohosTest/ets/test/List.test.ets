@@ -17,7 +17,7 @@ import basicTest from './basicExampleTest/BasicExample.test';
 import executeOrder1 from './basicExampleTest/ExecuteOrder1.test';
 import executeOrder2 from './basicExampleTest/ExecuteOrder2.test';
 import executeOrder3 from './basicExampleTest/ExecuteOrder3.test';
-import assert from  './assertExampleTest/AssertExample.test';
+import assert from './assertExampleTest/AssertExample.test';
 import param from './paramExampleTest/paramExample.test';
 import custom from './customExampleTest/customExample.test';
 import cover from './coverExampleTest/coverExample.test';

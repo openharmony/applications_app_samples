@@ -14,7 +14,7 @@
 */
 
 // [Start argumentMatchersForRegex_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function matchRegexsTest() {
   describe('argumentMatchersForRegex_sample', () => {
     it('testMockfunc', 0, () => {
@@ -40,4 +41,5 @@ export default function matchRegexsTest() {
     })
   })
 }
+
 // [End argumentMatchersForRegex_sample]

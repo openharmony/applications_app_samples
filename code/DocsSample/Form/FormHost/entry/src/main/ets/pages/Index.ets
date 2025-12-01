@@ -18,7 +18,7 @@ import { HashMap, HashSet } from '@kit.ArkTS';
 import { formHost, formInfo, formObserver } from '@kit.FormKit';
 import { bundleMonitor } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'FormHost';
 const DOMAIN_NUMBER: number = 0xFF00;

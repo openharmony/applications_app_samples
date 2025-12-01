@@ -38,7 +38,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.groupgesture_Index_Exclusive_title')),
     description: resource.resourceToString($r('app.string.groupgesture_Index_Exclusive_description')),
   }
-]
+];
 
 @Builder
 export function GroupGestureDestination(name: string) {

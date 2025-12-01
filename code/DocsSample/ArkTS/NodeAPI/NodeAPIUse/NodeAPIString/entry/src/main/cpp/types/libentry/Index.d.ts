@@ -36,3 +36,11 @@ export const getValueStringLatin1: (param: number | string) => string | void;
 // [Start napi_create_string_latin1_api]
 export const createStringLatin1: () => string | void;
 // [End napi_create_string_latin1_api]
+
+// [Start napi_create_external_string_utf16_api]
+export const CreateExternalStringUtf16: () => string | void;
+// [End napi_create_external_string_utf16_api]
+
+// [Start napi_create_external_string_ascii_api]
+export const CreateExternalStringAscii: () => string | void;
+// [End napi_create_external_string_ascii_api]

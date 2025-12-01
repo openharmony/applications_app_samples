@@ -14,12 +14,19 @@
  */
 
 export class ResourceManager {
+  private context: Context | undefined = undefined;
   public resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+    if (this.context) {
+      return this.context.resourceManager.getStringSync(resource.id);
+    }
+    return 'undefined|null';
+  }
+  public setContext(context: Context | undefined) {
+    this.context = context;
   }
 }
 
 // 默认导出let
 let resourceToStringManager = new ResourceManager();
 
-export default resourceToStringManager as ResourceManager;
+export default resourceToStringManager;

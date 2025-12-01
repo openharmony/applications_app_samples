@@ -14,7 +14,7 @@
 */
 
 // [Start argumentMatchersForAny_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function argumentMatchersAnyTest() {
   describe('argumentMatchersForAny_sample', () => {
     it('testMockfunc', 0, () => {
@@ -37,9 +38,10 @@ export default function argumentMatchersAnyTest() {
       when(mockfunc)(ArgumentMatchers.any).afterReturn('1');
       // 传入不同参数验证是否符合预期
       expect(claser.method_1('test')).assertEqual('1'); // 断言执行通过
-      expect(claser.method_1("123")).assertEqual('1');// 断言执行通过
-      expect(claser.method_1("true")).assertEqual('1');// 断言执行通过
+      expect(claser.method_1('123')).assertEqual('1'); // 断言执行通过
+      expect(claser.method_1('true')).assertEqual('1'); // 断言执行通过
     })
   })
 }
+
 // [End argumentMatchersForAny_sample]

@@ -14,7 +14,7 @@
 */
 
 {
-  "modelVersion": "5.0.2",
+  "modelVersion": "5.0.5",
   "description": "Please describe the basic information.",
   "dependencies": {
     "@nutpi/chinese_transverter": "^1.0.4"

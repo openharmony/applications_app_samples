@@ -14,7 +14,7 @@
 8. [@Provide装饰器和@Consume装饰器：与后代组件双向同步](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-provide-and-consume.md)
 9. [@Monitor装饰器：状态变量修改监听](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-monitor.md)
 10. [@State装饰器：组件内状态](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-state.md)
-11. [应用内状态变量及其它场景迁移指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-application-and-others.md)
+11. [应用内状态变量和其他场景迁移指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-v1-v2-migration-application-and-others.md)
 ### 效果预览
 
 | 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
@@ -237,9 +237,9 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API22版本full-SDK，版本号：6.0.0.107，镜像版本号：OpenHarmony_6.0.0.47 Release。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.10.858， built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

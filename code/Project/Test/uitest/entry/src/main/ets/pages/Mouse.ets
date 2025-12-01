@@ -19,43 +19,47 @@ import { router } from '@kit.ArkUI';
 @Component
 struct Mouse {
   @State message: string = 'Hello World';
-  private scroller: Scroller = new Scroller();
-  private arr: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18.19,20,21,22,23,24,25,26,27,28,29,30];
   @State count: number = 0;
-  @State hoverText : string = 'jump';
-  @State hoverMsg : string = 'hoverText';
+  @State hoverText: string = 'jump';
+  @State hoverMsg: string = 'hoverText';
+  private scroller: Scroller = new Scroller();
+  private arr: number[] =
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18.19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+
   build() {
     Row() {
       Column() {
         Button() {
           Text(this.hoverMsg)
-            .id("hoverText")
+            .id('hoverText')
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
-        .id("hover_bt")
+        .id('hover_bt')
         .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
           if (isHover) {
             this.hoverMsg = 'hover';
           }
         })
+
         Button() {
-          Text("toMouseDrag")
-            .id("toMouseDrag")
+          Text('toMouseDrag')
+            .id('toMouseDrag')
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }.onClick((event?: ClickEvent) => {
           router.pushUrl({
-            url: "pages/five"
+            url: 'pages/five'
           });
         })
+
         Button() {
           Text(this.hoverText)
-            .id("mouse_test_result")
+            .id('mouse_test_result')
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
         }
-        .id("mouse_test")
+        .id('mouse_test')
         .type(ButtonType.Capsule)
         .margin({ top: 20 })
         .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
@@ -65,26 +69,26 @@ struct Mouse {
         })
         .onMouse((event: MouseEvent) => {
           switch (event.button) {
-            case MouseButton.Left :
-              console.log("ljl","left");
+            case MouseButton.Left:
+              console.log('ljl', 'left');
               this.hoverText = 'left';
-              break
-            case MouseButton.Right :
+              break;
+            case MouseButton.Right:
               this.hoverText = 'right';
-              break
-            case MouseButton.Middle :
+              break;
+            case MouseButton.Middle:
               this.hoverText = 'middle';
-              break
+              break;
             default:
-              console.log("ljl","defaultTest");
-            break
+              console.log('ljl', 'defaultTest');
+              break;
           }
         })
         .gesture(
           TapGesture({ count: 2 })
             .onAction(() => {
               router.pushUrl({
-                url: "pages/Third"
+                url: 'pages/Third'
               });
             })
         )
@@ -92,10 +96,11 @@ struct Mouse {
           LongPressGesture({ repeat: false })
             .onAction(() => {
               router.pushUrl({
-                url: "pages/Fourth"
+                url: 'pages/Fourth'
               });
             })
         )
+
         Button() {
           Text('Click twice')
             .fontSize(25)
@@ -109,7 +114,8 @@ struct Mouse {
               router.pushUrl({ url: 'pages/Third' });
             })
         )
-        Column(){
+
+        Column() {
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {
               ForEach(this.arr, (item: number) => {
@@ -117,7 +123,7 @@ struct Mouse {
                   Text(item.toString())
                     .width('90%')
                     .height(100)
-                    .id("scroll_item")
+                    .id('scroll_item')
                     .backgroundColor('#3366CC')
                     .borderRadius(15)
                     .fontSize(16)
@@ -126,13 +132,13 @@ struct Mouse {
                 }
               }, (item: string) => item)
             }.margin({ right: 10 })
-          }.id("scroll_test")
+          }.id('scroll_test')
           .scrollBar(BarState.Off)
           .scrollable(ScrollDirection.Vertical)
-        }.height("300").width("100%")
+        }.height('300').width('100%')
       }
-      .width('100%').height("100%").alignItems(HorizontalAlign.Start).backgroundColor("#800000")
+      .width('100%').height('100%').alignItems(HorizontalAlign.Start).backgroundColor('#800000')
     }
-    .height('100%').backgroundColor("#FF3333")
+    .height('100%').backgroundColor('#FF3333')
   }
 }

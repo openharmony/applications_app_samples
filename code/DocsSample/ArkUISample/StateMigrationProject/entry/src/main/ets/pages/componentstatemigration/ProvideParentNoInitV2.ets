@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent22_start]
+const LOCAL_INITIAL_PARENT_VALUE = 42;
+
 @Entry
 @ComponentV2
 struct Parent {
-  @Local parentValue: number = 42;
+  @Local parentValue: number = LOCAL_INITIAL_PARENT_VALUE;
 
   build() {
     Column() {

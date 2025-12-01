@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 // [Start example2_start]
+const INITIAL_VALUE = 10;
+
 @ObservedV2
 class Child {
-  @Trace public value: number = 10;
+  @Trace public value: number = INITIAL_VALUE;
 }
 
 @ComponentV2

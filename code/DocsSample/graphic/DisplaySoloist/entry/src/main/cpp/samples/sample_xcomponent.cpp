@@ -15,13 +15,17 @@
 
 #include <bits/alltypes.h>
 #include <native_drawing/drawing_text_typography.h>
+// [Start display_soloist_import_module_two]
 #include <native_display_soloist/native_display_soloist.h>
+// [End display_soloist_import_module_two]
 #include <unistd.h>
 #include "common/log_common.h"
 #include "sample_xcomponent.h"
 
+// [Start display_soloist_napi_register_and_unregister]
 static std::unordered_map<std::string, OH_DisplaySoloist *> g_displaySync;
 
+// [StartExclude display_soloist_napi_register_and_unregister]
 static void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
 {
     SAMPLE_LOGI("OnSurfaceCreatedCB");
@@ -70,7 +74,9 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
 // [Start display_soloist_frame_rate_setting_and_subscription_function_registration]
 static void TestCallback(long long timestamp, long long targetTimestamp, void *data)
 {
+    // [StartExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
     SAMPLE_LOGI("test callback timestamp = %{public}llu, ", timestamp);
+    // [EndExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
     OH_NativeXComponent *component = nullptr;
     component = static_cast<OH_NativeXComponent *>(data);
     if (component == nullptr) {
@@ -103,10 +109,12 @@ static void TestCallback(long long timestamp, long long targetTimestamp, void *d
             int offset = 4;
             render->ConstructPath(offset, offset, render->defaultOffsetY);
         }
+        // [StartExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
         render->SetPenAndBrush();
         render->DrawPath();
         render->DisPlay();
         render->Destroy();
+        // [EndExclude display_soloist_frame_rate_setting_and_subscription_function_registration]
     }
 }
 // [End display_soloist_frame_rate_setting_and_subscription_function_registration]
@@ -236,6 +244,7 @@ void SampleXComponent::DrawPath()
 {
     OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
 }
+// [EndExclude display_soloist_napi_register_and_unregister]
 
 void ExecuteDisplaySoloist(std::string id, DisplaySoloist_ExpectedRateRange range, bool useExclusiveThread,
                            OH_NativeXComponent *nativeXComponent)
@@ -249,14 +258,15 @@ void ExecuteDisplaySoloist(std::string id, DisplaySoloist_ExpectedRateRange rang
     OH_DisplaySoloist_Start(nativeDisplaySoloist, TestCallback, nativeXComponent);
 }
 
-// [Start display_soloist_napi_register]
 napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
 {
+    // [StartExclude display_soloist_napi_register_and_unregister]
     SAMPLE_LOGI("NapiRegister");
     if ((env == nullptr) || (info == nullptr)) {
         SAMPLE_LOGE("NapiRegister: env or info is null");
         return nullptr;
     }
+    // [EndExclude display_soloist_napi_register_and_unregister]
 
     napi_value thisArg;
     if (napi_get_cb_info(env, info, nullptr, nullptr, &thisArg, nullptr) != napi_ok) {
@@ -299,10 +309,10 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
-// [End display_soloist_napi_register]
 
 napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info info)
 {
+    // [StartExclude display_soloist_napi_register_and_unregister]
     SAMPLE_LOGI("NapiUnregister");
     if ((env == nullptr) || (info == nullptr)) {
         SAMPLE_LOGE("NapiUnregister: env or info is null");
@@ -337,16 +347,20 @@ napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info inf
     std::string id(idStr);
     SampleXComponent *render = SampleXComponent().GetInstance(id);
     if (render != nullptr) {
+        // [EndExclude display_soloist_napi_register_and_unregister]
         OH_DisplaySoloist_Stop(g_displaySync[id]);
+        // [StartExclude display_soloist_napi_register_and_unregister]
         SAMPLE_LOGI("NapiUnregister executed");
     } else {
         SAMPLE_LOGE("render is nullptr");
     }
     return nullptr;
+    // [EndExclude display_soloist_napi_register_and_unregister]
 }
 
 napi_value SampleXComponent::NapiDestroy(napi_env env, napi_callback_info info)
 {
+    // [StartExclude display_soloist_napi_register_and_unregister]
     SAMPLE_LOGI("NapiUnregister");
     if ((env == nullptr) || (info == nullptr)) {
         SAMPLE_LOGE("NapiDestroy: env or info is null");
@@ -381,15 +395,19 @@ napi_value SampleXComponent::NapiDestroy(napi_env env, napi_callback_info info)
     std::string id(idStr);
     SampleXComponent *render = SampleXComponent().GetInstance(id);
     if (render != nullptr) {
+        // [EndExclude display_soloist_napi_register_and_unregister]
         OH_DisplaySoloist_Destroy(g_displaySync[id]);
         g_displaySync.erase(id);
+        // [StartExclude display_soloist_napi_register_and_unregister]
         SAMPLE_LOGI("NapiUnregister executed");
     } else {
         SAMPLE_LOGE("render is nullptr");
     }
     return nullptr;
+    // [EndExclude display_soloist_napi_register_and_unregister]
 }
 
+// [StartExclude display_soloist_napi_register_and_unregister]
 SampleXComponent::~SampleXComponent()
 {
     OH_Drawing_BrushDestroy(cBrush_);
@@ -432,6 +450,7 @@ void SampleXComponent::Release(std::string &id)
         g_instance.erase(g_instance.find(id));
     }
 }
+// [EndExclude display_soloist_napi_register_and_unregister]
 
 void SampleXComponent::Export(napi_env env, napi_value exports)
 {
@@ -448,6 +467,7 @@ void SampleXComponent::Export(napi_env env, napi_value exports)
         SAMPLE_LOGE("Export: napi_define_properties failed");
     }
 }
+// [End display_soloist_napi_register_and_unregister]
 
 void SampleXComponent::RegisterCallback(OH_NativeXComponent *nativeXComponent)
 {

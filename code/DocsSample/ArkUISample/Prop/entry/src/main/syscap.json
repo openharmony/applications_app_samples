@@ -1,0 +1,15 @@
+
+{
+  "devices": {
+    "general": [
+      "default"
+    ]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.HiviewDFX.HiDumper",
+      "SystemCapability.Security.DeviceAuth",
+      "SystemCapability.Security.DataTransitManager"
+    ]
+  }
+}

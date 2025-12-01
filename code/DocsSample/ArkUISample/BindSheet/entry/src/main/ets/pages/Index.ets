@@ -52,7 +52,7 @@ struct Index {
         { name:"template1/ModalTransitionExample", label: $r('app.string.bindContentCover_label1') },
         { name:"template2/ModalTransitionExample2", label: $r('app.string.bindContentCover_label2') },
         { name:"template3/ModalTransitionExample3", label: $r('app.string.bindContentCover_label3') },
-        { name:"template4/struct ModalTransitionExample4 {\n", label: $r('app.string.bindContentCover_label4') },
+        { name:"template4/ModalTransitionExample4", label: $r('app.string.bindContentCover_label4') },
         { name:"template5/ModalTransitionExample5", label: $r('app.string.bindContentCover_label5') },
         { name:"template6/BindContentCoverDemo", label: $r('app.string.bindContentCover_label6') },
         { name:"template7/BindContentCoverDemo", label: $r('app.string.bindContentCover_label7') },

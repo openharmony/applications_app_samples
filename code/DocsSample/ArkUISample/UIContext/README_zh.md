@@ -9,19 +9,15 @@
 
 ### 效果预览
 
-| index.ets                 |      LocalStoragePage.ets                 |
+| ContextPage.ets                 |      LocalStoragePage.ets                 |
 |---------------------------|---------------------------|
 | ![](pictures/image01.png) | ![](pictures/image02.png) |
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
+1. 通过运行index.test.ets测试用例，使页面从Index页面跳到ContextPage页面，页面上显示getContext字样。
 
-2. 在组件目录选择详细的示例参考。
-
-3. 进入示例界面，查看参考示例。
-
-4. 通过自动测试框架可进行测试及维护。
+2. 通过运行LocalStoragePage.test.ets测试用例，使页面从Index页面跳到LocalStoragePage页面，页面上显示LocalStoragePageHelloWorld字样。
 
 ### 工程目录
 ```
@@ -29,14 +25,25 @@ entry/src/main/ets/
 |---Common
 |   |---ContextUtils.ets                    // 定义UIContext接口
 |   |---UIContext.ets                      //通过UIContext接口使用像素单位转换接口
+|   |---Utils.ets                    
+|   |---WindowUtils.ets                      
 |---entryability
 |---pages
-|   |---Index.ets                           // 传入UIContext调用getHostContext     
-|   |---LocalStoragePage.ets                  // 使用UIContext接口替换全局接口     
+|   |---ContextPage.ets                           // 传入UIContext调用getHostContext     
+|   |---LocalStoragePage.ets                  // 使用UIContext接口替换全局接口
+|   |---Index.ets                             
+|   |---CalendarPickerDialogPage.ets                
+|   |---NewGlobal.ets                           
+|   |---VpPage.ets          
+|   |---WindowTestPage.ets             
 entry/src/ohosTest/
 |---ets
 |   |---Index.test.ets                      // 对应页面测试代码
 |   |---LocalStoragePage.test.ets              // 对应页面测试代码
+|   |---CalendarPickerDialogPage.test.ets      // 对应页面测试代码
+|   |---NewGlobal.test.ets              // 对应页面测试代码
+|   |---VpPage.test.ets                      // 对应页面测试代码
+|   |---WindowTestPage.test.ets              // 对应页面测试代码
 ```
 
 ### 具体实现
@@ -72,9 +79,9 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：Mate 70 Pro、开发板。
 
-2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0.47。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858， built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

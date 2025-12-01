@@ -21,7 +21,8 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "2in1"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -81,7 +82,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       },
       {
         "name": "MyAppServiceExtAbility",
@@ -91,7 +92,7 @@
         "srcEntry": "./ets/myappserviceextabilitytwo/MyAppServiceExtAbility.ets",
         "appIdentifierAllowList": [
           // 此处填写允许启动该后台服务的客户端应用的appIdentifier列表
-        ],
+        ]
       },
       // [EndExclude  my_app_service_module_start]
       {
@@ -102,7 +103,7 @@
         "srcEntry": "./ets/myappserviceextability/MyAppServiceExtAbility.ets",
         "appIdentifierAllowList": [
           // 此处填写允许启动该后台服务的客户端应用的appIdentifier列表
-        ],
+        ]
       }
     ]
   }

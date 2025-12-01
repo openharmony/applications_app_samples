@@ -14,20 +14,22 @@
 */
 
 // [Start dataDriver_sample]
- import { describe, it } from '@ohos/hypium';
+import { describe, it } from '@ohos/hypium';
 
- export default function abilityTest() {
+export default function abilityTest() {
   describe('AbilityTest', () => {
     it('testDataDriverAsync', 0, async (done: Function, data: ParmObj) => {
       done();
     });
 
     it('testDataDriver', 0, () => {
-    })
+    });
   })
 }
- interface ParmObj {
-   name: string,
-   value: string
- }
+
+interface ParmObj {
+  name: string,
+  value: string
+}
+
 // [End dataDriver_sample]

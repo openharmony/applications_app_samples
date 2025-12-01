@@ -24,6 +24,7 @@ import { tabsDestination, TABS_ROUTE_PREFIX } from './tabs';
 import { arcSwiperDestination, ARCSWIPER_ROUTE_PREFIX } from './arcSwiper';
 import { arcListDestination, ARCLIST_ROUTE_PREFIX } from './arcList';
 import resource from '../common/resource';
+import { Scroll_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
 
 const routes: Route[] = [
   {
@@ -53,6 +54,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_Tabs')),
     name: TABS_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.Scroll_Title')),
+    name: Scroll_ROUTE_PREFIX
   }
 ];
 
@@ -72,6 +77,8 @@ function destination(name: string) {
     waterFlowDestination(name);
   } else if (name.startsWith(ARCLIST_ROUTE_PREFIX)) {
     arcListDestination(name);
+  } else if (name.startsWith(Scroll_ROUTE_PREFIX)) {
+    scrollDestination(name);
   }
 }
 

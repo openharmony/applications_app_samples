@@ -18,7 +18,7 @@
  * 支持版本 since 1.0.6 版本
  */
 
-import { describe, it, expect, TestType } from '@ohos/hypium';
+import { describe, expect, it, TestType } from '@ohos/hypium';
 
 export default function coverExampleTest() {
   describe('coverExampleTest', () => {

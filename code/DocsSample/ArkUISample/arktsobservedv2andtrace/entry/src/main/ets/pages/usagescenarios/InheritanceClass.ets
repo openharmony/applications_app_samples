@@ -16,7 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
-const TAG = 'arktsobservedv2andtrace';
+const TAG = 'ArktsObservedV2AndTrace';
 
 @ObservedV2
 class GrandFather {

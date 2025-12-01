@@ -82,7 +82,7 @@ struct Mesh {
   build() {
     Column() {
       Image(this.pixelMap)
-        .backgroundColor(Color.Blue)
+        .backgroundColor('#86C5E3')
         .width(150)
         .height(150)
         .onClick(() => {

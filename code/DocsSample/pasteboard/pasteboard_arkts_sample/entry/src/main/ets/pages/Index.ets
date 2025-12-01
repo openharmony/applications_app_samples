@@ -18,7 +18,7 @@ import { TestJs } from './PasteboardModel';
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const permissions: Permissions[] = ['ohos.permission.READ_PASTEBOARD'];
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -72,10 +72,10 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
   return true;
 }
 
-// [StartExclude pasteboard_permission]
 @Entry
 @Component
 struct Index {
+  // [StartExclude pasteboard_permission]
   @State data: string = '';
   @State text: string = '';
   controller: RichEditorController = new RichEditorController();
@@ -87,10 +87,12 @@ struct Index {
     this.controller.addTextSpan(content);
     this.scroller.scrollEdge(Edge.End);
   }
+  // [EndExclude pasteboard_permission]
 
   build() {
     Row() {
       Column() {
+        // [StartExclude pasteboard_permission]
         Button('复制')
           .fontSize(20)
           .fontWeight(FontWeight.Normal)
@@ -106,7 +108,9 @@ struct Index {
           .onChange((value) => {
             this.data = value;
           })
+        // [EndExclude pasteboard_permission]
         Button('粘贴')
+          // [StartExclude pasteboard_permission]
           .fontSize(20)
           .fontWeight(FontWeight.Normal)
           .type(ButtonType.Capsule)
@@ -114,8 +118,8 @@ struct Index {
           .width('210')
           .height('30')
           .backgroundColor('#f32dc400')
+          // [EndExclude pasteboard_permission]
           .onClick(() => {
-            // [EndExclude pasteboard_permission]
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
               hilog.info(0xFF00, '[Sample_pasteboard]', 'No neded to bring up the permission pop-up window');
@@ -161,13 +165,19 @@ struct Index {
             }).catch((err: BusinessError) => {
               hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to request permissions from user. ');
             })
-            // [End pasteboard_permission]
           })
+        // [StartExclude pasteboard_permission]
         Text(this.text) {
         }.baselineOffset(5)
+        // [EndExclude pasteboard_permission]
       }
+      // [StartExclude pasteboard_permission]
       .width('100%')
+      // [EndExclude pasteboard_permission]
     }
+    // [StartExclude pasteboard_permission]
     .height('100%')
+    // [EndExclude pasteboard_permission]
   }
 }
+// [End pasteboard_permission]

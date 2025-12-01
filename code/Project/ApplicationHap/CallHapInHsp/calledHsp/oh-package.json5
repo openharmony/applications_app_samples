@@ -22,6 +22,6 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
-    "inhar": "file:../inHar/build/default/outputs/default/inHar.har"
+    "inhar": "file:../inHar"
   }
 }

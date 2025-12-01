@@ -29,7 +29,7 @@ class ArticleChangeSource {
 @Entry
 @Component
 struct ArticleListViewChangeSource {
-  @State isListReachEnd: boolean = false;
+  isListReachEnd: boolean = false;
   @State articleList: Array<ArticleChangeSource> = [
     new ArticleChangeSource('001', 'Article 1', 'Abstract'),
     new ArticleChangeSource('002', 'Article 2', 'Abstract'),

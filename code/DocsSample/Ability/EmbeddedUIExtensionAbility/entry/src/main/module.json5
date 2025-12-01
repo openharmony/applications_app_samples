@@ -21,7 +21,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "2in1",
+      "default",
       "tablet"
     ],
     "deliveryWithInstall": true,
@@ -62,7 +62,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       },
       // [EndExclude embeddedModule_start]
       {

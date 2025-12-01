@@ -14,7 +14,12 @@
  */
 
 // [Start toast_showDefaultAndTop]
-import {promptAction} from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
 
 @Entry
 @Component
@@ -26,40 +31,48 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
-          // 'app.string.DefaultAndTopToast_defaultToast'资源文件中的value值为'DEFAULT类型Toast'
-          Text($r('app.string.DefaultAndTopToast_defaultToast'))
+          Text('Toast of the DEFAULT type')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
         .height('100')
         .width('100%')
         .onClick(() => {
-          this.getUIContext().getPromptAction().showToast({
-            // 'app.string.DefaultAndTopToast_defaultToastMessage'资源文件中的value值为'ok，我是DEFAULT toast'
-            message: $r('app.string.DefaultAndTopToast_defaultToastMessage'),
-            duration: 2000,
-            showMode: promptAction.ToastShowMode.DEFAULT,
-            bottom: 80
-          });
+          try {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'ok, I am DEFAULT toast',
+              duration: 2000,
+              showMode: promptAction.ToastShowMode.DEFAULT,
+              bottom: 80
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            hilog.error(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
+          }
         })
 
         Blank().height(200);
         Button() {
-          // 'app.string.DefaultAndTopToast_topToast'资源文件中的value值为'TOPMOST类型Toast'
-          Text($r('app.string.DefaultAndTopToast_topToast'))
+          Text('Toast of the TOPMOST type')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
         .height('100')
         .width('100%')
         .onClick(() => {
-          this.getUIContext().getPromptAction().showToast({
-            // 'app.string.DefaultAndTopToast_topToastMessage'资源文件中的value值为'ok，我是TOP_MOST toast'
-            message: $r('app.string.DefaultAndTopToast_topToastMessage'),
-            duration: 2000,
-            showMode: promptAction.ToastShowMode.TOP_MOST,
-            bottom: 85
-          });
+          try {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'ok, I am TOP_MOST toast',
+              duration: 2000,
+              showMode: promptAction.ToastShowMode.TOP_MOST,
+              bottom: 85
+            });
+          }  catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            hilog.error(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
+          }
         })
       }
       // [StartExclude toast_showDefaultAndTop]

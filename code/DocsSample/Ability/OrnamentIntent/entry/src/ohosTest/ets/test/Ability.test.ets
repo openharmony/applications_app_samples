@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
-import { ArtistClassDef } from '../../../main/ets/insightintents/ArtistInformationImpl';
+import { ArtistClassDef } from '../../../main/ets/insightintents/ArtistClassDef';
 import PlayMusicImpl from '../../../main/ets/insightintents/PlayMusicImpl';
 import ViewLogisticsImpl from '../../../main/ets/insightintents/ViewLogisticsImpl';
 import { hilog } from '@kit.PerformanceAnalysisKit';

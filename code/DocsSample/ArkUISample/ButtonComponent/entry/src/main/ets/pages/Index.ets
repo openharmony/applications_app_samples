@@ -43,12 +43,13 @@ let demandList: listItem[] = [
     name: "ButtonShadow",
     router: "pages/ButtonShadow",
   },
-]
+];
 
 @Entry
 @Component
 struct Index {
-  @State bgColor: ResourceColor = "#39b5fa";
+  @State bgColor: ResourceColor = '#39b5fa';
+  
   build() {
     Column() {
       Text($r('app.string.ListShow'))
@@ -76,7 +77,7 @@ struct Index {
               .borderWidth(1)
               .onClick(() => {
                 if (!!listitem.router) {
-                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
                 }
               })
             }

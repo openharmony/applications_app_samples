@@ -15,10 +15,13 @@
 
 // [Start Main_inheritFreezeRouterPage1]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const BOOK_INITIAL_NAME = '100';
 
 @ObservedV2
 export class Book {
-  @Trace public name: string = '100';
+  @Trace public name: string = BOOK_INITIAL_NAME;
   constructor(name: string) {
     this.name = name;
   }
@@ -35,7 +38,7 @@ class TextNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
   public textNode: BuilderNode<[Book]> | null = null;
   public index: number = 0;
-  public name: string = '100';
+  public name: string = BOOK_INITIAL_NAME;
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
@@ -67,7 +70,7 @@ struct BuildNodeChild {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -83,7 +86,7 @@ struct BuildNodeChild {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/inheritFreezeRouterPage2' });
           setTimeout(() => {
             this.bookTest = new Book(`Jane Austen's Pride and Prejudice`);
-          }, 1000)
+          }, 1000);
         })
     }
   }

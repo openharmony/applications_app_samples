@@ -27,8 +27,8 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void
-  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, animated?: boolean): void;
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void;
   pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
     console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
     if (typeof secArg === 'boolean') {
@@ -39,8 +39,8 @@ class DerivedNavPathStack extends NavPathStack {
   }
 
   // overwrite and overload function of NavPathStack
-  pop(animated?: boolean | undefined): NavPathInfo | undefined
-  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
+  pop(animated?: boolean | undefined): NavPathInfo | undefined;
+  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined;
   pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
     console.log('[derive-test] reached DerivedNavPathStack\'s pop');
     return super.pop(result, animated);

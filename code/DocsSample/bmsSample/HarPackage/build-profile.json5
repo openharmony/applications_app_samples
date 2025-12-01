@@ -20,9 +20,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "5.1.1(19)",
-        "compatibleSdkVersion": "5.1.1(19)",
-        "runtimeOS": "HarmonyOS",
+        "targetSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "compileSdkVersion": 20,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "externalNativeOptions": {
             "abiFilters": [

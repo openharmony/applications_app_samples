@@ -4,8 +4,8 @@
 
 此Sample为开发指南中**服务卡片开发指导（Stage模型）**章节中**开发卡片页面**一小节示例代码的完整工程。
 
-[独立卡片页面配置](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-configuration.md)
-[卡片使用动效能力](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
+[配置ArkTS卡片的配置文件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-configuration.md)
+[ArkTS卡片为组件添加动效](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
 
 ### 效果预览
 | 动效卡片                                                                          |
@@ -142,7 +142,7 @@
 ```shell
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Form/Formstandalone/ > .git/info/sparse-checkout
+echo code/DocsSample/Form/FormstandaloneDemo/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

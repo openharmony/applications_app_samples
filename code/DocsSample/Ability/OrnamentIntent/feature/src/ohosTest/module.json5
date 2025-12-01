@@ -17,7 +17,9 @@
   "module": {
     "name": "feature_test",
     "type": "feature",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "default"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false
   }

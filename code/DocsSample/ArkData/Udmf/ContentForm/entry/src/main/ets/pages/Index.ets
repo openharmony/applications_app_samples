@@ -16,7 +16,7 @@
 // [Start components_based_on_uniform_data_structure]
 // 1. 导入需要的模块
 import { ContentFormCard, FormType, uniformDataStruct } from '@kit.ArkData';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component

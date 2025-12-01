@@ -215,13 +215,134 @@ export default function localBuilderTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('local_builder')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 400, 200, 20);
-      await driver.delayMs(1000);
       const text1 =
         await driver.findComponent(ON.text(await getResourceString('v2_local_builder_update')));
       await text1.click();
       await driver.delayMs(1000);
       const text2 = await driver.findComponent(ON.text('change info1&info2'));
+      await text2.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : LocalBuilder_ComponentBuilderModify
+     * @tc.name       : LocalBuilder_ComponentBuilderModify
+     * @tc.desc       : LocalBuilder
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('LocalBuilder_ComponentBuilderModify', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('local_builder')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('component_builder_modify')));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : LocalBuilder_BuilderMakeBinding
+     * @tc.name       : LocalBuilder_BuilderMakeBinding
+     * @tc.desc       : LocalBuilder
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('LocalBuilder_BuilderMakeBinding', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('local_builder')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('builder_make_binding')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 = await driver.findComponent(ON.text('Click me'));
+      await text2.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : LocalBuilder_ProblemUINotRefreshOpposite
+     * @tc.name       : LocalBuilder_ProblemUINotRefreshOpposite
+     * @tc.desc       : LocalBuilder
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('LocalBuilder_ProblemUINotRefreshOpposite', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('local_builder')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('problem_ui_not_refresh_opposite')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 = await driver.findComponent(ON.text('add child size'));
+      await text2.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : LocalBuilder_ProblemUINotRefreshPositive
+     * @tc.name       : LocalBuilder_ProblemUINotRefreshPositive
+     * @tc.desc       : LocalBuilder
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('LocalBuilder_ProblemUINotRefreshPositive', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('local_builder')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('problem_ui_not_refresh_positive')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 = await driver.findComponent(ON.text('add child size'));
+      await text2.click();
+      await driver.delayMs(1000);
       await text2.click();
       await driver.delayMs(1000);
       await driver.pressBack();

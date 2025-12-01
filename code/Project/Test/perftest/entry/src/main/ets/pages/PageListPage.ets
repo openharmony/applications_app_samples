@@ -17,8 +17,9 @@
 @Entry
 @Component
 struct ListPage {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   build() {
     Row() {
       Column() {
@@ -45,4 +46,5 @@ struct ListPage {
     .height('100%')
   }
 }
+
 // [End scroll_sample]

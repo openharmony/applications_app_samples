@@ -20,7 +20,7 @@ export class AppColors implements CustomColors {
   // 自定义主题色
   public brand: ResourceColor = '#FF75D9';
   // 使用$r，让一级警示色在深色和浅色模式下，设置为不同的颜色
-  public warning: ResourceColor = $r('app.color.start_window_background');
+  public warning: ResourceColor = $r('sys.color.ohos_id_color_warning');
 }
 
 export class AppTheme implements CustomTheme {

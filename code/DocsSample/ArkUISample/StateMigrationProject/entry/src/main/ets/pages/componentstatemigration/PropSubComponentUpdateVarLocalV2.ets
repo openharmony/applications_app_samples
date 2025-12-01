@@ -16,6 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
+const PARENT_INITIAL_LOCAL_VALUE = 10;
 
 @ComponentV2
 struct Child {
@@ -44,7 +45,7 @@ struct Child {
 @Entry
 @ComponentV2
 struct Parent {
-  @Local value: number = 10;
+  @Local value: number = PARENT_INITIAL_LOCAL_VALUE;
 
   build() {
     Column() {

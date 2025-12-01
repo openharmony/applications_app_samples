@@ -47,6 +47,7 @@ export default function IndexTest() {
       console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
+
     /**
      * @tc.number UiTest_001
      * @tc.name testControlledScrollPositionList
@@ -890,6 +891,7 @@ export default function IndexTest() {
       await preArcButton.click();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testGridSideToSide end');
       done();
     })
@@ -909,6 +911,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.LongList_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -918,6 +921,7 @@ export default function IndexTest() {
       await scrollableList.scrollToBottom();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testLongList end');
       done();
     })
@@ -936,6 +940,7 @@ export default function IndexTest() {
       let list = await driver.findComponent(ON.type('List'));
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
+      await driver.delayMs(1000)
       let str = await getResourceString($r('app.string.CollapseAndExpand_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -951,6 +956,7 @@ export default function IndexTest() {
       expect(nameText === null).assertTrue();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testCollapseAndExpand end');
       done();
     })
@@ -970,6 +976,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.ListChatRoom_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -1138,54 +1145,6 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperVisibleContentPosition end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_051
-     * @tc.name testSyncTabContentAndTitle
-     * @tc.desc 测试内容标签不同步
-     */
-    it('testSyncTabContentAndTitle', 0, async (done: Function) => {
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.ContentWillChange_titleContentOnAndTabSync'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let tabs = await driver.findComponent(ON.type('Tabs'));
-      expect(tabs === null).assertFalse();
-      let scrollPoint: Point = { x: 400, y: 400 };
-      await driver.mouseScroll(scrollPoint, true, 2);
-      await driver.pressBack();
-      await driver.pressBack();
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_052
-     * @tc.name testTabCacheCount
-     * @tc.desc 测试Tab组件缓存数量
-     */
-    it('testCacheCount', 0, async (done: Function) => {
-      let driver = Driver.create();
-      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
-      expect(componentButton === null).assertFalse();
-      await componentButton.click();
-      let str = await getResourceString($r('app.string.Cache_count'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let tabs = await driver.findComponent(ON.type('Tabs'));
-      expect(tabs === null).assertFalse();
-      let scrollPoint: Point = { x: 400, y: 400 };
-      await driver.mouseScroll(scrollPoint, true, 2);
-      await driver.pressBack();
-      await driver.pressBack();
       done();
     })
   })

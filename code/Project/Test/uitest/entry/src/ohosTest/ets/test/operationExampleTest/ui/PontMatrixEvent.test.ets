@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { beforeAll, describe, expect, it, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, PointerMatrix } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -24,8 +25,8 @@ export default function PontMatrixEventTest() {
   describe('PontMatrixEventTest', () => {
     beforeAll(async () => {
       let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'PointMatrixAbility'
+        bundleName: bundleName,
+        abilityName: 'PointMatrixAbility'
       };
       await delegator.startAbility(want);
     })
@@ -41,33 +42,33 @@ export default function PontMatrixEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let image1 = await driver.findComponent(ON.id('pinch_ima'));
       let bounds1 = await image1.getBounds();
-      let pointer = PointerMatrix.create(2,11);
+      let pointer = PointerMatrix.create(2, 11);
       await driver.delayMs(300);
-      pointer.setPoint(0,0,{x:245,y:480});
-      pointer.setPoint(0,1,{x:250,y:480});
-      pointer.setPoint(0,2,{x:255,y:480});
-      pointer.setPoint(0,3,{x:260,y:480});
-      pointer.setPoint(0,4,{x:265,y:480});
-      pointer.setPoint(0,5,{x:270,y:480});
-      pointer.setPoint(0,6,{x:275,y:480});
-      pointer.setPoint(0,7,{x:280,y:480});
-      pointer.setPoint(0,8,{x:285,y:480});
-      pointer.setPoint(0,9,{x:290,y:480});
-      pointer.setPoint(0,10,{x:295,y:480});
-      pointer.setPoint(1,0,{x:505,y:480});
-      pointer.setPoint(1,1,{x:500,y:480});
-      pointer.setPoint(1,2,{x:495,y:480});
-      pointer.setPoint(1,3,{x:490,y:480});
-      pointer.setPoint(1,4,{x:485,y:480});
-      pointer.setPoint(1,5,{x:480,y:480});
-      pointer.setPoint(1,6,{x:475,y:480});
-      pointer.setPoint(1,7,{x:470,y:480});
-      pointer.setPoint(1,8,{x:465,y:480});
-      pointer.setPoint(1,9,{x:460,y:480});
-      pointer.setPoint(1,10,{x:455,y:480});
+      pointer.setPoint(0, 0, { x: 245, y: 480 });
+      pointer.setPoint(0, 1, { x: 250, y: 480 });
+      pointer.setPoint(0, 2, { x: 255, y: 480 });
+      pointer.setPoint(0, 3, { x: 260, y: 480 });
+      pointer.setPoint(0, 4, { x: 265, y: 480 });
+      pointer.setPoint(0, 5, { x: 270, y: 480 });
+      pointer.setPoint(0, 6, { x: 275, y: 480 });
+      pointer.setPoint(0, 7, { x: 280, y: 480 });
+      pointer.setPoint(0, 8, { x: 285, y: 480 });
+      pointer.setPoint(0, 9, { x: 290, y: 480 });
+      pointer.setPoint(0, 10, { x: 295, y: 480 });
+      pointer.setPoint(1, 0, { x: 505, y: 480 });
+      pointer.setPoint(1, 1, { x: 500, y: 480 });
+      pointer.setPoint(1, 2, { x: 495, y: 480 });
+      pointer.setPoint(1, 3, { x: 490, y: 480 });
+      pointer.setPoint(1, 4, { x: 485, y: 480 });
+      pointer.setPoint(1, 5, { x: 480, y: 480 });
+      pointer.setPoint(1, 6, { x: 475, y: 480 });
+      pointer.setPoint(1, 7, { x: 470, y: 480 });
+      pointer.setPoint(1, 8, { x: 465, y: 480 });
+      pointer.setPoint(1, 9, { x: 460, y: 480 });
+      pointer.setPoint(1, 10, { x: 455, y: 480 });
       await driver.injectMultiPointerAction(pointer, 600);
       let image2 = await driver.findComponent(ON.id('pinch_ima'));
-      let bounds2= await image2.getBounds();
+      let bounds2 = await image2.getBounds();
       expect(bounds2 !== bounds1).assertTrue();
       await driver.pressBack();
       done();

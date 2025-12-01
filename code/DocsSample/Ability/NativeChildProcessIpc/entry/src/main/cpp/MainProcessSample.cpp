@@ -16,7 +16,7 @@
 // [Start main_processIpc_launch_native_child]
 // [Start main_handle_child_start_callback]
 #include <IPCKit/ipc_kit.h>
-#include "AbilityKit/native_child_process.h"
+#include <AbilityKit/native_child_process.h>
 // [StartExclude main_handle_child_start_callback]
 // [StartExclude main_processIpc_launch_native_child]
 #include "IpcProxy.h"
@@ -26,7 +26,7 @@
 #include <thread>
 #include <mutex>
 #include <deque>
-#include "napi/native_api.h"
+#include <napi/native_api.h>
 #include "ChildProcess.h"
 #include "loghelper.h"
 

@@ -1,8 +1,9 @@
-# NativeDragDrop
+# ArkUI拖拽事件指南
 
 ### 介绍
 
-本示例基于[drag_and_drop.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-drag-and-drop-h.md)中的各接口进行构建，以帮助开发者更好地理解拖拽框架C-API的用法。
+1. [拖拽事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-drag-event.md)。
+2. 本示例基于[drag_and_drop.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-drag-and-drop-h.md)中的各接口进行构建，以帮助开发者更好地理解拖拽框架C-API的用法。
 
 ### 效果预览
 

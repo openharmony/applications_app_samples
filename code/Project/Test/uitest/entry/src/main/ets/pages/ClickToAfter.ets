@@ -17,28 +17,30 @@
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World';
-    @State text: string = '';
-    build() {
+  @State message: string = 'Hello World';
+  @State text: string = '';
+
+  build() {
     Row() {
-        Column() {
+      Column() {
         Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        Text("Next")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)          
-            .onClick((event?: ClickEvent) => {
-                if(event){
-                    this.text = "after click";
-                }
-            })
-        .width('100%')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text('Next')
+          .fontSize(50)
+          .margin({ top: 20 })
+          .fontWeight(FontWeight.Bold)
+          .onClick((event?: ClickEvent) => {
+            if (event) {
+              this.text = 'after click';
+            }
+          })
+          .width('100%')
         Text(this.text).margin(15)
-        }
+      }
     }
     .height('100%')
-    }
+  }
 }
+
 // [End clickToAfter]

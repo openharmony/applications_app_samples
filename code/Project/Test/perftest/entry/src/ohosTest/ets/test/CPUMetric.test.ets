@@ -13,35 +13,36 @@
  * limitations under the License.
  */
 // [Start CPUMetric_sample]
-import { describe, it, expect, Level } from '@ohos/hypium';
-import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult, abilityDelegatorRegistry } from '@kit.TestKit';
-import { Utils } from '../../../main/ets/utils/Utils'
+import { describe, expect, it, Level } from '@ohos/hypium';
+import { abilityDelegatorRegistry, PerfMeasureResult, PerfMetric, PerfTest, PerfTestStrategy } from '@kit.TestKit';
+import { Utils } from '../../../main/ets/utils/Utils';
 
 export default function PerfTestTest() {
   describe('PerfTestTest2', () => {
     it('testExample1', 0, async (done: Function) => {
       // [Start metricsDefine_sample]
-      let metrics: Array<PerfMetric> = [ PerfMetric.DURATION, PerfMetric.CPU_USAGE ]; // 定义待测指标
+      let metrics: Array<PerfMetric> = [PerfMetric.DURATION, PerfMetric.CPU_USAGE]; // 定义待测指标
       // [End metricsDefine_sample]
       // [Start callbackDefine_sample]
-      let actionCode: Callback<Callback<boolean>> = async (finish: Callback<boolean>) => {  // 定义被测代码段
+      let actionCode: Callback<Callback<boolean>> = async (finish: Callback<boolean>) => { // 定义被测代码段
         Utils.CalculateTest();
         finish(true);
       };
       // [End callbackDefine_sample]
       // [Start resetCodeDefine_sample]
-      let resetCode: Callback<Callback<boolean>> = async (finish: Callback<boolean>) => {  // 定义环境复位代码段
+      let resetCode: Callback<Callback<boolean>> = async (finish: Callback<boolean>) => { // 定义环境复位代码段
         Utils.Reset();
         finish(true);
       };
       // [End resetCodeDefine_sample]
       // [Start strategyDefine_sample]
-      let perfTestStrategy: PerfTestStrategy = {  // 定义测试策略
+      let perfTestStrategy: PerfTestStrategy = {
+        // 定义测试策略
         metrics: metrics,
         actionCode: actionCode,
         resetCode: resetCode,
-        bundleName: "com.samples.test.perftest", // 定义被测应用包名，请开发者替换为实际包名
-        iterations: 10,  // 定义测试迭代次数
+        bundleName: 'com.samples.test.perftest', // 定义被测应用包名，请开发者替换为实际包名
+        iterations: 10, // 定义测试迭代次数
         timeout: 20000  // 定义代码段单次执行超时时间
       };
       // [End strategyDefine_sample]
@@ -60,10 +61,11 @@ export default function PerfTestTest() {
         expect(res1.average).assertLessOrEqual(1000); // 断言性能测试结果
         expect(res2.average).assertLessOrEqual(30); // 断言性能测试结果
       } catch (error) {
-        expect(false).assertTrue()
+        expect(false).assertTrue();
       }
-      done()
+      done();
     })
   })
 }
+
 // [End CPUMetric_sample]

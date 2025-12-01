@@ -8,7 +8,7 @@
 
 OEM厂商可以采用插件方式定制化域账号管理能力，系统提供了域账号插件注册和注销能能力。
 
-实现对以下指南文件中[管理域账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-domain-account.md)  [域账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/auth-domain-account.md)  [管理域账号插件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-domain-plugin.md) 示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
+实现对以下指南文件中[管理域账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-domain-account-sys.md)  [域账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/auth-domain-account-sys.md)  [管理域账号插件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-domain-plugin-sys.md) 示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -61,11 +61,11 @@ entry/src/
 
 ### 相关权限
 
-[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagelocalaccounts)
+[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagelocalaccounts)
 
-[ohos.permission.GET_DOMAIN_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissiongetdomainaccounts)
+[ohos.permission.GET_DOMAIN_ACCOUNTS](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissiongetdomainaccounts)
 
-[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
+[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
 
 ### 依赖
 
@@ -87,6 +87,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Account/DomainAccount > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

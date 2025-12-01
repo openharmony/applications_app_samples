@@ -60,9 +60,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行, 支持设备：华为手机、平板。
 
-2.本示例为Stage模型，支持API Version 17及以上版本SDK。
+2.本示例为Stage模型，支持API Version 20及以上版本SDK。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release及以上版本才可编译运行。
 
 ### 下载
 

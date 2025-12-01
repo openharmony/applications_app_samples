@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct NavDestinationSystemTransition {
-  @Provide stack: NavPathStack = new NavPathStack()
+  @Provide stack: NavPathStack = new NavPathStack();
   @Provide homePageTransitionType: NavigationSystemTransitionType = NavigationSystemTransitionType.DEFAULT;
 
   @Builder

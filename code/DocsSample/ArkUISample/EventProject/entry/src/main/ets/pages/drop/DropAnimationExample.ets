@@ -22,7 +22,7 @@ export const dropAnimationRoutePrefix: string = 'dropAnimation';
 //[EndExclude dropAnimationExample_start]
 //[Start drop_hilog_const]
 const DOMAIN = 0x0000;
-const TAG = 'DropAnimationExampleTag'
+const TAG = 'DropAnimationExampleTag';
 //[End drop_hilog_const]
 
 @Entry
@@ -42,8 +42,8 @@ export struct DropAnimationExample {
         this.imageWidth = 200;
         this.imageHeight = 200;
         this.imgState = Visibility.None;
-      })
-    }
+      });
+    };
 
   //[End drop_customDropAnimation_start]
   build() {
@@ -101,7 +101,7 @@ export struct DropAnimationExample {
             this.imageHeight = Number(rect.height);
             this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
             dragEvent.useCustomDropAnimation = true;
-            dragEvent.executeDropAnimation(this.customDropAnimation)
+            dragEvent.executeDropAnimation(this.customDropAnimation);
           })
           //[End drop_column_start]
           .width(this.imageWidth)

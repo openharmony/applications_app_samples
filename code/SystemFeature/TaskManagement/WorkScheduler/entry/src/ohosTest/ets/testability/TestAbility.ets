@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,22 +13,25 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI'
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import { Logger } from '../utils/Logger';
+import { WorkSchedulerSystem } from '../../../main/ets/feature/WorkSchedulerSystem'
+
+const VERSION: string = '1.0'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info('TestAbility onCreate');
     Logger.info('want param:' + JSON.stringify(want));
     Logger.info('launchParam:' + JSON.stringify(launchParam));
-    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+    abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: abilityDelegatorRegistry.AbilityDelegatorArgs;
+    abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
     Logger.info('start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
@@ -39,6 +42,9 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info('TestAbility onWindowStageCreate');
+    WorkSchedulerSystem.handleNotification()
+    let filePath = `${this.context.filesDir.split('/haps')[0]}/files`
+    WorkSchedulerSystem.startUpdateSample(VERSION, filePath)
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause: ' + JSON.stringify(err));

@@ -1,8 +1,19 @@
-# 拉起指定类型的应用概述
+# 拉起指定类型的应用指南
 
+## 介绍
 - 通过startAbilityByType接口拉起垂类面板：调用startAbilityByType接口拉起对应的垂域面板（目前支持拉起导航、金融、邮件、航班、快递类应用面板），该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。
 - 通过mailto方式跳转电子邮件应用：通过mailto电子邮件协议，可以创建指向电子邮件地址的超链接，方便用户通过网页或应用中的超链接直接跳转电子邮件应用。
 - 通过startAbility接口打开文件：开发者可以通过调用startAbility接口，由系统从已安装的应用中寻找符合要求的应用，打开特定类型的文件。
+
+### 示例文档
+- [拉起导航类应用（startAbilityByType）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-navigation-apps.md)
+- [拉起邮件类应用（startAbilityByType）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-email-apps.md)
+- [拉起邮件类应用（mailto方式）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-email-apps-by-mailto.md)
+- [拉起金融类应用（startAbilityByType））](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-finance-apps.md)
+- [拉起航班类应用（startAbilityByType）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-flight-apps.md)
+- [拉起快递类应用（startAbilityByType）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/start-express-apps.md)
+- [拉起图片编辑类应用（startAbilityByType）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/photoEditorExtensionAbility.md)
+- [拉起文件处理类应用（startAbility）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/file-processing-apps-startup.md)
 
 ### 通过startAbilityByType接口拉起垂类面板
 开发者可通过特定的业务类型如导航、金融、邮件等，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。

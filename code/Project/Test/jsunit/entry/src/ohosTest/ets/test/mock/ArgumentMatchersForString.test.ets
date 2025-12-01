@@ -14,7 +14,7 @@
 */
 
 // [Start argumentMatchersForString_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+import { ArgumentMatchers, describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -24,6 +24,7 @@ class ClassName {
     return '888888';
   }
 }
+
 export default function argumentMatchersTest() {
   describe('argumentMatchersForString_sample', () => {
     it('testMockfunc', 0, () => {
@@ -41,4 +42,5 @@ export default function argumentMatchersTest() {
     })
   })
 }
+
 // [End argumentMatchersForString_sample]

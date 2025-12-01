@@ -19,10 +19,9 @@ import { LengthMetrics} from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  //'app.string.StyledStringParagraphStyle_Text_1'资源文件中的value值为"段落标题\n正文第一段落开始0123456789正文第一段落结束。"
   @State str: string =
     this.getUIContext()
-      .getHostContext()?.resourceManager.getStringSync($r('app.string.StyledStringParagraphStyle_Text_1')) as string;
+      .getHostContext()?.resourceManager.getStringByNameSync('StyledStringParagraphStyle_Text_1') as string;
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   // 段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });

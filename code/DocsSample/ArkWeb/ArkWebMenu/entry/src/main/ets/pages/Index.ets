@@ -82,20 +82,20 @@ struct Index {
             })
         })
 
-      Button('scanQRCode')
+      Button('disableLongPress')
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({
-            url: 'pages/WebScanQRCode',
+            url: 'pages/WebDisableLongPress',
           })
             .catch((error: BusinessError) => {
               console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
-
-      Button('disableLongPress')
+      
+      Button('bindSelectionMenuText')
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({
-            url: 'pages/WebDisableLongPress',
+            url: 'pages/WebBindSelectionMenuText',
           })
             .catch((error: BusinessError) => {
               console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);

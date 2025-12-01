@@ -407,6 +407,10 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
         textNode->SetHeight(height);
         textNode->SetBackgroundColor(0xFFfffacd);
         textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+        // 在当前节点注册布局回调
+        textNode->SetLayoutCallBack(i);
+        // 在当前节点注册绘制送显回调
+        textNode->SetDrawCallBack(i);
         listItem->InsertChild(textNode, i);
         list->AddChild(listItem);
     }
@@ -592,9 +596,7 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
-// [EndExclude arkUICustomNodeCpp_start]
-// [EndExclude Interface_entrance_mounting_file]
-napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -623,6 +625,34 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
         //保持Native侧对象到管理类中，维护生命周期。
         NativeEntry::GetInstance()->SetRootNode(list);
         // [EndExclude arkUICustomNodeCpp_start]
+    return nullptr;
+}
+// [EndExclude arkUICustomNodeCpp_start]
+// [EndExclude Interface_entrance_mounting_file]
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    // 创建自定义容器和自定义绘制组件。
+    auto node = std::make_shared<ArkUICustomContainerNode>();
+    node->SetBackgroundColor(0xFFD5D5D5); // 浅灰色
+    auto customNode = std::make_shared<ArkUICustomNode>();
+    customNode->SetBackgroundColor(0xFF707070); // 深灰色
+    customNode->SetWidth(SIZE_150);
+    customNode->SetHeight(SIZE_150);
+    node->AddChild(customNode);
+
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetRootNode(node);
+    g_env = env;
     return nullptr;
 }
 

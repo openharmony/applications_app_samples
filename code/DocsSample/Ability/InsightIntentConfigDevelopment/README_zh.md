@@ -2,6 +2,8 @@
 
 ### 介绍
 
+本工程介绍了如何[使用配置文件开发意图](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/insight-intent-config-development.md)。
+
 从API version 11及以上版本，支持通过配置文件开发意图。主要包含两个环节：
 
 通过json配置文件定义意图，声明意图执行器的代码路径、绑定的Ability组件等意图信息。

@@ -14,18 +14,19 @@
 */
 
 // [Start order3_sample]
-import { describe, xit, it, Level } from '@ohos/hypium';
+import { describe, it, Level, xit } from '@ohos/hypium';
 
 export default function describeExampleTest() {
-  
-  describe('order3_sample', () =>{
-    xit('testExampleA',Level.LEVEL1, async (done: Function) => {
+
+  describe('order3_sample', () => {
+    xit('testExampleA', Level.LEVEL1, async (done: Function) => {
       done();
     })
 
-    it('testExampleB',Level.LEVEL1, async (done: Function) => {
+    it('testExampleB', Level.LEVEL1, async (done: Function) => {
       done();
     })
   })
 }
+
 // [End order3_sample]

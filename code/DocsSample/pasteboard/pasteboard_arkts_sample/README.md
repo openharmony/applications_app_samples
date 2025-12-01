@@ -4,7 +4,7 @@
 
  本示例通过使用[剪贴板指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/pasteboard)中ArkTS场景的开发示例，展示开发步骤在工程中，帮助开发者更好地理解剪贴板模块代码合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [使用剪贴板进行复制粘贴](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)。
+1. [使用剪贴板进行复制粘贴](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/use-pasteboard-to-copy-and-paste.md)。
 
 2. [使用剪贴板进行延迟复制粘贴](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)。
 

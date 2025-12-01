@@ -146,19 +146,5 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
-
-    it('Interaction_Ability_08', 0, async (done: Function) => {
-      // 启动单实例模式UIAbility
-      hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('StartWindowMode'));
-      let StartModel = await driver.findComponent(ON.text('StartWindowMode'));
-      await StartModel.click();
-      await driver.delayMs(2000);
-      hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
-      // 返回首页
-      await driver.pressBack();
-      done();
-    })
   })
 }

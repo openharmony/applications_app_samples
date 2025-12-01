@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 // [Start example1_start]
+const INITIAL_VALUE = 10;
+
 class Child {
-  public value: number = 10;
+  public value: number = INITIAL_VALUE;
 }
 
 @Component

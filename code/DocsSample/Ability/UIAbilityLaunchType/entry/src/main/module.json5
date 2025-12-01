@@ -26,7 +26,8 @@
     "mainElement": "EntryAbility",
     "srcEntry": "./ets/abilitystage/MyAbilityStage.ets",
     "deviceTypes": [
-      "phone"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

@@ -18,17 +18,17 @@
 
 #### 使用说明
 
-1. 通过Web消息端口在ArkTS和H5页面间建立数据通道，支持跨端拖拽数据传递和事件处理
+1. 通过Web消息端口在ArkTS和H5页面间建立数据通道，支持跨端拖拽数据传递和事件处理。
 
 ### 为什么H5设置的拖拽事件没有触发
 
 #### 介绍
 
-1. 检查相关CSS资源是否正常设置，因为有些网页UA做了判断，针对特定设备的UA才会进行CSS样式设置。可以考虑在Web组件设置自定义UA解决这种问题
+1. 检查相关CSS资源是否正常设置，因为有些网页UA做了判断，针对特定设备的UA才会进行CSS样式设置。可以考虑在Web组件设置自定义UA解决这种问题。
 
 #### 使用说明
 
-1. 通过setCustomUserAgent方法在Web组件初始化时设置自定义用户代理字符串，在默认UA基础上追加"android"标识，用于模拟Android设备访问网页或适配特定网页渲染
+1. 通过setCustomUserAgent方法在Web组件初始化时设置自定义用户代理字符串，在默认UA基础上追加"android"标识，用于模拟Android设备访问网页或适配特定网页渲染。
 
 ### 工程目录
 
@@ -77,6 +77,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebDragInteraction > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb 
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git 
 git pull origin master
 ```

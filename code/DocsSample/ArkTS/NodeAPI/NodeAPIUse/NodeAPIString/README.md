@@ -2,7 +2,7 @@
 
 ### 介绍
 
-使用Node-API关于string的六个接口，可以让Node-API模块和ArkTS字符串进行交互，本工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
+使用Node-API关于string的八个接口，可以让Node-API模块和ArkTS字符串进行交互，本工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
 - [使用Node-API进行string相关开发](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/napi/use-napi-about-string.md)
 

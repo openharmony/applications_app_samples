@@ -14,79 +14,157 @@
  */
 
 #include "napi/native_api.h"
+#include <sstream>
 
 // [Start vector_include]
 #include <hilog/log.h>
 #include <database/data/oh_data_values.h>
 #include <database/rdb/oh_cursor.h>
 #include <database/rdb/relational_store.h>
+#include <database/rdb/relational_store_error_code.h>
 // [End vector_include]
 
-void VectorQuery(OH_Rdb_Store *store_)
+template <typename... Args> void Log(Args... args)
 {
-    // [Start vector_OH_Rdb_ExecuteV2_query]
+    std::ostringstream oss;
+    std::initializer_list<int>{(oss << args << " ", 0)...};
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "vector", "%{public}s", oss.str().c_str());
+}
+
+void VectorQueryWithoutBingArgs(OH_Rdb_Store *store_)
+{
+    // [Start vector_OH_Rdb_ExecuteV2_queryWithoutBingArgs]
     // 不使用参数绑定查询数据
     OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, "select * from test where id = 1;", nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
+    // 一般不推荐使用getRowCount，性能的冗余。建议调试或者维测时再使用
     int rowCount = 0;
     cursor->getRowCount(cursor, &rowCount);
-    cursor->goToNextRow(cursor);
-    size_t count = 0;
-    // floatvector数组是第二列数据
-    OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
-    float test2[count];
-    size_t outLen;
-    OH_Cursor_GetFloatVector(cursor, 1, test2, count, &outLen);
+    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        size_t count = 0;
+        // floatvector数组是第二列数据，1表示列下标索引
+        OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
+        float test[count];
+        size_t outLen;
+        OH_Cursor_GetFloatVector(cursor, 1, test, count, &outLen);
+    }
     cursor->destroy(cursor);
-    
+    // [End vector_OH_Rdb_ExecuteV2_queryWithoutBingArgs]
+}
+
+void VectorQueryWithBingArgs(OH_Rdb_Store *store_)
+{
+    // [Start vector_OH_Rdb_ExecuteV2_queryWithBingArgs]
     // 使用参数绑定查询数据
     char querySql[] = "select * from test where id = ?;";
-    OH_Data_Values *values3 = OH_Values_Create();
-    OH_Values_PutInt(values3, 1);
-    cursor = OH_Rdb_ExecuteQueryV2(store_, querySql, values3);
+    OH_Data_Values *values = OH_Values_Create();
+    OH_Values_PutInt(values, 1);
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, querySql, values);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
-    OH_Values_Destroy(values3);
+    // 推荐计算count的方式
+    int rowCount = 0;
+    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        rowCount++;
+        size_t count = 0;
+        // floatvector数组是第二列数据，1表示列下标索引
+        OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
+        float test[count];
+        size_t outLen;
+        OH_Cursor_GetFloatVector(cursor, 1, test, count, &outLen);
+    }
+    OH_Values_Destroy(values);
     cursor->destroy(cursor);
-    
+    // [End vector_OH_Rdb_ExecuteV2_queryWithBingArgs]
+}
+
+void VectorSubquery(OH_Rdb_Store *store_)
+{
+    // [Start vector_OH_Rdb_ExecuteV2_subquery]
     // 子查询，创建第二张表
-    OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS test1(id text PRIMARY KEY);", nullptr, nullptr);
-    cursor = OH_Rdb_ExecuteQueryV2(store_, "select * from test where id in (select id from test1);", nullptr);
+    OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS example(id text PRIMARY KEY);", nullptr, nullptr);
+    char querySql[] = "select * from test where id in (select id from example);";
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, querySql, nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
+    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        size_t count = 0;
+        // floatvector数组是第二列数据，1表示列下标索引
+        OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
+        float test[count];
+        size_t outLen;
+        OH_Cursor_GetFloatVector(cursor, 1, test, count, &outLen);
+    }
     cursor->destroy(cursor);
-    
+    // [End vector_OH_Rdb_ExecuteV2_subquery]
+}
+
+void VectorAggregateQuery(OH_Rdb_Store *store_)
+{
+    // [Start vector_OH_Rdb_ExecuteV2_aggregateQuery]
     // 聚合查询
-    cursor = OH_Rdb_ExecuteQueryV2(store_,
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_,
         "select * from test where data1 <-> '[1.0, 1.0]' > 0 group by id having max(data1 <=> '[1.0, 1.0]');", nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
+    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        size_t count = 0;
+        // floatvector数组是第二列数据，1表示列下标索引
+        OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
+        float test[count];
+        size_t outLen;
+        OH_Cursor_GetFloatVector(cursor, 1, test, count, &outLen);
+    }
     cursor->destroy(cursor);
-    
+    // [End vector_OH_Rdb_ExecuteV2_aggregateQuery]
+}
+
+void VectorMultiTableQuery(OH_Rdb_Store *store_)
+{
+    // [Start vector_OH_Rdb_ExecuteV2_multiTableQuery]
     // 多表查询
-    cursor = OH_Rdb_ExecuteQueryV2(store_, "select id, data1 <-> '[1.5, 5.6]' as distance from test "
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, "select id, data1 <-> '[1.5, 5.6]' as distance from test "
         "union select id, data1 <-> '[1.5, 5.6]' as distance from test order by distance limit 5;", nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
+    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+        size_t count = 0;
+        // floatvector数组是第二列数据，1表示列下标索引
+        OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
+        float test[count];
+        size_t outLen;
+        OH_Cursor_GetFloatVector(cursor, 1, test, count, &outLen);
+    }
     cursor->destroy(cursor);
-    // [End vector_OH_Rdb_ExecuteV2_query]
+    // [End vector_OH_Rdb_ExecuteV2_multiTableQuery]
+}
+
+
+void VectorQuery(OH_Rdb_Store *store_)
+{
+    VectorQueryWithoutBingArgs(store_);
+    VectorQueryWithBingArgs(store_);
+    VectorSubquery(store_);
+    VectorAggregateQuery(store_);
+    VectorMultiTableQuery(store_);
 }
 
 void VectorCRUD(OH_Rdb_Store *store_)
 {
     // [Start vector_OH_Rdb_ExecuteV2_insert]
-    char createTableSql[] = "CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
+    char createTableSql[] =
+        "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 floatvector(2));";
     // 执行建表语句
     OH_Rdb_ExecuteByTrxId(store_, 0, createTableSql);
     
@@ -98,7 +176,7 @@ void VectorCRUD(OH_Rdb_Store *store_)
     float test[] = { 1.2, 2.3 };
     size_t len = sizeof(test) / sizeof(test[0]);
     OH_Values_PutFloatVector(values, test, len);
-    char insertSql[] = "INSERT INTO test (id, data1)   VALUES (?, ?);";
+    char insertSql[] = "INSERT INTO test (id, data1) VALUES (?, ?);";
     OH_Rdb_ExecuteV2(store_, insertSql, values, nullptr);
     OH_Values_Destroy(values);
     // [End vector_OH_Rdb_ExecuteV2_insert]
@@ -110,7 +188,8 @@ void VectorCRUD(OH_Rdb_Store *store_)
     // 使用参数绑定修改数据
     float test1[2] = { 5.5, 6.6 };
     OH_Data_Values *values1 = OH_Values_Create();
-    OH_Values_PutFloatVector(values1, test1, 2); // The size of Float is 2
+    size_t len1 = sizeof(test1) / sizeof(test1[0]);
+    OH_Values_PutFloatVector(values1, test1, len1);
     OH_Values_PutInt(values1, 1);
     OH_Rdb_ExecuteV2(store_, "update test set data1 = ? where id = ?", values1, nullptr);
     OH_Values_Destroy(values1);
@@ -136,6 +215,8 @@ void VectorStoreTest()
     OH_Rdb_GetSupportedDbType(&numType);
     // [End vector_OH_Rdb_GetSupportedDbType]
     
+    Log("[vectorLog] isSupported ", numType);
+    
     // [Start vector_OH_Rdb_Store]
     // 创建OH_Rdb_Config对象
     OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
@@ -159,29 +240,29 @@ void VectorStoreTest()
     int errCode = 0;
     OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
     // [End vector_OH_Rdb_Store]
-
+    Log("[vectorLog] createOrOpen success", errCode);
     // 执行向量数据库的增删改查
     VectorCRUD(store_);
-
+    Log("[vectorLog] success crud ");
     // [Start vector_OH_Rdb_ExecuteV2_create_view]
     OH_Rdb_ExecuteV2(store_, "CREATE VIEW v1 as select * from test where id > 0;", nullptr, nullptr);
-    OH_Cursor *cursor1 = OH_Rdb_ExecuteQueryV2(store_, "select * from v1;", nullptr);
-    if (cursor1 == NULL) {
+    OH_Cursor *cursor = OH_Rdb_ExecuteQueryV2(store_, "select * from v1;", nullptr);
+    if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
-    cursor1->destroy(cursor1);
+    cursor->destroy(cursor);
     // [End vector_OH_Rdb_ExecuteV2_create_view]
 
     // [Start vector_OH_Rdb_ExecuteV2_create_index]
     // 基础用法，创建的索引名称为diskann_l2_idx，索引列为repr，类型为gsdiskann，距离度量类型为L2
     OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(data1 L2);", nullptr, nullptr);
-    
+
     // 删除表test中的diskann_l2_idx索引
     OH_Rdb_ExecuteV2(store_, "DROP INDEX test.diskann_l2_idx;", nullptr, nullptr);
-    
+
     // 扩展语法，设置QUEUE_SIZE为20，OUT_DEGREE为50
-    OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH "
+    OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(data1 L2) WITH "
         "(queue_size=20, out_degree=50);", nullptr, nullptr);
     // [End vector_OH_Rdb_ExecuteV2_create_index]
 

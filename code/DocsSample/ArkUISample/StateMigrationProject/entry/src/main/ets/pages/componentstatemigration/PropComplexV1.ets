@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent11_start]
+const APPLE_INITIAL_COUNT = 5;
+const ORANGE_INITIAL_COUNT = 10;
+
 class Fruit {
-  public apple: number = 5;
-  public orange: number = 10;
+  public apple: number = APPLE_INITIAL_COUNT;
+  public orange: number = ORANGE_INITIAL_COUNT;
 }
 
 @Component

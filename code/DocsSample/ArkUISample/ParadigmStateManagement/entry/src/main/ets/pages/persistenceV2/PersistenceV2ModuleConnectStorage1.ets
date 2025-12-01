@@ -18,6 +18,7 @@
 import { PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 const DOMAIN = 0x0000;
 
@@ -43,10 +44,10 @@ export class Sample {
 @ComponentV2
 struct Page1 {
   @Local refresh: number = 0;
-  // 使用key:global1连接，传入加密等级为EL1
+  // 使用key:globalConnect1连接，传入加密等级为EL1
   @Local p1: Sample =
-    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample() })!;
-  // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
+    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample(), areaMode: contextConstant.AreaMode.EL1 })!;
+  // 使用key:connect2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
   @Local p2: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -73,16 +74,16 @@ struct Page1 {
             deviceId: '', // deviceId为空代表本设备
             bundleName: 'com.samples.paradigmstatemanagement', // 在app.json5中查看
             moduleName: 'demo', // 在需要跳转的module的module.json5中查看，非必选参数
-            abilityName: 'NewModuleAbility', // 跳转启动的ability，在跳转模块对应的ability.ets文件中查看
+            abilityName: 'NewModuleAbility', // 跳转启动的ability，在需要跳转的module的module.json5中查看
             uri: 'src/main/ets/pages/Index'
-          }
+          };
           // context为调用方UIAbility的UIAbilityContext
           this.context.startAbility(want).then(() => {
             hilog.info(DOMAIN, 'testTag', '%{public}s', 'start ability success');
           }).catch((err: Error) => {
             hilog.error(DOMAIN, 'testTag', '%{public}s',
               `start ability failed. code is ${err.name}, message is ${err.message}`);
-          })
+          });
         })
     }
     .width('100%')

@@ -2,6 +2,7 @@
 
 ### 介绍
 
+* 本工程涵盖了[拉起指定应用概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-startup-overview.md)、[（可选）使用canOpenLink判断应用是否可访问](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/canopenlink.md)、[使用Deep Linking实现应用间跳转](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/deep-linking-startup.md)、[显式Want跳转切换应用链接跳转适配指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/uiability-startup-adjust.md)和[应用链接说明](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/app-uri-config.md)。
 * 应用间跳转概述：
    应用跳转是指从一个应用跳转至另外一个应用，传递相应的数据、执行特定的功能。通过应用跳转可以满足用户更为真实丰富的场景诉求、提升交互体验的便捷性和流畅性。
 * 应用场景：

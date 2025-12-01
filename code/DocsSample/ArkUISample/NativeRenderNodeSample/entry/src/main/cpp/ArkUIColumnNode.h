@@ -19,15 +19,21 @@
 
 
 #include "ArkUINode.h"
+#include "ArkUIRenderNode.h"
 
 namespace NativeModule {
     class ArkUIColumnNode : public ArkUINode {
     public:
-        // 使用自定义组件类型ARKUI_NODE_CUSTOM创建组件。
         ArkUIColumnNode()
             : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_COLUMN)) {}
 
         ~ArkUIColumnNode() override {}
+
+        int32_t AddRenderNode(const std::shared_ptr<ArkUIRenderNode> &child)
+        {
+            auto result = OH_ArkUI_RenderNodeUtils_AddRenderNode(handle_, child->GetHandle());
+            return result;
+        }
     };
 } // namespace NativeModule
 #endif // MYAPPLICATION_ArkUIColumnNode_H

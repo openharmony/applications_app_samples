@@ -113,18 +113,15 @@ struct DisplayPage {
             Text('Warning')
               .width('100%')
               .margin({ top: '5vp', left: '14fp' })
-            Button() {
-              Text('Text')
-                .fontSize(30)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .role(ButtonRole.ERROR)
-            .width('40%')
+            Button('Text')
+              .type(ButtonType.Capsule)
+              .role(ButtonRole.ERROR)
+              .width('40%')
           }
           .width('100%')
           .height('70vp')
           .borderRadius('10vp')
+          .backgroundColor(this.menuItemColor)
         }
       }
     }

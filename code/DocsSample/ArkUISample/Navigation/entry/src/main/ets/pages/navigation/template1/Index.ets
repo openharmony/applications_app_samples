@@ -104,7 +104,7 @@ struct NavigationExample1 {
       .hideTitleBar(false)
       .hideToolBar(false)
       .onTitleModeChange((titleModel: NavigationTitleMode) => {
-        console.info('titleMode' + titleModel)
+        console.info('titleMode' + titleModel);
       })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }

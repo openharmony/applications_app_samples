@@ -16,24 +16,27 @@
 
 5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
-6. 点击“展示绘画页面”，查看绘画效果。
+6. 点击“展示自定义绘制页面”，查看绘画效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
-7. 点击：“返回”，返回到主页面。
+7. 点击"展示自定义绘制容器页面"，查看容器效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
 ## 效果预览
 
 | 首页 | 应用页面                                           |
 | ---- | -------------------------------------------------------- |
+|      | <img src="./screenshots/NativeNodePage.png" width="300;" />       |
 |      | <img src="./screenshots/DrawPage.png" width="300;" /> |
-|      | <img src="./screenshots/MultiThread.png" width="300;" /> |
+|      | <img src="./screenshots/NativeUI.png" width="300;" /> |
 
 ### 具体实现
 
-- 本示例实现了多线程创建组件的能力，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
+- 本示例实现了多线程创建组件的功能，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
 
-- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时性的接口调用。
+- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时接口调用。
 
-- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能开销。
+- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能消耗。
+
+- 自定义绘制实现：自定义节点的创建，通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册过程中，需将事件注册为绘制事件，通过查阅ArkUI_NodeCustomEventType枚举值获取事件类型及含义。 创建自定义节点：通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册时，将自定义节点、事件类型、事件ID和UserData作为参数传入。在回调函数中，通过获取自定义事件的事件类型、事件ID和UserData来执行不同的逻辑。
 
 ### 工程目录
 ```
@@ -48,6 +51,11 @@ entry/src/main/cpp
 entry/src/main/ets/
 |---entryability
 |---pages
+|   |   |drawPage
+        ---DrawPage.ets                // 自定义绘制页面
+|   |   |nativeUI
+        ---NativeUI.ets                // 自定义绘制容器页面
+|   |---customproperty.ets             // 自定义属性用例demo
 |   |---customproperty.ets             // 自定义属性用例demo
 |   |---entry.ets                      // 多线程创建组件demo
 |   |---index.ets                      // 应用主页面
@@ -66,7 +74,7 @@ entry/src/main/ets/
 
 1.本示例支持标准系统上运行, 支持设备：RK3568等。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_5.0.2.57。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.56，镜像版本号：OpenHarmony_6.0.2.56。
 
 ### 下载
 
@@ -75,7 +83,7 @@ entry/src/main/ets/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/NativeNodeSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/NativeNodeUtilsSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

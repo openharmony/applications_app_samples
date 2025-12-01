@@ -6,13 +6,13 @@
 
 ### 使用说明
 
-1. 此 Web 组件有页面展示
+1. 此 Web 组件有页面展示。
 
 ## 调用ArkTS侧接口控制Web页面滚动:scrollTo
 
 ### 介绍
 
-1. 在指定时间内，将页面滚动到指定位置
+1. 在指定时间内，将页面滚动到指定位置。
 
 ### 效果预览
 <img src="screenshots/scrollTo_ArkTS_one.gif" width="250"/>
@@ -113,16 +113,7 @@ entry/src/main/
 
 ### 相关权限
 
-若使用本地资源，不涉及权限；若使用网络资源，需在module.json中配置网络权限：
-{
-"module": {
-"requestPermissions": [
-{
-"name": "ohos.permission.INTERNET"
-}
-]
-}
-}
+不涉及.
 
 ### 依赖
 
@@ -142,6 +133,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebScrollDemo > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

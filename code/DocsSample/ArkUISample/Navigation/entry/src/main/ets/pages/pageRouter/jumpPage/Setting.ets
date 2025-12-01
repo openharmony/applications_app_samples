@@ -51,7 +51,7 @@ struct Login {
           })
       }.width('100%')
     }.height('100%')
+    // [EndExclude setting_click]
   }
-  // [EndExclude setting_click]
 }
 // [End setting_click]

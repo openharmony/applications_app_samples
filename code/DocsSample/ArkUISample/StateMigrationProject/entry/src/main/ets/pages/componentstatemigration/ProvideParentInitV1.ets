@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent21_start]
+const STATE_INITIAL_PARENT_VALUE = 42;
+
 @Entry
 @Component
 struct Parent {
-  @State parentValue: number = 42;
+  @State parentValue: number = STATE_INITIAL_PARENT_VALUE;
 
   build() {
     Column() {

@@ -17,6 +17,7 @@
 // 模块2
 import { PersistenceV2, Type } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 const DOMAIN = 0x0000;
 // 接受序列化失败的回调
@@ -43,7 +44,7 @@ struct Page1 {
   @Local a: number = 0;
   // 使用key:globalConnect1连接，传入加密等级为EL1
   @Local p1: Sample =
-    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample() })!;
+    PersistenceV2.globalConnect({ type: Sample, key: 'globalConnect1', defaultCreator: () => new Sample(), areaMode: contextConstant.AreaMode.EL1 })!;
   // 使用key:connect2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
   @Local p2: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
 

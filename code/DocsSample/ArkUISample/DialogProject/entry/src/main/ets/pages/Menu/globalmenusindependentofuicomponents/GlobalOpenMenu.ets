@@ -95,7 +95,7 @@ export struct OpenPopup {
   public promptAction: PromptAction = this.uiContext.getPromptAction();
   // [Start content_node]
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message);
+    new ComponentContent(this.getUIContext(), wrapBuilder(buildText), this.message, { nestingBuilderSupported: true });
   // [End content_node]
   // [Start menu_options]
   private options: MenuOptions = { enableArrow: true, placement: Placement.Bottom };

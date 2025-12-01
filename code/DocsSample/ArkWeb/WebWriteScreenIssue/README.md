@@ -6,14 +6,15 @@
 
 ### 检查权限和网络状态
 
-### 开启相关权限：
+### 开启相关权限
 
 #### 介绍
 
 1. 本示例通过设置相关属性来开启相关权限。
 
 #### 效果预览
-<img src = "screenshots/img.png" width = "200">
+
+<img src="./screenshots/img.png" width="200" />
 
 #### 使用说明
 
@@ -26,7 +27,7 @@
 1. 本示例通过修改UserAgent后再观察页面是否恢复正常。
 
 #### 效果预览
-<img src = "screenshots/img_1.png" width = "200">
+<img src="./screenshots/img_1.png" width="200" />
 
 #### 使用说明
 
@@ -41,7 +42,7 @@
 1. 开发者应使用http或https协议替代file或resource协议，确保Web组件能够成功访问跨域资源。替代的URL域名应为自定义构造，仅限于个人或组织使用，以防止与互联网上的实际域名冲突。此外，开发者需要利用Web组件的onInterceptRequest方法，对本地资源进行拦截和相应替换。
 
 #### 效果预览
-<img src = "screenshots/img_2.png" width = "200">
+<img src="./screenshots/img_2.png" width="200"/>
 
 #### 使用说明
 
@@ -54,7 +55,7 @@
 1. 通过setPathAllowingUniversalAccess设置一个路径列表。当使用file协议访问该列表中的资源时，允许进行跨域访问本地文件。此外，一旦设置了路径列表，file协议将仅限于访问列表内的资源(此时，fileAccess的行为将会被此接口行为覆盖)。
 
 #### 效果预览
-<img src = "screenshots/SetPath.gif" width = "200">
+<img src="./screenshots/SetPath.gif" width="250"/>
 
 #### 使用说明
 
@@ -77,6 +78,7 @@ entry/src/main/
 |---|---ets
 |---|---|---tests
 |---|---|---|---Ability.test.ets            // 自动化测试用例
+
 entry2/src/main/
 |---ets
 |---|---entry2ability
@@ -98,18 +100,10 @@ entry2/src/main/
 3. 使用http或https协议替代file或resource协议，确保Web组件能够成功访问跨域资源。替代的URL域名应为自定义构造，仅限于个人或组织使用，以防止与互联网上的实际域名冲突。此外，需要利用Web组件的onInterceptRequest方法，对本地资源进行拦截和相应替换。
 4. 通过setPathAllowingUniversalAccess设置一个路径列表。当使用file协议访问该列表中的资源时，允许进行跨域访问本地文件。此外，一旦设置了路径列表，file协议将仅限于访问列表内的资源(此时，fileAccess的行为将会被此接口行为覆盖)。
 5. 当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循fileAccess规则。
+
 ### 相关权限
 
-需在module.json5中配置网络权限：
-{
-"module": {
-"requestPermissions": [
-{
-"name": "ohos.permission.INTERNET"
-}
-]
-}
-}
+[ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -129,6 +123,6 @@ entry2/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebWriteScreenIssue > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

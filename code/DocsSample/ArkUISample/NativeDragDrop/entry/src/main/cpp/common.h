@@ -24,13 +24,7 @@
 #include <hilog/log.h>
 #include <sstream>
 
-#define DEFAULT_WIDTH 200.0
-#define DEFAULT_HEIGHT 200.0
-#define DEFAULT_BG_COLOR 0xFFFFFFFF
-#define DEFAULT_BORDER_WIDTH 0.0
 #define BORDER_WIDTH_1 1.0
-#define DEFAULT_MARGIN 5.0
-#define DEFAULT_BORDER_COLOR 0xFF000000
 #define DEFAULT_RADIUS 10.0
 #define DEFAULT_OPACITY 0.1
 
@@ -71,6 +65,9 @@ int32_t g_requestIdentify = 0;
 ArkUI_DragAction *action;
 std::stringstream g_ss;
 
+void GetDragResult(ArkUI_DragEvent* dragEvent);
+void GetDragMoveInfos(ArkUI_DragEvent* dragEvent);
+
 void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
 {
     if (!nodeAPI) {
@@ -92,6 +89,7 @@ void SetHeightPercent(ArkUI_NodeHandle &node, float height = 1)
 }
 
 // [Start set_common]
+#define DEFAULT_WIDTH 200.0
 void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
 {
     if (!nodeAPI) {
@@ -102,6 +100,7 @@ void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
     nodeAPI->setAttribute(node, NODE_WIDTH, &widthItem);
 }
 
+#define DEFAULT_HEIGHT 200.0
 void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
 {
     if (!nodeAPI) {
@@ -112,6 +111,7 @@ void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
     nodeAPI->setAttribute(node, NODE_HEIGHT, &heightItem);
 }
 
+#define DEFAULT_BG_COLOR 0xFFFFFFFF
 void SetBackgroundColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BG_COLOR)
 {
     if (!nodeAPI) {
@@ -122,6 +122,7 @@ void SetBackgroundColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BG_COLO
     nodeAPI->setAttribute(node, NODE_BACKGROUND_COLOR, &colorItem);
 }
 
+#define DEFAULT_MARGIN 5.0
 void SetMargin(ArkUI_NodeHandle &node, float margin = DEFAULT_MARGIN)
 {
     if (!nodeAPI) {
@@ -150,6 +151,7 @@ void SetId(ArkUI_NodeHandle &node, const char *id)
     nodeAPI->setAttribute(node, NODE_ID, &idItem);
 }
 
+#define DEFAULT_BORDER_WIDTH 0.0
 void SetBorderWidth(ArkUI_NodeHandle &node, float width = DEFAULT_BORDER_WIDTH)
 {
     if (!nodeAPI) {
@@ -160,6 +162,7 @@ void SetBorderWidth(ArkUI_NodeHandle &node, float width = DEFAULT_BORDER_WIDTH)
     nodeAPI->setAttribute(node, NODE_BORDER_WIDTH, &borderWidthItem);
 }
 
+#define DEFAULT_BORDER_COLOR 0xFF000000
 void SetBorderColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BORDER_COLOR)
 {
     if (!nodeAPI) {
@@ -287,8 +290,8 @@ void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
     // 创建参数结构体实例，并设置参数
     OH_Pixelmap_InitializationOptions *createOpts;
     OH_PixelmapInitializationOptions_Create(&createOpts);
-    OH_PixelmapInitializationOptions_SetWidth(createOpts, SIZE_200);
-    OH_PixelmapInitializationOptions_SetHeight(createOpts, SIZE_300);
+    OH_PixelmapInitializationOptions_SetWidth(createOpts, 200U);
+    OH_PixelmapInitializationOptions_SetHeight(createOpts, 300U);
     OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
     OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
     // 创建Pixelmap实例
@@ -297,20 +300,20 @@ void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
     OH_PixelmapNative_Flip(pixelmap, true, true);
     pixelVector.push_back(pixelmap);
     int returnValue = OH_ArkUI_DragAction_SetPixelMaps(action, pixelVector.data(), pixelVector.size());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetPixelMaps returnValue = %{public}d", returnValue);
 }
 
 void SetDragPreviewOption()
 {
-    auto *previewOptions1 = OH_ArkUI_CreateDragPreviewOption();
-    OH_ArkUI_DragPreviewOption_SetScaleMode(previewOptions1,
+    auto *previewOptions = OH_ArkUI_CreateDragPreviewOption();
+    OH_ArkUI_DragPreviewOption_SetScaleMode(previewOptions,
         ArkUI_DragPreviewScaleMode::ARKUI_DRAG_PREVIEW_SCALE_DISABLED);
-    OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(previewOptions1, true);
-    OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(previewOptions1, true);
-    int returnValue = OH_ArkUI_DragAction_SetDragPreviewOption(action, previewOptions1);
-    OH_ArkUI_DragPreviewOption_Dispose(previewOptions1);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(previewOptions, true);
+    OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(previewOptions, true);
+    int returnValue = OH_ArkUI_DragAction_SetDragPreviewOption(action, previewOptions);
+    OH_ArkUI_DragPreviewOption_Dispose(previewOptions);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetDragPreviewOption returnValue = %{public}d", returnValue);
 }
 
@@ -318,14 +321,14 @@ void PrintDragActionInfos()
 {
     // 设置pointerId
     int returnValue = OH_ArkUI_DragAction_SetPointerId(action, 0);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetPointerId returnValue = %{public}d", returnValue);
     // 设置touchPoint
-    returnValue = OH_ArkUI_DragAction_SetTouchPointX(action, POINT_POS);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    returnValue = OH_ArkUI_DragAction_SetTouchPointX(action, 200.0f);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointX returnValue = %{public}d", returnValue);
-    returnValue = OH_ArkUI_DragAction_SetTouchPointY(action, POINT_POS);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    returnValue = OH_ArkUI_DragAction_SetTouchPointY(action, 200.0f);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointY returnValue = %{public}d", returnValue);
 }
 // [End prepare_dragAction]

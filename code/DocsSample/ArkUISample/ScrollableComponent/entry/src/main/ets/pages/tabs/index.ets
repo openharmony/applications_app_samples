@@ -26,7 +26,6 @@ import { TabsLayout } from './TabsLayout';
 import { TopTabBar } from './TopTabBar';
 import resource from '../../common/resource';
 import { NumberOfCachesTabBar } from './NumberOfCachesTabBar';
-import { ContentPageNoAndTabLinkage } from './ContentPageNoAndTabLinkage';
 
 export const TABS_ROUTE_PREFIX: string = 'tabs';
 
@@ -85,11 +84,6 @@ const routes: Route[] = [
     name: `${TABS_ROUTE_PREFIX}/NumberOfCachesTabBar`,
     title: resource.resourceToString($r('app.string.Cache_count')),
     description: $r('app.string.ContentWillChange_description')
-  },
-  {
-    name: `${TABS_ROUTE_PREFIX}/ContentPageAndTabLinkage`,
-    title: resource.resourceToString($r('app.string.ContentWillChange_titleContentOnAndTabSync')),
-    description: $r('app.string.Content_titleContentOnAndTabSync')
   }
 ];
 
@@ -119,8 +113,6 @@ export function tabsDestination(name: string) {
     AgeFriendlyTabs();
   } else if (name === routes[10].name) {
     NumberOfCachesTabBar();
-  } else if (name === routes[11].name) {
-    ContentPageNoAndTabLinkage();
   }
 }
 
