@@ -4,6 +4,12 @@
 
 本示例主要展示了给应用提供的增强启动页的配置能力，可用于元素更复杂的启动页配置。同时，相应资源也具备根据窗口尺寸进行缩放的能力，更易于多设备适配设计，更有利于“一次开发，多端部署”。
 
+### 效果预览
+
+| 预览                               |
+|------------------------------------|
+| ![](screenshots/device/image2.png) |
+
 ### 使用说明
 
 1. 配置增强启动页字段。
@@ -33,10 +39,14 @@ entry/src/
 ### 具体实现
 
 1. **配置增强启动页字段**
-   - 在abilities标签中新增startWindow字段指向二级配置json文件，以启用启动页增强配置。
+   - 在module.json5文件的abilities标签中新增startWindow字段指向二级配置json文件，以启用启动页增强配置。
 2. **配置二级json文件**
    - 创建json文件并放置到工程目录下，推荐的文件名及路径为resources/base/profile/start_window.json。
    - 启动页资源主要在上、下两个区域进行展示，如果对应区域的资源未配置，则留空，其他区域的位置和尺寸不受影响。
+
+| 示意图                             |
+|------------------------------------|
+| ![](screenshots/device/image1.png) |
 
 ### 相关权限
 
@@ -48,8 +58,7 @@ entry/src/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行, 支持设备：手机、平板、2in1。（部分字段可能仅支持部分设备，可参考使用说明）
-2. api20以上版本
+从API version 20开始，支持在手机、平板、PC/2in1设备上使用
 
 ### 下载
 
@@ -58,7 +67,7 @@ entry/src/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/DisplayBasicSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/StartWindow/EnhancedStartingWindow > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
