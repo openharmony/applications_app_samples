@@ -88,10 +88,9 @@ entry/src/main/ets/
    {
      "name": "default",
      "signingConfig": "default",
-     "compileSdkVersion": 22,
-     "compatibleSdkVersion": 22,
+     "compileSdkVersion": 21,
+     "compatibleSdkVersion": 21,
      "runtimeOS": "OpenHarmony",
-     "targetSdkVersion": 22
    }
 ],
 ```
