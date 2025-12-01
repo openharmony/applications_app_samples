@@ -168,6 +168,10 @@ namespace NativeModule {
                 textNode->SetHeight(textHeight);
                 textNode->SetBackgroundColor(0xFFfffacd);
                 textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+                // 在当前节点注册布局回调
+                textNode->SetLayoutCallBack(1);
+                // 在当前节点注册绘制送显回调
+                textNode->SetDrawCallBack(1);
                 listItem->AddChild(textNode);
                 auto swipeNode = std::make_shared<ArkUITextNode>();
                 swipeNode->RegisterOnClick([this, data = data_[index]](ArkUI_NodeEvent *event) {
