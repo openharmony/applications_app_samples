@@ -67,7 +67,6 @@ void VectorQueryWithBingArgs(OH_Rdb_Store *store_)
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
     }
-
     while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
         // floatvector数组是第二列数据，1表示列下标索引
         OH_Cursor_GetFloatVectorCount(cursor, 1, &count);
