@@ -14,7 +14,7 @@
  */
 
 import inputMethodEngine from '@ohos.inputMethodEngine';
-import { InputHandler } from '../model/KeyboardController';
+import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Extend(Image) function arrowStyle(isSelection: boolean, inputStyle: KeyStyle) {

@@ -21,6 +21,8 @@ import { util } from '@kit.ArkTS';
 import { inputMethodEngine, InputMethodSubtype } from '@kit.IMEKit';
 import App from '@system.app';
 
+const TAG = '[Submenu]';
+
 class Contact {
   public name: string;
   private icon: Resource;
@@ -37,40 +39,39 @@ export struct Submenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   private contacts: Array<Contact> = []
-  @State a: inputMethod.InputMethodProperty[] = []
-  @State b: InputMethodSubtype[] = []
+  @State inputMethods: inputMethod.InputMethodProperty[] = []
+  @State inputMethodSubtypes: InputMethodSubtype[] = []
   @State currentInputMethodSubtype: string = '';
 
   async inputList() {
-    this.a = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
+    this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
   }
 
   async typeList() {
-    this.b = await inputMethod.getSetting().listCurrentInputMethodSubtype(); // 获取当前输入法的所有子类型
+    this.inputMethodSubtypes = await inputMethod.getSetting().listCurrentInputMethodSubtype(); // 获取当前输入法的所有子类型
     this.currentInputMethodSubtype = inputMethod.getCurrentInputMethodSubtype().id;
-    console.log('onPageShow11', JSON.stringify(this.b));
   }
 
-  // [Start input_case_input_switchInputMethodgetInputMethods]
+  // [Start input_case_input_switchInputMethod]
   async switchInputMethod(item: string) {
-    this.a = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
+    this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
     let currentInputMethod = inputMethod.getCurrentInputMethod(); // 获取当前输入法
-    console.log('onPageShow22', JSON.stringify(currentInputMethod));
-    for (let i = 0; i < this.a.length; i++) {
+    for (let i = 0; i < this.inputMethods.length; i++) {
       if (item != currentInputMethod.name) { // 判断不是当前输入法时，切换到该输入法，实际开发中可以切换到固定输入法
-        await inputMethod.switchInputMethod(this.a[i]);
+        await inputMethod.switchInputMethod(this.inputMethods[i]);
       }
     }
   }
+  // [End input_case_input_switchInputMethod]
 
+  // [Start input_case_input_switchInputMethodgetInputMethods]
   async switchCurrentInputMethodSubtype(item: InputMethodSubtype) {
     try {
       await inputMethod.switchCurrentInputMethodSubtype(item);
       this.currentInputMethodSubtype = inputMethod.getCurrentInputMethodSubtype().id;
-      console.log('GJ switchCurrentInputMethodSubtype', JSON.stringify(item));
     } catch (err) {
+      console.error(`SwitchCurrentInputMethodSubtype error: ${err.code} ${err.message}`);
       let error: BusinessError = err as BusinessError;
-      console.log('GJ switchCurrentInputMethodSubtype error', JSON.stringify(error));
     }
   }
   // [End input_case_input_switchInputMethodgetInputMethods]
@@ -78,7 +79,6 @@ export struct Submenu {
   aboutToAppear(): void {
     this.inputList()
     this.typeList()
-    console.log(JSON.stringify(inputMethod.getCurrentInputMethodSubtype()), 'haha1111')
   }
 
   build() {
@@ -105,7 +105,7 @@ export struct Submenu {
       GridItem() {
         Column() {
           List() {
-            ForEach(this.a, (item: Contact, index: number) => {
+            ForEach(this.inputMethods, (item: Contact, index: number) => {
               ListItem() {
                 Column() {
                   Row() {
@@ -125,9 +125,9 @@ export struct Submenu {
                         this.switchInputMethod(item.name)
                       })
                   }
-                  if (this.a[index].name == inputMethod.getCurrentInputMethod().name) {
+                  if (this.inputMethods[index].name == inputMethod.getCurrentInputMethod().name) {
                     List() {
-                      ForEach(this.b, (item: InputMethodSubtype) => {
+                      ForEach(this.inputMethodSubtypes, (item: InputMethodSubtype) => {
                         ListItem() {
                           Row() {
                             Text(item.locale).fontSize(20)
