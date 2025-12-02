@@ -23,6 +23,7 @@ void AccessibleObject::fillAccessibilityElement(ArkUI_AccessibilityElementInfo *
     }
     OH_ArkUI_AccessibilityElementInfoSetComponentType(element, ObjectType());
     OH_ArkUI_AccessibilityElementInfoSetContents(element, Name().data());
+    OH_ArkUI_AccessibilityElementInfoSetIsHint(element, Focused());
     OH_ArkUI_AccessibilityElementInfoSetHintText(element, Hint());
     OH_ArkUI_AccessibilityElementInfoSetVisible(element, IsVisible());
     OH_ArkUI_AccessibilityElementInfoSetEnabled(element, IsEnable());
@@ -37,6 +38,7 @@ void AccessibleObject::fillAccessibilityElement(ArkUI_AccessibilityElementInfo *
     OH_ArkUI_AccessibilityElementInfoSetCheckable(element, checkable_);
     OH_ArkUI_AccessibilityElementInfoSetChecked(element, checked_);
     OH_ArkUI_AccessibilityElementInfoSetSelected(element, checkable_);
+    OH_ArkUI_AccessibilityElementInfoSetAccessibilityFocused(element, Focused());
     OH_ArkUI_AccessibilityElementInfoSetAccessibilityLevel(element, accessibilityLevel_.data());
     if (ObjectType() == "FakeSilder") {
         OH_ArkUI_AccessibilityElementInfoSetRangeInfo(element, &rangeInfo_);
@@ -68,7 +70,7 @@ void AccessibleObject::fillAccessibilityElement(ArkUI_AccessibilityElementInfo *
     OH_ArkUI_AccessibilityElementInfoSetBackgroundImage(element, backgroundImage_.data());
     OH_ArkUI_AccessibilityElementInfoSetBackgroundColor(element, backgroundColor_.data());
     OH_ArkUI_AccessibilityElementInfoSetBlur(element, blue_.data());
-    OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(element, hitTestBehavior_.data());
+    OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(element, HitTestBehavior_.data());
     
     ArkUI_AccessibleAction actions[10];
     int index = 0;
