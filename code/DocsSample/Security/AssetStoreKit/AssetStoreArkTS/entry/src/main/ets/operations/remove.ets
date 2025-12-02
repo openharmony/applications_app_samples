@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start remove_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,24 +23,33 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function removeAsset(): Promise<string> {
   let result: string = '';
+  // [Start remove_asset]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名删除单条关键资产，也可不指定别名删除多条关键资产。
   try {
-    await asset.remove(query).then(() => {
+    asset.remove(query).then(() => {
       console.info(`Succeeded in removing Asset.`);
+      // [StartExclude remove_asset]
       result = 'Succeeded in removing Asset';
+      // [EndExclude remove_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude remove_asset]
       result = 'Failed to remove Asset';
+      // [EndExclude remove_asset]
     });
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
+    // [StartExclude remove_asset]
     result = 'Failed to remove Asset';
+    // [EndExclude remove_asset]
   }
+  // [End remove_asset]
+  await sleep(500);
   return result;
 }
-// [End remove_asset]

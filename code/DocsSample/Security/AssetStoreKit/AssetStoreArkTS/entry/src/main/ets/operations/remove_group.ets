@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
-// [Start remove_group_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End import]
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -25,21 +27,29 @@ function stringToArray(str: string): Uint8Array {
 
 export async function removeGroupAsset(): Promise<string> {
   let result: string = '';
+  // [Start remove_group_asset]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名删除单条群组关键资产，也可不指定别名删除多条群组关键资产。
   query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
   try {
-    await asset.remove(query).then(() => {
+    asset.remove(query).then(() => {
       console.info(`Succeeded in removing Asset from the group.`);
+      // [StartExclude remove_group_asset]
       result = 'Succeeded in removing Asset from the group';
+      // [EndExclude remove_group_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove Asset from the group. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude remove_group_asset]
       result = 'Failed to remove Asset from the group';
+      // [EndExclude remove_group_asset]
     });
   } catch (err) {
     console.error(`Failed to remove Asset from the group. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude remove_group_asset]
     result = 'Failed to remove Asset from the group';
+    // [EndExclude remove_group_asset]
   }
+  // [End remove_group_asset]
+  await sleep(500);
   return result;
 }
-// [End remove_group_asset]

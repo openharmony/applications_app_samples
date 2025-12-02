@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start update_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,27 +23,36 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function updateAsset(): Promise<string> {
   let result: string = '';
+  // [Start update_asset]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
   let attrsToUpdate: asset.AssetMap = new Map();
   attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
   attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
   try {
-    await asset.update(query, attrsToUpdate).then(() => {
+    asset.update(query, attrsToUpdate).then(() => {
       console.info(`Succeeded in updating Asset.`);
+      // [StartExclude update_asset]
       result = 'Succeeded in updating Asset';
+      // [EndExclude update_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude update_asset]
       result = 'Failed to update Asset';
+      // [EndExclude update_asset]
     });
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
+    // [StartExclude update_asset]
     result = 'Failed to update Asset';
+    // [EndExclude update_asset]
   }
+  // [End update_asset]
+  await sleep(500);
   return result;
 }
-// [End update_asset]
