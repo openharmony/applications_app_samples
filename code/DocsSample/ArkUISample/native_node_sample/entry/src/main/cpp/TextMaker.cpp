@@ -1144,7 +1144,7 @@ void setText9(ArkUI_NodeHandle &text9)
     auto controller{ OH_ArkUI_TextContentBaseController_Create() };
     // 绑定text9到controller->node上
     ArkUI_AttributeItem item_controller{ .object = controller };
-    nodeAPI->setAttribute(text9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &item_controller);
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &item_controller);
     // 调用DeleteBackward删除文本内最后一个字符
     OH_ArkUI_TextContentBaseController_DeleteBackward(controller);
     // 销毁指针
