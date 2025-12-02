@@ -212,6 +212,12 @@
     }, {
       "name": "return",
       "value": "返回"
+    }, {
+      "name": "navigationAnimation",
+      "value": "导航动画示例"
+    }, {
+      "name": "splitNavigation",
+      "value": "分栏导航"
     }
   ]
 }

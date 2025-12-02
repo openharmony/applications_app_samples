@@ -67,6 +67,7 @@ struct Index {
         { name: 'template1/NavigationExample', label: $r('app.string.navigationExample') },
         { name: 'template2/Index', label: $r('app.string.stepperIndex_text2') },
         { name: 'template4/Index', label: $r('app.string.stepperIndex_text4') },
+        { name: 'animation/NavigationPage', label: $r('app.string.navigationAnimation') },
       ]
     },
     {

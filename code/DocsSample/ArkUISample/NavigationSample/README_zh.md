@@ -25,6 +25,14 @@ entry/src/main/ets/
 |---entryability
 |---pages
 |   |---navigation                      // Navigation
+|   |   |---animation
+|   |   |   |---BasicNavDestination.ets
+|   |   |   |---DialogNavDestination.ets
+|   |   |   |---NavigationPage.ets
+|   |   |   |---PageTwoNavDes.ets
+|   |   |---splitmode
+|   |   |   |---NewsDetail.ets
+|   |   |   |---SplitNavigation.ets
 |   |   |---template1
 |   |   |   |---image
 |   |   |   |---CustomRoutingTable.ets
@@ -49,6 +57,8 @@ entry/src/main/ets/
 |   |   |   |---PageOne.ets    
 |   |   |   |---PageTwo.ets      
 |   |   |---template4
+|   |   |   |---Common.ets
+|   |   |   |---HapPageA.ets
 |   |   |   |---Index.ets    
 |   |   |   |---PageOne.ets    
 |   |   |   |---PageTwo.ets      
