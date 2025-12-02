@@ -18,23 +18,23 @@ import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const KEY_ALIAS = 'test_sm4_key_alias';
+const CIPHER_IN_DATA = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
+const IV = '1234567890123456'; // 初始化向量
+const AUTH_TYPE = userAuth.UserAuthType.PIN; // 认证类型：PIN码
+const AUTH_TRUST_LEVEL = userAuth.AuthTrustLevel.ATL1; // 认证信任级别
 
-let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
-let IV = '1234567890123456';
-let handle = 0;
-let cipherText: Uint8Array; // 密文数据。
-let finishOutData: Uint8Array; // 解密后的明文数据。
-let authToken: Uint8Array;
-let challenge: Uint8Array;
-let authType = userAuth.UserAuthType.PIN;
-let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
+let sessionHandle = 0; // 会话句柄
+let challenge: Uint8Array; // 挑战值
+let authToken: Uint8Array; // 认证令牌
+let encryptedData: Uint8Array; // 加密后的密文
+let decryptedData: Uint8Array; // 解密后的明文
 
-let keyAlias = 'test_sm4_key_alias';
 class ThrowObject {
   public isThrow: boolean = false;
 }
 
-function stringToUint8Array(str: string) {
+function stringToUint8Array(str: string): Uint8Array {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -42,10 +42,8 @@ function stringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
-/*
- * 确定封装密钥属性参数集
- */
-let generateProperties: huks.HuksParam[] = [
+/* 步骤1：密钥生成模块 */
+const KEY_GENERATION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -84,15 +82,7 @@ let generateProperties: huks.HuksParam[] = [
   }
 ];
 
-let generateHuksOptions: huks.HuksOptions = {
-  properties: generateProperties,
-  inData: new Uint8Array([])
-}
-
-/*
- * 生成密钥
- */
-async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -104,48 +94,42 @@ async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, 
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw (error as Error);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw err;
     }
   });
 }
 
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItem`);
+/* 生成SM4密钥 */
+async function step1GenerateKey(): Promise<void> {
+  const generateOptions: huks.HuksOptions = {
+    properties: KEY_GENERATION_PROPERTIES,
+    inData: new Uint8Array([])
+  };
+
   let throwObject: ThrowObject = { isThrow: true };
   try {
-    await generateKeyItem(keyAlias, huksOptions, throwObject)
+    await generateKeyItem(KEY_ALIAS, generateOptions, throwObject)
       .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+        console.info(`密钥生成成功: ${JSON.stringify(data)}`);
       })
       .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw (error as Error);
+          const err = error instanceof Error ? error : new Error(String(error));
+          throw err;
         } else {
-          console.error(`promise: generateKeyItem failed` + JSON.stringify(error));
+          console.error(`密钥生成失败: ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid` + JSON.stringify(error));
-    throw (error as Error);
+    console.error(`密钥生成参数无效: ${JSON.stringify(error)}`);
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
   }
 }
 
-async function testGenKeyForFingerprintAccessControl() {
-  await publicGenKeyFunc(keyAlias, generateHuksOptions);
-}
-// [End generate_key_specify_fingerprint_access_control_and_auth_purpose]
-class HuksProperties {
-  public tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-  public value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode
-    | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC;
-}
-
-/*
- * 确定封装密钥属性参数集
- */
-
-/* 集成生成密钥参数集 & 加密参数集 */
-let propertiesEncrypt: HuksProperties[] = [
+/* 步骤2：加密模块 */
+const ENCRYPTION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -171,12 +155,9 @@ let propertiesEncrypt: HuksProperties[] = [
     value: stringToUint8Array(IV),
   }
 ];
-let encryptOptions: huks.HuksOptions = {
-  properties: propertiesEncrypt,
-  inData: new Uint8Array([])
-}
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
+function initEncryptSession(keyAlias: string, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -188,35 +169,14 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw (error as Error);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw err;
     }
   });
 }
 
-async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doInit`);
-  let throwObject: ThrowObject = { isThrow: true };
-  try {
-    await initSession(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
-        handle = data.handle as number;
-        challenge = data.challenge as Uint8Array;
-      })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doInit failed` + JSON.stringify(error));
-        }
-      });
-  } catch (error) {
-    console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
-    throw (error as Error);
-  }
-}
-
-function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
+function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, (error, data) => {
@@ -228,49 +188,119 @@ function finishEncryptSession(handle: number, huksOptions: huks.HuksOptions, thr
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw (error as Error);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw err;
     }
   });
 }
 
-async function publicEncryptFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doFinish`);
+/* 加密数据 */
+async function step2EncryptData(): Promise<void> {
+  const encryptOptions: huks.HuksOptions = {
+    properties: ENCRYPTION_PROPERTIES,
+    inData: new Uint8Array([])
+  };
+
+  /* 初始化加密会话 */
   let throwObject: ThrowObject = { isThrow: true };
   try {
-    await finishEncryptSession(handle, huksOptions, throwObject)
+    await initEncryptSession(KEY_ALIAS, encryptOptions, throwObject)
       .then((data) => {
-        cipherText = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
+        console.info(`加密会话初始化成功: ${JSON.stringify(data)}`);
+        sessionHandle = data.handle as number;
+        challenge = data.challenge as Uint8Array;
       })
       .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw (error as Error);
+          const err = error instanceof Error ? error : new Error(String(error));
+          throw err;
         } else {
-          console.error(`promise: doFinish failed` + JSON.stringify(error));
+          console.error(`加密会话初始化失败: ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
-    throw (error as Error);
+    console.error(`加密会话初始化参数无效: ${JSON.stringify(error)}`);
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
+  }
+
+  /* 执行加密操作 */
+  encryptOptions.inData = stringToUint8Array(CIPHER_IN_DATA);
+  throwObject = { isThrow: true };
+  try {
+    await finishEncryptSession(sessionHandle, encryptOptions, throwObject)
+      .then((data) => {
+        encryptedData = data.outData as Uint8Array;
+        console.info(`数据加密成功: ${JSON.stringify(data)}`);
+      })
+      .catch((error: Error) => {
+        if (throwObject.isThrow) {
+          const err = error instanceof Error ? error : new Error(String(error));
+          throw err;
+        } else {
+          console.error(`数据加密失败: ${JSON.stringify(error)}`);
+        }
+      });
+  } catch (error) {
+    console.error(`数据加密参数无效: ${JSON.stringify(error)}`);
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
   }
 }
 
-async function testSm4Cipher() {
-  /* 初始化密钥会话获取挑战值 */
-  await publicInitFunc(keyAlias, encryptOptions);
-  /* 加密 */
-  encryptOptions.inData = stringToUint8Array(cipherInData);
-  await publicEncryptFinishFunc(handle, encryptOptions);
+/* 步骤3：用户认证模块 */
+function performUserAuthentication(huksChallenge: Uint8Array): void {
+  /* 配置认证参数 */
+  const authTypeList: userAuth.UserAuthType[] = [AUTH_TYPE];
+  const authParam: userAuth.AuthParam = {
+    challenge: huksChallenge,
+    authType: authTypeList,
+    authTrustLevel: AUTH_TRUST_LEVEL
+  };
+
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'PIN',
+  };
+
+  /* 获取认证实例 */
+  let auth: userAuth.UserAuthInstance;
+  try {
+    auth = userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('认证实例获取成功');
+  } catch (error) {
+    console.error('认证实例获取失败: ' + JSON.stringify(error));
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
+  }
+
+  /* 订阅认证结果 */
+  try {
+    auth.on('result', {
+      onResult(result) {
+        console.info('用户认证成功，获取到token: ' + JSON.stringify(result));
+        authToken = result.token;
+        step32CompleteDecryption();
+      }
+    });
+    console.info('认证结果订阅成功');
+  } catch (error) {
+    console.error('认证结果订阅失败: ' + JSON.stringify(error));
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
+  }
+
+  try {
+    auth.start();
+    console.info('认证流程已启动，等待用户输入PIN码...');
+  } catch (error) {
+    console.error('认证启动失败: ' + JSON.stringify(error));
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
+  }
 }
 
-/* 集成生成密钥参数集 & 加密参数集 */
-class PropertyDecryptType {
-  public tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-  public value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksKeyPadding | huks.HuksCipherMode
-    | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_SM4
-}
-
-let propertiesDecrypt: PropertyDecryptType[] = [
+/* 步骤4：解密模块 */
+const DECRYPTION_PROPERTIES: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -295,57 +325,29 @@ let propertiesDecrypt: PropertyDecryptType[] = [
     tag: huks.HuksTag.HUKS_TAG_IV,
     value: stringToUint8Array(IV),
   }
-]
-let decryptOptions: huks.HuksOptions = {
-  properties: propertiesDecrypt,
-  inData: new Uint8Array([])
-}
+];
 
-function userIAMAuthFinger(huksChallenge: Uint8Array) {
-  // 获取认证对象。
-  let authTypeList: userAuth.UserAuthType[] = [authType];
-  const authParam: userAuth.AuthParam = {
-    challenge: huksChallenge,
-    authType: authTypeList,
-    authTrustLevel: authTrustLevel
-  };
-  const widgetParam: userAuth.WidgetParam = {
-    title: 'PIN',
-  };
-  let auth: userAuth.UserAuthInstance;
-  try {
-    auth = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.info('get auth instance success');
-  } catch (error) {
-    console.error('get auth instance failed' + JSON.stringify(error));
-    throw (error as Error);
-  }
-  // 订阅认证结果。
-  try {
-    auth.on('result', {
-      onResult(result) {
-        console.info('[HUKS] -> [IAM]  userAuthInstance callback result = ' + JSON.stringify(result));
-        authToken = result.token;
-        testSm4CipherFinish();
-      }
-    });
-    console.info('subscribe authentication event success');
-  } catch (error) {
-    console.error('subscribe authentication event failed ' + JSON.stringify(error));
-    throw (error as Error);
-  }
-  // 开始认证。
-  try {
-    auth.start();
-    console.info('authV9 start auth success');
-  } catch (error) {
-    console.error('authV9 start auth failed, error = ' + JSON.stringify(error));
-    throw (error as Error);
-  }
+function initDecryptSession(keyAlias: string, huksOptions: huks.HuksOptions,
+  throwObject: ThrowObject): Promise<huks.HuksSessionHandle> {
+  return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
+    try {
+      huks.initSession(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
+    } catch (error) {
+      throwObject.isThrow = true;
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw err;
+    }
+  });
 }
 
 function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array,
-  throwObject: ThrowObject) {
+  throwObject: ThrowObject): Promise<huks.HuksReturnResult> {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, token, (error, data) => {
@@ -357,57 +359,95 @@ function finishDecryptSession(handle: number, huksOptions: huks.HuksOptions, tok
       });
     } catch (error) {
       throwObject.isThrow = true;
-      throw (error as Error);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw err;
     }
   });
 }
 
-async function publicDecryptFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doFinish`);
+/* 初始化解密会话并触发用户认证 */
+async function step31DecryptionAndAuth(): Promise<void> {
+
+  const decryptOptions: huks.HuksOptions = {
+    properties: DECRYPTION_PROPERTIES,
+    inData: new Uint8Array([])
+  };
+
+  /* 初始化解密会话，获取挑战值 */
   let throwObject: ThrowObject = { isThrow: true };
   try {
-    await finishDecryptSession(handle, huksOptions, token, throwObject)
+    await initDecryptSession(KEY_ALIAS, decryptOptions, throwObject)
       .then((data) => {
-        finishOutData = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
+        console.info(`解密会话初始化成功: ${JSON.stringify(data)}`);
+        sessionHandle = data.handle as number;
+        challenge = data.challenge as Uint8Array;
+        console.info('获取到挑战值: ' + challenge.toString());
+
+        /* 触发用户认证流程 */
+        performUserAuthentication(challenge);
       })
-      .catch((error: BusinessError) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
-          throw (error as Error);
+          const err = error instanceof Error ? error : new Error(String(error));
+          throw err;
         } else {
-          console.error(`promise: doFinish failed` + JSON.stringify(error));
+          console.error(`解密会话初始化失败: ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
-    throw (error as Error);
+    console.error(`解密会话初始化参数无效: ${JSON.stringify(error)}`);
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
   }
 }
 
-async function testSm4CipherInit() {
-  /* 初始化密钥会话获取挑战值 */
-  await publicInitFunc(keyAlias, decryptOptions);
-  /* 调用userIAM进行身份认证 */
-  console.log('challenge value: ' + challenge.toString());
-  userIAMAuthFinger(challenge);
-}
+/* 完成解密操作 */
+async function step32CompleteDecryption(): Promise<void> {
+  const decryptOptions: huks.HuksOptions = {
+    properties: DECRYPTION_PROPERTIES,
+    inData: encryptedData // 使用之前加密的密文
+  };
 
-async function testSm4CipherFinish() {
-  /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */
-  decryptOptions.inData = cipherText;
-  await publicDecryptFinishFunc(handle, authToken, decryptOptions);
-  if (finishOutData === stringToUint8Array(cipherInData)) {
-    console.error('test finish decrypt error');
-  } else {
-    console.info('test finish decrypt success');
+  let throwObject: ThrowObject = { isThrow: true };
+  try {
+    await finishDecryptSession(sessionHandle, decryptOptions, authToken, throwObject)
+      .then((data) => {
+        decryptedData = data.outData as Uint8Array;
+        console.info(`数据解密成功: ${JSON.stringify(data)}`);
+
+        /* 验证解密结果 */
+        const originalData = stringToUint8Array(CIPHER_IN_DATA);
+        if (decryptedData.toString() === originalData.toString()) {
+          console.info('解密验证成功！解密后的数据与原始明文一致');
+        } else {
+          console.error('解密验证失败！解密后的数据与原始明文不一致');
+        }
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          const err = error instanceof Error ? error : new Error(String(error));
+          throw err;
+        } else {
+          console.error(`数据解密失败: ${JSON.stringify(error)}`);
+        }
+      });
+  } catch (error) {
+    console.error(`数据解密参数无效: ${JSON.stringify(error)}`);
+    const err = error instanceof Error ? error : new Error(String(error));
+    throw err;
   }
 }
 
-async function main() {
-  await testGenKeyForFingerprintAccessControl();
-  await testSm4Cipher();
-  await testSm4CipherInit();
+/* 主函数：执行完整的SM4加密解密流程 */
+async function main(): Promise<void> {
+    /* 步骤1：生成密钥 */
+    await step1GenerateKey();
+    /* 步骤2：加密数据 */
+    await step2EncryptData();
+    /* 步骤3：初始化解密并进行用户认证 */
+    await step31DecryptionAndAuth();
 }
+// [End generate_key_specify_fingerprint_access_control_and_auth_purpose]
 
 @Entry
 @Component
