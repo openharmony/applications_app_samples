@@ -21,7 +21,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 const delegator: AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName: string = abilityDelegatorRegistry.getArguments().bundleName;
-// Error code when the device is not supported.
+// 设备不支持时的错误代码
 const CapabilityCode = 801;
 
 async function startAbility(bundleName: string, abilityName: string) {

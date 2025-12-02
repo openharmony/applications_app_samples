@@ -18,7 +18,7 @@ import { describe, expect, it, Level, Size, TestType } from '@ohos/hypium';
 // 导入测试依赖kit
 import { Driver, UiDirection } from '@kit.TestKit';
 
-// Error code when the device is not supported.
+// 设备不支持时的错误代码
 const DeviceErrorCode = 17000005;
 
 export default function abilityTest() {
@@ -27,7 +27,7 @@ export default function abilityTest() {
     it('touchPadOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       let driver = Driver.create();
       try {
-        // 触摸板三指上滑返回桌面。
+        // 触摸板三指上滑返回桌面
         await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
         // 触摸板三指下滑恢复窗口
         await driver.touchPadMultiFingerSwipe(3, UiDirection.DOWN);
