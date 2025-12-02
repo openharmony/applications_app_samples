@@ -16,19 +16,22 @@
 // [Start index_h]
 import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End index_h]
+// [Start error_handler_h]
+import { setFirstErrorHandler } from './FirstErrorHandler';
+import { setSecondErrorHandler } from './SecondErrorHandler';
+// [End error_handler_h]
 
 // [Start error_observer]
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    hilog.info(0x0000, 'testErrorManage','onUnhandledException, errorMsg: ', errorMsg);
+    console.error('testErrorManage','onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    hilog.info(0x0000, 'testErrorManage','onException, name: ', errorObj.name);
-    hilog.info(0x0000, 'testErrorManage','onException, message: ', errorObj.message);
+    console.error('testErrorManage','onException, name: ', errorObj.name);
+    console.error('testErrorManage','onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      hilog.info(0x0000, 'testErrorManage','onException, stack: ', errorObj.stack);
+      console.error('testErrorManage','onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -36,29 +39,29 @@ let observer: errorManager.ErrorObserver = {
 
 // [Start error_func]
 function errorFunc(observer: errorManager.GlobalError) {
-  hilog.info(0x0000, 'testErrorManage','result name :' + observer.name);
-  hilog.info(0x0000, 'testErrorManage','result message :' + observer.message);
-  hilog.info(0x0000, 'testErrorManage','result stack :' + observer.stack);
-  hilog.info(0x0000, 'testErrorManage','result instanceName :' + observer.instanceName);
-  hilog.info(0x0000, 'testErrorManage','result instanceType :' + observer.instanceType);
+  console.error('testErrorManage','result name :' + observer.name);
+  console.error('testErrorManage','result message :' + observer.message);
+  console.error('testErrorManage','result stack :' + observer.stack);
+  console.error('testErrorManage','result instanceName :' + observer.instanceName);
+  console.error('testErrorManage','result instanceType :' + observer.instanceType);
 };
 // [End error_func]
 
 // [Start loop_observer]
 let loopObserver: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    hilog.info(0x0000, 'testErrorManage','Duration timeout: ' + timeout);
+    console.error('testErrorManage','Duration timeout: ' + timeout);
   }
 };
 // [End loop_observer]
 
 // [Start promise_func]
 function promiseFunc(observer: errorManager.GlobalError) {
-  hilog.info(0x0000, 'testErrorManage','result name :' + observer.name);
-  hilog.info(0x0000, 'testErrorManage','result message :' + observer.message);
-  hilog.info(0x0000, 'testErrorManage','result stack :' + observer.stack);
-  hilog.info(0x0000, 'testErrorManage','result instanceName :' + observer.instanceName);
-  hilog.info(0x0000, 'testErrorManage','result instanceType :' + observer.instanceType);
+  console.error('testErrorManage','result name :' + observer.name);
+  console.error('testErrorManage','result message :' + observer.message);
+  console.error('testErrorManage','result stack :' + observer.stack);
+  console.error('testErrorManage','result instanceName :' + observer.instanceName);
+  console.error('testErrorManage','result instanceType :' + observer.instanceType);
 };
 
 async function promiseFuncOne() {
@@ -73,12 +76,12 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 
 let unhandledrejectionObserver: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    hilog.info(0x0000, 'testErrorManage','promise1 is rejected');
+    console.error('testErrorManage','promise1 is rejected');
   }
-  hilog.info(0x0000, 'testErrorManage','reason.name: ', reason.name);
-  hilog.info(0x0000, 'testErrorManage','reason.message: ', reason.message);
+  console.error('testErrorManage','reason.name: ', reason.name);
+  console.error('testErrorManage','reason.message: ', reason.message);
   if (reason.stack) {
-    hilog.info(0x0000, 'testErrorManage','reason.stack: ', reason.stack);
+    console.error('testErrorManage','reason.stack: ', reason.stack);
   }
 };
 
@@ -89,9 +92,17 @@ async function promiseFuncTwo() {
 
 // [Start freeze_call_back]
 function freezeCallback() {
-  hilog.info(0x0000, 'testErrorManage','freezecallback');
+  console.error('testErrorManage','freezecallback');
 };
 // [End freeze_call_back]
+
+// [Start test_error_handlers]
+function testErrorHandlers() {
+  setFirstErrorHandler();
+  setSecondErrorHandler();
+  throw new Error('Test uncaught exception!');
+}
+// [End test_error_handlers]
 
 @Entry
 @Component
@@ -108,7 +119,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         throw new Error('test errorObserver msg');
@@ -122,7 +133,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         throw new Error('test errorFunc msg');
@@ -136,7 +147,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         let date = Date.now();
@@ -152,7 +163,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         new Promise<string>(() => {
@@ -170,7 +181,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         new Promise<string>(() => {
@@ -188,7 +199,7 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
+          console.error('testErrorManage',`error: ${code}, ${message}`);
         }
         // 构造场景故障
         let date = Date.now();
@@ -196,6 +207,12 @@ struct Index {
         };
       }).position({x:50, y:300});
       // [End onclick_freeze_call_back]
+
+      // [Start onclick_error_Handler]
+      Button('错误处理器责任链模式场景').onClick(()=>{
+        testErrorHandlers();
+      }).position({x:50, y:350});
+      // [End onclick_error_Handler]
     }
   }
 }

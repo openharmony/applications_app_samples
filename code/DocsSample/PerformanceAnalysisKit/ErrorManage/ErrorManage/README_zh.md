@@ -62,17 +62,21 @@ freezecallback
 ###  工程目录
 
 ```
-entry/src/main/ets/
-└─entryability
-| 	└─---EntryAbility.ets				  //添加回调函数
-└─pages
-    └─---Index.ets						 //首页
+entry/src/main/ets
+                ├─entryability
+                │   └─EntryAbility.ets
+                ├─entrybackupability
+                │   └─EntryBackupAbility.ets
+                └─pages
+                    └─FirstErrorHandler.ets   // first error handler
+                    └─Index.ets   		      // 主页
+                    └─SecondErrorHandler.ets  // second error handler
 ```
 
 ###  具体实现
 
-- 在EntryAbility.ets中添加错误回调函数；
-- 在Index.ets中添加一个按钮并在其点击事件中引发崩溃事件，进而调用错误管理的回调函数。
+- 在Index.ets、FirstErrorHandler.ets及SecondErrorHandler.ets中定义各类error的构造函数及回调函数
+- 在Index.ets中添加触发按钮，点击按钮即可引发对应error事件，进而调用相关错误管理的回调函数。
 
 ###  相关权限
 
@@ -85,8 +89,9 @@ entry/src/main/ets/
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例已适配API14版本SDK,版本号：5.0.2.58,镜像版本号：OpenHarmony5.0.2.58;
-3. 本示例需要使用DevEco Studio (5.0.3.910)及以上版本才可编译运行。
+2. 本示例中除错误处理器责任链模式场景外的所有错误场景均已适配API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56
+3. 本示例需要使用DevEco Studio (5.0.3.910)及以上版本才可编译运行；
+4. 错误处理器责任链模式场景需要适配API21版本SDK，支持API21版本SDK，版本号：6.0.0.55，镜像版本号：OpenHarmony_6.0.0.55。
 
 ### 下载
 
