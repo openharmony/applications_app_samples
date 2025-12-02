@@ -180,5 +180,4 @@ napi_value SignVerifyKeyECC(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
 // [End key_algorithm_ecc_sha256_sign_verify_cpp]

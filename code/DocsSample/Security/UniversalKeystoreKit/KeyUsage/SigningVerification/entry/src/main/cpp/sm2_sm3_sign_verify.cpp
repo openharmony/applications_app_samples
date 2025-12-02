@@ -183,5 +183,4 @@ napi_value SignVerifyKeySM2SM3(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
 // [End key_algorithm_sm2_sm3_sign_verify_cpp]
