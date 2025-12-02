@@ -23,14 +23,13 @@ import {
   errorManager,
   wantConstant
 } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
 let abilityWant: Want;
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
   onUnhandledException(errMsg) {
-    console.log(errMsg);
+    console.error(errMsg);
     appRecovery.saveAppState();
     appRecovery.restartApp();
   }
@@ -40,7 +39,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    console.info('testTag', '%{public}s', 'Ability onCreate');
     appRecovery.enableAppRecovery(appRecovery.RestartFlag.ALWAYS_RESTART,
       appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR | appRecovery.SaveOccasionFlag.SAVE_WHEN_BACKGROUND,
       appRecovery.SaveModeFlag.SAVE_WITH_FILE);
@@ -59,31 +58,31 @@ export default class EntryAbility extends UIAbility {
     }
     if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
       want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
-      console.log('This ability need to recovery');
+      console.info('This ability need to recovery');
     }
   }
 
   onDestroy(): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    console.info('testTag', '%{public}s', 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    console.info('testTag', '%{public}s', 'Ability onWindowStageCreate');
     registerId = errorManager.on('error', callback);
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        console.error('testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+      console.info('testTag', 'Succeeded in loading the content.');
     });
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    console.info('testTag', '%{public}s', 'Ability onWindowStageDestroy');
 
     errorManager.off('error', registerId, (err) => {
       console.error('[Demo] err:', err);
@@ -92,17 +91,17 @@ export default class EntryAbility extends UIAbility {
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    console.info('testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+    console.info('testTag', '%{public}s', 'Ability onBackground');
   }
 
   onSaveState(state: AbilityConstant.StateType, wantParams: Record<string, Object>) {
     // Ability has called to save app data
-    console.log('[Demo] EntryAbility onSaveState');
+    console.info('[Demo] EntryAbility onSaveState');
     wantParams['myData'] = 'my1234567';
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
