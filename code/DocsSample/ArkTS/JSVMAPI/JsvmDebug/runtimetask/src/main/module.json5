@@ -20,7 +20,7 @@
     "description": "$string:module_desc",
     "mainElement": "RuntimetaskAbility",
     "deviceTypes": [
-      "phone",
+      "default",
       "tablet"
     ],
     "deliveryWithInstall": true,

@@ -21,9 +21,7 @@
     "mainElement": "ThrowerrorAbility",
     "deviceTypes": [
       "default",
-      "phone",
-      "tablet",
-      "2in1"
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
