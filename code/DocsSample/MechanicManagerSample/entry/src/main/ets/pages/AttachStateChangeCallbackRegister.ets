@@ -65,7 +65,7 @@ struct AttachStateChangeCallbackRegister {
 
       Column() {
         Button() {
-          Text('注册')
+          Text($r('app.string.register'))
             .fontSize(20)
             .fontColor(Color.White)
         }.onClick(() => {
@@ -90,7 +90,7 @@ struct AttachStateChangeCallbackRegister {
 
         Column() {
           Button() {
-            Text('去注册')
+            Text($r('app.string.unregister'))
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
@@ -113,7 +113,7 @@ struct AttachStateChangeCallbackRegister {
           }).fancy();
 
           Button() {
-            Text('去注册 - all')
+            Text('unregister - all')
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
@@ -132,7 +132,7 @@ struct AttachStateChangeCallbackRegister {
 
       Column() {
         Button() {
-          Text('返回')
+          Text('back')
             .fontSize(20)
             .fontColor(Color.White)
         }.onClick(() => {

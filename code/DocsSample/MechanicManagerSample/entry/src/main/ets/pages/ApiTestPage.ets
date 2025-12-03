@@ -277,26 +277,26 @@ struct ApiTestPage {
   relativeRotate(yaw: number, roll: number, pitch: number) {
     logger.info('relativeRotate in');
     try {
-      logger.info('开始旋转');
+      logger.info('relativeRotate start');
       let degree: mechanicManager.RotationAngles = {
         yaw: yaw,
         roll: roll,
         pitch: pitch,
       }
-      logger.info('旋转参数：degree' + JSON.stringify(degree));
-      logger.info('旋转参数：this.relativeRotateTime = ' + this.relativeRotateTime);
+      logger.info('relativeRotate：degree' + JSON.stringify(degree));
+      logger.info('relativeRotate：this.relativeRotateTime = ' + this.relativeRotateTime);
       mechanicManager.rotate(this.mMechId, degree, this.relativeRotateTime)
         .then((result) => {
-          logger.info('旋转结果：' + JSON.stringify(result));
+          logger.info('relativeRotate result：' + JSON.stringify(result));
           prompt.showToast({
-            message: `(相对)旋转结果：result= ${JSON.stringify(result)}, degree= ${JSON.stringify(degree)},
+            message: `relativeRotate：result= ${JSON.stringify(result)}, degree= ${JSON.stringify(degree)},
                        relativeRotateTime=${this.relativeRotateTime}`,
             duration: 2000
           });
         });
-      logger.info('结束旋转');
+      logger.info('relativeRotate end');
     } catch (e) {
-      logger.error('旋转失败, code: ' + e.code + ' message: ' + e.message);
+      logger.error('relativeRotate failed, code: ' + e.code + ' message: ' + e.message);
     }
   }
 
@@ -305,7 +305,7 @@ struct ApiTestPage {
       Scroll(this.scroller) {
         Column() {
           Button() {
-            Text('设备连接状态监听注册')
+            Text($r('app.string.device_connect_status_on'))
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
@@ -316,7 +316,7 @@ struct ApiTestPage {
           .margin({top:50})
 
           Button() {
-            Text('设备列表')
+            Text($r('app.string.device_list'))
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
@@ -327,10 +327,10 @@ struct ApiTestPage {
 
 
           Row() {
-            Button('启用跟踪')
+            Button($r('app.string.enable_tracking'))
               .onClick(() => {
                 try {
-                  logger.info('启用跟踪');
+                  logger.info('Enable Tracking');
                   // [Start set_cameraTracking_enabled]
                   try {
                     //检查前判断savedMechIds不为空
@@ -348,30 +348,30 @@ struct ApiTestPage {
                     console.error('Failed to enable camera tracking:', err);
                   }
                   // [End set_cameraTracking_enabled]
-                  logger.info('启用跟踪成功');
+                  logger.info('Enable Tracking success');
                   prompt.showToast({
-                    message: '启用跟踪成功',
+                    message: 'Enable Tracking success',
                     duration: 1000
                   });
                 } catch (e) {
-                  logger.error('启用跟踪失败, code: ' + e.code + ' message: ' + e.message);
+                  logger.error('Enable Tracking failed, code: ' + e.code + ' message: ' + e.message);
                 }
               }).margin({
               top: 5
             })
 
-            Button('关闭跟踪')
+            Button($r('app.string.disable_tracking'))
               .onClick(() => {
                 try {
-                  logger.info('关闭跟踪');
+                  logger.info('Disable Tracking');
                   mechanicManager.setCameraTrackingEnabled(false);
-                  logger.info('关闭跟踪成功');
+                  logger.info('Disable Tracking success');
                   prompt.showToast({
-                    message: '关闭跟踪成功',
+                    message: 'Disable Tracking success',
                     duration: 1000
                   });
                 } catch (e) {
-                  logger.error('关闭跟踪失败, code: ' + e.code + ' message: ' + e.message);
+                  logger.error('Disable Tracking failed, code: ' + e.code + ' message: ' + e.message);
                 }
               }).margin({
               top: 5
@@ -381,7 +381,7 @@ struct ApiTestPage {
             top: 20
           })
 
-          Button('获取跟踪状态')
+          Button($r('app.string.get_tracking_status'))
             .onClick(() => {
               try {
                 logger.info('获取跟踪状态');
@@ -399,7 +399,7 @@ struct ApiTestPage {
           })
 
           Row() {
-            Button('注册跟踪事件监听')
+            Button($r('app.string.tracking_event_on'))
               .onClick(() => {
                 // [Start on_trackingStateChange]
                 const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
@@ -426,7 +426,7 @@ struct ApiTestPage {
               top: 5
             });
 
-            Button('去注册跟踪事件监听')
+            Button($r('app.string.tracking_event_off'))
               .onClick(() => {
                 try {
                   logger.info('去注册跟踪事件监听');
@@ -462,7 +462,7 @@ struct ApiTestPage {
             })
           }
 
-          Button('注册旋转轴状态监听')
+          Button($r('app.string.rotation_AxesStatus_on'))
             .onClick(() => {
               logger.info(`${TAG} rotationAxesStatusChange on start.`);
               // [Start on_rotationAxesStatusChange]
