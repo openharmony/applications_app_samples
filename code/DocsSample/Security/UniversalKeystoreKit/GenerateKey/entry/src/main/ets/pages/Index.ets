@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
+import testNapi from 'libentry.so';
 
 // [Start generate_key_ar]
-
 import { huks } from '@kit.UniversalKeystoreKit';
-import testNapi from 'libentry.so';
 
 /* 1.确定密钥别名 */
 let keyAlias = 'dh_key';
