@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MechanicSample"
+    },
+    {
+      "name": "device_connect_status_on",
+      "value": "设备连接状态监听注册"
+    },
+    {
+      "name": "device_list",
+      "value": "设备列表"
+    },
+    {
+      "name": "enable_tracking",
+      "value": "启用跟踪"
+    },
+    {
+      "name": "disable_tracking",
+      "value": "关闭跟踪"
+    },
+    {
+      "name": "get_tracking_status",
+      "value": "获取跟踪状态"
+    },
+    {
+      "name": "tracking_event_on",
+      "value": "注册跟踪事件监听"
+    },
+    {
+      "name": "tracking_event_off",
+      "value": "去注册跟踪事件监听"
+    },
+    {
+      "name": "rotation_AxesStatus_on",
+      "value": "注册旋转轴状态监听"
+    },
+    {
+      "name": "register",
+      "value": "注册"
+    },
+    {
+      "name": "unregister",
+      "value": "去注册"
+    }
+  ]
+}

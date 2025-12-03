@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "device_connect_status_on",
+      "value": "DeviceConnStatusMonitorRegistration"
+    },
+    {
+      "name": "device_list",
+      "value": "Device List"
+    },
+    {
+      "name": "enable_tracking",
+      "value": "Enable Tracking"
+    },
+    {
+      "name": "disable_tracking",
+      "value": "Disable Tracking"
+    },
+    {
+      "name": "get_tracking_status",
+      "value": "Get tracking status"
+    },
+    {
+      "name": "tracking_event_on",
+      "value": "Tracking Event Registration"
+    },
+    {
+      "name": "tracking_event_off",
+      "value": "Tracking Event Unregistration"
+    },
+    {
+      "name": "rotation_AxesStatus_on",
+      "value": "Rotation AxesStatus Registration"
+    },
+    {
+      "name": "register",
+      "value": "Register"
+    },
+    {
+      "name": "unregister",
+      "value": "Unregister"
+    }
+  ]
+}
