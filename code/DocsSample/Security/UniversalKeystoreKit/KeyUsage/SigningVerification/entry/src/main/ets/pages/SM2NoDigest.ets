@@ -113,7 +113,7 @@ async function sign(keyAlias: string, plaintext: string) {
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: stringToUint8Array(plaintext)
-  }
+  };
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -132,11 +132,11 @@ async function sign(keyAlias: string, plaintext: string) {
 }
 
 async function verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
-  let verifyProperties = getSm2VerifyProperties()
+  let verifyProperties = getSm2VerifyProperties();
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: stringToUint8Array(plaintext)
-  }
+  };
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -165,7 +165,7 @@ async function deleteSm2Key(keyAlias: string) {
   console.info(`enter deleteSm2Key`);
   let emptyOptions: huks.HuksOptions = {
     properties: []
-  }
+  };
   await huks.deleteKeyItem(keyAlias, emptyOptions)
     .then((data) => {
       console.info(`promise: delete data success`);

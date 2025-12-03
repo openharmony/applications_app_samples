@@ -120,7 +120,7 @@ async function sign(keyAlias: string, plaintext: string) {
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: stringToUint8Array(plaintext)
-  }
+  };
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -143,7 +143,7 @@ async function verify(keyAlias: string, plaintext: string, signature: Uint8Array
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: stringToUint8Array(plaintext)
-  }
+  };
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -171,7 +171,7 @@ async function verify(keyAlias: string, plaintext: string, signature: Uint8Array
 async function deleteRsaKey(keyAlias: string) {
   let emptyOptions: huks.HuksOptions = {
     properties: []
-  }
+  };
   await huks.deleteKeyItem(keyAlias, emptyOptions)
     .then((data) => {
       console.info(`promise: delete data success`);
