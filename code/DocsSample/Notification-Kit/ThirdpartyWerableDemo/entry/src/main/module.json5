@@ -60,14 +60,17 @@
       }
     ],
     "extensionAbilities": [
+    //[Start quick_start]
       {
         "name": "NotificationSubscriberExtAbility",
         "srcEntry": "./ets/extensionability/NotificationSubscriberExtAbility.ets",
+        "type": "notificationSubscriber",
         "description": "$string:NotificationSubscriberExtAbility_desc",
         "icon": "$media:layered_image",
-        "type": "notificationSubscriber",
-        "label": "$string:NotificationSubscriberExtAbility_label"
+        "label": "$string:NotificationSubscriberExtAbility_label",
+        "exported": true
       }
+    //[End quick_start]
     ]
   }
 }

@@ -11,7 +11,7 @@
 
 1.启动应用后，弹出是否允许访问蓝牙的弹窗，点击允许后开始操作。
 
-2.点击主页面openSubscriberSettings按钮，调用openSubscriptionSettings接口，打开通知扩展订阅设置页面，该页面以半模态弹窗显示。
+2.点击主页面[openSubscriberSettings](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationExtensionSubscription.md#notificationextensionsubscriptionopensubscriptionsettings)按钮，调用[openSubscriberSettings](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationExtensionSubscription.md#notificationextensionsubscriptionopensubscriptionsettings)接口，打开通知扩展订阅设置页面，该页面以半模态弹窗显示。
 
 3.点击主页面queryBluetooth按钮，获取已蓝牙配对设备信息。
 
