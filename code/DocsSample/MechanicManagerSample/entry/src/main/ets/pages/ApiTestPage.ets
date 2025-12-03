@@ -337,7 +337,7 @@ struct ApiTestPage {
                     // 检查跟踪状态
                     const isEnabled = mechanicManager.getCameraTrackingEnabled();
 
-                    if (isEnabled == false) {
+                    if (isEnabled === false) {
                       // 开启摄像头跟踪
                       mechanicManager.setCameraTrackingEnabled(true);
                       console.info('Camera tracking enabled');
