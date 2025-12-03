@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-let storageEventCall = new LocalStorage();
-
 // [Start widget_event_call_card]
 //src/main/ets/widgeteventcall/pages/WidgetEventCallCard.ets
+let storageEventCall = new LocalStorage();
+
 @Entry(storageEventCall)
 @Component
 struct WidgetEventCallCard {
@@ -73,4 +72,5 @@ struct WidgetEventCallCard {
     .width('100%')
   }
 }
+
 // [End widget_event_call_card]
