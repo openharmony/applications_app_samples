@@ -58,6 +58,12 @@ reason.stack: xxx
 ```
 freezecallback
 ```
+（7）重启应用，点击“错误处理器责任链模式场景”按钮，出现如下形式日志输出：
+
+```
+[FirstHandler] First uncaught exception handler invoked.
+[SecondHandler] Second uncaught exception handler invoked.
+```
 
 ###  工程目录
 
@@ -89,9 +95,9 @@ entry/src/main/ets
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例中除错误处理器责任链模式场景外的所有错误场景均已适配API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56
-3. 本示例需要使用DevEco Studio (5.0.3.910)及以上版本才可编译运行；
-4. 错误处理器责任链模式场景需要适配API21版本SDK，支持API21版本SDK，版本号：6.0.0.55，镜像版本号：OpenHarmony_6.0.0.55。
+2. 本示例中除错误处理器责任链模式场景外的所有错误场景均已适配API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
+3. 本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行；
+4. 错误处理器责任链模式场景需要适配API21版本SDK，支持API21版本SDK，版本号：6.0.1.112，镜像版本号：OpenHarmony_6.0.1.112。
 
 ### 下载
 
@@ -104,4 +110,3 @@ echo code/DocsSample/PerformanceAnalysisKit/ErrorManage/ErrorManage/ > .git/info
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
-
