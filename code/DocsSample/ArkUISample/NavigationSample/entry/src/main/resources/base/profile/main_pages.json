@@ -23,6 +23,8 @@
     "pages/navigation/template7/PageTwo",
     "pages/observer/template1/Index",
     "pages/observer/template2/Index",
-    "pages/observer/template3/Index"
+    "pages/observer/template3/Index",
+    "pages/navigation/animation/NavigationPage",
+    "pages/navigation/splitmode/SplitNavigation"
   ]
 }

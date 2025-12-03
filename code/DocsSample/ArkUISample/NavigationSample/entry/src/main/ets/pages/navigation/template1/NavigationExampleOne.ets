@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start NavigationExampleOne]
+// [Start NavDestinationPrepare]
+// [Start NavDestinationGetStack]
 @Builder
 export function PageOneBuilder(name: string, param: string) {
   PageOne({ name: name, value: param });
@@ -27,6 +29,8 @@ export struct PageOne {
 
   build() {
     NavDestination() {
+      // [StartExclude NavDestinationPrepare]
+      // [StartExclude NavDestinationGetStack]
       Column() {
         // $r('app.string.settingPage')需要替换为开发者所需的字符串资源文件,资源文件中的value值为“设置页面”
         Text(`${this.name}${this.context!.resourceManager.getStringSync($r('app.string.settingPage').id)}`)
@@ -58,11 +62,17 @@ export struct PageOne {
           })
       }
       .size({ width: '100%', height: '100%' })
+      // [EndExclude NavDestinationGetStack]
+      // [EndExclude NavDestinationPrepare]
     }.title(`${this.name}`)
+    // [StartExclude NavDestinationPrepare]
     .onReady((ctx: NavDestinationContext) => {
       // NavDestinationContext获取当前所在的导航控制器
       this.navPathStack = ctx.pathStack;
     })
+    // [EndExclude NavDestinationPrepare]
   }
 }
+// [End NavDestinationGetStack]
+// [End NavDestinationPrepare]
 // [End NavigationExampleOne]

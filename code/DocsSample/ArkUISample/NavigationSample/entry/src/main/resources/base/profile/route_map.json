@@ -88,6 +88,29 @@
       "name" : "NFC",
       "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
       "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "animation-BasicNavDestination",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/animation/BasicNavDestination.ets",
+      "buildFunction" : "BasicNavDestinationBuilder"
+    },
+    {
+      "name" : "animation-DialogNavDestination",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/animation/DialogNavDestination.ets",
+      "buildFunction" : "DialogNavDestinationBuilder"
+    },
+    {
+      "name" : "animation-PageTwoNavDes",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/animation/PageTwoNavDes.ets",
+      "buildFunction" : "PageTwoNavDesBuilder"
+    },
+    {
+      "name": "NewsDetail",
+      "pageSourceFile": "src/main/ets/pages/navigation/splitmode/NewsDetail.ets",
+      "buildFunction": "NewsDetailPageBuilder",
+      "data": {
+        "description": "this is DetailPageA"
+      }
     }
   ]
 }
