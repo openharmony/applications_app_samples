@@ -61,7 +61,7 @@ function getHMACProperties() {
 async function generateHMACKey() {
   let options: huks.HuksOptions = {
     properties: getHMACProperties()
-  }
+  };
 
   await huks.generateKeyItem(hmacKeyAlias, options)
     .then((data) => {
