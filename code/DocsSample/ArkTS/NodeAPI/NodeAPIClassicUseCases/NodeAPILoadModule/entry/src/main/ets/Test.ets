@@ -15,7 +15,7 @@
 // [Start napi_load_module_napi_test]
 let value = 123;
 function test() {
-  console.log('Hello OpenHarmony');
+  console.info('Hello OpenHarmony');
 }
 export {value, test};
 // [End napi_load_module_napi_test]

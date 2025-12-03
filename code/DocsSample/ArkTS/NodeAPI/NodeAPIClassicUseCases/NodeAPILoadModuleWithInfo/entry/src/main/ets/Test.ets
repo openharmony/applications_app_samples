@@ -16,7 +16,7 @@
 let value = 123;
 
 function test() {
-  console.log('Hello OpenHarmony');
+  console.info('Hello OpenHarmony');
 }
 
 export { value, test };

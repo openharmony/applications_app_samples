@@ -13,11 +13,16 @@
  * limitations under the License.
  */
 // [Start napi_ark_runtime_dts]
+// index.d.ts
 export const createArkRuntime: () => object;
 // [End napi_ark_runtime_dts]
+
 // [Start napi_event_loop_dts]
+// index.d.ts
 export const runEventLoop: (isDefault: boolean) => object;
 // [End napi_event_loop_dts]
+
 // [Start napi_call_threadsafe_function_with_priority_dts]
+// index.d.ts
 export const callThreadSafeWithPriority: (cb: (a: number, b: number) => number) => void;
 // [End napi_call_threadsafe_function_with_priority_dts]

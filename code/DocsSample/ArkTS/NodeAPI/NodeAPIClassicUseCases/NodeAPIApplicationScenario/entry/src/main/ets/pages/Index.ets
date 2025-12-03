@@ -12,16 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start napi_call_threadsafe_function_with_priority_ets]
-// [Start napi_event_loop_ets]
-// [Start napi_ark_runtime_ets]
+
 import testNapi from 'libentry.so';
-// [StartExclude napi_call_threadsafe_function_with_priority_ets]
-// [StartExclude napi_event_loop_ets]
-// [StartExclude napi_ark_runtime_ets]
-// [Start napi_thread_safety_ets]
 import nativeModule from 'libentry1.so';
-// [StartExclude napi_thread_safety_ets]
+
 @Entry
 @Component
 struct Index {
@@ -35,7 +29,8 @@ struct Index {
       Button($r('app.string.createArkRuntime'))
         .width('70%')
         .onClick(() => {
-          // [EndExclude napi_ark_runtime_ets]
+          // [Start napi_ark_runtime_ets]
+          // index.ets
           testNapi.createArkRuntime();
           // [End napi_ark_runtime_ets]
           this.message = 'ArkRuntime success';
@@ -43,7 +38,8 @@ struct Index {
       Button($r('app.string.runEventLoop'))
         .width('70%')
         .onClick(() => {
-          // [EndExclude napi_event_loop_ets]
+          // [Start napi_event_loop_ets]
+          // index.ets
           testNapi.runEventLoop(true);
           // [End napi_event_loop_ets]
           this.message = 'EventLoop success';
@@ -51,7 +47,8 @@ struct Index {
       Button($r('app.string.CallThreadSafeWithPriority'))
         .width('70%')
         .onClick(() => {
-          // [EndExclude napi_call_threadsafe_function_with_priority_ets]
+          // [Start napi_call_threadsafe_function_with_priority_ets]
+          // index.ets
           let callback = (a: number, b: number): number => {
             console.info('result is ' + (a + b))
             return a + b;
@@ -63,7 +60,8 @@ struct Index {
       Button($r('app.string.startThread'))
         .width('70%')
         .onClick(() => {
-          // [EndExclude napi_thread_safety_ets]
+          // [Start napi_thread_safety_ets]
+          // index.ets
           let callback = (): Promise<string> => {
             return new Promise((resolve) => {
               setTimeout(() => {
