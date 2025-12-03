@@ -56,6 +56,7 @@ struct PixelMaps {
 };
 
 static ArkUI_NodeHandle mainPageScroll = nullptr;
+static ArkUI_NodeHandle scrollNode = nullptr;
 static ArkUI_NativeNodeAPI_1* GetNodeApi()
 {
     static ArkUI_NativeNodeAPI_1* nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1*>(
@@ -294,6 +295,13 @@ static napi_value AddPixelMapArray(napi_env env, napi_callback_info info, ArkUI_
     
     ArkUI_NodeHandle imageNode = nodeApi->createNode(ARKUI_NODE_IMAGE);
     ArkUI_AttributeItem item = {.object = pixelArrayDes};
+    
+    ArkUI_NumberValue value[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem sizeItem = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
+
+    nodeApi->setAttribute(imageNode, NODE_WIDTH, &sizeItem);
+    nodeApi->setAttribute(imageNode, NODE_HEIGHT, &sizeItem);
+    
     nodeApi->setAttribute(imageNode, NODE_IMAGE_SRC, &item);
     nodeApi->addChild(sroll, imageNode);
 
@@ -318,9 +326,14 @@ static napi_value CreateNodePage(napi_env env, napi_callback_info info)
     ArkUI_NodeContentHandle nodeContentHandle = nullptr;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle);
     ArkUI_NativeNodeAPI_1* nodeApi = GetNodeApi();
+    if (scrollNode != nullptr && nodeContentHandle != nullptr) {
+        OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle, scrollNode);
+        nodeApi->disposeNode(scrollNode);
+        mainPageScroll = nullptr;
+    }
     if (nodeApi != nullptr) {
         if (nodeApi->createNode != nullptr && nodeApi->addChild != nullptr) {
-            ArkUI_NodeHandle scrollNode = GetMainPageSroll();
+            scrollNode = GetMainPageSroll();
             napi_value mapArrayId = AddPixelMapArray(env, info, scrollNode);
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, scrollNode);
             return mapArrayId;
