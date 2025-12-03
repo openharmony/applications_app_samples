@@ -80,7 +80,7 @@ let properties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
   // 此value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥。
   value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
-},
+}
 ]
 let options: huks.HuksOptions = {
   properties: properties,
@@ -135,7 +135,7 @@ let keyProperties: huks.HuksParam[] = [
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
     value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
   },
-];
+]
 
 let huksOptions: huks.HuksOptions = {
   properties: keyProperties, // 非空填充

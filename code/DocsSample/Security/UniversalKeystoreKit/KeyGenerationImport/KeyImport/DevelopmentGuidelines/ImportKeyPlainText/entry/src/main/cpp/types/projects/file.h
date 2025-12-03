@@ -1,5 +1,3 @@
-#ifndef IMPORTKEYPLAINTEXT_FILE_H
-#define IMPORTKEYPLAINTEXT_FILE_H
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +13,8 @@
  * limitations under the License.
  */
 
+#ifndef IMPORTKEYPLAINTEXT_FILE_H
+#define IMPORTKEYPLAINTEXT_FILE_H
 #include "napi/native_api.h"
 
 napi_value ImportAesKey(napi_env env, napi_callback_info info);
