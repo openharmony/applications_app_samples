@@ -15,6 +15,7 @@
 
 // [Start set_lazy_initialize_web_engine]
 import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 webview.WebCookieManager.setLazyInitializeWebEngine(true);
 
