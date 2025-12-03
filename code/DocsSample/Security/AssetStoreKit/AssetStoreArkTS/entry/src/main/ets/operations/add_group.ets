@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start add_group_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,27 +23,36 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function addGroupAsset(): Promise<string> {
   let result: string = '';
+  // [Start add_group_asset]
   let attr: asset.AssetMap = new Map();
   attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
   attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
   attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
   attr.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
   try {
-    await asset.add(attr).then(() => {
+    asset.add(attr).then(() => {
       console.info(`Succeeded in adding Asset to the group.`);
+      // [StartExclude add_group_asset]
       result = 'Succeeded in adding Asset to the group';
+      // [EndExclude add_group_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to add Asset to the group. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude add_group_asset]
       result = 'Failed to add Asset to the group';
+      // [EndExclude add_group_asset]
     })
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add Asset to the group. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude add_group_asset]
     result = 'Failed to add Asset to the group';
+    // [EndExclude add_group_asset]
   }
+  // [End add_group_asset]
+  await sleep(500);
   return result;
 }
-// [End add_group_asset]

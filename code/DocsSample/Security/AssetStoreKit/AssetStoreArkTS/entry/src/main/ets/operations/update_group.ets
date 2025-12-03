@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start update_group_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,9 +23,11 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function updateGroupAsset(): Promise<string> {
   let result: string = '';
+  // [Start update_group_asset]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
   query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
@@ -32,17 +35,24 @@ export async function updateGroupAsset(): Promise<string> {
   attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
   attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
   try {
-    await asset.update(query, attrsToUpdate).then(() => {
+    asset.update(query, attrsToUpdate).then(() => {
       console.info(`Succeeded in updating Asset in the group.`);
+      // [StartExclude update_group_asset]
       result = 'Succeeded in updating Asset in the group';
+      // [EndExclude update_group_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to update Asset in the group. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude update_group_asset]
       result = 'Failed to update Asset in the group';
+      // [EndExclude update_group_asset]
     });
   } catch (err) {
     console.error(`Failed to update Asset in the group. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude update_group_asset]
     result = 'Failed to update Asset in the group';
+    // [EndExclude update_group_asset]
   }
+  // [End update_group_asset]
+  await sleep(500);
   return result;
 }
-// [End update_group_asset]

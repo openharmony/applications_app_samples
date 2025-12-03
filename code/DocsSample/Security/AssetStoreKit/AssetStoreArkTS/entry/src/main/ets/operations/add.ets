@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start add_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,27 +23,36 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function addAsset(): Promise<string> {
   let result: string = '';
+  // [Start add_asset]
   let attr: asset.AssetMap = new Map();
   attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
   attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
   attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
   attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
   try {
-    await asset.add(attr).then(() => {
+    asset.add(attr).then(() => {
       console.info(`Succeeded in adding Asset.`);
+      // [StartExclude add_asset]
       result = 'Succeeded in adding Asset';
+      // [EndExclude add_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude add_asset]
       result = 'Failed to add Asset';
+      // [EndExclude add_asset]
     })
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
+    // [StartExclude add_asset]
     result = 'Failed to add Asset';
+    // [EndExclude add_asset]
   }
+  // [End add_asset]
+  await sleep(500);
   return result;
 }
-// [End add_asset]

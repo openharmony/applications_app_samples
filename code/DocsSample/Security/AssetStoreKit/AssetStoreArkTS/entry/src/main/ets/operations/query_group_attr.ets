@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start query_group_asset_attribute]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,29 +23,38 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function queryGroupAssetAttribute(): Promise<string> {
   let result: string = '';
+  // [Start query_group_asset_attribute]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产。
   query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // 此处表示仅返回群组关键资产属性，不包含群组关键资产明文。
   query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
   try {
-    await asset.query(query).then((res: Array<asset.AssetMap>) => {
+    asset.query(query).then((res: Array<asset.AssetMap>) => {
       for (let i = 0; i < res.length; i++) {
         // 解析属性。
         let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
         console.info(`Succeeded in getting accessibility, which is: ${accessibility}.`);
       }
+      // [StartExclude query_group_asset_attribute]
       result = 'Succeeded in querying group Asset attribute';
+      // [EndExclude query_group_asset_attribute]
     }).catch((err: BusinessError) => {
       console.error(`Failed to query Asset attribute from the group. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude query_group_asset_attribute]
       result = 'Failed to query Asset attribute from the group';
+      // [EndExclude query_group_asset_attribute]
     });
   } catch (err) {
     console.error(`Failed to query Asset attribute from the group. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude query_group_asset_attribute]
     result = 'Failed to query Asset attribute from the group';
+    // [EndExclude query_group_asset_attribute]
   }
+  // [End query_group_asset_attribute]
+  await sleep(500);
   return result;
 }
-// [End query_group_asset_attribute]

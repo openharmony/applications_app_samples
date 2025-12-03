@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start query_user_auth_asset]
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { userAuth } from '@kit.UserAuthenticationKit';
@@ -29,8 +29,10 @@ function arrayToString(arr: Uint8Array): string {
   let str = textDecoder.decodeToString(arr, { stream: false });
   return str;
 }
+// [End import]
 
-export async function userAuthenticate(challenge: Uint8Array): Promise<Uint8Array> {
+// [Start query_user_auth_asset]
+async function userAuthenticate(challenge: Uint8Array): Promise<Uint8Array> {
   return new Promise((resolve, reject) => {
     const authParam: userAuth.AuthParam = {
       challenge: challenge,

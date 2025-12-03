@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start add_sync_asset]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,28 +23,36 @@ function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
 }
+// [End import]
 
 export async function addSyncAsset(): Promise<string> {
   let result: string = '';
+  // [Start add_sync_asset]
   let attr: asset.AssetMap = new Map();
   attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
   attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
   attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
   attr.set(asset.Tag.SYNC_TYPE, asset.SyncType.TRUSTED_DEVICE); // 需指定在可信设备间同步（如新旧设备间克隆）。
-
   try {
-    await asset.add(attr).then(() => {
+    asset.add(attr).then(() => {
       console.info(`Succeeded in adding Asset with sync.`);
+      // [StartExclude add_sync_asset]
       result = 'Succeeded in adding Asset with sync';
+      // [EndExclude add_sync_asset]
     }).catch((err: BusinessError) => {
       console.error(`Failed to add Asset with sync. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude add_sync_asset]
       result = 'Failed to add Asset with sync';
+      // [EndExclude add_sync_asset]
     })
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add Asset with sync. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude add_sync_asset]
     result = 'Failed to add Asset with sync';
+    // [EndExclude add_sync_asset]
   }
+  // [End add_sync_asset]
+  await sleep(500);
   return result;
 }
-// [End add_sync_asset]

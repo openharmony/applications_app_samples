@@ -13,20 +13,28 @@
  * limitations under the License.
  */
 
-// [Start query_sync_result]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End import]
 
 export async function querySyncResult(): Promise<string> {
   let result: string = '';
+  // [Start query_sync_result]
   let query: asset.AssetMap = new Map();
-  await asset.querySyncResult(query).then((res: asset.SyncResult) => {
+  asset.querySyncResult(query).then((res: asset.SyncResult) => {
     console.info(`Succeeded in querying sync result: ${JSON.stringify(res)}`);
+    // [StartExclude query_sync_result]
     result = 'Succeeded in querying sync result';
+    // [EndExclude query_sync_result]
   }).catch((err: BusinessError) => {
     console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
+    // [StartExclude query_sync_result]
     result = 'Failed to query sync result of Asset';
+    // [EndExclude query_sync_result]
   });
+  // [End query_sync_result]
+  await sleep(500);
   return result;
 }
-// [End query_sync_result]

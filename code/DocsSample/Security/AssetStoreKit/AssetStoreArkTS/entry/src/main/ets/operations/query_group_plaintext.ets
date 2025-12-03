@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-// [Start query_group_asset_plaintext]
+import { sleep } from './common';
+// [Start import]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -28,30 +29,39 @@ function arrayToString(arr: Uint8Array): string {
   let str = textDecoder.decodeToString(arr, { stream: false });
   return str;
 }
+// [End import]
 
 export async function queryGroupAssetPlaintext(): Promise<string> {
   let result: string = '';
+  // [Start query_group_asset_plaintext]
   let query: asset.AssetMap = new Map();
   query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 指定了群组关键资产别名，最多查询到一条满足条件的群组关键资产。
   query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返回群组关键资产的所有信息，即属性+明文。
   query.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
   try {
-    await asset.query(query).then((res: Array<asset.AssetMap>) => {
+    asset.query(query).then((res: Array<asset.AssetMap>) => {
       for (let i = 0; i < res.length; i++) {
         // 解析secret。
         let secret: Uint8Array = res[i].get(asset.Tag.SECRET) as Uint8Array;
         // 将Uint8Array转换为string类型。
         let secretStr: string = arrayToString(secret);
       }
+      // [StartExclude query_group_asset_plaintext]
       result = 'Succeeded in querying group Asset plaintext';
+      // [EndExclude query_group_asset_plaintext]
     }).catch((err: BusinessError) => {
       console.error(`Failed to query Asset plaintext from the group. Code is ${err.code}, message is ${err.message}`);
+      // [StartExclude query_group_asset_plaintext]
       result = 'Failed to query Asset plaintext from the group';
+      // [EndExclude query_group_asset_plaintext]
     });
   } catch (err) {
     console.error(`Failed to query Asset plaintext from the group. Code is ${err?.code}, message is ${err?.message}`);
+    // [StartExclude query_group_asset_plaintext]
     result = 'Failed to query Asset plaintext from the group';
+    // [EndExclude query_group_asset_plaintext]
   }
+  // [End query_group_asset_plaintext]
+  await sleep(500);
   return result;
 }
-// [End query_group_asset_plaintext]
