@@ -22,9 +22,14 @@ struct ShapeExample {
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }
-      .viewPort({ x: -80, y: -5, width: 500, height: 300 })
-      .fill(0x317AF7)
-      .stroke(Color.Red)
+      .viewPort({
+        x: -80,
+        y: -5,
+        width: 500,
+        height: 300
+      })
+      .fill('#86C5E3')
+      .stroke('#61CFBE')
       .strokeWidth(3)
       .strokeLineJoin(LineJoinStyle.Miter)
       .strokeMiterLimit(5)

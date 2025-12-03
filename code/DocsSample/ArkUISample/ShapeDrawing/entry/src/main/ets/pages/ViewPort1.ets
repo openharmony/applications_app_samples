@@ -22,10 +22,10 @@ class Tmp {
 }
 
 class TmpOne {
-  public x:number = 0;
-  public y:number = 0;
-  public width:number = 300;
-  public height:number = 300;
+  public x: number = 0;
+  public y: number = 0;
+  public width: number = 300;
+  public height: number = 300;
 }
 
 @Entry
@@ -49,8 +49,8 @@ struct ViewPort1 {
           // $r('app.string.EnlargedCircle')需要替换为开发者所需的资源文件
           Text($r('app.string.EnlargedCircle'))
           Shape() {
-            Rect().width('100%').height('100%').fill('#0097D4')
-            Circle({ width: 75, height: 75 }).fill('#E87361')
+            Rect().width('100%').height('100%').fill('#8981F7')
+            Circle({ width: 75, height: 75 }).fill('#86C5E3')
           }
           .viewPort(this.viep)
           .width(150)
@@ -65,13 +65,13 @@ struct ViewPort1 {
           // $r('app.string.ShrunkCircle')需要替换为开发者所需的资源文件
           Text($r('app.string.ShrunkCircle'))
           Shape() {
-            Rect().width('100%').height('100%').fill('#BDDB69')
-            Circle({width: 75, height: 75}).fill('#E87361')
+            Rect().width('100%').height('100%').fill('#8981F7')
+            Circle({ width: 75, height: 75 }).fill('#86C5E3')
           }
           .viewPort(this.viep1)
           .width(150)
           .height(150)
-          .backgroundColor('#F5DC62')
+          .backgroundColor('#61CFBE')
         }
       }
     }
