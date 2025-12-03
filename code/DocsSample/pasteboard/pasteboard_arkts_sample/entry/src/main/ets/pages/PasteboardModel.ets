@@ -32,15 +32,17 @@ export namespace TestJs {
     let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, content);
     await systemPasteboard.setData(pasteData);
   }
-  export async function getPlainData(type: string): Promise<string> {
-    //从系统剪贴板中读取数据
+  export async function getPlainData(): Promise<string> {
+    // 从系统剪贴板中读取数据
     let data = await systemPasteboard.getData();
+    // 从剪贴板数据中获取条目数量
     let recordCount = data.getRecordCount();
+    // 从剪贴板数据中获取对应条目信息
     let result = '';
     for (let i = 0; i < recordCount; i++) {
       let record = data.getRecord(i).toPlainText();
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Get data success, record:' + record);
-      result = record;
+      result += record;
     }
     return result;
   }
@@ -121,13 +123,13 @@ export namespace TestJs {
         if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
           let record = records[0] as unifiedDataChannel.PlainText;
           hilog.info(0xFF00, '[Sample_pasteboard]', 'GetPlainText success, type:' + records[0].getType());
-          //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
+          // 注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
         } else {
           hilog.info(0xFF00, '[Sample_pasteboard]', 'Get Plain Text Data No Success, Type is: ' + records[0].getType());
         }
       }).catch((error: BusinessError) => {
         hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get PlainTextUnifiedData. Cause: ' + error.message);
-        //处理异常场景
+        // 处理异常场景
       })
     })
     // [End pasteboard_timelaps_PasteData4]
@@ -136,8 +138,8 @@ export namespace TestJs {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Set app share options success.');
     } catch (err) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to gSet app share options. Cause: ' + err.message);
-      //处理异常场景
+      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to Set app share options. Cause: ' + err.message);
+      // 处理异常场景
     }
     // [End pasteboard_timelaps_PasteData5]
     // [Start pasteboard_timelaps_PasteData6]
@@ -146,7 +148,7 @@ export namespace TestJs {
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Remove app share options success.');
     } catch (err) {
       hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to Remove app share options. Cause: ' + err.message);
-      //处理异常场景
+      // 处理异常场景
     }
     // [End pasteboard_timelaps_PasteData6]
   }
