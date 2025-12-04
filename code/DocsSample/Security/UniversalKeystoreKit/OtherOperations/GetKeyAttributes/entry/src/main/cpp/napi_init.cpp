@@ -12,12 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start obtain_the_key_attributes]
+// [Start obtain_the_key_attributes_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-// [StartExclude obtain_the_key_attributes]
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
 {
@@ -61,7 +60,7 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-// [EndExclude obtain_the_key_attributes]
+
 static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
 {
     /* 1. 参数构造：确定密钥别名 */
@@ -104,7 +103,7 @@ static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-// [End obtain_the_key_attributes]
+// [End obtain_the_key_attributes_cpp]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
