@@ -13,4 +13,9 @@
  * limitations under the License.
  */
 
-export const encDecKey: () => number;
+export const testAesCbc: () => number;
+export const testAesGcm: () => number;
+export const testRsaEcbPkcs: () => number;
+export const testRsaEcbOaep: () => number;
+export const testSm2: () => number;
+export const testDesCbc: () => number;

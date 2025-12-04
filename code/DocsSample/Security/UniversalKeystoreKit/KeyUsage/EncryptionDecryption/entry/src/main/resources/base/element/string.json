@@ -66,7 +66,27 @@
     },
     {
       "name": "call_cpp_enc_dec",
-      "value": "Call C/C++"
+      "value": "Call C/C++ AES/CBC/PKCS7"
+    },
+    {
+      "name": "call_cpp_gcm_nopadding",
+      "value": "Call C/C++ AES/GCM/NoPadding"
+    },
+    {
+      "name": "call_cpp_rsa_ecb_pkcs1_v1_5",
+      "value": "Call C/C++ RSA/ECB/PKCS1_V1_5"
+    },
+    {
+      "name": "call_cpp_enc_rsa_ecb_oaep_sha256",
+      "value": "Call C/C++ RSA/ECB/OAEP/SHA256"
+    },
+    {
+      "name": "call_cpp_enc_sm2",
+      "value": "Call C/C++ SM2"
+    },
+    {
+      "name": "call_cpp_enc_des_cbc_nopadding",
+      "value": "Call C/C++ DES/CBC/NoPadding"
     }
   ]
 }
