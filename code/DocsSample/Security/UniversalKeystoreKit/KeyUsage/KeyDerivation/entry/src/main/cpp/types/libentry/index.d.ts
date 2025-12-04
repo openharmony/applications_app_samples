@@ -13,4 +13,5 @@
  * limitations under the License.
  */
 
-export const deriveKey: () => number;
+export const  pbkdfderiveKey: () => number;
+export const  hkdfderiveKey: () => number;
