@@ -133,7 +133,7 @@ struct Index {
                 if (status === 0) {
                   // 用户授权，使用get操作读取剪贴板内容。
                   // [StartExclude pasteboard_permission]
-                  TestJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+                  TestJs.getPlainData()
                     .then((ret) => {
                       this.text = ret;
                     })
