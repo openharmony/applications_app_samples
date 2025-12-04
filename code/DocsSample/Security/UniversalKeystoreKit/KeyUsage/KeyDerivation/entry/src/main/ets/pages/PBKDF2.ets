@@ -345,7 +345,6 @@ struct Index {
   build() {
     Column({ space: 12 }) {
       Text(this.message)
-        Text(this.message)
         .fontWeight(FontWeight.Regular)
         .fontSize($r('sys.float.ohos_id_text_size_body1'))
         .fontColor($r('sys.color.ohos_id_color_text_primary'))

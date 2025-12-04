@@ -83,12 +83,25 @@ export default function keyDerivationTest() {
     it('testKeyDerivation003', 0, async () => {
       console.info('uitest: testKeyDerivation003 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Call C/C++'));
+      const button1 = await driver.findComponent(ON.text('Call C/C++ HKDF'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Call C/C++ HKDF Result: 0'));
       console.info('uitest: testKeyDerivation003 end');
+    })
+    /**
+     * 点击按钮，密钥派生PBKDF2(C/C++)
+     */
+    it('testKeyDerivation004', 0, async () => {
+      console.info('uitest: testKeyDerivation004 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ PBKDF2'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Call C/C++ PBKDF2 Result: 0'));
+      console.info('uitest: testKeyDerivation004 end');
       await driver.pressBack();
     })
   })

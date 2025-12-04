@@ -36,7 +36,6 @@ struct Index {
   build() {
     Column({ space: 5 }) {
       Text(this.message)
-        Text(this.message)
         .fontWeight(FontWeight.Regular)
         .fontSize($r('sys.float.ohos_id_text_size_body1'))
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
@@ -62,7 +61,7 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/PBKDF2')
         })
-      Button($r('app.string.call_cpp_derive_key'))
+      Button($r('app.string.call_cpp_derive_key_hkdf'))
         .padding('12vp')
         .height('40vp')
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
@@ -70,8 +69,19 @@ struct Index {
         .fontSize('14sp')
         .fontColor('#ffffff')
         .onClick(() => {
-          let ret: number = testNapi.deriveKey();
-          this.message = 'Call C/C++ Result: ' + ret.toString();
+          let ret: number = testNapi.hkdfderiveKey();
+          this.message = 'Call C/C++ HKDF Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_derive_key_pbkdf2'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.pbkdfderiveKey();
+          this.message = 'Call C/C++ PBKDF2 Result: ' + ret.toString();
         })
     }
     .height('100%')

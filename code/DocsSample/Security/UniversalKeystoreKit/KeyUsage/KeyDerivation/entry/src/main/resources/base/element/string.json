@@ -25,12 +25,20 @@
       "value": "PBKDF2"
     },
     {
-      "name": "call_cpp_derive_key",
-      "value": "Call C/C++"
+      "name": "call_cpp_derive_key_hkdf",
+      "value": "Call C/C++ HKDF"
     },
     {
-      "name": "call_cpp_result",
-      "value": "Call C/C++ Result: "
+      "name": "call_cpp_derive_key_pbkdf2",
+      "value": "Call C/C++ PBKDF2"
+    },
+    {
+      "name": "call_cpp_hkdf",
+      "value": "Call C/C++ HKDF Result: "
+    },
+    {
+      "name": "call_cpp_pbkdf2",
+      "value": "Call C/C++ PBKDF2 Result: "
     },
     {
       "name": "call_hkdf",
