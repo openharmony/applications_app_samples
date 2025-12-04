@@ -1,0 +1,11 @@
+{
+  "devices": {
+    "general": ["default", "tablet"]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.Security.DataTransitManager"
+    ]
+  }
+}
