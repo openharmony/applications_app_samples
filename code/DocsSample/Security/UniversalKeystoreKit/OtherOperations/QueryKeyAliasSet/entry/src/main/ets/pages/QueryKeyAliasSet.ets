@@ -37,9 +37,7 @@ async function testListAliases() {
     console.info(`promise: listAliases success`);
   } catch (error) {
     console.error(`promise: listAliases fail`);
-    // [StartExclude query_key_alias_set_arkts]
     throw (error as Error);
-    // [EndExclude query_key_alias_set_arkts]
   }
 }
 // [End query_key_alias_set_arkts]
