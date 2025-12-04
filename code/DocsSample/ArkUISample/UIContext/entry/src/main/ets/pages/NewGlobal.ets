@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start Main_NewGlobal]
+// pages/NewGlobal.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
