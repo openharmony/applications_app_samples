@@ -71,24 +71,70 @@ export default function keyExchangeTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('DH').type('Button'));
       await button2.click();
-      await driver.delayMs(3500);
+      await driver.delayMs(6000);
       await driver.assertComponentExist(ON.text('DH Result: Success'));
       console.info('uitest: testKeyExchange002 end');
       await driver.pressBack();
     })
 
     /**
-     * 点击按钮，密钥协商(C/C++)
+     * 点击按钮，ECDH密钥协商
      */
     it('testKeyExchange003', 0, async () => {
       console.info('uitest: testKeyExchange003 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Call C/C++'));
+      const button1 = await driver.findComponent(ON.text('ECDH'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
+      const button2 = await driver.findComponent(ON.text('ECDH').type('Button'));
+      await button2.click();
+      await driver.delayMs(3500);
+      await driver.assertComponentExist(ON.text('ECDH Result: Success'));
       console.info('uitest: testKeyExchange003 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，密钥协商(C/C++ X25519)
+     */
+    it('testKeyExchange004', 0, async () => {
+      console.info('uitest: testKeyExchange004 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ X25519'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Call C/C++ X25519 Result: 0'));
+      console.info('uitest: testKeyExchange004 end');
+    })
+
+    /**
+     * 点击按钮，密钥协商(C/C++ DH)
+     */
+    it('testKeyExchange005', 0, async () => {
+      console.info('uitest: testKeyExchange005 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ DH'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(6000);
+      await driver.assertComponentExist(ON.text('Call C/C++ DH Result: 0'));
+      console.info('uitest: testKeyExchange005 end');
+    })
+
+    /**
+     * 点击按钮，密钥协商(C/C++ ECDH)
+     */
+    it('testKeyExchange006', 0, async () => {
+      console.info('uitest: testKeyExchange006 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ ECDH'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(6000);
+      await driver.assertComponentExist(ON.text('Call C/C++ ECDH Result: 0'));
+      console.info('uitest: testKeyExchange006 end');
       await driver.pressBack();
     })
   })

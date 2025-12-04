@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/X25519",
-    "pages/DH"
+    "pages/DH",
+    "pages/ECDH"
   ]
 }

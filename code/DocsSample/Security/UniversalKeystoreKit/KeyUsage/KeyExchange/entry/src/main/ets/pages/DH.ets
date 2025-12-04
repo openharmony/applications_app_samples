@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 // [Start key_agreement_dh]
+
 /*
-*以下以 DH密钥的Promise操作使用为例
-*/
+ * 下面以DH密钥的Promise操作使用为例
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
 
 function stringToUint8Array(str: string) {
-  let arr: number[] = []
+  let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
@@ -27,13 +28,13 @@ function stringToUint8Array(str: string) {
 }
 
 function uint8ArrayToBigInt(arr: Uint8Array): bigint {
-  let i = 0
-  const byteMax: bigint = BigInt('0x100')
-  let result: bigint = BigInt('0')
+  let i = 0;
+  const byteMax: bigint = BigInt('0x100');
+  let result: bigint = BigInt('0');
   while (i < arr.length) {
-    result = result * byteMax
-    result = result + BigInt(arr[i])
-    i += 1
+    result = result * byteMax;
+    result = result + BigInt(arr[i]);
+    i += 1;
   }
   return result;
 }
@@ -44,24 +45,24 @@ const dhAgree: huks.HuksParam[] = [{
 }, {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
   value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
-}]
+}];
 const dh2048Agree: huks.HuksParam[] = [
   ...dhAgree, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
   value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048,
-}]
+}];
 const dhGenOptions: huks.HuksOptions = {
   properties: dh2048Agree,
   inData: new Uint8Array([])
-}
+};
 const emptyOptions: huks.HuksOptions = {
   properties: [],
   inData: new Uint8Array([])
-}
+};
 
 async function huksDhAgreeExportKey(keyAlias: string,
   peerPubKey: huks.HuksReturnResult): Promise<huks.HuksReturnResult> {
-  const initHandle = await huks.initSession(keyAlias, dhGenOptions)
+  const initHandle = await huks.initSession(keyAlias, dhGenOptions);
   const dhAgreeUpdateBobPubKey: huks.HuksOptions = {
     properties: [
       ...dh2048Agree, {
@@ -69,9 +70,9 @@ async function huksDhAgreeExportKey(keyAlias: string,
       value: huks.HuksKeyStorageType.HUKS_STORAGE_KEY_EXPORT_ALLOWED,
     }],
     inData: peerPubKey.outData
-  }
-  await huks.updateSession(initHandle.handle, dhAgreeUpdateBobPubKey)
-  return await huks.finishSession(initHandle.handle, emptyOptions)
+  };
+  await huks.updateSession(initHandle.handle, dhAgreeUpdateBobPubKey);
+  return await huks.finishSession(initHandle.handle, emptyOptions);
 }
 
 async function huksDhAgreeExportTest(
@@ -93,14 +94,14 @@ async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnRe
   }, {
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-  }]
+  }];
   const dhAgreeInit: huks.HuksOptions = {
     properties: [
       ...dhAgree,
       { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE, value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256, },
       ...onlyUsedInHuks],
     inData: new Uint8Array([])
-  }
+  };
   const dhAgreeFinishParams: huks.HuksParam[] = [
     ...onlyUsedInHuks,
     { tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS, value: true },
@@ -109,19 +110,20 @@ async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnRe
     {
       tag: huks.HuksTag.HUKS_TAG_PURPOSE,
       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    }]
+    }
+  ];
 
-  const handle = await huks.initSession(keyAlias, dhAgreeInit)
+  const handle = await huks.initSession(keyAlias, dhAgreeInit);
   const dhAgreeUpdatePubKey: huks.HuksOptions = {
     properties: [...dhAgree, ...onlyUsedInHuks],
     inData: peerPubKey.outData
-  }
-  await huks.updateSession(handle.handle, dhAgreeUpdatePubKey)
+  };
+  await huks.updateSession(handle.handle, dhAgreeUpdatePubKey);
   const dhAgreeAliceFinnish: huks.HuksOptions = {
     properties: [...dhAgreeFinishParams, {
       tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS, value: stringToUint8Array(aliasAgreedKey)
     }], inData: new Uint8Array([])
-  }
+  };
   return await huks.finishSession(handle.handle, dhAgreeAliceFinnish);
 }
 
@@ -144,7 +146,7 @@ async function huksDhAgreeInHuksTest(
   await huks.deleteKeyItem(aliasAgreedKeyFromB, emptyOptions);
 }
 
-export default async function huksDhAgreeTest() {
+async function huksDhAgreeTest() {
   const aliasAlice = 'alice';
   const aliasBob = 'bob';
 
@@ -152,7 +154,7 @@ export default async function huksDhAgreeTest() {
   await huks.generateKeyItem(aliasAlice, dhGenOptions);
   await huks.generateKeyItem(aliasBob, dhGenOptions);
 
-  /* 导出非对称密钥alice与bob的的公钥 */
+  /* 导出非对称密钥alice与bob的公钥 */
   const pubKeyAlice = await huks.exportKeyItem(aliasAlice, emptyOptions);
   const pubKeyBob = await huks.exportKeyItem(aliasBob, emptyOptions);
 

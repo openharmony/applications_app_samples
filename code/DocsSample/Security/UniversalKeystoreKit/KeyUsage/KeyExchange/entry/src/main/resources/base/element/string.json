@@ -21,8 +21,20 @@
       "value": "DH"
     },
     {
-      "name": "call_cpp_agree_key",
-      "value": "Call C/C++"
+      "name": "ecdh",
+      "value": "ECDH"
+    },
+    {
+      "name": "call_cpp_ecdh_key",
+      "value": "Call C/C++ ECDH"
+    },
+    {
+      "name": "call_cpp_dh_key",
+      "value": "Call C/C++ DH"
+    },
+    {
+      "name": "call_cpp_x25519_key",
+      "value": "Call C/C++ X25519"
     }
   ]
 }

@@ -15,13 +15,30 @@
 // [Start key_agreement_X25519]
 
 /*
-*以下以X25519密钥的Promise操作使用为例
-*/
+ * 以下以X25519密钥的Promise操作使用为例
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
 
 /*
-* 确定密钥别名和封装密钥属性参数集
-*/
+ * 确定密钥别名和封装密钥属性参数集
+ */
 let srcKeyAliasFirst = 'AgreeX25519KeyFirstAlias';
 let srcKeyAliasSecond = 'AgreeX25519KeySecondAlias';
 let agreeX25519InData = 'AgreeX25519TestIndata';
@@ -52,7 +69,8 @@ let properties: huks.HuksParam[] = [{
 }, {
   tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
   value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-}];
+}
+];
 let huksOptions: huks.HuksOptions = {
   properties: properties,
   inData: new Uint8Array([])
@@ -84,7 +102,8 @@ const finishProperties: huks.HuksParam[] = [{
 }, {
   tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
   value: huks.HuksCipherMode.HUKS_MODE_ECB,
-}];
+}
+];
 let finishOptionsFirst: huks.HuksOptions = {
   properties: [
     ...finishProperties, {
@@ -103,291 +122,123 @@ let finishOptionsSecond: huks.HuksOptions = {
   inData: stringToUint8Array(agreeX25519InData)
 }
 
-function stringToUint8Array(str: string) {
-  let arr: number[] = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-class ThrowObject {
-  public isThrow: boolean = false
-}
-
 /* 生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/* 调用generateKeyItem生成密钥 */
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter generateKeyItem');
   try {
-    await generateKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
 }
 
-/*初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）*/
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
-    try {
-      huks.initSession(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/*调用initSession获取handle*/
-async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doInit`);
-  let throwObject: ThrowObject = { isThrow: false };
+/* 初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选） */
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter initSession');
   try {
-    await initSession(keyAlias, huksOptions, throwObject)
+    await huks.initSession(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doInit failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: initSession input arg invalid`);
   }
 }
 
 /* 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据 */
-function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.updateSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/* 调用updateSession进行协商操作 */
-async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doUpdate`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter updateSession');
   try {
-    await updateSession(handle, huksOptions, throwObject)
+    await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: updateSession success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: updateSession input arg invalid`);
   }
 }
 
 /* 结束密钥会话并进行相应的密钥操作，输出处理数据 */
-function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.finishSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/* 调用finishSession结束操作 */
-async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doFinish`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter finishSession');
   try {
-    await finishSession(handle, huksOptions, throwObject)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
         finishOutData = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: finishSession success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doFinish failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: finishSession input arg invalid`);
   }
 }
 
 /* 导出密钥 */
-function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.exportKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/* 调用exportKeyItem导出公钥操作 */
-async function publicExportKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise export`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter exportKeyItem');
   try {
-    await exportKeyItem(keyAlias, huksOptions, throwObject)
+    await huks.exportKeyItem(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         exportKey = data.outData as Uint8Array;
+        console.info(`promise: exportKey success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: exportKeyItem failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: exportKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: exportKeyItem input arg invalid`);
   }
 }
 
 /* 删除密钥操作 */
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-/* 调用deleteKeyItem删除密钥操作 */
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise deleteKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter deleteKeyItem');
   try {
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
-          throw (error as Error);
-        }
-      });
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    throw (error as Error);
+    console.error(`promise: deleteKeyItem input arg invalid`);
   }
 }
 
 async function testAgree() {
-  /* 1.确定密钥别名并集成并集成要参数集 A设备：srcKeyAliasFirst  B设备：srcKeyAliasSecond*/
+  /* 1.确定密钥别名并集成要参数集。A设备：srcKeyAliasFirst；B设备：srcKeyAliasSecond */
   /* 2.设备A生成密钥 */
-  await publicGenKeyFunc(srcKeyAliasFirst, huksOptions);
+  await generateKeyItem(srcKeyAliasFirst, huksOptions);
   /* 3.设备B生成密钥 */
-  await publicGenKeyFunc(srcKeyAliasSecond, huksOptions);
+  await generateKeyItem(srcKeyAliasSecond, huksOptions);
   /* 4.设备A、B导出非对称密钥的公钥 */
-  await publicExportKeyFunc(srcKeyAliasFirst, huksOptions);
+  await exportKeyItem(srcKeyAliasFirst, huksOptions);
   exportKeyFirst = exportKey;
-  await publicExportKeyFunc(srcKeyAliasSecond, huksOptions);
+  await exportKeyItem(srcKeyAliasSecond, huksOptions);
   exportKeySecond = exportKey;
-  /* 5.对第一个密钥进行协商（三段式）*/
-  await publicInitFunc(srcKeyAliasFirst, huksOptions);
+  /* 5.对第一个密钥进行协商（三段式） */
+  await initSession(srcKeyAliasFirst, huksOptions);
   huksOptions.inData = exportKeySecond;
-  await publicUpdateFunc(handle, huksOptions);
-  await publicFinishFunc(handle, finishOptionsFirst);
-  /* 5.对第二个密钥进行协商（三段式） */
-  await publicInitFunc(srcKeyAliasSecond, huksOptions);
+  await updateSession(handle, huksOptions);
+  await finishSession(handle, finishOptionsFirst);
+  /* 6.对第二个密钥进行协商（三段式） */
+  await initSession(srcKeyAliasSecond, huksOptions);
   huksOptions.inData = exportKeyFirst;
-  await publicUpdateFunc(handle, huksOptions);
-  await publicFinishFunc(handle, finishOptionsSecond);
-  /* 6.设备A、B删除密钥 */
-  await publicDeleteKeyFunc(srcKeyAliasFirst, huksOptions);
-  await publicDeleteKeyFunc(srcKeyAliasSecond, huksOptions);
+  await updateSession(handle, huksOptions);
+  await finishSession(handle, finishOptionsSecond);
+  /* 7.设备A、B删除密钥 */
+  await deleteKeyItem(srcKeyAliasFirst, huksOptions);
+  await deleteKeyItem(srcKeyAliasSecond, huksOptions);
 }
 
 
