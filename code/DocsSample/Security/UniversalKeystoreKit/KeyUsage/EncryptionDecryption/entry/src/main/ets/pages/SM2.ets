@@ -17,13 +17,14 @@
  * 以下以SM2模式的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sm2KeyAlias = 'test_sm2KeyAlias';
 let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function stringToUint8Array(str: String) {
+function stringToUint8Array(str: string) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -90,122 +91,106 @@ function getSm2DecryptProperties() {
 
 async function generateSm2Key() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 1. 获取生成密钥算法参数配置
+   */
   let genProperties = getSm2GenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 2. 调用generateKeyItem
+   */
   await huks.generateKeyItem(sm2KeyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate SM2 Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate SM2 Key failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    .then(() => {
+      console.info(`promise: generate SM2 Key success`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate SM2 Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function encryptDataSm2() {
   /*
-  * 模拟加密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟加密场景
+   */
   /*
-  * 2. 获取待加密的数据
-  */
-  /*
-  * 3. 获取加密算法参数配置
-  */
+   * 1. 获取加密算法参数配置
+   */
   let encryptProperties = getSm2EncryptProperties();
   let options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: stringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 2. 调用initSession获取handle
+   */
   await huks.initSession(sm2KeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptDataSm2 failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptDataSm2 failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取加密后的密文
-  */
+   * 3. 调用finishSession获取加密后的密文
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: encrypt data success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
       cipherData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: encrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function decryptDataSm2() {
   /*
-  * 模拟解密场景
-  * 1. 获取密钥别名
-  */
+   * 模拟解密场景
+   */
   /*
-  * 2. 获取待解密的密文
-  */
-  /*
-  * 3. 获取解密算法参数配置
-  */
+   * 1. 获取解密算法参数配置
+   */
   let decryptOptions = getSm2DecryptProperties()
   let options: huks.HuksOptions = {
     properties: decryptOptions,
     inData: cipherData
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 2. 调用initSession获取handle
+   */
   await huks.initSession(sm2KeyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init DecryptDataSm2 failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init DecryptDataSm2 failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取解密后的数据
-  */
+   * 3. 调用finishSession获取解密后的数据
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: decrypt data success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: Error) => {
-      console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: decrypt data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function deleteKey() {
   /*
-  * 模拟删除密钥场景
-  * 1. 获取密钥别名
-  */
+   * 模拟删除密钥场景
+   */
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
   /*
-  * 2. 调用deleteKeyItem删除密钥
-  */
+   * 1. 调用deleteKeyItem删除密钥
+   */
   await huks.deleteKeyItem(sm2KeyAlias, emptyOptions)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: delete data success`);
-    }).catch((error: Error) => {
-      console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
-      throw (error as Error);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: delete data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 

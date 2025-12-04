@@ -53,7 +53,7 @@ export default function encryptionDecryptionTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('Call AES/CBC/PKCS7'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       await driver.assertComponentExist(ON.text('AES/CBC/PKCS7 Result: Success'));
       console.info('uitest: testEncryptionDecryption001 end');
       await driver.pressBack();
@@ -66,12 +66,12 @@ export default function encryptionDecryptionTest() {
       console.info('uitest: testEncryptionDecryption002 begin');
       const driver = Driver.create();
       const button1 = await driver.findComponent(ON.text('AES/GCM/NoPadding'));
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await button1.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       const button2 = await driver.findComponent(ON.text('Call AES/GCM/NoPadding'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       await driver.assertComponentExist(ON.text('AES/GCM/NoPadding Result: Success'));
       console.info('uitest: testEncryptionDecryption002 end');
       await driver.pressBack();
@@ -107,7 +107,7 @@ export default function encryptionDecryptionTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('Call RSA/ECB/OAEP/SHA256'));
       await button2.click();
-      await driver.delayMs(3500);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('RSA/ECB/OAEP/SHA256 Result: Success'));
       console.info('uitest: testEncryptionDecryption004 end');
       await driver.pressBack();
@@ -125,30 +125,16 @@ export default function encryptionDecryptionTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('Call SM2'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('SM2 Result: Success'));
       console.info('uitest: testEncryptionDecryption005 end');
       await driver.pressBack();
     })
 
     /**
-     * 点击按钮，加解密C/C++
-     */
-    it('testEncryptionDecryption006', 0, async () => {
-      console.info('uitest: testEncryptionDecryption006 begin');
-      const driver = Driver.create();
-      await driver.delayMs(1000);
-      const button2 = await driver.findComponent(ON.text('Call C/C++'));
-      await button2.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
-      console.info('uitest: testEncryptionDecryption006 end');
-      })
-
-    /**
      * 点击按钮，加解密DES/CBC/NoPadding
      */
-    it('testEncryptionDecryption007', 0, async () => {
+    it('testEncryptionDecryption006', 0, async () => {
       console.info('uitest: testEncryptionDecryption007 begin');
       const driver = Driver.create();
       const button1 = await driver.findComponent(ON.text('DES/CBC/NoPadding'));
@@ -157,10 +143,88 @@ export default function encryptionDecryptionTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('Call DES/CBC/NoPadding'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('DES/CBC/NoPadding Result: Success'));
-      console.info('uitest: testEncryptionDecryption007 end');
+      console.info('uitest: testEncryptionDecryption006 end');
       await driver.pressBack();
+    })
+    /**
+     * 点击按钮，加解密C/C++ AES/CBC/PKCS7
+     */
+    it('testEncryptionDecryption007', 0, async () => {
+      console.info('uitest: testEncryptionDecryption007 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ AES/CBC/PKCS7'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ AES/CBC/PKCS7 Result: 0'));
+      console.info('uitest: testEncryptionDecryption007 end');
+    })
+    /**
+     * 点击按钮，加解密C/C++ AES/GCM/NoPadding
+     */
+    it('testEncryptionDecryption008', 0, async () => {
+      console.info('uitest: testEncryptionDecryption008 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ AES/GCM/NoPadding'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ AES/GCM/NoPadding Result: 0'));
+      console.info('uitest: testEncryptionDecryption008 end');
+    })
+    /**
+     * 点击按钮，加解密C/C++ RSA/ECB/PKCS1_V1_5
+     */
+    it('testEncryptionDecryption009', 0, async () => {
+      console.info('uitest: testEncryptionDecryption009 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ RSA/ECB/PKCS1_V1_5'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ RSA/ECB/PKCS1_V1_5 Result: 0'));
+      console.info('uitest: testEncryptionDecryption009 end');
+    })
+    /**
+     * 点击按钮，加解密C/C++ RSA/ECB/OAEP/SHA256
+     */
+    it('testEncryptionDecryption010', 0, async () => {
+      console.info('uitest: testEncryptionDecryption010 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ RSA/ECB/OAEP/SHA256'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ RSA/ECB/OAEP/SHA256 Result: 0'));
+      console.info('uitest: testEncryptionDecryption010 end');
+    })
+    /**
+     * 点击按钮，加解密C/C++ SM2
+     */
+    it('testEncryptionDecryption011', 0, async () => {
+      console.info('uitest: testEncryptionDecryption011 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ SM2'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ SM2 Result: 0'));
+      console.info('uitest: testEncryptionDecryption011 end');
+    })
+    /**
+     * 点击按钮，加解密C/C++ DES/CBC/NoPadding
+     */
+    it('testEncryptionDecryption012', 0, async () => {
+      console.info('uitest: testEncryptionDecryption012 begin');
+      const driver = Driver.create();
+      await driver.delayMs(2000);
+      const button2 = await driver.findComponent(ON.text('Call C/C++ DES/CBC/NoPadding'));
+      await button2.click();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.text('Call C/C++ DES/CBC/NoPadding Result: 0'));
+      console.info('uitest: testEncryptionDecryption012 end');
       await driver.pressBack();
     })
   })

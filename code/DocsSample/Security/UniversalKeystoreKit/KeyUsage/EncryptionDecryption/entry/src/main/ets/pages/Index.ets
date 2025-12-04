@@ -95,7 +95,7 @@ struct Index {
         .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/DESCBCNoPadding')
-        })  
+        })
       Button($r('app.string.call_cpp_enc_dec'))
         .padding('12vp')
         .height('40vp')
@@ -104,8 +104,63 @@ struct Index {
         .fontSize('14sp')
         .fontColor('#ffffff')
         .onClick(() => {
-          let ret: number = testNapi.encDecKey();
-          this.message = 'Call C/C++ Result: ' + ret.toString();
+          let ret: number = testNapi.testAesCbc();
+          this.message = 'Call C/C++ AES/CBC/PKCS7 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_gcm_nopadding'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.testAesGcm();
+          this.message = 'Call C/C++ AES/GCM/NoPadding Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_rsa_ecb_pkcs1_v1_5'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.testRsaEcbPkcs();
+          this.message = 'Call C/C++ RSA/ECB/PKCS1_V1_5 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_enc_rsa_ecb_oaep_sha256'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.testRsaEcbOaep();
+          this.message = 'Call C/C++ RSA/ECB/OAEP/SHA256 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_enc_sm2'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.testSm2();
+          this.message = 'Call C/C++ SM2 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_enc_des_cbc_nopadding'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.testDesCbc();
+          this.message = 'Call C/C++ DES/CBC/NoPadding Result: ' + ret.toString();
         })
     }
     .height('100%')
