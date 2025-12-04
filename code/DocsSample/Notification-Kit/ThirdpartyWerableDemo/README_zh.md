@@ -49,7 +49,7 @@ entry/src/main/ets
 1. 本示例仅支持标准系统上运行，支持设备：手机和平板。
 2. 本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.54；
 3. 本示例需要使用DevEco Studio 6.0.0 beta5 版本及以上版本(Build Version: 6.0.0.848, built on September 12, 2025)才可编译运行；
-4. 本示例涉及[ohos.permission.SUBSCRIBE_NOTIFICATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/restricted-permissions.md#ohospermissionsubscribe_notification)权限为system_core级别，需要配置高权限签名；
+4. 本示例涉及[ohos.permission.SUBSCRIBE_NOTIFICATION](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/restricted-permissions.md#ohospermissionsubscribe_notification)权限为system_basic级别，需要配置高权限签名；
 
 ### 下载
 ```shell
