@@ -249,8 +249,8 @@ struct NativePlayerComponent {
     .height('100%')
     .onAreaChange((oldValue: Area, newValue: Area) => {
       console.info(`NativePlayerComponent.onAreaChange(${JSON.stringify(oldValue)}, ${JSON.stringify(newValue)})`);
-      this.viewWidth = newValue.width;
-      this.viewHeight = newValue.height;
+      this.viewWidth = newValue.width as number;
+      this.viewHeight = newValue.height as number;
       this.onSizeChanged(this.videoWidth, this.videoHeight);
     })
   }
