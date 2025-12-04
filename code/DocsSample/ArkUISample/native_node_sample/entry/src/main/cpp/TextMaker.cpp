@@ -606,6 +606,15 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
+void setTextInput5(ArkUI_NodeHandle &textInput5)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "\u300C启用行首标点压缩";
+    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_TEXT, &item0);
+    ArkUI_NumberValue value0[] = {{.i32 = true}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item3);
+}
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -1170,6 +1179,19 @@ void setText10(ArkUI_NodeHandle &text10)
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
 }
 
+void setText11(ArkUI_NodeHandle &text11)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "\u300C启用行首标点压缩";
+    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value0[] = {{.i32 = true}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item3);
+    ArkUI_NumberValue value1[] = {{.f32 = 1.0}};
+    ArkUI_AttributeItem item4 = {value1, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text11, NODE_BORDER_WIDTH, &item4);
+}
+
 void setTextArea3(ArkUI_NodeHandle &textArea3)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -1232,6 +1254,16 @@ void setTextArea4(ArkUI_NodeHandle &textArea4)
     ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
     ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+}
+
+void setTextArea6(ArkUI_NodeHandle &textArea6)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "\u300C启用行首标点压缩";
+    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_TEXT, &item0);
+    ArkUI_NumberValue value0[] = {{.i32 = true}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item3);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -1461,6 +1493,16 @@ void measuredInfo(ArkUI_NodeHandle &component)
     ArkUI_IntSize getMeasured = Manager::nodeAPI_->getMeasuredSize(component);
 }
 
+void setTextMore(ArkUI_NodeHandle &textContainer)
+{
+    ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    setTextSelectAI(textAISelect);
+    setAccessibility(accessibilityLabel);
+    Manager::nodeAPI_->addChild(textContainer, textAISelect);
+    Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
+}
+
 void setAllText(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle text1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -1490,6 +1532,7 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     setText8(text8);
     setText9(text9);
     setText10(text10);
+    setText11(text11);
     setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, text1);
     Manager::nodeAPI_->addChild(textContainer, text2);
@@ -1507,43 +1550,46 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
+    setTextMore(textContainer);
     Manager::nodeAPI_->addChild(textContainer, column);
 }
-
-void setUIVal(ArkUI_NodeHandle &textContainer)
+void setAllTextInput(ArkUI_NodeHandle &textContainer)
 {
-    setAllText(textContainer);
     ArkUI_NodeHandle textInput1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    setTextInput1(textInput1);
+    setTextInput2(textInput2);
+    setTextInput3(textInput3);
+    setTextInput4(textInput4);
+    setTextInput5(textInput5);
+    setTextInputSelectAI(textInputAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textInput1);
+    Manager::nodeAPI_->addChild(textContainer, textInput2);
+    Manager::nodeAPI_->addChild(textContainer, textInput3);
+    Manager::nodeAPI_->addChild(textContainer, textInput4);
+    Manager::nodeAPI_->addChild(textContainer, textInput5);
+    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
+}
+void setAllTextArea(ArkUI_NodeHandle &textContainer)
+{
     ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NodeHandle customSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_CUSTOM_SPAN);
-    ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    setTextInput1(textInput1);
-    setTextInput2(textInput2);
-    setTextInput3(textInput3);
-    setTextInput4(textInput4);
     setTextArea1(textArea1);
     setTextArea2(textArea2);
     setTextArea3(textArea3);
     setTextArea4(textArea4);
     setCustomKeyboard(textArea5);
-    setAccessibility(accessibilityLabel);
-    setTextSelectAI(textAISelect);
-    setTextInputSelectAI(textInputAISelect);
+    setTextArea6(textArea6);
     setTextAreaSelectAI(textAreaAISelect);
-    Manager::nodeAPI_->addChild(textContainer, textInput1);
-    Manager::nodeAPI_->addChild(textContainer, textInput2);
-    Manager::nodeAPI_->addChild(textContainer, textInput3);
-    Manager::nodeAPI_->addChild(textContainer, textInput4);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
@@ -1551,11 +1597,17 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea3);
     Manager::nodeAPI_->addChild(textContainer, textArea4);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
-    Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
-    Manager::nodeAPI_->addChild(textContainer, customSpan);
-    Manager::nodeAPI_->addChild(textContainer, textAISelect);
-    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
+}
+
+void setUIVal(ArkUI_NodeHandle &textContainer)
+{
+    setAllText(textContainer);
+    setAllTextInput(textContainer);
+    setAllTextArea(textContainer);
+    ArkUI_NodeHandle customSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_CUSTOM_SPAN);
+    Manager::nodeAPI_->addChild(textContainer, customSpan);
 }
 
 ArkUI_NodeHandle TextMaker::CreateNativeNode()
