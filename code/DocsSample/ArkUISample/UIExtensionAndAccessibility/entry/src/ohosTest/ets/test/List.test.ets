@@ -14,9 +14,11 @@
  */
 
 import abilityTest from './Ability.test';
+import IndexTest from './index.test';
 import ShowEmbeddedComponent from './ShowEmbeddedComponent/ShowEmbeddedComponent.test';
 
 export default function testsuite() {
   abilityTest();
+  IndexTest();
   ShowEmbeddedComponent();
 }
