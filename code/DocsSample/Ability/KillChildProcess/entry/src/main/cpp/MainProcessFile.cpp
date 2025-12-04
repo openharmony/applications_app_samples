@@ -17,19 +17,24 @@
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <node_api.h>
+// [Start kill_child_process_main]
+// [Start kill_child_process_header]
 #include <AbilityKit/native_child_process.h>
-
+// [End kill_child_process_header]
+// [StartExclude kill_child_process_main]
 int32_t g_result = -1;
-
+// [EndExclude kill_child_process_main]
 void KillChildProcess(int32_t pid)
 {
     Ability_NativeChildProcess_ErrCode ret = OH_Ability_KillChildProcess(pid);
     if (ret != NCP_NO_ERROR) {
         // 子进程未成功杀死的异常处理
     }
+    // [StartExclude kill_child_process_main]
     g_result = ret;
+    // [EndExclude kill_child_process_main]
 }
-
+// [End kill_child_process_main]
 static napi_value TestKillChildProcessFunc(napi_env env, napi_callback_info info)
 {
     KillChildProcess(-1);
