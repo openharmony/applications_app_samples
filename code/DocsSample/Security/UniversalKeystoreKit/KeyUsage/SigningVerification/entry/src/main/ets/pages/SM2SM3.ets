@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start key_algorithm_SM2SM3]
 /*
  * 密钥算法为SM2、摘要算法为SM3
@@ -23,7 +24,6 @@ let handle: number;
 let plaintext = '123456';
 let signature: Uint8Array;
 
-
 function stringToUint8Array(str: String) {
   let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
@@ -32,7 +32,6 @@ function stringToUint8Array(str: String) {
   return new Uint8Array(arr);
 }
 
-
 function uint8ArrayToString(fileData: Uint8Array) {
   let dataString = '';
   for (let i = 0; i < fileData.length; i++) {
@@ -40,7 +39,6 @@ function uint8ArrayToString(fileData: Uint8Array) {
   }
   return dataString;
 }
-
 
 function getSm2GenerateProperties() {
   let properties: huks.HuksParam[] = [{
@@ -180,8 +178,6 @@ export async function testSignVerify() {
   await verify(keyAlias, plaintext, signature);
   await deleteSm2Key(keyAlias);
 }
-
-
 // [End key_algorithm_SM2SM3]
 @Entry
 @Component

@@ -41,6 +41,7 @@ struct Index {
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
         .maxLines(Infinity)
         .textAlign(TextAlign.Start)
+
       Button($r('app.string.ecc256_sha256'))
         .padding('12vp')
         .height('40vp')
@@ -51,6 +52,7 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/ECC256SHA256');
         })
+
       Button($r('app.string.sm2_sm3'))
         .padding('12vp')
         .height('40vp')
@@ -61,6 +63,18 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/SM2SM3');
         })
+
+      Button($r('app.string.sm2_nodigest'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          this.goToSample('pages/SM2NoDigest');
+        })
+
       Button($r('app.string.rsa_sha256_pss'))
         .padding('12vp')
         .height('40vp')
@@ -71,6 +85,7 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/RSASHA256PSS');
         })
+
       Button($r('app.string.rsa_sha256_pkcs1_v1_5'))
         .padding('12vp')
         .height('40vp')
@@ -81,7 +96,19 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/RSASHA256PKCS1_V1_5');
         })
-      Button($r('app.string.call_cpp_sign_verify'))
+
+      Button($r('app.string.rsa_sha384_pss'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          this.goToSample('pages/RSA2048SHA384PSS');
+        })
+
+      Button($r('app.string.call_cpp_rsa'))
         .padding('12vp')
         .height('40vp')
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
@@ -90,10 +117,71 @@ struct Index {
         .fontColor('#ffffff')
         .onClick(() => {
           let ret: number = testNapi.signVerifyKey();
-          this.message = 'Call C/C++ Result: ' + ret.toString();
+          this.message = 'RSA/SHA384/PSS Result: ' + ret.toString();
+        })
+
+      Button($r('app.string.call_cpp_ecc'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.signVerifyKeyECC();
+          this.message = 'ECC256/SHA256 Result: ' + ret.toString();
+        })
+
+      Button($r('app.string.call_cpp_sm2_sm3'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.signVerifyKeySM2SM3();
+          this.message = 'SM2/SM3 Result: ' + ret.toString();
+        })
+
+      Button($r('app.string.call_cpp_sm2_nodigest'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.signVerifyKeySM2NoDigest();
+          this.message = 'SM2/NoDigest Result: ' + ret.toString();
+        })
+
+      Button($r('app.string.call_cpp_rsa_sha256_pss'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.signVerifyKeyRsaSha256Pss();
+          this.message = 'RSA/SHA256/PSS Result: ' + ret.toString();
+        })
+
+      Button($r('app.string.call_cpp_rsa_sha256_pkcs1'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.signVerifyKeyRsaSha256Pkcs1V15();
+          this.message = 'RSA/SHA256/PKCS1_V1_5 Result: ' + ret.toString();
         })
     }
     .height('100%')
     .width('100%')
+    .padding('16vp')
   }
 }
