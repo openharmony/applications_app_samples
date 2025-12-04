@@ -14,7 +14,9 @@
     "pages/ReusableForWaterFlowUsageScenario",
     "pages/ReusableForLimitedVariation",
     "pages/ReusableForComposite",
-    "pages/ReusableForSwiperUsageScenario"
+    "pages/ReusableForSwiperUsageScenario",
+    "pages/ReusableForReuseId",
+    "pages/ReusableForIncorrectReuseId"
   ]
 }
 

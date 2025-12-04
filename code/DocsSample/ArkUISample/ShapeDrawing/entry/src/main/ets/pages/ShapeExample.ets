@@ -28,8 +28,8 @@ struct ShapeExample {
         width: 500,
         height: 300
       })
-      .fill('#86C5E3')
-      .stroke('#61CFBE')
+      .fill('rgb(213, 213, 213)')
+      .stroke('rgb(39, 135, 217)')
       .strokeWidth(3)
       .strokeLineJoin(LineJoinStyle.Miter)
       .strokeMiterLimit(5)
