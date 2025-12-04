@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start rpc_front-end_dependencies]
 import { BusinessError } from '@kit.BasicServicesKit';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
@@ -33,13 +34,15 @@ class MyDeathRecipient implements rpc.DeathRecipient{
   }
 };
 let deathRecipient = new MyDeathRecipient();
-
+// [End rpc_front-end_dependencies]
 
 @Entry
 @Component
 struct ButtonCase1 {
+  // [Start rpc_define_context]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   pathStack: NavPathStack = new NavPathStack();
+  // [End rpc_define_context]
 
   build() {
 
@@ -89,19 +92,23 @@ struct ButtonCase1 {
   }
 }
 
+// [Start rpc_funcation_implement]
+// [Start rpc_connect]
 // 获取权限
 function getPermission(context:common.UIAbilityContext) {
   hilog.info(0x00000, 'testTag', 'RpcClient: begin to requestPermissions');
   try {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'], (err: BusinessError, data: PermissionRequestResult) => {
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'],
+      (err: BusinessError, data: PermissionRequestResult) => {
       if (err) {
-        hilog.error(0x0000, 'testTag', 'RpcClient: registerDeathRecipient failed, code is '  + err.code + ', message is ' + err.message);
+        hilog.error(0x0000, 'testTag', 'RpcClient: requestPermissions failed, code is ' +
+          err.code + ', message is ' + err.message);
       } else {
-        hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser success, result is ' + JSON.stringify(data));
-        hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data permissions is ' + data.permissions);
-        hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data authResults is ' + data.authResults);
-        hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data dialogShownResults is ' + data.dialogShownResults);
+        hilog.info(0x0000, 'testTag','RpcClient: requestPermissions success, result is ' + JSON.stringify(data));
+        hilog.info(0x0000, 'testTag','RpcClient: data permissions is ' + data.permissions);
+        hilog.info(0x0000, 'testTag','RpcClient: data authResults is ' + data.authResults);
+        hilog.info(0x0000, 'testTag','RpcClient: data dialogShownResults is ' + data.dialogShownResults);
       }
     });
   }catch (err) {
@@ -150,7 +157,7 @@ function connectAbility(context:common.UIAbilityContext) {
       }catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'RpcClient: registerDeathRecipient failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'RpcClient: register failed, code is ' + code + ', message is ' + message);
       }
     },
     onDisconnect: (elementName) => {
@@ -162,7 +169,7 @@ function connectAbility(context:common.UIAbilityContext) {
       }catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'RpcClient: unregisterDeathRecipient failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'RpcClient: unregister failed, code is ' + code + ', message is ' + message);
       }
       proxy = undefined;
     },
@@ -179,6 +186,7 @@ function connectAbility(context:common.UIAbilityContext) {
     hilog.error(0x0000, 'testTag', 'RpcClient: connectService failed, code is ' + code + ', message is ' + message);
   }
 }
+// [End rpc_connect]
 
 // 断开连接
 function disconnectAbility(context: common.UIAbilityContext) {
@@ -223,5 +231,6 @@ function sendString() {
       })
   }
 }
+// [End rpc_funcation_implement]
 
 
