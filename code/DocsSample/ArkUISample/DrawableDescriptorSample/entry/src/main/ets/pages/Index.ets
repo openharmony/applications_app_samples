@@ -146,7 +146,7 @@ struct DrawablePage {
       hilog.error(0x0000, TAG, 'imagePixelMapArrayId < 0, return');
       return;
     }
-
+    this.loadPixelMapArray();
     napiAgent.setAnimationIteration(this.imagePixelMapArrayId, this.newIteration);
     this.animationIteration = napiAgent.getAnimationIteration(this.imagePixelMapArrayId);
   }
