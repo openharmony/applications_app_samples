@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general" : ["default", "tablet"]
+  },
+  "production": {
+    "removedSysCaps" : [
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.Security.DataTransitManager",
+      "SystemCapability.Window.SessionManager"
+    ]
+  }
+}

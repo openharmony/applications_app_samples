@@ -11,5 +11,9 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp)
+add_library(entry SHARED napi_init.cpp
+                         types/projects/file.h
+                         types/projects/napi_ECDH.cpp
+                         types/projects/napi_X25519.cpp
+                         types/projects/napi_DH.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so libhuks_ndk.z.so)

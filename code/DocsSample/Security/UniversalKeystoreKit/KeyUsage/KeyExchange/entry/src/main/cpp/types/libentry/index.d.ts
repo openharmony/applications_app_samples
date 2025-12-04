@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export const agreeKey: () => number;
+export const x25519agreeKey: () => number;
+export const ecdhagreeKey: () => number;
+export const dhagreeKey: () => number;
