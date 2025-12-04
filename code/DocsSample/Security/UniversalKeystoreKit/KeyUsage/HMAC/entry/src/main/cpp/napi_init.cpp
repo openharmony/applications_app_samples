@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start hmac]
+
+// [Start hmac_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -59,59 +60,41 @@ OH_Huks_Result HksHmacTest(const struct OH_Huks_Blob *keyAlias, const struct OH_
 
 static napi_value HmacKey(napi_env env, napi_callback_info info)
 {
-    /* 1. Generate Key */
-    /*
-     * 模拟生成密钥场景
-     * 1.1. 确定密钥别名
-     */
     char tmpKeyAlias[] = "test_hmac";
     struct OH_Huks_Blob keyAlias = {(uint32_t)strlen(tmpKeyAlias), (uint8_t *)tmpKeyAlias};
     struct OH_Huks_ParamSet *hmacParamSet = nullptr;
     OH_Huks_Result ohResult;
+
     do {
-        /*
-         * 1.2. 获取生成密钥算法参数配置
-         */
         ohResult = InitParamSet(&hmacParamSet, g_genHmacParams, sizeof(g_genHmacParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        /*
-         * 1.3. 调用generateKeyItem
-         */
+
         ohResult = OH_Huks_GenerateKeyItem(&keyAlias, hmacParamSet, nullptr);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        /* 2. Hmac */
-        /*
-         * 模拟哈希场景
-         * 2.1. 获取密钥别名
-         */
-        /*
-         * 2.2. 获取待哈希的数据
-         */
+
         char tmpInData[] = "HMAC_MAC_INDATA_1";
         struct OH_Huks_Blob inData = {(uint32_t)strlen(tmpInData), (uint8_t *)tmpInData};
         uint8_t cipher[HMAC_COMMON_SIZE] = {0};
         struct OH_Huks_Blob hashText = {HMAC_COMMON_SIZE, cipher};
-        /*
-         * 2.3. 调用initSession获取handle
-         */
-        /*
-         * 2.4. 调用finishSession获取哈希后的内容
-         */
+
         ohResult = HksHmacTest(&keyAlias, hmacParamSet, &inData, &hashText);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
     } while (0);
+
     OH_Huks_FreeParamSet(&hmacParamSet);
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-// [End hmac]
+// [End hmac_cpp]
+
+// ===== NAPI 模块注册 =====
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
