@@ -70,7 +70,7 @@ void AccessibleObject::fillAccessibilityElement(ArkUI_AccessibilityElementInfo *
     OH_ArkUI_AccessibilityElementInfoSetBackgroundImage(element, backgroundImage_.data());
     OH_ArkUI_AccessibilityElementInfoSetBackgroundColor(element, backgroundColor_.data());
     OH_ArkUI_AccessibilityElementInfoSetBlur(element, blue_.data());
-    OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(element, HitTestBehavior_.data());
+    OH_ArkUI_AccessibilityElementInfoSetHitTestBehavior(element, hitTestBehavior_.data());
     
     ArkUI_AccessibleAction actions[10];
     int index = 0;
