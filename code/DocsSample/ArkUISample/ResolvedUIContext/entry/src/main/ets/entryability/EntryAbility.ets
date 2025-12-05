@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start Common_Entry]
 // entryability/EntryAbility.ets
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -70,3 +71,5 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+
+// [End Common_Entry]

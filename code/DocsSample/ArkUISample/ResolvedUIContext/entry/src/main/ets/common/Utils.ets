@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start Common_Utils]
 // common/Utils.ets
 import hilog from '@ohos.hilog';
 import { UIContext } from '@ohos.arkui';
@@ -46,3 +47,5 @@ export function GetUIContextByAtomicInterface(): UIContext {
   hilog.info(0x00, 'testTag', `Get UIContext of undefined calling scope.`)
   return new UIContext();
 }
+
+// [End Common_Utils]
