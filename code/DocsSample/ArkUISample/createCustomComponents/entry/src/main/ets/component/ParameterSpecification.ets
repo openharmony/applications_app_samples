@@ -19,10 +19,10 @@ struct MyComponent {
   private color: Color = Color.Blue;
 
   build() {
-    // [StartExclude Parameter_specification]
-    Text('test')
-      .backgroundColor(this.color)
-    // [EndExclude Parameter_specification]
+    Column() {
+      Text(`${this.countDownFrom}`)
+        .backgroundColor(this.color)
+    }
   }
 }
 
