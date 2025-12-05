@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry3Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry3Ability_label",
+      "value": "UseOfflineWebComp"
+    },
+    {
+      "name": "Jump_to_Home_page",
+      "value": " 打开Home页"
+    },
+    {
+      "name": "Jump_to_Page1",
+      "value": "跳转Page1"
+    },
+    {
+      "name": "Jump_to_Page2",
+      "value": "跳转Page2"
+    },
+    {
+      "name": "Jump_to_Page2_load_blank",
+      "value": "跳转Page2(加载about:blank)"
+    },
+    {
+      "name": "Jump_to_Page2_load_url1",
+      "value": "跳转Page2(加载consumer.huawei.com)"
+    },
+    {
+      "name": "Jump_to_Page2_load_url2",
+      "value": "跳转Page2(加载www.example.com)"
+    },
+    {
+      "name": "load_test_url1",
+      "value": "加载consumer.huawei.com"
+    },
+    {
+      "name": "load_test_url2",
+      "value": "加载www.example.com"
+    },
+    {
+      "name": "test_url1",
+      "value": "consumer.huawei.com"
+    },
+    {
+      "name": "test_url2",
+      "value": "www.example.com"
+    },
+    {
+      "name": "recycle_offline_webs",
+      "value": "释放离线Web组件"
+    },
+    {
+      "name": "recycle_offline_webs_force",
+      "value": "释放离线Web组件（强制）"
+    },
+    {
+      "name": "restore_offline_webs",
+      "value": "恢复离线Web组件"
+    },
+    {
+      "name": "open_new_page",
+      "value": "打开新页面"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "back_home",
+      "value": "返回首页"
+    }
+  ]
+}
