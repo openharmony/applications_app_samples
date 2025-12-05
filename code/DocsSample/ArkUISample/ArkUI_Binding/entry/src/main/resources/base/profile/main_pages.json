@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Binding_Star",
+    "pages/Binding_Star_Param_Event",
     "pages/Sys_Binding"
   ]
 }

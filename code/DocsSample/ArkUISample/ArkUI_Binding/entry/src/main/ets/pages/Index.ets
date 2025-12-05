@@ -21,13 +21,19 @@ struct Index {
 
   build() {
     Column() {
-      Button($r('app.string.button2'))
+      Button($r('app.string.button1'))
         .width('50%')
         .margin(30)
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({url:'pages/Binding_Star'})
         })
       Button($r('app.string.button2'))
+        .width('50%')
+        .margin(30)
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({url:'pages/Binding_Star_Param_Event'})
+        })
+      Button($r('app.string.button3'))
         .width('50%')
         .margin(30)
         .onClick(() => {
