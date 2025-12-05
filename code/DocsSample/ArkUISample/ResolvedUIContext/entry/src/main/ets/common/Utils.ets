@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// common/Utils.ets
 import hilog from '@ohos.hilog';
 import { UIContext } from '@ohos.arkui';
 

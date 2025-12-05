@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// entryability/EntryAbility.ets
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window, UIContext } from '@kit.ArkUI';
@@ -35,7 +36,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    // 在loadContent前调用，此时无UI实例，vp2px会根据屏幕默认像素密度返回计算结果。
+    // 在loadContent前调用，此时无UI实例，vp2px会根据屏幕默认像素密度返回计算结果。此时获取策略为UNDEFINED。
     let resolvedUIContext = UIContext.resolveUIContext();
     let pxValue = resolvedUIContext.vp2px(20);
     hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
@@ -44,7 +45,7 @@ export default class EntryAbility extends UIAbility {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
-      // 在loadContent异步回调中调用，此时有UI实例，但上下文不明确，此时会根据主窗的像素密度返回计算结果。
+      // 在loadContent异步回调中调用，此时有UI实例，但上下文不明确，此时会根据主窗的像素密度返回计算结果。此时获取策略为UNIQUE。
       let resolvedUIContext = UIContext.resolveUIContext();
       let pxValue = resolvedUIContext.vp2px(20);
       hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);

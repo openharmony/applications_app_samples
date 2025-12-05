@@ -17,6 +17,7 @@
 // [Start Common_registerWindowCallback]
 // [Start Common_setContext]
 // [Start Common_LocalStorage]
+// entryability/EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';

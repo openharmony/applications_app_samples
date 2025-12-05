@@ -14,6 +14,7 @@
  */
 
 // [Start Main_VpPage]
+// pages/VpPage.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { PixelUtil } from '../Common/Utils';
 
