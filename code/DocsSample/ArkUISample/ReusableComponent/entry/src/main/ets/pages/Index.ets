@@ -16,79 +16,87 @@
 import { router } from '@kit.ArkUI'
 
 interface Ary {
-  path:string,
-  name:string
+  path: string,
+  name: string
 }
 
 @Entry
 @Component
 struct Index {
-  ary:Ary[]=[
+  ary: Ary[] = [
     {
-      name:'ReusableForCustomComponents',
-      path:'pages/ReusableForCustomComponents'
+      name: 'ReusableForCustomComponents',
+      path: 'pages/ReusableForCustomComponents'
     },
     {
-      name:'ReusableIncorrectSample',
-      path:'pages/ReusableIncorrectSample'
+      name: 'ReusableIncorrectSample',
+      path: 'pages/ReusableIncorrectSample'
     },
     {
-      name:'ReusableCorrectSample',
-      path:'pages/ReusableCorrectSample'
+      name: 'ReusableCorrectSample',
+      path: 'pages/ReusableCorrectSample'
     },
     {
-      name:'ComponentContentNotSupportReusable',
-      path:'pages/ComponentContentNotSupportReusable'
+      name: 'ComponentContentNotSupportReusable',
+      path: 'pages/ComponentContentNotSupportReusable'
     },
     {
-      name:'DynamicLayoutUpdate',
-      path:'pages/DynamicLayoutUpdate'
+      name: 'DynamicLayoutUpdate',
+      path: 'pages/DynamicLayoutUpdate'
     },
     {
-      name:'ListScrollingWithLazyForEach',
-      path:'pages/ListScrollingWithLazyForEach'
+      name: 'ListScrollingWithLazyForEach',
+      path: 'pages/ListScrollingWithLazyForEach'
     },
     {
-      name:'ListScrollingWithIfStatements',
-      path:'pages/ListScrollingWithIfStatements'
+      name: 'ListScrollingWithIfStatements',
+      path: 'pages/ListScrollingWithIfStatements'
     },
     {
-      name:'ListScrollingWithForEach',
-      path:'pages/ListScrollingWithForEach'
+      name: 'ListScrollingWithForEach',
+      path: 'pages/ListScrollingWithForEach'
     },
     {
-      name:'ReusableForGridUsageScenario',
-      path:'pages/ReusableForGridUsageScenario'
+      name: 'ReusableForGridUsageScenario',
+      path: 'pages/ReusableForGridUsageScenario'
     },
     {
-      name:'ReusableForWaterFlowUsageScenario',
-      path:'pages/ReusableForWaterFlowUsageScenario'
+      name: 'ReusableForWaterFlowUsageScenario',
+      path: 'pages/ReusableForWaterFlowUsageScenario'
     },
     {
-      name:'ReusableForSwiperUsageScenario',
-      path:'pages/ReusableForSwiperUsageScenario'
+      name: 'ReusableForSwiperUsageScenario',
+      path: 'pages/ReusableForSwiperUsageScenario'
     },
     {
-      name:'ReusableForListItemGroupUsageScenario',
-      path:'pages/ReusableForListItemGroupUsageScenario'
+      name: 'ReusableForListItemGroupUsageScenario',
+      path: 'pages/ReusableForListItemGroupUsageScenario'
     },
     {
-      name:'ReusableForLimitedVariation',
-      path:'pages/ReusableForLimitedVariation'
+      name: 'ReusableForLimitedVariation',
+      path: 'pages/ReusableForLimitedVariation'
     },
     {
-      name:'ReusableForComposite',
-      path:'pages/ReusableForComposite'
+      name: 'ReusableForComposite',
+      path: 'pages/ReusableForComposite'
     },
+    {
+      name: 'ReusableForReuseId',
+      path: 'pages/ReusableForReuseId'
+    },
+    {
+      name: 'ReusableForIncorrectReuseId',
+      path: 'pages/ReusableForIncorrectReuseId'
+    }
   ];
 
   build() {
     Scroll() {
       Column({ space: 10 }) {
-        ForEach(this.ary,(item:Ary)=>{
+        ForEach(this.ary, (item: Ary) => {
           Button(item.name)
             .onClick(() => router.pushUrl({ url: item.path }))
-        },(item:Ary)=>item.name)
+        }, (item: Ary) => item.name)
       }
       .width(300)
     }
