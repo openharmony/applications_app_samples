@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start service_impl]
 import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -62,3 +63,4 @@ export default class ServiceAbility extends ServiceExtensionAbility {
     hilog.info(0x0000, 'testTag', 'IPCStub: onDestroy');
   }
 }
+// [End service_impl]

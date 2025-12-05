@@ -13,19 +13,14 @@
  * limitations under the License.
  */
 
+// [Start front-end_dependencies]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want, common } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-
 let proxy: rpc.IRemoteObject | undefined;
 let connectId: number | undefined;
-
-let want: Want = {
-  bundleName: 'com.example.ipc_stub',
-  abilityName: 'ServiceAbility',
-};
 
 // 死亡通知
 class MyDeathRecipient implements rpc.DeathRecipient{
@@ -34,18 +29,21 @@ class MyDeathRecipient implements rpc.DeathRecipient{
   }
 }
 let deathRecipient = new MyDeathRecipient();
-
+// [End front-end_dependencies]
 
 @Entry
 @Component
 struct ButtonCase1 {
+
+  // [Start define_context]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  // [End define_context]
   pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
       List({ space: 30 }) {
-
+        
         ListItem() {
           Button('connectAbility').onClick(() => {
             connectAbility(this.context);
@@ -74,11 +72,15 @@ struct ButtonCase1 {
   }
 }
 
-
+// [Start funcation_implement]
+// [Start connect_ability]
 // 连接服务
 function connectAbility(context:common.UIAbilityContext) {
   hilog.info(0x00000, 'testTag', 'IPCClient: begin to connect Ability');
-
+  let want: Want = {
+    bundleName: 'com.example.ipc_stub',
+    abilityName: 'ServiceAbility',
+  };
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x00000, 'testTag', 'IPCClient: onConnect. elementName is :' + JSON.stringify(elementName));
@@ -90,7 +92,7 @@ function connectAbility(context:common.UIAbilityContext) {
       }catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'IPCClient: registerDeathRecipient failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'IPCClient: register failed, code is ' + code + ', message is ' + message);
       }
     },
     onDisconnect: (elementName) => {
@@ -102,7 +104,7 @@ function connectAbility(context:common.UIAbilityContext) {
       }catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'IPCClient: unregisterDeathRecipient failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'IPCClient: unregister failed, code is ' + code + ', message is ' + message);
       }
       proxy = undefined;
     },
@@ -119,20 +121,7 @@ function connectAbility(context:common.UIAbilityContext) {
     hilog.error(0x0000, 'testTag', 'IPCClient: connectAbility failed, code is ' + code + ', message is ' + message);
   }
 }
-
-// 断开连接
-function disconnectAbility(context: common.UIAbilityContext) {
-  hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability');
-  if (connectId != undefined) {
-    try {
-      context.disconnectServiceExtensionAbility(connectId);
-    }catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      hilog.error(0x0000, 'testTag', 'IPCClient: disconnectAbility failed, code is ' + code + ', message is ' + message);
-    }
-  }
-}
+// [End connect_ability]
 
 // 发送消息
 function sendString() {
@@ -162,5 +151,22 @@ function sendString() {
       })
   }
 }
+
+// 断开连接
+function disconnectAbility(context: common.UIAbilityContext) {
+  hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability');
+  if (connectId != undefined) {
+    try {
+      context.disconnectServiceExtensionAbility(connectId);
+    }catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', 'IPCClient: disconnect failed, code is ' + code + ', message is ' + message);
+    }
+  }
+}
+// [End funcation_implement]
+
+
 
 
