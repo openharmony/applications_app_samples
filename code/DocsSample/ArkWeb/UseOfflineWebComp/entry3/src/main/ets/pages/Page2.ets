@@ -115,4 +115,4 @@ export struct Page2 {
   }
 }
 
-// [End use_offline_web_component_page_1]
+// [End use_offline_web_component_page_2]
