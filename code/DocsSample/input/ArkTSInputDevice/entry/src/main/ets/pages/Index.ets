@@ -31,10 +31,10 @@ struct Index {
   @Builder
   ResultDisplay() {
     Column() {
-      Text(`当前物理键盘连接状态为：${this.isPhysicalKeyboardExist}`)
+      Text(`The current physical keyboard connection status is: ${this.isPhysicalKeyboardExist}`)
         .fontSize(14)
         .width('100%')
-        .wordBreak(WordBreak.BREAK_ALL)
+        .wordBreak(WordBreak.NORMAL)
         .fontWeight(FontWeight.Medium)
         .textAlign(TextAlign.Center)
         .padding(12)
@@ -109,7 +109,7 @@ struct Index {
           .textAlign(TextAlign.Center)
           .margin({ top: 8, bottom: 8 })
           .lineHeight(20)
-          .wordBreak(WordBreak.BREAK_ALL)
+          .wordBreak(WordBreak.NORMAL)
           .maxLines(2)
           .backgroundColor('#F7F9FC')
           .borderRadius(4)

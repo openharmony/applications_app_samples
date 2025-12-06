@@ -27,7 +27,7 @@ export struct ResultDisplay {
       Text(this.result)
         .fontSize(14)
         .width('100%')
-        .wordBreak(WordBreak.BREAK_ALL)
+        .wordBreak(WordBreak.NORMAL)
         .fontWeight(FontWeight.Medium)
         .textAlign(TextAlign.Start)
         .padding(12)
@@ -56,7 +56,7 @@ struct Index {
       .textAlign(TextAlign.Start)
       .margin({ top: 8, bottom: 8 })
       .lineHeight(20)
-      .wordBreak(WordBreak.BREAK_ALL)
+      .wordBreak(WordBreak.NORMAL)
       .maxLines(2)
       .backgroundColor('#F7F9FC')
       .borderRadius(4)
@@ -70,7 +70,7 @@ struct Index {
         this.result = event.value;
       });
     } else {
-      hilog.error(DOMAIN, 'NDKInputEventIntercrptor', 'testNapi is undefined');
+      hilog.error(DOMAIN, 'NDKInputEventInterceptor', 'testNapi is undefined');
       this.result = 'Native plugin failed to load';
     }
   }
@@ -81,7 +81,7 @@ struct Index {
         ResultDisplay({ result: this.result })
 
         Column() {
-          TextInput({ placeholder: '输入测试' })
+          TextInput({ placeholder: 'input' })
             .type(InputType.Normal)
             .width('80%')
             .height(50)
@@ -114,27 +114,27 @@ struct Index {
           "Add input event interceptor. Input event include: mouse event, touch event, and axis event",
           () => {
             try {
-              this.result = `${testNapi.addEventInterceptor()}，30秒后自动取消输入事件拦截`
+              this.result = `${testNapi.addEventInterceptor()}, input event interception will be automatically canceled after 30 seconds.`
               setTimeout(() => {
                 try {
                   this.result = testNapi.removeEventInterceptor()
                 } catch (e) {
-                  this.result = `自动移除输入事件拦截异常：${JSON.stringify(e)}`;
+                  this.result = `Automatic removal of input event interception failed: ${JSON.stringify(e)}`;
                 }
               }, 30000);
             } catch (e) {
-              this.result = `添加输入事件拦截异常：${JSON.stringify(e)}`
+              this.result = `Automatic removal of input event interception failed: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "Remove input event interceptor. Input event include: mouse event, touch event, and axis event",
+          `Remove input event interceptor. include: mouse event, touch event, and axis event`,
           () => {
             try {
               this.result = testNapi.removeEventInterceptor()
             } catch (e) {
-              this.result = `移除输入事件拦截异常：${JSON.stringify(e)}`
+              this.result = `Failed to remove input event interception: ${JSON.stringify(e)}`
             }
           }
         )
