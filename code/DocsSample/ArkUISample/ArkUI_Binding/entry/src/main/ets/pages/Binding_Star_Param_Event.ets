@@ -15,18 +15,18 @@
 // [Start ArkUI_Star_binding4]
 @Entry
 @ComponentV2
-struct Index {
+struct Parent {
   @Local value: number = 0;
 
   build() {
     Column() {
       Text(`${this.value}`)
-      // 点击Index中的Button改变value值，父组件Index和子组件Star中的Text将同步更新。
+      // 点击Index中的Button改变value值，父组件Parent和子组件Child中的Text将同步更新。
       Button(`change value`).onClick(() => {
         this.value++;
       })
       // [Start ArkUI_Star_binding1]
-      Star({ value: this.value, $value: (val: number) => { this.value = val; } }) // 使用@Param与@Event语法实现自定义组件双向绑定。
+      Child({ value: this.value, $value: (val: number) => { this.value = val; } }) // 使用@Param与@Event语法实现自定义组件双向绑定。
       // [End ArkUI_Star_binding1]
       // [StartExclude ArkUI_Star_binding4]
         .id('bbb')
@@ -37,14 +37,14 @@ struct Index {
 }
 
 @ComponentV2
-struct Star {
+struct Child {
   @Param value: number = 0;
   @Event $value: (val: number) => void = (val: number) => {};
 
   build() {
     Column() {
       Text(`${this.value}`)
-      // 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
+      // 点击子组件Child中的Button，调用`this.$value(10)`方法，父组件Parent和子组件Child中的Text将同步更新。
       Button(`change value`).onClick(() => {
         this.$value(10);
       })
