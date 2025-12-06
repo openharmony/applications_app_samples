@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start Common_Index]
 // pages/Index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { UIContext } from '@kit.ArkUI';
@@ -40,3 +41,5 @@ struct Index {
     .width('100%')
   }
 }
+
+// [End Common_Index]
