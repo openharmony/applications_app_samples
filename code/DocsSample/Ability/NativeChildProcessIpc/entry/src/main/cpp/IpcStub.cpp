@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start stub_implement]
 #include "IpcStub.h"
 #include <IPCKit/ipc_error_code.h>
 #include <cstring>
@@ -132,3 +133,4 @@ int IpcStub::HandleStartNativeChildProcess(const OHIPCParcel *data, OHIPCParcel 
     int32_t ret = StartNativeChildProcess();
     return OH_IPCParcel_WriteInt32(reply, ret);
 }
+// [End stub_implement]
