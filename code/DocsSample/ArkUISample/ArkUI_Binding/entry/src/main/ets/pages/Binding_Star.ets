@@ -24,12 +24,11 @@ struct Index {
       Button(`change value`).onClick(() => {
         this.value++;
       })
+      // [Start ArkUI_Star_binding3]
       Star({ value: this.value!! })
+      // [End ArkUI_Star_binding3]
       // [StartExclude ArkUI_Star_binding2]
         .id('aaa')
-      // [Start ArkUI_Star_binding1]
-      Star({ value: this.value, $value: (val: number) => { this.value = val; }})
-      // [End ArkUI_Star_binding1]
       // [EndExclude ArkUI_Star_binding2]
     }
   }

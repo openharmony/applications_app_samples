@@ -14,10 +14,14 @@
     },
     {
       "name": "button1",
-      "value": "自定义组件间双向绑定"
+      "value": "自定义组件使用!!双向绑定"
     },
     {
       "name": "button2",
+      "value": "自定义组件使用@Param与@Event双向绑定"
+    },
+    {
+      "name": "button3",
       "value": "系统组件参数双向绑定"
     }
   ]
