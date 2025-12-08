@@ -18,7 +18,7 @@
     "name": "entry3",
     "type": "feature",
     "description": "$string:module_desc",
-    "mainElement": "Entry2Ability",
+    "mainElement": "Entry3Ability",
     "deviceTypes": [
       "default",
       "tablet"
