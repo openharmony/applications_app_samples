@@ -71,7 +71,7 @@ static napi_value ListAliases(napi_env env, napi_callback_info info)
    napi_create_int32(env, ohResult.errorCode, &ret);
    return ret;
 }
-// [Start query_key_alias_set_cpp]
+// [End query_key_alias_set_cpp]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
