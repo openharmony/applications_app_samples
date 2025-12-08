@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start proxy_implement]
 #include "IpcProxy.h"
 #include <IPCKit/ipc_error_code.h>
 #include "Ipchelper.h"
@@ -125,3 +126,4 @@ bool IpcProxy::WriteInterfaceToken(OHIPCParcel* data)
 {
     return OH_IPCParcel_WriteInterfaceToken(data, interfaceToken_) == OH_IPC_SUCCESS;
 }
+// [End proxy_implement]
