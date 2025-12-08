@@ -53,7 +53,7 @@ export class MyNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log('makeNode, uiContext is undefined? : ' + (uiContext === undefined));
+    console.info('makeNode, uiContext is undefined? : ' + (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
@@ -64,17 +64,17 @@ export class MyNodeController extends NodeController {
 
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log('MyNodeController aboutToResize width : ' + size.width + ' height : ' + size.height);
+    console.info('MyNodeController aboutToResize width : ' + size.width + ' height : ' + size.height);
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log('MyNodeController aboutToAppear');
+    console.info('MyNodeController aboutToAppear');
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log('MyNodeController aboutToDisappear');
+    console.info('MyNodeController aboutToDisappear');
   }
 
   // 在 controller 与 NodeContainer 绑定后执行。
@@ -120,7 +120,7 @@ export class MyNodeController extends NodeController {
     try {
       this.webController.loadUrl(url);
     } catch (error) {
-      console.log('load url error, ' + error);
+      console.info('load url error, ' + error);
     }
   }
 
@@ -141,14 +141,14 @@ export class MyNodeController extends NodeController {
   }
 }
 
+// [Start manage_dynamic_webview_components_core_functions]
 // 创建Map保存所需要的NodeController
 let nodeMap: Map<ResourceStr, MyNodeController | undefined> = new Map();
-// // 创建Map保存所需要的WebViewController
 
 // 创建保存uiContext的全局变量
 let globalUiContext: UIContext | undefined = undefined;
 
-// 创建保持被回收的离线组件url信息
+// 创建Set保存已释放的离线组件url信息
 let recycledNWebs: Set<ResourceStr> = new Set()
 
 // 初始化需要UIContext 需在Ability获取
@@ -170,8 +170,8 @@ export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
   recycledNWebs.delete(url);
 }
 
-// 自定义回收离线Web组件的接口，可作为回收离线组件函数使用，回收成功返回true
-// 当离线组件没有被NodeContainer绑定时，允许安全回收，否则节点在不重绘时会显示空白
+// 自定义释放/回收离线Web组件的接口，可作为释放离线Web组件函数使用，释放成功返回true
+// 当离线组件没有被NodeContainer绑定时，允许安全释放，否则节点在不重绘时会显示空白
 export const recycleNWeb = (url: ResourceStr, force: boolean = false): boolean => {
   console.info('recycleNWeb, url = ' + url);
   let baseNode = nodeMap.get(url);
@@ -190,14 +190,14 @@ export const recycleNWeb = (url: ResourceStr, force: boolean = false): boolean =
   return true;
 }
 
-// 自定义回收所有离线Web组件的接口
+// 自定义释放所有离线Web组件的接口
 export const recycleNWebs = (force: boolean = false) => {
   nodeMap.forEach((_node: MyNodeController | undefined, url: ResourceStr) => {
     recycleNWeb(url, force);
   });
 }
 
-// 自定义恢复之前回收离线Web组件的接口
+// 自定义恢复之前释放离线Web组件的接口
 export const restoreNWebs = (uiContext: UIContext | undefined = undefined) => {
   if (!uiContext) {
     uiContext = globalUiContext;
@@ -209,6 +209,8 @@ export const restoreNWebs = (uiContext: UIContext | undefined = undefined) => {
   }
   recycledNWebs.clear()
 }
+
+// [End manage_dynamic_webview_components_core_functions]
 
 // 自定义获取NodeController接口
 export const getNWeb = (url: ResourceStr | undefined): MyNodeController | undefined => {
