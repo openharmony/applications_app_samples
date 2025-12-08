@@ -117,9 +117,7 @@ struct material_shadowReceiver {
 
   // Toggle the shadow receiving state of the plane
   toggleShadow(): void {
-    console.log('Clicked');
     if (this.material) {
-      console.log('Toggling');
       this.material.shadowReceiver = !this.material.shadowReceiver;
     }
   }

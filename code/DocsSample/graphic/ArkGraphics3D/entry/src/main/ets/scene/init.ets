@@ -60,8 +60,8 @@ struct Model {
           console.info('initialization completely.');
           // [EndExclude model_load]
         })
-        .catch((reason: string) => {
-          console.log(reason);
+        .catch((error: string) => {
+        console.error('Scene load failed: ' + error);
       });
     }
     // [End model_load]
