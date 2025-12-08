@@ -32,7 +32,8 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // 在有UI实例且上下文明确时调用，此时会根据此时UI上下文对应的实例的像素密度返回计算结果。此时获取策略为CALLING_SCOPE。
+          // 在有UI实例且上下文明确时调用，此时会根据此时UI上下文对应的实例的像素密度返回计算结果。
+          // 此时UIContext对象的解析策略ResolveStrategy为CALLING_SCOPE。
           let resolvedUIContext = UIContext.resolveUIContext();
           let pxValue = resolvedUIContext.vp2px(20);
         })
