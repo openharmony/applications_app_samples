@@ -26,7 +26,7 @@ struct Index {
       Button('CreatSubscribeInfo')
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({
-            url: 'pages/CreatSubscribeInfo',
+            url: 'filemanager/CreatSubscribeInfo',
           })
             .catch((error: BusinessError) => {
               hilog.info(DOMAIN_NUMBER, TAG, `pushUrl failed, code is ${error.code}, message is ${error.message}`);

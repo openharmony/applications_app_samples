@@ -11,6 +11,22 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "subscribe_public_event",
+      "value": "订阅公共事件"
+    },
+    {
+      "name": "unsubscribe_public_event",
+      "value": "取消订阅订阅公共事件"
+    },
+    {
+      "name": "publish_public_event_no_data",
+      "value": "发布不携带信息的公共事件'event'"
+    },
+    {
+      "name": "publish_public_event_with_data",
+      "value": "发布携带信息的公共事件'event'"
     }
   ]
 }

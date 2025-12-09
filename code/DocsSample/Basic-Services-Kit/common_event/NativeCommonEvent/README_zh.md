@@ -23,9 +23,9 @@
 
 ### 使用说明
 
-1. 通过OH_CommonEvent_CreateSubscriber创建的订阅者可以对某个公共事件进行订阅，如果有订阅的事件发布那么订阅了这个事件的订阅者将会收到该事件及其传递的参数，也可以通过订阅者对象进一步处理有序公共事件。
+1. 通过[OH_CommonEvent_CreateSubscriber()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber)创建的订阅者可以对某个公共事件进行订阅，如果有订阅的事件发布那么订阅了这个事件的订阅者将会收到该事件及其传递的参数，也可以通过订阅者对象进一步处理有序公共事件。
 2. 订阅者在完成业务需求之后，需要取消订阅公共事件。
-3. 当需要发布某个公共事件时，可以通过OH_CommonEvent_Publish和OH_CommonEvent_PublishWithInfo方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。
+3. 当需要发布某个公共事件时，可以通过[OH_CommonEvent_Publish()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish)和[OH_CommonEvent_PublishWithInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publishwithinfo)方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。
 4. CES（Common Event Service，公共事件服务）为应用程序提供订阅、发布、退订公共事件的能力。
 
 ### 公共事件分类
@@ -34,7 +34,7 @@
 - 自定义公共事件：应用定义的公共事件，可用于实现跨进程的事件通信能力。
 2. 公共事件按发送方式可分为：无序公共事件、有序公共事件和粘性公共事件。
 - 无序公共事件：CES在转发公共事件时，不考虑订阅者是否接收到该事件，也不保证订阅者接收到该事件的顺序与其订阅顺序一致。
-- 有序公共事件：CES在转发公共事件时，根据订阅者设置的优先级，优先将公共事件发送给优先级订阅者，等待其成功该公共事件之后，再将事件发送给优先级较低的订阅者。如果多个订阅者具有相同的优先级，则这些订阅者接收到事件的顺序不确定。
+- 有序公共事件：CES在转发公共事件时，根据订阅者设置的优先级，优先将公共事件发送给优先级较高的订阅者，等待其成功接收到该公共事件之后，再将事件发送给优先级较低的订阅者。如果多个订阅者具有相同的优先级，则这些订阅者接收到事件的顺序不确定。
 - 粘性公共事件：能够让订阅者收到在订阅前已经发送的公共事件就是粘性公共事件。普通的公共事件只能在订阅后发送才能收到，而粘性公共事件的特殊性就是可以先发送后订阅，同时也支持先订阅后发送。发送粘性事件必须是系统应用或系统服务，粘性事件发送后会一直存在系统中，且发送者需要申请`ohos.permission.COMMONEVENT_STICKY`权限。
 
 ### 工程目录
@@ -68,6 +68,7 @@ entry/src/
     └── ets
         └── test
             ├── Ability.test.ets  // 自动化测试代码
+            ├── EventUITest.test.ets  // 自动化测试代码
             └── List.test.ets    // 测试套执行列表
 ```
 
@@ -89,8 +90,7 @@ entry/src/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行。
-2. 本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.40，镜像版本号：OpenHarmony_6.0.0.40。
-3. 本示例需要使用(Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译。
+2. 本示例为Stage模型，支持API version 18及以上版本的SDK。
 
 ### 下载
 

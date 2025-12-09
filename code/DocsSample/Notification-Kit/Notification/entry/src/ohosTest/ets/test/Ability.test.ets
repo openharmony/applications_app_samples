@@ -54,7 +54,7 @@ export default function abilityTest() {
         moduleName: 'entry'
       };
       delegator.startAbility(want);
-      await sleep(1000);
+      await sleep(3000);
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     })

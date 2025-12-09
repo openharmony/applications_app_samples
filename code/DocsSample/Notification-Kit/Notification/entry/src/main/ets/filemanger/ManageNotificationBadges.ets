@@ -20,6 +20,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[PublishOperation]';
 const DOMAIN_NUMBER: number = 0xFF00;
+
 // [End manage_notification_badges_header]
 
 @Entry
@@ -163,6 +164,15 @@ export struct ManageNotificationBadges {
           }).catch((err: BusinessError) => {
             hilog.error(DOMAIN_NUMBER, TAG,
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+          });
+
+          notificationManager.cancelAll((err: BusinessError) => {
+            if (err) {
+              hilog.error(DOMAIN_NUMBER, TAG,
+                `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in canceling notification.');
           });
         })
     }
