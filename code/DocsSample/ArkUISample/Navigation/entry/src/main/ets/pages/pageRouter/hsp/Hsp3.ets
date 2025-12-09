@@ -15,7 +15,7 @@
 
 // [Start page_router_hsp3]
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
+import 'library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xF811;
 const TAG = '[Sample_ArkTSRouter]';

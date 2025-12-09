@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 
-// [Start page_router_hsp1]
-import { router } from '@kit.ArkUI';
-// [End page_router_hsp1]
-
 // [Start page_router_hsp2]
 // library/src/main/ets/pages/Index.ets
 // library为新建共享包自定义的名字
