@@ -30,8 +30,9 @@ import { CustomDialogExample } from '../component/CustomDialog';
 import { PreferencesManager } from '../feature/PreferencesManager';
 import { getResourceString } from '../util/ResourceUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit'
+import { UIContext } from '@kit.ArkUI';
 
-let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+let context = new UIContext().getHostContext() as common.UIAbilityContext;
 
 let HILOG_DLP_DOMAIN: number = 0Xf888;
 let HILOG_TAG: string = 'DLPManager';
@@ -244,7 +245,7 @@ struct FilePicker {
       }
     }
 
-    let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+    let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
 
     try {
       console.info('openDLPFile:' + JSON.stringify(want));
@@ -276,7 +277,7 @@ struct FilePicker {
     try {
       let fileUri: string = this.uri;
       let fileName: string = this.fileName;
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want: Want = {
         'uri': fileUri,
         'parameters': {
@@ -478,7 +479,7 @@ struct FilePicker {
   // [Start dlp_startDLPManagerForResult]
   startDLPManagerForResult() {
     try {
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want:Want = {
         'uri': this.uri,
         'parameters' : {
