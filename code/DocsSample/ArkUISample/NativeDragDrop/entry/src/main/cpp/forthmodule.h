@@ -84,7 +84,7 @@ void RegisterNodeEventForthReceiver1()
             }
             // [StartExclude set_dragAction]
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKNOWN EventReceiver");
                 break;
             }
         }
@@ -116,7 +116,7 @@ void RegisterNodeEventForthReceiver2()
             }
             // [StartExclude get_dragAction]
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKNOWN EventReceiver");
                 break;
             }
         }
