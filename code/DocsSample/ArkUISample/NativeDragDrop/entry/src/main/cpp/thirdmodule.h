@@ -106,7 +106,7 @@ void RegisterNodeEventThirdReceiver1(ArkUI_NodeHandle &dragNode)
                 break;
             }
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKNOWN EventReceiver");
                 break;
             }
         }
@@ -134,7 +134,7 @@ void RegisterNodeEventThirdReceiver2(ArkUI_NodeHandle &dropNode)
                 break;
             }
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKNOWN EventReceiver");
                 break;
             }
         }

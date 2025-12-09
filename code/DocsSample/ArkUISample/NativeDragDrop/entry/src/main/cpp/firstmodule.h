@@ -193,7 +193,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 break;
             }
             default:
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN Event Receive");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKNOWN Event Receive");
                 break;
         }
     });
@@ -239,7 +239,7 @@ void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
                 break;
             }
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKNOWN EventReceiver");
                 break;
             }
         }
