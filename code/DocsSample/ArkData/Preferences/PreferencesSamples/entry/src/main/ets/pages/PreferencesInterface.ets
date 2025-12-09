@@ -22,7 +22,7 @@ import Logger from '../common/Logger';
 let dataPreferences: preferences.Preferences | undefined = undefined;
 // [Start DefineContext]
 const context = EntryAbility.getContext();
-// [Start DefineContext]
+// [End DefineContext]
 
 export class PreferencesInterface {
   public GetPreferencesSync = (() => {
