@@ -25,8 +25,9 @@ struct Parent {
       Button(`change value`).onClick(() => {
         this.value++;
       })
+      // 使用@Param与@Event语法实现自定义组件双向绑定。
       // [Start ArkUI_Star_binding1]
-      Child({ value: this.value, $value: (val: number) => { this.value = val; } }) // 使用@Param与@Event语法实现自定义组件双向绑定。
+      Child({ value: this.value, $value: (val: number) => { this.value = val; } })
       // [End ArkUI_Star_binding1]
       // [StartExclude ArkUI_Star_binding4]
         .id('bbb')
