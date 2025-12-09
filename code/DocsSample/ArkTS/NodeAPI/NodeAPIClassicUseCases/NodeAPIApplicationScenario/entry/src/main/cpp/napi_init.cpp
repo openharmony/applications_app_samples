@@ -16,11 +16,6 @@
 // [Start napi_ark_runtime_cpp]
 // [Start napi_event_loop_cpp]
 #include "napi/native_api.h"
-// [StartExclude napi_ark_runtime_cpp]
-// [StartExclude napi_event_loop_cpp]
-#include <future>
-// [EndExclude napi_ark_runtime_cpp]
-// [EndExclude napi_event_loop_cpp]
 // [StartExclude napi_call_threadsafe_function_with_priority_cpp]
 #include <pthread.h>
 // [EndExclude napi_call_threadsafe_function_with_priority_cpp]
@@ -29,8 +24,8 @@
 // [StartExclude napi_call_threadsafe_function_with_priority_cpp]
 #include <napi/common.h>
 // [EndExclude napi_call_threadsafe_function_with_priority_cpp]
-// [StartExclude napi_event_loop_cpp]
 static constexpr int INT_ARG_2 = 2; // 入参索引
+// [StartExclude napi_event_loop_cpp]
 static constexpr int INT_ARG_12 = 12; // 入参索引
 static constexpr int INT_ARG_15 = 15; // 入参索引
 // [EndExclude napi_ark_runtime_cpp]
