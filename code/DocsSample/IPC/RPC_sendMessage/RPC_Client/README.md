@@ -249,7 +249,13 @@ ohos.permission.DISTRIBUTED_DATASYNC
 
 ## 依赖
 
-不涉及
+本示例中按键之间存在依赖关系，具体依赖如下：
+
+1. 客户端和服务端需先进行获取权限的操作（'getPermission'）;
+2. 客户端获取权限后需先进行获取设备ID的操作（'getDeviceId'）；
+3. 在获取对应设备ID后，客户端才可以进行连接服务的操作（'connectAbility'）；
+2. 在连接服务成功的情况下，客户端才可进行发送信息的操作（'sendRequest_string'）；
+3. 在双方建立连接的情况下，客户端才可进行断连的操作（'disconnectAbility'）。
 
 ## 约束与限制
 
@@ -282,7 +288,7 @@ ohos.permission.DISTRIBUTED_DATASYNC
   ```
     git init
     git config core.sparsecheckout true
-    echo code/SystemFeature/IPC/RPC_sendMessage/ > .git/info/sparse-checkout
+    echo code/DocsSample/IPC/RPC_sendMessage/ > .git/info/sparse-checkout
     git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
     git pull origin master
   ``` 

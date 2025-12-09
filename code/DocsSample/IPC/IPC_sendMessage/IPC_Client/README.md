@@ -6,9 +6,9 @@
 
 ## 效果预览
 
-|客户端|服务端|结果|
-|-------------------------|----------------------|----------------------|
-|![](image/IPC_Client.png)|![](image/IPC_Stub.png)|![](image/result.png)
+|客户端|服务端|
+|-------------------------|----------------------|
+|![](image/IPC_Client.png)|![](image/IPC_Stub.png)|
 
 使用说明：
 
@@ -188,7 +188,12 @@ entry/src/main/ets/
 
 ## 依赖
 
-不涉及
+本示例中按键之间存在依赖关系，具体依赖如下：
+
+1. 服务端需保持在后台运行状态下，客户端才可以进行连接服务的操作（'connectAbility'）；
+2. 在连接服务成功的情况下，客户端才可进行发送信息的操作（'sendRequest_string'）；
+3. 在建立连接的情况下，客户端才可进行断连的操作（'disconnectAbility'）。
+
 
 ## 约束与限制
 
@@ -221,7 +226,7 @@ entry/src/main/ets/
   ```
     git init
     git config core.sparsecheckout true
-    echo code/SystemFeature/IPC/IPC_sendMessage/ > .git/info/sparse-checkout
+    echo code/DocsSample/IPC/IPC_sendMessage/ > .git/info/sparse-checkout
     git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
     git pull origin master
   ``` 
