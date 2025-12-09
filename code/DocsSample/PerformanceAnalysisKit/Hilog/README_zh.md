@@ -8,9 +8,9 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 该工程中的展示的代码详细描述可查如下链接：
 
-- [使用HiLog打印日志（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hilog-guidelines-arkts.md)
+- [使用HiLog打印日志（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hilog-guidelines-arkts.md)
 
-- [使用HiLog打印日志（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hilog-guidelines-ndk.md)
+- [使用HiLog打印日志（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hilog-guidelines-ndk.md)
 
 ###  效果预览
 
