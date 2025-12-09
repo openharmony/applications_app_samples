@@ -31,7 +31,8 @@
     "hnpPackages": [
       {
         "package": "hnpsample.hnp",
-        "type": "public"
+        "type": "public",
+        "independentSign": true
       }
     ],
     // [StartExclude module_hnpPackages]
