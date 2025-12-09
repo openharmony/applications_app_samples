@@ -16,13 +16,13 @@
 
 // [Start manage_dynamic_webview_components_in_harmonyos_app]
 // 创建NodeController
-// common.ets
+// Common.ets
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 
 // @Builder中为动态组件的具体组件内容
 // Data为入参封装类
-class Data{
+class Data {
   public url: ResourceStr = 'www.example.com';
   public controller: WebviewController = new webview.WebviewController();
 }
@@ -44,7 +44,7 @@ export class MyNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(' uicontext is undefined : '+ (uiContext === undefined));
+    console.log('uicontext is undefined : ' + (uiContext === undefined));
     if (this.rootnode != null) {
       // 返回FrameNode节点
       return this.rootnode.getFrameNode();
@@ -54,7 +54,7 @@ export class MyNodeController extends NodeController {
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log('aboutToResize width : ' + size.width  +  ' height : ' + size.height );
+    console.log('aboutToResize width : ' + size.width + ' height : ' + size.height);
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调

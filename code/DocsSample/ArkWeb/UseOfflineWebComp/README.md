@@ -106,7 +106,7 @@ entry/src/main/
 |---|---entryability
 |---|---|---EntryAbility.ets
 |---|---pages
-|---|---|---common.ets
+|---|---|---Common.ets
 |---|---|---Index.ets						// 首页
 |---resources								// 静态资源
 |---ohosTest
@@ -119,7 +119,7 @@ entry1/src/main/
 |---|---entry1ability
 |---|---|---Entry1Ability.ets
 |---|---pages
-|---|---|---common.ets
+|---|---|---Common.ets
 |---|---|---Index.ets						// 首页
 |---|---|---index2.ets
 |---resources								// 静态资源
@@ -133,7 +133,7 @@ entry2/src/main/
 |---|---entry2ability
 |---|---|---Entry2Ability.ets
 |---|---pages
-|---|---|---common.ets
+|---|---|---Common.ets
 |---|---|---Index.ets						// 首页
 |---|---|---index2.ets
 |---resources								// 静态资源
@@ -147,7 +147,7 @@ entry3/src/main/
 |---|---entry3ability
 |---|---|---Entry3Ability.ets
 |---|---pages
-|---|---|---common.ets
+|---|---|---Common.ets
 |---|---|---Index.ets						// 入口页
 |---|---|---Home.ets                        // 首页
 |---|---|---Page1.ets

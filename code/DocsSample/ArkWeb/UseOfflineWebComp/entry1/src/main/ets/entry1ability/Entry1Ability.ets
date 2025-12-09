@@ -17,7 +17,7 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import { createNWeb } from '../pages/common';
+import { createNWeb } from '../pages/Common';
 // [StartExclude entry_ability_window_stage_created_after_page_loaded]
 export default class Entry1Ability extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
