@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start generate_key_specify_fingerprint_access_control_and_auth_purpose]
+// [Start fingerprint_access_key_generation_and_encryption]
 import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -247,7 +247,9 @@ async function step2EncryptData(): Promise<void> {
     throw err;
   }
 }
+// [End fingerprint_access_key_generation_and_encryption]
 
+// [Start fingerprint_access_user_authentication]
 /* 步骤3：用户认证模块 */
 function performUserAuthentication(huksChallenge: Uint8Array): void {
   /* 配置认证参数 */
@@ -298,7 +300,9 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 }
+// [End fingerprint_access_user_authentication]
 
+// [Start fingerprint_access_decryption_and_verification]
 /* 步骤4：解密模块 */
 const DECRYPTION_PROPERTIES: huks.HuksParam[] = [
   {
@@ -447,7 +451,7 @@ async function main(): Promise<void> {
     /* 步骤3：初始化解密并进行用户认证 */
     await step31DecryptionAndAuth();
 }
-// [End generate_key_specify_fingerprint_access_control_and_auth_purpose]
+// [End fingerprint_access_decryption_and_verification]
 
 @Entry
 @Component

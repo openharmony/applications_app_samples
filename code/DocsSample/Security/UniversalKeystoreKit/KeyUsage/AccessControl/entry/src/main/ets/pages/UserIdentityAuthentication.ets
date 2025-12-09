@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start user_authentication_and_access_control_guide]
+// [Start user_authentication_key_generation]
 import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
@@ -200,7 +200,9 @@ async function step2InitSession(): Promise<void> {
     throw err;
   }
 }
+// [End user_authentication_key_generation]
 
+// [Start user_authentication_pin_verification]
 /* 步骤3：用户认证模块 - 通过PIN码认证获取授权令牌 */
 /* 执行用户认证 */
 function performUserAuthentication(huksChallenge: Uint8Array): void {
@@ -252,7 +254,9 @@ function performUserAuthentication(huksChallenge: Uint8Array): void {
     throw err;
   }
 }
+// [End user_authentication_pin_verification]
 
+// [Start user_authentication_data_encryption]
 /* 步骤4：加密操作模块 - 使用认证令牌进行加密操作 */
 /* 加密参数配置 */
 const ENCRYPT_PROPERTIES: huks.HuksParam[] = [
@@ -387,7 +391,7 @@ async function main(): Promise<void> {
   await step2InitSession();
   performUserAuthentication(challenge);
 }
-// [End user_authentication_and_access_control_guide]
+// [End user_authentication_data_encryption]
 
 @Entry
 @Component
