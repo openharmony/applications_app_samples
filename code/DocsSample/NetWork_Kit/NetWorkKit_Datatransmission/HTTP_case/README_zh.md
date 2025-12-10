@@ -2,15 +2,15 @@
 
 ### 介绍
 
-应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求的示例应用，它实现了通过按钮实现request接口开发步骤、requestInStream接口开发步骤的功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
+应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求的示例应用，它实现了通过按钮实现request接口开发步骤、requestInStream接口开发步骤的功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。此外本项目拓展了HTTP数据请求WebDav协议的请求。
 
 **注意：** 本示例需要用户输入一个实际的URL，方能获得通过的结果。
 
 ### 效果预览
 
-| 程序启动                                  | 发送HTTP请求                                | 发送流式HTTP连接                                      |
-| ----------------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
-| <img src="screenshots/Program_Startup.jpg" width="300" /> | <img src="screenshots/Send_HTTP_Request.jpg" width="300" /> | <img src="screenshots/Send_Streaming_HTTP_Request.jpg" width="300" /> |
+| 程序启动                                                  | 发送HTTP请求                                                | 发送流式HTTP连接                                             | HTTP拓展WebDav                                        |
+| --------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| <img src="screenshots/Program_Startup.jpg" width="250" /> | <img src="screenshots/Send_HTTP_Request.jpg" width="250" /> | <img src="screenshots/Send_Streaming_HTTP_Request.jpg" width="250" /> | <img src="screenshots/HTTP_WebDav.jpg" width="250" /> |
 
 
 使用说明
@@ -31,6 +31,10 @@
 
    注2：公共网址的访问不需要证书，故注释了代码中的证书部分
 
+4. 点击“HTTP拓展WebDav”按钮，跳转HTTP拓展WebDav页面，页面不同按钮发送不同方式的请求。
+
+   注1：日志输出使用 `Logger` 进行调试，可以查看 HTTP 请求的详细信息，包括请求头、响应数据、状态码等。
+
 ### 工程目录
 
 ```
@@ -43,6 +47,7 @@ entry/src/main/ets/
 │   |---EntryBackupAbility.ets      
 |---pages
 │   |---Index.ets                      // 主页
+│   |---webDav.ets                     // http拓展WebDav协议
 ```
 
 ### 具体实现
@@ -77,6 +82,13 @@ entry/src/main/ets/
    - 每次请求结束后，无论是普通请求还是流式请求，都调用 `httpRequest.destroy()` 销毁请求对象，释放相关资源。
    - 在流式请求中，响应数据的接收进度、完成和错误事件都通过订阅事件处理，确保最终销毁请求对象，防止内存泄漏。
 
+6. **HTTP拓展WebDav协议实现 (以MKCOL为例)**
+   - 使用 `http.createHttp()` 创建一个 HTTP 请求对象 `httpRequest`。
+   - 配置`HttpRequestOptions.customMethod`（拓展WebDav协议需配置自定义请求字段）为MKCOL。
+   - 配置`url`为访问服务器中需要创建文件位置。
+   - 设置 `expectDataType: http.HttpDataType.STRING`，期望服务器返回的数据是字符串类型。
+   - 在请求完成时，成功响应会将结果展示在终端Log中，并且查看服务器可看到文件夹成功创建。
+   - 请求完成后销毁 `httpRequest` 实例，确保资源释放。
 ### 相关权限
 
 [ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
@@ -88,8 +100,8 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例为Stage模型，支持API14版本SDK，版本号：5.0.2。
-3. 本示例需要使用DevEco Studio Release（5.0.5.306）及以上版本才可编译运行。
+2. 本示例为Stage模型，支持API23版本SDK，版本号：6.0.0。
+3. 本示例需要使用DevEco Studio Release（6.0.0.868）及以上版本才可编译运行。
 
 ### 下载
 

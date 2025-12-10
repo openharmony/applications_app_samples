@@ -18,5 +18,17 @@ export enum ComponentId {
    STREAM_RESULT_ID = 'streamReqResult',
    HTTP_BUTTON = 'HttpButton',
    STREAM_HTTP_BUTTON = 'StreamHttpButton',
-   HTTP_TITLE = 'HttpTitleId'
-};
+   HTTP_TITLE = 'HttpTitleId',
+   HTTP_WEBDAV_BUTTON = 'HttpWebDavButton',
+   HTTP_WEBDAV_PUT = 'HttpWebDavPUT',
+   HTTP_WEBDAV_GET = 'HttpWebDavGET',
+   HTTP_WEBDAV_MKCOL = 'HttpWebDavMKCOL',
+   HTTP_WEBDAV_DELETE = 'HttpWebDavDELETE',
+   HTTP_WEBDAV_COPY = 'HttpWebDavCOPY',
+   HTTP_WEBDAV_MOVE = 'HttpWebDavMOVE',
+   HTTP_WEBDAV_PROPPATCH = 'HttpWebDavPROPPATCH',
+   HTTP_WEBDAV_PROPFIND = 'HttpWebDavPROPFIND',
+   HTTP_WEBDAV_LOCK = 'HttpWebDavLOCK',
+   HTTP_WEBDAV_UNLOCK = 'HttpWebDavUNLOCK',
+   HTTP_WEBDAV_UNKNOWN = 'HttpWebDavUNKNOWN'
+}

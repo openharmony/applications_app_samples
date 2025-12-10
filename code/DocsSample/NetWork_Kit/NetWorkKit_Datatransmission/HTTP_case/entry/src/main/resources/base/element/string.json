@@ -25,6 +25,10 @@
       "value": "Stream_HTTP_Request_Button"
     },
     {
+      "name": "Stream_HTTP_Request_WebDav_Button",
+      "value": "Stream_HTTP_Request_WebDav_Button"
+    },
+    {
       "name": "testSuccess",
       "value": "Success"
     },
@@ -39,6 +43,54 @@
     {
       "name": "httpSendSuccess",
       "value": "httpSendSuccess"
+    },
+    {
+      "name": "HTTP_WEBDAV_PUT",
+      "value": "HTTP_WEBDAV_PUT"
+    },
+    {
+      "name": "HTTP_WEBDAV_GET",
+      "value": "HTTP_WEBDAV_GET"
+    },
+    {
+      "name": "HTTP_WEBDAV_MKCOL",
+      "value": "HTTP_WEBDAV_MKCOL"
+    },
+    {
+      "name": "HTTP_WEBDAV_DELETE",
+      "value": "HTTP_WEBDAV_DELETE"
+    },
+    {
+      "name": "HTTP_WEBDAV_COPY",
+      "value": "HTTP_WEBDAV_COPY"
+    },
+    {
+      "name": "HTTP_WEBDAV_MOVE",
+      "value": "HTTP_WEBDAV_MOVE"
+    },
+    {
+      "name": "HTTP_WEBDAV_PROPPATCH",
+      "value": "HTTP_WEBDAV_PROPPATCH"
+    },
+    {
+      "name": "HTTP_WEBDAV_PROPFIND",
+      "value": "HTTP_WEBDAV_PROPFIND"
+    },
+    {
+      "name": "HTTP_WEBDAV_LOCK",
+      "value": "HTTP_WEBDAV_LOCK"
+    },
+    {
+      "name": "HTTP_WEBDAV_UNLOCK",
+      "value": "HTTP_WEBDAV_UNLOCK"
+    },
+    {
+      "name": "HTTP_WEBDAV_UNKNOWN",
+      "value": "HTTP_WEBDAV_UNKNOWN"
+    },
+    {
+      "name": "Back",
+      "value": "Back"
     }
   ]
 }
