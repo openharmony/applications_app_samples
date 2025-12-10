@@ -96,7 +96,7 @@ class MyNodeController extends NodeController {
   }
 
   postEvent(event: TouchEvent | undefined): boolean {
-    return this.rootNode?.postTouchEvent(event) as boolean
+    return this.rootNode?.postTouchEvent(event) as boolean;
   }
 }
 
@@ -126,8 +126,6 @@ struct TextInputComponent1 {
 @Builder
 function textInputBuilder1(params:Params) {
   TextInputComponent1({params: params})
-    .width(params.width)
-    .height(params.height)
     .backgroundColor(Color.Pink)
 }
 
@@ -158,8 +156,6 @@ struct TextInputComponent2 {
 @Builder
 function textInputBuilder2(params:Params) {
   TextInputComponent2({params: params})
-    .width(params.width)
-    .height(params.height)
     .backgroundColor(Color.Gray)
 }
 
@@ -196,16 +192,16 @@ struct Page{
               const componentId = embed.info?.id?.toString() as string
               if (embed.status == NativeEmbedStatus.CREATE) {
                 console.info('NativeEmbed create' + JSON.stringify(embed.info));
-                // 创建节点控制器、设置参数并rebuild。
-                let nodeController = new MyNodeController()
+                // 创建节点控制器、设置参数。
+                let nodeController = new MyNodeController();
                 // embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
                 nodeController.setRenderOption({surfaceId : embed.surfaceId as string,
                   type : embed.info?.type as string,
                   renderType : NodeRenderType.RENDER_TYPE_TEXTURE,
                   embedId : embed.embedId as string,
                   width : this.uiContext.px2vp(embed.info?.width),
-                  height : this.uiContext.px2vp(embed.info?.height)})
-                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                  height : this.uiContext.px2vp(embed.info?.height)});
+                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                 nodeController.setDestroy(false);
                 // 根据web传入的embed的id属性作为key，将nodeController存入Map。
                 this.nodeControllerMap.set(componentId, nodeController);
@@ -213,15 +209,15 @@ struct Page{
                 this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                 this.positionMap.set(componentId, this.edges);
                 // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器,需要将push动作放在set之后。
-                this.componentIdArr.push(componentId)
+                this.componentIdArr.push(componentId);
               } else if (embed.status == NativeEmbedStatus.UPDATE) {
                 let nodeController = this.nodeControllerMap.get(componentId);
                 console.info('NativeEmbed update' + JSON.stringify(embed));
-                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                 this.positionMap.set(componentId, this.edges);
                 this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                 this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
-                nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
+                nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject);
               } else if (embed.status == NativeEmbedStatus.DESTROY) {
                 console.info('NativeEmbed destroy' + JSON.stringify(embed));
                 let nodeController = this.nodeControllerMap.get(componentId);
@@ -241,7 +237,7 @@ struct Page{
                 let nodeController = this.nodeControllerMap.get(componentId);
                 // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                 if (nodeController?.getEmbedId() == touch.embedId) {
-                  let ret = nodeController?.postEvent(touch.touchEvent)
+                  let ret = nodeController?.postEvent(touch.touchEvent);
                   if (ret) {
                     console.info('onNativeEmbedGestureEvent success ' + componentId);
                   } else {

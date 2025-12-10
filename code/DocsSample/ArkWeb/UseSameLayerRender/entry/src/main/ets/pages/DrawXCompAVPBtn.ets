@@ -135,7 +135,7 @@ function videoBuilder(params: Params) {
 @Entry
 @Component
 struct WebIndex {
-  browserTabController: WebviewController = new webview.WebviewController()
+  browserTabController: WebviewController = new webview.WebviewController();
   private nodeControllerMap: Map<string, MyNodeController> = new Map();
   @State componentIdArr: Array<string> = [];
   @State widthMap: Map<string, number> = new Map();
@@ -167,11 +167,11 @@ struct WebIndex {
             .onNativeEmbedLifecycleChange((embed) => {
               console.info('NativeEmbed surfaceId' + embed.surfaceId);
               // 1. 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
-              const componentId = embed.info?.id?.toString() as string
+              const componentId = embed.info?.id?.toString() as string;
               if (embed.status == NativeEmbedStatus.CREATE) {
                 console.info('NativeEmbed create' + JSON.stringify(embed.info));
-                // 创建节点控制器，设置参数并rebuild。
-                let nodeController = new MyNodeController()
+                // 创建节点控制器，设置参数。
+                let nodeController = new MyNodeController();
                 // 1. embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
                 nodeController.setRenderOption({
                   surfaceId : embed.surfaceId as string, type : embed.info?.type as string,
@@ -185,10 +185,10 @@ struct WebIndex {
                 this.heightMap.set(componentId,  this.uiContext.px2vp(embed.info?.height));
                 this.positionMap.set(componentId, this.edges);
                 // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器，需要将push动作放在set之后。
-                this.componentIdArr.push(componentId)
+                this.componentIdArr.push(componentId);
               } else if (embed.status == NativeEmbedStatus.UPDATE) {
                 let nodeController = this.nodeControllerMap.get(componentId);
-                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                 this.positionMap.set(componentId, this.edges);
                 this.widthMap.set(componentId,  this.uiContext.px2vp(embed.info?.width));
                 this.heightMap.set(componentId,  this.uiContext.px2vp(embed.info?.height));
@@ -209,10 +209,10 @@ struct WebIndex {
             .onNativeEmbedGestureEvent((touch) => {
               console.info('NativeEmbed onNativeEmbedGestureEvent' + JSON.stringify(touch.touchEvent));
               this.componentIdArr.forEach((componentId: string) => {
-                let nodeController = this.nodeControllerMap.get(componentId)
+                let nodeController = this.nodeControllerMap.get(componentId);
                 // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                 if (nodeController?.getEmbedId() === touch.embedId) {
-                  let ret = nodeController?.postEvent(touch.touchEvent)
+                  let ret = nodeController?.postEvent(touch.touchEvent);
                   if (ret) {
                     console.info('onNativeEmbedGestureEvent success ' + componentId);
                   } else {
@@ -231,7 +231,7 @@ struct WebIndex {
                 let nodeController = this.nodeControllerMap.get(componentId);
                 // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
                 if(nodeController?.getEmbedId() == mouse.embedId) {
-                  let ret = nodeController?.postInputEvent(mouse.mouseEvent)
+                  let ret = nodeController?.postInputEvent(mouse.mouseEvent);
                   if(ret) {
                     console.info('onNativeEmbedMouseEvent success ' + componentId);
                   } else {

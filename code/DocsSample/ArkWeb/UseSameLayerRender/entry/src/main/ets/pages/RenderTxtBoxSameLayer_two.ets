@@ -128,8 +128,6 @@ struct TextInputComponent {
 @Builder
 function textInputBuilder(params:Params) {
   TextInputComponent({params: params})
-    .width(params.width)
-    .height(params.height)
     .backgroundColor(Color.White)
 }
 // [End create_custom_module]
@@ -153,12 +151,14 @@ struct Page{
     Row() {
       Column() {
         Stack() {
+          // [Start nodecontainer_position]
           ForEach(this.componentIdArr, (componentId: string) => {
             NodeContainer(this.nodeControllerMap.get(componentId))
               .position(this.positionMap.get(componentId))
               .width(this.widthMap.get(componentId))
               .height(this.heightMap.get(componentId))
           }, (embedId: string) => embedId)
+          // [End nodecontainer_position]
           // Web组件加载本地test2.html页面。
           // [Start register_object_label]
           Web({src: $rawfile('test2.html'), controller: this.browserTabController})
@@ -175,7 +175,7 @@ struct Page{
                const componentId = embed.info?.id?.toString() as string;
                if (embed.status == NativeEmbedStatus.CREATE) {
                  console.info('NativeEmbed create' + JSON.stringify(embed.info));
-                 // 创建节点控制器、设置参数并rebuild。
+                 // 创建节点控制器、设置参数。
                  let nodeController = new MyNodeController();
                  // embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp。
                  nodeController.setRenderOption({surfaceId : embed.surfaceId as string,
@@ -183,7 +183,7 @@ struct Page{
                    renderType : NodeRenderType.RENDER_TYPE_TEXTURE,
                    embedId : embed.embedId as string,
                    width : this.uiContext.px2vp(embed.info?.width),
-                   height : this.uiContext.px2vp(embed.info?.height)})
+                   height : this.uiContext.px2vp(embed.info?.height)});
                  this.edges = {
                    left: `${embed.info?.position?.x as number}px`,
                    top: `${embed.info?.position?.y as number}px`
@@ -199,11 +199,11 @@ struct Page{
                } else if (embed.status == NativeEmbedStatus.UPDATE) {
                  let nodeController = this.nodeControllerMap.get(componentId);
                  console.info('NativeEmbed update' + JSON.stringify(embed));
-                 this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                 this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                  this.positionMap.set(componentId, this.edges);
                  this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                  this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
-                 nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
+                 nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject);
                } else if (embed.status == NativeEmbedStatus.DESTROY) {
                  console.info('NativeEmbed destroy' + JSON.stringify(embed));
                  let nodeController = this.nodeControllerMap.get(componentId);
