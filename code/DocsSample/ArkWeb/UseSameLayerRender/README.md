@@ -66,6 +66,7 @@ entry/src/main/
 |---|---pages
 |---|---|---DrawXCompAVPBtn.ets
 |---|---|---Index.ets						// 首页
+|---|---|---NativeEmbedOverlay.ets
 |---|---|---PlayerDemo.ets
 |---|---|---RenderTxtBoxSameLayer_one.ets
 |---|---|---RenderTxtBoxSameLayer_two.ets
@@ -88,8 +89,8 @@ entry/src/main/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，SDK版本号(API Version 14 Release)。
-3. 本示例需要使用DevEco Studio 版本号(5.0.1Release)才可编译运行。
+2. 本示例支持API20版本SDK，SDK版本号(API Version 20 Release)。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0Release)及以上版本才可编译运行。
 
 ### 下载
 
@@ -99,6 +100,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/UseSameLayerRender > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

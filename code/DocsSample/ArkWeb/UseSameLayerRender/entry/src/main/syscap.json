@@ -4,7 +4,8 @@
   },
   "production": {
     "removedSysCaps": [
-      "SystemCapability.Security.DeviceSecurityLevel"
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.Security.DataTransitManager"
     ]
   }
 }
