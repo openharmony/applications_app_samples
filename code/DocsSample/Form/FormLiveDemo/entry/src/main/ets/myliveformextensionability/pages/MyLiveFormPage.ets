@@ -16,7 +16,8 @@
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
 import { formInfo, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
+// 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，
+// IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
 // 在api 22及以后使用import { common } from '@kit.AbilityKit';导入，通过common.LiveFormExtensionContext方式使用
 import { common } from '@kit.AbilityKit';
 // Constants实现参考“互动卡片动效工具函数实现”小节
@@ -38,8 +39,9 @@ struct MyLiveFormPage {
   private formId: string | undefined = undefined;
   private formRect: formInfo.Rect | undefined = undefined;
   private formBorderRadius: number | undefined = undefined;
-  // 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
- 	// 在api 22及以后使用import { common } from '@kit.AbilityKit';导入，通过common.LiveFormExtensionContext方式使用
+  // 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，
+  // IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
+  // 在api 22及以后使用import { common } from '@kit.AbilityKit';导入，通过common.LiveFormExtensionContext方式使用
   private liveFormContext: common.LiveFormExtensionContext | undefined = undefined;
 
   aboutToAppear(): void {
@@ -56,8 +58,9 @@ struct MyLiveFormPage {
     this.formId = this.storageForMyLiveFormPage?.get<string>('formId');
     this.formRect = this.storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
     this.formBorderRadius = this.storageForMyLiveFormPage?.get<number>('borderRadius');
-    // 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
- 	  // 在api 22及以后使用import { common } from '@kit.AbilityKit';导入，通过common.LiveFormExtensionContext方式使用
+  // 在api 22以前通过import LiveFormExtensionContext from 'application/LiveFormExtensionContext';导入LiveFormExtensionContext，
+  // IDE标红，但不影响编译运行，LiveFormExtensionContext直接使用
+  // 在api 22及以后使用import { common } from '@kit.AbilityKit';导入，通过common.LiveFormExtensionContext方式使用
     this.liveFormContext = this.storageForMyLiveFormPage?.get<common.LiveFormExtensionContext>('context');
   }
 
