@@ -59,14 +59,7 @@ entry/src/main/ets/
 4. 需要链接DLP凭据服务器。
 
 ## samples代码运行及其环境配置
-1.[克隆samples代码到本地](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/DLP)  
-2.[开发板上需要烧入日构建版本（dayu200）](https://dcp.openharmony.cn/workbench/cicd/dailybuild/dailylist)  
-&nbsp;&nbsp;&nbsp;&nbsp;具体操作为：https://blog.csdn.net/nanzhanfei/article/details/121951919<br>
-3.[ 配置最新SDK  （ohos-sdk-full）](https://dcp.openharmony.cn/workbench/cicd/dailybuild/dailylist )  
-![Index](screenshots/devices/setSDK.png)  
-![Index](screenshots/devices/address.png)    
-![Index](screenshots/devices/setting.png)    
-4.在".\DLP\entry\src\main"下新增syscap.json文件，文件内容为：
+1.在".\DLP\entry\src\main"下新增syscap.json文件，文件内容为：
 ```
 {
   "devices": {
@@ -82,7 +75,7 @@ entry/src/main/ets/
   }
 }
 ```
-5.配置build-profile.json5 （.\DLP\build-profile.json5）
+2.配置build-profile.json5 （.\DLP\build-profile.json5）
 ```
 "products": [
    {
@@ -96,8 +89,8 @@ entry/src/main/ets/
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若出现sync failed,可以尝试点击Migrate Assistant <br>
 ![Index](screenshots/devices/syn出错.png)<br>
-6.执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；  
-7.添加签名<br>
+3.执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；  
+4.添加签名<br>
 （1）装一个假应用  （在DLP目录下新建假应用，该应用的所有配置均默认）  
 ![Index](screenshots/devices/new_application.png)  
 （2）点击运行，将假应用烧录到开发板中，删除假应用代码  
