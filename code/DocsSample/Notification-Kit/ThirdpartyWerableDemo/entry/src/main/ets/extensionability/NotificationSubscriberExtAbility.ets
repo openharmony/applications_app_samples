@@ -14,23 +14,30 @@
  */
 
 //[Start quick_start]
+//[Start huidiao_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { notificationExtensionSubscription, NotificationSubscriberExtensionAbility } from '@kit.NotificationKit';
+//[StartExclude huidiao_start]
 import SppClientManager from '../utils/SppClientManager'
-
+//[EndExclude huidiao_start]
 const DOMAIN = 0x0000;
 
 export default class NotificationSubscriberExtAbility extends NotificationSubscriberExtensionAbility {
+  //[StartExclude huidiao_start]
   private sppClientManager: SppClientManager | undefined;
-
+  //[EndExclude huidiao_start]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', 'onDestroy');
+    //[StartExclude huidiao_start]
     this.sppClientManager!.stopConnect();
+    //[EndExclude huidiao_start]
   }
-
+  //[StartExclude huidiao_start]
   //Called back when a notification is published.
+  //[EndExclude huidiao_start]
   onReceiveMessage(notificationInfo: notificationExtensionSubscription.NotificationInfo): void {
     hilog.info(DOMAIN, 'testTag', `on receive message ${JSON.stringify(notificationInfo)}`)
+    //[StartExclude huidiao_start]
     notificationExtensionSubscription.getSubscribeInfo()
       .then(info => {
         if (this.sppClientManager == undefined) {
@@ -45,8 +52,9 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
           }, 3000)
         }
       })
+    //[EndExclude huidiao_start]
   }
-
+  //[StartExclude huidiao_start]
   // Sends a publish notification and retries once upon failure.
   private sendPublishWithRetry(notificationInfo: notificationExtensionSubscription.NotificationInfo) {
     try {
@@ -61,8 +69,10 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
   }
 
   //Called back when notifications is cancelled.
+  //[EndExclude huidiao_start]
   onCancelMessages(hashCodes: Array<string>): void {
     hilog.info(DOMAIN, 'testTag', `on cancel message ${JSON.stringify(hashCodes)}`)
+    //[StartExclude huidiao_start]
     notificationExtensionSubscription.getSubscribeInfo()
       .then(info => {
         if (this.sppClientManager == undefined) {
@@ -77,8 +87,9 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
           }, 3000)
         }
       })
+  //[EndExclude huidiao_start]
   }
-
+  //[StartExclude huidiao_start]
   // Retries a cancel operation if it fails.
   private sendCancelWithRetry(hashCodes: string[]) {
     try {
@@ -91,5 +102,7 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
       }, 3000);
     }
   }
+  //[EndExclude huidiao_start]
 }
+//[End huidiao_start]
 //[End quick_start]
