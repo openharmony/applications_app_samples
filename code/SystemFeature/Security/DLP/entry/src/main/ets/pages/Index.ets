@@ -60,10 +60,8 @@ struct FilePicker {
   @State result: string = '';
   // 文件名
   @State fileName: string = '';
-  // @State mediaFileUri: MediaFileUri = new MediaFileUri();
   // 长按开关
   @State itemShowDeleteButton: boolean = false;
-  // @State dlpManager: DlpManager = new DlpManager();
   // 当前权限
   @State currentPerssion: number = -1;
   @State currentSelectedFileUri: string = '';
@@ -78,15 +76,12 @@ struct FilePicker {
     Logger.info(`aboutToAppear start`);
     hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'aboutToAppear start');
     this.isFlag = true;
-    // await this.dlpManager.AccountLogin('zhangsan');
-    // await this.preferencesManager.getPreferences();
   }
 
   async onPageShow() {
     if (!this.isFlag) {
       Logger.info(`onPageShow start`);
       hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'onPageShow start');
-      // await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
     }
   }
 
