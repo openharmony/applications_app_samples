@@ -27,30 +27,55 @@ export struct LocalUseCaseArray {
 }
 
 // [Start Local_Use_Case_Array]
+class Fruit {
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
 @Entry
 @ComponentV2
 struct Index {
-  @Local count: number[] = [1, 2, 3];
+  @Local fruits: Fruit[] = [new Fruit('apple'), new Fruit('banana')]; // 使用@Local装饰Array类型变量
 
   build() {
     Row() {
       Column() {
-        ForEach(this.count, (item: number) => {
-          Text(`${item}`).fontSize(30)
-          Divider()
+        ForEach(this.fruits, (item: Fruit) => {
+          Text(`${item.name}`)
+            .fontSize(20)
+            .margin(10)
         })
-        Button('init array').onClick(() => {
-          this.count = [9, 8, 7];
-        })
-        Button('push').onClick(() => {
-          this.count.push(0);
-        })
-        Button('reverse').onClick(() => {
-          this.count.reverse();
-        })
-        Button('fill').onClick(() => {
-          this.count.fill(6);
-        })
+        // 对数组整体重新赋值，触发UI刷新
+        Button('Reset array')
+          .onClick(() => {
+            this.fruits = [new Fruit('strawberry'), new Fruit('blueberry')];
+          })
+          .width(300)
+          .margin(10)
+        // 新增数组元素，触发UI刷新
+        Button('Push element')
+          .onClick(() => {
+            this.fruits.push(new Fruit('cherry'));
+          })
+          .width(300)
+          .margin(10)
+        // 翻转数组元素，触发UI刷新
+        Button('Reverse array')
+          .onClick(() => {
+            this.fruits.reverse();
+          })
+          .width(300)
+          .margin(10)
+        // 使用同一元素填充数组，触发UI刷新
+        Button('Fill array')
+          .onClick(() => {
+            this.fruits.fill(new Fruit('apple'));
+          })
+          .width(300)
+          .margin(10)
       }
       .width('100%')
     }

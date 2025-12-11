@@ -34,32 +34,45 @@ struct DatePickerExample {
   @Local selectedDate: Date = new Date('2021-08-08'); // 使用@Local装饰Date类型变量
 
   build() {
-    Column() {
-      Button('set selectedDate to 2023-07-08') // 按钮1：通过创建对象更新日期
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate = new Date('2023-07-08');
-        })
-      Button('increase the year by 1') // 按钮2：直接修改Date年份加1
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-        })
-      Button('increase the month by 1') // 按钮3：直接修改Date月份加1
-        .onClick(() => {
-          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
-        })
-      Button('increase the day by 1') // 按钮4：直接修改Date天数加1
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate
-      })
-    }.width('100%')
+    Row() {
+      Column() {
+        // 通过给selectedDate重新赋值新的Date实例，触发UI刷新
+        Button('set selectedDate to 2023-07-08')
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08');
+          })
+          .margin(10)
+          .width(300)
+        // 调用Date的setFullYear接口修改年份，触发UI刷新
+        Button('increase the year by 1')
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+          })
+          .margin(10)
+          .width(300)
+        // 调用Date的setMonth接口修改月份，触发UI刷新
+        Button('increase the month by 1')
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+          })
+          .margin(10)
+          .width(300)
+        // 调用Date的setDate接口修改日期，触发UI刷新
+        Button('increase the day by 1')
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+          })
+          .margin(10)
+          .width(300)
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        }).margin(20)
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 // [End Local_Use_Case_Data]

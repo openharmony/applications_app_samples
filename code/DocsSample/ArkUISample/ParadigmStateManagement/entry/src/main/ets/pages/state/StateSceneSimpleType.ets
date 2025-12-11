@@ -17,13 +17,20 @@
 @Entry
 @Component
 struct MyComponent {
-  @State count: number = 0;
+  @State count: number = 0; // 使用@State装饰简单类型变量
 
   build() {
-    Button(`click times: ${this.count}`)
-      .onClick(() => {
-        this.count += 1;
-      })
+    Row() {
+      Column() {
+        Button(`click times: ${this.count}`)
+          .onClick(() => {
+            this.count += 1;
+          })
+          .width(300)
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 // [End state_scene_simple_type]

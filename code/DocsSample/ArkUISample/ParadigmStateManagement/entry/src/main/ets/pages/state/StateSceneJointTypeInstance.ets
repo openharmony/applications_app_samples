@@ -16,26 +16,31 @@
 // [Start state_scene_joint_type_instance]
 @Entry
 @Component
-struct EntryComponent {
-  build() {
-    Column() {
-      MyComponent()
-    }
-  }
-}
-
-@Component
-struct MyComponent {
-  @State count: number | undefined = 0;
+struct UnionTypeSample {
+  @State count: number | undefined = 0; // 使用@State装饰联合类型变量
 
   build() {
-    Column() {
-      Text(`count(${this.count})`)
-      Button('change')
-        .onClick(() => {
-          this.count = undefined;
-        })
+    Row() {
+      Column() {
+        Text(`count: ${this.count}`)
+        // 将联合类型变量从number切换为undefined，触发UI刷新
+        Button('change to undefined')
+          .onClick(() => {
+            this.count = undefined;
+          })
+          .width(300)
+          .margin(10)
+        // 将联合类型变量从undefined切换为number，触发UI刷新
+        Button('change to number')
+          .onClick(() => {
+            this.count = 10;
+          })
+          .width(300)
+          .margin(10)
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 // [End state_scene_joint_type_instance]
@@ -47,7 +52,7 @@ export struct StateSceneJointTypeInstance {
 
   build() {
     NavDestination() {
-      EntryComponent()
+      UnionTypeSample()
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.state_scene_joint_type_instance'))

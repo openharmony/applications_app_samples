@@ -30,31 +30,51 @@ export struct LocalUseCaseMap {
 @Entry
 @ComponentV2
 struct MapSample {
-  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 使用@Local装饰Map类型变量
+  @Local fruits: Map<string, number> = new Map([['apple', 1], ['banana', 2]]); // 使用@Local装饰Map类型变量
 
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Map的键值对并渲染UI
-          Text(`${item[0]}`).fontSize(30)
-          Text(`${item[1]}`).fontSize(30)
-          Divider()
+        ForEach(Array.from(this.fruits.entries()), (item: [string, number]) => {
+          Text(`key: ${item[0]}, value: ${item[1]}`)
+            .fontSize(20)
+            .margin(10)
         })
-        Button('init map').onClick(() => { // 按钮1：重置Map为初始状态
-          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
-        })
-        Button('set new one').onClick(() => { // 按钮2：添加新键值对(4, 'd')
-          this.message.set(4, 'd');
-        })
-        Button('clear').onClick(() => { // 按钮3：清空Map
-          this.message.clear();
-        })
-        Button('replace key 0').onClick(() => { // 按钮4：更新/添加键值为0的键值对
-          this.message.set(0, 'aa');
-        })
-        Button('delete key 0').onClick(() => { // 按钮5：删除键值为0的键值对
-          this.message.delete(0);
-        })
+        // 新增键值对，触发UI刷新
+        Button('Set entry cherry')
+          .onClick(() => {
+            this.fruits.set('cherry', 3);
+          })
+          .width(300)
+          .margin(10)
+        // 更新键值对，触发UI刷新
+        Button('Update entry apple')
+          .onClick(() => {
+            this.fruits.set('apple', 4);
+          })
+          .width(300)
+          .margin(10)
+        // 删除键值对，触发UI刷新
+        Button('Delete entry apple')
+          .onClick(() => {
+            this.fruits.delete('apple');
+          })
+          .width(300)
+          .margin(10)
+        // 对Map整体重新赋值，触发UI刷新
+        Button('Reset map')
+          .onClick(() => {
+            this.fruits = new Map([['strawberry', 9], ['blueberry', 8]]);
+          })
+          .width(300)
+          .margin(10)
+        // 清空Map，触发UI刷新
+        Button('Clear map')
+          .onClick(() => {
+            this.fruits.clear();
+          })
+          .width(300)
+          .margin(10)
       }
       .width('100%')
     }

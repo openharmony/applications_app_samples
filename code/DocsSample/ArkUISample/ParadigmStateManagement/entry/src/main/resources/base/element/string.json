@@ -489,6 +489,10 @@
       "value": "@State使用场景：装饰class对象类型的变量"
     },
     {
+      "name": "state_scene_type_array",
+      "value": "@State使用场景：装饰Array类型变量"
+    },
+    {
       "name": "state_scene_type_map",
       "value": "@State使用场景：装饰Map类型变量"
     },
