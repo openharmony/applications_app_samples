@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start encrypt_and_decrypt_AESGCMNoPadding_cpp]
+// [Start prepare_AESGCMNoPadding_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -142,7 +142,9 @@ OH_Huks_Result HksAesGcmTestDecrypt(const struct OH_Huks_Blob *keyAlias,
     ret = OH_Huks_FinishSession(&handleDecrypt, decryptParamSet, cipherText, plainText);
     return ret;
 }
+// [End prepare_AESGCMNoPadding_cpp]
 
+// [Start encrypt_and_decrypt_AESGCMNoPadding_cpp]
 napi_value TestAesGcm(napi_env env, napi_callback_info info)
 {
     char tmpKeyAlias[] = "test_enc_dec";
