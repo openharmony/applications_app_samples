@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/chacha20/ChaCha20EncryptionDecryptionSync",
+    "pages/chacha20/ChaCha20EncryptionDecryptionAsync",
+    "pages/chacha20/ChaCha20Poly1305EncryptionDecryptionSync",
+    "pages/chacha20/ChaCha20Poly1305EncryptionDecryptionAsync",
+    "pages/chacha20/ChaCha20CppTest"
+  ]
+}

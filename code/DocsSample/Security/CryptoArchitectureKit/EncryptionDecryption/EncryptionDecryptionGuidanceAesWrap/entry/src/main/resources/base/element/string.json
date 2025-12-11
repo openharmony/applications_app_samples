@@ -1,0 +1,41 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceAesWrap"
+    },
+    {
+      "name": "aes_wrap_async",
+      "value": "AesWrap Async"
+    },
+    {
+      "name": "aes_wrap_sync",
+      "value": "AesWrap Sync"
+    },
+    {
+      "name": "aes_wrap_cpp_test",
+      "value": "AesWrap CppTest"
+    },
+    {
+      "name": "call_aes_wrap_asynchronous",
+      "value": "Call AES_WRAP Asynchronous"
+    },
+    {
+      "name": "call_aes_wrap_synchronous",
+      "value": "Call AES_WRAP Synchronous"
+    },
+    {
+      "name": "call_aes_wrap_cpp_test",
+      "value": "Call AES_WRAP CppTest"
+    }
+
+  ]
+}
