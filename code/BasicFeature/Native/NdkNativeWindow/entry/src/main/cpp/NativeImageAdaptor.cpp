@@ -158,7 +158,7 @@ bool NativeImageAdaptor::InitNativeWindow()
     GLuint textureId;
     glGenTextures(1, &textureId);
     // Create a NativeImage instance and associate it with OpenGL textures
-    image_ = OH_NativeImage_CreateWithSingleBufferMode(textureId, GL_TEXTURE_2D, isSingleBufferMode_);
+    image_ = OH_NativeImage_CreateWithSingleBufferMode(textureId, GL_TEXTURE_EXTERNAL_OES, isSingleBufferMode_);
 
     int32_t ret = OH_ConsumerSurface_SetDefaultSize(image_, width_, height_);
     if (ret != 0) {
@@ -212,7 +212,7 @@ bool NativeImageAdaptor::InitNativeWindowCache()
 {
     GLuint textureId;
     glGenTextures(1, &textureId);
-    imageCache_ = OH_NativeImage_CreateWithSingleBufferMode(textureId, GL_TEXTURE_2D, isSingleBufferMode_);
+    imageCache_ = OH_NativeImage_CreateWithSingleBufferMode(textureId, GL_TEXTURE_EXTERNAL_OES, isSingleBufferMode_);
     nativeWindowCache_ = OH_NativeImage_AcquireNativeWindow(imageCache_);
 
     int code = SET_BUFFER_GEOMETRY;
@@ -441,15 +441,15 @@ int32_t NativeImageAdaptor::ConsumerBuffer(uint32_t value, OHNativeWindow *InNat
 {
     std::lock_guard<std::mutex> lockGuard(opMutex_);
     if (isSingleBufferMode_) {
-        OH_NativeBuffer_ColorSpace colorSpace;
-        int32_t retVal = OH_NativeImage_GetColorSpace(image_, &colorSpace);
-        if (retVal != 0) {
-            LOGE("get colorSpace fail.");
-        }
-        retVal = OH_NativeImage_UpdateSurfaceImage(image_);
+        int32_t retVal = OH_NativeImage_UpdateSurfaceImage(image_);
         if (retVal != 0) {
             LOGE("OH_NativeImage_UpdateSurfaceImage fail.");
             return GSERROR_FAILD;
+        }
+        OH_NativeBuffer_ColorSpace colorSpace;
+        retVal = OH_NativeImage_GetColorSpace(image_, &colorSpace);
+        if (retVal != 0) {
+            LOGE("get colorSpace fail.");
         }
         retVal = OH_NativeImage_ReleaseTextImage(image_);
         if (retVal != 0) {
