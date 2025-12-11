@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start encrypt_the_import_key]
+// [Start prepare_the_import_key_one]
 
 import { huks } from '@kit.UniversalKeystoreKit';
 
@@ -139,7 +139,9 @@ let importParamsCallerKek: huks.HuksOptions = {
   ],
   inData: stringToUint8Array(callerAes256Kek)
 }
+// [End prepare_the_import_key_one]
 
+// [Start prepare_the_import_key_two]
 let importParamsAgreeKey: huks.HuksOptions = {
   properties: [
     {
@@ -260,7 +262,9 @@ let importWrappedAes192Params: huks.HuksOptions = {
     }
   ]
 }
+// [End prepare_the_import_key_two]
 
+// [Start encry_the_import_key_one]
 async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
   try {
@@ -449,7 +453,9 @@ async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions
   }
   return new Uint8Array(outData);
 }
+// [End encry_the_import_key_one]
 
+// [Start encry_the_import_key_two]
 async function cipherFunction(keyAlias: string, huksOptions: huks.HuksOptions) {
   let handle = await publicInitFunc(keyAlias, huksOptions);
   let tmpData = await publicUpdateSessionFunction(handle, huksOptions);
@@ -574,7 +580,9 @@ async function buildWrappedDataAndImportWrappedKey(plainKey: string) {
   index += assignData(outPlainKeyEncData, wrappedData, index); // 24
   return wrappedData;
 }
+// [End encry_the_import_key_two]
 
+// [Start encry_the_import_key_three]
 /* 模拟加密导入密钥场景，设备A为远端设备（导入设备），设备B为本端设备（被导入设备） */
 async function ImportWrappedKey() {
   /**
@@ -622,9 +630,6 @@ async function ImportWrappedKey() {
 }
 
 
-// [End encrypt_the_import_key]
-
-// [Start encrypt_the_import_key_to_verify_that_the_key_exists]
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -657,5 +662,5 @@ function Check() {
   }
 }
 
-// [End encrypt_the_import_key_to_verify_that_the_key_exists]
+// [End encry_the_import_key_three]
 export { ImportWrappedKey, Check };
