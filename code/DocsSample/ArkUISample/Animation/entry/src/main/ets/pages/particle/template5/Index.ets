@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start particle_example5]
 import { LengthMetrics } from '@kit.ArkUI';
 
-// [Start particle_example5]
 @Entry
 @Component
 struct ParticleExample5 {
