@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start key_agreement_X25519]
+// [Start prepare_X25519]
 
 /*
  * 以下以X25519密钥的Promise操作使用为例
@@ -121,6 +121,9 @@ let finishOptionsSecond: huks.HuksOptions = {
   }],
   inData: stringToUint8Array(agreeX25519InData)
 }
+// [End prepare_X25519]
+
+// [Start key_agreement_X25519]
 
 /* 生成密钥 */
 async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {

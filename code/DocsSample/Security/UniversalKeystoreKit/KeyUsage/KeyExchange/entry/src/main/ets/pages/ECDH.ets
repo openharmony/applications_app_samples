@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start key_agreement_X25519]
+// [Start prepare_ECDH]
 
 /*
  * 以下以ECDH密钥的Promise操作使用为例
@@ -121,7 +121,9 @@ let finishOptionsSecond: huks.HuksOptions = {
   }],
   inData: stringToUint8Array(agreeECDHInData)
 }
+// [End prepare_ECDH]
 
+// [Start key_agreement_ECDH]
 /* 生成密钥 */
 async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info('promise: enter generateKeyItem');
