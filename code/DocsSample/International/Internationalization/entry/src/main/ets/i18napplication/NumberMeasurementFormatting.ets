@@ -29,7 +29,6 @@ import { i18n } from '@kit.LocalizationKit';
  *    i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
  *********************************************************************************************************************/
 // [Start measurement_conversion]
-// 度量衡转换开发实例
 // 设置要转换的单位和目标单位
 let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};

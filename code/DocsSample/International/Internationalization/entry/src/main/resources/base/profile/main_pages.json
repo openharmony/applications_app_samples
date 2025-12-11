@@ -2,7 +2,6 @@
   "src": [
     "pages/Index",
     "i18napplication/LanguagePreferenceSetting",
-    "i18napplication/DateTimeFormatting",
     "i18napplication/NumberMeasurementFormatting",
     "i18napplication/PhoneNumberFormatting",
     "i18napplication/CalendarSetting",

@@ -21,7 +21,6 @@ import { i18n } from '@kit.LocalizationKit';
 // [End import_module]
 
 // [Start check_and_set_date]
-// 设置日历和历法开发实例
 // 公历相关用法
 let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'gregory');
 // 设置日历对象的时间日期为2022.06.13 08:00:00

@@ -16,30 +16,9 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual } from '../component/AssertEqual';
 // [Start import_module]
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
 // [End import_module]
-
-/**********************************
- *       设置系统语言与区域
- *********************************/
-// [Start set_system_language_and_region]
-// 设置系统当前语言为'zh-Hans'
-try {
-  i18n.System.setSystemLanguage('zh-Hans');
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-}
-
-// 设置系统当前地区为'CN'
-try {
-  i18n.System.setSystemRegion('CN');
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
-}
-// [End set_system_language_and_region]
 
 // [Start get_system_language_and_region]
 // 获取系统语言
@@ -100,29 +79,6 @@ try {
 }
 // [End clear_preferred_language]
 
-/**********************************
- *       设置用户偏好
- *********************************/
-// [Start set_app_interface_numbers]
-// 设置应用界面数字
-try {
-  i18n.System.setUsingLocalDigit(true); // 使用本地数字
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
-}
-// [End set_app_interface_numbers]
-
-// [Start set_24_hour_clock_format]
-// 设置格式化的24小时制
-try {
-  i18n.System.set24HourClock(true); // 设置系统时制为24小时制
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
-}
-// [End set_24_hour_clock_format]
-
 // [Start get_user_preference]
 // 判断系统当前是否使用本地数字
 let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
@@ -160,8 +116,8 @@ const expectedSystemLanguage = 'zh-Hans';
 const expectedSystemRegion = 'CN';
 const expectedSystemLocale = 'zh-Hans-CN';
 const expectedAppPreferredLanguage = 'zh-Hans';
-const expectedResult1 = true;
-const expectedResult2 = true;
+const expectedResult1 = false;
+const expectedResult2 = false;
 
 @Extend(Text)
 function textStyle() {
