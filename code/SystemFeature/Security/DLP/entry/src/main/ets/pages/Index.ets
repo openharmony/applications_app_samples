@@ -21,13 +21,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { identifySensitiveContent } from '@kit.DataProtectionKit';
 // [End dlp_include]
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { MediaFileUri, FileInfoType } from '../feature/FileManager';
+import { FileInfoType } from '../feature/FileManager';
 import Want from '@ohos.app.ability.Want';
 import Logger from '../util/Logger';
-import fileuri from '@ohos.file.fileuri';
-import { DlpManager, TestDlpFileInfo } from '../feature/DlpManager';
-import { CustomDialogExample } from '../component/CustomDialog';
-import { PreferencesManager } from '../feature/PreferencesManager';
+import { TestDlpFileInfo } from '../feature/DlpManager';
 import { getResourceString } from '../util/ResourceUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit'
 import { UIContext } from '@kit.ArkUI';
@@ -63,10 +60,8 @@ struct FilePicker {
   @State result: string = '';
   // 文件名
   @State fileName: string = '';
-  @State mediaFileUri: MediaFileUri = new MediaFileUri();
   // 长按开关
   @State itemShowDeleteButton: boolean = false;
-  @State dlpManager: DlpManager = new DlpManager();
   // 当前权限
   @State currentPerssion: number = -1;
   @State currentSelectedFileUri: string = '';
@@ -76,31 +71,17 @@ struct FilePicker {
   @StorageLink('fileInfos') fileInfos: Array<FileInfoType> = [];
   // dlp文件信息
   @StorageLink('dlpFileInfos') dlpFileInfos: Array<TestDlpFileInfo> = [];
-  @State preferencesManager: PreferencesManager = new PreferencesManager();
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({
-      currentPerssion: $currentPerssion,
-      currentSelectedFileUri: $currentSelectedFileUri,
-    }),
-    autoCancel: true,
-    offset: { dx: 0, dy: 0 },
-    gridCount: 4,
-    customStyle: false
-  })
 
   async aboutToAppear() {
     Logger.info(`aboutToAppear start`);
     hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'aboutToAppear start');
     this.isFlag = true;
-    await this.dlpManager.AccountLogin('zhangsan');
-    await this.preferencesManager.getPreferences();
   }
 
   async onPageShow() {
     if (!this.isFlag) {
       Logger.info(`onPageShow start`);
       hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'onPageShow start');
-      await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
     }
   }
 
@@ -169,37 +150,6 @@ struct FilePicker {
     Logger.info('the fileName is' + this.fileName);
     hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'the fileName is' + this.fileName);
     await this.onPageShow();
-  }
-
-  // 删除dlp文件
-  async deleteDLPFile(fileMsg: FileInfoType) {
-    this.dlpFileInfos.forEach(async (dlpFileInfoItem: TestDlpFileInfo, ind: number) => {
-      let uriInfo: fileuri.FileUri = await this.mediaFileUri.getFileName(dlpFileInfoItem.plaintextPath);
-      if (uriInfo.name === fileMsg.fileName) {
-        await this.mediaFileUri.deleteFile(dlpFileInfoItem.ciphertextPath);
-        this.dlpFileInfos.splice(ind, 1);
-        await this.preferencesManager.putDlpFileInfos(this.dlpFileInfos);
-        await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
-      }
-    })
-  }
-
-  // 文件类型判断函数
-  async determineEncryption(fileMsg: FileInfoType) {
-    if (this.itemShowDeleteButton) {
-      this.itemShowDeleteButton = false;
-    }
-    if (fileMsg.isEncryption) {
-      this.dlpFileInfos.forEach(async (dlpFileInfoItem: TestDlpFileInfo, ind: number) => {
-        let uriInfo: fileuri.FileUri = await this.mediaFileUri.getFileName(dlpFileInfoItem.plaintextPath);
-        if (uriInfo.name === fileMsg.fileName) {
-          let dlpUriInfo: fileuri.FileUri = await this.mediaFileUri.getFileName(dlpFileInfoItem.ciphertextPath);
-          await this.startAbility(dlpUriInfo.name, dlpFileInfoItem.ciphertextPath);
-        }
-      })
-    } else {
-      await this.startAbility(fileMsg.fileName, fileMsg.fileUri);
-    }
   }
 
   // 打开文件编辑应用
@@ -753,101 +703,6 @@ struct FilePicker {
         Text('运行结果: ' + `${this.result}`)
       }
       
-      // 文件列表
-      List({ space: 12, initialIndex: 0 }) {
-        ForEach(this.fileInfos, (item: FileInfoType, index: number) => {
-          ListItem() {
-            Row() {
-              Row() {
-                Image($r('app.media.ic_files_grid_txt'))
-                  .width(30)
-                  .height(30)
-                  .margin({ left: 15, right: 19 })
-
-                Text(item.fileName)
-                  .fontSize(16)
-                  .fontFamily('HarmonyHeiTi-Medium')
-                  .fontColor('#182431')
-                  .lineHeight(22)
-                  .fontWeight(500)
-                  .textAlign(TextAlign.Start)
-                  .margin({ left: 0, right: 16 })
-                  .width('50%')
-              }
-
-              if (!this.itemShowDeleteButton) {
-                Text(`Size: 0B`)
-                  .fontSize(14)
-                  .fontFamily('HarmonyHeiTi-Medium')
-                  .lineHeight(19)
-                  .fontColor('#182431')
-                  .textAlign(TextAlign.End)
-                  .opacity(0.6)
-                  .width('20.8%')
-                  .margin({ left: 0, right: 12 })
-              } else {
-                Row() {
-                  Image($r('app.media.delete'))
-                    .width(30)
-                    .height(30)
-                    .id('deleteBtn')
-                    .margin({ left: 15, right: 19 })
-                    .onClick(() => {
-                      let currentIndex: number = -1;
-                      this.fileInfos.forEach((fileInfoItem: FileInfoType, ind: number) => {
-                        if (item.fileName === fileInfoItem.fileName) {
-                          currentIndex = ind;
-                        }
-                      });
-                      this.mediaFileUri.deleteFile(this.fileInfos[currentIndex].fileUri).then(async () => {
-                        this.fileInfos.splice(currentIndex, 1);
-                        this.itemShowDeleteButton = false;
-                        await this.deleteDLPFile(item);
-                        this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
-                      })
-                    })
-                  Image(item.isEncryption ? $r('app.media.ic_public_unlock_filled') : $r('app.media.ic_public_lock_filled'))
-                    .width(30)
-                    .height(30)
-                    .id('encryption')
-                    .onClick(async () => {
-                      if (item.isEncryption) {
-                        item.isEncryption = false;
-                        this.itemShowDeleteButton = false;
-                        await this.deleteDLPFile(item);
-                      } else {
-                        this.currentSelectedFileUri = item.fileUri;
-                        this.dialogController.open();
-                        this.itemShowDeleteButton = false;
-                      }
-                    })
-                }
-              }
-
-            }
-            .justifyContent(FlexAlign.SpaceBetween)
-            .borderRadius(24)
-            .width('100%')
-            .height(64)
-            .padding({ right: 12 })
-            .backgroundColor('#FFFFFF')
-          }
-          .id('fileItem')
-          .onClick(async () => {
-            await this.determineEncryption(item);
-          })
-          .gesture(LongPressGesture({ repeat: true })
-            .onAction((event?: GestureEvent) => {
-              this.itemShowDeleteButton = true;
-            })
-          )
-        })
-      }
-      .listDirection(Axis.Vertical) // 排列方向
-      .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
-      .scrollBar(BarState.Auto)
-      .alignListItem(ListItemAlign.Center)
-      .margin({ top: '1%', left: 12, right: 12 })
     }.width('100%')
     .height('100%')
     .padding(12)
