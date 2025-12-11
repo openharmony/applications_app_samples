@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start the_key_is_derived_from_pbkdf2]
+// [Start the_key_is_derived_from_pbkdf2_one]
 /*
  * 以下以PBKDF2密钥的Promise操作使用为例
  */
@@ -129,7 +129,9 @@ function stringToUint8Array(str: String) {
 class ThrowObject {
   public isThrow = false;
 }
+// [End the_key_is_derived_from_pbkdf2_one]
 
+// [Start the_key_is_derived_from_pbkdf2_two]
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -336,7 +338,7 @@ async function testDerive() {
   await publicFinishFunc(handle, finishOptions);
   await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
 }
-// [End the_key_is_derived_from_pbkdf2]
+// [End the_key_is_derived_from_pbkdf2_two]
 @Entry
 @Component
 struct Index {

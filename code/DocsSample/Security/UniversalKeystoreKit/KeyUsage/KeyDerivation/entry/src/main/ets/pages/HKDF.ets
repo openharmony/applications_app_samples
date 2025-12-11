@@ -14,7 +14,7 @@
  */
 
 
-// [Start the_key_is_derived_from_hkdf]
+// [Start the_key_is_derived_from_hkdf_one]
 /*
  * 以下以HKDF密钥的Promise操作使用为例
  */
@@ -117,7 +117,9 @@ function stringToUint8Array(str: String) {
 class ThrowObject {
   public isThrow = false;
 }
+// [End the_key_is_derived_from_hkdf_one]
 
+// [Start the_key_is_derived_from_hkdf_two]
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -325,7 +327,7 @@ async function testDerive() {
   await publicFinishFunc(handle, finishOptions);
   await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
 }
-// [End the_key_is_derived_from_hkdf]
+// [End the_key_is_derived_from_hkdf_two]
 @Entry
 @Component
 struct Index {
