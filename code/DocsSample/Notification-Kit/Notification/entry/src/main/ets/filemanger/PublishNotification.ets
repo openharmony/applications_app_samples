@@ -94,6 +94,7 @@ export struct PublishNotification {
                 `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
             });
             // [End check_progress_template_download]
+            AppStorage.setOrCreate<string>('check_notify','success');
           })
         Button($r('app.string.pub_progress_notify'))
           .margin({ top: 20, bottom: 20 })

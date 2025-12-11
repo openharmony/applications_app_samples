@@ -20,14 +20,23 @@ const TAG: string = 'ProcessModel';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [End ImportModule]
 
-// [Start CreateSubscriberInformation]
+// [Start CreateCustomSubscriberInformation]
 // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber: commonEventManager.CommonEventSubscriber | null = null;
-// 订阅者信息，其中的event字段需要替换为实际的事件名称。
-let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-  events: [commonEventManager.Support.COMMON_EVENT_SCREEN_OFF], // 订阅灭屏公共事件
+let subscriberCustom: commonEventManager.CommonEventSubscriber | null = null;
+// 订阅者信息，其中的'event'字段需要替换为实际的事件名称。
+let subscribeInfoCustom: commonEventManager.CommonEventSubscribeInfo = {
+  events: ['event']  // 订阅自定义公共事件
 };
-// [End CreateSubscriberInformation]
+// [End CreateCustomSubscriberInformation]
+
+// [Start CreateSystemSubscriberInformation]
+// 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriberSystem: commonEventManager.CommonEventSubscriber | null = null;
+// 订阅者信息，按需替换对应的公共事件。
+let subscribeInfoSystem: commonEventManager.CommonEventSubscribeInfo = {
+  events: [commonEventManager.Support.COMMON_EVENT_SCREEN_OFF]  // 订阅灭屏公共事件
+};
+// [End CreateSystemSubscriberInformation]
 
 // [Start PublicEventInformation]
 // 公共事件相关信息
@@ -35,15 +44,16 @@ let options: commonEventManager.CommonEventPublishData = {
   code: 1, // 公共事件的初始代码
   data: 'initial data', // 公共事件的初始数据
 };
-
 // [End PublicEventInformation]
+
+// 针对订阅者的配置需求，可按需选择自定义公共事件或系统公共事件。本文示例中，订阅、取消订阅和发布流程均以自定义公共事件为例进行说明。
 @Entry
 @Component
 struct CreatSubscribeInfo {
   aboutToAppear(): void {
     // [Start CreateSubscriberCallback]
     // 创建订阅者回调
-    commonEventManager.createSubscriber(subscribeInfo,
+    commonEventManager.createSubscriber(subscribeInfoCustom,
       (err: BusinessError, data: commonEventManager.CommonEventSubscriber) => {
         if (err) {
           hilog.error(DOMAIN_NUMBER, TAG,
@@ -51,9 +61,10 @@ struct CreatSubscribeInfo {
           return;
         }
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
-        subscriber = data;
+        subscriberCustom = data;
       })
     // [End CreateSubscriberCallback]
+    AppStorage.setOrCreate('event', 'CreateSubscriberCallback');
   }
 
   build() {
@@ -62,19 +73,21 @@ struct CreatSubscribeInfo {
         .onClick(() => {
           // [Start SubscribeToPublicEvents]
           // 订阅公共事件回调
-          if (subscriber !== null) {
-            commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-              if (err) {
-                hilog.error(DOMAIN_NUMBER, TAG,
-                  `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
-                return;
-              }
-              hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in subscribing, data is ${JSON.stringify(data)}`);
-            })
+          if (subscriberCustom !== null) {
+            commonEventManager.subscribe(subscriberCustom,
+              (err: BusinessError, data: commonEventManager.CommonEventData) => {
+                if (err) {
+                  hilog.error(DOMAIN_NUMBER, TAG,
+                    `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+                  return;
+                }
+                hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in subscribing, data is ${JSON.stringify(data)}`);
+              })
           } else {
             hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
           }
           // [End SubscribeToPublicEvents]
+          AppStorage.setOrCreate('event', 'SubscribeToPublicEventsSuccess');
         })
         .margin({ top: 20, bottom: 20 })
 
@@ -82,18 +95,19 @@ struct CreatSubscribeInfo {
         .onClick(() => {
           // [Start UnsubscribePublicEvents]
           // subscriber为订阅事件时创建的订阅者对象
-          if (subscriber !== null) {
-            commonEventManager.unsubscribe(subscriber, (err: BusinessError) => {
+          if (subscriberCustom !== null) {
+            commonEventManager.unsubscribe(subscriberCustom, (err: BusinessError) => {
               if (err) {
                 hilog.error(DOMAIN_NUMBER, TAG,
                   `Failed to unsubscribe. code is ${err.code}, message is ${err.message}`);
               } else {
                 hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in unsubscribing.`);
-                subscriber = null;
+                subscriberCustom = null;
               }
             })
           }
           // [End UnsubscribePublicEvents]
+          AppStorage.setOrCreate('event', 'UnsubscribePublicEvents');
         })
         .margin({ top: 20, bottom: 20 })
 
@@ -111,6 +125,7 @@ struct CreatSubscribeInfo {
             }
           });
           // [End PublicEventNoInformation]
+          AppStorage.setOrCreate('event', 'PublicEventNoInformation');
         })
         .margin({ top: 20, bottom: 20 })
 
@@ -128,6 +143,7 @@ struct CreatSubscribeInfo {
             }
           });
           // [End PublicEventCarryingInformation]
+          AppStorage.setOrCreate('event', 'PublicEventCarryingInformation');
         })
         .margin({ top: 20, bottom: 20 })
     }

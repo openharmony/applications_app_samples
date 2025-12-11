@@ -13,12 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level } from '@ohos/hypium';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level, expect } from '@ohos/hypium';
 import { Driver, ON, Component, Point, MatchPattern } from '@kit.TestKit';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Want } from '@kit.AbilityKit';
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const DOMAIN = 0x0000;
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
@@ -59,6 +63,14 @@ export default function abilityTest() {
       // This API supports only one parameter: preset action function.
     })
     beforeEach(() => {
+      notificationManager.cancelAll((err: BusinessError) => {
+        if (err) {
+          hilog.error(DOMAIN, 'testTag',
+            `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        hilog.info(DOMAIN, 'testTag', 'Succeeded in canceling notification.');
+      });
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
@@ -95,7 +107,17 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.request_consent'))));
         await box3.click();
         await sleep(1000);
-        done();
+        notificationManager.isNotificationEnabled().then((data: boolean) => {
+          if (!data) {
+            hilog.error(DOMAIN, 'testTag', '%{public}s', 'Permission is not enabled');
+          }
+          expect(data).assertEqual(true);
+          done();
+        }).catch((err: BusinessError) => {
+          expect(true).assertFalse();
+          hilog.error(DOMAIN, 'testTag',
+            `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
+        });
       })
 
     /**
@@ -114,7 +136,17 @@ export default function abilityTest() {
         await sleep(2000);
         await driver.pressBack();
         await sleep(3000);
-        done();
+        notificationManager.isNotificationEnabled().then((data: boolean) => {
+          if (!data) {
+            hilog.error(DOMAIN, 'testTag', '%{public}s', 'Permission is not enabled');
+          }
+          expect(data).assertEqual(true);
+          done();
+        }).catch((err: BusinessError) => {
+          expect(true).assertFalse();
+          hilog.error(DOMAIN, 'testTag',
+            `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
+        });
       })
 
     /**
@@ -141,6 +173,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(badgeCount !== 0).assertTrue();
         done();
       })
 
@@ -164,6 +199,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(badgeCount == 0).assertTrue();
         done();
       })
 
@@ -187,6 +225,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(badgeCount == 9).assertTrue();
         done();
       })
 
@@ -210,6 +251,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(badgeCount == 8).assertTrue();
         done();
       })
 
@@ -233,6 +277,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(badgeCount == 11).assertTrue();
         done();
       })
 
@@ -256,6 +303,9 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let badgeCount: number = 0;
+        badgeCount = AppStorage.get<number>('badge_count')!;
+        expect(10).assertEqual(badgeCount);
         done();
       })
 
@@ -279,6 +329,8 @@ export default function abilityTest() {
         let point: Point = await getCenterPoint(box3, 2);
         driver.click(point.x, point.y);
         await sleep(3000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(count == 1).assertTrue();
         done();
       })
 
@@ -296,6 +348,8 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.delete_badge_count'))));
         await box1.click();
         await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(count == 0).assertTrue();
         driver.pressHome(1);
         await sleep(3000);
         let box3: Component = await driver.findComponent(ON.text('Notification'));
@@ -325,6 +379,10 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.create_channel_type'))));
         await box2.click();
         await sleep(1000);
+        console.log('hmlog-->',JSON.stringify('start'));
+        let slotStatic = await notificationManager.getSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION);
+        console.log('hmlog-->',JSON.stringify(slotStatic));
+        expect(slotStatic.enabled).assertTrue();
         let box3: Component =
           await driver.findComponent(ON.text(await getResourceString($r('app.string.get_channel_type'))));
         await box3.click();
@@ -335,6 +393,9 @@ export default function abilityTest() {
         await sleep(1000);
         driver.pressBack();
         await sleep(2000);
+        slotStatic = await notificationManager.getSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION);
+        console.log('hmlog-->',JSON.stringify(slotStatic));
+        expect(slotStatic).assertNull();
         done();
       })
 
@@ -356,10 +417,8 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_plaintext_notify'))));
         await box2.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(3000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(3000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(count == 1).assertTrue();
         done();
       })
 
@@ -377,13 +436,8 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_multi_line_notify'))));
         await box1.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(5000);
-        let box2: Component = await driver.findComponent(ON.text('test_title', MatchPattern.CONTAINS));
-        await box2.click();
-        await sleep(1000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(3000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         done();
       })
 
@@ -401,6 +455,8 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.check_progress_template_notify'))));
         await box1.click();
         await sleep(1000);
+        let res: string = AppStorage.get('check_notify')!;
+        expect('success').assertEqual(res);
         done();
       })
 
@@ -418,12 +474,10 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_progress_notify'))));
         await box1.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(3000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(3000);
         driver.pressBack();
         await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         done();
       })
 
@@ -445,14 +499,15 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_no_button_notify'))));
         await box2.click();
         await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         driver.swipe(1, 1, 1, 500);
         await sleep(3000);
         let box3: Component = await driver.findComponent(ON.text('no_button_notify', MatchPattern.CONTAINS));
         await box3.click();
         await sleep(1000);
-        let box4: Component = await driver.findComponent(ON.text('no_button_notify', MatchPattern.CONTAINS));
-        await box4.click();
-        await sleep(1000);
+        count = await notificationManager.getActiveNotificationCount();
+        expect(0).assertEqual(count);
         done();
       })
 
@@ -474,13 +529,14 @@ export default function abilityTest() {
         await sleep(3000);
         let box2: Component = await driver.findComponent(ON.text('one_button_notify', MatchPattern.CONTAINS));
         await box2.click();
-        await sleep(1000);
-        let box3: Component = await driver.findComponent(ON.text('one_button_notify', MatchPattern.CONTAINS));
-        await box3.click();
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         await sleep(1000);
         let box4: Component = await driver.findComponent(ON.text('open_the_app'));
         await box4.click();
         await sleep(1000);
+        count = await notificationManager.getActiveNotificationCount();
+        expect(0).assertEqual(count);
         done();
       })
 
@@ -503,14 +559,15 @@ export default function abilityTest() {
         let box2: Component = await driver.findComponent(ON.text('two_buttons_notify', MatchPattern.CONTAINS));
         await box2.click();
         await sleep(1000);
-        let box3: Component = await driver.findComponent(ON.text('two_buttons_notify', MatchPattern.CONTAINS));
-        await box3.click();
-        await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         let box4: Component = await driver.findComponent(ON.text('open_the_app'));
         await box4.click();
         await sleep(2000);
         driver.pressBack();
         await sleep(1000);
+        count = await notificationManager.getActiveNotificationCount();
+        expect(0).assertEqual(count);
         done();
       })
 
@@ -532,20 +589,14 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_progress_notify'))));
         await box2.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(2000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(2000);
         let box3: Component =
           await driver.findComponent(ON.text(await getResourceString($r('app.string.update_notify'))));
         await box3.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(2000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(2000);
         driver.pressBack();
         await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         done();
       })
 
@@ -567,20 +618,16 @@ export default function abilityTest() {
           await driver.findComponent(ON.text(await getResourceString($r('app.string.pub_plaintext_notify'))));
         await box2.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(2000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(2000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         let box3: Component =
           await driver.findComponent(ON.text(await getResourceString($r('app.string.cancel_notify'))));
         await box3.click();
         await sleep(1000);
-        driver.swipe(1, 1, 1, 500);
-        await sleep(2000);
-        driver.swipe(1, 500, 1, 1);
-        await sleep(2000);
         driver.pressBack();
         await sleep(1000);
+        count = await notificationManager.getActiveNotificationCount();
+        expect(0).assertEqual(count);
         done();
       })
 
@@ -604,6 +651,8 @@ export default function abilityTest() {
         await sleep(1000);
         driver.pressBack();
         await sleep(1000);
+        let count: number = await notificationManager.getActiveNotificationCount();
+        expect(1).assertEqual(count);
         done();
       })
   })

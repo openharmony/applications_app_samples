@@ -62,6 +62,7 @@ struct Index {
     // 发送eventId为1的事件，事件内容为eventData。
     emitter.emit(event, eventData);
     // [End emitter_emit]
+    AppStorage.setOrCreate('event', this.messageOn);
   }
 
   build() {
@@ -71,6 +72,7 @@ struct Index {
         .margin({ top: 20, bottom: 20 })
         .onClick(() => {
           this.emitterOn();
+          this.messageOn = 'emit';
         })
       Button($r("app.string.button2"))
         .id('emitter')

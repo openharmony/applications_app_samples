@@ -24,6 +24,10 @@ let want: Want = {
   abilityName: 'EntryAbility',
 };
 
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
 
@@ -47,6 +51,9 @@ export default function abilityTest() {
       await comp.click();
       await send.click();
       await send.click();
+      await sleep(1000);
+      let event:string = AppStorage.get('event')!;
+      expect(event).assertEqual('emitter');
       done();
     });
 
@@ -65,6 +72,9 @@ export default function abilityTest() {
       await comp.click();
       await off.click();
       await send.click();
+      await sleep(1000);
+      let event:string = AppStorage.get('event')!;
+      expect(event).assertEqual('emit');
       done();
     });
 
@@ -84,6 +94,9 @@ export default function abilityTest() {
       await send.click();
       await off.click();
       await send.click();
+      await sleep(1000);
+      let event:string = AppStorage.get('event')!;
+      expect(event).assertEqual('emitter');
       done();
     });
 
