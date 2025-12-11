@@ -437,6 +437,27 @@ function obtainingEnrolledCredentialInformation() {
   }
 }
 
+/*
+ * obtain-enrolled-state-capabilities.md
+ * 以查询用户PIN码认证类型的认证冻结状态为例
+ * */
+async function obtainingAuthLockState() : Promise<string> {
+  try {
+    Logger.info(`get auth lock state start`);
+    const authLockState : userAuth.AuthLockState = await userAuth.getAuthLockState(userAuth.UserAuthType.PIN);
+    if (authLockState.lockoutDuration === userAuth.PERMANENT_LOCKOUT_DURATION) {
+      Logger.info('the authentication of given authType is permanent locked');
+    }
+    const authLockStateContent : string = JSON.stringify(authLockState);
+    Logger.info(`get auth lock state success, authLockState is: ${authLockStateContent}`);
+    return authLockStateContent;
+  } catch (error) {
+    const errorMessage : string = `get auth lock state failed， err code is : ${error?.code}, err message is : ${error?.message}`;
+    Logger.error(errorMessage);
+    return errorMessage;
+  }
+}
+
 async function comprehensiveFeatures() {
   let reuseUnlockResult: userAuth.ReuseUnlockResult = {
     reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
@@ -478,7 +499,8 @@ enum PageIndex {
   EXAMPLE_TAB_3 = 3, // 实例3页面的索引值
   EXAMPLE_TAB_4 = 4, // 实例4页面的索引值
   CREDENTIAL_QUERIES = 5, // 能力查询页面的索引值
-  SIMULATION_VALIDATION = 6 // 模拟认证页面的索引值
+  SIMULATION_VALIDATION = 6, // 模拟认证页面的索引值
+  AUTH_LOCK_STATE_QUERIES = 7, // 查询认证冻结状态页面的索引值
 }
 
 enum TextIdIndex {
@@ -500,6 +522,7 @@ struct Index {
   @State credentialDigest: string = '';
   @State whetherSupport: Resource = $r('app.string.waitQuery');
   @State credentialValue: string = '';
+  @State authLockStateContent : string = '';
   SPACE_GAP: number = 5;
 
   @Builder
@@ -753,6 +776,24 @@ struct Index {
         }
         .tabBar(this.tabBuilder($r('app.string.simulationValidation'), PageIndex.SIMULATION_VALIDATION,
           'simulationValidation'))
+
+        TabContent() {
+          Column() {
+            Text($r('app.string.queryAuthLockState'))
+              .width('70%')
+              .textAlign(TextAlign.Center)
+              .fontSize($r('app.float.size_20'))
+            Button($r('app.string.query'))
+              .onClick(() => {
+                obtainingAuthLockState().then((result : string) => {
+                  this.authLockStateContent = result;
+                })
+              })
+            Text(this.authLockStateContent)
+              .fontSize($r('app.float.size_40'))
+              .textAlign(TextAlign.Center)
+          }
+        }.tabBar(this.tabBuilder($r('app.string.queryAuthLockStateTitle'), PageIndex.AUTH_LOCK_STATE_QUERIES, 'queryAuthLockState'))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)

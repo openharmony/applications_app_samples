@@ -65,6 +65,14 @@
       "value": "Query the status of the user's registration credentials, and when the authentication method is disabled and then enabled, the query credentials will change again"
     },
     {
+      "name": "queryAuthLockState",
+      "value": "Retrieve the lock status of the specified authentication type, including current lock status, remaining retry attempts, and lockout duration"
+    },
+    {
+      "name": "queryAuthLockStateTitle",
+      "value": "Query auth lock state"
+    },
+    {
       "name": "customLogin",
       "value": "Impersonate a custom login"
     },
