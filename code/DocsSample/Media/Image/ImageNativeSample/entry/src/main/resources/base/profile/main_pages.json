@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/ImageCodec",
+    "pages/ImageReceiver",
+    "pages/PictureCodec",
+    "pages/EditExif",
+    "pages/GifCodec"
+  ]
+}
