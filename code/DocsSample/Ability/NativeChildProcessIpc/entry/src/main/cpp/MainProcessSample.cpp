@@ -43,7 +43,7 @@ OHIPCRemoteStub *NativeChildProcess_OnConnect()
     return g_childProcess.GetIpcStub();
 }
 
-void NativeChildProcessMainProc()
+void NativeChildProcess_MainProc()
 {
     OH_LOG_INFO(LOG_APP, "Child process - MainProc started");
     g_childProcess.MainProc();
