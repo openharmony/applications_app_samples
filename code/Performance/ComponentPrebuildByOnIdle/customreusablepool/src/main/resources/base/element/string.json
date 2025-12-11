@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "shared_desc",
+      "value": "shared_desc"
+    },
+    {
       "name": "customreusablepool_percent_100",
       "value": "100%"
     },{
