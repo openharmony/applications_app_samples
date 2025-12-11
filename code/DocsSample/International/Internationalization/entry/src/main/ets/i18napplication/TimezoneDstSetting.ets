@@ -24,7 +24,6 @@ import { i18n } from '@kit.LocalizationKit';
  * 时区开发步骤
  *********************************************************************************************************************/
 // [Start get_current_timezone]
-// 时区相关功能开发实例
 // 获取巴西时区
 let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区对象
 let timezoneId = timezone.getID(); // timezoneId = 'America/Sao_Paulo'
@@ -98,16 +97,14 @@ let dateFormat =
   dateTimeFormat.format(new Date(zoneOffsetTrans.getMilliseconds())); // November 2, 2025, 1:00:00 PST
 // [End get_current_timezone]
 
-// [Start get_preferred_timezones_list]
+// [Start display_dual_timezones]
 // 双时钟应用开发实例
 let pauloTimezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo');
 let defaultTimezone: i18n.TimeZone = i18n.getTimeZone();
 let appPreferredTimeZoneList: i18n.TimeZone[] = []; // 应用偏好时区列表
 appPreferredTimeZoneList.push(pauloTimezone);
 appPreferredTimeZoneList.push(defaultTimezone);
-// [End get_preferred_timezones_list]
 
-// [Start display_dual_timezones]
 // [StartExclude display_dual_timezones]
 let timeZoneData: string[] = []; // 用于存储每个时区的时间信息
 // [EndExclude display_dual_timezones]

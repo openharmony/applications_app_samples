@@ -5,10 +5,6 @@
       "value": "公历"
     },
     {
-      "name": "Hua",
-      "value": "华"
-    },
-    {
       "name": "CountryWordChina",
       "value": "中国"
     },
@@ -21,24 +17,12 @@
       "value": "长孙无忌"
     },
     {
-      "name": "ExpectedFormattedDate1",
-      "value": "2021年9月17日星期五 中国标准时间 13:04:00"
-    },
-    {
-      "name": "ExpectedFormattedDate4",
-      "value": "9月17日星期五"
-    },
-    {
-      "name": "ExpectedFormattedDate5",
-      "value": "2021/9/17 下午13:04"
-    },
-    {
       "name": "NiHao",
       "value": "你好"
     },
     {
       "name": "ExpectedDisplayLanguage",
-      "value": "德文"
+      "value": "德语"
     },
     {
       "name": "ExpectedTimeZoneName",

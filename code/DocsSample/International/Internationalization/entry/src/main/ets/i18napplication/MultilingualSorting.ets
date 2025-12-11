@@ -17,7 +17,7 @@ import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
 // [Start import_module]
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 // [End import_module]
 
 /**********************************************************************************************************************
@@ -30,7 +30,6 @@ import { i18n, intl } from '@kit.LocalizationKit';
  *  let indexList = indexUtil.getIndexList();
  *********************************************************************************************************************/
 // [Start create_index]
-// 创建索引开发实例
 // 创建索引
 let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
 let indexList = indexUtil.getIndexList(); // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…']

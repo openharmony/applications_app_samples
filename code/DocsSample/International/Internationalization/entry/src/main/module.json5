@@ -21,7 +21,6 @@
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
-      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -63,16 +62,6 @@
       }
     ],
     "requestPermissions":[
-      {
-        "name" : "ohos.permission.UPDATE_CONFIGURATION",
-        "reason": "$string:reason",
-        "usedScene": {
-          "abilities": [
-            "FormAbility"
-          ],
-          "when":"inuse"
-        }
-      },
     ]
   }
 }

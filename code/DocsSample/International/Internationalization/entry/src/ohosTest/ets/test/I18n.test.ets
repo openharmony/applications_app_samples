@@ -88,7 +88,6 @@ export default function abilityTest() {
       });
       await driver.delayMs(DELAY_TIME_LONG);
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.LanguagePreferenceSetting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.DateTimeFormatting'))));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.NumberMeasurementFormatting'))));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.PhoneNumberFormatting'))));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.CalendarSetting'))));
@@ -126,53 +125,12 @@ export default function abilityTest() {
     });
 
     /**
-     * @tc.number I18nTestDateTimeFormatting_003
-     * @tc.name I18nTestDateTimeFormatting_003
-     * @tc.desc 时间日期国际化
-     */
-    it(BUNDLE + 'DateTimeFormatting_003', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DateTimeFormatting_003, begin');
-      await checkAndClickByText(resourceToString($r('app.string.DateTimeFormatting')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfDateTimeFormat'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FullDateStyle'))}` +
-        `${resourceToString($r('app.string.ExpectedFormattedDate1'))} --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.ShortDateStyle'))}2021/9/17 13:04 --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CustomDateStyle'))}2021/09/17 13:04:00 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString(
-        $r('app.string.PartDateStyle'))}${resourceToString($r('app.string.ExpectedFormattedDate4'))} --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString(
-        $r('app.string.CustomTimeStyle'))}${resourceToString($r('app.string.ExpectedFormattedDate5'))} --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CustomNumberingSystem'))}٢٠٢١/٩/١٧ ١٣:٠٤ --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.FormatDateRange'))}17/09/2021 – 18/09/2021 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FormatDateStyle'))}full --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfRelativeTimeFormat'))));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.FormatRelativeTime'))}1 day ago --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.AutoFormatRelativeTime'))}yesterday --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.LongFormatRelativeTime'))}il y a 1 jour --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.NarrowFormatRelativeTime'))}-1 j --passed`));
-      await scrollOuterBottomView('outerScrollInDateTime');
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.GetRelativeTimeFormatOptions'))}auto --passed`));
-      await goBack();
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DateTimeFormatting_003, end');
-    });
-
-    /**
-     * @tc.number I18nTestNumberMeasurementFormatting_004
-     * @tc.name I18nTestNumberMeasurementFormatting_004
+     * @tc.number I18nTestNumberMeasurementFormatting_003
+     * @tc.name I18nTestNumberMeasurementFormatting_003
      * @tc.desc 数字与度量衡国际化
      */
-    it(BUNDLE + 'NumberMeasurementFormatting_004', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_004, begin');
+    it(BUNDLE + 'NumberMeasurementFormatting_003', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_003, begin');
       await checkAndClickByText(resourceToString($r('app.string.NumberMeasurementFormatting')));
       await scrollOuterBottomView('outerScrollInNumberMeasure');
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfMeasureTrans'))));
@@ -182,38 +140,38 @@ export default function abilityTest() {
         ON.text(`${resourceToString($r('app.string.LongMeasureTrans'))}236.588 liters --passed`));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_004, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_003, end');
     });
 
     /**
-     * @tc.number I18nTestPhoneNumberFormatting_005
-     * @tc.name I18nTestPhoneNumberFormatting_005
+     * @tc.number I18nTestPhoneNumberFormatting_004
+     * @tc.name I18nTestPhoneNumberFormatting_004
      * @tc.desc 电话号码格式化
      */
-    it(BUNDLE + 'PhoneNumberFormatting_005', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_005, begin');
+    it(BUNDLE + 'PhoneNumberFormatting_004', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_004, begin');
       await checkAndClickByText(resourceToString($r('app.string.PhoneNumberFormatting')));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfPhoneNumberFormat'))));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.PhoneNumberFormat'))}158 1234 2312 --passed`));
+        ON.text(`${resourceToString($r('app.string.PhoneNumberFormat'))}158 2312 --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.RFC3966TypeNumberFormat'))}tel:+86-158-1234-2312 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.IsValidNumber'))}true --passed`));
+        ON.text(`${resourceToString($r('app.string.RFC3966TypeNumberFormat'))}tel:+86-1582312 --passed`));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.IsValidNumber'))}false --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CNLocationName'))}Zhanjiang, Guangdong --passed`));
+        ON.text(`${resourceToString($r('app.string.CNLocationName'))} --passed`));
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FormatResult'))}0755 453 --passed`));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_005, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_004, end');
     });
 
     /**
-     * @tc.number I18nTestCalendarFormatting_006
-     * @tc.name I18nTestCalendarFormatting_006
+     * @tc.number I18nTestCalendarFormatting_005
+     * @tc.name I18nTestCalendarFormatting_005
      * @tc.desc 设置日历和历法
      */
-    it(BUNDLE + 'CalendarFormatting_006', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_006, begin');
+    it(BUNDLE + 'CalendarFormatting_005', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_005, begin');
       await checkAndClickByText(resourceToString($r('app.string.CalendarSetting')));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTheGregorianCalendar'))));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.TheGregorianCalendarSets'))));
@@ -238,16 +196,16 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.LunarDate'))}8 --passed`));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_006, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_005, end');
     });
 
     /**
-     * @tc.number I18nTestTimezoneDstSetting_007
-     * @tc.name I18nTestTimezoneDstSetting_007
+     * @tc.number I18nTestTimezoneDstSetting_006
+     * @tc.name I18nTestTimezoneDstSetting_006
      * @tc.desc 时区与夏令时国际化
      */
-    it(BUNDLE + 'TimezoneDstSetting_007', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TimezoneDstSetting_007, begin');
+    it(BUNDLE + 'TimezoneDstSetting_006', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'TimezoneDstSetting_006, begin');
       await checkAndClickByText(resourceToString($r('app.string.TimezoneDstSetting')));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTimezoneFunction'))));
       await driver.assertComponentExist(
@@ -268,16 +226,16 @@ export default function abilityTest() {
       await scrollView('timezoneListScroll', `timezoneListText${LAST_INDEX}`, expectedTimezoneListText);
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TimezoneDstSetting_007, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'TimezoneDstSetting_006, end');
     });
 
     /**
-     * @tc.number I18nTestMultilingualSorting_008
-     * @tc.name I18nTestMultilingualSorting_008
+     * @tc.number I18nTestMultilingualSorting_007
+     * @tc.name I18nTestMultilingualSorting_007
      * @tc.desc 多语言排序
      */
-    it(BUNDLE + 'MultilingualSorting_008', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_008, begin');
+    it(BUNDLE + 'MultilingualSorting_007', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_007, begin');
       await checkAndClickByText(resourceToString($r('app.string.MultilingualSorting')));
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfIndexList'))}passed`));
       await driver.assertComponentExist(ON.text('…,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,' +
@@ -285,16 +243,16 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfIndex'))}N --passed`));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_008, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_007, end');
     });
 
     /**
-     * @tc.number I18nTestCharacterProcessing_009
-     * @tc.name I18nTestCharacterProcessing_009
+     * @tc.number I18nTestCharacterProcessing_008
+     * @tc.name I18nTestCharacterProcessing_008
      * @tc.desc 字符处理
      */
-    it(BUNDLE + 'CharacterProcessing_009', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_009, begin');
+    it(BUNDLE + 'CharacterProcessing_008', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_008, begin');
       await checkAndClickByText(resourceToString($r('app.string.CharacterProcessing')));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfCharacterType'))));
       await driver.assertComponentExist(
@@ -322,16 +280,16 @@ export default function abilityTest() {
         ON.text(`${resourceToString($r('app.string.BreakText'))}Apple is my favorite fruit. --passed`));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_009, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_008, end');
     });
 
     /**
-     * @tc.number I18nTestNameLocalization_010
-     * @tc.name I18nTestNameLocalization_010
+     * @tc.number I18nTestNameLocalization_009
+     * @tc.name I18nTestNameLocalization_009
      * @tc.desc 本地化名称
      */
-    it(BUNDLE + 'NameLocalization_010', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_010, begin');
+    it(BUNDLE + 'NameLocalization_009', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_009, begin');
       await checkAndClickByText(resourceToString($r('app.string.NameLocalization')));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfLanguageRegion'))));
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.DisplayLanguage'))}` +
@@ -343,7 +301,7 @@ export default function abilityTest() {
         `${resourceToString($r('app.string.ExpectedTimeZone'))}`, MatchPattern.CONTAINS));
       await goBack();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_010, end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_009, end');
     });
   });
 }

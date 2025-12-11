@@ -17,7 +17,7 @@ import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
 // [Start import_module]
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End import_module]
 
@@ -39,7 +39,7 @@ let isDigit = i18n.Unicode.isDigit('1'); // isDigit = true
 let isRTL = i18n.Unicode.isRTL('a'); // isRTL = false
 
 // 判断字符是否是表意文字
-let isIdeograph = i18n.Unicode.isIdeograph(resourceToString($r('app.string.Hua'))); // isIdeograph = true
+let isIdeograph = i18n.Unicode.isIdeograph('华'); // isIdeograph = true
 
 // 获取字符的一般类别值
 let unicodeType = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTER'
@@ -60,8 +60,7 @@ let unicodeType = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTE
 // [Start get_transliteration]
 // 音译成Latn格式
 let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let text = '中国';
-let translatedText = transliterator.transform(text); // translatedText = 'zhōng guó'
+let translatedText = transliterator.transform('中国'); // translatedText = 'zhōng guó'
 
 // 汉语音译去声调
 let toneLessTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
@@ -138,9 +137,9 @@ let breakText = iterator.getLineBreakText(); // breakText = 'Apple is my favorit
 /**********************************************************************************************************************
  * 文件路径镜像处理开发步骤参考
  * 1. 导入模块
- *  import { i18n, intl } from '@kit.LocalizationKit';
+ *  import { i18n } from '@kit.LocalizationKit';
  * 2. 文件路径镜像处理
- *  let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+ *  let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale);
  *********************************************************************************************************************/
 
 // [Start get_unicode_wrapped_file_path]

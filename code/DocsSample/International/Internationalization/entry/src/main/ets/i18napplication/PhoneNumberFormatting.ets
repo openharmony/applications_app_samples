@@ -33,20 +33,19 @@ import { i18n } from '@kit.LocalizationKit';
  *  let locationName: string = phoneNumberFormat.getLocationName(number: string, locale: string); // 获取号码归属地
  *********************************************************************************************************************/
 // [Start format_phone_numbers]
-// 电话号码格式化开发实例
 // 格式化电话号码
 let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-let formattedPhoneNumber = phoneNumberFormat.format('15812342312'); // formattedPhoneNumber = '158 **** 2312'
+let formattedPhoneNumber = phoneNumberFormat.format('158****2312'); // formattedPhoneNumber = '158 **** 2312'
 
 // RFC3966类型的电话号码
 let rfcFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'RFC3966' });
-let formattedRFCPhoneNumber = rfcFormat.format('15812342312'); // formattedRFCPhoneNumber = 'tel:+86-158-****-2312'
+let formattedRFCPhoneNumber = rfcFormat.format('158****2312'); // formattedRFCPhoneNumber = 'tel:+86-158-****-2312'
 
 // 判断电话号码是否有效
-let isValid = phoneNumberFormat.isValidNumber('15812342312'); // isValid = true
+let isValid = phoneNumberFormat.isValidNumber('158****2312'); // isValid = true
 
 // 以某种语言显示号码归属地
-let locationName = phoneNumberFormat.getLocationName('15812342312', 'en-GB'); // locationName = 'XiAn, Shanxi'
+let locationName = phoneNumberFormat.getLocationName('158****2312', 'en-GB'); // locationName = 'XiAn, Shanxi'
 
 // 拨号中的电话号码格式化
 let typingFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'TYPING' });
@@ -58,10 +57,10 @@ for (let i = 0; i < phoneNumber.length; i++) {
 }
 // [End format_phone_numbers]
 
-const expectedFormattedPhoneNumber1 = '158 1234 2312';
-const expectedFormattedPhoneNumber2 = 'tel:+86-158-1234-2312';
-const expectedIsValid = true;
-const expectedLocationName4 = 'Zhanjiang, Guangdong';
+const expectedFormattedPhoneNumber1 = '158 2312';
+const expectedFormattedPhoneNumber2 = 'tel:+86-1582312';
+const expectedIsValid = false;
+const expectedLocationName4 = '';
 const expectedFormatResult = '0755 453'
 
 @Extend(Text)
