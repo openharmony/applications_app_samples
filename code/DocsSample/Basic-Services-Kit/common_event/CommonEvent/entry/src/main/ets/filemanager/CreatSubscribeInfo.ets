@@ -35,6 +35,7 @@ let options: commonEventManager.CommonEventPublishData = {
   code: 1, // 公共事件的初始代码
   data: 'initial data', // 公共事件的初始数据
 };
+
 // [End PublicEventInformation]
 @Entry
 @Component
@@ -54,9 +55,10 @@ struct CreatSubscribeInfo {
       })
     // [End CreateSubscriberCallback]
   }
+
   build() {
     Column({ space: 10 }) {
-      Button('订阅公共事件')
+      Button($r('app.string.subscribe_public_event'))
         .onClick(() => {
           // [Start SubscribeToPublicEvents]
           // 订阅公共事件回调
@@ -76,7 +78,7 @@ struct CreatSubscribeInfo {
         })
         .margin({ top: 20, bottom: 20 })
 
-      Button('取消订阅订阅公共事件')
+      Button($r('app.string.unsubscribe_public_event'))
         .onClick(() => {
           // [Start UnsubscribePublicEvents]
           // subscriber为订阅事件时创建的订阅者对象
@@ -95,7 +97,7 @@ struct CreatSubscribeInfo {
         })
         .margin({ top: 20, bottom: 20 })
 
-      Button('发布不携带信息的公共事件\'event\'')
+      Button($r('app.string.publish_public_event_no_data'))
         .onClick(() => {
           // [Start PublicEventNoInformation]
           // 发布公共事件，其中的event字段需要替换为实际的事件名称。
@@ -112,7 +114,7 @@ struct CreatSubscribeInfo {
         })
         .margin({ top: 20, bottom: 20 })
 
-      Button('发布携带信息的公共事件\'event\'')
+      Button($r('app.string.publish_public_event_with_data'))
         .onClick(() => {
           // [Start PublicEventCarryingInformation]
           // 发布公共事件，其中的event字段需要替换为实际的事件名称。
