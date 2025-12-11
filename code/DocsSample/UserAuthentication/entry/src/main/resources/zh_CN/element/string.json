@@ -65,6 +65,14 @@
       "value": "查询用户注册凭据的状态，当认证方式被关闭再开启后，再次查询凭据会变化"
     },
     {
+      "name": "queryAuthLockStateTitle",
+      "value": "查询认证冻结状态"
+    },
+    {
+      "name": "queryAuthLockState",
+      "value": "查询认证冻结状态，包含了认证类型是否被锁定，未锁定时的剩余可尝试次数以及锁定时的冻结时间。"
+    },
+    {
       "name": "customLogin",
       "value": "模拟自定义登录"
     },
