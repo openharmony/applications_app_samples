@@ -24,25 +24,6 @@
 // [End preferences_include]
 
 // [Start DataChangeObserverCallback]
-// 3. 对key_int、key_bool和key_string注册数据变更订阅。
-const char *keys[] = {"key_int", "key_bool", "key_string"};
-int ret = OH_Preferences_RegisterDataObserver(preference, nullptr, DataChangeObserverCallback, keys, 3);
-if (ret != PREFERENCES_OK) {
-    (void)OH_Preferences_Close(preference);
-    // 错误处理
-}
-// 兼容多种类型的注册数据变更订阅。
-int contextData = 42;
-ret = OH_Preferences_RegisterMultiProcessDataObserver(preference, &contextData, DataChangeObserverCallback);
-if (ret != PREFERENCES_OK) {
-    // 错误处理
-}
-// 取消兼容多种类型的注册数据变更订阅。
-ret = OH_Preferences_UnregisterMultiProcessDataObserver(preference, &contextData, DataChangeObserverCallback);
-if (ret != PREFERENCES_OK) {
-    // 错误处理
-}
-
 // 数据变更回调函数
 void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, uint32_t count)
 {
@@ -79,6 +60,31 @@ void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, 
 }
 
 // [End DataChangeObserverCallback]
+
+void RegisterDataObserver(OH_Preferences *preference)
+{
+    // [Start RegisterDataObserver]
+    // 3. 对key_int、key_bool和key_string注册数据变更订阅。
+    const char *keys[] = {"key_int", "key_bool", "key_string"};
+    int ret = OH_Preferences_RegisterDataObserver(preference, nullptr, DataChangeObserverCallback, keys, 3);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_Preferences_Close(preference);
+        // 错误处理
+    }
+    // 兼容多种类型的注册数据变更订阅。
+    int contextData = 42;
+    ret = OH_Preferences_RegisterMultiProcessDataObserver(preference, &contextData, DataChangeObserverCallback);
+    if (ret != PREFERENCES_OK) {
+        // 错误处理
+    }
+    // 取消兼容多种类型的注册数据变更订阅。
+    ret = OH_Preferences_UnregisterMultiProcessDataObserver(preference, &contextData, DataChangeObserverCallback);
+    if (ret != PREFERENCES_OK) {
+        // 错误处理
+    }
+    // [End RegisterDataObserver]
+}
+
 void PreferencesValueSets(OH_Preferences *preference)
 {
     // [Start PreferencesValueSets]
@@ -263,6 +269,8 @@ void PreferencesCrudTestGet(OH_Preferences *preference)
 
 void PreferencesCrudTest(OH_Preferences *preference)
 {
+    const char *keys[] = {"key_int", "key_bool", "key_string"};
+    int ret = PREFERENCES_OK;
     // [Start PreferencesCrud]
     // 4. 设置Preferences实例中的KV数据。
     ret = OH_Preferences_SetInt(preference, keys[0], 0);
