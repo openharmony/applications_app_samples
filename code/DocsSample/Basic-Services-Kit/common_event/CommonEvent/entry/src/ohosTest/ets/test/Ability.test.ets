@@ -14,7 +14,7 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 
@@ -73,7 +73,8 @@ export default function abilityTest() {
       const button = await driver.findComponent(ON.text('CreatSubscribeInfo'));
       await button.click();
       await driver.delayMs(2000);
-
+      let event: string = await AppStorage.get('event')!;
+      expect(event).assertEqual('CreateSubscriberCallback');
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_001 end');
       done();
     })
@@ -95,6 +96,9 @@ export default function abilityTest() {
       const button1 = await driver.findComponent(ON.text('订阅公共事件'));
       await button1.click();
       await driver.delayMs(100);
+
+      let event: string = await AppStorage.get('event')!;
+      expect(event).assertEqual('SubscribeToPublicEventsSuccess');
 
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_002 end');
       done();
@@ -118,6 +122,9 @@ export default function abilityTest() {
       await button1.click();
       await driver.delayMs(100);
 
+      let event: string = await AppStorage.get('event')!;
+      expect(event).assertEqual('UnsubscribePublicEvents');
+
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_003 end');
       done();
     })
@@ -140,6 +147,9 @@ export default function abilityTest() {
       await button1.click();
       await driver.delayMs(100);
 
+      let event: string = await AppStorage.get('event')!;
+      expect(event).assertEqual('PublicEventNoInformation');
+
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_004 end');
       done();
     })
@@ -161,6 +171,9 @@ export default function abilityTest() {
       const button1 = await driver.findComponent(ON.text('发布携带信息的公共事件\'event\''));
       await button1.click();
       await driver.delayMs(100);
+
+      let event: string = await AppStorage.get('event')!;
+      expect(event).assertEqual('PublicEventCarryingInformation');
 
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_005 end');
       done();

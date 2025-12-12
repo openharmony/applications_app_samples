@@ -42,6 +42,7 @@ export struct ManageNotificationBadges {
             hilog.error(DOMAIN_NUMBER, TAG,
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
+          AppStorage.setOrCreate<number>('badge_count', this.badgeNum);
         })
       Button($r('app.string.reduce_notify_badge'))
         .margin({ top: 20, bottom: 20 })
@@ -55,6 +56,7 @@ export struct ManageNotificationBadges {
             hilog.error(DOMAIN_NUMBER, TAG,
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
+          AppStorage.setOrCreate<number>('badge_count', this.badgeNum);
         })
       Button($r('app.string.set_badge_nine'))
         .margin({ top: 20, bottom: 20 })
@@ -68,6 +70,7 @@ export struct ManageNotificationBadges {
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
           // [End add_badge_count]
+          AppStorage.setOrCreate<number>('badge_count', badgeNumber);
         })
       Button($r('app.string.set_badge_eight'))
         .margin({ top: 20, bottom: 20 })
@@ -81,6 +84,7 @@ export struct ManageNotificationBadges {
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
           // [End reduce_badge_count]
+          AppStorage.setOrCreate<number>('badge_count', badgeNumber);
         })
       Button($r('app.string.badge_count_neg'))
         .margin({ top: 20, bottom: 20 })
@@ -101,6 +105,7 @@ export struct ManageNotificationBadges {
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
           // [End increase_badge_count_seq]
+          AppStorage.setOrCreate<number>('badge_count', badgeNumber);
         })
       Button($r('app.string.badge_count_pos'))
         .margin({ top: 20, bottom: 20 })
@@ -121,6 +126,7 @@ export struct ManageNotificationBadges {
               `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
           });
           // [End update_badge_count_idempotent]
+          AppStorage.setOrCreate<number>('badge_count', badgeNumber);
         })
 
       Button($r('app.string.pub_plaintext_notify'))
