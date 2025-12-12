@@ -30,27 +30,44 @@ export struct LocalUseCaseSet {
 @Entry
 @ComponentV2
 struct SetSample {
-  @Local message: Set<number> = new Set([0, 1, 2, 3, 4]);
+  @Local fruits: Set<string> = new Set(['apple', 'banana']); // 使用@Local装饰Set类型变量
 
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, number]) => { // 遍历Set的元素并渲染UI
-          Text(`${item[0]}`).fontSize(30)
-          Divider()
+        ForEach(Array.from(this.fruits.entries()), (item: [number, number]) => {
+          Text(`${item[0]}`)
+            .fontSize(20)
+            .margin(10)
         })
-        Button('init set').onClick(() => { // 按钮1：更新Set为初始状态
-          this.message = new Set([0, 1, 2, 3, 4]);
-        })
-        Button('set new one').onClick(() => { // 按钮2：添加新元素5
-          this.message.add(5);
-        })
-        Button('clear').onClick(() => { // 按钮3：清空Set
-          this.message.clear();
-        })
-        Button('delete the first one').onClick(() => { // 按钮4：删除元素0
-          this.message.delete(0);
-        })
+        // 新增元素，触发UI刷新
+        Button('Add element')
+          .onClick(() => {
+            this.fruits.add('cherry');
+          })
+          .width(300)
+          .margin(10)
+        // 删除元素，触发UI刷新
+        Button('Delete element apple')
+          .onClick(() => {
+            this.fruits.delete('apple');
+          })
+          .width(300)
+          .margin(10)
+        // 对Set整体重新赋值，触发UI刷新
+        Button('Reset set')
+          .onClick(() => {
+            this.fruits = new Set(['strawberry', 'blueberry']);
+          })
+          .width(300)
+          .margin(10)
+        // 清空Set，触发UI刷新
+        Button('Clear set')
+          .onClick(() => {
+            this.fruits.clear();
+          })
+          .width(300)
+          .margin(10)
       }
       .width('100%')
     }

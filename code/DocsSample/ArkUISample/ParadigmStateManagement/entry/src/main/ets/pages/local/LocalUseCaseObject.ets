@@ -45,15 +45,22 @@ struct Index {
   @Local localInfo: Info = new Info('Tom', 25);
 
   build() {
-    Column() {
-      Text(`info: ${this.info.name}-${this.info.age}`) // Text1
-      Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) // Text2
-      Button('change info&localInfo')
-        .onClick(() => {
-          this.info = new Info('Lucy', 18); // Text1不会刷新
-          this.localInfo = new Info('Lucy', 18); // Text2会刷新
-        })
+    Row() {
+      Column() {
+        Text(`info: ${this.info.name}-${this.info.age}`) // Text1
+          .margin(10)
+        Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) //Text2
+          .margin(10)
+        Button('change info&localInfo')
+          .onClick(() => {
+            this.info = new Info('Lucy', 18); // Text1不会刷新
+            this.localInfo = new Info('Lucy', 18); // Text2会刷新
+          })
+          .margin(10)
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 // [End Local_Use_Case_Object]

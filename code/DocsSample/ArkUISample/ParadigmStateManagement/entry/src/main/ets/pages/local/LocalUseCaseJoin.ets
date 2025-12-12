@@ -34,17 +34,27 @@ struct Index {
   @Local count: number | undefined = 10; // 使用@Local装饰联合类型变量
 
   build() {
-    Column() {
-      Text(`count(${this.count})`)
-      Button('change to undefined') // 按钮1：将count设置为undefined
-        .onClick(() => {
-          this.count = undefined;
-        })
-      Button('change to number') // 按钮2：将count更新为数字10
-        .onClick(() => {
-          this.count = 10;
-        })
+    Row() {
+      Column() {
+        Text(`count: ${this.count}`)
+        // 将联合类型变量从number切换为undefined，触发UI刷新
+        Button('change to undefined')
+          .onClick(() => {
+            this.count = undefined;
+          })
+          .width(300)
+          .margin(10)
+        // 将联合类型变量从undefined切换为number，触发UI刷新
+        Button('change to number')
+          .onClick(() => {
+            this.count = 10;
+          })
+          .width(300)
+          .margin(10)
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 // [End Local_Use_Case_Join]

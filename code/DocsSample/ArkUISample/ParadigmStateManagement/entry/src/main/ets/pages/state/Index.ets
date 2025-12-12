@@ -21,6 +21,7 @@ import { StateChangeObservationObject } from './StateChangeObservationObject';
 import { StateChangeObservationArray } from './StateChangeObservationArray';
 import { StateSceneTypeClass } from './StateSceneTypeClass';
 import { StateSceneTypeMap } from './StateSceneTypeMap';
+import { StateSceneTypeArray } from './StateSceneTypeArray';
 import { StateSceneTypeSet } from './StateSceneTypeSet';
 import { StateSceneTypeDate } from './StateSceneTypeDate';
 import { StateSceneJointTypeInstance } from './StateSceneJointTypeInstance';
@@ -57,6 +58,10 @@ const routes: Route[] = [
   {
     name: `${STATE}/StateSceneTypeClass`,
     title: resource.resourceToString($r('app.string.state_scene_type_class')),
+  },
+  {
+    name: `${STATE}/StateSceneTypeArray`,
+    title: resource.resourceToString($r('app.string.state_scene_type_array')),
   },
   {
     name: `${STATE}/StateSceneTypeMap`,
@@ -144,6 +149,8 @@ export function stateDestination(name: string) {
     StateChangeObservationArray()
   } else if (name === `${STATE}/StateSceneTypeClass`) {
     StateSceneTypeClass()
+  } else if (name === `${STATE}/StateSceneTypeArray`) {
+    StateSceneTypeArray()
   } else if (name === `${STATE}/StateSceneTypeMap`) {
     StateSceneTypeMap()
   } else if (name === `${STATE}/StateSceneTypeSet`) {
