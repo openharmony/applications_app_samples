@@ -51,6 +51,12 @@ entry/src/main/ets/
 |   |       |---Sampling.ets        
 |   |---stopPropagation                          //阻止鼠标冒泡事件
 |   |       |---StopPropagation.ets                    
+|   |---gamepad                          //游戏手柄操作
+|   |       |---CommonKey.ets                    
+|   |       |---DirectionKey.ets                    
+|   |       |---GamepadSample.ets                    
+|   |       |---Joystick.ets                    
+|   |       |---NewJoystick.ets                    
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -72,6 +78,7 @@ entry/src/ohosTest/
 个合适的坐标上报给应用；
 4. 在支持多指触控的触屏设备上，上报的事件中同时包含了窗口所有按压手指的信息，可
 以通过touches获取；
+5. 当使用游戏手柄与应用进行交互时，通过按键事件回调处理按键逻辑，通过焦点轴事件回调处理操纵杆逻辑。
 
 ### 相关权限
 
