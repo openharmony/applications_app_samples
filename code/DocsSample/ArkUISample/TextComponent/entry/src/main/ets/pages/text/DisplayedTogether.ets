@@ -36,7 +36,7 @@ export struct DisplayedTogether {
 
     while ((match = emojiRegex.exec(input)) !== null) {
       // 添加普通文本
-      if (match.index > lastIndex) {
+      if (match.index >= lastIndex) {
         resultMap.get('text')?.push(input.substring(lastIndex, match.index));
       }
       // 添加匹配到的表情
@@ -56,11 +56,15 @@ export struct DisplayedTogether {
       switch (emojis[i]) {
         case 'rolling_on_the_floor_laughing':
           emojisImg.push($r('app.media.rolling_on_the_floor_laughing'))
+          break;
         case 'slightly_smiling_face':
           emojisImg.push($r('app.media.slightly_smiling_face'))
+          break;
         case 'grin':
           emojisImg.push($r('app.media.grin'))
+          break;
         default:
+          break;
       }
     }
     return emojisImg
