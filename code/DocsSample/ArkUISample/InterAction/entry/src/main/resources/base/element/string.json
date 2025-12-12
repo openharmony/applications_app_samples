@@ -85,6 +85,30 @@
       "value": "鼠标滚轮事件"
     },
     {
+      "name": "gamepad",
+      "value": "游戏手柄"
+    },
+    {
+      "name": "CommonKey",
+      "value": "通用按键处理"
+    },
+    {
+      "name": "DirectionKey",
+      "value": "方向键处理"
+    },
+    {
+      "name": "Joystick",
+      "value": "操纵杆处理"
+    },
+    {
+      "name": "NewJoystick",
+      "value": "使用焦点轴事件处理方向键"
+    },
+    {
+      "name": "GamepadSample",
+      "value": "游戏手柄综合示例"
+    },
+    {
       "name": "AnimatablePropertyText",
       "value": "动画装饰器2"
     },

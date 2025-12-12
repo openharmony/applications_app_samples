@@ -107,6 +107,17 @@ struct ComponentExtension {
       children: [
         { name: 'MouseWheel', label: $r('app.string.MouseWheelExample') },
       ]
+    },
+    {
+      name: 'gamepad',
+      label: $r('app.string.gamepad'),
+      children: [
+        { name: 'CommonKey', label: $r('app.string.CommonKey') },
+        { name: 'DirectionKey', label: $r('app.string.DirectionKey') },
+        { name: 'Joystick', label: $r('app.string.Joystick') },
+        { name: 'NewJoystick', label: $r('app.string.NewJoystick') },
+        { name: 'GamepadSample', label: $r('app.string.GamepadSample') }
+      ]
     }
   ];
   @State selection: string | null = null;
