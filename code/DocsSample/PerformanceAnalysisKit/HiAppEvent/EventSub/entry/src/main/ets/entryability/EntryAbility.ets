@@ -16,12 +16,14 @@
 // [Start EventSub_EntryAbility_Header]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 // [Start PssLeakEvent_ArkTS_Header]
+import { BusinessError } from '@kit.BasicServicesKit';
+// [Start Crash_Click_ArkTS_Header]
 // [Start AppEvent_Crash_Click_ArkTS_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-import { deviceInfo } from '@kit.BasicServicesKit';
 // [End AppEvent_Crash_Click_ArkTS_Header]
-import { BusinessError } from '@kit.BasicServicesKit';
 // [End PssLeakEvent_ArkTS_Header]
+import { deviceInfo } from '@kit.BasicServicesKit';
+// [End Crash_Click_ArkTS_Header]
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // [End EventSub_EntryAbility_Header]
