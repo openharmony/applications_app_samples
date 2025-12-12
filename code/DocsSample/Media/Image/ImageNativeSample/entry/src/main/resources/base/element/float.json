@@ -1,0 +1,36 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "index_text_font_size",
+      "value": "30fp"
+    },
+    {
+      "name": "index_button_font_size",
+      "value": "30fp"
+    },
+    {
+      "name": "index_button_width_size",
+      "value": "68px"
+    },
+    {
+      "name": "index_button_height_size",
+      "value": "50fp"
+    },
+    {
+      "name": "index_button_borderRadius_size",
+      "value": "10px"
+    },
+    {
+      "name": "index_margin_size",
+      "value": "10px"
+    },
+    {
+      "name": "BackUpComponent_margin_size",
+      "value": "100px"
+    }
+  ]
+}
