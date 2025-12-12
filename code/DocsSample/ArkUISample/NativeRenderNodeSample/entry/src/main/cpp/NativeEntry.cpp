@@ -442,6 +442,9 @@ std::shared_ptr<ArkUIBaseNode> testRenderNodeProperty(ArkUI_NativeNodeAPI_1 *nod
     return scroll;
 }
 
+
+std::shared_ptr<ArkUIRenderNode> saveRender = nullptr;
+
 std::shared_ptr<ArkUIBaseNode> testRenderNodeCustom(ArkUI_NativeNodeAPI_1 *nodeAPI, ArkUI_ContextHandle context)
 {
     auto scroll = std::make_shared<ArkUIScrollNode>();
@@ -465,6 +468,8 @@ std::shared_ptr<ArkUIBaseNode> testRenderNodeCustom(ArkUI_NativeNodeAPI_1 *nodeA
     scroll->AddChild(column);
     // createRenderNode
     auto renderNode = std::make_shared<ArkUIRenderNode>();
+    // 用于保存sharePtr不被销毁。
+    saveRender = renderNode;
     Custom->AddRenderNode(renderNode);
     renderNode->SetSize(g_num300, g_num300);
     renderNode->SetBackgroundColor(0xFFFFFFFF);
@@ -551,16 +556,6 @@ napi_value CreateRenderNodeExample(napi_env env, napi_callback_info info)
         return nullptr;
     }
 
-    // 获取上下文对象指针。
-    if (!g_contextHandle) {
-        result = OH_ArkUI_GetContextFromNapiValue(env, args[1], &g_contextHandle);
-        if (result != ARKUI_ERROR_CODE_NO_ERROR) {
-            delete g_contextHandle;
-            g_contextHandle = nullptr;
-            return nullptr;
-        }
-    }
-
     // 创建Native侧组件树根节点。
     auto scrollNode = std::make_shared<ArkUIScrollNode>();
     // 将Native侧组件树根节点挂载到UI主树上。
@@ -577,6 +572,7 @@ napi_value CreateRenderNodeExample(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+
 napi_value CreateRenderNodePropertyExample(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -587,16 +583,6 @@ napi_value CreateRenderNodePropertyExample(napi_env env, napi_callback_info info
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         return nullptr;
-    }
-
-    // 获取上下文对象指针。
-    if (!g_contextHandle) {
-        result = OH_ArkUI_GetContextFromNapiValue(env, args[1], &g_contextHandle);
-        if (result != ARKUI_ERROR_CODE_NO_ERROR) {
-            delete g_contextHandle;
-            g_contextHandle = nullptr;
-            return nullptr;
-        }
     }
 
     // 创建Native侧组件树根节点。
@@ -652,6 +638,97 @@ napi_value CreateRenderNodeCustomDrawExample(napi_env env, napi_callback_info in
     return nullptr;
 }
 
+std::shared_ptr<ArkUIBaseNode> custom_ = nullptr;
+std::shared_ptr<ArkUIRenderNode> render_ = nullptr;
+
+std::shared_ptr<ArkUIBaseNode> testGetRenderNodeDemo()
+{
+    auto scroll = std::make_shared<ArkUIScrollNode>();
+    scroll->SetWidth(g_contentWidth);
+    scroll->SetHeight(g_contentHeight);
+    scroll->SetBackgroundColor(0xff00F100);
+
+    auto column = std::make_shared<ArkUIColumnNode>();
+    column->SetWidth(g_contentWidth);
+    column->SetHeight(g_contentHeight);
+    auto text = std::make_shared<ArkUITextNode>();
+    text->SetTextContent("挂载从frameNode获取的renderNode示例，点击下方挂载按钮");
+    text->SetWidth(g_num300);
+    text->SetHeight(g_num100);
+
+    auto Custom = std::make_shared<ArkUICustomNode>();
+    Custom->SetWidth(g_contentWidth);
+    Custom->SetHeight(g_num100);
+    column->AddChild(text);
+    column->AddChild(Custom);
+    custom_ = Custom;
+    
+    // 布置可挂载环境，将renderNode作为Custom的根节点挂载。
+    auto renderNode = std::make_shared<ArkUIRenderNode>();
+    Custom->AddRenderNode(renderNode);
+    renderNode->SetSize(g_num300, g_num300);
+    Custom->AddRenderNode(renderNode);
+    render_ = renderNode;
+
+    scroll->AddChild(column);
+    return scroll;
+}
+
+napi_value CreateRenderNodeGetNodeExample(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr, nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取ArkTs侧组件挂载点。
+    ArkUI_NodeContentHandle contentHandle;
+    int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+
+    // 创建Native侧组件树根节点。
+    auto scrollNode = std::make_shared<ArkUIScrollNode>();
+    // 将Native侧组件树根节点挂载到UI主树上。
+    result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_ERROR(LOG_APP, "OH_ArkUI_NodeContent_AddNode Failed %{public}d", result);
+        return nullptr;
+    }
+    // 保存Native侧组件树。
+    g_nodeMap[contentHandle] = scrollNode;
+    auto rootNode = testGetRenderNodeDemo();
+    scrollNode->AddChild(rootNode);
+    return nullptr;
+}
+
+ArkUI_NodeHandle nodeHandle_ = nullptr;
+ArkUI_RenderNodeHandle renderHandle_ = nullptr;
+
+napi_value Adopt(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取ArkTs侧组件挂载点。
+    int32_t result = OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &nodeHandle_);
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+    result = OH_ArkUI_NativeModule_AdoptChild(custom_->GetHandle(), nodeHandle_);
+    OH_ArkUI_RenderNodeUtils_GetRenderNode(nodeHandle_, &renderHandle_);
+    OH_ArkUI_RenderNodeUtils_AddChild(render_->GetHandle(), renderHandle_);
+    return nullptr;
+}
+
+napi_value RemoveAdopt(napi_env env, napi_callback_info info)
+{
+    OH_ArkUI_NativeModule_RemoveAdoptedChild(custom_->GetHandle(), nodeHandle_);
+    OH_ArkUI_RenderNodeUtils_DisposeNode(renderHandle_);
+    nodeHandle_ = nullptr;
+    renderHandle_ = nullptr;
+    return nullptr;
+}
+
 napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -679,6 +756,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     }
     // 释放Native侧组件树。
     g_nodeMap.erase(contentHandle);
+    saveRender = nullptr;
     return nullptr;
 }
 

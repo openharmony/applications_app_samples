@@ -15,5 +15,8 @@
 export const createRenderNodeExample: (content: Object, context: Object) => void;
 export const createRenderNodePropertyExample: (content: Object, context: Object) => void;
 export const createRenderNodeCustomDrawExample: (content: Object, context: Object) => void;
+export const createRenderNodeGetNodeExample: (content: Object, context: Object) => void;
+export const adopt: (content: Object) => void;
+export const removeAdopt: () => void;
 export const disposeNodeTree: (content: Object) => void;
 export const destroyNativeRoot: () => void;

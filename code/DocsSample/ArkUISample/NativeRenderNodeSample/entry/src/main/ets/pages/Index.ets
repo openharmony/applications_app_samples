@@ -22,19 +22,24 @@ struct Index {
   build() {
     Flex() {
       Column() {
-        Button("RenderNode 节点操作demo").onClick(() => {
+        Button("RenderNode Node Tree").onClick(() => {
           router.push({
             uri: 'pages/Entry'
           });
         })
-        Button("RenderNode 属性设置demo").onClick(() => {
+        Button("RenderNode Property").onClick(() => {
           router.push({
             uri: 'pages/Property'
           });
         })
-        Button("RenderNode 自定义绘制demo").onClick(() => {
+        Button("RenderNode Custom Draw").onClick(() => {
           router.push({
             uri: 'pages/Custom'
+          });
+        })
+        Button("Get RenderNode from frameNode").onClick(() => {
+          router.push({
+            uri: 'pages/GetNode'
           });
         })
       }.width('100%')

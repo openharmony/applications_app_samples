@@ -24,6 +24,9 @@ namespace NativeModule {
     napi_value CreateRenderNodeExample(napi_env env, napi_callback_info info);
     napi_value CreateRenderNodePropertyExample(napi_env env, napi_callback_info info);
     napi_value CreateRenderNodeCustomDrawExample(napi_env env, napi_callback_info info);
+    napi_value CreateRenderNodeGetNodeExample(napi_env env, napi_callback_info info);
+    napi_value Adopt(napi_env env, napi_callback_info info);
+    napi_value RemoveAdopt(napi_env env, napi_callback_info info);
     napi_value DisposeNodeTree(napi_env env, napi_callback_info info);
 
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);

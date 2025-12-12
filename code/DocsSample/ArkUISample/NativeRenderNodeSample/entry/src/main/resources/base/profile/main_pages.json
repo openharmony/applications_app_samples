@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/Entry",
     "pages/Property",
-    "pages/Custom"
+    "pages/Custom",
+    "pages/GetNode"
   ]
 }

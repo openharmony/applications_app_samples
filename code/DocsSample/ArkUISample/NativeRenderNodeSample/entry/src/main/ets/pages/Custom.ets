@@ -20,18 +20,18 @@ struct CAPIComponent {
   private rootSlot = new NodeContent();
 
   aboutToAppear(): void {
-    entry.createRenderNodeCustomDrawExample(this.rootSlot, this.getUIContext())
+    entry.createRenderNodeCustomDrawExample(this.rootSlot, this.getUIContext());
   }
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTree(this.rootSlot)
+    entry.disposeNodeTree(this.rootSlot);
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot)
+      ContentSlot(this.rootSlot);
     }
   }
 }
@@ -52,9 +52,9 @@ struct Index {
           .onClick(() => {
             this.isShow = !this.isShow;
             if (this.isShow) {
-              this.message = 'DisposeNodeTree'
+              this.message = 'DisposeNodeTree';
             } else {
-              this.message = 'CreateNodeTree'
+              this.message = 'CreateNodeTree';
             }
           })
         if (this.isShow) {
