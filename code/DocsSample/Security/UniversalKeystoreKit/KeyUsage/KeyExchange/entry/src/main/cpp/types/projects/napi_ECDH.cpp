@@ -82,7 +82,7 @@ static struct OH_Huks_Blob g_keyAlias02001 = {(uint32_t)strlen("HksECDHAgreeKeyA
                                               (uint8_t *)"HksECDHAgreeKeyAliasTest001_2"};
 // [End prepare_ECDH_cpp]
 
-// [start key_agreement_ECDH_cpp_one]
+// [Start key_agreement_ECDH_cpp_one]
 static OH_Huks_Result MallocAndCheckBlobData(struct OH_Huks_Blob *blob, const uint32_t blobSize)
 {
     struct OH_Huks_Result ret;
@@ -220,7 +220,7 @@ static void CleanKey(struct OH_Huks_Blob *genKeyAlias,
 }
 // [End key_agreement_ECDH_cpp_one]
 
-// [start key_agreement_ECDH_cpp_two]
+// [Start key_agreement_ECDH_cpp_two]
 /* 协商密钥整体流程 */
 napi_value EcdhAgreeKey(napi_env env, napi_callback_info info)
 {
