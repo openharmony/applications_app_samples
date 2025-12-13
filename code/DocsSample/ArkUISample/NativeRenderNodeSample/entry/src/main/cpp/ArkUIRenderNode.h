@@ -49,20 +49,33 @@ class ArkUIRenderNode {
                 children_.clear();
             }
             // 封装析构函数，统一回收节点资源。
-            if (floatPropertyHandle_) { OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(floatPropertyHandle_); }
-            if (vector2PropertyHandle_) { OH_ArkUI_RenderNodeUtils_DisposeVector2Property(vector2PropertyHandle_); }
-            if (colorPropertyHandle_) { OH_ArkUI_RenderNodeUtils_DisposeColorProperty(colorPropertyHandle_); }
+            if (floatPropertyHandle_) {
+                OH_ArkUI_RenderNodeUtils_DisposeFloatProperty(floatPropertyHandle_);
+                floatPropertyHandle_ = nullptr;
+            }
+            if (vector2PropertyHandle_) {
+                OH_ArkUI_RenderNodeUtils_DisposeVector2Property(vector2PropertyHandle_);
+                vector2PropertyHandle_ = nullptr;
+            }
+            if (colorPropertyHandle_) {
+                OH_ArkUI_RenderNodeUtils_DisposeColorProperty(colorPropertyHandle_);
+                colorPropertyHandle_ = nullptr;
+            }
             if (floatAnimatablePropertyHandle_) {
                 OH_ArkUI_RenderNodeUtils_DisposeFloatAnimatableProperty(floatAnimatablePropertyHandle_);
+                floatAnimatablePropertyHandle_ = nullptr;
             }
             if (vector2AnimatablePropertyHandle_) {
                 OH_ArkUI_RenderNodeUtils_DisposeVector2AnimatableProperty(vector2AnimatablePropertyHandle_);
+                vector2AnimatablePropertyHandle_ = nullptr;
             }
             if (colorAnimatablePropertyHandle_) {
                 OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(colorAnimatablePropertyHandle_);
+                colorAnimatablePropertyHandle_ = nullptr;
             }
             if (renderContentModifierHandle_) {
                 OH_ArkUI_RenderNodeUtils_DisposeContentModifier(renderContentModifierHandle_);
+                renderContentModifierHandle_ = nullptr;
             }
             OH_ArkUI_RenderNodeUtils_DisposeNode(handle_);
         }
