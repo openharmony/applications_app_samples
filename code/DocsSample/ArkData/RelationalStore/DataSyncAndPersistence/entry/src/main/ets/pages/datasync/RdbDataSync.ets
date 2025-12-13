@@ -22,10 +22,9 @@ const DOMAIN = 0x0000;
 // [End sync_import]
 
 // [Start setDistributedTables]
-let context = getContext();
 let store: relationalStore.RdbStore | undefined = undefined;
 // [StartExclude setDistributedTables]
-export async function rdbDataSync() {
+export async function rdbDataSync(context: Context) {
   // [EndExclude setDistributedTables]
   const STORE_CONFIG: relationalStore.StoreConfig = {
     name: 'RdbTest.db', // 数据库文件名

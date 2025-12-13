@@ -16,7 +16,9 @@
 #include "napi/native_api.h"
 
 // [Start encryption_include]
+#include <cstring>
 #include "database/rdb/relational_store.h"
+#include "hilog/log.h"
 // [End encryption_include]
 
 // By default, the database is encrypted and decrypted
