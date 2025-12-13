@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON } from '@ohos.UiTest';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_ArkTSInputDeviceAPI]';
 const DOMAIN = 0xF811;

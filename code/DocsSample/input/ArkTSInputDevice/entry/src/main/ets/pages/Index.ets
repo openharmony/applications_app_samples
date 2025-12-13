@@ -15,7 +15,7 @@
 
 // [Start input_device]
 import { inputDevice } from '@kit.InputKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 
