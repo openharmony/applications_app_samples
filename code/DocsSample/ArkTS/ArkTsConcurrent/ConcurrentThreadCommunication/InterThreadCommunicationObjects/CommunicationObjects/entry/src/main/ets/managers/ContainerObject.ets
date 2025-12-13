@@ -46,7 +46,7 @@ struct Index {
         })
         .onClick(() => {
           // 1. 创建Test实例objA
-          let treeSet : TreeSet<number> = new TreeSet<number>(sendableCompareFunc);
+          let treeSet: TreeSet<number> = new TreeSet<number>(sendableCompareFunc);
 
           treeSet.add(1);
           treeSet.add(5);
@@ -57,7 +57,7 @@ struct Index {
           // 3. 执行任务
           taskpool.execute(task).then(() => {
             console.info('taskpool: execute task success!');
-          }).catch((e:BusinessError) => {
+          }).catch((e: BusinessError) => {
             console.error(`taskpool: execute task: Code: ${e.code}, message: ${e.message}`);
           })
           this.message = 'success';
