@@ -22,17 +22,17 @@ export const createBigintUint64t: () => bigint; // napi_create_bigint_uint64
 // [End napi_create_bigint_uint64_api]
 
 // [Start napi_create_bigint_words_api]
-export const createBigintWords: () => bigint | void; // napi_create_bigint_words
+export const createBigintWords: () => bigint | undefined; // napi_create_bigint_words
 // [End napi_create_bigint_words_api]
 
 // [Start napi_get_value_bigint_int64_api]
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void; // napi_get_value_bigint_int64
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined; // napi_get_value_bigint_int64
 // [End napi_get_value_bigint_int64_api]
 
 // [Start napi_get_value_bigint_uint64_api]
-export const getValueBigintUint64t: (bigUint64: bigint) => boolean | void; // napi_get_value_bigint_uint64
+export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined; // napi_get_value_bigint_uint64
 // [End napi_get_value_bigint_uint64_api]
 
 // [Start napi_get_value_bigint_words_api]
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void; // napi_get_value_bigint_words
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined; // napi_get_value_bigint_words
 // [End napi_get_value_bigint_words_api]
