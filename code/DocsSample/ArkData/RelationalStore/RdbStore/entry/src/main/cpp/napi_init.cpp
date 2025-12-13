@@ -755,10 +755,11 @@ void RdbStoreTest()
 
     // [Start rdb_OH_Rdb_SetPlugins]
     const char *plugins[] = {
-        "/system/lib64/platformsdk/libcustomtokenizer.z.so"
+        "/data/storage/el1/bundle/libs/arm64/libtokenizer.so"
     };
+
     int32_t count = sizeof(plugins) / sizeof(plugins[0]);
-    OH_Rdb_SetPlugins(config, plugins, count);
+    auto setResult = OH_Rdb_SetPlugins(config, plugins, count);
     // [End rdb_OH_Rdb_SetPlugins]
     
     // 实例代码中后续要进行写操作，设置为非只读模式打开数据库
