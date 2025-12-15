@@ -211,7 +211,7 @@ void SampleBitMap::DrawText()
     int lineMetricsSize = OH_Drawing_LineMetricsGetSize(lineMetrics);
     for (int i = 0; i < lineMetricsSize; ++i) {
     // lineMetrics为经过排版测量的文字度量信息
-    double curLineAscender = lineMetrics[i].ascender;
+    double curLineAscender = -lineMetrics[i].ascender;
     double curLineWidth = lineMetrics[i].width;
         DRAWING_LOGI("第%{public}d行 lineMetrics ascender: %{public}f", i + 1, curLineAscender);
         DRAWING_LOGI("第%{public}d行 lineMetrics width: %{public}f", i + 1, curLineWidth);
@@ -228,7 +228,7 @@ void SampleBitMap::DrawText()
     // 获取排版对象的指定行位置信息，该接口需要在OH_Drawing_TypographyLayout接口调用之后调用
     OH_Drawing_LineMetrics lineMetric;
     OH_Drawing_TypographyGetLineMetricsAt(typography, 0, &lineMetric);
-    DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f" ,lineMetric.ascender);
+    DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f", -lineMetric.ascender);
     // [End c_text_metrics_get_all_case]
 }
 
