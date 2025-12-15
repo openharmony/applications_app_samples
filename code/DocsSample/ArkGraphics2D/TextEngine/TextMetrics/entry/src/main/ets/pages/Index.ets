@@ -13,18 +13,20 @@
  * limitations under the License.
  */
 
-// [Start ts_text_metrics_total]
 // Index.ets
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
+// [Start ts_text_metrics_include]
 import { text } from '@kit.ArkGraphics2D';
+// [End ts_text_metrics_include]
 
 // 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 获取画布canvas对象
     const canvas = context.canvas;
-    // 配置文本样式（红色，字号100px）
+    // [Start ts_text_metrics_create_paragraphBuilder]
+    // 设置文本样式
     let myTextStyle: text.TextStyle = {
       color: {
         alpha: 255,
@@ -41,13 +43,17 @@ class MyRenderNode extends RenderNode {
     };
     // 创建一个段落生成器
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, new text.FontCollection());
+    // [End ts_text_metrics_create_paragraphBuilder]
+    // [Start ts_text_metrics_create_paragraph]
     // 在段落生成器中设置文本样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
     paragraphBuilder.addText("文本测量测试");
     // 通过段落生成器生成段落
     let paragraph = paragraphBuilder.build();
-    // 布局
+    // [End ts_text_metrics_create_paragraph]
+    // [Start ts_text_metrics_get_all_case]
+    // 对段落进行塑形排版，设置排版宽度为1000
     paragraph.layoutSync(1000);
     // case1: 获取排版后最长行行宽
     let longestLineWidth = paragraph.getLongestLine();
@@ -81,6 +87,8 @@ class MyRenderNode extends RenderNode {
     // case5: 获取排版后所有行度量信息数组
     let allLineMetrics = paragraph.getLineMetrics();
     console.info("MetricsMSG: 第1行 lineMetrics width: " + allLineMetrics[0].width);
+    // [End ts_text_metrics_get_all_case]
+    // 将文本绘制到画布上
     paragraph.paint(canvas, 0, 800);
   }
 }
@@ -162,4 +170,3 @@ struct RenderTest {
     }
   }
 }
-// [End ts_text_metrics_total]
