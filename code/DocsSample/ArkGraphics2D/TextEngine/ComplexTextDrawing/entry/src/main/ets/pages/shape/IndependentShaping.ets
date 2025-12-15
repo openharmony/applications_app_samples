@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-// [Start arkts_independent_shaping_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
+// [Start arkts_independent_shaping_text_import_modules]
 import { text } from '@kit.ArkGraphics2D'
 import { drawing } from '@kit.ArkGraphics2D'
 import { common2D } from '@kit.ArkGraphics2D'
+// [End arkts_independent_shaping_text_import_modules]
 
 @Builder
 export function PageBuilder(_: string) {
@@ -48,6 +49,7 @@ export default struct Index {
 
 // 文本绘制代码逻辑
 function drawText(canvas: drawing.Canvas) {
+  // [Start arkts_independent_shaping_text_paragraph_builder]
   let myTextStyle: text.TextStyle = {
     // 文本大小
     fontSize: 60
@@ -57,14 +59,23 @@ function drawText(canvas: drawing.Canvas) {
   };
   let fontCollection = text.FontCollection.getGlobalInstance();
   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  // [End arkts_independent_shaping_text_paragraph_builder]
+
   // 添加文本
+  // [Start arkts_independent_shaping_text_add_text]
   paragraphBuilder.addText('Hello World');
+  // [End arkts_independent_shaping_text_add_text]
+
+  // [Start arkts_independent_shaping_text_get_glyph_runs]
   // 生成行
   let lineTypeSet: text.LineTypeset = paragraphBuilder.buildLineTypeset()
   let textLine: text.TextLine = lineTypeSet.createLine(0, 11);
 
   // 获取塑形结果
   let runs: text.Run[] = textLine.getGlyphRuns();
+  // [End arkts_independent_shaping_text_get_glyph_runs]
+
+  // [Start arkts_independent_shaping_text_drawing]
   let x: number = 0;
   let y: number = 0;
   for (let index = 0; index < runs.length; index++) {
@@ -85,6 +96,7 @@ function drawText(canvas: drawing.Canvas) {
     // 自定义绘制一串具有相同属性的一系列连续字形
     canvas.drawTextBlob(textBlob, 20, 100);
   }
+  // [End arkts_independent_shaping_text_drawing]
 }
 
 // 创建一个MyRenderNode类，并绘制文本。
@@ -125,4 +137,3 @@ class MyNodeController extends NodeController {
     return this.rootNode;
   }
 }
-// [End arkts_independent_shaping_text]

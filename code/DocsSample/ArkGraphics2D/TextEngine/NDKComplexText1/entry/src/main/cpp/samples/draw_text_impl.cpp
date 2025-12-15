@@ -1093,7 +1093,7 @@ void SampleBitMap::DrawLineSpacingText()
 
 void SampleBitMap::DrawIndependentShapingText()
 {
-    // [Start complex_text_c_independent_shaping_text]
+    // [Start complex_text_c_independent_shaping_text_step1]
     // 创建一个 TypographyStyle，创建 TypographyCreate 时需要使用
     OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
     // 设置文字颜色、大小、字重，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
@@ -1104,11 +1104,15 @@ void SampleBitMap::DrawIndependentShapingText()
     OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
     // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
     OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    // [End complex_text_c_independent_shaping_text_step1]
+    // [Start complex_text_c_independent_shaping_text_step2]
     // 设置文本内容，并将文本添加到 handler 中
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
     const char *text = "Hello World";
     OH_Drawing_TypographyHandlerAddText(handler, text);
+    // [End complex_text_c_independent_shaping_text_step2]
 
+    // [Start complex_text_c_independent_shaping_text_step3]
     // 通过 handler 创建一个 Typography
     OH_Drawing_LineTypography *lineTypography = OH_Drawing_CreateLineTypography(handler);
     // 创建一个 TextLine，取(0, 11)的字符
@@ -1116,6 +1120,8 @@ void SampleBitMap::DrawIndependentShapingText()
 
     // 获取塑形结果
     OH_Drawing_Array *runs = OH_Drawing_TextLineGetGlyphRuns(textLine);
+    // [End complex_text_c_independent_shaping_text_step3]
+    // [Start complex_text_c_independent_shaping_text_step4]
     size_t runsLength = OH_Drawing_GetDrawingArraySize(runs);
     for (int i = 0; i < runsLength; i++) {
         OH_Drawing_Run *run = OH_Drawing_GetRunByIndex(runs, i);
@@ -1159,7 +1165,9 @@ void SampleBitMap::DrawIndependentShapingText()
         OH_Drawing_DestroyRunGlyphAdvances(advances);
         OH_Drawing_DestroyRunGlyphs(glyphs);
     }
+    // [End complex_text_c_independent_shaping_text_step4]
 
+    // [Start complex_text_c_independent_shaping_text_step5]
     // 释放内存
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     OH_Drawing_DestroyTextStyle(txtStyle);
@@ -1168,5 +1176,5 @@ void SampleBitMap::DrawIndependentShapingText()
     OH_Drawing_DestroyLineTypography(lineTypography);
     OH_Drawing_DestroyTextLine(textLine);
     OH_Drawing_DestroyRuns(runs);
-    // [End complex_text_c_independent_shaping_text]
+    // [End complex_text_c_independent_shaping_text_step5]
 }
