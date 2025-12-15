@@ -18,7 +18,7 @@
 使用说明
 
 1. 安装编译生成的hap包，并打开应用；
-2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
+2. 点击页面底部“Change Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
 5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。
