@@ -17,6 +17,7 @@
 #include "baseUtils.h"
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>
+#include <arkui/drag_and_drop.h>
 #include <hilog/log.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_color.h>
@@ -662,6 +663,18 @@ void setTextInput7(ArkUI_NodeHandle &textInput7)
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textInput7, NODE_TEXT_INPUT_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+}
+
+void setTextInput8(ArkUI_NodeHandle &textInput8)
+{
+    ArkUI_AttributeItem input_Item = {.string = "TextInput 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(textInput8, NODE_TEXT_INPUT_TEXT, &input_Item);
+    OH_ArkUI_SetNodeDraggable(textInput8, true);
+    ArkUI_SelectedDragPreviewStyle *textInput_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(textInput_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textInputColorItem = {.size = 1, .object = textInput_options};
+    Manager::nodeAPI_->setAttribute(textInput8, NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE, &textInputColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(textInput_options);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -1384,6 +1397,21 @@ void setText15(ArkUI_NodeHandle &text15)
     Manager::nodeAPI_->setAttribute(text15, NODE_HEIGHT, &textHeightItem);
 }
 
+void setText16(ArkUI_NodeHandle &text16)
+{
+    ArkUI_AttributeItem textItem = {.string = "Text 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_CONTENT, &textItem);
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_TEXT_COPY_OPTIONS_IN_APP };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, 1 };
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    OH_ArkUI_SetNodeDraggable(text16, true);
+    ArkUI_SelectedDragPreviewStyle *text_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(text_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textColorItem = {.size = 1, .object = text_options};
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE, &textColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(text_options);
+}
+
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
     auto basicText2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -1580,6 +1608,18 @@ void setTextArea8(ArkUI_NodeHandle &textArea8)
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_TEXT_AREA_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+}
+
+void setTextArea9(ArkUI_NodeHandle &textArea9)
+{
+    ArkUI_AttributeItem textItem = {.string = "TextArea 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_AREA_TEXT, &textItem);
+    OH_ArkUI_SetNodeDraggable(textArea9, true);
+    ArkUI_SelectedDragPreviewStyle *textArea_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(textArea_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textAreaColorItem = {.size = 1, .object = textArea_options};
+    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE, &textAreaColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(textArea_options);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -1817,18 +1857,21 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12);
     setText13(text13);
     setText13(text14);
     setText15(text15);
+    setText16(text16);
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
     Manager::nodeAPI_->addChild(textContainer, text13);
     Manager::nodeAPI_->addChild(textContainer, text14);
     Manager::nodeAPI_->addChild(textContainer, text15);
+    Manager::nodeAPI_->addChild(textContainer, text16);
 }
 
 void setAllTextPart1(ArkUI_NodeHandle &textContainer)
@@ -1904,6 +1947,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     setTextInput1(textInput1);
     setTextInput2(textInput2);
@@ -1912,6 +1956,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setTextInput5(textInput5);
     setTextInput6(textInput6);
     setTextInput7(textInput7);
+    setTextInput8(textInput8);
     setTextInputSelectAI(textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
@@ -1920,6 +1965,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput5);
     Manager::nodeAPI_->addChild(textContainer, textInput6);
     Manager::nodeAPI_->addChild(textContainer, textInput7);
+    Manager::nodeAPI_->addChild(textContainer, textInput8);
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
 void setAllTextArea(ArkUI_NodeHandle &textContainer)
@@ -1932,6 +1978,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setTextArea1(textArea1);
     setTextArea2(textArea2);
@@ -1942,6 +1989,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextAreaSelectAI(textAreaAISelect);
     setTextArea7(textArea7);
     setTextArea8(textArea8);
+    setTextArea9(textArea9);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
@@ -1953,6 +2001,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
     Manager::nodeAPI_->addChild(textContainer, textArea7);
     Manager::nodeAPI_->addChild(textContainer, textArea8);
+    Manager::nodeAPI_->addChild(textContainer, textArea9);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)
