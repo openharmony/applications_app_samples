@@ -65,7 +65,9 @@ class MyRenderNode extends RenderNode {
     // [End arkts_use_and_change_system_font_step4]
 
     // 通过段落生成器生成段落
+    // [Start arkts_use_and_change_system_font_build]
     let paragraph = ParagraphGraphBuilder.build();
+    // [End arkts_use_and_change_system_font_build]
     // 布局
     paragraph.layoutSync(1000);
     paragraph.paint(canvas, 0, 400);
@@ -135,8 +137,11 @@ struct RenderTest {
             this.myNodeController.clearNodes();
             this.myNodeController.addNode(textNode);
 
-            // [Start arkts_system_font_info]
+            // [Start arkts_system_font_info_get]
             let fontConfig = font.getUIFontConfig();
+            // [End arkts_system_font_info_get]
+
+            // [Start arkts_system_font_info_print]
             console.info('sysFontMfg::font-dir -----------' + String(fontConfig.fontDir.length));
             for (let i = 0; i < fontConfig.fontDir.length; i++) {
               console.info(fontConfig.fontDir[i]);
@@ -156,7 +161,7 @@ struct RenderTest {
                   fontConfig.fallbackGroups[i].fallback[j].family);
               }
             }
-            // [End arkts_system_font_info]
+            // [End arkts_system_font_info_print]
           })
           .margin({ bottom: 40, left: 80 })
       }.width('100%')

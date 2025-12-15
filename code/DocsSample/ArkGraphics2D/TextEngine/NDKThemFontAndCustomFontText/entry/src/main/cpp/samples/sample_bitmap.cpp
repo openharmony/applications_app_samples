@@ -272,10 +272,14 @@ void SampleBitMap::PrintSysFontMetrics()
 
     // 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
     OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
-    
+
+    // [Start custom_font_c_create_shared_font_collection]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
+    // [End custom_font_c_create_shared_font_collection]
+    // [Start custom_font_c_create_text_style]
     OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
-    
+    // [End custom_font_c_create_text_style]
+
     // [Start custom_font_c_print_system_font_metrics_step3]
     // 情况一：设置系统字体为"HarmonyOS Sans Condensed"
     const char *myFontFamilies[] = {"HarmonyOS Sans Condensed"};
@@ -321,9 +325,13 @@ void SampleBitMap::PrintSysFontMetrics()
 void SampleBitMap::DrawDisableSysFontText()
 {
     // 创建字体管理器，建议优先使用OH_Drawing_CreateSharedFontCollection创建可共享的字体集对象。
+    // [Start custom_font_c_disable_system_font_text_step_create]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
+    // [End custom_font_c_disable_system_font_text_step_create]
     // 禁用系统字体。
+    // [Start custom_font_c_disable_system_font_text]
     OH_Drawing_DisableFontCollectionSystemFont(fontCollection);
+    // [End custom_font_c_disable_system_font_text]
     // 注意 若不设置字体，文本会默认使用系统字体，而系统字体禁用后若不设置使用自定义字体，文本将无法正常显示。
     
     // [Start custom_font_c_disable_system_font_text_step1]
