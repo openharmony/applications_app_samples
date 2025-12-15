@@ -22,13 +22,20 @@ struct BindSheetDemo {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   // 半模态转场显示隐藏控制
   @State isShowSheet: boolean = false;
-  private menuList: string[] = [this.context.resourceManager.getStringByNameSync('modal_transition_text14'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text15'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text16'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text17'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text18'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text19'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text20')];
+  // 请将$r('app.string.modal_transition_text14')替换为实际资源文件，在本示例中该资源文件的value值为"不要辣"
+  private menuList: Resource[] = [$r('app.string.modal_transition_text14'),
+    // 请将$r('app.string.modal_transition_text15')替换为实际资源文件，在本示例中该资源文件的value值为"少放辣"
+    $r('app.string.modal_transition_text15'),
+    // 请将$r('app.string.modal_transition_text16')替换为实际资源文件，在本示例中该资源文件的value值为"多放辣"
+    $r('app.string.modal_transition_text16'),
+    // 请将$r('app.string.modal_transition_text17')替换为实际资源文件，在本示例中该资源文件的value值为"不要香菜"
+    $r('app.string.modal_transition_text17'),
+    // 请将$r('app.string.modal_transition_text18')替换为实际资源文件，在本示例中该资源文件的value值为"不要香葱"
+    $r('app.string.modal_transition_text18'),
+    // 请将$r('app.string.modal_transition_text19')替换为实际资源文件，在本示例中该资源文件的value值为"不要一次性餐具"
+    $r('app.string.modal_transition_text19'),
+    // 请将$r('app.string.modal_transition_text20')替换为实际资源文件，在本示例中该资源文件的value值为"需要一次性餐具"
+    $r('app.string.modal_transition_text20')];
 
   // 通过@Builder构建半模态展示界面
   @Builder
@@ -54,7 +61,8 @@ struct BindSheetDemo {
 
   build() {
     Column() {
-      Text(this.context.resourceManager.getStringByNameSync('modal_transition_text21'))
+      // 请将$r('app.string.modal_transition_text21')替换为实际资源文件，在本示例中该资源文件的value值为"口味与餐具"
+      Text($r('app.string.modal_transition_text21'))
         .fontSize(28)
         .padding({ top: 30, bottom: 30 })
       Column() {
@@ -67,7 +75,8 @@ struct BindSheetDemo {
             .borderRadius(20)
 
           Column() {
-            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text22'))
+            // 请将$r('app.string.modal_transition_text22')替换为实际资源文件，在本示例中该资源文件的value值为"选择点餐口味和餐具"
+            Text($r('app.string.modal_transition_text22'))
               .fontSize(16)
               .fontWeight(FontWeight.Medium)
           }

@@ -38,7 +38,7 @@ export struct GridScrollbar {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
+        // 请将$r('app.string.GridScrollbar_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加外置滚动条"
         ComponentCard({ title: $r('app.string.GridScrollbar_title') }) {
           Row({ space: 5 }) {
             // [Start Add_external_scrollbar1]
@@ -86,7 +86,7 @@ export struct GridScrollbar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
+    // 请将$r('app.string.GridScrollbar_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加外置滚动条"
     .title($r('app.string.GridScrollbar_title'))
   }
 }
