@@ -40,6 +40,9 @@ export const registerLeakReceiveWatcher: () => void;
 export const registerAppKillReceiveWatcher: () => void;
 export const leak: () => void;
 // [End AppKillEvent_Index.d.ts]
+// [Start Pss_Leak_Index.d.ts]
+export const leakMB: (size: number) => void;
+// [End Pss_Leak_Index.d.ts]
 // [Start Register_AppHicollie_WatcherR.d.ts]
 export const RegisterAppHicollieWatcherR: () => void;
 // [End Register_AppHicollie_WatcherR.d.ts]

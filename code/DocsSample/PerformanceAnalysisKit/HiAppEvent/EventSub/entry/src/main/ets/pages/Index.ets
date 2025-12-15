@@ -15,14 +15,13 @@
 
 // [Start EventSub_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
+// [Start PssleakEvent_Button]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 // [End EventSub_Header]
-// [Start PssleakEvent_Button]
-import { hidebug } from '@kit.PerformanceAnalysisKit';
-// [End PssleakEvent_Button]
 // [Start EventSub_Index_Capi_Header]
 import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
+// [End PssleakEvent_Button]
 @Entry
 @Component
 struct Index {
@@ -116,10 +115,8 @@ struct Index {
             .height('5%')
             .onClick(() => {
               // 设置一个简单的资源泄漏场景
-              hidebug.setAppResourceLimit('pss_memory', 1024, true);
-              for (let i = 0; i < 20 * 1024; i++) {
-                this.leakedArray.push(new Array(1).fill('leak'));
-              }
+              hilog.info(0x0000, 'testTag', 'click pss leak button');
+              testNapi.leakMB(3072);
             })
         // [End PssleakEvent_Button]
         Button('js leak')
