@@ -18,6 +18,7 @@
 #include <string>
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/image_source_native.h>
+#include "napi/native_api.h"
 // [End editExif_operations_import]
 #include <multimedia/image_framework/image/image_common.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
@@ -26,7 +27,6 @@
 #include <multimedia/image_framework/image/image_packer_native.h>
 // [End packSource_import]
 #include <imageKits.h>
-#include "napi/native_api.h"
 
 // [Start define_logInfo]
 #undef LOG_DOMAIN
@@ -42,9 +42,12 @@ static std::set<std::string> g_encodeSupportedFormats;
 static ImageSourceNative *g_thisImageSource = new ImageSourceNative();
 // [End create_sourceClass]
 
-// [Start decodingPixel_operations]
+// [Start define_maxStringLength]
 const int MAX_STRING_LENGTH = 1024;
-// 处理napi返回值。
+// [End define_maxStringLength]
+
+// [Start decodingPixel_operations]
+// 返回ErrorCode。
 napi_value ReturnErrorCode(napi_env env, Image_ErrorCode errCode, std::string funcName)
 {
     if (errCode != IMAGE_SUCCESS) {
@@ -89,7 +92,9 @@ napi_value CreateImageSource(napi_env env, napi_callback_info info)
     Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &g_thisImageSource->source);
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_CreateFromUri");
 }
+// [End decodingPixel_operations]
 
+// [Start get_imageInfo]
 // 创建定义图片信息的结构体对象，并获取图片信息。
 napi_value GetImageInfo(napi_env env, napi_callback_info info)
 {
@@ -111,6 +116,7 @@ napi_value GetImageInfo(napi_env env, napi_callback_info info)
     g_thisImageSource->imageInfo = nullptr;
     return GetJsResult(env, width); // 返回获取到info信息的width。
 }
+// [End get_imageInfo]
 
 // [Start editExif_operations]
 // 获取指定property的value值。
@@ -132,13 +138,16 @@ napi_value GetImageProperty(napi_env env, napi_callback_info info)
     getKey.size = keySize;
     Image_String getValue;
     OH_LOG_INFO(LOG_APP, "OH_ImageSourceNative_GetImageProperty key: %{public}s.", getKey.data);
-    Image_ErrorCode errCode = OH_ImageSourceNative_GetImageProperty(g_thisImageSource->source, &getKey, &getValue);
+    Image_ErrorCode errCode = OH_ImageSourceNative_GetImagePropertyWithNull(g_thisImageSource->source,
+                                                                            &getKey, &getValue);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "OH_ImageSourceNative_GetImageProperty failed, errCode: %{public}d.", errCode);
         return GetJsResult(env, errCode);
     }
     napi_value resultNapi = nullptr;
     napi_create_string_utf8(env, getValue.data, getValue.size, &resultNapi);
+    free(getValue.data);
+    getValue.data = nullptr;
     return resultNapi;
 }
 
@@ -177,6 +186,7 @@ napi_value ModifyImageProperty(napi_env env, napi_callback_info info)
 }
 // [End editExif_operations]
 
+// [Start create_pixelMap]
 // 通过图片解码参数创建PixelMap对象。
 napi_value CreatePixelMap(napi_env env, napi_callback_info info)
 {
@@ -210,7 +220,9 @@ napi_value CreatePixelMap(napi_env env, napi_callback_info info)
     g_thisImageSource->pixelmapImageInfo = nullptr;
     return GetJsResult(env, errCode);
 }
+// [End create_pixelMap]
 
+// [Start get_frameCount]
 // 获取图像帧数。
 napi_value GetFrameCount(napi_env env, napi_callback_info info)
 {
@@ -222,7 +234,9 @@ napi_value GetFrameCount(napi_env env, napi_callback_info info)
     }
     return GetJsResult(env, g_thisImageSource->frameCnt); // 返回获取到的图像帧数。
 }
+// [End get_frameCount]
 
+// [Start create_pixelmapList]
 // 通过图片解码参数创建Pixelmap列表。
 napi_value CreatePixelmapList(napi_env env, napi_callback_info info)
 {
@@ -237,7 +251,9 @@ napi_value CreatePixelmapList(napi_env env, napi_callback_info info)
     delete[] resVecPixMap;
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_CreatePixelmapList");
 }
+// [End create_pixelmapList]
 
+// [Start get_delayTimeList]
 // 获取图像延迟时间列表。
 napi_value GetDelayTimeList(napi_env env, napi_callback_info info)
 {
@@ -248,7 +264,9 @@ napi_value GetDelayTimeList(napi_env env, napi_callback_info info)
     delete[] delayTimeList;
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_GetDelayTimeList");
 }
+// [End get_delayTimeList]
 
+// [Start release_imageSource]
 // 释放资源。
 napi_value ReleaseImageSource(napi_env env, napi_callback_info info)
 {
@@ -258,7 +276,7 @@ napi_value ReleaseImageSource(napi_env env, napi_callback_info info)
     g_thisImageSource->resPixMap = nullptr;
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_Release");
 }
-// [End decodingPixel_operations]
+// [End release_imageSource]
 
 // [Start pack_source]
 Image_MimeType GetMimeTypeIfEncodable(const char *format)
