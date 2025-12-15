@@ -16,6 +16,7 @@
 #include "napi/native_api.h"
 #include <sstream>
 // [Start rdb_include]
+#include <cstdlib>
 #include <database/data/data_asset.h>
 #include <database/rdb/oh_cursor.h>
 #include <database/rdb/oh_predicates.h>

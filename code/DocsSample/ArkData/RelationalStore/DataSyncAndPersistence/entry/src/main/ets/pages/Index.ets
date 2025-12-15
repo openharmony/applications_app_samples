@@ -38,7 +38,10 @@ struct Index {
       .height("8%")
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        rdbDataSync();
+        const context = this.getUIContext().getHostContext();
+        if (context) {
+          rdbDataSync(context);
+        }
       })
 
       Button() {
@@ -56,7 +59,10 @@ struct Index {
       .height("8%")
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        rdbDataPersistence();
+        const context = this.getUIContext().getHostContext();
+        if (context) {
+          rdbDataPersistence(context);
+        }
       })
     }
     .height('100%')
