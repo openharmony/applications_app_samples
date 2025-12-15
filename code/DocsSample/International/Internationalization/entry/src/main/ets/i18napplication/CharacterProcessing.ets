@@ -18,7 +18,6 @@ import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
 // [Start import_module]
 import { i18n } from '@kit.LocalizationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 // [End import_module]
 
 /**********************************************************************************************************************

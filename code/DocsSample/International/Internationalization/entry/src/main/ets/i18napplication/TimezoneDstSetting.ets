@@ -98,7 +98,6 @@ let dateFormat =
 // [End get_current_timezone]
 
 // [Start display_dual_timezones]
-// 双时钟应用开发实例
 let pauloTimezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo');
 let defaultTimezone: i18n.TimeZone = i18n.getTimeZone();
 let appPreferredTimeZoneList: i18n.TimeZone[] = []; // 应用偏好时区列表
@@ -134,7 +133,6 @@ for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
  * 夏令时跳变实现原理
  *********************************************************************************************************************/
 // [Start handle_dst_transition]
-// 计算夏令时跳变前后同一个挂钟时间之间相差的小时数示例
 let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
 calendar.setTimeZone('Europe/London');
 calendar.set(2021, 2, 27, 16, 0, 0); // 夏令时开始前的时间
