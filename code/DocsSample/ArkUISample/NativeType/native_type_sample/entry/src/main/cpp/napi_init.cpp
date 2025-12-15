@@ -294,6 +294,8 @@ napi_property_descriptor desc[] = {
      nullptr, nullptr, nullptr, napi_default, nullptr},
     {"createImageAnimatorFromString", nullptr, CreateImageAnimatorFromString, nullptr, nullptr, nullptr,
      napi_default, nullptr},
+    {"createContainerNativeNode", nullptr, Manager::createContainerNativeNode, nullptr,
+        nullptr, nullptr, napi_default, nullptr },
 };
 static napi_value Init(napi_env env, napi_value exports) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "Init begins");

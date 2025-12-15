@@ -123,10 +123,13 @@ entry/src/main/ets/
     ├── page_text.ets (文本界面)
     ├── page_xcomponent.ets (XComponent界面)
     ├── PageGrid.ets       (Grid页面)
-    └── grid
-         ├── PageGridNormal.ets (普通Grid页面)
-         ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
-         └── PageGridGetRectByIndex.ets (固定行列Grid页面)
+    ├── page_container_picker.ets (Picker界面)
+    ├── grid
+    │    ├── PageGridNormal.ets (普通Grid页面)
+    │    ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
+    │    └── PageGridGetRectByIndex.ets (固定行列Grid页面)
+    └── containerPicker
+         └── PageContainerPickerIndex.ets (Picker页面)
 
 entry/src/main/
 ├── cpp
@@ -169,6 +172,8 @@ entry/src/main/
 │   ├── EmbeddedComponentMaker.h
 |   ├── CheckboxShapeMaker.cpp
 │   ├── CheckboxShapeMaker.h
+│   ├── ContainerPickerMaker.cpp
+│   ├── ContainerPickerMaker.h
 |   ├── HoverModeAreaTypeMaker.cpp
 │   ├── HoverModeAreaTypeMaker.h
 │   ├── GridIrregularIndexesMaker.cpp
