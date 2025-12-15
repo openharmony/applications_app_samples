@@ -22,6 +22,7 @@
 #include "WaterFlowMaker.h"
 #include "ScrollMaker.h"
 #include "RefreshMaker.h"
+#include "LinearMaker.h"
 #include "ListMaker.h"
 #include "PublicEvent.h"
 #include "baseUtils.h"
@@ -214,4 +215,10 @@ napi_value Manager::createNativeXComponentNode(napi_env env, napi_callback_info 
     OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 
     return nullptr;
+}
+
+napi_value Manager::CreateLinearNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(
+        env, info, "CreateLinearNativeNode", []() -> ArkUI_NodeHandle { return LinearMaker::CreateNativeNode(); });
 }

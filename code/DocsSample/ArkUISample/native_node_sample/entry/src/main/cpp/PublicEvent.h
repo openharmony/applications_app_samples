@@ -35,4 +35,9 @@ public:
 
     static ArkUI_NodeHandle CreateNativeNode();
 };
+void SetWidthPercent(ArkUI_NodeHandle& node, float width);
+void SetHeight(ArkUI_NodeHandle& node, float height);
+void SetBackGroundColor(ArkUI_NodeHandle& node, uint32_t color);
+ArkUI_NodeHandle CreateTextNode(const char* textContent);
+ArkUI_NodeHandle CreateButtonNode(const char* buttonLabel);
 #endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
