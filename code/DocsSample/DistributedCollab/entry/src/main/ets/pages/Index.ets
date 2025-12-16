@@ -108,6 +108,7 @@ struct Index {
       bundleName: 'com.example.myapplication', // 定义为被测应用包名，请开发者替换为实际包名
       moduleName: 'entry',
       abilityName: 'EntryAbility',
+      serviceName: 'test',
     };
     const myRecord: Record<string, string> = {
       'newKey1': 'value1',
