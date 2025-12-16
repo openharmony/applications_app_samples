@@ -18,6 +18,7 @@ import AllocatorTest from './Allocator.test';
 import codecTest from './Codec.test';
 import ExifTest from './Exif.test';
 import ReceiverTest from './Receiver.test';
+import transcodingTest from './Transcoding.test';
 
 export default function testsuite() {
   abilityTest();
@@ -25,4 +26,5 @@ export default function testsuite() {
   AllocatorTest();
   ExifTest();
   ReceiverTest();
+  transcodingTest();
 }

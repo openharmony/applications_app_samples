@@ -18,11 +18,11 @@
 #include <multimedia/image_framework/image/image_common.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
 #include <multimedia/image_framework/image/image_source_native.h>
-// [StartExclude allocator_operations_import]
+// [StartExclude allocator_operations]
 #include <imageKits.h>
-// [EndExclude allocator_operations_import]
+// [EndExclude allocator_operations]
 
-// 根据像素格式返回每像素的字节数
+// 根据像素格式返回每像素的字节数。
 int32_t GetPixelFormatBytes(int32_t pixelFormat)
 {
     switch (pixelFormat) {
@@ -117,7 +117,7 @@ void DataCopy(OH_PixelmapNative *pixelmap, OH_ImageSourceNative* imageSource, OH
     OH_PixelmapNative_UnaccessPixels(newPixelmap);
     OH_PixelmapNative_UnaccessPixels(pixelmap);
     OH_DecodingOptions_Release(options);
-    options =nullptr;
+    options = nullptr;
     OH_ImageSourceNative_Release(imageSource);
     imageSource = nullptr;
     OH_PixelmapNative_Release(pixelmap);

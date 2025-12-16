@@ -151,9 +151,7 @@ static void OnCallback(OH_ImageReceiverNative* receiver)
                      "errCode: %{public}d.", errCode);
         OH_ImageNative_Release(image);
         return;
-    }
-
-    {
+    } else {
         std::lock_guard<std::mutex> lock(g_mutex);
         g_imageInfoResult = image;
         g_imageReady = true;
@@ -410,7 +408,7 @@ static napi_value TakePhoto(napi_env env, napi_callback_info info)
     Camera_ErrorCode photoRet = StartTakePhoto(surfaceId_c.get());
     return GetJsResultDemo(env, photoRet);
 }
-// [Start load_cameraSession]
+// [End load_cameraSession]
 
 // 获取接收到的图像信息。
 // [Start wait_callBack]
@@ -432,7 +430,7 @@ static OH_ImageNative* NotifyJsImageInfoSync()
     }
     return g_imageInfoResult;
 }
-// [Start wait_callBack]
+// [End wait_callBack]
 
 // [Start get_imageSize]
 // 获取图片大小。
