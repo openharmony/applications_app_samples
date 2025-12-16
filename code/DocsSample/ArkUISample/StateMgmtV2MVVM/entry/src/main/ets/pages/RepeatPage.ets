@@ -31,17 +31,22 @@ struct TaskItem {
       Text(this.taskName)
         .decoration({ type: this.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
       Button('Delete')
-        .onClick(() => this.deleteTask())
+        .onClick(() => {
+          this.deleteTask();
+        })
     }
-    .onClick(() => this.isFinish = !this.isFinish)
+    .onClick(() => {
+      this.isFinish = !this.isFinish;
+    })
   }
 }
 
 @Entry
 @ComponentV2
 struct TodoList {
-  @Local tasks: string[] = ['task1','task2','task3'];
+  @Local tasks: string[] = ['task1', 'task2', 'task3'];
   @Local newTaskName: string = '';
+
   build() {
     Column() {
       Text('To do')
@@ -52,12 +57,16 @@ struct TodoList {
           TaskItem({
             taskName: obj.item,
             isFinish: false,
-            deleteTask: () => this.tasks.splice(this.tasks.indexOf(obj.item), 1)
+            deleteTask: () => {
+              this.tasks.splice(this.tasks.indexOf(obj.item), 1);
+            }
           })
         })
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
-          .onChange((value) => this.newTaskName = value)
+          .onChange((value) => {
+            this.newTaskName = value;
+          })
           .width('70%')
         Button('+')
           .onClick(() => {

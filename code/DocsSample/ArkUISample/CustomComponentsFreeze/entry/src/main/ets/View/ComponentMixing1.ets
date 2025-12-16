@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start arkts_custom_components_freeze10]
-import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
 

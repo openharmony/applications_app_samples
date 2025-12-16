@@ -49,7 +49,8 @@ struct FreezeChild {
   @Param message: number = 0;
   @Param index: number = 0;
 
-  @Monitor('message') onMessageUpdated(mon: IMonitor) {
+  @Monitor('message')
+  onMessageUpdated(mon: IMonitor) {
     hilog.info(DOMAIN, 'testTag', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 

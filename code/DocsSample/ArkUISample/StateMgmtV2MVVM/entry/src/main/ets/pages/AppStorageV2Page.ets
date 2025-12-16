@@ -26,7 +26,7 @@ class Task {
   public taskName: string = '';
   @Trace public isFinish: boolean = false;
 
-  constructor (taskName: string, isFinish: boolean) {
+  constructor(taskName: string, isFinish: boolean) {
     this.taskName = taskName;
     this.isFinish = isFinish;
   }
@@ -36,6 +36,7 @@ class Task {
 struct TaskItem {
   @Param task: Task = new Task('', false);
   @Event deleteTask: () => void = () => {};
+
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
@@ -50,9 +51,13 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
       Button('Delete')
-        .onClick(() => this.deleteTask())
+        .onClick(() => {
+          this.deleteTask();
+        })
     }
-    .onClick(() => this.task.isFinish = !this.task.isFinish)
+    .onClick(() => {
+      this.task.isFinish = !this.task.isFinish;
+    })
   }
 }
 
@@ -89,14 +94,20 @@ struct TodoList {
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
             task: obj.item,
-            deleteTask: () => this.tasks.splice(this.tasks.indexOf(obj.item), 1)
+            deleteTask: () => {
+              this.tasks.splice(this.tasks.indexOf(obj.item), 1);
+            }
           })
         })
       Row() {
         Button('All Completed')
-          .onClick(() => this.finishAll(true))
+          .onClick(() => {
+            this.finishAll(true);
+          })
         Button('All Not Completed')
-          .onClick(() => this.finishAll(false))
+          .onClick(() => {
+            this.finishAll(false);
+          })
         Button('Setting')
           .onClick(() => {
             let wantInfo: Want = {
@@ -109,7 +120,9 @@ struct TodoList {
       }
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
-          .onChange((value) => this.newTaskName = value)
+          .onChange((value) => {
+            this.newTaskName = value;
+          })
           .width('70%')
         Button('+')
           .onClick(() => {
