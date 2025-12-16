@@ -1620,7 +1620,7 @@ void setTextArea9(ArkUI_NodeHandle &textArea9)
     ArkUI_SelectedDragPreviewStyle *textArea_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
     OH_ArkUI_SelectedDragPreviewStyle_SetColor(textArea_options, 0xFFE3F8F9);
     ArkUI_AttributeItem textAreaColorItem = {.size = 1, .object = textArea_options};
-    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE, &textAreaColorItem);
+    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE, &textAreaColorItem);
     OH_ArkUI_SelectedDragPreviewStyle_Dispose(textArea_options);
 }
 
