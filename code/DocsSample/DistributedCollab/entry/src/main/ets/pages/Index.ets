@@ -108,6 +108,7 @@ struct Index {
       bundleName: 'com.example.myapplication',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
+      serviceName: 'test',
     };
     const myRecord: Record<string, string> = {
       'newKey1': 'value1',
