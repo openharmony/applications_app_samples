@@ -186,7 +186,7 @@ export class InputHandler {
 
       // 取出的内容为当前输入之前的字符，不包含当前的字符,需将当前字符加上
       textPre = textPre + text;
-      if (textPre == 'hel') {
+      if (textPre === 'hel') {
         this.addLog('insertText hel');
         try {
           //把当前字符计算在内
@@ -213,7 +213,7 @@ export class InputHandler {
           let subStr: string = this.intputText.substring(indexSubStrStart, indexCursor);
           this.addLog('insertText indexSubStrStart subStr ' + subStr);
 
-          if((previewContent != subStr) && (previewContent.includes(subStr))) {
+          if ((previewContent != subStr) && (previewContent.includes(subStr))) {
             // 文本框的子串与预上屏内容吻合，则调用预上屏接口，替换文本框的子串
             this.addLog('insertText previewContent indexSubStrStart ' + indexSubStrStart.toString());
             this.addLog('insertText previewContent end ' + (indexCursor).toString());
@@ -510,10 +510,10 @@ class KeyboardController {
     // [Start input_case_input_KeyboardControllersetSubtype]
     // 设置监听子类型事件，改变输入法应用界面
     inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-      if(inputMethodSubtype.id == 'InputMethodExtAbility') {
+      if (inputMethodSubtype.id === 'InputMethodExtAbility') {
         AppStorage.setOrCreate('subtypeChange', 0);
       }
-      if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
+      if (inputMethodSubtype.id === 'InputMethodExtAbility1') {
         AppStorage.setOrCreate('subtypeChange', 1);
       }
     });
