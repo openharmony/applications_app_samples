@@ -32,8 +32,8 @@ struct CustomDialogExample {
         Text($r('app.string.the_second_page_is')+`：${this.textValue}`)
           .fontSize(20)
       } else {
-        // $r('app.string.wether_to_get_the_second_page')资源文件中的value为'是否获取第二个页面的内容'
-        Text($r('app.string.wether_to_get_the_second_page'))
+        // $r('app.string.whether_to_get_the_second_page')资源文件中的value为'是否获取第二个页面的内容'
+        Text($r('app.string.whether_to_get_the_second_page'))
           .fontSize(20)
       }
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
