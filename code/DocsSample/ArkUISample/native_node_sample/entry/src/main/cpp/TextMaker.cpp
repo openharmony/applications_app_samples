@@ -85,6 +85,8 @@
 #define EVENT_TEXT_ON_CLICK 32
 #define FLOAT_50 50.0f
 
+ArkUI_NodeHandle TextMaker::text17 = nullptr;
+
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
 {
@@ -1217,20 +1219,6 @@ void setText8(ArkUI_NodeHandle &text8)
     ArkUI_NumberValue value2[] = {{.i32 = 5}};
     ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_MAX_LINES, &item2);
-    //创建选择选项
-    ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
-    //设置选择选项的菜单弹出策略为不弹出菜单
-    OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
-    //获取选择选项的菜单弹出策略
-    ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
-    //设置文本选择区域为[1, 3]，该区域将被高亮显示
-    ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
-    ArkUI_NumberValue* values = valueArray;
-    ArkUI_AttributeItem selectionItem = {.value = values, .object = options};
-    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_TEXT_SELECTION, &selectionItem);
-    //释放选择选项对象
-    OH_ArkUI_SelectionOptions_Dispose(options);
 }
 
 void setText9(ArkUI_NodeHandle &text9)
@@ -1410,6 +1398,20 @@ void setText16(ArkUI_NodeHandle &text16)
     ArkUI_AttributeItem textColorItem = {.size = 1, .object = text_options};
     Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE, &textColorItem);
     OH_ArkUI_SelectedDragPreviewStyle_Dispose(text_options);
+}
+
+void setText17(ArkUI_NodeHandle &text17)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "测试文本选中";
+    Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xffff0000}};
+    ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text17, NODE_BACKGROUND_COLOR, &item3);
+    // 应用内支持复制
+    ArkUI_NumberValue copyOptVal = {.i32 = ARKUI_COPY_OPTIONS_IN_APP};
+    ArkUI_AttributeItem copyOptItem = {&copyOptVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_COPY_OPTION, &copyOptItem);
 }
 
 void setBasicText2(ArkUI_NodeHandle &textContainer)
@@ -1858,6 +1860,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12);
@@ -1865,6 +1868,29 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     setText13(text14);
     setText15(text15);
     setText16(text16);
+    setText17(TextMaker::text17);
+
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    std::string labelStr = "setTextSelection";
+    ArkUI_AttributeItem LABEL_Item1 = {.string = labelStr.c_str()};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item1);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        // 创建选择选项
+        static ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
+        // 设置选择选项的菜单弹出策略为不弹出菜单
+        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
+        // 获取选择选项的菜单弹出策略
+        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
+        // 设置文本选择区域为[1, 3]，该区域将被高亮显示
+        ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
+        ArkUI_NumberValue* values = valueArray;
+        ArkUI_AttributeItem selectionItem = {.value = values, .size = 2, .object = options};
+        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
+        // 释放选择选项对象
+        OH_ArkUI_SelectionOptions_Dispose(options);
+    });
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
@@ -1872,6 +1898,8 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text14);
     Manager::nodeAPI_->addChild(textContainer, text15);
     Manager::nodeAPI_->addChild(textContainer, text16);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::text17);
+    Manager::nodeAPI_->addChild(textContainer, button);
 }
 
 void setAllTextPart1(ArkUI_NodeHandle &textContainer)
