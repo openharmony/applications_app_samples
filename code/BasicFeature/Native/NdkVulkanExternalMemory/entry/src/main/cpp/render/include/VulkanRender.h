@@ -77,10 +77,12 @@ private:
         VkSamplerYcbcrConversion ycbcrConversion;
         VkSampler sampler;
         VkImageView view;
+        VkSamplerYcbcrConversionInfo convInfoWrap;
     };
     VulkanExternalTextureInfo externalTextureInfo_;
     VkImage externalTextureImage_;
     VkDeviceMemory externalTextureMemory_;
+    bool initialized_ = false;
 
     struct VulkanBuffersInfo {
         VkBuffer vertexBuf;
