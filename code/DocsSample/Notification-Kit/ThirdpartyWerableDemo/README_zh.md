@@ -2,7 +2,7 @@
 
 ### 介绍
 
-[NotificationSubscriberExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)提供扩展能力，允许第三方应用接收系统通知并将其同步到穿戴设备。该能力主要用于支持手机与第三方穿戴设备之间的通知协同。
+[NotificationSubscriberExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationSubscriberExtensionAbility.md)提供扩展能力，允许第三方应用接收系统通知并将其同步到穿戴设备上。该能力主要用于支持手机与第三方穿戴设备之间的通知协同。
 
 ### 效果预览	
 <img src="screenshots/Index.png" style="width: 200%; max-width: 400px;" />
