@@ -24,7 +24,7 @@ class AttributeUtil {
 public:
     ArkUI_NativeNodeAPI_1 *api_;
     ArkUI_NodeHandle node_;
-    AttributeUtil(ArkUI_NodeHandle node, ArkUI_NativeNodeAPI_1 *api) 
+    AttributeUtil(ArkUI_NodeHandle node, ArkUI_NativeNodeAPI_1 *api)
     {
         this->node_ = node;
         api_ = api;

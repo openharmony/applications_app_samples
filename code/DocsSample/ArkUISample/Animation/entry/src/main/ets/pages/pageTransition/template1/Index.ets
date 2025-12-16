@@ -20,7 +20,7 @@ struct pageTransition1 {
 
   build() {
     Column() {
-      Image($r("app.media.transition_image1")).width('100%').height('100%')
+      Image($r('app.media.transition_image1')).width('100%').height('100%')
     }
     .width('100%')
     .height('100%')

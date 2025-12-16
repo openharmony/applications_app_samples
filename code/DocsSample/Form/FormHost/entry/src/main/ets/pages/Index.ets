@@ -211,7 +211,7 @@ struct formHostSample {
         bundleFormList.forEach((formItemInfo) => {
           let dimensionName = formHostSample.FORM_DIMENSIONS_MAP[formItemInfo.defaultDimension - 1];
           bundleFormInfo.children?.push({ text: formItemInfo.name + '#' + dimensionName });
-          this.formCardHashMap.set(formBundle + "#" + formItemInfo.name + '#' + dimensionName, formItemInfo);
+          this.formCardHashMap.set(formBundle + '#' + formItemInfo.name + '#' + dimensionName, formItemInfo);
         })
         this.formInfoRecord.push(bundleFormInfo);
       }
@@ -252,7 +252,7 @@ struct formHostSample {
               textStyle: { color: Color.Black, font: { size: 12, weight: FontWeight.Normal } },
               selectedTextStyle: { color: Color.Blue, font: { size: 12, weight: FontWeight.Bolder } },
               onAccept: (result: TextPickerResult) => {
-                this.currentFormKey = result.value[0] + "#" + result.value[1];
+                this.currentFormKey = result.value[0] + '#' + result.value[1];
                 this.pickDialogIndex = result.index[0]
                 hilog.info(DOMAIN_NUMBER, TAG,
                   `TextPickerDialog onAccept： ${this.currentFormKey}, ${this.pickDialogIndex}`);
