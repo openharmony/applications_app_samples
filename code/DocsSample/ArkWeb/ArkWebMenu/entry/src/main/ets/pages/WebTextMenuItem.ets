@@ -32,11 +32,14 @@ struct WebComponent {
     let customItem1: TextMenuItem = {
       content: 'customItem1',
       id: TextMenuItemId.of('customItem1'),
+      // 请将$r('app.media.startIcon')替换为实际资源文件
       icon: $r('app.media.startIcon')
     };
     let customItem2: TextMenuItem = {
+      // 请将$r('app.string.EntryAbility_label')替换为实际资源文件，在本示例中该资源文件的value值为"label"
       content: $r('app.string.EntryAbility_label'),
       id: TextMenuItemId.of('customItem2'),
+      // 请将$r('app.media.startIcon')替换为实际资源文件
       icon: $r('app.media.startIcon')
     };
     items.push(customItem1); // 在选项列表后添加新选项
