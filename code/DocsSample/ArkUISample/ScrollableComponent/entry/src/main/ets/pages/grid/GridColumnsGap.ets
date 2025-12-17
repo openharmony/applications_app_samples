@@ -34,7 +34,7 @@ export struct GridLayout {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // app.string.GridLayout_titleRowSpacing资源文件中的value值为‘设置行列数量占比和行间距示例’
+        // 请将$r('app.string.GridLayout_titleRowSpacing')替换为实际资源文件，在本示例中该资源文件的value值为"设置行列数量占比和行间距示例"
         ComponentCard({ title: $r('app.string.GridLayout_titleRowSpacing') }) {
           // [Start set_rows_and_columns_occupied]
           Grid() {
@@ -76,7 +76,7 @@ export struct GridLayout {
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
         }
-        // app.string.GridLayout_titleChildSpan资源文件中的value值为‘设置子组件所占行列数示例’
+        // 请将$r('app.string.GridLayout_titleChildSpan')替换为实际资源文件，在本示例中该资源文件的value值为"设置子组件所占行列数示例"
 
         ComponentCard({ title: $r('app.string.GridLayout_titleChildSpan') }) {
           Grid(undefined, this.layoutOptions) {
@@ -98,7 +98,7 @@ export struct GridLayout {
           .width('80%')
           .height(210)
         }
-        // app.string.GridLayout_titleMainAxis资源文件中的value值为‘设置主轴方向示例’
+        // 请将$r('app.string.GridLayout_titleMainAxis')替换为实际资源文件，在本示例中该资源文件的value值为"设置主轴方向示例"
 
         ComponentCard({ title: $r('app.string.GridLayout_titleMainAxis') }) {
           Grid() {
@@ -190,7 +190,7 @@ export struct GridLayout {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.GridLayout_title资源文件中的value值为‘网格开发布局’
+    // 请将$r('app.string.GridLayout_title')替换为实际资源文件，在本示例中该资源文件的value值为"网格开发布局"
 
     .title($r('app.string.GridLayout_title'))
   }

@@ -20,10 +20,13 @@ import { common } from '@kit.AbilityKit';
 @Component
 struct BindContextMenuDemo {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  private menu: string[] = [this.context.resourceManager.getStringByNameSync('modal_transition_text25'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text26'),
-    this.context.resourceManager.getStringByNameSync('modal_transition_text27')];
-  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+  // 请将$r('app.string.modal_transition_text25')替换为实际资源文件，在本示例中该资源文件的value值为"保存图片"
+  private menu: Resource[] = [$r('app.string.modal_transition_text25'),
+    // 请将$r('app.string.modal_transition_text26')替换为实际资源文件，在本示例中该资源文件的value值为"收藏"
+    $r('app.string.modal_transition_text26'),
+    // 请将$r('app.string.modal_transition_text27')替换为实际资源文件，在本示例中该资源文件的value值为"搜一搜"
+    $r('app.string.modal_transition_text27')];
+  // 请将$r('app.mdia.icon_2')替换为实际资源文件
   private pics: Resource[] = [$r('app.media.icon_1'), $r('app.media.icon_2')];
 
   // 通过@Builder构建自定义菜单项
@@ -50,7 +53,8 @@ struct BindContextMenuDemo {
   build() {
     Column() {
       Row() {
-        Text(this.context.resourceManager.getStringByNameSync('modal_transition_text28'))
+        // 请将$r('app.string.modal_transition_text28')替换为实际资源文件，在本示例中该资源文件的value值为"查看图片"
+        Text($r('app.string.modal_transition_text28'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')

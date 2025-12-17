@@ -34,13 +34,15 @@ struct BindMenuDemo {
   // 第一步: 定义一组数据用来表示菜单按钮项
   @State items: BMD[] = [
     {
-      value: this.context.resourceManager.getStringByNameSync('modal_transition_text23'),
+      // 请将$r('app.string.modal_transition_text23')替换为实际资源文件，在本示例中该资源文件的value值为"菜单项1"
+      value: $r('app.string.modal_transition_text23'),
       action: () => {
         hilog.info(DOMAIN, TAG, 'handle Menu1 select');
       }
     },
     {
-      value: this.context.resourceManager.getStringByNameSync('modal_transition_text24'),
+      // 请将$r('app.string.modal_transition_text24')替换为实际资源文件，在本示例中该资源文件的value值为"菜单项2"
+      value: $r('app.string.modal_transition_text24'),
       action: () => {
         hilog.info(DOMAIN, TAG, 'handle Menu2 select');
       }
