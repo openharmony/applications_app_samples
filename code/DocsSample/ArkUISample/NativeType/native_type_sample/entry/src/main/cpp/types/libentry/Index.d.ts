@@ -58,3 +58,4 @@ export const setUpTextCrossLanguage: (isCross: boolean) =>void;
 export const clearNodes: () =>void;
 export const createGridNativeNodeOnGetRectByIndex: (content: Object) => void;
 export const createGridNativeNodeIrregularIndexes: (content: Object) => void;
+export const createContainerNativeNode: (content: Object) => void;
