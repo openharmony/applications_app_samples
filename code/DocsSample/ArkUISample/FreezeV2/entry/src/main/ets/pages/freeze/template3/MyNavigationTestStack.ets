@@ -26,7 +26,8 @@ struct MyNavigationTestStack {
   @Provider('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local message: number = 0;
 
-  @Monitor('message') info() {
+  @Monitor('message')
+  info() {
     hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
@@ -155,7 +156,8 @@ struct NavigationContentMsgStack {
   @Param message: number = 0;
   @Param index: number = 0;
 
-  @Monitor('message') info() {
+  @Monitor('message')
+  info() {
     hilog.info(DOMAIN, 'testTag', `freeze-test NavigationContent message callback ${this.message}`);
     hilog.info(DOMAIN, 'testTag', `freeze-test ---- called by content ${this.index}`);
   }

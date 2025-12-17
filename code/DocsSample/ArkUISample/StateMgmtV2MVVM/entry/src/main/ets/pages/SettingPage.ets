@@ -30,20 +30,22 @@ struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-  build(){
-    Column(){
+  build() {
+    Column() {
       Text('Setting')
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
         Text('Show completed tasks')
-        Toggle({ type: ToggleType.Switch, isOn:this.setting.showCompletedTask })
+        Toggle({ type: ToggleType.Switch, isOn: this.setting.showCompletedTask })
           .onChange((isOn) => {
             this.setting.showCompletedTask = isOn;
           })
       }
       Button('Back to To do')
-        .onClick(()=>this.context.terminateSelf())
+        .onClick(() => {
+          this.context.terminateSelf();
+        })
         .margin({ top: 10 })
     }
     .alignItems(HorizontalAlign.Start)

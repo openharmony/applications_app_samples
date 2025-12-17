@@ -68,6 +68,7 @@ struct RepeatVirtualScrollFreeze {
 struct ChildComponent {
   @Param @Require message: string = '';
   @Param @Require bgColor: Color = Color.Pink;
+
   @Monitor('bgColor')
   onBgColorChange(monitor: IMonitor) {
     // bgColor改变时，缓存池中组件不刷新，不会打印日志
