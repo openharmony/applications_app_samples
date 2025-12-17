@@ -27,7 +27,7 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     // [EndExclude moduleJson5]
-    "routerMap": "$profile:route_map",
+    "routerMap": "$profile:router_map",
     // [StartExclude moduleJson5]
     "abilities": [
       {

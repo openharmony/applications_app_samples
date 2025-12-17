@@ -67,7 +67,7 @@ export struct PageOne {
     }.title(`${this.name}`)
     // [StartExclude NavDestinationPrepare]
     .onReady((ctx: NavDestinationContext) => {
-      // NavDestinationContext获取当前所在的导航控制器
+      // 通过NavDestinationContext获取当前所在页面的导航控制器
       this.navPathStack = ctx.pathStack;
     })
     // [EndExclude NavDestinationPrepare]
