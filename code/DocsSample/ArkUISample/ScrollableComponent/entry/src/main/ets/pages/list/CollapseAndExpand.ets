@@ -131,7 +131,7 @@ export struct CollapseAndExpand {
         .rotate({ angle: !!itemGroup.children.length ? (this.expandedItems[itemGroup.index] ? 180 : 0) : 180 })
         .animation({ curve: curves.interpolatingSpring(0, 1, 228, 22) })
     }
-    .width("100%")
+    .width('100%')
     .padding(10)
     .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
     .onClick(() => {
@@ -177,16 +177,16 @@ export struct CollapseAndExpand {
                             .height(30)
                             .width(30)
                         }
-                        .width("100%")
+                        .width('100%')
                       }
-                      .width("100%")
+                      .width('100%')
                       .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
                     })
                   }
                 }.clip(true)
               })
             }
-            .width("100%")
+            .width('100%')
           }
           .width('100%')
           .height('100%')

@@ -28,12 +28,12 @@ struct PageTransitionSrc1 {
         .margin(30)
 
       Row({ space: 10 }) {
-        Button("pushUrl")
+        Button('pushUrl')
           .onClick(() => {
             // 路由到下一个页面，push操作
             this.getUIContext().getRouter().pushUrl({ url: 'pages/pageTransition/template3/pageTransitionDst1' });
           })
-        Button("back")
+        Button('back')
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
             this.getUIContext().getRouter().back();

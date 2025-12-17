@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ComponentCard } from "../../common/Card";
+import { ComponentCard } from '../../common/Card';
 
 // [Start swiper_tabs_linkage]
 // xxx.ets
@@ -111,7 +111,7 @@ export struct SwiperAndTabsLinkage {
             }
             .loop(false)
             .onSelected((index: number) => {
-              console.info("onSelected:" + index);
+              console.info('onSelected:' + index);
               this.currentIndex = index;
               this.tabsController.changeIndex(index);
             })
