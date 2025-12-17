@@ -23,8 +23,8 @@ import fs from '@ohos.file.fs';
 const router = new Router();
 
 @Component
-export struct  UIComponentsBuilder {
-  // 构建 Text 组件的方法
+export struct UIComponentsBuilder {
+  // 构建Text组件的方法。
   @Builder
   textComponent(name: string) {
     Text(name)
@@ -113,7 +113,7 @@ export struct  UIComponentsBuilder {
     return fileName;
   }
 
-  // 将rawFile中的文件写到沙箱里
+  // 将rawFile中的文件写到沙箱里。
   async pushSourceToBox(context: common.UIAbilityContext, fileName: string) {
     let value = await context.resourceManager.getRawFileContent(fileName);
     let myBuffer: ArrayBufferLike = value.buffer;
@@ -122,6 +122,14 @@ export struct  UIComponentsBuilder {
     let writLen = await fs.write(file.fd, myBuffer);
     console.log(`Push ${fileName} to box's writLen is ${writLen}.`);
     fs.closeSync(file);
+  }
+
+  // 获取文件fd。
+  getFileFd(context: Context, fileName: string): number {
+    const filePath: string = context.cacheDir + '/' + fileName;
+    const file: fs.File = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const fd: number = file?.fd;
+    return fd;
   }
 
   isFileNameValid(fileName: string): boolean {

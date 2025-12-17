@@ -151,9 +151,7 @@ static void OnCallback(OH_ImageReceiverNative* receiver)
                      "errCode: %{public}d.", errCode);
         OH_ImageNative_Release(image);
         return;
-    }
-
-    {
+    } else {
         std::lock_guard<std::mutex> lock(g_mutex);
         g_imageInfoResult = image;
         g_imageReady = true;
