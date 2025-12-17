@@ -326,10 +326,15 @@ struct formHostSample {
         Row() {
           // 请将$r('app.string.deleteForm')替换为实际资源文件，在本示例中该资源文件的value值为"删除卡片"
           Select([{ value: $r('app.string.deleteForm') },
+            // 请将$r('app.string.updateForm')替换为实际资源文件，在本示例中该资源文件的value值为"更新卡片"
             { value: $r('app.string.updateForm') },
+            // 请将$r('app.string.visibleForms')替换为实际资源文件，在本示例中该资源文件的value值为"卡片可见"
             { value: $r('app.string.visibleForms') },
+            // 请将$r('app.string.invisibleForms')替换为实际资源文件，在本示例中该资源文件的value值为"卡片不可见"
             { value: $r('app.string.invisibleForms') },
+            // 请将$r('app.string.enableFormsUpdate')替换为实际资源文件，在本示例中该资源文件的value值为"可以更新"
             { value: $r('app.string.enableFormsUpdate') },
+            // 请将$r('app.string.disableFormsUpdate')替换为实际资源文件，在本示例中该资源文件的value值为"不可更新"
             { value: $r('app.string.disableFormsUpdate') },
           ])
             .selected(this.index)
