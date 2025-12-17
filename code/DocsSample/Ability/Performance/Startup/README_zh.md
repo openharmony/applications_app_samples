@@ -126,11 +126,9 @@ entry/src/main/ets/entryability/EntryAbility.ts
 // import distributedAccount from '@ohos.account.distributedAccount';
 // import osAccount from '@ohos.account.osAccount';
 
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
 import logger from '../common/Logger';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 ```
 
 详情可参见：[减少import的模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md/#减少import的模块)
@@ -225,6 +223,6 @@ struct Index {
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Ability/Performance/Startup/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

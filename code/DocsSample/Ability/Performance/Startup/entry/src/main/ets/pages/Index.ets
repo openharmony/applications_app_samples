@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-const LARGE_NUMBER = 10000000;
+const LARGE_NUMBER = 1000000;
 const DELAYED_TIME = 1000;
 
 @Entry
@@ -23,11 +23,9 @@ struct Index {
   private count: number = 0;
 
   aboutToAppear() {
-    // 耗时操作
-    // this.computeTask();
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text').id);
   }
 
   build() {
@@ -44,8 +42,8 @@ struct Index {
     while (this.count < LARGE_NUMBER) {
       this.count++;
     }
-    let context = getContext(this) as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text').id);
   }
 
   // 运算任务异步处理

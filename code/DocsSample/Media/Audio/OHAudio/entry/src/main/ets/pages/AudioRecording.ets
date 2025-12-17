@@ -113,9 +113,9 @@ struct AudioRecording {
         this.playSec = 0;
       }
       this.interval = setInterval(async () => {
-        let playNumber = Math.round(testNapi.getFramesWritten() * 4 / testNapi.getFileSize() * this.recordSec);
-        this.playSec = (playNumber < 0 || this.playSec === this.recordSec) ? this.recordSec : playNumber;
-        if (testNapi.getFileState()) {
+        let playNumber = Math.round(testNapi.getFramesWritten() / 48000);
+        this.playSec = (playNumber < 0 ) ? this.recordSec : playNumber;
+        if (testNapi.getFileState() || this.playSec >= this.recordSec) {
           testNapi.audioRendererStop();
           testNapi.audioRendererRelease();
           if (testNapi.getFastState()) {

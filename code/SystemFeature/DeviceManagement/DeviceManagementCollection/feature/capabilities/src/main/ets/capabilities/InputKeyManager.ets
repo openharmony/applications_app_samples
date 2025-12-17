@@ -67,6 +67,7 @@ export struct InputKeyEventManager {
       .alignItems(HorizontalAlign.Start)
       .margin(px2vp(24))
       .focusable(true)
+      .defaultFocus( true)
       .onKeyEvent((event) => {
         console.log('InputKeyEventManager Column ' + JSON.stringify(event))
         this.mKeyEventData = formatJson(JSON.stringify(event))

@@ -18,7 +18,6 @@
   "devDependencies": {},
   "name": "product",
   "description": "example description",
-  "repository": {},
   "version": "1.0.0",
   "dependencies": {
     "@ohos/http": "file:../libs/ohos-http-1.0.0.tgz",

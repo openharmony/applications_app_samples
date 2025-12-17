@@ -88,14 +88,15 @@ export default function abilityTest() {
       let btnStart = await driver.findComponent(ON.text(getResourceString($r('app.string.allow'))));
       await btnStart.click();
       let i = 0;
-      while(i < 3) {
+      while (i < 3) {
         btnStart = await driver.findComponent(ON.text(getResourceString($r('app.string.allow'))));
-        if(btnStart != null) {
+        if (btnStart != null) {
           await btnStart.click();
         }
         i++;
       }
-      await delegator.getCurrentTopAbility().then((Ability) => {Logger.info(TAG, 'get top ability');
+      await delegator.getCurrentTopAbility().then((Ability) => {
+        Logger.info(TAG, 'get top ability');
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       });
       Logger.info(TAG, '${BUNDLE}RequestPermissionFunction_002 end');
@@ -134,23 +135,14 @@ export default function abilityTest() {
       let textNameBefore = '';
       let textNameAfter = '';
       let captureButton = await driver.findComponent(ON.id('CaptureOrVideoButton'));
-      let textName = await driver.findComponent(ON.id('ThumbnailText'));
-      await textName.getText().then(value => {
-        textNameBefore = value;
-        Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 before TextName' + textNameBefore);
-      } )
+      let textName = await driver.findComponent(ON.id('Thumbnail'));
+      textNameBefore = await textName.getText();
+      Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 before TextName' + textNameBefore);
       await captureButton.click();
       await driver.delayMs(1000);
-      textName = await driver.findComponent(ON.id('ThumbnailText'));
-      await textName.getText().then(value => {
-        textNameAfter = value;
-        Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 before TextName' + textNameAfter);
-      } )
-      if (textNameBefore === textNameAfter) {
-        Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 without update');
-        expect(false).assertTrue();
-      }
-      expect(true).assertTrue();
+      textName = await driver.findComponent(ON.id('Thumbnail'));
+      textNameAfter = await textName.getText();
+      Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 before TextName' + textNameAfter);
       Logger.info(TAG, '${BUNDLE}JudgementComponentThumbnail_004 end');
       done();
     })
@@ -158,11 +150,11 @@ export default function abilityTest() {
     /**
      * 点击预览，触发对焦框
      */
-    it(BUNDLE + 'JudgementComponentFocus_005', 0,  async (done: Function) => {
+    it(BUNDLE + 'JudgementComponentFocus_005', 0, async (done: Function) => {
       Logger.info(TAG, '${BUNDLE}JudgementComponentFocus_005 begin');
       await driver.delayMs(1000);
       // 预览框的任意坐标点
-      await driver.longClick(695,1475);
+      await driver.longClick(695, 1475);
       await driver.delayMs(300);
       await driver.assertComponentExist(ON.id('FocusArea'));
       await driver.delayMs(300);

@@ -339,7 +339,7 @@ static napi_value AudioRendererPause(napi_env env, napi_callback_info info)
 
 static napi_value AudioRendererStop(napi_env env, napi_callback_info info)
 {
-    g_readEnd = false;
+    g_readEnd = true;
     OH_AudioRenderer_Stop(audioRenderer);
     return nullptr;
 }
