@@ -21,7 +21,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End HTTP_case_module_import_data_request]
 
 import { ComponentId } from '../common/CommonConstant';
-import { promptAction } from '@kit.ArkUI';
+import { promptAction, Router } from '@kit.ArkUI';
 
 // 常量定义
 const LOG_TAG: string = '[Sample_HttpRequestDemo]';
@@ -66,12 +66,27 @@ struct HttpRequestDemo {
         .fontSize($r('app.float.size20'))
         .borderRadius($r('app.float.borderRadius'))
         .id(ComponentId.STREAM_HTTP_BUTTON)
+
+      // 第三个按钮：HTTP 拓展WebDav请求
+      Button($r('app.string.Stream_HTTP_Request_WebDav_Button'))
+        .onClick(() => {
+          let page = new Router();
+          page.pushUrl({ url: 'pages/WebDav' });
+        })
+        .width('80%')
+        .height($r('app.float.height50'))
+        .margin({ top: $r('app.float.margin20') })
+        .backgroundColor(Color.Red)
+        .fontColor(Color.White)
+        .fontSize($r('app.float.size20'))
+        .borderRadius($r('app.float.borderRadius'))
+        .id(ComponentId.HTTP_WEBDAV_BUTTON)
     }
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
-  
+
   // [Start request_interface_development]
   // 封装普通的 HTTP 请求逻辑
   private sendHttpRequest(): void {
