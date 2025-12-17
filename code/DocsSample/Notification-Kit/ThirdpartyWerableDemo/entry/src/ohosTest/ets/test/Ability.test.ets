@@ -14,12 +14,36 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import { Driver, ON, Component, Point, MatchPattern } from '@kit.TestKit';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Want } from '@kit.AbilityKit';
+
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let driver = Driver.create();
+
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
+}
+
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
+    beforeAll(async () => {
+      const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      let want: Want = {
+        bundleName: 'com.example.thirdparty.wearable',
+        abilityName: 'EntryAbility',
+        moduleName: 'entry'
+      };
+      delegator.startAbility(want);
+      await sleep(1000);
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     })
@@ -37,14 +61,95 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    })
+
+    /**
+     * @tc.number SUB_SAMPLE_ThirdPartyWearable_0100
+     * @tc.name SUB_SAMPLE_ThirdPartyWearable_0100
+     * @tc.desc Allow the hap to access Bluetooth
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_ThirdPartyWearable_0100', Level.LEVEL1,
+      async (done: Function) => {
+        await sleep(1000);
+        let box1: Component =
+          await driver.findComponent(ON.type('Button').text('允许').within(ON.type('Dialog')));
+        await box1.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0200
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0200
+     * @tc.desc Opens the notification extension subscription settings page of the application
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0200', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text('openSubscriberSettings'));
+        await box1.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0300
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0300
+     * @tc.desc Obtains the Bluetooth device that has been paired with the current device and the pair state of the device
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0300', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text('queryBluetooth'));
+        await box1.click();
+        await sleep(1000);
+        let checkBoxs: Array<Component> = await driver.findComponents(ON.type('Checkbox'));
+        await sleep(500);
+        await checkBoxs[0].click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0400
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0400
+     * @tc.desc Subscribe the notification extension when the bluetooth addr is connected
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0400', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text('subscribe'));
+        await box1.click();
+        await sleep(1000);
+        done();
+      })
+
+    /**
+     * @tc.number SUB_SAMPLE_NOTIFICATION_0500
+     * @tc.name SUB_SAMPLE_NOTIFICATION_0500
+     * @tc.desc Unsubscribe the notification extension.
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('SUB_SAMPLE_NOTIFICATION_0500', Level.LEVEL1,
+      async (done: Function) => {
+        let box1: Component =
+          await driver.findComponent(ON.text('unsubscribe'));
+        await box1.click();
+        await sleep(1000);
+        done();
+      })
   })
 }
