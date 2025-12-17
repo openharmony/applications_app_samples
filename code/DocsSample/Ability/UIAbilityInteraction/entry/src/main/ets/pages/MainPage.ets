@@ -41,7 +41,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA]
-            // app.string.Start_AbilityA资源文件中的value值为'StartFuncAbilityA'
+            // 请将$r('app.string.Start_AbilityA')替换为实际资源文件，在本示例中该资源文件的value值为"StartFuncAbilityA"
             Button($r('app.string.Start_AbilityA'))
               .width('60%');
             // [EndExclude FuncAbilityA]
@@ -56,7 +56,7 @@ struct MainPage {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                // app.string.main_page_return_info资源文件中的value值为'来自EntryAbility MainPage页面'
+                // 请将$r('app.string.main_page_return_info')替换为实际资源文件，在本示例中该资源文件的value值为"来自EntryAbility MainPage页面"
                 info: $r('app.string.main_page_return_info')
               },
             };
@@ -76,7 +76,7 @@ struct MainPage {
           Row() {
             // [StartExclude FuncAbilityA_Result]
             // [StartExclude FuncAbilityA_For_Result]
-            // app.string.Start_AbilityA_Result资源文件中的value值为'StartFuncAbilityAWithResult'
+            // 请将$r('app.string.Start_AbilityA_Result')替换为实际资源文件，在本示例中该资源文件的value值为"StartFuncAbilityAWithResult"
             Button($r('app.string.Start_AbilityA_Result'))
               .width('60%');
             // [EndExclude FuncAbilityA_For_Result]
@@ -92,7 +92,7 @@ struct MainPage {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                // app.string.main_page_return_info资源文件中的value值为'来自EntryAbility MainPage页面'
+                // 请将$r('app.string.main_page_return_info')替换为实际资源文件，在本示例中该资源文件的value值为"来自EntryAbility MainPage页面"
                 info: $r('app.string.main_page_return_info')
               }
             };
@@ -120,7 +120,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Cold]
-            // app.string.Cold_Start_Page资源文件中的value值为'ColdStartPage'
+            // 请将$r('app.string.Cold_Start_Page')替换为实际资源文件，在本示例中该资源文件的value值为"ColdStartPage"
             Button($r('app.string.Cold_Start_Page'))
               .width('60%');
             // [EndExclude FuncAbility_Cold]
@@ -150,7 +150,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Hot]
-            // app.string.Hot_Start_Page资源文件中的value值为'HotStartPage'
+            // 请将$r('app.string.Hot_Start_Page')替换为实际资源文件，在本示例中该资源文件的value值为"HotStartPage"
             Button($r('app.string.Hot_Start_Page'))
               .width('60%');
             // [EndExclude FuncAbility_Hot]

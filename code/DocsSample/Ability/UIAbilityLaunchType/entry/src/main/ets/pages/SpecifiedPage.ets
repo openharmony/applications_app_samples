@@ -37,10 +37,11 @@ struct SpecifiedPage {
         // [StartExclude Page_StartModel]
         Text('EntryAbility')
           .id('HelloWorld')
+          // 请将$r('app.float.page_text_font_size')替换为实际资源文件，在本示例中该资源文件的value值为"50fp"
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
         // [EndExclude Page_StartModel]
-        // app.string.new_doc资源文件中的value值为'新建一个文档'
+        // 请将$r('app.string.new_doc')替换为实际资源文件，在本示例中该资源文件的value值为"新建一个文档"
         Button($r('app.string.new_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})
@@ -67,7 +68,7 @@ struct SpecifiedPage {
             this.KEY_NEW = this.KEY_NEW + 'a';
           })
 
-        // app.string.open_old_doc资源文件中的value值为'打开已保存文档'
+        // 请将$r('app.string.open_old_doc')替换为实际资源文件，在本示例中该资源文件的value值为"打开已保存文档"
         Button($r('app.string.open_old_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})
