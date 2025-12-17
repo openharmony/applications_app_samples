@@ -12,7 +12,7 @@
 使用说明：
 1. 安装编译生成的hap包，在生成的应用中点击对应的按钮添加对物理键盘插入的检测。
 2. 进行物理键盘热拔插，页面会实时刷新设备的物理键盘连接状态。
-3. 进入"DocsSample/input/ArkTSInputDevice/entry/src/ohosTest/ets/test/InputDeviceAbility.test.ets"文件，可以对本项目进行UI的自动化测试。
+3. 进入"DocsSample/InputKit/ArkTSInputDevice/entry/src/ohosTest/ets/test/InputDeviceAbility.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -57,7 +57,7 @@ ArkTSInputDevice
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/input/ArkTSInputDevice > .git/info/sparse-checkout
+echo code/DocsSample/InputKit/ArkTSInputDevice > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

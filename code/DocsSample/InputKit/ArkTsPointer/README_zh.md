@@ -15,7 +15,7 @@
 1. 安装编译生成的hap包,打开应用。
 2. 点击对应按键显示和隐藏光标。
 3. 点击对应按钮设置光标的样式为取色器样式和默认样式。
-4. 进入"DocsSample/input/ArkTSPointer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
+4. 进入"DocsSample/InputKit/ArkTSPointer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -55,7 +55,7 @@ ArkTSPointer
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/input/ArkTSPointer > .git/info/sparse-checkout
+echo code/DocsSample/InputKit/ArkTSPointer > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
