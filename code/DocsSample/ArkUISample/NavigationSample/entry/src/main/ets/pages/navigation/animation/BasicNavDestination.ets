@@ -21,7 +21,7 @@ export function BasicNavDestinationBuilder() {
 
 @Component
 struct BasicNavDestination {
-  // 2.在NavDestination中获取导航控制器
+  // 在NavDestination中获取导航控制器
   stack: NavPathStack = AppStorage.get<NavPathStack>('basicNavigationStack')!;
 
   build() {
