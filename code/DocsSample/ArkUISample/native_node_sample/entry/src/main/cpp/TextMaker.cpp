@@ -679,6 +679,34 @@ void setTextInput8(ArkUI_NodeHandle &textInput8)
     OH_ArkUI_SelectedDragPreviewStyle_Dispose(textInput_options);
 }
 
+void setTextInput9(ArkUI_NodeHandle &textInput9, ArkUI_NodeHandle &textInput9Button1)
+{
+    ArkUI_AttributeItem textItem = { .string = "TextInput组件测试deleteBackward" };
+    Manager::nodeAPI_->setAttribute(textInput9, NODE_TEXT_INPUT_TEXT, &textItem);
+
+    auto controller = OH_ArkUI_TextContentBaseController_Create();
+    ArkUI_AttributeItem controllerItem = { .object = controller };
+    Manager::nodeAPI_->setAttribute(textInput9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &controllerItem);
+
+    const int32_t eventId = 4242;
+    ArkUI_AttributeItem buttonLabel{ .string = "TextInput DeleteBackward" };
+    Manager::nodeAPI_->setAttribute(textInput9Button1, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textInput9Button1, NODE_ON_CLICK_EVENT, eventId, controller);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textInput9Button1, [](ArkUI_NodeEvent* event) {
+        auto eventType{ OH_ArkUI_NodeEvent_GetEventType(event) };
+        auto eventId{ OH_ArkUI_NodeEvent_GetTargetId(event) };
+        auto controller{ OH_ArkUI_NodeEvent_GetUserData(event) };
+        const int32_t targetEventId = 4242;
+
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == targetEventId) {
+            OH_ArkUI_TextContentBaseController_DeleteBackward(
+                reinterpret_cast<ArkUI_TextContentBaseController*>(controller)
+            );
+        }
+    });
+}
+
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -1232,15 +1260,6 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
-    // 创建文本内容基础控制器指针
-    auto controller{ OH_ArkUI_TextContentBaseController_Create() };
-    // 绑定text9到controller->node上
-    ArkUI_AttributeItem item_controller{ .object = controller };
-    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &item_controller);
-    // 调用DeleteBackward删除文本内最后一个字符
-    OH_ArkUI_TextContentBaseController_DeleteBackward(controller);
-    // 销毁指针
-    OH_ArkUI_TextContentBaseController_Dispose(controller);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
@@ -1624,6 +1643,34 @@ void setTextArea9(ArkUI_NodeHandle &textArea9)
     OH_ArkUI_SelectedDragPreviewStyle_Dispose(textArea_options);
 }
 
+void setTextArea10(ArkUI_NodeHandle &textArea10, ArkUI_NodeHandle &textArea10Button1)
+{
+    ArkUI_AttributeItem textItem = { .string = "TextArea组件测试deleteBackward" };
+    Manager::nodeAPI_->setAttribute(textArea10, NODE_TEXT_AREA_TEXT, &textItem);
+
+    auto controller = OH_ArkUI_TextContentBaseController_Create();
+    ArkUI_AttributeItem controllerItem = { .object = controller };
+    Manager::nodeAPI_->setAttribute(textArea10, NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE, &controllerItem);
+
+    const int32_t eventId = 4242;
+    ArkUI_AttributeItem buttonLabel{ .string = "TextArea DeleteBackward" };
+    Manager::nodeAPI_->setAttribute(textArea10Button1, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textArea10Button1, NODE_ON_CLICK_EVENT, eventId, controller);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textArea10Button1, [](ArkUI_NodeEvent* event) {
+        auto eventType{ OH_ArkUI_NodeEvent_GetEventType(event) };
+        auto eventId{ OH_ArkUI_NodeEvent_GetTargetId(event) };
+        auto controller{ OH_ArkUI_NodeEvent_GetUserData(event) };
+        const int32_t targetEventId = 4242;
+
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == targetEventId) {
+            OH_ArkUI_TextContentBaseController_DeleteBackward(
+                reinterpret_cast<ArkUI_TextContentBaseController*>(controller)
+            );
+        }
+    });
+}
+
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
 {
     const char *textAreaText = "这是设置自定义键盘";
@@ -1976,6 +2023,8 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput9Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     setTextInput1(textInput1);
     setTextInput2(textInput2);
@@ -1985,6 +2034,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setTextInput6(textInput6);
     setTextInput7(textInput7);
     setTextInput8(textInput8);
+    setTextInput9(textInput9, textInput9Button1);
     setTextInputSelectAI(textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
@@ -1994,6 +2044,8 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput6);
     Manager::nodeAPI_->addChild(textContainer, textInput7);
     Manager::nodeAPI_->addChild(textContainer, textInput8);
+    Manager::nodeAPI_->addChild(textContainer, textInput9);
+    Manager::nodeAPI_->addChild(textContainer, textInput9Button1);
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
 void setAllTextArea(ArkUI_NodeHandle &textContainer)
@@ -2007,6 +2059,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea10Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setTextArea1(textArea1);
     setTextArea2(textArea2);
@@ -2018,6 +2072,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea7(textArea7);
     setTextArea8(textArea8);
     setTextArea9(textArea9);
+    setTextArea10(textArea10, textArea10Button1);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
@@ -2030,6 +2085,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea7);
     Manager::nodeAPI_->addChild(textContainer, textArea8);
     Manager::nodeAPI_->addChild(textContainer, textArea9);
+    Manager::nodeAPI_->addChild(textContainer, textArea10);
+    Manager::nodeAPI_->addChild(textContainer, textArea10Button1);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)
