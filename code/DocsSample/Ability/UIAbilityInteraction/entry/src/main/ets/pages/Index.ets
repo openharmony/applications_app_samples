@@ -32,6 +32,7 @@ struct Index {
     Navigation(this.pathStack) {
       Text(this.message)
         .id('Index')
+        // 请将$r('app.float.page_text_font_size')替换为实际资源文件，在本示例中该资源文件的value值为"50fp"
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .alignRules({
