@@ -16,6 +16,7 @@
 import { ComponentCard } from '../../common/Card';
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 @Reusable
 @Component
@@ -79,6 +80,7 @@ export struct WaterFlowDynamicSwitchover {
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
   private gridItems: number[] = [];
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   // 计算FlowItem宽/高
   getSize() {
@@ -122,7 +124,8 @@ export struct WaterFlowDynamicSwitchover {
     Row() {
       LoadingProgress()
         .color(Color.Blue).height(50).aspectRatio(1).width('20%')
-      Text(`正在加载`)
+      //请在resources\base\element\string.json文件中配置name为'waterFlow_text1' ，value为非空字符串的资源
+      Text(this.context.resourceManager.getStringByNameSync('waterFlow_text1'))
         .fontSize(20)
         .width('30%')
         .height(50)
@@ -137,7 +140,8 @@ export struct WaterFlowDynamicSwitchover {
         // $r('app.string.WaterFlowDynamicSwitchover_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.WaterFlowDynamicSwitchover_title') }) {
           Column({ space: 2 }) {
-            Button('切换列数').fontSize(20).onClick(() => {
+            //请在resources\base\element\string.json文件中配置name为'waterFlow_text2' ，value为非空字符串的资源
+            Button(this.context.resourceManager.getStringByNameSync('waterFlow_text2')).fontSize(20).onClick(() => {
               if (this.columns === 2) {
                 this.columns = 1;
               } else {

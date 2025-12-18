@@ -14,6 +14,8 @@
 */
 
 // [Start state_problem_unregister_state_callback]
+import { common } from '@kit.AbilityKit';
+
 class Model {
   private callback: (() => void) | undefined = () => {
   };
@@ -39,6 +41,7 @@ let model: Model = new Model();
 @Component
 struct Test {
   @State count: number = 10;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear(): void {
     model.add(() => {
@@ -48,7 +51,8 @@ struct Test {
 
   build() {
     Column() {
-      Text(`count值: ${this.count}`)
+      //请在resources\base\element\string.json文件中配置name为'state_countvalue_text1' ，value为非空字符串的资源
+      Text(this.context.resourceManager.getStringByNameSync('state_countvalue_text1') + `${this.count}`)
       Button('change')
         .onClick(() => {
           model.call();

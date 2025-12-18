@@ -16,6 +16,7 @@
 // [Start Main_TabContentPage]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
 
 class Params {
   public message: number = 0;
@@ -63,6 +64,7 @@ const textNodeController: TextNodeController = new TextNodeController();
 struct TabContentTest {
   @Local message: number = 0;
   @Local index:number = 1;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Row() {
@@ -77,7 +79,8 @@ struct TabContentTest {
           TabContent() {
             Column() {
               FreezeBuildNode({ message: this.message })
-              Text('Tabs遍历后BuilderNode处于冻结')
+              //请在resources\base\element\string.json文件中配置name为'text3' ，value为非空字符串的资源
+              Text(this.context.resourceManager.getStringByNameSync('text3'))
                 .fontWeight(FontWeight.Bold)
                 .margin({ top: 48, bottom: 48 })
                 .fontSize(30)
