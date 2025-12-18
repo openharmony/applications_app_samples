@@ -73,7 +73,7 @@ export async function createCRL(crmPem: string): Promise<cert.CertCRLCollection>
     throw error as Error;
   }
 }
-
+// [StartExclude create-only-check-leaf-cert-revocate-object]
 let certChainData =
     '-----BEGIN CERTIFICATE-----\n' +
     'MIIC8TCCAlqgAwIBAgIUIUvzWX3AOgQ/QjNel1SBhBtTPBAwDQYJKoZIhvcNAQEL\n' +
@@ -156,7 +156,7 @@ let crl =
     'yBX3iW9+nrXfJKoHRkP9NMqUdk1jRBVNIG8xT+EYssa+lurN+wDjytI+BEA+kCJQ\n' +
     '4S4wrhhI4mBOBr53GbbsgZfEUhCrMoE=\n' +
     '-----END X509 CRL-----';
-
+// [EndExclude create-only-check-leaf-cert-revocate-object]
 async function doTestLeafCertCrlCheck() {
   try {
     let x509CertChain: cert.X509CertChain = await createCertChain(certChainData);

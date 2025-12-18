@@ -60,6 +60,7 @@ async function createCert(certData: string): Promise<cert.X509Cert> {
   return x509Cert;
 }
 
+// [StartExclude create-online-check-intermediate-certificateonly-object]
 let caChain =
   '-----BEGIN CERTIFICATE-----\n' +
     'MIICezCCAiCgAwIBAgIUDczOyWG59LZLx2kP97vi5y0oL+QwCgYIKoZIzj0EAwIw\n' +
@@ -132,7 +133,7 @@ let caTrustCert =
     '3zTMVfJVMhHvSf2j+z7mUrRKCc0f21635DkCIQDqxlpMbRjs1bCL4pipCvD+w8v8\n' +
     'i4aEhDebPmxT8WuR7A==\n' +
     '-----END CERTIFICATE-----';
-
+// [EndExclude create-online-check-intermediate-certificateonly-object]
 async function doTestCaCheck() {
   try {
     let x509CertChain: cert.X509CertChain = await createCertChain(caChain);

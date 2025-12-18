@@ -18,7 +18,7 @@
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
-
+// [StartExclude verify-certchain-by-systemca]
 let certChainData = '-----BEGIN CERTIFICATE-----\r\n' +
   'MIIJ7DCCCNSgAwIBAgIMTkADpl62gfh/S9jrMA0GCSqGSIb3DQEBCwUAMFAxCzAJ\r\n' +
   'BgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSYwJAYDVQQDEx1H\r\n' +
@@ -121,7 +121,7 @@ let certChainData = '-----BEGIN CERTIFICATE-----\r\n' +
   'Mx86OyXShkDOOyyGeMlhLxS67ttVb9+E7gUJTb0o2HLO02JQZR7rkpeDMdmztcpH\r\n' +
   'WD9f\r\n' +
   '-----END CERTIFICATE-----\r\n';
-
+// [EndExclude verify-certchain-by-systemca]
 async function sample() {
   let textEncoder = new util.TextEncoder();
   // 证书链二进制数据，需业务自行赋值。
