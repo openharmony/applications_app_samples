@@ -15,13 +15,13 @@
 
 // [Start EventSub_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
-// [Start PssleakEvent_Button]
+// [Start PssLeakEvent_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 // [End EventSub_Header]
 // [Start EventSub_Index_Capi_Header]
 import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
-// [End PssleakEvent_Button]
+// [End PssLeakEvent_Header]
 @Entry
 @Component
 struct Index {
@@ -103,8 +103,8 @@ struct Index {
             testNapi.testNullptr();
           })
         // [End Native_CrashEvent_Button]
-        // [Start PssleakEventTS_Button]
-        // [Start PssleakEvent_Button]
+        // [Start PssLeakEventTS_Button]
+        // [Start PssLeakEvent_Button]
         Button('pss leak')
             .type(ButtonType.Capsule)
             .margin({
@@ -118,7 +118,7 @@ struct Index {
               hilog.info(0x0000, 'testTag', 'click pss leak button');
               testNapi.leakMB(3072);
             })
-        // [End PssleakEvent_Button]
+        // [End PssLeakEvent_Button]
         Button('js leak')
           .type(ButtonType.Capsule)
           .margin({
@@ -132,7 +132,7 @@ struct Index {
               this.leakedArray.push(new Array(500000).fill(1));
             }
           })
-        // [End PssleakEventTS_Button]
+        // [End PssLeakEventTS_Button]
         // [Start AppKillEvent_Button]
         Button(this.message)
           .type(ButtonType.Capsule)
