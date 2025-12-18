@@ -27,7 +27,6 @@ export struct HapPageA {
     }.title('HapPageA')
     .onReady((ctx: NavDestinationContext) => {
       let config = ctx.getConfigInRouteMap();
-      console.log(`testTag HapPageA config.data: ${JSON.stringify(config?.data)}`);
     })
   }
 }
