@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import selectionManager from '@ohos.selectionInput.selectionManager';
-import SelectionExtensionContext from '@kit.BasicServicesKit';
+import { selectionManager, SelectionExtensionContext } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export class SelectionModel {

@@ -20,12 +20,8 @@ import { SelectionModel } from '../models/SelectionModel';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class SelectionAbilityStub extends rpc.RemoteObject {
-  constructor(des) {
-    if (typeof des === "string") {
-      super(des);
-    } else {
-      return null;
-    }
+  constructor(des: string) {
+    super(des);
   }
   onRemoteMessageRequest(
     code: number,
@@ -34,23 +30,12 @@ class SelectionAbilityStub extends rpc.RemoteObject {
     options: rpc.MessageOption
   ): boolean | Promise<boolean> {
     hilog.info(0x0000, 'SelectionExtensionAbility', `enter onRemoteMessageRequest code: ${code}`);
-    try{
-      switch (code) {
-        case 16:
-          reply.writeString("Hello");
-          return true;
-      }
-    } catch (error) {
-      hilog.info(0x0000, 'SelectionExtensionAbility', `sendDisconnext sendMessageRequest failed: ${error}`);
-    };
+    return true;
   }
 }
 
-class ExtensionAbility extends SelectionExtensionAbility {
-  panel_: selectionManager.Panel = undefined;
-  sleep: (ms: number) => Promise<Function> = (ms: number): Promise<Function> => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+class SelectionExtAbility extends SelectionExtensionAbility {
+  private panel_: selectionManager.Panel | undefined = undefined;
 
   onConnect(want: Want): rpc.RemoteObject {
     SelectionModel.getInstance().setContext(this.context);
@@ -69,7 +54,7 @@ class ExtensionAbility extends SelectionExtensionAbility {
 
   async createSelectionPanel() {
     let panelInfo: PanelInfo = {
-      panelType: PanelType:MENU_PANEL,
+      panelType: PanelType.MENU_PANEL,
       x: 0,
       y: 0,
       width: 500,
@@ -93,6 +78,10 @@ class ExtensionAbility extends SelectionExtensionAbility {
 
   async onSelected(info: selectionManager.SelectionInfo) {
     SelectionModel.getInstance().setSelectionInfo(info);
+    if (!this.panel_) {
+      hilog.info(0x0000, 'SelectionExtensionAbility', 'Panel is not created yet.');
+      return;
+    }
     this.panel_.moveTo(info.startDisplayX, info.startDisplayY)
       .then(() => {
         hilog.info(0x0000, 'SelectionExtensionAbility', 'Move succeed.');
@@ -117,4 +106,4 @@ class ExtensionAbility extends SelectionExtensionAbility {
   }
 }
 
-export default ExtensionAbility;
+export default SelectionExtAbility;

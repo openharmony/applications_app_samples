@@ -14,7 +14,7 @@
  */
 
 import { SelectionModel } from '../models/SelectionModel';
-import { selectionManager, PanelInfo, BusinessError } from '@kit.BasicServicesKit';
+import { selectionManager, PanelInfo, BusinessError, PanelType, SelectionExtensionContext } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import Want from '@ohos.app.ability.Want';
 
@@ -27,7 +27,7 @@ struct MenuPanel {
   CreateMainPanel() {
     this.selectionInfo = SelectionModel.getInstance().getSelectionInfo();
     let panelInfo: PanelInfo = {
-      PanelType: 2,
+      panelType: PanelType.MAIN_PANEL,
       x: 0,
       y: 0,
       width: 1500,

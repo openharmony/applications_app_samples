@@ -14,7 +14,7 @@
  */
 
 import { SelectionModel } from '../models/SelectionModel';
-import selectionManager from '@kit.BasicServicesKit';
+import selectionManager from '@ohos.selectionInput.selectionManager';
 @Entry
 @Component
 struct MainPanel {
