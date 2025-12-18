@@ -21,7 +21,7 @@ struct DisplayVectorDiagram {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
         // [Start svg_fillColor]
-        // $r('app.media.cloud')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.cloud')替换为实际资源文件
         Image($r('app.media.cloud'))
           .width(50)
           .fillColor(Color.Blue)
@@ -36,7 +36,7 @@ struct DisplayVectorDiagram {
 
       }
       // [Start synchronous_imageloading]
-      // $r('app.media.icon')需要替换为开发者所需的资源文件
+      // 请将$r('app.media.icon')替换为实际资源文件
       Image($r('app.media.icon'))
         .syncLoad(true)
       // [End synchronous_imageloading]

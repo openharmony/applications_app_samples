@@ -43,11 +43,11 @@ export struct PopVibrateMenuExample  {
   @Builder
   MyMenu() {
     Menu() {
-      // 'app.string.menu_single'资源文件中的value值为"菜单选项单级"。
+      // 请将$r('app.string.menu_single')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项单级"
       MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_single') })
-      // 'app.string.menu_forbid'资源文件中的value值为"菜单不可选择"。
+      // 请将$r('app.string.menu_forbid')替换为实际资源文件，在本示例中该资源文件的value值为"菜单不可选择"
       MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_forbid') }).enabled(false)
-      // 'app.string.menu_more'资源文件中的value值为"菜单选项多级"。
+      // 请将$r('app.string.menu_more')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项多级"
       MenuItem({
         startIcon: this.iconStr,
         content: $r('app.string.menu_more'),
@@ -55,9 +55,9 @@ export struct PopVibrateMenuExample  {
         // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
         builder: this.SubMenu
       })
-      // 'app.string.menu_subtitle'资源文件中的value值为"小标题"。
+      // 请将$r('app.string.menu_subtitle')替换为实际资源文件，在本示例中该资源文件的value值为"小标题"
       MenuItemGroup({ header: $r('app.string.menu_subtitle') }) {
-        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+        // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
         MenuItem({ content: $r('app.string.menu_selection') })
           .selectIcon(true)
           .selected(this.select)
@@ -66,7 +66,7 @@ export struct PopVibrateMenuExample  {
             let str: Tmp = new Tmp();
             str.set($r('app.media.app_icon'));
           })
-        // 'app.string.menu_more'资源文件中的value值为"菜单选项多级"。
+        // 请将$r('app.string.menu_more')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项多级"
         MenuItem({
           startIcon: $r('app.media.app_icon'),
           content: $r('app.string.menu_more'),
@@ -74,7 +74,7 @@ export struct PopVibrateMenuExample  {
           builder: this.SubMenu
         })
       }
-      // 'app.string.menu_single'资源文件中的value值为"菜单选项单级"。
+      // 请将$r('app.string.menu_single')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项单级"
       MenuItem({
         startIcon: this.iconStr2,
         content: $r('app.string.menu_single'),

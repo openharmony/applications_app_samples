@@ -51,6 +51,7 @@ export struct AvoidSoftKeyboardPopupExample {
       .width('100%')
     }
     // [StartExclude avoidSoftKeyboard_popup]
+    // 请将$r('app.string.AvoidSoftKeyboardPopupExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"气泡避让软键盘"
     .title($r('app.string.AvoidSoftKeyboardPopupExample_title'))
     // [EndExclude avoidSoftKeyboard_popup]
   }

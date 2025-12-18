@@ -51,6 +51,7 @@ export struct BindComponentMenuExample {
       .backgroundColor('#F5F5F5')
     }
     // [StartExclude bindComponent_menu]
+    // 请将$r('app.string.BindComponentMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"基于绑定组件指定位置弹出菜单"
     .title($r('app.string.BindComponentMenu_title'))
     // [EndExclude bindComponent_menu]
   }

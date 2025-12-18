@@ -166,6 +166,7 @@ export struct NestDialog {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CustomDialog_nest')替换为实际资源文件，在本示例中该资源文件的value值为"嵌套自定义弹出框"
     .title($r('app.string.CustomDialog_nest'))
   }
 }

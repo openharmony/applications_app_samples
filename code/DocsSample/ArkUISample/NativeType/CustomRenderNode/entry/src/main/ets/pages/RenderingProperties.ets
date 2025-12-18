@@ -187,7 +187,7 @@ export struct RenderingProperties {
       // [StartExclude rendering_properties]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.RenderingProperties')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.RenderingProperties')替换为实际资源文件，在本示例中该资源文件的value值为"设置和获取渲染相关属性"
     .title($r('app.string.RenderingProperties'));
 
     // [EndExclude rendering_properties]

@@ -20,6 +20,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      // 请将$r('app.string.CustomDialog_Animation')替换为实际资源文件，在本示例中该资源文件的value值为"弹窗渐出动画预览"
       Text($r('app.string.CustomDialog_Animation'))
     }
     .padding({
@@ -73,6 +74,7 @@ export struct DialogAnimation {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CustomDialog_Animation1')替换为实际资源文件，在本示例中该资源文件的value值为"弹出框动画"
     .title($r('app.string.CustomDialog_Animation1'))
   }
 }

@@ -167,9 +167,9 @@ struct Index {
       List({ space: 20, initialIndex: 0 }) {
         ListItem() {
           Column({ space: 5 }) {
-            // $r('app.media.Verify_The_Child_Node_Function_Of_FrameNode')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Verify_The_Child_Node_Function_Of_FrameNode')替换为实际资源文件，在本示例中该资源文件的value值为"验证FrameNode子节点的增、删、改功能"
             Text($r('app.string.Verify_The_Child_Node_Function_Of_FrameNode'))
-            // $r('app.media.Operate_On_Custom_FrameNode')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Custom_FrameNode')替换为实际资源文件，在本示例中该资源文件的value值为"对自定义FrameNode进行操作"
             Button($r('app.string.Operate_On_Custom_FrameNode'))
               .fontSize(16)
               .width(400)
@@ -177,7 +177,7 @@ struct Index {
                 // 对FrameNode节点进行增、删、改操作，正常实现。
                 this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.frameNode);
               })
-            // $r('app.media.Operate_On_Proxy_Nodes_In_BuilderNode')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode')替换为实际资源文件，在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作"
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode'))
               .fontSize(16)
               .width(400)
@@ -186,7 +186,7 @@ struct Index {
                 this.myNodeController.operationFrameNodeWithFrameNode
                 (this.myNodeController?.buttonNode?.getFrameNode());
               })
-            // $r('app.media.Operate_On_Proxy_Nodes_In_System_Components')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components')替换为实际资源文件，在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作"
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components'))
               .fontSize(16)
               .width(400)
@@ -199,9 +199,9 @@ struct Index {
 
         ListItem() {
           Column({ space: 5 }) {
-            // $r('app.media.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes')替换为实际资源文件，在本示例中该资源文件的value值为"验证FrameNode添加子节点的特殊场景"
             Text($r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes'))
-            // $r('app.media.Add_Proxy_Nodes_Of_BuilderNode')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Add_Proxy_Nodes_Of_BuilderNode')替换为实际资源文件，在本示例中该资源文件的value值为"新增BuilderNode的代理节点"
             Button($r('app.string.Add_Proxy_Nodes_Of_BuilderNode'))
               .fontSize(16)
               .width(400)
@@ -210,7 +210,7 @@ struct Index {
                 buttonNode.build(wrapBuilder<[Params]>(buttonBuilder), { text: 'BUTTON' })
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, buttonNode?.getFrameNode());
               })
-            // $r('app.media.Add_Proxy_Nodes_Of_System_Components')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Add_Proxy_Nodes_Of_System_Components')替换为实际资源文件，在本示例中该资源文件的value值为"新增系统组件代理节点"
             Button($r('app.string.Add_Proxy_Nodes_Of_System_Components'))
               .fontSize(16)
               .width(400)
@@ -218,7 +218,7 @@ struct Index {
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode,
                   this.myNodeController?.rootNode?.getParent());
               })
-            // $r('app.media.Add_Custom_Nodes_With_Existing_Parent_Nodes')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Add_Custom_Nodes_With_Existing_Parent_Nodes')替换为实际资源文件，在本示例中该资源文件的value值为"新增已有父节点的自定义节点"
             Button($r('app.string.Add_Custom_Nodes_With_Existing_Parent_Nodes'))
               .fontSize(16)
               .width(400)
@@ -231,9 +231,9 @@ struct Index {
 
         ListItem() {
           Column({ space: 5 }) {
-            // $r('app.media.Verify_Query_Function_Of_FrameNode')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Verify_Query_Function_Of_FrameNode')替换为实际资源文件，在本示例中该资源文件的value值为"验证FrameNode节点的查询功能"
             Text($r('app.string.Verify_Query_Function_Of_FrameNode'))
-            // $r('app.media.Operate_On_Custom_FrameNode_Again')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Custom_FrameNode_Again')替换为实际资源文件，在本示例中该资源文件的value值为"对自定义FrameNode进行操作"
             Button($r('app.string.Operate_On_Custom_FrameNode_Again'))
               .fontSize(16)
               .width(400)
@@ -245,7 +245,7 @@ struct Index {
                   this.result = this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.frameNode);
                 }, 2000)
               })
-            // $r('app.media.Operate_On_Proxy_Nodes_In_BuilderNode_Again')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again')替换为实际资源文件，在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作"
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again'))
               .fontSize(16)
               .width(400)
@@ -254,7 +254,7 @@ struct Index {
                 this.result =
                   this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.buttonNode?.getFrameNode());
               })
-            // $r('app.media.Operate_On_Proxy_Nodes_In_System_Components_Again')需要替换为开发者所需的文本资源文件
+            // 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again')替换为实际资源文件，在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作"
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again'))
               .fontSize(16)
               .width(400)

@@ -66,6 +66,7 @@ export struct OpenCloseToastExample {
       // [StartExclude toast_openClose]
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.OpenCloseToast_title')替换为实际资源文件，在本示例中该资源文件的value值为"显示关闭即时反馈"
     .title($r('app.string.OpenCloseToast_title'))
     // [EndExclude toast_openClose]
   }

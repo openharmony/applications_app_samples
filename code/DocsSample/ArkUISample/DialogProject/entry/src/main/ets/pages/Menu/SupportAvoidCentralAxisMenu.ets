@@ -115,6 +115,7 @@ export struct SupportAvoidCentralAxisMenuExample {
       .width('100%')
     }
     // [StartExclude avoid_central_axis_menu]
+    // 请将$r('app.string.SupportAvoidCentralAxisMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"菜单支持避让中轴"
     .title($r('app.string.SupportAvoidCentralAxisMenu_title'))
     // [EndExclude avoid_central_axis_menu]
   }

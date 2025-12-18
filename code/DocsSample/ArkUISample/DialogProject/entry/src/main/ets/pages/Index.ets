@@ -28,34 +28,42 @@ import { OverlayManagerDestination, OverlayManager_ROUTE_PREFIX } from './Overla
 
 const routes: Route[] = [
   {
+    // 请将$r('app.string.openCustomDialog')替换为实际资源文件，在本示例中该资源文件的value值为"OpenCustomDialogWithController弹窗"
     title: resource.resourceToString($r('app.string.openCustomDialog')),
     name: CustomDialog_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.CustomDialog1')替换为实际资源文件，在本示例中该资源文件的value值为"基础自定义弹出框/CustomDialog"
     title: resource.resourceToString($r('app.string.CustomDialog1')),
     name: Custom_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.FixedStyleDialog1')替换为实际资源文件，在本示例中该资源文件的value值为"固定样式弹出框/FixedStyleDialog"
     title: resource.resourceToString($r('app.string.FixedStyleDialog1')),
     name: Fixed_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.OpenCloseToast_title')替换为实际资源文件，在本示例中该资源文件的value值为"菜单控制/Menu"
     title: resource.resourceToString($r('app.string.MaskDialog')),
     name: Mask_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.Menu1')替换为实际资源文件，在本示例中该资源文件的value值为"显示关闭即时反馈"
     title: resource.resourceToString($r('app.string.Menu1')),
     name: Menu_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.Toast1')替换为实际资源文件，在本示例中该资源文件的value值为"即时反馈/Toast"
     title: resource.resourceToString($r('app.string.Toast1')),
     name: Toast_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.Popup1')替换为实际资源文件，在本示例中该资源文件的value值为"气泡提示/Popup"
     title: resource.resourceToString($r('app.string.Popup1')),
     name: Popup_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.OverlayManager1')替换为实际资源文件，在本示例中该资源文件的value值为"设置浮层/OverlayManager"
     title: resource.resourceToString($r('app.string.OverlayManager1')),
     name: OverlayManager_ROUTE_PREFIX
   }

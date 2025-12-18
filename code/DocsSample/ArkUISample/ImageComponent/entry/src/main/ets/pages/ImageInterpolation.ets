@@ -20,7 +20,7 @@ struct ImageInterpolationType {
   build() {
     Column() {
       Row() {
-        // $r('app.media.grass')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.grass')替换为实际资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
@@ -29,7 +29,7 @@ struct ImageInterpolationType {
           // overlay接口暂不支持深色模式
           .overlay('Interpolation.None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
-        // $r('app.media.grass')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.grass')替换为实际资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
@@ -42,7 +42,7 @@ struct ImageInterpolationType {
       .justifyContent(FlexAlign.Center)
 
       Row() {
-        // $r('app.media.grass')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.grass')替换为实际资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
@@ -51,7 +51,7 @@ struct ImageInterpolationType {
           // overlay接口暂不支持深色模式
           .overlay('Interpolation.Medium', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
-        // $r('app.media.grass')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.grass')替换为实际资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度

@@ -24,7 +24,7 @@ struct ImageScalingType {
     Scroll(this.scroller) {
       Row() {
         Column() {
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -35,7 +35,7 @@ struct ImageScalingType {
             .margin({bottom:25,left:10})
             // overlay接口暂不支持深色模式
             .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -46,7 +46,7 @@ struct ImageScalingType {
             .margin({bottom:25,left:10})
             // overlay接口暂不支持深色模式
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -60,7 +60,7 @@ struct ImageScalingType {
         }
 
         Column() {
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -71,7 +71,7 @@ struct ImageScalingType {
             .margin({bottom:25,left:10})
             // overlay接口暂不支持深色模式
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -82,7 +82,7 @@ struct ImageScalingType {
             .margin({bottom:25,left:10})
             // overlay接口暂不支持深色模式
             .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          // $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.img_2')替换为实际资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)

@@ -17,6 +17,7 @@
 @Entry
 @Component
 struct Index2 {
+  // 请将$r('app.string.back')替换为实际资源文件，在本示例中该资源文件的value值为"点击返回"
   @State message: ResourceStr = $r('app.string.back');
   build() {
     Column() {

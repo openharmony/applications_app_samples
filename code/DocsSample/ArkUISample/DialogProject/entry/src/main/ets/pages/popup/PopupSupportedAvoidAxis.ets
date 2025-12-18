@@ -17,20 +17,28 @@
 @Entry
 @Component
 export struct SupportedAvoidAxisPopupExample {
+  // 请在resources\base\element\string.json文件中配置name为'Upper_half_screen' ，value为非空字符串的资源
   @State upScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Upper_half_screen') as string;
+  // 请在resources\base\element\string.json文件中配置name为'Middle_axle' ，value为非空字符串的资源
   @State middleAxle: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Middle_axle') as string;
+  // 请在resources\base\element\string.json文件中配置name为'Lower_half_screen' ，value为非空字符串的资源
   @State lowerScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Lower_half_screen') as string;
+  // 请在resources\base\element\string.json文件中配置name为'Subwindow_display' ，value为非空字符串的资源
   @State subwindowDisplay: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Subwindow_display') as string;
+  // 请在resources\base\element\string.json文件中配置name为'Subwindow' ，value为非空字符串的资源
   @State subwindow: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Subwindow') as string;
+  // 请在resources\base\element\string.json文件中配置name为'Non_Subwindow' ，value为非空字符串的资源
   @State nonSubwindow: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Non_Subwindow') as string;
+  // 请在resources\base\element\string.json文件中配置name为'zone' ，value为非空字符串的资源
   @State zone: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('zone') as string;
+  // 请在resources\base\element\string.json文件中配置name为'hoverMode_start' ，value为非空字符串的资源
   @State hoverModeStart: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('hoverMode_start') as string;
 
@@ -98,6 +106,7 @@ export struct SupportedAvoidAxisPopupExample {
       .width('100%')
     }
     // [StartExclude supportedAvoidAxis_popup]
+    // 请将$r('app.string.SupportedAvoidAxisPopupExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"气泡支持避让中轴"
     .title($r('app.string.SupportedAvoidAxisPopupExample_title'))
     // [EndExclude supportedAvoidAxis_popup]
   }

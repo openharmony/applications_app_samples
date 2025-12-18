@@ -37,7 +37,7 @@ export struct CustomDialogWithKeyboardAvoidDistance {
     NavDestination() {
       Row() {
         Row({ space: 20 }) {
-          // $r('app.string.open_windows')资源文件中的value为'打开弹窗'
+          // 请将$r('app.string.open_windows')替换为实际资源文件，在本示例中该资源文件的value值为"打开弹窗"
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {

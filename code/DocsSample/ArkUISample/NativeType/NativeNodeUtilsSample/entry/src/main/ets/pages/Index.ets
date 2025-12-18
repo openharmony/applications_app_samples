@@ -63,7 +63,7 @@ struct Index {
               url: 'pages/nativeUI/NativeUIPage'
             })
           })
-        // app.string.Create_Component资源文件中的value值为'多实例创建组件'
+        // 请将$r('app.string.Create_Component')替换为实际资源文件，在本示例中该资源文件的value值为"多实例创建组件"
         Button($r('app.string.Create_Component')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
@@ -71,7 +71,7 @@ struct Index {
             url: 'pages/Entry'
           });
         })
-        // app.string.Custom_Attribute_Test资源文件中的value值为'自定义属性测试'
+        // 请将$r('app.string.Custom_Attribute_Test')替换为实际资源文件，在本示例中该资源文件的value值为"自定义属性测试"
         Button($r('app.string.Custom_Attribute_Test')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
@@ -79,7 +79,7 @@ struct Index {
             url: 'pages/CustomProperty'
           });
         })
-        // app.string.LazyForEach_Page资源文件中的value值为'懒加载页面'
+        // 请将$r('app.string.LazyForEach_Page')替换为实际资源文件，在本示例中该资源文件的value值为"懒加载页面"
         Button($r('app.string.LazyForEach_Page')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
@@ -88,7 +88,7 @@ struct Index {
           });
         })
         // 该接口作用为NDK侧保存主窗口实例，用户保护实例错误调用场景。
-        // app.string.Setting_NDKNativeWindows_Context资源文件中的value值为'设置NDK侧主窗口Context'
+        // 请将$r('app.string.Setting_NDKNativeWindows_Context')替换为实际资源文件，在本示例中该资源文件的value值为"设置NDK侧主窗口Context"
         Button($r('app.string.Setting_NDKNativeWindows_Context')).onClick(() => {
           entry.getContext(this.getUIContext());
         })

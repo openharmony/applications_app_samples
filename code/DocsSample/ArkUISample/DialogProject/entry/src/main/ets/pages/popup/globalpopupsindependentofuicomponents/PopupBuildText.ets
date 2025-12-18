@@ -137,6 +137,7 @@ struct BuildTextExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.popup')替换为实际资源文件，在本示例中该资源文件的value值为"气泡提示"
     .title($r('app.string.popup'))
   }
 }

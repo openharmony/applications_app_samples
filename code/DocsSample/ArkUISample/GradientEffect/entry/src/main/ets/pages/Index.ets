@@ -21,7 +21,7 @@ struct Index {
   build() {
     Column() {
       Column() {
-        // app.string.Linear_Gradient_Effect资源文件中的value值为'点击线性渐变效果'
+        // 请将$r('app.string.Linear_Gradient_Effect')替换为实际资源文件，在本示例中该资源文件的value值为"点击线性渐变效果"
         Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(() => {
@@ -31,7 +31,7 @@ struct Index {
       })
 
       Column() {
-        // app.string.Direction_Gradient_Effect资源文件中的value值为'点击角度渐变效果'
+        // 请将$r('app.string.Direction_Gradient_Effect')替换为实际资源文件，在本示例中该资源文件的value值为"点击角度渐变效果"
         Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(() => {
@@ -41,7 +41,7 @@ struct Index {
       })
 
       Column() {
-        // app.string.Radial_Gradient_Effect资源文件中的value值为'点击径向渐变效果'
+        // 请将$r('app.string.Radial_Gradient_Effect')替换为实际资源文件，在本示例中该资源文件的value值为"点击径向渐变效果"
         Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(() => {
