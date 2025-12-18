@@ -24,7 +24,7 @@ function stringToUint8Array(str: string): Uint8Array {
   const encoder = new util.TextEncoder();
   return encoder.encodeInto(str);
 }
-
+// [StartExclude ignore-network-unreachable]
 let rootCert = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDjjCCAnagAwIBAgIQAzrx5qcRqaC7KGSxHQn65TANBgkqhkiG9w0BAQsFADBh\n' +
   'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n' +
@@ -110,7 +110,7 @@ let leafCert = '-----BEGIN CERTIFICATE-----\n' +
   'Nc+rSFEOvO8Fe4d2rvboT7vXigvTciOeQdig9ySCJQCkWxOvB1AcvZc+kw0YhrpM\n' +
   'xUBhDd+DaUWOgmmVS3n6k3GfOqm2EU7iCp8KyfRu2DAsnlsO/YpH\n' +
   '-----END CERTIFICATE-----';
-
+// [EndExclude ignore-network-unreachable]
 async function createX509Cert(certData: string): Promise<cert.X509Cert> {
   // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {

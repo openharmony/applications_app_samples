@@ -21,6 +21,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
+// [StartExclude create_parse_verify_certificate_revocation_list_objects]
 // CRL数据，以下只是一个示例，需要根据具体业务来赋值。
 let crlData = '-----BEGIN X509 CRL-----\n' +
   'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
@@ -78,7 +79,7 @@ let pubKeyData = new Uint8Array([
   0xc3, 0xfb, 0xe6, 0x00, 0xba, 0xf2, 0x50, 0x6a, 0x09, 0x8c, 0xf9, 0x58, 0x48, 0x8d, 0x70, 0xf8,
   0xf3, 0x02, 0x03, 0x01, 0x00, 0x01
 ]);
-
+// [EndExclude create_parse_verify_certificate_revocation_list_objects]
 // CRL示例
 function crlSample(): void {
   let textEncoder = new util.TextEncoder();
