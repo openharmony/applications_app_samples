@@ -14,6 +14,7 @@
  */
 // [Start StateArrayNo_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
@@ -152,6 +153,7 @@ struct CompAncestor {
 struct Page {
   @State childList: ChildList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
   @State ancestor: Ancestor = new Ancestor(this.childList);
+
   build() {
     Column() {
       CompAncestor({ ancestor: this.ancestor })

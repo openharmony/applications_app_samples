@@ -14,6 +14,7 @@
  */
 // [Start StateArrayLazy2_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
@@ -101,6 +102,7 @@ class MyDataSource extends BasicDataSource {
 class StringData {
   @Track public message: string;
   @Track public imgSrc: Resource;
+
   constructor(message: string, imgSrc: Resource) {
     this.message = message;
     this.imgSrc = imgSrc;

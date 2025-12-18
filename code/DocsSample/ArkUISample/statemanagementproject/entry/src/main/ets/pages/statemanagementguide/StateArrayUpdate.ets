@@ -14,6 +14,7 @@
  */
 // [Start Information_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 

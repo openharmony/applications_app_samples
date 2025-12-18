@@ -13,8 +13,7 @@
 * limitations under the License.
 */
 // [Start Internal_Common_Modifier_V2]
-import { UIUtils } from '@kit.ArkUI';
-import { CommonModifier } from '@ohos.arkui.modifier';
+import { UIUtils, CommonModifier } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
