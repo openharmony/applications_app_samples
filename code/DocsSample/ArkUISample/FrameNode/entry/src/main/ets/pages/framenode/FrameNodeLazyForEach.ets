@@ -34,6 +34,7 @@ class MyNodeAdapter extends NodeAdapter {
     this.loadData();
   }
 
+  // 重新加载列表数据
   reloadData(count: number): void {
     this.reloadTimes++;
     NodeAdapter.attachNodeAdapter(this, this.hostNode);
@@ -42,6 +43,7 @@ class MyNodeAdapter extends NodeAdapter {
     this.reloadAllItems();
   }
 
+  // 刷新数据
   refreshData(): void {
     let items = this.getAllAvailableItems()
     hilog.info(0x0000, `TEST_TAG ' get All items:' + ${items.length}`, 'isCLicked');
@@ -49,17 +51,20 @@ class MyNodeAdapter extends NodeAdapter {
     this.reloadAllItems();
   }
 
+  // 解除适配器与宿主节点的绑定
   detachData(): void {
     NodeAdapter.detachNodeAdapter(this.hostNode);
     this.reloadTimes = 0;
   }
 
+  // 根据当前节点总数和重载次数生成列表项的文本数据
   loadData(): void {
     for (let i = 0; i < this.totalNodeCount; i++) {
       this.data[i] = 'Adapter ListItem ' + i + ' r:' + this.reloadTimes;
     }
   }
 
+  // 修改指定范围的列表数据
   changeData(from: number, count: number): void {
     this.changed = !this.changed;
     for (let i = 0; i < count; i++) {
@@ -69,16 +74,18 @@ class MyNodeAdapter extends NodeAdapter {
     this.reloadItem(from, count);
   }
 
+  // 插入数据到指定位置
   insertData(from: number, count: number): void {
     for (let i = 0; i < count; i++) {
       let index = i + from;
       this.data.splice(index, 0, 'Adapter ListItem ' + from + '-' + i);
     }
-    this.insertItem(from, count);
+    this.insertItem(from, count); // 通知列表插入对应节点
     this.totalNodeCount += count;
     hilog.info(0x0000, `TEST_TAG after insert count ${this.totalNodeCount}`, 'insertData');
   }
 
+  // 从指定位置删除数据
   removeData(from: number, count: number): void {
     let arr = this.data.splice(from, count);
     this.removeItem(from, count);
@@ -89,7 +96,7 @@ class MyNodeAdapter extends NodeAdapter {
   moveData(from: number, to: number): void {
     let tmp = this.data.splice(from, 1);
     this.data.splice(to, 0, tmp[0]);
-    this.moveItem(from, to);
+    this.moveItem(from, to); // 通知列表移动节点位置
   }
 
   onAttachToNode(target: FrameNode): void {
@@ -97,10 +104,12 @@ class MyNodeAdapter extends NodeAdapter {
     this.hostNode = target;
   }
 
+  // 适配器从宿主节点解绑时触发
   onDetachFromNode(): void {
     hilog.info(0x0000, 'TEST_TAG onDetachFromNode', 'onDetachFromNode');
   }
 
+  // 获取指定索引的子节点ID
   onGetChildId(index: number): number {
     hilog.info(0x0000, `TEST_TAG onGetChildId: ${index}`, 'onGetChildId');
     return index;
@@ -108,6 +117,7 @@ class MyNodeAdapter extends NodeAdapter {
 
   onCreateChild(index: number): FrameNode {
     hilog.info(0x0000, `TEST_TAG + ' onCreateChild:' + ${index}`, 'onCreateChild');
+    // 缓存池有可用节点时，优先复用
     if (this.cachePool.length > 0) {
       let cacheNode = this.cachePool.pop();
       if (cacheNode !== undefined) {
@@ -118,6 +128,7 @@ class MyNodeAdapter extends NodeAdapter {
         return cacheNode;
       }
     }
+    // 无缓存时创建新节点
     hilog.info(0x0000, 'TEST_TAG onCreateChild createNew', 'createNew');
     let itemNode = typeNode.createNode(this.uiContext, 'ListItem');
     let textNode = typeNode.createNode(this.uiContext, 'Text');
@@ -152,9 +163,11 @@ class MyNodeAdapterController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+    // 创建List节点并配置样式
     let listNode = typeNode.createNode(uiContext, 'List');
     listNode.initialize({ space: 3 }).borderWidth(2).borderColor(Color.Black);
     this.rootNode.appendChild(listNode);
+    // 初始化适配器并关联到List节点
     this.nodeAdapter = new MyNodeAdapter(uiContext, 100);
     NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
     return this.rootNode;

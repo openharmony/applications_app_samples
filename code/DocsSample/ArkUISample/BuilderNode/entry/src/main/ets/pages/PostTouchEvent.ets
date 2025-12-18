@@ -40,6 +40,7 @@ function buttonBuilder(params: Params) {
   .backgroundColor(Color.Gray)
 }
 
+// 创建并初始化BuilderNode
 class MyNodeController extends NodeController {
   private rootNode: BuilderNode<[Params]> | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
@@ -50,6 +51,7 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
+  // 转发触摸事件到BuilderNode
   postTouchEvent(touchEvent: TouchEvent): void {
     if (this.rootNode == null) {
       return;
@@ -76,6 +78,7 @@ struct postTouchEventPage {
         .height(300)
         .backgroundColor(this.bgColor)
         .onTouch((event) => {
+          // 事件非空时，将触摸事件转发给节点控制器
           if (event != undefined) {
             this.nodeController.postTouchEvent(event);
             this.bgColor = Color.Blue;
