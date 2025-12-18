@@ -33,11 +33,13 @@ class Info {
 struct Page8 {
   @Local message: Info = UIUtils.makeObserved(new Info(20));
 
+  // 当message.id发生变化时，触发该函数调用
   @Monitor('message.id')
   onStrChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
+  // 当message.id和message.age发生变化，需要重新计算时，触发该函数调用
   @Computed
   get ageId() {
     hilog.info(DOMAIN, TAG, '---------Computed----------');
@@ -66,7 +68,8 @@ struct Page8 {
       Button('change Info')
         .id('buttonChangeInfo')
         .onClick(() => {
-        this.message = UIUtils.makeObserved(new Info(200));
+          // 返回类实例本身，并赋值给message，触发@Computed和@Monitor
+          this.message = UIUtils.makeObserved(new Info(200));
       })
 
       Child({message: this.message})
