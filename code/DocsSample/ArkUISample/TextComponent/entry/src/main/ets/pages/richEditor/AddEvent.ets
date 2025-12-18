@@ -116,7 +116,7 @@ struct event3 {
           // [EndExclude richEditor_eventChange]
           RichEditor(this.options)
             .onReady(() => {
-              // $r('app.string.AddEvent_Text_5')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"组件内图文变化前，触发回调。\n图文变化后，触发回调。"
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_5')), {
                 style: {
                   fontColor: Color.Black,
@@ -125,7 +125,7 @@ struct event3 {
               })
             })
             .onWillChange((value: RichEditorChangeValue) => {
-              // $r('app.string.AddEvent_Text_6')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_6')替换为实际资源文件，在本示例中该资源文件的value值为"组件内图文变化前，触发回调：\"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_6')) +
               JSON.stringify(value), {
                 style: {
@@ -136,7 +136,7 @@ struct event3 {
               return true;
             })
             .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-              // $r('app.string.AddEvent_Text_7')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_7')替换为实际资源文件，在本示例中该资源文件的value值为"\n图文变化后，触发回调：\n rangeBefore"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_7')) +
               JSON.stringify(rangeBefore) + '\nrangeAfter: ' + JSON.stringify(rangeBefore), {
                 style: {
@@ -147,7 +147,7 @@ struct event3 {
             })
             .width(300)
             .height(50);
-          // $r('app.string.AddEvent_Text_4')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.AddEvent_Text_4')替换为实际资源文件，在本示例中该资源文件的value值为"查看回调内容："
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300);
           RichEditor(this.infoShowOptions)
             .width(300)
@@ -177,7 +177,7 @@ struct event4 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventInput]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.AddEvent_Text_8')替换为实际资源文件，在本示例中该资源文件的value值为"输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。"
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_8')), {
@@ -263,18 +263,21 @@ struct on_cut_copy_paste {
 
   build() {
     Column() {
-      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       ComponentCard({
+        // 请将$r('app.string.Add_Event_title_5')替换为实际资源文件，在本示例中该资源文件的value值为"添加完成粘贴前可触发的回调"
         title: $r('app.string.Add_Event_title_5'),
+        // 请将$r('app.string.Add_Event_title_5_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过onPaste回调，来添加粘贴前要处理的流程"
         description: $r('app.string.Add_Event_title_5_desc')
       }) {
         Column({ space: 3 }) {
           RichEditor(this.options)
             .onReady(() => {
+              // 请将$r('app.string.AddEvent_Text_11')替换为实际资源文件，在本示例中该资源文件的value值为"对此处文本进行复制粘贴操作可触发对应回调。"
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_11')),
                 { style: { fontColor: Color.Black, fontSize: 15 } })
             })
             .onPaste((event) => {
+              // 请将$r('app.string.AddEvent_Text_12')替换为实际资源文件，在本示例中该资源文件的value值为"触发onPaste回调\n"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_12')),
                 { style: { fontColor: Color.Gray, fontSize: 10 } })
               if (event != undefined && event.preventDefault) {
@@ -284,6 +287,7 @@ struct on_cut_copy_paste {
             })
             .width(300)
             .height(50);
+          // 请将$r('app.string.AddEvent_Text_4')替换为实际资源文件，在本示例中该资源文件的value值为"查看回调内容："
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300);
           RichEditor(this.infoShowOptions)
             .width(300)
@@ -312,10 +316,10 @@ struct event6 {
         description: $r('app.string.Add_Event_title_6_desc')
       }) {
         Column({ space: 3 }) {
-          // [EndExclude richEditor_eventCut]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
+          // [EndExclude richEditor_eventCut]        
           RichEditor(this.options)
             .onReady(() => {
+              // 请将$r('app.string.AddEvent_Text_13')替换为实际资源文件，在本示例中该资源文件的value值为"对此处文本进行复制粘贴操作可触发对应回调。"
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_13')), {
                 style: {
                   fontColor: Color.Black,
@@ -324,6 +328,7 @@ struct event6 {
               })
             })
             .onCut(() => {
+              // 请将$r('app.string.AddEvent_Text_14')替换为实际资源文件，在本示例中该资源文件的value值为"触发onCut回调\n"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_14')), {
                 style: {
                   fontColor: Color.Gray,
@@ -356,14 +361,15 @@ struct event7 {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Add_Event_title_7')替换为实际资源文件，在本示例中该资源文件的value值为"添加完成复制前可触发的回调"
         title: $r('app.string.Add_Event_title_7'),
         description: $r('app.string.Add_Event_title_7')
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventCopy]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
           RichEditor(this.options)
             .onReady(() => {
+              // 请将$r('app.string.AddEvent_Text_15')替换为实际资源文件，在本示例中该资源文件的value值为"对此处文本进行复制粘贴操作可触发对应回调。"
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_15')), {
                 style: {
                   fontColor: Color.Black,
@@ -372,6 +378,7 @@ struct event7 {
               })
             })
             .onCopy(() => {
+              // 请将$r('app.string.AddEvent_Text_16')替换为实际资源文件，在本示例中该资源文件的value值为"触发onCopy回调\n"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_16')), {
                 style: {
                   fontColor: Color.Gray,
@@ -415,6 +422,7 @@ export struct AddEvent {
       }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Add_Event_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加事件"
     .title($r('app.string.Add_Event_title'))
   }
 }

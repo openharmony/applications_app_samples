@@ -33,7 +33,7 @@ export struct DisableMenuItems {
     NavDestination() {
       Row() {
         Column() {
-          // 'app.string.Service_MenuItems_Text'资源文件中的value值为'这是一段文本，长按弹出文本选择菜单。'
+          // 请将$r('app.string.Service_MenuItems_Text')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，长按弹出文本选择菜单。"
           Text($r('app.string.Service_MenuItems_Text'))
             .height(60)
             .fontStyle(FontStyle.Italic)
@@ -55,6 +55,7 @@ export struct DisableMenuItems {
     }
     // [StartExclude Disable_MenuItems]
     .backgroundColor('#f1f 2f3')
+    // 请将$r('app.string.Disable_MenuItems')替换为实际资源文件，在本示例中该资源文件的value值为"屏蔽文本选择菜单内指定的系统服务菜单项一。"
     .title($r('app.string.Disable_MenuItems'))
     // [EndExclude Disable_MenuItems]
   }

@@ -24,7 +24,7 @@ export struct SetProperty {
       Column({ space: 12 }) {
         ComponentCard({ description: $r('app.string.Set_Omission_Property_description') }) {
           // [Start set_omission_property]
-          // 'app.string.Set_Omission_Property_textContent'资源文件中的value值为"这是一段文本，用来展示省略模式"
+          // 请将$r('app.string.Set_Omission_Property_textContent')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示省略模式"
           TextInput({ text: $r('app.string.Set_Omission_Property_textContent') })
             .textOverflow(TextOverflow.Ellipsis)
             .ellipsisMode(EllipsisMode.END)
@@ -33,6 +33,8 @@ export struct SetProperty {
             .margin(30)
           // [End set_omission_property]
         }
+        // 请将$r('app.string.Set_Stroke_Property_description')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"从API version 20开始，输入框可以通过strokeWidth和strokeColor属性设置文本的描边宽度及颜色。"
         ComponentCard({ description: $r('app.string.Set_Stroke_Property_description') }) {
           // [Start set_stroke_property]
           TextInput({ text: 'Text with stroke' })
@@ -50,6 +52,7 @@ export struct SetProperty {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Set_Property')替换为实际资源文件，在本示例中该资源文件的value值为"设置属性"
     .title($r('app.string.Set_Property'))
   }
 }

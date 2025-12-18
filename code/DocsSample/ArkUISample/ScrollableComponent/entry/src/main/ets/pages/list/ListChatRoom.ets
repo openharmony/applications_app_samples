@@ -81,7 +81,7 @@ export struct ListChatRoom {
     // [StartExclude construct_list_structure]
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.ListChatRoom_title')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.ListChatRoom_title')替换为实际资源文件，在本示例中该资源文件的value值为"切换布局方向"
         ComponentCard({ title: $r('app.string.ListChatRoom_title') }) {
           // [EndExclude construct_list_structure]
           Column() {
@@ -130,6 +130,7 @@ export struct ListChatRoom {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.ListChatRoom_title')替换为实际资源文件，在本示例中该资源文件的value值为"切换布局方向"
     .title($r('app.string.ListChatRoom_title'))
     // [EndExclude construct_list_structure]
   }

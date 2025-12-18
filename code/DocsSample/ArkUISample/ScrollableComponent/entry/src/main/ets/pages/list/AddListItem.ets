@@ -60,7 +60,7 @@ export struct AddListItem {
         // [EndExclude build_list_layouts_and_list_items]
       ) {
         // [StartExclude build_list_layouts_and_list_items]
-        // $r('app.string.AddListItem_titleExample')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.AddListItem_titleExample')替换为实际资源文件，在本示例中该资源文件的value值为"新增列表项示例"
         ComponentCard({ title: $r('app.string.AddListItem_titleExample') }) {
           Column({ space: 12 }) {
             // [EndExclude build_list_layouts_and_list_items]
@@ -125,6 +125,7 @@ export struct AddListItem {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.AddListItem_title')替换为实际资源文件，在本示例中该资源文件的value值为"新增列表项"
     .title($r('app.string.AddListItem_title'))
     // [EndExclude build_list_layouts_and_list_items]
   }

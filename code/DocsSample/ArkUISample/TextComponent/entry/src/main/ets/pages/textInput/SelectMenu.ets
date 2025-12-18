@@ -24,11 +24,11 @@ export struct SelectMenu {
         ComponentCard({ description: $r('app.string.SelectionMenu_description') }) {
           Column({ space: 8 }) {
             // [Start select_textinput]
-            // 'app.string.show_selected_menu'资源文件中的value值为"这是一段文本，用来展示选中菜单"
+            // 请将$r('app.string.show_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
             TextInput({ text: $r('app.string.show_selected_menu') })
             // [End select_textinput]
             // [Start select_textarea]
-            // 'app.string.show_selected_menu'资源文件中的value值为"这是一段文本，用来展示选中菜单"
+            // 请将$r('app.string.show_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
             TextArea({ text: $r('app.string.show_selected_menu') })
             // [End select_textarea]
           }
@@ -39,6 +39,7 @@ export struct SelectMenu {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.SelectionMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置选中菜单"
     .title($r('app.string.SelectionMenu_title'))
   }
 }

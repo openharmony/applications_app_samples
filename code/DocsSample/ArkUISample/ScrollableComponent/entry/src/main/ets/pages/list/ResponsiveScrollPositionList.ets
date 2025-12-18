@@ -132,7 +132,7 @@ export struct ResponsiveScrollPositionList {
     // [StartExclude respond_to_scroll_position]
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.ResponsiveScrollPositionList_titleExample')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.ResponsiveScrollPositionList_titleExample')替换为实际资源文件，在本示例中该资源文件的value值为"响应滚动位置示例"
         ComponentCard({ title: $r('app.string.ResponsiveScrollPositionList_titleExample') }) {
           // [EndExclude respond_to_scroll_position]
           // [EndExclude use_stack]
@@ -190,6 +190,7 @@ export struct ResponsiveScrollPositionList {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.ResponsiveScrollPositionList_title')替换为实际资源文件，在本示例中该资源文件的value值为"响应滚动位置"
     .title($r('app.string.ResponsiveScrollPositionList_title'))
     // [EndExclude respond_to_scroll_position]
   }

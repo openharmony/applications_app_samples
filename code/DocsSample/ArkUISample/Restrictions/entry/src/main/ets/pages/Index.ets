@@ -20,7 +20,7 @@ struct Index {
     Column({ space: 20 }) {
 
       // --------------- 1. linkWithPrivate 目录页面跳转 ---------------
-      // $r('app.string.linkWithPrivate_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.linkWithPrivate_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 linkWithPrivate 正确案例"
       Text($r('app.string.linkWithPrivate_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -28,7 +28,7 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/linkWithPrivate/LlinkWithPrivateCorrectCase'})
         })
 
-      // $r('app.string.linkWithPrivateerr_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.linkWithPrivateerr_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 linkWithPrivate 错误案例"
       Text($r('app.string.linkWithPrivateerr_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -37,7 +37,7 @@ struct Index {
         })
 
       // --------------- 2. privateWithLink 目录页面跳转 ---------------
-      // $r('app.string.privateWithLink_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.privateWithLink_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 privateWithLink 正确案例"
       Text($r('app.string.privateWithLink_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -45,7 +45,7 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/privateWithLink/PrivateWithLinkCorrectCase'})
         })
 
-      // $r('app.string.privateWithLinkerr_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.privateWithLinkerr_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 privateWithLink 错误案例"
       Text($r('app.string.privateWithLinkerr_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -54,7 +54,7 @@ struct Index {
         })
 
       // --------------- 3. privateWithRequire 目录页面跳转 ---------------
-      // $r('app.string.privateWithRequire_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.privateWithRequire_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 privateWithRequire 正确案例"
       Text($r('app.string.privateWithRequire_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -62,7 +62,7 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/privateWithRequire/PrivateWithRequireCorrectCase'})
         })
 
-      // $r('app.string.privateWithRequireerr_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.privateWithRequireerr_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 privateWithRequire 错误案例"
       Text($r('app.string.privateWithRequireerr_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -71,7 +71,7 @@ struct Index {
         })
 
       // --------------- 4. protectedInStruct 目录页面跳转 ---------------
-      // $r('app.string.protectedInStruct_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.protectedInStruct_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 protectedInStruct 正确案例"
       Text($r('app.string.protectedInStruct_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -79,7 +79,7 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/protectedInStruct/ProtectedInStructCorrectCase'})
         })
 
-      // $r('app.string.protectedInStructerr_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.protectedInStructerr_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 protectedInStruct 错误案例"
       Text($r('app.string.protectedInStructerr_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -88,7 +88,7 @@ struct Index {
         })
 
       // --------------- 5. publicWithStorageProp 目录页面跳转 ---------------
-      // $r('app.string.publicWithStorageProp_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.publicWithStorageProp_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 publicWithStorageProp 正确案例"
       Text($r('app.string.publicWithStorageProp_lable'))
         .fontSize(16)
         .fontColor('#1890FF')
@@ -96,7 +96,7 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/publicWithStorageProp/PublicWithStoragePropCorrectCase'})
         })
 
-      // $r('app.string.publicWithStorageProperr_lable')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.publicWithStorageProperr_lable')替换为实际资源文件，在本示例中该资源文件的value值为"跳转到 publicWithStorageProp 错误案例"
       Text($r('app.string.publicWithStorageProperr_lable'))
         .fontSize(16)
         .fontColor('#1890FF')

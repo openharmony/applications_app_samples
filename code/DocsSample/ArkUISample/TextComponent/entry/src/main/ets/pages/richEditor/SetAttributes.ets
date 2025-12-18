@@ -17,7 +17,6 @@ import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { LengthMetrics } from '@kit.ArkUI';
 
-
 // 自定义SelectionMenuTheme接口
 export interface SelectionMenuTheme {
   imageSize: number;
@@ -76,13 +75,15 @@ struct BindSelectionMenu {
 
   build() {
     Column() {
-      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_1')替换为实际资源文件，在本示例中该资源文件的value值为"设置自定义选择菜单"
         title: $r('app.string.Set_Attributes_title_1'),
+        // 请将$r('app.string.Set_Attributes_title_1_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过bindSelectionMenu设置自定义选择菜单"
         description: $r('app.string.Set_Attributes_title_1_desc'),
       }) {
         RichEditor(this.options)
           .onReady(() => {
+            // 请将$r('app.string.SetAttributes_Text_4')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了自定义菜单，长按可触发。"
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_4')), {
               style: {
                 fontColor: Color.Black,
@@ -107,20 +108,22 @@ struct BindSelectionMenu {
     Column() {
       Menu() {
         if (this.controller) {
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
           MenuItemGroup() {
             MenuItem({
               startIcon: this.theme.cutIcon,
+              // 请将$r('app.string.SetAttributes_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"剪切"
               content: resource.resourceToString($r('app.string.SetAttributes_Text_1')),
               labelInfo: 'Ctrl+X'
             })
             MenuItem({
               startIcon: this.theme.copyIcon,
+              // 请将$r('app.string.SetAttributes_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"复制"
               content: resource.resourceToString($r('app.string.SetAttributes_Text_2')),
               labelInfo: 'Ctrl+C'
             })
             MenuItem({
               startIcon: this.theme.pasteIcon,
+              // 请将$r('app.string.SetAttributes_Text_3')替换为实际资源文件，在本示例中该资源文件的value值为"粘贴"
               content: resource.resourceToString($r('app.string.SetAttributes_Text_3')),
               labelInfo: 'Ctrl+V'
             })
@@ -147,13 +150,15 @@ struct attr2 {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"设置输入框光标、手柄颜色"
         title: $r('app.string.Set_Attributes_title_2'),
+        // 请将$r('app.string.Set_Attributes_title_2_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过caretColor设置输入框光标、手柄颜色"
         description: $r('app.string.Set_Attributes_title_2_desc')
       }) {
         // [EndExclude richEditor_color]
-        // $r('app.string.SetAttributes_Text_5')需要替换为开发者所需的资源文件
         RichEditor(this.options)
           .onReady(() => {
+            // 请将$r('app.string.SetAttributes_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了光标手柄颜色。"
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_5')), {
               style: {
                 fontColor: Color.Black,
@@ -184,8 +189,8 @@ struct attr3 {
         description: $r('app.string.Set_Attributes_title_3_desc')
       }) {
         // [EndExclude richEditor_placeholder]
-        // $r('app.string.SetAttributes_Text_6')需要替换为开发者所需的资源文件
         RichEditor(this.options)
+          // 请将$r('app.string.SetAttributes_Text_6')替换为实际资源文件，在本示例中该资源文件的value值为"此处为提示文本..."
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_6')), {
             fontColor: Color.Gray,
             font: {
@@ -213,11 +218,14 @@ struct attr4 {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_4')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大行数"
         title: $r('app.string.Set_Attributes_title_4'),
+        // 请将$r('app.string.Set_Attributes_title_4_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLines设置富文本可显示的最大行数"
         description: $r('app.string.Set_Attributes_title_4_desc')
       }) {
         // [EndExclude richEditor_maxLines]
-        // $r('app.string.SetAttributes_Text_7')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.SetAttributes_Text_7')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行"
         RichEditor(this.options)
           .onReady(() => {
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_7')),
@@ -245,12 +253,14 @@ struct attr5 {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_5')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大长度"
         title: $r('app.string.Set_Attributes_title_5'),
+        // 请将$r('app.string.Set_Attributes_title_5_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLength设置富文本的最大输入字符数"
         description: $r('app.string.Set_Attributes_title_5_desc')
       }) {
         // [EndExclude richEditor_maxLength]
-        // $r('app.string.SetAttributes_Text_8')需要替换为开发者所需的资源文件
         RichEditor(this.options)
+          // 请将$r('app.string.SetAttributes_Text_8')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了最大字符数：7"
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
           .maxLength(7)
           // [End richEditor_maxLength]
@@ -267,11 +277,14 @@ struct attr6 {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_6')替换为实际资源文件，在本示例中该资源文件的value值为"默认选中菜单"
         title: $r('app.string.Set_Attributes_title_6'),
+        // 请将$r('app.string.Set_Attributes_title_6_desc')替换为实际资源文件，在本示例中该资源文件的value值为"富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单"
         description: $r('app.string.Set_Attributes_title_6_desc')
       }) {
         RichEditor(this.options)
           .onReady(() => {
+            // 请将$r('app.string.SetAttributes_Text_9')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本,用来展示选中菜单"
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_9')), {
               style: {
                 fontColor: Color.Black,
@@ -295,13 +308,15 @@ struct Decoration {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_9')替换为实际资源文件，在本示例中该资源文件的value值为"设置富文本组件中文本装饰线"
         title: $r('app.string.Set_Attributes_title_9'),
+        // 请将$r('app.string.Set_Attributes_title_9_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过decoration设置富文本组件中文本装饰线"
         description: $r('app.string.Set_Attributes_title_9_desc')
       }) {
         // [EndExclude richEditor_decoration]
         RichEditor(this.options)
           .onReady(() => {
-            // $r('app.string.Demo_oneText')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.Demo_oneText')替换为实际资源文件，在本示例中该资源文件的value值为"一段预置的文本"
             this.controller.addTextSpan($r('app.string.Demo_oneText'), {
               style: {
                 fontSize: 25,
@@ -327,18 +342,20 @@ struct DecorationOptions {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_10')替换为实际资源文件，在本示例中该资源文件的value值为"设置富文本多装饰线"
         title: $r('app.string.Set_Attributes_title_10'),
+        // 请将$r('app.string.Set_Attributes_title_10_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过StyledString类型的富文本设置多装饰线"
         description: $r('app.string.Set_Attributes_title_10_desc')
       }) {
         Column({ space: 3 }) {
           // [Start richEditor_decorationOptions]
           RichEditor({ controller: this.styledStringController });
-          // $r('app.string.Demo_SetStyledStringButton')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.Demo_SetStyledStringButton')替换为实际资源文件，在本示例中该资源文件的value值为"多装饰线文本"
           Button($r('app.string.Demo_SetStyledStringButton'))
             .fontSize(20)
             .onClick(() => {
               let mutString: MutableStyledString = new MutableStyledString(
-                // $r('app.string.Demo_styledString')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.Demo_styledString')替换为实际资源文件，在本示例中该资源文件的value值为"需设置富文本多装饰线"
                 resource.resourceToString($r('app.string.Demo_styledString')), [
                 {
                   start: 0,
@@ -392,19 +409,22 @@ struct SetTextVerticalAlign {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_11')替换为实际资源文件，在本示例中该资源文件的value值为"设置垂直居中"
         title: $r('app.string.Set_Attributes_title_11'),
+        // 请将$r('app.string.Set_Attributes_title_11_desc')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"通过textVerticalAlign设置文本段落在垂直方向的对齐方式"
         description: $r('app.string.Set_Attributes_title_11_desc')
       }) {
         // [EndExclude richEditor_textVerticalAlign]
         RichEditor(this.options)
           .onReady(() => {
-            // $r('app.media.startIcon')需要替换为开发者所需的资源文件
+            // 请将$r('app.media.startIcon')替换为实际资源文件
             this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: [100, 100]
               }
             })
-            // $r('app.string.Demo_verticalAlignString')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.Demo_verticalAlignString')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段富文本，展示了文本垂直居中的效果。"
             this.controller.addTextSpan($r('app.string.Demo_verticalAlignString'), {
               style: {
                 fontColor: Color.Pink,
@@ -436,14 +456,17 @@ struct EnableAutoSpacing {
   build() {
     Column() {
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_12')替换为实际资源文件，在本示例中该资源文件的value值为"设置中西文自动间距"
         title: $r('app.string.Set_Attributes_title_12'),
+        // 请将$r('app.string.Set_Attributes_title_12_desc')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"通过enableAutoSpacing设置是否开启中文与西文的自动间距"
         description: $r('app.string.Set_Attributes_title_12_desc')
       }) {
         Column({ space: 3 }) {
-          // [EndExclude richEditor_enableAutoSpacing]
-          // $r('app.string.Demo_autoSpacingString')需要替换为开发者所需的资源文件
+          // [EndExclude richEditor_enableAutoSpacing]          
           RichEditor(this.options)
             .onReady(() => {
+              // 请将$r('app.string.Demo_autoSpacingString')替换为实际资源文件，在本示例中该资源文件的value值为"中西文Auto Spacing自动间距"
               this.controller.addTextSpan($r('app.string.Demo_autoSpacingString'),
                 {
                   style:
@@ -455,6 +478,7 @@ struct EnableAutoSpacing {
             })
             .enableAutoSpacing(this.enableAutoSpace)
           // [End richEditor_enableAutoSpacing]
+          // 请将$r('app.string.Demo_autoSpacingButton')替换为实际资源文件，在本示例中该资源文件的value值为"开启中西文自动间距"
           Button($r('app.string.Demo_autoSpacingButton'))
             .fontSize(20)
             .onClick(() => {
@@ -480,7 +504,7 @@ struct PrepareMenu {
       TextMenuItemId.AI_WRITER
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)));
-    // $r('app.media.xxx')需要替换为开发者所需的资源文件
+    // 请将$r('app.media.xxx')替换为实际资源文件
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -513,7 +537,7 @@ struct PrepareMenu {
   }
 
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
-    // $r('app.media.xxx')需要替换为开发者所需的资源文件
+    // 请将$r('app.media.xxx')替换为实际资源文件
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
       icon: $r('app.media.startIcon'),
@@ -531,9 +555,11 @@ struct PrepareMenu {
 
   build() {
     Column() {
-      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       ComponentCard({
+        // 请将$r('app.string.Set_Attributes_title_13')替换为实际资源文件，在本示例中该资源文件的value值为"管理选中菜单项"
         title: $r('app.string.Set_Attributes_title_13'),
+        // 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置"
         description: $r('app.string.Set_Attributes_title_13_desc')
       }) {
         RichEditor(this.options)
@@ -582,6 +608,7 @@ export struct SetAttributes {
       }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，在本示例中该资源文件的value值为"设置属性"
     .title($r('app.string.Set_Attributes_title'))
   }
 }

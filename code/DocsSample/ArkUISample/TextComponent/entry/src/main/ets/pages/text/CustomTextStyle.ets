@@ -24,22 +24,23 @@ export struct CustomTextStyle {
     NavDestination() {
       Scroll(this.scroller) {
         Column({ space: 12 }) {
+          // 请将$r('app.string.CustomTextStyle_title_1')替换为实际资源文件，在本示例中该资源文件的value值为"通过textAlign属性设置文本对齐样式"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_1') }) {
             Column() {
               // [Start custom_text_align]
-              // 'app.string.TextAlign_Start'资源文件中的value值为'左对齐'
+              // 请将$r('app.string.TextAlign_Start')替换为实际资源文件，在本示例中该资源文件的value值为"左对齐"
               Text($r('app.string.TextAlign_Start'))
                 .width(300)
                 .textAlign(TextAlign.Start)
                 .border({ width: 1 })
                 .padding(10)
-              // 'app.string.TextAlign_Center'资源文件中的value值为'中间对齐'
+              // 请将$r('app.string.TextAlign_Center')替换为实际资源文件，在本示例中该资源文件的value值为"中间对齐"
               Text($r('app.string.TextAlign_Center'))
                 .width(300)
                 .textAlign(TextAlign.Center)
                 .border({ width: 1 })
                 .padding(10)
-              // 'app.string.TextAlign_End'资源文件中的value值为'右对齐'
+              // 请将$r('app.string.TextAlign_End')替换为实际资源文件，在本示例中该资源文件的value值为"右对齐"
               Text($r('app.string.TextAlign_End'))
                 .width(300)
                 .textAlign(TextAlign.End)
@@ -50,7 +51,11 @@ export struct CustomTextStyle {
           }
 
           ComponentCard({
+            // 请将$r('app.string.CustomTextStyle_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"通过textOverflow属性控制文本超长处理"
             title: $r('app.string.CustomTextStyle_title_2'),
+            // 请将$r('app.string.CustomTextStyle_description_1')替换为实际资源文件，
+            // 在本示例中该资源文件的value值为"textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。
+            //从API version 18开始，文本超长时设置跑马灯的方式展示时，支持设置跑马灯的配置项，比如开关、步长、循环次数、方向等"
             description: $r('app.string.CustomTextStyle_description_1')
           }) {
             Column({ space: 8 }) {
@@ -106,6 +111,7 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part2')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"通过lineHeight属性设置文本行高"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_3') }) {
             Column({ space: 8 }) {
               // [Start custom_line_height]
@@ -121,6 +127,8 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part3')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_4')替换为实际资源文件，
+          // 在本示例中该资源文件的value值为"通过decoration属性设置文本装饰线样式及其颜色"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_4') }) {
             Column({ space: 8 }) {
               // [Start custom_text_line_and_color]
@@ -175,6 +183,8 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part4')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_5')替换为实际资源文件，
+          // 在本示例中该资源文件的value值为"通过baselineOffset属性设置文本基线的偏移量"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_5') }) {
             Column({ space: 8 }) {
               // [Start custom_text_baseline_offset]
@@ -203,6 +213,7 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part5')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_6')替换为实际资源文件，在本示例中该资源文件的value值为"通过letterSpacing属性设置文本字符间距"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_6') }) {
             Column({ space: 8 }) {
               // [Start custom_text_letter_space]
@@ -231,10 +242,13 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part6')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_7')替换为实际资源文件，
+          // 在本示例中该资源文件的value值为"通过minFontSize与maxFontSize自适应字体大小"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
             Column({ space: 8 }) {
               // [Start custom_the_size_of_text]
-              // 'app.string.CustomTextStyle_textContent_one_style'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为1'
+              // 请将$r('app.string.CustomTextStyle_textContent_one_style')替换为实际资源文件，
+              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为1"
               Text($r('app.string.CustomTextStyle_textContent_one_style'))
                 .width(250)
                 .maxLines(1)
@@ -243,7 +257,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 'app.string.CustomTextStyle_textContent_two_style'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为2'
+              // 请将$r('app.string.CustomTextStyle_textContent_two_style')替换为实际资源文件，
+              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为2"
               Text($r('app.string.CustomTextStyle_textContent_two_style'))
                 .width(250)
                 .maxLines(2)
@@ -252,7 +267,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 'app.string.CustomTextStyle_textContent_no_max'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为50'
+              // 请将$r('app.string.CustomTextStyle_textContent_no_max')替换为实际资源文件，
+              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为15，宽度为250,高度为50"
               Text($r('app.string.CustomTextStyle_textContent_no_max'))
                 .width(250)
                 .height(50)
@@ -261,7 +277,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 'app.string.CustomTextStyle_textContent_high'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为100'
+              // 请将$r('app.string.CustomTextStyle_textContent_high')替换为实际资源文件，
+              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为15，宽度为250,高度为100"
               Text($r('app.string.CustomTextStyle_textContent_high'))
                 .width(250)
                 .height(100)
@@ -274,6 +291,7 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part7')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_8')替换为实际资源文件，在本示例中该资源文件的value值为"通过textCase属性设置文本大小写"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_8') }) {
             Column({ space: 8 }) {
               // [Start custom_the_text_by_text_case]
@@ -306,9 +324,10 @@ export struct CustomTextStyle {
             }.id('custom_text_style_sample_part8')
           }
 
+          // 请将$r('app.string.CustomTextStyle_title_9')替换为实际资源文件，在本示例中该资源文件的value值为"通过copyOption属性设置文本是否可复制粘贴"
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_9') }) {
             // [Start custom_the_text_by_copy_option]
-            // 'app.string.CustomTextStyle_textContent_incopy'资源文件中的value值为'这是一段可复制文本。'
+            // 请将$r('app.string.CustomTextStyle_textContent_incopy')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段可复制文本。"
             Text($r('app.string.CustomTextStyle_textContent_incopy'))
               .fontSize(30)
               .copyOption(CopyOptions.InApp)
@@ -321,6 +340,7 @@ export struct CustomTextStyle {
       }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CustomTextStyle_title')替换为实际资源文件，在本示例中该资源文件的value值为"自定义文本样式"
     .title($r('app.string.CustomTextStyle_title'))
   }
 }

@@ -30,7 +30,7 @@ export struct CreateRichEditor {
   // 定义字体样式对象
 
   mutableStyledString: MutableStyledString =
-    // $r('app.string.CreateRichEditor_Text_1')需要替换为开发者所需的资源文件
+    // 请将$r('app.string.CreateRichEditor_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"创建使用属性字符串构建的RichEditor组件。"
     new MutableStyledString(resource.resourceToString($r('app.string.CreateRichEditor_Text_1')),
     [{
       start: 0,
@@ -49,7 +49,8 @@ export struct CreateRichEditor {
       Column({ space: 12 }) {
         // [StartExclude richEditor_create_span]
         ComponentCard({
-          // $r('app.string.Create_RichEditor_Component_title_1')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.Create_RichEditor_Component_title_1')替换为实际资源文件，
+          // 在本示例中该资源文件的value值为"创建使用属性字符串构建的RichEditor组件"
           title: $r('app.string.Create_RichEditor_Component_title_1')
         }) {
           // [EndExclude richEditor_create]
@@ -60,7 +61,8 @@ export struct CreateRichEditor {
           // [End richEditor_create]
         }
 
-        // $r('app.string.Create_RichEditor_Component_title_2')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.Create_RichEditor_Component_title_2')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"创建不使用属性字符串构建的RichEditor组件"
         ComponentCard({
           title: $r('app.string.Create_RichEditor_Component_title_2'),
         }) {
@@ -68,7 +70,8 @@ export struct CreateRichEditor {
           RichEditor(this.optionsNoStyledString)
             .onReady(() => {
               this.controllerNoStyledString.addTextSpan(
-                // $r('app.string.CreateRichEditor_Text_2')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.CreateRichEditor_Text_2')替换为实际资源文件，
+                // 在本示例中该资源文件的value值为"需创建不使用属性字符串构建的RichEditor组件。"
                 resource.resourceToString($r('app.string.CreateRichEditor_Text_2')), {
                 style: {
                   fontColor: Color.Black,
@@ -85,7 +88,7 @@ export struct CreateRichEditor {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.Create_RichEditor_Component_title')需要替换为开发者所需的资源文件
+    // 请将$r('app.string.Create_RichEditor_Component_title')替换为实际资源文件，在本示例中该资源文件的value值为"创建RichEditor组件"
     .title($r('app.string.Create_RichEditor_Component_title'))
   }
 }

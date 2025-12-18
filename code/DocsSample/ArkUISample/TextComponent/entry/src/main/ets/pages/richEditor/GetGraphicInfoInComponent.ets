@@ -36,7 +36,7 @@ export struct GetGraphicInfoInComponent {
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(
-                  // $r('app.string.GetGraphicInfoInComponent_Text_1')需要替换为开发者所需的资源文件
+                  // 请将$r('app.string.GetGraphicInfoInComponent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮获取此处span信息。"
                   resource.resourceToString($r('app.string.GetGraphicInfoInComponent_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -46,11 +46,12 @@ export struct GetGraphicInfoInComponent {
               })
               .width(300)
               .height(50)
-            // $r('app.string.GetGraphicInfoInComponent_Text_1')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.GetGraphicInfoInComponent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮获取此处span信息。"
             Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300);
             RichEditor(this.infoShowOptions)
               .width(300)
               .height(50)
+            // 请将$r('app.string.GetGraphicInfoInComponent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"getSpans"
             Button($r('app.string.GetGraphicInfoInComponent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
               })
@@ -72,6 +73,7 @@ export struct GetGraphicInfoInComponent {
       .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Get_GraphicInfo_In_Component_title')替换为实际资源文件，在本示例中该资源文件的value值为"获取组件内图文信息"
     .title($r('app.string.Get_GraphicInfo_In_Component_title'));
   }
 }

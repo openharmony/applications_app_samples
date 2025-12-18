@@ -74,7 +74,7 @@ export struct SwiperVisibleContentPosition {
       // [EndExclude visible_content_position]
       Column({ space: 12 }) {
         // [StartExclude visible_content_position]
-        // $r('app.string.SwiperVisibleContentPosition_title')需要替换为开发者所需的字符串资源文件
+        // 请将$r('app.string.SwiperVisibleContentPosition_title')替换为实际资源文件，在本示例中该资源文件的value值为"保持可见内容位置不变"
         ComponentCard({ title: $r('app.string.SwiperVisibleContentPosition_title') }) {
           Column({ space: 20 }) {
             // [EndExclude visible_content_position]
@@ -126,7 +126,7 @@ export struct SwiperVisibleContentPosition {
       // [StartExclude visible_content_position]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.SwiperVisibleContentPosition_title')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.SwiperVisibleContentPosition_title')替换为实际资源文件，在本示例中该资源文件的value值为"保持可见内容位置不变"
     .title($r('app.string.SwiperVisibleContentPosition_title'))
     // [EndExclude visible_content_position]
   }

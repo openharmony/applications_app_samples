@@ -365,7 +365,7 @@ export struct ArcListStyles {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.ArcListStyles_title')需要替换为开发者所需的资源文件
+    // 请将$r('app.string.ArcListStyles_title')替换为实际资源文件，在本示例中该资源文件的value值为"自定义弧形列表样式"
     .title($r('app.string.ArcListStyles_title'))
   }
 }
