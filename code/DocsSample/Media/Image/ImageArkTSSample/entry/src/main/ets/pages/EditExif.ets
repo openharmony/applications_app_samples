@@ -35,7 +35,7 @@ struct EditExif {
   @State exifUtility: ExifUtility = new ExifUtility();
   @State info: string = '';
   @State propertyKey: image.PropertyKey = image.PropertyKey.BITS_PER_SAMPLE;
-  @State value: string = '';
+  @State value: string = '23';
   @State visible: Visibility = Visibility.Hidden;
   @State isOpen: boolean = false;
   @State keyOptions: image.PropertyKey[] = [

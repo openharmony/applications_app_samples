@@ -100,7 +100,7 @@ export default function PictureTest() {
     it('Picture_EnterPage_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
         'Picture_EnterPage_0001', // 测试用例名称。
-        '跳转到picture编解码演示页面', // 按钮文本。
+        '跳转到Picture编解码演示页面', // 按钮文本。
         2000, // 延时 2000 毫秒。
         'Picture_EnterPage', // 描述。
         done // done 回调。

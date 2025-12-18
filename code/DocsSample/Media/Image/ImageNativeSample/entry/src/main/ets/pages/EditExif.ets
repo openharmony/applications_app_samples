@@ -28,7 +28,7 @@ struct EditExif {
   @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State isOpen: boolean = false;
   @State propertyKey: image.PropertyKey = image.PropertyKey.F_NUMBER;
-  @State value: string = '';
+  @State value: string = '23';
   @State keyOptions: image.PropertyKey[] = [
     image.PropertyKey.ORIENTATION,
     image.PropertyKey.ROLL_ANGLE,
