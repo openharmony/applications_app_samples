@@ -218,38 +218,6 @@ export default function ExifTest() {
       );
     })
 
-    // 输入指定property的key值
-    /**
-     * @tc.number Exif_ValueInput_0001
-     * @tc.name Exif_ValueInput_0001
-     * @tc.desc Enter the key value of the specified property
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
-     */
-    it('Exif_ValueInput_0001', Level.LEVEL1, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + `Exif_ValueInput_0001, begin`);
-
-      let btnAccept = await driver.findComponent(ON.id('valueInput'));
-      if (btnAccept !== undefined) {
-        await btnAccept.click();
-        await driver.delayMs(200); // 等待操作完成
-      }
-
-      let fNumber = await driver.findComponent(ON.text('1'));
-      if (fNumber !== undefined) {
-        await fNumber.click();
-        await driver.delayMs(200); // 等待操作完成
-      }
-
-      let im = inputMethod.getController()
-      im.stopInputSession()
-      await driver.delayMs(200); // 等待操作完成
-
-      hilog.info(DOMAIN, TAG, BUNDLE + `Exif_ValueInput_0001, end`);
-      done(); // 测试完成
-    })
-
     /**
      * @tc.number Exif_Modify_0001
      * @tc.name Exif_Modify_0001

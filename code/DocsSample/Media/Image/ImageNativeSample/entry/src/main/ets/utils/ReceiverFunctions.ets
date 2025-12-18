@@ -48,7 +48,7 @@ export class ReceiverFunctions {
     let info = testNapi.getReceiverImageInfo();
     if(info !== null) {
       promptAction.showToast({ message: `GetImageInfo: ${JSON.stringify(info)}.`});
-      this.logger.log(`GetImageInfo: ${info}.`);
+      this.logger.log(`GetImageInfo: ${JSON.stringify(info)}.`);
     } else {
       promptAction.showToast({ message: `GetImageInfo failed.`});
       this.logger.log(`GetImageInfo failed.`);
