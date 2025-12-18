@@ -28,7 +28,7 @@ struct FuncAbilityAPage {
   build() {
     Column() {
       // [StartExclude FuncAbilityB]
-      // app.string.Stop_AbilityA资源文件中的value值为'StopFuncAbilityA'
+      // 请将$r('app.string.Stop_AbilityA')替换为实际资源文件，在本示例中该资源文件的value值为"StopFuncAbilityA"
       Button($r('app.string.Stop_AbilityA'))
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
@@ -49,7 +49,7 @@ struct FuncAbilityAPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityB]
-            // app.string.Stop_AbilityA_Result资源文件中的value值为'StopFuncAbilityAWithResult'
+            // 请将$r('app.string.Stop_AbilityA_Result')替换为实际资源文件，在本示例中该资源文件的value值为"StartFuncAbilityAWithResult"
             Button($r('app.string.Stop_AbilityA_Result'))
               .width('60%');
             // [EndExclude FuncAbilityB]
@@ -64,7 +64,7 @@ struct FuncAbilityAPage {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  // app.string.ability_return_info资源文件中的value值为'来自FuncAbility Index页面'
+                  // 请将$r('app.string.ability_return_info')替换为实际资源文件，在本示例中该资源文件的value值为"来自FuncAbility Index页面"
                   info: context.resourceManager.getStringSync($r('app.string.ability_return_info').id)
                 },
               },

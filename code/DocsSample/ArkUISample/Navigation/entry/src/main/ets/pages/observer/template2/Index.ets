@@ -18,8 +18,8 @@ import { uiObserver } from '@kit.ArkUI';
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
@@ -34,24 +34,24 @@ struct ObserverIndex2 {
   }
 
   aboutToAppear() {
-    uiObserver.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    uiObserver.on('navDestinationUpdate', { navigationId: 'testId' }, (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
-    uiObserver.off('navDestinationUpdate', { navigationId: "testId" });
+    uiObserver.off('navDestinationUpdate', { navigationId: 'testId' });
   }
 
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
-          this.stack.pushPath({ name: "pageOne" });
+        Button('push').onClick(() => {
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
-      .id("testId")
-      .title("Navigation")
+      .id('testId')
+      .title('Navigation')
       .navDestination(this.PageBuilder)
     }
     .width('100%')

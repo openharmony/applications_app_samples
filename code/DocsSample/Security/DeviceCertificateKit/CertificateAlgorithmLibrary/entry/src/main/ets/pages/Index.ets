@@ -72,6 +72,31 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/CreateVerifyCertchainObject');
         })
+      Button('VerifyCertchainBySystemca')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/VerifyCertchainBySystemca');
+        })
+      Button('CreateCmsOperator')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/CreateCmsOperator');
+        })
+      Button('CreateParsePkcs12')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/CreateParsePkcs12');
+        })
+      Button('VerifyCertchainOnlineRevocationStatus')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/VerifyCertchainOnlineRevocationStatus');
+        })
+      Button('AllowDownloadIntermediateCert')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/AllowDownloadIntermediateCert');
+        })
     }
     .height('100%')
     .width('100%')

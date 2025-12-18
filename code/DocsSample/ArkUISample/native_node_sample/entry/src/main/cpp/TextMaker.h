@@ -23,6 +23,7 @@ public:
     TextMaker(){};
     ~TextMaker(){};
     static ArkUI_NodeHandle CreateNativeNode();
+    static ArkUI_Node* text17;
 };
 
 #endif // NATIVE_TYPE_SAMPLE_SWIPERMAKER_H

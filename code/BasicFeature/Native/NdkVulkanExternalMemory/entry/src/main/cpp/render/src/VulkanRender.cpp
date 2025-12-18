@@ -911,39 +911,69 @@ void VulkanRender::NativeBufferToTexture(OH_NativeBuffer *buffer, float transfor
         .initialLayout = VK_IMAGE_LAYOUT_UNDEFINED
     };
 
+    if (initialized_) {
+        vkDestroyImage(device_, externalTextureImage_, nullptr);
+        vkDestroyImageView(device_, externalTextureInfo_.view, nullptr);
+        vkFreeMemory(device_, externalTextureMemory_, nullptr);
+    }
+
     CheckResult(vkCreateImage(device_, &image_create_info, nullptr, &externalTextureImage_));
     dedicatedAllocateInfo.image = externalTextureImage_;
     CheckResult(vkAllocateMemory(device_, &allocInfo, nullptr, &externalTextureMemory_));
     CheckResult(vkBindImageMemory(device_, externalTextureImage_, externalTextureMemory_, 0));
 
-    VkSamplerYcbcrConversionCreateInfo ycbcrCreateInfo = {
-        .sType = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO,
-        .ycbcrRange = nbFormatProps.suggestedYcbcrRange,
-        .components = nbFormatProps.samplerYcbcrConversionComponents,
-        .xChromaOffset = nbFormatProps.suggestedXChromaOffset,
-        .yChromaOffset = nbFormatProps.suggestedYChromaOffset,
-        .chromaFilter = VK_FILTER_LINEAR,
-        .forceExplicitReconstruction = false
-    };
+    if (!initialized_) {
+        VkSamplerYcbcrConversionCreateInfo ycbcrCreateInfo = {
+            .sType = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO,
+            .ycbcrRange = nbFormatProps.suggestedYcbcrRange,
+            .components = nbFormatProps.samplerYcbcrConversionComponents,
+            .xChromaOffset = nbFormatProps.suggestedXChromaOffset,
+            .yChromaOffset = nbFormatProps.suggestedYChromaOffset,
+            .chromaFilter = VK_FILTER_LINEAR,
+            .forceExplicitReconstruction = false
+        };
 
-    if (nbFormatProps.format == VK_FORMAT_UNDEFINED) {
-        ycbcrCreateInfo.pNext = &externalFormat;
-        ycbcrCreateInfo.format = VK_FORMAT_UNDEFINED;
-        ycbcrCreateInfo.ycbcrModel = nbFormatProps.suggestedYcbcrModel;
+        if (nbFormatProps.format == VK_FORMAT_UNDEFINED) {
+            ycbcrCreateInfo.pNext = &externalFormat;
+            ycbcrCreateInfo.format = VK_FORMAT_UNDEFINED;
+            ycbcrCreateInfo.ycbcrModel = nbFormatProps.suggestedYcbcrModel;
+        }
+
+        CheckResult(
+            vkCreateSamplerYcbcrConversion(device_, &ycbcrCreateInfo, nullptr, &externalTextureInfo_.ycbcrConversion));
+
+        externalTextureInfo_.convInfoWrap = {
+            .sType = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO,
+            .conversion = externalTextureInfo_.ycbcrConversion,
+            .pNext = nullptr,
+        };
+
+        // Create sampler
+        const VkSamplerCreateInfo sampler = {
+            .sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO,
+            .pNext = &externalTextureInfo_.convInfoWrap,
+            .magFilter = VK_FILTER_NEAREST,
+            .minFilter = VK_FILTER_NEAREST,
+            .mipmapMode = VK_SAMPLER_MIPMAP_MODE_NEAREST,
+            .addressModeU = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
+            .addressModeV = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
+            .addressModeW = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
+            .mipLodBias = 0.0f,
+            .compareEnable = VK_FALSE,
+            .anisotropyEnable = VK_FALSE,
+            .maxAnisotropy = 1,
+            .compareOp = VK_COMPARE_OP_NEVER,
+            .minLod = 0.0f,
+            .maxLod = 0.0f,
+            .borderColor = VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE,
+            .unnormalizedCoordinates = VK_FALSE
+        };
+        CheckResult(vkCreateSampler(device_, &sampler, nullptr, &externalTextureInfo_.sampler));
     }
-
-    CheckResult(
-        vkCreateSamplerYcbcrConversion(device_, &ycbcrCreateInfo, nullptr, &externalTextureInfo_.ycbcrConversion));
-
-    VkSamplerYcbcrConversionInfo convInfoWrap = {
-        .sType = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO,
-        .conversion = externalTextureInfo_.ycbcrConversion,
-        .pNext = nullptr,
-    };
 
     VkImageViewCreateInfo view = {
         .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
-        .pNext = &convInfoWrap,
+        .pNext = &externalTextureInfo_.convInfoWrap,
         .flags = 0,
         .image = externalTextureImage_,
         .viewType = VK_IMAGE_VIEW_TYPE_2D,
@@ -958,28 +988,6 @@ void VulkanRender::NativeBufferToTexture(OH_NativeBuffer *buffer, float transfor
         .subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1},
     };
     CheckResult(vkCreateImageView(device_, &view, nullptr, &externalTextureInfo_.view));
-
-    // Create sampler
-    const VkSamplerCreateInfo sampler = {
-        .sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO,
-        .pNext = &convInfoWrap,
-        .magFilter = VK_FILTER_NEAREST,
-        .minFilter = VK_FILTER_NEAREST,
-        .mipmapMode = VK_SAMPLER_MIPMAP_MODE_NEAREST,
-        .addressModeU = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
-        .addressModeV = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
-        .addressModeW = VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
-        .mipLodBias = 0.0f,
-        .compareEnable = VK_FALSE,
-        .anisotropyEnable = VK_FALSE,
-        .maxAnisotropy = 1,
-        .compareOp = VK_COMPARE_OP_NEVER,
-        .minLod = 0.0f,
-        .maxLod = 0.0f,
-        .borderColor = VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE,
-        .unnormalizedCoordinates = VK_FALSE
-    };
-    CheckResult(vkCreateSampler(device_, &sampler, nullptr, &externalTextureInfo_.sampler));
 
     createDescriptorSetLayout();
     createDescriptorSet();
@@ -1013,11 +1021,13 @@ void VulkanRender::NativeBufferToTexture(OH_NativeBuffer *buffer, float transfor
     gfxPipelineInfo_.descWrites[0] = bufferWrite;
     gfxPipelineInfo_.descWrites[1] = imageWrite;
     vkUpdateDescriptorSets(device_, 2, gfxPipelineInfo_.descWrites, 0, nullptr); // 2 descWrites
-
-    createGraphicsPipeline();
-    createOtherStaff();
+    if (!initialized_) {
+        createGraphicsPipeline();
+        createOtherStaff();
+    }
 
     recordCommandBuffer();
+    initialized_ = true;
     OH_LOG_INFO(LOG_APP, "NativeBufferToTexture end");
 }
 // [End buffer_to_texture]

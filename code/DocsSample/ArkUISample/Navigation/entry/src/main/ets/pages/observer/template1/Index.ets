@@ -18,8 +18,8 @@ import { uiObserver } from '@kit.ArkUI';
 struct PageOne {
   build() {
     NavDestination() {
-      Text("pageOne")
-    }.title("pageOne")
+      Text('pageOne')
+    }.title('pageOne')
   }
 }
 
@@ -46,11 +46,11 @@ struct ObserverIndex1 {
   build() {
     Column() {
       Navigation(this.stack) {
-        Button("push").onClick(() => {
-          this.stack.pushPath({ name: "pageOne" });
+        Button('push').onClick(() => {
+          this.stack.pushPath({ name: 'pageOne' });
         })
       }
-      .title("Navigation")
+      .title('Navigation')
       .navDestination(this.PageBuilder)
     }
     .width('100%')

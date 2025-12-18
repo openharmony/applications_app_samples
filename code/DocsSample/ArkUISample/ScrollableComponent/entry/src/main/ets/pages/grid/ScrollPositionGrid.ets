@@ -28,7 +28,7 @@ export struct ScrollPosition {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // app.string.ScrollPosition_titleExample资源文件中的value值为‘控制滚动位置示例’
+        // 请将$r('app.string.ScrollPosition_titleExample')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置示例"
         ComponentCard({ title: $r('app.string.ScrollPosition_titleExample') }) {
           // [Start control_the_grid_scroll]
           Column({ space: 12 }) {
@@ -67,7 +67,7 @@ export struct ScrollPosition {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.ScrollPosition_title资源文件中的value值为‘控制滚动位置的网格布局’
+    // 请将$r('app.string.ScrollPosition_title')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置的网格布局"
     .title($r('app.string.ScrollPosition_title'))
   }
 }

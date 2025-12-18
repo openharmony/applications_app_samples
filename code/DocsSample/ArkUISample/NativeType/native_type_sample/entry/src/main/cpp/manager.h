@@ -82,6 +82,7 @@ public:
     static napi_value CreateNativeCheckboxShapePage(napi_env env, napi_callback_info info);
     static napi_value CreateHoverModeAreaTypePage(napi_env env, napi_callback_info info);
     static napi_value createPublicNativeNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerNativeNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;

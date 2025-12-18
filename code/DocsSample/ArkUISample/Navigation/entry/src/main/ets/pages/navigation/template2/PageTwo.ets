@@ -22,16 +22,16 @@ export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
-      value: "1",
+      value: '1',
       icon: 'resources/base/media/undo.svg',
     },
     {
-      value: "2",
+      value: '2',
       icon: 'resources/base/media/redo.svg',
       isEnabled: false,
     },
     {
-      value: "3",
+      value: '3',
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
     }

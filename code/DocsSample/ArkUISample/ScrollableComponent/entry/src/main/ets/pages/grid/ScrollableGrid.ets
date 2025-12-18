@@ -23,9 +23,9 @@ export struct ScrollableGrid {
   context = this.getUIContext().getHostContext();
   // [EndExclude build_scrollable_horizontally_grid_layouts]
   @State services: Array<string> = [
-    // app.string.Live_Streaming资源文件中的value值为‘直播’
+    // 请将$r('app.string.Live_Streaming')替换为实际资源文件，在本示例中该资源文件的value值为"直播"
     this.context!.resourceManager.getStringSync($r('app.string.Live_Streaming').id),
-    // app.string.Imported资源文件中的value值为‘进口’
+    // 请将$r('app.string.Imported')替换为实际资源文件，在本示例中该资源文件的value值为"进口"
     this.context!.resourceManager.getStringSync($r('app.string.Imported').id)
     ];
   // [StartExclude build_scrollable_horizontally_grid_layouts]
@@ -57,7 +57,7 @@ export struct ScrollableGrid {
 
       Column({ space: 5 }) {
         // [StartExclude build_scrollable_horizontally_grid_layouts]
-        // app.string.ScrollableGrid_titleHorizontal资源文件中的value值为‘横向可滚动网格布局示例’
+        // 请将$r('app.string.ScrollableGrid_titleHorizontal')替换为实际资源文件，在本示例中该资源文件的value值为"横向可滚动网格布局示例"
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
 
@@ -91,7 +91,7 @@ export struct ScrollableGrid {
 
     }
     .backgroundColor('#f1f2f3')
-    // app.string.ScrollableGrid_title资源文件中的value值为‘横向可滚动网格布局示例’
+    // 请将$r('app.string.ScrollableGrid_title')替换为实际资源文件，在本示例中该资源文件的value值为"横向可滚动网格布局示例"
     .title($r('app.string.ScrollableGrid_title'))
   }
   // [EndExclude build_scrollable_horizontally_grid_layouts]

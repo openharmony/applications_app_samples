@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "lazy_import_negative",
+      "value": "并发线程中未调用包含装饰器的文件导致appfreeze"
+    },
+    {
+      "name": "lazy_import_positive",
+      "value": "懒加载包含装饰器的文件"
+    },
+    {
+      "name": "decorator_use_isolation_negative",
+      "value": "并发线程中调用了包含装饰器的文件导致appfreeze"
+    },
+    {
+      "name": "decorator_use_isolation_positive",
+      "value": "状态变量装饰器使用隔离"
+    }
+  ]
+}

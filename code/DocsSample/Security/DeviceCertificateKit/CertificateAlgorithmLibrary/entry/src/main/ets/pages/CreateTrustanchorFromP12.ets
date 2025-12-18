@@ -120,15 +120,14 @@ function test() {
       0x04, 0x20, 0x93, 0x25, 0xC4, 0x3E, 0x2A, 0x6D, 0x4C, 0x30, 0x87, 0x0F, 0xE3, 0x5A, 0x95, 0xB0, 0xF2, 0x6C, 0xBA,
       0x07, 0x89, 0x7D, 0xFB, 0xCF, 0xCF, 0x1D, 0x54, 0xA3, 0x36, 0x24, 0x7B, 0x30, 0x97, 0xB5, 0x04, 0x08, 0xE7, 0x96,
       0x59, 0xCC, 0x42, 0x9F, 0xEF, 0xFC, 0x02, 0x02, 0x08, 0x00]);
-
   try {
     cert.createTrustAnchorsWithKeyStore(p12Data, '123456').then((data) => {
-      console.log('createTrustAnchorsWithKeyStore sucess, the num of result is :' + JSON.stringify(data.length));
+      console.info('createTrustAnchorsWithKeyStore success, the num of result is :' + data.length);
     }).catch((err: BusinessError) => {
-      console.error('createTrustAnchorsWithKeyStore failed, error :' + JSON.stringify(err));
+      console.error(`createTrustAnchorsWithKeyStore failed, errCode: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {
-    console.error('createTrustAnchorsWithKeyStore failed, error :' + JSON.stringify(error));
+    console.error(`createTrustAnchorsWithKeyStore failed, errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

@@ -98,7 +98,6 @@ struct GridEts {
             }
           }
         })
-      //[Start gridExamples_grid]
       Grid() {
         ForEach(this.numbers, (idx: number) => {
           GridItem() {

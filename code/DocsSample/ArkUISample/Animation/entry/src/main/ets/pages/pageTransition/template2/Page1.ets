@@ -22,13 +22,13 @@ struct Page1 {
     Column() {
       Button($r('app.string.page2')).onClick(() => {
         this.getUIContext().getRouter().pushUrl({
-          url: "pages/pageTransition/template2/Index"
+          url: 'pages/pageTransition/template2/Index'
         });
       })
         .width(200)
         .height(60)
         .fontSize(36)
-      Text("END")
+      Text('END')
         .fontSize(36)
         .textAlign(TextAlign.Center)
     }

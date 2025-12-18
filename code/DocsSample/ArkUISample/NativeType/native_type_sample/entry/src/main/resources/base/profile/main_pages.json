@@ -32,8 +32,10 @@
     "pages/page_image",
     "pages/page_calendar_picker",
     "pages/page_image_animator",
+    "pages/page_container_picker",
     "pages/grid/PageGridIrregularIndexes",
     "pages/grid/PageGridNormal",
-    "pages/grid/PageGridGetRectByIndex"
+    "pages/grid/PageGridGetRectByIndex",
+    "pages/containerPicker/PageContainerPickerIndex"
   ]
 }

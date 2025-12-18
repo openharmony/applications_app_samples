@@ -29,10 +29,16 @@ class Task {
   @Trace public isFinish: boolean = false;
 }
 
-@Builder function ActionButton(text: string|Resource, onClick:() => void) {
+@Builder
+function actionButton(text: string | Resource, onClick: () => void) {
   Button(text, { buttonStyle: ButtonStyleMode.NORMAL })
     .onClick(onClick)
-    .margin({ left: 10, right: 10, top: 5, bottom: 5 })
+    .margin({
+      left: 10,
+      right: 10,
+      top: 5,
+      bottom: 5
+    })
 }
 
 @ObservedV2
@@ -47,10 +53,10 @@ class TaskList {
 
   async loadTasks(context: common.UIAbilityContext) {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
-    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
-    let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
+    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+    let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
     let result = textDecoder.decodeToString(getJson);
-    this.tasks =JSON.parse(result).map((task: Task)=>{
+    this.tasks = JSON.parse(result).map((task: Task) => {
       let newTask = new Task();
       newTask.taskName = task.taskName;
       newTask.isFinish = task.isFinish;
@@ -63,6 +69,7 @@ class TaskList {
 struct TaskItem {
   @Param task: Task = new Task();
   @Event deleteTask: () => void = () => {};
+
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
@@ -74,17 +81,21 @@ struct TaskItem {
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
-        .margin({ left : 15, right : 10 })
+        .margin({ left: 15, right: 10 })
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
-      ActionButton('Delete', () => this.deleteTask())
+      actionButton('Delete', () => {
+        this.deleteTask();
+      })
     }
     .height('7%')
     .width('90%')
     .backgroundColor('#90f1f3f5')
     .borderRadius(25)
-    .onClick(() => this.task.isFinish = !this.task.isFinish)
+    .onClick(() => {
+      this.task.isFinish = !this.task.isFinish;
+    })
   }
 }
 
@@ -124,13 +135,16 @@ struct TodoList {
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
             task: obj.item,
-            deleteTask: () => this.taskList.tasks.splice(this.taskList.tasks.indexOf(obj.item), 1)
-          }).margin(5)
+            deleteTask: () => {
+              this.taskList.tasks.splice(this.taskList.tasks.indexOf(obj.item), 1);
+            }
+          })
+            .margin(5)
         })
       Row() {
-        ActionButton('All Completed', (): void => this.finishAll(true))
-        ActionButton('All Not Completed', (): void => this.finishAll(false))
-        ActionButton('Setting', (): void => {
+        actionButton('All Completed', (): void => this.finishAll(true))
+        actionButton('All Not Completed', (): void => this.finishAll(false))
+        actionButton('Setting', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备。
             bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
@@ -142,9 +156,11 @@ struct TodoList {
       .margin({ top: 10, bottom: 5 })
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
-          .onChange((value) => this.newTaskName = value)
+          .onChange((value) => {
+            this.newTaskName = value;
+          })
           .width('70%')
-        ActionButton('+', (): void => {
+        actionButton('+', (): void => {
           let newTask = new Task();
           newTask.taskName = this.newTaskName;
           this.taskList.tasks.push(newTask);

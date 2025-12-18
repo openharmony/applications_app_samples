@@ -20,7 +20,7 @@ struct pageTransitionPage1 {
 
   build() {
     Column() {
-      Image($r("app.media.transition_image2")).width('100%').height('100%') // 图片存放在media文件夹下
+      Image($r('app.media.transition_image2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .width('100%')
     .height('100%')

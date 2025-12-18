@@ -78,5 +78,185 @@ export default function AbilityTest() {
       Logger.info(`${BUNDLE_NAME}Http_case_002 end`);
       done();
     })
+
+    /**
+     * @tc.number Http_case_003
+     * @tc.name Http_case_003
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 上传请求 按钮
+     */
+    it(BUNDLE + 'Http_case_003', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_003 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_BUTTON));
+      let button = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_BUTTON));
+      await button.click();
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_PUT));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_PUT));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_003 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_004
+     * @tc.name Http_case_004
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 获取请求 按钮
+     */
+    it(BUNDLE + 'Http_case_004', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_004 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_GET));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_GET));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_004 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_005
+     * @tc.name Http_case_005
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 创建请求 按钮
+     */
+    it(BUNDLE + 'Http_case_005', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_005 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_MKCOL));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_MKCOL));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_005 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_006
+     * @tc.name Http_case_006
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 删除请求 按钮
+     */
+    it(BUNDLE + 'Http_case_006', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_006 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_DELETE));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_DELETE));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_006 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_007
+     * @tc.name Http_case_007
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 拷贝请求 按钮
+     */
+    it(BUNDLE + 'Http_case_007', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_007 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_COPY));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_COPY));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_007 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_008
+     * @tc.name Http_case_008
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 移动请求 按钮
+     */
+    it(BUNDLE + 'Http_case_008', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_008 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_MOVE));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_MOVE));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_008 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_009
+     * @tc.name Http_case_009
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 修改资源请求 按钮
+     */
+    it(BUNDLE + 'Http_case_009', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_009 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_PROPPATCH));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_PROPPATCH));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_009 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_010
+     * @tc.name Http_case_010
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 查找资源请求 按钮
+     */
+    it(BUNDLE + 'Http_case_010', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_010 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_PROPFIND));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_PROPFIND));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_010 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_011
+     * @tc.name Http_case_011
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 加锁请求 按钮
+     */
+    it(BUNDLE + 'Http_case_011', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_011 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_LOCK));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_LOCK));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_011 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_012
+     * @tc.name Http_case_012
+     * @tc.desc 测试 HTTP 扩展 WEBDAV 解锁请求 按钮
+     */
+    it(BUNDLE + 'Http_case_012', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_012 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_UNLOCK));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_UNLOCK));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_012 end`);
+      done();
+    })
+
+    /**
+     * @tc.number Http_case_013
+     * @tc.name Http_case_013
+     * @tc.desc 测试 非 HTTP 扩展 WEBDAV 请求方式 按钮
+     */
+    it(BUNDLE + 'Http_case_013', 0, async (done: Function) => {
+      Logger.info(`${BUNDLE_NAME}Http_case_013 begin`);
+      await driver.delayMs(DELAY_MS);
+      await driver.assertComponentExist(ON.id(ComponentId.HTTP_WEBDAV_UNKNOWN));
+      let stack = await driver.findComponent(ON.id(ComponentId.HTTP_WEBDAV_UNKNOWN));
+      await stack.click();
+      await driver.delayMs(DELAY_MS);
+      Logger.info(`${BUNDLE_NAME}Http_case_013 end`);
+      done();
+    })
   })
 }

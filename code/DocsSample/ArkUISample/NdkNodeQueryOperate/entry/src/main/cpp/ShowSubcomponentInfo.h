@@ -37,7 +37,7 @@ std::shared_ptr<ArkUIBaseNode> ShowSubcomponentInfo()
     OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(childNode, &index1);
     ArkUI_NodeHandle child = nullptr;
     auto result = OH_ArkUI_NodeUtils_GetChildWithExpandMode(childNode, 3, &child, 0);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", 
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
         "firstChildIndex - lastChildIndex == %{d -- %{public}d, -- getResult = %{public}d",
         index, index1, result);
     // [End ndknodequeryoperate9_start]

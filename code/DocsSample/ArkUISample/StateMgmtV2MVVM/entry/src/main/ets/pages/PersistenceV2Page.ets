@@ -41,10 +41,10 @@ class TaskList {
 
   async loadTasks(context: common.UIAbilityContext) {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
-    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
-    let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
+    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+    let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
     let result = textDecoder.decodeToString(getJson);
-    this.tasks =JSON.parse(result).map((task: Task)=>{
+    this.tasks = JSON.parse(result).map((task: Task) => {
       let newTask = new Task();
       newTask.taskName = task.taskName;
       newTask.isFinish = task.isFinish;
@@ -57,6 +57,7 @@ class TaskList {
 struct TaskItem {
   @Param task: Task = new Task();
   @Event deleteTask: () => void = () => {};
+
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
@@ -71,9 +72,13 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
       Button('Delete')
-        .onClick(() => this.deleteTask())
+        .onClick(() => {
+          this.deleteTask();
+        })
     }
-    .onClick(() => this.task.isFinish = !this.task.isFinish)
+    .onClick(() => {
+      this.task.isFinish = !this.task.isFinish;
+    })
   }
 }
 
@@ -113,14 +118,20 @@ struct TodoList {
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
             task: obj.item,
-            deleteTask: () => this.taskList.tasks.splice(this.taskList.tasks.indexOf(obj.item), 1)
+            deleteTask: () => {
+              this.taskList.tasks.splice(this.taskList.tasks.indexOf(obj.item), 1);
+            }
           })
         })
       Row() {
         Button('All Completed')
-          .onClick(() => this.finishAll(true))
+          .onClick(() => {
+            this.finishAll(true);
+          })
         Button('All Not Completed')
-          .onClick(() => this.finishAll(false))
+          .onClick(() => {
+            this.finishAll(false);
+          })
         Button('Setting')
           .onClick(() => {
             let wantInfo: Want = {
@@ -133,7 +144,9 @@ struct TodoList {
       }
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
-          .onChange((value) => this.newTaskName = value)
+          .onChange((value) => {
+            this.newTaskName = value;
+          })
           .width('70%')
         Button('+')
           .onClick(() => {

@@ -16,6 +16,11 @@
 {
   "apiType": "stageMode",
   "buildOption": {
+    "resOptions": {
+      "copyCodeResource": {
+        "enable": true
+      },
+    }
   },
   "buildOptionSet": [
     {

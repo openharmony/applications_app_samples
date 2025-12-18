@@ -30,36 +30,37 @@ export const GRID_ROUTE_PREFIX: string = 'grid';
 const routes: Route[] = [
   {
     name: `${GRID_ROUTE_PREFIX}/GridLayout`,
-    // app.string.GridLayout_title资源文件中的value值为‘网格开发布局’
+    // 请将$r('app.string.GridLayout_title')替换为实际资源文件，在本示例中该资源文件的value值为"网格开发布局"
     title: resource.resourceToString($r('app.string.GridLayout_title')),
-    // app.string.DataInGrid_title资源文件中的value值为‘示例设置了网格中子组件行列数量占比、行列间距和主轴方向。’
+    // 请将$r('app.string.GridLayout_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例设置了网格中子组件行列数量占比、行列间距和主轴方向。"
     description: $r('app.string.GridLayout_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/DataInGrid`,
-    // app.string.DataInGrid_title资源文件中的value值为‘网格显示数据’
+    // 请将$r('app.string.DataInGrid_title')替换为实际资源文件，在本示例中该资源文件的value值为"网格显示数据"
     title: resource.resourceToString($r('app.string.DataInGrid_title')),
-    // app.string.DataInGrid_description资源文件中的value值为‘示例采用二维布局的方式组织其内部元素，显示通用办公服务网格。’
+    // 请将$r('app.string.DataInGrid_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例采用二维布局的方式组织其内部元素，显示通用办公服务网格。"
     description: $r('app.string.DataInGrid_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/ScrollableGrid`,
-    // app.string.ScrollableGrid_title资源文件中的value值为‘可滚动的网格布局’
+    // 请将$r('app.string.ScrollableGrid_title')替换为实际资源文件，在本示例中该资源文件的value值为"可滚动的网格布局"
     title: resource.resourceToString($r('app.string.ScrollableGrid_title')),
-    // app.string.ScrollableGrid_description资源文件中的value值为‘示例通过仅设置行、列数量与占比中的一个实现横向可滚动网格布局。’
+    // 请将$r('app.string.ScrollableGrid_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例通过仅设置行、列数量与占比中的一个实现横向可滚动网格布局。"
     description: $r('app.string.ScrollableGrid_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/ScrollPosition`,
-    // app.string.ScrollPosition_title资源文件中的value值为‘控制滚动位置的网格布局’
+    // 请将$r('app.string.ScrollPosition_title')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置的网格布局"
     title: resource.resourceToString($r('app.string.ScrollPosition_title')),
-    // app.string.ScrollPosition_description资源文件中的value值为‘示例通过添加Scroller对象的scrollPage方法，
-    // 实现滚动网格布局翻页滚动的功能。’
+    // 实现滚动网格布局翻页滚动的功能。
+    // 请将$r('app.string.ScrollPosition_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例通过添加Scroller对象的scrollPage方法"
+    
     description: $r('app.string.ScrollPosition_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/GridSideToSide`,
-    // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
+    // 请将$r('app.string.GridSideToSide')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置"
     title: resource.resourceToString($r('app.string.GridSideToSide_title')),
     // app.string.GridSideToSide_description资源文件中的value值为‘与新闻列表的返回顶部场景类似，控制滚动位置功能在网格布局中也很常用，
     // 例如下图所示日历的翻页功能。’
@@ -67,14 +68,14 @@ const routes: Route[] = [
   },
   {
     name: `${GRID_ROUTE_PREFIX}/GridScrollbar`,
-    // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
+    // 请将$r('app.string.GridScrollbar')替换为实际资源文件，在本示例中该资源文件的value值为"添加外置滚动条"
     title: resource.resourceToString($r('app.string.GridScrollbar_title')),
-    // app.string.GridScrollbar_description资源文件中的value值为‘网格组件Grid可与ScrollBar组件配合使用，为网格添加外置滚动条。’
+    // 请将$r('app.string.GridScrollbar')替换为实际资源文件，在本示例中该资源文件的value值为"网格组件Grid可与ScrollBar组件配合使用，为网格添加外置滚动条。"
     description: $r('app.string.GridScrollbar_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/LongGrid`,
-    // app.string.LongGrid_title资源文件中的value值为‘性能优化’
+    // 请将$r('app.string.LongGrid')替换为实际资源文件，在本示例中该资源文件的value值为"性能优化"
     title: resource.resourceToString($r('app.string.LongGrid_title')),
     // app.string.LongGrid_description资源文件中的value值为‘与长列表的处理类似，循环渲染适用于数据量较小的布局场景，
     // 当构建具有大量网格项的可滚动网格布局时，推荐使用数据懒加载方式实现按需迭代加载数据，从而提升列表性能。’
@@ -82,9 +83,9 @@ const routes: Route[] = [
   },
   {
     name: `${GRID_ROUTE_PREFIX}/GridCalculator`,
-    // app.string.GridCalculator_title资源文件中的value值为‘计算器的按键布局’
+    // 请将$r('app.string.GridCalculator')替换为实际资源文件，在本示例中该资源文件的value值为"计算器的按键布局"
     title: resource.resourceToString($r('app.string.GridCalculator_title')),
-    // app.string.GridCalculator_description资源文件中的value值为‘实现不同大小的网格组成不均匀分布的网格布局场景’
+    // 请将$r('app.string.GridCalculator')替换为实际资源文件，在本示例中该资源文件的value值为"实现不同大小的网格组成不均匀分布的网格布局场景"
     description: $r('app.string.GridCalculator_description')
   }
 ];

@@ -35,7 +35,7 @@ export struct LongGrid {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // app.string.LongGrid_title资源文件中的value值为‘性能优化’
+        // 请将$r('app.string.LongGrid_title')替换为实际资源文件，在本示例中该资源文件的value值为"性能优化"
         ComponentCard({ title: $r('app.string.LongGrid_title') }) {
           Column({ space: 5 }) {
             // [Start long_list]
@@ -63,7 +63,7 @@ export struct LongGrid {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.LongGrid_title资源文件中的value值为‘性能优化’
+    // 请将$r('app.string.LongGrid_title')替换为实际资源文件，在本示例中该资源文件的value值为"性能优化"
     .title($r('app.string.LongGrid_title'))
   }
 }

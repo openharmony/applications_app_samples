@@ -17,6 +17,7 @@
 #include "baseUtils.h"
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>
+#include <arkui/drag_and_drop.h>
 #include <hilog/log.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_color.h>
@@ -83,6 +84,8 @@
 #define EVENT_TEXT_DETECT_RESULT_UPDATE 31
 #define EVENT_TEXT_ON_CLICK 32
 #define FLOAT_50 50.0f
+
+ArkUI_NodeHandle TextMaker::text17 = nullptr;
 
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
@@ -664,6 +667,46 @@ void setTextInput7(ArkUI_NodeHandle &textInput7)
     Manager::nodeAPI_->setAttribute(textInput7, NODE_TEXT_INPUT_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
 }
 
+void setTextInput8(ArkUI_NodeHandle &textInput8)
+{
+    ArkUI_AttributeItem input_Item = {.string = "TextInput 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(textInput8, NODE_TEXT_INPUT_TEXT, &input_Item);
+    OH_ArkUI_SetNodeDraggable(textInput8, true);
+    ArkUI_SelectedDragPreviewStyle *textInput_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(textInput_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textInputColorItem = {.size = 1, .object = textInput_options};
+    Manager::nodeAPI_->setAttribute(textInput8, NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE, &textInputColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(textInput_options);
+}
+
+void setTextInput9(ArkUI_NodeHandle &textInput9, ArkUI_NodeHandle &textInput9Button1)
+{
+    ArkUI_AttributeItem textItem = { .string = "TextInput组件测试deleteBackward" };
+    Manager::nodeAPI_->setAttribute(textInput9, NODE_TEXT_INPUT_TEXT, &textItem);
+
+    auto controller = OH_ArkUI_TextContentBaseController_Create();
+    ArkUI_AttributeItem controllerItem = { .object = controller };
+    Manager::nodeAPI_->setAttribute(textInput9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &controllerItem);
+
+    const int32_t eventId = 4242;
+    ArkUI_AttributeItem buttonLabel{ .string = "TextInput DeleteBackward" };
+    Manager::nodeAPI_->setAttribute(textInput9Button1, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textInput9Button1, NODE_ON_CLICK_EVENT, eventId, controller);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textInput9Button1, [](ArkUI_NodeEvent* event) {
+        auto eventType{ OH_ArkUI_NodeEvent_GetEventType(event) };
+        auto eventId{ OH_ArkUI_NodeEvent_GetTargetId(event) };
+        auto controller{ OH_ArkUI_NodeEvent_GetUserData(event) };
+        const int32_t targetEventId = 4242;
+
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == targetEventId) {
+            OH_ArkUI_TextContentBaseController_DeleteBackward(
+                reinterpret_cast<ArkUI_TextContentBaseController*>(controller)
+            );
+        }
+    });
+}
+
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -1204,20 +1247,6 @@ void setText8(ArkUI_NodeHandle &text8)
     ArkUI_NumberValue value2[] = {{.i32 = 5}};
     ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_MAX_LINES, &item2);
-    //创建选择选项
-    ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
-    //设置选择选项的菜单弹出策略为不弹出菜单
-    OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
-    //获取选择选项的菜单弹出策略
-    ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
-    //设置文本选择区域为[1, 3]，该区域将被高亮显示
-    ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
-    ArkUI_NumberValue* values = valueArray;
-    ArkUI_AttributeItem selectionItem = {.value = values, .object = options};
-    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_TEXT_SELECTION, &selectionItem);
-    //释放选择选项对象
-    OH_ArkUI_SelectionOptions_Dispose(options);
 }
 
 void setText9(ArkUI_NodeHandle &text9)
@@ -1231,15 +1260,6 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
-    // 创建文本内容基础控制器指针
-    auto controller{ OH_ArkUI_TextContentBaseController_Create() };
-    // 绑定text9到controller->node上
-    ArkUI_AttributeItem item_controller{ .object = controller };
-    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE, &item_controller);
-    // 调用DeleteBackward删除文本内最后一个字符
-    OH_ArkUI_TextContentBaseController_DeleteBackward(controller);
-    // 销毁指针
-    OH_ArkUI_TextContentBaseController_Dispose(controller);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
@@ -1382,6 +1402,35 @@ void setText15(ArkUI_NodeHandle &text15)
     ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_30}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text15, NODE_HEIGHT, &textHeightItem);
+}
+
+void setText16(ArkUI_NodeHandle &text16)
+{
+    ArkUI_AttributeItem textItem = {.string = "Text 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_CONTENT, &textItem);
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_TEXT_COPY_OPTIONS_IN_APP };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, 1 };
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    OH_ArkUI_SetNodeDraggable(text16, true);
+    ArkUI_SelectedDragPreviewStyle *text_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(text_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textColorItem = {.size = 1, .object = text_options};
+    Manager::nodeAPI_->setAttribute(text16, NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE, &textColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(text_options);
+}
+
+void setText17(ArkUI_NodeHandle &text17)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "测试文本选中";
+    Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xffff0000}};
+    ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text17, NODE_BACKGROUND_COLOR, &item3);
+    // 应用内支持复制
+    ArkUI_NumberValue copyOptVal = {.i32 = ARKUI_COPY_OPTIONS_IN_APP};
+    ArkUI_AttributeItem copyOptItem = {&copyOptVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_COPY_OPTION, &copyOptItem);
 }
 
 void setBasicText2(ArkUI_NodeHandle &textContainer)
@@ -1580,6 +1629,46 @@ void setTextArea8(ArkUI_NodeHandle &textArea8)
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_TEXT_AREA_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+}
+
+void setTextArea9(ArkUI_NodeHandle &textArea9)
+{
+    ArkUI_AttributeItem textItem = {.string = "TextArea 设置拖拽背板颜色"};
+    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_AREA_TEXT, &textItem);
+    OH_ArkUI_SetNodeDraggable(textArea9, true);
+    ArkUI_SelectedDragPreviewStyle *textArea_options = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    OH_ArkUI_SelectedDragPreviewStyle_SetColor(textArea_options, 0xFFE3F8F9);
+    ArkUI_AttributeItem textAreaColorItem = {.size = 1, .object = textArea_options};
+    Manager::nodeAPI_->setAttribute(textArea9, NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE, &textAreaColorItem);
+    OH_ArkUI_SelectedDragPreviewStyle_Dispose(textArea_options);
+}
+
+void setTextArea10(ArkUI_NodeHandle &textArea10, ArkUI_NodeHandle &textArea10Button1)
+{
+    ArkUI_AttributeItem textItem = { .string = "TextArea组件测试deleteBackward" };
+    Manager::nodeAPI_->setAttribute(textArea10, NODE_TEXT_AREA_TEXT, &textItem);
+
+    auto controller = OH_ArkUI_TextContentBaseController_Create();
+    ArkUI_AttributeItem controllerItem = { .object = controller };
+    Manager::nodeAPI_->setAttribute(textArea10, NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE, &controllerItem);
+
+    const int32_t eventId = 4242;
+    ArkUI_AttributeItem buttonLabel{ .string = "TextArea DeleteBackward" };
+    Manager::nodeAPI_->setAttribute(textArea10Button1, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textArea10Button1, NODE_ON_CLICK_EVENT, eventId, controller);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textArea10Button1, [](ArkUI_NodeEvent* event) {
+        auto eventType{ OH_ArkUI_NodeEvent_GetEventType(event) };
+        auto eventId{ OH_ArkUI_NodeEvent_GetTargetId(event) };
+        auto controller{ OH_ArkUI_NodeEvent_GetUserData(event) };
+        const int32_t targetEventId = 4242;
+
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == targetEventId) {
+            OH_ArkUI_TextContentBaseController_DeleteBackward(
+                reinterpret_cast<ArkUI_TextContentBaseController*>(controller)
+            );
+        }
+    });
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -1817,18 +1906,47 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12);
     setText13(text13);
     setText13(text14);
     setText15(text15);
+    setText16(text16);
+    setText17(TextMaker::text17);
+
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    std::string labelStr = "setTextSelection";
+    ArkUI_AttributeItem LABEL_Item1 = {.string = labelStr.c_str()};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item1);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        // 创建选择选项
+        static ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
+        // 设置选择选项的菜单弹出策略为不弹出菜单
+        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
+        // 获取选择选项的菜单弹出策略
+        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
+        // 设置文本选择区域为[1, 3]，该区域将被高亮显示
+        ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
+        ArkUI_NumberValue* values = valueArray;
+        ArkUI_AttributeItem selectionItem = {.value = values, .size = 2, .object = options};
+        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
+        // 释放选择选项对象
+        OH_ArkUI_SelectionOptions_Dispose(options);
+    });
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
     Manager::nodeAPI_->addChild(textContainer, text13);
     Manager::nodeAPI_->addChild(textContainer, text14);
     Manager::nodeAPI_->addChild(textContainer, text15);
+    Manager::nodeAPI_->addChild(textContainer, text16);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::text17);
+    Manager::nodeAPI_->addChild(textContainer, button);
 }
 
 void setAllTextPart1(ArkUI_NodeHandle &textContainer)
@@ -1904,6 +2022,9 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput9Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     setTextInput1(textInput1);
     setTextInput2(textInput2);
@@ -1912,6 +2033,8 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setTextInput5(textInput5);
     setTextInput6(textInput6);
     setTextInput7(textInput7);
+    setTextInput8(textInput8);
+    setTextInput9(textInput9, textInput9Button1);
     setTextInputSelectAI(textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
@@ -1920,6 +2043,9 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput5);
     Manager::nodeAPI_->addChild(textContainer, textInput6);
     Manager::nodeAPI_->addChild(textContainer, textInput7);
+    Manager::nodeAPI_->addChild(textContainer, textInput8);
+    Manager::nodeAPI_->addChild(textContainer, textInput9);
+    Manager::nodeAPI_->addChild(textContainer, textInput9Button1);
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
 void setAllTextArea(ArkUI_NodeHandle &textContainer)
@@ -1932,6 +2058,9 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea10Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setTextArea1(textArea1);
     setTextArea2(textArea2);
@@ -1942,6 +2071,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextAreaSelectAI(textAreaAISelect);
     setTextArea7(textArea7);
     setTextArea8(textArea8);
+    setTextArea9(textArea9);
+    setTextArea10(textArea10, textArea10Button1);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
@@ -1953,6 +2084,9 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
     Manager::nodeAPI_->addChild(textContainer, textArea7);
     Manager::nodeAPI_->addChild(textContainer, textArea8);
+    Manager::nodeAPI_->addChild(textContainer, textArea9);
+    Manager::nodeAPI_->addChild(textContainer, textArea10);
+    Manager::nodeAPI_->addChild(textContainer, textArea10Button1);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)

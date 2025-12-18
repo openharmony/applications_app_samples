@@ -41,7 +41,7 @@ export struct GridSideToSide {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
+        // 请将$r('app.string.GridSideToSide_title')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置"
         ComponentCard({ title: $r('app.string.GridSideToSide_title') }) {
           // [Start Control_scrolling_position]
           Column({ space: 5 }){
@@ -68,14 +68,14 @@ export struct GridSideToSide {
             .scrollBar(BarState.Off)
             // [EndExclude Control_scrolling_position]
             Row({ space: 20 }) {
-              // app.string.Previous_Page资源文件中的value值为‘上一页’
+              // 请将$r('app.string.Previous_Page')替换为实际资源文件，在本示例中该资源文件的value值为"上一页"
               Button($r('app.string.Previous_Page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
                     next: false
                   });
                 })
-              // app.string.Next_page资源文件中的value值为‘下一页’
+              // 请将$r('app.string.Next_page')替换为实际资源文件，在本示例中该资源文件的value值为"下一页"
               Button($r('app.string.Next_page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
@@ -92,7 +92,7 @@ export struct GridSideToSide {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
+    // 请将$r('app.string.GridSideToSide_title')替换为实际资源文件，在本示例中该资源文件的value值为"控制滚动位置"
     .title($r('app.string.GridSideToSide_title'))
   }
 }

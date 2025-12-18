@@ -172,5 +172,251 @@ export default function certificateAlgorithmLibraryTest() {
       console.info('uitest: testCertificateAlgorithmLibrary007 end');
       done();
     })
+
+    /**
+     * 点击按钮，使用系统预制CA证书校验证书链
+     */
+    it('testCertificateAlgorithmLibrary008', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary008 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('VerifyCertchainBySystemca'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call VerifyCertchainBySystemca'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary008 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书CMS签名异步
+     */
+    it('testCertificateAlgorithmLibrary009', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary009 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateCmsOperator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateCmsSignObjectAsync'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateCmsSignObjectAsync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary009 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书CMS签名同步
+     */
+    it('testCertificateAlgorithmLibrary010', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary010 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateCmsOperator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateCmsSignObjectSync'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateCmsSignObjectSync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary010 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书CMS封装
+     */
+    it('testCertificateAlgorithmLibrary011', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary011 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateCmsOperator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateCmsEnvelopedObject'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateCmsEnvelopedObject'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary011 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书CMS验签
+     */
+    it('testCertificateAlgorithmLibrary012', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary012 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateCmsOperator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateCmsVerifyObject'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateCmsVerifyObject'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary012 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书CMS解封装
+     */
+    it('testCertificateAlgorithmLibrary013', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary013 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateCmsOperator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateCmsDecapsulationObject'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateCmsDecapsulationObject'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary013 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书PKCS12创建与解析异步
+     */
+    it('testCertificateAlgorithmLibrary014', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary014 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateParsePkcs12'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateParsePkcs12Async'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateParsePkcs12Async'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary014 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，证书PKCS12创建与解析同步
+     */
+    it('testCertificateAlgorithmLibrary015', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary015 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('CreateParsePkcs12'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateParsePkcs12Sync'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateParsePkcs12Sync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary015 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，本地证书链吊销状态校验时仅校验终端实体证书
+     */
+    it('testCertificateAlgorithmLibrary016', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary016 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('VerifyCertchainOnlineRevocationStatus'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateOnlyCheckLeafCertRevocateObject'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateOnlyCheckLeafCertRevocateObject'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary016 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，在线校验证书链中的中间CA证书吊销状态
+     */
+    it('testCertificateAlgorithmLibrary017', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary017 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('VerifyCertchainOnlineRevocationStatus'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('CreateOnlineCheckIntermediateCertificateonlyObject'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CreateOnlineCheckIntermediateCertificateonlyObject'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary017 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，在线证书吊销检查忽略网络不可达异常
+     */
+    it('testCertificateAlgorithmLibrary018', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary018 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('VerifyCertchainOnlineRevocationStatus'));
+      await button0.click();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('IgnoreNetworkUnreachable'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call IgnoreNetworkUnreachable'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary018 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，在线证书吊销检查忽略网络不可达异常
+     */
+    it('testCertificateAlgorithmLibrary019', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary019 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('AllowDownloadIntermediateCert'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call AllowDownloadIntermediateCert'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary019 end');
+      done();
+    })
   })
 }

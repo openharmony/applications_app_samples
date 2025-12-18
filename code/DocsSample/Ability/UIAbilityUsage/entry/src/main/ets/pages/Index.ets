@@ -33,7 +33,7 @@ struct Index {
       }
 
       ListItem() {
-        // app.string.Start_UIAbilityB资源文件中的value值为'拉起UIAbilityB'
+        // 请将$r('app.string.Start_UIAbilityB')替换为实际资源文件，在本示例中该资源文件的value值为"拉起UIAbilityB"
         Button($r('app.string.Start_UIAbilityB'))
           .onClick((event: ClickEvent) => {
             let want: Want = {

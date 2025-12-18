@@ -14,7 +14,7 @@
  */
 const DOMAIN = 0x0000;
 // [Start NavigationMenuThreeImage]
-let toolTmp: NavigationMenuItem  = {
+let menuItem: NavigationMenuItem  = {
   'value': 'func',
   'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
   'action': () => {}
@@ -68,7 +68,7 @@ struct MenusThreeImage {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuThreeImage]
       }
-      .menus([toolTmp, toolTmp, toolTmp])
+      .menus([menuItem, menuItem, menuItem])
       // [End NavigationMenuThreeImage]
       // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
       .title($r('app.string.mainTitle'))

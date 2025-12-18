@@ -21,7 +21,7 @@ import Want from '@ohos.app.ability.Want';
 import { Permissions } from '@ohos.abilityAccessCtrl';
 import { logger, urlUtils } from '@ohos/uploaddownload';
 
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA'];
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO'];
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {

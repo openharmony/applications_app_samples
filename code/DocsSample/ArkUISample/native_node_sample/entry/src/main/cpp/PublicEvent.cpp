@@ -1306,6 +1306,266 @@ void CreateNodeEventOnAppear(ArkUI_NodeHandle &column)
     });
 }
 
+ArkUI_NodeHandle CreateNodeEventMonopolizeColumnControl()
+{
+    static auto columnControl = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue rowWidthValue[] = {400};
+    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
+    ArkUI_NumberValue rowHeightValue[] = {400};
+    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_WIDTH, &rowWidthItem);
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_HEIGHT, &rowHeightItem);
+    return columnControl;
+}
+
+void CreateNodeEventMonopolize(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_MONOPOLIZE_EVENTS", [](ArkUI_NodeHandle node) {
+        auto columnControl = CreateNodeEventMonopolizeColumnControl();
+        static auto row1Control = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+        static auto row2Control = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+
+        ArkUI_NumberValue btnWidthValue[] = {400};
+        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+        ArkUI_NumberValue btnWidth2Value[] = {200};
+        ArkUI_AttributeItem btnWidth2Item = {btnWidth2Value, 1};
+        ArkUI_NumberValue btnHeightValue[] = {60};
+        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+        ArkUI_NumberValue btnMarginValue[] = {20};
+        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+        Manager::nodeAPI_->setAttribute(row1Control, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(row1Control, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(row1Control, NODE_MARGIN, &btnMarginItem);
+        ArkUI_NumberValue colorValue[] = {{.u32 = 0xFFFFB6C1}};
+        ArkUI_AttributeItem colorItem = {colorValue, 1};
+        Manager::nodeAPI_->setAttribute(row1Control, NODE_BACKGROUND_COLOR, &colorItem);
+
+        ArkUI_NumberValue color2Value[] = {{.u32 = 0xFFE0E0E0}};
+        ArkUI_AttributeItem color2Item = {color2Value, 1};
+        Manager::nodeAPI_->setAttribute(row2Control, NODE_BACKGROUND_COLOR, &color2Item);
+        Manager::nodeAPI_->setAttribute(row2Control, NODE_WIDTH, &btnWidth2Item);
+        Manager::nodeAPI_->setAttribute(row2Control, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(row2Control, NODE_MARGIN, &btnMarginItem);
+        ArkUI_NumberValue monoValue[] = {{.i32 = 0}};
+        ArkUI_AttributeItem monoItem = {monoValue, 1};
+        Manager::nodeAPI_->setAttribute(row2Control, NODE_MONOPOLIZE_EVENTS, &monoItem);
+
+        static MyData component;
+        component.columnControl = columnControl;
+        Manager::nodeAPI_->registerNodeEvent(row1Control, NODE_TOUCH_EVENT, 1, &row1Control);
+        Manager::nodeAPI_->addNodeEventReceiver(row1Control, [](ArkUI_NodeEvent *event) {
+            if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_TOUCH_EVENT) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Monopolize", "touch pink");
+            }
+        });
+        Manager::nodeAPI_->registerNodeEvent(row2Control, NODE_TOUCH_EVENT, 1, &row2Control);
+        Manager::nodeAPI_->addNodeEventReceiver(row2Control, [](ArkUI_NodeEvent *event) {
+            if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_TOUCH_EVENT) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Monopolize", "touch gray");
+            }
+        });
+        AllRegisterNodeEventReceiver();
+        Manager::nodeAPI_->addChild(columnControl, row1Control);
+        Manager::nodeAPI_->addChild(row1Control, row2Control);
+        Manager::nodeAPI_->addChild(node, columnControl);
+    });
+}
+
+ArkUI_NodeHandle CreateNodeEventHoverEffectColumnControl()
+{
+    static auto columnControl = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue rowWidthValue[] = {400};
+    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
+    ArkUI_NumberValue rowHeightValue[] = {400};
+    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_WIDTH, &rowWidthItem);
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_HEIGHT, &rowHeightItem);
+    return columnControl;
+}
+
+void CreateNodeEventHoverEffect(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_HOVER_EFFECT", [](ArkUI_NodeHandle node) {
+        auto columnControl = CreateNodeEventHoverEffectColumnControl();
+        static auto buttonControl = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+
+        ArkUI_NumberValue btnWidthValue[] = {150};
+        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+        ArkUI_NumberValue btnHeightValue[] = {60};
+        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+        ArkUI_NumberValue btnMarginValue[] = {20};
+        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+        ArkUI_NumberValue effectValue[] = {{.i32 = ARKUI_HOVER_EFFECT_SCALE}};
+        ArkUI_AttributeItem effectItem = {effectValue, 1};
+        ArkUI_AttributeItem buttonLabel1 = {.string = "HOVER_EFFECT_SCALE"};
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_BUTTON_LABEL, &buttonLabel1);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_MARGIN, &btnMarginItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_HOVER_EFFECT, &effectItem);
+        static MyData component;
+        component.columnControl = columnControl;
+        Manager::nodeAPI_->registerNodeEvent(buttonControl, NODE_ON_CLICK_EVENT, TARGET_ID_5, &component);
+        AllRegisterNodeEventReceiver();
+        Manager::nodeAPI_->addChild(columnControl, buttonControl);
+        Manager::nodeAPI_->addChild(node, columnControl);
+    });
+}
+
+ArkUI_NodeHandle CreateNodeFocusScopeColumnControl()
+{
+    static auto columnControl = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue rowWidthValue[] = {400};
+    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
+    ArkUI_NumberValue rowHeightValue[] = {400};
+    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_WIDTH, &rowWidthItem);
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_HEIGHT, &rowHeightItem);
+    return columnControl;
+}
+
+void CreateNodeFocusScope(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_FOCUS_SCOPE_ID NODE_FOCUS_SCOPE_PRIORITY", [](ArkUI_NodeHandle node) {
+        auto columnControl = CreateNodeFocusScopeColumnControl();
+        static auto buttonControl = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto buttonControl1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto buttonTwo = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        ArkUI_NumberValue btnWidthValue[] = {150};
+        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+        ArkUI_NumberValue btnHeightValue[] = {60};
+        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+        ArkUI_NumberValue btnMarginValue[] = {20};
+        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+        ArkUI_NumberValue focusValue[] = {{.i32 = 1}, {.i32 = 0}};
+        ArkUI_AttributeItem focusItem = {.value = focusValue, 2, .string = "id"};
+        ArkUI_NumberValue focusValue1[] = {{.i32 = ARKUI_FOCUS_PRIORITY_PREVIOUS}};
+        ArkUI_AttributeItem focusItem1 = {.value = focusValue1, 1, .string = "id"};
+        ArkUI_AttributeItem buttonLabel1 = {.string = "focus group id 1"};
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_BUTTON_LABEL, &buttonLabel1);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_MARGIN, &btnMarginItem);
+        ArkUI_AttributeItem buttonLabel2 = {.string = "focus group id 2"};
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_BUTTON_LABEL, &buttonLabel2);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_MARGIN, &btnMarginItem);
+        Manager::nodeAPI_->setAttribute(columnControl, NODE_FOCUS_SCOPE_ID, &focusItem);
+        ArkUI_AttributeItem buttonLabel3 = {.string = "other"};
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_BUTTON_LABEL, &buttonLabel3);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_MARGIN, &btnMarginItem);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_FOCUS_SCOPE_PRIORITY, &focusItem1);
+        static MyData component;
+        component.buttonTwo = buttonTwo;
+        component.columnControl = columnControl;
+        Manager::nodeAPI_->registerNodeEvent(buttonControl, NODE_ON_CLICK_EVENT, TARGET_ID_5, &component);
+        Manager::nodeAPI_->registerNodeEvent(buttonControl1, NODE_ON_CLICK_EVENT, TARGET_ID_6, &component);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_ATTACH, TARGET_ID_12, nullptr);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_DETACH, TARGET_ID_13, nullptr);
+        AllRegisterNodeEventReceiver();
+        Manager::nodeAPI_->addChild(columnControl, buttonControl);
+        Manager::nodeAPI_->addChild(columnControl, buttonControl1);
+        Manager::nodeAPI_->addChild(columnControl, buttonTwo);
+        Manager::nodeAPI_->addChild(node, columnControl);
+    });
+}
+
+ArkUI_NodeHandle CreateNodeClickDistanceColumn()
+{
+    static auto columnControl = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue rowWidthValue[] = {400};
+    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
+    ArkUI_NumberValue rowHeightValue[] = {400};
+    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_WIDTH, &rowWidthItem);
+    Manager::nodeAPI_->setAttribute(columnControl, NODE_HEIGHT, &rowHeightItem);
+    return columnControl;
+}
+
+void CreateNodeClickDistanceThreshold(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD", [](ArkUI_NodeHandle node) {
+        auto columnControl = CreateNodeClickDistanceColumn();
+        static auto buttonControl = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto buttonControl1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto buttonTwo = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        ArkUI_NumberValue btnWidthValue[] = {150};
+        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+        ArkUI_NumberValue btnHeightValue[] = {60};
+        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+        ArkUI_NumberValue btnMarginValue[] = {20};
+        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+        ArkUI_NumberValue distanceValue[] = {{.f32 = 1.0}};
+        ArkUI_AttributeItem distanceItem = {.value = distanceValue, 1};
+        ArkUI_AttributeItem buttonLabel1 = {.string = "appear buttonTwo DISTANCE is 1"};
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_BUTTON_LABEL, &buttonLabel1);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_MARGIN, &btnMarginItem);
+        ArkUI_AttributeItem buttonLabel2 = {.string = "disappear buttonTwo"};
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_BUTTON_LABEL, &buttonLabel2);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonControl1, NODE_MARGIN, &btnMarginItem);
+        ArkUI_AttributeItem buttonLabel3 = {.string = "buttonTwo"};
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_BUTTON_LABEL, &buttonLabel3);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(buttonTwo, NODE_MARGIN, &btnMarginItem);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_APPEAR, TARGET_ID_3, nullptr);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_DISAPPEAR, TARGET_ID_4, nullptr);
+        static MyData component;
+        component.buttonTwo = buttonTwo;
+        component.columnControl = columnControl;
+        Manager::nodeAPI_->registerNodeEvent(buttonControl, NODE_ON_CLICK_EVENT, TARGET_ID_5, &component);
+        Manager::nodeAPI_->setAttribute(buttonControl, NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD, &distanceItem);
+        Manager::nodeAPI_->registerNodeEvent(buttonControl1, NODE_ON_CLICK_EVENT, TARGET_ID_6, &component);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_ATTACH, TARGET_ID_12, nullptr);
+        Manager::nodeAPI_->registerNodeEvent(buttonTwo, NODE_EVENT_ON_DETACH, TARGET_ID_13, nullptr);
+        AllRegisterNodeEventReceiver();
+        Manager::nodeAPI_->addChild(columnControl, buttonControl);
+        Manager::nodeAPI_->addChild(columnControl, buttonControl1);
+        Manager::nodeAPI_->addChild(columnControl, buttonTwo);
+        Manager::nodeAPI_->addChild(node, columnControl);
+    });
+}
+
+void CreateNodeOnSizeChangeEvent(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_ON_SIZE_CHANGE ", [](ArkUI_NodeHandle node) {
+        if (!Manager::nodeAPI_ || !node) {
+            return;
+        }
+        rowTouchIntercept = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+        SetRowAttribute(rowTouchIntercept);
+        ArkUI_NodeHandle button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        ArkUI_NumberValue btnWidthValue[] = {150};
+        ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+        ArkUI_NumberValue btnHeightValue[] = {60};
+        ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+        ArkUI_NumberValue btnMarginValue[] = {20};
+        ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+
+        ArkUI_AttributeItem buttonLabel1 = {.string = "button1"};
+        Manager::nodeAPI_->setAttribute(button1, NODE_BUTTON_LABEL, &buttonLabel1);
+        Manager::nodeAPI_->setAttribute(button1, NODE_WIDTH, &btnWidthItem);
+        Manager::nodeAPI_->setAttribute(button1, NODE_HEIGHT, &btnHeightItem);
+        Manager::nodeAPI_->setAttribute(button1, NODE_MARGIN, &btnMarginItem);
+
+        Manager::nodeAPI_->registerNodeEvent(button1, NODE_ON_SIZE_CHANGE, 1, &button1);
+        Manager::nodeAPI_->addNodeEventReceiver(button1, [](ArkUI_NodeEvent *event) {
+            if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_SIZE_CHANGE) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventTest", "NODE_ON_SIZE_CHANGE");
+            }
+        });
+        Manager::nodeAPI_->addChild(rowTouchIntercept, button1);
+        Manager::nodeAPI_->addChild(node, rowTouchIntercept);
+    });
+}
+
 void AddScrollChild(ArkUI_NodeHandle &scroll)
 {
     if (!Manager::nodeAPI_) {
@@ -1344,6 +1604,16 @@ void AddScrollChild(ArkUI_NodeHandle &scroll)
     AddOverlay(column);
     // NODE_EVENT_ON_APPEAR   NODE_EVENT_ON_DISAPPEAR
     CreateNodeEventOnAppear(column);
+    //NODE_MONOPOLIZE_EVENTS
+    CreateNodeEventMonopolize(column);
+    //NODE_HOVER_EFFECT
+    CreateNodeEventHoverEffect(column);
+    //NODE_FOCUS_SCOPE_ID NODE_FOCUS_SCOPE_PRIORITY
+    CreateNodeFocusScope(column);
+    //NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD
+    CreateNodeClickDistanceThreshold(column);
+    // NODE_ON_SIZE_CHANGE
+    CreateNodeOnSizeChangeEvent(column);
     Manager::nodeAPI_->addChild(scroll, column);
 }
 

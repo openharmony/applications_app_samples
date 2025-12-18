@@ -46,7 +46,7 @@ struct Page1 {
   @Local p: Sample = PersistenceV2.connect(Sample, 'connect3', () => new Sample())!;
 
   build() {
-    Column({space: 5}) {
+    Column({ space: 5 }) {
       /**************************** 显示数据 **************************/
       Text('Key connect3: ' + this.p.father.childId.toString())
         .onClick(() => {

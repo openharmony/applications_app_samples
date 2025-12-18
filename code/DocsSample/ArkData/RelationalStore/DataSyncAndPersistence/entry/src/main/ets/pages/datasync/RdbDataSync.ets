@@ -21,12 +21,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [End sync_import]
 
-// [Start setDistributedTables]
+// [Start setDefaultDistributedTables]
+// [Start setCollaborationDistributedTables]
+// [Start setSingleDistributedTables]
 let context = getContext();
 let store: relationalStore.RdbStore | undefined = undefined;
-// [StartExclude setDistributedTables]
-export async function rdbDataSync() {
-  // [EndExclude setDistributedTables]
+// [StartExclude setDefaultDistributedTables]
+// [StartExclude setCollaborationDistributedTables]
+// [StartExclude setSingleDistributedTables]
+export async function setDefaultDistributedTables() {
+  // [EndExclude setDefaultDistributedTables]
   const STORE_CONFIG: relationalStore.StoreConfig = {
     name: 'RdbTest.db', // 数据库文件名
     securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
@@ -40,8 +44,59 @@ export async function rdbDataSync() {
   }).catch((err: BusinessError) => {
     hilog.error(DOMAIN, 'rdbDataSync', `Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
   });
-  // [End setDistributedTables]
+  // [End setDefaultDistributedTables]
+}
 
+export async function setCollaborationDistributedTables() {
+  // [EndExclude setCollaborationDistributedTables]
+  const STORE_CONFIG: relationalStore.StoreConfig = {
+    name: 'RdbTest.db', // 数据库文件名
+    securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
+  };
+  // 打开数据库并设置分布式表
+  const DISTRIBUTED_CONFIG: relationalStore.DistributedConfig = {
+    autoSync: false,
+    asyncDownloadAsset: false,
+    enableCloud: false,
+    tableType: relationalStore.DistributedTableType.DEVICE_COLLABORATION
+  }
+  relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+    store = rdbStore;
+    await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+    // 将已创建的表设置分布式表。
+    await store.setDistributedTables(['EMPLOYEE'], relationalStore.DistributedType.DISTRIBUTED_DEVICE, DISTRIBUTED_CONFIG);
+  }).catch((err: BusinessError) => {
+    hilog.error(DOMAIN, 'rdbDataSync', `Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
+  });
+  // [End setCollaborationDistributedTables]
+}
+
+export async function setSingleDistributedTables() {
+  // [EndExclude setSingleDistributedTables]
+  const STORE_CONFIG: relationalStore.StoreConfig = {
+    name: 'RdbTest.db', // 数据库文件名
+    securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
+  };
+  // 打开数据库并设置分布式表
+  const DISTRIBUTED_CONFIG: relationalStore.DistributedConfig = {
+    autoSync: false,
+    asyncDownloadAsset: false,
+    enableCloud: false,
+    tableType: relationalStore.DistributedTableType.SINGLE_VERSION
+  }
+  relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+    store = rdbStore;
+    await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL UNIQUE, AGE INTEGER, SALARY REAL, CODES BLOB)');
+    await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE2 (NAME TEXT NOT NULL UNIQUE, AGE INTEGER, SALARY REAL, CODES BLOB, PRIMARY KEY (NAME))');
+    // 将已创建的表设置分布式表。
+    await store.setDistributedTables(['EMPLOYEE', 'EMPLOYEE2'], relationalStore.DistributedType.DISTRIBUTED_DEVICE, DISTRIBUTED_CONFIG);
+  }).catch((err: BusinessError) => {
+    hilog.error(DOMAIN, 'rdbDataSync', `Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
+  });
+  // [End setSingleDistributedTables]
+}
+
+export async function dataChange() {
   // [Start on_data_change]
   // 订阅组网内其他设备的数据变化消息
   if (store) {
@@ -77,7 +132,8 @@ export async function rdbDataSync() {
     }
   }
   // [End on_data_change]
-
+}
+export async function syncPush() {
   // [Start data_sync_push]
   // 同步当前设备数据变化至组网内其他设备
   if (store) {
@@ -124,7 +180,8 @@ export async function rdbDataSync() {
     }
   }
   // [End data_sync_push]
-
+}
+export async function syncPull() {
   // [Start data_sync_pull]
   // 拉取组网内其他设备的数据变化
   if (store) {
@@ -164,7 +221,8 @@ export async function rdbDataSync() {
     }
   }
   // [End data_sync_pull]
-
+}
+export async function remoteQuery() {
   // [Start data_remote_query]
   // 查询组网内指定设备上分布式表中的数据
   if (store) {

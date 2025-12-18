@@ -25,6 +25,10 @@
       "value": "发送流式HTTP请求"
     },
     {
+      "name": "Stream_HTTP_Request_WebDav_Button",
+      "value": "HTTP扩展WebDav"
+    },
+    {
       "name": "testSuccess",
       "value": "发送流式HTTP请求成功"
     },
@@ -43,6 +47,54 @@
     {
       "name": "grant_internet",
       "value": "网络使用权限"
+    },
+    {
+      "name": "HTTP_WEBDAV_PUT",
+      "value": "HTTP扩展WEBDAV上传请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_GET",
+      "value": "HTTP扩展WEBDAV获取请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_MKCOL",
+      "value": "HTTP扩展WEBDAV创建请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_DELETE",
+      "value": "HTTP扩展WEBDAV删除请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_COPY",
+      "value": "HTTP扩展WEBDAV拷贝请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_MOVE",
+      "value": "HTTP扩展WEBDAV移动请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_PROPPATCH",
+      "value": "HTTP扩展WEBDAV修改资源请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_PROPFIND",
+      "value": "HTTP扩展WEBDAV查找资源请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_LOCK",
+      "value": "HTTP扩展WEBDAV加锁请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_UNLOCK",
+      "value": "HTTP扩展WEBDAV解锁请求"
+    },
+    {
+      "name": "HTTP_WEBDAV_UNKNOWN",
+      "value": "非HTTP扩展WEBDAV请求方式"
+    },
+    {
+      "name": "Back",
+      "value": "返回"
     }
   ]
 }
