@@ -13,7 +13,7 @@
 
 1. 该工程可以选择在模拟器和开发板上运行。
 2. 点击构建，即可在生成的应用中点击对应的按钮进行图案的绘制。
-3. 进入”DocsSample/graphic/ArkGraphics2D/ThemeFont/entry/src/ohosTest/ets/test/Ability.test.ets“文件，可以对本项目进行UI的自动化测试。
+3. 进入“DocsSample/ArkGraphics2D/TextEngine/ThemeFont/entry/src/ohosTest/ets/test/Ability.test.ets”文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -57,7 +57,7 @@ ArkTSDrawing
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/graphic/Arkgraphics2D/ThemeFont/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkGraphics2D/TextEngine/ThemeFont/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
