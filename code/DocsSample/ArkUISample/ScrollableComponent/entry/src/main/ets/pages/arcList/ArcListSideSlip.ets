@@ -50,7 +50,7 @@ export struct ArcListSideSlip {
     new Contact('Charlie', 'C'),
     new Contact('Diana', 'D'),
     new Contact('Eve', 'E'),
-    //请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
+    // 请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
     new Contact(this.context1.resourceManager.getStringByNameSync('name_aha'), 'A'),
     new Contact(this.context1.resourceManager.getStringByNameSync('name_beibei'), 'B'),
     new Contact(this.context1.resourceManager.getStringByNameSync('name_caicai'), 'C'),

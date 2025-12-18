@@ -34,7 +34,7 @@ class Contact {
 export struct ArcListContents {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private contacts: Array<object> = [
-    //请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
+    // 请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
     new Contact(this.context.resourceManager.getStringByNameSync('name_xiaohong'), $r('app.media.ic_contact')),
     new Contact(this.context.resourceManager.getStringByNameSync('name_xiaolan'), $r('app.media.ic_contact')),
     new Contact(this.context.resourceManager.getStringByNameSync('name_xiaowang'), $r('app.media.ic_contact')),

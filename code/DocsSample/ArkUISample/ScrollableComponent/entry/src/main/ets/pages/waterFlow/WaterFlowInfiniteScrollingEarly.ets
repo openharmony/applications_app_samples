@@ -16,7 +16,6 @@
 import { ComponentCard } from '../../common/Card';
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 import { image } from '@kit.ImageKit';
-import { common } from '@kit.AbilityKit';
 
 @Reusable
 @Component
@@ -57,7 +56,6 @@ export struct WaterFlowInfiniteScrollingEarly {
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
   private gridItems: number[] = [];
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   // 计算FlowItem宽/高
   getSize() {
@@ -101,8 +99,8 @@ export struct WaterFlowInfiniteScrollingEarly {
     Row() {
       LoadingProgress()
         .color(Color.Blue).height(50).aspectRatio(1).width('20%')
-      //请在resources\base\element\string.json文件中配置name为'waterFlow_text1' ，value为非空字符串的资源
-      Text(this.context.resourceManager.getStringByNameSync('waterFlow_text1'))
+      // 请将$r('app.string.waterFlow_text1')替换为实际资源文件，在本示例中该资源文件的value值为"正在加载 "
+      Text($r('app.string.waterFlow_text1'))
         .fontSize(20)
         .width('30%')
         .height(50)

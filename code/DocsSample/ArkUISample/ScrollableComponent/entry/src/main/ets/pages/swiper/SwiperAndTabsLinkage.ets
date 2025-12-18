@@ -83,7 +83,7 @@ export struct SwiperAndTabsLinkage {
           Column() {
             Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
               ForEach(this.list, (index: number) =>{
-                //请在resources\base\element\string.json文件中配置name为'swiper_text1' ，value为非空字符串的资源
+                // 请在resources\base\element\string.json文件中配置name为'swiper_text1' ，value为非空字符串的资源
                 TabContent().tabBar(this.tabBuilder(index,
                   this.context.resourceManager.getStringByNameSync('swiper_text1') + this.list[index]))
               })

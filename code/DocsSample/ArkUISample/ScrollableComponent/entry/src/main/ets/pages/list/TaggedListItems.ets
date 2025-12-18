@@ -37,7 +37,7 @@ export struct TaggedListItems {
                   style: { badgeSize: 16, badgeColor: '#FA2A2D' }
                 }) {
                   // [StartExclude add_tags_to_list_items]
-                  //请在resources\base\element\string.json文件中配置name为'list_text2' ，value为非空字符串的资源
+                  // 请在resources\base\element\string.json文件中配置name为'list_text2' ，value为非空字符串的资源
                   Text(this.context.resourceManager.getStringByNameSync('list_text2') + item)
                     .width('95%')
                     .height(50)

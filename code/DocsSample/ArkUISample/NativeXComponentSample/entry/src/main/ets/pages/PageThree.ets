@@ -77,7 +77,7 @@ export struct PageThree {
   needSoftKeyboard: boolean = false;
   @State needSoftKeyboardState: string = 'needSoftKeyboard=' + this.needSoftKeyboard;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  //请在resources\base\element\string.json文件中配置name为'pagethree_text1' ，value为非空字符串的资源
+  // 请在resources\base\element\string.json文件中配置name为'pagethree_text1' ，value为非空字符串的资源
   @State text: string = this.context.resourceManager.getStringByNameSync('pagethree_text1');
   controller: TextInputController = new TextInputController();
   myNodeController: MyNodeController = new MyNodeController();
@@ -109,8 +109,8 @@ export struct PageThree {
         }
       }.height(200)
 
-      //请在resources\base\element\string.json文件中配置name为'pagethree_text2' ，value为非空字符串的资源
-      Button(this.context.resourceManager.getStringByNameSync('pagethree_text2')).onClick(() => {
+      // 请将$r('app.string.pagethree_text2')替换为实际资源文件，在本示例中该资源文件的value值为"创建/销毁"
+      Button($r('app.string.pagethree_text2')).onClick(() => {
         this.isShow = !this.isShow;
       }).width('50%')
         .margin({
@@ -121,8 +121,8 @@ export struct PageThree {
         })
 
       Column() {
-        //请在resources\base\element\string.json文件中配置name为'pagethree_text3' ，value为非空字符串的资源
-        Text(this.context.resourceManager.getStringByNameSync('pagethree_text3'))
+        // 请将$r('app.string.pagethree_text3')替换为实际资源文件，在本示例中该资源文件的value值为"期望帧率设置："
+        Text($r('app.string.pagethree_text3'))
           .textAlign(TextAlign.Start)
           .fontSize(15)
           .border({ width: 1 })
@@ -169,7 +169,7 @@ export struct PageThree {
           this.needSoftKeyboard = !this.needSoftKeyboard;
           this.needSoftKeyboardState = 'needSoftKeyboard=' + this.needSoftKeyboard;
           native.setNeedSoftKeyboard(this.myNodeController.xComponentId, this.needSoftKeyboard);
-          //请在resources\base\element\string.json文件中配置name为'pagethree_text1'和'pagethree_text4' ，value为非空字符串的资源
+          // 请在resources\base\element\string.json文件中配置name为'pagethree_text1'和'pagethree_text4' ，value为非空字符串的资源
           this.text = this.needSoftKeyboard ? this.context.resourceManager.getStringByNameSync('pagethree_text4')
             : this.context.resourceManager.getStringByNameSync('pagethree_text1')
         })

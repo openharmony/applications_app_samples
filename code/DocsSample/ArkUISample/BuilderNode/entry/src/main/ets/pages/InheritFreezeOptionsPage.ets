@@ -148,8 +148,8 @@ struct pageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        //请在resources\base\element\string.json文件中配置name为'text1' ，value为非空字符串的资源
-        Text(this.context.resourceManager.getStringByNameSync('text1'))
+        // 请将$r('app.string.text1')替换为实际资源文件，在本示例中该资源文件的value值为"BuilderNode处于冻结"
+        Text($r('app.string.text1'))
           .fontWeight(FontWeight.Bold)
           .margin({ top: 48, bottom: 48 })
         Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -198,8 +198,8 @@ struct TextBuilder {
   build() {
     Row() {
       Column() {
-        //请在resources\base\element\string.json文件中配置name为'text2' ，value为非空字符串的资源
-        Text(this.context.resourceManager.getStringByNameSync('text2')+ `${this.message}`)
+        // 请在resources\base\element\string.json文件中配置name为'text2' ，value为非空字符串的资源
+        Text(this.context.resourceManager.getStringByNameSync('text2') + `${this.message}`)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 48, bottom: 48 })
       }

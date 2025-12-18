@@ -36,7 +36,7 @@ export struct ControlledScrollPositionList {
               // [StartExclude control_scrolling]
               ForEach(this.arr, (item: number) => {
                 ListItem() {
-                  //请在resources\base\element\string.json文件中配置name为'list_text1' ，value为非空字符串的资源
+                  // 请在resources\base\element\string.json文件中配置name为'list_text1' ，value为非空字符串的资源
                   Text(this.context.resourceManager.getStringByNameSync('list_text1') + item)
                     .width('100%')
                     .height(100)
