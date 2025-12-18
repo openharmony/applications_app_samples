@@ -6,14 +6,21 @@
 
 本示例主要展示了证书算法库中证书对象的创建、证书扩展信息对象的创建、证书吊销列表对象的创建、证书链校验时从p12文件构造TrustAnchor对象数组、证书链校验器对象的创建和校验、证书集合及证书吊销列表集合对象的创建和获取、证书链对象的创建和校验的场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [证书对象的创建、解析和校验](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-cert-object.md)
-- [证书扩展信息对象的创建、解析和校验](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-certextension-object.md)
-- [证书吊销列表对象的创建、解析和校验](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-crl-object.md)
-- [证书链校验时从p12文件构造TrustAnchor对象数组](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-trustanchor-from-p12.md)
-- [证书链校验器对象的创建和校验](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
-- [证书集合及证书吊销列表集合对象的创建和获取](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-get-cert-crl-object.md)
-- [证书链对象的创建和校验](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-certchain-object.md)
-
+- [证书对象的创建、解析和校验](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-cert-object.md)
+- [证书扩展信息对象的创建、解析和校验](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-certextension-object.md)
+- [证书吊销列表对象的创建、解析和校验](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-verify-crl-object.md)
+- [证书链校验时从p12文件构造TrustAnchor对象数组](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-trustanchor-from-p12.md)
+- [证书链校验器对象的创建和校验](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
+- [证书集合及证书吊销列表集合对象的创建和获取](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-get-cert-crl-object.md)
+- [证书链对象的创建和校验](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-certchain-object.md)
+- [使用系统预置CA证书校验证书链](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/verify-certchain-by-systemca.md)
+- [证书CMS签名](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-cms-sign-object.md)
+- [证书CMS封装](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-cms-enveloped-object.md)
+- [证书CMS验签](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-cms-verify-object.md)
+- [证书CMS解封装](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-cms-decapsulation-object.md)
+- [证书PKCS12的创建和解析](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-pkcs12.md)
+- [证书链在线校验证书吊销状态](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-cerchainvalidator-revocation-object.md)
+- [证书链校验时下载缺失的中间CA证书](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/allow-download-Intermediate-Cert.md)
 ### 效果预览
 
 | 首页效果图                                                   | 执行结果图                                                   |
@@ -36,6 +43,21 @@ entry/src/
  │   │   ├── entrybackupability
  │   │   ├── pages
  │   │       ├── Index.ets               // 证书算法库示例代码
+ │   │       ├── VerifyCertchainOnlineRevocationStatus.ets
+ │   │       ├── CreateParsePkcs12.ets
+ │   │       ├── CreateCmsOperator.ets
+ │   │       ├── AllowDownloadIntermediateCert.ets
+ │   │       ├── IgnoreNetworkUnreachable.ets
+ │   │       ├── CreateOnlineCheckIntermediateCertificateonlyObject.ets
+ │   │       ├── CreateOnlyCheckLeafCertRevocateObject.ets
+ │   │       ├── CreateParsePkcs12Sync.ets
+ │   │       ├── CreateParsePkcs12Async.ets
+ │   │       ├── CreateCmsDecapsulationObject.ets
+ │   │       ├── CreateCmsVerifyObject.ets
+ │   │       ├── CreateCmsEnvelopedObject.ets
+ │   │       ├── CreateCmsSignObjectSync.ets
+ │   │       ├── CreateCmsSignObjectAsync.ets
+ │   │       ├── VerifyCertchainBySystemca.ets
  │   │       ├── CreateGetCertCrlObject.ets
  │   │       ├── CreateParseVerifyCertextensionObject.ets
  │   │       ├── CreateParseVerifyCertObject.ets
@@ -65,9 +87,9 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API23版本SDK，版本号：6.1.0.21，镜像版本号：OpenHarmony_6.1.0.21。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.1 Release(6.0.1.251)及以上版本才可编译运行。
 
 ### 下载
 
