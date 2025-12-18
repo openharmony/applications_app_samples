@@ -37,7 +37,7 @@ constexpr float VISIBLE_AREA_RATIO = 0.5f;
 constexpr float OFFSET_INCREMENT = 10.0f;
 } // namespace RefreshConstants
 
-std::shared_ptr<ArkUITextNode> CreateRefreshListItemText(int index)
+std::shared_ptr<ArkUITextNode> CreateOnVisibleAreaChangeListItemText(int index)
 {
     auto text = std::make_shared<ArkUITextNode>();
     text->SetTextContent("item-" + std::to_string(index));
@@ -49,14 +49,13 @@ std::shared_ptr<ArkUITextNode> CreateRefreshListItemText(int index)
     text->SetTextAlignment(ARKUI_TEXT_ALIGNMENT_CENTER);
 
     // 注册事件
-    text->SetRegisterRefreshEvent();
     text->SetVisibleAreaChangeRatio(RefreshConstants::VISIBLE_AREA_RATIO);
     text->SetRegisterVisibleAreaChangeEvent();
 
     return text;
 }
 
-std::shared_ptr<ArkUIListItemNode> CreateRefreshListItem(std::shared_ptr<ArkUITextNode> text)
+std::shared_ptr<ArkUIListItemNode> CreateOnVisibleAreaChangeListItem(std::shared_ptr<ArkUITextNode> text)
 {
     auto child = std::make_shared<ArkUIListItemNode>();
     child->AddChild(text);
@@ -69,15 +68,15 @@ struct ListWithTexts {
     std::vector<std::shared_ptr<ArkUITextNode>> texts;
 };
 
-ListWithTexts CreateRefreshPopulatedList()
+ListWithTexts CreateOnVisibleAreaChangePopulatedList()
 {
     auto list = std::make_shared<ArkUIListNode>();
     std::vector<std::shared_ptr<ArkUITextNode>> texts;
 
     // 创建列表项
     for (int i = 0; i < RefreshConstants::LIST_ITEM_COUNT; ++i) {
-        auto text = CreateRefreshListItemText(i);
-        auto listItem = CreateRefreshListItem(text);
+        auto text = CreateOnVisibleAreaChangeListItemText(i);
+        auto listItem = CreateOnVisibleAreaChangeListItem(text);
         list->AddChild(listItem);
         texts.push_back(text);
     }
@@ -85,7 +84,7 @@ ListWithTexts CreateRefreshPopulatedList()
     return {list, texts};
 }
 
-void ConfigureRefreshListProperties(std::shared_ptr<ArkUIListNode> list)
+void ConfigureOnVisibleAreaChangeListProperties(std::shared_ptr<ArkUIListNode> list)
 {
     list->SetBackgroundColor(RefreshConstants::LIST_BACKGROUND_COLOR);
     list->SetLayoutWeight(1);
@@ -93,37 +92,14 @@ void ConfigureRefreshListProperties(std::shared_ptr<ArkUIListNode> list)
     list->SetListItemAlign(ARKUI_LIST_ITEM_ALIGNMENT_CENTER);
 }
 
-std::shared_ptr<ArkUITextNode> CreateRefreshOffsetButton(const std::vector<std::shared_ptr<ArkUITextNode>>& texts)
-{
-    auto btn = std::make_shared<ArkUITextNode>();
-    btn->SetTextContent("refreshOffset+50");
-    btn->SetWidth(RefreshConstants::BUTTON_WIDTH);
-    btn->SetHeight(Sizes::MEDIUM);
-    btn->SetBackgroundColor(Colors::YELLOW);
-
-    // 使用shared_ptr管理偏移量
-    auto offset = std::make_shared<float>(Sizes::MEDIUM);
-    btn->SetOnClick([offset, texts]() {
-        texts[Indices::ZERO]->SetRefreshOffset(*offset);
-        *offset += RefreshConstants::OFFSET_INCREMENT;
-    });
-
-    return btn;
-}
-
-std::shared_ptr<ArkUIBaseNode> CreateRefreshOffsetEventExample()
+std::shared_ptr<ArkUIBaseNode> CreateOnVisibleAreaChangeExample()
 {
     auto column = std::make_shared<ArkUIColumnNode>();
 
     // 创建并配置列表 - 使用结构体避免C++17结构化绑定
-    ListWithTexts listData = CreateRefreshPopulatedList();
-    ConfigureRefreshListProperties(listData.list);
+    ListWithTexts listData = CreateOnVisibleAreaChangePopulatedList();
+    ConfigureOnVisibleAreaChangeListProperties(listData.list);
     column->AddChild(listData.list);
-
-    // 创建按钮
-    auto button = CreateRefreshOffsetButton(listData.texts);
-    column->AddChild(button);
-
     return column;
 }
 

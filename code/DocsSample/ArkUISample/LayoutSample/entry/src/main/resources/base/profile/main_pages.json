@@ -13,7 +13,7 @@
     "pages/nodeTest/createColumnExample",
     "pages/nodeTest/createFlexExample",
     "pages/nodeTest/createLayoutPositionExample",
-    "pages/nodeTest/createRefreshOffsetEventExample",
+    "pages/nodeTest/createOnVisibleAreaChangeExample",
     "pages/nodeTest/createRowExample",
     "pages/nodeTest/createSafeAreaExample",
     "pages/nodeTest/createStackExample",

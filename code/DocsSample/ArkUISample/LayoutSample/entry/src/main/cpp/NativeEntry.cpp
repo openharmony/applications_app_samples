@@ -30,7 +30,7 @@
 #include "examples/columnExample.h"
 #include "examples/layoutPositionExample.h"
 #include "examples/safeAreaExample.h"
-#include "examples/refreshOffsetChangeExample.h"
+#include "examples/onVisibleAreaChangeExample.h"
 #include "examples/positionEdgesExample.h"
 #include "examples/pixelRoundExample.h"
 
@@ -106,8 +106,8 @@ DEFINE_CREATE_DESTROY_FUNCTIONS(Column, CreateColumnExample)
 DEFINE_CREATE_DESTROY_FUNCTIONS(LayoutPosition, CreateLayoutPositionExample)
 // 安全区域模块
 DEFINE_CREATE_DESTROY_FUNCTIONS(SafeArea, SafeAreaExample)
-// 刷新偏移事件模块
-DEFINE_CREATE_DESTROY_FUNCTIONS(RefreshOffsetEvent, CreateRefreshOffsetEventExample)
+// 可视区域变化
+DEFINE_CREATE_DESTROY_FUNCTIONS(OnVisibleAreaChange, CreateOnVisibleAreaChangeExample)
 // 布局策略模块
 DEFINE_CREATE_DESTROY_FUNCTIONS(LayoutPolicy, CreateLayoutPolicyExample)
 // 位置边缘模块

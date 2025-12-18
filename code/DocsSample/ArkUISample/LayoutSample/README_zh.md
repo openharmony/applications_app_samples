@@ -88,7 +88,7 @@ LayoutSample/
 ### 4. 高级功能
 - **ListChildrenMainSize**: 列表子元素主尺寸控制
 - **ItemAlignment**: 项目对齐方式设置
-- **RefreshOffsetEvent**: 刷新偏移事件处理
+- **OnVisibleAreaChange**: 可视区域变化事件
 
 ## 技术架构
 
@@ -161,7 +161,7 @@ LayoutSample/
 - `column测试`: Column布局测试
 - `layoutPosition测试`: 布局位置测试
 - `safeArea测试`: 安全区域测试
-- `refreshOffsetEvent测试`: 刷新偏移事件测试
+- `OnVisibleAreaChange测试`: 可视区域变化事件事件测试
 - `layoutPolicy测试`: 布局策略测试
 
 ## 代码示例

@@ -37,8 +37,8 @@ export const DestroyLayoutPositionNativeRoot: () => void;
 export const CreateSafeAreaNativeRoot: (content: Object) => void;
 export const DestroySafeAreaNativeRoot: () => void;
 
-export const CreateRefreshOffsetEventNativeRoot: (content: Object) => void;
-export const DestroyRefreshOffsetEventNativeRoot: () => void;
+export const CreateOnVisibleAreaChangeNativeRoot: (content: Object) => void;
+export const DestroyOnVisibleAreaChangeNativeRoot: () => void;
 
 export const CreatePositionEdgesNativeRoot: (content: Object) => void;
 export const DestroyPositionEdgesNativeRoot: () => void;
