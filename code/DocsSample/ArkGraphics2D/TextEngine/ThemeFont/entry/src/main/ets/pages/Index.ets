@@ -13,17 +13,23 @@
  * limitations under the License.
  */
 
-// [Start arkts_theme_font_index]
 // /pages/Index.ets
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
+// [Start arkts_theme_font_import]
 import { text } from '@kit.ArkGraphics2D';
+// [End arkts_theme_font_import]
 
 // 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 获取画布canvas对象
     const canvas = context.canvas;
+    // [Start arkts_theme_font_font_collection]
+    // 获取字体管理器全局FontCollection实例
+    let fontCollection = text.FontCollection.getGlobalInstance();
+    // [End arkts_theme_font_font_collection]
+    // [Start arkts_theme_font_text_style]
     // 设置文本样式
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 255, green: 0, blue: 0 },
@@ -35,31 +41,27 @@ class MyRenderNode extends RenderNode {
       align: 3,
       wordBreak:text.WordBreak.NORMAL
     };
-    // 获取字体管理器全局FontCollection实例
-    let fontCollection = text.FontCollection.getGlobalInstance(); // 获取Arkui全局FC
     // 创建一个段落生成器
     let paragraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    // [End arkts_theme_font_text_style]
+    // [Start arkts_theme_font_build]
     // 在段落生成器中设置文本样式
     paragraphGraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
     paragraphGraphBuilder.addText("Hello World. \nThis is the theme font.");
     // 通过段落生成器生成段落
     let paragraph = paragraphGraphBuilder.build();
+    // [End arkts_theme_font_build]
     // 布局
     paragraph.layoutSync(2500);
     paragraph.paint(canvas, 0, 400);
   }
 }
+
+// [Start arkts_theme_font_create_render_node]
 // 创建渲染节点数组
 const renderNodeMap: Array<RenderNode> = new Array();
-// 导出渲染节点更新函数
-export function updateRenderNodeData() {
-  renderNodeMap.forEach((node) => {
-    // 主动触发节点重绘制
-    node.invalidate();
-  });
-}
-
+// 创建节点控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   makeNode(uiContext: UIContext): FrameNode {
@@ -97,6 +99,16 @@ class MyNodeController extends NodeController {
     }
   }
 }
+// [End arkts_theme_font_create_render_node]
+// [Start arkts_theme_font_export_update]
+// 导出渲染节点更新函数
+export function updateRenderNodeData() {
+  renderNodeMap.forEach((node) => {
+    // 主动触发节点重绘制
+    node.invalidate();
+  });
+}
+// [End arkts_theme_font_export_update]
 
 // 创建一个TextRenderNode对象
 const textNode = new MyRenderNode();
@@ -143,4 +155,3 @@ struct RenderTest {
     }
   }
 }
-// [End arkts_theme_font_index]
