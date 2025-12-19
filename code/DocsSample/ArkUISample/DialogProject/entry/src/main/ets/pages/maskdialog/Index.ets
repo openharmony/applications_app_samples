@@ -21,19 +21,16 @@ import { CustomDialogControl } from './CustomDialogControl';
 
 export const Mask_ROUTE_PREFIX: string = 'Mask_Mask_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Mask_ROUTE_PREFIX}/CustomDialogAnimation`,
-    // 请将$r('app.string.CustomDialogAnimation_title')替换为实际资源文件，在本示例中该资源文件的value值为"openAnimation和closeAnimation接口"
     title: resource.resourceToString($r('app.string.CustomDialogAnimation_title')),
-    // 请将$r('app.string.CustomDialogAnimation_desc')替换为实际资源文件，在本示例中该资源文件的value值为"CustomDialog虽然不支持transition接口，但与之对应的openAnimation和closeAnimation接口在动画的打开和关闭时可进行定制。"
     description: $r('app.string.CustomDialogAnimation_desc'),
   },
   {
     name: `${Mask_ROUTE_PREFIX}/CustomDialogControl`,
-    // 请将$r('app.string.CustomDialogControl_title')替换为实际资源文件，在本示例中该资源文件的value值为"弹出框蒙层显隐控制"
     title: resource.resourceToString($r('app.string.CustomDialogControl_title')),
-    // 请将$r('app.string.CustomDialogControl_desc')替换为实际资源文件，在本示例中该资源文件的value值为"展示弹出框在蒙层显隐控制方面的能力。"
     description: $r('app.string.CustomDialogControl_desc'),
   }
 ]

@@ -30,75 +30,56 @@ import resource from '../../common/resource';
 
 export const Fixed_ROUTE_PREFIX: string = 'Fixed_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Fixed_ROUTE_PREFIX}/CalendarPickerDialog`,
-    // 请将$r('app.string.CalendarPickerDialog_title')替换为实际资源文件，在本示例中该资源文件的value值为"日历选择器弹窗"
     title: resource.resourceToString($r('app.string.CalendarPickerDialog_title')),
-    // 请将$r('app.string.CalendarPickerDialog_des')替换为实际资源文件，在本示例中该资源文件的value值为"日历选择器弹窗提供日历视图，包含年、月和星期信息，通过CalendarPickerDialog接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。"
     description: $r('app.string.CalendarPickerDialog_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/DatePickerDialogExample`,
-    // 请将$r('app.string.DatePicker_title')替换为实际资源文件，在本示例中该资源文件的value值为"日期滑动选择器弹窗"
     title: resource.resourceToString($r('app.string.DatePicker_title')),
-    // 请将$r('app.string.DatePicker_des')替换为实际资源文件，在本示例中该资源文件的value值为"开发者可以利用指定的日期范围，创建日期滑动选择器弹窗，将日期信息清晰地展示在弹出的窗口上。"
     description: $r('app.string.DatePicker_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/DatePickerCustomDialogExample`,
-    // 请将$r('app.string.DatePickerCustom_title')替换为实际资源文件，在本示例中该资源文件的value值为"日期滑动选择器自定义弹窗"
     title: resource.resourceToString($r('app.string.DatePickerCustom_title')),
-    // 请将$r('app.string.DatePickerCustom_des')替换为实际资源文件，在本示例中该资源文件的value值为"开发者可以利用指定的日期范围，创建日期滑动选择器自定义弹窗，将日期信息清晰地展示在弹出的窗口上。"
     description: $r('app.string.DatePickerCustom_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/TimePickerDialog`,
-    // 请将$r('app.string.TimePicker_title')替换为实际资源文件，在本示例中该资源文件的value值为"时间滑动选择器弹窗"
     title: resource.resourceToString($r('app.string.TimePicker_title')),
-    // 请将$r('app.string.TimePicker_des')替换为实际资源文件，在本示例中该资源文件的value值为"开发者可根据24小时的时间区间，创建时间滑动选择器弹窗，将时间信息清晰地展示在弹出的窗口上。"
     description: $r('app.string.TimePicker_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/TextPickerDialog`,
-    // 请将$r('app.string.TextPicker_title')替换为实际资源文件，在本示例中该资源文件的value值为"文本滑动选择器弹窗"
     title: resource.resourceToString($r('app.string.TextPicker_title')),
-    // 请将$r('app.string.TextPicker_des')替换为实际资源文件，在本示例中该资源文件的value值为"开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
     description: $r('app.string.TextPicker_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/TextPickerCNDialog`,
-    // 请将$r('app.string.TextPicker_cn_title')替换为实际资源文件，在本示例中该资源文件的value值为"文本滑动选择器中文弹窗"
     title: resource.resourceToString($r('app.string.TextPicker_cn_title')),
-    // 请将$r('app.string.TextPicker_cn_des')替换为实际资源文件，在本示例中该资源文件的value值为"开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
     description: $r('app.string.TextPicker_cn_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/ActionSheet`,
-    // 请将$r('app.string.ActionSheet_title')替换为实际资源文件，在本示例中该资源文件的value值为"列表选择弹窗"
     title: resource.resourceToString($r('app.string.ActionSheet_title')),
-    // 请将$r('app.string.ActionSheet_des')替换为实际资源文件，在本示例中该资源文件的value值为"列表选择器弹窗适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。"
     description:  $r('app.string.ActionSheet_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/AlertDialog`,
-    // 请将$r('app.string.AlertDialog_title')替换为实际资源文件，在本示例中该资源文件的value值为"警告弹窗"
     title: resource.resourceToString($r('app.string.AlertDialog_title')),
-    // 请将$r('app.string.AlertDialog_des')替换为实际资源文件，在本示例中该资源文件的value值为"需要向用户提问或得到用户的许可时，可使用警告弹窗。"
     description:  $r('app.string.AlertDialog_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/ShowActionMenu`,
-    // 请将$r('app.string.ShowActionMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"操作菜单"
     title: resource.resourceToString($r('app.string.ShowActionMenu_title')),
-    // 请将$r('app.string.ShowActionMenu_des')替换为实际资源文件，在本示例中该资源文件的value值为"操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用showActionMenu接口实现，支持在回调或开发者自定义类中使用。"
     description: $r('app.string.ShowActionMenu_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/ShowDialog`,
-    // 请将$r('app.string.ShowDialog_title')替换为实际资源文件，在本示例中该资源文件的value值为"对话框"
     title: resource.resourceToString($r('app.string.ShowDialog_title')),
-    // 请将$r('app.string.ShowDialog_des')替换为实际资源文件，在本示例中该资源文件的value值为"对话框通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用showDialog接口实现，支持在回调或开发者自定义类中使用。"
     description: $r('app.string.ShowDialog_des'),
   }
 ]

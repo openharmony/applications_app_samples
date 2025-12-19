@@ -22,26 +22,21 @@ import { DefaultAndTopToastExample } from './DefaultAndTopToast';
 
 export const Toast_ROUTE_PREFIX: string = 'Toast_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Toast_ROUTE_PREFIX}/CreateToast`,
-    // 请将$r('app.string.CreateToast_title')替换为实际资源文件，在本示例中该资源文件的value值为"创建即时反馈"
     title: resource.resourceToString($r('app.string.CreateToast_title')),
-    // 请将$r('app.string.CreateToast_des')替换为实际资源文件，在本示例中该资源文件的value值为"适用于短时间内提示框自动消失的场景。"
     description: $r('app.string.CreateToast_des'),
   },
   {
     name: `${Toast_ROUTE_PREFIX}/OpenCloseToast`,
-    // 请将$r('app.string.OpenCloseToast_title')替换为实际资源文件，在本示例中该资源文件的value值为"显示关闭即时反馈"
     title: resource.resourceToString($r('app.string.OpenCloseToast_title')),
-    // 请将$r('app.string.OpenCloseToast_des')替换为实际资源文件，在本示例中该资源文件的value值为"适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。"
     description: $r('app.string.OpenCloseToast_des'),
   },
   {
     name: `${Toast_ROUTE_PREFIX}/DefaultAndTopToast`,
-    // 请将$r('app.string.DefaultAndTopToast_title')替换为实际资源文件，在本示例中该资源文件的value值为"即时反馈模式对比"
     title: resource.resourceToString($r('app.string.DefaultAndTopToast_title')),
-    // 请将$r('app.string.DefaultAndTopToast_des')替换为实际资源文件，在本示例中该资源文件的value值为"即时反馈提供了两种显示模式，分别为DEFAULT（显示在应用内）、TOP_MOST（显示在应用之上）。"
     description: $r('app.string.DefaultAndTopToast_des'),
   }
 ]
