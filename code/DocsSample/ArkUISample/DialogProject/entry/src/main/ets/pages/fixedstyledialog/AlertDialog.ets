@@ -19,7 +19,6 @@ import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 export struct showAlertDialogExample {
-
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -39,10 +38,10 @@ export struct showAlertDialogExample {
                   transition: TransitionEffect.asymmetric(TransitionEffect.OPACITY
                     .animation({ duration: 3000, curve: Curve.Sharp })
                     .combine(TransitionEffect.scale({ x: 1.5, y: 1.5 })
-                      .animation({ duration: 3000, curve: Curve.Sharp })),
+                    .animation({ duration: 3000, curve: Curve.Sharp })),
                     TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
                       .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 })
-                        .animation({ duration: 100, curve: Curve.Smooth }))),
+                      .animation({ duration: 100, curve: Curve.Smooth }))),
                   buttons: [{
                     value: 'cancel',
                     action: () => {
@@ -73,4 +72,5 @@ export struct showAlertDialogExample {
     .title($r('app.string.CustomDialog_AlertDialog'))
   }
 }
+
 // [End alert_dialog]
