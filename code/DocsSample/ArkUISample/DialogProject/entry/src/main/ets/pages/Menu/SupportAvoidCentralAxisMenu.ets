@@ -39,7 +39,7 @@ export struct SupportAvoidCentralAxisMenuExample {
   @Builder
   MyMenu1() {
     Menu() {
-      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+      // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
