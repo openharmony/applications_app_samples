@@ -14,7 +14,7 @@
 */
 
 // [Start state_problem_complex_solution_02]
-import { UIUtils } from '@ohos.arkui.StateManagement';
+import { UIUtils } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class DataObj {
