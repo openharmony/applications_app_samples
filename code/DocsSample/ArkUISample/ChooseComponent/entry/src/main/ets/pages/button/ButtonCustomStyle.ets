@@ -28,9 +28,7 @@ export struct ButtonCustomStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({
-          // 请将$r('app.string.ButtonCustomStyle_titleOne')替换为实际资源文件，在本示例中该资源文件的value值为"设置边框弧度"
           title: $r('app.string.ButtonCustomStyle_titleOne'),
-          // 请将$r('app.string.ButtonCustomStyle_descriptionOne')替换为实际资源文件，在本示例中该资源文件的value值为"按钮type属性为ButtonType.Normal，通过borderRadius设置边框圆角半径为10。"
           description: $r('app.string.ButtonCustomStyle_descriptionOne')
         }) {
           // [Start custom_button_border_radius]
@@ -47,9 +45,7 @@ export struct ButtonCustomStyle {
         }
 
         ComponentCard({
-          // 请将$r('app.string.ButtonCustomStyle_titleTwo')替换为实际资源文件，在本示例中该资源文件的value值为"设置文本样式"
           title: $r('app.string.ButtonCustomStyle_titleTwo'),
-          // 请将$r('app.string.ButtonCustomStyle_descriptionTwo')替换为实际资源文件，在本示例中该资源文件的value值为"通过fontSize设置按钮中字体的大小为20，fontColor设置字体颜色为粉色，fontWeight设置字体的粗细值为800。"
           description: $r('app.string.ButtonCustomStyle_descriptionTwo')
         }) {
           // [Start custom_font_style]
@@ -68,7 +64,6 @@ export struct ButtonCustomStyle {
         }
 
         ComponentCard({
-          // 请将$r('app.string.ButtonCustomStyle_titleThree')替换为实际资源文件，在本示例中该资源文件的value值为"设置背景颜色"
           title: $r('app.string.ButtonCustomStyle_titleThree'),
           description: $r('app.string.ButtonCustomStyle_descriptionThree')
         }) {
@@ -82,9 +77,7 @@ export struct ButtonCustomStyle {
         }
 
         ComponentCard({
-          // 请将$r('app.string.SetButtonType_titleFive')替换为实际资源文件，在本示例中该资源文件的value值为"创建功能型按钮"
           title: $r('app.string.SetButtonType_titleFive'),
-          // 请将$r('app.string.SetButtonType_descriptionFive')替换为实际资源文件，在本示例中该资源文件的value值为"创建删除操作的按钮"
           description: $r('app.string.SetButtonType_descriptionFive')
         }) {
           // [Start custom_create_function_button]
@@ -100,7 +93,6 @@ export struct ButtonCustomStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // 请将$r('app.string.ButtonCustomStyle_title')替换为实际资源文件，在本示例中该资源文件的value值为"自定义按钮样式"
     .title(this.resourceToString($r('app.string.ButtonCustomStyle_title')))
   }
 }
