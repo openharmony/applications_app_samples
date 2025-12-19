@@ -77,7 +77,8 @@ struct TabContentTest {
           TabContent() {
             Column() {
               FreezeBuildNode({ message: this.message })
-              Text('Tabs遍历后BuilderNode处于冻结')
+              // 请将$r('app.string.text3')替换为实际资源文件，在本示例中该资源文件的value值为"Tabs遍历后BuilderNode处于冻结："
+              Text($r('app.string.text3'))
                 .fontWeight(FontWeight.Bold)
                 .margin({ top: 48, bottom: 48 })
                 .fontSize(30)

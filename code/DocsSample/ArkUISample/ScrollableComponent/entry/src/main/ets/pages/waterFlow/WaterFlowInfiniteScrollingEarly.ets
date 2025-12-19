@@ -99,7 +99,8 @@ export struct WaterFlowInfiniteScrollingEarly {
     Row() {
       LoadingProgress()
         .color(Color.Blue).height(50).aspectRatio(1).width('20%')
-      Text(`正在加载`)
+      // 请将$r('app.string.waterFlow_text1')替换为实际资源文件，在本示例中该资源文件的value值为"正在加载 "
+      Text($r('app.string.waterFlow_text1'))
         .fontSize(20)
         .width('30%')
         .height(50)
