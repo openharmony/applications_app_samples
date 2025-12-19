@@ -168,7 +168,10 @@ struct Index {
       .height("5%")
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        rdbDataPersistence();
+        const context = this.getUIContext().getHostContext();	
+        if (context) {
+          rdbDataPersistence(context);
+        }
       })
     }
     .height('100%')
