@@ -9,24 +9,19 @@
 
 ### 效果预览
 
-| 主界面                            | 订阅事件                           | 中止当前的有序公共事件                    |
-|--------------------------------|--------------------------------|--------------------------------|
-| ![image](screenshots/img1.png) | ![image](screenshots/img2.png) | ![image](screenshots/img3.png) |
-
-| 取消当前有序公共事件的内容                  | 修改当前有序公共事件的内容                  | 取消订阅公共事件                       |
-|--------------------------------|--------------------------------|--------------------------------|
-| ![image](screenshots/img4.png) | ![image](screenshots/img5.png) | ![image](screenshots/img6.png) |
-
-| 发布公共事件                         | 输出日志                           | 
+| 主界面                            | 输出日志                           | 
 |--------------------------------|--------------------------------|
-| ![image](screenshots/img7.png) | ![image](screenshots/img8.png) | 
+| ![image](screenshots/img1.png) | ![image](screenshots/img8.png)  | 
+
 
 ### 使用说明
 
-1. 通过[OH_CommonEvent_CreateSubscriber()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber)创建的订阅者可以对某个公共事件进行订阅，如果有订阅的事件发布那么订阅了这个事件的订阅者将会收到该事件及其传递的参数，也可以通过订阅者对象进一步处理有序公共事件。
-2. 订阅者在完成业务需求之后，需要取消订阅公共事件。
-3. 当需要发布某个公共事件时，可以通过[OH_CommonEvent_Publish()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish)和[OH_CommonEvent_PublishWithInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publishwithinfo)方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。
-4. CES（Common Event Service，公共事件服务）为应用程序提供订阅、发布、退订公共事件的能力。
+1. 在主界面点击 “订阅事件” 按钮，可以订阅事件；
+2. 在主界面点击 “中止当前的有序公共事件” 按钮，可以中止当前的有序公共事件；
+3. 在主界面点击 “取消当前的有序公共事件的中止状态” 按钮，可以取消公共事件的中止状态，重新开启；
+4. 在主界面点击 “修改有序公共事件的内容” 按钮，可以对有序公共事件的内容进行修改；
+5. 在主界面点击 “取消订阅公共事件” ，可以取消已经订阅的公共事件；
+6. 在主界面点击 “发布公共事件”，可以将公共事件发布出去。
 
 ### 公共事件分类
 1. 公共事件从系统角度可分为：系统公共事件和自定义公共事件。
@@ -48,36 +43,48 @@ entry/src/
 │   │   │       ├── Index.d.ts
 │   │   │       └── oh-package.json5
 │   │   ├── CMakeLists.txt
-│   │   ├── common_event_publish.cpp
+│   │   ├── common_event_publish.cpp        //发布公共事件
 │   │   ├── common_event_publisher.h
-│   │   ├── common_event_subscriber.cpp
+│   │   ├── common_event_subscriber.cpp     //订阅公共事件
 │   │   ├── common_event_subscriber.h
-│   │   ├── common_event_unsubscriber.cpp
+│   │   ├── common_event_unsubscriber.cpp   //取消订阅公共事件
 │   │   ├── common_event_unsubscriber.h
-│   │   └── napi_init.cpp
+│   │   └── napi_init.cpp                   //公共事件测试用例代码
 │   ├── ets
 │   │   ├── entryability
 │   │   │   └── EntryAbility.ets
 │   │   ├── entrybackupability
 │   │   │   └── EntryBackupAbility.ets
 │   │   ├── pages
-│   │   │   └── Index.ets
+│   │   │   └── Index.ets                   //主界面
 │   ├── module.json5
 │   └── resources
 └── ohosTest
     └── ets
         └── test
-            ├── Ability.test.ets  // 自动化测试代码
-            ├── EventUITest.test.ets  // 自动化测试代码
-            └── List.test.ets    // 测试套执行列表
+            ├── Ability.test.ets            // 自动化测试代码
+            ├── EventUITest.test.ets        // 自动化测试代码
+            └── List.test.ets               // 测试套执行列表
 ```
 
 ### 具体实现
 
-1. 基础无序事件交互：发布无优先级的无序公共事件，订阅端创建订阅者并绑定回调函数，接收事件后解析名称、代码、发布者包名等基础信息。
-2. 带参事件发布订阅：发布端创建参数对象，向事件中添加 int、数组等多类型附加数据；订阅端从回调数据里解析并读取这些自定义参数。
-3. 有序事件优先级处理：发布有序公共事件，订阅端按优先级接收，可执行中止事件传递、取消中止等操作，处理完毕后标记事件处理结束。
-4. 订阅与资源释放：业务完成后调用接口取消公共事件订阅，按序销毁订阅者、订阅信息等对象，完成资源清理避免内存泄漏。
+* 设置公共事件信息并订阅公共事件的功能封装在common_event_subscriber，源码参考[common_event_subscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
+    * 订阅信息 / 订阅者：Create*/Destroy*封装 API，管理资源生命周期；
+    * 事件订阅：Subscribe()调用OH_CommonEvent_Subscribe()完成订阅；
+    * 事件解析：OnReceive()回调解析基础信息，Get*Param()系列函数解析多类型附加参数；
+    * 有序事件：Abort*/ClearAbort*处理中止逻辑，Set*/GetFromSubscriber()读写事件数据。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+
+* 设置发布公共事件信息并发布公共事件的功能封装在common_event_publish，源码参考[common_event_publish.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_publish.cpp)
+    * 基础事件发布：Publish()调用OH_CommonEvent_Publish()发布无属性公共事件；
+    * 带属性事件发布：PublishWithInfo()调用OH_CommonEvent_PublishWithInfo()发布含自定义属性的事件；
+    * 附加参数创建：CreateParameters()封装 API，设置 int/long/double 等基础类型及数组类型附加参数；
+    * 发布属性配置：SetPublishInfo()创建PublishInfo，配置有序事件、包名、权限、结果码、数据及附加参数；
+    * 资源销毁：DestroyPublishInfo()释放Parameters和PublishInfo资源，避免内存泄漏。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+
+* 取消订阅公共事件的功能封装在common_event_unsubscriber，源码参考[common_event_unsubscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_unsubscribe.cpp)
+    * 事件退订：Unsubscribe()封装 API OH_CommonEvent_UnSubscribe()，传入已创建的订阅者对象即可完成事件退订，返回值标识退订操作结果。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+
 
 ### 相关权限
 
@@ -91,6 +98,7 @@ entry/src/
 
 1. 本示例仅支持标准系统上运行。
 2. 本示例为Stage模型，支持API version 18及以上版本的SDK。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
 
 ### 下载
 

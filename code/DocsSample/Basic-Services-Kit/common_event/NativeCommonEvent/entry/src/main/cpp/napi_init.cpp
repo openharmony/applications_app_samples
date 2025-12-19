@@ -26,7 +26,7 @@ constexpr const char *TEST_EVENT_WITH_INFO = "usual.event.TEST_WITH_INFO";
 constexpr const char *SCREEN_ON_EVENT = "usual.event.SCREEN_ON";
 constexpr int32_t EVENT_COUNT = 2;
 constexpr const char *TEST_PERMISSION = "permission.TEST";
-constexpr const char *BUNDLE_NAME = "com.example.commoneventpublish";
+constexpr const char *BUNDLE_NAME = "com.samples.commoneventpublish";
 constexpr int32_t NAPI_MODULE_FLAGS = 0;
 
 constexpr const char *TEST = "TEST";
@@ -43,7 +43,7 @@ napi_value NAPI_CreateSubscribeInfo(napi_env env, napi_callback_info info)
     const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
     int32_t eventsNum = 2;
     const char *permission = "permission.TEST";
-    const char *bundleName = "com.example.commoneventpublish";
+    const char *bundleName = "com.samples.commoneventpublish";
 
     g_subscribeInfo = ::CreateSubscribeInfo(events, eventsNum, permission, bundleName);
 
@@ -153,7 +153,8 @@ napi_value NAPI_GetPublishedEvents(napi_env env, napi_callback_info info)
     for (const auto &event : g_publishedEvents) {
         napi_value eventString;
         napi_create_string_utf8(env, event.c_str(), NAPI_AUTO_LENGTH, &eventString);
-        napi_set_element(env, result, index++, eventString);
+        napi_set_element(env, result, index, eventString);
+        index++;
     }
 
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetPublishedEvents success");
@@ -335,6 +336,104 @@ napi_value NAPI_ClearAllStates(napi_env env, napi_callback_info info)
     return result;
 }
 
+napi_value NAPI_SetPublishInfo(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+
+    const char *bundleName = "com.samples.commoneventpublish";
+    const char *permissions[] = {};
+    int32_t num = 0;
+    const int32_t code = 0;
+    const char *data = nullptr;
+
+    ::SetPublishInfo(bundleName, permissions, num, code, data);
+
+    napi_get_boolean(env, true, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: SetPublishInfo success");
+
+    return result;
+}
+
+napi_value NAPI_DestroyPublishInfo(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+    int32_t ret = -1;
+
+    // 创建publishInfo，设置是否为有序公共事件，取值为true，表示有序公共事件；取值为false，表示无序公共事件
+    CommonEvent_PublishInfo *publishInfo = OH_CommonEvent_CreatePublishInfo(true);
+    // 设置公共事件附加信息
+    CommonEvent_Parameters *param = CreateParameters();
+    ret = OH_CommonEvent_SetPublishInfoParameters(publishInfo, param);
+
+    ::DestroyPublishInfo(param, publishInfo);
+
+    napi_get_boolean(env, true, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: DestroyPublishInfo success");
+
+    return result;
+}
+
+napi_value NAPI_GetParameters(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+
+    const CommonEvent_RcvData *data;
+    ::GetParameters(data);
+    const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
+    ::GetCommonEventBoolParam(parameters);
+    ::GetCommonEventLongParam(parameters);
+    ::GetCommonEventDoubleParam(parameters);
+    ::GetCommonEventCharParam(parameters);
+    ::GetCommonEventIntArrayParam(parameters);
+    ::GetCommonEventLongArrayParam(parameters);
+    ::GetCommonEventDoubleArrayParam(parameters);
+    ::GetCommonEventCharArrayParam(parameters);
+    ::GetCommonEventBoolArrayParam(parameters);
+
+    napi_get_boolean(env, true, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetParameters success");
+
+    return result;
+}
+
+napi_value NAPI_SetToSubscriber(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+
+    const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
+    int32_t eventsNum = 2;
+    const int32_t code = 0;
+    const char *data = nullptr;
+    // 创建publishInfo，设置是否为有序公共事件，取值为true，表示有序公共事件；取值为false，表示无序公共事件
+    CommonEvent_SubscribeInfo *publishInfo = OH_CommonEvent_CreateSubscribeInfo(events, eventsNum);
+    CommonEvent_Subscriber *subscriber = ::CreateSubscriber(publishInfo);
+
+    ::SetToSubscriber(subscriber, code, data);
+
+    napi_get_boolean(env, true, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: SetToSubscriber success");
+
+    return result;
+}
+
+napi_value NAPI_GetFromSubscriber(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+
+    const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
+    int32_t eventsNum = 2;
+    // 创建publishInfo，设置是否为有序公共事件，取值为true，表示有序公共事件；取值为false，表示无序公共事件
+    CommonEvent_SubscribeInfo *publishInfo = OH_CommonEvent_CreateSubscribeInfo(events, eventsNum);
+    CommonEvent_Subscriber *subscriber = ::CreateSubscriber(publishInfo);
+
+    ::GetFromSubscriber(subscriber);
+
+    napi_get_boolean(env, true, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: SetToSubscriber success");
+
+    return result;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -355,7 +454,12 @@ static napi_value Init(napi_env env, napi_value exports)
         {"getSubscriberState", nullptr, NAPI_GetSubscriberState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getSubscribeState", nullptr, NAPI_GetSubscribeState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getPublishedEvents", nullptr, NAPI_GetPublishedEvents, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"clearAllStates", nullptr, NAPI_ClearAllStates, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"clearAllStates", nullptr, NAPI_ClearAllStates, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setPublishInfo", nullptr, NAPI_SetPublishInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"destroyPublishInfo", nullptr, NAPI_DestroyPublishInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getParameters", nullptr, NAPI_GetParameters, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setToSubscriber", nullptr, NAPI_SetToSubscriber, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getFromSubscriber", nullptr, NAPI_GetFromSubscriber, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

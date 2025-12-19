@@ -7,45 +7,27 @@
 
 ### 效果预览
 
-| 项目主界面                    | 弹窗通知授权                        | 半模态弹窗授权                     |
-|----------------------------|----------------------------|----------------------------|
-| ![image](screenshot/mainInterface.png) | ![image](screenshot/requestNotificationDialog.png) | ![image](screenshot/requestNotificationSetting.png) |
-
-
-| 增加角标         | 减少角标个数                        |
+| 项目主界面                    | 弹窗通知授权                        | 
 |----------------------------|----------------------------|
-| ![image](screenshot/addBadges.png) | ![image](screenshot/reduceBadges.png) |
+| ![image](screenshot/mainInterface.png) | ![image](screenshot/requestNotificationDialog.png) |
+
+| 发布文本类型通知                                           | 进度条类型通知                  |
+|----------------------------------------------------|----------------------------|
+| ![image](screenshot/multLinesTextNotification.png) | ![image](screenshot/progressTextNotification.png) |
 
 
-| 发布普通文本类型通知                 | 发布多行文本类型通知                 | 发布进度条类型通知                  |
-|----------------------------|----------------------------|----------------------------|
-| ![image](screenshot/plaintextNotification.png) | ![image](screenshot/multLinesTextNotification.png) | ![image](screenshot/progressTextNotification.png) |
-
-
-| 更新进度条类型通知                  | 取消单行文本类型通知                  |
-|----------------------------|-----------------------------|
-| ![image](screenshot/updateProgressNotification.png) | ![image](screenshot/cancelPlaintextNotification.png) |
 
 ### 使用说明
 
-1. [请求通知授权](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-enable.md)，应用需要获取用户授权才能发送通知。
-
-2. [管理通知角标](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-badge.md)，针对未读的通知，系统提供了角标设置接口，将未读通知个数显示在桌面图标的右上角角标上。 通知增加时，角标上显示的未读通知个数需要增加。 通知被查看后，角标上显示的未读通知个数需要减少，没有未读通知时，不显示角标。
-
-3. [管理通知渠道](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-slot.md)，系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，可以根据应用的实际场景选择适合的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
-
-4. 发布通知
-   * [发布文本类型通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/text-notification.md)，文本类型通知主要应用于发送短信息、提示信息等，支持普通文本类型和多行文本类型。
-   * [发布进度条类型通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/progress-bar-notification.md)，进度条通知也是常见的通知类型，主要应用于文件下载、事务处理进度显示。当前系统提供了进度条模板，发布通知应用设置好进度条模板的属性值，如模板名、模板数据，通过通知子系统发送到通知栏显示。
-   * [为通知添加行为意图](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-with-wantagent.md)，应用向Ability Kit申请WantAgent，并将WantAgent封装至通知中。当发布通知时，用户便可以通过点击通知栏中的消息或按钮，拉起目标应用组件或发布公共事件。
-
-5. [更新通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-update.md)，更新已发布的通知。主要用于上传下载进度更新、IM会话消息更新等场景。
-
-6. [取消通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-cancel.md)，用户收到通知提醒后，点击通知并拉起应用到前台时，应用可以选择取消某条通知或所有通知。
-
-7. [跨设备协同通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-distributed-overview.md)，跨设备协同通知旨在以手机为中枢，实现与手表等其它设备的通知消息协同交互。
-
-8. [清除跨设备场景下的重复通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-distributed-messageid.md)，从API version 20开始，为了避免不同渠道发布的通知重复打扰用户（例如，手机协同到当前设备的通知与Push推送服务发布的通知重复），可以使用通知去重功能，清除跨设备场景下的重复通知。
+1. 在主界面中，可以点击按钮进入对应的功能测试界面；
+2. 在请求通知授权界面中，可以通过点击界面中的 “请求通知授权” 按钮获取权限，如果用户拒绝授权，可以点击 “再次申请通知授权” 让用户进行手动授权；
+3. 在管理通知角标界面中，可以通过点击对应的按钮对应用角标进行一系列的操作；
+4. 在管理通知渠道界面中，可以点击该界面的按钮进行通知渠道的创建、查询和删除操作；
+5. 在发布通知界面中，可以点击相应的按钮，发布不同类型的通知；
+6. 在为通知添加行为意图界面中，可以构造不同的意图，发布携带不同按钮个数的通知；
+7. 在更新通知界面中，可以点击界面中的 “发布进度条类型通知” 按钮发布进度条通知，然后通过点击 “更新通知” 更新进度；
+8. 在取消通知界面中，可以点击界面中的 “发布普通文本类型通知” 按钮，先发布通知，再点击 “取消通知” 按钮，取消通知；
+9. 在清除跨设备场景下的重复通知界面中，可以发布包含appMessageId字段的消息，避免重复展示同一通知。
 
 ### 工程目录
 
@@ -60,37 +42,64 @@ entry/src/
 │   │   ├── entrybackupability
 │   │   │   └── EntryBackupAbility.ets
 │   │   ├── filemanger
-│   │   │   ├── AddWantAgent.ets
-│   │   │   ├── CancelNotification.ets
-│   │   │   ├── ClearDuplicateNotifications.ets
-│   │   │   ├── ManageNotificationBadges.ets
-│   │   │   ├── ManageNotificationWays.ets
-│   │   │   ├── PublishNotification.ets
-│   │   │   ├── RequestEnableNotification.ets
-│   │   │   └── UpdateNotification.ets
+│   │   │   ├── AddWantAgent.ets                    // 为通知添加行为意图
+│   │   │   ├── CancelNotification.ets              // 取消通知
+│   │   │   ├── ClearDuplicateNotifications.ets     // 清除重复通知
+│   │   │   ├── ManageNotificationBadges.ets        // 管理通知角标
+│   │   │   ├── ManageNotificationWays.ets          // 管理通知渠道
+│   │   │   ├── PublishNotification.ets             // 发布通知
+│   │   │   ├── RequestEnableNotification.ets       // 请求通知授权
+│   │   │   └── UpdateNotification.ets              //更新通知
 │   │   ├── pages
-│   │   │   └── Index.ets
+│   │   │   └── Index.ets                           //首页
 │   ├── module.json5
 │   └── resources
 └── ohosTest
     └── ets
         └── test
-            ├── Ability.test.ets  // 自动化测试代码
-            └── List.test.ets    // 测试套执行列表
+            ├── Ability.test.ets                    // 自动化测试代码
+            └── List.test.ets                       // 测试套执行列表
 ```
 
 ### 具体实现
 
-* 请求通知授权，在通知发布前调用[requestEnableNotification()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10-1)接口，弹窗让用户选择是否允许发送通知。当用户拒绝授权后，将无法通过该接口再次拉起弹窗。如果应用需要向用户再次申请通知授权，则可以使用[openNotificationSettings](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings13)接口拉起通知管理半模态弹窗。详情可参见[请求通知授权](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-enable.md)。
-* 管理通知角标，其中增加角标数支持两种方法，第一种是发布通知时，在[NotificationRequest](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)的badgeNumber字段里携带，桌面收到通知后，在原角标数上累加、呈现，第二种是调用接口[setBadgeNumber()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置，桌面按设置的角标数呈现。而减少角标数，目前仅支持通过[setBadgeNumber()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。详情可参见[管理通知角标](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-badge.md)。
-* 管理通知渠道，可以使用[addSlot()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageraddslot)创建通知渠道，还可以在发布通知的NotificationRequest中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。其它接口介绍详情参见相关[API文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)。详情可参见[管理通知渠道](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-slot.md)。
-* 发布文本类型通知，通知发布接口publish()详情参见相关[API文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)。通知发布的详情可通过入参[NotificationRequest](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)来进行指定，可以包括通知内容、通知ID、通知的通道类型和通知发布时间等信息。其中文本类型有两种：第一种为NOTIFICATION_CONTENT_BASIC_TEXT普通文本类型，第二种为NOTIFICATION_CONTENT_MULTILINE多行文本类型。详情可参见[发布文本类型通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/text-notification.md)。
-* 发布进度条类型通知，目前系统模板仅支持进度条模板，首先通过[isSupportTemplate()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerissupporttemplate)查询模板是否支持接口，目前仅支持进度条模板。构造进度条模板，name字段当前需要固定配置为downloadTemplate。详情可参见[发布进度条类型通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/progress-bar-notification.md)。
-* 为通知添加行为意图，首先创建[WantAgentInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)信息，然后调用[getWantAgent()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent，最后构造NotificationRequest对象，并发布携带WantAgent的通知。详情可参见[为通知添加行为意图](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-with-wantagent.md)。
-* 更新通知，通知更新可通过入参[NotificationRequest](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)携带updateOnly字段来指定，不指定该字段默认为false。当updateOnly为true时，若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，不创建新的通知。当updateOnly为false时，若相同ID通知存在，则更新通知；若相同ID通知不存在，则创建通知。详情可参见[更新通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-update.md)。
-* 取消通知，首先发布通知，参考[发布文本类型通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/text-notification.md)，然后取消通知，其中通知取消有两种方法，第一种是调用[cancel()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancel)取消指定的通知，第二种是调用[cancelAll()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancelall)取消所有该应用发布的通知。详情可参见[取消通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-cancel.md)。
-* 清除跨设备场景下的重复通知，应用发送通知时携带唯一标识字段[appMessageId](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)，分布式通知接收到多渠道发布的通知后，会根据该字段进行判断，从而实现通知去重。详情可参见[清除跨设备场景下的重复通知](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/notification/notification-distributed-messageid.md)。
+* 第一次申请通知权限、重新打开通知设置的功能封装在RequestEnableNotification，源码参考：[RequestEnableNotification.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/RequestEnableNotification.ets)
+  * 第一次申请：通过点击界面中的 “请求通知授权” 按钮来调用 notificationManager.isNotificationEnabled() 检查权限，未授权则调用 requestEnableNotification(context) 弹出授权弹窗。
+  * 重新申请：用户拒绝授权后，通过点击界面中的 “再次申请通知授权” 按钮来调用 openNotificationSettings(context) 打开系统通知设置页面，引导用户手动开启。接口参考：[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 
+* 管理应用角标（增减、固定值设置、序列更新、清除）的功能封装在ManageNotificationBadges，源码参考：[ManageNotificationBadges.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationBadges.ets)
+   * 增减角标：通过点击界面中的 “增加角标个数” 和  “减少角标个数” 按钮，通过执行 this.badgeNum++/-- 控制数量（0≤数量≤100），调用 notificationManager.setBadgeNumber() 同步到系统。
+   * 固定值设置：通过点击界面中的 “设置角标个数为9” 和  “设置角标个数为8” 按钮，直接指定 badgeNumber=8/9，调用角标设置接口。
+   * 序列更新：通过点击界面中的 “角标设置个数反例” 和  “角标设置个数正例” 按钮，连续设置角标值（10→11），正例通过嵌套 then() 保证执行顺序，反例直接连续调用（可能导致顺序错乱）。
+   * 清除角标：通过点击界面中的 “清除通知” 按钮，设置 badgeNum=0，同时调用 notificationManager.cancelAll() 取消所有通知。接口参考：[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 管理 “社交通信” 类型通知渠道（创建、查询、删除），渠道属性（是否启用、振动、灯光）可通过查询接口获取的功能封装在ManageNotificationWays，源码参考：[ManageNotificationWays.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ManageNotificationWays.ets)
+   * 创建渠道：通过点击界面中的 “创建社交通信类型的通知渠道” 按钮，调用 notificationManager.addSlot(SlotType.SOCIAL_COMMUNICATION, callback) 创建社交通信渠道。
+   * 查询渠道：通过点击界面中的 “查询社交通信类型的通知渠道” 按钮，调用 notificationManager.getSlot(SlotType.SOCIAL_COMMUNICATION, callback)，获取渠道启用状态、振动 / 灯光开关等属性。
+   * 删除渠道：通过点击界面中的 “删除社交通信类型的通知渠道” 按钮，调用 notificationManager.removeSlot(SlotType.SOCIAL_COMMUNICATION, callback) 删除指定类型渠道。接口参考：[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 发布 4 类通知（普通文本、多行文本、进度条模板），并支持查询系统是否兼容进度条模板的功能封装在PublishNotification，源码参考：[PublishNotification.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/PublishNotification.ets)
+   * 普通文本通知：通过点击界面中的 “发布普通文本类型通知” 按钮，将 contentType 设为 NOTIFICATION_CONTENT_BASIC_TEXT，并配置标题、正文、附加文本，然后发布普通文本通知。
+   * 多行文本通知：通过点击界面中的 “发布多行文本类型通知” 按钮，将 contentType 设为 NOTIFICATION_CONTENT_MULTILINE，支持配置长标题、多行正文。
+   * 进度条模板查询：通过点击界面中的 “查询系统是否支持进度条模板” 按钮，调用 notificationManager.isSupportTemplate('downloadTemplate')，判断系统是否支持进度条通知。
+   * 进度条通知：通过点击界面中的 “发布进度条类型通知” 按钮，将template 字段配置为 name: 'downloadTemplate'，并指定文件标题、进度值（如 45%），然后发布进度条类型通知。接口参考：[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 发布 3 类通知（无按钮、单按钮、双按钮），并为通知 / 按钮绑定 WantAgent 行为意图（拉起应用、发送公共事件）的功能封装在AddWantAgent，源码参考：[AddWantAgent.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/AddWantAgent.ets)
+   * 通过点击界面中的 “发布不携带按钮的通知” 、 “发布携带一个按钮的通知” 和  “发布携带两个按钮的通知” 按钮，来进行创建WantAgentInfo、行为意图和通知对象。
+   * 创建 WantAgentInfo 配置：指定动作类型（START_ABILITY 拉起应用 /SEND_COMMON_EVENT 发送事件）、应用包名 / Ability 名、事件名等。
+   * 调用 wantAgent.getWantAgent() 创建行为意图对象，通过回调获取结果。
+   * 构造 NotificationRequest 通知对象，绑定 WantAgent，调用 notificationManager.publish() 发布通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 更新通知：先发布进度条通知，并通过相同 ID + updateOnly: true 实现通知内容更新的功能封装在UpdateNotification，源码参考：[UpdateNotification.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/UpdateNotification.ets)
+   * 发布进度条通知：通过点击界面中的 “发布进度条类型通知” 按钮，构造含 downloadTemplate 模板的通知（进度值 50%），ID=5，然后发布该通知。
+   * 更新通知：通过点击界面中的 “更新通知” 按钮，构造相同 ID 为 5 的通知，设置 updateOnly 为 true ，修改进度值为 99%，调用 notificationManager.publish() 实现增量更新，不创建新通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 取消通知的功能封装在CancelNotification，源码参考：[CancelNotification.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/CancelNotification.ets)
+   * 发布按钮：通过点击界面中的 “发布普通文本类型通知” 按钮，构造 NotificationRequest（普通文本类型），调用 notificationManager.publish() 发布 ID=1 的通知。
+   * 取消按钮：通过点击界面中的 “取消通知” 按钮，调用 notificationManager.cancel(1, callback)，通过通知 ID 精准取消已发布的通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+
+* 清除跨设备场景下的重复通知功能封装在ClearDuplicateNotifications，源码参考：[ClearDuplicateNotifications.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ClearDuplicateNotifications.ets)
+   * 通过点击界面中的 “发布通知消息……” 按钮，去构造通知对象，并额外添加 appMessageId: 'test_appMessageId_1'（自定义唯一标识）。然后调用 notificationManager.publish() 发布通知，系统会根据 appMessageId 去重，避免重复显示同一类通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 
 ### 相关权限
 

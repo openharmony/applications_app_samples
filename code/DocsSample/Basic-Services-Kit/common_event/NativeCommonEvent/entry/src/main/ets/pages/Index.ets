@@ -14,17 +14,19 @@
  */
 
 import commonEventManager from 'libentry.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0xD001000;
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Common Event Management';
   private subscriber: boolean = false;
-  private eventName: string = 'usual.event.TEST';
 
   // Subscribe to event - Test createSubscribeInfo, createSubscriber, subscribe APIs
   subscribeEvent(): void {
-    console.log('TEST: Calling NAPI - createSubscribeInfo');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'TEST: Calling NAPI - createSubscribeInfo');
     this.message = 'Testing subscribe APIs...';
 
     try {
@@ -41,6 +43,7 @@ struct Index {
           if (subscribeResult) {
             this.subscriber = true;
             this.message = 'Subscribe API test success';
+            AppStorage.setOrCreate<boolean>('result', true);
           } else {
             this.message = 'Subscribe API test failed';
           }
@@ -59,6 +62,7 @@ struct Index {
   abortCommonEvent(): void {
     try {
       const result = commonEventManager.abortCommonEvent();
+      AppStorage.setOrCreate<boolean>('result', result);
       this.message = result ? 'abortCommonEvent API test success' : 'abortCommonEvent API test failed';
     } catch (error) {
       this.message = 'abortCommonEvent API test exception';
@@ -69,7 +73,7 @@ struct Index {
   clearAbortCommonEvent(): void {
     try {
       const result = commonEventManager.clearAbortCommonEvent();
-
+      AppStorage.setOrCreate<boolean>('result', result);
       this.message = result ? 'clearAbortCommonEvent API test success' : 'clearAbortCommonEvent API test failed';
     } catch (error) {
       this.message = 'clearAbortCommonEvent API test exception';
@@ -80,7 +84,7 @@ struct Index {
   modifyCommonEventContent(): void {
     try {
       const result = commonEventManager.publishWithInfo();
-
+      AppStorage.setOrCreate<boolean>('result', result);
       this.message = result ? 'publishWithInfo API test success' : 'publishWithInfo API test failed';
     } catch (error) {
       this.message = 'publishWithInfo API test exception';
@@ -89,7 +93,7 @@ struct Index {
 
   // Unsubscribe - Test unsubscribe, destroySubscriber, destroySubscribeInfo APIs
   unsubscribeEvent(): void {
-    console.log('TEST: Calling NAPI - unsubscribe');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'TEST: Calling NAPI - unsubscribe');
     try {
       const unsubscribeResult = commonEventManager.unsubscribe();
 
@@ -102,11 +106,12 @@ struct Index {
         // Test destroySubscribeInfo API
         commonEventManager.destroySubscribeInfo();
         this.message = 'Unsubscribe APIs test success';
+        AppStorage.setOrCreate<boolean>('result', true);
       } else {
         this.message = 'unsubscribe API test failed';
       }
     } catch (error) {
-      console.log('TEST ERROR: Exception during unsubscribe API testing:', error);
+      hilog.error(DOMAIN, 'testTag', '%{public}s', 'TEST ERROR: Exception during unsubscribe API testing:', error);
     }
   }
 
@@ -114,6 +119,7 @@ struct Index {
   publishEvent(): void {
     try {
       const result = commonEventManager.publish();
+      AppStorage.setOrCreate<boolean>('result', result);
       this.message = result ? 'publish API test success' : 'publish API test failed';
     } catch (error) {
       this.message = 'publish API test exception';

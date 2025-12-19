@@ -20,15 +20,6 @@ const TAG: string = 'ProcessModel';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [End ImportModule]
 
-// [Start CreateCustomSubscriberInformation]
-// 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriberCustom: commonEventManager.CommonEventSubscriber | null = null;
-// 订阅者信息，其中的'event'字段需要替换为实际的事件名称。
-let subscribeInfoCustom: commonEventManager.CommonEventSubscribeInfo = {
-  events: ['event']  // 订阅自定义公共事件
-};
-// [End CreateCustomSubscriberInformation]
-
 // [Start CreateSystemSubscriberInformation]
 // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 let subscriberSystem: commonEventManager.CommonEventSubscriber | null = null;
@@ -37,6 +28,15 @@ let subscribeInfoSystem: commonEventManager.CommonEventSubscribeInfo = {
   events: [commonEventManager.Support.COMMON_EVENT_SCREEN_OFF]  // 订阅灭屏公共事件
 };
 // [End CreateSystemSubscriberInformation]
+
+// [Start CreateCustomSubscriberInformation]
+// 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriberCustom: commonEventManager.CommonEventSubscriber | null = null;
+// 订阅者信息，其中的'event'字段需要替换为实际的事件名称。
+let subscribeInfoCustom: commonEventManager.CommonEventSubscribeInfo = {
+  events: ['event']  // 订阅自定义公共事件
+};
+// [End CreateCustomSubscriberInformation]
 
 // [Start PublicEventInformation]
 // 公共事件相关信息
