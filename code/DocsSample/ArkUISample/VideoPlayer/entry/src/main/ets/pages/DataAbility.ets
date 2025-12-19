@@ -21,6 +21,7 @@
 @Component
 export struct LocalVideoTwo {
   private controller: VideoController = new VideoController();
+  // $r('app.media.preview')需要替换为开发者所需的图像资源文件
   private previewUris: Resource = $r('app.media.preview');
   private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10';
 

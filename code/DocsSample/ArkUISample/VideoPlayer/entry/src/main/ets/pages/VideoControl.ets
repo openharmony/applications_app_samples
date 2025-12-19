@@ -18,7 +18,9 @@
 @Entry
 @Component
 struct VideoGuide {
+  // $rawfile('videoTest.mp4')需要替换为开发者所需的影像资源文件
   @State videoSrc: Resource = $rawfile('videoTest.mp4');
+  // common/videoIcon.png需要替换为开发者所需的图像资源文件
   @State previewUri: string = 'common/videoIcon.png';
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
 

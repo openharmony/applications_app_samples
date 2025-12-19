@@ -21,7 +21,9 @@
 @Component
 export struct LocalVideo {
   private controller: VideoController = new VideoController();
+  // $r('app.media.preview')需要替换为开发者所需的图像资源文件
   private previewUris: Resource = $r('app.media.preview');
+  // $rawfile('videoTest.mp4')需要替换为开发者所需的影像资源文件
   private innerResource: Resource = $rawfile('videoTest.mp4');
 
   build() {
