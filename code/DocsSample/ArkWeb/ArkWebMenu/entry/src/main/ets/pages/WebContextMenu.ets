@@ -87,7 +87,7 @@ struct WebComponent {
           this.showMenu = false;
         })
       MenuItem({
-        content: '全选',
+        content: 'Select All',
       })
         .width(100)
         .height(50)
