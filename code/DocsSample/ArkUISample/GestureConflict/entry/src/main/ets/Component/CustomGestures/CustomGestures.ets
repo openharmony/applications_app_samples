@@ -21,8 +21,7 @@ struct CustomGestures {
   build() {
     Scroll(this.scroller) {
       Column({ space: 8 }) {
-        //  $r('app.string.Drag_instructions') 需要替换为开发者所需的资源文件
-        // 请将$r('app.string.Drag_instructions')替换为实际资源文件，在本示例中该资源文件的value值为"包括上下两层组件，上层组件绑定长按手势，下层组件绑定拖拽。其中上层组件下半区域绑定手势拦截，使该区域响应下层拖拽手势。"
+        // 请将$r('app.string.Drag_instructions')替换为实际资源文件，在本示例中该资源文件的value值为"包括上下两层组件，上层..."
         Text($r('app.string.Drag_instructions')).width('100%').fontSize(20).fontColor('0xffdd00')
         Stack({ alignContent: Alignment.Center }) {
           Column() {
