@@ -152,6 +152,7 @@ struct ParticleExample2 {
               particle: {
                 type: ParticleType.IMAGE,
                 config: {
+                  // 请将$r('app.media.heart')替换为实际资源文件
                   src: $r('app.media.heart'),
                   size: [10, 10]
                 },
@@ -273,6 +274,7 @@ struct ParticleExample2 {
               particle: {
                 type: ParticleType.IMAGE,
                 config: {
+                  // 请将$r('app.media.sun')替换为实际资源文件
                   src: $r('app.media.sun'),
                   size: [10, 10]
                 },

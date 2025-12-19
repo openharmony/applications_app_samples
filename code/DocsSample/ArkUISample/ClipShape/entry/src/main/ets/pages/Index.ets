@@ -27,23 +27,25 @@ struct Index {
   build() {
     Scroll() {
       Column(){
-        // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
+        // 请将$r('app.string.EntryAbility_title1')替换为实际资源文件，在本示例中该资源文件的value值为"裁剪圆形"
         Text($r('app.string.EntryAbility_title1'))
           .id('text1_title1')
           .onClick(()=>{
             this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample1'})
           })
-
+        // 请将$r('app.string.EntryAbility_title2')替换为实际资源文件，在本示例中该资源文件的value值为"裁剪椭圆形"
         Text($r('app.string.EntryAbility_title2'))
           .id('text1_title2')
           .onClick(()=>{
             this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample2'})
           })
+        // 请将$r('app.string.EntryAbility_title3')替换为实际资源文件，在本示例中该资源文件的value值为"裁剪矩形"
         Text($r('app.string.EntryAbility_title3'))
           .id('text1_title3')
           .onClick(()=>{
             this.getUIContext().getRouter().pushUrl({url:'View/ClipShapeExample3'})
           })
+        // 请将$r('app.string.EntryAbility_title4')替换为实际资源文件，在本示例中该资源文件的value值为"裁剪不规则形状"
         Text($r('app.string.EntryAbility_title4'))
           .id('text1_title4')
           .onClick(()=>{

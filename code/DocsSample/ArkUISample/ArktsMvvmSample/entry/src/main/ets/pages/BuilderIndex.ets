@@ -17,19 +17,19 @@
 @Observed
 class TodoListData {
   public planList: ResourceStr[] = [
-    // app.string.get_up资源文件中的value值为'7.30 起床'
+    // 请将$r('app.string.get_up')替换为实际资源文件，在本示例中该资源文件的value值为"7.30 起床"
     $r('app.string.get_up'),
-    // app.string.breakfast资源文件中的value值为'8.30 早餐'
+    // 请将$r('app.string.breakfast')替换为实际资源文件，在本示例中该资源文件的value值为"8.30 早餐"
     $r('app.string.breakfast'),
-    // app.string.lunch资源文件中的value值为'11.30 中餐'
+    // 请将$r('app.string.lunch')替换为实际资源文件，在本示例中该资源文件的value值为"11.30 中餐"
     $r('app.string.lunch'),
-    // app.string.dinner资源文件中的value值为'17.30 晚餐'
+    // 请将$r('app.string.dinner')替换为实际资源文件，在本示例中该资源文件的value值为"17.30 晚餐"
     $r('app.string.dinner'),
-    // app.string.midnight_snack资源文件中的value值为'21.30 夜宵'
+    // 请将$r('app.string.midnight_snack')替换为实际资源文件，在本示例中该资源文件的value值为"21.30 夜宵"
     $r('app.string.midnight_snack'),
-    // app.string.bathe资源文件中的value值为'22.30 洗澡'
+    // 请将$r('app.string.bathe')替换为实际资源文件，在本示例中该资源文件的value值为"22.30 洗澡"
     $r('app.string.bathe'),
-    // app.string.sleep资源文件中的value值为'1.30 睡觉'
+    // 请将$r('app.string.sleep')替换为实际资源文件，在本示例中该资源文件的value值为"1.30 睡觉"
     $r('app.string.sleep')
   ];
 }
@@ -38,7 +38,7 @@ class TodoListData {
 struct StateTodoComponent {
   build() {
     Row() {
-      // app.string.all_tasks资源文件中的value值为'全部待办'
+      // 请将$r('app.string.all_tasks')替换为实际资源文件，在本示例中该资源文件的value值为"全部待办"
       Text($r('app.string.all_tasks'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
@@ -54,7 +54,7 @@ struct BuilderAllChooseComponent {
 
   build() {
     Row() {
-      // app.string.check_all资源文件中的value值为'全选'
+      // 请将$r('app.string.check_all')替换为实际资源文件，在本示例中该资源文件的value值为"全选"
       Button($r('app.string.check_all'), { type: ButtonType.Capsule })
         .onClick(() => {
           this.isFinished = !this.isFinished;
@@ -91,17 +91,17 @@ struct BuilderThingComponent {
     // 待办事项1
     Row({ space: 15 }) {
       if (this.isFinished) {
-        // $r('app.media.finished')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.finished')替换为实际资源文件
         this.displayIcon($r('app.media.finished'));
       } else {
-        // $r('app.media.unfinished')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.unfinished')替换为实际资源文件
         this.displayIcon($r('app.media.unfinished'));
       }
       Text(`${this.thing}`)
         .fontSize(24)
         .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
         .onClick(() => {
-          // app.string.la_la资源文件中的value值为'啦'
+          // 请将$r('app.string.la_la')替换为实际资源文件，在本示例中该资源文件的value值为"啦"
           this.thing += this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.la_la').id);
         })
     }

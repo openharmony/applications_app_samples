@@ -89,5 +89,6 @@ export function ComputedInitParam() {
     ComputingInitParam()
   }
   .backgroundColor('#f1f2f3')
+  // 请将$r('app.string.computed_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"@Computed装饰的属性可以初始化@Param"
   .title($r('app.string.computed_title_3'))
 }

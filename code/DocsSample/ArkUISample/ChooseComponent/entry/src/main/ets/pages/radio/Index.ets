@@ -23,13 +23,13 @@ export const RADIO_ROUTE_PREFIX: string = 'radio';
 
 const routes: Route[] = [
   {
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.RadioSample_title')替换为实际资源文件，在本示例中该资源文件的value值为"单选框示例示例"
     name: `${RADIO_ROUTE_PREFIX}/RadioSample`,
     title: resource.resourceToString($r('app.string.RadioSample_title')),
     description: $r('app.string.RadioSample_description')
   },
   {
-    //  $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.RadioSample2_title')替换为实际资源文件，在本示例中该资源文件的value值为"单选框示例2"
     name: `${RADIO_ROUTE_PREFIX}/RadioSample2`,
     title: resource.resourceToString($r('app.string.RadioSample2_title')),
     description: $r('app.string.RadioSample2_description')

@@ -21,10 +21,12 @@ import { RectShape } from '@kit.ArkUI';
 struct ClipShapeExample {
   build() {
     Column({ space: 15 }) {
+      // 请将$r('app.media.background')替换为实际资源文件
       Image($r('app.media.background'))
         .clipShape(new RectShape({ width: '200px', height: '200px' }))
         .width('500px').height('400px')
 
+      // 请将$r('app.media.background')替换为实际资源文件
       Image($r('app.media.background'))
         .clipShape(new RectShape({ width: '380px', height: '280px' }))
         .width('500px').height('400px')

@@ -38,6 +38,7 @@ struct TransitionEffectExample2 {
         // Image的显示和消失配置为不同的过渡效果
         // 出现时做从指定的透明度为0变为默认的透明度1的动画，该动画时长为1000ms，以及做从指定的绕z轴旋转180°变为默认的旋转角为0的动画，该动画1000ms后播放，时长为1000ms
         // 消失时做从默认的透明度为1变为指定的透明度0的动画，该动画1000ms后播放，时长为1000ms，以及做从默认的旋转角0变为指定的绕z轴旋转180°的动画，该动画时长为1000ms
+        // 请将$r('app.media.testImg')替换为实际资源文件
         Image($r('app.media.testImg')).width(200).height(200)
           .transition(
             TransitionEffect.asymmetric(
@@ -50,6 +51,7 @@ struct TransitionEffectExample2 {
           )
         // 出现时做从x方向和y方向scale都为0变为默认的x方向和y方向scale都为1的动画，该动画时长为animateTo中指定的2000ms
         // 消失时无转场效果
+        // 请将$r('app.media.testImg')替换为实际资源文件
         Image($r('app.media.testImg')).width(200).height(200).margin({ top: 100 })
           .transition(
             TransitionEffect.asymmetric(

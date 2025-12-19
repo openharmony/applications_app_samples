@@ -20,6 +20,7 @@ struct Page1 {
 
   build() {
     Column() {
+      // 请将$r('app.string.page2')替换为实际资源文件，在本示例中该资源文件的value值为"页面2"
       Button($r('app.string.page2')).onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: 'pages/pageTransition/template2/Index'

@@ -22,7 +22,7 @@ struct StateIndex {
   build() {
     Column() {
       Row() {
-        // app.string.all_tasks资源文件中的value值为'全部待办'
+        // 请将$r('app.string.all_tasks')替换为实际资源文件，在本示例中该资源文件的value值为"全部待办"
         Text($r('app.string.all_tasks'))
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
@@ -33,17 +33,17 @@ struct StateIndex {
       // 待办事项
       Row({ space: 15 }) {
         if (this.isFinished) {
-          // $r('app.media.finished')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.finished')替换为实际资源文件
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         } else {
-          // $r('app.media.unfinished')需要替换为开发者所需的资源文件
+          // 请将$r('app.media.unfinished')替换为实际资源文件
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
         }
-        // app.string.all_learn_advanced_math资源文件中的value值为'学习高数'
+        // 请将$r('app.string.all_learn_advanced_math')替换为实际资源文件，在本示例中该资源文件的value值为"学习高数"
         Text($r('app.string.learn_advanced_math'))
           .fontSize(24)
           .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })

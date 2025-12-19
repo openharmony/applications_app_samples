@@ -22,6 +22,7 @@ struct ClipShapeExample {
   build() {
     Column({ space: 15 }) {
       Row() {
+        // 请将$r('app.media.background')替换为实际资源文件
         Image($r('app.media.background'))
           .clipShape(new PathShape({ commands: 'M0 0 H400 V200 H0 Z' }))
           .width('500px').height('300px')

@@ -27,7 +27,7 @@ struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
   @State animatorOptions: AnimatorResult | undefined = undefined;
-  // $r('app.string.create')资源文件中的value值为'创建'
+  // 请将$r('app.string.create')替换为实际资源文件，在本示例中该资源文件的value值为"创建"
   @State animatorStatus: Resource = $r('app.string.create');
   begin: number = 0;
   end: number = 300;
@@ -59,12 +59,12 @@ struct Index {
     }
     //动画取消时执行方法
     this.animatorOptions.onCancel = () => {
-      // $r('app.string.cancel')资源文件中的value值为'取消'
+      // 请将$r('app.string.cancel')替换为实际资源文件，在本示例中该资源文件的value值为"取消"
       this.animatorStatus = $r('app.string.cancel');
     }
     //动画完成时执行方法
     this.animatorOptions.onFinish = () => {
-      // $r('app.string.complete')资源文件中的value值为'完成'
+      // 请将$r('app.string.complete')替换为实际资源文件，在本示例中该资源文件的value值为"完成"
       this.animatorStatus = $r('app.string.complete');
     }
     //动画重复播放时执行方法
@@ -85,21 +85,21 @@ struct Index {
     Column() {
       Column({ space: 30 }) {
         // [Start animator_template4_buttons_start]
-        // $r('app.string.play')资源文件中的value值为'播放'
+        // 请将$r('app.string.play')替换为实际资源文件，在本示例中该资源文件的value值为"播放"
         Button($r('app.string.play')).onClick(() => {
           this.animatorOptions?.play();
-          // $r('app.string.playing')资源文件中的value值为'播放中'
+          // 请将$r('app.string.playing')替换为实际资源文件，在本示例中该资源文件的value值为"播放中"
           this.animatorStatus = $r('app.string.playing');
         }).width(80).height(35)
-        // $r('app.string.reset')资源文件中的value值为'重置'
+        // 请将$r('app.string.reset')替换为实际资源文件，在本示例中该资源文件的value值为"重置"
         Button($r('app.string.reset')).onClick(() => {
           this.translateX = 0;
           this.translateY = 0;
         }).width(80).height(35)
-        // $r('app.string.pause')资源文件中的value值为'暂停'
+        // 请将$r('app.string.pause')替换为实际资源文件，在本示例中该资源文件的value值为"暂停"
         Button($r('app.string.pause')).onClick(() => {
           this.animatorOptions?.pause();
-          // $r('app.string.pause')资源文件中的value值为'暂停'
+          // 请将$r('app.string.pause')替换为实际资源文件，在本示例中该资源文件的value值为"暂停"
           this.animatorStatus = $r('app.string.pause');
         }).width(80).height(35)
         // [End animator_template4_buttons_start]

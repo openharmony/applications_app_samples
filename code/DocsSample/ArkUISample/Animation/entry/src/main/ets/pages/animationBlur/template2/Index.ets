@@ -21,10 +21,12 @@ struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State radius: number = 0;
   @State text: string = '';
-  @State y: Resource | string = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);//app.string.animation_blur_text1资源文件中的value值为‘手指不在屏幕上’
+  @State y: Resource | string = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);// 请在resources\base\element\string.json文件中配置name为'animation_blur_text1'，value为非空字符串的资源
 
   aboutToAppear() {
-    // $r('app.string.xxx')需要替换为开发者所需要的资源文件
+    // 请在resources\base\element\string.json文件中配置name为'animation_blur_text2'，value为非空字符串的资源
+    // 请在resources\base\element\string.json文件中配置name为'animation_blur_text3'，value为非空字符串的资源
+    // 请在resources\base\element\string.json文件中配置name为'animation_blur_text4'，value为非空字符串的资源
     this.text = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text2').id) + 
     "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text3').id) + this.y +
       "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text4').id) + this.radius;
@@ -38,7 +40,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
-      // $r("app.media.bg")需要替换为开发者所需的图像资源文件
+      // 请将$r('app.media.bg')替换为实际资源文件
       Image($r("app.media.bg"))
         .blur(this.radius)// 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
@@ -54,11 +56,13 @@ struct Index {
         }
         if (event.type === TouchType.Up) {
           this.radius = 0;
-          //app.string.animation_blur_text1资源文件中的value值为‘手指不在屏幕上‘
+          // 请在resources\base\element\string.json文件中配置name为'animation_blur_text1'，value为非空字符串的资源
           this.y = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);
         }
       }
-      // $r('app.string.xxx')需要替换为开发者所需要的资源文件
+      // 请在resources\base\element\string.json文件中配置name为'animation_blur_text2'，value为非空字符串的资源
+      // 请在resources\base\element\string.json文件中配置name为'animation_blur_text3'，value为非空字符串的资源
+      // 请在resources\base\element\string.json文件中配置name为'animation_blur_text4'，value为非空字符串的资源
       this.text = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text2').id) + "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text3').id) + this.y +
         "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text4').id) + this.radius;
     })

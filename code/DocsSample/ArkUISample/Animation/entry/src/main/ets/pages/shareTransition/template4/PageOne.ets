@@ -72,7 +72,7 @@ export struct PageOne {
       Stack() {
         Column({ space: 20 }) {
           Row({ space: 10 }) {
-            // 图片使用Resource资源，需用户自定义
+            // 请将$r('app.media.avatar')替换为实际资源文件
             Image($r('app.media.avatar'))
               .size({ width: 50, height: 50 })
               .borderRadius(25)
@@ -82,7 +82,7 @@ export struct PageOne {
           }
           .justifyContent(FlexAlign.Start)
 
-          // 'app.string.shareTransition_text2'资源文件中的value值为'你好世界'
+          // 请将$r('app.string.shareTransition_text2')替换为实际资源文件，在本示例中该资源文件的value值为"你好世界"
           Text($r('app.string.shareTransition_text2'))
 
           NodeContainer(this.myNodeController)

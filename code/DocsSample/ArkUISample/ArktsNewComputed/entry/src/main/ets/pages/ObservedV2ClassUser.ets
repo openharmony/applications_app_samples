@@ -56,5 +56,6 @@ export function ObservedV2ClassUserFunc() {
     ObservedV2ClassUser()
   }
   .backgroundColor('#f1f2f3')
+  // 请将$r('app.string.computed_desc_2')替换为实际资源文件，在本示例中该资源文件的value值为"在@ObservedV2装饰的类中使用计算属性。"
   .title($r('app.string.computed_desc_2'))
 }

@@ -58,6 +58,7 @@ export default function IndexTest() {
     it('testCustomComponentUse', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testCreateText begin');
       let driver = Driver.create();
+      // 请将$r('app.string.computed_desc_1')替换为实际资源文件，在本示例中该资源文件的value值为"在自定义组件中使用计算属性。"
       let str = await getResourceString($r('app.string.computed_desc_1'));
       let buttonComponent = await driver.findComponent(ON.text(str));
       await buttonComponent.click();
@@ -82,6 +83,7 @@ export default function IndexTest() {
     it('testObservedV2ClassUser', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testObservedV2ClassUser begin');
       let driver = Driver.create();
+      // 请将$r('app.string.computed_desc_2')替换为实际资源文件，在本示例中该资源文件的value值为"在@ObservedV2装饰的类中使用计算属性。。"
       let str = await getResourceString($r('app.string.computed_desc_2'));
       let buttonComponent = await driver.findComponent(ON.text(str));
       await buttonComponent.click();
@@ -102,6 +104,7 @@ export default function IndexTest() {
     it('testComputingPropertyResolution', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testComputingPropertyResolution begin');
       let driver = Driver.create();
+      // 请将$r('app.string.computed_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"@Computed装饰的属性可以被@Monitor监听变化"
       let str = await getResourceString($r('app.string.computed_title_2'));
       let buttonComponent = await driver.findComponent(ON.text(str));
       await buttonComponent.click();
@@ -125,6 +128,7 @@ export default function IndexTest() {
     it('testComputedInitParam', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testComputedInitParam begin');
       let driver = Driver.create();
+      // 请将$r('app.string.computed_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"@Computed装饰的属性可以初始化@Param"
       let str = await getResourceString($r('app.string.computed_title_3'));
       let buttonComponent = await driver.findComponent(ON.text(str));
       await buttonComponent.click();
