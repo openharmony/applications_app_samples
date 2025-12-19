@@ -20,6 +20,7 @@ import { display } from '@kit.ArkUI';
 struct rotation {
   build() {
     Stack() {
+      // $r('app.media.tree')需要替换为开发者所需的资源文件
       Image($r('app.media.tree'))
         .position({ x: 0, y: 0 })
         .size({ width: 100, height: 100 })
