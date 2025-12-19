@@ -23,8 +23,10 @@ struct Index {
       Scroll(this.scroller) {
         Column({space:10}) {
           Row() {
+            // 请将$r('app.string.Progress_Style')替换为实际资源文件，在本示例中该资源文件的value值为"不同进度条样式"
             Text($r('app.string.Progress_Style'))
             Blank()
+            // 请将$r('app.string.Progress_Update_Example')替换为实际资源文件，在本示例中该资源文件的value值为"更新进度示例"
             Button($r('app.string.Progress_Update_Example'))
               .onClick((event: ClickEvent) => {
                 router.pushUrl({
@@ -32,12 +34,14 @@ struct Index {
                 })
               })
           }.width('90%')
+          // 请将$r('app.string.Linear_Progress')替换为实际资源文件，在本示例中该资源文件的value值为"线性样式进度条"
           Text($r('app.string.Linear_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           // [Start progress_style_1]
           Progress({ value: 20, total: 100, type: ProgressType.Linear }).width(200).height(50)
           Progress({ value: 20, total: 100, type: ProgressType.Linear }).width(50).height(200)
           // [End progress_style_1]
 
+          // 请将$r('app.string.Ring_Progress')替换为实际资源文件，在本示例中该资源文件的value值为"环形无刻度样式进度条"
           Text($r('app.string.Ring_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           Row({space:40}) {
             // [Start progress_style_2]
@@ -50,6 +54,7 @@ struct Index {
             // [End progress_style_2]
           }
 
+          // 请将$r('app.string.Ring_Progress')替换为实际资源文件，在本示例中该资源文件的value值为"环形有刻度样式进度条"
           Text($r('app.string.ScaleRing_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           Row({space:40}) {
             // [Start progress_style_3]
@@ -65,6 +70,7 @@ struct Index {
             // [End progress_style_3]
           }
 
+          // 请将$r('app.string.Eclipse_Progress')替换为实际资源文件，在本示例中该资源文件的value值为"圆形样式进度条"
           Text($r('app.string.Eclipse_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           Row({space:40}) {
             // [Start progress_style_4]
@@ -75,6 +81,7 @@ struct Index {
             // [End progress_style_4]
           }
 
+          // 请将$r('app.string.Capsule_Progress')替换为实际资源文件，在本示例中该资源文件的value值为"胶囊样式进度条"
           Text($r('app.string.Capsule_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           Row({space:40}) {
             // [Start progress_style_5]

@@ -21,7 +21,7 @@ struct SetImageDecodingSize {
   build() {
     Column() {
       Row({ space: 50 }) {
-        // 请将$r('app.media.example')替换为实际资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
         // 使用sourceSize接口对图片设置解码尺寸，降低图片分辨率
           .sourceSize({
@@ -34,7 +34,7 @@ struct SetImageDecodingSize {
           .border({ width: 1 })
           // overlay接口暂不支持深色模式
           .overlay('width:40 height:40', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
-        // 请将$r('app.media.example')替换为实际资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
         // 使用sourceSize接口对图片设置解码尺寸，降低图片分辨率
           .sourceSize({

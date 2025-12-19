@@ -70,6 +70,7 @@ export struct OnFocusBlur {
     }
     // [StartExclude focus_dynamic_reflect]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Focus_OnFocusBlur_title')替换为实际资源文件，在本示例中该资源文件的value值为"获焦/失焦事件"
     .title($r('app.string.Focus_OnFocusBlur_title'))
     // [EndExclude focus_dynamic_reflect]
   }

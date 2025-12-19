@@ -27,6 +27,7 @@ export struct Sequence {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // 请将$r('app.string.groupgesture_Sequence_text')替换为实际资源文件，在本示例中该资源文件的value值为"在一个Column组件上绑定了translate属性，通过修改该属性可以设置组件的位置移动。然后在该组件上绑定LongPressGesture和PanGesture组合而成的Sequence组合手势。当触发LongPressGesture时，更新显示的数字。当长按后进行拖动时，根据拖动手势的回调函数，实现组件的拖动。"
         Text($r('app.string.groupgesture_Sequence_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -87,6 +88,7 @@ export struct Sequence {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.groupgesture_Sequence_title')替换为实际资源文件，在本示例中该资源文件的value值为"顺序识别"
     .title($r('app.string.groupgesture_Sequence_title'))
   }
 }

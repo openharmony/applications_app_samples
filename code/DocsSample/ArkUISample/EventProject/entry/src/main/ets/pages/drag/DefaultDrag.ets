@@ -40,7 +40,7 @@ export struct DefaultDrag {
   @Builder
   pixelMapBuilder() {
     Column() {
-      // 请将$r('app.media.startIcon')替换为实际资源文件
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.startIcon'))
         .width(120)
         .height(120)
@@ -116,7 +116,7 @@ export struct DefaultDrag {
               .backgroundColor('#008888')
             Row() {
               // [Start module_draggable]
-              // 请将$r('app.media.app_icon')替换为实际资源文件
+              // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
               Image($r('app.media.app_icon'))
                 .width(100)
                 .height(100)
@@ -224,6 +224,7 @@ export struct DefaultDrag {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Drag_DefaultDrag_title')替换为实际资源文件，在本示例中该资源文件的value值为"通用拖拽"
     .title($r('app.string.Drag_DefaultDrag_title'))
   }
 

@@ -53,7 +53,7 @@ export struct DropAnimationExample {
       Row() {
         Column() {
           //[Start drop_image_start]
-          // 请将$r('app.media.app_icon')替换为实际资源文件
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.app_icon'))
             .width(100)
             .height(100)
@@ -119,6 +119,7 @@ export struct DropAnimationExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.Pages_Index_DropAnimation')替换为实际资源文件，在本示例中该资源文件的value值为"拖放动画事件/DropAnimation"
     .title($r('app.string.Pages_Index_DropAnimation'))
 
     //[EndExclude dropAnimationExample_start]

@@ -21,6 +21,7 @@ import resource from '../../common/resource';
 
 export const Drag_ROUTE_PREFIX: string = 'Drag_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Drag_ROUTE_PREFIX}/Defaultdrag`,
@@ -71,6 +72,7 @@ struct DragGestureExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.Drag_Index_DefaultDrag_title')替换为实际资源文件，在本示例中该资源文件的value值为"拖拽事件"
     .title($r('app.string.Drag_Index_title'))
   }
 }

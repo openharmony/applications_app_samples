@@ -22,6 +22,7 @@ struct CustomGestures {
     Scroll(this.scroller) {
       Column({ space: 8 }) {
         //  $r('app.string.Drag_instructions') 需要替换为开发者所需的资源文件
+        // 请将$r('app.string.Drag_instructions')替换为实际资源文件，在本示例中该资源文件的value值为"包括上下两层组件，上层组件绑定长按手势，下层组件绑定拖拽。其中上层组件下半区域绑定手势拦截，使该区域响应下层拖拽手势。"
         Text($r('app.string.Drag_instructions')).width('100%').fontSize(20).fontColor('0xffdd00')
         Stack({ alignContent: Alignment.Center }) {
           Column() {
@@ -39,7 +40,7 @@ struct CustomGestures {
               // [StartExclude component_dragging]
              let promptAction: PromptAction = this.getUIContext().getPromptAction();
               // [EndExclude component_dragging]
-              //  $r('app.string.Allow_dragging_prompt') 需要替换为开发者所需的资源文件
+              // 请将$r('app.string.Allow_dragging_prompt')替换为实际资源文件，在本示例中该资源文件的value值为"Drag 下半区蓝色区域，Image响应"
               promptAction.showToast({ message: $r('app.string.Allow_dragging_prompt') });
             })
             .width('200vp').height('200vp')
@@ -58,7 +59,7 @@ struct CustomGestures {
                 // [StartExclude set_gestures]
                 let promptAction: PromptAction = this.getUIContext().getPromptAction();
                 // [EndExclude set_gestures]
-                //  $r('app.string.Stop_dragging_prompt') 需要替换为开发者所需的资源文件
+                // 请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应"
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })
               .tag('longpress')

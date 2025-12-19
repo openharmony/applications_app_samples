@@ -23,6 +23,7 @@ export struct Exclusive {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // 请将$r('app.string.groupgesture_Exclusive_text')替换为实际资源文件，在本示例中该资源文件的value值为"以在一个Column组件上绑定单击手势和双击手势组合而成的互斥识别组合手势为例。若先绑定单击手势后绑定双击手势，由于单击手势只需要一次点击即可触发而双击手势需要两次，每次的点击事件均被单击手势消费而不能积累成双击手势，所以双击手势无法触发。若先绑定双击手势后绑定单击手势，则触发双击手势不触发单击手势。"
         Text($r('app.string.groupgesture_Exclusive_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -51,6 +52,7 @@ export struct Exclusive {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.groupgesture_Exclusive_title')替换为实际资源文件，在本示例中该资源文件的value值为"互斥识别"
     .title($r('app.string.groupgesture_Exclusive_title'))
   }
 }

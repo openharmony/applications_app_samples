@@ -243,7 +243,7 @@ struct FocusExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    // $r('app.string.Focus_Index_title')资源文件中的value值为'焦点事件'
+    // 请将$r('app.string.Focus_Index_title')替换为实际资源文件，在本示例中该资源文件的value值为"焦点事件"
     .title($r('app.string.Focus_Index_title'))
   }
 }

@@ -39,6 +39,7 @@ export struct RequestFocusExample {
     }
     // [StartExclude dynamic_focus_request]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Focus_Index_RequestFocus_title')替换为实际资源文件，在本示例中该资源文件的value值为"请求聚焦/RequestFocus"
     .title($r('app.string.Focus_Index_RequestFocus_title'))
     // [EndExclude dynamic_focus_request]
   }

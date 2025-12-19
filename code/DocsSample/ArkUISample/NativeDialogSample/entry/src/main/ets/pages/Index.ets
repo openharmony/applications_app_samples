@@ -23,6 +23,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        // 请将$r('app.string.dialog_controller')替换为实际资源文件，在本示例中该资源文件的value值为"CustomDialogController_CAPI对接示例"
         Button($r('app.string.dialog_controller'))
           .height(50)
           .width('85%')
@@ -32,6 +33,7 @@ struct Index {
               url: 'pages/IndexController',
             })
           })
+        // 请将$r('app.string.custom_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"OpenCustomDialog_CAPI对接示例"
         Button($r('app.string.custom_dialog'))
           .height(50)
           .width('85%')
@@ -41,6 +43,7 @@ struct Index {
               url: 'pages/IndexCustomDialog',
             })
           })
+        // 请将$r('app.string.dialog_demo')替换为实际资源文件，在本示例中该资源文件的value值为"dialog demo"
         Button($r('app.string.dialog_demo'))
           .height(50)
           .width('85%')
@@ -48,11 +51,13 @@ struct Index {
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({url: 'pages/DialogDemo'});
           })
+        // 请将$r('app.string.exit_app')替换为实际资源文件，在本示例中该资源文件的value值为"退出应用"
         Text($r('app.string.exit_app'))
           .fontSize(20)
           .fontColor(0xCCCCCC)
           .width('100%')
           .margin({ left: 10 })
+        // 请将$r('app.string.close_app')替换为实际资源文件，在本示例中该资源文件的value值为"关闭应用"
         Button($r('app.string.close_app'))
           .fontSize(18)
           .width(240)

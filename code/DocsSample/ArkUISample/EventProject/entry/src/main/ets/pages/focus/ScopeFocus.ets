@@ -57,6 +57,7 @@ export struct ScopeFocusExample {
     }
     // [StartExclude dynamic_focus_scope]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Focus_Index_ScopeFocus_title')替换为实际资源文件，在本示例中该资源文件的value值为"范围聚焦/ScopeFocus"
     .title($r('app.string.Focus_Index_ScopeFocus_title'))
     // [EndExclude dynamic_focus_scope]
   }

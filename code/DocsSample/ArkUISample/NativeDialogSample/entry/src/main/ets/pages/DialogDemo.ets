@@ -25,6 +25,7 @@ struct Index {
 
   build() {
     Column() {
+      // 请将$r('app.string.return_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"返回"
       Button($r('app.string.return_dialog'))
         .height(25)
         .width('10%')
@@ -35,6 +36,7 @@ struct Index {
           testNapi2.disposeOptionText();
           testNapi2.disposeLifecycle();
         })
+      // 请将$r('app.string.close_app')替换为实际资源文件，在本示例中该资源文件的value值为"DialogController demo"
       Button($r('app.string.dialog_controller_demo'))
         .height(30)
         .width('85%')
@@ -42,6 +44,7 @@ struct Index {
         .onClick(() => {
           testNapi2.mainPageController(this.nodeContent);
         })
+      // 请将$r('app.string.dialog_option_demo')替换为实际资源文件，在本示例中该资源文件的value值为"DialogOption demo"
       Button($r('app.string.dialog_option_demo'))
         .height(30)
         .width('85%')
@@ -49,6 +52,7 @@ struct Index {
         .onClick(() => {
           testNapi2.mainPageOption(this.nodeContent);
         })
+      // 请将$r('app.string.dialog_optionText_demo')替换为实际资源文件，在本示例中该资源文件的value值为"Text Option demo"
       Button($r('app.string.dialog_optionText_demo'))
         .height(30)
         .width('85%')
@@ -56,6 +60,7 @@ struct Index {
         .onClick(() => {
           testNapi2.mainPageOptionText(this.nodeContent);
         })
+      // 请将$r('app.string.dialog_lifecycle_demo')替换为实际资源文件，在本示例中该资源文件的value值为"Dialog lifecycle demo"
       Button($r('app.string.dialog_lifecycle_demo'))
         .height(25)
         .width('85%')

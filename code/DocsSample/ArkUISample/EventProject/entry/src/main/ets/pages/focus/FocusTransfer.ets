@@ -49,15 +49,18 @@ export struct FocusTransferExample {
             Button('button 3')
               .margin(20)
               .onFocus(() => {
+                // 请将$r('app.string.Get_Focus')替换为实际资源文件，在本示例中该资源文件的value值为"获得焦点"
                 this.addText('Button 3' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
               })
           }
           .id('Row 2')
           .onFocus(() => {
+            // 请将$r('app.string.Get_Focus')替换为实际资源文件，在本示例中该资源文件的value值为"获得焦点"
             this.addText('Row 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
           })
         }
         .onFocus(() => {
+          // 请将$r('app.string.Get_Focus')替换为实际资源文件，在本示例中该资源文件的value值为"获得焦点"
           this.addText('Column 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
         })
 
@@ -77,6 +80,7 @@ export struct FocusTransferExample {
     }
     // [StartExclude dynamic_focus_transfer]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Focus_Index_FocusTransfer_title')替换为实际资源文件，在本示例中该资源文件的value值为"聚焦转移/FocusTransfer"
     .title($r('app.string.Focus_Index_FocusTransfer_title'))
     // [EndExclude dynamic_focus_transfer]
   }

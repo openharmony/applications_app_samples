@@ -21,7 +21,7 @@ struct ImageRepetitionStyle {
   build() {
     Column({ space: 10 }) {
       Column({ space: 25 }) {
-        // 请将$r('app.media.ic_public_favor_filled_1')替换为实际资源文件
+        // $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.ic_public_favor_filled_1'))
           .width(160)
           .height(160)
@@ -32,7 +32,7 @@ struct ImageRepetitionStyle {
           .objectFit(ImageFit.ScaleDown)
           // overlay接口暂不支持深色模式
           .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        // 请将$r('app.media.ic_public_favor_filled_1')替换为实际资源文件
+        // $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.ic_public_favor_filled_1'))
           .width(160)
           .height(160)
@@ -43,7 +43,7 @@ struct ImageRepetitionStyle {
           .objectFit(ImageFit.ScaleDown)
           // overlay接口暂不支持深色模式
           .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        // 请将$r('app.media.ic_public_favor_filled_1')替换为实际资源文件
+        // $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.ic_public_favor_filled_1'))
           .width(160)
           .height(160)
