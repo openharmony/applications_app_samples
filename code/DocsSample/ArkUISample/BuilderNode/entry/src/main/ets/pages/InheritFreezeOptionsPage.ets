@@ -142,7 +142,6 @@ struct pageTwoStack {
   @State index: number = PAGE_TWO_INDEX;
   @Link message: number;
   @Link logNumber: number;
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     NavDestination() {
