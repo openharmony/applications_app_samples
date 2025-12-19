@@ -21,7 +21,7 @@ export struct NewsItem {
   build() {
     Row() {
       Column() {
-        // 请将$r('app.string.news_item_content')替换为实际资源文件，在本示例中该资源文件的value值为"%1$d The application development documentation provides reference for you to build applications using the APIs provided by the HarmonyOS SDK."
+        // $r('app.string.news_item_content')需要替换为开发者所需的资源文件
         Text($r('app.string.news_item_content', this.index))
           .lineHeight(23)
           .fontWeight(500)

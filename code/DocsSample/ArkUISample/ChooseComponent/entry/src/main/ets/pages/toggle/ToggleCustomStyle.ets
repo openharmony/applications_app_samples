@@ -26,7 +26,6 @@ export struct CustomStyle {
         ComponentCard({
           // 请将$r('app.string.ToggleCustomStyle_titleOne')替换为实际资源文件，在本示例中该资源文件的value值为"selectedColor设置选中后的背景颜色"
           title: $r('app.string.ToggleCustomStyle_titleOne'),
-          // 请将$r('app.string.ToggleCustomStyle_descriptionOne')替换为实际资源文件，在本示例中该资源文件的value值为"通过selectedColor属性设置Toggle打开选中后的背景颜色"
           description: $r('app.string.ToggleCustomStyle_descriptionOne')
         }) {
           // [Start custom_toggle]
@@ -56,7 +55,6 @@ export struct CustomStyle {
         ComponentCard({
           // 请将$r('app.string.ToggleCustomStyle_titleTwo')替换为实际资源文件，在本示例中该资源文件的value值为"设置Switch类型的圆形滑块颜色"
           title: $r('app.string.ToggleCustomStyle_titleTwo'),
-          // 请将$r('app.string.ToggleCustomStyle_descriptionTwo')替换为实际资源文件，在本示例中该资源文件的value值为"通过switchPointColor属性设置Switch类型的圆形滑块颜色，仅对type为ToggleType.Switch生效。"
           description: $r('app.string.ToggleCustomStyle_descriptionTwo')
         }) {
           // [Start custom_switch_point_color]

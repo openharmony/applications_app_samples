@@ -70,7 +70,6 @@ export struct ButtonCustomStyle {
         ComponentCard({
           // 请将$r('app.string.ButtonCustomStyle_titleThree')替换为实际资源文件，在本示例中该资源文件的value值为"设置背景颜色"
           title: $r('app.string.ButtonCustomStyle_titleThree'),
-          // 请将$r('app.string.ButtonCustomStyle_descriptionThree')替换为实际资源文件，在本示例中该资源文件的value值为"通过backgroundColor属性设置按钮里的背景颜色为红色。"
           description: $r('app.string.ButtonCustomStyle_descriptionThree')
         }) {
           // [Start custom_background_color]
