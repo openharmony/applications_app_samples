@@ -185,6 +185,74 @@ export default function abilityTest() {
       console.info('uitest: RegisterJavaScriptProxy end');
       done();
     });
+
+    /*
+     * 点击 RegisterJavaScriptProxyOne 按钮
+     * 使用 registerJavaScriptProxy 接口注册应用侧代码
+     */
+    it('RegisterJavaScriptProxyOne', 0, async (done: Function) => {
+      console.info('uitest: RegisterJavaScriptProxy begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+
+      const button1 = await driver.findComponent(ON.text('RegisterJavaScriptProxyOne'));
+      await button1.click();
+      await driver.delayMs(1000);
+
+      const button2 = await driver.findComponent(ON.type('button'));
+      await button2.click();
+      await driver.delayMs(1000);
+
+      const button3 = await driver.findComponent(ON.text('deleteJavaScriptRegister'));
+      await button3.click();
+      await driver.delayMs(1000);
+
+      const button4 = await driver.findComponent(ON.type('button'));
+      await button4.click();
+      await driver.delayMs(1000);
+
+      const web1 = await driver.findComponent(ON.type('Web'));
+      let src: string = await web1.getText();
+      expect(src).assertContain('index4.html');
+
+      await driver.pressBack();
+      console.info('uitest: RegisterJavaScriptProxy end');
+      done();
+    });
+
+    /*
+     * 点击 RegisterJavaScriptProxyTwo 按钮
+     * 使用 registerJavaScriptProxy 接口注册应用侧代码
+     */
+    it('RegisterJavaScriptProxyTwo', 0, async (done: Function) => {
+      console.info('uitest: RegisterJavaScriptProxy begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+
+      const button1 = await driver.findComponent(ON.text('RegisterJavaScriptProxyTwo'));
+      await button1.click();
+      await driver.delayMs(1000);
+
+      const button2 = await driver.findComponent(ON.type('button'));
+      await button2.click();
+      await driver.delayMs(1000);
+
+      const button3 = await driver.findComponent(ON.text('deleteJavaScriptRegister'));
+      await button3.click();
+      await driver.delayMs(1000);
+
+      const button4 = await driver.findComponent(ON.type('button'));
+      await button4.click();
+      await driver.delayMs(1000);
+
+      const web1 = await driver.findComponent(ON.type('Web'));
+      let src: string = await web1.getText();
+      expect(src).assertContain('index4.html');
+
+      await driver.pressBack();
+      console.info('uitest: RegisterJavaScriptProxy end');
+      done();
+    });
     
     /*
      * 点击 UsageOfComplexTypes_one 按钮

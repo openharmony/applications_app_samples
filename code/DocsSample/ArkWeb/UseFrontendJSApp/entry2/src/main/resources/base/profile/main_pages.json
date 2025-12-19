@@ -3,6 +3,8 @@
     "pages/Index",
     "pages/JavaScriptProxy",
     "pages/RegisterJavaScriptProxy",
+    "pages/RegisterJavaScriptProxyOne",
+    "pages/RegisterJavaScriptProxyTwo",
     "pages/Promise_one",
     "pages/Promise_two",
     "pages/UsageOfComplexTypes_one",

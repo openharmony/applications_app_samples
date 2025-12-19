@@ -24,6 +24,22 @@
 | 删除testObjName        | 注册testObjName对象 | 点击deleteJavaScriptRegister按钮      | 删除Web端注册的testObjName对象 | Yes      | Pass     |
 | callArkTS              | testObj 注册到前端  | 点击Click Me!按钮                     | 触发callArkTS函数              | Yes      | Pass     |
 
+#### RegisterJavaScriptProxyOne
+
+| 测试功能               | 预置条件            | 输入                                  | 预期输出                       | 是否自动 | 测试结果 |
+| ---------------------- | ------------------- | --------------------------------- | ------------------------------ | -------- | -------- |
+| 触发callArkTS函数      | 设备运转正常          | 点击Click Me!按钮                    | 触发callArkTS函数             | Yes       | Pass     |
+| 删除testObjName        | 注册testObjName对象  | 点击deleteJavaScriptRegister按钮     | 删除Web端注册的testObjName对象 | Yes      | Pass     |
+| callArkTS              | testObj 注册到前端  | 点击Click Me!按钮                     | 不触发callArkTS函数           | Yes      | Pass     |
+
+#### RegisterJavaScriptProxyTwo
+
+| 测试功能               | 预置条件            | 输入                                  | 预期输出                       | 是否自动 | 测试结果 |
+| ---------------------- | ------------------- | ---------------------------------- | ------------------------------ | -------- | -------- |
+| 触发callArkTS函数       | testObj 注册到前端  | 点击Click Me!按钮                     | 触发callArkTS函数               | Yes      | Pass     |
+| 删除testObjName        | 注册testObjName对象 | 点击deleteJavaScriptRegister按钮      | 删除Web端注册的testObjName对象   | Yes      | Pass     |
+| 触发callArkTS函数       | testObj 注册到前端  | 点击Click Me!按钮                     | 不触发callArkTS函数             | Yes      | Pass     |
+
 #### UsageOfComplexTypes_one
 
 | 测试功能               | 预置条件            | 输入                                  | 预期输出                       | 是否自动 | 测试结果 |
