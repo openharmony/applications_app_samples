@@ -162,18 +162,22 @@ void SampleBitMap::Create()
 }
 
 void SampleBitMap::DrawSimpleText() {
-    // [Start ndk_drawing_simple_text]
+    // [Start drawing_simple_text_c_create_typographyStyle]
     // 创建一个 TypographyStyle 创建 Typography 时需要使用
     OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
     // 设置文本对齐方式为居中
     OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+    // [End drawing_simple_text_c_create_typographyStyle]
 
+    // [Start drawing_simple_text_c_create_textStyle]
     // 设置文字颜色、大小、字重，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
     OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     OH_Drawing_SetTextStyleFontSize(txtStyle, 60);
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
+    // [End drawing_simple_text_c_create_textStyle]
 
+    // [Start drawing_simple_text_c_create_typography]
     // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
     OH_Drawing_FontCollection *fc = OH_Drawing_CreateFontCollection();
     // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
@@ -186,19 +190,24 @@ void SampleBitMap::DrawSimpleText() {
     OH_Drawing_TypographyHandlerAddText(handler, text);
 
     OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // [End drawing_simple_text_c_create_typography]
+
+    // [Start drawing_simple_text_c_layout_and_paint]
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+    // [End drawing_simple_text_c_layout_and_paint]
 
+    // [Start drawing_simple_text_c_destroy]
     // 释放内存
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyFontCollection(fc);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
-    // [End ndk_drawing_simple_text]
+    // [End drawing_simple_text_c_destroy]
 }
 
 napi_value SampleBitMap::NapiDrawSimpleText(napi_env env, napi_callback_info info)
