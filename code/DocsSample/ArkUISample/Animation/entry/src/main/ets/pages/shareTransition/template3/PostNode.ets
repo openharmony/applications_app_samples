@@ -35,7 +35,7 @@ function postBuilder(data: Data) {
         .width(80)
         .height(80)
       Column() {
-        // 'shareTransition_text5'资源文件中的value值为'点击展开 Item '
+        // 请在resources\base\element\string.json文件中配置name为'shareTransition_text5'，value为非空字符串的资源
         Text((context as common.UIAbilityContext)?.resourceManager.getStringByNameSync('shareTransition_text5') + data.item)
           .fontSize(20)
         // 请将$r('app.string.shareTransition_text6')替换为实际资源文件，在本示例中该资源文件的value值为"共享元素转场"
