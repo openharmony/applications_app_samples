@@ -34,6 +34,7 @@ import { GetDialogStatus } from './GetDialogStatus';
 import { Index as DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
 import { DialogController } from './dialogcontroller/DialogController';
 import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox';
+import { PageLevelDialogInNavigation, PageLevelDialogInNavigationTestTwo } from './pageleveldialogbox/PageLevelDialogInNavigation';
 import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
@@ -130,6 +131,11 @@ const routes: Route[] = [
     description: $r('app.string.CustomDialog_controller_des'),
   },
   {
+    name: `${Custom_ROUTE_PREFIX}/PageLevelDialogInNavigation`,
+    title: resource.resourceToString($r('app.string.CustomDialog_page_level_navigation')),
+    description: $r('app.string.CustomDialog_page_level_des'),
+  },
+  {
     name: `${Custom_ROUTE_PREFIX}/DialogBoxLayer`,
     title: resource.resourceToString($r('app.string.CustomDialog_box_layer')),
     description: $r('app.string.CustomDialog_layer_des'),
@@ -178,6 +184,10 @@ export function CustomDestination(name: string) {
     PageLevelDialogBox();
   } else if (name === routes[18].name) {
     DialogBoxLayer();
+  }else if (name === routes[19].name) {
+    DialogBoxLayer();
+  } else if (name === `${Custom_ROUTE_PREFIX}/PageLevelDialogInNavigationPageTwo`) {
+    PageLevelDialogInNavigationTestTwo()
   }
 }
 

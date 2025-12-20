@@ -141,6 +141,26 @@ export default function DialogFocusStrategyTest() {
       done();
     })
 
+    it('testPageLevelDialogInNavigation', 0, async (done: Function) => {
+      hilog.info(0xff00, 'index', 'uitest: testPageLevelDialogInNavigation begin');
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.fling(UiDirection.DOWN, TEN_SECONDS_TIME);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_page_level_navigation')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
     it('testGlobalOpenMenu', 0, async (done: Function) => {
       hilog.info(0xff00, 'index', 'uitest: testGlobalOpenMenu begin');
       let driver = Driver.create();
