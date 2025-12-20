@@ -7,7 +7,7 @@
 - [IFAA](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/onlineauthentication-ifaa-api-V5)免密认证获取匿名化ID
 - [Localization Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-intl-V5)接口替换ArkTS运行时接口
 
-<img src="screenshots/DemoShot.png" width="300">
+<img src="screenshots/demoShot.png" width="300">
 
 ## 使用说明
 ### ResourceManager的getXXXSync接口

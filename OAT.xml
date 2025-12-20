@@ -1606,6 +1606,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/AddressDisEvent/AddressDisEvent_CPP/Screenshot_20241217152733739.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_ArkTS/Screenshot_20241217153926668.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_CPP/Screenshot_20241217155302579.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/AppScope/resources/base/media/app_icon.png" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/entry/src/main/resources/base/media/background.png" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/screenshots/Main.png" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/server/1.mp4" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/server/2.mp4" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/server/3.mp4" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/server/4.mp4" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
+				<filteritem type="filepath" name="code/Performance/SmoothSwitchShortVideos/server/5.mp4" desc="Provided by code/Performance/SmoothSwitchShortVideos"/>
 				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_ArkTS/screenshots/Screenshot_20241217111119407.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_CPP/screenshots/Screenshot_20241216103815304.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.png" desc="Provided by code/UI/CitySearch"/>

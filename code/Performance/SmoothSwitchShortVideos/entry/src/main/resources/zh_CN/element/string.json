@@ -1,0 +1,19 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    }
+  ,{
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },{
+      "name": "EntryAbility_label",
+      "value": "流畅切换短视频"
+    },
+    {
+      "name": "permission_internet",
+      "value": "允许应用访问网络。"
+    }
+  ]
+}
