@@ -54,7 +54,6 @@ import {
   NestedScrollOptions,
   OnTabsAnimationStartCallback,
   Padding,
-  px2vp,
   Rating,
   RatingOptions,
   Reusable,
@@ -82,13 +81,10 @@ import {
   AppStorage,
   Consume,
   Link,
-  MutableState,
   ObjectLink,
-  observableProxy,
   Observed,
   Provide,
   State,
-  stateOf,
   Watch
 } from '@ohos.arkui.stateManagement'
 import display from '@ohos.display';
@@ -137,7 +133,7 @@ export struct FunctionalScenes {
     .align(Alignment.Center)
     .onClick((e: ClickEvent) => {
       this.tabsIndex = index;
-      this.tabsController.changeIndex(index);
+      this.tabsController.changeIndex(index.toInt());
     })
   }
 
@@ -257,7 +253,7 @@ export struct FunctionalScenes {
       } as Padding)
       .barWidth(0)
       .barHeight(0)
-      .onAnimationStart((index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => {
+      .onAnimationStart((index: int, targetIndex: int, extraInfo: TabsAnimationEvent) => {
         this.tabsIndex = targetIndex;
         this.scrollController.scrollToIndex(targetIndex, true, ScrollAlign.START);
       } as OnTabsAnimationStartCallback)

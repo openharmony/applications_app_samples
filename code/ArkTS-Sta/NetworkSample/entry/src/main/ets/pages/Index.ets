@@ -26,11 +26,6 @@
  */
 
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Text,
   TextAttribute,
   Column,
@@ -49,12 +44,7 @@ import {
   Progress,
   ProgressType
 } from '@ohos.arkui.component';
-import {
-  State,
-  MutableState,
-  stateOf,
-  observableProxy
-} from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import request from '@ohos.request';
 import { BusinessError } from '@ohos.base';

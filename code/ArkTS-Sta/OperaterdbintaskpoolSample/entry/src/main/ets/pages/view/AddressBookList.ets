@@ -25,14 +25,13 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Entry, Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Row, TextAlign,
   SafeAreaEdge,Visibility, List, ListItem, ForEach, TextOverflow, Image, HorizontalAlign, Progress, ProgressType, Flex,
   FlexAlign, FlexDirection, SafeAreaType,Stack, Radio, Slider, SliderStyle, SaveButton ,SaveDescription, ButtonType,
   Scroll ,Scroller, BarState, $r, Builder, Blank, Color, ImageFit, TextInput, InputType, Placement, ItemAlign, Divider,
   JSON, DialogAlignment, SearchController, Margin, NavPathStack, Navigation, Alignment
 } from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
+import { State, Link, Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';

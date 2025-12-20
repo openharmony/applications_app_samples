@@ -24,11 +24,7 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
+
 import {
   Text,
   TextAttribute,
@@ -41,11 +37,7 @@ import {
 } from '@ohos.arkui.component';
 
 import {
-  State,
-  Link,
-  MutableState,
-  stateOf,
-  observableProxy
+  State, Link
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 

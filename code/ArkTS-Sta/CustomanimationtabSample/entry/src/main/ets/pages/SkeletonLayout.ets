@@ -29,7 +29,7 @@ import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateMana
 import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent,
   VerticalAlign, HorizontalAlign,FlexAlign, Color, Padding, Margin, Builder, Row, $r, Length
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 
 @Component
 export struct SkeletonLayout {

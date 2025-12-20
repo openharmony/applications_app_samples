@@ -25,7 +25,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import {
   Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Builder,
   SwiperController, Swiper, TextAlign, ForEach, Color, Margin, Scroll, Scroller, ScrollDirection, EdgeEffect, List,
@@ -33,7 +32,7 @@ import {
   ResourceColor, FlexAlign, SizeOptions, Area, Curve, PlayMode, SwiperAnimationEvent, ScrollState, ScrollOptions, ScrollSource,
   ScrollOnWillScrollCallback, OffsetResult, ScrollOnScrollCallback, Entry
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import { UIContext } from '@ohos.arkui.UIContext';
 import { SkeletonLayout } from './SkeletonLayout';
 import common from '@ohos.app.ability.common';
@@ -43,7 +42,7 @@ import hilog from '@ohos.hilog';
 @Component
 struct MyStateSample {
   @State indicatorBarColor: ResourceColor = '#C0C0C0';
-  @State tabIndex: number = 0;
+  @State swiperIndex: int = 0;
   @State backgroundBarDisplacement: number = 0;
   @State barMargin: number = 0;
   @State tabs: Array<string> = new Array<string>();
@@ -82,27 +81,27 @@ struct MyStateSample {
           // 页签条
           Scroll(this.scroller) {
             Row(){
-              ForEach(this.tabs, (item: string, index: number) => {
+              ForEach(this.tabs, (item: string, index: int) => {
                 Column() {
                   Image($r('app.media.return_home_fill'))
                     .height(20)
                     .width(20)
                     .objectFit(ImageFit.Contain)
                   Text(item)
-                    .fontSize(index === this.tabIndex ? $r('app.float.custom_animation_tab_list_select_font_size') : $r('app.float.custom_animation_tab_list_unselect_font_size'))
+                    .fontSize(index === this.swiperIndex ? $r('app.float.custom_animation_tab_list_select_font_size') : $r('app.float.custom_animation_tab_list_unselect_font_size'))
                     .fontColor('#000000')
-                    .fontWeight(index === this.tabIndex ? FontWeight.Bold : FontWeight.Medium)
+                    .fontWeight(index === this.swiperIndex ? FontWeight.Bold : FontWeight.Medium)
                     .textAlign(TextAlign.Center)
                 }
                 .id(String(index))
                 .height('100%')
                 .width(95)
                 .onClick(():void=>{
-                  this.backgroundBarDisplacement = this.backgroundBarDisplacement + (index - this.tabIndex) * 95;
-                  this.tabIndex = index;
-                  if(this.tabIndex === 3){
+                  this.backgroundBarDisplacement = this.backgroundBarDisplacement + (index - this.swiperIndex) * 95;
+                  this.swiperIndex = index;
+                  if(this.swiperIndex === 3){
                     this.scroller.scrollTo({xOffset: 90, yOffset: 0});
-                  } else if(this.tabIndex === 1) {
+                  } else if(this.swiperIndex === 1) {
                     this.scroller.scrollTo({xOffset: -90, yOffset: 0});
                   }
                 })
@@ -118,11 +117,11 @@ struct MyStateSample {
           } as ScrollOnScrollCallback)
         }.height(60)
         Swiper() {
-          ForEach(this.tabs, (item: string, index: number) => {
+          ForEach(this.tabs, (item: string, index: int) => {
             Column(){
               Text(item).fontSize(20)
               List() {
-                ForEach(this.data, (data: string, index: number) => {
+                ForEach(this.data, (data: string, index: int) => {
                   ListItem() {
                     SkeletonLayout({ isMine: false })
                   }
@@ -137,15 +136,15 @@ struct MyStateSample {
         .id('tabContent')
         .loop(false)
         .indicator(false)
-        .index(this.tabIndex)
+        .index(this.swiperIndex)
         .width('100%')
         .height('100%')
-        .onChange((index: number):void => {
-          this.backgroundBarDisplacement = this.backgroundBarDisplacement + (index - this.tabIndex) * 95;
-          this.tabIndex = index;
-          if(this.tabIndex === 3){
+        .onChange((index: int):void => {
+          this.backgroundBarDisplacement = this.backgroundBarDisplacement + (index - this.swiperIndex) * 95;
+          this.swiperIndex = index;
+          if(this.swiperIndex === 3){
             this.scroller.scrollTo({xOffset: 90, yOffset: 0});
-          } else if(this.tabIndex === 1) {
+          } else if(this.swiperIndex === 1) {
             this.scroller.scrollTo({xOffset: -90, yOffset: 0});
           }
         })

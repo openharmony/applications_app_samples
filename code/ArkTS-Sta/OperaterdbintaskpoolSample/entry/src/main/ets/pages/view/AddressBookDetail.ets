@@ -25,13 +25,12 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Entry, Text, TextAttribute, Column, Component, Button, ClickEvent, Row, TextAlign, SafeAreaEdge,
   List, ListItem, ForEach, TextOverflow, Image, HorizontalAlign, Progress, Flex ,FlexAlign, SafeAreaType,
   Stack, Radio, Slider, $r, Builder, Blank, Color, ImageFit,
   TextInput, InputType, Placement, ItemAlign, Divider, Margin, Padding, FontWeight
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
+import { State, Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';

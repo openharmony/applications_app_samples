@@ -24,7 +24,6 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import {
   Text,
   TextAttribute,
@@ -44,7 +43,7 @@ import {
   SafeAreaEdge,
   SafeAreaType
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { BarType, BottomBar, CommonText } from '../common/CommonText';
 

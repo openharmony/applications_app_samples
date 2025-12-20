@@ -28,10 +28,10 @@
 import { NewsCommentModel } from '../model/NewsCommentModel';
 import { Date, Column, Row, VerticalAlign, HorizontalAlign, Image, $r, Text, Span, ImageFit, Blank, Margin,
   Padding, Component } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement'
+import { State } from '@ohos.arkui.stateManagement'
 
-const FONT_WEIGHT_FIVE_HUNDRED: double = 500;
-const FONT_WEIGHT_FOUR_HUNDRED: double = 400;
+const FONT_WEIGHT_FIVE_HUNDRED: int = 500;
+const FONT_WEIGHT_FOUR_HUNDRED: int = 400;
 
 @Component
 export struct CommentPage {

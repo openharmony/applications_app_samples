@@ -28,14 +28,7 @@ import hilog from '@ohos.hilog'
 import { getMonthDate } from './GetDate';
 import { Month, MonthDataSource } from './MonthDataSource';
 import {
-  __memo_context_type,
-  __memo_id_type,
-  Link,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf
+  Link, State
 } from '@ohos.arkui.stateManagement';
 import {
   $r,
@@ -126,7 +119,7 @@ export struct ReusePage {
         .textAlign(TextAlign.Center)
         .id('id_highly_loaded_component_render_title')
       List() {
-        LazyForEach(this.contentData, (monthItem: Month, index: number) => {
+        LazyForEach(this.contentData, (monthItem: Month, index: int) => {
           ListItem() {
             ItemView({
               monthItem: monthItem,
@@ -135,7 +128,7 @@ export struct ReusePage {
               currentYear: this.currentYear
             })
           }.width('100%')
-        }, (monthItem: Month, index: number) => JSON.stringify(monthItem))
+        }, (monthItem: Month, index: int) => JSON.stringify(monthItem))
       }
       .width('100%')
     }
@@ -191,7 +184,7 @@ struct ItemView {
           .layoutWeight(1)
       }, (weekday: string) => weekday)
       // 日期信息
-      ForEach(this.monthItem.days, (day: int, index: number) => {
+      ForEach(this.monthItem.days, (day: int, index: int) => {
         Text() {
           Span(JSON.stringify(day))
             .fontSize(20)
@@ -206,7 +199,7 @@ struct ItemView {
           this.monthItem.year === this.currentYear ?
         $r('app.color.ohos_id_color_palette9') : Color.Transparent)
         .layoutWeight(1)
-      }, (day: int, index: number) => index.toString())
+      }, (day: int, index: int) => index.toString())
     }
     .alignSelf(ItemAlign.Start)
     .backgroundColor(Color.Transparent)

@@ -17,17 +17,6 @@
 import { Comment } from '../model/CommentModel';
 import { ImageListView } from './ImageListView';
 import {
-  __memo_context_type,
-  __memo_id_type,
-  Link,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf,
-  StorageLink
-} from '@ohos.arkui.stateManagement';
-import {
   $r,
   Button,
   ButtonAttribute,

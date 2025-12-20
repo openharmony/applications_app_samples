@@ -83,7 +83,7 @@ export struct CollapseMenuSection {
       })
 
       List({ space: 10 }) {
-        LazyForEach(this.articleSource, (item: TreeNode, index: number) => {
+        LazyForEach(this.articleSource, (item: TreeNode, index: int) => {
           ListItemGroup() {
             ListItem() {
               this.articleHeaderBuilder(item)
@@ -109,7 +109,7 @@ export struct CollapseMenuSection {
             top: 4
           } as Padding)
           .align(Alignment.TopStart)
-        }, (item: TreeNode, index: number) => {
+        }, (item: TreeNode, index: int) => {
           return item.title + item.expand + index.toString()
         })
       }
@@ -177,7 +177,7 @@ export struct CollapseMenuSection {
 
   @Builder
   treeBuilder(articleNodes: TreeNode[], count: number, parentIndex: number) {
-    ForEach(articleNodes, (articleNode: TreeNode, index: number) => {
+    ForEach(articleNodes, (articleNode: TreeNode, index: int) => {
       this.createBuilder(articleNode, count, parentIndex)
       if (articleNode.expand === true && articleNode?.children?.length) {
         this.treeBuilder(articleNode.children as TreeNode[], count + 1, index)

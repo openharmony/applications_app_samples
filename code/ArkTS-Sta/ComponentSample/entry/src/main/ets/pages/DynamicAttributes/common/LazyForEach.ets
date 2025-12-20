@@ -24,12 +24,11 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import {
   IDataSource,
   DataChangeListener
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 
 class BasicDataSource implements IDataSource<string> {
   private listeners: DataChangeListener[] = [];
@@ -39,7 +38,7 @@ class BasicDataSource implements IDataSource<string> {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return 0;
   }
 
@@ -48,8 +47,8 @@ class BasicDataSource implements IDataSource<string> {
    * @param {number} index - 索引值。
    * @returns {string} 返回指定索引数据。
    */
-  public getData(index: number): string {
-    return this.originDataArray[index.toInt()];
+  public getData(index: int): string {
+    return this.originDataArray[index];
   }
 
   /**
@@ -130,7 +129,7 @@ export class MyDataSource extends BasicDataSource {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return this.dataArray.length;
   }
 
@@ -139,8 +138,8 @@ export class MyDataSource extends BasicDataSource {
    * @param {number} index - 索引值。
    * @returns {string} 返回指定索引数据。
    */
-  public getData(index: number): string {
-    return this.dataArray[index.toInt()];
+  public getData(index: int): string {
+    return this.dataArray[index];
   }
 
   /**

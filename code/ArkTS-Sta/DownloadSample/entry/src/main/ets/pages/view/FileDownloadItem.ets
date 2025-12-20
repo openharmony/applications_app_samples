@@ -24,21 +24,41 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {Entry,Text,TextAttribute,Column,Component,
-  Button,ButtonAttribute,ClickEvent,Row,TextAlign,Visibility,List,ListItem,ForEach,TextOverflow,
-  Image,HorizontalAlign,Progress,ProgressType,FlexAlign,SafeAreaType,JSON,$r,Margin,TextDecorationType
+  Entry,
+  Text,
+  TextAttribute,
+  Column,
+  Component,
+  Button,
+  ButtonAttribute,
+  ClickEvent,
+  Row,
+  TextAlign,
+  Visibility,
+  List,
+  ListItem,
+  ForEach,
+  TextOverflow,
+  Image,
+  HorizontalAlign,
+  Progress,
+  ProgressType,
+  FlexAlign,
+  SafeAreaType,
+  JSON,
+  $r,
+  Margin,
+  TextDecorationType
 } from '@ohos.arkui.component';
-import {State,Link,MutableState,stateOf,observableProxy,PropRef,Watch} from '@ohos.arkui.stateManagement';
+import { State, Link, PropRef, Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import request from '@ohos.request'; // 导入上传下载模块。需要配置ohos.permission.INTERNET权限
 import { downloadFilesData } from '../model/dataType';
+
 const BYTE_CONVERSION: number = 1024; // 字节转换
 
 @Component
@@ -74,7 +94,7 @@ export struct FileDownloadItem {
   @Link downloadFileArray: downloadFilesData[];
 
   // 监听是否开始下载/暂停下载
-  onDownLoadUpdated(param: string):void {
+  onDownLoadUpdated(param: string): void {
     if (this.isStartAllDownload) {
       // 如果下载失败，则重新下载。下载失败原因一般是网络原因导致。
       if (this.state === '下载失败') {
@@ -125,12 +145,12 @@ export struct FileDownloadItem {
   }
 
   // 下载任务完成回调
-  private completedCallback: (progress: request.agent.Progress) => void  = (progress: request.agent.Progress) => {
+  private completedCallback: (progress: request.agent.Progress) => void = (progress: request.agent.Progress) => {
     try {
       // 下载状态设置为下载完成
       this.state = '下载完成';
       // 文件下载完成，待下载任务数量减1
-      if(this.downloadCount > 0) {
+      if (this.downloadCount > 0) {
         this.downloadCount--;
       }
       if (this.sFileSize === '未知大小') {
@@ -140,7 +160,7 @@ export struct FileDownloadItem {
       // 隐藏下载状态图标
       this.isShow = false;
       this.getFileStatusAndTime(1);
-    } catch(err:Error) {
+    } catch (err: Error) {
       hilog.error(0x0000, 'TAGhttp,err: ', String(err.message));
     }
   }
@@ -150,7 +170,7 @@ export struct FileDownloadItem {
     this.fileDataInfo.fileStatus = status;
     this.historyArray = [...this.historyArray, this.fileDataInfo]
     // 下载列表删除下载成功的数据
-    this.downloadFileArray = this.downloadFileArray.filter((item:downloadFilesData) => {
+    this.downloadFileArray = this.downloadFileArray.filter((item: downloadFilesData) => {
       return item.id !== this.fileDataInfo.id;
     });
   }
@@ -185,12 +205,12 @@ export struct FileDownloadItem {
       }
       // 用于显示已下载文件数据大小
       this.sCurrentDownloadSize = String(progress.processed / BYTE_CONVERSION).split('.')[0] as string + 'kb';
-    } catch(err:Error) {
+    } catch (err: Error) {
       hilog.error(0x0000, 'TAGhttp,err: ', String(err.message))
     }
   }
 
-  build(){
+  build() {
     Row() {
       Row() {
         Image($r('app.media.multiple_files_download_file'))
@@ -221,7 +241,7 @@ export struct FileDownloadItem {
               Text(this.state)
                 .fontSize(12)
                 .fontColor('#66182431')
-                .margin({left: 10} as Margin)
+                .margin({ left: 10 } as Margin)
                 .id(this.fileName + 'state')
             }.width('100%')
             .height(23)
@@ -229,7 +249,7 @@ export struct FileDownloadItem {
           .width('90%')
 
           Image(this.downloading ?
-          $r('app.media.multiple_files_download_start') : $r('app.media.multiple_files_download_stop'))
+            $r('app.media.multiple_files_download_start') : $r('app.media.multiple_files_download_stop'))
             .height(25)
             .width('10%')
             .id('downloadImage')
