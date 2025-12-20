@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Non-Layered Rendering"
+    },
+    {
+      "name": "nativeembed_product_title000",
+      "value": "Mobile power pack"
+    },
+    {
+      "name": "nativeembed_product_title001",
+      "value": "Laptops"
+    },
+    {
+      "name": "nativeembed_product_title002",
+      "value": "Mobile phone"
+    },
+    {
+      "name": "nativeembed_product_title003",
+      "value": "Mobile phone charger"
+    },
+    {
+      "name": "nativeembed_product_title004",
+      "value": "Over-ear headphone"
+    },
+    {
+      "name": "nativeembed_product_title005",
+      "value": "Backpacks"
+    },
+    {
+      "name": "nativeembed_product_price000",
+      "value": "￥79.9"
+    },
+    {
+      "name": "nativeembed_product_price001",
+      "value": "￥6999"
+    },
+    {
+      "name": "nativeembed_product_price002",
+      "value": "￥5999"
+    },
+    {
+      "name": "nativeembed_product_price003",
+      "value": "￥72.5"
+    },
+    {
+      "name": "nativeembed_product_price004",
+      "value": "￥899"
+    },
+    {
+      "name": "nativeembed_product_price005",
+      "value": "￥328"
+    },
+    {
+      "name": "nativeembed_reason",
+      "value": "get internet permisssion"
+    },
+    {
+      "name": "nativeembed_full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "nativeembed_sixty_percent",
+      "value": "60%"
+    },
+    {
+      "name": "nativeembed_mall",
+      "value": "Mall"
+    },
+    {
+      "name": "nativeembed_search",
+      "value": "Search"
+    },
+    {
+      "name": "nativeembed_prompt_text",
+      "value": "For demonstration purposes only, business functionality can be implemented independently."
+    },
+    {
+      "name": "nativeembed_search_text_placeholder",
+      "value": "Search for related babies"
+    }
+  ]
+}

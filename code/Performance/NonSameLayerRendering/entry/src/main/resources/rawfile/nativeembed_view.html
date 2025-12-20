@@ -1,0 +1,30 @@
+<!Document>
+<html>
+<head>
+    <title>viewhtml</title>
+    <!--  设置H5页面根据设备宽度自适应  -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+<body>
+
+<div>
+    <div id="bodyId">
+        <!-- On the H5 interface, the same layer elements are identified by the embedded tag, and the native components are rendered to the location of the embedded tag on the H5 page on the application side.-->
+        <embed id="nativeSearch" type = "native/component" width="100%" height="100%" src="view"/>
+    </div>
+</div>
+
+<script>
+
+    function getEmbedSize() {
+        let doc = document.getElementById('nativeSearch');
+        return {
+          width: doc.offsetWidth,
+          height: doc.offsetHeight,
+        };
+    }
+
+</script>
+
+</body>
+</html>
