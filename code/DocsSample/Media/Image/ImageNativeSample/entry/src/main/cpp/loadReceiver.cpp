@@ -318,8 +318,9 @@ Camera_CaptureSession* CreateAndStartSession(Camera_Manager* cameraManager, Came
 // [End create_captureSession]
 
 // [Start start_captureSession]
-static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* input, Camera_PhotoOutput* photoOutput,
-    Camera_CaptureSession** sessionOut)
+static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* input,
+                                            Camera_PreviewOutput* previewOutput,
+                                            Camera_CaptureSession** sessionOut)
 {
     *sessionOut = CreateAndStartSession(mgr, input, NORMAL_PHOTO);
     if (*sessionOut == nullptr) {
@@ -327,9 +328,9 @@ static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* i
         return CAMERA_INVALID_ARGUMENT;
     }
 
-    Camera_ErrorCode ret = OH_CaptureSession_AddPhotoOutput(*sessionOut, photoOutput);
+    Camera_ErrorCode ret = OH_CaptureSession_AddPreviewOutput(*sessionOut, previewOutput);
     if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPhotoOutput failed.");
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
         return ret;
     }
 
@@ -343,6 +344,7 @@ static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* i
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
     }
+    
     return ret;
 }
 // [End start_captureSession]
@@ -350,6 +352,7 @@ static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* i
 // [Start start_cameraSession]
 Camera_ErrorCode StartTakePhoto(char* str)
 {
+    char* photoSurfaceId = str;
     Camera_Manager* cameraManager = nullptr;
     Camera_Device* cameras = nullptr;
     uint32_t size = 0;
@@ -360,11 +363,12 @@ Camera_ErrorCode StartTakePhoto(char* str)
     Camera_OutputCapability* cameraOutputCapability = nullptr;
     ret = GetCameraOutputCapability(cameraManager, cameras, 0, cameraOutputCapability);
     if (ret != CAMERA_OK) return ret;
-    const Camera_Profile* photoProfile = cameraOutputCapability->photoProfiles[0];
-    Camera_PhotoOutput* photoOutput = nullptr;
-    ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, str, &photoOutput);
-    if (photoProfile == nullptr || photoOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+    
+    const Camera_Profile* photoProfile = cameraOutputCapability->previewProfiles[0];
+    Camera_PreviewOutput* previewOutput = nullptr;
+    ret = OH_CameraManager_CreatePreviewOutput(cameraManager, photoProfile, photoSurfaceId, &previewOutput);
+    if (photoProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         return ret;
     }
 
@@ -375,17 +379,12 @@ Camera_ErrorCode StartTakePhoto(char* str)
     }
 
     Camera_CaptureSession* captureSession = nullptr;
-    ret = StartCaptureSession(cameraManager, cameraInput, photoOutput, &captureSession);
+    ret = StartCaptureSession(cameraManager, cameraInput, previewOutput, &captureSession);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "StartCaptureSession failed.");
         return ret;
     }
-
-    ret = OH_PhotoOutput_Capture(photoOutput);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed.");
-        return ret;
-    }
+    
     return CAMERA_OK;
 }
 // [End start_cameraSession]
