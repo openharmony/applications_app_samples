@@ -20,7 +20,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [Start Crash_Click_ArkTS_Header]
 // [Start AppEvent_Crash_Click_ArkTS_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
-// 该变量在/pages/Index.ets文件中进行定义，用于实现webId到网页url的映射
 // [End AppEvent_Crash_Click_ArkTS_Header]
 // [End PssLeakEvent_ArkTS_Header]
 import { deviceInfo } from '@kit.BasicServicesKit';
@@ -32,6 +31,7 @@ import { window } from '@kit.ArkUI';
 import testNapi from 'libentry.so';
 // [End EventSub_Capi_Header]
 // [Start ArkWeb_Fling_Jank_ArkTS_Add_Watcher_Header]
+// 该变量在/pages/Index.ets文件中进行定义，用于实现webId到网页url的映射
 import { webIdToUrlMap } from '../pages/ArkWebPage';
 // [End ArkWeb_Fling_Jank_ArkTS_Add_Watcher_Header]
 export default class EntryAbility extends UIAbility {
