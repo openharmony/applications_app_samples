@@ -82,10 +82,10 @@ struct AccessibilityExample {
         .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-      // 'app.string.pageIndex_UniversalAttributesAccessibility'需要替换为开发者所需的文本资源文件
-      .title(resource.resourceToString($r('app.string.pageIndex_UniversalAttributesAccessibility')), {
-        backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
-        barStyle: BarStyle.STACK
-      })
+    // 请将$r('app.string.pageIndex_UniversalAttributesAccessibility')替换为实际资源文件，在本示例中该资源文件的value值为"ArkUI 无障碍能力"
+    .title(resource.resourceToString($r('app.string.pageIndex_UniversalAttributesAccessibility')), {
+      backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+      barStyle: BarStyle.STACK
+    })
   }
 }

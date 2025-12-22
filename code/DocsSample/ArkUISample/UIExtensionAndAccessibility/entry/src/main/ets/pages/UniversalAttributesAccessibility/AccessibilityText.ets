@@ -52,7 +52,7 @@ export struct AccessibilityText {
         }
         .accessibilityGroup(true)
           .accessibilityLevel('yes')
-          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
           .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
 
         // [End accessibility_text_group_start]
@@ -62,9 +62,10 @@ export struct AccessibilityText {
         }
         .accessibilityGroup(true)
           .accessibilityLevel('yes')
-          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
           .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          /* 请将$r('app.string.UniversalAttributesAccessibility_text8')替换为实际资源文件，
+             在本示例中该资源文件的value值为"Column组件可以被选中，播报的内容是“分组”" */
           .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
 
         // [End accessibility_description_start]
@@ -74,9 +75,10 @@ export struct AccessibilityText {
         }
         .accessibilityGroup(true)
           .accessibilityLevel('yes')
-          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
           .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          /* 请将$r('app.string.UniversalAttributesAccessibility_text8')替换为实际资源文件，
+             在本示例中该资源文件的value值为"Column组件可以被选中，播报的内容是“分组”" */
           .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
           .accessibilityChecked(true)
 
@@ -87,20 +89,21 @@ export struct AccessibilityText {
         }
         .accessibilityGroup(true)
           .accessibilityLevel('yes')
-          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
           .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          /* 请将$r('app.string.UniversalAttributesAccessibility_text8')替换为实际资源文件，
+             在本示例中该资源文件的value值为"Column组件可以被选中，播报的内容是“分组”" */
           .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
           .accessibilitySelected(undefined)
 
         // [End accessibility_selected_start]
         // [EndExclude accessibility_text_start]
         Column() {
-          // 请将$r('app.media.UniversalAttributesAccessibility_text5')替换为实际资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text5')替换为实际资源文件，在本示例中该资源文件的value值为"文本1"
           Text($r('app.string.UniversalAttributesAccessibility_text5'))
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-          // 请将$r('app.media.UniversalAttributesAccessibility_text6')替换为实际资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text6')替换为实际资源文件，在本示例中该资源文件的value值为"文本2"
           Text($r('app.string.UniversalAttributesAccessibility_text6'))
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
@@ -108,9 +111,10 @@ export struct AccessibilityText {
         .width('100%')
           .accessibilityGroup(true)
           .accessibilityLevel('yes')
-          // 请将$r('app.media.UniversalAttributesAccessibility_text7')替换为实际资源文件
+          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
           .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-          // 请将$r('app.media.UniversalAttributesAccessibility_text8')替换为实际资源文件
+          /* 请将$r('app.string.UniversalAttributesAccessibility_text8')替换为实际资源文件，
+             在本示例中该资源文件的value值为"Column组件可以被选中，播报的内容是“分组”" */
           .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
           .accessibilityVirtualNode(this.customAccessibilityNode)
           .accessibilityChecked(true)
@@ -120,8 +124,8 @@ export struct AccessibilityText {
       //[StartExclude accessibility_text_start]
     }
     .backgroundColor('#f1f2f3')
-      // 请将$r('app.media.UniversalAttributesAccessibility_title1')替换为实际资源文件
-      .title($r('app.string.UniversalAttributesAccessibility_title1'))
+    // 请将$r('app.string.UniversalAttributesAccessibility_title1')替换为实际资源文件，在本示例中该资源文件的value值为"使用无障碍属性 1"
+    .title($r('app.string.UniversalAttributesAccessibility_title1'))
     //[EndExclude accessibility_text_start]
   }
 }

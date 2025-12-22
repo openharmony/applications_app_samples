@@ -39,7 +39,7 @@ export struct Click {
               this.flag = !this.flag;
             })
           if (this.flag) {
-            // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
+            // 请将$r('app.media.app_icon')替换为实际资源文件
             Image($r('app.media.app_icon')).width(200).height(200)
           }
         }.height('100%').width('100%')
