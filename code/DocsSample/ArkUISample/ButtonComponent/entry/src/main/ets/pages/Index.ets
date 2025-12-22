@@ -52,6 +52,7 @@ struct Index {
   
   build() {
     Column() {
+      // 请将$r('app.string.ListShow')替换为实际资源文件，在本示例中该资源文件的value值为"Show List"
       Text($r('app.string.ListShow'))
         .height('5.00%')
         .width('100%')

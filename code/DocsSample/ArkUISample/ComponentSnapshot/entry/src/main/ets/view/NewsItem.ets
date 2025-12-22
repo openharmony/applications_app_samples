@@ -30,7 +30,7 @@ export struct NewsItem {
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .maxLines(2)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        // $r('app.string.news_item_publish_date')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.news_item_publish_date')替换为实际资源文件，在本示例中该资源文件的value值为"January 1, 2025"
         Text($r('app.string.news_item_publish_date'))
           .fontSize(12)
           // $r('sys.color.ohos_id_color_text_tertiary')需要替换为开发者所需的资源文件
@@ -41,7 +41,7 @@ export struct NewsItem {
       .alignItems(HorizontalAlign.Start)
       .justifyContent(FlexAlign.SpaceBetween)
       .layoutWeight(1)
-      // $r('app.media.item_pic')需要替换为开发者所需的资源文件
+      // 请将$r('app.media.item_pic')替换为实际资源文件
       Image($r('app.media.item_pic'))
         .height(81)
         .width(108)

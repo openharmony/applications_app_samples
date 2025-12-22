@@ -43,6 +43,7 @@ struct BindSheetDemo9 {
 
   build() {
     Column() {
+      // 请将$r('app.string.temp9string_text8')替换为实际资源文件，在本示例中该资源文件的value值为"口味与餐具"
       Text($r('app.string.temp9string_text8'))
         .fontSize(28)
         .padding({ top: 30, bottom: 30 })
@@ -56,6 +57,7 @@ struct BindSheetDemo9 {
             .borderRadius(20)
 
           Column() {
+            // 请将$r('app.string.temp9string_text9')替换为实际资源文件，在本示例中该资源文件的value值为"选择点餐口味和餐具"
             Text($r('app.string.temp9string_text9'))
               .fontSize(16)
               .fontWeight(FontWeight.Medium)

@@ -38,6 +38,7 @@ struct BindContentCoverDemo {
   MyBuilder() {
     Column() {
       Row() {
+        // 请将$r('app.string.Text_choose_person')替换为实际资源文件，在本示例中该资源文件的value值为"选择乘车人"
         Text($r('app.string.Text_choose_person'))
           .fontSize(20)
           .fontColor(Color.White)
@@ -48,6 +49,7 @@ struct BindContentCoverDemo {
       .backgroundColor(0x007dfe)
 
       Row() {
+        // 请将$r('app.string.Text_add_person')替换为实际资源文件，在本示例中该资源文件的value值为"添加乘车人"
         Text($r('app.string.Text_add_person'))
           .fontSize(16)
           .fontColor(0x333333)
@@ -90,6 +92,7 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
+              // 请将$r('app.string.Text_edit')替换为实际资源文件，在本示例中该资源文件的value值为"编辑"
               Text($r('app.string.Text_edit'))
                 .fontColor(0x007dfe)
                 .fontSize(16)
@@ -104,6 +107,7 @@ struct BindContentCoverDemo {
       }
       .padding({ top: 20, bottom: 20 })
 
+      // 请将$r('app.string.Text_confirm')替换为实际资源文件，在本示例中该资源文件的value值为"确认"
       Text($r('app.string.Text_confirm'))
         .width('90%')
         .height(40)
@@ -124,6 +128,7 @@ struct BindContentCoverDemo {
   build() {
     Column() {
       Row() {
+        // 请将$r('app.string.Text_confirm')替换为实际资源文件，在本示例中该资源文件的value值为"确认"
         Text($r('app.string.Text_confirm'))
           .fontSize(20)
           .fontColor(Color.White)
@@ -137,18 +142,21 @@ struct BindContentCoverDemo {
         Row() {
           Column() {
             Text('00:25')
+            // 请将$r('app.string.Label_origin_station')替换为实际资源文件，在本示例中该资源文件的value值为"始发站"
             Text($r('app.string.Label_origin_station'))
           }
           .width('30%')
 
           Column() {
             Text('G1234')
+            // 请将$r('app.string.Label_start_time')替换为实际资源文件，在本示例中该资源文件的value值为"8时1分"
             Text($r('app.string.Label_start_time'))
           }
           .width('30%')
 
           Column() {
             Text('08:26')
+            // 请将$r('app.string.Label_destination_station')替换为实际资源文件，在本示例中该资源文件的value值为"终点站"
             Text($r('app.string.Label_destination_station'))
           }
           .width('30%')
@@ -162,6 +170,7 @@ struct BindContentCoverDemo {
       .borderRadius(10)
 
       Column() {
+        // 请将$r('app.string.Sheet_choose_person')替换为实际资源文件，在本示例中该资源文件的value值为"+ 选择乘车人"
         Text($r('app.string.Sheet_choose_person'))
           .fontSize(18)
           .fontColor(Color.Orange)

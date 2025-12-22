@@ -40,6 +40,7 @@ struct SheetSideExample8 {
       }, (item: number) => item.toString())
       TextInput()
         .margin({ top: 5 })
+      // 请将$r('app.string.sideBuilder_text1')替换为实际资源文件，在本示例中该资源文件的value值为"改变半模态交互模式"
       Text($r('app.string.sideBuilder_text1'))
         .fontSize(22).fontColor(0xFFFFFF).fontWeight(FontWeight.Bold).textAlign(TextAlign.Center)
         .width('100%').height(50).backgroundColor('#2ebd82')
@@ -63,6 +64,7 @@ struct SheetSideExample8 {
 
   build() {
     Column({space:3}) {
+      // 请将$r('app.string.sideBuilder_text2')替换为实际资源文件，在本示例中该资源文件的value值为"半模态弹窗-Side"
       Button($r('app.string.sideBuilder_text2'))
         .onClick(() => {
           this.isShowSide = true;
@@ -70,6 +72,7 @@ struct SheetSideExample8 {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShowSide, this.sideBuilder(), {
+          // 请将$r('app.string.sideBuilder_text3')替换为实际资源文件，在本示例中该资源文件的value值为"默认宽度"
           title: { title: 'SideSheet', subtitle: $r('app.string.sideBuilder_text3') },
           backgroundColor: Color.Grey,
           onWillAppear: () => {

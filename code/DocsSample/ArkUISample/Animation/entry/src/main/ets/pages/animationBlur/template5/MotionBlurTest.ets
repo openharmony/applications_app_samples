@@ -28,7 +28,7 @@ struct motionBlurTest {
   build() {
     Column() {
       Column() {
-        // $r('app.media.testImg')需要替换为开发者所需要的资源文件
+        // 请将$r('app.media.testImg')替换为实际资源文件
         Image($r('app.media.testImg'))
           .width(this.widthSize)
           .height(this.heightSize)

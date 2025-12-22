@@ -23,7 +23,7 @@ struct Index {
   build() {
     RelativeContainer() {
       Column(){
-        // $r('app.media.text1')需要替换为开发者所需的文本资源文件
+        // 请将$r('app.string.text1')替换为实际资源文件，在本示例中该资源文件的value值为"UIContext查询组件树和组件信息能力"
         Button($r('app.string.text1'))
           .onClick(()=>{
             const uiContext: UIContext = this.getUIContext();
@@ -32,7 +32,7 @@ struct Index {
               url:'pages/ComponentPage'
             })
           })
-        // $r('app.media.text2')需要替换为开发者所需的文本资源文件
+        // 请将$r('app.string.text2')替换为实际资源文件，在本示例中该资源文件的value值为"布局回调的基本用法"
         Button($r('app.string.text2'))
           .onClick(()=>{
             const uiContext: UIContext = this.getUIContext();
@@ -41,7 +41,7 @@ struct Index {
               url:'pages/ComponentPage1'
             })
           })
-        // $r('app.media.text3')需要替换为开发者所需的文本资源文件
+        // 请将$r('app.string.text3')替换为实际资源文件，在本示例中该资源文件的value值为"组件标识属性的扩展能力"
         Button($r('app.string.text3'))
           .onClick(()=>{
             const uiContext: UIContext = this.getUIContext();

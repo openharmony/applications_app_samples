@@ -19,7 +19,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function cardBuilder() {
-  // 图片使用Resource资源，需用户自定义
+  // 请将$r('app.media.card')替换为实际资源文件
   Image($r('app.media.card'))
     .width('100%')
     .id('card')

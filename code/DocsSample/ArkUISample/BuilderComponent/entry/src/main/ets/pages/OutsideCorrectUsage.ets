@@ -19,6 +19,7 @@ struct BackGround2 {
   @Builder
   myImages() {
     Column() {
+      // 请将$r('app.media.startIcon')替换为实际资源文件
       Image($r('app.media.startIcon')).width('100%').height('100%')
     }
   }
@@ -26,6 +27,7 @@ struct BackGround2 {
   @Builder
   myImages2() {
     Column() {
+      // 请将$r('app.media.startIcon')替换为实际资源文件
       Image($r('app.media.startIcon')).width('100%').height('100%')
     }
   }

@@ -140,7 +140,7 @@ struct Index {
   // 照片页
   build() {
     Column() {
-      // 'app.string.shareTransition_text9'资源文件中的value值为'照片'
+      // 请将$r('app.string.shareTransition_text9')替换为实际资源文件，在本示例中该资源文件的value值为"照片"
       Text($r('app.string.shareTransition_text9'))
         .textAlign(TextAlign.Start)
         .width('100%')
@@ -197,7 +197,7 @@ struct Index {
   @Builder
   mySheet() {
     Column({ space: 20 }) {
-      // 'app.string.shareTransition_text10'资源文件中的value值为'半模态页面'
+      // 请将$r('app.string.shareTransition_text10')替换为实际资源文件，在本示例中该资源文件的value值为"半模态页面"
       Text($r('app.string.shareTransition_text10'))
         .fontSize(30)
       Row({ space: 40 }) {
@@ -217,7 +217,7 @@ struct Index {
             ImageNode();
           } else {
             // 抓取布局和占位用，实际不显示
-            // 图片使用Resource资源，需用户自定义
+            // 请将$r('app.media.longevity_flower')替换为实际资源文件
             Image($r('app.media.longevity_flower'))
               .visibility(Visibility.Hidden);
           }

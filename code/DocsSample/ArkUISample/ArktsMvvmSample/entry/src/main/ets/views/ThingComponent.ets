@@ -37,10 +37,10 @@ export struct ThingComponent {
     // 待办事项
     Row({ space: 15 }) {
       if (this.thing.isFinish) {
-        // $r('app.media.finished')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.finished')替换为实际资源文件
         this.displayIcon($r('app.media.finished'));
       } else {
-        // $r('app.media.unfinished')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.unfinished')替换为实际资源文件
         this.displayIcon($r('app.media.unfinished'));
       }
 

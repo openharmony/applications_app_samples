@@ -42,6 +42,7 @@ struct SheetDemo {
         scrollBackward: NestedScrollMode.SELF_FIRST,
       })
 
+      // 请将$r('app.string.tSheetBuilder_text1')替换为实际资源文件，在本示例中该资源文件的value值为"非滚动区域"
       Text($r('app.string.tSheetBuilder_text1'))
         .width('100%')
         .backgroundColor(Color.Gray)
@@ -60,6 +61,7 @@ struct SheetDemo {
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
           preferType: SheetType.BOTTOM,
+          // 请将$r('app.string.tSheetBuilder_text2')替换为实际资源文件，在本示例中该资源文件的value值为"嵌套滚动场景"
           title: { title: $r('app.string.tSheetBuilder_text2') },
         })
     }.width('100%').height('100%')
