@@ -18,7 +18,7 @@ import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickE
   CustomBuilder, ComponentContent, SubTabBarStyle, BottomTabBarStyle, Resource, TabBarOptions, JSON, Flex, FlexDirection,
   FlexAlign, ItemAlign, Divider, TabsOptions, Row, ForEach, Position, Builder, Margin, BarMode,
   OnTabsAnimationStartCallback,TabsAnimationEvent} from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State, Link } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { UIContext, Router } from '@ohos.arkui.UIContext';
 import router from '@ohos.router';
@@ -29,11 +29,11 @@ export struct CustomView {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
-  @State selectedIndex: number = 0
+  @State selectedIndex: int = 0
   @State newPage: number = 2
   @State arr: string[] = ['页面1','页面2']
 
-  @Builder tabBuilder(index: number, name: string) {
+  @Builder tabBuilder(index: int, name: string) {
     Column() {
       Row(){
         Text(name)
@@ -88,7 +88,7 @@ export struct CustomView {
   build() {
     Column() {
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-        ForEach(this.arr, (item: string, tabBarIndex: number) => {
+        ForEach(this.arr, (item: string, tabBarIndex: int) => {
           // 单独一个TabBar组件
           this.tabBuilder(tabBarIndex, item)
         })
@@ -98,7 +98,7 @@ export struct CustomView {
       }
       .margin({ left: 13, right: 13 } as Margin)
       Tabs({ index: this.selectedIndex } as TabsOptions) {
-        ForEach(this.arr, (item: string, idx: number) => {
+        ForEach(this.arr, (item: string, idx: int) => {
           TabContent() {
             Column(){
               Text(item)
@@ -111,12 +111,12 @@ export struct CustomView {
       .barWidth(360)
       .barHeight(56)
       .animationDuration(400)
-      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+      .onAnimationStart((index: int, targetIndex: int, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
-          return
+          return;
         }
         // selectedIndex控制自定义TabBar内Image和Text颜色切换
-        this.selectedIndex = targetIndex
+        this.selectedIndex = targetIndex;
       } as OnTabsAnimationStartCallback)
       .width(360)
       .height(296)

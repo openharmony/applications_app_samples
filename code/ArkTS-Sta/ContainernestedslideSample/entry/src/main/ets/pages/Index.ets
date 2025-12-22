@@ -25,7 +25,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { curUser, mockData } from '../mock/NewsDetailData';
 import { NewsCommentModel } from '../model/NewsCommentModel';
 import { CommentPage } from '../components/CommentPage';
@@ -72,7 +71,7 @@ import {
   EditableTextOnChangeCallback,
   Button
 } from '@ohos.arkui.component';
-import { AppStorage, StorageProp, State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { AppStorage, StorageProp, State } from '@ohos.arkui.stateManagement';
 
 const SEARCH_BUTTON: string = '搜索';
 

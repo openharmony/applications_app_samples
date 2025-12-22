@@ -26,11 +26,6 @@
  */
 
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Entry,
   Text,
   TextAttribute,
@@ -53,9 +48,6 @@ import {
 import {
   State,
   Link,
-  MutableState,
-  stateOf,
-  observableProxy,
   PropRef
 } from '@ohos.arkui.stateManagement';
 import zlib from '@ohos.zlib';
@@ -193,7 +185,7 @@ struct CompressFileList {
   build() {
     Column() {
       List() {
-        ForEach(this.fileNames, (item: string, index: number) => {
+        ForEach(this.fileNames, (item: string, index: int) => {
           ListItem() {
             Row() {
               Image($r(this.iconName))
@@ -205,7 +197,7 @@ struct CompressFileList {
             }
             .height(50)
           }
-        }, (item: string, index: number) => item)
+        }, (item: string, index: int) => item)
       }
       .width('90%')
       .height(150)

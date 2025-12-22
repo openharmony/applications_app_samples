@@ -26,11 +26,6 @@
  */
 import { CustomDataType, MyDataSource, ListIndexPosition, ComponentStyle } from './DataType';
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   WordBreak,
   TextOverflow,
   TouchType,
@@ -62,14 +57,11 @@ import {
   ClickEvent,
   Image,
   Row,
-  CalendarPickerDialog,$r
+  CalendarPickerDialog,
+  $r
 } from '@ohos.arkui.component';
 import {
-  State,
-  MutableState,
-  stateOf,
-  observableProxy,
-  Watch
+  State, Watch
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 
@@ -136,24 +128,25 @@ export struct SecondaryLinkExample {
       Row() {
         // 知识点: 2.一级列表绑定Scroller对象
         List({ scroller: this.classifyScroller, initialIndex: 0 }) {
-          ForEach(this.tagLists, (item: string, index: number) => {
+          ForEach(this.tagLists, (item: string, index: int) => {
             this.tagListItemBuilder(item, index);
-          }, (item: string, index: number) => item)
+          }, (item: string, index: int) => item)
         }
         .backgroundColor('#ffe3e3e3')
         .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
-        .onScrollIndex((start: number, end: number): void => {
+        .onScrollIndex((start: int, end: int): void => {
           this.tagIndexPosition = { start, end };
         })
         .listDirection(Axis.Vertical)
         .scrollBar(BarState.Off)
         .height('100%')
         .width('30%')
+
         // 二级列表
-        List({ scroller: this.scroller}) {
-          ForEach(this.contentData.dataArray, (item: CustomDataType, index: number) => {
+        List({ scroller: this.scroller }) {
+          ForEach(this.contentData.dataArray, (item: CustomDataType, index: int) => {
             this.contentListItemBuilder(item, index);
-          }, (item: CustomDataType, index: number) => index.toString())
+          }, (item: CustomDataType, index: int) => index.toString())
           this.contentListNoMoreBuilder();
         }
         .backgroundColor('#ffffffff')
@@ -168,9 +161,9 @@ export struct SecondaryLinkExample {
           }
         })
         // 性能知识点:onScrollIndex事件在列表滚动时频繁执行，在回调中需要尽量减少耗时和冗余操作，例如减少不必要的日志打印
-        .onScrollIndex((start: number): void => {
+        .onScrollIndex((start: int): void => {
           // 知识点: 4.滑动二级列表触发组件滚动事件后，返回列表可视区域的第一个item对应的索引值，当前通过二级列表索引获取一级列表索引，操作一级列表Scroller对象使列表滚动到指定位置
-          const currentClassIndex = this.findClassIndex(start.toInt());
+          const currentClassIndex = this.findClassIndex(start);
           if (currentClassIndex !== this.currentTagIndex && this.isClickTagList !== true) {
             this.currentTagIndex = currentClassIndex;
             this.classifyScroller.scrollToIndex(currentClassIndex, true);

@@ -47,12 +47,12 @@ class BasicDataSource implements IDataSource<TabDataModel> {
   private listeners: DataChangeListener[] = [];
   private originDataArray: TabDataModel[] = [];
 
-  public totalCount(): number {
+  public totalCount(): int {
     return 0;
   }
 
-  public getData(index: number): TabDataModel {
-    return this.originDataArray[index.toInt()];
+  public getData(index: int): TabDataModel {
+    return this.originDataArray[index];
   }
 
   /**
@@ -123,7 +123,7 @@ export class TabDataSource extends BasicDataSource {
    * 获取数据总数
    * @returns
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return this.dataArray.length;
   }
 
@@ -132,8 +132,8 @@ export class TabDataSource extends BasicDataSource {
    * @param index 数组索引
    * @returns
    */
-  public getData(index: number): TabDataModel {
-    return this.dataArray[index.toInt()];
+  public getData(index: int): TabDataModel {
+    return this.dataArray[index];
   }
 
   /**

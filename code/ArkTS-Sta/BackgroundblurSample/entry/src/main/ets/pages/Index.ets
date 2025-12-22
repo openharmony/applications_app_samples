@@ -13,14 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  __memo_context_type,
-  __memo_id_type,
-  memo,
-  MutableState,
-  State,
-  stateOf
-} from '@ohos.arkui.stateManagement';
 import { Component, Entry, Column } from '@ohos.arkui.component';
 import { TabsSample } from './TabsSample';
 

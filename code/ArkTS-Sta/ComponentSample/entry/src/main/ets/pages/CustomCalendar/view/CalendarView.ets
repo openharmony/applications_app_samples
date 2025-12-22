@@ -209,7 +209,7 @@ export struct CalendarView {
             .layoutWeight(1)
         }, (weekday: string) => weekday)
         List() {
-          ForEach(this.contentData.dataArray, (monthItem: Month, index: number) => {
+          ForEach(this.contentData.dataArray, (monthItem: Month, index: int) => {
             ListItem() {
               Flex({ wrap: FlexWrap.Wrap }) {
                 // 月份信息
@@ -222,7 +222,7 @@ export struct CalendarView {
                   .textAlign(TextAlign.Center)
                   .id('id_highly_loaded_component_render_title')
                 // 日期信息
-                ForEach(monthItem.days, (day: int, index: number) => {
+                ForEach(monthItem.days, (day: int, index: int) => {
                   Text() {
                     Span(JSON.stringify(day))
                       .fontSize(20)
@@ -251,10 +251,10 @@ export struct CalendarView {
                       }
                     }
                   })
-                }, (day: int, index: number) => index.toString())
+                }, (day: int, index: int) => index.toString())
               }.width('100%')
             }
-          }, (monthItem: Month, index: number) => index.toString())
+          }, (monthItem: Month, index: int) => index.toString())
         }
         .width('100%')
         .height('100%')

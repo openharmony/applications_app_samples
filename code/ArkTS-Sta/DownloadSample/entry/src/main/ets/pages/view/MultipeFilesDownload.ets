@@ -25,11 +25,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Entry,
   Text,
   TextAttribute,
@@ -51,7 +46,6 @@ import {
   ProgressType,
   FlexAlign,
   SafeAreaType,
-  JSON,
   $r,
   Margin,
   TextDecorationType
@@ -59,10 +53,6 @@ import {
 import {
   State,
   Link,
-  MutableState,
-  stateOf,
-  observableProxy,
-  Prop,
   Watch
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';

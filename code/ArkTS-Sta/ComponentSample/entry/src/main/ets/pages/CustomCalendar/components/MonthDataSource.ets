@@ -52,7 +52,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return this.dataArray.length;
   }
 
@@ -61,8 +61,8 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {number} index - 索引值。
    * @returns {CustomDataType} 返回指定索引数据。
    */
-  public getData(index: number): Month {
-    return this.dataArray[index.toInt()];
+  public getData(index: int): Month {
+    return this.dataArray[index];
   }
 
   /**

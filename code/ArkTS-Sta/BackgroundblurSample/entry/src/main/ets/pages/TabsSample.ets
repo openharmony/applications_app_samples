@@ -29,7 +29,6 @@
  * 为了实现底部TabBar页签的沉浸式效果，需要在**所有**TabBar的嵌套路径中，添加expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { CustomTabsComponent } from './CustomTabsComponent';
 import { Component, Entry, Column } from '@ohos.arkui.component';
 

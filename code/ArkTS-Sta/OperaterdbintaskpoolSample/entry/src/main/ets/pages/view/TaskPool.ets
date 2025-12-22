@@ -36,7 +36,7 @@ import {
   ClickEvent,
   List, Image, $r, AlphabetIndexer, Margin, ForEach, Color, TextAlign, ImageFit, JSON
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import relationalStore from '@ohos.data.relationalStore';
 import type common from '@ohos.app.ability.common';
 import { Contact } from '../model/Contact';

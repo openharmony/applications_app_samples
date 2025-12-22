@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Entry, Tabs, TabContent, SubTabBarStyle,
   Row, ForEach, Position, Builder, Margin, BarMode, OnTabsAnimationStartCallback, TabsAnimationEvent, TabsOptions,
   Color, FlexAlign, $r, Image, SizeOptions, Position, AnimateParam, Flex,FlexDirection,FlexAlign,ItemAlign} from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State, Link } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { UIContext, Router } from '@ohos.arkui.UIContext';
 import router from '@ohos.router';
@@ -129,14 +128,14 @@ export struct TabViewComponent {
       .layoutWeight(1)
       .backgroundColor('#ffdbd9d9')
       .barHeight(1)
-      .onAnimationStart((index: number, targetIndex: number) => {
-        this.selectedIndex = targetIndex.toInt();
+      .onAnimationStart((index: int, targetIndex: int) => {
+        this.selectedIndex = targetIndex;
       } as OnTabsAnimationStartCallback)
 
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-        ForEach(this.tabArray, (item: string, tabBarIndex: number) => {
+        ForEach(this.tabArray, (item: string, tabBarIndex: int) => {
           // 单独一个TabBar组件
-          this.tabBuilder(item, tabBarIndex.toInt())
+          this.tabBuilder(item, tabBarIndex)
         })
       }
     }
