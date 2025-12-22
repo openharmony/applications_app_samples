@@ -25,18 +25,22 @@ struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   ary: Ary[] = [
     {
+      // 请在resources\base\element\string.json文件中配置name为'watch_text1'，本例中的value为"子组件任务A状态:"
       name: this.context.resourceManager.getStringByNameSync('watch_text1'),
       path: 'pages/CountModifier'
     },
     {
+      // 请在resources\base\element\string.json文件中配置name为'watch_text2'，本例中的value为"@Watch与@Link组合使用"
       name: this.context.resourceManager.getStringByNameSync('watch_text2'),
       path: 'pages/BasketModifier'
     },
     {
+      // 请在resources\base\element\string.json文件中配置name为'watch_text3'，本例中的value为"@Watch的触发时机"
       name: this.context.resourceManager.getStringByNameSync('watch_text3'),
       path: 'pages/ParentComponent'
     },
     {
+      // 请在resources\base\element\string.json文件中配置name为'watch_text4'，本例中的value为"使用changedPropertyName进行不同的逻辑处理"
       name: this.context.resourceManager.getStringByNameSync('watch_text4'),
       path: 'pages/UsePropertyName'
     },
