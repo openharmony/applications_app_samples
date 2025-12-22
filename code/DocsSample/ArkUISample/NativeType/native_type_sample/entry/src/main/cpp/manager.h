@@ -82,7 +82,14 @@ public:
     static napi_value CreateNativeCheckboxShapePage(napi_env env, napi_callback_info info);
     static napi_value CreateHoverModeAreaTypePage(napi_env env, napi_callback_info info);
     static napi_value createPublicNativeNode(napi_env env, napi_callback_info info);
-    static napi_value createContainerNativeNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerCanLoopNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerEventsNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerIndexNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerIndicatorNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerMonthNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerRegionNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerTypesNode(napi_env env, napi_callback_info info);
+    static napi_value createContainerPickerTimeNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;

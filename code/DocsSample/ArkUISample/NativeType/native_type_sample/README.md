@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例基于[NativeNode](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeTypeNapi](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
+本示例基于[NativeNode](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeTypeNapi](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片、Picker容器等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 
@@ -96,6 +96,11 @@
 | XComponent页面<br>(该示例在OpenHarmony与HarmonyOS上运行效果不同)      |
 |-----------------------------------------------------|
 | <img src="./screenshots/XComponent.png" width="300" /> |
+24. 点击ContainerPicker选择框进入Picker容器组件的CAPI接口展示界面；
+
+| Picker页面                                                     |
+|--------------------------------------------------------------|
+| <img src="./screenshots/ContainerPicker.jpeg" width="300" /> |
 
 ## 工程目录
 
@@ -129,7 +134,14 @@ entry/src/main/ets/
     │    ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
     │    └── PageGridGetRectByIndex.ets (固定行列Grid页面)
     └── containerPicker
-         └── PageContainerPickerIndex.ets (Picker页面)
+         ├── PageContainerPickerCanLoopIndex.ets (切换循环滚动和开关触控反馈界面)
+         ├── PageContainerPickerEventsIndex.ets (设置事件回调界面)
+         ├── PageContainerPickerIndexIndex.ets (设置选中项索引值界面)
+         ├── PageContainerPickerIndicatorIndex.ets (设置选中项指示器界面)
+         ├── PageContainerPickerMonthIndex.ets (自定义月份选择器界面)
+         ├── PageContainerPickerRegionIndex.ets (自定义地区选择器界面)
+         ├── PageContainerPickerTimeIndex.ets (自定义时间选择器界面)
+         └── PageContainerPickerTypesIndex.ets (自定义选项类型界面)
 
 entry/src/main/
 ├── cpp
@@ -172,8 +184,22 @@ entry/src/main/
 │   ├── EmbeddedComponentMaker.h
 |   ├── CheckboxShapeMaker.cpp
 │   ├── CheckboxShapeMaker.h
-│   ├── ContainerPickerMaker.cpp
-│   ├── ContainerPickerMaker.h
+│   ├── ContainerPickerCanLoopMaker.cpp
+│   ├── ContainerPickerCanLoopMaker.h
+│   ├── ContainerPickerEventsMaker.cpp
+│   ├── ContainerPickerEventsMaker.h
+│   ├── ContainerPickerIndexMaker.cpp
+│   ├── ContainerPickerIndexMaker.h
+│   ├── ContainerPickerIndicatorMaker.cpp
+│   ├── ContainerPickerIndicatorMaker.h
+│   ├── ContainerPickerMonthMaker.cpp
+│   ├── ContainerPickerMonthMaker.h
+│   ├── ContainerPickerRegionMaker.cpp
+│   ├── ContainerPickerRegionMaker.h
+│   ├── ContainerPickerTimeMaker.cpp
+│   ├── ContainerPickerTimeMaker.h
+│   ├── ContainerPickerTypesMaker.cpp
+│   ├── ContainerPickerTypesMaker.h
 |   ├── HoverModeAreaTypeMaker.cpp
 │   ├── HoverModeAreaTypeMaker.h
 │   ├── GridIrregularIndexesMaker.cpp
@@ -205,6 +231,8 @@ entry/src/main/
    为图片组件，常用于在应用中显示图片。
 6. [ImageAnimator组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
    该组件提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
+7. [Picker容器组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   该组件是用于实现用户选择操作的组件。它支持从一组有限的选项中让用户进行单选，可应用于时间选择、日期选择、地区选择、状态选择等多种场景。Picker容器的显示效果为立体滚轮样式，支持选项按需定制，包括文本类型、图片类型和图文组合类型。
 
 ## 相关权限
 
