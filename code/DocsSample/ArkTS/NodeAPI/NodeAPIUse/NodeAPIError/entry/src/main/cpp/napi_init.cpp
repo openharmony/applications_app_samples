@@ -126,6 +126,21 @@ static napi_value NapiThrowError(napi_env env, napi_callback_info info)
 }
 // [End napi_throw_error]
 
+// [Start napi_throw_business_error]
+// napi_throw_business_error
+static constexpr int INT_ARG_100 = 100;
+
+//这里直接抛出一个带有errorMessage的错误
+static napi_value NapiThrowBusinessError(napi_env env, napi_callback_info info)
+{
+    napi_status status = napi_throw_business_error(env, INT_ARG_100, "error message");
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "load plugin in env failed :: %{public}d", status);
+    }
+    return nullptr;
+}
+// [End napi_throw_business_error]
+
 // [Start napi_throw_type_error]
 // napi_throw_type_error
 // 这里直接抛出一个带有errorMessage的TypeError
@@ -296,6 +311,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"napiThrow", nullptr, NapiThrow, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"napiThrowErrorMessage", nullptr, NapiThrowErrorMessage, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"napiThrowError", nullptr, NapiThrowError, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"napiThrowBusinessError", nullptr, NapiThrowBusinessError, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"throwTypeErrorMessage", nullptr, ThrowTypeErrorMessage, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"throwTypeError", nullptr, ThrowTypeError, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"throwRangeErrorMessage", nullptr, ThrowRangeErrorMessage, nullptr, nullptr, nullptr, napi_default, nullptr},

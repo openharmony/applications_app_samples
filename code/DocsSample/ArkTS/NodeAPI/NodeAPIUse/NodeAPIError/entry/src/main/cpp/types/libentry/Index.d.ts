@@ -35,6 +35,10 @@ export const napiThrowErrorMessage: () => void; // napi_throw_error
 export const napiThrowError: (dividend: number, divisor: number) => void; // napi_throw_error
 // [End napi_throw_error_api]
 
+// [Start napi_throw_business_error_api]
+export const napiThrowBusinessError: () => void; // napi_throw_business_error
+// [End napi_throw_business_error_api]
+
 // [Start napi_throw_type_error_api]
 export const throwTypeErrorMessage: () => void; // napi_throw_type_error
 
@@ -54,13 +58,6 @@ export const napiIsError: <T>(obj: T) => boolean; // napi_is_error
 // [Start napi_get_and_clear_last_exception_api]
 export const getAndClearLastException: () => Error | void; // napi_get_and_clear_last_exception
 // [End napi_get_and_clear_last_exception_api]
-
-// [Start ark_napi_is_exception_pending_interface]
-export interface MyObject {
-  code: string;
-  message: string;
-}
-// [End ark_napi_is_exception_pending_interface]
 
 // [Start napi_is_exception_pending_api]
 export const isExceptionPending: () => Object | void; // napi_is_exception_pending
