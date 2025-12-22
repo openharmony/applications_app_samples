@@ -39,6 +39,7 @@ export struct StatePopupExample {
         }.width('100%').padding({ top: 5 })
     }
     // [StartExclude state_popup]
+    // 请将$r('app.string.onStateChange_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加气泡状态变化的事件"
     .title($r('app.string.onStateChange_title'))
     // [EndExclude state_popup]
   }

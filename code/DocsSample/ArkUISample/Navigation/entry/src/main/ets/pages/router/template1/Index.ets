@@ -54,6 +54,7 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      // 请将$r('app.string.RouterTemp1PageOne_text2')替换为实际资源文件，在本示例中该资源文件的value值为"这是第一页"
       Text($r('app.string.RouterTemp1PageOne_text2'))
         .fontSize(50)
         .fontWeight(FontWeight.Bold)

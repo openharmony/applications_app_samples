@@ -64,7 +64,7 @@ export struct CustomDrawCanvasNative {
       // [StartExclude custom_draw_canvas_native]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.CustomDrawCanvasNative')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.CustomDrawCanvasNative')替换为实际资源文件，在本示例中该资源文件的value值为"C++获取Canvas，并进行自定义绘制操作"
     .title($r('app.string.CustomDrawCanvasNative'));
 
     // [EndExclude custom_draw_canvas_native]

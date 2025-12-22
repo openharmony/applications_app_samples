@@ -26,6 +26,7 @@ import { ToastDestination, Toast_ROUTE_PREFIX } from './Toast/Index';
 import { MaskDestination, Mask_ROUTE_PREFIX } from './maskdialog/Index';
 import { OverlayManagerDestination, OverlayManager_ROUTE_PREFIX } from './OverlayManager/Index';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.openCustomDialog')),

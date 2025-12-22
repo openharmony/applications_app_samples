@@ -47,7 +47,7 @@ export struct VolumeControlDemo {
     NavDestination() {
       Column() {
         Row() {
-          // $r('app.string.video')资源文件中的value值为'音量'
+          // 请将$r('app.string.video')替换为实际资源文件，在本示例中该资源文件的value值为"音量"
           Text($r('app.string.video'))
           Text(`： ${this.currentVolume}`).fontSize(20)
         }.margin(10)
@@ -88,7 +88,7 @@ export struct VolumeControlDemo {
       .padding(20)
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.singlegesture_Index_Pancom_title')资源文件中的value值为'滑动手势'
+    // 请将$r('app.string.singlegesture_Index_Pancom_title')替换为实际资源文件，在本示例中该资源文件的value值为"滑动手势"
     .title($r('app.string.singlegesture_Index_Pancom_title'))
   }
 }

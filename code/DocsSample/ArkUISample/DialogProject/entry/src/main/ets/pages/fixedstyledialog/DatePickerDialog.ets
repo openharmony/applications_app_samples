@@ -49,7 +49,7 @@ export struct DatePickerDialogExample {
     }
     // [StartExclude date_picker_dialog]
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')ĞèÒªÌæ»»Îª¿ª·¢ÕßËùĞèµÄ×Ö·û´®×ÊÔ´ÎÄ¼ş
+    // è¯·å°†$r('app.string.CustomDialog_date')æ›¿æ¢ä¸ºå®é™…èµ„æºæ–‡ä»¶ï¼Œåœ¨æœ¬ç¤ºä¾‹ä¸­è¯¥èµ„æºæ–‡ä»¶çš„valueå€¼ä¸º"æ—¥æœŸæ»‘åŠ¨é€‰æ‹©å™¨å¼¹çª—"
     .title($r('app.string.CustomDialog_date'))
     // [EndExclude date_picker_dialog]
   }

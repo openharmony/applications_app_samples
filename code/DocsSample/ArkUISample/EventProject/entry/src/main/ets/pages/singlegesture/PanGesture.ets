@@ -61,7 +61,7 @@ export struct Pan {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // app.string.singlegesture_PanGesture_title资源文件中的value值为'拖动手势'
+    // 请将$r('app.string.singlegesture_PanGesture_title')替换为实际资源文件，在本示例中该资源文件的value值为"拖动手势"
     .title($r('app.string.singlegesture_PanGesture_title'))
   }
 }

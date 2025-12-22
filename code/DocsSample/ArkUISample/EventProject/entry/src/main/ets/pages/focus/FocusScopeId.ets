@@ -68,7 +68,7 @@ export struct FocusScopeIdExample {
     }
     // [StartExclude dynamic_focus_scope_id]
     .backgroundColor('#f1f2f3')
-    // app.string.Focus_Index_FocusScopeId_title资源文件中的value值为'聚焦范围Id/FocusScopeId'
+    // 请将$r('app.string.Focus_Index_FocusScopeId_title')替换为实际资源文件，在本示例中该资源文件的value值为"聚焦范围Id/FocusScopeId"
     .title($r('app.string.Focus_Index_FocusScopeId_title'))
     // [EndExclude dynamic_focus_scope_id]
   }

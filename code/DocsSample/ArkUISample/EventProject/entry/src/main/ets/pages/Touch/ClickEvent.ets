@@ -23,6 +23,7 @@ export struct Click {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // 请将$r('app.string.Touch_ClickEvent_text')替换为实际资源文件，在本示例中该资源文件的value值为"通过按钮的点击事件控制图片的显示和隐藏"
         Text($r('app.string.Touch_ClickEvent_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -38,6 +39,7 @@ export struct Click {
               this.flag = !this.flag;
             })
           if (this.flag) {
+            // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
             Image($r('app.media.app_icon')).width(200).height(200)
           }
         }.height('100%').width('100%')
@@ -47,6 +49,7 @@ export struct Click {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Touch_ClickEvent_text')替换为实际资源文件，在本示例中该资源文件的value值为"点击事件"
     .title($r('app.string.Touch_ClickEvent_title'))
   }
 }

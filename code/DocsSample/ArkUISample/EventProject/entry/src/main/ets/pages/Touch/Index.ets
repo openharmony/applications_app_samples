@@ -20,7 +20,7 @@ import { Touch } from './TouchEvent';
 import resource from '../../common/resource';
 
 export const Touch_ROUTE_PREFIX: string = 'Touch_ROUTE_PREFIX';
-
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Touch_ROUTE_PREFIX}/ClickEvent`,

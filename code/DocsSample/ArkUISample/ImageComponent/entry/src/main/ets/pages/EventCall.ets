@@ -30,7 +30,7 @@ struct EventCall {
   build() {
     Column() {
       Row() {
-        // $r('app.media.ic_img_2')需要替换为开发者所需的资源文件
+        // $r('app.media.ic_img_2')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.ic_img_2'))
           .width(200)
           .height(150)

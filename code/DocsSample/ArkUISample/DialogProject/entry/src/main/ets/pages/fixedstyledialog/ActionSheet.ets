@@ -79,7 +79,7 @@ export struct showActionSheetExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 璇峰皢$r('app.string.CustomDialog_ActionSheet')鏇挎崲涓哄疄闄呰祫婧愭枃浠讹紝鍦ㄦ湰绀轰緥涓璧勬簮鏂囦欢鐨剉alue鍊间负"鍒楄〃閫夋嫨寮圭獥"
     .title($r('app.string.CustomDialog_ActionSheet'))
   }
 }

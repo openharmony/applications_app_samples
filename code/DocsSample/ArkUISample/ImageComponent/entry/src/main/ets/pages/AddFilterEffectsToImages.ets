@@ -21,11 +21,11 @@ struct AddFilterEffectsToImages {
   build() {
     Column() {
       Row() {
-        // $r('app.media.example')需要替换为开发者所需的资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
           .width('40%')
           .margin(10)
-        // $r('app.media.example')需要替换为开发者所需的资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
           .width('40%')
           // 通过colorFilter调整图片的像素颜色，为图片添加滤镜

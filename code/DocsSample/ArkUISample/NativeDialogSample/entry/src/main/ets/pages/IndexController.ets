@@ -485,6 +485,7 @@ struct Index {
 
   build() {
     Column() {
+      // 请将$r('app.string.dialog_controller')替换为实际资源文件，在本示例中该资源文件的value值为"CustomDialogController_CAPI对接示例"
         Text($r('app.string.dialog_controller'))
           .fontColor(0x0000FF)
           .height('10%')
@@ -492,12 +493,14 @@ struct Index {
           .margin(10)
           .fontWeight(FontWeight.Bold)
       Column({ space: 10 }) {
+        // 请将$r('app.string.configure_popup_properties')替换为实际资源文件，在本示例中该资源文件的value值为"配置弹窗属性"
         Text($r('app.string.configure_popup_properties'))
           .fontSize(20)
           .fontColor(0xCCCCCC)
           .width('100%')
           .margin({ left: 10 })
         Row() {
+          // 请将$r('app.string.set_properties')替换为实际资源文件，在本示例中该资源文件的value值为"设置属性"
           Button($r('app.string.set_properties'))
             .width('30%')
             .margin(10)
@@ -511,6 +514,7 @@ struct Index {
                 this.printDefaultText = true;
               }
             })
+          // 请将$r('app.string.reset_properties')替换为实际资源文件，在本示例中该资源文件的value值为"重置属性"
           Button($r('app.string.reset_properties'))
             .width('30%')
             .margin(10)
@@ -522,6 +526,7 @@ struct Index {
             })
             .margin({ left: 70 })
         }
+        // 请将$r('app.string.please_xxx')替换为实际资源文件，在本示例中该资源文件的value值为"Close modal → Set keyboard avoidance"
         TextInput({ placeholder: $r('app.string.please_input_attribute_value') })
           .placeholderColor(Color.Red)
           .width('100%')
@@ -531,6 +536,7 @@ struct Index {
           .maxLength(15)
           .showPasswordIcon(true)
           .visibility(this.isCreateKey?Visibility.Visible:Visibility.Hidden)
+        // 请将$r('app.string.dialog_state')替换为实际资源文件，在本示例中该资源文件的value值为"弹框状态： "
         Text($r('app.string.dialog_state'))
           .fontSize(15)
           .fontColor(0xCCCCCC)
@@ -543,6 +549,7 @@ struct Index {
           .fontColor(0xCCCCCC)
           .width('100%')
           .margin({ left: 10 })
+        // 请将$r('app.string.settings_result')替换为实际资源文件，在本示例中该资源文件的value值为"属性设置结果： "
         Text($r('app.string.settings_result'))
           .fontSize(15)
           .fontColor(0xCCCCCC)
@@ -555,6 +562,7 @@ struct Index {
           .height(5)
           .width('100%')
           .margin({ left: 10 })
+        // 请将$r('app.string.open_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"点此打开弹窗"
         Button($r('app.string.open_dialog'))
           .width('40%')
           .height('10%')
@@ -569,6 +577,7 @@ struct Index {
               this.printDefaultText = true;
             }
           })
+        // 请将$r('app.string.return_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"返回"
         Button($r('app.string.return_dialog'))
           .width('40%')
           .height('8%')

@@ -84,8 +84,8 @@ struct PreventIdentification {
       this.currentWidth = '100%';
       this.currentHeight = '50%';
     };
-    //  $r('app.string.Play_full_screen') 需要替换为开发者所需的资源文件
-    //  $r('app.string.Exit_play_full_screen') 需要替换为开发者所需的资源文件
+    // 请将$r('app.string.Play_full_screen')替换为实际资源文件，在本示例中该资源文件的value值为"全屏播放"
+    // 请将$r('app.string.Exit_play_full_screen')替换为实际资源文件，在本示例中该资源文件的value值为"取消全屏播放"
     this.showMessage(this.currentFullScreenState
       ? this.context!.resourceManager.getStringSync($r('app.string.Play_full_screen').id)
       : this.context!.resourceManager.getStringSync($r('app.string.Exit_play_full_screen').id));
@@ -99,8 +99,8 @@ struct PreventIdentification {
       // 重新启动
       this.startNormalPlayTimer();
     };
-    //  $r('app.string.stop_playing') 需要替换为开发者所需的资源文件
-    //  $r('app.string.Continue_playing') 需要替换为开发者所需的资源文件
+    // 请将$r('app.string.stop_playing')替换为实际资源文件，在本示例中该资源文件的value值为"暂停播放"
+    // 请将$r('app.string.Continue_playing')替换为实际资源文件，在本示例中该资源文件的value值为"继续播放"
     this.showMessage(this.isPlaying
       ? this.context!.resourceManager.getStringSync($r('app.string.stop_playing').id)
       : this.context!.resourceManager.getStringSync($r('app.string.Continue_playing').id));
@@ -110,7 +110,7 @@ struct PreventIdentification {
     if (!start) { // 停止快进，恢复正常播放
       this.stopFastForwardTimer();
       this.startNormalPlayTimer();
-      //  $r('app.string.Cancel_FastForwarding') 需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Cancel_FastForwarding')替换为实际资源文件，在本示例中该资源文件的value值为"取消快进"
       this.showMessage(
         this.context!.resourceManager.getStringSync($r('app.string.Cancel_FastForwarding').id));
       return;
@@ -118,7 +118,7 @@ struct PreventIdentification {
 
     this.stopNormalPlayTimer();
     this.startFastForwardTimer();
-    //  $r('app.string.Start_FastForwarding') 需要替换为开发者所需的资源文件
+    // 请将$r('app.string.Start_FastForwarding')替换为实际资源文件，在本示例中该资源文件的value值为"开始快进"
     this.showMessage(
       this.context!.resourceManager.getStringSync($r('app.string.Start_FastForwarding').id));
   };
@@ -127,15 +127,15 @@ struct PreventIdentification {
     let newY = event.fingerList[0].localY;
     if (start) {
       this.currentPosY = newY;
-      //  $r('app.string.Start_adjusting_brightness') 需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Start_adjusting_brightness')替换为实际资源文件，在本示例中该资源文件的value值为"开始调整 亮度"
       this.showMessage(this.context!.resourceManager
         .getStringSync($r('app.string.Start_adjusting_brightness').id));
       return;
     };
     let offsetY = newY - this.currentPosY;
     if (Math.abs(offsetY) > 10) {
-      //  $r('app.string.Reduce_brightness') 需要替换为开发者所需的资源文件
-      //  $r('app.string.Increase_brightness') 需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Reduce_brightness')替换为实际资源文件，在本示例中该资源文件的value值为"降低亮度"
+      // 请将$r('app.string.Increase_brightness')替换为实际资源文件，在本示例中该资源文件的value值为"提高亮度"
       this.showMessage((offsetY > 0)
         ? this.context!.resourceManager.getStringSync($r('app.string.Reduce_brightness').id)
         : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id) )
@@ -147,7 +147,7 @@ struct PreventIdentification {
     let newX = event.fingerList[0].localX;
     if (start) {
       this.currentPosX = newX;
-      //  $r('app.string.Adjust_schedule') 需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Adjust_schedule')替换为实际资源文件，在本示例中该资源文件的value值为"开始调整 进度"
       this.showMessage(this.context!.resourceManager
         .getStringSync($r('app.string.Adjust_schedule').id));
       return;
@@ -161,7 +161,7 @@ struct PreventIdentification {
     Stack({ alignContent: Alignment.Center }) {
       Column() {
         Column() {
-          //  $r('app.string.Playback_progress') 需要替换为开发者所需的资源文件
+          // 请将$r('app.string.Playback_progress')替换为实际资源文件，在本示例中该资源文件的value值为"播放进度"
           Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id) + this.progress)
         }
         .width('100%').height('90%')

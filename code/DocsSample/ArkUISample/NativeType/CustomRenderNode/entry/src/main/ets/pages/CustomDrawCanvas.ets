@@ -153,7 +153,7 @@ export struct CustomDrawCanvas {
       // [StartExclude custom_draw_canvas]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.CustomDrawCanvas')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.CustomDrawCanvas')替换为实际资源文件，在本示例中该资源文件的value值为"调整自定义绘制Canvas的变换矩阵"
     .title($r('app.string.CustomDrawCanvas'));
 
     // [EndExclude custom_draw_canvas]

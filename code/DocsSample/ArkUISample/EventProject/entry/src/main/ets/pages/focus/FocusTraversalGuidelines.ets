@@ -49,6 +49,7 @@ export struct FocusLinerExample {
     }
     // [StartExclude dynamic_focus_liner]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.xxx')替换为实际资源文件，在本示例中该资源文件的value值为"聚焦遍历/FocusTraversalGuidelines"
     .title($r('app.string.Focus_Index_FocusTraversalGuidelines_title'))
     // [EndExclude dynamic_focus_liner]
   }

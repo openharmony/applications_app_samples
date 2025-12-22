@@ -23,6 +23,7 @@ import { OpenDialogAndUpdate } from './OpenDialogAndUpdate';
 
 export const CustomDialog_ROUTE_PREFIX: string = 'CustomDialog_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${CustomDialog_ROUTE_PREFIX}/Customdialog`,

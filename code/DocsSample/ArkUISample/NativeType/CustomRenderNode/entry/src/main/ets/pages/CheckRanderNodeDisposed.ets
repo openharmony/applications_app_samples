@@ -83,7 +83,7 @@ export struct CheckRanderNodeDisposed {
       // [StartExclude check_rander_node_disposed]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.CheckRanderNodeDisposed')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.CheckRanderNodeDisposed')替换为实际资源文件，在本示例中该资源文件的value值为"查询当前RenderNode是否解除引用"
     .title($r('app.string.CheckRanderNodeDisposed'));
 
     // [EndExclude check_rander_node_disposed]

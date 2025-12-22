@@ -46,8 +46,10 @@ struct ComponentExtension {
   @State routes: RouteGroup[] = [
     {
       name: 'parent',
+      // 请将$r('app.string.parent')替换为实际资源文件，在本示例中该资源文件的value值为"生命周期"
       label: $r('app.string.parent'),
       children: [
+        // 请将$r('app.string.parentExample')替换为实际资源文件，在本示例中该资源文件的value值为"自定义组件生命周期"
         { name: 'Index', label: $r('app.string.parentExample') },
       ]
     }

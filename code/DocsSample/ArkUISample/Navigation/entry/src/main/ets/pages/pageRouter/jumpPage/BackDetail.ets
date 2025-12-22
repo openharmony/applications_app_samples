@@ -68,7 +68,7 @@ struct BackDetail {
             this.getUIContext().getRouter().back({
               url: 'pages/pageRouter/jumpPage/BackHome',
               params: {
-                // $r('app.string.pageRouter_jump_text7_fromHome')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.pageRouter_jump_text7_fromHome')替换为实际资源文件，在本示例中该资源文件的value值为"来自Home页"
                 info: $r('app.string.pageRouter_jump_text7_fromHome')
               }
             });
@@ -84,7 +84,7 @@ struct BackDetail {
             this.getUIContext().getRouter().back({
               url: 'myPage', // myPage为返回的命名路由页面别名
               params: {
-                // $r('app.string.pageRouter_jump_text7_fromHome')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.pageRouter_jump_text7_fromHome')替换为实际资源文件，在本示例中该资源文件的value值为"来自Home页"
                 info: $r('app.string.pageRouter_jump_text7_fromHome')
               }
             });

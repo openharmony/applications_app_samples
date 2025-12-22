@@ -14,11 +14,11 @@
  */
 
 // [Start avoid_central_axis_menu]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct SupportAvoidCentralAxisMenuExample {
   @State message: string = 'Hello World';
+  // 请在resources\base\element\string.json文件中配置name为'xxx' ，value为非空字符串的资源
   @State upScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Upper_half_screen') as string;
   @State middleAxle: string =
@@ -29,6 +29,7 @@ export struct SupportAvoidCentralAxisMenuExample {
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('zone') as string;
   @State hoverModeStart: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('hoverMode_start') as string;
+  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
   private iconStr: Resource = $r('app.media.startIcon');
   @State index: number = 0;
   @State arrayStr: Array<string> = [this.upScreen, this.middleAxle, this.lowerScreen];
@@ -39,7 +40,7 @@ export struct SupportAvoidCentralAxisMenuExample {
   @Builder
   MyMenu1() {
     Menu() {
-      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+      // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: this.iconStr, content: $r('app.string.menu_selection') })
@@ -115,6 +116,7 @@ export struct SupportAvoidCentralAxisMenuExample {
       .width('100%')
     }
     // [StartExclude avoid_central_axis_menu]
+    // 请将$r('app.string.SupportAvoidCentralAxisMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"菜单支持避让中轴"
     .title($r('app.string.SupportAvoidCentralAxisMenu_title'))
     // [EndExclude avoid_central_axis_menu]
   }

@@ -27,7 +27,7 @@ export const springLoadingRoutePrefix: string = 'springLoadingExample';
 export struct SpringLoadingPage {
   context1 = this.getUIContext().getHostContext();
   @Local isShowSheet: boolean = false;
-  // app.string.Select_Result资源文件中的value值为'搜索结果：\n  设备 1\n  设备 2\n  设备 3\n  ... ...'
+  // 请将$r('app.string.Select_Result')替换为实际资源文件，在本示例中该资源文件的value值为"搜索结果：\n  设备 1\n  设备 2\n  设备 3\n  ... ..."
   private searchResult: string = this.context1?.resourceManager.getStringSync($r('app.string.Select_Result').id)!;
   @Local isSearchDone: boolean = false;
   private reminderColor: Color = Color.Green;
@@ -39,7 +39,7 @@ export struct SpringLoadingPage {
   SheetBuilder() {
     Column() {
       // 输入框
-      // app.string.Push_Here资源文件中的value值为'拖入此处'
+      // 请将$r('app.string.Push_Here')替换为实际资源文件，在本示例中该资源文件的value值为"拖入此处"
       TextInput({ placeholder: $r('app.string.Push_Here') })
         .width('80%')
         .borderWidth(1)
@@ -157,13 +157,13 @@ export struct SpringLoadingPage {
         //[EndExclude SpringLoading_start]
         //[EndExclude springLoading_example]
         Column() {
-          // app.string.DoubleClick_Text资源文件中的value值为'双击文字选择后拖出: \n     DeviceName'
+          // 请将$r('app.string.DoubleClick_Text')替换为实际资源文件，在本示例中该资源文件的value值为"双击文字选择后拖出: \n     DeviceName"
           Text($r('app.string.DoubleClick_Text'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
         }.padding({ bottom: 30 })
 
-        // app.string.Search_Device资源文件中的value值为'搜索设备'
+        // 请将$r('app.string.Search_Device')替换为实际资源文件，在本示例中该资源文件的value值为"搜索设备"
         Button($r('app.string.Search_Device'))
           .width('80%')
           .height('80vp')
@@ -171,7 +171,7 @@ export struct SpringLoadingPage {
           .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
             detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
             preferType: SheetType.BOTTOM,
-            // app.string.Search_Device资源文件中的value值为'搜索设备'
+            // 请将$r('app.string.Search_Device')替换为实际资源文件，在本示例中该资源文件的value值为"搜索设备"
             title: { title: $r('app.string.Search_Device') },
           })
           //[StartExclude springLoading_example]
@@ -200,7 +200,7 @@ export struct SpringLoadingPage {
         backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
         barStyle: BarStyle.STACK
       })
-      // $r('app.string.Pages_Index_DropAnimation')需要替换为开发者所需的文本资源文件
+      // 请将$r('app.string.Pages_Index_DropAnimation')替换为实际资源文件，在本示例中该资源文件的value值为"拖放动画事件/DropAnimation"
       .title($r('app.string.Pages_Index_DropAnimation'))
 
       //[EndExclude springLoading_example]

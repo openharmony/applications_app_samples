@@ -31,7 +31,7 @@ struct LoadingResources {
       // [End net_resource]
 
       // [Start resource_icon]
-      // $r('app.media.icon')需要替换为开发者所需的资源文件
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
       Image($r('app.media.icon'))
       // [End resource_icon]
 

@@ -62,7 +62,7 @@ export struct SetLabel {
       // [StartExclude set_label]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.SetLabel')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.SetLabel')替换为实际资源文件，在本示例中该资源文件的value值为"设置标签"
     .title($r('app.string.SetLabel'));
 
     // [EndExclude set_label]

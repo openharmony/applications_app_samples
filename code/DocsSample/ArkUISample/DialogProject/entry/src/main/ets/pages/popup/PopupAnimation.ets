@@ -77,6 +77,7 @@ export struct AnimationPopupExample {
       }.width('100%').padding({ top: 5 })
     }
     // [StartExclude animation_popup]
+    // 请将$r('app.string.AnimationPopup_title')替换为实际资源文件，在本示例中该资源文件的value值为"气泡的动画"
     .title($r('app.string.AnimationPopup_title'))
     // [EndExclude animation_popup]
   }

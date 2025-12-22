@@ -53,6 +53,7 @@ export struct ButtonPopupExample {
         }.width('100%').padding({ top: 5 })
     }
     // [StartExclude button_popup]
+    // 请将$r('app.string.custom_popup')替换为实际资源文件，在本示例中该资源文件的value值为"带按钮的提示气泡"
     .title($r('app.string.button_popup'))
     // [EndExclude button_popup]
   }

@@ -28,7 +28,7 @@ export struct FocusableExample {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // app.string.Focus_Focusable_text资源文件中的value值为'当某组件处于获焦状态'
+        // 请将$r('app.string.Focus_Focusable_text')替换为实际资源文件，在本示例中该资源文件的value值为"当某组件处于获焦状态"
         Text($r('app.string.Focus_Focusable_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -107,7 +107,7 @@ export struct FocusableExample {
     }
     // [StartExclude dynamic_focus_control_manage]
     .backgroundColor('#f1f2f3')
-    // app.string.Focus_Focusable_title资源文件中的value值为'设置组件是否可获焦'
+    // 请将$r('app.string.Focus_Focusable_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置组件是否可获焦"
     .title($r('app.string.Focus_Focusable_title'))
     // [EndExclude dynamic_focus_control_manage]
   }

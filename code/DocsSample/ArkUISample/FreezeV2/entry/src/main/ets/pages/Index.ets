@@ -42,6 +42,7 @@ function cardDisabledStyle() {
 @Component
 struct AnimateIndex {
   @Provide('router') router: NavPathStack = new NavPathStack();
+  // $r('app.string.xxx')需要替换为开发者所需的资源文件
   @State routes: RouteGroup[] = [
     {
       name: 'freeze',

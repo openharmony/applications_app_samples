@@ -19,7 +19,6 @@ import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 export struct showAlertDialogExample {
-
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -42,7 +41,7 @@ export struct showAlertDialogExample {
                     .animation({ duration: 3000, curve: Curve.Sharp })),
                     TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
                       .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 })
-                        .animation({ duration: 100, curve: Curve.Smooth }))),
+                      .animation({ duration: 100, curve: Curve.Smooth }))),
                   buttons: [{
                     value: 'cancel',
                     action: () => {
@@ -69,8 +68,9 @@ export struct showAlertDialogExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 璇峰皢$r('app.string.CustomDialog_AlertDialog')鏇挎崲涓哄疄闄呰祫婧愭枃浠讹紝鍦ㄦ湰绀轰緥涓璧勬簮鏂囦欢鐨剉alue鍊间负"璀﹀憡寮圭獥"
     .title($r('app.string.CustomDialog_AlertDialog'))
   }
 }
+
 // [End alert_dialog]
