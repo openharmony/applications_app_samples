@@ -1,0 +1,10 @@
+export const CreateAudioRender: () => string;
+export const DestroyAudioRender: () => string;
+export const SetVolume: () => string;
+export const setLatencyMode: () => string;
+export const getLatencyMode: () => string;
+export const workgroupcreate: () => string;
+export const workgroupprocess: () => string;
+export const registcallback1: () => string;
+export const registcallback2: () => string;
+export const CreateAudioRender02: () => string;
