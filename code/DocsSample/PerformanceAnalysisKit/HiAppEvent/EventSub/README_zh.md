@@ -488,6 +488,29 @@ HiAppEvent eventInfo.params.log_over_limit=xx
 
 3.C++实现了onReceive和onTrigger两种观察者。
 
+##### 10.订阅Arkweb抛滑丢帧事件（C/C++）
+
+本示例主要展示了订阅Arkweb抛滑丢帧事件的功能，包括构造AkrWeb抛滑丢帧场景及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该丢帧事件的订阅。
+
+1.在应用侧主界面，点击“ArkWebFlingJank ArkTs”按钮；
+2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志示例结果为：
+
+```text
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=SCROLL_ARKWEB_FLING_JANK
+HiAppEvent eventInfo.params.start_time=1765892111768
+HiAppEvent eventInfo.params.duration=1554
+HiAppEvent eventInfo.params.web_id=1
+HiAppEvent eventInfo.params.max_app_frame_time=195
+HiAppEvent get currentUrl=https://www.baidu.com
+```
+
+注意：
+
+1.本示例适配API23及以上版本SDK。
+
+2.要确认日志输出中的eventInfo.name为SCROLL_ARKWEB_FLING_JANK。
+
 ###  工程目录
 
 ```text
@@ -506,6 +529,7 @@ entry/src/main
    ├─entryability
    │ └─EntryAbility.ets		// 新增接口调用
    └─pages
+     └─ArkWebPage.ets     		// ArkWeb页面
      └─Index.ets     		// 主页
 ```
 
@@ -529,7 +553,7 @@ entry/src/main
 ###  约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例已适配API 20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony 6.1.0.18；
+2. 本示例已适配API 23版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony 6.1.0.18；
 3. 本示例需要使用DevEco Studio 6.0.0 Release(6.0.0.868)及以上版本才可编译运行。
 
 ### 下载
