@@ -8,7 +8,7 @@
 
 ## 效果预览
 
-| 菜单窗口 |
+| 菜单面板 |
 |-------|
 | ![image](screenshots/MenuPanel.png) |
 
@@ -16,9 +16,9 @@
 
 1. 在任意一个应用内通过鼠标双击、三击或单击滑动的方式选中一段文字。
 
-2. 按下ctrl键可触发划词，弹出菜单窗口。
+2. 按下ctrl键可触发划词，弹出菜单面板。
 
-3. 在弹出的窗口内点击click to show MAIN_PANEL按钮，可以弹出主窗口。
+3. 在弹出的菜单面板内点击click to show MAIN_PANEL按钮，可以弹出主面板。
 
 ## 工程目录
 
@@ -33,14 +33,14 @@ entry/src/main
  │       └──SelectionModel.ets               // 划词内容管理
  │   ├── pages
  │       ├── Index.ets          // UI页面
- │       ├── MainPanel.ets      // 主窗口页面
- │       ├── MenuPanel.ets      // 菜单窗口页面
+ │       ├── MainPanel.ets      // 主面板
+ │       ├── MenuPanel.ets      // 菜单面板
 ```
 
 ### 具体实现
 
-1. 在[SelectionExtensionAbility.ets](entry/src/main/ets/extensionability/SelectionExtensionAbility.ets)实现了一个划词ExtensionAbility，通过监听划词事件来创建和弹出菜单窗口。
-2. 在[Ability.test.ets](entry/src/ohosTest/ets/test/Ability.test.ets)文件中，提供了创建和移动窗口的自动化测试用例。
+1. 在[SelectionExtensionAbility.ets](entry/src/main/ets/extensionability/SelectionExtensionAbility.ets)实现了一个划词ExtensionAbility，通过监听划词事件来创建和弹出菜单面板。
+2. 在[Ability.test.ets](entry/src/ohosTest/ets/test/Ability.test.ets)文件中，提供了创建和移动面板的自动化测试用例。
 
 ## 相关权限
 
@@ -54,7 +54,7 @@ entry/src/main
 
 1. 本示例支持标准系统上运行，支持设备：RK3568，2in1;
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.49;
+2. 本示例支持API version 20及以上版本的SDK;
 
 3. 本示例需要使用DevEco Studio 6.0.0 Release（6.0.0.868）及以上版本才可编译运行。
 

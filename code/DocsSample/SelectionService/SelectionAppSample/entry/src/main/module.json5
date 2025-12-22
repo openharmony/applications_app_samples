@@ -49,16 +49,10 @@
     ],
     "extensionAbilities": [
       {
-        "name": "EntryBackupAbility",
-        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
-        "type": "backup",
+        "name": "SelectionExtAbility",
+        "srcEntry": "./ets/selectionextability/SelectionExtAbility.ets",
+        "type": "selection",
         "exported": false,
-        "metadata": [
-          {
-            "name": "ohos.extension.backup",
-            "resource": "$profile:backup_config"
-          }
-        ],
       }
     ]
   }
