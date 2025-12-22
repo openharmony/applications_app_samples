@@ -32,7 +32,7 @@ export struct SetUserPresetTextStyles {
             // [EndExclude richEditor_setTypingStyle]
             RichEditor(this.options)
               .onReady(() => {
-                // $r('app.string.SetUserPresetTextStyles_Text_1')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.SetUserPresetTextStyles_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮，改变预设文本样式。"
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')),
                   {
                     style: {
@@ -43,7 +43,7 @@ export struct SetUserPresetTextStyles {
               })
               .width(300)
               .height(60)
-            // $r('app.string.SetUserPresetTextStyles_Button_1')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.SetUserPresetTextStyles_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"setTypingStyle"
             Button($r('app.string.SetUserPresetTextStyles_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
@@ -69,6 +69,7 @@ export struct SetUserPresetTextStyles {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Set_User_PresetText_Styles_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置用户预设的文本样式"
     .title($r('app.string.Set_User_PresetText_Styles_title'))
   }
 }

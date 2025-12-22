@@ -46,14 +46,14 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_1') }) {
             // [Start shadow_color_1]
             Column() {
-              // 'app.string.shadow_ability'资源文件中的value值为"阴影能力"
+              // 请将$r('app.string.shadow_ability')替换为实际资源文件，在本示例中该资源文件的value值为"阴影能力"
               Text($r('app.string.shadow_ability'));
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
                 .symbolShadow(this.options)
-              // 'app.string.off'资源文件中的value值为"关闭"
-              // 'app.string.on'资源文件中的value值为"播放"
+              // 请将$r('app.string.off')替换为实际资源文件，在本示例中该资源文件的value值为"关闭"
+              // 请将$r('app.string.on')替换为实际资源文件，在本示例中该资源文件的value值为"播放"
               Button(!this.isActive ? $r('app.string.off') : $r('app.string.on')).onClick(() => {
                 this.isActive = !this.isActive;
               })
@@ -63,7 +63,7 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_2') }) {
             // [Start shadow_color_2]
             Column() {
-              // 'app.string.radial_gradient'资源文件中的value值为"径向渐变"
+              // 请将$r('app.string.radial_gradient')替换为实际资源文件，在本示例中该资源文件的value值为"径向渐变"
               Text($r('app.string.radial_gradient'))
                 .fontSize(18)
                 .fontColor(0xCCCCCC)
@@ -80,6 +80,8 @@ export struct SymbolShadowAndColor {
       }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.SymbolShadowAndColor_title')替换为实际资源文件，
+    // 在本示例中该资源文件的value值为"从API version 20开始，支持通过symbolShadow接口实现了symbolGlyph组件显示阴影效果。"
     .title($r('app.string.SymbolShadowAndColor_title'))
   }
 }

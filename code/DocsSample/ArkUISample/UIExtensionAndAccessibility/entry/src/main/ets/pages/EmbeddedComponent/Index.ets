@@ -23,9 +23,9 @@ export const EMBEDDED_ROUTE_PREFIX: string = 'EmbeddedComponent';
 const routes: Route[] = [
   {
     name: `${EMBEDDED_ROUTE_PREFIX}/Embedded`,
-    // $r('app.media.Embedded_Component_title')需要替换为开发者所需的文本资源文件
+    // 请将$r('app.media.Embedded_Component_title')替换为实际资源文件
     title: resource.resourceToString($r('app.string.Embedded_Component_title')),
-    // $r('app.media.Embedded_Component_description')需要替换为开发者所需的文本资源文件
+    // 请将$r('app.media.Embedded_Component_description')替换为实际资源文件
     description: resource.resourceToString($r('app.string.Embedded_Component_description')),
   }
 ]
@@ -61,7 +61,7 @@ struct EmbeddedExample {
       .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-    // $r('app.media.pageIndex_EmbeddedComponent')需要替换为开发者所需的文本资源文件
+    // 请将$r('app.media.pageIndex_EmbeddedComponent')替换为实际资源文件
     .title(resource.resourceToString($r('app.string.pageIndex_EmbeddedComponent')), {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK

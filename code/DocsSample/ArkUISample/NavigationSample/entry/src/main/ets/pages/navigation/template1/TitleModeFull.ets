@@ -22,7 +22,7 @@ struct TitleModeFull {
   @Builder
   NavigationTitle() {
     Column() {
-      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.mainTitle')替换为实际资源文件，在本示例中该资源文件的value值为"主标题"
       Text($r('app.string.mainTitle'))
         .fontColor('#182431')
         .fontSize(30)

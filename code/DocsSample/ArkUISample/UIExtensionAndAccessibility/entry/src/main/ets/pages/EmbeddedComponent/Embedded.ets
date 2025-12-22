@@ -48,7 +48,7 @@ export struct Embedded {
       // [StartExclude embedded_start]
     }
     .backgroundColor('#f1f2f3')
-      // $r('app.media.Embedded_Component_title')需要替换为开发者所需的文本资源文件
+      // 请将$r('app.media.Embedded_Component_title')替换为实际资源文件
       .title($r('app.string.Embedded_Component_title'))
     // [EndExclude embedded_start]
   }

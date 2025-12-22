@@ -27,11 +27,11 @@ struct SymbolMusicDemo {
     [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
   @State symbolText: string[] = [
-    // 'app.string.play_in_order'资源文件中的value值为"顺序播放"
+    // 请将$r('app.string.play_in_order')替换为实际资源文件，在本示例中该资源文件的value值为"顺序播放"
     resourceGetString.resourceToString($r('app.string.play_in_order')),
-    // 'app.string.play_in_single_repeat'资源文件中的value值为"单曲循环"
+    // 请将$r('app.string.play_in_single_repeat')替换为实际资源文件，在本示例中该资源文件的value值为"单曲循环"
     resourceGetString.resourceToString($r('app.string.play_in_single_repeat')),
-    // 'app.string.shuffle_play'资源文件中的value值为"随机播放"
+    // 请将$r('app.string.shuffle_play')替换为实际资源文件，在本示例中该资源文件的value值为"随机播放"
     resourceGetString.resourceToString($r('app.string.shuffle_play')),
   ];
   @State symbolTextIndex: number = 0;
@@ -42,7 +42,7 @@ struct SymbolMusicDemo {
     Column({ space: 10 }) {
       Row() {
         Text() {
-          // 'app.string.current_playlist'资源文件中的value值为"当前播放列表"
+          // 请将$r('app.string.current_playlist')替换为实际资源文件，在本示例中该资源文件的value值为"当前播放列表"
           Span(resourceGetString.resourceToString($r('app.string.current_playlist')))
             .fontSize(20)
             .fontWeight(FontWeight.Bolder)
@@ -98,7 +98,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.song'资源文件中的value值为"歌曲一"
+          // 请将$r('app.string.song')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲一"
           Text($r('app.string.song'))
         }.width('82%')
 
@@ -115,7 +115,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.song_again'资源文件中的value值为"歌曲二"
+          // 请将$r('app.string.song_again')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲二"
           Text($r('app.string.song_again'))
         }.width('82%')
 
@@ -132,7 +132,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.again_song'资源文件中的value值为"歌曲三"
+          // 请将$r('app.string.again_song')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲三"
           Text($r('app.string.again_song'))
         }.width('82%')
 
@@ -149,7 +149,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.song_repeat'资源文件中的value值为"歌曲四"
+          // 请将$r('app.string.song_repeat')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲四"
           Text($r('app.string.song_repeat'))
         }.width('82%')
 
@@ -166,7 +166,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.repeat_song'资源文件中的value值为"歌曲五"
+          // 请将$r('app.string.repeat_song')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲五"
           Text($r('app.string.repeat_song'))
         }.width('82%')
 
@@ -183,7 +183,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.song_play'资源文件中的value值为"歌曲六"
+          // 请将$r('app.string.song_play')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲六"
           Text($r('app.string.song_play'))
         }.width('82%')
 
@@ -200,7 +200,7 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.play_song'资源文件中的value值为"歌曲七"
+          // 请将$r('app.string.play_song')替换为实际资源文件，在本示例中该资源文件的value值为"歌曲七"
           Text($r('app.string.play_song'))
         }.width('82%')
 
@@ -216,7 +216,7 @@ struct SymbolMusicDemo {
 
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Column() {
-        // 'app.string.off'资源文件中的value值为"关闭"
+        // 请将$r('app.string.off')替换为实际资源文件，在本示例中该资源文件的value值为"关闭"
         Text($r('app.string.off'))
       }
       .alignItems(HorizontalAlign.Center)
@@ -236,6 +236,7 @@ struct SymbolMusicDemo {
 export function SymbolGlyphSpanSceneExample() {
   NavDestination() {
     Column({ space: 12 }) {
+      // 请将$r('app.string.SymbolGlyphSpanSceneExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"场景示例"
       ComponentCard({ title: $r('app.string.SymbolGlyphSpanSceneExample_title') }) {
         SymbolMusicDemo()
       }
@@ -245,5 +246,6 @@ export function SymbolGlyphSpanSceneExample() {
     .padding({ left: 12, right: 12 })
   }
   .backgroundColor('#f1f2f3')
+  // 请将$r('app.string.SymbolGlyphSpanSceneExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"场景示例"
   .title($r('app.string.SymbolGlyphSpanSceneExample_title'))
 }

@@ -26,7 +26,7 @@ export struct TextImageComponent {
           .height(30)
           .borderRadius(5)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
-        // 'app.string.surprise_price'资源文件中的value值为"惊喜价 ￥1299"
+        // 请将$r('app.string.surprise_price')替换为实际资源文件，在本示例中该资源文件的value值为"惊喜价 ￥1299"
         Span($r('app.string.surprise_price'))
           .fontSize(25)
           .fontColor(Color.Red)
@@ -41,6 +41,7 @@ export struct TextImageComponent {
       // [End textImage_component]
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.TextImage_MixedLayout_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"使用Span和ImageSpan实现图文混排"
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
   }
 }

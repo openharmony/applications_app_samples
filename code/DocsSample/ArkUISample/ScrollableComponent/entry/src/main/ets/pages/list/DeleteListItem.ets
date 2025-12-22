@@ -120,7 +120,7 @@ export struct DeleteListItem {
     NavDestination() {
       Column({ space: 12 }) {
         Column({ space: 8 }) {
-          // $r('app.string.DeleteListItem_titleExample')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.DeleteListItem_titleExample')替换为实际资源文件，在本示例中该资源文件的value值为"删除列表项示例"
           Text($r('app.string.DeleteListItem_titleExample'))
             .fontSize(14)
             .fontColor('#666')
@@ -134,7 +134,7 @@ export struct DeleteListItem {
                   })
                   .margin({ left: 20, right: 20 })
               } else {
-                // $r('app.string.TodoItem')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.TodoItem')替换为实际资源文件，在本示例中该资源文件的value值为"待办"
                 Text($r('app.string.TodoItem'))
                   .fontSize(30)
                   .margin({ left: 20 })
@@ -211,6 +211,7 @@ export struct DeleteListItem {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.DeleteListItem_title')替换为实际资源文件，在本示例中该资源文件的value值为"删除列表项"
     .title($r('app.string.DeleteListItem_title'))
   }
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Displayed_Together]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+// 请将$r('app.media.xxx')替换为实际资源文件
 import { common } from '@kit.AbilityKit';
 @Entry
 @Component
@@ -73,8 +73,8 @@ export struct DisplayedTogether {
   build() {
     NavDestination() {
       Column() {
-        // 'app.string.Text_emoji'资源文件中的value值为'用户输入带表情的文本，例如：你好[grin]'
         TextInput({
+          // 请将$r('app.string.Text_emoji')替换为实际资源文件，在本示例中该资源文件的value值为"用户输入带表情的文本，例如：你好[grin]"
           placeholder: $r('app.string.Text_emoji')
         })
           .width('80%')
@@ -110,6 +110,8 @@ export struct DisplayedTogether {
     }
     // [StartExclude Displayed_Together]
     .backgroundColor('#f1f 2f3')
+    // 请将$r('app.string.Displayed_Together_description')替换为实际资源文件，
+    // 在本示例中该资源文件的value值为"emoji表情有时以表情符号的形式表示。如何将表情符号转换为emoji表情，并在Text组件中与文字一同显示"
     .title($r('app.string.Displayed_Together_description'))
     // [EndExclude Displayed_Together]
   }

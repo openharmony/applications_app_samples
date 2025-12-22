@@ -55,7 +55,8 @@ export struct SwiperDigitIndicatorIgnoreComponentSize {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')需要替换为开发者所需的字符串资源文件
+        // 请将$r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')替换为实际资源文件，
+        // 在本示例中该资源文件的value值为"设置数字导航点忽略导航点组件大小"
         ComponentCard({ title: $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title') }) {
           Scroll() {
             Column({ space: 20 }) {
@@ -90,7 +91,7 @@ export struct SwiperDigitIndicatorIgnoreComponentSize {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置数字导航点忽略导航点组件大小"
     .title($r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title'))
   }
 }

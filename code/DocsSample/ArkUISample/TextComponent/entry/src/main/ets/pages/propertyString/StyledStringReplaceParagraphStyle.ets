@@ -78,7 +78,7 @@ struct Index {
     Column() {
       // 显示属性字符串
       Text(undefined, { controller: this.controller }).width(300)
-      //'app.string.Replace_paragraph_style'资源文件中的value值为"替换段落样式"
+      // 请将$r('app.string.Replace_paragraph_style')替换为实际资源文件，在本示例中该资源文件的value值为"替换段落样式"
       Button($r('app.string.Replace_paragraph_style'))
         .onClick(() => {
           this.paragraphStyledString1.replaceStyle({

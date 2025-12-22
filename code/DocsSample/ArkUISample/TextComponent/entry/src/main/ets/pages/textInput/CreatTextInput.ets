@@ -21,6 +21,7 @@ export struct CreatTextInput {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // 请将$r('app.string.CreatTextInput_title_1')替换为实际资源文件，在本示例中该资源文件的value值为"单行输入框"
         ComponentCard({ title: $r('app.string.CreatTextInput_title_1') }) {
           // [Start create_text_input]
           TextInput()
@@ -28,7 +29,9 @@ export struct CreatTextInput {
         }
 
         ComponentCard({
+          // 请将$r('app.string.CreatTextInput_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"多行输入框"
           title: $r('app.string.CreatTextInput_title_2'),
+          // 请将$r('app.string.CreatTextInput_description_1')替换为实际资源文件，在本示例中该资源文件的value值为"多行输入框文字超出一行时会自动折行"
           description: $r('app.string.CreatTextInput_description_1')
         }) {
           Column({ space: 8 }) {
@@ -36,17 +39,19 @@ export struct CreatTextInput {
             TextArea()
             // [End create_text_area]
             // [Start create_text_area_example]
-            // 'app.string.CreatTextInput_textContent'资源文件中的value值为"我是TextArea我是TextArea我是TextArea我是TextArea"
+            // 请将$r('app.string.CreatTextInput_textContent')替换为实际资源文件，
+            // 在本示例中该资源文件的value值为"我是TextArea我是TextArea我是TextArea我是TextArea"
             TextArea({ text: $r('app.string.CreatTextInput_textContent') })
               .width(300)
             // [End create_text_area_example]
           }
         }
 
+        // 请将$r('app.string.CreatTextInput_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"搜索框"
         ComponentCard({ title: $r('app.string.CreatTextInput_title_3') }) {
           // [Start create_text_search]
           Search()
-            // 'app.string.Creat_TextInput_Content'资源文件中的value值为"搜索"
+            // 请将$r('app.string.Creat_TextInput_Content')替换为实际资源文件，在本示例中该资源文件的value值为"搜索"
             .searchButton($r('app.string.Creat_TextInput_Content'))
           // [End create_text_search]
         }
@@ -56,6 +61,7 @@ export struct CreatTextInput {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CreatTextInput_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"创建输入框"
     .title($r('app.string.CreatTextInput_title'))
   }
 }

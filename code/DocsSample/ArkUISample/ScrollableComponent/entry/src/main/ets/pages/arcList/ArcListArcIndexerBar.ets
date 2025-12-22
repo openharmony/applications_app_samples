@@ -92,7 +92,7 @@ export struct ArcListArcIndexerBar {
     // [StartExclude arcAlphabetIndexer_start]
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.ArcListArcIndexerBar_title')替换为实际资源文件，在本示例中该资源文件的value值为"与弧形索引条ArcAlphabetIndexer联动"
         ComponentCard({ title: $r('app.string.ArcListArcIndexerBar_title') }) {
           // [EndExclude arcAlphabetIndexer_start]
           Stack({alignContent: Alignment.End}) {
@@ -178,7 +178,7 @@ export struct ArcListArcIndexerBar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
+    // 请将$r('app.string.ArcListArcIndexerBar_title')替换为实际资源文件，在本示例中该资源文件的value值为"与弧形索引条ArcAlphabetIndexer联动"
     .title($r('app.string.ArcListArcIndexerBar_title'))
     // [EndExclude arcAlphabetIndexer_start]
   }
