@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start arkts_multi_language_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -21,9 +20,12 @@ import { text } from '@kit.ArkGraphics2D'
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
+    // [Start arkts_multi_language_text_drawing_step1]
     // 绘制代码逻辑写在这里
     let canvas = context.canvas;
+    // [End arkts_multi_language_text_drawing_step1]
 
+    // [Start arkts_multi_language_text_drawing_step2]
     let myTextStyle: text.TextStyle = {
       color: {
         alpha: 255,
@@ -35,22 +37,29 @@ class MyRenderNode extends RenderNode {
       // 设置语言偏好为简体中文
       locale: 'zh-Hans'
     };
+    // [End arkts_multi_language_text_drawing_step2]
 
+    // [Start arkts_multi_language_text_drawing_step3]
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
     };
+    // [End arkts_multi_language_text_drawing_step3]
+    // [Start arkts_multi_language_text_drawing_step4]
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     // 更新文本样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
     paragraphBuilder.addText('你好，世界');
+    // [End arkts_multi_language_text_drawing_step4]
+    // [Start arkts_multi_language_text_drawing_step5]
     // 生成段落
     let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1250);
     // 绘制文本
     paragraph.paint(canvas, 10, 0);
+    // [End arkts_multi_language_text_drawing_step5]
   }
 }
 
@@ -135,4 +144,3 @@ struct Font08 {
     }
   }
 }
-// [End arkts_multi_language_text]

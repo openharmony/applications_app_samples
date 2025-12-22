@@ -1279,6 +1279,122 @@
     {
       "name": "ContentWillChange_animationMode",
       "value": "动态修改animationMode"
+    },
+    {
+      "name": "name_aha",
+      "value": "阿哈"
+    },
+    {
+      "name": "name_beibei",
+      "value": "贝贝"
+    },
+    {
+      "name": "name_caicai",
+      "value": "彩彩"
+    },
+    {
+      "name": "name_dongdong",
+      "value": "东东"
+    },
+    {
+      "name": "name_enen",
+      "value": "嗯嗯"
+    },
+    {
+      "name": "name_fangfang",
+      "value": "芳芳"
+    },
+    {
+      "name": "name_gege",
+      "value": "哥哥"
+    },
+    {
+      "name": "name_haha",
+      "value": "哈哈"
+    },
+    {
+      "name": "name_jiji",
+      "value": "吉吉"
+    },
+    {
+      "name": "name_keke",
+      "value": "可可"
+    },
+    {
+      "name": "name_lele",
+      "value": "乐乐"
+    },
+    {
+      "name": "name_meimei",
+      "value": "妹妹"
+    },
+    {
+      "name": "name_nini",
+      "value": "妮妮"
+    },
+    {
+      "name": "name_ohuo",
+      "value": "哦豁"
+    },
+    {
+      "name": "name_pangpang",
+      "value": "胖胖"
+    },
+    {
+      "name": "name_qiqi",
+      "value": "琪琪"
+    },
+    {
+      "name": "name_ranran",
+      "value": "然然"
+    },
+    {
+      "name": "name_shushu",
+      "value": "叔叔"
+    },
+    {
+      "name": "name_tiantian",
+      "value": "天天"
+    },
+    {
+      "name": "name_xiaohong",
+      "value": "小红"
+    },
+    {
+      "name": "name_xiaolan",
+      "value": "小兰"
+    },
+    {
+      "name": "name_xiaowang",
+      "value": "小王"
+    },
+    {
+      "name": "name_xiaoli",
+      "value": "小李"
+    },
+    {
+      "name": "name_xiaoming",
+      "value": "小明"
+    },
+    {
+      "name": "list_text1",
+      "value": "新闻"
+    },
+    {
+      "name": "list_text2",
+      "value": "消息"
+    },
+    {
+      "name": "swiper_text1",
+      "value": "页签 "
+    },
+    {
+      "name": "waterFlow_text1",
+      "value": "正在加载 "
+    },
+    {
+      "name": "waterFlow_text2",
+      "value": "切换列数 "
     }
   ]
 }

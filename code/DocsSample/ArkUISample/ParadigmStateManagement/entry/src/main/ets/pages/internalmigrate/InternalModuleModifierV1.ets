@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 // [Start Internal_Module_Modifier_V1]
-import { TextModifier } from '@ohos.arkui.modifier';
+import { TextModifier } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;

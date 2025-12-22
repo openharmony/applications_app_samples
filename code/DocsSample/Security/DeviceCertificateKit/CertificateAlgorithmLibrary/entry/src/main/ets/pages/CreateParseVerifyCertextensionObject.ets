@@ -20,7 +20,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
-// 证书扩展数据，以下只是一个示例。需要根据具体业务来赋值
+// 证书扩展数据，以下只是一个示例。需要根据具体业务来赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -38,31 +38,31 @@ function certExtensionSample(): void {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {
     data: extData,
-    // 证书扩展格式，目前仅支持DER格式
+    // 证书扩展格式，目前仅支持DER格式。
     encodingFormat: cert.EncodingFormat.FORMAT_DER
   };
 
-  // 创建一个证书扩展实例
+  // 创建一个证书扩展实例。
   cert.createCertExtension(encodingBlob, (err, certExtension) => {
     if (err != null) {
-      // 证书扩展实例创建失败
+      // 证书扩展实例创建失败。
       console.error(`createCertExtension failed, errCode:${err.code}, errMsg:${err.message} `);
       return;
     }
-    // 证书扩展实例创建成功
-    console.log('createCertExtension success');
+    // 证书扩展实例创建成功。
+    console.info('createCertExtension success');
 
     try {
-      // 根据OID获取证书扩展信息
+      // 根据OID获取证书扩展信息。
       let oidData = '2.5.29.14';
       let oid: cert.DataBlob = {
         data: textEncoder.encodeInto(oidData),
       }
       let entry = certExtension.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
 
-      // 检查证书是否为CA证书
+      // 检查证书是否为CA证书。
       let pathLen = certExtension.checkCA();
-      console.log('test cert extension success');
+      console.info('test cert extension success');
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error(`operation failed, message:${e.message} ,code:${e.code} `);

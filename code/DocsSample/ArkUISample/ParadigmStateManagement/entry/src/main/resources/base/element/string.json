@@ -573,6 +573,10 @@
       "value": "@State常见问题：用注册回调的方式更改状态变量需要执行解注册"
     },
     {
+      "name": "state_countvalue_text1",
+      "value": "count值: "
+    },
+    {
       "name": "internal_trace",
       "value": "应用内状态变量及其它场景迁移指导"
     },

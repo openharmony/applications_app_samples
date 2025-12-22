@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "text1",
+      "value": "BuilderNode处于冻结"
+    },
+    {
+      "name": "text2",
+      "value": "文本更新次数："
+    },
+    {
+      "name": "text3",
+      "value": "Tabs遍历后BuilderNode处于冻结："
     }
   ]
 }

@@ -20,11 +20,16 @@ import { drawing } from '@kit.ArkGraphics2D';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function getChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
+  // 获取子节点用户设置的宽高
   const size = child.getUserConfigSize();
+
+  // 计算子节点宽度
   const width = Math.max(
     Math.min(constraint.maxSize.width, size.width.value),
     constraint.minSize.width
   );
+
+  // 计算子节点高度
   const height = Math.max(
     Math.min(constraint.maxSize.height, size.height.value),
     constraint.minSize.height
@@ -50,13 +55,16 @@ class MyFrameNode extends FrameNode {
     this.uiContext = uiContext;
   }
 
+  // 重写布局测量方法
   onMeasure(constraint: LayoutConstraint): void {
     let sizeRes: Size = { width: this.uiContext.vp2px(100), height: this.uiContext.vp2px(100) };
+    
+    // 遍历所有子节点，计算总尺寸
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
         let childConstraint = getChildLayoutConstraint(constraint, child);
-        child.measure(childConstraint);
+        child.measure(childConstraint); // 触发子节点的测量
         let size = child.getMeasuredSize();
         sizeRes.height += size.height + this.space;
         sizeRes.width = Math.max(sizeRes.width, size.width);
@@ -65,6 +73,7 @@ class MyFrameNode extends FrameNode {
     this.setMeasuredSize(sizeRes);
   }
 
+  // 重写布局排列方法
   onLayout(position: Position): void {
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
@@ -80,6 +89,7 @@ class MyFrameNode extends FrameNode {
     this.setLayoutPosition(position);
   }
 
+  // 重写自定义绘制方法
   onDraw(context: DrawContext) {
     const canvas = context.canvas;
     const pen = new drawing.Pen();
@@ -130,12 +140,16 @@ struct Index {
           .width('100%')
           .height(200)
           .backgroundColor('#FFF0F0F0')
+
+        // 触发节点重绘
         Button('Invalidate')
           .margin(10)
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
           })
+        
+        // 触发布局更新
         Button('UpdateLayout')
           .onClick(() => {
             let node = this.nodeController.rootNode;

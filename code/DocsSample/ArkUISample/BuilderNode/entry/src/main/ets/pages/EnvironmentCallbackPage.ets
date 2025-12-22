@@ -38,7 +38,7 @@ struct TextBuilder {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: 36 })
-          .fontColor($r(`app.color.text_color`))
+          .fontColor($r(`app.color.text_color`)) // 开发者可在资源目录下的color.json文件中自定义颜色
           .backgroundColor($r(`app.color.start_window_background`))
       }
     }

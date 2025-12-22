@@ -19,6 +19,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function test() {
+  // [StartExclude trust_array_constructed_from_p12_file_during_validation]
   let p12Data =
     new Uint8Array([0x30, 0x82, 0x07, 0x5C, 0x02, 0x01, 0x03, 0x30, 0x82, 0x07, 0x12, 0x06, 0x09, 0x2A, 0x86, 0x48,
       0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x07, 0x03, 0x04, 0x82, 0x06, 0xFF, 0x30, 0x82, 0x06, 0xFB, 0x30,
@@ -120,15 +121,15 @@ function test() {
       0x04, 0x20, 0x93, 0x25, 0xC4, 0x3E, 0x2A, 0x6D, 0x4C, 0x30, 0x87, 0x0F, 0xE3, 0x5A, 0x95, 0xB0, 0xF2, 0x6C, 0xBA,
       0x07, 0x89, 0x7D, 0xFB, 0xCF, 0xCF, 0x1D, 0x54, 0xA3, 0x36, 0x24, 0x7B, 0x30, 0x97, 0xB5, 0x04, 0x08, 0xE7, 0x96,
       0x59, 0xCC, 0x42, 0x9F, 0xEF, 0xFC, 0x02, 0x02, 0x08, 0x00]);
-
+  // [EndExclude trust_array_constructed_from_p12_file_during_validation]
   try {
     cert.createTrustAnchorsWithKeyStore(p12Data, '123456').then((data) => {
-      console.log('createTrustAnchorsWithKeyStore sucess, the num of result is :' + JSON.stringify(data.length));
+      console.info('createTrustAnchorsWithKeyStore success, the num of result is :' + data.length);
     }).catch((err: BusinessError) => {
-      console.error('createTrustAnchorsWithKeyStore failed, error :' + JSON.stringify(err));
+      console.error(`createTrustAnchorsWithKeyStore failed, errCode: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {
-    console.error('createTrustAnchorsWithKeyStore failed, error :' + JSON.stringify(error));
+    console.error(`createTrustAnchorsWithKeyStore failed, errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

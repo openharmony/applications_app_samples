@@ -14,6 +14,7 @@
  */
 // [Start StateArrayTrack_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
@@ -39,6 +40,7 @@ class UiStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UiStyle;
+
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;

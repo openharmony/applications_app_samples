@@ -7,6 +7,21 @@
     "pages/CreateParseVerifyCrlObject",
     "pages/CreateTrustanchorFromP12",
     "pages/CreateVerifyCertchainObject",
-    "pages/CreateVerifyCerchainvalidatorObject"
+    "pages/CreateVerifyCerchainvalidatorObject",
+    "pages/VerifyCertchainBySystemca",
+    "pages/CreateCmsOperator",
+    "pages/CreateCmsSignObjectAsync",
+    "pages/CreateCmsSignObjectSync",
+    "pages/CreateCmsEnvelopedObject",
+    "pages/CreateCmsVerifyObject",
+    "pages/CreateCmsDecapsulationObject",
+    "pages/CreateParsePkcs12",
+    "pages/CreateParsePkcs12Async",
+    "pages/CreateParsePkcs12Sync",
+    "pages/VerifyCertchainOnlineRevocationStatus",
+    "pages/CreateOnlyCheckLeafCertRevocateObject",
+    "pages/CreateOnlineCheckIntermediateCertificateonlyObject",
+    "pages/IgnoreNetworkUnreachable",
+    "pages/AllowDownloadIntermediateCert"
   ]
 }

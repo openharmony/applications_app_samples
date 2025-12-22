@@ -14,7 +14,7 @@
  */
 
 // [Start entry_ability_window_stage_created_after_specified_page_loaded]
-import { createNWeb } from "../pages/common";
+import { createNWeb } from "../pages/Common";
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 // [StartExclude entry_ability_window_stage_created_after_specified_page_loaded]
@@ -41,7 +41,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-      createNWeb('https://www.example.com', windowClass.getUIContext());
+      createNWeb('www.example.com', windowClass.getUIContext());
     });
   }
   // [End entry_ability_window_stage_created_after_specified_page_loaded]

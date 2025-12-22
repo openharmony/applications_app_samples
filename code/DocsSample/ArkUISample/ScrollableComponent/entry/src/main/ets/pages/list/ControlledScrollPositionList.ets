@@ -14,6 +14,7 @@
  */
  
 import { ComponentCard } from '../../common/Card';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -22,6 +23,7 @@ export struct ControlledScrollPositionList {
   private listScroller: Scroller = new Scroller();
   // [End create_private_list_scroller]
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     NavDestination() {
@@ -34,7 +36,8 @@ export struct ControlledScrollPositionList {
               // [StartExclude control_scrolling]
               ForEach(this.arr, (item: number) => {
                 ListItem() {
-                  Text('新闻' + item)
+                  // 请在resources\base\element\string.json文件中配置name为'list_text1' ，value为非空字符串的资源
+                  Text(this.context.resourceManager.getStringByNameSync('list_text1') + item)
                     .width('100%')
                     .height(100)
                     .fontSize(16)

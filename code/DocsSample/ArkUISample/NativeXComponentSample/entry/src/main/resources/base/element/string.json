@@ -11,6 +11,22 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "pagethree_text1",
+      "value": "单指点击XComponent软键盘消失"
+    },
+    {
+      "name": "pagethree_text2",
+      "value": "创建/销毁"
+    },
+    {
+      "name": "pagethree_text3",
+      "value": "期望帧率设置："
+    },
+    {
+      "name": "pagethree_text4",
+      "value": "单指点击XComponent软键盘不消失"
     }
   ]
 }

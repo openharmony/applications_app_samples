@@ -14,11 +14,13 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 export struct TaggedListItems {
   @State arr: number[] = [0, 1, 2, 3];
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     NavDestination() {
@@ -35,7 +37,8 @@ export struct TaggedListItems {
                   style: { badgeSize: 16, badgeColor: '#FA2A2D' }
                 }) {
                   // [StartExclude add_tags_to_list_items]
-                  Text('消息' + item)
+                  // 请在resources\base\element\string.json文件中配置name为'list_text2' ，value为非空字符串的资源
+                  Text(this.context.resourceManager.getStringByNameSync('list_text2') + item)
                     .width('95%')
                     .height(50)
                     .fontSize(16)

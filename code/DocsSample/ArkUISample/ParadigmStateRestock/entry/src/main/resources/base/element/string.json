@@ -143,6 +143,10 @@
     {
       "name": "state_mixed_scene_nested_type_v2_v1",
       "value": "常见场景：嵌套类型 V2->V1"
+    },
+    {
+      "name": "builderOpp_text1",
+      "value": "点击改变label内容"
     }
   ]
 }

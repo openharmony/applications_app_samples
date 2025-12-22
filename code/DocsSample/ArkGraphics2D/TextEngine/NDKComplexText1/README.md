@@ -15,7 +15,7 @@
 
 1. 该工程可以选择在模拟器和开发板上运行。   
 2. 点击构建，即可在生成的应用中点击对应的按钮进行图案的绘制。
-3. 进入“DocsSample/graphic/NDKGraphics2D/NDKComplexText1/entry/src/ohosTest/ets/test/DrawingAbility.test.ets”文件，可以对本项目进行UI的自动化测试。
+3. 进入“DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/entry/src/ohosTest/ets/test/DrawingAbility.test.ets”文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -71,7 +71,7 @@ NDKComplexTextPart2
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/graphic/NDKGraphics2D/NDKComplexText1/ > .git/info/sparse-checkout
+echo code/DocsSample/ArkGraphics2D/TextEngine/NDKComplexText1/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

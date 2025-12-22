@@ -63,6 +63,7 @@ ArkUI_NodeHandle buttonUIState = nullptr;
 ArkUI_NodeHandle buttonArea = nullptr;
 ArkUI_NodeHandle buttonResponse = nullptr;
 ArkUI_NodeHandle textResponse = nullptr;
+ArkUI_NodeHandle rowTouchIntercept = nullptr;
 ArkUI_NodeHandle radioTwo = nullptr;
 ArkUI_NodeHandle nodeUIState = nullptr;
 int32_t g_globalStatesToSupported = static_cast<int32_t>(UI_STATE_NORMAL);
@@ -661,6 +662,17 @@ void AddColumnChildNode(ArkUI_NodeHandle &node)
     Manager::nodeAPI_->addChild(node, button2);
     Manager::nodeAPI_->addChild(node, button3);
     Manager::nodeAPI_->addChild(node, button4);
+}
+
+void SetRowAttribute(ArkUI_NodeHandle node)
+{
+    ArkUI_NumberValue widthValue[] = {1};
+    ArkUI_AttributeItem widthItem = {widthValue, 1};
+    ArkUI_NumberValue heightValue[] = {100};
+    ArkUI_AttributeItem heightItem = {heightValue, 1};
+    Manager::nodeAPI_->setAttribute(node, NODE_WIDTH_PERCENT, &widthItem);
+    Manager::nodeAPI_->setAttribute(node, NODE_HEIGHT, &heightItem);
+    Manager::nodeAPI_->registerNodeEvent(node, NODE_TOUCH_EVENT, TARGET_ID_2, nullptr);
 }
 
 void CreateNodeTouchEvent(ArkUI_NodeHandle &column)

@@ -13,7 +13,13 @@
  * limitations under the License.
  */
 
-import { rdbDataSync } from './datasync/RdbDataSync';
+import { setDefaultDistributedTables } from './datasync/RdbDataSync';
+import { setCollaborationDistributedTables } from './datasync/RdbDataSync';
+import { setSingleDistributedTables } from './datasync/RdbDataSync';
+import { dataChange } from './datasync/RdbDataSync';
+import { syncPush } from './datasync/RdbDataSync';
+import { syncPull } from './datasync/RdbDataSync';
+import { remoteQuery } from './datasync/RdbDataSync';
 import { rdbDataPersistence } from './datapersistence/RdbDataPersistence';
 
 @Entry
@@ -24,7 +30,7 @@ struct Index {
   build() {
     Column() {
       Button() {
-        Text('dataSync')
+        Text('setDefaultDistributedTables')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
           .alignRules({
@@ -34,14 +40,117 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width("70%")
+      .height("5%")
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        const context = this.getUIContext().getHostContext();
-        if (context) {
-          rdbDataSync(context);
-        }
+        setDefaultDistributedTables();
+      })
+
+      Button() {
+        Text('setCollaborationDistributedTables')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        setCollaborationDistributedTables();
+      })
+      Button() {
+        Text('setSingleDistributedTables')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        setSingleDistributedTables();
+      })
+
+      Button() {
+        Text('dataChange')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        dataChange();
+      })
+
+      Button() {
+        Text('syncPush')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        syncPush();
+      })
+
+      Button() {
+        Text('syncPull')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        syncPull();
+      })
+      Button() {
+        Text('remoteQuery')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 50 })
+      .width("70%")
+      .height("5%")
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        remoteQuery();
       })
 
       Button() {
@@ -55,14 +164,11 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("50%")
-      .height("8%")
+      .width("70%")
+      .height("5%")
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        const context = this.getUIContext().getHostContext();
-        if (context) {
-          rdbDataPersistence(context);
-        }
+        rdbDataPersistence();
       })
     }
     .height('100%')

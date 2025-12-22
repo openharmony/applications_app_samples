@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/FindAndListenAudioInputDevice",
+    "pages/FindAndListenAudioOutputDevice",
+    "pages/InputDeviceRoutingSwitching",
+    "pages/ListenDeviceByAudioSession",
+    "pages/OutputDeviceChangePause"
+  ]
+}

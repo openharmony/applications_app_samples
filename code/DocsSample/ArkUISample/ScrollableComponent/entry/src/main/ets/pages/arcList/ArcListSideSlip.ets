@@ -17,6 +17,7 @@ import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem } from '@k
 import { ComponentContent, LengthMetrics } from '@ohos.arkui.node';
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
+import { common } from '@kit.AbilityKit';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -42,31 +43,33 @@ function buildText() {
 @Entry
 @Component
 export struct ArcListSideSlip {
+  private context1 = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State contacts: Array<object> = [
     new Contact('Alice', 'A'),
     new Contact('Bob', 'B'),
     new Contact('Charlie', 'C'),
     new Contact('Diana', 'D'),
     new Contact('Eve', 'E'),
-    new Contact('阿哈', 'A'),
-    new Contact('贝贝', 'B'),
-    new Contact('彩彩', 'C'),
-    new Contact('东东', 'D'),
-    new Contact('嗯嗯', 'E'),
-    new Contact('芳芳', 'F'),
-    new Contact('哥哥', 'G'),
-    new Contact('哈哈', 'H'),
-    new Contact('吉吉', 'J'),
-    new Contact('可可', 'K'),
-    new Contact('乐乐', 'L'),
-    new Contact('妹妹', 'M'),
-    new Contact('妮妮', 'N'),
-    new Contact('哦豁', 'O'),
-    new Contact('胖胖', 'P'),
-    new Contact('琪琪', 'Q'),
-    new Contact('然然', 'R'),
-    new Contact('叔叔', 'S'),
-    new Contact('天天', 'T'),
+    // 请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_aha'), 'A'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_beibei'), 'B'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_caicai'), 'C'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_dongdong'), 'D'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_enen'), 'E'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_fangfang'), 'F'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_gege'), 'G'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_haha'), 'H'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_jiji'), 'J'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_keke'), 'K'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_lele'), 'L'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_meimei'), 'M'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_nini'), 'N'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_ohuo'), 'O'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_pangpang'), 'P'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_qiqi'), 'Q'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_ranran'), 'R'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_shushu'), 'S'),
+    new Contact(this.context1.resourceManager.getStringByNameSync('name_tiantian'), 'T'),
   ];
   private scrollerForList: Scroller = new Scroller();
   @State indexerIndex: number = 0;

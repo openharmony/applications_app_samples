@@ -16,6 +16,7 @@
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
+import { common } from '@kit.AbilityKit';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -31,12 +32,14 @@ class Contact {
 @Entry
 @Component
 export struct ArcListContents {
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private contacts: Array<object> = [
-    new Contact('小红', $r('app.media.ic_contact')),
-    new Contact('小兰', $r('app.media.ic_contact')),
-    new Contact('小王', $r('app.media.ic_contact')),
-    new Contact('小李', $r('app.media.ic_contact')),
-    new Contact('小明', $r('app.media.ic_contact'))
+    // 请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
+    new Contact(this.context.resourceManager.getStringByNameSync('name_xiaohong'), $r('app.media.ic_contact')),
+    new Contact(this.context.resourceManager.getStringByNameSync('name_xiaolan'), $r('app.media.ic_contact')),
+    new Contact(this.context.resourceManager.getStringByNameSync('name_xiaowang'), $r('app.media.ic_contact')),
+    new Contact(this.context.resourceManager.getStringByNameSync('name_xiaoli'), $r('app.media.ic_contact')),
+    new Contact(this.context.resourceManager.getStringByNameSync('name_xiaoming'), $r('app.media.ic_contact'))
   ];
 
   build() {

@@ -63,8 +63,8 @@ function stopContinuousTask() {
 }
 
 class MyParcelable implements rpc.Parcelable {
-  private num: number = 0;
-  private str: string = '';
+  public num: number = 0;
+  public str: string = '';
 
   constructor(num: number, str: string) {
     this.num = num;

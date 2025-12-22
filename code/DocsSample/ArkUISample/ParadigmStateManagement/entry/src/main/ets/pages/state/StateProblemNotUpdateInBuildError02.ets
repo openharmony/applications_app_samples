@@ -22,7 +22,6 @@ struct Index {
   build() {
     Column() {
       Text(`${this.message++}`)
-
       Text(`${this.message++}`)
     }
     .height('100%')

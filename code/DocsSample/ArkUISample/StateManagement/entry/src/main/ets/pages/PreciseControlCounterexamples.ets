@@ -18,9 +18,11 @@
 class Translate {
   public translateX: number = 20;
 }
+
 @Component
 struct Title {
   @ObjectLink translateObj: Translate;
+
   build() {
     Row() {
       // $r('app.media.background')需要替换为开发者所需的资源文件。
@@ -28,7 +30,7 @@ struct Title {
         .width(50)
         .height(50)
         .translate({
-          x:this.translateObj.translateX // this.translateObj.translateX 绑定在Image和Text组件上。
+          x: this.translateObj.translateX // this.translateObj.translateX 绑定在Image和Text组件上。
         })
       Text('Title')
         .fontSize(20)
@@ -38,6 +40,7 @@ struct Title {
     }
   }
 }
+
 @Entry
 @Component
 struct Page {
@@ -54,16 +57,16 @@ struct Page {
       .width(200)
       .height(400)
       .translate({
-        x:this.translateObj.translateX //this.translateObj.translateX 绑定在Stack和Button组件上。
+        x: this.translateObj.translateX //this.translateObj.translateX 绑定在Stack和Button组件上。
       })
       Button('move')
         .translate({
-          x:this.translateObj.translateX
+          x: this.translateObj.translateX
         })
         .onClick(() => {
           this.getUIContext().animateTo({
             duration: 50
-          },()=>{
+          }, () => {
             this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
           });
         })

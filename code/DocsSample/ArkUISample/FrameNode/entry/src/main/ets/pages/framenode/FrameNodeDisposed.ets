@@ -49,6 +49,7 @@ class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private builderNode: BuilderNode<[]> | null = null;
 
+  // 创建并初始化自定义节点树
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
     this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
@@ -64,6 +65,7 @@ class MyNodeController extends NodeController {
     return this.rootNode;
   }
 
+  // 打印节点的唯一ID
   printUniqueId(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
       hilog.info(0x0000, `${TEST_TAG} rootNode's uniqueId: ${this.rootNode.getUniqueId()}`, 'isClicked');
@@ -77,6 +79,7 @@ class MyNodeController extends NodeController {
     }
   }
 
+  // 销毁所有自定义节点
   disposeFrameNode(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
       hilog.info(0x0000, `${TEST_TAG} disposeFrameNode`, 'isCLicked');
@@ -90,6 +93,7 @@ class MyNodeController extends NodeController {
   removeBuilderNode(): void {
     const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      // 从根渲染节点中移除BuilderNode的渲染节点
       rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }
   }
@@ -106,7 +110,7 @@ struct Index {
       Button('FrameNode dispose')
         .onClick(() => {
           this.myNodeController.printUniqueId();
-          this.myNodeController.disposeFrameNode();
+          this.myNodeController.disposeFrameNode(); // 执行节点销毁
           this.myNodeController.printUniqueId();
         })
         .width('100%')

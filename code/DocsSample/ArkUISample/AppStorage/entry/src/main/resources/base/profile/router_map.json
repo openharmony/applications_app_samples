@@ -1,0 +1,12 @@
+{
+  "routerMap": [
+    {
+      "name": "Page",
+      "pageSourceFile": "src/main/ets/pages/Page.ets",
+      "buildFunction": "PageBuilder",
+      "data": {
+        "description": "AppStorage example"
+      }
+    }
+  ]
+}

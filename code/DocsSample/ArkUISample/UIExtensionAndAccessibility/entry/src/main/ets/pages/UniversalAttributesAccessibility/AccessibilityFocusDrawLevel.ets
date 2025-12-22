@@ -57,8 +57,8 @@ export struct AccessibilityFocusDrawLevel {
                   .fontWeight(FontWeight.Bold)
                 Column() {
                   UIExtensionComponent({
-                    bundleName: 'com.example.provide',
-                    abilityName: 'EmptyUIExtensionAbility',
+                    bundleName: 'com.samples.uiextensionandaccessibility',
+                    abilityName: 'UIExtensionProvider',
                     parameters: {
                       'ability.want.params.uiExtensionType': 'sys/commonUI'
                     }

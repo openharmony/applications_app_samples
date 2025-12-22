@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start arkts_multi_line_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -21,9 +20,12 @@ import { text } from '@kit.ArkGraphics2D'
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
+    // [Start arkts_multi_line_text_drawing_step1]
     // 绘制代码逻辑写在这里
     let canvas = context.canvas;
+    // [End arkts_multi_line_text_drawing_step1]
 
+    // [Start arkts_multi_line_text_drawing_step2]
     let myTextStyle: text.TextStyle = {
       color: {
         alpha: 255,
@@ -35,7 +37,9 @@ class MyRenderNode extends RenderNode {
       // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，需要为段落设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
       locale: 'en-gb'
     };
+    // [End arkts_multi_line_text_drawing_step2]
 
+    // [Start arkts_multi_line_text_drawing_step3]
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
       // 文本对齐方式
@@ -45,6 +49,8 @@ class MyRenderNode extends RenderNode {
       // 断词策略
       wordBreak: text.WordBreak.BREAK_WORD
     };
+    // [End arkts_multi_line_text_drawing_step3]
+    // [Start arkts_multi_line_text_drawing_step4]
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     // 更新文本样式
@@ -53,6 +59,7 @@ class MyRenderNode extends RenderNode {
     paragraphBuilder.addText('Hello World Hello World Hello World Hello World Hello World Hello World ' +
       'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World ' +
       'Hello World Hello World Hello World Hello World Hello World ');
+    // [End arkts_multi_line_text_drawing_step4]
     // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，替换文本内容为：
     // paragraphBuilder.addText('Modern embedded systems require robust communication protocols and efficient memory ' +
     //   'management strategies. Developers often face challenges in optimizing performance while maintaining ' +
@@ -60,12 +67,14 @@ class MyRenderNode extends RenderNode {
     //   'detect anomalies and respond quickly to faults. This approach enhances reliability, especially in ' +
     //   'time-critical environments such as IoT devices and real-time operating systems.');
 
+    // [Start arkts_multi_line_text_drawing_step5]
     // 生成段落
     let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1250);
     // 绘制文本
     paragraph.paint(canvas, 10, 0);
+    // [End arkts_multi_line_text_drawing_step5]
   }
 }
 
@@ -150,4 +159,3 @@ struct Font08 {
     }
   }
 }
-// [End arkts_multi_line_text]
