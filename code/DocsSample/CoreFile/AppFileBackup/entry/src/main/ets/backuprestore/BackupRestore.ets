@@ -32,7 +32,7 @@ const BUFFER: number = 1024; // 读写文件的缓冲区
 // [EndExclude session_restore]
 
 // 此处仅为示例，在组件中可以通过getHostContext获取路径
-let filesDir = "/data/storage/el2/base/haps/entry/files";
+let filesDir = '/data/storage/el2/base/haps/entry/files';
 
 // [StartExclude session_backup]
 // [StartExclude session_restore]
