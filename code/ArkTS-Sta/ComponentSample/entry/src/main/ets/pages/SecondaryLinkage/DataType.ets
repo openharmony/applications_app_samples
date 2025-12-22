@@ -107,7 +107,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    */
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
+      listener.onDataAdd(index.toInt());
     })
   }
 
@@ -117,7 +117,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    */
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index);
+      listener.onDataChange(index.toInt());
     })
   }
 
@@ -127,7 +127,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    */
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
+      listener.onDataDelete(index.toInt());
     })
   }
 
@@ -138,7 +138,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    */
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
+      listener.onDataMove(from.toInt(), to.toInt());
     })
   }
 }

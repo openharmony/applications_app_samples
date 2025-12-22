@@ -28,11 +28,8 @@ import { DateModel } from '../components/DateModel';
 import { getMonthDate, getRealTimeDate } from '../components/GetDate';
 import promptAction from '@ohos.promptAction';
 import {
-  __memo_context_type,
-  __memo_id_type,
   Consume,
   Link,
-  memo,
   State,
   StorageLink
 } from '@ohos.arkui.stateManagement';

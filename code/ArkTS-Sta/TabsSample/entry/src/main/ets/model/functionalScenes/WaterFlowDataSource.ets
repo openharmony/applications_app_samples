@@ -53,7 +53,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    */
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
+      listener.onDataAdd(index.toInt());
     })
   }
 
@@ -63,7 +63,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    */
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index);
+      listener.onDataChange(index.toInt());
     })
   }
 
@@ -73,7 +73,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    */
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
+      listener.onDataDelete(index.toInt());
     })
   }
 
@@ -84,7 +84,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    */
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
+      listener.onDataMove(from.toInt(), to.toInt());
     })
   }
 
