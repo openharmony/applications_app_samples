@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start bindComponent_menu]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct BindComponentMenuExample {
@@ -22,6 +21,7 @@ export struct BindComponentMenuExample {
     Column() {
       Menu() {
         MenuItemGroup() {
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 1', labelInfo: '' })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 2', labelInfo: '' })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'Select Mixed Menu 3', labelInfo: '' })
@@ -51,6 +51,7 @@ export struct BindComponentMenuExample {
       .backgroundColor('#F5F5F5')
     }
     // [StartExclude bindComponent_menu]
+    // 请将$r('app.string.BindComponentMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"基于绑定组件指定位置弹出菜单"
     .title($r('app.string.BindComponentMenu_title'))
     // [EndExclude bindComponent_menu]
   }

@@ -17,7 +17,7 @@
 @Entry
 @Component
 struct IndexNew {
-  // $r('app.string.click_and_return')资源文件中的value为'点击返回'
+  // 请将$r('app.string.click_and_return')替换为实际资源文件，在本示例中该资源文件的value值为"点击返回"
   @State message: string = $r('app.string.click_and_return');
 
   build() {

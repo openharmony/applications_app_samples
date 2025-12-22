@@ -21,7 +21,7 @@ export struct BindSelectionMenu {
   build() {
     NavDestination() {
       Column() {
-        // 'app.string.display_the_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+        // 请将$r('app.string.display_the_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
         Text($r('app.string.display_the_selected_menu'), { controller: this.controller })
           .fontSize(30)
           .copyOption(CopyOptions.InApp)
@@ -37,12 +37,13 @@ export struct BindSelectionMenu {
     }
     // [StartExclude Bind_SelectionMenu]
     .backgroundColor('#f1f 2f3')
+    // 请将$r('app.string.Bind_SelectionMenu')替换为实际资源文件，在本示例中该资源文件的value值为"绑定自定义选择菜单"
     .title($r('app.string.Bind_SelectionMenu'))
     // [EndExclude Bind_SelectionMenu]
   }
   // [End Bind_SelectionMenu]
   // [Start Right_ClickTextCustomMenu]
-  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+  // 请将$r('app.media.app_icon')替换为实际资源文件
   @Builder
   RightClickTextCustomMenu() {
     Column() {

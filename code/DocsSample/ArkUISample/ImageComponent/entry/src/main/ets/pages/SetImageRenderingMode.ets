@@ -21,7 +21,7 @@ struct SetImageRenderingMode {
   build() {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
-        // $r('app.media.example')需要替换为开发者所需的资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
           // 通过renderMode属性设置图片的渲染模式为原色或黑白
           .renderMode(ImageRenderMode.Original)
@@ -30,7 +30,7 @@ struct SetImageRenderingMode {
           .border({ width: 1 })
           // overlay接口暂不支持深色模式
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        // $r('app.media.example')需要替换为开发者所需的资源文件
+        // $r('app.media.example')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.example'))
           // 通过renderMode属性设置图片的渲染模式为原色或黑白
           .renderMode(ImageRenderMode.Template)

@@ -27,7 +27,7 @@ struct BrightnessPage {
 
   build() {
     RelativeContainer() {
-      // $r('app.string.Reset')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Brightness')替换为实际资源文件，在本示例中该资源文件的value值为"设置亮度"
       Text($r('app.string.Brightness'))
         .fontColor(Color.White)
         .id('id_brightness_set_text')
@@ -68,7 +68,7 @@ struct BrightnessPage {
 
       ArcButton({
         options: new ArcButtonOptions({
-          // $r('app.string.Reset')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.Reset')替换为实际资源文件，在本示例中该资源文件的value值为"重置"
           label: $r('app.string.Reset'),
           styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT,
           fontSize: new LengthMetrics(19, LengthUnit.FP),

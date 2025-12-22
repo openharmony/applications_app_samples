@@ -42,7 +42,7 @@ export struct DisableMenuItem {
           // [EndExclude richEditor_disableMenu]
           RichEditor(this.options)
             .onReady(() => {
-              // 'app.string.Demo_richEditor'资源文件中的value值为'这是一个RichEditor'
+              // 请将$r('app.string.Demo_richEditor')替换为实际资源文件，在本示例中该资源文件的value值为"这是一个RichEditor"
               this.controller.addTextSpan($r('app.string.Demo_richEditor'), {
                 style: {
                   fontSize: 30
@@ -66,6 +66,7 @@ export struct DisableMenuItem {
       .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Disable_Menu_Item_title')替换为实际资源文件，在本示例中该资源文件的value值为"禁用搜索和翻译菜单"
     .title($r('app.string.Disable_Menu_Item_title'));
     // [EndExclude richEditor_disableMenu]
   }

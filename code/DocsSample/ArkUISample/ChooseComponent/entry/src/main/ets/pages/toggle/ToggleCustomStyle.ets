@@ -24,7 +24,7 @@ export struct CustomStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({
-          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+          // 请将$r('app.string.ToggleCustomStyle_titleOne')替换为实际资源文件，在本示例中该资源文件的value值为"selectedColor设置选中后的背景颜色"
           title: $r('app.string.ToggleCustomStyle_titleOne'),
           description: $r('app.string.ToggleCustomStyle_descriptionOne')
         }) {
@@ -53,7 +53,7 @@ export struct CustomStyle {
         }
 
         ComponentCard({
-          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+          // 请将$r('app.string.ToggleCustomStyle_titleTwo')替换为实际资源文件，在本示例中该资源文件的value值为"设置Switch类型的圆形滑块颜色"
           title: $r('app.string.ToggleCustomStyle_titleTwo'),
           description: $r('app.string.ToggleCustomStyle_descriptionTwo')
         }) {
@@ -76,7 +76,7 @@ export struct CustomStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.ToggleCustomStyle_title')替换为实际资源文件，在本示例中该资源文件的value值为"自定义切换按钮"
     .title($r('app.string.ToggleCustomStyle_title'))
   }
 }

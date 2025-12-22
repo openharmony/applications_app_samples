@@ -13,17 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  __memo_context_type,
-  __memo_id_type,
-  Consume,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf,
-  StorageLink
-} from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import {
   $r,
   Button,
@@ -48,7 +38,7 @@ import {
   ScrollDirection,
   Text,
   TextAlign,
-  TextAttribute,
+  TextAttribute
 } from '@ohos.arkui.component';
 import hilog from '@ohos.hilog'
 import common from '@ohos.app.ability.common'

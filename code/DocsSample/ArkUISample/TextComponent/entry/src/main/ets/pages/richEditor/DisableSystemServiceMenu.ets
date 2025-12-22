@@ -40,7 +40,7 @@ export struct DisableSystemServiceMenu {
         ComponentCard() {
           // [EndExclude richEditor_disableSystemMenu]
           RichEditor(this.options).onReady(() => {
-            // $r('app.string.Demo_richEditor')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.Demo_richEditor')替换为实际资源文件，在本示例中该资源文件的value值为"这是一个RichEditor"
             this.controller.addTextSpan($r('app.string.Demo_richEditor'),
               {
                 style:
@@ -66,6 +66,7 @@ export struct DisableSystemServiceMenu {
       .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Disable_SystemService_Menu_title')替换为实际资源文件，在本示例中该资源文件的value值为"禁用系统服务菜单"
     .title($r('app.string.Disable_SystemService_Menu_title'));
     // [EndExclude richEditor_disableSystemMenu]
   }

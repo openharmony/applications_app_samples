@@ -25,6 +25,7 @@ struct SheetTransitionExample {
   @Builder
   myBuilder() {
     Column() {
+      // 请将$r('app.string.bindSheetCmd_label10')替换为实际资源文件，在本示例中该资源文件的value值为"enableHoverMode切换"
       Button($r('app.string.bindSheetCmd_label10'))
         .margin(10)
         .fontSize(20)
@@ -32,6 +33,7 @@ struct SheetTransitionExample {
           this.enableHoverMode = !this.enableHoverMode;
         })
 
+      // 请将$r('app.string.bindSheetCmd_label11')替换为实际资源文件，在本示例中该资源文件的value值为"hoverModeArea切换"
       Button($r('app.string.bindSheetCmd_label11'))
         .margin(10)
         .fontSize(20)
@@ -53,6 +55,7 @@ struct SheetTransitionExample {
 
   build() {
     Column() {
+      // 请将$r('app.string.bindSheetCmd_label9')替换为实际资源文件，在本示例中该资源文件的value值为"拉起半模态"
       Button($r('app.string.bindSheetCmd_label9'))
         .onClick(() => {
           this.isShow = true;

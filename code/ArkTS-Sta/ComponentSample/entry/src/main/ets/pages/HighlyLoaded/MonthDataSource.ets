@@ -26,11 +26,6 @@
  */
 
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Text,
   TextAttribute,
   Column,
@@ -43,11 +38,7 @@ import {
   DataChangeListener
 } from '@ohos.arkui.component';
 import {
-  State,
-  Link,
-  MutableState,
-  stateOf,
-  observableProxy
+  State, Link
 } from '@ohos.arkui.stateManagement';
 
 export interface Month {
@@ -71,7 +62,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return this.dataArray.length;
   }
 
@@ -80,8 +71,8 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {number} index - 索引值。
    * @returns {CustomDataType} 返回指定索引数据。
    */
-  public getData(index: number): Month {
-    return this.dataArray[index.toInt()];
+  public getData(index: int): Month {
+    return this.dataArray[index];
   }
 
   public setData(index: number, data: Month[]) {

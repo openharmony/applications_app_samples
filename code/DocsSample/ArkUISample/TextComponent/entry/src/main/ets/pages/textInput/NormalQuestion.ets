@@ -21,7 +21,7 @@ struct TextExample {
   private textAreaPadding = 12;
   private setMaxLines = 3;
   private resourceManager = this.getUIContext().getHostContext()?.resourceManager;
-  // 'app.string.NormalQuestion_AddInput'资源文件中的value值为"我是TextArea"
+  // 请将$r('app.string.NormalQuestion_AddInput')替换为实际资源文件，在本示例中该资源文件的value值为"我是TextArea"
   private changeText = this.resourceManager?.getStringSync($r('app.string.NormalQuestion_change')) as string;
   @State fullText: string = this.changeText;
   @State originText: string = this.changeText;
@@ -54,7 +54,7 @@ struct TextExample {
         })
 
       Blank(50)
-      // 'app.string.NormalQuestion_AddInput'资源文件中的value值为"增加输入"
+      // 请将$r('app.string.NormalQuestion_AddInput')替换为实际资源文件，在本示例中该资源文件的value值为"增加输入"
       Button($r('app.string.NormalQuestion_AddInput'))
         .onClick(() => {
           this.fullText += this.changeText;
@@ -72,5 +72,6 @@ export function NormalQuestion() {
     TextExample()
   }
   .backgroundColor('#f1f2f3')
+  // 请将$r('app.string.NormalQuestion_title')替换为实际资源文件，在本示例中该资源文件的value值为"如何设置TextArea的文本最少展示行数并自适应高度"
   .title($r('app.string.NormalQuestion_title'))
 }

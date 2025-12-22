@@ -29,8 +29,9 @@ export struct AddBuilderDecoratorContent {
     Row() {
       Image($r('app.media.startIcon')).width(50).height(50).margin(16)
       Column() {
-        // $r('app.string.XXX')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.AddBuilderDecoratorContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"文本文档.txt"        
         Text($r('app.string.AddBuilderDecoratorContent_Text_1')).fontWeight(FontWeight.Bold).fontSize(16)
+        // 请将$r('app.string.AddBuilderDecoratorContent_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"123.45KB"
         Text($r('app.string.AddBuilderDecoratorContent_Text_2')).fontColor('#8a8a8a').fontSize(12)
       }.alignItems(HorizontalAlign.Start)
     }.backgroundColor('#f4f4f4')
@@ -46,6 +47,8 @@ export struct AddBuilderDecoratorContent {
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(
+                  // 请将$r('app.string.AddBuilderDecoratorContent_Text_3')替换为实际资源文件，
+                  // 在本示例中该资源文件的value值为"点击按钮在此处添加builderspan。"
                   resource.resourceToString($r('app.string.AddBuilderDecoratorContent_Text_3')), {
                   style: {
                     fontColor: Color.Black,
@@ -54,6 +57,7 @@ export struct AddBuilderDecoratorContent {
                 })
               })
             // [EndExclude richEditor_addBuilder]
+            // 请将$r('app.string.AddBuilderDecoratorContent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"addBuilderSpan"
             Button($r('app.string.AddBuilderDecoratorContent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
@@ -73,6 +77,7 @@ export struct AddBuilderDecoratorContent {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Add_Builder_DecoratorContent_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加@Builder装饰器修饰的内容"
     .title($r('app.string.Add_Builder_DecoratorContent_title'))
   }
 }

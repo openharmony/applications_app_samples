@@ -59,7 +59,7 @@ export struct CreateButton {
           // [Start create_button_by_button_options2]
           Button({ type: ButtonType.Normal, stateEffect: true }) {
             Row() {
-              // $r('app.media.loading')需要替换为开发者需要的图片资源
+              // 请将$r('app.media.loading')替换为实际资源文件
               Image($r('app.media.loading')).width(20).height(40).margin({ left: 12 })
               Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
             }.alignItems(VerticalAlign.Center)

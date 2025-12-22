@@ -24,10 +24,9 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Row, TextAlign, Visibility, Entry,
   List, WordBreak,ListItem,TextInput, InputType,TextOverflow, Image, HorizontalAlign,Tabs,$r,TabContent, Progress, ProgressType} from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State, Link } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import {globalContext}  from '../entryability/GlobalContext';

@@ -142,7 +142,7 @@ export struct FocusScopePriority {
     }
     // [StartExclude focus_scope_navigation]
     .backgroundColor('#f1f2f3')
-    // app.string.Focus_FocusScopePriority_title资源文件中的value值为'焦点组与获焦优先级'
+    // 请将$r('app.string.Focus_FocusScopePriority_title')替换为实际资源文件，在本示例中该资源文件的value值为"焦点组与获焦优先级"
     .title($r('app.string.Focus_FocusScopePriority_title'))
     // [EndExclude focus_scope_navigation]
   }

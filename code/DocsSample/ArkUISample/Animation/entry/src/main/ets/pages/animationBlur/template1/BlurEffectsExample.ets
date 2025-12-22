@@ -25,7 +25,7 @@ struct BlurEffectsExample {
         .fontColor(Color.White)
         .textAlign(TextAlign.Center)
         .backdropBlur(10)// 对背景进行模糊
-        // $r('app.media.bg')需要替换为开发者所需的资源文件
+        // 请将$r('app.media.bg')替换为实际资源文件
         .backgroundImage($r('app.media.bg'))
         .backgroundImageSize({ width: 400, height: 300 })
     }

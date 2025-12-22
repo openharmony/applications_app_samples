@@ -26,11 +26,6 @@
  */
 
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Stack,
   Entry,
   Text,
@@ -55,7 +50,7 @@ import {
   FlexAlign,
   SafeAreaType
 } from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy, PropRef } from '@ohos.arkui.stateManagement';
+import { State, Link, PropRef } from '@ohos.arkui.stateManagement';
 
 import { BigFileCopyConstants } from './BigFileCopyConstants';
 import common from '@ohos.app.ability.common';

@@ -21,7 +21,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      // $r('app.string.i_am_content')资源文件中的value为'我是内容'
+      // 请将$r('app.string.i_am_content')替换为实际资源文件，在本示例中该资源文件的value值为"我是内容"
       Text($r('app.string.i_am_content'))
         .fontSize(20)
     }.height(60).justifyContent(FlexAlign.Center)

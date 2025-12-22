@@ -14,18 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  __memo_context_type,
-  __memo_id_type,
-  Consume,
-  Link,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf,
-  StorageLink
-} from '@ohos.arkui.stateManagement';
+import { Consume, Link, State } from '@ohos.arkui.stateManagement';
 import {
   $r,
   Button,
@@ -49,7 +38,7 @@ import { Comment } from '../model/CommentModel';
 import common from '@ohos.app.ability.common';
 import { PromptAction, UIContext } from '@ohos.arkui.UIContext';
 import { Constants } from '../constants/Constants';
-import { BusinessError } from '@ohos.base';
+import { BusinessError, RecordData } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import image from '@ohos.multimedia.image';
 
@@ -80,7 +69,7 @@ export struct CommentInputAndCameraCapture {
           // 设置启动参数
           'supportMultiMode': false, // 禁用多选模式（单张图片）
           'callBundleName': context.abilityInfo.bundleName // 传递调用方包名
-        } as Record<String, Object>
+        } as Record<string, RecordData>
       };
       // 启动Ability并等待结果（异步操作）
       context.startAbilityForResult(
@@ -95,7 +84,7 @@ export struct CommentInputAndCameraCapture {
           }
           if (result && result.resultCode === 0) {
             // 从结果中获取参数对象
-            const param: Record<string, Object> | undefined = result.want?.parameters as Record<string, Object>;
+            const param: Record<string, RecordData> | undefined = result.want?.parameters as Record<string, RecordData>;
             // 确保参数存在
             if (param !== undefined) {
               // 获取相机返回的图片URI（类型断言为字符串）

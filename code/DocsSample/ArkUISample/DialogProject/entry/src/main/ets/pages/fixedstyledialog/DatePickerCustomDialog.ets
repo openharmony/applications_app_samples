@@ -51,7 +51,7 @@ export struct DatePickerCustomDialogExample {
     }
     // [StartExclude date_picker_custom_dialog]
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    // 请将$r('app.string.CustomCustomDialog_date')替换为实际资源文件，在本示例中该资源文件的value值为"日期滑动选择器自定义弹窗"
     .title($r('app.string.CustomCustomDialog_date'))
     // [EndExclude date_picker_custom_dialog]
     }

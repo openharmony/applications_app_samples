@@ -33,6 +33,7 @@ export struct EventTransSubWindowMenuExample {
       .height('100%')
     }
     // [StartExclude eventTrans_menu]
+    // 请将$r('app.string.EventTransSubWindowMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"控制子窗菜单的事件透传"
     .title($r('app.string.EventTransSubWindowMenu_title'))
     // [EndExclude eventTrans_menu]
   }

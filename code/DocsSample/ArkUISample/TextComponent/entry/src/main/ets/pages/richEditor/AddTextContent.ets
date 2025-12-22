@@ -32,7 +32,7 @@ export struct AddTextContent {
             // [EndExclude richEditor_addText]
             RichEditor(this.options)
               .onReady(() => {
-                // $r('app.string.AddTextContent_Text_1')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.AddTextContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加text。"
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -46,14 +46,14 @@ export struct AddTextContent {
               })
               .width(300)
               .margin(10)
-            // $r('app.string.AddTextContent_Button_1')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.AddTextContent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"addTextSpan"
             Button($r('app.string.AddTextContent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
               .height(30)
               .fontSize(13)
               .onClick(() => {
-                // $r('app.string.AddTextContent_Text_2')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.AddTextContent_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"新添加一段文字。"
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
               })
             // [StartExclude richEditor_addText]
@@ -64,6 +64,7 @@ export struct AddTextContent {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Add_TextContent_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加文本内容"
     .title($r('app.string.Add_TextContent_title'))
     // [EndExclude richEditor_addText]
   }

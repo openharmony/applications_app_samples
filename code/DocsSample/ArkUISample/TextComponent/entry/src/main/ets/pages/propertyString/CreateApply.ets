@@ -18,9 +18,9 @@ import resource from '../../common/resource';
 @Entry
 @Component
 struct styled_string_demo1 {
-  //'app.string.CreateApply_Text_Forty_Five'资源文件中的value值为"运动45分钟"
+  // 请将$r('app.string.CreateApply_Text_Forty_Five')替换为实际资源文件，在本示例中该资源文件的value值为"运动45分钟"
   styledString1: StyledString = new StyledString(resource.resourceToString($r('app.string.CreateApply_Text_Forty_Five')));
-  //'app.string.CreateApply_Text_Third_Five'资源文件中的value值为"运动35分钟"
+  // 请将$r('app.string.CreateApply_Text_Third_Five')替换为实际资源文件，在本示例中该资源文件的value值为"运动35分钟"
   mutableStyledString1: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.CreateApply_Text_Third_Five')));
   controller1: TextController = new TextController();
   controller2: TextController = new TextController();

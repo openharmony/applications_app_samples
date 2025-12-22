@@ -13,17 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  __memo_context_type,
-  __memo_id_type,
-  Link,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf,
-  StorageLink
-} from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import {
   ClickEvent,
   Column,
@@ -33,7 +23,7 @@ import {
   Image,
   ResourceStr,
   Row,
-  RowAttribute,
+  RowAttribute
 } from '@ohos.arkui.component';
 
 @Component
@@ -43,12 +33,12 @@ export struct ImageListView {
   build() {
     Column() {
       Row() {
-        ForEach(this.selectedImages, (image: ResourceStr, index: number) => {
+        ForEach(this.selectedImages, (image: ResourceStr, index: int) => {
           Image(image)
             .height(100)
             .width(100)
             .borderRadius(5)
-        }, (image: ResourceStr, index: number) => index.toString())
+        }, (image: ResourceStr, index: int) => index.toString())
       }
       .width('100%')
       .height(110)

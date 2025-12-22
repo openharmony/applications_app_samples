@@ -299,13 +299,13 @@ export struct ScrollSnapshot {
           })
 
         Row({ space: 12 }) {
-          // $r('app.string.one_click_snapshot')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.one_click_snapshot')替换为实际资源文件，在本示例中该资源文件的value值为"One-Tap Screenshot"
           Button($r('app.string.one_click_snapshot'))
             .layoutWeight(1)
             .onClick(() => {
               this.onceSnapshot();
             })
-          // $r('app.string.scroll_snapshot')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.scroll_snapshot')替换为实际资源文件，在本示例中该资源文件的value值为"Scrolling Snapshot"
           Button($r('app.string.scroll_snapshot'))
             .layoutWeight(1)
             .onClick(() => {

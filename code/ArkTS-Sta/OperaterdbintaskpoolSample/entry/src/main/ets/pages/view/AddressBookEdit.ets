@@ -25,12 +25,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Entry, Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Row,
   TextAlign, SafeAreaEdge, TextOverflow, Image ,FlexAlign, SafeAreaType, $r, Builder, Color,
   TextInput, Divider, JSON, Margin, Navigation, FontWeight, ResourceStr, InputType
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
+import { State, Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
@@ -190,7 +189,7 @@ struct AddressBookEdit {
               .fontWeight(FontWeight.Bold)
               .width('15%')
             TextInput({ placeholder: $r('app.string.operate_rdb_in_taskpool_phone_prompt_text'), text: this.data.phone })
-              .type(InputType.Number)
+              .type(InputType.NUMBER)
               .placeholderColor('#999999')
               .placeholderFont({
                 size:  17,

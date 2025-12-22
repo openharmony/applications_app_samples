@@ -87,7 +87,7 @@ struct Index {
 
   build() {
     Column() {
-      // $r('app.string.Use_custom_Canvas')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.Use_custom_Canvas')替换为实际资源文件，在本示例中该资源文件的value值为"使用画布绘制自定义图形"
       Text($r('app.string.Use_custom_Canvas'))
         .height('5%')
         .width('100%')

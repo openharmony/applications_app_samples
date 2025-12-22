@@ -94,7 +94,7 @@ export struct SnapshotPreview {
           fileIo.closeSync(file.fd);
           Logger.info(TAG, `Succeeded in packToFile`);
           this.getUIContext().getPromptAction().showToast({
-            // $r('app.string.save_album_success')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.save_album_success')替换为实际资源文件，在本示例中该资源文件的value值为"Saved to album"
             message: $r('app.string.save_album_success'),
             duration: 1800
           })
@@ -212,7 +212,7 @@ export struct SnapshotPreview {
   @Builder
   buttonBar() {
     Row({ space: 16 }) {
-      // $r('app.string.button_cancel')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.button_cancel')替换为实际资源文件，在本示例中该资源文件的value值为"Cancel"
       Button($r('app.string.button_cancel'))
         .width('calc(50% - 24vp)')
         .height(40)
@@ -260,7 +260,7 @@ export struct SnapshotPreview {
         this.previewWindow();
       } else {
         // A pop-up window in the screenshot prompts
-        // $r('app.string.screen_is_taking')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.screen_is_taking')替换为实际资源文件，在本示例中该资源文件的value值为"Screenshot is taking, please wait..."
         Text($r('app.string.screen_is_taking'))
           .backgroundColor(Color.White)
           .textAlign(TextAlign.Center)

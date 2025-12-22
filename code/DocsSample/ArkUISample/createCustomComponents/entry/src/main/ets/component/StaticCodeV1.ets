@@ -24,7 +24,7 @@ struct MyComponent {
   // [StartExclude Static_code_V1]
   build() {
     Column() {
-      // app.string.static_code资源文件中的value值为'静态代码块不生效'
+      // 请将$r('app.string.static_code')替换为实际资源文件，在本示例中该资源文件的value值为"静态代码块不生效"
       Text(MyComponent.a === '' ? $r('app.string.static_code') : MyComponent.a)
     }
     .width('100%')

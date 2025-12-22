@@ -19,7 +19,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function flowerBuilder() {
-  // 图片使用Resource资源，需用户自定义
+  // 请将$r('app.media.longevity_flower')替换为实际资源文件
   Image($r('app.media.longevity_flower'))
   // 避免第一次加载图片时图片闪烁
     .syncLoad(true);

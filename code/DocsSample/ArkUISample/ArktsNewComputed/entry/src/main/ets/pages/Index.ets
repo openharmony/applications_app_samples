@@ -26,26 +26,33 @@ import { ComputedProperty } from './ComputedProperty';
 const routes: Route[] = [
   {
     name: 'CustomComponentUse',
+    // 请将$r('app.string.computed_desc_1')替换为实际资源文件，在本示例中该资源文件的value值为"在自定义组件中使用计算属性。"
     title: resource.resourceToString($r('app.string.computed_desc_1')),
     description: ''
   },
   {
     name: 'ObservedV2ClassUser',
+    // 请将$r('app.string.computed_desc_2')替换为实际资源文件，在本示例中该资源文件的value值为"在@ObservedV2装饰的类中使用计算属性。。"
     title: resource.resourceToString($r('app.string.computed_desc_2')),
     description: ''
   },
   {
     name: 'ComputingPropertyResolution',
+    // 请将$r('app.string.computed_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"@Computed装饰的属性可以被@Monitor监听变化"
     title: resource.resourceToString($r('app.string.computed_title_2')),
+    // 请将$r('app.string.computed_desc_3')替换为实际资源文件，在本示例中该资源文件的value值为"如何使用计算属性求解fahrenheit和kelvin。"
     description: $r('app.string.computed_desc_3')
   },
   {
     name: 'ComputedInitParam',
+    // 请将$r('app.string.computed_title_3')替换为实际资源文件，在本示例中该资源文件的value值为"@Computed装饰的属性可以初始化@Param"
     title: resource.resourceToString($r('app.string.computed_title_3')),
+    // 请将$r('app.string.computed_desc_4')替换为实际资源文件，在本示例中该资源文件的value值为"下面的例子使用@Computed初始化@Param。"
     description: $r('app.string.computed_desc_4')
   },
   {
     name: 'ComputedProperty',
+    // 请将$r('app.string.computed_property_title')替换为实际资源文件，在本示例中该资源文件的value值为"使用@Computed计算属性"
     title: resource.resourceToString($r('app.string.computed_property_title')),
     description: ''
   },

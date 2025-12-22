@@ -191,7 +191,6 @@ export struct GridLayout {
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.GridLayout_title')替换为实际资源文件，在本示例中该资源文件的value值为"网格开发布局"
-
     .title($r('app.string.GridLayout_title'))
   }
 }

@@ -27,6 +27,7 @@ import { OnKeyPreImeCommit } from './OnKeyPreImeCommit';
 
 export const Device_ROUTE_PREFIX: string = 'Device_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Device_ROUTE_PREFIX}/OnHover`,
@@ -114,6 +115,7 @@ struct DeviceExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.Device_index_title')替换为实际资源文件，在本示例中该资源文件的value值为"键鼠事件"
     .title($r('app.string.Device_index_title'))
   }
 }

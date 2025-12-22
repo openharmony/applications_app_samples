@@ -26,11 +26,6 @@
  */
 
 import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
   Entry,
   Row,
   Text,
@@ -43,12 +38,7 @@ import {
   TextArea,
   Scroll
 } from '@ohos.arkui.component';
-import {
-  State,
-  MutableState,
-  stateOf,
-  observableProxy
-} from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import { Context, UIContext } from '@ohos.arkui.UIContext';
 import { DecompressFileViewComponent } from './DecompressFile/DecompressFileViewComponent';
 import { CompressFileViewComponent } from './CompressFile/CompressFile';

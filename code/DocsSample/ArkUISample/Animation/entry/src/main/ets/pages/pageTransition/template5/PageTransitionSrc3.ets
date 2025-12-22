@@ -17,7 +17,7 @@
 struct PageTransitionSrc3 {
   build() {
     Column() {
-      // $r('app.media.forest')需要替换为开发者所需要的资源文件
+      // 请将$r('app.media.forest')替换为实际资源文件
       Image($r('app.media.forest'))
         .width('90%')
         .height('80%')

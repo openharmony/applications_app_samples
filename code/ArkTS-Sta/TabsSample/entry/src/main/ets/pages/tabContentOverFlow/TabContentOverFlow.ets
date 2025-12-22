@@ -14,20 +14,10 @@
  * limitations under the License.
  */
 
-import {
-  __memo_context_type,
-  __memo_id_type,
-  Link,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf
-} from '@ohos.arkui.stateManagement';
+import { Link, State } from '@ohos.arkui.stateManagement';
 import {
   $r,
   Alignment,
-  animateTo,
   BarMode,
   Builder,
   Button,
@@ -75,8 +65,7 @@ import router from '@ohos.router';
 @Entry
 @Component
 export struct TabContentOverFlowComponent {
-  @State tabArray: string[] = ['首页', '视频',
-    '商城', '我的'];
+  @State tabArray: string[] = ['首页', '视频', '商城', '我的'];
   @State imageArray: string[] =
     ['app.media.tabcontentoverflow_homepage', 'app.media.tabcontentoverflow_video', 'app.media.tabcontentoverflow_mall',
       'app.media.tabcontentoverflow_mine'];
@@ -308,10 +297,10 @@ export struct TabContentOverFlowComponent {
 
       // 页签
       Row() {
-        ForEach(this.tabArray, (item: string, idx: number) => {
-          const index = idx.toInt();
+        ForEach(this.tabArray, (item: string, idx: int) => {
+          const index = idx;
           Column() {
-            Image(this.index === index ? $r(this.imageClickArray[index.toInt()]) : $r(this.imageArray[index.toInt()]))
+            Image(this.index === index ? $r(this.imageClickArray[index]) : $r(this.imageArray[index]))
               .width(30)
               .height(30)
             Text(item)

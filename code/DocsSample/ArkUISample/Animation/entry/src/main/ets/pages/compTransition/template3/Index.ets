@@ -35,10 +35,12 @@ struct TransitionEffectExample3 {
         // id为"column1"的组件是这棵新出现/消失的子树的根节点。
         Column() {
           Row() {
+            // 请将$r('app.media.testImg')替换为实际资源文件
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
 
+          // 请将$r('app.media.testImg')替换为实际资源文件
           Image($r('app.media.testImg'))
             .width(150)
             .height(150)

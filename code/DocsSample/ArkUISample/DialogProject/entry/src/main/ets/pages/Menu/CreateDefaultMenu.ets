@@ -40,6 +40,7 @@ export struct CreateDefaultMenuExample {
       .height('100%')
     }
     // [StartExclude create_default_menu]
+    // 请将$r('app.string.CreateDefaultMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"创建默认样式的菜单"
     .title($r('app.string.CreateDefaultMenu_title'))
     // [EndExclude create_default_menu]
   }

@@ -20,6 +20,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      // 请将$r('app.string.CustomDialog_shadow')替换为实际资源文件，在本示例中该资源文件的value值为"弹窗设置边框阴影预览"
       Text($r('app.string.CustomDialog_shadow'))
     }
     .padding({
@@ -81,6 +82,7 @@ export struct DialogStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CustomDialog_style')替换为实际资源文件，在本示例中该资源文件的value值为"弹出框的样式"
     .title($r('app.string.CustomDialog_style'))
   }
 }

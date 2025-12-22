@@ -93,7 +93,7 @@ struct Index {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Column({ space: 10 }) {
-        // $r('app.media.Modify_Node_Common_Properties_Width_And_Height')需要替换为开发者所需的文本资源文件
+        // 请将$r('app.string.Modify_Node_Common_Properties_Width_And_Height')替换为实际资源文件，在本示例中该资源文件的value值为"修改节点通用属性-宽高"
         Text($r('app.string.Modify_Node_Common_Properties_Width_And_Height'))
         Button('modify ArkTS-FrameNode')
           .onClick(() => {
@@ -139,7 +139,7 @@ struct Index {
       })
 
       Column({ space: 10 }) {
-        // $r('app.media.Modify_Node_Click_Event')需要替换为开发者所需的文本资源文件
+        // 请将$r('app.string.Modify_Node_Click_Event')替换为实际资源文件，在本示例中该资源文件的value值为"修改节点点击事件"
         Text($r('app.string.Modify_Node_Click_Event'))
         Button('add click event to ArkTS-FrameNode')
           .onClick(() => {

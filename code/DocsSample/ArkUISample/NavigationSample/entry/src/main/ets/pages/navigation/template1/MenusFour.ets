@@ -71,7 +71,7 @@ struct MenusFour {
       // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标
       .menus([menuItem, menuItem, menuItem, menuItem])
       // [End NavigationMenuFour]
-      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.mainTitle')替换为实际资源文件，在本示例中该资源文件的value值为"需要手动替换"
       .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)

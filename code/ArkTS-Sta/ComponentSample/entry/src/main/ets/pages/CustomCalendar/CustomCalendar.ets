@@ -24,11 +24,7 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
+
 import {
   Text,
   TextAttribute,
@@ -41,20 +37,15 @@ import {
   Entry
 } from '@ohos.arkui.component';
 import {
-  State,
-  Link,
-  MutableState,
-  stateOf,
-  observableProxy
+  State, Link
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
-import { Context,UIContext} from '@ohos.arkui.UIContext';
+import { Context, UIContext } from '@ohos.arkui.UIContext';
 import { CalendarView } from './view/CalendarView';
 
 @Entry
 @Component
 struct CustomCalendar {
-
   build() {
     Column() {
       Row() {
@@ -63,6 +54,7 @@ struct CustomCalendar {
             this.getUIContext().getRouter().back();
           }).width('100%')
       }.height('5%')
+
       CalendarView();
     }
   }

@@ -22,11 +22,13 @@ struct ClipShapeExample {
   build() {
     Column({ space: 15 }) {
       // 用一个280px直径的圆对图片进行裁剪
+      // 请将$r('app.media.background')替换为实际资源文件
       Image($r('app.media.background'))
         .clipShape(new CircleShape({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
       // 用一个350px直径的圆对图片进行裁剪
+      // 请将$r('app.media.background')替换为实际资源文件
       Image($r('app.media.background'))
         .clipShape(new CircleShape({ width: '350px', height: '350px' }))
         .width('500px').height('370px')

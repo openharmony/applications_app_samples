@@ -53,6 +53,7 @@ export struct CustomPopupExample {
       .height('100%')
     }
     // [StartExclude custom_popup]
+    // 请将$r('app.string.custom_popup')替换为实际资源文件，在本示例中该资源文件的value值为"自定义气泡"
     .title($r('app.string.custom_popup'))
 
     // [EndExclude custom_popup]

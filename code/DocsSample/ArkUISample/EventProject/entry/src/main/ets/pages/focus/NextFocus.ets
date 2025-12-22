@@ -54,6 +54,7 @@ export struct NextFocusExample {
     }
     // [StartExclude dynamic_focus_next]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Focus_Index_NextFocus_title')替换为实际资源文件，在本示例中该资源文件的value值为"下一个聚焦/NextFocus"
     .title($r('app.string.Focus_Index_NextFocus_title'))
     // [EndExclude dynamic_focus_next]
   }

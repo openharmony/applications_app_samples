@@ -23,6 +23,10 @@ export struct Parallel {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        /* 请将$r('app.string.groupgesture_Parallel_text')替换为实际资源文件，
+         * 在本示例中该资源文件的value值为"以在一个Column组件上绑定点击手势和双击手势组成的并行识别手势为例，
+         * 由于单击手势和双击手势是并行识别，因此两个手势可以同时进行识别，二者互不干涉。"
+         */
         Text($r('app.string.groupgesture_Parallel_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -51,6 +55,7 @@ export struct Parallel {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.groupgesture_Parallel_title')替换为实际资源文件，在本示例中该资源文件的value值为"并行识别"
     .title($r('app.string.groupgesture_Parallel_title'))
   }
 }

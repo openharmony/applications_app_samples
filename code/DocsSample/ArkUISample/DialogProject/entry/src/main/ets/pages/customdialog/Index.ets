@@ -38,6 +38,7 @@ import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Custom_ROUTE_PREFIX}/dialog`,
@@ -207,6 +208,7 @@ struct CustomExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.CustomDialog_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"自定义弹窗"
     .title($r('app.string.CustomDialog_dialog'))
   }
 }

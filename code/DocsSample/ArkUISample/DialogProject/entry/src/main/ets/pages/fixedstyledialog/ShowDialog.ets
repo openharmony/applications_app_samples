@@ -66,7 +66,7 @@ export struct ShowDialogExample {
       // [StartExclude show_dialog_example]
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')ĞèÒªÌæ»»Îª¿ª·¢ÕßËùĞèµÄ×Ö·û´®×ÊÔ´ÎÄ¼ş
+    // è¯·å°†$r('app.string.ShowDialog_title')æ›¿æ¢ä¸ºå®é™…èµ„æºæ–‡ä»¶ï¼Œåœ¨æœ¬ç¤ºä¾‹ä¸­è¯¥èµ„æºæ–‡ä»¶çš„valueå€¼ä¸º"å¯¹è¯æ¡†"
     .title($r('app.string.ShowDialog_title'))
     // [EndExclude show_dialog_example]
   }

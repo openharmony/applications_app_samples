@@ -38,6 +38,7 @@ export struct TabIndexFocusExample {
     }
     // [StartExclude dynamic_focus_tab_index_focus]
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.Tab_Index_TabIndexFocus_title')替换为实际资源文件，在本示例中该资源文件的value值为"标签索引聚焦/TabIndexFocus"
     .title($r('app.string.Tab_Index_TabIndexFocus_title'))
     // [EndExclude dynamic_focus_tab_index_focus]
   }

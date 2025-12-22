@@ -42,7 +42,7 @@ export class CommonConstants {
   // divider
   public static readonly STROKE_WIDTH: number = 2;
   // initial index
-  public static readonly INITIAL_INDEX: number = 0;
+  public static readonly INITIAL_INDEX: int = 0;
   // navigation title width
   public static readonly FOLD_NAVIGATION_TITLE_WIDTH: number = 204;
   // space
@@ -54,8 +54,8 @@ export class CommonConstants {
   // list
   public static readonly LAYOUT_WEIGHT: number = 1;
   // add image
-  public static readonly Z_INDEX: number = 1;
-  public static readonly ADD_IMAGE_RIGHT: number = 40;
+  public static readonly Z_INDEX: int = 1;
+  public static readonly ADD_IMAGE_RIGHT: int = 40;
   // search
   public static readonly SEARCH_TEXT: string = '搜索';
   public static readonly SEARCH_TEXT_SIZE: number = 14;

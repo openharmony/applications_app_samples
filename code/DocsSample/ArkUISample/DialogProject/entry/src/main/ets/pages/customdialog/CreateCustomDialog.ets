@@ -25,6 +25,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      // 请将$r('app.string.CustomDialog_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"自定义弹窗"
       Text($r('app.string.CustomDialog_dialog'))
     }
     .padding({
@@ -64,6 +65,7 @@ export struct CreateDialog {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CustomDialog_create')替换为实际资源文件，在本示例中该资源文件的value值为"创建自定义弹框"
     .title($r('app.string.CustomDialog_create'))
   }
   // [EndExclude create_custom_dialog_controller]

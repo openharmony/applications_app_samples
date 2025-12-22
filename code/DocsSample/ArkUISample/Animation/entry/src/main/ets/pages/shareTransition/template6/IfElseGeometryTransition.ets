@@ -23,7 +23,7 @@ struct IfElseGeometryTransition {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShow) {
-        // 图片使用Resource资源，需用户自定义
+        // 请将$r('app.media.spring')替换为实际资源文件
         Image($r('app.media.spring'))
           .autoResize(false)
           .clip(true)
@@ -41,7 +41,7 @@ struct IfElseGeometryTransition {
         // 套多层容器为了说明相对布局约束传递
         Column() {
           Column() {
-            // 图片使用Resource资源，需用户自定义
+            // 请将$r('app.media.sunset_sky')替换为实际资源文件
             Image($r('app.media.sunset_sky'))
               .size({ width: '100%', height: '100%' })
           }

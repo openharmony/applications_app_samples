@@ -13,15 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  __memo_context_type,
-  __memo_id_type,
-  memo,
-  MutableState,
-  observableProxy,
-  State,
-  stateOf
-} from '@ohos.arkui.stateManagement';
+import { State } from '@ohos.arkui.stateManagement';
 import {
   $$,
   $r,
@@ -67,7 +59,7 @@ import router from '@ohos.router';
 @Component
 export struct CustomView {
   // 当前选中的页签index
-  @State currentIndex: number = 0;
+  @State currentIndex: int = 0;
   // 颜色条的偏移量
   @State transitionX: number = 30;
   // 即将前往的页签index
@@ -85,11 +77,11 @@ export struct CustomView {
   // duration计算基数
   private durationRadix: number = 200;
   // iterations默认值
-  private iterationsDefault: number = 1;
+  private iterationsDefault: int = 1;
   // 判断条件值
   private judgmentValue: number = 0;
   // currentIndex计算基数
-  private currentIndexRadix: number = 1;
+  private currentIndexRadix: int = 1;
   // 是否开始动画标志
   isStartAction: boolean = false;
 
@@ -117,13 +109,13 @@ export struct CustomView {
   private titleArray: Array<string> = ['候补预测', '在线换座', '余票挖掘', '个人中心'];
 
   // 实现动画效果
-  achieveEffect(temIndex: number) {
+  achieveEffect(temIndex: int) {
     // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
     this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
     this.wantGoIndex = temIndex;
     // 动画效果
     this.getUIContext()?.animateTo({
-      duration: Math.abs(temIndex - this.currentIndex) * this.durationRadix,
+      duration: (Math.abs(temIndex - this.currentIndex) * this.durationRadix).toInt(),
       curve: Curve.EaseInOut,
       iterations: this.iterationsDefault,
       playMode: PlayMode.Normal,
@@ -140,7 +132,7 @@ export struct CustomView {
       Column() {
         Row() {
           // 此处为了演示场景，列表数量只有4个，使用ForEach，列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
-          ForEach(this.titleArray, (title: string, idx: number) => {
+          ForEach(this.titleArray, (title: string, idx: int) => {
             Text(title)
               .id('custom_view_title_' + idx)
               .height(30)
@@ -157,7 +149,7 @@ export struct CustomView {
                   this.wantGoIndex = idx;
                   // 动画效果
                   this.getUIContext()?.animateTo({
-                    duration: Math.abs(idx - this.currentIndex) * this.durationRadix,
+                    duration: (Math.abs(idx - this.currentIndex) * this.durationRadix).toInt(),
                     curve: Curve.EaseInOut,
                     iterations: this.iterationsDefault,
                     playMode: PlayMode.Normal,
@@ -172,7 +164,7 @@ export struct CustomView {
                   })
                 }
               })
-          }, (title: string, idx: number) => title)
+          }, (title: string, idx: int) => title)
         }
         .id('custom_view_title')
         .height(30)
@@ -192,7 +184,7 @@ export struct CustomView {
       List({ scroller: this.scroller } as ListOptions) {
         // 内容区域部分
         // 此处为了演示场景，列表数量只有4个，使用ForEach，列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
-        ForEach(this.titleArray, (item: string, index: number) => {
+        ForEach(this.titleArray, (item: string, index: int) => {
           ListItem() {
             Text(item)
               .id('custom_view_content_' + index)
@@ -201,24 +193,24 @@ export struct CustomView {
               .fontSize(25)
               .textAlign(TextAlign.Center)
           }
-        }, (item: string, index: number) => item)
+        }, (item: string, index: int) => item)
       }
       .id('custom_view_content')
       .scrollBar(BarState.Off)
       .listDirection(Axis.Horizontal)
       .priorityGesture(
-        PanGesture() // 内容区域实现：添加滑动手势，手势响应后，使用scrollToIndex方法来实现效果
+        PanGesture()// 内容区域实现：添加滑动手势，手势响应后，使用scrollToIndex方法来实现效果
           .onActionUpdate((event: GestureEvent) => {
             if (!this.isStartAction) {
               this.isStartAction = true;
               if (event.offsetX < this.judgmentValue) {
                 if (this.currentIndex < this.titleArray.length - this.currentIndexRadix) {
-                  const temIndex: number = this.currentIndex + this.currentIndexRadix;
+                  const temIndex: int = (this.currentIndex + this.currentIndexRadix).toInt();
                   this.achieveEffect(temIndex);
                 }
               } else {
                 if (this.currentIndex > this.judgmentValue) {
-                  const temIndex: number = this.currentIndex - this.currentIndexRadix;
+                  const temIndex: int = (this.currentIndex - this.currentIndexRadix).toInt();
                   this.achieveEffect(temIndex);
                 }
               }

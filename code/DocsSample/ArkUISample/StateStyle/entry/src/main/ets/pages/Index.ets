@@ -42,27 +42,32 @@ function cardDisabledStyle() {
 @Entry
 @Component
 struct ComponentExtension {
-  //$r('app.string.xxx')需要替换为开发者所需的资源文件
   @Provide('router') router: NavPathStack = new NavPathStack();
   @State routes: RouteGroup[] = [
     {
       name: 'StateStyle',
+      // 请将$r('app.string.StateStyles')替换为实际资源文件，在本示例中该资源文件的value值为"基础场景"
       label: $r('app.string.StateStyles'),
+      // 请将$r('app.string.StateStylesExample')替换为实际资源文件，在本示例中该资源文件的value值为"基础场景示例"
       children: [
         { name: 'StateStylesSample', label: $r('app.string.StateStylesExample') },
       ]
     },
     {
       name: 'NormalStyle',
+      // 请将$r('app.string.MyComponent')替换为实际资源文件，在本示例中该资源文件的value值为"按压态"
       label: $r('app.string.MyComponent'),
       children: [
+        // 请将$r('app.string.MyComponentExample')替换为实际资源文件，在本示例中该资源文件的value值为"按压态示例"
         { name: 'MyComponent', label: $r('app.string.MyComponentExample') },
       ]
     },
     {
       name: 'FocusStyle',
+      // 请将$r('app.string.CompWithInlineStateStyles')替换为实际资源文件，在本示例中该资源文件的value值为"获焦变色"
       label: $r('app.string.CompWithInlineStateStyles'),
       children: [
+        // 请将$r('app.string.CompWithInlineStateStylesExample')替换为实际资源文件，在本示例中该资源文件的value值为"获焦变色示例"
         { name: 'CompWithInlineStateStyles', label: $r('app.string.CompWithInlineStateStylesExample') },
       ]
     }

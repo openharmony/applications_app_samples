@@ -23,7 +23,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      // $r('app.string.search_by_dialog')资源文件中的value为'点我查询弹窗状态:通过自定义组件自带controller'
+      // 请将$r('app.string.search_by_dialog')替换为实际资源文件，在本示例中该资源文件的value值为"点我查询弹窗状态:通过自定义组件自带controller"
       Button($r('app.string.search_by_dialog'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
@@ -32,12 +32,12 @@ struct CustomDialogExample {
             hilog.info(DOMAIN, 'testTag', 'state: no exist');
           }
         }).margin(20)
-      // $r('app.string.search_by_dialog_controller')资源文件中的value为'点我查询弹窗状态:通过CustomDialogController'
+      // 请将$r('app.string.search_by_dialog_controller')替换为实际资源文件，在本示例中该资源文件的value值为"点我查询弹窗状态:通过CustomDialogController"
       Button($r('app.string.search_by_dialog_controller'))
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState());
         }).margin(20)
-      // $r('app.string.close_widows')资源文件中的value为'点我关闭弹窗'
+      // 请将$r('app.string.close_widows')替换为实际资源文件，在本示例中该资源文件的value值为"点我关闭弹窗"
       Button($r('app.string.close_widows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {

@@ -164,7 +164,7 @@ export struct SupportSlidingHand {
   topBar() {
     Column() {
       Column() {
-        // $r('app.string.Today_Hot_News')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.Today_Hot_News')替换为实际资源文件，在本示例中该资源文件的value值为"今日热点新闻"
         Text($r('app.string.Today_Hot_News'))
           .fontSize(20)
           .fontColor(Color.Black)

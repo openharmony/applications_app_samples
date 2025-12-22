@@ -383,6 +383,7 @@ struct MainPage {
 
   build() {
     Column() {
+      // 请将$r('app.string.build_layout')替换为实际资源文件，在本示例中该资源文件的value值为"构建布局"
       Text($r('app.string.build_layout'))
         .height('5%')
         .width('100%')

@@ -14,7 +14,7 @@
  */
 // [Start onCreate_Menu]
 // xxx.ets
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+// 请将$r('app.media.xxx')替换为实际资源文件
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -83,7 +83,7 @@ export struct TextLayout {
         // [End Last_space]
         Column() {
           // [Start text_VerticalAlign]
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+          // 请将$r('app.media.startIcon')替换为实际资源文件
           Text() {
             Span('Hello')
               .fontSize(50)
@@ -99,7 +99,7 @@ export struct TextLayout {
 
         Column() {
           // [Start copy_Option]
-          // 'app.string.selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          // 请将$r('app.string.selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.selected_menu'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
@@ -108,6 +108,7 @@ export struct TextLayout {
 
         Column() {
           // [Start editMenu_Options]
+          // 请将$r('app.string.display_the_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.display_the_selected_menu'))
             .fontSize(20)
             .copyOption(CopyOptions.LocalDevice)
@@ -137,6 +138,7 @@ export struct TextLayout {
         }.margin({ top: 30 })
       }
     }.backgroundColor('#f1f 2f3')
+    // 请将$r('app.string.text_layout')替换为实际资源文件，在本示例中该资源文件的value值为"这文本布局"
     .title($r('app.string.text_layout'))
   }
 

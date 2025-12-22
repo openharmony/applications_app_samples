@@ -17,6 +17,7 @@
 @Entry
 @Component
 export struct SupportedAvoidAxisPopupExample {
+  // 请在resources\base\element\string.json文件中配置name为'xxx' ，value为非空字符串的资源
   @State upScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Upper_half_screen') as string;
   @State middleAxle: string =
@@ -98,6 +99,7 @@ export struct SupportedAvoidAxisPopupExample {
       .width('100%')
     }
     // [StartExclude supportedAvoidAxis_popup]
+    // 请将$r('app.string.SupportedAvoidAxisPopupExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"气泡支持避让中轴"
     .title($r('app.string.SupportedAvoidAxisPopupExample_title'))
     // [EndExclude supportedAvoidAxis_popup]
   }

@@ -25,11 +25,10 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Entry, Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Row,
   SafeAreaEdge, Image, SafeAreaType,Stack, $r, Builder, Color, Search, SearchController, Margin
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
+import { State, Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import resourceManager from '@ohos.resourceManager';

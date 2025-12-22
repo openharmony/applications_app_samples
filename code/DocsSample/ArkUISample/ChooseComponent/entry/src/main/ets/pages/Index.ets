@@ -23,14 +23,17 @@ import resource from '../common/resource';
 
 const routes: Route[] = [
   {
+    // 请将$r('app.string.button')替换为实际资源文件，在本示例中该资源文件的value值为"按钮/Button"
     title: resource.resourceToString($r('app.string.button')),
     name: BUTTON_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.radio')替换为实际资源文件，在本示例中该资源文件的value值为"单选框/Radio"
     title: resource.resourceToString($r('app.string.radio')),
     name: RADIO_ROUTE_PREFIX
   },
   {
+    // 请将$r('app.string.toggle')替换为实际资源文件，在本示例中该资源文件的value值为"切换按钮/Toggle"
     title: resource.resourceToString($r('app.string.toggle')),
     name: TOGGLE_ROUTE_PREFIX
   }

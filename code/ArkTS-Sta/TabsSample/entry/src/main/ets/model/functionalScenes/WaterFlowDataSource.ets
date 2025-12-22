@@ -34,8 +34,8 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * @param index 数组索引
    * @returns
    */
-  public getData(index: number): SceneModuleInfo {
-    return this.dataArray[index.toInt()];
+  public getData(index: int): SceneModuleInfo {
+    return this.dataArray[index];
   }
 
   /**
@@ -92,7 +92,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * 获取数据总数
    * @returns
    */
-  public totalCount(): number {
+  public totalCount(): int {
     return this.dataArray.length;
   }
 

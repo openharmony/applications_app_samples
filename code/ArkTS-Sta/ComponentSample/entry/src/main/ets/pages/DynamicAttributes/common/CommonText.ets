@@ -24,7 +24,6 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import {
   Text,
   TextAttribute,
@@ -46,11 +45,7 @@ import {
   FlexAlign
 } from '@ohos.arkui.component';
 import {
-  State,
-  Consume,
-  MutableState,
-  stateOf,
-  observableProxy
+  State, Consume
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 

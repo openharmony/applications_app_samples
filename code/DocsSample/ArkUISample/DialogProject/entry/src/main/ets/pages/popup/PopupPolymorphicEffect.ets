@@ -19,6 +19,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 @Entry
 @Component
 export struct PolymorphicEffectPopupExample {
+  // 请在resources\base\element\string.json文件中配置name为'xxx' ，value为非空字符串的资源
   @State scan: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Scan_title') as string;
   @State createGroupChat: string =
@@ -76,6 +77,7 @@ export struct PolymorphicEffectPopupExample {
       .justifyContent(FlexAlign.Center)
     }
     // [StartExclude polymorphicEffect_popup]
+    // 请将$r('app.string.AvoidSoftKeyboardPopupExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置气泡内的多态效果"
     .title($r('app.string.PolymorphicEffectPopupExample_title'))
     // [EndExclude polymorphicEffect_popup]
   }

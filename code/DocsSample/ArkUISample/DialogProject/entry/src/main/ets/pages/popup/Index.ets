@@ -29,6 +29,7 @@ import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup';
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';
 
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Popup_ROUTE_PREFIX}/TextPopupExample`,
@@ -62,23 +63,17 @@ const routes: Route[] = [
   },
   {
     name: `${Popup_ROUTE_PREFIX}/AvoidSoftKeyboardPopupExample`,
-    // $r('app.string.AvoidSoftKeyboardPopupExample_title')需要替换为开发者所需的资源文件。
     title: resource.resourceToString($r('app.string.AvoidSoftKeyboardPopupExample_title')),
-    // $r('app.string.AvoidSoftKeyboardPopupExample_des')需要替换为开发者所需的资源文件。
     description: $r('app.string.AvoidSoftKeyboardPopupExample_des'),
   },
   {
     name: `${Popup_ROUTE_PREFIX}/PolymorphicEffectPopupExample`,
-    // $r('app.string.PolymorphicEffectPopupExample_title')需要替换为开发者所需的资源文件。
     title: resource.resourceToString($r('app.string.PolymorphicEffectPopupExample_title')),
-    // $r('app.string.PolymorphicEffectPopupExample_des')需要替换为开发者所需的资源文件。
     description: $r('app.string.PolymorphicEffectPopupExample_des'),
   },
   {
     name: `${Popup_ROUTE_PREFIX}/SupportedAvoidAxisPopupExample`,
-    // $r('app.string.SupportedAvoidAxisPopupExample_title')需要替换为开发者所需的资源文件。
     title: resource.resourceToString($r('app.string.SupportedAvoidAxisPopupExample_title')),
-    // $r('app.string.SupportedAvoidAxisPopupExample_des')需要替换为开发者所需的资源文件。
     description: $r('app.string.SupportedAvoidAxisPopupExample_des'),
   },
   {
@@ -141,6 +136,7 @@ struct PopupExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 请将$r('app.string.popup')替换为实际资源文件，在本示例中该资源文件的value值为"气泡提示"
     .title($r('app.string.popup'))
   }
 }

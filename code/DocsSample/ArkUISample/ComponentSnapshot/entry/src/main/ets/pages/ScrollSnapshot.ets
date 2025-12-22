@@ -30,7 +30,7 @@ struct Index {
   build() {
     Navigation(this.navPathStack) {
       Column({ space: 12 }) {
-        // $r('app.string.title_scroll_snapshot')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.title_scroll_snapshot')替换为实际资源文件，在本示例中该资源文件的value值为"Scroll Screenshot"
         Button($r('app.string.title_scroll_snapshot'))
           .width('100%')
           .onClick(() => {
@@ -47,7 +47,7 @@ struct Index {
       });
     }
     .mode(NavigationMode.Stack)
-    // $r('app.string.EntryAbility_label')需要替换为开发者所需的资源文件
+    // 请将$r('app.string.EntryAbility_label')替换为实际资源文件，在本示例中该资源文件的value值为"LongSnapshotPractice"
     .title($r('app.string.EntryAbility_label'))
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
     // $r('sys.color.background_secondary')需要替换为开发者所需的资源文件

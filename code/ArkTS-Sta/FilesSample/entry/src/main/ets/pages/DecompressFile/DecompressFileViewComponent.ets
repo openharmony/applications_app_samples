@@ -25,7 +25,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import {
   Text,
   TextAttribute,
@@ -50,7 +49,7 @@ import {
   Divider,
   Entry
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy, Link, PropRef } from '@ohos.arkui.stateManagement';
+import { State, Link, PropRef } from '@ohos.arkui.stateManagement';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 import zlib from '@ohos.zlib';

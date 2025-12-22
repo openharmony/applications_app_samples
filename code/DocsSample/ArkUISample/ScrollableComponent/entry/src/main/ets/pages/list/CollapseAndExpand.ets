@@ -149,7 +149,7 @@ export struct CollapseAndExpand {
     //[StartExclude list_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.CollapseAndExpand_title')需要替换为开发者所需的资源文件
+        // 请将$r('app.string.CollapseAndExpand_title')替换为实际资源文件，在本示例中该资源文件的value值为"折叠与展开"
         ComponentCard({ title: $r('app.string.CollapseAndExpand_title') }) {
           // [EndExclude list_item_data_structure]
           Column() {
@@ -200,6 +200,7 @@ export struct CollapseAndExpand {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.CollapseAndExpand_title')替换为实际资源文件，在本示例中该资源文件的value值为"折叠与展开"
     .title($r('app.string.CollapseAndExpand_title'))
     // [EndExclude list_item_data_structure]
   }

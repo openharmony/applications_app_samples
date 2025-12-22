@@ -128,6 +128,7 @@ export struct OverlayManagerComponent {
       // [StartExclude OverlayManager_Demo]
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.OverlayManager_component_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置浮层"
     .title($r('app.string.OverlayManager_component_title'))
     // [EndExclude OverlayManager_Demo]
   }

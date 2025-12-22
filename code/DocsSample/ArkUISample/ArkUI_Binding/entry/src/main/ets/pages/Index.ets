@@ -21,18 +21,21 @@ struct Index {
 
   build() {
     Column() {
+      // 请将$r('app.string.button1')替换为实际资源文件，在本示例中该资源文件的value值为"自定义组件使用!!双向绑定"
       Button($r('app.string.button1'))
         .width('50%')
         .margin(30)
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({url:'pages/Binding_Star'})
         })
+      // 请将$r('app.string.button2')替换为实际资源文件，在本示例中该资源文件的value值为"自定义组件使用@Param与@Event双向绑定"
       Button($r('app.string.button2'))
         .width('50%')
         .margin(30)
         .onClick(() => {
           this.getUIContext().getRouter().pushUrl({url:'pages/Binding_Star_Param_Event'})
         })
+      // 请将$r('app.string.button3')替换为实际资源文件，在本示例中该资源文件的value值为"系统组件参数双向绑定"
       Button($r('app.string.button3'))
         .width('50%')
         .margin(30)

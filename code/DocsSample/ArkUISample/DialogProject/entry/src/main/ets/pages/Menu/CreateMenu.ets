@@ -18,8 +18,8 @@ import { PromptAction } from '@kit.ArkUI';
 // [Start builder_menu_content]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 class Tmp {
+  // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
   private iconStr2: ResourceStr = $r('app.media.view_list_filled')
 
   set(val: Resource) {
@@ -31,11 +31,12 @@ class Tmp {
 @Component
 export struct menuExample  {
   @State select: boolean = true;
+  // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
   private iconStr: ResourceStr = $r('app.media.view_list_filled');
   private iconStr2: ResourceStr = $r('app.media.view_list_filled');
-  // 'app.string.copy'资源文件中的value值为"复制"。
+  // 请将$r('app.string.copy')替换为实际资源文件，在本示例中该资源文件的value值为"复制"
   private copy: ResourceStr = $r('app.string.copy');
-  // 'app.string.paste'资源文件中的value值为"粘贴"。
+  // 请将$r('app.string.paste')替换为实际资源文件，在本示例中该资源文件的value值为"粘贴"
   private paste: ResourceStr = $r('app.string.paste');
 
   @Builder
@@ -49,7 +50,9 @@ export struct menuExample  {
   @Builder
   MyMenu() {
     Menu() {
-      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+      // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
+      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
+      // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') }).enabled(false)
       MenuItem({
@@ -59,9 +62,9 @@ export struct menuExample  {
         // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
         builder: this.SubMenu
       })
-      // 'app.string.menu_subtitle'资源文件中的value值为"小标题"。
+      // 请将$r('app.string.menu_subtitle')替换为实际资源文件，在本示例中该资源文件的value值为"小标题"
       MenuItemGroup({ header: $r('app.string.menu_subtitle') }) {
-        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+        // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
         MenuItem({ content: $r('app.string.menu_selection') })
           .selectIcon(true)
           .selected(this.select)
@@ -70,7 +73,9 @@ export struct menuExample  {
             let str: Tmp = new Tmp();
             str.set($r('app.media.icon'));
           })
-        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+        /// 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
+        // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
+        // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
         MenuItem({
           startIcon: $r('app.media.view_list_filled'),
           content: $r('app.string.menu_selection'),
@@ -78,7 +83,8 @@ export struct menuExample  {
           builder: this.SubMenu
         })
       }
-      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
+      // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
+      // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
       MenuItem({
         startIcon: this.iconStr2,
         content: $r('app.string.menu_selection'),
@@ -125,6 +131,7 @@ export struct menuExample  {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // 请将$r('app.string.create_menu')替换为实际资源文件，在本示例中该资源文件的value值为"创建菜单"
     .title($r('app.string.create_menu'))
   }
   // [EndExclude builder_menu_content]

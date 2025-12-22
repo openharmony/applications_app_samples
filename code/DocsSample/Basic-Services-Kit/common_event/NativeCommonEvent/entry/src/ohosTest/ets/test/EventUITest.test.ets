@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { describe, it, beforeAll, afterAll, TestType, Size, Level } from '@ohos/hypium';
+import { describe, it, beforeAll, afterAll, TestType, Size, Level, beforeEach, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Logger {
   private domain: number = 0xFF00;
@@ -43,7 +43,7 @@ class Logger {
 
 const logger = new Logger();
 
-const BUNDLE_NAME: string = 'com.example.commoneventpublish';
+const BUNDLE_NAME: string = 'com.samples.commoneventpublish';
 const ABILITY_NAME: string = 'EntryAbility';
 
 // define delay time interface
@@ -58,12 +58,12 @@ interface DelayTimes {
 
 // define delay time constants (unit: milliseconds)
 const DELAY: DelayTimes = {
-  SHORT: 500,        // short delay
-  MEDIUM: 1000,      // medium delay
-  LONG: 2000,        // long delay
-  PAGE_LOAD: 3000,   // page load delay
-  PANEL_WAIT: 3000,  // panel wait delay
-  INIT: 1000,        // initialization delay
+  SHORT: 500, // short delay
+  MEDIUM: 1000, // medium delay
+  LONG: 2000, // long delay
+  PAGE_LOAD: 3000, // page load delay
+  PANEL_WAIT: 3000, // panel wait delay
+  INIT: 1000, // initialization delay
 };
 
 export default function EventUITest() {
@@ -111,11 +111,16 @@ export default function EventUITest() {
         '修改有序公共事件的内容', '取消订阅公共事件', '发布公共事件'
       ];
 
+      let res: boolean = false;
+
       for (const buttonText of buttonTexts) {
+        AppStorage.setOrCreate<boolean>('result', false);
         const button = await driver.findComponent(ON.text(buttonText));
         await button.click();
         await driver.delayMs(DELAY.SHORT);
         logger.info('ButtonsCheck', `Locate the button: ${buttonText}`);
+        res = AppStorage.get<boolean>('result')!;
+        expect(res).assertTrue();
       }
 
       logger.info('test_all_buttons_exist', 'All buttons have been checked.');

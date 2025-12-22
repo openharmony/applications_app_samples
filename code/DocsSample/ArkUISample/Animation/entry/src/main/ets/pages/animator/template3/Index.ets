@@ -76,18 +76,18 @@ struct Index {
   build() {
     Column() {
       Column({ space: 30 }) {
-        // $r('app.string.play')资源文件中的value值为'播放'
+        // 请将$r('app.string.play')替换为实际资源文件，在本示例中该资源文件的value值为"播放"
         Button($r('app.string.play')).onClick(() => {
           this.animatorResult?.play();
           // 'playing'资源文件中的value值为'播放中'
           this.animatorStatus = 'playing';
         }).width(80).height(35)
-        // $r('app.string.reset')资源文件中的value值为'重置'
+        // 请将$r('app.string.reset')替换为实际资源文件，在本示例中该资源文件的value值为"重置"
         Button($r('app.string.reset')).onClick(() => {
           this.translateX = 0;
           this.translateY = 0;
         }).width(80).height(35)
-        // $r('app.string.pause')资源文件中的value值为'暂停'
+        // 请将$r('app.string.pause')替换为实际资源文件，在本示例中该资源文件的value值为"暂停"
         Button($r('app.string.pause')).onClick(() => {
           this.animatorResult?.pause();
           // 'pause'资源文件中的value值为'暂停'

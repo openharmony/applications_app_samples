@@ -21,7 +21,7 @@ struct MyComponent {
   build() {
     NavDestination() {
       Column() {
-        // $r('app.string.ToPage')需要替换为开发者所需的字符串资源文件
+        // 请将$r('app.string.ToPage')替换为实际资源文件，在本示例中该资源文件的value值为"跳转目的页"
         Text($r('app.string.ToPage'))
       }.width('100%').height('100%')
     }.title('MyComponent')

@@ -58,7 +58,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      // $r('app.string.singlegesture_Index_TapGesture_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.singlegesture_Index_TapGesture_title')替换为实际资源文件，在本示例中该资源文件的value值为"点击手势"
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_TapGesture_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -82,7 +82,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      // $r('app.string.singlegesture_Index_LongPress_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.singlegesture_Index_LongPress_title')替换为实际资源文件，在本示例中该资源文件的value值为"长按手势"
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_LongPress_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -106,7 +106,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('GestureJudge', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      // $r('app.string.gesture_Index_GestureJudge_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.gesture_Index_GestureJudge_title')替换为实际资源文件，在本示例中该资源文件的value值为"手势拦截"
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -127,7 +127,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('TouchEvent', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      // $r('app.string.Touch_Index_ClickEvent_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.Touch_Index_ClickEvent_title')替换为实际资源文件，在本示例中该资源文件的value值为"点击事件"
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Touch_Index_ClickEvent_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -152,7 +152,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      // $r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.singlegesture_Index_Click_title')替换为实际资源文件，在本示例中该资源文件的value值为"点击事件"
       let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Click_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -356,7 +356,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      // $r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+      // 请将$r('app.string.singlegesture_Index_Pancom_title')替换为实际资源文件，在本示例中该资源文件的value值为"滑动手势"
       let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Pancom_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面

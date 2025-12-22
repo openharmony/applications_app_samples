@@ -62,6 +62,7 @@ export struct ShowActionMenuExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // 请将$r('app.string.ShowActionMenu_title')替换为实际资源文件，在本示例中该资源文件的value值为"操作菜单"
     .title($r('app.string.ShowActionMenu_title'))
 
     // [EndExclude fixed_style_pop_up_box]

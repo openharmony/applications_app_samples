@@ -123,7 +123,7 @@ struct GestureExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    // $r('app.string.singlegesture_Index_Pancom_title')资源文件中的value值为'滑动手势'
+    // 请将$r('app.string.singlegesture_Index_Pancom_title')替换为实际资源文件，在本示例中该资源文件的value值为"滑动手势"
     .title($r('app.string.singlegesture_Index_Pancom_title'))
   }
 }

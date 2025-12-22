@@ -97,13 +97,13 @@ export struct CustomTabsComponent {
           direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround,
           alignItems: ItemAlign.Center
         } as FlexOptions) {
-          ForEach(this.tabsInfoList, (item: TabInfo, tabIndex: number) => {
+          ForEach(this.tabsInfoList, (item: TabInfo, tabIndex: int) => {
             TabItem({
               tabInfo: item,
               tabBarIndex: tabIndex,
               selectedIndex: this.selectedIndex,
             })
-          }, (item: TabInfo, tabIndex: number) => tabIndex.toString())
+          }, (item: TabInfo, tabIndex: int) => tabIndex.toString())
         }
         /**
          * 设置组件背景提亮效果
@@ -182,13 +182,13 @@ export struct MainContentBlur {
 
   build() {
     List() {
-      ForEach(this.arr, (item: int, index: number) => {
+      ForEach(this.arr, (item: int, index: int) => {
         ListItem() {
           Image(this.LIST_IMAGE[(item % this.LIST_IMAGE.length).toInt()] as ResourceStr)
             .width('100%')// 高度演示用
             .height(200)
         }
-      }, (item: int, index: number) => index.toString())
+      }, (item: int, index: int) => index.toString())
     }
     .width('100%')
     .height('100%')

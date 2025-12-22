@@ -25,14 +25,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import {
-  __memo_context_type,
-  __memo_id_type,
-  memo,
-  MutableState,
-  observableProxy,
-  PropRef,
-  State,
-  stateOf
+  PropRef, State
 } from '@ohos.arkui.stateManagement';
 import {
   $r,
