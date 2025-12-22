@@ -51,8 +51,8 @@ export struct TextHotSearch {
 
             Row() {
               Text('2').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
-              // 请将$r('app.string.TextHotSearch_textContent_three')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2"
+              /* 请将$r('app.string.TextHotSearch_textContent_three')替换为实际资源文件，在本示例中该资源文件的
+                value值为"我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2" */
               Text($r('app.string.TextHotSearch_textContent_three'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
@@ -83,7 +83,7 @@ export struct TextHotSearch {
                 .maxLines(1)
                 .constraintSize({ maxWidth: 200 })
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
-              // 'app.string.TextHotSearch_textContent_four'资源文件中的value值为'热' 
+              // 请将$r('app.string.TextHotSearch_textContent_four')替换为实际资源文件，在本示例中该资源文件的value值为"热"
               Text($r('app.string.TextHotSearch_textContent_four'))
                 .margin({ left: 6 })
                 .textAlign(TextAlign.Center)
@@ -98,8 +98,8 @@ export struct TextHotSearch {
 
             Row() {
               Text('4').fontSize(14).fontColor(Color.Grey).margin({ left: 10, right: 10 })
-              // 请将$r('app.string.TextHotSearch_textContent_six')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4"
+              /* 请将$r('app.string.TextHotSearch_textContent_six')替换为实际资源文件，在本示例中该资源文件的
+                value值为"我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4" */
               Text($r('app.string.TextHotSearch_textContent_six'))
                 .fontSize(12)
                 .fontColor(Color.Blue)

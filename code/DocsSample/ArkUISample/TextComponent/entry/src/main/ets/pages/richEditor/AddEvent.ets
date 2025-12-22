@@ -64,7 +64,7 @@ struct event2 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventSelectChange]
-          // $r('app.string.xxx')需要替换为开发者所需的字符串
+          // 请将$r('app.string.xxx')替换为实际资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_2')), {
@@ -177,7 +177,7 @@ struct event4 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventInput]
-          // 请将$r('app.string.AddEvent_Text_8')替换为实际资源文件，在本示例中该资源文件的value值为"输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。"
+          // 请将$r('app.string.xxx')替换为开发者所需的资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_8')), {

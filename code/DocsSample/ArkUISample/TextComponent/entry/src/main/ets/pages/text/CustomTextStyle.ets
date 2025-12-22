@@ -247,8 +247,8 @@ export struct CustomTextStyle {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
             Column({ space: 8 }) {
               // [Start custom_the_size_of_text]
-              // 请将$r('app.string.CustomTextStyle_textContent_one_style')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为1"
+              /* 请将$r('app.string.CustomTextStyle_textContent_one_style')替换为实际资源文件，在本示例中该资源文件的
+               value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为1" */
               Text($r('app.string.CustomTextStyle_textContent_one_style'))
                 .width(250)
                 .maxLines(1)
@@ -257,8 +257,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 请将$r('app.string.CustomTextStyle_textContent_two_style')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为2"
+              /* 请将$r('app.string.CustomTextStyle_textContent_two_style')替换为实际资源文件，
+               在本示例中该资源文件的value值为"我的最大字号为30，最小字号为5，宽度为250，maxLines为2" */
               Text($r('app.string.CustomTextStyle_textContent_two_style'))
                 .width(250)
                 .maxLines(2)
@@ -267,8 +267,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 请将$r('app.string.CustomTextStyle_textContent_no_max')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为15，宽度为250,高度为50"
+              /* 请将$r('app.string.CustomTextStyle_textContent_no_max')替换为实际资源文件，在本示例中该资源文件的
+                value值为"我的最大字号为30，最小字号为15，宽度为250,高度为50" */
               Text($r('app.string.CustomTextStyle_textContent_no_max'))
                 .width(250)
                 .height(50)
@@ -277,8 +277,8 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .margin(5)
-              // 请将$r('app.string.CustomTextStyle_textContent_high')替换为实际资源文件，
-              // 在本示例中该资源文件的value值为"我的最大字号为30，最小字号为15，宽度为250,高度为100"
+              /* 请将$r('app.string.CustomTextStyle_textContent_high')替换为实际资源文件，在本示例中该资源文件的
+                value值为"我的最大字号为30，最小字号为15，宽度为250,高度为100" */
               Text($r('app.string.CustomTextStyle_textContent_high'))
                 .width(250)
                 .height(100)

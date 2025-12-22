@@ -119,9 +119,10 @@ export struct TextLayout {
         }.margin({ top: 30 })
 
         Column() {
-          // 'app.string.Phone_number'资源文件中的value值为''电话号码：' + '(86) (755) ********' + '\n' +
-          // '链接：' + 'www.********.com' + '\n' + '邮箱：' + '***@example.com' + '\n' +
-          // '地址：' + 'XX省XX市XX区XXXX' + '\n' + '时间：' + 'XX年XX月XX日XXXX''
+          /* 请将$r('app.string.Phone_number')替换为实际资源文件，在本示例中该资源文件的value值为
+           "'电话号码：' + '(86) (755) ********' + '\n' +
+           '链接：' + 'www.********.com' + '\n' + '邮箱：' + '***@example.com' + '\n' +
+           '地址：' + 'XX省XX市XX区XXXX' + '\n' + '时间：' + 'XX年XX月XX日XXXX'" */
           Text(
             $r('app.string.Phone_number')
           )
