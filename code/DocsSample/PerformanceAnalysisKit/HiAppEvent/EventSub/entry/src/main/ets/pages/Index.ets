@@ -229,7 +229,7 @@ struct Index {
           })
         // [End hicollie_timer_ndk_Button]
         // [Start ArkWeb_Fling_Jank_ArkTs_Button]
-        //添加ArkWeb抛滑丢帧事件，触发TestHiCollieTimerNdk方法。
+        //按钮跳转到易出现滑动丢帧的web场景，触发ArkWeb抛滑丢帧事件。
         Button('ArkWebFlingJank ArkTs')
           .type(ButtonType.Capsule)
           .margin({
