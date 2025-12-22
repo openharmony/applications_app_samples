@@ -22,14 +22,14 @@ export function PageBuilder() {
 // 应用全局共享一个AppStorage
 @Component
 struct Page {
-  @StorageLink('linkA') linkA: number = 2;
-  @StorageProp('propB') propB: number = 2;
+  @StorageLink('linkA') linkA: number = 2; // 与AppStorage进行双向数据同步
+  @StorageProp('propB') propB: number = 2; // 与AppStorage进行单向数据同步
   pageStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
-      Row(){
-        Column({ space:5 }) {
+      Row() {
+        Column({ space: 5 }) {
           Text(`${this.linkA}`)
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
@@ -37,15 +37,17 @@ struct Page {
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
           Button('Change linkA')
-            .onClick(()=>{
+            .onClick(() => {
+              // 刷新UI，修改将会被同步回AppStorage
               this.linkA++;
             })
           Button('Change propB')
-            .onClick(()=>{
+            .onClick(() => {
+              // 刷新UI，修改不会被同步回AppStorage
               this.propB++;
-            })  
+            })
           Button('Back Index')
-            .onClick(()=>{
+            .onClick(() => {
               this.pageStack.pop();
             })
         }
