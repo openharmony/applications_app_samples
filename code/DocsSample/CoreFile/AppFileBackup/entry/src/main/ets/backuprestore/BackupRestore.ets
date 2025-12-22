@@ -18,7 +18,6 @@
 // [Start session_restore]
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { backup } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude session_restore]
 // [StartExclude session_backup]
@@ -32,9 +31,8 @@ const BUFFER: number = 1024; // 读写文件的缓冲区
 // [EndExclude session_backup]
 // [EndExclude session_restore]
 
-// 请在组件内获取context，确保getContext(this)返回结果为UIAbilityContext
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 此处仅为示例，在组件中可以通过getHostContext获取路径
+let filesDir = "/data/storage/el2/base/haps/entry/files";
 
 // [StartExclude session_backup]
 // [StartExclude session_restore]
