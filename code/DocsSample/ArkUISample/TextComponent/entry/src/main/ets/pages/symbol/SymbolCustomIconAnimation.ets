@@ -39,13 +39,13 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_1') }) {
             // [Start symbol_variable_color]
             Column() {
-              // 'app.string.variable_color_animation'资源文件中的value值为"可变颜色动效"
+              // 请将$r('app.string.variable_color_animation')替换为实际资源文件，在本示例中该资源文件的value值为"可变颜色动效"
               Text($r('app.string.variable_color_animation'));
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
-              // 'app.string.off'资源文件中的value值为"关闭"
-              // 'app.string.on'资源文件中的value值为"播放"
+              // 请将$r('app.string.off')替换为实际资源文件，在本示例中该资源文件的value值为"关闭"
+              // 请将$r('app.string.on')替换为实际资源文件，在本示例中该资源文件的value值为"播放"
               Button(this.isActive ? $r('app.string.off') : $r('app.string.on')).onClick(() => {
                 this.isActive = !this.isActive;
               })
@@ -55,7 +55,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_2') }) {
             // [Start symbol_bouncing_effect]
             Column() {
-              // 'app.string.bounce_animation'资源文件中的value值为"弹跳动效"
+              // 请将$r('app.string.bounce_animation')替换为实际资源文件，在本示例中该资源文件的value值为"弹跳动效"
               Text($r('app.string.bounce_animation'));
               SymbolGlyph($r('sys.symbol.ellipsis_message_1'))
                 .fontSize(96)
@@ -71,7 +71,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_3') }) {
             // [Start symbol_disable_effect]
             Column() {
-              // 'app.string.disable_animation'资源文件中的value值为"禁用动效"
+              // 请将$r('app.string.disable_animation')替换为实际资源文件，在本示例中该资源文件的value值为"禁用动效"
               Text($r('app.string.disable_animation'));
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
                 .fontSize(96)
@@ -88,7 +88,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_4') }) {
             // [Start symbol_quick_replacement]
             Column() {
-              // 'app.string.quick_replacement_animation'资源文件中的value值为"快速替换动效"
+              // 请将$r('app.string.quick_replacement_animation')替换为实际资源文件，在本示例中该资源文件的value值为"快速替换动效"
               Text($r('app.string.quick_replacement_animation'));
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
                 .fontSize(96)

@@ -28,7 +28,7 @@ export struct ShaderStyle {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        // 'app.string.direction_LeftTop'资源文件中的value值为'direction为LeftTop的线性渐变'
+        // 请将$r('app.string.direction_LeftTop')替换为实际资源文件，在本示例中该资源文件的value值为"direction为LeftTop的线性渐变"
         Text($r('app.string.direction_LeftTop')).fontSize(18).width('90%').fontColor(0xCCCCCC)
           .margin({ top: 40, left: 40 })
         Text(this.message)

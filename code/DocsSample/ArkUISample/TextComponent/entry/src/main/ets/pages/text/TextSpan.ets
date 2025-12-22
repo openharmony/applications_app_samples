@@ -25,9 +25,9 @@ export struct TextSpan {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TextSpan_title_1') }) {
           // [Start create_span]
-          // 'app.string.TextSpan_textContent_text'资源文件中的value值为'我是Text'
+          // 请将$r('app.string.TextSpan_textContent_text')替换为实际资源文件，在本示例中该资源文件的value值为"我是Text"
           Text($r('app.string.TextSpan_textContent_text')) {
-            // 'app.string.TextSpan_textContent_span'资源文件中的value值为'我是Span'
+            // 请将$r('app.string.TextSpan_textContent_span')替换为实际资源文件，在本示例中该资源文件的value值为"我是Span"
             Span($r('app.string.TextSpan_textContent_span'))
           }
           .padding(10)
@@ -38,18 +38,18 @@ export struct TextSpan {
         ComponentCard({ title: $r('app.string.TextSpan_title_2') }) {
           // [Start create_span_with_lines]
           Text() {
-            // 'app.string.TextSpan_textContent_span_one'资源文件中的value值为'我是Span1，'
+            // 请将$r('app.string.TextSpan_textContent_span_one')替换为实际资源文件，在本示例中该资源文件的value值为"我是Span1，"
             Span($r('app.string.TextSpan_textContent_span_one'))
               .fontSize(16)
               .fontColor(Color.Grey)
               .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
-            // 'app.string.TextSpan_textContent_span_two'资源文件中的value值为'我是Span2'
+            // 请将$r('app.string.TextSpan_textContent_span_two')替换为实际资源文件，在本示例中该资源文件的value值为"我是Span2"
             Span($r('app.string.TextSpan_textContent_span_two'))
               .fontColor(Color.Blue)
               .fontSize(16)
               .fontStyle(FontStyle.Italic)
               .decoration({ type: TextDecorationType.Underline, color: Color.Black })
-            // 'app.string.TextSpan_textContent_span_three'资源文件中的value值为'，我是Span3'
+            // 请将$r('app.string.TextSpan_textContent_span_three')替换为实际资源文件，在本示例中该资源文件的value值为"资源文件中的value值为'，我是Span3"
             Span($r('app.string.TextSpan_textContent_span_three'))
               .fontSize(16)
               .fontColor(Color.Grey)

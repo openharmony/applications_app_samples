@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Prepare_Menu]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+// 请将$r('app.media.xxx')替换为实际资源文件
 // xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;

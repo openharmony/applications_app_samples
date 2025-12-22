@@ -35,7 +35,7 @@ struct HtmlSpanStringDemo {
         .margin(5)
 
       // 按钮1:将HTML转换为SpanString
-      //'app.string.Converted_HTML_to_SpanString'资源文件中的value值为"Converted HTML to SpanString"
+      // 请将$r('app.string.Converted_HTML_to_SpanString')替换为实际资源文件，在本示例中该资源文件的value值为"Converted HTML to SpanString"
       Button($r('app.string.Converted_HTML_to_SpanString')).onClick(async () => {
         this.spanString = await StyledString.fromHtml(this.html);
         this.controller.setStyledString(this.spanString);
@@ -43,7 +43,7 @@ struct HtmlSpanStringDemo {
       }).margin(5)
 
       // 按钮2:将SpanString转换为HTML
-      //'app.string.Converted_SpanString_to_HTML'资源文件中的value值为"Converted SpanString to HTML"
+      // 请将$r('app.string.Converted_SpanString_to_HTML')替换为实际资源文件，在本示例中该资源文件的value值为"Converted SpanString to HTML"
       Button($r('app.string.Converted_SpanString_to_HTML')).onClick(() => {
         if (this.spanString) {
           // 将spanString转换为HTML并替换当前的HTML状态
@@ -58,7 +58,8 @@ struct HtmlSpanStringDemo {
       }).margin(5)
 
       // 按钮3:将HTML转换回SpanString
-      //'app.string.Converted_HTML_back_to_SpanString'资源文件中的value值为"Converted HTML back to SpanString"
+      /* 请将$r('app.string.Converted_HTML_back_to_SpanString')替换为实际资源文件，在本示例中该资源文件的
+       value值为"Converted HTML back to SpanString" */
       Button($r('app.string.Converted_HTML_back_to_SpanString')).onClick(async () => {
         this.spanString = await StyledString.fromHtml(this.html);
         this.controller.setStyledString(this.spanString);
@@ -66,7 +67,7 @@ struct HtmlSpanStringDemo {
       }).margin(5)
 
       // 重置：重置HTML和SpanString
-      //'app.string.Reset'资源文件中的value值为"Reset"
+      // 请将$r('app.string.Reset')替换为实际资源文件，在本示例中该资源文件的value值为"Reset"
       Button($r('app.string.Reset')).onClick(() => {
         this.html =
           "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span   style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span   style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";

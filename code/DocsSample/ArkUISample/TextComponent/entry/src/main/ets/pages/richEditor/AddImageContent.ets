@@ -30,9 +30,9 @@ export struct AddImageContent {
         ComponentCard() {
           Column({ space: 10 }) {
             // [EndExclude richEditor_addImage]
-            // $r('app.string.xxx')需要替换为开发者所需的资源文件
             RichEditor(this.options)
               .onReady(() => {
+                // 请将$r('app.string.AddImageContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加image"
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -48,7 +48,7 @@ export struct AddImageContent {
               .height(30)
               .fontSize(13)
               .onClick(() => {
-                // $r('app.media.xxx')需要替换为开发者所需的资源文件
+                // 请将$r('app.media.xxx')替换为实际资源文件
                 this.controller.addImageSpan($r('app.media.startIcon'), {
                   imageStyle: {
                     size: ['57px', '57px']

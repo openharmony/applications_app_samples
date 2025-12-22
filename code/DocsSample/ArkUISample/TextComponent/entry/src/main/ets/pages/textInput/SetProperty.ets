@@ -24,7 +24,7 @@ export struct SetProperty {
       Column({ space: 12 }) {
         ComponentCard({ description: $r('app.string.Set_Omission_Property_description') }) {
           // [Start set_omission_property]
-          // 'app.string.Set_Omission_Property_textContent'资源文件中的value值为"这是一段文本，用来展示省略模式"
+          // 请将$r('app.string.Set_Omission_Property_textContent')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示省略模式"
           TextInput({ text: $r('app.string.Set_Omission_Property_textContent') })
             .textOverflow(TextOverflow.Ellipsis)
             .ellipsisMode(EllipsisMode.END)

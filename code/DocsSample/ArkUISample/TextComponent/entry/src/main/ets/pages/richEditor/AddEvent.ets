@@ -64,7 +64,7 @@ struct event2 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventSelectChange]
-          // $r('app.string.xxx')需要替换为开发者所需的字符串
+          // 请将$r('app.string.XXX')替换为实际资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_2')), {
@@ -116,7 +116,7 @@ struct event3 {
           // [EndExclude richEditor_eventChange]
           RichEditor(this.options)
             .onReady(() => {
-              // $r('app.string.AddEvent_Text_5')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"xxx"
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_5')), {
                 style: {
                   fontColor: Color.Black,
@@ -125,7 +125,7 @@ struct event3 {
               })
             })
             .onWillChange((value: RichEditorChangeValue) => {
-              // $r('app.string.AddEvent_Text_6')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"xxx"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_6')) +
               JSON.stringify(value), {
                 style: {
@@ -136,7 +136,7 @@ struct event3 {
               return true;
             })
             .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-              // $r('app.string.AddEvent_Text_7')需要替换为开发者所需的资源文件
+              // 请将$r('app.string.AddEvent_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"xxx"
               this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_7')) +
               JSON.stringify(rangeBefore) + '\nrangeAfter: ' + JSON.stringify(rangeBefore), {
                 style: {
@@ -147,7 +147,7 @@ struct event3 {
             })
             .width(300)
             .height(50);
-          // $r('app.string.AddEvent_Text_4')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.AddEvent_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"xxx"
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300);
           RichEditor(this.infoShowOptions)
             .width(300)
@@ -177,7 +177,7 @@ struct event4 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventInput]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.xxx')替换为开发者所需的资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_8')), {
@@ -263,7 +263,7 @@ struct on_cut_copy_paste {
 
   build() {
     Column() {
-      // $r('app.string.xxx')需要替换为开发者所需的资源文件
+      // 请将$r('app.string.xxx')替换为实际资源文件
       ComponentCard({
         title: $r('app.string.Add_Event_title_5'),
         description: $r('app.string.Add_Event_title_5_desc')
@@ -313,7 +313,7 @@ struct event6 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventCut]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.xxx')替换为实际资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_13')), {
@@ -361,7 +361,7 @@ struct event7 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventCopy]
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
+          // 请将$r('app.string.xxx')替换为实际资源文件
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_15')), {

@@ -36,7 +36,8 @@ export struct CreatTextInput {
             TextArea()
             // [End create_text_area]
             // [Start create_text_area_example]
-            // 'app.string.CreatTextInput_textContent'资源文件中的value值为"我是TextArea我是TextArea我是TextArea我是TextArea"
+            /* 请将$r('app.string.CreatTextInput_textContent')替换为实际资源文件，在本示例中该资源文件的value值为
+             "我是TextArea我是TextArea我是TextArea我是TextArea"*/
             TextArea({ text: $r('app.string.CreatTextInput_textContent') })
               .width(300)
             // [End create_text_area_example]
@@ -46,7 +47,7 @@ export struct CreatTextInput {
         ComponentCard({ title: $r('app.string.CreatTextInput_title_3') }) {
           // [Start create_text_search]
           Search()
-            // 'app.string.Creat_TextInput_Content'资源文件中的value值为"搜索"
+            // 请将$r('app.string.Creat_TextInput_Content')替换为实际资源文件，在本示例中该资源文件的value值为"搜索"
             .searchButton($r('app.string.Creat_TextInput_Content'))
           // [End create_text_search]
         }

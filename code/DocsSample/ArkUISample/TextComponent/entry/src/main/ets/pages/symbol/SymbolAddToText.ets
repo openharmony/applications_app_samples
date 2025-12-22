@@ -141,7 +141,7 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_rendering_strategy]
             Row() {
               Column() {
-                // 'app.string.single_color'资源文件中的value值为"单色"
+                // 请将$r('app.string.single_color')替换为实际资源文件，在本示例中该资源文件的value值为"单色"
                 Text($r('app.string.single_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
@@ -152,7 +152,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.multi_color'资源文件中的value值为"多色"
+                // 请将$r('app.string.multi_color')替换为实际资源文件，在本示例中该资源文件的value值为"多色"
                 Text($r('app.string.multi_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
@@ -163,7 +163,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.hierarchical'资源文件中的value值为"分层"
+                // 请将$r('app.string.hierarchical')替换为实际资源文件，在本示例中该资源文件的value值为"分层"
                 Text($r('app.string.hierarchical'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
@@ -181,7 +181,7 @@ export struct SymbolGlyphSpanAddToText {
               // [Start symbol_span_effect_strategy]
               Row() {
                 Column() {
-                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  // 请将$r('app.string.no_action')替换为实际资源文件，在本示例中该资源文件的value值为"无动效"
                   Text($r('app.string.no_action'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -191,7 +191,7 @@ export struct SymbolGlyphSpanAddToText {
                 }
 
                 Column() {
-                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  // 请将$r('app.string.overall_scaling_animation_effect')替换为实际资源文件，在本示例中该资源文件的value值为"整体缩放动效"
                   Text($r('app.string.overall_scaling_animation_effect'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -201,7 +201,7 @@ export struct SymbolGlyphSpanAddToText {
                 }
 
                 Column() {
-                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  // 请将$r('app.string.hierarchical_animation')替换为实际资源文件，在本示例中该资源文件的value值为"层级动效"
                   Text($r('app.string.hierarchical_animation'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -217,7 +217,7 @@ export struct SymbolGlyphSpanAddToText {
             } else {
               Row() {
                 Column() {
-                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  // 请将$r('app.string.no_action')替换为实际资源文件，在本示例中该资源文件的value值为"无动效"
                   Text($r('app.string.no_action'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -227,7 +227,7 @@ export struct SymbolGlyphSpanAddToText {
                 }
 
                 Column() {
-                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  // 请将$r('app.string.overall_scaling_animation_effect')替换为实际资源文件，在本示例中该资源文件的value值为"整体缩放动效"
                   Text($r('app.string.overall_scaling_animation_effect'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -237,7 +237,7 @@ export struct SymbolGlyphSpanAddToText {
                 }
 
                 Column() {
-                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  // 请将$r('app.string.hierarchical_animation')替换为实际资源文件，在本示例中该资源文件的value值为"层级动效"
                   Text($r('app.string.hierarchical_animation'));
                   Text() {
                     SymbolSpan($r('sys.symbol.ohos_wifi'))

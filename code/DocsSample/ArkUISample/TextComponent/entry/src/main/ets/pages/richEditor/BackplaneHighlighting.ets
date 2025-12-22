@@ -32,7 +32,7 @@ export struct BackplaneHighlighting {
             // [EndExclude richEditor_selection]
             RichEditor(this.options)
               .onReady(() => {
-                // $r('app.string.BackplaneHighlighting_Text_1')需要替换为开发者所需的资源文件
+                // 请将$r('app.string.BackplaneHighlighting_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处选中0-2位置的文本。"
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -42,7 +42,7 @@ export struct BackplaneHighlighting {
               })
               .width(300)
               .height(60)
-            // $r('app.string.BackplaneHighlighting_Button_1')需要替换为开发者所需的资源文件
+            // 请将$r('app.string.BackplaneHighlighting_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"setSelection(0,2)"
             Button($r('app.string.BackplaneHighlighting_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })

@@ -31,7 +31,7 @@ export struct SelectMenu {
     Column() {
       Menu() {
         MenuItemGroup() {
-          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
+          // 请将$r('app.media.app_icon')替换为实际资源文件
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'CustomMenu One', labelInfo: '' })
             .onClick(() => {
               // 使用closeSelectionMenu接口关闭菜单
@@ -46,7 +46,7 @@ export struct SelectMenu {
   // [End Right_Click_Text_CustomMenu]
   // [Start onCreate_Menu]
   // 定义onCreateMenu，onMenuItemClick
-  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+  // 请将$r('app.media.app_icon')替换为实际资源文件
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'customMenu1',
@@ -64,20 +64,20 @@ export struct SelectMenu {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of('customMenu2'))) {
-      // 'app.string.SelectMenu_Text_customMenu'资源文件中的value值为'拦截 id: customMenu2 start:'
+      // 请将$r('app.string.SelectMenu_Text_customMenu')替换为实际资源文件，在本示例中该资源文件的value值为"拦截 id: customMenu2 start:"
       hilog.info(0x0000, 'Sample_TextComponent',
         resource.resourceToString($r('app.string.SelectMenu_Text_customMenu')) + textRange.start + '; end:' +
         textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      // 'app.string.SelectMenu_Text_copy'资源文件中的value值为'拦截 COPY start:'
+      // 请将$r('app.string.SelectMenu_Text_copy')替换为实际资源文件，在本示例中该资源文件的value值为"拦截 COPY start:"
       hilog.info(0x0000, 'Sample_TextComponent',
         resource.resourceToString($r('app.string.SelectMenu_Text_copy')) + textRange.start + '; end:' + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      // 'app.string.SelectMenu_Text_SelectionAll'资源文件中的value值为'不拦截 SELECT_ALL start:'
+      // 请将$r('app.string.SelectMenu_Text_SelectionAll')替换为实际资源文件，在本示例中该资源文件的value值为"不拦截 SELECT_ALL start:"
       hilog.info(0x0000, 'Sample_TextComponent',
         resource.resourceToString($r('app.string.SelectMenu_Text_SelectionAll')) + textRange.start + '; end:' +
         textRange.end);
@@ -91,7 +91,7 @@ export struct SelectMenu {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_1') }) {
           // [Start set_selection_menu_with_copyoption]
-          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          // 请将$r('app.string.show_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.show_selected_menu'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
@@ -100,13 +100,13 @@ export struct SelectMenu {
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_2') }) {
           // [Start set_selection_menu_with_bindselectionmenu_sec]
-          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          // 请将$r('app.string.show_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.show_selected_menu'), this.options)
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
             .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
               onAppear: () => {
-                // 'app.string.SelectMenu_Text_Ejected'资源文件中的value值为'自定义选择菜单弹出时触发该回调'
+                // 请将$r('app.string.SelectMenu_Text_Ejected')替换为实际资源文件，在本示例中该资源文件的value值为"自定义选择菜单弹出时触发该回调"
                 hilog.info(0x0000, 'Sample_TextComponent',
                   resource.resourceToString($r('app.string.SelectMenu_Text_Ejected')));
               },
@@ -121,7 +121,7 @@ export struct SelectMenu {
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_3') }) {
           // [Start set_selection_menu_with_editmenuoptions]
-          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          // 请将$r('app.string.show_selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.show_selected_menu'))
             .fontSize(20)
             .copyOption(CopyOptions.LocalDevice)

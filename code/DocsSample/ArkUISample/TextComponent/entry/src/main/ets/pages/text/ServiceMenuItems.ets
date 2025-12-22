@@ -31,7 +31,7 @@ export struct ServiceMenuItems {
     NavDestination() {
       Row() {
         Column() {
-          // 'app.string.Service_MenuItems_Text'资源文件中的value值为'这是一段文本，长按弹出文本选择菜单。'
+          // 请将$r('app.string.Service_MenuItems_Text')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，长按弹出文本选择菜单。"
           Text($r('app.string.Service_MenuItems_Text'))
             .height(60)
             .fontStyle(FontStyle.Italic)

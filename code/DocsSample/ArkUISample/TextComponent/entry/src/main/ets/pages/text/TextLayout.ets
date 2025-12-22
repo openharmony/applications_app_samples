@@ -14,7 +14,7 @@
  */
 // [Start onCreate_Menu]
 // xxx.ets
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+// 请将$r('app.media.aaaa')替换为实际资源文件
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -83,7 +83,7 @@ export struct TextLayout {
         // [End Last_space]
         Column() {
           // [Start text_VerticalAlign]
-          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+          // 请将$r('app.media.startIcon')替换为实际资源文件
           Text() {
             Span('Hello')
               .fontSize(50)
@@ -99,7 +99,7 @@ export struct TextLayout {
 
         Column() {
           // [Start copy_Option]
-          // 'app.string.selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          // 请将$r('app.string.selected_menu')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段文本，用来展示选中菜单"
           Text($r('app.string.selected_menu'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
@@ -118,9 +118,10 @@ export struct TextLayout {
         }.margin({ top: 30 })
 
         Column() {
-          // 'app.string.Phone_number'资源文件中的value值为''电话号码：' + '(86) (755) ********' + '\n' +
-          // '链接：' + 'www.********.com' + '\n' + '邮箱：' + '***@example.com' + '\n' +
-          // '地址：' + 'XX省XX市XX区XXXX' + '\n' + '时间：' + 'XX年XX月XX日XXXX''
+          /* 请将$r('app.string.Phone_number')替换为实际资源文件，在本示例中该资源文件的value值为
+           "'电话号码：' + '(86) (755) ********' + '\n' +
+           '链接：' + 'www.********.com' + '\n' + '邮箱：' + '***@example.com' + '\n' +
+           '地址：' + 'XX省XX市XX区XXXX' + '\n' + '时间：' + 'XX年XX月XX日XXXX'"*/
           Text(
             $r('app.string.Phone_number')
           )

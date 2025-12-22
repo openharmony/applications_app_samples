@@ -23,17 +23,17 @@ export struct CustomTextInputStyle {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_1') }) {
           // [Start custom_text_input_with_place_holder]
-          // 'app.string.i_am_placeholder'资源文件中的value值为"我是提示文本"
+          // 请将$r('app.string.i_am_placeholder')替换为实际资源文件，在本示例中该资源文件的value值为"我是提示文本"
           TextInput({ placeholder: $r('app.string.i_am_placeholder') })
           // [End custom_text_input_with_place_holder]
         }
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_2') }) {
           // [Start custom_text_input_with_place_holder_and_text]
-          // 'app.string.i_am_placeholder'资源文件中的value值为"我是提示文本"
-          // 'app.string.i_am_current_text_content'资源文件中的value值为"我是当前文本内容"
           TextInput({
+            // 请将$r('app.string.i_am_placeholder')替换为实际资源文件，在本示例中该资源文件的value值为"我是提示文本"
             placeholder: $r('app.string.i_am_placeholder'),
+            // 请将$r('app.string.i_am_current_text_content')替换为实际资源文件，在本示例中该资源文件的value值为"我是当前文本内容"
             text: $r('app.string.i_am_current_text_content')
           })
           // [End custom_text_input_with_place_holder_and_text]
@@ -41,10 +41,10 @@ export struct CustomTextInputStyle {
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_3') }) {
           // [Start custom_text_input_background_color]
-          // 'app.string.i_am_placeholder'资源文件中的value值为"我是提示文本"
-          // 'app.string.i_am_current_text_content'资源文件中的value值为"我是当前文本内容"
           TextInput({
+            // 请将$r('app.string.i_am_placeholder')替换为实际资源文件，在本示例中该资源文件的value值为"我是提示文本"
             placeholder: $r('app.string.i_am_placeholder'),
+            // 请将$r('app.string.i_am_current_text_content')替换为实际资源文件，在本示例中该资源文件的value值为"我是当前文本内容"
             text: $r('app.string.i_am_current_text_content')
           })
             .backgroundColor(Color.Pink)

@@ -23,7 +23,7 @@ export struct AutoFill {
       Column({ space: 12 }) {
         ComponentCard({ description: $r('app.string.Auto_Fill_description') }) {
           // [Start auto_fill]
-          // 'app.string.Auto_Fill_PlaceHolder'资源文件中的value值为"输入你的邮箱..."
+          // 请将$r('app.string.Auto_Fill_PlaceHolder')替换为实际资源文件，在本示例中该资源文件的value值为"输入你的邮箱..."
           TextInput({ placeholder: $r('app.string.Auto_Fill_PlaceHolder') })
             .width('95%')
             .height(40)
