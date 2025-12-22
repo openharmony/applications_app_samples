@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
 import commonEventModule from 'libentry.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CommonEventNapiTest';
-const BUNDLE = 'com.example.commoneventpublish';
+const BUNDLE = 'com.samples.commoneventpublish';
 const DOMAIN = 0xD001000;
 
 function loggerInfo(msg: string): void {
@@ -277,6 +277,208 @@ export default function commonEventNapiTest() {
         expect().assertFail();
       }
       loggerInfo('FullFlow_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_GetSubscribeInfoState_001
+      *@tc.name   CustomCommonEvent_GetSubscribeInfoState_001
+      *@tc.desc   Test the functionality of getSubscribeInfoState
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_GetSubscribeInfoState_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_GetSubscribeInfoState_001 begin');
+      try {
+        // 先创建订阅信息、订阅者并订阅
+        commonEventModule.createSubscribeInfo();
+        commonEventModule.createSubscriber();
+        commonEventModule.subscribe();
+
+        const result = commonEventModule.getSubscribeInfoState();
+        loggerInfo(`GetSubscribeInfoState result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`GetSubscribeInfoState error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_GetSubscribeInfoState_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_GetSubscriberState_001
+      *@tc.name   CustomCommonEvent_GetSubscriberState_001
+      *@tc.desc   Test the functionality of getSubscriberState
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_GetSubscriberState_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_GetSubscriberState_001 begin');
+      try {
+        // 先创建订阅信息、订阅者并订阅
+        commonEventModule.createSubscribeInfo();
+        commonEventModule.createSubscriber();
+        commonEventModule.subscribe();
+
+        const result = commonEventModule.getSubscriberState();
+        loggerInfo(`GetSubscriberState result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`GetSubscriberState error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_GetSubscriberState_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_GetSubscribeState_001
+      *@tc.name   CustomCommonEvent_GetSubscribeState_001
+      *@tc.desc   Test the functionality of getSubscribeState
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_GetSubscribeState_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_GetSubscribeState_001 begin');
+      try {
+        // 先创建订阅信息、订阅者并订阅
+        commonEventModule.createSubscribeInfo();
+        commonEventModule.createSubscriber();
+        commonEventModule.subscribe();
+
+        const result = commonEventModule.getSubscribeState();
+        loggerInfo(`GetSubscribeState result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`GetSubscribeState error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_GetSubscribeState_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_GetPublishedEvents_001
+      *@tc.name   CustomCommonEvent_GetPublishedEvents_001
+      *@tc.desc   Test the functionality of getPublishedEvents
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_GetPublishedEvents_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_GetPublishedEvents_001 begin');
+      try {
+        // 先创建订阅信息、订阅者并订阅
+        commonEventModule.createSubscribeInfo();
+        commonEventModule.createSubscriber();
+        commonEventModule.subscribe();
+        commonEventModule.publish();
+
+        const result = commonEventModule.getPublishedEvents();
+        loggerInfo(`GetPublishedEvents result: ${result}`);
+        expect(result[0]).assertEqual("usual.event.TEST");
+      } catch (error) {
+        loggerError(`GetPublishedEvents error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_GetPublishedEvents_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_ClearAllStates_001
+      *@tc.name   CustomCommonEvent_ClearAllStates_001
+      *@tc.desc   Test the functionality of clearAllStates
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_ClearAllStates_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_ClearAllStates_001 begin');
+      try {
+        // 先创建订阅信息、订阅者并订阅
+        commonEventModule.createSubscribeInfo();
+        commonEventModule.createSubscriber();
+        commonEventModule.subscribe();
+
+        const result = commonEventModule.clearAllStates();
+        loggerInfo(`ClearAllStates result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`ClearAllStates error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_ClearAllStates_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_DestroyPublishInfo_001
+      *@tc.name   CustomCommonEvent_DestroyPublishInfo_001
+      *@tc.desc   Test the functionality of destroyPublishInfo
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_DestroyPublishInfo_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_DestroyPublishInfo_001 begin');
+      try {
+        const result = commonEventModule.destroyPublishInfo();
+        loggerInfo(`DestroyPublishInfo result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`DestroyPublishInfo error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_DestroyPublishInfo_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_SetToSubscriber_001
+      *@tc.name   CustomCommonEvent_SetToSubscriber_001
+      *@tc.desc   Test the functionality of setToSubscriber
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_SetToSubscriber_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_SetToSubscriber_001 begin');
+      try {
+        const result = commonEventModule.setToSubscriber();
+        loggerInfo(`SetToSubscriber result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`SetToSubscriber error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_SetToSubscriber_001 end');
+      done();
+    });
+
+    /*
+      *@tc.number CustomCommonEvent_GetFromSubscriber_001
+      *@tc.name   CustomCommonEvent_GetFromSubscriber_001
+      *@tc.desc   Test the functionality of getFromSubscriber
+      *@tc.size   MediumTest
+      *@tc.type   Function
+      *@tc.level  Level 0
+      */
+    it('CustomCommonEvent_GetFromSubscriber_001', 0, async (done: Function) => {
+      loggerInfo('CustomCommonEvent_GetFromSubscriber_001 begin');
+      try {
+        const result = commonEventModule.getFromSubscriber();
+        loggerInfo(`GetFromSubscriber result: ${result}`);
+        expect(result).assertEqual(true);
+      } catch (error) {
+        loggerError(`GetFromSubscriber error: ${JSON.stringify(error as BusinessError)}`);
+        expect().assertFail();
+      }
+      loggerInfo('CustomCommonEvent_GetFromSubscriber_001 end');
       done();
     });
   });

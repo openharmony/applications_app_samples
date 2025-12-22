@@ -44,6 +44,15 @@ void Subscribe(CommonEvent_Subscriber *subscriber);
 // 公共事件回调函数
 void OnReceive(const CommonEvent_RcvData *data);
 void GetParameters(const CommonEvent_RcvData *data);
+void GetCommonEventBoolParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventLongParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventDoubleParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventCharParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventIntArrayParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventLongArrayParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventDoubleArrayParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventCharArrayParam(const CommonEvent_Parameters *parameters);
+void GetCommonEventBoolArrayParam(const CommonEvent_Parameters *parameters);
 
 // 有序公共事件处理
 void AbortCommonEvent(CommonEvent_Subscriber *subscriber);

@@ -97,7 +97,7 @@ entry/src/main/
 
 1. 本示例仅支持标准系统上运行。
 2. 本示例支持API version 20及以上版本的SDK。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0Release)才可编译运行。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
 
 ### 下载
 
