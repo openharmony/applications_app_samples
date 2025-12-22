@@ -1,0 +1,18 @@
+{
+	"devices": {
+		"general": [
+			"default",
+			"tablet"
+		]
+	},
+	"production": {
+		"removedSysCaps": [
+			"SystemCapability.Security.DataTransitManager",
+			"SystemCapability.Security.DeviceSecurityLevel",
+			"SystemCapability.Window.SessionManager",
+			"SystemCapability.PowerManager.BatteryManager.Extension",
+			"SystemCapability.PowerManager.PowerManager.Extension",
+			"SystemCapability.UserIAM.UserAuth.PinAuth"
+		]
+	}
+}
