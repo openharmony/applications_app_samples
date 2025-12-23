@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "非同层渲染"
+    },
+    {
+      "name": "nativeembed_product_title000",
+      "value": "充电宝"
+    },
+    {
+      "name": "nativeembed_product_title001",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "nativeembed_product_title002",
+      "value": "移动手机"
+    },
+    {
+      "name": "nativeembed_product_title003",
+      "value": "手机充电器"
+    },
+    {
+      "name": "nativeembed_product_title004",
+      "value": "头戴式耳机"
+    },
+    {
+      "name": "nativeembed_product_title005",
+      "value": "背包"
+    },
+    {
+      "name": "nativeembed_product_price000",
+      "value": "￥79.9"
+    },
+    {
+      "name": "nativeembed_product_price001",
+      "value": "￥6999"
+    },
+    {
+      "name": "nativeembed_product_price002",
+      "value": "￥5999"
+    },
+    {
+      "name": "nativeembed_product_price003",
+      "value": "￥72.5"
+    },
+    {
+      "name": "nativeembed_product_price004",
+      "value": "￥899"
+    },
+    {
+      "name": "nativeembed_product_price005",
+      "value": "￥328"
+    },
+    {
+      "name": "nativeembed_reason",
+      "value": "get internet permisssion"
+    },
+    {
+      "name": "nativeembed_full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "nativeembed_sixty_percent",
+      "value": "60%"
+    },
+    {
+      "name": "nativeembed_mall",
+      "value": "商城"
+    },
+    {
+      "name": "nativeembed_search",
+      "value": "搜索"
+    },
+    {
+      "name": "nativeembed_prompt_text",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "nativeembed_search_text_placeholder",
+      "value": "搜索相关宝贝"
+    }
+  ]
+}
