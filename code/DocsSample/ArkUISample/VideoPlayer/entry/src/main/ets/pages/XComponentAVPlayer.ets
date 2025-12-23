@@ -19,9 +19,10 @@ import { window } from '@kit.ArkUI';
 import { AVPlayerController } from '../avplayertool/AVPlayerController';
 import { emitter } from '@kit.BasicServicesKit';
 import { CommonConstants, VideoDataType } from  '../common/constants/CommonConstants';
-import { VideoData } from '../model/VideoData'
-import { common } from '@kit.AbilityKit'
+import { VideoData } from '../model/VideoData';
+import { common } from '@kit.AbilityKit';
 
+// [Start av_player_xcomponent_controller]
 class VideoXComponentController extends XComponentController {
   private avPlayerController: AVPlayerController;
 
@@ -35,9 +36,11 @@ class VideoXComponentController extends XComponentController {
       type: VideoDataType.RAW_FILE,
       videoSrc: 'videoTest.mp4'
     };
+    // 将surfaceId和视频源信息传递给AVPlayer
     this.avPlayerController.initAVPlayer(source, surfaceId);
   }
 }
+// [End av_player_xcomponent_controller]
 
 const MINUTE_UNIT = 60000;
 const SECOND_UNIT = 1000;
@@ -86,7 +89,7 @@ struct XComponentAVPlayer {
     let context = this.getUIContext();
     this.windowWidth = context.px2vp(properties.windowRect.width);
     this.windowHeight = context.px2vp(properties.windowRect.height);
-    //获取窗口横竖屏状态及其尺寸。
+    // 获取窗口横竖屏状态及其尺寸。
     this.windowClass.on('windowSizeChange', (size: window.Size) => {
       this.isLandScape = size.width > size.height;
       this.windowWidth = context.px2vp(size.width);
@@ -121,7 +124,9 @@ struct XComponentAVPlayer {
   build() {
     Column() {
       Stack() {
+        // [Start av_player_create_xcomponent]
         XComponent({ type: XComponentType.SURFACE, controller: this.videoXComponentController })
+        // [End av_player_create_xcomponent]
         Column() {
           Blank()
           Column() {
@@ -139,6 +144,7 @@ struct XComponentAVPlayer {
                       } else {
                         this.avPlayerController.videoPlay();
                       }
+                      this.isPause = !this.isPause;
                     })
                   // 视频当前进度。
                   Text(timeCover(this.currentTime))
