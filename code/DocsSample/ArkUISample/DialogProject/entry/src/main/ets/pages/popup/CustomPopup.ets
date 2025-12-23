@@ -14,7 +14,7 @@
  */
 
 // [Start custom_popup]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+// 请将$r('app.media.xxx')替换为实际资源文件
 @Entry
 @Component
 export struct CustomPopupExample {

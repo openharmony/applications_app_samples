@@ -458,8 +458,7 @@ struct Index {
             .margin({ left: 70 })
         }
         /* 请将$r('app.string.please_input_attribute_value')替换为实际资源文件，
-         * 在本示例中该资源文件的value值为"Close modal → Set keyboard avoidance"
-         */
+           在本示例中该资源文件的value值为"Close modal → Set keyboard avoidance" */
         TextInput({ placeholder: $r('app.string.please_input_attribute_value') })
           .placeholderColor(Color.Red)
           .width('100%')

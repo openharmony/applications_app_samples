@@ -31,9 +31,8 @@ export struct GestureJudge {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        /* 请将$r('app.string.gesture_GestureJudge_text')替换为实际资源文件，在本示例中该资源文件的value值为"以下示例中，Image和Stack
-         * 两个组件位于同一区域。长按Stack组件的上半部分可触发挂载在Stack组件上的长按手势，长按Stack组件的下半部分则会响应Image组件的拖拽操作。"
-         */
+        /* 请将$r('app.string.gesture_GestureJudge_text')替换为实际资源文件，在本示例中该资源文件的value值为"以下示例中，Image和Stack两个组件
+           位于同一区域。长按Stack组件的上半部分可触发挂载在Stack组件上的长按手势，长按Stack组件的下半部分则会响应Image组件的拖拽操作。" */
         Text($r('app.string.gesture_GestureJudge_text'))
           .fontSize(14)
           .fontColor('#666')

@@ -15,11 +15,11 @@
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 // [Start polymorphicEffect_popup]
-// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+// 请将$r('app.media.xxx')替换为实际资源文件
 @Entry
 @Component
 export struct PolymorphicEffectPopupExample {
-  // 请在resources\base\element\string.json文件中配置name为'xxx' ，value为非空字符串的资源
+  // 请在resources\base\element\string.json文件中配置name为'xxx'，value为非空字符串的资源
   @State scan: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Scan_title') as string;
   @State createGroupChat: string =

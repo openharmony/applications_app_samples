@@ -18,7 +18,7 @@
 @Component
 export struct SupportAvoidCentralAxisMenuExample {
   @State message: string = 'Hello World';
-  // 请在resources\base\element\string.json文件中配置name为'xxx' ，value为非空字符串的资源
+  // 请在resources\base\element\string.json文件中配置name为'xxx'，value为非空字符串的资源
   @State upScreen: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('Upper_half_screen') as string;
   @State middleAxle: string =
@@ -29,7 +29,7 @@ export struct SupportAvoidCentralAxisMenuExample {
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('zone') as string;
   @State hoverModeStart: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('hoverMode_start') as string;
-  // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+  // 请将$r('app.media.startIcon')替换为实际资源文件
   private iconStr: Resource = $r('app.media.startIcon');
   @State index: number = 0;
   @State arrayStr: Array<string> = [this.upScreen, this.middleAxle, this.lowerScreen];

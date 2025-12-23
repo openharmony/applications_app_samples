@@ -53,7 +53,7 @@ export struct DropAnimationExample {
       Row() {
         Column() {
           //[Start drop_image_start]
-          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
+          // 请将$r('app.media.app_icon')替换为实际资源文件
           Image($r('app.media.app_icon'))
             .width(100)
             .height(100)

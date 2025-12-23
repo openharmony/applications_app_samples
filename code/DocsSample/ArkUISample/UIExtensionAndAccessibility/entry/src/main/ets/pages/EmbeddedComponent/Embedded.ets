@@ -48,8 +48,8 @@ export struct Embedded {
       // [StartExclude embedded_start]
     }
     .backgroundColor('#f1f2f3')
-      // 请将$r('app.media.Embedded_Component_title')替换为实际资源文件
-      .title($r('app.string.Embedded_Component_title'))
+    // 请将$r('app.string.Embedded_Component_title')替换为实际资源文件，在本示例中该资源文件的value值为"使用 EmbeddedComponent 组件"
+    .title($r('app.string.Embedded_Component_title'))
     // [EndExclude embedded_start]
   }
 }

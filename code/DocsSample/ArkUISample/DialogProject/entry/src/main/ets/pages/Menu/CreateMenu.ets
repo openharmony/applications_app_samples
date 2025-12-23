@@ -19,7 +19,7 @@ import { PromptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Tmp {
-  // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
+  // 请将$r('app.media.view_list_filled')替换为实际资源文件
   private iconStr2: ResourceStr = $r('app.media.view_list_filled')
 
   set(val: Resource) {
@@ -31,7 +31,7 @@ class Tmp {
 @Component
 export struct menuExample  {
   @State select: boolean = true;
-  // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
+  // 请将$r('app.media.view_list_filled')替换为实际资源文件
   private iconStr: ResourceStr = $r('app.media.view_list_filled');
   private iconStr2: ResourceStr = $r('app.media.view_list_filled');
   // 请将$r('app.string.copy')替换为实际资源文件，在本示例中该资源文件的value值为"复制"
@@ -51,8 +51,8 @@ export struct menuExample  {
   MyMenu() {
     Menu() {
       // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
-      // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
-      // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
+      // 请将$r('app.media.icon')替换为实际资源文件
+      // 请将$r('app.media.arrow_right_filled')替换为实际资源文件
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') }).enabled(false)
       MenuItem({
@@ -73,9 +73,9 @@ export struct menuExample  {
             let str: Tmp = new Tmp();
             str.set($r('app.media.icon'));
           })
-        /// 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
-        // $r('app.media.view_list_filled')需要替换为开发者所需的图像资源文件。
-        // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
+        // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
+        // 请将$r('app.media.view_list_filled')替换为实际资源文件
+        // 请将$r('app.media.arrow_right_filled')替换为实际资源文件
         MenuItem({
           startIcon: $r('app.media.view_list_filled'),
           content: $r('app.string.menu_selection'),
@@ -84,7 +84,7 @@ export struct menuExample  {
         })
       }
       // 请将$r('app.string.menu_selection')替换为实际资源文件，在本示例中该资源文件的value值为"菜单选项"
-      // $r('app.media.arrow_right_filled')需要替换为开发者所需的图像资源文件。
+      // 请将$r('app.media.arrow_right_filled')替换为实际资源文件
       MenuItem({
         startIcon: this.iconStr2,
         content: $r('app.string.menu_selection'),

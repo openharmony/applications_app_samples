@@ -44,6 +44,7 @@ function cardDisabledStyle() {
 @Component
 struct themeskinning {
   @Provide('router') router: NavPathStack = new NavPathStack();
+  // 请将$r('app.string.xxx')替换为实际资源文件
   @State routes: RouteGroup[] = [
     {
       name: 'Theme1',

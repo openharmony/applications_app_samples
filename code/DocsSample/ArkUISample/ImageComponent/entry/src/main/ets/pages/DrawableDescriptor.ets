@@ -45,27 +45,27 @@ struct DrawableDescriptorType {
       return;
     };
     // 创建普通DrawableDescriptor
-    // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.landscape')替换为实际资源文件
     let pixmapDescResult = resManager.getDrawableDescriptor($r('app.media.landscape').id);
     if (pixmapDescResult) {
       this.pixmapDesc = pixmapDescResult as DrawableDescriptor;
     };
     // 创建PixelMapDrawableDescriptor
-    // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.landscape')替换为实际资源文件
     const pixelMap = await this.getPixmapFromMedia($r('app.media.landscape'));
     this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
     // 创建分层图标
-    // $r('app.media.foreground')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.foreground')替换为实际资源文件
     const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
-    // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.landscape')替换为实际资源文件
     const background = await this.getDrawableDescriptor($r('app.media.landscape'));
     this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
     // 创建动画图片（需加载多张图片）
-    // $r('app.media.sky')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.sky')替换为实际资源文件
     const frame1 = await this.getPixmapFromMedia($r('app.media.sky'));
-    // $r('app.media.landscape')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.landscape')替换为实际资源文件
     const frame2 = await this.getPixmapFromMedia($r('app.media.landscape'));
-    // $r('app.media.clouds')需要替换为开发者所需的图像资源文件。
+    // 请将$r('app.media.clouds')替换为实际资源文件
     const frame3 = await this.getPixmapFromMedia($r('app.media.clouds'));
     if (frame1 && frame2 && frame3) {
       this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
