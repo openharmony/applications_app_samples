@@ -20,7 +20,7 @@ export struct TextImageComponent {
     NavDestination() {
       // [Start textImage_component]
       Text() {
-        // $r('app.media.hot_sale')需要替换为开发者所需的资源文件。
+        // 请将$r('app.media.hot_sale')替换为实际资源文件
         ImageSpan($r('app.media.hot_sale'))
           .width(50)
           .height(30)

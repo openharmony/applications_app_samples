@@ -49,8 +49,8 @@ export struct CreateRichEditor {
       Column({ space: 12 }) {
         // [StartExclude richEditor_create_span]
         ComponentCard({
-          // 请将$r('app.string.Create_RichEditor_Component_title_1')替换为实际资源文件，
-          // 在本示例中该资源文件的value值为"创建使用属性字符串构建的RichEditor组件"
+          /* 请将$r('app.string.Create_RichEditor_Component_title_1')替换为实际资源文件，在本示例中该资源文件的
+            value值为"创建使用属性字符串构建的RichEditor组件" */
           title: $r('app.string.Create_RichEditor_Component_title_1')
         }) {
           // [EndExclude richEditor_create]
@@ -61,8 +61,8 @@ export struct CreateRichEditor {
           // [End richEditor_create]
         }
 
-        // 请将$r('app.string.Create_RichEditor_Component_title_2')替换为实际资源文件，
-        // 在本示例中该资源文件的value值为"创建不使用属性字符串构建的RichEditor组件"
+        /* 请将$r('app.string.Create_RichEditor_Component_title_2')替换为实际资源文件，
+         在本示例中该资源文件的value值为"创建不使用属性字符串构建的RichEditor组件" */
         ComponentCard({
           title: $r('app.string.Create_RichEditor_Component_title_2'),
         }) {
@@ -70,8 +70,8 @@ export struct CreateRichEditor {
           RichEditor(this.optionsNoStyledString)
             .onReady(() => {
               this.controllerNoStyledString.addTextSpan(
-                // 请将$r('app.string.CreateRichEditor_Text_2')替换为实际资源文件，
-                // 在本示例中该资源文件的value值为"需创建不使用属性字符串构建的RichEditor组件。"
+                /* 请将$r('app.string.CreateRichEditor_Text_2')替换为实际资源文件，
+                 在本示例中该资源文件的value值为"需创建不使用属性字符串构建的RichEditor组件。" */
                 resource.resourceToString($r('app.string.CreateRichEditor_Text_2')), {
                 style: {
                   fontColor: Color.Black,

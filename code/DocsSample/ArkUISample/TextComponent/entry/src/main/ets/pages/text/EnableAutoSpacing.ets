@@ -28,7 +28,6 @@ export struct EnableAutoSpacing {
           .onClick(() => this.enableSpacing = true)
           .backgroundColor(this.enableSpacing ? '#4CAF50' : '#E0E0E0')
           .fontColor(this.enableSpacing ? Color.White : Color.Black)
-
         // 请将$r('app.string.off_automatic_spacing')替换为实际资源文件，在本示例中该资源文件的value值为"关闭自动间距"
         Button($r('app.string.off_automatic_spacing'))
           .onClick(() => this.enableSpacing = false)
@@ -38,7 +37,6 @@ export struct EnableAutoSpacing {
       .width('100%')
       .justifyContent(FlexAlign.Center)
       .margin({ top: 30, bottom: 20 })
-
       // 请将$r('app.string.Automatic_spacing_has_been_enabled')替换为实际资源文件，在本示例中该资源文件的value值为"当前状态:已开启自动间距"
       // 请将$r('app.string.Automatic_spacing_has_been_turned_off')替换为实际资源文件，在本示例中该资源文件的value值为"当前状态:已关闭自动间距"
       Text(this.enableSpacing ? $r('app.string.Automatic_spacing_has_been_enabled') : $r('app.string.Automatic_spacing_has_been_turned_off'))
@@ -47,8 +45,8 @@ export struct EnableAutoSpacing {
         .margin({ bottom: 20 })
 
       // 设置是否应用中西文自动间距
-      // 请将$r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing')替换为实际资源文件，
-      // 在本示例中该资源文件的value值为"中西文Auto Spacing自动间距"
+      /* 请将$r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing')替换为实际资源文件，在本示例中该资源文件的
+        value值为"中西文Auto Spacing自动间距" */
       Text($r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing'))
         .fontSize(24)
         .padding(15)
