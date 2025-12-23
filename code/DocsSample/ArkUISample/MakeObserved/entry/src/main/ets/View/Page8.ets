@@ -50,29 +50,30 @@ struct Page8 {
     Column() {
       Text(`id: ${this.message.id}`)
         .id('textIdMessage')
-        .fontSize(50)
+        .fontSize(30)
+        .margin(5)
         .onClick(() => {
           this.message.id++;
         })
-
       Text(`age: ${this.message.age}`)
         .id('textAgeMessageAge')
-        .fontSize(50)
+        .fontSize(30)
+        .margin(5)
         .onClick(() => {
           this.message.age++;
         })
-
-      Text(`Computed age+id: ${this.ageId}`)
-        .fontSize(50)
-
+      Text(`Computed age + id: ${this.ageId}`)
+        .fontSize(30)
+        .margin(5)
       Button('change Info')
         .id('buttonChangeInfo')
+        .fontSize(30)
+        .margin(5)
         .onClick(() => {
           // 返回类实例本身，并赋值给message，触发@Computed和@Monitor
           this.message = UIUtils.makeObserved(new Info(200));
-      })
-
-      Child({message: this.message})
+        })
+      Child({ message: this.message })
     }
     .height('100%')
     .width('100%')
@@ -82,8 +83,11 @@ struct Page8 {
 @ComponentV2
 struct Child {
   @Param @Require message: Info;
+
   build() {
     Text(`Child id: ${this.message.id}`)
+      .fontSize(30)
+      .margin(5)
   }
 }
 // [End name_change_from_monitor_value]
