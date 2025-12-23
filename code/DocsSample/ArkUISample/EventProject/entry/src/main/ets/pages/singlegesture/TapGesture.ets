@@ -34,7 +34,7 @@ export struct Tap {
                 }))
           Text(this.value)
         }
-        .height(200)
+        .height(300)
         .width(250)
         .padding(20)
         .border({ width: 3 })
