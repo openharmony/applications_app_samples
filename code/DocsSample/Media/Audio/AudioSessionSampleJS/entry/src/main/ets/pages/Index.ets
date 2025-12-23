@@ -132,6 +132,7 @@ async function activeSession(){
   // [End listen_audiosessiondeactiveevent]
 }
 // 根据实际业务，可以启动多个AudioRenderer等音频播放。
+// [Start deactive_audiosession]
 // [StartExclude all_focusprocess]
 async function deactiveSession(){
   // [EndExclude all_sessionprocess]
@@ -139,19 +140,24 @@ async function deactiveSession(){
   // 结束AudioSession，即释放焦点
   audioSessionManager.deactivateAudioSession().then(() => {
     console.info('Succeeded in doing deactivateAudioSession.');
+    // [StartExclude deactive_audiosession]
     // [StartExclude all_focusprocess]
     if (globalLogUpdate) {
       globalLogUpdate('Succeeded in doing deactivateAudioSession.', false);
     }
     // [EndExclude all_focusprocess]
+    // [EndExclude deactive_audiosession]
   }).catch((err: BusinessError) => {
     console.error(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`);
+    // [StartExclude deactive_audiosession]
     // [StartExclude all_focusprocess]
     if (globalLogUpdate) {
       globalLogUpdate(`Failed to deactivateAudioSession. Code: ${err.code}, message: ${err.message}`, true);
     }
+    // [EndExclude deactive_audiosession]
     // [EndExclude all_focusprocess]
   });
+  // [End deactive_audiosession]
   // [StartExclude all_sessionprocess]
   // [StartExclude all_focusprocess]
   // [Start audiosession_checkisactivated]

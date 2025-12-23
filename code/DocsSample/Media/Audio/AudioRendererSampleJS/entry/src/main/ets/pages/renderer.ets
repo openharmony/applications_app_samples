@@ -98,7 +98,7 @@ class Options {
   public offset?: number;
   public length?: number;
 }
-
+// [StartExclude init_callback]
 // [StartExclude render_process]
 // 全局变量用于UI更新回调
 let globalLogUpdate: (msg: string, isError: boolean) => void = () => {};
@@ -106,7 +106,6 @@ let globalStateUpdate: (msg: string) => void = () => {};
 let globalCallbackUpdate: (msg: string) => void = () => {};
 // [EndExclude render_process]
 
-// [StartExclude init_callback]
 let audioRenderer: audio.AudioRenderer | undefined = undefined;
 // [EndExclude create_audiorender]
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -337,7 +336,7 @@ async function release() {
     // [End render_release]
   }
 }
-// [StartExclude render_process]
+// [End render_process]
 async function getvolume(){
   // [EndExclude get_systemvolume]
   // 获取指定流的音量。
@@ -588,7 +587,6 @@ async function getCurrentAudioRendererInfoArray(): Promise<void> {
     });
 }
 // [End get_allstreaminfo]
-// [End render_process]
 @Entry
 @Component
 struct Index {
@@ -844,7 +842,6 @@ struct Index {
             getCurrentAudioRendererInfoArray();
           });
         }
-        // [EndExclude render_process]
       }
       .height('100%')
       .width('100%')

@@ -26,10 +26,19 @@
 #include "ohaudio/native_audio_session_manager.h"
 // [StartExclude csessionactive_process]
 // [End cimport_h]
-#include "utils.h"
+
+class Var {
+public:
+    const int globalResmgr = 0xFF00;
+    std::vector<OH_AudioStreamBuilder *> rendererBuilders;
+    std::vector<OH_AudioStreamBuilder *> capturerBuilders;
+    std::vector<OH_AudioRenderer *> renderer;
+    std::vector<OH_AudioCapturer *> capturer;
+    std::vector<bool> isStart;
+};
 
 const char *SESSION_TAG = "AudioSession";
-Var *AudioSessionVariable = new Var();
+Var *g_audioSessionVariable = new Var();
 // [Start cint_deacticatedcallback]
 // [EndExclude csessionactive_process]
 int32_t MyAudioSessionDeactivatedCallback(OH_AudioSession_DeactivatedEvent event)
@@ -94,7 +103,7 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
                                                                                       AudioSessionStateChangedCallback);
     // [StartExclude clistencallback_process]
     if (resultManager == 0) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, AudioSessionVariable->GLOBAL_RESMGR, SESSION_TAG,
+        OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                      " OH_AudioManager_GetAudioSessionManager success! ");
     }
     // [End cget_sessionmanager]
@@ -117,7 +126,7 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
     bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
     // [End ccheck_isactivated]
     if (isActivated) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, AudioSessionVariable->GLOBAL_RESMGR, SESSION_TAG,
+        OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                      " AudioSessionManager is activated! ");
     }
     // 监听音频会话停用事件。
@@ -135,21 +144,25 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
 
 napi_value AudioSessionDeactive(napi_env env, napi_callback_info info)
 {
+    // [Start cdeactive_audiosession]
     OH_AudioCommon_Result result;
+    // [StartExclude cdeactive_audiosession]
     // [EndExclude csessionactive_process]
     // 取消监听音频会话停用事件。
     result = OH_AudioSessionManager_UnregisterStateChangeCallback(audioSessionManager,
                                                                   AudioSessionStateChangedCallback);
     // [StartExclude csessionactive_process]
-    OH_LOG_Print(LOG_APP, LOG_INFO, AudioSessionVariable->GLOBAL_RESMGR, SESSION_TAG,
+    OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                  " OH_AudioSessionManager_UnregisterStateChangeCallback return: %{public}d! ", result);
     // [EndExclude csessionactive_process]
     // 停用音频会话。
+    // [EndExclude cdeactive_audiosession]
     // [EndExclude clistencallback_process]
     result = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
     // [StartExclude clistencallback_process]
+    // [End cdeactive_audiosession]
     // [End csessionactive_process]
-    OH_LOG_Print(LOG_APP, LOG_INFO, AudioSessionVariable->GLOBAL_RESMGR, SESSION_TAG,
+    OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                  " OH_AudioSessionManager_DeactivateAudioSession return: %{public}d! ", result);
     // [EndExclude clistencallback_process]
     // [Start cunregist_deacticatedcallback]
@@ -157,7 +170,7 @@ napi_value AudioSessionDeactive(napi_env env, napi_callback_info info)
         audioSessionManager, MyAudioSessionDeactivatedCallback);
     // [End cunregist_deacticatedcallback]
     // [End clistencallback_process]
-    OH_LOG_Print(LOG_APP, LOG_INFO, AudioSessionVariable->GLOBAL_RESMGR, SESSION_TAG,
+    OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
                  " OH_AudioSessionManager_UnregisterSessionDeactivatedCallback return: %{public}d ! ", result);
     std::stringstream ss;
     ss << "取消监听音频会话停用事件成功\n";
