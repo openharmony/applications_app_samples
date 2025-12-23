@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "PickerMediaLibrarySample"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "PickerMediaLibrarySample Entry Ability"
+    }
+  ]
+}
