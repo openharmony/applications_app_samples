@@ -619,52 +619,76 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
-void setTextInput5(ArkUI_NodeHandle &textInput5)
+void setTextInput5(ArkUI_NodeHandle &textInput5, ArkUI_NodeHandle &textInput5_2)
 {
-    ArkUI_AttributeItem item0;
-    item0.string = "\u300C启用行首标点压缩";
-    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_TEXT, &item0);
+    ArkUI_AttributeItem text;
+    ArkUI_AttributeItem text1;
+    text.string = "\u300C启用行首标点压缩";
+    text1.string = "\u300C关闭行首标点压缩";
+    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_TEXT, &text);
+    Manager::nodeAPI_->setAttribute(textInput5_2, NODE_TEXT_INPUT_TEXT, &text1);
     ArkUI_NumberValue value0[] = {{.i32 = true}};
-    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item3);
+    ArkUI_NumberValue value1[] = {{.i32 = false}};
+    ArkUI_AttributeItem item0 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item0);
+    Manager::nodeAPI_->setAttribute(textInput5_2, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item1);
 }
 
 void setTextInput6(ArkUI_NodeHandle &textInput6)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
     Manager::nodeAPI_->setAttribute(textInput6, NODE_TEXT_INPUT_TEXT, &textItem);
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为true"};
+    Manager::nodeAPI_->setAttribute(textInput6_2, NODE_TEXT_INPUT_TEXT, &textItem_2);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textInput6, NODE_HEIGHT, &textHeightItem);
+    Manager::nodeAPI_->setAttribute(textInput6_2, NODE_HEIGHT, &textHeightItem);
     ArkUI_NumberValue textLineHeightValue[] = {{.i32 = 10}};
     ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
         .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
     Manager::nodeAPI_->setAttribute(textInput6, NODE_TEXT_INPUT_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(textInput6_2, NODE_TEXT_INPUT_LINE_HEIGHT, &textLineHeightItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textInput6, NODE_TEXT_INPUT_INCLUDE_FONT_PADDING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(textInput6_2, NODE_TEXT_INPUT_INCLUDE_FONT_PADDING, &textIncludePaddingItem_2);
 }
 
-void setTextInput7(ArkUI_NodeHandle &textInput7)
+void setTextInput7(ArkUI_NodeHandle &textInput7, ArkUI_NodeHandle &textInput7_2)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为false"};
     Manager::nodeAPI_->setAttribute(textInput7, NODE_TEXT_INPUT_TEXT, &textItem);
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为true"};
+    Manager::nodeAPI_->setAttribute(textInput7_2, NODE_TEXT_INPUT_TEXT, &textItem_2);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textInput7, NODE_HEIGHT, &textHeightItem);
+    Manager::nodeAPI_->setAttribute(textInput7_2, NODE_HEIGHT, &textHeightItem);
     ArkUI_NumberValue textLineHeightValue[] = {{.i32 = 10}};
     ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
         .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
     Manager::nodeAPI_->setAttribute(textInput7, NODE_TEXT_INPUT_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(textInput7_2, NODE_TEXT_INPUT_LINE_HEIGHT, &textLineHeightItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textInput7, NODE_TEXT_INPUT_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(textInput7_2, NODE_TEXT_INPUT_FALLBACK_LINE_SPACING, &textIncludePaddingItem_2);
 }
 
 void setTextInput8(ArkUI_NodeHandle &textInput8)
@@ -1281,63 +1305,95 @@ void setText10(ArkUI_NodeHandle &text10)
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
 }
 
-void setText11(ArkUI_NodeHandle &text11)
+void setText11(ArkUI_NodeHandle &text11, ArkUI_NodeHandle &text11_2)
 {
-    ArkUI_AttributeItem item0;
-    item0.string = "\u300C启用行首标点压缩";
-    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_CONTENT, &item0);
+    ArkUI_AttributeItem text;
+    ArkUI_AttributeItem text1;
+    text.string = "\u300C启用行首标点压缩";
+    text1.string = "\u300C关闭行首标点压缩";
+    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_CONTENT, &text);
+    Manager::nodeAPI_->setAttribute(text11_2, NODE_TEXT_CONTENT, &text1);
     ArkUI_NumberValue value0[] = {{.i32 = true}};
-    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item3);
-    ArkUI_NumberValue value1[] = {{.f32 = 1.0}};
-    ArkUI_AttributeItem item4 = {value1, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(text11, NODE_BORDER_WIDTH, &item4);
+    ArkUI_NumberValue value1[] = {{.i32 = false}};
+    ArkUI_AttributeItem item0 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item0);
+    Manager::nodeAPI_->setAttribute(text11_2, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item1);
+    ArkUI_NumberValue value3[] = {{.f32 = 1.0}};
+    ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text11, NODE_BORDER_WIDTH, &item3);
+    Manager::nodeAPI_->setAttribute(text11_2, NODE_BORDER_WIDTH, &item3);
 }
 
 void setText12(ArkUI_NodeHandle &text12)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为true"};
     Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT, &textItem);
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_TEXT_CONTENT, &textItem_2);
     ArkUI_NumberValue textWeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem textWeightItem = {.value = textWeightValue,
         .size = sizeof(textWeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text12, NODE_WIDTH, &textWeightItem);
-    ArkUI_NumberValue textHeightValue[] = {{.f32 = 100}};
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_WIDTH, &textWeightItem);
+    ArkUI_NumberValue textHeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text12, NODE_HEIGHT, &textHeightItem);
-    ArkUI_NumberValue textLineHeightValue[] = {{.f32 = 10}};
-    ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
-        .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
-    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_HEIGHT, &textHeightItem);
+    ArkUI_NumberValue textBorderWidthValue[] = {{.f32 = 1}};
+    ArkUI_AttributeItem textBorderWidthItem = {.value = textBorderWidthValue,
+        .size = sizeof(textBorderWidthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_BORDER_WIDTH, &textBorderWidthItem);
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_BORDER_WIDTH, &textBorderWidthItem);
+    ArkUI_NumberValue textContentAlignValue[] = {{.f32 = 0}};
+    ArkUI_AttributeItem textContentAlignItem = {.value = textContentAlignValue,
+        .size = sizeof(textContentAlignValue) / sizeof(textContentAlignValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT_ALIGN, &textContentAlignItem);
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_TEXT_CONTENT_ALIGN, &textContentAlignItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_INCLUDE_FONT_PADDING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(text12_2, NODE_TEXT_INCLUDE_FONT_PADDING, &textIncludePaddingItem_2);
 }
 
-void setText13(ArkUI_NodeHandle &text13)
+void setText13(ArkUI_NodeHandle &text13, ArkUI_NodeHandle &text13_2)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为false"};
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为true"};
     Manager::nodeAPI_->setAttribute(text13, NODE_TEXT_CONTENT, &textItem);
+    Manager::nodeAPI_->setAttribute(text13_2, NODE_TEXT_CONTENT, &textItem_2);
     ArkUI_NumberValue textWeightValue[] = {{.f32 = 200}};
     ArkUI_AttributeItem textWeightItem = {.value = textWeightValue,
         .size = sizeof(textWeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text13, NODE_WIDTH, &textWeightItem);
+    Manager::nodeAPI_->setAttribute(text13_2, NODE_WIDTH, &textWeightItem);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 150}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text13, NODE_HEIGHT, &textHeightItem);
+    Manager::nodeAPI_->setAttribute(text13_2, NODE_HEIGHT, &textHeightItem);
     ArkUI_NumberValue textLineHeightValue[] = {{.f32 = 10}};
     ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
         .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
     Manager::nodeAPI_->setAttribute(text13, NODE_TEXT_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(text13_2, NODE_TEXT_LINE_HEIGHT, &textLineHeightItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(text13, NODE_TEXT_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(text13_2, NODE_TEXT_FALLBACK_LINE_SPACING, &textIncludePaddingItem_2);
 }
 
 void setText14(ArkUI_NodeHandle &text14)
@@ -1583,52 +1639,76 @@ void setTextArea4(ArkUI_NodeHandle &textArea4)
     Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
 }
 
-void setTextArea6(ArkUI_NodeHandle &textArea6)
+void setTextArea6(ArkUI_NodeHandle &textArea6, ArkUI_NodeHandle &textArea6_2)
 {
-    ArkUI_AttributeItem item0;
-    item0.string = "\u300C启用行首标点压缩";
-    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_TEXT, &item0);
+    ArkUI_AttributeItem text;
+    ArkUI_AttributeItem text1;
+    text.string = "\u300C启用行首标点压缩";
+    text1.string = "\u300C关闭行首标点压缩";
+    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_TEXT, &text);
+    Manager::nodeAPI_->setAttribute(textArea6_2, NODE_TEXT_AREA_TEXT, &text1);
     ArkUI_NumberValue value0[] = {{.i32 = true}};
-    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item3);
+    ArkUI_NumberValue value1[] = {{.i32 = false}};
+    ArkUI_AttributeItem item0 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea6, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item0);
+    Manager::nodeAPI_->setAttribute(textArea6_2, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item1);
 }
 
 void setTextArea7(ArkUI_NodeHandle &textArea7)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
     Manager::nodeAPI_->setAttribute(textArea7, NODE_TEXT_AREA_TEXT, &textItem);
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为true"};
+    Manager::nodeAPI_->setAttribute(textArea7_2, NODE_TEXT_AREA_TEXT, &textItem_2);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textArea7, NODE_HEIGHT, &textHeightItem);
+    Manager::nodeAPI_->setAttribute(textArea7_2, NODE_HEIGHT, &textHeightItem);
     ArkUI_NumberValue textLineHeightValue[] = {{.i32 = 10}};
     ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
         .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
     Manager::nodeAPI_->setAttribute(textArea7, NODE_TEXT_AREA_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(textArea7_2, NODE_TEXT_AREA_LINE_HEIGHT, &textLineHeightItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textArea7, NODE_TEXT_AREA_INCLUDE_FONT_PADDING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(textArea7_2, NODE_TEXT_AREA_INCLUDE_FONT_PADDING, &textIncludePaddingItem_2);
 }
 
-void setTextArea8(ArkUI_NodeHandle &textArea8)
+void setTextArea8(ArkUI_NodeHandle &textArea8, ArkUI_NodeHandle &textArea8_2)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING"};
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为false"};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_TEXT_AREA_TEXT, &textItem);
+    ArkUI_AttributeItem textItem_2 = {
+        .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nFALLBACK_LINE_SPACING设置为true"};
+    Manager::nodeAPI_->setAttribute(textArea8_2, NODE_TEXT_AREA_TEXT, &textItem_2);
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_HEIGHT, &textHeightItem);
+    Manager::nodeAPI_->setAttribute(textArea8_2, NODE_HEIGHT, &textHeightItem);
     ArkUI_NumberValue textLineHeightValue[] = {{.i32 = 10}};
     ArkUI_AttributeItem textLineHeightItem = {.value = textLineHeightValue,
         .size = sizeof(textLineHeightValue) / sizeof(textLineHeightValue)};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_TEXT_AREA_LINE_HEIGHT, &textLineHeightItem);
-    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 1}};
+    Manager::nodeAPI_->setAttribute(textArea8_2, NODE_TEXT_AREA_LINE_HEIGHT, &textLineHeightItem);
+    ArkUI_NumberValue textIncludePaddingValue[] = {{.i32 = 0}};
     ArkUI_AttributeItem textIncludePaddingItem = {.value = textIncludePaddingValue,
         .size = sizeof(textIncludePaddingValue) / sizeof(textIncludePaddingValue)};
     Manager::nodeAPI_->setAttribute(textArea8, NODE_TEXT_AREA_FALLBACK_LINE_SPACING, &textIncludePaddingItem);
+    ArkUI_NumberValue textIncludePaddingValue_2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem textIncludePaddingItem_2 = {.value = textIncludePaddingValue_2,
+        .size = sizeof(textIncludePaddingValue_2) / sizeof(textIncludePaddingValue_2)};
+    Manager::nodeAPI_->setAttribute(textArea8_2, NODE_TEXT_AREA_FALLBACK_LINE_SPACING, &textIncludePaddingItem_2);
 }
 
 void setTextArea9(ArkUI_NodeHandle &textArea9)
@@ -1903,16 +1983,18 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text12_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text13_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
-    setText12(text12);
-    setText13(text13);
-    setText13(text14);
+    setText12(text12, text12_2);
+    setText13(text13, text13_2);
+    setText14(text14);
     setText15(text15);
     setText16(text16);
     setText17(TextMaker::text17);
@@ -1941,7 +2023,9 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
+    Manager::nodeAPI_->addChild(textContainer, text12_2);
     Manager::nodeAPI_->addChild(textContainer, text13);
+    Manager::nodeAPI_->addChild(textContainer, text13_2);
     Manager::nodeAPI_->addChild(textContainer, text14);
     Manager::nodeAPI_->addChild(textContainer, text15);
     Manager::nodeAPI_->addChild(textContainer, text16);
@@ -1993,12 +2077,14 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text11_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setText9(text9);
     setText10(text10);
-    setText11(text11);
+    setText11(text11, text11_2);
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
+    Manager::nodeAPI_->addChild(textContainer, text11_2);
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
@@ -2020,8 +2106,11 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput5_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput6_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput7_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput9Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
@@ -2030,9 +2119,9 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setTextInput2(textInput2);
     setTextInput3(textInput3);
     setTextInput4(textInput4);
-    setTextInput5(textInput5);
-    setTextInput6(textInput6);
-    setTextInput7(textInput7);
+    setTextInput5(textInput5, textInput5_2);
+    setTextInput6(textInput6, textInput6_2);
+    setTextInput7(textInput7, textInput7_2);
     setTextInput8(textInput8);
     setTextInput9(textInput9, textInput9Button1);
     setTextInputSelectAI(textInputAISelect);
@@ -2041,8 +2130,11 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput3);
     Manager::nodeAPI_->addChild(textContainer, textInput4);
     Manager::nodeAPI_->addChild(textContainer, textInput5);
+    Manager::nodeAPI_->addChild(textContainer, textInput5_2);
     Manager::nodeAPI_->addChild(textContainer, textInput6);
+    Manager::nodeAPI_->addChild(textContainer, textInput6_2);
     Manager::nodeAPI_->addChild(textContainer, textInput7);
+    Manager::nodeAPI_->addChild(textContainer, textInput7_2);
     Manager::nodeAPI_->addChild(textContainer, textInput8);
     Manager::nodeAPI_->addChild(textContainer, textInput9);
     Manager::nodeAPI_->addChild(textContainer, textInput9Button1);
@@ -2056,8 +2148,11 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea6_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea7_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea8_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea10Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
@@ -2067,10 +2162,10 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea3(textArea3);
     setTextArea4(textArea4);
     setCustomKeyboard(textArea5);
-    setTextArea6(textArea6);
+    setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
-    setTextArea7(textArea7);
-    setTextArea8(textArea8);
+    setTextArea7(textArea7, textArea7_2);
+    setTextArea8(textArea8, textArea8_2);
     setTextArea9(textArea9);
     setTextArea10(textArea10, textArea10Button1);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
@@ -2081,9 +2176,12 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea4);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
+    Manager::nodeAPI_->addChild(textContainer, textArea6_2);
     Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
     Manager::nodeAPI_->addChild(textContainer, textArea7);
+    Manager::nodeAPI_->addChild(textContainer, textArea7_2);
     Manager::nodeAPI_->addChild(textContainer, textArea8);
+    Manager::nodeAPI_->addChild(textContainer, textArea8_2);
     Manager::nodeAPI_->addChild(textContainer, textArea9);
     Manager::nodeAPI_->addChild(textContainer, textArea10);
     Manager::nodeAPI_->addChild(textContainer, textArea10Button1);
