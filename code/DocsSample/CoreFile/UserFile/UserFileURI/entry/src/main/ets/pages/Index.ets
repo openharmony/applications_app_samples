@@ -15,7 +15,6 @@
 
 // [Start copy_file_uri_example ]
 // [Start function_example]
-// [Start import_user_fileAccess]
 // [Start import_get_uri_assets]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude import_get_uri_assets]
@@ -38,10 +37,6 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 let uris: string[] = [];
 // [EndExclude function_example]
 // [EndExclude copy_file_uri_example]
-
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
-// [End import_user_fileAccess]
 
 // [StartExclude copy_file_uri_example]
 // [StartExclude function_example]
@@ -76,7 +71,8 @@ async function photoPickerGetUri() {
   }
 }
 
-async function uriGetAssets(): Promise<string> {
+// 请在组件内获取context
+async function uriGetAssets(context: common.UIAbilityContext): Promise<string> {
   // 检查uris数组是否为空
   if (uris.length === 0) {
     throw new Error('No URIs available');
@@ -122,7 +118,8 @@ async function uriGetAssets(): Promise<string> {
 }
 // [End import_get_uri_assets]
 // [EndExclude function_example]
-async function documentURIExample() {
+// 请在组件内获取context
+async function documentURIExample(context: common.UIAbilityContext) {
   let fileAccessHelper: fileAccess.FileAccessHelper;
   // wantInfos 从getFileAccessAbilityInfo()获取
   let wantInfos: Want[] = [
@@ -163,7 +160,8 @@ async function documentURIExample() {
 }
 // [End function_example]
 // [EndExclude copy_file_uri_example]
-async function copyingFileByUriExample() {
+// 请在组件内获取context
+async function copyingFileByUriExample(context: common.UIAbilityContext) {
   let fileAccessHelper: fileAccess.FileAccessHelper;
   // wantInfos 从getFileAccessAbilityInfo()获取
   let wantInfos: Want[] = [
@@ -211,6 +209,7 @@ struct Index {
   @State uriMessage: string = ''; // 初始化状态变量，用于显示消息
   @State result: string = '';
   @State documentUris: string[] = [];
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column({ space: $r('app.float.size_10') }) { // 外层列布局，子元素间距为10
@@ -231,7 +230,7 @@ struct Index {
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
             this.uriMessage = ''; // 重置消息为默认值
-            documentURIExample(); // 调用方法处理文档URI
+            documentURIExample(this.context); // 调用方法处理文档URI
           })
         // 读取图片uri按钮
         Button($r('app.string.readMediaUriButton'))
@@ -253,7 +252,7 @@ struct Index {
               // 首先获取图片URI
               await photoPickerGetUri();
               // 然后获取图片资源信息
-              this.uriMessage = await uriGetAssets();
+              this.uriMessage = await uriGetAssets(this.context);
             } catch (error) {
               console.error('Error:', error); // 日志记录错误信息
               this.uriMessage = 'Error: ' + error.message; // 显示错误信息
@@ -275,7 +274,7 @@ struct Index {
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
             this.uriMessage = ''; // 重置消息为默认值
-            copyingFileByUriExample(); // 调用方法处理文件复制
+            copyingFileByUriExample(this.context); // 调用方法处理文件复制
           })
         Text(this.uriMessage)
           .fontSize($r('app.float.size_50')) // 文本字体大小为50
@@ -296,7 +295,7 @@ struct Index {
           })
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
-            documentURIExample();
+            documentURIExample(this.context);
             this.selectDocumentFiles();
           })
         Text(this.result)
