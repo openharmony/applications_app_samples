@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "picker_media_library_title",
+      "value": "使用 PhotoViewPicker.select 接口选择媒体库资源"
+    },
+    {
+      "name": "picker_media_library_selected_items",
+      "value": "已选择项目: "
+    },
+    {
+      "name": "picker_media_library_item",
+      "value": "项目 "
+    },
+    {
+      "name": "picker_media_library_processed_result",
+      "value": "处理后的结果"
+    },
+    {
+      "name": "picker_media_library_processed_item",
+      "value": "处理后的项目 "
+    },
+    {
+      "name": "picker_media_library_uri",
+      "value": "URI: "
+    },
+    {
+      "name": "picker_media_library_mime_type",
+      "value": "MIME类型: "
+    },
+    {
+      "name": "picker_media_library_no_result",
+      "value": "没有处理结果"
+    },
+    {
+      "name": "picker_media_library_open_gallery",
+      "value": "打开图库选择"
+    },
+    {
+      "name": "picker_media_library_reset_selection",
+      "value": "重置选择"
+    },
+    {
+      "name": "picker_media_library_open_picker",
+      "value": "打开选择器"
+    },
+    {
+      "name": "picker_media_library_colon",
+      "value": ":"
+    }
+  ]
+}
