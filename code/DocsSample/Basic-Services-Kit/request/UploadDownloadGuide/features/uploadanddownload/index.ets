@@ -28,12 +28,12 @@ export { logger } from './src/main/ets/utils/Logger';
 
 export { TOAST_BOTTOM, BackgroundTaskState, NO_IMAGE_SELECTED } from './src/main/ets/utils/Constants';
 
-export { speedLimitDownload } from './src/main/ets/download/SpeedLimitDownload'
+export { speedLimitDownload } from './src/main/ets/download/SpeedLimitDownload';
 
-export { wantAgentDownload } from './src/main/ets/download/WantAgentDownload'
+export { wantAgentDownload } from './src/main/ets/download/WantAgentDownload';
 
-export { audioDownload } from './src/main/ets/download/userFile/AudioDownload'
+export { audioDownload } from './src/main/ets/download/userFile/AudioDownload';
 
-export { documentDownload } from './src/main/ets/download/userFile/DocumentDownload'
+export { documentDownload } from './src/main/ets/download/userFile/DocumentDownload';
 
-export { mediaDownload } from './src/main/ets/download/userFile/MediaDownload'
+export { mediaDownload } from './src/main/ets/download/userFile/MediaDownload';
