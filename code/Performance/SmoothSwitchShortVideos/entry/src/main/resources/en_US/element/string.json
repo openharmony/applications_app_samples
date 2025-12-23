@@ -1,0 +1,19 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    }
+  ,{
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },{
+      "name": "EntryAbility_label",
+      "value": "Smooth Switch Short Video"
+    },
+    {
+      "name": "permission_internet",
+      "value": "Allow the application to access the internet."
+    }
+  ]
+}
