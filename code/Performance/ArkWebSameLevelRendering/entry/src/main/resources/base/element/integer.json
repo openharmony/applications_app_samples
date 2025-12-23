@@ -1,0 +1,28 @@
+{
+  "integer": [
+    {
+      "name": "embed_image_size",
+      "value": 100
+    },
+    {
+      "name": "embed_search_icon_width",
+      "value": 14
+    },
+    {
+      "name": "embed_left_margin",
+      "value": 14
+    },
+    {
+      "name": "embed_search_row_height",
+      "value": 36
+    },
+    {
+      "name": "embed_search_border_radius",
+      "value": 18
+    },
+    {
+      "name": "embed_row_margin",
+      "value": 4
+    }
+  ]
+}

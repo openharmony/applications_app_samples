@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "ohos_id_color_foreground",
+      "value": "#000000"
+    },
+    {
+      "name": "ohos_id_color_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "ohos_id_color_sub_background",
+      "value": "#F1F3F5"
+    }
+  ]
+}

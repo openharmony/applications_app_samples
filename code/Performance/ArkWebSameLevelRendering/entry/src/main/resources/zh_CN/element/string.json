@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArkWeb同层渲染"
+    },
+    {
+      "name": "embed_product_title000",
+      "value": "充电宝"
+    },
+    {
+      "name": "embed_product_title001",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "embed_product_title002",
+      "value": "移动手机"
+    },
+    {
+      "name": "embed_product_title003",
+      "value": "手机充电器"
+    },
+    {
+      "name": "embed_product_title004",
+      "value": "头戴式耳机"
+    },
+    {
+      "name": "embed_product_title005",
+      "value": "背包"
+    },
+    {
+      "name": "embed_product_price000",
+      "value": "￥79.9"
+    },
+    {
+      "name": "embed_product_price001",
+      "value": "￥6999"
+    },
+    {
+      "name": "embed_product_price002",
+      "value": "￥5999"
+    },
+    {
+      "name": "embed_product_price003",
+      "value": "￥72.5"
+    },
+    {
+      "name": "embed_product_price004",
+      "value": "￥899"
+    },
+    {
+      "name": "embed_product_price005",
+      "value": "￥328"
+    },
+    {
+      "name": "embed_reason",
+      "value": "get internet permisssion"
+    },
+    {
+      "name": "embed_full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "embed_sixty_percent",
+      "value": "60%"
+    },
+    {
+      "name": "embed_mall",
+      "value": "商城"
+    },
+    {
+      "name": "embed_search",
+      "value": "搜索"
+    },
+    {
+      "name": "embed_prompt_text",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "embed_search_text_placeholder",
+      "value": "搜索相关宝贝"
+    },
+    {
+      "name": "ohos_id_text_size_body1",
+      "value": "14"
+    },
+    {
+      "name": "ohos_id_text_size_body2",
+      "value": "14"
+    },
+    {
+      "name": "ohos_id_text_size_body3",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_text_size_body4",
+      "value": "18"
+    },
+    {
+      "name": "ohos_id_corner_radius_default_m",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_elements_margin_vertical_m",
+      "value": "8"
+    },
+    {
+      "name": "ohos_id_card_margin_start",
+      "value": "12"
+    }
+  ]
+}

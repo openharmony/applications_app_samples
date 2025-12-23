@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArkWebSameLevelRendering"
+    },
+    {
+      "name": "embed_product_title000",
+      "value": "power bank"
+    },
+    {
+      "name": "embed_product_title001",
+      "value": "notebook computer"
+    },
+    {
+      "name": "embed_product_title002",
+      "value": "mobile phone"
+    },
+    {
+      "name": "embed_product_title003",
+      "value": "phone chargers"
+    },
+    {
+      "name": "embed_product_title004",
+      "value": "headset"
+    },
+    {
+      "name": "embed_product_title005",
+      "value": "Backpack"
+    },
+    {
+      "name": "embed_product_price000",
+      "value": "￥79.9"
+    },
+    {
+      "name": "embed_product_price001",
+      "value": "￥6999"
+    },
+    {
+      "name": "embed_product_price002",
+      "value": "￥5999"
+    },
+    {
+      "name": "embed_product_price003",
+      "value": "￥72.5"
+    },
+    {
+      "name": "embed_product_price004",
+      "value": "￥899"
+    },
+    {
+      "name": "embed_product_price005",
+      "value": "￥328"
+    },
+    {
+      "name": "embed_reason",
+      "value": "get internet permisssion"
+    },
+    {
+      "name": "embed_full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "embed_sixty_percent",
+      "value": "60%"
+    },
+    {
+      "name": "embed_mall",
+      "value": "shop mall"
+    },
+    {
+      "name": "embed_search",
+      "value": "search"
+    },
+    {
+      "name": "embed_prompt_text",
+      "value": "Demonstration only, can realize the business function by itself"
+    },
+    {
+      "name": "embed_search_text_placeholder",
+      "value": "Search related item"
+    },
+    {
+      "name": "ohos_id_text_size_body1",
+      "value": "14"
+    },
+    {
+      "name": "ohos_id_text_size_body2",
+      "value": "14"
+    },
+    {
+      "name": "ohos_id_text_size_body3",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_text_size_body4",
+      "value": "18"
+    },
+    {
+      "name": "ohos_id_corner_radius_default_m",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_elements_margin_vertical_m",
+      "value": "8"
+    },
+    {
+      "name": "ohos_id_card_margin_start",
+      "value": "12"
+    }
+  ]
+}
