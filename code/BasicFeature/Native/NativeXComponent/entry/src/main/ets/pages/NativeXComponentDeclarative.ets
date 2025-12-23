@@ -16,24 +16,25 @@
 import XComponentContext from '../interface/XComponentContext';
 
 @Builder
-export function PageTwoBuilder(name: string, param: Object){
-    PageTwo()
+export function NativeXComponentDeclarativeBuilder(name: string, param: Object) {
+  NativeXComponentDeclarative()
 }
+
 @Component
-export struct PageTwo {
+export struct NativeXComponentDeclarative {
   @State currentStatus: string = 'init';
   private xComponentContext: XComponentContext | undefined = undefined;
 
   build() {
     NavDestination() {
-        Column() {
+      Column() {
         Row() {
-            Text('Native XComponent Sample')
+          Text('NativeXComponent Declarative Sample')
             .fontSize('24fp')
             .fontWeight(500)
             .margin({
-                left: 24,
-                top: 12
+              left: 24,
+              top: 12
             })
         }
         .margin({ top: 24 })
@@ -41,57 +42,59 @@ export struct PageTwo {
         .height(56)
 
         Column({ space: 10 }) {
-            XComponent({
+          // [Start native_xcomponent_declarative_create_ets]
+          XComponent({
             id: 'xcomponentId',
             type: XComponentType.SURFACE,
-            libraryname: 'nativerender'
-            })
+            libraryname: 'nativerender' // 利用id和libraryname属性在Native侧获取NativeXcomponent并绑定Surface生命周期
+          })
             .onLoad((xComponentContext) => {
-                this.xComponentContext = xComponentContext as XComponentContext;
-                this.currentStatus = 'index';
+              this.xComponentContext = xComponentContext as XComponentContext;
+              this.currentStatus = 'index';
             })
             .onDestroy(() => {
-                console.info('onDestroy');
+              console.info('onDestroy');
             })
             .id('xcomponent')
+          // [End native_xcomponent_declarative_create_ets]
 
-            Text(this.currentStatus)
+          Text(this.currentStatus)
             .fontSize('24fp')
             .fontWeight(500)
         }
         .onClick(() => {
-            let hasChangeColor: boolean = false;
-            if (this.xComponentContext && this.xComponentContext.getStatusX()) {
+          let hasChangeColor: boolean = false;
+          if (this.xComponentContext && this.xComponentContext.getStatusX()) {
             hasChangeColor = this.xComponentContext.getStatusX().hasChangeColor;
-            }
-            if (hasChangeColor) {
+          }
+          if (hasChangeColor) {
             this.currentStatus = 'change color';
-            }
+          }
         })
         .margin({
-            top: 27,
-            left: 12,
-            right: 12
+          top: 27,
+          left: 12,
+          right: 12
         })
         .height('40%')
         .width('90%')
 
         Row() {
-            Button('Draw Star')
+          Button('Draw Star')
             .fontSize('16fp')
             .fontWeight(500)
             .margin({ bottom: 24 })
             .onClick(() => {
-                if (this.xComponentContext) {
+              if (this.xComponentContext) {
                 this.xComponentContext.drawPatternX();
                 let hasDraw: boolean = false;
                 if (this.xComponentContext.getStatusX()) {
-                    hasDraw = this.xComponentContext.getStatusX().hasDraw;
+                  hasDraw = this.xComponentContext.getStatusX().hasDraw;
                 }
                 if (hasDraw) {
-                    this.currentStatus = 'draw star';
+                  this.currentStatus = 'draw star';
                 }
-                }
+              }
             })
             .width('53.6%')
             .height(40)
@@ -100,9 +103,9 @@ export struct PageTwo {
         .justifyContent(FlexAlign.Center)
         .alignItems(VerticalAlign.Bottom)
         .layoutWeight(1)
-        }
-        .width('100%')
-        .height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
   }
 }

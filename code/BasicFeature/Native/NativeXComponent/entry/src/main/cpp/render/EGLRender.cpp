@@ -25,6 +25,10 @@
 #include <iostream>
 
 namespace {
+/**
+ * Shape vertices size.
+ */
+const int SHAPE_VERTICES_SIZE = 8;
 void Rotate2d(GLfloat centerX, GLfloat centerY, GLfloat *rotateX, GLfloat *rotateY, GLfloat theta)
 {
     GLfloat tempX = cos(theta) * (*rotateX - centerX) - sin(theta) * (*rotateY - centerY);
@@ -233,7 +237,8 @@ void EGLRender::DrawStar(bool drawColor)
     const GLfloat shapeVertices[] = {centerX / width_, centerY / height_, leftX / width_,  leftY / height_,
                                      rotateX / width_, rotateY / height_, rightX / width_, rightY / height_};
     auto color = drawColor ? DRAW_COLOR : CHANGE_COLOR;
-    if (!ExecuteDraw(position, color, shapeVertices)) {
+    if (drawColor ? !ExecuteDrawStar(position, color, shapeVertices, sizeof(shapeVertices))
+                  : !ExecuteDraw(position, color, shapeVertices)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw execute draw shape failed");
         return;
     }
@@ -249,7 +254,8 @@ void EGLRender::DrawStar(bool drawColor)
         const GLfloat shapeVertices[] = {centerX / width_, centerY / height_, leftX / width_,  leftY / height_,
                                          rotateX / width_, rotateY / height_, rightX / width_, rightY / height_};
 
-        if (!ExecuteDraw(position, color, shapeVertices)) {
+        if (drawColor ? !ExecuteDrawStar(position, color, shapeVertices, sizeof(shapeVertices))
+                      : !ExecuteDraw(position, color, shapeVertices)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw execute draw shape failed");
             return;
         }
@@ -261,6 +267,8 @@ void EGLRender::DrawStar(bool drawColor)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw FinishDraw failed");
         return;
     }
+    hasDraw_ = drawColor ? 1 : 0;
+    hasChangeColor_ = drawColor ? 0 : 1;
 }
 
 void EGLRender::Clear()
@@ -295,6 +303,50 @@ bool EGLRender::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat 
     glDisableVertexAttribArray(position);
 
     return true;
+}
+
+bool EGLRender::ExecuteDrawStar(GLint position, const GLfloat *color, const GLfloat shapeVertices[],
+                                unsigned long vertSize)
+{
+    if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0])) != SHAPE_VERTICES_SIZE) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
+        return false;
+    }
+
+    // The gl function has no return value.
+    glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
+    glVertexAttribPointer(1, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, color);
+    glEnableVertexAttribArray(position);
+    glEnableVertexAttribArray(1);
+    glVertexAttrib4fv(1, color);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, TRIANGLE_FAN_SIZE);
+    glDisableVertexAttribArray(position);
+    glDisableVertexAttribArray(1);
+
+    return true;
+}
+
+void EGLRender::Background()
+{
+    GLint position = PrepareDraw();
+    if (position == POSITION_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Background get position failed");
+        return;
+    }
+
+    if (!ExecuteDraw(position, BACKGROUND_COLOR,
+                     BACKGROUND_RECTANGLE_VERTICES)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Background execute draw failed");
+        return;
+    }
+
+    // 将绘制命令提交给GPU，GPU执行完成后将渲染结果显示到屏幕
+    glFlush();
+    glFinish();
+    if (!eglSwapBuffers(eglDisplay_, eglSurface_)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw FinishDraw failed");
+        return;
+    }
 }
 
 void EGLRender::SetEGLWindowSize(int width, int height)

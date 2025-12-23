@@ -40,8 +40,8 @@ export default function abilityTest3() {
       }
       await driver.delayMs(1000);
       // 判断XComponent onLoad回调执行成功
-      await driver.assertComponentExist(ON.text('自定义节点'));
-      let drawStarBtn = await driver.findComponent(ON.text('自定义节点'));
+      await driver.assertComponentExist(ON.text('自定义节点 SurfaceHolder'));
+      let drawStarBtn = await driver.findComponent(ON.text('自定义节点 SurfaceHolder'));
       await drawStarBtn.click();
       await driver.assertComponentExist(ON.text('点击此处进入'));
       drawStarBtn = await driver.findComponent(ON.text('点击此处进入'));

@@ -30,6 +30,7 @@ public:
     void DrawStar(bool drawColor);
     void DestroySurface();
     void Clear();
+    void Background();
 
     std::string xcomponentId;
     EGLNativeWindowType eglWindow_;
@@ -41,9 +42,12 @@ public:
     GLuint program_;
     int width_ = 0;
     int height_ = 0;
+    int hasDraw_ = 0;
+    int hasChangeColor_ = 0;
 
 private:
     GLint PrepareDraw();
     bool ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[]);
+    bool ExecuteDrawStar(GLint position, const GLfloat *color, const GLfloat shapeVertices[], unsigned long vertSize);
 };
 #endif // NATIVEXCOMPONENT_EGLRENDER_H
