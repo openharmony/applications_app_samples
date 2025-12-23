@@ -112,7 +112,7 @@ export class MonthDataSource implements IDataSource<Month> {
    */
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
+      listener.onDataAdd(index.toInt());
     })
   }
 
@@ -122,7 +122,7 @@ export class MonthDataSource implements IDataSource<Month> {
    */
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index);
+      listener.onDataChange(index.toInt());
     })
   }
 
@@ -132,7 +132,7 @@ export class MonthDataSource implements IDataSource<Month> {
    */
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
+      listener.onDataDelete(index.toInt());
     })
   }
 
@@ -143,7 +143,7 @@ export class MonthDataSource implements IDataSource<Month> {
    */
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
+      listener.onDataMove(from.toInt(), to.toInt());
     })
   }
 

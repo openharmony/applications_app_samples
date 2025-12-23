@@ -46,19 +46,19 @@ export abstract class BasicDataSource<T> implements IDataSource<T> {
   // 通知LazyForEach组件需要在index对应索引处添加子组件
   notifyDataAdd(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
-      listener.onDataAdd(index);
+      listener.onDataAdd(index.toInt());
     })
   }
   // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
   notifyDataChange(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
-      listener.onDataChange(index);
+      listener.onDataChange(index.toInt());
     })
   }
   // 通知LazyForEach组件需要在index对应索引处删除该子组件
   notifyDataDelete(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
-      listener.onDataDelete(index);
+      listener.onDataDelete(index.toInt());
     })
   }
 }

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Margin, Column, Component, Entry } from '@ohos.arkui.component';
 import { Text,  List, ListItem, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, $r,FlexAlign,
   Image, Margin, Blank, Row, Builder, Alignment, ForEach, Padding, Color, Divider, Tabs, TabContent, BuilderParam, JSON,
