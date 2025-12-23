@@ -76,8 +76,8 @@ napi_value CreateSafeAreaNativeRoot(napi_env env, napi_callback_info info);
 napi_value DestroySafeAreaNativeRoot(napi_env env, napi_callback_info info);
 
 // 刷新偏移事件相关接口
-napi_value CreateRefreshOffsetEventNativeRoot(napi_env env, napi_callback_info info);
-napi_value DestroyRefreshOffsetEventNativeRoot(napi_env env, napi_callback_info info);
+napi_value CreateOnVisibleAreaChangeNativeRoot(napi_env env, napi_callback_info info);
+napi_value DestroyOnVisibleAreaChangeNativeRoot(napi_env env, napi_callback_info info);
 
 // 布局策略相关接口
 napi_value CreateLayoutPolicyNativeRoot(napi_env env, napi_callback_info info);

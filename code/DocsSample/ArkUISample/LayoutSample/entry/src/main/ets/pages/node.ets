@@ -46,8 +46,8 @@ struct NodeTestPage {
       page: 'pages/nodeTest/createSafeAreaExample'
     },
     {
-      title: 'refreshOffsetEvent测试',
-      page: 'pages/nodeTest/createRefreshOffsetEventExample'
+      title: 'OnVisibleAreaChange测试',
+      page: 'pages/nodeTest/createOnVisibleAreaChangeExample'
     },
     {
       title: 'layoutPolicy测试',

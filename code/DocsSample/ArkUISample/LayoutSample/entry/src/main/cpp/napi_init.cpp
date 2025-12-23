@@ -48,7 +48,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // 位置和区域相关组件
         REGISTER_COMPONENT(LayoutPosition),
         REGISTER_COMPONENT(SafeArea),
-        REGISTER_COMPONENT(RefreshOffsetEvent),
+        REGISTER_COMPONENT(OnVisibleAreaChange),
         
         // 策略和边缘相关组件
         REGISTER_COMPONENT(LayoutPolicy),

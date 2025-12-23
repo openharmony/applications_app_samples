@@ -23,16 +23,16 @@ export interface DataClass {
 
 @Entry
 @Component
-struct createRefreshOffsetEventTest {
+struct createOnVisibleAreaChangeTest {
   // 初始化NodeContent对象。
   private rootSlot = new NodeContent();
 
   aboutToAppear(): void {
-    nativeNode.CreateRefreshOffsetEventNativeRoot(this.rootSlot)
+    nativeNode.CreateOnVisibleAreaChangeNativeRoot(this.rootSlot)
   }
 
   aboutToDisappear(): void {
-    nativeNode.DestroyRefreshOffsetEventNativeRoot()
+    nativeNode.DestroyOnVisibleAreaChangeNativeRoot()
   }
 
   build() {
