@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "read_imagevideo",
+      "value": "Need to read image and video data"
+    },
+    {
+      "name": "write_imagevideo",
+      "value": "Need to write image and video data"
+    },
+    {
+      "name": "GetUserAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetUserAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RenameUserAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RenameUserAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "GetMediaFromUserAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetMediaFromUserAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "AddMediaToUserAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AddMediaToUserAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RemoveMediaFromUserAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RemoveMediaFromUserAlbumAbility_label",
+      "value": "label"
+    }
+  ]
+}
