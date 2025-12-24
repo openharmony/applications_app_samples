@@ -22,7 +22,7 @@ class MyXComponentController extends XComponentController{
     nativeRender.SetSurfaceId(BigInt(surfaceId));
   }
   onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}`);
     // 在onSurfaceChanged中调用ChangeSurface绘制内容
     nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
   }
@@ -35,7 +35,7 @@ class MyXComponentController extends XComponentController{
 @Entry
 @Component
 struct Index {
-  @State currentStatus: string = "index";
+  @State currentStatus: string = 'index';
   xComponentController: XComponentController = new MyXComponentController();
   build() {
     Column() {
@@ -71,7 +71,7 @@ struct Index {
           hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
         }
         if (hasChangeColor) {
-          this.currentStatus = "change color";
+          this.currentStatus = 'change color';
         }
       })
       // [StartExclude xcomponent_index]
@@ -96,7 +96,7 @@ struct Index {
               hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
             }
             if (hasDraw) {
-              this.currentStatus = "draw star";
+              this.currentStatus = 'draw star';
             }
           })
           .width('53.6%')

@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-import { Content } from "@kit.ArkUI";
+import { Content } from '@kit.ArkUI';
 
 export const embeddedNode: (Node: Content) => void;
