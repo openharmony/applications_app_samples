@@ -635,7 +635,7 @@ void setTextInput5(ArkUI_NodeHandle &textInput5, ArkUI_NodeHandle &textInput5_2)
     Manager::nodeAPI_->setAttribute(textInput5_2, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item1);
 }
 
-void setTextInput6(ArkUI_NodeHandle &textInput6)
+void setTextInput6(ArkUI_NodeHandle &textInput6, ArkUI_NodeHandle &textInput6_2)
 {
     ArkUI_AttributeItem textItem = {
         .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
@@ -1325,7 +1325,7 @@ void setText11(ArkUI_NodeHandle &text11, ArkUI_NodeHandle &text11_2)
     Manager::nodeAPI_->setAttribute(text11_2, NODE_BORDER_WIDTH, &item3);
 }
 
-void setText12(ArkUI_NodeHandle &text12)
+void setText12(ArkUI_NodeHandle &text12, ArkUI_NodeHandle &text12_2)
 {
     ArkUI_AttributeItem textItem = {
         .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
@@ -1655,7 +1655,7 @@ void setTextArea6(ArkUI_NodeHandle &textArea6, ArkUI_NodeHandle &textArea6_2)
     Manager::nodeAPI_->setAttribute(textArea6_2, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item1);
 }
 
-void setTextArea7(ArkUI_NodeHandle &textArea7)
+void setTextArea7(ArkUI_NodeHandle &textArea7, ArkUI_NodeHandle &textArea7_2)
 {
     ArkUI_AttributeItem textItem = {
         .string = "ရှည်လျားသောသမိုင်းရှိရှည်လျားသောသမိုင်ရှည်လျားသောသမိုံရှည်လ\nINCLUDE_FONT_PADDING设置为false"};
