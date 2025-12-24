@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "read_imagevideo",
+      "value": "Need to read image and video data"
+    },
+    {
+      "name": "write_imagevideo",
+      "value": "Need to write image and video data"
+    },
+    {
+      "name": "CancelListeningURIAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CancelListeningURIAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RegisterForMonitoringAllAssetsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RegisterForMonitoringAllAssetsAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RegisterListenerToAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RegisterListenerToAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RegisterListenerToPhotoAssetAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RegisterListenerToPhotoAssetAbility_label",
+      "value": "label"
+    }
+  ]
+}

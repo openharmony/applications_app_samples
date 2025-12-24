@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "read_imagevideo",
+      "value": "Need to read image and video data"
+    },
+    {
+      "name": "write_imagevideo",
+      "value": "Need to write image and video data"
+    },
+    {
+      "name": "GetMediaResourceAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetMediaResourceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "GetMediaThumbnailsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetMediaThumbnailsAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MoveMediaToRecycleBinAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MoveMediaToRecycleBinAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "RenameMediaAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RenameMediaAbility_label",
+      "value": "label"
+    }
+  ]
+}
