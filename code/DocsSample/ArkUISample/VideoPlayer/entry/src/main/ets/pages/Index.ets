@@ -53,6 +53,10 @@ struct Index {
       name:'VideoControl',
       path:'pages/VideoControl'
     },
+    {
+      name:'XComponentAVPlayer',
+      path:'pages/XComponentAVPlayer'
+    },
   ]
   build() {
     Scroll() {

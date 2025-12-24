@@ -8,6 +8,7 @@
     "pages/LocalVideo",
     "pages/OnlineVideo",
     "pages/Sandbox",
-    "pages/VideoControl"
+    "pages/VideoControl",
+    "pages/XComponentAVPlayer"
   ]
 }

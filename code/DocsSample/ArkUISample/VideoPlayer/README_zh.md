@@ -25,10 +25,17 @@
 ### 工程目录
 ```
 entry/src/main/ets/
+├── avplayertool
+│   └── AVPlayerController.ets   // 实现AVPlayer控制器
+├── common
+│   └── constants
+│       └── CommonConstants.ets  // 公共常量
 ├── entryability
 │   └── EntryAbility.ets
 ├── entrybackupability
 │   └── EntryBackupAbility.ets
+├── model
+│   └── VideoData.ets            // 视频播放数据
 └── pages
     ├── AttributeVideo.ets       // 添加属性
     ├── CustomizedControl.ets    // 自定义控制器
@@ -38,7 +45,8 @@ entry/src/main/ets/
     ├── LocalVideo.ets           // 加载本地视频
     ├── OnlineVideo.ets          // 加载网络视频
     ├── Sandbox.ets              // 加载沙箱路径视频
-    └── VideoControl.ets         // Video控制器使用
+    ├── VideoControl.ets         // Video控制器使用
+    └── XComponentAVPlayer.ets   // AVPlayer替代Video
 entry/src/ohosTest/
 ├── ets
 │   └── test
