@@ -52,7 +52,6 @@ OH_AudioRenderer_Callbacks callbacks;
 // [StartExclude Render_CustomCallback]
 
 // ==================== 回调函数 - CreateAudioRender 使用 ====================
-// [Start Render_Create]
 // [Start Render_Callback]
 // [Start Render_SetRendererWriteDataCallback]
 // 自定义写入数据函数。
