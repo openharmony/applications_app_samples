@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "read_imagevideo",
+      "value": "Need to read image and video data"
+    },
+    {
+      "name": "write_imagevideo",
+      "value": "Need to write image and video data"
+    },
+    {
+      "name": "GetFavoriteObjectAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetFavoriteObjectAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "GetMediaFromFavoritesAbilitiy_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetMediaFromFavoritesAbilitiy_label",
+      "value": "label"
+    },
+    {
+      "name": "GetVideoAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetVideoAlbumAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "GetVideosFromVideoAlbumAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetVideosFromVideoAlbumAbility_label",
+      "value": "label"
+    }
+  ]
+}
