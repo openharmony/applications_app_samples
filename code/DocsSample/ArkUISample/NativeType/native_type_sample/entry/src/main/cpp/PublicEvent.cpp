@@ -50,6 +50,7 @@ const int32_t TARGET_ID_19 = 19;
 const int32_t TARGET_ID_20 = 20;
 const int32_t TARGET_ID_21 = 21;
 const float B = 0.95;
+const int32_t SRGB = 4;
 
 static bool g_isEnable = true;
 OH_PixelmapNative *pixelMap = nullptr;
@@ -462,6 +463,23 @@ void TargetIdTwo()
     auto options_test = OH_ArkUI_CreateSnapshotOptions();
     auto scale = 0.5;
     OH_ArkUI_SnapshotOptions_SetScale(options_test, scale);
+    auto setColorModeResult = OH_ArkUI_SnapshotOptions_SetColorMode(options_test, SRGB, false);
+    if (ARKUI_ERROR_CODE_NO_ERROR == setColorModeResult) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ComponentSnapshot",
+            "C-api test demo set color mode success!");
+    } else {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ComponentSnapshot",
+            "C-api test demo set color mode error, result is %{public}d", setColorModeResult);
+    }
+    auto setDynamicRangeModeResult = OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
+        options_test, ARKUI_DYNAMIC_RANGE_MODE_STANDARD, false);
+    if (ARKUI_ERROR_CODE_NO_ERROR == setDynamicRangeModeResult) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ComponentSnapshot",
+            "C-api test demo set dynamic range mode success!");
+    } else {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ComponentSnapshot",
+            "C-api test demo set dynamic range mode error, result is %{public}d", setDynamicRangeModeResult);
+    }
     auto options_test1 = OH_ArkUI_GetNodeSnapshot(scroll, options_test, &pixelMap);
     if (options_test1 == ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ComponentSnapshot",
