@@ -14,7 +14,7 @@ struct ArkWebPage {
       Web({ src: 'https://baidu.com',
         controller: this.controller
       })
-        .height("100%")
+        .height('100%')
         .onPageBegin((event) => {
           // 每次跳转到新页面都更新webId到url的映射关系，便于后续通过系统侧提供的web_id查询到发生丢帧的网页
           if (event) {
