@@ -25,8 +25,10 @@
 
 namespace NativeXComponentSample {
 namespace {
+// [Start native_xcomponent_declarative_get_native_window]
 void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 {
+    // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceCreatedCB");
     if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(
@@ -52,10 +54,12 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
             render->eglCore_->Background();
         }
     }
+    // [EndExclude native_xcomponent_declarative_get_native_window]
 }
 
 void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 {
+    // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChangedCB");
     if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(
@@ -77,10 +81,12 @@ void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
         render->OnSurfaceChanged(component, window);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "surface changed");
     }
+    // [EndExclude native_xcomponent_declarative_get_native_window]
 }
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 {
+    // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceDestroyedCB");
     if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(
@@ -98,10 +104,12 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 
     std::string id(idStr);
     PluginRender::Release(id);
+    // [EndExclude native_xcomponent_declarative_get_native_window]
 }
 
 void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
 {
+    // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchTouchEventCB");
     if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(
@@ -122,7 +130,9 @@ void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
     if (render != nullptr) {
         render->OnTouchEvent(component, window);
     }
+    // [EndExclude native_xcomponent_declarative_get_native_window]
 }
+// [End native_xcomponent_declarative_get_native_window]
 
 void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
 {
@@ -359,22 +369,29 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
         "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
 }
 
+// [Start native_xcomponent_declarative_surface_callback]
 void PluginRender::RegisterCallback(OH_NativeXComponent* nativeXComponent)
 {
     renderCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
     renderCallback_.OnSurfaceChanged = OnSurfaceChangedCB;
     renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
-    renderCallback_.DispatchTouchEvent = DispatchTouchEventCB;
+    // [StartExclude native_xcomponent_declarative_surface_callback]
+    // [Start native_xcomponent_declarative_register_event]
+    renderCallback_.DispatchTouchEvent = DispatchTouchEventCB; // 注册触摸事件
+    // [EndExclude native_xcomponent_declarative_surface_callback]
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
-
+    // [StartExclude native_xcomponent_declarative_surface_callback]
     mouseCallback_.DispatchMouseEvent = DispatchMouseEventCB;
     mouseCallback_.DispatchHoverEvent = DispatchHoverEventCB;
-    OH_NativeXComponent_RegisterMouseEventCallback(nativeXComponent, &mouseCallback_);
+    OH_NativeXComponent_RegisterMouseEventCallback(nativeXComponent, &mouseCallback_); // 注册鼠标事件
 
-    OH_NativeXComponent_RegisterFocusEventCallback(nativeXComponent, OnFocusEventCB);
-    OH_NativeXComponent_RegisterKeyEventCallback(nativeXComponent, OnKeyEventCB);
-    OH_NativeXComponent_RegisterBlurEventCallback(nativeXComponent, OnBlurEventCB);
+    OH_NativeXComponent_RegisterFocusEventCallback(nativeXComponent, OnFocusEventCB); // 注册获焦事件
+    OH_NativeXComponent_RegisterKeyEventCallback(nativeXComponent, OnKeyEventCB);  // 注册按键事件
+    OH_NativeXComponent_RegisterBlurEventCallback(nativeXComponent, OnBlurEventCB); // 注册失焦事件
+    // [EndExclude native_xcomponent_declarative_surface_callback]
+    // [End native_xcomponent_declarative_register_event]
 }
+// [End native_xcomponent_declarative_surface_callback]
 
 void PluginRender::OnMouseEvent(OH_NativeXComponent* component, void* window)
 {

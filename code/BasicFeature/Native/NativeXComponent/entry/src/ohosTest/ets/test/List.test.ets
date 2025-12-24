@@ -16,9 +16,13 @@
 import abilityTest1 from './XComponentAbility1.test'
 import abilityTest2 from './XComponentAbility2.test'
 import abilityTest3 from './XComponentAbility3.test'
+import abilityTest4 from './XComponentAbility4.test'
+import abilityTest5 from './XComponentAbility5.test'
 
 export default function testsuite() {
   abilityTest1()
   abilityTest2()
+  abilityTest4()
+  abilityTest5()
   abilityTest3()
 }

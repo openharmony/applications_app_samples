@@ -36,15 +36,11 @@ constexpr const int THIRD_ARG = 3;
 constexpr const int FRAME_COUNT = 50;
 class PluginManager {
 public:
-
     static OH_NativeXComponent_Callback callback_;
     PluginManager();
     ~PluginManager();
 
-    static PluginManager* GetInstance()
-    {
-        return &PluginManager::pluginManager_;
-    }
+    static PluginManager *GetInstance() { return &PluginManager::pluginManager_; }
     static napi_value createNativeNode(napi_env env, napi_callback_info info);
     static napi_value GetXComponentStatus(napi_env env, napi_callback_info info);
     static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
@@ -58,22 +54,25 @@ public:
     static napi_value Finalize(napi_env env, napi_callback_info info);
     static napi_value DrawStar(napi_env env, napi_callback_info info);
 
-    // CApi XComponent
-    void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
-    void OnSurfaceDestroyed(OH_NativeXComponent* component, void* window);
-    void DispatchTouchEvent(OH_NativeXComponent* component, void* window);
-    void OnSurfaceCreated(OH_NativeXComponent* component, void* window);
+    static napi_value DrawPatternForSurfaceHolder(napi_env env, napi_callback_info info);
+    static napi_value GetStatusForSurfaceHolder(napi_env env, napi_callback_info info);
 
-    void SetNativeXComponent(std::string& id, OH_NativeXComponent* nativeXComponent);
-    PluginRender* GetRender(std::string& id);
+    // CApi XComponent
+    void OnSurfaceChanged(OH_NativeXComponent *component, void *window);
+    void OnSurfaceDestroyed(OH_NativeXComponent *component, void *window);
+    void DispatchTouchEvent(OH_NativeXComponent *component, void *window);
+    void OnSurfaceCreated(OH_NativeXComponent *component, void *window);
+
+    void SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent);
+    PluginRender *GetRender(std::string &id);
     void Export(napi_env env, napi_value exports);
 
 private:
     static PluginManager pluginManager_;
 
-    std::unordered_map<std::string, OH_NativeXComponent*> nativeXComponentMap_;
-    std::unordered_map<std::string, PluginRender*> pluginRenderMap_;
-    std::unordered_map<std::string, PluginManager*> pluginManagerMap_;
+    std::unordered_map<std::string, OH_NativeXComponent *> nativeXComponentMap_;
+    std::unordered_map<std::string, PluginRender *> pluginRenderMap_;
+    std::unordered_map<std::string, PluginManager *> pluginManagerMap_;
 
 public:
     EGLCore *eglcore_;

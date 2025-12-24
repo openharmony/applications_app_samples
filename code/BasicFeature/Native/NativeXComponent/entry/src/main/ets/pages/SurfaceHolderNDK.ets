@@ -12,76 +12,83 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start surface_holder_ndk_ets]
 import nativeNode from 'libnativerender.so';
-import {NodeContent} from '@kit.ArkUI';
-
+import { NodeContent } from '@kit.ArkUI';
+// [StartExclude surface_holder_ndk_ets]
 @Builder
-export function PageOneBuilder(name: string, param: Object){
-    PageOne()
+export function SurfaceHolderNDKBuilder(name: string, param: Object) {
+  SurfaceHolderNDK()
 }
+// [EndExclude surface_holder_ndk_ets]
+
 @Component
-export struct PageOne {
+export struct SurfaceHolderNDK {
   @State currentStatus: string = 'init';
   private nodeContent: NodeContent = new NodeContent();
-  aboutToAppear():void{
-    nativeNode.createNativeNode(this.nodeContent,'CreatNativeNode');
+
+  aboutToAppear(): void {
+    nativeNode.createNativeNode(this.nodeContent, 'SurfaceHolderNDK');
+    this.currentStatus = 'index'
   }
 
   build() {
     NavDestination() {
-        Column() {
+      Column() {
+        // [StartExclude surface_holder_ndk_ets]
         Row() {
-            Text('Native XComponent Sample')
+          Text('SurfaceHolder NDK Sample')
             .fontSize('24fp')
             .fontWeight(500)
             .margin({
-                left: 24,
-                top: 12
+              left: 24,
+              top: 12
             })
         }
         .margin({ top: 24 })
         .width('100%')
         .height(56)
-
+        // [EndExclude surface_holder_ndk_ets]
         Column({ space: 10 }) {
-            ContentSlot(this.nodeContent);
-            Column().height(20)
-            Text(this.currentStatus)
+          ContentSlot(this.nodeContent);
+          // [StartExclude surface_holder_ndk_ets]
+          Column().height(20)
+          Text(this.currentStatus)
             .fontSize('24fp')
             .fontWeight(500)
         }
         .onClick(() => {
-            let hasChangeColor: boolean = false;
-            if (nativeNode.getStatus()) {
-            hasChangeColor = nativeNode.getStatus().hasChangeColor;
-            }
-            if (hasChangeColor) {
+          let hasChangeColor: boolean = false;
+          if (nativeNode.getStatus()) {
+            hasChangeColor = nativeNode.getStatus('SurfaceHolderNDK').hasChangeColor;
+          }
+          if (hasChangeColor) {
             this.currentStatus = 'change color';
-            }
+          }
         })
         .margin({
-            top: 27,
-            left: 12,
-            right: 12
+          top: 27,
+          left: 12,
+          right: 12
         })
         .height('40%')
         .width('90%')
 
         Row() {
-            Button('Draw Star')
+          Button('Draw Star')
             .fontSize('16fp')
             .fontWeight(500)
             .margin({ bottom: 24 })
             .onClick(() => {
-                nativeNode.drawPattern();
-                let hasDraw: boolean = false;
-                if (nativeNode.getStatus()) {
-                    hasDraw = nativeNode.getStatus().hasDraw;
-                }
-                if (hasDraw) {
-                    this.currentStatus = 'draw star';
-                }
+              nativeNode.drawPattern('SurfaceHolderNDK');
+              let hasDraw: boolean = false;
+              const status = nativeNode.getStatus('SurfaceHolderNDK')
+              if (status) {
+                hasDraw = status.hasDraw;
+              }
+              if (hasDraw) {
+                this.currentStatus = 'draw star';
+              }
             })
             .width('53.6%')
             .height(40)
@@ -90,9 +97,11 @@ export struct PageOne {
         .justifyContent(FlexAlign.Center)
         .alignItems(VerticalAlign.Bottom)
         .layoutWeight(1)
-        }
-        .width('100%')
-        .height('100%')
+        // [EndExclude surface_holder_ndk_ets]
+      }
+      .width('100%')
+      .height('100%')
     }
   }
 }
+// [End surface_holder_ndk_ets]

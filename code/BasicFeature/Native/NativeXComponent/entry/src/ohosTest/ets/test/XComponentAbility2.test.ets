@@ -21,7 +21,7 @@ const TAG = '[Sample_Native_XComponent]';
 
 export default function abilityTest2() {
 
-  describe('ActsAbilityTest2', () => {
+  describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
@@ -40,8 +40,8 @@ export default function abilityTest2() {
       }
       await driver.delayMs(1000);
       // 判断XComponent onLoad回调执行成功
-      await driver.assertComponentExist(ON.text('ArkTS声明式'));
-      let drawStarBtn = await driver.findComponent(ON.text('ArkTS声明式'));
+      await driver.assertComponentExist(ON.text('声明式 NativeXComponent'));
+      let drawStarBtn = await driver.findComponent(ON.text('声明式 NativeXComponent'));
       await drawStarBtn.click();
       await driver.assertComponentExist(ON.text('点击此处进入'));
       drawStarBtn = await driver.findComponent(ON.text('点击此处进入'));
@@ -75,6 +75,8 @@ export default function abilityTest2() {
       // 判断touch回调已执行
       await driver.assertComponentExist(ON.text('change color'));
       console.info(TAG, 'DrawShape_001 end');
+      await driver.pressBack();
+      await driver.delayMs(1000);
     })
   })
 }

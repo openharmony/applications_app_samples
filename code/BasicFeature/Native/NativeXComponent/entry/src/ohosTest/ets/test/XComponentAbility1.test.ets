@@ -19,9 +19,9 @@ import { Driver, MatchPattern, ON, MouseButton } from '@ohos.UiTest';
 
 const TAG = '[Sample_Native_XComponent]';
 
-export default function abilityTest1() {
+export default function abilityTest_NDK_NativeXComponent() {
 
-  describe('ActsAbilityTest1', () => {
+  describe('ActsAbilityTest_NDK_NativeXComponent', () => {
     /**
      * 打开应用
      */
@@ -40,8 +40,8 @@ export default function abilityTest1() {
       }
       await driver.delayMs(1000);
       // 判断XComponent onLoad回调执行成功
-      await driver.assertComponentExist(ON.text('NDK接口'));
-      let drawStarBtn = await driver.findComponent(ON.text('NDK接口'));
+      await driver.assertComponentExist(ON.text('NDK NativeXComponent'));
+      let drawStarBtn = await driver.findComponent(ON.text('NDK NativeXComponent'));
       await drawStarBtn.click();
       await driver.assertComponentExist(ON.text('点击此处进入'));
       drawStarBtn = await driver.findComponent(ON.text('点击此处进入'));
@@ -73,6 +73,8 @@ export default function abilityTest1() {
       // 判断touch回调已执行
       await driver.assertComponentExist(ON.text('change color'));
       console.info(TAG, 'DrawShape_001 end');
+      await driver.pressBack();
+      await driver.delayMs(1000);
     })
   })
 }

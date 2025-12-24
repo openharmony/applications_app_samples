@@ -29,15 +29,24 @@ struct Index {
               .height(40)
               .margin(20)
               .onClick(() => {
-                this.pageInfos.pushPath({ name: 'pageOne'});
+                this.pageInfos.pushPath({ name: 'SurfaceHolderDeclarative' });
               })
-            Text('  使用NDK接口创建XComponent，并使用NativeXComponent相关接口')
+            Text('  使用ArkTS声明式方法创建XComponent，并使用SurfaceHolder相关接口')
           }
           .width('100%')
           .height('100%')
           .justifyContent(FlexAlign.Start)
         }
-        .tabBar('NDK接口')
+        .tabBar(SubTabBarStyle.of('声明式 SurfaceHolder')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 10,
+            maxFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
           Column() {
             Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
@@ -45,23 +54,7 @@ struct Index {
               .height(40)
               .margin(20)
               .onClick(() => {
-                this.pageInfos.pushPath({ name: 'pageTwo'});
-              })
-            Text('  使用ArkTS声明式方法创建XComponent，并使用NativeXComponent相关接口')
-          }
-          .width('100%')
-          .height('100%')
-          .justifyContent(FlexAlign.Start)
-        }
-        .tabBar('ArkTS声明式')
-        TabContent() {
-          Column() {
-            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
-              .width('80%')
-              .height(40)
-              .margin(20)
-              .onClick(() => {
-                this.pageInfos.pushPath({ name: 'pageThree'});
+                this.pageInfos.pushPath({ name: 'SurfaceHolderTypeNode' });
               })
             Text('  使用自定义节点创建XComponent，并使用SurfaceHolder相关接口')
           }
@@ -69,7 +62,90 @@ struct Index {
           .height('100%')
           .justifyContent(FlexAlign.Start)
         }
-        .tabBar('自定义节点')
+        .tabBar(SubTabBarStyle.of('自定义节点 SurfaceHolder')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 10,
+            maxFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
+        TabContent() {
+          Column() {
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
+              .width('80%')
+              .height(40)
+              .margin(20)
+              .onClick(() => {
+                this.pageInfos.pushPath({ name: 'SurfaceHolderNDK' });
+              })
+            Text('  使用NDK接口创建XComponent，并使用SurfaceHolder相关接口')
+          }
+          .width('100%')
+          .height('100%')
+          .justifyContent(FlexAlign.Start)
+        }
+        .tabBar(SubTabBarStyle.of('NDK SurfaceHolder')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 10,
+            maxFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
+        TabContent() {
+          Column() {
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
+              .width('80%')
+              .height(40)
+              .margin(20)
+              .onClick(() => {
+                this.pageInfos.pushPath({ name: 'NativeXComponentDeclarative' });
+              })
+            Text('  使用ArkTS声明式方法创建XComponent，并使用NativeXComponent相关接口')
+          }
+          .width('100%')
+          .height('100%')
+          .justifyContent(FlexAlign.Start)
+        }
+        .tabBar(SubTabBarStyle.of('声明式 NativeXComponent')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 10,
+            maxFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
+        TabContent() {
+          Column() {
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
+              .width('80%')
+              .height(40)
+              .margin(20)
+              .onClick(() => {
+                this.pageInfos.pushPath({ name: 'NativeXComponentNDK' });
+              })
+            Text('  使用NDK接口创建XComponent，并使用NativeXComponent相关接口')
+          }
+          .width('100%')
+          .height('100%')
+          .justifyContent(FlexAlign.Start)
+        }
+        .tabBar(SubTabBarStyle.of('NDK NativeXComponent')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 10,
+            maxFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
       }
     }.title('XComponent')
   }
