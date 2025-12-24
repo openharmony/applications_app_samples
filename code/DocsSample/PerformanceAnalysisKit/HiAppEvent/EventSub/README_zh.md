@@ -40,6 +40,8 @@
 
 - [订阅应用终止事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-ndk.md)
 
+- [订阅ArkWeb抛滑丢帧事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-web-fling-jank-events-arkts.md)
+
 ###  效果预览
 
 |                             主页                             |
