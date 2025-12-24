@@ -21,10 +21,10 @@ import { common } from '@kit.AbilityKit';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
-  name: string;
+  name: ResourceStr;
   firstChar: string;
 
-  constructor(name: string, firstChar: string) {
+  constructor(name: ResourceStr, firstChar: string) {
     this.name = name;
     this.firstChar = firstChar;
   }
@@ -50,26 +50,26 @@ export struct ArcListSideSlip {
     new Contact('Charlie', 'C'),
     new Contact('Diana', 'D'),
     new Contact('Eve', 'E'),
-    // 请在resources\base\element\string.json文件中配置name为'name_xxx' ，value为非空字符串的资源
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_aha'), 'A'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_beibei'), 'B'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_caicai'), 'C'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_dongdong'), 'D'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_enen'), 'E'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_fangfang'), 'F'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_gege'), 'G'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_haha'), 'H'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_jiji'), 'J'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_keke'), 'K'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_lele'), 'L'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_meimei'), 'M'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_nini'), 'N'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_ohuo'), 'O'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_pangpang'), 'P'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_qiqi'), 'Q'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_ranran'), 'R'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_shushu'), 'S'),
-    new Contact(this.context1.resourceManager.getStringByNameSync('name_tiantian'), 'T'),
+    // 请将$r('app.string.xxx')替换为实际资源文件
+    new Contact($r('app.string.name_aha'), 'A'),
+    new Contact($r('app.string.name_beibei'), 'B'),
+    new Contact($r('app.string.name_caicai'), 'C'),
+    new Contact($r('app.string.name_dongdong'), 'D'),
+    new Contact($r('app.string.name_enen'), 'E'),
+    new Contact($r('app.string.name_fangfang'), 'F'),
+    new Contact($r('app.string.name_gege'), 'G'),
+    new Contact($r('app.string.name_haha'), 'H'),
+    new Contact($r('app.string.name_jiji'), 'J'),
+    new Contact($r('app.string.name_keke'), 'K'),
+    new Contact($r('app.string.name_lele'), 'L'),
+    new Contact($r('app.string.name_meimei'), 'M'),
+    new Contact($r('app.string.name_nini'), 'N'),
+    new Contact($r('app.string.name_ohuo'), 'O'),
+    new Contact($r('app.string.name_pangpang'), 'P'),
+    new Contact($r('app.string.name_qiqi'), 'Q'),
+    new Contact($r('app.string.name_ranran'), 'R'),
+    new Contact($r('app.string.name_shushu'), 'S'),
+    new Contact($r('app.string.name_tiantian'), 'T'),
   ];
   private scrollerForList: Scroller = new Scroller();
   @State indexerIndex: number = 0;
