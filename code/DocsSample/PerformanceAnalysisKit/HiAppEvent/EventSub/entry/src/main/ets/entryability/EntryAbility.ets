@@ -435,7 +435,7 @@ export default class EntryAbility extends UIAbility {
     // 添加ArkWeb抛滑丢帧事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "watcher",
+      name: 'webJankwatcher',
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了ArkWeb抛滑丢帧事件
       appEventFilters: [
         {
