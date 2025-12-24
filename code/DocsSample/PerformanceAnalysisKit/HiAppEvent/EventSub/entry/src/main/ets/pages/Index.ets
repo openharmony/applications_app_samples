@@ -22,6 +22,9 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
 // [End PssLeakEvent_Header]
+// [start ArkWeb_Fling_Jank_Header]
+import { router } from '@kit.ArkUI';
+// [End ArkWeb_Fling_Jank_Header]
 @Entry
 @Component
 struct Index {
@@ -225,6 +228,20 @@ struct Index {
             testNapi.TestHiCollieTimerNdk();
           })
         // [End hicollie_timer_ndk_Button]
+        // [Start ArkWeb_Fling_Jank_ArkTs_Button]
+        //按钮跳转到易出现滑动丢帧的web场景，触发ArkWeb抛滑丢帧事件。
+        Button('ArkWebFlingJank ArkTs')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            router.pushUrl({url: 'pages/ArkWebPage'});
+          })
+        // [End ArkWeb_Fling_Jank_ArkTs_Button]
       }
       .width('50%')
     }

@@ -23,6 +23,13 @@
       "default",
       "tablet"
     ],
+    // [Start ArkWeb_Fling_Jank_NetWork]
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ],
+    // [End ArkWeb_Fling_Jank_NetWork]
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
