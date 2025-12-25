@@ -14,24 +14,22 @@
  */
 
 // [Start napi_is_arraybuffer_api]
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void; // napi_is_arraybuffer
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined; // napi_is_arraybuffer
 // [End napi_is_arraybuffer_api]
 
 // [Start napi_get_arraybuffer_info_api]
 export class ArrayBufferInfo {
   byteLength: number;
-  buffer: Object;
+  buffer: ArrayBuffer;
 }
-
-export const getArraybufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void; // napi_get_arraybuffer_info
+export const getArraybufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined; // napi_get_arraybuffer_info
 // [End napi_get_arraybuffer_info_api]
 
 // [Start napi_detach_arraybuffer_api]
-export const detachedArraybuffer: (buffer: ArrayBuffer) => ArrayBuffer; // napi_detach_arraybuffer
-
-export const isDetachedArraybuffer: (arrarBeffer: ArrayBuffer) => boolean; //napi_is_detached_arraybuffer
+export const detachedArrayBuffer: (buffer:ArrayBuffer) => ArrayBuffer; // napi_detach_arraybuffer
+export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean; //napi_is_detached_arraybuffer
 // [End napi_detach_arraybuffer_api]
 
 // [Start napi_create_arraybuffer_api]
-export const createArraybuffer: (size: number) => ArrayBuffer; // napi_create_arraybuffer
+export const createArrayBuffer: (size: number) => ArrayBuffer; // napi_create_arraybuffer
 // [End napi_create_arraybuffer_api]
