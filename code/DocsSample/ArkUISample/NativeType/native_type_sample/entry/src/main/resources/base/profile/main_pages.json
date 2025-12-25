@@ -36,6 +36,13 @@
     "pages/grid/PageGridIrregularIndexes",
     "pages/grid/PageGridNormal",
     "pages/grid/PageGridGetRectByIndex",
-    "pages/containerPicker/PageContainerPickerIndex"
+    "pages/containerPicker/PageContainerPickerCanLoopIndex",
+    "pages/containerPicker/PageContainerPickerEventsIndex",
+    "pages/containerPicker/PageContainerPickerIndexIndex",
+    "pages/containerPicker/PageContainerPickerIndicatorIndex",
+    "pages/containerPicker/PageContainerPickerMonthIndex",
+    "pages/containerPicker/PageContainerPickerRegionIndex",
+    "pages/containerPicker/PageContainerPickerTypesIndex",
+    "pages/containerPicker/PageContainerPickerTimeIndex"
   ]
 }

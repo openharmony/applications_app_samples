@@ -31,7 +31,14 @@
 #include "ScrollMaker.h"
 #include "PublicEvent.h"
 #include "CheckboxShapeMaker.h"
-#include "ContainerPickerMaker.h"
+#include "ContainerPickerCanLoopMaker.h"
+#include "ContainerPickerEventsMaker.h"
+#include "ContainerPickerIndexMaker.h"
+#include "ContainerPickerIndicatorMaker.h"
+#include "ContainerPickerMonthMaker.h"
+#include "ContainerPickerRegionMaker.h"
+#include "ContainerPickerTypesMaker.h"
+#include "ContainerPickerTimeMaker.h"
 #include "HoverModeAreaTypeMaker.h"
 #include "baseUtils.h"
 #include "XComponentMaker.h"
@@ -698,27 +705,216 @@ napi_value Manager::createPublicNativeNode(napi_env env, napi_callback_info info
     return nullptr;
 }
 
-napi_value Manager::createContainerNativeNode(napi_env env, napi_callback_info info)
+napi_value Manager::createContainerPickerCanLoopNode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerCanLoopNode BEGIN");
     if ((env == nullptr) || (info == nullptr)) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerCanLoopNode env or info is null");
         return nullptr;
     }
     size_t argCnt = ConstIde::NUMBER_1;
     napi_value args[ConstIde::NUMBER_1] = {nullptr};
     if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerCanLoopNode napi_get_cb_info failed");
     }
 
     ArkUI_NodeContentHandle nodeContentHandle = nullptr;
-
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
     if (nodeAPI_ != nullptr) {
         if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
-            ArkUI_NodeHandle testNode = ContainerPickerMaker::CreateNativeNode();
+            ArkUI_NodeHandle testNode = ContainerPickerCanLoopMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerEventsNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerEventsNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerEventsNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerEventsNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerEventsMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerIndexNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerIndexNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerIndexNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerIndexNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerIndexMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerIndicatorNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerIndicatorNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerIndicatorNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerIndicatorNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerIndicatorMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerMonthNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerMonthNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerMonthNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerMonthNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerMonthMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerRegionNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerRegionNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerRegionNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerRegionNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerRegionMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerTypesNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerTypesNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerTypesNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerTypesNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerTypesMaker::CreateNativeNode();
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::createContainerPickerTimeNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "createContainerPickerTimeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerTimeNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_1;
+    napi_value args[ConstIde::NUMBER_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+                     "createContainerPickerTimeNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ContainerPickerTimeMaker::CreateNativeNode();
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
         }
     }

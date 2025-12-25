@@ -25,7 +25,14 @@ interface ListCategories {
 struct ContainerPickerIndex {
   private items: ListCategories[] =
     [
-      { title: 'ContainerPicker', url: 'pages/containerPicker/PageContainerPickerIndex' },
+      { title: 'PickerCanLoop', url: 'pages/containerPicker/PageContainerPickerCanLoopIndex' },
+      { title: 'PickerEvents', url: 'pages/containerPicker/PageContainerPickerEventsIndex' },
+      { title: 'PickerIndex', url: 'pages/containerPicker/PageContainerPickerIndexIndex' },
+      { title: 'PickerIndicator', url: 'pages/containerPicker/PageContainerPickerIndicatorIndex' },
+      { title: 'PickerMonth', url: 'pages/containerPicker/PageContainerPickerMonthIndex' },
+      { title: 'PickerRegion', url: 'pages/containerPicker/PageContainerPickerRegionIndex' },
+      { title: 'PickerTypes', url: 'pages/containerPicker/PageContainerPickerTypesIndex' },
+      { title: 'PickerTime', url: 'pages/containerPicker/PageContainerPickerTimeIndex' },
     ];
 
   build() {

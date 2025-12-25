@@ -22,7 +22,7 @@ struct Index {
   private nodeContent = new NodeContent();
   aboutToAppear() {
     // 通过C-API创建节点，并添加到管理器nodeContent上
-    Napi.createContainerNativeNode(this.nodeContent);
+    Napi.createContainerPickerEventsNode(this.nodeContent);
   }
   build() {
     Column() {
