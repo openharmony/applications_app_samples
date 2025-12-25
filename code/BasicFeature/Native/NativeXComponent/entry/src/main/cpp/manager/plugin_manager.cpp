@@ -370,10 +370,10 @@ ArkUI_NodeHandle CreateNodeHandleUsingSurfaceHolder(const std::string &tag)
     ArkUI_AttributeItem item2 = {value, 1, "ndkxcomponent"};
     nodeAPI->setAttribute(xc, NODE_ID, &item2);
     // [EndExclude surface_holder_ndk_create_xc_node]
-    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(xc); // 获取 SurfaceHolder
+    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(xc); // 获取SurfaceHolder
     PluginManager::surfaceHolderMap_[xc] = holder;
     PluginManager::nodeHandleMap_[tag] = xc;
-    auto callback = OH_ArkUI_SurfaceCallback_Create(); // 创建 SurfaceCallback
+    auto callback = OH_ArkUI_SurfaceCallback_Create(); // 创建SurfaceCallback
     PluginManager::callbackMap_[holder] = callback;
     auto render = new EGLRender();
     OH_ArkUI_SurfaceHolder_SetUserData(holder, render);                                // 将render保存在holder中
@@ -634,11 +634,11 @@ napi_value PluginManager::BindNode(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     std::string nodeId = value2String(env, args[0]);
     ArkUI_NodeHandle handle;
-    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[1], &handle);             // 获取 nodeHandle
-    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取 SurfaceHolder
+    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[1], &handle);             // 获取nodeHandle
+    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取SurfaceHolder
     nodeHandleMap_[nodeId] = handle;
     surfaceHolderMap_[handle] = holder;
-    auto callback = OH_ArkUI_SurfaceCallback_Create(); // 创建 SurfaceCallback
+    auto callback = OH_ArkUI_SurfaceCallback_Create(); // 创建SurfaceCallback
     callbackMap_[holder] = callback;
     auto render = new EGLRender();
     OH_ArkUI_SurfaceHolder_SetUserData(holder, render);                                // 将render保存在holder中
@@ -686,7 +686,7 @@ napi_value PluginManager::UnbindNode(napi_env env, napi_callback_info info)
     node = nodeHandleMap_[nodeId];
     // [StartExclude surface_holder_declarative_c_bind]
     OH_ArkUI_XComponent_UnregisterOnFrameCallback(node); // 解注册帧回调
-    OH_ArkUI_AccessibilityProvider_Dispose(provider_);   // 销毁 ArkUI_AccessibilityProvider
+    OH_ArkUI_AccessibilityProvider_Dispose(provider_);   // 销毁ArkUI_AccessibilityProvider
     // [EndExclude surface_holder_declarative_c_bind]
     auto holder = surfaceHolderMap_[node];
     if (PluginManager::callbackMap_.count(holder)) {
@@ -808,8 +808,8 @@ napi_value PluginManager::DrawPatternForSurfaceHolder(napi_env env, napi_callbac
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     ArkUI_NodeHandle handle;
-    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &handle);             // 获取 nodeHandle
-    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取 SurfaceHolder
+    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &handle);             // 获取nodeHandle
+    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取SurfaceHolder
     EGLRender *render = reinterpret_cast<EGLRender *>(OH_ArkUI_SurfaceHolder_GetUserData(holder));
     render->DrawStar(true);
     return nullptr;
@@ -821,8 +821,8 @@ napi_value PluginManager::GetStatusForSurfaceHolder(napi_env env, napi_callback_
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     ArkUI_NodeHandle handle;
-    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &handle);             // 获取 nodeHandle
-    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取 SurfaceHolder
+    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &handle);             // 获取nodeHandle
+    OH_ArkUI_SurfaceHolder *holder = OH_ArkUI_SurfaceHolder_Create(handle); // 获取SurfaceHolder
     EGLRender *render = reinterpret_cast<EGLRender *>(OH_ArkUI_SurfaceHolder_GetUserData(holder));
     auto hasDraw = render->hasDraw_;
     auto hasChangeColor = render->hasChangeColor_;
