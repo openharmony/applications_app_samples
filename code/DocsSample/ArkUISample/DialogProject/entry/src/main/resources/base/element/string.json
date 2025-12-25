@@ -61,6 +61,10 @@
       "value": "页面级弹出框"
     },
     {
+      "name": "CustomDialog_page_level_navigation",
+      "value": "基于Navigation导航的页面级弹出框"
+    },
+    {
       "name": "CustomDialog_box_layer",
       "value": "弹出框层级管理"
     },
