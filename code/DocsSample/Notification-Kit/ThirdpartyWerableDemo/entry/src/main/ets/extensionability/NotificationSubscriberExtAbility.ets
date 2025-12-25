@@ -22,9 +22,10 @@ import { BusinessError } from '@ohos.base';
 import { socket } from '@kit.ConnectivityKit'
 import extensionSubscription from '@ohos.notificationExtensionSubscription';
 import util from '@ohos.util'; // 导入OpenHarmony的util模块
+//[EndExclude callback_start]
 
 const DOMAIN = 0x0000;
-
+//[StartExclude callback_start]
 class TransferInfo {
   public type: string = ''
   public info: extensionSubscription.NotificationInfo | undefined
