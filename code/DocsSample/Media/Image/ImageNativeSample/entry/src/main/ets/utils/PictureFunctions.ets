@@ -14,7 +14,6 @@
  */
 import testNapi from 'libentry.so';
 import {AppLog } from  '../utils/Logger'
-import { promptAction } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { pushSourceToBox } from './FunctionUtility';
 import { image } from '@kit.ImageKit';
@@ -27,55 +26,64 @@ export class PictureFunctions {
 
   private logger = new AppLog(TAG);
 
-  async createPictureByImageSource(context: common.UIAbilityContext, fileName: string): Promise<void> {
+  async createPictureByImageSource(context: common.UIAbilityContext, fileName: string): Promise<string> {
+    let message: string = '';
     console.log(`fileName: ${fileName}`);
     let filePath = context.filesDir + '/' + fileName;
     await pushSourceToBox(context, fileName);
     let errorCode = testNapi.createPictureByImageSource(filePath);
     this.logger.check_result('CreatePictureByImageSource' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'CreatePicture success.'});
+      message = 'CreatePicture success.';
     } else {
       this.logger.log('CreatePicture error is: ' + errorCode);
-      promptAction.showToast({ message: 'CreatePicture error is: ' + errorCode});
+      message = 'CreatePicture error is: ' + errorCode;
     }
+    return message;
   }
 
-  setDesiredAuxiliaryPictures() {
+  setDesiredAuxiliaryPictures(): string {
+    let message: string = '';
     // 根据所需解码的辅助图类型设置解码参数。
     let typeList: image.AuxiliaryPictureType[] = [image.AuxiliaryPictureType.GAINMAP];
     let errorCode = testNapi.setDesiredAuxiliaryPictures(typeList);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'SetDesiredAuxiliaryPictures success.'});
+      message = 'SetDesiredAuxiliaryPictures success.';
     } else {
-      promptAction.showToast({ message: `SetDesiredAuxiliaryPictures failed with ${errorCode}.`});
+      message = `SetDesiredAuxiliaryPictures failed with ${errorCode}.`;
       this.logger.log(`SetDesiredAuxiliaryPictures failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  releasePictureSource() {
+  releasePictureSource(): string {
+    let message: string = '';
     let errorCode = testNapi.releasePictureSource();
     this.logger.check_result('ReleasePicture' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'ReleasePicture success.'});
+      message = 'ReleasePicture success.';
     } else {
-      promptAction.showToast({ message: `ReleasePicture failed with ${errorCode}.`});
+      message = `ReleasePicture failed with ${errorCode}.`;
       this.logger.log(`ReleasePicture failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  packToDataFromPicture() {
+  packToDataFromPicture(): string {
+    let message: string = '';
     let errorCode = testNapi.packToDataFromPicture('image/jpeg');
     this.logger.check_result('PackToDataFromPicture' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'PackToDataFromPicture success.'});
+      message = 'PackToDataFromPicture success.';
     } else {
-      promptAction.showToast({ message: `PackToDataFromPicture failed with ${errorCode}.`});
+      message = `PackToDataFromPicture failed with ${errorCode}.`;
       this.logger.log(`PackToDataFromPicture failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  packToFileFromPicture(context: Context, fileName: string) {
+  packToFileFromPicture(context: Context, fileName: string): string {
+    let message: string = '';
     this.logger.log(`PackToFileFromPicture start with ${fileName}.`);
     const filePath: string = context.filesDir + '/' + fileName;
     this.logger.log(`PackToFileFromPicture start with ${filePath}.`);
@@ -85,10 +93,11 @@ export class PictureFunctions {
     let errorCode = testNapi.packToFileFromPicture(fd, 'image/jpeg');
     this.logger.check_result('PackToFileFromPicture' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'PackToFileFromPicture success.'});
+      message = 'PackToFileFromPicture success.';
     } else {
-      promptAction.showToast({ message: `PackToFileFromPicture failed with ${errorCode}.`});
+      message = `PackToFileFromPicture failed with ${errorCode}.`;
       this.logger.log(`PackToFileFromPicture failed with ${errorCode}.`);
     }
+    return message;
   }
 }

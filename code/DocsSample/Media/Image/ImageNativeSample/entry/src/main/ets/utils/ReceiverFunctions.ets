@@ -23,46 +23,54 @@ export class ReceiverFunctions {
 
   private logger = new AppLog(TAG);
 
-  initImageReceiver() {
+  initImageReceiver(): string {
+    let message: string = '';
     let errorCode = testNapi.initImageReceiver();
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'InitImageReceiver success.'});
+      message = 'InitImageReceiver success.';
     } else {
-      promptAction.showToast({ message: `InitImageReceiver failed with ${errorCode}.`});
+      message = `InitImageReceiver failed with ${errorCode}.`;
       this.logger.log(`InitImageReceiver failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  takePhoto() {
+  takePhoto(): string {
+    let message: string = '';
     let errorCode = testNapi.takePhoto();
     this.logger.check_result('TakePhoto' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'TakePhoto success.'});
+      message = 'TakePhoto success.';
     } else {
-      promptAction.showToast({ message: `TakePhoto failed with ${errorCode}.`});
+      message = `TakePhoto failed with ${errorCode}.`;
       this.logger.log(`TakePhoto failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  getReceiverImageInfo() {
+  getReceiverImageInfo(): string {
+    let message: string = '';
     let info = testNapi.getReceiverImageInfo();
     if(info !== null) {
-      promptAction.showToast({ message: `GetImageInfo: ${JSON.stringify(info)}.`});
+      message = `GetImageInfo: ${JSON.stringify(info)}.`;
       this.logger.log(`GetImageInfo: ${JSON.stringify(info)}.`);
     } else {
-      promptAction.showToast({ message: `GetImageInfo failed.`});
+      message = `GetImageInfo failed.`;
       this.logger.log(`GetImageInfo failed.`);
     }
+    return message;
   }
 
-  releaseImageReceiver() {
+  releaseImageReceiver(): string {
+    let message: string = '';
     let errorCode = testNapi.releaseImageReceiver();
     this.logger.check_result('ReleaseImageReceiver' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'ReleaseImageReceiver success.'});
+      message = 'ReleaseImageReceiver success.';
     } else {
-      promptAction.showToast({ message: `ReleaseImageReceiver failed with ${errorCode}.`});
+      message = `ReleaseImageReceiver failed with ${errorCode}.`;
       this.logger.log(`ReleaseImageReceiver failed with ${errorCode}.`);
     }
+    return message;
   }
 }
