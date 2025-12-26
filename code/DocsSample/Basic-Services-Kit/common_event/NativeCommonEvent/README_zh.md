@@ -9,9 +9,9 @@
 
 ### 效果预览
 
-| 主界面                            | 输出日志                           | 
-|--------------------------------|--------------------------------|
-| ![image](screenshots/img1.png) | ![image](screenshots/img8.png)  | 
+| 主界面                            | 输出日志                                         | 
+|--------------------------------|----------------------------------------------|
+| <img src="screenshots/img1.png" width="200"> | <img src="screenshots/img8.png" width="500"> | 
 
 
 ### 使用说明
@@ -69,7 +69,7 @@ entry/src/
 
 ### 具体实现
 
-* 设置公共事件信息并订阅公共事件的功能封装在common_event_subscriber，源码参考[common_event_subscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
+* 设置公共事件信息并订阅公共事件的功能封装在common_event_subscribe，源码参考[common_event_subscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
     * 订阅信息 / 订阅者：Create*/Destroy*封装 API，管理资源生命周期；
     * 事件订阅：Subscribe()调用OH_CommonEvent_Subscribe()完成订阅；
     * 事件解析：OnReceive()回调解析基础信息，Get*Param()系列函数解析多类型附加参数；
