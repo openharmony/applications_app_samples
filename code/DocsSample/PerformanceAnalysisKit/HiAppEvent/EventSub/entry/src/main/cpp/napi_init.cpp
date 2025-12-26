@@ -22,7 +22,7 @@
 
 // [Start EventSub_napi_Header]
 #include "napi/native_api.h"
-#include "json/json.h"
+#include "../../../build/jsoncpp-1.9.6/include/json/json.h"
 #include "hilog/log.h"
 #include "hiappevent/hiappevent.h"
 #include "hiappevent/hiappevent_event.h"

@@ -50,7 +50,8 @@
 
 #### 使用说明
 
-请先按照[工程目录](#工程目录)添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
+在napi_init.cpp中需要使用三方库jsoncpp来解析订阅事件（C/C++）中的json字符串。该工程已经将jsoncpp源码交叉编译后以动态库的方式导入，可直接编译。
+jsoncpp 1.9.6版本官方下载地址：https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.6.tar.gz。jsoncpp的库文件位置可以查阅[工程目录](#工程目录)。
 
 ##### 1.事件订阅（ArkTS&C++）使用说明：订阅崩溃（APP_CRASH）事件
 
@@ -516,28 +517,38 @@ HiAppEvent get currentUrl=https://www.baidu.com
 ###  工程目录
 
 ```text
-entry/src/main
-├─cpp
-│  ├─json                 // 自行创建文件夹
-│  │ └─json.h             // 按照使用说明章节中的步骤，自行添加
-│  │ └─json-forwards.h    // 按照使用说明章节中的步骤，自行添加
-│  ├─types
-│  │ └─libentry
-│  │   └─Index.d.ts		    // 定义ArkTS接口
-│  ├─CMakeLists.txt  		  // 导入so链接
-│  ├─napi_init.cpp  		  // 功能函数，观察者定义
-│  └─jsoncpp.cpp          // 按照使用说明章节中的步骤，自行添加
-└─ets
-   ├─entryability
-   │ └─EntryAbility.ets		// 新增接口调用
-   └─pages
-     └─ArkWebPage.ets     		// ArkWeb页面
-     └─Index.ets     		// 主页
+entry
+├── libs        // 自行创建文件夹,放入相关的三方库
+│   ├── arm64-v8a
+│   │   └── libjsoncpp.so.26
+│   ├── armeabi-v7a
+│   │   └── libjsoncpp.so.26
+│   └── x86_64
+│       └── libjsoncpp.so.26
+└── src
+    ├── main
+    │   ├── cpp
+    │   │   ├── CMakeLists.txt       // 导入so链接
+    │   │   ├── napi_init.cpp        // 功能函数，观察者定义
+    │   │   ├── thirdparty    // 自行创建文件夹,放入相关的三方库
+    │   │   │   └── jsoncpp
+    │   │   └── types
+    │   │       └── libentry
+    │   │           ├── Index.d.ts        // 定义ArkTS接口
+    │   │           └── oh-package.json5
+    │   ├── ets
+    │   │   ├── entryability
+    │   │   │   └── EntryAbility.ets    // 新增接口调用
+    │   │   ├── entrybackupability
+    │   │   │   └── EntryBackupAbility.ets
+    │   │   └── pages
+    │   │       ├── ArkWebPage.ets
+    │   │       └── Index.ets        // 主页
 ```
 
 ###  具体实现
 
-1.在entry/src/main/cpp下添加三方库文件jsoncpp.cpp和目录"json"，"json"目录下添加json.h和json-forwards.h；
+1.在entry/src/main/cpp下添加目录thirdparty，并导入三方库文件jsoncpp的库文件(拷贝jsoncpp整个文件夹)；在entry目录下添加libs目录，并导入jsoncpp的库文件。
 2.编辑"CMakeLists.txt"文件，添加源文件及动态库；
 3.编辑"napi_init.cpp"文件，导入依赖的文件，定义onReceive和onTrigger类型观察者相关方法，注册为ArkTS接口；
 4.编辑"index.d.ts"文件，定义ArkTS接口；
