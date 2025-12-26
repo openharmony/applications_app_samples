@@ -37,6 +37,7 @@ struct MenuIndex {
       { title: 'XComponent', url: 'pages/page_xcomponent', id: '' },
       { title: 'Form表单类', url: 'pages/page_form', id: '' },
       { title: '信息选择图片类', url: 'pages/page_imagespan', id: '' },
+      { title: '行列与堆叠类', url: 'pages/page_linear', id: '' },
     ];
 
   build() {

@@ -63,6 +63,8 @@ napi_property_descriptor desc[] = {
      nullptr, napi_default, nullptr},
     {"getImageSpanAttribute", nullptr, NativeNode::ImageSpan::TransTool::GetImageSpanAttribute, nullptr, nullptr,
      nullptr, napi_default, nullptr},
+    {"createLinearNativeNode", nullptr, Manager::CreateLinearNativeNode, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
 };
 
 EXTERN_C_START
