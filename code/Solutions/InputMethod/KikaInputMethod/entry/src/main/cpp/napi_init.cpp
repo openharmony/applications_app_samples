@@ -149,7 +149,7 @@ void HandleExtendActionFunc(InputMethod_TextEditorProxy *proxy, InputMethod_Exte
     SetText("处理扩展编辑请求");
 }
 
-void GetleftTextOfCursorFunc(InputMethod_TextEditorProxy *proxy, int32_t number, char16_t text[], size_t *length)
+void GetLeftTextOfCursorFunc(InputMethod_TextEditorProxy *proxy, int32_t number, char16_t text[], size_t *length)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, 0, "testTag", "处理获取光标左侧文本请求  ...");
 }
@@ -195,7 +195,7 @@ void ConstructTextEditorProxy(InputMethod_TextEditorProxy *textEditorProxy)
     OH_TextEditorProxy_SetMoveCursorFunc(textEditorProxy, MoveCursorFunc);
     OH_TextEditorProxy_SetHandleSetSelectionFunc(textEditorProxy, HandleSetSelectionFunc);
     OH_TextEditorProxy_SetHandleExtendActionFunc(textEditorProxy, HandleExtendActionFunc);
-    OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(textEditorProxy, GetleftTextOfCursorFunc);
+    OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(textEditorProxy, GetLeftTextOfCursorFunc);
     OH_TextEditorProxy_SetGetRightTextOfCursorFunc(textEditorProxy, GetRightTextOfCursorFunc);
     OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(textEditorProxy, GetTextIndexAtCursorFunc);
     OH_TextEditorProxy_SetReceivePrivateCommandFunc(textEditorProxy, ReceivePrivateCommandFunc);

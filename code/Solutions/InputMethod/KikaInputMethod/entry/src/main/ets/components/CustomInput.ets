@@ -41,7 +41,7 @@ export struct CustomInput {
   }
   // [End input_case_input_CustomInputText]
   async attachAndListener() { // 绑定和设置监听
-    focusControl.requestFocus('CustomInput');
+    focusControl.requestFocus('customInput');
     await this.inputController.attach(true, {
       inputAttribute: {
         textInputType: inputMethod.TextInputType.TEXT,
