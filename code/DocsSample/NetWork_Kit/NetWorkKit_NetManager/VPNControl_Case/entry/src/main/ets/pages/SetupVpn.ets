@@ -32,11 +32,7 @@ let notificationOperations: NotificationOperations = new NotificationOperations(
 
 let tunIp: string = '10.0.0.5';  // 示例地址，代表客户端设备在虚拟网络中的地址
 let blockedAppName: string = 'com.example.baidumyapplication'; // 示例
-// [Start vpn_config_parameters]
-let context = getContext(this) as common.VpnExtensionContext;
-let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
 
-// [StartExclude vpn_config_parameters]
 @Component
 export default struct allNetworksBtn {
   @Link flag: string;
@@ -144,7 +140,10 @@ export default struct allNetworksBtn {
 
     // 使用上述配置创建 VPN 配置对象
     let vpnConfig = new Config(tunIp, blockedAppName);
-    // [EndExclude vpn_config_parameters]
+
+    // [Start vpn_config_parameters]
+    let context = this.getUIContext().getHostContext() as common.VpnExtensionContext;
+    let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     // 创建 VPN 连接并应用配置
     vpnConnection.create(vpnConfig).then((data) => {
       hilog.info(0x0000, 'testTag', 'vpn create ' + JSON.stringify(data));
@@ -161,14 +160,12 @@ export default struct allNetworksBtn {
       notificationOperations.publishNotificationWithWantAgent();
       // [EndExclude vpn_config_parameters]
     })
-    // [StartExclude vpn_config_parameters]
+    // [End vpn_config_parameters]
       .catch((err: BusinessError) => {
       // 如果 VPN 创建失败，捕获异常并处理
       showToast('VPN start failed: ' + JSON.stringify(err), 4000);
       hilog.error(0x0000, 'testTag', 'developTag', 'vpn start Fail %{public}s', JSON.stringify(err) ?? '');
       this.flag = 'Error';  // 设置状态为失败
     });
-    // [EndExclude vpn_config_parameters]
   }
-  // [End vpn_config_parameters]
 }

@@ -47,7 +47,7 @@ struct StopVpn {
   @State flag: string = 'wait';
   @State blockedAppName: string = 'com.example.baidumyapplication';
   // [Start stop_vpn_extension_ability_on_destroy]
-  private context = getContext(this) as common.VpnExtensionContext;
+  private context = this.getUIContext().getHostContext() as common.VpnExtensionContext;
   private vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(this.context);
 
   Destroy() {
@@ -96,7 +96,7 @@ struct StopVpn {
         // [EndExclude stop_vpn_extension_ability]
         Button('Start Extension').onClick(() => {
           vpnExtension.startVpnExtensionAbility(want);
-        }).width('70%').fontSize(45).margin(16);
+        }).width('70%').fontSize(20).margin(16);
         Button($r('app.string.stop_vpnExt'))
           .onClick(() => {
             try {
