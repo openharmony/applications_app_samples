@@ -38,10 +38,11 @@ entry/src/main
 
 ### 具体实现
 
-1. 导入emitter和Callback 模块。
-2. 订阅事件使用on（持续订阅）或者once（单次订阅）接口进行订阅，设置要订阅的事件以及接收到事件后的回调函数。
-3. 发送事件使用emit接口进行发送，设置要发送的事件以及要传递的参数。
-4. 取消事件订阅使用off接口进行取消，已通过emit接口发布但尚未被执行的事件将被取消。
+使用Emitter实现事件订阅、事件发送以及事件删除，源码参考[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/Emitter/entry/src/main/ets/pages/Index.ets),开发步骤如下。
+1. 导入模块：导入emitter和Callback 模块。
+2. 订阅事件：点击“订阅eventId为1的事件”按钮，使用on（持续订阅）或者once（单次订阅）接口进行订阅，设置要订阅的事件以及接收到事件后的回调函数。
+3. 发送事件：点击“发送eventId为1的事件”按钮，使用emit接口进行发送，设置要发送的事件以及要传递的参数。
+4. 取消事件：点击“取消订阅eventId为1的事件”按钮，订阅使用off接口进行取消，已通过emit接口发布但尚未被执行的事件将被取消。
 
 ### 相关权限
 
