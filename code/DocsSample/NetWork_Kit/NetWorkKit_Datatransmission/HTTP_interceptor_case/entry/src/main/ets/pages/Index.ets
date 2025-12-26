@@ -30,19 +30,11 @@ const EXAMPLE_INITIAL_URL: string = 'http://www.hao123.com';
 const EXAMPLE_Final_URL: string = 'http://www.test.com/';
 
 // [Start HTTP_interceptor_case_creat_http_interceptor]
-enum InterceptorType {
-  INITIAL_REQUEST = 'INITIAL_REQUEST',
-  REDIRECTION = 'REDIRECTION',
-  CACHE_CHECKED = 'READ_CACHE',
-  NETWORK_CONNECT = 'CONNECT_NETWORK',
-  FINAL_RESPONSE = 'FINAL_RESPONSE'
-}
-
 class InitialHttpInterceptor implements http.HttpInterceptor {
-  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  interceptorType: http.InterceptorType = http.InterceptorType.INITIAL_REQUEST;
   result: boolean = false;
 
-  constructor(interceptorType: InterceptorType, result: boolean) {
+  constructor(interceptorType: http.InterceptorType, result: boolean) {
     this.interceptorType = interceptorType;
     this.result = result;
   }
@@ -68,10 +60,10 @@ class InitialHttpInterceptor implements http.HttpInterceptor {
 }
 
 class NetworkHttpInterceptor implements http.HttpInterceptor {
-  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  interceptorType: http.InterceptorType = http.InterceptorType.INITIAL_REQUEST;
   result: boolean = false;
 
-  constructor(interceptorType: InterceptorType, result: boolean) {
+  constructor(interceptorType: http.InterceptorType, result: boolean) {
     this.interceptorType = interceptorType;
     this.result = result;
   }
@@ -97,10 +89,10 @@ class NetworkHttpInterceptor implements http.HttpInterceptor {
 }
 
 class FinalHttpInterceptor implements http.HttpInterceptor {
-  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  interceptorType: http.InterceptorType = http.InterceptorType.INITIAL_REQUEST;
   result: boolean = false;
 
-  constructor(interceptorType: InterceptorType, result: boolean) {
+  constructor(interceptorType: http.InterceptorType, result: boolean) {
     this.interceptorType = interceptorType;
     this.result = result;
   }
@@ -142,9 +134,9 @@ function httpNormalRequest() {
     // [Start HTTP_interceptor_case_addChain]
     // 创建所需要的拦截器对象,将拦截器对象加入拦截器链中
     chain.addChain([
-      new InitialHttpInterceptor(InterceptorType.INITIAL_REQUEST, true),
-      new NetworkHttpInterceptor(InterceptorType.NETWORK_CONNECT, true),
-      new FinalHttpInterceptor(InterceptorType.FINAL_RESPONSE, true)
+      new InitialHttpInterceptor(http.InterceptorType.INITIAL_REQUEST, true),
+      new NetworkHttpInterceptor(http.InterceptorType.NETWORK_CONNECT, true),
+      new FinalHttpInterceptor(http.InterceptorType.FINAL_RESPONSE, true)
     ]);
     // [End HTTP_interceptor_case_addChain]
 
