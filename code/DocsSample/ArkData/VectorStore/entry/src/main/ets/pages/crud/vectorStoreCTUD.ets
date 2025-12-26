@@ -16,11 +16,14 @@
 // [Start vector_TS_isVectorSupported]
 import { relationalStore } from '@kit.ArkData'; // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 // [StartExclude vector_TS_isVectorSupported]
 
 // [Start vector_TS_getStore]
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext();
+/* context为应用的上下文信息，此处获取方式仅为示例。 */
+let context: Context = new UIContext().getHostContext() as common.UIAbilityContext;
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'VectorTest.db', // 数据库文件名
   securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
