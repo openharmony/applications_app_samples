@@ -33,7 +33,7 @@ struct Child {
 struct Parent {
   @Builder
   componentBuilder() {
-    Text(`Parent builder `)
+    Text('Parent builder')
   }
 
   build() {
