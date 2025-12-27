@@ -23,8 +23,8 @@ struct Index {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center}) {
         this.textComponent('Index');
-        this.buttonComponent('音振协同播放页面', 'pages/Haptic');
-        this.buttonComponent('音频播放页面', 'pages/Renderer');
+        this.buttonComponent('音振协同播放页面', 'pages/haptic');
+        this.buttonComponent('音频播放页面', 'pages/renderer');
       }.size({ width: '100%', height: '100%' })
     }
     .width('100%')
