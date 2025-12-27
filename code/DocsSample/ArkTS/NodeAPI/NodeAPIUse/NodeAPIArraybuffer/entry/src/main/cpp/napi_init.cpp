@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#include <cstring>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // [Start napi_is_arraybuffer]
@@ -45,9 +47,9 @@ static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 检查参数是否为ArrayBuffer
-    bool isArraybuffer = false;
-    napi_is_arraybuffer(env, args[0], &isArraybuffer);
-    if (!isArraybuffer) {
+    bool isArrayBuffer = false;
+    napi_is_arraybuffer(env, args[0], &isArrayBuffer);
+    if (!isArrayBuffer) {
         napi_throw_type_error(env, nullptr, "Argument must be an ArrayBuffer");
         return nullptr;
     }
@@ -67,8 +69,10 @@ static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
     napi_value byteLengthValue = nullptr;
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
-    napi_value bufferData;
-    napi_create_arraybuffer(env, byteLength, &data, &bufferData);
+    napi_value bufferData = nullptr;
+    void *newData = nullptr;
+    napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
+    memcpy(newData, data, byteLength);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -76,7 +80,7 @@ static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
 
 // [Start napi_detach_arraybuffer]
 // napi_detach_arraybuffer
-static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value DetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // 调用napi_detach_arraybuffer接口分离给定ArrayBuffer的底层数据
     size_t argc = 1;
@@ -89,7 +93,7 @@ static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
 }
 
 // napi_is_detach_arraybuffer
-static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value IsDetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // 调用napi_is_detached_arraybuffer判断给定的arraybuffer是否已被分离
     size_t argc = 1;
@@ -107,7 +111,7 @@ static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
 
 // [Start napi_create_arraybuffer]
 // napi_create_arraybuffer
-static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
+static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value argv[1] = {nullptr};
@@ -119,11 +123,15 @@ static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
     // 将ArkTS侧传递的参数转换为size_t类型，作为napi_create_arraybuffer的参数
     napi_get_value_int32(env, argv[0], &value);
     length = size_t(value);
-    void *data;
+    void *data = nullptr;
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
         // 确保安全后才能使用data进行操作
+    } else {
+        // 处理内存分配失败的情况
+        OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for ArrayBuffer");
+        return nullptr;
     }
     // 返回ArrayBuffer
     return result;
@@ -136,9 +144,9 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"isArrayBuffer", nullptr, IsArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getArraybufferInfo", nullptr, GetArraybufferInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"detachedArraybuffer", nullptr, DetachedArraybuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"isDetachedArraybuffer", nullptr, IsDetachedArraybuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"createArraybuffer", nullptr, CreateArraybuffer, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"detachedArrayBuffer", nullptr, DetachedArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"isDetachedArrayBuffer", nullptr, IsDetachedArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createArrayBuffer", nullptr, CreateArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
