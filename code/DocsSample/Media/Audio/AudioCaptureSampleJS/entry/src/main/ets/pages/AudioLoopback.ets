@@ -19,6 +19,7 @@ import { audio } from '@kit.AudioKit'; // 导入audio模块。
 // [Start set_Volume]
 // [Start set_ReverbPreset]
 // [Start get_ReverbPreset]
+// [Start set_EqualizerPreset]
 // [Start get_EqualizerPreset]
 // [Start enable]
 import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError。
