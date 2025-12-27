@@ -22,11 +22,11 @@ export const createArrayWithLength: (length: number) => void[]; // 使用Node-AP
 // [End napi_create_array_with_length_api]
 
 // [Start napi_get_array_length_api]
-export const getArrayLength: (arr: Array<any>) => number | void; // 使用Node-API接口进行array相关开发 napi_get_array_length
+export const getArrayLength: (arr: Array<any>) => number | undefined; // 使用Node-API接口进行array相关开发 napi_get_array_length
 // [End napi_get_array_length_api]
 
 // [Start napi_is_array_api]
-export const isArray: <T>(data: Array<T> | T) => boolean | void; // 使用Node-API接口进行array相关开发 napi_is_array
+export const isArray: <T>(data: Array<T> | T) => boolean | undefined; // 使用Node-API接口进行array相关开发 napi_is_array
 // [End napi_is_array_api]
 
 // [Start napi_set_element_api]
@@ -60,14 +60,14 @@ export const enum TypedArrayTypes {
   FLOAT32_ARRAY,
   FLOAT64_ARRAY,
   BIGINT64_ARRAY,
-  BIGuINT64_ARRAY,
+  BIGUINT64_ARRAY,
 }
 
 export const createTypedArray: <T>(type: TypedArrayTypes) => T; // 使用Node-API接口进行array相关开发 napi_create_typedarray
 // [End napi_create_typed_array_api]
 
 // [Start napi_is_typed_array_api]
-export const isTypedarray: (data: Object) => boolean | void; // 使用Node-API接口进行array相关开发 napi_is_typedarray
+export const isTypedarray: (data: Object) => boolean | undefined; // 使用Node-API接口进行array相关开发 napi_is_typedarray
 // [End napi_is_typed_array_api]
 
 // [Start napi_get_typed_array_info_api]
@@ -76,11 +76,11 @@ export const getTypedarrayInfo: <T>(typeArray: T,
 // [End napi_get_typed_array_info_api]
 
 // [Start napi_create_data_view_api]
-export const createDataView: (arraybuffer: ArrayBuffer) => DataView | void; // 使用Node-API接口进行array相关开发 napi_create_dataview
+export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined; // 使用Node-API接口进行array相关开发 napi_create_dataview
 // [End napi_create_data_view_api]
 
 // [Start napi_is_data_view_api]
-export const isDataView: (date: DataView | string) => boolean | void; // 使用Node-API接口进行array相关开发 napi_is_dataview
+export const isDataView: (date: DataView | string) => boolean | undefined; // 使用Node-API接口进行array相关开发 napi_is_dataview
 // [End napi_is_data_view_api]
 
 // [Start napi_get_data_view_info_api]
