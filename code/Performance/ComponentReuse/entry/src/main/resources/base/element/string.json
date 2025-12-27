@@ -1,0 +1,98 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ComponentReuse"
+    },
+    {
+      "name": "nav_destination_item0",
+      "value": "Reduce nested levels of component reuse"
+    },
+    {
+      "name": "nav_destination_item0_1",
+      "value": "Reduce nested levels of component reuse - negative"
+    },
+    {
+      "name": "nav_destination_item1",
+      "value": "Use AttributeUpdater refresh component - negative"
+    },
+    {
+      "name": "nav_destination_item2",
+      "value": "Use reuseId to mark components of different structures"
+    },
+    {
+      "name": "nav_destination_item3",
+      "value": "avoid use function as variable when reusing component creation"
+    },
+    {
+      "name": "nav_destination_item1_1",
+      "value": "Use AttributeUpdater refresh component - negative - negative"
+    },{
+      "name": "nav_destination_item1_2",
+      "value": "Use @Link/@ObjectLink instead of @Prop - negative"
+    },{
+      "name": "nav_destination_item1_3",
+      "value": "Avoid update state variable in aboutToReuse - negative"
+    },
+    {
+      "name": "nav_destination_item2_1",
+      "value": "Use reuseId to mark components of different structures - negative"
+    },
+    {
+      "name": "nav_destination_item3_1",
+      "value": "avoid use function as variable when reusing component creation - negative"
+    },
+    {
+      "name": "update_component_title",
+      "value": "title %d"
+    },
+    {
+      "name": "with_func_title",
+      "value": "List%d"
+    },
+    {
+      "name": "jump_text_one",
+      "value": "This is message number %d !"
+    },
+    {
+      "name": "two_days_ago",
+      "value": "two days ago"
+    },
+    {
+      "name": "jump_to_history",
+      "value": "jump to history"
+    },
+    {
+      "name": "near_people",
+      "value": "near people"
+    },
+    {
+      "name": "update_component_internal_text",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_list",
+      "value": "text list"
+    },
+    {
+      "name": "net_name_message",
+      "value": "net name list"
+    },
+    {
+      "name": "pic_text_list",
+      "value": "picture and text list"
+    },
+    {
+      "name": "userName",
+      "value": "userName_%d"
+    }
+  ]
+}

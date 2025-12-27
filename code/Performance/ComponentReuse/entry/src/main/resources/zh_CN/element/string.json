@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "组件复用"
+    },
+    {
+      "name": "nav_destination_item0",
+      "value": "减少组件复用的嵌套层级"
+    },
+    {
+      "name": "nav_destination_item0_1",
+      "value": "减少组件复用的嵌套层级 - 反例"
+    },
+    {
+      "name": "nav_destination_item1",
+      "value": "使用AttributeUpdater精准控制组件属性的刷新"
+    },
+    {
+      "name": "nav_destination_item2",
+      "value": "使用reuseId标记不同结构的组件"
+    },
+    {
+      "name": "nav_destination_item3",
+      "value": "避免使用函数/方法作为复用组件创建时的入参"
+    },
+    {
+      "name": "nav_destination_item1_1",
+      "value": "使用AttributeUpdater精准控制组件属性的刷新 - 反例"
+    },
+    {
+      "name": "nav_destination_item2_1",
+      "value": "使用reuseId标记不同结构的组件 - 反例"
+    },
+    {
+      "name": "nav_destination_item3_1",
+      "value": "避免使用函数/方法作为复用组件创建时的入参 - 反例"
+    },
+    {
+      "name": "nav_destination_item1_2",
+      "value": "使用@Link/@ObjectLink替代@Prop减少深拷贝 - 反例"
+    },
+    {
+      "name": "nav_destination_item1_3",
+      "value": "避免状态变量在aboutToReuse方法中再进行更新 - 反例"
+    },
+    {
+      "name": "update_component_title",
+      "value": "标题%d"
+    },
+    {
+      "name": "with_func_title",
+      "value": "列表%d"
+    },
+    {
+      "name": "jump_text_one",
+      "value": "这是第%d条消息 !"
+    },
+    {
+      "name": "two_days_ago",
+      "value": "2天前"
+    },
+    {
+      "name": "jump_to_history",
+      "value": "跳转到上次浏览历史"
+    },
+    {
+      "name": "near_people",
+      "value": "附近的人"
+    },
+    {
+      "name": "update_component_internal_text",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_list",
+      "value": "文字列表"
+    },
+    {
+      "name": "net_name_message",
+      "value": "网名列表"
+    },
+    {
+      "name": "pic_text_list",
+      "value": "图文列表"
+    },
+    {
+      "name": "userName",
+      "value": "用户名称_%d"
+    }
+  ]
+}
