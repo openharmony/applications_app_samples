@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceSM2Cpp"
+    },
+    {
+      "name": "call_sm2_encrypt_decrypt",
+      "value": "Call SM2_EncryptDecrypt"
+    },
+    {
+      "name": "call_create_asn1_cipher_text",
+      "value": "Call CreateASN1CipherText"
+    },
+    {
+      "name": "call_obtain_cipher_text",
+      "value": "Call ObtainCipherText"
+    },
+    {
+      "name": "call_pkcs1_rsa",
+      "value": "Call PKCS1 RSA"
+    },
+    {
+      "name": "call_rsa_encrypt",
+      "value": "Call RSA Encrypt"
+    }
+  ]
+}

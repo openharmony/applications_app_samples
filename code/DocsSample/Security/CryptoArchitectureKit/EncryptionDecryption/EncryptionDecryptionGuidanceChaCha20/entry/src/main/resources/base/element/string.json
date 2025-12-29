@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceChaCha20"
+    },
+    {
+      "name": "chacha20_async",
+      "value": "ChaCha20 Async"
+    },
+    {
+      "name": "chacha20_sync",
+      "value": "ChaCha20 Sync"
+    },
+    {
+      "name": "chacha20poly1305_async",
+      "value": "ChaCha20 Poly1305 Async"
+    },
+    {
+      "name": "chacha20poly1305_sync",
+      "value": "ChaCha20 Poly1305 Sync"
+    },
+    {
+      "name": "chacha20_cpp_test",
+      "value": "ChaCha20 CppTest"
+    },
+    {
+      "name": "chacha20_poly1305_cpp_test",
+      "value": "ChaCha20 Poly1305 CppTest"
+    },
+    {
+      "name": "call_chacha20_async",
+      "value": "Call ChaCha20 Async"
+    },
+    {
+      "name": "call_chacha20_sync",
+      "value": "Call ChaCha20 Sync"
+    },
+    {
+      "name": "call_chacha20_poly1305_async",
+      "value": "Call ChaCha20 Poly1305 Async"
+    },
+    {
+      "name": "call_chacha20_poly1305_sync",
+      "value": "Call ChaCha20 Poly1305 Sync"
+    },
+    {
+      "name": "call_chacha20_cpp_test",
+      "value": "Call ChaCha20 CppTest"
+    },
+    {
+      "name": "call_chacha20_poly1305_cpp_test",
+      "value": "Call ChaCha20 Poly1305 CppTest"
+    }
+  ]
+}

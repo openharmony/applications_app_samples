@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/aeswrap/AesWrapEncryptionDecryptionSync",
+    "pages/aeswrap/AesWrapEncryptionDecryptionAsync",
+    "pages/aeswrap/AesWarpCppTest"
+  ]
+}

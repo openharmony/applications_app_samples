@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/des/des_ecb_encryption_decryption_asynchronous",
+    "pages/des/des_ecb_encryption_decryption_synchronous",
+    "pages/des/des_ecb_encryption_decryption"
+  ]
+}
