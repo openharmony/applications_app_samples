@@ -1,0 +1,24 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/V1State",
+    "pages/V1Prop",
+    "pages/V1Link",
+    "pages/V1ObjectLink",
+    "pages/V1StorageLink",
+    "pages/V1StorageProp",
+    "pages/V1LocalStorageLink",
+    "pages/V1LocalStorageProp",
+    "pages/V1ProvideAndConsume",
+    "pages/V1BuiltIn",
+    "pages/V1MakeV1Observed",
+    "pages/V2Local",
+    "pages/V2Param",
+    "pages/V2Computed",
+    "pages/V2Monitor",
+    "pages/V2ProviderAndConsumer",
+    "pages/V2MakeObserved",
+    "pages/V2BuiltIn",
+    "pages/V1AndV2Compatibility"
+  ]
+}
