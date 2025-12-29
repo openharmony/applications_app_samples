@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+// [Start callback_call_interface_dts]
 export const asyncWork: (arg1: number, arg2: number, callback: (result: number) => void) => void;
+// [End callback_call_interface_dts]

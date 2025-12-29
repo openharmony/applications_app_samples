@@ -15,3 +15,7 @@
 // [Start napi_thread_safety_dts]
 export const startThread: (a: () => Promise<string>) => void;
 // [End napi_thread_safety_dts]
+
+// [Start napi_call_threadsafe_function_dts]
+export const startWithCallback: (input: string, callback: (msg: string) => void) => void;
+// [End napi_call_threadsafe_function_dts]

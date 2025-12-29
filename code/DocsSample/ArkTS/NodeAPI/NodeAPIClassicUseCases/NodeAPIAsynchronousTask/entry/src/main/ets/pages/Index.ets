@@ -14,13 +14,29 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { ErrorEvent, worker, taskpool } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 import nativeModule from 'libentry1.so';
 
-// [Start callback_call_interface]
+@Concurrent
+function nativeCall(num1 : number, num2 : number): void {
+  console.info('Taskpool thread received data:', + num1 + '、' + num2);
+  nativeModule.asyncWork(num1, num2, (result) => {
+    hilog.info(0x0000, 'XXX', 'result is: %{public}d', result);
+  });
+}
+
+async function testTaskpool() : Promise<void> {
+  try {
+    const task = new taskpool.Task(nativeCall, num1, num2);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error('Taskpool execute error: ${e}');
+  }
+}
+
 let num1: number = 123;
 let num2: number = 456;
-// [StartExclude callback_call_interface]
 
 @Entry
 @Component
@@ -38,19 +54,40 @@ struct Index {
             // [Start promise_call_interface]
             testNapi.asyncWork(1024).then((result) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-              this.message = 'result is ' + result.toString();
             });
             // [End promise_call_interface]
+            this.message = 'AsyncWorkPromise success';
           })
         Button($r('app.string.AsyncWorkCallback'))
           .margin(3)
           .onClick(() => {
-            // [EndExclude callback_call_interface]
+            // [Start callback_call_interface]
             nativeModule.asyncWork(num1, num2, (result) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-              this.message = 'result is ' + result.toString();
             });
             // [End callback_call_interface]
+            this.message = 'AsyncWorkCallback success';
+          })
+        Button($r('app.string.AsyncWorkCallbackWorker'))
+          .margin(3)
+          .onClick(() => {
+            // [Start AsyncWorkCallbackWorker]
+            const wk = new worker.ThreadWorker('entry/ets/worker/worker.ets');
+            wk.postMessage({num1, num2});
+            wk.onmessage = (msg) => {
+              console.info('result is:', msg.data);
+              wk.terminate();
+            }
+            // [End AsyncWorkCallbackWorker]
+            this.message = 'WorkerTest success';
+          })
+        Button($r('app.string.AsyncWorkCallbackTaskPool'))
+          .margin(3)
+          .onClick(() => {
+            // [Start AsyncWorkCallbackTaskPool]
+            testTaskpool();
+            // [End AsyncWorkCallbackTaskPool]
+            this.message = 'TaskpoolTest success';
           })
       }
       .width('100%')

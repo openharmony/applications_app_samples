@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start napi_create_async_work]
+
+// [Start napi_create_async_work_promise_cpp]
 #include "napi/native_api.h"
 // 调用方提供的data context，该数据会传递给execute和complete函数
 struct CallbackData {
@@ -23,16 +24,16 @@ struct CallbackData {
     double result = 0;
 };
 
-// [StartExclude napi_create_async_work]
-// [Start napi_first_call_back_work]
+// [StartExclude napi_create_async_work_promise_cpp]
+// [Start napi_first_call_back_work_promise_cpp]
 static void ExecuteCB(napi_env env, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
     callbackData->result = callbackData->args;
 }
-// [End napi_first_call_back_work]
+// [End napi_first_call_back_work_promise_cpp]
 
-// [Start napi_second_call_back_main]
+// [Start napi_second_call_back_main_promise_cpp]
 static void CompleteCB(napi_env env, napi_status status, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -48,8 +49,8 @@ static void CompleteCB(napi_env env, napi_status status, void *data)
     delete callbackData;
     callbackData = nullptr;
 }
-// [End napi_second_call_back_main]
-// [EndExclude napi_create_async_work]
+// [End napi_second_call_back_main_promise_cpp]
+// [EndExclude napi_create_async_work_promise_cpp]
 
 static napi_value AsyncWork(napi_env env, napi_callback_info info)
 {
@@ -74,7 +75,7 @@ static napi_value AsyncWork(napi_env env, napi_callback_info info)
 
     return promise;
 }
-// [End napi_create_async_work]
+// [End napi_create_async_work_promise_cpp]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

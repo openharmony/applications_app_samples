@@ -27,6 +27,11 @@
     },
 // [End napi_event_loop_build]
 // [End napi_ark_runtime_build]
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/worker/worker.ets"
+      ]
+    },
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",

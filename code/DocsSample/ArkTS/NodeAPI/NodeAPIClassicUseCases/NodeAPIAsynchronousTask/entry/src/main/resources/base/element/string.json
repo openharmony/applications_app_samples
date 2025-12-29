@@ -19,6 +19,14 @@
     {
       "name": "AsyncWorkCallback",
       "value": "Call AsyncWorkCallback"
+    },
+    {
+      "name": "AsyncWorkCallbackWorker",
+      "value": "Call AsyncWorkCallbackWorker"
+    },
+    {
+      "name": "AsyncWorkCallbackTaskPool",
+      "value": "Call AsyncWorkCallbackTaskPool"
     }
   ]
 }

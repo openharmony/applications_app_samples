@@ -27,6 +27,14 @@
     {
       "name": "startThread",
       "value": "Call startThread"
+    },
+    {
+      "name": "workerTest",
+      "value": "Call workerTest"
+    },
+    {
+      "name": "taskpoolTest",
+      "value": "Call taskpoolTest"
     }
   ]
 }
