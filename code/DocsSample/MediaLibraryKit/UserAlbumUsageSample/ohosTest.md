@@ -1,11 +1,11 @@
-# 用户相册使用示例
+# 用户相册使用示例工程测试用例归档
 
 ## 用例表
 
 | 测试功能       | 预置条件  | 输入                 | 预期输出                     | 是否自动 | 测试结果 |
 |------------|-------| -------------------- | ---------------------------- | -------- | -------- |
-| 将媒体添加到用户相册 |  1. 创建用户相册“test”<br>2. 用户给应用授权ohos.permission.READ_IMAGEVIDEO<br>ohos.permission.WRITE_IMAGEVIDEO。  | 1. 启动指定的Ability。<br>2. 等待 5 秒                     | 测试成功运行                 | 是       | Pass     |
-| 从用户相册获取媒体  |   1. 创建用户相册“test”并将图片添加到其中<br>2. 用户给应用授权ohos.permission.READ_IMAGEVIDEO<br>ohos.permission.WRITE_IMAGEVIDEO。   | 1. 启动指定的Ability。<br>2. 等待 5 秒          | 测试成功运行                 | 是       | Pass     |
-| 获取用户相册     |    1. 创建用户相册“test”<br>2. 用户给应用授权ohos.permission.READ_IMAGEVIDEO  | 1. 启动指定的Ability。<br>2. 等待 5 秒         | 测试成功运行                 | 是       | Pass     |
-| 从用户相册中移除媒体 |  1. 创建用户相册“test”并将图片添加到其中<br>2. 用户给应用授权ohos.permission.READ_IMAGEVIDEO<br>ohos.permission.WRITE_IMAGEVIDEO。    | 1. 启动指定的Ability。<br>2. 等待 5 秒         | 测试成功运行                 | 是       | Pass     |
-| 重命名用户相册    |    1. 创建用户相册“test”<br>2. 用户给应用授权ohos.permission.READ_IMAGEVIDEO<br>ohos.permission.WRITE_IMAGEVIDEO。  |1. 启动指定的Ability。<br>2. 等待 5 秒         | 测试成功运行                 | 是       | Pass     |
+| 添加图片和视频到用户相册 | 1. 在设备的图库应用中，创建用户相册，相册名为“test” <br>2. 在DevEco Stuido中编译sample工程成功。  | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的AddMediaToUserAlbum.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run AddMediaToUserAlbum.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。                     | 1.成功找到文件。<br>4.测试结果成功。                 | 是       | Pass     |
+| 获取用户相册中的图片和视频  |   1. 在设备的图库应用中，创建用户相册，相册名为“test” <br>2. 在DevEco Stuido中编译sample工程成功。   | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的GetMediaFromUserAlbum.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run GetMediaFromUserAlbum.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。          | 1.成功找到文件。<br>4.测试结果成功。                 | 是       | Pass     |
+| 获取用户相册     |    1. 在设备的图库应用中，创建用户相册，相册名为“test” <br>2. 在DevEco Stuido中编译sample工程成功。  | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的GetUserAlbum.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run GetUserAlbum.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。         | 1.成功找到文件。<br>4.测试结果成功。                 | 是       | Pass     |
+| 从用户相册中移除图片和视频 |  1. 在设备的图库应用中，创建用户相册，相册名为“test” <br>2. 在DevEco Stuido中编译sample工程成功。    | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的RemoveMediaFromUserAlbum.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run RemoveMediaFromUserAlbum.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。         | 1.成功找到文件。<br>4.测试结果成功。                 | 是       | Pass     |
+| 重命名用户相册    |    1. 在设备的图库应用中，创建用户相册，相册名为“test” <br>2. 在DevEco Stuido中编译sample工程成功。  |1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的RenameUserAlbum.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run RenameUserAlbum.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。         | 1.成功找到文件。<br>4.测试结果成功。                 | 是       | Pass     |
