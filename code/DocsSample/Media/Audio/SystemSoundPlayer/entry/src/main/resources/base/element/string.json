@@ -1,0 +1,41 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SoundPlayer"
+    },
+    {
+      "name": "select_value",
+      "value": "请选择音效类型"
+    },
+    {
+      "name": "select_photo",
+      "value": "拍照音效"
+    },
+    {
+      "name": "select_video_start",
+      "value": "视频录制开始音效"
+    },
+    {
+      "name": "select_video_end",
+      "value": "视频录制结束音效"
+    },
+    {
+      "name": "primary_title",
+      "value": "先选择对应音效然后点击播放按钮"
+    },
+    {
+      "name": "sound_player_button",
+      "value": "播放音效"
+    }
+
+  ]
+}
