@@ -19,6 +19,8 @@ import { relationalStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { hilog } from '@kit.PerformanceAnalysisKit'
+import { UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 // [End backuprestore_TS_IncludeSupported]
 
 
@@ -33,8 +35,9 @@ export async function backupManually() {
   // 手动备份：通过调用[backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup)接口实现数据库手动备份。示例如下：
 
   // [Start backupManually]
+  /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   let store: relationalStore.RdbStore | undefined = undefined;
-  let context = getContext();
   const STORE_CONFIG: relationalStore.StoreConfig = {
     name: 'RdbTest.db',
     securityLevel: relationalStore.SecurityLevel.S3
@@ -145,7 +148,8 @@ export async function rebuildingRelationalDatabaseAbnormally() {
 
   // [Start rebuildingRelationalDatabaseAbnormally]
   let store: relationalStore.RdbStore | undefined = undefined;
-  let context = getContext();
+  /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   try {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: 'RdbTest.db',
@@ -168,7 +172,8 @@ export async function restoringManualBackupData() {
 
   // [Start invokeTheRestoreInterfaceToRestoreData]
   let store: relationalStore.RdbStore | undefined = undefined;
-  let context = getContext();
+  /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   let STORE_CONFIG: relationalStore.StoreConfig = {
     name: 'RdbTest.db',
     securityLevel: relationalStore.SecurityLevel.S3,
