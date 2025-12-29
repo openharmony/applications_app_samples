@@ -22,7 +22,6 @@ const DOMAIN = 0xD001000;
 @Component
 struct Index {
   @State message: string = 'Common Event Management';
-  private subscriber: boolean = false;
 
   // Subscribe to event - Test createSubscribeInfo, createSubscriber, subscribe APIs
   subscribeEvent(): void {
@@ -41,7 +40,6 @@ struct Index {
           const subscribeResult = commonEventManager.subscribe();
 
           if (subscribeResult) {
-            this.subscriber = true;
             this.message = 'Subscribe API test success';
             AppStorage.setOrCreate<boolean>('result', true);
           } else {
@@ -98,8 +96,6 @@ struct Index {
       const unsubscribeResult = commonEventManager.unsubscribe();
 
       if (unsubscribeResult) {
-        this.subscriber = false;
-
         // Test destroySubscriber API
         commonEventManager.destroySubscriber();
 
