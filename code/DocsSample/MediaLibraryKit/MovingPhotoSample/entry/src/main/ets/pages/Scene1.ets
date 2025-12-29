@@ -16,9 +16,9 @@
 // [Start Save_Button]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-// [StartExclude SaveButton]
+// [StartExclude Save_Button]
 import { fileIo } from '@kit.CoreFileKit';
-// [EndExclude SaveButton]
+// [EndExclude Save_Button]
 
 @Entry({ routeName : 'Scene1' })
 @Component

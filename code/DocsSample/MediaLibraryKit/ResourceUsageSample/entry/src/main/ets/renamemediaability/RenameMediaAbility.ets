@@ -46,12 +46,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     fetchResult.close();
     // [StartExclude rename_media]
     return true;
-    // // [EndExclude rename_media]
+    // [EndExclude rename_media]
   } catch (err) {
     console.error(`rename failed with error: ${err.code}, ${err.message}`);
     // [StartExclude rename_media]
     return false;
-    // // [EndExclude rename_media]
+    // [EndExclude rename_media]
   }
 }
 // [End rename_media]
