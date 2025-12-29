@@ -15,7 +15,7 @@
 // [Start dynamic_rerendering_with_component_v2_correct_usage]
 @ObservedV2
 class ParamTmpClass {
-  @Trace public count : number = 0;
+  @Trace public count: number = 0;
 }
 
 @Builder
@@ -28,7 +28,7 @@ function renderText(param: ParamTmpClass) {
 }
 
 @Builder
-function renderMap(paramMap: Map<string,number>) {
+function renderMap(paramMap: Map<string, number>) {
   Text(`paramMap : ${paramMap.get('name')}`)
     .fontSize(20)
     .fontWeight(FontWeight.Bold)
@@ -52,7 +52,7 @@ function renderNumberArr(paramNumArr: number[]) {
 @ComponentV2
 struct PageBuilderCorrectUsage {
   @Local builderParams: ParamTmpClass = new ParamTmpClass();
-  @Local mapValue: Map<string,number> = new Map();
+  @Local mapValue: Map<string, number> = new Map();
   @Local setValue: Set<number> = new Set([0]);
   @Local numArrValue: number[] = [0];
   private progressTimer: number = -1;

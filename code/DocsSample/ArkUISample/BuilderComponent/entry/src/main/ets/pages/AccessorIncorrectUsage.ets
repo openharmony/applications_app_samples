@@ -14,6 +14,7 @@
  */
 // [Start not_passed_set_accessor_builder_incorrect_usage]
 import { UIUtils, Binding, MutableBinding } from '@kit.ArkUI';
+
 @ObservedV2
 class GlobalTmp1 {
   @Trace public strValue: string = 'Hello';
@@ -24,7 +25,7 @@ function builderWithTwoParams1(param1: Binding<GlobalTmp1>, param2: MutableBindi
   Column() {
     Text(`strValue: ${param1.value.strValue}`)
     Button(`num: ${param2.value}`)
-      .onClick(()=>{
+      .onClick(() => {
         param2.value += 1; // 点击Button触发set访问器会造成运行时错误
       })
   }.borderWidth(1)
