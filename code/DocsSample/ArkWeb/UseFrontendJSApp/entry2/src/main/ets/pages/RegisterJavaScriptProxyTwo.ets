@@ -51,7 +51,7 @@ struct Index {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: $rawfile('index4.html'), controller: this.webviewController })
+      Web({ src: $rawfile('index1.html'), controller: this.webviewController })
         .onPageEnd(()=>{
           try {
             if(!this.isRegistered){
