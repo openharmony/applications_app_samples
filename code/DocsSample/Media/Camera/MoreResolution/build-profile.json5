@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\kaximoduo\\.ohos\\config\\default_MoreResolution_K2qCxqESuWnmQKkWGWiOVZiiFXT-El6CXmCgNgtrTh8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B6A819AC20E6CEEB694DC5E00E13A890FE1159042C7D65B1FD024591B24BDEF73CFAF2625FBF0C3",
+          "profile": "C:\\Users\\kaximoduo\\.ohos\\config\\default_MoreResolution_K2qCxqESuWnmQKkWGWiOVZiiFXT-El6CXmCgNgtrTh8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\kaximoduo\\.ohos\\config\\default_MoreResolution_K2qCxqESuWnmQKkWGWiOVZiiFXT-El6CXmCgNgtrTh8=.p12",
+          "storePassword": "0000001B71DA5FC4D0DC348492AECF1A8FB29F819387083AB208AE7BDEFAA129DB2CD961414BF3291FEC30"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "targetSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
