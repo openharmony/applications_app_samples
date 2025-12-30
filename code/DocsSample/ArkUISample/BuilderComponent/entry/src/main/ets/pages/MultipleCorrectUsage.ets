@@ -17,7 +17,9 @@ class GlobalTmp3 {
   public strValue: string = 'Hello';
   public numValue: number = 0;
 }
-@Builder function overBuilder3(param: GlobalTmp3) {
+
+@Builder
+function overBuilder3(param: GlobalTmp3) {
   Column() {
     Text(`strValue: ${param.strValue}`)
     Text(`num: ${param.numValue}`)
@@ -28,11 +30,13 @@ class GlobalTmp3 {
 @Component
 struct Parent3 {
   @State objParam: GlobalTmp3 = new GlobalTmp3();
+
   build() {
     Column() {
       Text('UI Rendered via @Builder')
         .fontSize(20)
-      overBuilder3({strValue: this.objParam.strValue, numValue: this.objParam.numValue})
+      // 传入一个参数，正确用法
+      overBuilder3({ strValue: this.objParam.strValue, numValue: this.objParam.numValue })
       Line()
         .width('100%')
         .height(10)

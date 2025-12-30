@@ -39,8 +39,10 @@ struct ReusablePage {
   build() {
     Column() {
       if (this.switchFlag) {
+        // 调用自定义组件ReusableChildPage
         ReusableChildPage({ message: 'Child' })
       } else {
+        // 调用自定义组件ReusableChildTwoPage
         ReusableChildTwoPage({ message: 'ChildTwo' })
       }
       Button('Click me')
@@ -73,6 +75,7 @@ struct ReusableChildPage {
         .fontColor('#e6000000')
         .borderRadius(20)
         .textAlign(TextAlign.Center)
+      // 调用全局@Builder函数itemBuilder
       itemBuilder({ componentName: this.message })
     }
   }
@@ -98,6 +101,7 @@ struct ReusableChildTwoPage {
         .fontColor('#e6000000')
         .borderRadius(20)
         .textAlign(TextAlign.Center)
+      // 调用全局@Builder函数itemBuilder
       itemBuilder({ componentName: this.message })
     }
   }

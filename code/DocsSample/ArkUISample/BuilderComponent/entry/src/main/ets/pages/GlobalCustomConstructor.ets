@@ -19,6 +19,7 @@ function showTextBuilder() {
     .fontSize(30)
     .fontWeight(FontWeight.Bold)
 }
+
 @Entry
 @Component
 struct BuilderSample {
