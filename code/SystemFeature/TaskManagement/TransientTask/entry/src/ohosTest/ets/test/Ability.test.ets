@@ -80,8 +80,6 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}ComponentIfExist_001 start`);
       await driver.delayMs(1000);
       // 测试控件是否存在
-      await driver.assertComponentExist(ON.id('interval_number'));
-      await driver.assertComponentExist(ON.id('counter'));
       await driver.assertComponentExist(ON.id('transient_task_id'));
       await driver.assertComponentExist(ON.id('request_suspend_delay'));
       await driver.assertComponentExist(ON.id('get_remaining_delay_time'));

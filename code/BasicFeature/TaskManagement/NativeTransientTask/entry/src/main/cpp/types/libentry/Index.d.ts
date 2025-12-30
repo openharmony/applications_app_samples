@@ -14,7 +14,7 @@
  */
 
 // [Start declaration_function]
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import backgroundTaskManager from '@kit.BackgroundTasksKit';
 
 export const RequestSuspendDelay: () => number;
 export const GetRemainingDelayTime: () => number;
