@@ -1489,6 +1489,32 @@ void setText17(ArkUI_NodeHandle &text17)
     Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_COPY_OPTION, &copyOptItem);
 }
 
+void setText18(ArkUI_NodeHandle &text18)
+{
+    ArkUI_AttributeItem content_item = {};
+    content_item.string = "测试跑马灯TextMaruqeeOptions";
+    Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_CONTENT, &content_item);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 100.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text18, NODE_WIDTH, &width_item);
+    ArkUI_TextMarqueeOptions* marqueeOptions = OH_ArkUI_TextMarqueeOptions_Create();
+    OH_ArkUI_TextMarqueeOptions_SetStart(marqueeOptions, true);
+    OH_ArkUI_TextMarqueeOptions_SetStep(marqueeOptions, 5.0f);
+    OH_ArkUI_TextMarqueeOptions_SetSpacing(marqueeOptions, 30.0f);
+    OH_ArkUI_TextMarqueeOptions_SetFromStart(marqueeOptions, true);
+    OH_ArkUI_TextMarqueeOptions_SetDelay(marqueeOptions, VALUE_400);
+    OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(marqueeOptions,
+        ArkUI_MarqueeUpdatePolicy::ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION);
+    ArkUI_AttributeItem marqueeOptions_item = {
+        .object = marqueeOptions
+    };
+    Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_MARQUEE_OPTIONS, &marqueeOptions_item);
+    ArkUI_NumberValue overflowValue[] = {{.i32 = ARKUI_TEXT_OVERFLOW_MARQUEE}};
+    ArkUI_AttributeItem overflowItem = {overflowValue, sizeof(overflowValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_OVERFLOW, &overflowItem);
+}
+
+
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
     auto basicText2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -1990,6 +2016,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text18 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12, text12_2);
@@ -1998,6 +2025,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     setText15(text15);
     setText16(text16);
     setText17(TextMaker::text17);
+    setText18(text18);
 
     ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     std::string labelStr = "setTextSelection";
@@ -2030,6 +2058,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text15);
     Manager::nodeAPI_->addChild(textContainer, text16);
     Manager::nodeAPI_->addChild(textContainer, TextMaker::text17);
+    Manager::nodeAPI_->addChild(textContainer, text18);
     Manager::nodeAPI_->addChild(textContainer, button);
 }
 
