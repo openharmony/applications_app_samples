@@ -36,6 +36,14 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/RegisterJavaScriptProxy' });
         })
+      Button('RegisterJavaScriptProxyOne')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/RegisterJavaScriptProxyOne' });
+        })
+      Button('RegisterJavaScriptProxyTwo')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/RegisterJavaScriptProxyTwo' });
+        })
       Button('UsageOfComplexTypes_one')
         .onClick(() => {
           router.pushUrl({ url: 'pages/UsageOfComplexTypes_one' });
