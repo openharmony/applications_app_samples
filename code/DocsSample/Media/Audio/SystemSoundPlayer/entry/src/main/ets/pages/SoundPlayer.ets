@@ -14,19 +14,25 @@
 */
 // [Start sound_player]
 // [Start sound_player_import]
-import { systemSoundManager } from '@kit.AudioKit';
-// [StartExclude sound_player_import]
-import { SubHeader, TextModifier } from '@kit.ArkUI';
-// [EndExclude sound_player_import]
-// [End sound_player_import]
-
 // [Start sound_player_create]
-// SystemSoundPlayer对象。
-let systemSoundPlayer: systemSoundManager.SystemSoundPlayer | null = null;
-
 // [Start sound_player_load]
 // [Start sound_player_play]
 // [Start sound_player_unload]
+import { systemSoundManager } from '@kit.AudioKit';
+// [End sound_player_import]
+// [StartExclude sound_player_create]
+// [StartExclude sound_player_load]
+// [StartExclude sound_player_play]
+// [StartExclude sound_player_unload]
+import { SubHeader, TextModifier } from '@kit.ArkUI';
+// [EndExclude sound_player_create]
+
+// SystemSoundPlayer对象。
+let systemSoundPlayer: systemSoundManager.SystemSoundPlayer | null = null;
+// [EndExclude sound_player_load]
+// [EndExclude sound_player_play]
+// [EndExclude sound_player_unload]
+
 // [StartExclude sound_player_create]
 // 音效类型。
 let systemSoundType: systemSoundManager.SystemSoundType = systemSoundManager.SystemSoundType.PHOTO_SHUTTER;
@@ -51,7 +57,6 @@ async function load() {
   // [EndExclude sound_player_load]
   systemSoundPlayer?.load(systemSoundType).then(() => {
     console.info('Succeeded in calling the load method.');
-
   }).catch((err: BusinessError) => {
     console.error(`Failed to call the load method. Code: ${err.code}, message: ${err.message}`);
   });
