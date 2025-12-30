@@ -17,9 +17,6 @@
 import {
   ArcSwiper,
   ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
-  ArcDotIndicator,
-  ArcDirection,
-  ArcSwiperController
 } from '@kit.ArkUI';
 // [StartExclude side_slip]
 import { ComponentCard } from '../../common/Card';
