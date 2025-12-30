@@ -41,6 +41,7 @@ struct Index {
     } catch (err) {
       hilog.error(DOMAIN, 'testTag', `failed to requestPermissionsFromUser ${err}`)
     }
+    AppStorage.setOrCreate('event', 'requestPermissionsFromUser');
   }
 
   build() {
@@ -64,6 +65,7 @@ struct Index {
             } catch (err) {
               hilog.error(DOMAIN, 'testTag', `errCode: ${err.code}, errMessage: ${err.message}`);
             }
+            AppStorage.setOrCreate('event', 'queryBluetooth');
           })
 
         ForEach(this.devices, (item: string) => {
@@ -104,6 +106,7 @@ struct Index {
             } catch (error) {
               hilog.error(DOMAIN, 'testTag', `failed to call subscribe`)
             }
+            AppStorage.setOrCreate('event', 'subscribe');
           })
         Button("unsubscribe").backgroundColor('#FFFF00FF')
           .onClick(async (e: ClickEvent) => {
@@ -113,6 +116,7 @@ struct Index {
             } catch (error) {
               hilog.error(DOMAIN, 'testTag', `failed to call unsubscribe`)
             }
+            AppStorage.setOrCreate('event', 'unsubscribe');
           })
       }
     }
