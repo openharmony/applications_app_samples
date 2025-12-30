@@ -14,9 +14,11 @@
  */
 // [Start arkts_custom_font]
 // Index.ets
+// [Start arkts_custom_font_include]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
+// [End arkts_custom_font_include]
 
 // 获取全局字体集实例
 let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
@@ -27,6 +29,7 @@ class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 创建画布canvas对象
     const canvas = context.canvas
+    // [Start arkts_custom_font_step3]
     // 使用自定义字体
     let myFontFamily: Array<string> = [familyName] // 如果已经注册自定义字体，填入自定义字体的字体家族名
     // 设置文本样式
@@ -41,6 +44,8 @@ class MyRenderNode extends RenderNode {
       // 在文本样式中加入可使用的自定义字体
       fontFamilies: myFontFamily
     };
+    // [End arkts_custom_font_step3]
+    // [Start arkts_custom_font_step4]
     // 创建一个段落样式对象，以设置排版风格
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
@@ -48,13 +53,16 @@ class MyRenderNode extends RenderNode {
       wordBreak: text.WordBreak.NORMAL
     };
     // 创建一个段落生成器
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    // [End arkts_custom_font_step4]
+    // [Start arkts_custom_font_step5]
     // 在段落生成器中设置文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
-    ParagraphGraphBuilder.addText("Custom font test");
+    paragraphBuilder.addText("Custom font test");
     // 通过段落生成器生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
+    // [End arkts_custom_font_step5]
     // 设置段落宽度为1000px
     paragraph.layoutSync(1000);
     paragraph.paint(canvas, 0, 400);
@@ -141,8 +149,13 @@ struct RenderTest {
           .fontWeight(500)
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
+            // [Start arkts_custom_font_step2]
             // 注册自定义字体
+            // 方式一：/system/fonts/NotoSansMalayalamUI-SemiBold.ttf文件仅为示例路径，应用根据自身实际填写文件路径
             fontCollection.loadFontSync(familyName, 'file:///system/fonts/NotoSansMalayalamUI-SemiBold.ttf')
+            // 方式二：确保已经将自定义字体myFontFile.ttf文件放在本应用工程的entry/src/main/resources/rawfile目录
+            // fontCollection.loadFontSync(familyName, $rawfile('myFontFile.ttf'))
+            // [End arkts_custom_font_step2]
             // 注册之后需要刷新使用该fontCollection的节点
             newNode.invalidate()
           })
@@ -154,10 +167,12 @@ struct RenderTest {
           .fontWeight(500)
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
+            // [Start arkts_custom_font_step6]
             // 注销自定义字体
             fontCollection.unloadFontSync(familyName)
             // 注销之后需要刷新使用该fontCollection的节点
             newNode.invalidate()
+            // [End arkts_custom_font_step6]
           })
           .width('30%')
           .height(40)
