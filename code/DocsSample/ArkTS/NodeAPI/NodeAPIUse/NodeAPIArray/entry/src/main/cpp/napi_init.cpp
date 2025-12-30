@@ -17,10 +17,10 @@
 #include "napi/native_api.h"
 
 // [Start napi_set_element]
-static constexpr int INT_ARGS_2 = 2; // 入参索引
+static constexpr int INT_ARG_2 = 2; // 入参索引
 // [StartExclude napi_set_element]
 // [Start napi_create_array]
-static constexpr int INT_NUMBER_5 = 5; // 入参索引 数组长度
+static constexpr int INT_NUM_5 = 5; // 入参索引 数组长度
 
 // 使用Node-API接口进行array相关开发 napi_create_array
 static napi_value CreateArray(napi_env env, napi_callback_info info)
@@ -29,7 +29,7 @@ static napi_value CreateArray(napi_env env, napi_callback_info info)
     napi_value jsArray = nullptr;
     napi_create_array(env, &jsArray);
     // 将创建好的数组进行赋值
-    for (int i = 0; i < INT_NUMBER_5; i++) {
+    for (int i = 0; i < INT_NUM_5; i++) {
         napi_value element;
         napi_create_int32(env, i, &element);
         napi_set_element(env, jsArray, i, element);
@@ -91,7 +91,7 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 调用napi_is_array接口判断给定入参是否为array数组
-    bool result;
+    bool result = false;
     napi_status status = napi_is_array(env, args[0], &result);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_is_array fail");
@@ -117,14 +117,18 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
     bool isArr = false;
     napi_is_array(env, args[0], &isArr);
     if (!isArr) {
-        napi_throw_type_error(env, nullptr, "Argument should be an object of type array");
+        napi_throw_error(env, nullptr, "Argument should be an object of type array");
         return nullptr;
     }
     // 获取要设置的元素索引
     double index = 0;
-    napi_get_value_double(env, args[1], &index);
+    napi_status status = napi_get_value_double(env, args[1], &index);
+    if (status != napi_ok || index < 0) {
+        napi_throw_error(env, nullptr, "The index should be a non-negative number");
+        return nullptr;
+    }
     // 将传入的值设置到数组指定索引位置
-    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[INT_ARGS_2]);
+    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[INT_ARG_2]);
 
     return nullptr;
 }
@@ -370,7 +374,7 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     // 调用napi_is_dataview接口判断给定入参是否为DataView数据。
-    bool result;
+    bool result = false;
     napi_status status = napi_is_dataview(env, args[0], &result);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_is_dataview fail");

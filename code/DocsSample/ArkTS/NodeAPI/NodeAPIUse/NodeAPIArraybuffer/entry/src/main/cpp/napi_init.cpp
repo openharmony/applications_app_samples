@@ -41,7 +41,7 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 
 // [Start napi_get_arraybuffer_info]
 // napi_get_arraybuffer_info
-static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
+static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -143,7 +143,7 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"isArrayBuffer", nullptr, IsArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"getArraybufferInfo", nullptr, GetArraybufferInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getArrayBufferInfo", nullptr, GetArrayBufferInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"detachedArrayBuffer", nullptr, DetachedArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"isDetachedArrayBuffer", nullptr, IsDetachedArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createArrayBuffer", nullptr, CreateArrayBuffer, nullptr, nullptr, nullptr, napi_default, nullptr}};

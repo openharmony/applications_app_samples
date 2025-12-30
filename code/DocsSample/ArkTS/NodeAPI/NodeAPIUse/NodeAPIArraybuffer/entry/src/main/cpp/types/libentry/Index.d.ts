@@ -22,7 +22,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: ArrayBuffer;
 }
-export const getArraybufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined; // napi_get_arraybuffer_info
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined; // napi_get_arraybuffer_info
 // [End napi_get_arraybuffer_info_api]
 
 // [Start napi_detach_arraybuffer_api]
