@@ -638,6 +638,8 @@ napi_value CreateRenderNodeCustomDrawExample(napi_env env, napi_callback_info in
     return nullptr;
 }
 
+// [Start Create_RootNode]
+
 std::shared_ptr<ArkUIBaseNode> custom_ = nullptr;
 std::shared_ptr<ArkUIRenderNode> render_ = nullptr;
 
@@ -701,8 +703,12 @@ napi_value CreateRenderNodeGetNodeExample(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// [End Create_RootNode]
+
 ArkUI_NodeHandle nodeHandle_ = nullptr;
 ArkUI_RenderNodeHandle renderHandle_ = nullptr;
+
+// [Start Adopt_Node]
 
 napi_value Adopt(napi_env env, napi_callback_info info)
 {
@@ -719,6 +725,8 @@ napi_value Adopt(napi_env env, napi_callback_info info)
     OH_ArkUI_RenderNodeUtils_AddChild(render_->GetHandle(), renderHandle_);
     return nullptr;
 }
+
+// [End Adopt_Node]
 
 napi_value RemoveAdopt(napi_env env, napi_callback_info info)
 {
