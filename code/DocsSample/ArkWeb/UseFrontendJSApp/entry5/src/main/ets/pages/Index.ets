@@ -16,7 +16,7 @@
 // [Start webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages]
 import testNapi from 'libentry.so';
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
