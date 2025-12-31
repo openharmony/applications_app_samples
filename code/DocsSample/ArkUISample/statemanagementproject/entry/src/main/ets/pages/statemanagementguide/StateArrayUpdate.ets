@@ -87,7 +87,6 @@ struct Page {
     for (let i = 0; i < 20; i++) {
       this.infoList.push(new Info()); // 使用对象数组代替了原有的多个属性数组
     }
-    }
   }
 
   build() {
