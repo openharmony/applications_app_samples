@@ -1,0 +1,57 @@
+/*
+* Copyright (C) 2026 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+// [Start define_SendableClass]
+// LruCache.ets
+import { ArkTSUtils } from '@kit.ArkTS';
+
+// 使用use shared标记为共享模块。
+'use shared'
+
+// SendableClass实例对象在不同线程间可共享。
+@Sendable
+class SendableClass {
+  // 使用SendableLruCache实例对象时需加锁，避免多线程同时操作导致数据不一致。
+  private lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
+  private books_: ArkTSUtils.SendableLruCache<string, string> = new ArkTSUtils.SendableLruCache<string, string>(4);
+
+  constructor() {
+    this.books_.put('fourth', 'Book4');
+    this.books_.put('third', 'Book3');
+    this.books_.put('second', 'Book2');
+    this.books_.put('first', 'Book1');
+  }
+
+  // 封装put、get、keys方法，加锁操作。
+  public async put(key: string, value: string) {
+    await this.lock_.lockAsync(() => {
+      this.books_.put(key, value);
+    })
+  }
+
+  public async get(key: string): Promise<string | undefined> {
+    return this.lock_.lockAsync(() => {
+      return this.books_.get(key);
+    });
+  }
+
+  public async keys(): Promise<string[]> {
+    return this.lock_.lockAsync(() => {
+      return this.books_.keys();
+    });
+  }
+}
+
+export let lruCache = new SendableClass();
+// [End define_SendableClass]
