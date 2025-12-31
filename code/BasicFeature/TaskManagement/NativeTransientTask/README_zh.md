@@ -29,7 +29,7 @@ entry/src/main
 ```
 ### 具体实现
 
-* 该示例使用requestSuspendDelay方法申请短时任务，延迟挂起，setInterval方法进行计数，实现应用退后台仍然可以计数的功能。
+* 该示例使用[OH_BackgroundTaskManager_RequestSuspendDelay](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md#oh_backgroundtaskmanager_requestsuspenddelay)申请短时任务，使用[OH_BackgroundTaskManager_GetRemainingDelayTime](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md#oh_backgroundtaskmanager_getremainingdelaytime)获取短时任务剩余时间，使用[OH_BackgroundTaskManager_CancelSuspendDelay](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md#oh_backgroundtaskmanager_cancelsuspenddelay)取消短时任务。
 * 源码链接：[CMakeLists.txt](entry/src/main/cpp/CMakeLists.txt)，[napi_init.cpp](entry/src/main/cpp/napi_init.cpp),
 * 接口参考：[transient_task_api](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md)
 
@@ -43,11 +43,11 @@ entry/src/main
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备:RK3568；
+1.本示例仅支持标准系统上运行,支持设备：RK3568；
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例已适配API version 20版本SDK，版本号：6.0 Release；
 
-3.本示例需要使用DevEco Studio 6.0.1 Beta1 (Build Version: 6.0.1.246, built on October 31, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(6.0 Release)及以上版本才可编译运行。
 
 ### 下载
 

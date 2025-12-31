@@ -20,7 +20,9 @@ import testTransientTask from 'libentry.so';
 @Component
 struct Index {
   @State message: string = '';
+  // [StartExclude native_transient_task]
   @State requestId: number = 0;
+  // [EndExclude native_transient_task]
 
   build() {
     Row() {
@@ -34,42 +36,53 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button($r('app.string.request_suspend_delay'))
-          .onClick(event => {
+        Button() {
+          Text("RequestSuspendDelay").fontSize(20)
+        }
+        .id('request_suspend_delay')
+        .margin({ top: 10, bottom: 10 })
+        .width(250)
+        .height(40)
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
           this.RequestSuspendDelay();
         })
-          // [StartExclude native_transient_task]
-          .id('request_suspend_delay')
-          .fontSize(20)
-          .margin({ top: 10, bottom: 10 })
-          // [EndExclude native_transient_task]
-        Button($r('app.string.get_remaining_delay_time'))
-          .onClick(event =>{
+
+        Button(){
+          Text('GetRemainingDelayTime').fontSize(20)
+        }
+        .id('get_remaining_delay_time')
+        .margin({ top: 10, bottom: 10 })
+        .width(250)
+        .height(40)
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
           this.GetRemainingDelayTime();
         })
-          // [StartExclude native_transient_task]
-          .id('get_remaining_delay_time')
-          .fontSize(20)
-          .margin({ top: 10, bottom: 10 })
-          // [EndExclude native_transient_task]
-        Button($r('app.string.cancel_suspend_delay'))
-          .onClick(event =>{
+
+        Button(){
+          Text('CancelSuspendDelay').fontSize(20)
+        }
+        .id('cancel_suspend_delay')
+        .margin({ top: 10, bottom: 10 })
+        .width(250)
+        .height(40)
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
           this.CancelSuspendDelay();
         })
-          // [StartExclude native_transient_task]
-          .id('cancel_suspend_delay')
-          .fontSize(20)
-          .margin({ top: 10, bottom: 10 })
-          // [EndExclude native_transient_task]
-        Button($r('app.string.get_transient_task_info'))
-          .onClick(event =>{
+
+        Button(){
+          Text('GetTransientTaskInfo').fontSize(20)
+        }
+        .id('get_transient_task_info')
+        .margin({ top: 10, bottom: 10 })
+        .width(250)
+        .height(40)
+        .backgroundColor('#0D9FFB')
+        .onClick(() => {
           this.GetTransientTaskInfo();
         })
-          // [StartExclude native_transient_task]
-          .id('get_transient_task_info')
-          .fontSize(20)
-          .margin({ top: 10, bottom: 10 })
-          // [EndExclude native_transient_task]
       }
       .width('100%')
     }
@@ -81,22 +94,22 @@ struct Index {
     // [StartExclude native_transient_task]
     this.requestId = requestId;
     // [EndExclude native_transient_task]
-    console.log('The return requestId is ' + requestId);
+    console.info('The return requestId is ' + requestId);
   }
 
   GetRemainingDelayTime() {
     let time = testTransientTask.GetRemainingDelayTime();
-    console.log('The time is ' + time);
+    console.info('The time is ' + time);
   }
 
   CancelSuspendDelay() {
     let ret = testTransientTask.CancelSuspendDelay();
-    console.log('The ret is ' + ret);
+    console.info('The ret is ' + ret);
   }
 
   GetTransientTaskInfo() {
     let ret = testTransientTask.GetTransientTaskInfo();
-    console.log('The ret is ' + JSON.stringify(ret));
+    console.info('The ret is ' + JSON.stringify(ret));
   }
 }
 // [End native_transient_task]

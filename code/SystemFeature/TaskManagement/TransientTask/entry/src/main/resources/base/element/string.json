@@ -71,14 +71,6 @@
     {
       "name": "transient_task_id",
       "value": "短时任务Id："
-    },
-    {
-      "name": "interval_number",
-      "value": "当前计数为："
-    },
-    {
-      "name": "counter",
-      "value": "开始计数"
     }
   ]
 }
