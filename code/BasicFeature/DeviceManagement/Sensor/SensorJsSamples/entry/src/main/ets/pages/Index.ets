@@ -18,7 +18,7 @@ import { ComponentContent, promptAction, PromptAction, SelectDialog } from '@kit
 // [Start sensor_js_development_dependency_import_example]
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End sensor_js_development_dependency_import_example]
 
 // [Start sensor_js_define_variables_example]
