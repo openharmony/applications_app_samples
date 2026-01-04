@@ -1811,6 +1811,22 @@
     {
       "name": "How_To_Fix_Incorrect_Character_Display_Demo_Adapt_description",
       "value": "该示例实现了无论是中文还是阿拉伯文的系统语言环境，无论数字右侧的字符是中文还是阿拉伯文，均确保字符串(+86)123 4567 890اللغة العربية整段文本都处在屏幕左侧。"
+    },
+    {
+      "name": "How_To_Draw_Multiple_Decoration_Lines",
+      "value": "同时绘制多条装饰线"
+    },
+    {
+      "name": "How_To_How_To_Draw_Multiple_Decoration_Lines_description",
+      "value": "从API version 20开始，Text支持通过属性字符串，设置多条装饰线。"
+    },
+    {
+      "name": "Special_Characters_Display_Incorrectly",
+      "value": "特殊字符显示异常"
+    },
+    {
+      "name": "Special_Characters_Display_Incorrectly_description",
+      "value": "多数字符显示异常问题，特殊字符的高度超出同一行文本其他字符的高度导致，可以通过设置halfLeading属性和lineHeight属性解决。"
     }
   ]
 }
