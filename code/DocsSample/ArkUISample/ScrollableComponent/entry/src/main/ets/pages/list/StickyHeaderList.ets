@@ -110,12 +110,10 @@ export struct StickyHeaderList {
                 if (itemGroup.contacts) {
                   LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
                     ListItem() {
-                      // [StartExclude add_sticky_titles]
                       Row() {
                         Image(item.icon).width(40).height(40).margin(10)
                         Text(item.name).fontSize(20)
                       }.width('100%').justifyContent(FlexAlign.Start)
-                      // [EndExclude add_sticky_titles]
                     }
                   }, (item: Contact) => JSON.stringify(item))
                 }
