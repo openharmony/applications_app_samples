@@ -454,9 +454,9 @@ class CameraService {
       return undefined;
     }
 
-    let index = videoProfiles.findIndex((VideoProfile: camera.Profile) => {
-      return VideoProfile.size.width === width &&
-        VideoProfile.size.height === height;
+    let index = videoProfiles.findIndex((videoProfile: camera.Profile) => {
+      return videoProfile.size.width === width &&
+        videoProfile.size.height === height;
     })
 
     if (index == -1) {

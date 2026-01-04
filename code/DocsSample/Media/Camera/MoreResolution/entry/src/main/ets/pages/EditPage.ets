@@ -275,7 +275,7 @@ export struct EditPage {
                   errCode = 0;
                 }
               } catch (error) {
-                Logger.error(TAG, "SaveButton error is " + JSON.stringify(error));
+                Logger.error(TAG, 'SaveButton error is ' + JSON.stringify(error));
               }
               GlobalContext.get().getPromptAction()?.showToast({
                 message: errCode == 0 ? '保存成功' : '保存失败',
