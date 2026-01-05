@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/TopLevelCollectionsArray",
+    "pages/TopLevelArrayClassA",
+    "pages/TopLevelDate",
+    "pages/NonTopLevelNumberOfClass",
+    "pages/CircularReferenceOfObject",
+    "pages/TopLevelArrayClassAAPIs"
+  ]
+}
