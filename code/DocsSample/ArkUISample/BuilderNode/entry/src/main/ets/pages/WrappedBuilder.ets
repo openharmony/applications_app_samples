@@ -32,9 +32,9 @@ struct TextBuilder {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(40)
           .fontWeight(FontWeight.Bold)
-          .margin({ bottom: 36 })
+          .margin({ bottom: 10 })
           .backgroundColor(Color.Gray)
       }
     }
@@ -45,11 +45,15 @@ struct TextBuilder {
 function buildText(params: Params) {
   Column() {
     Text(params.text)
-      .fontSize(50)
+      .fontSize(40)
       .fontWeight(FontWeight.Bold)
-      .margin({ bottom: 36 })
+      .margin({ bottom: 10 })
     TextBuilder({ message: params.text }) // 自定义组件
   }
+  .width('100%')
+  .alignItems(HorizontalAlign.Center)
+  .justifyContent(FlexAlign.Center)
+
 }
 
 class TextNodeController extends NodeController {
@@ -84,10 +88,10 @@ struct WrappedBuilderPage {
 
   build() {
     Row() {
-      Column() {
+      Column({ space: 25}) {
         NodeContainer(this.textNodeController)
           .width('100%')
-          .height(200)
+          .height(110)
           .backgroundColor('#FFF0F0F0')
         Button('Update')
           .onClick(() => {
@@ -95,6 +99,8 @@ struct WrappedBuilderPage {
             const message = 'Update' + this.count.toString();
             this.textNodeController.update(message);
           })
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
       }
       .width('100%')
       .height('100%')
