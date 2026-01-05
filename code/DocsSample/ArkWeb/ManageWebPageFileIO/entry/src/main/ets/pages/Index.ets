@@ -22,19 +22,19 @@ struct Index {
     Column({ space: 10 }) {
       Button('UploadFiles')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UploadFiles' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UploadFiles' });
         })
       Button('ListenForPageDown')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ListenForPageDown' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ListenForPageDown' });
         })
       Button('InitiatingADownloadTask')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/InitiatingADownloadTask' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/InitiatingADownloadTask' });
         })
       Button('ResumeDownload')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ResumeDownload' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ResumeDownload' });
         })
     }.height('100%')
     .width('100%')
