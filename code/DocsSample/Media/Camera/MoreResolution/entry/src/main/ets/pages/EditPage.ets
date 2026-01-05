@@ -176,7 +176,7 @@ export struct EditPage {
               let curPhotoAsset = GlobalContext.get().getT<photoAccessHelper.PhotoAsset>('photoAsset');
               let errCode = await this.mediaLibSavePhoto(curPhotoAsset);
               GlobalContext.get().getPromptAction()?.showToast({
-                message: errCode == 0 ? "保存成功" : "保存失败",
+                message: errCode == 0 ? '保存成功' : '保存失败',
                 duration: 2000,
                 bottom: '50%'
               });

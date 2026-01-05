@@ -124,7 +124,8 @@ export struct ModeComponent {
             this.isShowModeSwitchImg = true;
             let mConfigRatio = GlobalContext.get().getT<number>('configRatio');
             // 5. 重新初始化相机，应用新模式（拍照模式）
-            await CameraService.initCamera2(surfaceId, curCameraPosition, this.resolution.width, this.resolution.height);
+            await CameraService.initCamera2(surfaceId, curCameraPosition, 
+              this.resolution.width, this.resolution.height);
           }
         })
         // 录像模式选项的 onTouch 事件（逻辑与拍照模式完全对称）

@@ -525,7 +525,8 @@ class CameraService {
    * @param cameraPosition - Camera Device Position
    * @returns.
    */
-  async initCamera2(surfaceId: string, cameraPosition: camera.CameraPosition, width: number, height:number): Promise<void> {
+  async initCamera2(surfaceId: string, cameraPosition: camera.CameraPosition, 
+    width: number, height:number): Promise<void> {
     Logger.info(TAG, `initcamera2进入，当前选择分辨率是：${width}，${height}`);
     Logger.info(TAG, `分辨率，当前相机选择模式是：${this.curSceneMode}，1是photo，2是video`);
     Logger.debug(TAG, `initCameraWithPosition cameraPosition with resolution: ${cameraPosition}`);
