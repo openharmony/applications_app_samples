@@ -210,7 +210,7 @@ export struct EditPage {
                 imagePacker.release();
                 errCode = 0;
                 GlobalContext.get().getPromptAction()?.showToast({
-                  message: errCode == 0 ? "保存成功" : "保存失败",
+                  message: errCode == 0 ? '保存成功' : '保存失败',
                   duration: 2000,
                   bottom: '50%'
                 });

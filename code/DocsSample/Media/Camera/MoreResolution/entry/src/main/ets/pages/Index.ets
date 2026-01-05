@@ -393,7 +393,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
             })
             .width(px2vp(this.mXComponentWidth))//1280 surface 1280*720 宽*高
             .height(px2vp(this.mXComponentHeight)) //720
-          // .renderFit(RenderFit.RESIZE_COVER)
         } else {
           XComponent({
             id: 'componentId',
@@ -401,10 +400,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
             controller: this.mXComponentController
           })
             .onLoad(async () => {
-              // if (!this.isfirst) {
-              //   this.reloadXComponent();
-              //   this.isfirst = true;
-              // }
               await this.loadXComponent();
             })
             .border({
@@ -416,7 +411,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
             })
             .width(px2vp(this.mXComponentWidth))
             .height(px2vp(this.mXComponentHeight))
-            // .renderFit(RenderFit.RESIZE_COVER)
         }
       }
       SlideComponent()
@@ -436,7 +430,7 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
           // Select组件是用于提供选项选择的交互组件（类似下拉选择框），而onSelect是Select组件的选择事件回调函数—— 当用户从下拉选项中选中某一项时，该回调会被触发，用于处理用户的选择逻辑。
           Select(this.resolutionOptions)
             .selected(this.selectedResolutionIndex) // 默认选中当前索引对应的分辨率
-            .backgroundColor("#fff")
+            .backgroundColor('#fff')
             .font({ size: '10vp' })
             .onSelect(async (index:number, value:string) => {
               this.selectedResolutionIndex = index; // 更新选中索引 表明用户希望选中的分辨率

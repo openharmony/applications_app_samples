@@ -349,8 +349,8 @@ class CameraService {
     return this.getPreviewProfile(this.cameraOutputCapability, configRatio);
   }
 
-  // 该方法从相机支持的预览分辨率中，筛选出与目标宽高比最匹配且尺寸尽可能大的预览配置 第一个参数是相机支持的输出能力 第二个参数是目标预览比例 // 返回筛选出的最佳预览配置，无匹配则返回undefined
-  getPreviewProfile(cameraOutputCapability: camera.CameraOutputCapability, configRatio: number): camera.Profile | undefined {
+  getPreviewProfile(cameraOutputCapability: camera.CameraOutputCapability, 
+    configRatio: number): camera.Profile | undefined {
     Logger.info(TAG, `fkr previewProfiles is false`);
     // 获取相机支持的所有预览配置（分辨率+格式）
     let previewProfiles = cameraOutputCapability.previewProfiles;
@@ -571,7 +571,8 @@ class CameraService {
       this.previewOutputCallBack(this.previewOutput);
 
       await this.initImageReceiver();
-      this.previewOutputReceiver = this.createPreviewOutputFn(this.cameraManager, this.imageReceiverSurfaceId, this.previewProfileObj);
+      this.previewOutputReceiver = this.createPreviewOutputFn(this.cameraManager, 
+        this.imageReceiverSurfaceId, this.previewProfileObj);
       if (this.previewOutputReceiver === undefined) {
         Logger.error(TAG, 'Failed to create the preview2 stream.');
         return;

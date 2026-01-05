@@ -153,7 +153,8 @@ export struct ModeComponent {
             this.isShowModeSwitchImg = true;
             let mConfigRatio = GlobalContext.get().getT<number>('configRatio');
             // 5. 重新初始化相机，应用录像模式
-            await CameraService.initCamera2(surfaceId, curCameraPosition, this.resolution.width, this.resolution.height);
+            await CameraService.initCamera2(surfaceId, curCameraPosition, 
+              this.resolution.width, this.resolution.height);
           }
         })
       }
