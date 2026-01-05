@@ -378,10 +378,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
             controller: this.mXComponentController
           })
             .onLoad(async () => {
-              // if (!this.isfirst) {
-              //   this.reloadXComponent();
-              //   this.isfirst = true;
-              // }
               await this.loadXComponent();
             })
             .border({
