@@ -201,7 +201,7 @@ napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     OH_LOG_ERROR(LOG_APP, "kkk OH_ArkUI_GetNodeContentFromNapiValue Failed %{public}d");
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -297,7 +297,7 @@ napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -360,7 +360,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -524,7 +524,7 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
