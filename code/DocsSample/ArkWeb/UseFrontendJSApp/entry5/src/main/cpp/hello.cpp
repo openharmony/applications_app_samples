@@ -15,12 +15,7 @@
 
 // [Start the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page]
 #include "napi/native_api.h"
-#include <bits/alltypes.h>
-#include <memory>
 #include <string>
-#include <sys/types.h>
-#include <iostream>
-#include <map>
 #include "hilog/log.h"
 #include "web/arkweb_interface.h"
 #include <thread>
