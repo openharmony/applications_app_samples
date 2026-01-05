@@ -12,70 +12,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start secure_hard_ware_random_number_generation]
 
-import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function doRandBySync() {
-  let rand = cryptoFramework.createRandom();
-  rand.enableHardwareEntropy();
-  let len = 24; // Generate a 24-byte random number.
-  try {
-    let randData = rand.generateRandomSync(len);
-    if (randData.data.length !== 0) {
-      console.info('[Sync]: rand result: ' + randData.data);
-    } else {
-      console.error('[Sync]: get rand result fail!');
-    }
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error(`do rand failed, ${e.code}, ${e.message}`);
-  }
-}
-
-async function doRand() {
-  let rand = cryptoFramework.createRandom();
-  rand.enableHardwareEntropy();
-  let seed = new Uint8Array([1, 2, 3]);
-  rand.setSeed({ data: seed });
-  let len = 12;
-  let randOutput = await rand.generateRandom(len);
-  console.info('rand output:' + randOutput.data);
-}
-
-// [End secure_hard_ware_random_number_generation]
-
+import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'SecureRandomNumberGeneration';
+  @State message: string = 'Secure Hard Ware Random Number Generation';
+
+  goToSample(url: string): void {
+    router.pushUrl({
+      url: url,
+    }, router.RouterMode.Single, (err) => {
+      if (err) {
+        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
 
   build() {
     Column({ space: 5 }) {
       Text(this.message)
         .fontSize(25)
         .fontWeight(FontWeight.Bold)
-      Button($r('app.string.call_async'))
+      Button($r('app.string.call_await'))
         .width('70%')
         .onClick(async () => {
-          try {
-            await doRand();
-            this.message = 'AsyncSuccess';
-          } catch {
-            this.message = 'AsyncFail';
-          }
+          this.goToSample('pages/Await')
         })
       Button($r('app.string.call_sync'))
         .width('70%')
         .onClick(() => {
-          try {
-            doRandBySync();
-            this.message = 'SyncSuccess';
-          } catch {
-            this.message = 'SyncFail';
-          }
+          this.goToSample('pages/Sync')
         })
+      Button($r('app.string.call_cpp_test'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/CppTest')
+        })  
     }
     .height('100%')
     .width('100%')

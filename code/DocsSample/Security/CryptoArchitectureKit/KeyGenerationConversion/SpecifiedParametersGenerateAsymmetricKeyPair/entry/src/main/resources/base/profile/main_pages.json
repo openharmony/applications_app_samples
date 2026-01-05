@@ -6,6 +6,7 @@
     "pages/sm2/Sync",
     "pages/rsa/Sync",
     "pages/sm2/Promise",
-    "pages/ecc/Promise"
+    "pages/ecc/Promise",
+    "pages/cpp_test"
   ]
 }

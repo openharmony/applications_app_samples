@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start rsa_pkcs1_encrypt_decrypt_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -95,6 +96,8 @@ function main() {
     console.error('decrypt failed');
   }
 }
+
+// [End rsa_pkcs1_encrypt_decrypt_sync]
 
 @Entry
 @Component

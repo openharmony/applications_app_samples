@@ -13,8 +13,16 @@
       "value": "ECCCompressPublicKeyFormatConversion"
     },
     {
-      "name": "SpecifyUncompressedPublicKey",
-      "value": "SpecifyUncompressedPublicKey"
+      "name": "specifyUncompressedPublicKeyCpp",
+      "value": "SpecifyUncompressedPublicKey C++"
+    },
+    {
+      "name": "compressedPointDataCpp",
+      "value": "CompressedPointData C++"
+    },
+    {
+      "name": "getKeyObjectCpp",
+      "value": "GetKeyObject C++"
     },
     {
       "name": "SpecifyUncompressedPublicKeyArkTS",

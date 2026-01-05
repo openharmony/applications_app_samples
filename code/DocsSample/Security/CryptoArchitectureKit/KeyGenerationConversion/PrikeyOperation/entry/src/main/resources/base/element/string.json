@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ConvertSpecifiedPEMAsymmetricKeyPair"
+    },
+    {
+      "name": "prikey_get_pubkey_cpp_test",
+      "value": "Get PubKey From Prikey"
+    },
+    {
+      "name": "prikey_encoding_cpp_test",
+      "value": "Prikey Encoding"
+    },
+    {
+      "name": "prikey_decoding_cpp_test",
+      "value": "Prikey Decoding"
+    },
+    {
+      "name": "call_prikey_get_pubkey_async",
+      "value": "Call Prikey Get Pubkey Async"
+    },
+    {
+      "name": "call_prikey_get_pubkey_sync",
+      "value": "Call Prikey Get Pubkey Sync"
+    },
+    {
+      "name": "call_prikey_encoding",
+      "value": "Call Prikey Encoding"
+    },
+    {
+      "name": "call_prikey_decoding",
+      "value": "Call Prikey Decoding"
+    },
+    {
+      "name": "prikey_get_pubkey_async",
+      "value": "Prikey Get Pubkey Async"
+    },
+    {
+      "name": "prikey_get_pubkey_sync",
+      "value": "Prikey Get Pubkey Sync"
+    },
+    {
+      "name": "prikey_encoding",
+      "value": "Prikey Encoding"
+    },
+    {
+      "name": "prikey_decoding",
+      "value": "Prikey Decoding"
+    }
+  ]
+}

@@ -38,11 +38,35 @@ struct Index {
       Text(this.message)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-      Button($r('app.string.SpecifyUncompressedPublicKey'))
+      Button($r('app.string.specifyUncompressedPublicKeyCpp'))
         .width('70%')
         .onClick(() => {
           let ret: number = testNapi.doTestEccDataCovert();
-          this.message = 'doTestEccDataCovert Success Result:' + ret.toString();
+          if (ret == 0) {
+            this.message = 'doTestEccDataCovert Success';
+          } else {
+            this.message = 'doTestEccDataCovert Fail';
+          }
+        })
+      Button($r('app.string.compressedPointDataCpp'))
+        .width('70%')
+        .onClick(() => {
+          let ret: number = testNapi.doTestEccPointUncompressedToCompressed();
+          if (ret == 0) {
+            this.message = 'doTestEccPointUncompressedToCompressed Success';
+          } else {
+            this.message = 'doTestEccPointUncompressedToCompressed Fail';
+          }
+        })
+      Button($r('app.string.getKeyObjectCpp'))
+        .width('70%')
+        .onClick(() => {
+          let ret: number = testNapi.doTestEccPointCompressedToPoint();
+          if (ret == 0) {
+            this.message = 'doTestEccPointCompressedToPoint Success';
+          } else {
+            this.message = 'doTestEccPointCompressedToPoint Fail';
+          }
         })
       Button($r('app.string.SpecifyUncompressedPublicKeyArkTS'))
         .width('70%')

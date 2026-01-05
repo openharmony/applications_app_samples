@@ -41,34 +41,67 @@ struct Index {
       Button($r('app.string.segmentation_async'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/segmentation/SegmentationAsync')
+          this.goToSample('pages/sha256/segmentation/SegmentationAsync')
         })
       Button($r('app.string.segmentation_sync'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/segmentation/SegmentationSync')
+          this.goToSample('pages/sha256/segmentation/SegmentationSync')
         })
       Button($r('app.string.single_time_async'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/singleTime/SingleTimeAsync')
+          this.goToSample('pages/sha256/singleTime/SingleTimeAsync')
         })
       Button($r('app.string.single_time_sync'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/singleTime/SingleTimeSync')
+          this.goToSample('pages/sha256/singleTime/SingleTimeSync')
         })
-      Button($r('app.string.single_time'))
+      Button($r('app.string.call_sha3_single_time_async'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doTestMd();
-          this.message = 'SingleTime C++ Success Result:' + ret.toString();
+          this.goToSample('pages/sha3/singleTime/SingleTimeAsync')
         })
-      Button($r('app.string.segmentation'))
+      Button($r('app.string.call_sha3_single_time_sync'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doLoopMd();
-          this.message = 'Segmentation C++ Success Result:' + ret.toString();
+          this.goToSample('pages/sha3/singleTime/SingleTimeSync')
+        })
+      Button($r('app.string.call_sha3_segmentation_async'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/sha3/segmentation/SegmentationAsync')
+        })
+      Button($r('app.string.call_sha3_segmentation_sync'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/sha3/segmentation/SegmentationSync')
+        })
+      Button($r('app.string.call_md5_single_time_async'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/md5/singleTime/SingleTimeAsync')
+        })
+      Button($r('app.string.call_md5_single_time_sync'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/md5/singleTime/SingleTimeSync')
+        })
+      Button($r('app.string.call_md5_segmentation_async'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/md5/segmentation/SegmentationAsync')
+        })
+      Button($r('app.string.call_md5_segmentation_sync'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/md5/segmentation/SegmentationSync')
+        })
+      Button($r('app.string.cpp_test'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/cpp_test')
         })
     }
     .height('100%')

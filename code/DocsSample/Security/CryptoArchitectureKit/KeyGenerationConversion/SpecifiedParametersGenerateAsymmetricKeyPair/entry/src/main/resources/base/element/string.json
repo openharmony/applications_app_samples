@@ -59,6 +59,22 @@
     {
       "name": "call_sm2_sync",
       "value": "Call SM2 Sync"
+    },
+    {
+      "name": "cpp_test",
+      "value": "Call Cpp Test"
+    },
+    {
+      "name": "call_rsa_gen_key_pair_by_spec_cpp",
+      "value": "Call RSA Gen Key Pair By Spec C++"
+    },
+    {
+      "name": "call_ecc_gen_key_pair_by_spec_cpp",
+      "value": "Call ECC Gen Key Pair By Spec C++"
+    },
+    {
+      "name": "call_sm2_gen_key_pair_by_spec_cpp",
+      "value": "Call SM2 Gen Key Pair By Spec C++"
     }
   ]
 }

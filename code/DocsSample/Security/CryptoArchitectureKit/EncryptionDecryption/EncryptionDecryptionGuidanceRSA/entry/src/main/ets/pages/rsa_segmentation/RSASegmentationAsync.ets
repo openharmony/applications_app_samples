@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start rsa_segmentation_encrypt_decrypt_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -77,6 +78,8 @@ async function rsaEncryptLongMessage() {
     console.error('decrypt failed');
   }
 }
+
+// [End rsa_segmentation_encrypt_decrypt_async]
 
 @Entry
 @Component

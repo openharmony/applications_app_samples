@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start sm2_encrypt_decrypt_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -69,6 +70,8 @@ function main() {
     console.error('decrypt failed');
   }
 }
+
+// [End sm2_encrypt_decrypt_sync]
 
 @Entry
 @Component

@@ -13,12 +13,16 @@
       "value": "SecureRandomNumberGeneration"
     },
     {
-      "name": "call_async",
-      "value": "Call Async"
+      "name": "call_await",
+      "value": "Call Await"
     },
     {
       "name": "call_sync",
       "value": "Call Sync"
+    },
+    {
+      "name": "call_cpp_test",
+      "value": "Call Cpp Test"
     }
   ]
 }

@@ -146,6 +146,36 @@ export default function specifiedParametersGenerateAsymmetricKeyPairTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('SM2 Sync Success'));
       console.info('uitest: testSpecifiedParametersGenerateAsymmetricKeyPair006 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，指定密钥参数生成RSA密钥对(C/C++ 方式)
+     */
+    it('testSpecifiedParametersGenerateAsymmetricKeyPair007', 0, async () => {
+      console.info('uitest: testSpecifiedParametersGenerateAsymmetricKeyPair007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call Cpp Test'));
+      await driver.delayMs(500);
+      await button1.click();
+      await driver.delayMs(500);
+      const button2 = await driver.findComponent(ON.text('Call RSA Gen Key Pair By Spec C++'));
+      await button2.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('RSA Gen Key Pair By Spec C++ Success'));
+      await driver.delayMs(500);
+      const button3 = await driver.findComponent(ON.text('Call ECC Gen Key Pair By Spec C++'));
+      await button3.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('ECC Gen Key Pair By Spec C++ Success'));
+      await driver.delayMs(500);
+      const button4 = await driver.findComponent(ON.text('Call SM2 Gen Key Pair By Spec C++'));
+      await button4.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('SM2 Gen Key Pair By Spec C++ Success'));
+      await driver.delayMs(500);
+      console.info('uitest: testSpecifiedParametersGenerateAsymmetricKeyPair007 end');
+      await driver.pressBack();
     })
   })
 }

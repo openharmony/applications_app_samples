@@ -4,6 +4,11 @@
     "pages/HMACSegmentation/Async",
     "pages/HMACSegmentation/Sync",
     "pages/HMACSingleTime/Async",
-    "pages/HMACSingleTime/Sync"
+    "pages/HMACSingleTime/Sync",
+    "pages/CMACSegmentation/Async",
+    "pages/CMACSegmentation/Sync",
+    "pages/CMACSingleTime/Async",
+    "pages/CMACSingleTime/Sync",
+    "pages/cpp_test"
   ]
 }
