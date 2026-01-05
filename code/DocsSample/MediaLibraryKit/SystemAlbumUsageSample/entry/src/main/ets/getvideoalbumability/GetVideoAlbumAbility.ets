@@ -50,7 +50,7 @@ export default class GetVideoAlbumAbility extends UIAbility {
         'ohos.permission.READ_IMAGEVIDEO'
       ]);
 
-      expect(permissionResult.permissions.length).assertEqual(2);
+      expect(permissionResult.permissions.length).assertEqual(1);
 
       let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
       let result: boolean = await example(phAccessHelper);

@@ -24,7 +24,6 @@ import { saveMediaToGallery } from '../../../ohosTest/ets/Provider';
 // [Start add_media_to_user_album]
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
 // [StartExclude add_media_to_user_album]
 const DOMAIN = 0x0000;
 // [EndExclude add_media_to_user_album]
@@ -61,14 +60,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('succeed to add ' + photoAsset.displayName + ' to ' + album.albumName);
     albumFetchResult.close();
     photoFetchResult.close();
-    // [StartExclude add_media_to_user_album]
     return true;
-    // [EndExclude add_media_to_user_album]
   } catch (err) {
     console.error('addAssets failed with err: ' + err);
-    // [StartExclude add_media_to_user_album]
     return false;
-    // [EndExclude add_media_to_user_album]
   }
 }
 // [End add_media_to_user_album]

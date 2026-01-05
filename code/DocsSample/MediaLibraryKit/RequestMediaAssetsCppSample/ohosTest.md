@@ -2,6 +2,6 @@
 
 ## 用例表
 
-| 测试功能         | 预置条件  | 输入                 | 预期输出                     | 是否自动 | 测试结果 |
-| ---------------- |-------| -------------------- | ---------------------------- | -------- | -------- |
-| 通过C++接口请求媒体资源         |   1.使用C++接口需要在工程的build.profile中指定当前设备的abiFilters, 如果是真机设备设置为arm64-v8a，如果是模拟器设置为x86_64.<br>2. 在DevEco Stuido中编译sample工程成功。    | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的RequestMediaAssets.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run RequestMediaAssets.test.ets”菜单执行测试。此时会先弹出用户授权弹框。<br>3. 在授权弹框点击”允许”授予所申请的权限。<br>4. 等待5秒，查看DevEco Studio的测试用例运行结果。| 1.成功找到文件。<br>4.测试结果成功。   | 是       | Pass     |
+| 测试功能         | 预置条件  | 输入                 | 预期输出                   | 是否自动 | 测试结果 |
+| ---------------- |-------| -------------------- |------------------------| -------- | -------- |
+| 通过C++接口请求媒体资源         |   1.使用C++接口需要在工程的build.profile中指定当前设备的abiFilters, 如果是真机设备设置为arm64-v8a，如果是模拟器设置为x86_64.<br>2. 在DevEco Stuido中编译sample工程成功。    | 1. 在EevEco Studio当前工程目录中找到ohosTest/ets/Test目录下的RequestMediaAssets.test.ets测试用例文件。<br>2. 选中此文件右键点击后，选中”Run RequestMediaAssets.test.ets”菜单执行测试。<br>3. 等待5秒，查看DevEco Studio的测试用例运行结果。| 1.成功找到文件。<br>2.测试结果成功。 | 是       | Pass     |

@@ -4,4 +4,4 @@
 
 | 测试功能         | 预置条件   | 输入 | 预期输出      | 是否自动 | 测试结果 |
 | -------------- |--------|----| ------------- | --- | -------- |
-| 通过requestPhotoUrisReadPermission接口调起用户授权框    | 1. 设备是5.0及以上版本。<br>2. 编译sample工程并安装sample app。<br>3. 设备的图库应用中存在至少一张照片。 |  1. 打开Sample应用进入主界面。有两个Button. <br>2. 点击第1个Button“第一步：选择照片”。弹出Picker，可以选择图片。<br>3. 在Picker中选择图片（最多5张），点“完成”。页面下部的文本框显示被选中图片的URIs. <br>4. 点击第2个Button“第二步：申请权限”。<br>5. 在请求授权对话框上，勾选图片，点击“授权”。  | 4. 系统弹出请求授权对话框。<br>5. 页面下部的文本框显示授权后的图片URIs. 表示授权成功。 | 否   | Pass     |
+| 通过requestPhotoUrisReadPermission接口调起用户授权框    | 1. 设备是5.0及以上版本。<br>2. 编译sample工程并安装sample app。<br>3. 设备的图库应用中存在至少一张照片。 |  1. 打开Sample应用进入主界面。有两个Button. <br>2. 点击第1个Button“Select Photos”。弹出Picker，可以选择图片。<br>3. 在Picker中选择图片（最多5张），点“完成”。页面下部的文本框显示被选中图片的URIs. <br>4. 点击第2个Button“Request Permission”。<br>5. 在请求授权对话框上，勾选图片，点击“授权”。  | 4. 系统弹出请求授权对话框。<br>5. 页面下部的文本框显示授权后的图片URIs. 表示授权成功。 | 否   | Pass     |
