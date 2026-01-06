@@ -34,9 +34,9 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 const TAG = 'CameraService';
 
 export class SliderValue {
-  private min: number = 1;
-  private max: number = 6;
-  private step: number = 0.1
+  public min: number = 1;
+  public max: number = 6;
+  public step: number = 0.1
 }
 
 function getPreviewRotation(previewOutput: camera.PreviewOutput, 
