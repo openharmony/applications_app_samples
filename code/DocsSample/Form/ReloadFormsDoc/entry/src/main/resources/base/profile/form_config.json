@@ -1,10 +1,10 @@
 {
   "forms": [
     {
-      "name": "reloadCard",
-      "displayName": "$string:reloadCard_display_name",
-      "description": "$string:reloadCard_desc",
-      "src": "./ets/reloadcard/pages/ReloadCardCard.ets",
+      "name": "ReloadByUIAbility",
+      "displayName": "$string:ReloadByUIAbility_display_name",
+      "description": "$string:ReloadByUIAbility_desc",
+      "src": "./ets/reloadbyuiability/pages/ReloadByUIAbilityCard.ets",
       "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,

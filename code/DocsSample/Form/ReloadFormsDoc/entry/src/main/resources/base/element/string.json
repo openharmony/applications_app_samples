@@ -21,11 +21,11 @@
       "value": "form_label"
     },
     {
-      "name": "reloadCard_desc",
+      "name": "ReloadByUIAbility_desc",
       "value": "This is a service widget."
     },
     {
-      "name": "reloadCard_display_name",
+      "name": "ReloadByUIAbility_display_name",
       "value": "widget"
     }
   ]

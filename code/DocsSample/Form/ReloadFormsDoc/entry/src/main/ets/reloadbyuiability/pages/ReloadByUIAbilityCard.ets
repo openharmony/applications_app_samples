@@ -1,6 +1,6 @@
 @Entry
 @Component
-struct ReloadCardCard {
+struct ReloadByUIAbilityCard {
   /*
    * The title.
    */
