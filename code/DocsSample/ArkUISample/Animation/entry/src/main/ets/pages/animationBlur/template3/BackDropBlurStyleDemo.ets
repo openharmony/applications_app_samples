@@ -41,6 +41,7 @@ struct BackDropBlurStyleDemo {
             .fontColor(Color.Black)
         }
         .height('100%')
+        .margin({ top: 20 })
         .justifyContent(FlexAlign.Start)
       }
       .width(200)
@@ -76,6 +77,7 @@ struct BackDropBlurStyleDemo {
             .fontColor(Color.Black)
         }
         .height('100%')
+        .margin({ top: 20 })
         .justifyContent(FlexAlign.Start)
       }
       .width(200)
