@@ -78,6 +78,24 @@ export default function VoIPDemoForAudioSessionTest() {
     });
 
     /**
+     * @tc.number VoIPDemoForAudioSession_EnableMuteSuggestion_0001
+     * @tc.name VoIPDemoForAudioSession_EnableMuteSuggestion_0001
+     * @tc.desc Enable mute suggestion
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('VoIPDemoForAudioSession_EnableMuteSuggestion_0001', Level.LEVEL1, async (done: Function) => {
+      await runTest(
+        'VoIPDemoForAudioSession_EnableMuteSuggestion_0001',
+        '启用静音建议',
+        3000,
+        'Enable mute suggestion',
+        done
+      );
+    });
+
+    /**
      * @tc.number VoIPDemoForAudioSession_ActivateSession_0001
      * @tc.name VoIPDemoForAudioSession_ActivateSession_0001
      * @tc.desc Activate audio session with CONCURRENCY_MIX_WITH_OTHERS strategy and register state listeners

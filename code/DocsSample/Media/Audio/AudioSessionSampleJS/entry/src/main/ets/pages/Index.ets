@@ -55,6 +55,12 @@ let audioSessionStateChangedCallback = (audioSessionStateChangedEvent: audio.Aud
     case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK:
       // 此分支表示系统已将音频音量恢复正常。
       break;
+    case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_MUTE_SUGGESTION:
+      // 此分支表示其他应用开始播放非混音音频，系统可自行决定是否静音。
+      break;
+    case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION:
+      // 此分支表示其他应用的非混音音频播放结束，系统可自行决定是否取消静音。
+      break;
     default:
       break;
   }
@@ -71,12 +77,25 @@ async function setAudioScene(){
   // 示例中选择了AUDIO_SESSION_SCENE_MEDIA会话场景，实际情况请根据具体场景修改该参数。
   // [EndExclude all_focusprocess]
   // [Start set_audioscene]
+  // [Start enable_muteSuggestion]
   audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
   // [StartExclude set_audioscene]
   // [StartExclude all_focusprocess]
-  console.info('Succeeded in doing activateAudioSession.');
+  // [StartExclude enable_muteSuggestion]
+  console.info('Succeeded in doing setAudioSessionScene.');
   if (globalLogUpdate) {
-    globalLogUpdate('Succeeded in doing activateAudioSession.', false);
+    globalLogUpdate('Succeeded in doing setAudioSessionScene.', false);
+  }
+}
+
+async function enableMuteSuggestion(){
+  setAudioScene();
+  // [EndExclude enable_muteSuggestion]
+  audioSessionManager.enableMuteSuggestionWhenMixWithOthers(true);
+  // [StartExclude enable_muteSuggestion]
+  console.info('Succeeded in doing enableMuteSuggestionWhenMixWithOthers.');
+  if (globalLogUpdate) {
+    globalLogUpdate('Succeeded in doing enableMuteSuggestionWhenMixWithOthers.', false);
   }
 }
 
@@ -86,6 +105,7 @@ async function activeSession(){
   // [Start active_audiosession]
   // [EndExclude set_audioscene]
   // [EndExclude all_sessionprocess]
+  // [EndExclude enable_muteSuggestion]
   let strategy: audio.AudioSessionStrategy = {
     concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
   };
@@ -94,20 +114,25 @@ async function activeSession(){
   audioSessionManager.activateAudioSession(strategy).then(() => {
     console.info('Succeeded in doing activateAudioSession.');
     // [StartExclude active_audiosession]
+    // [StartExclude enable_muteSuggestion]
     if (globalLogUpdate) {
       globalLogUpdate('Succeeded in doing activateAudioSession.', false);
     }
     // [EndExclude active_audiosession]
+    // [EndExclude enable_muteSuggestion]
   }).catch((err: BusinessError) => {
     console.error(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`);
     // [StartExclude active_audiosession]
+    // [StartExclude enable_muteSuggestion]
     if (globalLogUpdate) {
       globalLogUpdate(`Failed to activateAudioSession. Code: ${err.code}, message: ${err.message}`, true);
     }
     // [EndExclude active_audiosession]
+    // [EndExclude enable_muteSuggestion]
   });
   // [End set_audioscene]
   // [End active_audiosession]
+  // [End enable_muteSuggestion]
   let isActivated = audioSessionManager.isAudioSessionActivated();
   // [StartExclude all_sessionprocess]
   if (!isActivated) {
@@ -299,6 +324,21 @@ struct Index {
           .onClick(async (): Promise<void> => {
             await setAudioScene()
             this.runningResult = 'set session scene:MEDIA'
+          })
+        }
+        .width('80%')
+        .height(50)
+        .justifyContent(FlexAlign.Center)
+
+        Row() {
+          Button() {
+            Text('启用静音建议').fontSize(15).fontColor(Color.White)
+          }
+          .width('80%')
+          .height(40)
+          .onClick(async (): Promise<void> => {
+            await enableMuteSuggestion()
+            this.runningResult = 'enable mute suggestion'
           })
         }
         .width('80%')
