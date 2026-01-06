@@ -12,5 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start promise_call_interface_dts]
+// index.d.ts
 export const asyncWork: (data: number) => Promise<number>;
+// [End promise_call_interface_dts]

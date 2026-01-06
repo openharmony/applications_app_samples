@@ -15,6 +15,24 @@
 
 import testNapi from 'libentry.so';
 import nativeModule from 'libentry1.so';
+import { ErrorEvent, worker, taskpool } from '@kit.ArkTS';
+
+@Concurrent
+function nativeCall(input : string): void {
+  console.info('Taskpool thread received:%s', input);
+  nativeModule.startWithCallback('Hello', (result: string) => {
+    console.info('[Taskpool] Got from native:', result);
+  });
+}
+
+async function testTaskpool() : Promise<void> {
+  try {
+    const task = new taskpool.Task(nativeCall, 'Start');
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error('Taskpool execute error: ${e}');
+  }
+}
 
 @Entry
 @Component
@@ -72,6 +90,29 @@ struct Index {
           nativeModule.startThread(callback);
           // [End napi_thread_safety_ets]
           this.message = 'StartThread success';
+        })
+      Button($r('app.string.workerTest'))
+        .width('70%')
+        .onClick(() => {
+          // [Start napi_call_threadsafe_function_worker_ets]
+          // index.ets
+          const wk = new worker.ThreadWorker('entry/ets/worker/worker.ets');
+          wk.postMessage('Start');
+          wk.onmessage = (msg) => {
+            console.info('[Main] Received:', msg.data);
+            wk.terminate();
+          }
+          // [End napi_call_threadsafe_function_worker_ets]
+          this.message = 'WorkerTest success';
+        })
+      Button($r('app.string.taskpoolTest'))
+        .width('70%')
+        .onClick(() => {
+          // [Start napi_call_threadsafe_function_taskpool_ets]
+          // index.ets
+          testTaskpool();
+          // [End napi_call_threadsafe_function_taskpool_ets]
+          this.message = 'TaskpoolTest success';
         })
     }
     .width('100%')
