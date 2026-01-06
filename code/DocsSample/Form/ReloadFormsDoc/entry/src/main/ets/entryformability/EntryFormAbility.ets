@@ -1,32 +1,50 @@
-import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+// [Start EntryFormAbility]
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
+import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = 'EntryFormAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
-    // Called to return a FormBindingData object.
     const formData = '';
     return formBindingData.createFormBindingData(formData);
   }
 
-  onCastToNormalForm(formId: string) {
-    // Called when the form provider is notified that a temporary form is successfully
-    // converted to a normal form.
+  onCastToNormalForm(formId: string): void {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }
 
   onUpdateForm(formId: string) {
-    // Called to notify the form provider to update a specified form.
+
+    class FormDataClass {
+      title: string = 'Title: ' + Math.random();
+      detail: string = 'Description: ' + Math.random();
+    }
+
+    let formData = new FormDataClass();
+    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+    formProvider.updateForm(formId, formInfo).then(() => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. code: ${error.code}, message: ${error.message}`);
+    });
   }
 
   onFormEvent(formId: string, message: string) {
-    // Called when a specified message event defined by the form provider is triggered.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
   }
 
   onRemoveForm(formId: string) {
-    // Called to notify the form provider that a specified form has been destroyed.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
   }
 
   onAcquireFormState(want: Want) {
-    // Called to return a {@link FormState} object.
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAcquireFormState');
     return formInfo.FormState.READY;
   }
 }
+// [end EntryFormAbility]

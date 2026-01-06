@@ -1,51 +1,29 @@
-@Entry
+// [Start ReloadByUIAbilityCard]
+// entry/src/main/ets/reloadbyuiability/pages/ReloadByUIAbilityCard.ets
+let storageReloadForm = new LocalStorage();
+
+@Entry(storageReloadForm)
 @Component
 struct ReloadByUIAbilityCard {
-  /*
-   * The title.
-   */
-  readonly title: string = 'Hello World';
-  /*
-   * The action type.
-   */
-  readonly actionType: string = 'router';
-  /*
-   * The ability name.
-   */
-  readonly abilityName: string = 'EntryAbility';
-  /*
-   * The message.
-   */
-  readonly message: string = 'add detail';
-  /*
-   * The width percentage setting.
-   */
-  readonly fullWidthPercent: string = '100%';
-  /*
-   * The height percentage setting.
-   */
-  readonly fullHeightPercent: string = '100%';
+  // 创建两个待刷新的Text，Text初始内容分别为'Title default'、'Description default'。资源文件定义请参见下方步骤5
+  @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
+  @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Text(this.title)
-          .fontSize($r('app.float.font_size'))
-          .fontWeight(FontWeight.Medium)
-          .fontColor($r('sys.color.font'))
-      }
-      .width(this.fullWidthPercent)
+          .fontSize(14)
+          .margin({ top: '8%', left: '10%' })
+        Text(this.detail)
+          .fontSize(12)
+          .margin({ top: '5%', left: '10%' })
+      }.width('100%').height('50%')
+      .alignItems(HorizontalAlign.Start)
     }
-    .height(this.fullHeightPercent)
-    .backgroundColor($r('sys.color.comp_background_primary'))
-    .onClick(() => {
-      postCardAction(this, {
-        action: this.actionType,
-        abilityName: this.abilityName,
-        params: {
-          message: this.message
-        }
-      });
-    })
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Start)
   }
 }
+// [End ReloadByUIAbilityCard]
