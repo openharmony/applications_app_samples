@@ -27,6 +27,14 @@
     {
       "name": "ReloadByUIAbility_display_name",
       "value": "widget"
+    },
+    {
+      "name": "default_title",
+      "value": "Title default."
+    },
+    {
+      "name": "DescriptionDefault",
+      "value": "Description default."
     }
   ]
 }
