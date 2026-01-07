@@ -103,7 +103,7 @@ entry/src/ohosTest/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo MediaLibraryKit/MediaResourceChangeNotificationsSample/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/MediaLibraryKit/MediaResourceChangeNotificationsSample/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

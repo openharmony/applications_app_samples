@@ -16,16 +16,16 @@
 
 // [Start Reading_Moving_Photo_Assets]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-// [StartExclude Reading_Moving_Photo_Assets]
 import { common } from '@kit.AbilityKit';
+// [StartExclude Reading_Moving_Photo_Assets]
 import { fileIo } from '@kit.CoreFileKit';
 // [EndExclude Reading_Moving_Photo_Assets]
 @Entry({ routeName : 'Scene4' })
 @Component
 export struct Scene4 {
-  // [StartExclude Reading_Moving_Photo_Assets]
-  @State statusMessage: string = '';
   @State movingPhotoObj: photoAccessHelper.MovingPhoto | null = null;
+  @State statusMessage: string = '';
+  // [StartExclude Reading_Moving_Photo_Assets]
   @State imageSource: string = '';
   async prepareAndLoadMovingPhoto() {
     try {
@@ -60,11 +60,10 @@ export struct Scene4 {
   }
   // [EndExclude Reading_Moving_Photo_Assets]
 
-  // [StartExclude Reading_Moving_Photo_Assets]
   build() {
     NavDestination() {
-
       Column({ space: 20 }) {
+        // [StartExclude Reading_Moving_Photo_Assets]
         Text('Read Moving Photo Content')
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
@@ -94,7 +93,7 @@ export struct Scene4 {
           .onClick(() => {
             this.prepareAndLoadMovingPhoto();
           })
-
+        // [EndExclude Reading_Moving_Photo_Assets]
         Button('example')
           .width('80%')
           .height(50)
@@ -107,7 +106,7 @@ export struct Scene4 {
               this.statusMessage = 'Please prepare and load moving photo first!';
             }
           })
-
+        // [StartExclude Reading_Moving_Photo_Assets]
         if (this.statusMessage !== '') {
           Scroll() {
             Text(this.statusMessage)
@@ -121,14 +120,16 @@ export struct Scene4 {
           .layoutWeight(1)
           .margin({ top: 10 })
         }
+        // [EndExclude Reading_Moving_Photo_Assets]
       }
       .width('100%')
       .height('100%')
     }
+    // [StartExclude Reading_Moving_Photo_Assets]
     .title('Read Content')
+    // [EndExclude Reading_Moving_Photo_Assets]
   }
 }
-// [EndExclude Reading_Moving_Photo_Assets]
 
 async function example(movingPhoto: photoAccessHelper.MovingPhoto, context: Context): Promise<string> {
   try {
