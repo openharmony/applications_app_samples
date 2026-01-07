@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "cameraKitSample"
+    },
+    {
+      "name": "reason",
+      "value": "test"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "photo",
+      "value": "拍照"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    }
+  ]
+}
