@@ -36,7 +36,7 @@ export default function staticTest() {
       expect(priData).assertEqual(2);
       // 1.创建MockKit对象
       let mocker: MockKit = new MockKit();
-      // 2.Mock  类ClassName对象的成员变量data
+      // 2.Mock类ClassName对象的成员变量data
       mocker.mockProperty(claser, "data", 3);
       mocker.mockProperty(claser, "priData", 4);
       // 3.期望被Mock后的成员和私有成员的值分别为3，4
