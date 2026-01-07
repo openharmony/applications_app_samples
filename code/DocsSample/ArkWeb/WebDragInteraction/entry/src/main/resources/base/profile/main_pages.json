@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/DragArkTSPage",
-    "pages/SetUAPage"
+    "pages/SetUAPage",
+    "pages/ForbidDragPage"
   ]
 }

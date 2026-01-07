@@ -97,5 +97,28 @@ export default function abilityTest() {
       done();
     })
 
+    it('processweb_ForbidDragPage_001', 0, async (done: Function) => {
+      console.info('uitest: processweb_ForbidDragPage_001 begin');
+      const driver = Driver.create();
+
+      const button = await driver.findComponent(ON.text('ForbidDragPageButton'));
+      await button.click();
+      await driver.delayMs(3000);
+
+      const w3c_button = await driver.findComponent(ON.text('w3cDemoPage'));
+      await w3c_button.click();
+      await driver.delayMs(3000);
+
+      const js_page_button = await driver.findComponent(ON.text('runJsDemoPage'));
+      await js_page_button.click();
+      await driver.delayMs(3000);
+
+      const run_js_button = await driver.findComponent(ON.text('runJsForbidDrag'));
+      await run_js_button.click();
+      await driver.delayMs(3000);
+
+      done();
+    })
+
   })
 }
