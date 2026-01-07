@@ -62,4 +62,4 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formInfo.FormState.READY;
   }
 }
-// [end EntryFormAbility]
+// [End EntryFormAbility]
