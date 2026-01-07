@@ -9,8 +9,9 @@
 
 ### 使用说明
 1. 安装编译生成的hap包，并启动应用程序；
-2. 进入首页，选择First选项，进入页面；
-3. 返回首页，点击ModifyFirstPage按钮修改First页面的按钮属性；
+2. 进入首页，会看到一个pageOneButton按钮,选择First选项，进入页面；
+3. 点击ModifyFirstPage按钮修改首页按钮属性；
+4. 返回首页会看到一个pageOneButton按钮变成了success按钮
 
 ### 工程目录
 ```

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,57 +25,193 @@
 
 namespace NativeModule {
 
-    class ArkUINode : public ArkUIBaseNode {
-    public:
-        explicit ArkUINode(ArkUI_NodeHandle handle) : ArkUIBaseNode(handle) {}
+class ArkUINode : public ArkUIBaseNode {
+public:
+    explicit ArkUINode(ArkUI_NodeHandle handle) : ArkUIBaseNode(handle)
+    {
+        nativeModule_ = NativeModuleInstance::GetInstance()->GetNativeNodeAPI();
+        // 事件触发时需要通过函数获取对应的事件对象，这边通过设置节点自定义数据将封装类指针保持在组件上，方便后续事件分发。
+        nativeModule_->setUserData(handle_, this);
+        // 注册节点监听事件接受器。
+        nativeModule_->addNodeEventReceiver(handle_, ArkUINode::NodeEventReceiver);
+    }
 
-        ~ArkUINode() override {}
+    ~ArkUINode() override
+    {
+        if (onClick_) {
+            nativeModule_->unregisterNodeEvent(handle_, NODE_ON_CLICK_EVENT);
+        }
+        if (onTouch_) {
+            nativeModule_->unregisterNodeEvent(handle_, NODE_TOUCH_EVENT);
+        }
+        if (onDisappear_) {
+            nativeModule_->unregisterNodeEvent(handle_, NODE_EVENT_ON_DISAPPEAR);
+        }
+        if (onAppear_) {
+            nativeModule_->unregisterNodeEvent(handle_, NODE_EVENT_ON_APPEAR);
+        }
+        nativeModule_->removeNodeEventReceiver(handle_, ArkUINode::NodeEventReceiver);
+    }
 
-        void SetWidth(float width)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = width}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_WIDTH, &item);
+    void SetWidth(float width)
+    {
+        if (!handle_) {
+            return;
         }
-        void SetPercentWidth(float percent)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = percent}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_WIDTH_PERCENT, &item);
+        ArkUI_NumberValue value[] = {{.f32 = width}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_WIDTH, &item);
+    }
+    void SetPercentWidth(float percent)
+    {
+        if (!handle_) {
+            return;
         }
-        void SetHeight(float height)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = height}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_HEIGHT, &item);
+        ArkUI_NumberValue value[] = {{.f32 = percent}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_WIDTH_PERCENT, &item);
+    }
+    void SetHeight(float height)
+    {
+        if (!handle_) {
+            return;
         }
-        void SetPercentHeight(float percent)
-        {
-            ArkUI_NumberValue value[] = {{.f32 = percent}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_HEIGHT_PERCENT, &item);
+        ArkUI_NumberValue value[] = {{.f32 = height}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_HEIGHT, &item);
+    }
+    void SetPercentHeight(float percent)
+    {
+        if (!handle_) {
+            return;
         }
-        void SetBackgroundColor(uint32_t color)
-        {
-            ArkUI_NumberValue value[] = {{.u32 = color}};
-            ArkUI_AttributeItem item = {value, 1};
-            nativeModule_->setAttribute(handle_, NODE_BACKGROUND_COLOR, &item);
+        ArkUI_NumberValue value[] = {{.f32 = percent}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_HEIGHT_PERCENT, &item);
+    }
+    void SetBackgroundColor(uint32_t color)
+    {
+        if (!handle_) {
+            return;
         }
+        ArkUI_NumberValue value[] = {{.u32 = color}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_BACKGROUND_COLOR, &item);
+    }
+    // 处理通用事件。
+    void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *event)> &onClick, void * userdata)
+    {
+        if (!handle_) {
+            return;
+        }
+        onClick_ = onClick;
+        // 注册点击事件。
+        nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, userdata);
+    }
 
-    protected:
-        void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override
-        {
-            nativeModule_->addChild(handle_, child->GetHandle());
+    void RegisterOnTouch(const std::function<void(int32_t type, float x, float y)> &onTouch)
+    {
+        if (!handle_) {
+            return;
         }
-        void OnRemoveChild(const std::shared_ptr<ArkUIBaseNode> &child) override
-        {
-            nativeModule_->removeChild(handle_, child->GetHandle());
+        onTouch_ = onTouch;
+        // 注册触碰事件。
+        nativeModule_->registerNodeEvent(handle_, NODE_TOUCH_EVENT, 0, nullptr);
+    }
+
+    void RegisterOnDisappear(const std::function<void()> &onDisappear)
+    {
+        if (!handle_) {
+            return;
         }
-        void OnInsertChild(const std::shared_ptr<ArkUIBaseNode> &child, int32_t index) override
-        {
-            nativeModule_->insertChildAt(handle_, child->GetHandle(), index);
+        onDisappear_ = onDisappear;
+        // 注册卸载事件。
+        nativeModule_->registerNodeEvent(handle_, NODE_EVENT_ON_DISAPPEAR, 0, nullptr);
+    }
+
+    void RegisterOnAppear(const std::function<void()> &onAppear)
+    {
+        if (!handle_) {
+            return;
         }
-    };
+        onAppear_ = onAppear;
+        // 注册挂载事件。
+        nativeModule_->registerNodeEvent(handle_, NODE_EVENT_ON_APPEAR, 0, nullptr);
+    }
+
+protected:
+    // 事件监听器函数指针。
+    static void NodeEventReceiver(ArkUI_NodeEvent *event)
+    {
+        // 获取事件发生的UI组件对象。
+        auto nodeHandle = OH_ArkUI_NodeEvent_GetNodeHandle(event);
+        // 获取保持在UI组件对象中的自定义数据，返回封装类指针。
+        auto *node = reinterpret_cast<ArkUINode *>(
+            NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->getUserData(nodeHandle));
+        // 基于封装类实例对象处理事件。
+        node->ProcessNodeEvent(event);
+    }
+    void ProcessNodeEvent(ArkUI_NodeEvent *event)
+    {
+        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+        switch (eventType) {
+            case NODE_ON_CLICK_EVENT: {
+                if (onClick_) {
+                    onClick_(event);
+                }
+                break;
+            }
+            case NODE_TOUCH_EVENT: {
+                if (onTouch_) {
+                    auto *uiInputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
+                    float x = OH_ArkUI_PointerEvent_GetX(uiInputEvent);
+                    float y = OH_ArkUI_PointerEvent_GetY(uiInputEvent);
+                    auto type = OH_ArkUI_UIInputEvent_GetAction(uiInputEvent);
+                    onTouch_(type, x, y);
+                }
+            }
+            case NODE_EVENT_ON_DISAPPEAR: {
+                if (onDisappear_) {
+                    onDisappear_();
+                }
+                break;
+            }
+            case NODE_EVENT_ON_APPEAR: {
+                if (onAppear_) {
+                    onAppear_();
+                }
+                break;
+            }
+            default: {
+                // 组件特有事件交给子类处理
+                OnNodeEvent(event);
+            }
+        }
+    }
+
+    virtual void OnNodeEvent(ArkUI_NodeEvent *event) {}
+
+    void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override
+    {
+        nativeModule_->addChild(handle_, child->GetHandle());
+    }
+
+    void OnRemoveChild(const std::shared_ptr<ArkUIBaseNode> &child) override
+    {
+        nativeModule_->removeChild(handle_, child->GetHandle());
+    }
+
+    void OnInsertChild(const std::shared_ptr<ArkUIBaseNode> &child, int32_t index) override
+    {
+        nativeModule_->insertChildAt(handle_, child->GetHandle(), index);
+    }
+
+private:
+    std::function<void(ArkUI_NodeEvent *event)> onClick_;
+    std::function<void()> onDisappear_;
+    std::function<void()> onAppear_;
+    std::function<void(int32_t type, float x, float y)> onTouch_;
+};
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_ARKUINODE_H

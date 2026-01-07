@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,6 +27,13 @@ let want: Want;
 const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = '[uitest]';
 
+async function getCenterPoint(comp: Component, offset: number): Promise<Point> {
+  // 获取文字控件中心点
+  let point: Point = await comp.getBoundsCenter();
+  point = {x: point.x, y:point.y};
+  return point;
+}
+
 export default function IndexTest() {
   describe('IndexTest', () => {
     beforeAll(async () => {
@@ -53,11 +60,16 @@ export default function IndexTest() {
       let button = await driver.findComponent(ON.text('NativeUI', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
-      await driver.waitForIdle(10000, 10000);
-      await driver.pressBack();
+      await driver.delayMs(1000);
+      let useClick:Component = await driver.findComponent(ON.type('Row'));
+      expect(useClick === null).assertFalse();
+      let point: Point = await getCenterPoint(useClick, 2);
+      hilog.info(DOMAIN_NUMBER, TAG, 'useClick: useClick'+JSON.stringify(point));
+      await driver.click(point.x, point.y);
+      await driver.delayMs(2000);
       hilog.info(DOMAIN_NUMBER, TAG, 'uitest: testCustomContainer end');
       done();
     })
-
+    
   })
 }

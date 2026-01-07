@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import { router } from '@kit.ArkUI';
 import scopeTask from 'libentry.so';
+import { NodeContent } from '@kit.ArkUI';
 
 interface ListCategories {
   title: string,
@@ -29,6 +30,11 @@ struct MenuIndex {
     [
       { title: 'First', url: 'pages/FirstpageIndex', id: 'First' }
     ];
+  private nodeContent = new NodeContent();
+  aboutToAppear() {
+    // 创建并设置ID
+    scopeTask.createNativeNode(this.nodeContent);
+  }
 
   build() {
     Scroll(new Scroller()) {
@@ -40,14 +46,7 @@ struct MenuIndex {
           .height('5%')
           .margin($r('sys.float.titlebar_title_margin_right'))
 
-        Button('ModifyFirstPage')
-          .width(200)
-          .height(50)
-          .backgroundColor('#FF6B35')
-          .fontColor(Color.White)
-          .onClick(() => {
-            scopeTask.modifyPageOneButton();
-          })
+        ContentSlot(this.nodeContent)
 
         List() {
           ForEach(this.items, (item: ListCategories) => {
