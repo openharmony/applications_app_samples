@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "dns_case",
+      "value": "dns_case"
+    },
+    {
+      "name": "DNS",
+      "value": "DNS"
+    },
+    {
+      "name": "Unicode",
+      "value": "Unicode"
+    },
+    {
+      "name": "UnChangeBtn",
+      "value": "不转码,获取IP地址"
+    },
+    {
+      "name": "ChangeAsciiBtn",
+      "value": "转码,获取IP地址"
+    },
+    {
+      "name": "HostResult",
+      "value": "host转换值"
+    },
+    {
+      "name": "result",
+      "value": "结果"
+    },
+    {
+      "name": "ChangeUnicodeBtn",
+      "value": "转Unicode"
+    },
+    {
+      "name": "hostName",
+      "value": "示例"
+    },
+    {
+      "name": "getAddressesByName",
+      "value": "getAddressesByName"
+    },
+    {
+      "name": "getAddressesByNameWithOptions",
+      "value": "getAddressesByNameWithOptions"
+    },
+    {
+      "name": "NetHandleBtn",
+      "value": "NetHandle.getAddressesByNameWithOptions"
+    }
+  ]
+}
