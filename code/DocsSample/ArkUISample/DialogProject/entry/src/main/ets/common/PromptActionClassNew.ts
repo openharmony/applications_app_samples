@@ -37,6 +37,7 @@ export class PromptActionClassNew {
     PromptActionClassNew.options = options;
   }
 
+  // 打开弹窗
   static openDialog() {
     if (PromptActionClassNew.contentNode !== null) {
       // [Start prompt_action_class_open_custom_dialog]
@@ -53,6 +54,7 @@ export class PromptActionClassNew {
     }
   }
 
+  // 关闭弹窗
   static closeDialog() {
     if (PromptActionClassNew.contentNode !== null) {
       PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
@@ -86,6 +88,7 @@ export class PromptActionClassNew {
   }
   // [EndExclude prompt_action_class_new]
 
+  // 更新弹窗
   static updateDialog(options: promptAction.BaseDialogOptions) {
     if (PromptActionClassNew.contentNode !== null) {
       // [Start prompt_action_class_update_options]
