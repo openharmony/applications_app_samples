@@ -20,7 +20,7 @@ import { notificationExtensionSubscription, NotificationSubscriberExtensionAbili
 //[StartExclude callback_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { socket } from '@kit.ConnectivityKit'
-import util from '@kit.ArkTS'; 
+import {util} from '@kit.ArkTS'; 
 //[EndExclude callback_start]
 
 const DOMAIN = 0x0000;
@@ -70,8 +70,8 @@ class SppClientManager {
       return;
     }
     hilog.info(DOMAIN, 'testTag', `prepare sending data to client ${this.clientNumber}`);
-    const textEncoder = new util.TextEncoder();
-    const uint8Array = textEncoder.encodeInto(jsonStr);
+    const textEncoder:util.TextEncoder = new util.TextEncoder();
+    const uint8Array: Uint8Array = textEncoder.encodeInto(jsonStr);
     const arrayBuffer = uint8Array.buffer;
 
     socket.sppWrite(this.clientNumber, arrayBuffer);
