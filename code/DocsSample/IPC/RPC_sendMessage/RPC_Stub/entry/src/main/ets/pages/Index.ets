@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, PermissionRequestResult, common } from '@kit.AbilityKit';
 
@@ -21,7 +21,7 @@ import { abilityAccessCtrl, PermissionRequestResult, common } from '@kit.Ability
 @Component
 struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @State message: string = 'Hello World';
+  @State message: string = 'Hello RPC_Stub';
 
   build() {
     RelativeContainer() {
@@ -39,23 +39,25 @@ struct Index {
 
       Button('getPermission')
         .onClick(() =>  {
-        try {
-          let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-          atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC'], (err: BusinessError, data: PermissionRequestResult) => {
-            if (err) {
-              hilog.error(0x0000, 'testTag', 'RPC_Stub: requestPermissionsFromUser fail, code is ' + err.code + 'message is ' + err.message);
-            } else {
-              hilog.info(0x0000, 'testTag','RPC_Stub: requestPermissionsFromUser success, result is ' + JSON.stringify(data));
-              hilog.info(0x0000, 'testTag','RPC_Stub: requestPermissionsFromUser data permissions:' + data.permissions);
-              hilog.info(0x0000, 'testTag','RPC_Stub: requestPermissionsFromUser data authResults:' + data.authResults);
-              hilog.info(0x0000, 'testTag','RPC_Stub: requestPermissionsFromUser data dialogShownResults:' + data.dialogShownResults);
-            }
-          });
-        }catch (err) {
-          let code = (err as BusinessError).code;
-          let message = (err as BusinessError).message;
-          hilog.error(0x0000, 'testTag', 'RPC_Stub: getPermission failed, code is ' + code + 'message is ' + message);
-        }
+          try {
+            let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+            atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC'],
+              (err: BusinessError, data: PermissionRequestResult) => {
+                if (err) {
+                  hilog.error(0x0000, 'testTag', 'RPC_Stub: requestPermissions failed, code is ' + err.code);
+                  hilog.error(0x0000, 'testTag', 'RPC_Stub: requestPermissions failed, message is ' + err.message);
+                } else {
+                  hilog.info(0x0000, 'testTag','RPC_Stub:: data permissions is ' + data.permissions);
+                  hilog.info(0x0000, 'testTag','RPC_Stub:: data authResults is ' + data.authResults);
+                  hilog.info(0x0000, 'testTag','RPC_Stub:: data dialogShownResults is ' + data.dialogShownResults);
+                }
+              });
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'RPC_Stub: getPermission failed, code is  ' + code);
+            hilog.error(0x0000, 'testTag', 'RPC_Stub: getPermission failed, message is ' + message);
+          }
       })
         .width('100%')
         .height(60)

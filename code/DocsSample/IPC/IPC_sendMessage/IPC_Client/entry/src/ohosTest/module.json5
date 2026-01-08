@@ -21,6 +21,7 @@
       "default"
     ],
     "deliveryWithInstall": true,
-    "installationFree": false
+    "installationFree": false,
+
   }
 }

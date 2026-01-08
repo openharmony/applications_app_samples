@@ -62,7 +62,8 @@ entry/src/main/ets/
       constructor(descriptor: string) {
         super(descriptor);
       }
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+        option: rpc.MessageOption): boolean | Promise<boolean> {
         // 服务端Stub根据不同的请求code分别执行对应的处理流程
         if (code == 1) {
           let str = data.readString();
@@ -76,18 +77,18 @@ entry/src/main/ets/
         }
       }
     }
-
+    
     // 定义后台服务
     export default class ServiceAbility extends ServiceExtensionAbility {
-      ......
-
+      // ......
+    
       onConnect(want: Want): rpc.RemoteObject {
         hilog.info(0x0000, 'testTag', 'RPC_Stub: onConnect');
         // 返回Stub对象，客户端获取后便可以与ServiceExtensionAbility进行通信
         return new Stub('RPCStubTest');
       }
-
-      ......
+    
+      // ......
     }
   ```
 
@@ -98,17 +99,19 @@ entry/src/main/ets/
       hilog.info(0x00000, 'testTag', 'RpcClient: begin to requestPermissions');
       try {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'], (err: BusinessError, data: PermissionRequestResult) => {
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'],
+          (err: BusinessError, data: PermissionRequestResult) => {
           if (err) {
-            hilog.error(0x0000, 'testTag', 'RpcClient: registerDeathRecipient failed, code is '  + err.code + ', message is ' + err.message);
+            hilog.error(0x0000, 'testTag', 'RpcClient: requestPermissions failed, code is ' +
+              err.code + ', message is ' + err.message);
           } else {
-            hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser success, result is ' + JSON.stringify(data));
-            hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data permissions is ' + data.permissions);
-            hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data authResults is ' + data.authResults);
-            hilog.info(0x0000, 'testTag','RpcClient: requestPermissionsFromUser data dialogShownResults is ' + data.dialogShownResults);
+            hilog.info(0x0000, 'testTag','RpcClient: requestPermissions success, result is ' + JSON.stringify(data));
+            hilog.info(0x0000, 'testTag','RpcClient: data permissions is ' + data.permissions);
+            hilog.info(0x0000, 'testTag','RpcClient: data authResults is ' + data.authResults);
+            hilog.info(0x0000, 'testTag','RpcClient: data dialogShownResults is ' + data.dialogShownResults);
           }
         });
-      }catch (err) {
+      } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'RpcClient: getPermission failed, code is  ' + code + ', message is ' + message);
@@ -119,7 +122,7 @@ entry/src/main/ets/
 3. 客户端获取对端设备信息
 
   ```ets
-    function getDeviceId(){
+    function getDeviceId(promptAction: PromptAction) {
       hilog.info(0x00000, 'testTag', 'RpcClient: begin to getDeviceId');
       try {
         dmInstance = distributedDeviceManager.createDeviceManager('com.example.rpc_client');
@@ -129,11 +132,33 @@ entry/src/main/ets/
         if (deviceList.length !== 0) {
           deviceId = deviceList[0].networkId;
           hilog.info(0x0000, 'testTag', 'RpcClient: networkId is ' + deviceId);
+          // 弹窗显示获取deviceId失败
+          try {
+            promptAction.showToast({
+              message: 'getDeviceId success.',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+          };
         }
-      }catch (err) {
+      } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'RpcClient: getDeviceId failed, code is  ' + code + ', message is ' + message);
+        // 弹窗显示获取deviceId失败
+        try {
+          promptAction.showToast({
+            message: 'getDeviceId failed. please confirm that multiple devices are allowed to collaborate first.',
+            duration: 2000
+          });
+        } catch (error) {
+          let message = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+        };
       }
     }
   ```
@@ -141,7 +166,7 @@ entry/src/main/ets/
 4. 客户端连接服务
 
   ```ets
-    function connectAbility(context:common.UIAbilityContext) {
+    function connectAbility(context:common.UIAbilityContext, promptAction: PromptAction) {
       hilog.info(0x00000, 'testTag', 'RpcClient: begin to connect Ability');
       let want: Want = {
         bundleName: 'com.example.rpc_stub',
@@ -157,11 +182,22 @@ entry/src/main/ets/
           try {
             proxy.registerDeathRecipient(deathRecipient, 0);
             hilog.info(0x00000, 'testTag', 'RpcClient: registerDeathRecipient success');
-          }catch (err) {
+          } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            hilog.error(0x0000, 'testTag', 'RpcClient: registerDeathRecipient failed, code is ' + code + ', message is ' + message);
-          }
+            hilog.error(0x0000, 'testTag', 'RpcClient: register failed, code is ' + code + ', message is ' + message);
+          };
+          // 弹窗显示成功连接服务
+          try {
+            promptAction.showToast({
+              message: 'connectAbility success',
+              duration: 2000
+            });
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+          };
         },
         onDisconnect: (elementName) => {
           hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect. elementName is ' + JSON.stringify(elementName));
@@ -169,21 +205,45 @@ entry/src/main/ets/
           try {
             proxy?.unregisterDeathRecipient(deathRecipient, 0);
             hilog.info(0x00000, 'testTag', 'RpcClient: unregisterDeathRecipient success');
-          }catch (err) {
+          } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            hilog.error(0x0000, 'testTag', 'RpcClient: unregisterDeathRecipient failed, code is ' + code + ', message is ' + message);
+            hilog.error(0x0000, 'testTag', 'RpcClient: unregister failed, code is ' + code + ', message is ' + message);
           }
           proxy = undefined;
+
+          isDisconnect = true;
+          // 弹窗显示与服务端断开连接成功
+          try {
+            promptAction.showToast({
+              message: 'disconnectAbility success',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+          };
         },
         onFailed: (code: number) => {
           hilog.info(0x0000, 'testTag', 'RpcClient: onFailed. code is :' + code);
+          // 弹窗显示连接服务失败
+          try {
+            promptAction.showToast({
+              message: 'Connect failed. Please ensure that the service is running in the background.',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+          };
         },
       }
 
       try {
         connectId = context.connectServiceExtensionAbility(want, connect);
-      }catch (err) {
+      } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'RpcClient: connectService failed, code is ' + code + ', message is ' + message);
@@ -194,7 +254,7 @@ entry/src/main/ets/
 5. 客户端发送字符串给服务端
 
   ```ets
-    function sendString() {
+    async function sendString(promptAction: PromptAction) : Promise <void> {
       hilog.info(0x00000, 'testTag', 'RpcClient: begin to send string');
       let option = new rpc.MessageOption();
       let data = rpc.MessageSequence.create();
@@ -203,23 +263,57 @@ entry/src/main/ets/
       data.writeString('hello world');
 
       if (proxy != undefined) {
-        proxy.sendMessageRequest(1, data, reply, option)
+        await proxy.sendMessageRequest(1, data, reply, option)
           .then((result: rpc.RequestResult) => {
             if (result.errCode != 0) {
               hilog.error(0x0000, 'testTag', 'RpcClient: sendMessageRequest failed, errCode: ' + result.errCode);
-              return;
             }
             // 从result.reply里读取结果
             let str = result.reply.readString();
-            hilog.info(0x0000, 'testTag', 'RpcClient: sendMessageRequest receiver, str: ' + str);
+            hilog.info(0x0000, 'testTag', 'RpcClient: sendMessageRequest receive str is  ' + str);
+            // 弹窗显示发送消息成功
+            try {
+              promptAction.showToast({
+                message: 'sendRequest success',
+                duration: 2000
+              });
+            } catch (error) {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+            };
           })
           .catch((e: Error) => {
-            hilog.error(0x0000, 'testTag', `RpcClient: sendMessageRequest failed, error is ` + JSON.stringify(e));
+            hilog.error(0x0000, 'testTag', 'RpcClient: sendMessageRequest failed, error is ' + JSON.stringify(e));
+            // 弹窗显示发送消息失败
+            try {
+              promptAction.showToast({
+                message: 'sendRequest failed, please connect to the server first',
+                duration: 2000
+              });
+            } catch (error) {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+            };
           })
           .finally(() => {
             data.reclaim();
             reply.reclaim();
           })
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcClient: proxy is invalid');
+        // 弹窗显示发送消息失败
+        try {
+          promptAction.showToast({
+            message: 'sendRequest failed, please connect to the server first',
+            duration: 2000
+          });
+        } catch (error) {
+          let message = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
+        };
       }
     }
   ```
@@ -232,7 +326,7 @@ entry/src/main/ets/
       if (connectId != undefined) {
         try {
           context.disconnectServiceExtensionAbility(connectId);
-        }catch (err) {
+        } catch (err) {
           let code = (err as BusinessError).code;
           let message = (err as BusinessError).message;
           hilog.error(0x0000, 'testTag', 'pcClient: disconnectService failed, code is ' + code + ', message is ' + message);
@@ -291,7 +385,7 @@ ohos.permission.DISTRIBUTED_DATASYNC
     echo code/DocsSample/IPC/RPC_sendMessage/ > .git/info/sparse-checkout
     git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
     git pull origin master
-  ``` 
+  ```
 
 ## 安装问题（9568344）
 
@@ -349,4 +443,3 @@ ohos.permission.DISTRIBUTED_DATASYNC
   ```
 
 5. 取消module.json5中extensionAbilities的相关注释，重新安装hap包
-   
