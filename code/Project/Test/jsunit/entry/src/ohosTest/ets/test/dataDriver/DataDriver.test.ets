@@ -18,7 +18,7 @@ import { describe, it } from '@ohos/hypium';
 
 export default function abilityTest() {
   describe('AbilityTest', () => {
-    it('testDataDriverAsync', 0, async (done: Function, data: ParmObj) => {
+    it('testDataDriverAsync', 0, async (done: Function, data: ParamObj) => {
       done();
     });
 
@@ -27,7 +27,7 @@ export default function abilityTest() {
   })
 }
 
-interface ParmObj {
+interface ParamObj {
   name: string,
   value: string
 }
