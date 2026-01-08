@@ -55,7 +55,7 @@ class MyNodeController extends NodeController {
 
 @Builder
 function buildTextWithFunc(fun: Function) {
-  Web({ src: 'www.baidu.com', controller: new webview.WebviewController() })
+  Web({ src: 'https://www.example.com', controller: new webview.WebviewController() })
 }
 
 @Builder
