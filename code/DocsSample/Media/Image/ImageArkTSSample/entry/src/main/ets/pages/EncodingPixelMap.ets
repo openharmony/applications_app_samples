@@ -22,7 +22,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
 // [End encodingPixelMap_import]
 import { ImageInterfaceCalled } from '../tools/CodecUtility';
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 let fileName: string = 'test.jpeg'; // 根据解码需求选择不同的解码资源进行解码

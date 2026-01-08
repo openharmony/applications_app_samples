@@ -18,7 +18,7 @@ import { common } from '@kit.AbilityKit';
 import { ImageInterfaceCalled } from '../tools/CodecUtility';
 import { ExifUtility } from '../tools/ExifUtility';
 import { UIComponentsBuilder } from '../tools/components';
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 // 创建 UIComponentsBuilder 实例

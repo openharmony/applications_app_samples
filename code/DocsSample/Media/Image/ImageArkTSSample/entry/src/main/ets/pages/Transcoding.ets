@@ -15,11 +15,12 @@
 import { reEncoding } from '../tools/TranscodingUtility'
 import { common } from '@kit.AbilityKit';
 import { UIComponentsBuilder } from '../tools/components';
-import {Router} from '@ohos.arkui.UIContext';
-import { promptAction } from '@kit.ArkUI';
+import { Router } from '@ohos.arkui.UIContext';
+import { PromptAction } from '@kit.ArkUI';
 
 const router = new Router();
 const uiComponents = new UIComponentsBuilder();
+const promptAction = new PromptAction();
 @Entry
 @Component
 struct Transcoding {

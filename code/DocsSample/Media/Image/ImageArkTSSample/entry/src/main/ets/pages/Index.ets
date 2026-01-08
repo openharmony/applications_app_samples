@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 const router = new Router();
 
 @Entry

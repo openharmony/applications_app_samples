@@ -19,7 +19,7 @@ import camera from '@ohos.multimedia.camera'
 import common from '@ohos.app.ability.common'
 import { UIContext } from '@ohos.arkui.UIContext'
 import { ReceiverUtility } from '../tools/ReceiverUtility'
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 const TAG: string = '[ImageCameraPage]';

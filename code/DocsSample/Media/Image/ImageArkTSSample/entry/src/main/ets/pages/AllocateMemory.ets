@@ -19,7 +19,7 @@ import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 // [End allocator_import]
 import { ImageInterfaceCalled } from '../tools/CodecUtility';
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 
