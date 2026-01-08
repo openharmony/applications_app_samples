@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,10 +51,11 @@ namespace NativeModule {
         customNode->SetWidth(width);
         customNode->SetHeight(height);
         node->AddChild(customNode);
-        CreateNativeTimer(env, customNode.get(), 1, [](void *userData, int32_t count) {
-            auto customNode = reinterpret_cast<ArkUICustomNode *>(userData);
+        auto onClick = [](ArkUI_NodeEvent *event) {
+            auto customNode = (ArkUICustomNode *)OH_ArkUI_NodeEvent_GetUserData(event);
             customNode->SetRectColor(0xFF00FF7F);
-        });
+        };
+        customNode->RegisterOnClick(onClick, customNode.get());
 
         // 保持Native侧对象到管理类中，维护生命周期。
         NativeEntry::GetInstance()->SetRootNode(node);
