@@ -65,7 +65,7 @@ export default function AudioSessionTest() {
     it('AudioSession_Active_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
         'AudioSession_Active_0001',
-        '设置场景+激活焦点+注册监听',
+        '设置场景+启用静音建议+激活焦点+注册监听',
         3000,
         'AudioSession_Active',
         done

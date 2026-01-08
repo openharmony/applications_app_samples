@@ -94,7 +94,7 @@ struct Index {
         // 功能按钮
         Row() {
           Button() {
-            Text('设置场景+激活焦点+注册监听').fontSize(10).fontColor(Color.White).fontSize(18)
+            Text('设置场景+启用静音建议+激活焦点+注册监听').fontSize(10).fontColor(Color.White).fontSize(18)
           }
           .width('80%')
           .height(40)
