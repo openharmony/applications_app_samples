@@ -22,7 +22,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
 // [End encodingPicture_import]
 import { ImageInterfaceCalled } from '../tools/CodecUtility';
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 let fileName: string = 'allAux.jpg';

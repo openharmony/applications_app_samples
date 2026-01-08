@@ -23,7 +23,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 // [End decodingPicture_import]
 import { ImageInterfaceCalled } from '../tools/CodecUtility';
 import { UIComponentsBuilder } from '../tools/components';
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 
 const router = new Router();
 // 创建 UIComponentsBuilder 实例
