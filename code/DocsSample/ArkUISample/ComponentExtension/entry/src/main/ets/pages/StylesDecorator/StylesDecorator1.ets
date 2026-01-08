@@ -26,12 +26,13 @@ function globalFancy1() {
 @Component
 struct GlobalFancy {
   @State heightValue: number = 100;
+
   // 定义在组件内的@Styles封装的样式
   @Styles
   fancy() {
     .width(200)
     .height(this.heightValue)
-    .backgroundColor(Color.Yellow)
+    .backgroundColor(Color.Gray)
     .onClick(() => {
       this.heightValue = 200;
     })
@@ -48,6 +49,7 @@ struct GlobalFancy {
         .fancy()
         .fontSize(30)
     }
+    .width('100%')
   }
 }
 // [End global_style]
