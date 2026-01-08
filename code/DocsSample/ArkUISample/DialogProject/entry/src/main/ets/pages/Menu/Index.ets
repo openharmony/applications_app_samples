@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,6 +18,7 @@ import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { menuExample } from './CreateMenu';
 import { OpenPopup } from './globalmenusindependentofuicomponents//GlobalOpenMenu';
+import { OpenMenuWithTargetIdString } from './globalmenusindependentofuicomponents/OpenMenuWithTargetIdString';
 import { PopVibrateMenuExample } from './PopVibrateMenu';
 import { SupportAvoidCentralAxisMenuExample } from './SupportAvoidCentralAxisMenu';
 import { EventTransSubWindowMenuExample } from './EventTransSubWindowMenu';
@@ -38,6 +39,11 @@ const routes: Route[] = [
     name: `${Menu_ROUTE_PREFIX}/OpenMenu`,
     title: resource.resourceToString($r('app.string.OpenMenu_title')),
     description: $r('app.string.OpenMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/OpenMenuWithTargetIdString`,
+    title: resource.resourceToString($r('app.string.OpenMenuWithTargetIdString')),
+    description: $r('app.string.OpenMenuWithTargetIdString_des'),
   },
   {
     name: `${Menu_ROUTE_PREFIX}/PopVibrateMenu`,
@@ -79,16 +85,18 @@ export function MenuDestination(name: string) {
   } else if (name === routes[1].name) {
     OpenPopup();
   } else if (name === routes[2].name) {
-    PopVibrateMenuExample();
+    OpenMenuWithTargetIdString();
   } else if (name === routes[3].name) {
-    SupportAvoidCentralAxisMenuExample();
+    PopVibrateMenuExample();
   } else if (name === routes[4].name) {
-    EventTransSubWindowMenuExample();
+    SupportAvoidCentralAxisMenuExample();
   } else if (name === routes[5].name) {
-    BindComponentMenuExample();
+    EventTransSubWindowMenuExample();
   } else if (name === routes[6].name) {
-    CreateDefaultMenuExample();
+    BindComponentMenuExample();
   } else if (name === routes[7].name) {
+    CreateDefaultMenuExample();
+  } else if (name === routes[8].name) {
     BuilderCustomMenuExample();
   }
 }
