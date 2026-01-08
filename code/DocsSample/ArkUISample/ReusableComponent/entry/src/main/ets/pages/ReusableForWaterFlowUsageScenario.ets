@@ -25,7 +25,7 @@ class WaterFlowDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
 
   constructor() {
-    for (let i = 0; i <= 60; i++) { // 循环60次
+    for (let i = 0; i < 60; i++) { // 循环60次
       this.dataArray.push(i);
     }
   }

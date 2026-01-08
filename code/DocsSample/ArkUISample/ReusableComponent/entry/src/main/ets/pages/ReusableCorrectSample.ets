@@ -41,7 +41,7 @@ struct Index {
   private data: BasicDataSource = new BasicDataSource();
 
   aboutToAppear(): void {
-    for (let index = 1; index < 20; index++) { // 循环20次
+    for (let index = 1; index <= 20; index++) { // 循环20次
       this.data.dataArray.push(index);
     }
   }
