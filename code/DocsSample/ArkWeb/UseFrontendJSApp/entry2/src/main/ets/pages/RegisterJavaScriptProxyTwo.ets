@@ -15,7 +15,6 @@
 
 // [Start Register_after_loaded]
 // xxx.ets
-// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -41,7 +40,7 @@ struct Index {
 
   build() {
     Column() {
-      // jsb对象不再使用后，需解除注册，防止内存泄漏
+      // 注册到window上的javaScript对象不再使用后，需解除注册，防止内存泄漏
       Button('deleteJavaScriptRegister')
         .onClick(() => {
           try {
