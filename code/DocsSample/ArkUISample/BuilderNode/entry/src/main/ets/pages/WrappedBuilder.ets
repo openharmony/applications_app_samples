@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Main_WrappedBuilder]
-import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI'; 
 
 class Params {
   public text: string = '';
