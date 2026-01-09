@@ -77,7 +77,7 @@ export default struct ConnectNetworkBtn {
   // 连接并接收指定网络的状态变化通知
   connectNetwork() {
     // [Start notification_network_netAvailable_netUnavailable]
-    // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
+    // 订阅网络可用事件，如果当前指定网络可用，通过on_netAvailable通知用户
     conn.on('netAvailable', (data: connection.NetHandle) => {
       hilog.info(0x0000, 'testTag', 'Network available, NetId is ' + data.netId);
       // [StartExclude notification_network_netAvailable_netUnavailable]
@@ -85,7 +85,7 @@ export default struct ConnectNetworkBtn {
       // [EndExclude notification_network_netAvailable_netUnavailable]
     });
 
-    // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
+    // 订阅网络不可用事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
     conn.on('netUnavailable', (data: void) => {
       hilog.info(0x0000, 'testTag', 'Network unavailable, data is ' + JSON.stringify(data));
       // [StartExclude notification_network_netAvailable_netUnavailable]
@@ -93,7 +93,23 @@ export default struct ConnectNetworkBtn {
       // [EndExclude notification_network_netAvailable_netUnavailable]
     });
     // [End notification_network_netAvailable_netUnavailable]
+    // 订阅网络能力变化事件，如果当前指定网络的能力发生变化，通过on_netCapabilitiesChange通知用户
+    conn.on('netCapabilitiesChange', (data: void) => {
+      hilog.info(0x0000, 'testTag', 'Network netCapabilitiesChange, data is ' + JSON.stringify(data));
+      // ...
+    });
 
+    // 订阅网络连接信息变化事件，如果当前指定网络的连接信息发生变化，通过on_netConnectionPropertiesChange通知用户
+    conn.on('netConnectionPropertiesChange', (data: void) => {
+      hilog.info(0x0000, 'testTag', 'Network netConnectionPropertiesChange, data is ' + JSON.stringify(data));
+      // ...
+    });
+
+    // 订阅网络丢失事件，如果当前处于连接状态的指定网络断开，通过on_netLost通知用户
+    conn.on('netLost', (data: void) => {
+      hilog.info(0x0000, 'testTag', 'Network netLost, data is ' + JSON.stringify(data));
+      // ...
+    });
     // [Start notification_network_register]
     // 订阅连接状态变化
     conn.register((err: BusinessError, data: void) => {
