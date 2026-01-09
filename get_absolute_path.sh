@@ -4,6 +4,10 @@ if [ ! -f "change_info.json" ] || [ ! -s "change_info.json" ]; then
     exit 1
 fi
 
+# 处理单引号：将文件中的单引号替换为双引号（保留原始文件）
+temp_change_info=$(mktemp)
+sed "s/'/\"/g" change_info.json > "$temp_change_info"
+
 # 定义要跳过的工程目录数组（可根据需要添加）
 skip_compile_list=()
 
@@ -88,7 +92,7 @@ main() {
      .rename[]? | if type == "array" then .[0], .[1] else . end // empty) |
     select(. != null and . != "") |
     select(startswith("code/")) |
-    sub("^code/"; "")' change_info.json 2>/dev/null | sort -u | while read -r rel_path; do
+    sub("^code/"; "")' "$temp_change_info" 2>/dev/null | sort -u | while read -r rel_path; do
         
         # 构建完整路径
         local full_path="./applications/standard/app_samples/code/$rel_path"
@@ -105,7 +109,7 @@ main() {
     fi
 
     # 清理临时文件
-    rm -f "$temp_file"
+    rm -f "$temp_file" "$temp_change_info"
 }
 
 # 执行主函数
