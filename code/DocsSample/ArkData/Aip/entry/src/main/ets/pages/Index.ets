@@ -19,21 +19,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [End import_the_aip_module]
 
 // [Start aip_getTextEmbeddingModel_operating_parameter]
-let textConfig:intelligence.ModelConfig = {
-  version:intelligence.ModelVersion.BASIC_MODEL,
-  isNpuAvailable:false,
-  cachePath:"/data"
+let textConfig: intelligence.ModelConfig = {
+  version: intelligence.ModelVersion.BASIC_MODEL,
+  isNpuAvailable: false,
+  cachePath: "/data"
 }
-let textEmbedding:intelligence.TextEmbedding;
+let textEmbedding: intelligence.TextEmbedding;
 // [End aip_getTextEmbeddingModel_operating_parameter]
 
 // [Start aip_getImageEmbeddingModel_operating_parameter]
-let imageConfig:intelligence.ModelConfig = {
-  version:intelligence.ModelVersion.BASIC_MODEL,
-  isNpuAvailable:false,
-  cachePath:"/data"
+let imageConfig: intelligence.ModelConfig = {
+  version: intelligence.ModelVersion.BASIC_MODEL,
+  isNpuAvailable: false,
+  cachePath: "/data"
 }
-let imageEmbedding:intelligence.ImageEmbedding;
+let imageEmbedding: intelligence.ImageEmbedding;
 // [End aip_getImageEmbeddingModel_operating_parameter]
 
 @Entry
@@ -44,14 +44,14 @@ struct Index {
   private getTextEmbeddingModel(): void {
     // [Start aip_getTextEmbeddingModel_operating]
     intelligence.getTextEmbeddingModel(textConfig)
-      .then((data:intelligence.TextEmbedding) => {
+      .then((data: intelligence.TextEmbedding) => {
         console.info('Succeeded in getting TextModel');
         textEmbedding = data;
         // [StartExclude aip_getTextEmbeddingModel_operating]
         this.message = 'aip getTextEmbeddingModel';
         // [EndExclude aip_getTextEmbeddingModel_operating]
       })
-      .catch((err:BusinessError) => {
+      .catch((err: BusinessError) => {
         console.error('Failed to get TextModel and code is ' + err.code);
         // [StartExclude aip_getTextEmbeddingModel_operating]
         this.message = 'aip getTextEmbeddingModel';
@@ -72,7 +72,7 @@ struct Index {
           this.message = 'aip loadTextModel';
           // [EndExclude aip_loadTextModel_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to load Model and code is ' + err.code);
           // [StartExclude aip_loadTextModel_operating]
           this.message = 'aip loadTextModel';
@@ -89,13 +89,13 @@ struct Index {
       // [Start aip_getTextEmbedding_operating]
       let text = 'text';
       textEmbedding.getEmbedding(text)
-        .then((data:Array<number>) => {
+        .then((data: Array<number>) => {
           console.info('Succeeded in getting Embedding');
           // [StartExclude aip_getTextEmbedding_operating]
           this.message = 'aip getTextEmbedding';
           // [EndExclude aip_getTextEmbedding_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to get Embedding and code is ' + err.code);
           // [StartExclude aip_getTextEmbedding_operating]
           this.message = 'aip getTextEmbedding';
@@ -104,13 +104,13 @@ struct Index {
 
       let batchTexts = ['text1','text2'];
       textEmbedding.getEmbedding(batchTexts)
-        .then((data:Array<Array<number>>) => {
+        .then((data: Array<Array<number>>) => {
           console.info('Succeeded in getting Embedding');
           // [StartExclude aip_getTextEmbedding_operating]
           this.message = 'aip getTextEmbedding';
           // [EndExclude aip_getTextEmbedding_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to get Embedding and code is ' + err.code);
           // [StartExclude aip_getTextEmbedding_operating]
           this.message = 'aip getTextEmbedding';
@@ -132,7 +132,7 @@ struct Index {
           this.message = 'aip releaseTextModel';
           // [EndExclude aip_releaseTextModel_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to release Model and code is ' + err.code);
           // [StartExclude aip_releaseTextModel_operating]
           this.message = 'aip releaseTextModel';
@@ -145,19 +145,19 @@ struct Index {
   private splitText(): void {
     // [Start aip_splitText_operating]
     let splitConfig:intelligence.SplitConfig = {
-      size:10,
-      overlapRatio:0.1
+      size: 10,
+      overlapRatio: 0.1
     }
     let splitText = 'text';
 
     intelligence.splitText(splitText, splitConfig)
-      .then((data:Array<string>) => {
+      .then((data: Array<string>) => {
         console.info('Succeeded in splitting Text');
         // [StartExclude aip_splitText_operating]
         this.message = 'aip splitText';
         // [EndExclude aip_splitText_operating]
       })
-      .catch((err:BusinessError) => {
+      .catch((err: BusinessError) => {
         console.error('Failed to split Text and code is ' + err.code);
         // [StartExclude aip_splitText_operating]
         this.message = 'aip splitText';
@@ -169,14 +169,14 @@ struct Index {
   private getImageEmbeddingModel(): void {
     // [Start aip_getImageEmbeddingModel_operating]
     intelligence.getImageEmbeddingModel(imageConfig)
-      .then((data:intelligence.ImageEmbedding) => {
+      .then((data: intelligence.ImageEmbedding) => {
         console.info('Succeeded in getting ImageModel');
         imageEmbedding = data;
         // [StartExclude aip_getImageEmbeddingModel_operating]
         this.message = 'aip getImageEmbeddingModel';
         // [EndExclude aip_getImageEmbeddingModel_operating]
       })
-      .catch((err:BusinessError) => {
+      .catch((err: BusinessError) => {
         console.error('Failed to get ImageModel and code is ' + err.code);
         // [StartExclude aip_getImageEmbeddingModel_operating]
         this.message = 'aip getImageEmbeddingModel';
@@ -197,7 +197,7 @@ struct Index {
           this.message = 'aip loadImageModel';
           // [EndExclude aip_loadImageModel_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to load Model and code is ' + err.code);
           // [StartExclude aip_loadImageModel_operating]
           this.message = 'aip loadImageModel';
@@ -214,13 +214,13 @@ struct Index {
       // [Start aip_getImageEmbedding_operating]
       let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
       imageEmbedding.getEmbedding(image)
-        .then((data:Array<number>) => {
+        .then((data: Array<number>) => {
           console.info('Succeeded in getting Embedding');
           // [StartExclude aip_getImageEmbedding_operating]
           this.message = 'aip getImageEmbedding';
           // [EndExclude aip_getImageEmbedding_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to get Embedding and code is ' + err.code);
           // [StartExclude aip_getImageEmbedding_operating]
           this.message = 'aip getImageEmbedding';
@@ -242,7 +242,7 @@ struct Index {
           this.message = 'aip releaseImageModel';
           // [EndExclude aip_releaseImageModel_operating]
         })
-        .catch((err:BusinessError) => {
+        .catch((err: BusinessError) => {
           console.error('Failed to release Model and code is ' + err.code);
           // [StartExclude aip_releaseImageModel_operating]
           this.message = 'aip releaseImageModel';
