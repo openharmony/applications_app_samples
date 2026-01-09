@@ -11,5 +11,5 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp types/project/specifyUncompressedPublicKey.cpp)
+add_library(entry SHARED napi_init.cpp types/project/specifyUncompressedPublicKey.cpp types/project/compressedPointData.cpp types/project/getKeyObject.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so libohcrypto.so)

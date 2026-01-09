@@ -112,33 +112,191 @@ export default function messageDigestComputationTest() {
       console.info('uitest: testMessageDigestComputation004 end');
       await driver.pressBack();
     })
+    /**
+     * 点击按钮，消息摘要计算(sha3 ArkTS 摘要算法await方式)
+     */
+    it('testMessageDigestComputation007', 0, async () => {
+      console.info('uitest: testMessageDigestComputation007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SHA3 SingleTimeAsync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call SHA3 SingleTimeAsync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SHA3 SingleTimeAsync Success'));
+      console.info('uitest: testMessageDigestComputation007 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 摘要算法同步方式)
+     */
+    it('testMessageDigestComputation008', 0, async () => {
+      console.info('uitest: testMessageDigestComputation008 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SHA3 SingleTimeSync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call SHA3 SingleTimeSync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SHA3 SingleTimeSync Success'));
+      console.info('uitest: testMessageDigestComputation008 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 分段摘要算法await方式)
+     */
+    it('testMessageDigestComputation009', 0, async () => {
+      console.info('uitest: testMessageDigestComputation009 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SHA3 SegmentationAsync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call SHA3 SegmentationAsync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SHA3 SegmentationAsync Success'));
+      console.info('uitest: testMessageDigestComputation009 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 分段摘要算法同步方式)
+     */
+    it('testMessageDigestComputation010', 0, async () => {
+      console.info('uitest: testMessageDigestComputation010 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SHA3 SegmentationSync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call SHA3 SegmentationSync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SHA3 SegmentationSync Success'));
+      console.info('uitest: testMessageDigestComputation010 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(sha3 ArkTS 摘要算法await方式)
+     */
+    it('testMessageDigestComputation011', 0, async () => {
+      console.info('uitest: testMessageDigestComputation011 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call MD5 SingleTimeAsync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call MD5 SingleTimeAsync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('MD5 SingleTimeAsync Success'));
+      console.info('uitest: testMessageDigestComputation011 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 摘要算法同步方式)
+     */
+    it('testMessageDigestComputation012', 0, async () => {
+      console.info('uitest: testMessageDigestComputation012 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call MD5 SingleTimeSync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call MD5 SingleTimeSync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('MD5 SingleTimeSync Success'));
+      console.info('uitest: testMessageDigestComputation012 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 分段摘要算法await方式)
+     */
+    it('testMessageDigestComputation013', 0, async () => {
+      console.info('uitest: testMessageDigestComputation013 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call MD5 SegmentationAsync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call MD5 SegmentationAsync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('MD5 SegmentationAsync Success'));
+      console.info('uitest: testMessageDigestComputation013 end');
+      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，消息摘要计算(ArkTS 分段摘要算法同步方式)
+     */
+    it('testMessageDigestComputation014', 0, async () => {
+      console.info('uitest: testMessageDigestComputation014 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call MD5 SegmentationSync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call MD5 SegmentationSync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('MD5 SegmentationSync Success'));
+      console.info('uitest: testMessageDigestComputation014 end');
+      await driver.pressBack();
+    })
 
     /**
      * 点击按钮，消息摘要计算(C/C++ 摘要算法)
      */
-    it('testMessageDigestComputation005', 0, async () => {
-      console.info('uitest: testMessageDigestComputation005 begin');
+    it('testMessageDigestComputation015', 0, async () => {
+      console.info('uitest: testMessageDigestComputation015 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('SingleTime C++'));
-      await driver.delayMs(1000);
+      const button1 = await driver.findComponent(ON.text('Cpp Test'));
+      await driver.delayMs(500);
       await button1.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('SingleTime C++ Success Result:0'));
-      console.info('uitest: testMessageDigestComputation005 end');
-    })
-
-    /**
-     * 点击按钮，消息摘要计算(C/C++ 分段摘要算法)
-     */
-    it('testMessageDigestComputation006', 0, async () => {
-      console.info('uitest: testMessageDigestComputation006 begin');
-      const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Segmentation C++'));
-      await driver.delayMs(1000);
-      await button1.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Segmentation C++ Success Result:0'));
-      console.info('uitest: testMessageDigestComputation006 end');
+      await driver.delayMs(500);
+      const button2 = await driver.findComponent(ON.text('SingleTime C++'));
+      await button2.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('SHA256 SingleTime C++ Success'));
+      await driver.delayMs(500);
+      const button3 = await driver.findComponent(ON.text('Segmentation C++'));
+      await button3.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('SHA256 Segmentation C++ Success'));
+      await driver.delayMs(500);
+      const button4 = await driver.findComponent(ON.text('SHA3 SingleTime C++'));
+      await button4.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('SHA3 SingleTime C++ Success'));
+      await driver.delayMs(500);
+      const button5 = await driver.findComponent(ON.text('SHA3 Segmentation C++'));
+      await button5.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('SHA3 Segmentation C++ Success'));
+      await driver.delayMs(500);
+      const button6 = await driver.findComponent(ON.text('MD5 SingleTime C++'));
+      await button6.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('MD5 SingleTime C++ Success'));
+      await driver.delayMs(500);
+      const button7 = await driver.findComponent(ON.text('MD5 Segmentation C++'));
+      await button7.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('MD5 Segmentation C++ Success'));
+      console.info('uitest: testMessageDigestComputation015 end');
+      await driver.pressBack();
     })
   })
 }

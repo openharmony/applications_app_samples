@@ -1,7 +1,7 @@
 #ifndef FILE_H
 #define FILE_H
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,11 @@
 
 #include "CryptoArchitectureKit/crypto_common.h"
 
-OH_Crypto_ErrCode doTestMd();
-OH_Crypto_ErrCode doLoopMd();
+OH_Crypto_ErrCode doTestSha256Md();
+OH_Crypto_ErrCode doLoopSha256Md();
+OH_Crypto_ErrCode doTestSha3Md();
+OH_Crypto_ErrCode doLoopSha3Md();
+OH_Crypto_ErrCode doTestMd5Md();
+OH_Crypto_ErrCode doLoopMd5Md();
 
 #endif // FILE_H

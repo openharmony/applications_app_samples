@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/Await",
     "pages/Promise",
-    "pages/Sync"
+    "pages/Sync",
+    "pages/CppTest"
   ]
 }

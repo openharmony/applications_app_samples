@@ -43,6 +43,42 @@
     {
       "name": "call_single_time_sync",
       "value": "Call SingleTime Sync"
+    },
+    {
+      "name": "call_cmac_segmentation_async",
+      "value": "Call CMAC Segmentation Async"
+    },
+    {
+      "name": "call_cmac_segmentation_sync",
+      "value": "Call CMAC Segmentation Sync"
+    },
+    {
+      "name": "call_cmac_single_time_async",
+      "value": "Call CMAC SingleTime Async"
+    },
+    {
+      "name": "call_cmac_single_time_sync",
+      "value": "Call CMAC SingleTime Sync"
+    },
+    {
+      "name": "call_cmac_single_time_cpp",
+      "value": "Call CMAC SingleTime C++"
+    },
+    {
+      "name": "call_cmac_segmentation_cpp",
+      "value": "Call CMAC Segmentation C++"
+    },
+    {
+      "name": "call_hmac_single_time_cpp",
+      "value": "Call HMAC SingleTime C++"
+    },
+    {
+      "name": "call_hmac_segmentation_cpp",
+      "value": "Call HMAC Segmentation C++"
+    },
+    {
+      "name": "cpp_test",
+      "value": "Cpp Test"
     }
   ]
 }

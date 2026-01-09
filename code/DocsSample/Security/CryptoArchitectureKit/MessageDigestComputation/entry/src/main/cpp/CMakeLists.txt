@@ -11,5 +11,5 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp types/project/segmentation.cpp types/project/singleTime.cpp)
+add_library(entry SHARED napi_init.cpp types/project/sha256/segmentation.cpp types/project/sha256/singleTime.cpp types/project/sha3/segmentation.cpp types/project/sha3/singleTime.cpp types/project/md5/segmentation.cpp types/project/md5/singleTime.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so libohcrypto.so)

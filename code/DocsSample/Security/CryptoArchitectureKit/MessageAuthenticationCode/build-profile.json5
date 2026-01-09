@@ -20,11 +20,14 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 14,
-        "compatibleSdkVersion": 14,
-        "targetSdkVersion": 14,
+        "compileSdkVersion": 23,
+        "compatibleSdkVersion": 23,
+        "targetSdkVersion": 23,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a", "x86_64"]
+          },
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true

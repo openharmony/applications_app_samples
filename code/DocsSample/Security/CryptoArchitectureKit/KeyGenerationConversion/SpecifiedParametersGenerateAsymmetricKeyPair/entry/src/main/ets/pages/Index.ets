@@ -67,6 +67,11 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/sm2/Sync')
         })
+      Button($r('app.string.cpp_test'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/cpp_test')
+        })
     }
     .height('100%')
     .width('100%')

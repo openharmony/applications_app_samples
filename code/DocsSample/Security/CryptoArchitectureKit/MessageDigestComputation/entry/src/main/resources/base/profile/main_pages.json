@@ -1,9 +1,18 @@
 {
   "src": [
     "pages/Index",
-    "pages/segmentation/SegmentationAsync",
-    "pages/segmentation/SegmentationSync",
-    "pages/singleTime/SingleTimeAsync",
-    "pages/singleTime/SingleTimeSync"
+    "pages/sha256/segmentation/SegmentationAsync",
+    "pages/sha256/segmentation/SegmentationSync",
+    "pages/sha256/singleTime/SingleTimeAsync",
+    "pages/sha256/singleTime/SingleTimeSync",
+    "pages/sha3/singleTime/SingleTimeAsync",
+    "pages/sha3/singleTime/SingleTimeSync",
+    "pages/sha3/segmentation/SegmentationAsync",
+    "pages/sha3/segmentation/SegmentationSync",
+    "pages/md5/singleTime/SingleTimeAsync",
+    "pages/md5/singleTime/SingleTimeSync",
+    "pages/md5/segmentation/SegmentationAsync",
+    "pages/md5/segmentation/SegmentationSync",
+    "pages/cpp_test"
   ]
 }

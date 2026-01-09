@@ -112,5 +112,94 @@ export default function messageAuthenticationCodeTest() {
       console.info('uitest: testMessageAuthenticationCode004 end');
       await driver.pressBack();
     })
+    it('testMessageAuthenticationCode005', 0, async () => {
+      console.info('uitest: testMessageAuthenticationCode005 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('CMAC Segmentation Async'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CMAC Segmentation Async'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('CMAC Segmentation Async Success'));
+      console.info('uitest: testMessageAuthenticationCode005 end');
+      await driver.pressBack();
+    })
+    it('testMessageAuthenticationCode006', 0, async () => {
+      console.info('uitest: testMessageAuthenticationCode006 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('CMAC Segmentation Sync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CMAC Segmentation Sync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('CMAC Segmentation Sync Success'));
+      console.info('uitest: testMessageAuthenticationCode006 end');
+      await driver.pressBack();
+    })
+    it('testMessageAuthenticationCode007', 0, async () => {
+      console.info('uitest: testMessageAuthenticationCode007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('CMAC SingleTime Async'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CMAC SingleTime Async'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('CMAC SingleTime Async Success'));
+      console.info('uitest: testMessageAuthenticationCode007 end');
+      await driver.pressBack();
+    })
+    it('testMessageAuthenticationCode008', 0, async () => {
+      console.info('uitest: testMessageAuthenticationCode008 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('CMAC SingleTime Sync'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call CMAC SingleTime Sync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('CMAC SingleTime Sync Success'));
+      console.info('uitest: testMessageAuthenticationCode008 end');
+  })
+
+   /**
+     * 点击按钮，消息认证码计算(C/C++ 消息认证码算法)
+     */
+     it('testMessageAuthenticationCode009', 0, async () => {
+      console.info('uitest: testMessageAuthenticationCode009 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Cpp Test'));
+      await driver.delayMs(500);
+      await button1.click();
+      await driver.delayMs(500);
+      const button2 = await driver.findComponent(ON.text('Call CMAC SingleTime C++'));
+      await button2.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('CMAC SingleTime C++ Success'));
+      await driver.delayMs(500);
+      const button3 = await driver.findComponent(ON.text('Call CMAC Segmentation C++'));
+      await button3.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('CMAC Segmentation C++ Success'));
+      await driver.delayMs(500);
+      const button4 = await driver.findComponent(ON.text('Call HMAC SingleTime C++'));
+      await button4.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('HMAC SingleTime C++ Success'));
+      await driver.delayMs(500);
+      const button5 = await driver.findComponent(ON.text('Call HMAC Segmentation C++'));
+      await button5.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('HMAC Segmentation C++ Success'));
+      await driver.delayMs(500);
+      console.info('uitest: testMessageAuthenticationCode009 end');
+      await driver.pressBack();
+    })
   })
 }

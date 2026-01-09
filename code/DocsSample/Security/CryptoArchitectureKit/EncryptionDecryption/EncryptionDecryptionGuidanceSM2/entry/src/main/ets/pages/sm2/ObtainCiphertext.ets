@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start sm2_obtain_ciphertext]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testGetCipherTextSpec() {
@@ -26,6 +27,8 @@ function testGetCipherTextSpec() {
   let spec: cryptoFramework.SM2CipherTextSpec = cryptoFramework.SM2CryptoUtil.getCipherTextSpec(cipherText, 'C1C3C2');
   console.info('getCipherTextSpec success');
 }
+
+// [End sm2_obtain_ciphertext]
 
 @Entry
 @Component

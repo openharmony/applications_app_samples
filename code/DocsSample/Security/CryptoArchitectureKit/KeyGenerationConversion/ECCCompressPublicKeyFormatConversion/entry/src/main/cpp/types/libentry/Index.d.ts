@@ -14,3 +14,5 @@
  */
 
 export const doTestEccDataCovert: () => number;
+export const doTestEccPointUncompressedToCompressed: () => number;
+export const doTestEccPointCompressedToPoint: () => number;
