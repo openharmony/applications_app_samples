@@ -728,14 +728,20 @@ napi_value Adopt(napi_env env, napi_callback_info info)
 
 // [End Adopt_Node]
 
+
+// [Start Remove_Adopt_Node]
+
 napi_value RemoveAdopt(napi_env env, napi_callback_info info)
 {
     OH_ArkUI_NativeModule_RemoveAdoptedChild(custom_->GetHandle(), nodeHandle_);
+    // 解除节点的接纳状态后，需要额外调用OH_ArkUI_RenderNodeUtils_DisposeNode释放对应的渲染节点，否则会导致内存泄漏。
     OH_ArkUI_RenderNodeUtils_DisposeNode(renderHandle_);
     nodeHandle_ = nullptr;
     renderHandle_ = nullptr;
     return nullptr;
 }
+
+// [End Remove_Adopt_Node]
 
 napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
 {
