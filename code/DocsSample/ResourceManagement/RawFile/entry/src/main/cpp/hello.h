@@ -29,5 +29,5 @@ napi_value GetRawFileContent(napi_env env, napi_callback_info info);
 napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info);
 napi_value IsRawDir(napi_env env, napi_callback_info info);
 
-#endif //RAWFILE_HELLO_H
+#endif // RAWFILE_HELLO_H
 // [End header_file]
