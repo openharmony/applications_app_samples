@@ -129,7 +129,7 @@ export struct ScrollSnapshot {
       }
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `snapAndMerge err, errCode: ${error.code}, error mesage: ${error.message}`);
+      Logger.error(TAG, `snapAndMerge err, errCode: ${error.code}, error message: ${error.message}`);
     }
   }
   // [End snapand_merge]
@@ -164,7 +164,7 @@ export struct ScrollSnapshot {
       }
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `scrollSnapAndMerge err, errCode: ${error.code}, error mesage: ${error.message}`);
+      Logger.error(TAG, `scrollSnapAndMerge err, errCode: ${error.code}, error message: ${error.message}`);
     }
   }
   // [End scroll_snapand_merge]
@@ -188,7 +188,7 @@ export struct ScrollSnapshot {
       await CommonUtils.sleep(200);
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `beforeSnapshot err, errCode: ${error.code}, error mesage: ${error.message}`);
+      Logger.error(TAG, `beforeSnapshot err, errCode: ${error.code}, error message: ${error.message}`);
     }
   }
 
