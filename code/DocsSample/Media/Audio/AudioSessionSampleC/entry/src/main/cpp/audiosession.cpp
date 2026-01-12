@@ -124,7 +124,7 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
     // [EndExclude cset_audioscene]
     // [Start cactive_sessionmanager]
     // [StartExclude cenable_muteSuggestion]
-    // CONCURRENCY_MIX_WITH_OTHERS 是示例，实际使用时请根据情况修改
+    // CONCURRENCY_MIX_WITH_OTHERS 是示例，实际使用时请根据情况修改。
     // [EndExclude cenable_muteSuggestion]
     // [EndExclude csessionactive_process]
     OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
