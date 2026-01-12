@@ -22,7 +22,7 @@
 IpcStub::IpcStub()
 {
     ipcStub_ = OH_IPCRemoteStub_Create("NativeChildIPCStubSample",
-        IpcStub::OnRemoteRequest, IpcStub::OnRemoteObjectDestory, this);
+        IpcStub::OnRemoteRequest, IpcStub::OnRemoteObjectDestroy, this);
 }
 
 IpcStub::~IpcStub()
@@ -35,7 +35,7 @@ OHIPCRemoteStub* IpcStub::GetIpcStub()
     return ipcStub_;
 }
 
-void IpcStub::OnRemoteObjectDestory(void *userData)
+void IpcStub::OnRemoteObjectDestroy(void *userData)
 {
 }
 

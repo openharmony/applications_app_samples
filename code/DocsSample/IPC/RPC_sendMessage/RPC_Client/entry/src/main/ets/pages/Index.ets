@@ -28,9 +28,6 @@ let dmInstance: distributedDeviceManager.DeviceManager
 let deviceList: Array<distributedDeviceManager.DeviceBasicInfo> | undefined;
 let deviceId: string| undefined;
 
-// 定义返回值，决定弹窗的呈现
-let isDisconnect = false;
-
 // 死亡通知
 class MyDeathRecipient implements rpc.DeathRecipient{
   onRemoteDied() {
@@ -39,6 +36,9 @@ class MyDeathRecipient implements rpc.DeathRecipient{
 };
 let deathRecipient = new MyDeathRecipient();
 // [End rpc_front-end_dependencies]
+
+// 定义返回值，决定弹窗的呈现
+let isDisconnect = false;
 
 // 定义睡眠时间
 async function sleep(ms: number) : Promise<void> {
@@ -118,7 +118,7 @@ struct ButtonCase1 {
   }
 }
 
-// [Start rpc_funcation_implement]
+// [Start rpc_function_implement]
 // [Start rpc_connect]
 // 获取权限
 function getPermission(context:common.UIAbilityContext) {
@@ -155,7 +155,8 @@ function getDeviceId(promptAction: PromptAction) {
     if (deviceList.length !== 0) {
       deviceId = deviceList[0].networkId;
       hilog.info(0x0000, 'testTag', 'RpcClient: networkId is ' + deviceId);
-      // [StartExclude toast]
+      // [StartExclude rpc_function_implement]
+      // [StartExclude rpc_connect]
       // 弹窗显示获取deviceId失败
       try {
         promptAction.showToast({
@@ -167,13 +168,15 @@ function getDeviceId(promptAction: PromptAction) {
         let code = (error as BusinessError).code;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
-      // [EndExclude toast]
+      // [EndExclude rpc_connect]
+      // [EndExclude rpc_function_implement]
     }
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'RpcClient: getDeviceId failed, code is  ' + code + ', message is ' + message);
-    // [StartExclude toast]
+    // [StartExclude rpc_function_implement]
+    // [StartExclude rpc_connect]
     // 弹窗显示获取deviceId失败
     try {
       promptAction.showToast({
@@ -185,7 +188,8 @@ function getDeviceId(promptAction: PromptAction) {
       let code = (error as BusinessError).code;
       hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
     };
-    // [EndExclude toast]
+    // [EndExclude rpc_connect]
+    // [EndExclude rpc_function_implement]
   }
 }
 
@@ -211,7 +215,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
         let message = (err as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'RpcClient: register failed, code is ' + code + ', message is ' + message);
       };
-      // [StartExclude toast]
+      // [StartExclude rpc_function_implement]
+      // [StartExclude rpc_connect]
       // 弹窗显示成功连接服务
       try {
         promptAction.showToast({
@@ -223,7 +228,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
         let message = (err as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
-      // [EndExclude toast]
+      // [EndExclude rpc_connect]
+      // [EndExclude rpc_function_implement]
     },
     onDisconnect: (elementName) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect. elementName is ' + JSON.stringify(elementName));
@@ -237,7 +243,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
         hilog.error(0x0000, 'testTag', 'RpcClient: unregister failed, code is ' + code + ', message is ' + message);
       }
       proxy = undefined;
-      // [StartExclude toast]
+      // [StartExclude rpc_function_implement]
+      // [StartExclude rpc_connect]
       isDisconnect = true;
       // 弹窗显示与服务端断开连接成功
       try {
@@ -250,11 +257,13 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
         let code = (error as BusinessError).code;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
-      // [EndExclude toast]
+      // [EndExclude rpc_connect]
+      // [EndExclude rpc_function_implement]
     },
     onFailed: (code: number) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: onFailed. code is :' + code);
-      // [StartExclude toast]
+      // [StartExclude rpc_function_implement]
+      // [StartExclude rpc_connect]
       // 弹窗显示连接服务失败
       try {
         promptAction.showToast({
@@ -266,7 +275,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
         let code = (error as BusinessError).code;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
-      // [EndExclude toast]
+      // [EndExclude rpc_connect]
+      // [EndExclude rpc_function_implement]
     },
   }
 
@@ -278,7 +288,6 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
     hilog.error(0x0000, 'testTag', 'RpcClient: connectService failed, code is ' + code + ', message is ' + message);
   }
 }
-// [End rpc_connect]
 
 // 断开连接
 function disconnectAbility(context: common.UIAbilityContext) {
@@ -293,6 +302,7 @@ function disconnectAbility(context: common.UIAbilityContext) {
     }
   }
 }
+// [End rpc_connect]
 
 // 发送消息
 async function sendString(promptAction: PromptAction) : Promise <void> {
@@ -313,7 +323,7 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
         let str = result.reply.readString();
         hilog.info(0x0000, 'testTag', 'RpcClient: sendMessageRequest receive str is  ' + str);
         // 弹窗显示发送消息成功
-        // [StartExclude toast]
+        // [StartExclude rpc_function_implement]
         try {
           promptAction.showToast({
             message: 'sendRequest success',
@@ -324,12 +334,12 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
           let code = (error as BusinessError).code;
           hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
         };
-        // [EndExclude toast]
+        // [EndExclude rpc_function_implement]
       })
       .catch((e: Error) => {
         hilog.error(0x0000, 'testTag', 'RpcClient: sendMessageRequest failed, error is ' + JSON.stringify(e));
         // 弹窗显示发送消息失败
-        // [StartExclude toast]
+        // [StartExclude rpc_function_implement]
         try {
           promptAction.showToast({
             message: 'sendRequest failed, please connect to the server first',
@@ -340,7 +350,7 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
           let code = (error as BusinessError).code;
           hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
         };
-        // [EndExclude toast]
+        // [EndExclude rpc_function_implement]
       })
       .finally(() => {
         data.reclaim();
@@ -349,7 +359,7 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
   } else {
     hilog.error(0x0000, 'testTag', 'RpcClient: proxy is invalid');
     // 弹窗显示发送消息失败
-    // [StartExclude toast]
+    // [StartExclude rpc_function_implement]
     try {
       promptAction.showToast({
         message: 'sendRequest failed, please connect to the server first',
@@ -360,9 +370,9 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
       let code = (error as BusinessError).code;
       hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
     };
-    // [EndExclude toast]
+    // [EndExclude rpc_function_implement]
   }
 }
-// [End rpc_funcation_implement]
+// [End rpc_function_implement]
 
 
