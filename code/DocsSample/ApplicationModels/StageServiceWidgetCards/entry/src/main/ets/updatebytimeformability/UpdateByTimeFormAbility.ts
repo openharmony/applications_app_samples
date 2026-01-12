@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start set_form_next_refreshime]
+// [Start set_form_next_refreshtime]
 // entry/src/main/ets/updatebytimeformability/UpdateByTimeFormAbility.ts
 // [Start update_by_time_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
@@ -33,7 +33,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     return formBindingData.createFormBindingData(formData);
   }
 
-  // [StartExclude set_form_next_refreshime]
+  // [StartExclude set_form_next_refreshtime]
   onUpdateForm(formId: string): void {
     // Called to notify the form provider to update a specified form.
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}`);
@@ -50,7 +50,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     });
   }
 
-  // [EndExclude set_form_next_refreshime]
+  // [EndExclude set_form_next_refreshtime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
     // 当卡片提供方的postCardAction接口的message事件被触发时调用
@@ -82,5 +82,5 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [EndExclude update_by_time_form_ability]
 }
 
-// [End set_form_next_refreshime]
+// [End set_form_next_refreshtime]
 // [End update_by_time_form_ability]

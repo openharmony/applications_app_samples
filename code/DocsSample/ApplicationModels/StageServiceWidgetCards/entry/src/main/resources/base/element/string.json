@@ -189,7 +189,7 @@
       "value": "Update duration"
     },
     {
-      "name": "widget_scheupdatetime_desc",
+      "name": "widget_scheduledUpdateTime_desc",
       "value": "Scheduled update time"
     },
     {
