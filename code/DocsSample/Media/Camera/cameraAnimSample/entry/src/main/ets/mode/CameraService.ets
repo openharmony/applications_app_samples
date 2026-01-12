@@ -26,9 +26,9 @@ import { Constants } from '../common/Constants';
 const TAG: string = 'CameraService';
 
 export class SliderValue {
-  min: number = 1;
-  max: number = 6;
-  step: number = 0.1;
+  public min: number = 1;
+  public max: number = 6;
+  public step: number = 0.1;
 }
 
 class CameraService {
