@@ -619,7 +619,7 @@ napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
     // 保持Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
     g_env = env;
-    //创建文本列表。
+    // 创建文本列表。
     auto list = CreateTextListExample();
     //保持Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetRootNode(list);
