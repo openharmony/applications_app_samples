@@ -136,7 +136,7 @@ export struct FlashingLightComponent {
           this.isControlEnable = false;
         }
       })
-      .position({x: "20%", y: "0%"})
+      .position({x: '20%', y: '0%'})
 
       Button() {
         Text('微距')
@@ -152,7 +152,7 @@ export struct FlashingLightComponent {
           this.isMacroEnable = false;
         }
       })
-      .position({x: "50%", y: "0%"})
+      .position({x: '50%', y: '0%'})
 
       // WhiteBalanceMode
       Column() {

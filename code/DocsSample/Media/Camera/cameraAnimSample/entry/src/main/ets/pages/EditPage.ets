@@ -27,8 +27,8 @@ const TAG: string = 'EditPage';
 
 class RequestImageParams {
   context: Context | undefined = undefined;
-  photoAsset: photoAccessHelper.PhotoAsset | undefined = undefined;
-  callback: Function = () => {
+  public photoAsset: photoAccessHelper.PhotoAsset | undefined = undefined;
+  public callback: Function = () => {
   };
 }
 

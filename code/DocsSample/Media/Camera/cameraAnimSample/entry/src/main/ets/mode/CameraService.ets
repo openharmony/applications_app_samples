@@ -45,7 +45,7 @@ class CameraService {
   };
   private curCameraDevice: camera.CameraDevice | undefined = undefined;
   private isRecording: boolean = false;
-  frameStartFlag: number = 0;
+  public frameStartFlag: number = 0;
   // 推荐拍照分辨率之一
   private photoProfileObj: camera.Profile = {
     format: 2000,
@@ -265,7 +265,7 @@ class CameraService {
    * 获取可变焦距范围
    */
   getZoomRatioRange(): Array<number> {
-    let zoomRatioRange: Array<number> = [];
+    let zoomRatioRange: number[] = [];
     if (this.session !== undefined) {
       zoomRatioRange = this.session.getZoomRatioRange();
     }
@@ -406,7 +406,7 @@ class CameraService {
    * 获取支持指定的相机设备对象
    */
   getSupportedCamerasFn(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
-    let supportedCameras: Array<camera.CameraDevice> = [];
+    let supportedCameras: camera.CameraDevice[] = [];
     try {
       supportedCameras = cameraManager.getSupportedCameras();
       Logger.info(TAG, `getSupportedCameras success: ${this.cameras}, length: ${this.cameras?.length}`);

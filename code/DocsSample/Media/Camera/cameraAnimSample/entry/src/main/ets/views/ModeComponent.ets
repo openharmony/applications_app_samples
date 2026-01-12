@@ -50,7 +50,6 @@ export struct ModeComponent {
     Logger.info(TAG, 'handleSavePicture');
     this.setImageInfo(photoAsset);
     CameraService.saveCameraPhoto(photoAsset);
-    // AppStorage.set<boolean>('isOpenEditPage', true);
     Logger.info(TAG, 'setImageInfo end');
   }
 

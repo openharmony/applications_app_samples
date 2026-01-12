@@ -40,7 +40,8 @@ export struct FocusAreaComponent {
         this.focusPointBol = true;
         this.focusPointVal[0] = e.touches[0].windowX;
         this.focusPointVal[1] = e.touches[0].windowY;
-        // 归一化焦点。 设置的焦点与相机sensor角度和窗口方向有关（相机sensor角度可通过CameraDevice的cameraOrientation属性获取），下面焦点是以竖屏窗口，相机sensor角度为90度场景下的焦点设置
+        // 归一化焦点。 设置的焦点与相机sensor角度和窗口方向有关（相机sensor角度可通过CameraDevice的cameraOrientation属性获取），
+        // 下面焦点是以竖屏窗口，相机sensor角度为90度场景下的焦点设置
         CameraService.setFocusPoint({
           x: e.touches[0].y / this.xComponentHeight,
           y: 1 - (e.touches[0].x / this.xComponentWidth)
