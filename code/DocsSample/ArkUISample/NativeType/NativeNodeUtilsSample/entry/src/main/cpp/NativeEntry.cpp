@@ -582,7 +582,7 @@ void NativeEntry::RegisterNodeEventReceiver()
         // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
         switch (eventType) {
             case NODE_ON_CLICK_EVENT:{
-                //实现具体业务
+                // 实现具体业务
                 break;
             }
             default:{
@@ -621,7 +621,7 @@ napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
     g_env = env;
     // 创建文本列表。
     auto list = CreateTextListExample();
-    //保持Native侧对象到管理类中，维护生命周期。
+    // 保持Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetRootNode(list);
     return nullptr;
 }
