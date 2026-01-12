@@ -40,7 +40,7 @@ struct p2pSetting {
     AppStorage.setOrCreate('goBand' , this.goBand);
   }
 
-// [Start createGrop]
+// [Start createGroup]
   async createGroup() {
     try {
       let deviceInfo = await wifiManager.getP2pLocalDevice();
@@ -58,7 +58,7 @@ struct p2pSetting {
       hilog.info(TAG, `createGroup Error: ${JSON.stringify(e)}`);
     }
   }
-// [End createGrop]
+// [End createGroup]
   build() {
     Column() {
       Row() {
