@@ -1,56 +1,50 @@
-# entry:
+# Web组件嵌套滚动、Web组件对接软键盘
 
-## Web组件嵌套滚动
+## 介绍
+1. Web组件嵌套滚动：实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-nested-scrolling.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+2. Web组件对接软键盘：实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-docking-softkeyboard.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+
+## Web组件嵌套滚动 ImpNestedScroll 
 
 ### 介绍
+1. 使用Web组件nestedScroll属性来设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动，同时也允许在过程中动态改变嵌套滚动的模式。
 
-#### ImpNestedScroll
-
-1. 实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-nested-scrolling.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
-
-##### 效果预览
+### 效果预览
 
 | 主页                                                       |
 | ---------------------------------------------------------- |
 | <img src="screenshots\ImpNestedScroll.png" width="360;" /> |
 
-##### 使用说明
+### 使用说明
 
 1. 设置滚动模式（前）
    - 在 切换前滚动模式 区域，点击 SELF_ONLY、SELF_FIRST、PARENT_FIRST、PARALLEL 按钮，可分别将 NestedScrollModeF 设置为相应的滚动模式，此模式用于控制 Web 视图向前滚动（scrollForward）时与父组件的交互方式。
 2. 设置滚动模式（后）
    - 在 切换后滚动模式 区域，同样点击上述按钮，可设置NestedScrollModeB，用于控制 Web 视图向后滚动（scrollBackward）时的交互模式。
 
-## Web组件对接软键盘
+## Web组件对接软键盘 SetSKBMode_one 
 
 ### 介绍
 
-1. 实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-docking-softkeyboard.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
-
-#### SetSKBMode_one
-
-##### 介绍
-
 1. 本示例主要介绍Web组件对接软键盘，在UIContext的键盘避让模式为Offset模式情况下，通过WebKeyboardAvoidMode()设置ArkWeb组件的键盘避让模式。
 
-##### 效果预览
+### 效果预览
 
 | 主页                                                         | 软键盘                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <img src="./screenshots/SetSKBMode_one_1.png" width="360;" /> | <img src="./screenshots/SetSKBMode_one_2.png" width="360;" /> |
 
-使用说明
+### 使用说明
 
 1. 点击输入框拉起软键盘。
 
-#### OnIntKbdAttachSysCustIn
+## Web组件对接软键盘 OnIntKbdAttachSysCustIn
 
-##### 介绍
+### 介绍
 
 1. 本示例主要介绍拦截系统软键盘与自定义软键盘输入，调用onInterceptKeyboardAttach来拦截系统软键盘的弹出。
 
-
-##### 效果预览
+### 效果预览
 
 | 主页                                                         |
 | ------------------------------------------------------------ |
@@ -85,15 +79,13 @@ entry/src/main/
 
 [ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
-## entry2:
+## Web组件对接软键盘 SetSKBMode_two
 
-### SetSKBMode_two
-
-#### 介绍
+### 介绍
 
 1. 本示例主要介绍Web组件对接软键盘，设置UIContext的软键盘避让模式setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)，应用窗口高度可缩小避开软键盘，ArkWeb组件跟随ArkUI重新布局。
 
-#### 效果预览
+### 效果预览
 
 | 主页                                                        | 软键盘                                                      |
 | ----------------------------------------------------------- | ----------------------------------------------------------- |
