@@ -1,12 +1,26 @@
-# 检查change_info.json文件是否存在且有效
-if [ ! -f "change_info.json" ] || [ ! -s "change_info.json" ]; then
-    echo "错误: change_info.json 文件不存在或为空" >&2
+# 遍历查找change_info.json文件是否存在且有效
+find_change_info_file() {
+    local dir="$PWD"
+    while [[ "$dir" != "/" ]]; do
+        if [[ -f "$dir/change_info.json" ]]; then
+            echo "$dir/change_info.json"
+            return 0
+        fi
+        dir=$(dirname "$dir")
+    done
+    return 1
+}
+
+# 查找并验证change_info.json文件
+change_info_file=$(find_change_info_file)
+if [ -z "$change_info_file" ] || [ ! -s "$change_info_file" ]; then
+    echo "错误: 在目录树中未找到有效的change_info.json文件" >&2
     exit 1
 fi
 
 # 处理单引号：将文件中的单引号替换为双引号（保留原始文件）
 temp_change_info=$(mktemp)
-sed "s/'/\"/g" change_info.json > "$temp_change_info"
+sed "s/'/\"/g" "$change_info_file" > "$temp_change_info"
 
 # 定义要跳过的工程目录数组（可根据需要添加）
 skip_compile_list=()
@@ -57,16 +71,16 @@ find_module_root_and_lastdir() {
             if [[ -n "$compile_sdk_version" && ("$compile_sdk_version" == "20" || "$compile_sdk_version" == "23" ) ]]; then
                 # 检查是否在跳过列表中
                 if ! should_skip "$module_root"; then
-                    # 提取从app_samples开始的相对路径
+                    # 获取相对路径（相对于当前目录）
                     local relative_path
-                    relative_path=$(echo "$module_root" | sed -n 's|.*/app_samples/|app_samples/|p')
+                    relative_path=$(realpath --relative-to=. "$module_root")
                     
                     # 获取路径的最后一部分
                     local last_dir
                     last_dir=$(basename "$relative_path")
                     
                     # 输出结果
-                    echo "$relative_path,$last_dir"
+                    echo "app_samples/$relative_path,$last_dir"
                     return 0
                 fi
             fi
@@ -90,12 +104,10 @@ main() {
      .modified[]? // empty,
      .deleted[]? // empty,
      .rename[]? | if type == "array" then .[0], .[1] else . end // empty) |
-    select(. != null and . != "") |
-    select(startswith("code/")) |
-    sub("^code/"; "")' "$temp_change_info" 2>/dev/null | sort -u | while read -r rel_path; do
+    select(. != null and . != "")' "$temp_change_info" 2>/dev/null | sort -u | while read -r rel_path; do
         
-        # 构建完整路径
-        local full_path="./applications/standard/app_samples/code/$rel_path"
+        # 构建完整路径（相对于当前目录）
+        local full_path="./$rel_path"
         
         # 处理每个文件路径
         find_module_root_and_lastdir "$full_path"
