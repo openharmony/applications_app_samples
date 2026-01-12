@@ -81,7 +81,7 @@ struct Index {
         })
       if (this.showFlag) {
         Column() {
-          Text('Childs')
+          Text('Children')
           ForEach(this.dataArray, (info: Info) => {
             Child({ infoWrapper: new InfoWrapper(info) })
           })
