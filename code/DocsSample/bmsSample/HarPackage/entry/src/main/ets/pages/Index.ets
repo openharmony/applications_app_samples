@@ -39,7 +39,7 @@ struct Index {
 
       // [StartExclude har_package_011]
       // [StartExclude har_package_012]
-      //引用HAR的ets类和方法
+      // 引用HAR的ets类和方法
       Button($r('app.string.button'))
         .id('button')
         .height(48)
@@ -53,7 +53,7 @@ struct Index {
         })
       // [EndExclude har_package_011]
       // [StartExclude har_package_010]
-      //引用HAR的native方法
+      // 引用HAR的native方法
       Button($r('app.string.native_add'))
         .id('nativeAdd')
         .height(48)
