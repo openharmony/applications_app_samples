@@ -56,7 +56,7 @@ entry/src/main
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 2. 本示例支持API version 20及以上版本的SDK。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.878，构建 2025年12月24日)编译运行。
 
 ### 下载
 
