@@ -95,6 +95,16 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/sm2_signature_verification/sm2_signature_verification_synchronous')
         })
+      Button($r('app.string.sm2_sign_data_der_to_rs'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/sm2_data_format_convertion/sm2_sign_data_der_to_rs')
+        })
+      Button($r('app.string.sm2_sign_data_rs_to_der'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/sm2_data_format_convertion/sm2_sign_data_rs_to_der')
+        })
     }
     .height('100%')
     .width('100%')

@@ -12,6 +12,8 @@
     "pages/rsa_pss_signature_verification/rsa_pss_signature_verification_asynchronous",
     "pages/rsa_pss_signature_verification/rsa_pss_signature_verification_synchronous",
     "pages/sm2_signature_verification/sm2_signature_verification_asynchronous",
-    "pages/sm2_signature_verification/sm2_signature_verification_synchronous"
+    "pages/sm2_signature_verification/sm2_signature_verification_synchronous",
+    "pages/sm2_data_format_convertion/sm2_sign_data_der_to_rs",
+    "pages/sm2_data_format_convertion/sm2_sign_data_rs_to_der"
   ]
 }
