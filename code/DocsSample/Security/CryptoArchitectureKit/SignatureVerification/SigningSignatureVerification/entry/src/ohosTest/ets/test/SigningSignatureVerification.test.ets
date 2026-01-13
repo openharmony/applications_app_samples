@@ -124,5 +124,31 @@ export default function signingSignatureVerificationTest() {
       await driver.assertComponentExist(ON.text('SM2SignatureSuccess Result:false'));
       console.info('uitest: testSigningSignatureVerificationTest006 end');
     })
+    /**
+     * 点击按钮，SM2签名数据R,S格式转换为DER格式(C/C++)
+     */
+    it('testSigningSignatureVerificationTest007', 0, async () => {
+      console.info('uitest: testSigningSignatureVerificationTest007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SM2 RS to DER'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SM2RStoDERSuccess Result:0'));
+      console.info('uitest: testSigningSignatureVerificationTest007 end');
+    })
+    /**
+     * 点击按钮，SM2签名数据DER格式转换为R,S格式(C/C++)
+     */
+    it('testSigningSignatureVerificationTest008', 0, async () => {
+      console.info('uitest: testSigningSignatureVerificationTest008 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call SM2 DER Convert RS'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SM2DerConvertRSSuccess Result:0'));
+      console.info('uitest: testSigningSignatureVerificationTest008 end');
+    })
   })
 }

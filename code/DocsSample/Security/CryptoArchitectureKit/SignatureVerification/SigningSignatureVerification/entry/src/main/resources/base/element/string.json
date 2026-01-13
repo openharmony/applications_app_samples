@@ -35,6 +35,14 @@
     {
       "name": "call_sm2signature",
       "value": "Call SM2Signature"
+    },
+    {
+      "name": "call_sm2_rs_to_der",
+      "value": "Call SM2 RS to DER"
+    },
+    {
+      "name": "call_sm2_der_convert_rs",
+      "value": "Call SM2 DER Convert RS"
     }
   ]
 }

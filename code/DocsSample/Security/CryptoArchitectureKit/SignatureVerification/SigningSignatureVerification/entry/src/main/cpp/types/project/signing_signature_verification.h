@@ -25,5 +25,7 @@ OH_Crypto_ErrCode DoTestRsaSignatureRecover();
 bool DoTestRsaPssSignatureSeg();
 bool DoTestEcdsaSignature();
 bool DoTestSm2Signature();
+OH_Crypto_ErrCode DoTestSm2RStoDER();
+OH_Crypto_ErrCode DoTestSm2DerConvertRS();
 
 #endif // MYAPPLICATION_AA_H
