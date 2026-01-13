@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
-import { Driver, ON, Component, Point, MatchPattern } from '@kit.TestKit';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level } from '@ohos/hypium';
+import { Driver, ON, Component } from '@kit.TestKit';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Want } from '@kit.AbilityKit';
 
@@ -24,12 +23,6 @@ let driver = Driver.create();
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
-}
-
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = delegator.getAppContext().resourceManager;
-  let text = await manage.getStringValue(resource);
-  return text;
 }
 
 export default function abilityTest() {

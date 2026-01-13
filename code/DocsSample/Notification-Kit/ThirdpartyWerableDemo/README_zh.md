@@ -39,7 +39,7 @@ entry/src/main/ets
 
 ### 具体实现
 - 通知订阅扩展能力封装在NotificationSubscriberExtAbility中，源码参考：[NotificationSubscriberExtAbility.ets](entry/src/main/ets/extensionability/NotificationSubscriberExtAbility.ets)
-    * 收到通知后，通过[SppClientManager](entry/src/main/ets/utils/SppClientManager.ets)将notificationInfo序列化并发送到对端蓝牙设备；发送前若通道未就绪，先触发startConnect 并等待 3 s 握手完成，失败自动再重连一次。
+    * 收到通知后，通过[SppClientManager](entry/src/main/ets/extensionability/NotificationSubscriberExtAbility.ets)将notificationInfo序列化并发送到对端蓝牙设备；发送前若通道未就绪，先触发startConnect 并等待 3 s 握手完成，失败自动再重连一次。
     * 通知被取消时，将hashCodes数组封装后调用sendCancelNotificationData，异常捕获后同收到通知逻辑，再次调用sendCancelNotificationData方法。
     * 能力销毁时onDestroy 中统一 stopConnect，防止蓝牙句柄泄漏。
 - 连接地址动态获取：
