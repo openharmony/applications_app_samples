@@ -95,13 +95,13 @@ struct Index {
 
   /*
    * obtain-supported-authentication-capabilities.md
-   * 以查询设备是否支持认证可信等级≥ATL1的PIN认证功能为例
+   * 以查询设备是否支持认证可信等级≥ATL3的FACE认证功能为例
    */
   // [Start obtain_supported_capabilities]
   obtainingSupported() {
     try {
       // 查询认证能力是否支持
-      userAuth.getAvailableStatus(userAuth.UserAuthType.PIN, userAuth.AuthTrustLevel.ATL1);
+      userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
       Logger.info('current auth trust level is supported');
       return true;
     } catch (error) {
