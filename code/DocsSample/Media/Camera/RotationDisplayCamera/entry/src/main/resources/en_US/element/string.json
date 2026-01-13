@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomCamera"
+    },
+    {
+      "name": "permission_CAMERA",
+      "value": "For camera operations"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "For camera video recording"
+    },
+    {
+      "name": "reason_media_location",
+      "value": "For scenarios where the camera retrieves media information"
+    },
+    {
+      "name": "reason_write_imagevideo",
+      "value": "For reading and writing media files with the camera"
+    },
+    {
+      "name": "reason_read_imagevideo",
+      "value": "For camera media file read/write"
+    },
+    {
+      "name": "permission_SENSOR",
+      "value": "For sensors"
+    },
+    {
+      "name": "recording",
+      "value": "Recording in progress"
+    },
+    {
+      "name": "paused",
+      "value": "Paused"
+    },
+    {
+      "name": "wakeup_text",
+      "value": "Tap the screen to wake up the camera"
+    },
+    {
+      "name": "photo",
+      "value": "Photo"
+    },
+    {
+      "name": "video",
+      "value": "Video"
+    },
+    {
+      "name": "preview_rate",
+      "value": "Preview frame rate%d"
+    },
+    {
+      "name": "delay",
+      "value": "Time-lapse%d"
+    },
+    {
+      "name": "delay_close",
+      "value": "Off time-lapse"
+    },
+    {
+      "name": "moving_open",
+      "value": "Live photo mode is on"
+    },
+    {
+      "name": "moving_close",
+      "value": "Live photo mode is off"
+    },
+    {
+      "name": "photo_single",
+      "value": "Single-segment shooting"
+    },
+    {
+      "name": "photo_double",
+      "value": "Dual-segment shooting"
+    },
+    {
+      "name": "stabilization_enable",
+      "value": "Video stabilization is on"
+    },
+    {
+      "name": "stabilization_disabled",
+      "value": "Video stabilization is off"
+    },
+    {
+      "name": "grid_line_open",
+      "value": "Grid lines are enabled."
+    },
+    {
+      "name": "grid_line_close",
+      "value": "Grid lines are disabled."
+    },
+    {
+      "name": "level_open",
+      "value": "The spirit level is enabled"
+    },
+    {
+      "name": "level_close",
+      "value": "The spirit level is disabled"
+    },
+    {
+      "name": "flash_auto",
+      "value": "Flash is in auto mode"
+    },
+    {
+      "name": "flash_close",
+      "value": "The flash is off."
+    },
+    {
+      "name": "flash_always",
+      "value": "The flash is always on"
+    },
+    {
+      "name": "flash_open",
+      "value": "The flash is on"
+    },
+    {
+      "name": "preview_image_open",
+      "value": "Dual-channel preview has been enabled"
+    },
+    {
+      "name": "preview_image_close",
+      "value": "Dual-channel preview has been disabled"
+    },
+    {
+      "name": "permission_LOCATION",
+      "value": "For location"
+    }
+  ]
+}

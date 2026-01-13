@@ -1,0 +1,125 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 ("the License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    // [Start permissions]
+    // [Start permissions_acc]
+    "requestPermissions": [
+      // [StartExclude permissions_acc]
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:permission_CAMERA",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      },
+      // [StartExclude permissions]
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:reason_microphone",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:reason_media_location",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:reason_write_imagevideo",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:reason_read_imagevideo",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        },
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:permission_LOCATION",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      },
+      // [EndExclude permissions_acc]
+      {
+        "name": "ohos.permission.ACCELEROMETER",
+        "reason": "$string:permission_SENSOR",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
+      }
+      // [EndExclude permissions]
+    ]
+    // [End permissions]
+    // [End permissions_acc]
+  }
+}

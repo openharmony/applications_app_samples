@@ -1,0 +1,148 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CameraKitDemo"
+    },
+    {
+      "name": "permission_CAMERA",
+      "value": "用于相机操作"
+    },
+    {
+      "name": "reason_microphone",
+      "value": "用于相机录像场景"
+    },
+    {
+      "name": "reason_media_location",
+      "value": "用于相机获取媒体信息场景"
+    },
+    {
+      "name": "reason_write_imagevideo",
+      "value": "用于相机读写媒体文件"
+    },
+    {
+      "name": "reason_read_imagevideo",
+      "value": "用于相机读写媒体文件"
+    },
+    {
+      "name": "permission_SENSOR",
+      "value": "用于传感器"
+    },
+    {
+      "name": "recording",
+      "value": "录制中"
+    },
+    {
+      "name": "paused",
+      "value": "已暂停"
+    },
+    {
+      "name": "wakeup_text",
+      "value": "点击屏幕唤醒相机"
+    },
+    {
+      "name": "photo",
+      "value": "拍照"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    },
+    {
+      "name": "preview_rate",
+      "value": "预览帧率%d"
+    },
+    {
+      "name": "delay",
+      "value": "延时拍照%d"
+    },
+    {
+      "name": "delay_close",
+      "value": "延时拍照关闭"
+    },
+    {
+      "name": "moving_open",
+      "value": "动态拍照已开启"
+    },
+    {
+      "name": "moving_close",
+      "value": "动态拍照已关闭"
+    },
+    {
+      "name": "photo_single",
+      "value": "单段拍照"
+    },
+    {
+      "name": "photo_double",
+      "value": "双段拍照"
+    },
+    {
+      "name": "photo_hdr_open",
+      "value": "HDR已开启"
+    },
+    {
+      "name": "photo_hdr_close",
+      "value": "HDR已关闭"
+    },
+    {
+      "name": "stabilization_enable",
+      "value": "录像防抖已开启"
+    },
+    {
+      "name": "stabilization_disabled",
+      "value": "录像防抖已关闭"
+    },
+    {
+      "name": "grid_line_open",
+      "value": "网格线已开启"
+    },
+    {
+      "name": "grid_line_close",
+      "value": "网格线已关闭"
+    },
+    {
+      "name": "level_open",
+      "value": "水平仪已开启"
+    },
+    {
+      "name": "level_close",
+      "value": "水平仪已关闭"
+    },
+    {
+      "name": "flash_auto",
+      "value": "闪关灯已自动"
+    },
+    {
+      "name": "flash_close",
+      "value": "闪光灯已关闭"
+    },
+    {
+      "name": "flash_always",
+      "value": "闪光灯已常亮"
+    },
+    {
+      "name": "flash_open",
+      "value": "闪光灯已开启"
+    },
+    {
+      "name": "preview_image_open",
+      "value": "双路预览已开启"
+    },
+    {
+      "name": "preview_image_close",
+      "value": "双路预览已关闭"
+    },
+    {
+      "name": "permission_LOCATION",
+      "value": "用于地理位置"
+    }
+  ]
+}

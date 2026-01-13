@@ -1,0 +1,14 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "commons": "file:../commons",
+    "camera": "file:../camera",
+    "@ohos/hypium" : "1.0.18"
+  }
+}
+
