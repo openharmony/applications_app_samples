@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start widget_updt_router_card]
+// [Start widget_update_router_card]
 let storageUpdateRouter = new LocalStorage();
 
 @Entry(storageUpdateRouter)
@@ -67,4 +67,4 @@ struct WidgetUpdateRouterCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
-// [End widget_updt_router_card]
+// [End widget_update_router_card]
