@@ -62,7 +62,8 @@ struct ModeButtonsView {
               await this.cameraManager.release();
               this.photoManager.setIsActive(this.previewVM.isPhotoMode() ? true : false);
               this.videoManager.setIsActive(this.previewVM.isPhotoMode() ? false : true);
-              await this.cameraManager.start(this.previewVM.surfaceId, cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
+              await this.cameraManager.start(this.previewVM.surfaceId,
+                cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
               this.syncButtonSettings();
             }
           })

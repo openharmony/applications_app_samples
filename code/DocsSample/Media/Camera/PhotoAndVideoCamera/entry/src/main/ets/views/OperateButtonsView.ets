@@ -135,7 +135,8 @@ struct OperateButtonsView {
         await this.cameraManager.release();
         const cameraPosition = this.previewVM.getCameraPosition();
         const sceneMode = this.previewVM.getSceneMode();
-        await this.cameraManager.start(this.previewVM.surfaceId, cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
+        await this.cameraManager.start(this.previewVM.surfaceId,
+          cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
         this.syncButtonSettings();
       }
     })
@@ -227,7 +228,8 @@ struct OperateButtonsView {
         const cameraPosition = this.previewVM.getCameraPosition();
         const sceneMode = this.previewVM.getSceneMode();
         await this.cameraManager.release();
-        await this.cameraManager.start(this.previewVM.surfaceId, cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
+        await this.cameraManager.start(this.previewVM.surfaceId,
+          cameraPosition, sceneMode, this.previewVM.getPreviewRatio());
         // [StartExclude toggleCameraPositionButton]
         this.syncButtonSettings();
         // [EndExclude toggleCameraPositionButton]

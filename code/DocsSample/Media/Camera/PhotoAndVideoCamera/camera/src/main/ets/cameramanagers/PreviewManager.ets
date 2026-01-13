@@ -22,10 +22,10 @@ import CameraConstant from '../constants/CameraConstants';
 const TAG_LOG = 'PreviewManager'
 
 export class PreviewManager implements OutputManager {
-  type: OutputType = OutputType.PREVIEW;
-  output?: camera.PreviewOutput;
-  isActive: boolean = true;
-  onPreviewStart: () => void = () => {};
+  public type: OutputType = OutputType.PREVIEW;
+  public output?: camera.PreviewOutput;
+  public isActive: boolean = true;
+  public onPreviewStart: () => void = () => {};
 
   constructor(onPreviewStart: () => void) {
     this.onPreviewStart = onPreviewStart;
@@ -40,8 +40,8 @@ export class PreviewManager implements OutputManager {
       .sort((a, b) => Math.abs(a.size.width - profileWidth) - Math.abs(b.size.width - profileWidth))
       .find(pf => {
         const pfDisplayRatio = pf.size.width / pf.size.height;
-        return pf.format === config.profile.format
-          && Math.abs(pfDisplayRatio - displayRatio) <= CameraConstant.PROFILE_DIFFERENCE;
+        return pf.format === config.profile.format &&
+          Math.abs(pfDisplayRatio - displayRatio) <= CameraConstant.PROFILE_DIFFERENCE;
       });
     if (!previewProfile) {
       Logger.error(TAG_LOG, 'Failed to get preview profile');

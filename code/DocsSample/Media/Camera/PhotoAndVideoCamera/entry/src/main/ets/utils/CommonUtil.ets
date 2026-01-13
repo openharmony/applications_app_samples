@@ -18,9 +18,15 @@ import { camera } from '@kit.CameraKit';
 import { display } from '@kit.ArkUI';
 
 export function limitNumberInRange(src: number, range: number[]) {
-  if (range.length < 2) return src;
-  if (src < range[0]) return range[0];
-  if (src > range[1]) return range[1];
+  if (range.length < 2) {
+    return src;
+  }
+  if (src < range[0]) {
+    return range[0];
+  }
+  if (src > range[1]) {
+    return range[1];
+  }
   return src;
 }
 
@@ -72,13 +78,13 @@ export function getClampedChildPosition(childSize: Size, parentSize: Size, point
 // [End getClampedChildPosition]
 
 export function showToast(
-  UIContext: UIContext,
+  uiContext: UIContext,
   message: ResourceStr = '',
   duration = 2000,
   alignment = Alignment.Top,
   offset: Offset = { dx: 0, dy: 300 }
 ) {
-  UIContext.getPromptAction().openToast({
+  uiContext.getPromptAction().openToast({
     message,
     duration,
     alignment,

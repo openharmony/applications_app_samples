@@ -50,7 +50,7 @@ export class CameraManager {
   public session?: camera.PhotoSession | camera.VideoSession;
   private cameraInput?: camera.CameraInput;
   private outputManagers: OutputManager[] = [];
-  private xComponentSurfaceId: string = "";
+  private xComponentSurfaceId: string = '';
   private cameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_UNSPECIFIED;
   private sceneMode: camera.SceneMode = camera.SceneMode.NORMAL_PHOTO;
 

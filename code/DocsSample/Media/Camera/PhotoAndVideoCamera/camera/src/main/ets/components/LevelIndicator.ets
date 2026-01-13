@@ -32,8 +32,8 @@ export struct LevelIndicator {
   }
 
   isAlign() {
-    return Math.abs(this.getRotate()) - 0 <= ANGLE_DIFFERENCE
-      || Math.abs(Math.abs(this.getRotate()) - 90) <= ANGLE_DIFFERENCE;
+    return Math.abs(this.getRotate()) - 0 <= ANGLE_DIFFERENCE ||
+      Math.abs(Math.abs(this.getRotate()) - 90) <= ANGLE_DIFFERENCE;
   }
 
   build() {

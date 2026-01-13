@@ -24,10 +24,10 @@ import CameraConstant from '../constants/CameraConstants';
 const TAG = 'ImageReceiverManager';
 
 export class ImageReceiverManager implements OutputManager {
-  type: OutputType = OutputType.PREVIEW;
-  output?: camera.PreviewOutput;
-  isActive: boolean = true;
-  callback: (px: PixelMap) => void;
+  public type: OutputType = OutputType.PREVIEW;
+  public output?: camera.PreviewOutput;
+  public isActive: boolean = true;
+  public callback: (px: PixelMap) => void;
   private position: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
 
   constructor(cb: (px: PixelMap) => void) {
@@ -42,8 +42,8 @@ export class ImageReceiverManager implements OutputManager {
       .sort((a, b) => Math.abs(a.size.width - profileWidth) - Math.abs(b.size.width - profileWidth))
       .find(pf => {
         const pfDisplayRatio = pf.size.width / pf.size.height;
-        return pf.format === config.profile.format
-          && Math.abs(pfDisplayRatio - displayRatio) <= CameraConstant.PROFILE_DIFFERENCE;
+        return pf.format === config.profile.format &&
+          Math.abs(pfDisplayRatio - displayRatio) <= CameraConstant.PROFILE_DIFFERENCE;
       });
     if (!previewProfile) {
       Logger.error(TAG, 'Failed to get preview profile');

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Permissions } from "@kit.AbilityKit";
+import { Permissions } from '@kit.AbilityKit';
 
 class CameraConstant {
   static readonly RATIO_PHOTO: number = 4 / 3;

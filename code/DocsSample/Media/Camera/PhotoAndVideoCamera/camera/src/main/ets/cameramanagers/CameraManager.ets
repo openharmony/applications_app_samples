@@ -23,7 +23,7 @@ const TAG = 'CameraManager';
 
 export class CameraManager {
   private cameraManager: camera.CameraManager;
-  session?: camera.PhotoSession | camera.VideoSession;
+  public session?: camera.PhotoSession | camera.VideoSession;
   private cameraInput?: camera.CameraInput;
   private outputManagers: OutputManager[] = [];
   private isHdr: boolean = false;
@@ -54,9 +54,10 @@ export class CameraManager {
     return this.cameraManager;
   }
 
-  getBestProfile(sceneMode: camera.SceneMode, outputType: OutputType, capability: camera.CameraOutputCapability, targetRatio: number, isHdr: boolean): camera.Profile | undefined {
+  getBestProfile(sceneMode: camera.SceneMode, outputType: OutputType,
+    capability: camera.CameraOutputCapability, targetRatio: number, isHdr: boolean): camera.Profile | undefined {
     Logger.info(TAG, `getProfile outputType:${outputType} targetRatio:${targetRatio}`);
-    let profileArr: Array<camera.Profile> = [];
+    let profileArr: camera.Profile[] = [];
     if (outputType === OutputType.PREVIEW) {
       // preview
       profileArr = capability.previewProfiles;
@@ -144,7 +145,8 @@ export class CameraManager {
         Logger.info(TAG, `CameraTest createOutput 222: ${sceneMode}`)
         if (outputManager.isActive) {
           Logger.info(TAG, `CameraTest createOutput 333: ${sceneMode}`)
-          let bestProfile: camera.Profile | undefined = this.getBestProfile(sceneMode, outputManager.type, capability, ratio, this.isHdr);
+          let bestProfile: camera.Profile | undefined = this.getBestProfile(sceneMode,
+            outputManager.type, capability, ratio, this.isHdr);
           if (bestProfile === undefined) {
             Logger.info(TAG, `CameraTest createOutput faild: ${sceneMode}`)
             return;
@@ -224,7 +226,7 @@ export class CameraManager {
     const cameraDevices = this.cameraManager.getSupportedCameras();
     const device = cameraDevices?.find(device => device.cameraPosition === cameraPosition) || cameraDevices[0];
     if (!device) {
-      Logger.error(TAG, `Failed to get camera device. cameraPosition: ${cameraPosition}}`);
+      Logger.error(TAG, `Failed to get camera device. cameraPosition: ${cameraPosition}`);
     }
     return device;
   }
@@ -347,7 +349,7 @@ export class CameraManager {
   }
 
   getSupportedColorSpaces(): Array<colorSpaceManager.ColorSpace> {
-    let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
+    let colorSpaces: colorSpaceManager.ColorSpace[] = [];
     const session = this.session as (camera.PhotoSession | camera.VideoSession);
     try {
       colorSpaces = session.getSupportedColorSpaces();
@@ -362,7 +364,7 @@ export class CameraManager {
   setColorSpaceBeforeCommitConfig(isHdr: boolean): void {
     let colorSpace: colorSpaceManager.ColorSpace =
       isHdr ? colorSpaceManager.ColorSpace.DISPLAY_P3 : colorSpaceManager.ColorSpace.SRGB;
-    let colorSpaces: Array<colorSpaceManager.ColorSpace> = this.getSupportedColorSpaces();
+    let colorSpaces: colorSpaceManager.ColorSpace[] = this.getSupportedColorSpaces();
     let isSupportedColorSpaces = colorSpaces.indexOf(colorSpace) >= 0;
     if (isSupportedColorSpaces) {
       console.info(`setColorSpace: ${colorSpace}`);

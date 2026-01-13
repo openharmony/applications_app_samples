@@ -29,16 +29,16 @@ export enum CameraMode {
 class PreviewViewModel {
   private uiContext: UIContext;
   // [Start isFront]
-  isFront: boolean = false;
+  public isFront: boolean = false;
   // [StartExclude isFront]
-  cameraMode: CameraMode = CameraMode.PHOTO;
-  xComponentController: XComponentController = new XComponentController();
-  surfaceId: string = '';
-  previewSize: Size = WindowUtil.getMaxDisplaySize(CameraConstant.RATIO_PHOTO);
-  rates?: number[] = [];
-  currentRate: number = 0;
-  blurRadius: number = 0;
-  blurRotation: RotateOptions = { y: 0.5, angle: 0};
+  public cameraMode: CameraMode = CameraMode.PHOTO;
+  public xComponentController: XComponentController = new XComponentController();
+  public surfaceId: string = '';
+  public previewSize: Size = WindowUtil.getMaxDisplaySize(CameraConstant.RATIO_PHOTO);
+  public rates?: number[] = [];
+  public currentRate: number = 0;
+  public blurRadius: number = 0;
+  public blurRotation: RotateOptions = { y: 0.5, angle: 0};
 
   constructor(uiContext: UIContext) {
     this.uiContext = uiContext;
@@ -65,7 +65,8 @@ class PreviewViewModel {
   }
 
   // [Start getProfile]
-  getProfile: (cameraOrientation: number, picFormat: camera.CameraFormat) => camera.Profile = (cameraOrientation, picFormat) => {
+  getProfile: (cameraOrientation: number,
+    picFormat: camera.CameraFormat) => camera.Profile = (cameraOrientation, picFormat) => {
     const displaySize: Size = WindowUtil.getMaxDisplaySize(this.getPreviewRatio());
     const displayRotation = display.getDefaultDisplaySync().rotation * 90;
     const isRevert = (cameraOrientation + displayRotation) % 180 !== 0;

@@ -43,7 +43,7 @@ export enum AVRecorderState {
 }
 
 export class VideoManager implements OutputManager {
-  type: OutputType = OutputType.VIDEO;
+  public type: OutputType = OutputType.VIDEO;
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avConfig: media.AVRecorderConfig | undefined = undefined;
   private avProfile: media.AVRecorderProfile | undefined = undefined;
@@ -51,12 +51,12 @@ export class VideoManager implements OutputManager {
   private context: Context | undefined = undefined;
   private cameraPosition: number = 0;
   private qualityLevel: QualityLevel = QualityLevel.NORMAL;
-  output: camera.VideoOutput | undefined = undefined;
+  public output: camera.VideoOutput | undefined = undefined;
   private videoUri: string = '';
   private file: fileIo.File | undefined = undefined;
-  state: media.AVRecorderState = AVRecorderState.IDLE;
-  isActive: boolean = false;
-  isHdr: boolean = false;
+  public state: media.AVRecorderState = AVRecorderState.IDLE;
+  public isActive: boolean = false;
+  public isHdr: boolean = false;
   private callback: (pixelMap: image.PixelMap, url: string) => void = () => {
   };
 
@@ -126,8 +126,8 @@ export class VideoManager implements OutputManager {
   // [Start stop_video]
   async stop() {
     try {
-      if (this.avRecorder?.state === AVRecorderState.STARTED
-        || this.avRecorder?.state === AVRecorderState.PAUSED) {
+      if (this.avRecorder?.state === AVRecorderState.STARTED ||
+        this.avRecorder?.state === AVRecorderState.PAUSED) {
         await this.avRecorder.stop();
         await this.output?.stop();
         const thumbnail = await this.getVideoThumbnail();
