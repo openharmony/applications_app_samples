@@ -71,7 +71,7 @@ entry/src/
 
 * 设置公共事件信息并订阅公共事件的功能封装在common_event_subscribe，源码参考[common_event_subscribe.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
   * 订阅信息 / 订阅者：CreateSubscriber()/DestroySubscriber()封装 API，管理资源生命周期；
-  * 事件订阅：CreateSubscriber()调用[OH_CommonEvent_Subscribe](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createsubscriber)完成订阅；
+  * 事件订阅：Subscribe()调用[OH_CommonEvent_Subscribe](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_subscribe)完成订阅；
   * 销毁订阅：DestroySubscriber()调用[OH_CommonEvent_DestroySubscriber](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_DestroySubscriber)销毁订阅；
   * 事件解析：OnReceive()回调解析基础信息，调用[OH_CommonEvent_GetEventFromRcvData](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_GetEventFromRcvData)获取回调公共事件名称；
   * 有序事件：AbortCommonEvent()调用[OH_CommonEvent_IsOrderedCommonEvent](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_IsOrderedCommonEvent)判断是否为有序公共事件；
@@ -99,8 +99,8 @@ entry/src/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行。
-2. 本示例为Stage模型，支持API version 18及以上版本的SDK。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
+2. 本示例支持API version 18及以上版本的SDK。
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.878，构建 2025年12月24日)编译运行。
 
 ### 下载
 
