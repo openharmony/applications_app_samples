@@ -80,6 +80,31 @@ async function registWithFD(context: common.UIAbilityContext) {
     if (globalLogUpdate) {
       globalLogUpdate('Succeeded in doing registerSourceFromFd.', false);
     }
+    // [Start set_hapticparam]
+    let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_NORMAL;
+    audioHapticManagerInstance.setAudioLatencyMode(idForFd, latencyMode);
+
+    let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
+    audioHapticManagerInstance.setStreamUsage(idForFd, usage);
+    // [End set_hapticparam]
+    // [EndExclude create_haptic]
+    audioHapticManagerInstance.createPlayer(idForFd, options).then((value: audioHaptic.AudioHapticPlayer) => {
+      console.info(`Create the audio haptic player successfully.`);
+      audioHapticPlayer = value;
+      // [StartExclude create_haptic]
+      if (globalLogUpdate) {
+        globalLogUpdate(`Create the audio haptic player successfully.`, false);
+      }
+      // [EndExclude create_haptic]
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to create player ${err}`);
+      // [StartExclude create_haptic]
+      if (globalLogUpdate) {
+        globalLogUpdate(`Failed to create player ${err}`, true);
+      }
+      // [EndExclude create_haptic]
+    });
+    // [End create_haptic]
     // [EndExclude get_haptic]
   }).catch((err: BusinessError) => {
     console.error(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`);
@@ -90,31 +115,6 @@ async function registWithFD(context: common.UIAbilityContext) {
     // [EndExclude get_haptic]
   });
   // [End get_haptic]
-  // [Start set_hapticparam]
-  let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;
-  audioHapticManagerInstance.setAudioLatencyMode(idForFd, latencyMode);
-
-  let usage: audio.StreamUsage = audio.StreamUsage.STREAM_USAGE_NOTIFICATION;
-  audioHapticManagerInstance.setStreamUsage(idForFd, usage);
-  // [End set_hapticparam]
-  // [EndExclude create_haptic]
-  audioHapticManagerInstance.createPlayer(idForFd, options).then((value: audioHaptic.AudioHapticPlayer) => {
-    console.info(`Create the audio haptic player successfully.`);
-    audioHapticPlayer = value;
-    // [StartExclude create_haptic]
-    if (globalLogUpdate) {
-      globalLogUpdate(`Create the audio haptic player successfully.`, false);
-    }
-    // [EndExclude create_haptic]
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create player ${err}`);
-    // [StartExclude create_haptic]
-    if (globalLogUpdate) {
-      globalLogUpdate(`Failed to create player ${err}`, true);
-    }
-    // [EndExclude create_haptic]
-  });
-  // [End create_haptic]
 }
 async function start(){
   if (audioHapticPlayer == null){
