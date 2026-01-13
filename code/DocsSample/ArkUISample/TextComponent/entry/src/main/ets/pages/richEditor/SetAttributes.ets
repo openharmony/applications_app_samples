@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -75,32 +75,45 @@ struct BindSelectionMenu {
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_1')替换为实际资源文件，在本示例中该资源文件的value值为"设置自定义选择菜单"
-        title: $r('app.string.Set_Attributes_title_1'),
-        // 请将$r('app.string.Set_Attributes_title_1_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过bindSelectionMenu设置自定义选择菜单"
-        description: $r('app.string.Set_Attributes_title_1_desc'),
-      }) {
-        RichEditor(this.options)
-          .onReady(() => {
-            // 请将$r('app.string.SetAttributes_Text_4')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了自定义菜单，长按可触发。"
-            this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_4')), {
-              style: {
-                fontColor: Color.Black,
-                fontSize: 18
-              }
-            })
-          })
-          .bindSelectionMenu(RichEditorSpanType.TEXT, this.SystemMenu, ResponseType.LongPress, {
-            onDisappear: () => {
-              this.sliderShow = false
+      // [StartExclude richEditor_bindSelectionMenu]
+      // 请将$r('app.string.Set_Attributes_title_1')替换为实际资源文件，在本示例中该资源文件的value值为"设置自定义选择菜单"
+      Text($r('app.string.Set_Attributes_title_1'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_bindSelectionMenu]
+      RichEditor(this.options)
+        .onReady(() => {
+          // 请将$r('app.string.SetAttributes_Text_4')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了自定义菜单，长按可触发。"
+          this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_4')), {
+            style: {
+              fontColor: Color.Black,
+              fontSize: 18
             }
           })
-          // 绑定自定义菜单
-          .width(300)
-          .height(300)
-      }
-    }
+        })
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.SystemMenu, ResponseType.LongPress, {
+          onDisappear: () => {
+            this.sliderShow = false
+          }
+        })
+        // 绑定自定义菜单
+        .width(300)
+        .height(300)
+      // [StartExclude richEditor_bindSelectionMenu]
+      // 请将$r('app.string.Set_Attributes_title_1_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过bindSelectionMenu设置自定义选择菜单"
+      Text($r('app.string.Set_Attributes_title_1_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_bindSelectionMenu]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
 
   @Builder
@@ -145,34 +158,45 @@ struct attr2 {
   // [Start richEditor_color]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_color]
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"设置输入框光标、手柄颜色"
-        title: $r('app.string.Set_Attributes_title_2'),
-        // 请将$r('app.string.Set_Attributes_title_2_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过caretColor设置输入框光标、手柄颜色"
-        description: $r('app.string.Set_Attributes_title_2_desc')
-      }) {
-        // [EndExclude richEditor_color]
-        RichEditor(this.options)
-          .onReady(() => {
-            // 请将$r('app.string.SetAttributes_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了光标手柄颜色。"
-            this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_5')), {
-              style: {
-                fontColor: Color.Black,
-                fontSize: 15
-              }
-            })
+      // [StartExclude richEditor_color]
+      // 请将$r('app.string.Set_Attributes_title_2')替换为实际资源文件，在本示例中该资源文件的value值为"设置输入框光标、手柄颜色"
+      Text($r('app.string.Set_Attributes_title_2'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_color]
+      RichEditor(this.options)
+        .onReady(() => {
+          // 请将$r('app.string.SetAttributes_Text_5')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了光标手柄颜色。"
+          this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_5')), {
+            style: {
+              fontColor: Color.Black,
+              fontSize: 15
+            }
           })
-          .caretColor(Color.Orange)
-          .width(300)
-          .height(300)
-        // [End richEditor_color]
-      }
-    }
+        })
+        .caretColor(Color.Orange)
+        .width(300)
+        .height(300)
+      // [StartExclude richEditor_color]
+      // 请将$r('app.string.Set_Attributes_title_2_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过caretColor设置输入框光标、手柄颜色"
+      Text($r('app.string.Set_Attributes_title_2_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_color]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_color]
 }
 
 @Component
@@ -180,32 +204,43 @@ struct attr3 {
   // [Start richEditor_placeholder]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_placeholder]
 
   build() {
     Column() {
-      ComponentCard({
-        title: $r('app.string.Set_Attributes_title_3'),
-        description: $r('app.string.Set_Attributes_title_3_desc')
-      }) {
-        // [EndExclude richEditor_placeholder]
-        RichEditor(this.options)
-          // 请将$r('app.string.SetAttributes_Text_6')替换为实际资源文件，在本示例中该资源文件的value值为"此处为提示文本..."
-          .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_6')), {
-            fontColor: Color.Gray,
-            font: {
-              size: 15,
-              weight: FontWeight.Normal,
-              family: 'HarmonyOS Sans',
-              style: FontStyle.Normal
-            }
-          })
-          .width(300)
-          .height(50)
-        // [End richEditor_placeholder]
-      }
-    }
+      // [StartExclude richEditor_placeholder]
+      Text($r('app.string.Set_Attributes_title_3'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_placeholder]
+      RichEditor(this.options)
+        // 请将$r('app.string.SetAttributes_Text_6')替换为实际资源文件，在本示例中该资源文件的value值为"此处为提示文本..."
+        .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_6')), {
+          fontColor: Color.Gray,
+          font: {
+            size: 15,
+            weight: FontWeight.Normal,
+            family: 'HarmonyOS Sans',
+            style: FontStyle.Normal
+          }
+        })
+        .width(300)
+        .height(50)
+      // [StartExclude richEditor_placeholder]
+      Text($r('app.string.Set_Attributes_title_3_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_placeholder]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_placeholder]
 }
 
 @Component
@@ -213,34 +248,45 @@ struct attr4 {
   // [Start richEditor_maxLines]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_maxLines]
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_4')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大行数"
-        title: $r('app.string.Set_Attributes_title_4'),
-        // 请将$r('app.string.Set_Attributes_title_4_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLines设置富文本可显示的最大行数"
-        description: $r('app.string.Set_Attributes_title_4_desc')
-      }) {
-        // [EndExclude richEditor_maxLines]
-        /* 请将$r('app.string.SetAttributes_Text_7')替换为实际资源文件，在本示例中该资源文件的
-         value值为"组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行" */
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_7')),
-              {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
-              })
-          })
-          .maxLines(2)
-        // [End richEditor_maxLines]
-      }
-    }
+      // [StartExclude richEditor_maxLines]
+      // 请将$r('app.string.Set_Attributes_title_4')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大行数"
+      Text($r('app.string.Set_Attributes_title_4'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_maxLines]
+      /* 请将$r('app.string.SetAttributes_Text_7')替换为实际资源文件，在本示例中该资源文件的
+       value值为"组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行" */
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_7')),
+            {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
+            })
+        })
+        .maxLines(2)
+      // [StartExclude richEditor_maxLines]
+      // 请将$r('app.string.Set_Attributes_title_4_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLines设置富文本可显示的最大行数"
+      Text($r('app.string.Set_Attributes_title_4_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_maxLines]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_maxLines]
 }
 
 @Component
@@ -248,25 +294,36 @@ struct attr5 {
   // [Start richEditor_maxLength]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_maxLength]
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_5')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大长度"
-        title: $r('app.string.Set_Attributes_title_5'),
-        // 请将$r('app.string.Set_Attributes_title_5_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLength设置富文本的最大输入字符数"
-        description: $r('app.string.Set_Attributes_title_5_desc')
-      }) {
-        // [EndExclude richEditor_maxLength]
-        RichEditor(this.options)
-          // 请将$r('app.string.SetAttributes_Text_8')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了最大字符数：7"
-          .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
-          .maxLength(7)
-          // [End richEditor_maxLength]
-      }
-    }
+      // [StartExclude richEditor_maxLength]
+      // 请将$r('app.string.Set_Attributes_title_5')替换为实际资源文件，在本示例中该资源文件的value值为"设置最大长度"
+      Text($r('app.string.Set_Attributes_title_5'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_maxLength]
+      RichEditor(this.options)
+        // 请将$r('app.string.SetAttributes_Text_8')替换为实际资源文件，在本示例中该资源文件的value值为"组件设置了最大字符数：7"
+        .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
+        .maxLength(7)
+      // [StartExclude richEditor_maxLength]
+      // 请将$r('app.string.Set_Attributes_title_5_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过maxLength设置富文本的最大输入字符数"
+      Text($r('app.string.Set_Attributes_title_5_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_maxLength]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_maxLength]
 }
 
 @Component
@@ -303,36 +360,47 @@ struct Decoration {
   // [Start richEditor_decoration]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_decoration]
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_9')替换为实际资源文件，在本示例中该资源文件的value值为"设置富文本组件中文本装饰线"
-        title: $r('app.string.Set_Attributes_title_9'),
-        // 请将$r('app.string.Set_Attributes_title_9_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过decoration设置富文本组件中文本装饰线"
-        description: $r('app.string.Set_Attributes_title_9_desc')
-      }) {
-        // [EndExclude richEditor_decoration]
-        RichEditor(this.options)
-          .onReady(() => {
-            // 请将$r('app.string.Demo_oneText')替换为实际资源文件，在本示例中该资源文件的value值为"一段预置的文本"
-            this.controller.addTextSpan($r('app.string.Demo_oneText'), {
-              style: {
-                fontSize: 25,
-                decoration: {
-                  type: TextDecorationType.LineThrough,
-                  color: Color.Blue,
-                  // 设置装饰线粗细比例为6
-                  thicknessScale: 6
-                }
+      // [StartExclude richEditor_decoration]
+      // 请将$r('app.string.Set_Attributes_title_9')替换为实际资源文件，在本示例中该资源文件的value值为"设置富文本组件中文本装饰线"
+      Text($r('app.string.Set_Attributes_title_9'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_decoration]
+      RichEditor(this.options)
+        .onReady(() => {
+          // 请将$r('app.string.Demo_oneText')替换为实际资源文件，在本示例中该资源文件的value值为"一段预置的文本"
+          this.controller.addTextSpan($r('app.string.Demo_oneText'), {
+            style: {
+              fontSize: 25,
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                color: Color.Blue,
+                // 设置装饰线粗细比例为6
+                thicknessScale: 6
               }
-            })
+            }
           })
-        // [End richEditor_decoration]
-      }
-    }.width('100%')
+        })
+      // [StartExclude richEditor_decoration]
+      // 请将$r('app.string.Set_Attributes_title_9_desc')替换为实际资源文件，在本示例中该资源文件的value值为"通过decoration设置富文本组件中文本装饰线"
+      Text($r('app.string.Set_Attributes_title_9_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_decoration]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_decoration]
 }
 
 @Component
@@ -404,91 +472,112 @@ struct SetTextVerticalAlign {
   // [Start richEditor_textVerticalAlign]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_textVerticalAlign]
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_11')替换为实际资源文件，在本示例中该资源文件的value值为"设置垂直居中"
-        title: $r('app.string.Set_Attributes_title_11'),
-        // 请将$r('app.string.Set_Attributes_title_11_desc')替换为实际资源文件，
-        // 在本示例中该资源文件的value值为"通过textVerticalAlign设置文本段落在垂直方向的对齐方式"
-        description: $r('app.string.Set_Attributes_title_11_desc')
-      }) {
-        // [EndExclude richEditor_textVerticalAlign]
-        RichEditor(this.options)
-          .onReady(() => {
-            // 请将$r('app.media.startIcon')替换为实际资源文件
-            this.controller.addImageSpan($r('app.media.startIcon'), {
-              imageStyle: {
-                size: [100, 100]
-              }
-            })
-            // 请将$r('app.string.Demo_verticalAlignString')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段富文本，展示了文本垂直居中的效果。"
-            this.controller.addTextSpan($r('app.string.Demo_verticalAlignString'), {
-              style: {
-                fontColor: Color.Pink,
-                fontSize: '32'
-              },
-              paragraphStyle: {
-                textAlign: TextAlign.Start,
-                textVerticalAlign: TextVerticalAlign.CENTER,
-                leadingMargin: 16
-              }
-            })
+      // [StartExclude richEditor_textVerticalAlign]
+      // 请将$r('app.string.Set_Attributes_title_11')替换为实际资源文件，在本示例中该资源文件的value值为"设置垂直居中"
+      Text($r('app.string.Set_Attributes_title_11'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_textVerticalAlign]
+      RichEditor(this.options)
+        .onReady(() => {
+          // 请将$r('app.media.startIcon')替换为实际资源文件
+          this.controller.addImageSpan($r('app.media.startIcon'), {
+            imageStyle: {
+              size: [100, 100]
+            }
           })
-        // [End richEditor_textVerticalAlign]
-      }
-    }
+          // 请将$r('app.string.Demo_verticalAlignString')替换为实际资源文件，在本示例中该资源文件的value值为"这是一段富文本，展示了文本垂直居中的效果。"
+          this.controller.addTextSpan($r('app.string.Demo_verticalAlignString'), {
+            style: {
+              fontColor: Color.Pink,
+              fontSize: '32'
+            },
+            paragraphStyle: {
+              textAlign: TextAlign.Start,
+              textVerticalAlign: TextVerticalAlign.CENTER,
+              leadingMargin: 16
+            }
+          })
+        })
+      // [StartExclude richEditor_textVerticalAlign]
+      /* 请将$r('app.string.Set_Attributes_title_11_desc')替换为实际资源文件，在本示例中该资源文件的
+        value值为"通过textVerticalAlign设置文本段落在垂直方向的对齐方式" */
+      Text($r('app.string.Set_Attributes_title_11_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_textVerticalAlign]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
+  // [End richEditor_textVerticalAlign]
 }
 
-
+// [Start richEditor_enableAutoSpacing]
 @Component
 struct EnableAutoSpacing {
-  // [Start richEditor_enableAutoSpacing]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_enableAutoSpacing]
   @State
   enableAutoSpace:boolean = false;
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_12')替换为实际资源文件，在本示例中该资源文件的value值为"设置中西文自动间距"
-        title: $r('app.string.Set_Attributes_title_12'),
-        /* 请将$r('app.string.Set_Attributes_title_12_desc')替换为实际资源文件，
-         在本示例中该资源文件的value值为"通过enableAutoSpacing设置是否开启中文与西文的自动间距" */
-        description: $r('app.string.Set_Attributes_title_12_desc')
-      }) {
-        Column({ space: 3 }) {
-          // [EndExclude richEditor_enableAutoSpacing]          
-          RichEditor(this.options)
-            .onReady(() => {
-              // 请将$r('app.string.Demo_autoSpacingString')替换为实际资源文件，在本示例中该资源文件的value值为"中西文Auto Spacing自动间距"
-              this.controller.addTextSpan($r('app.string.Demo_autoSpacingString'),
+      // [StartExclude richEditor_enableAutoSpacing]
+      // 请将$r('app.string.Set_Attributes_title_12')替换为实际资源文件，在本示例中该资源文件的value值为"设置中西文自动间距"
+      Text($r('app.string.Set_Attributes_title_12'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_enableAutoSpacing]
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            // 请将$r('app.string.Demo_autoSpacingString')替换为实际资源文件，在本示例中该资源文件的value值为"中西文Auto Spacing自动间距"
+            this.controller.addTextSpan($r('app.string.Demo_autoSpacingString'),
+              {
+                style:
                 {
-                  style:
-                  {
-                    fontColor: Color.Orange,
-                    fontSize: 20
-                  }
-                })
-            })
-            .enableAutoSpacing(this.enableAutoSpace)
-          // [End richEditor_enableAutoSpacing]
-          // 请将$r('app.string.Demo_autoSpacingButton')替换为实际资源文件，在本示例中该资源文件的value值为"开启中西文自动间距"
-          Button($r('app.string.Demo_autoSpacingButton'))
-            .fontSize(20)
-            .onClick(() => {
-              this.enableAutoSpace = true;
-            })
-        }
+                  fontColor: Color.Orange,
+                  fontSize: 20
+                }
+              })
+          })
+          .enableAutoSpacing(this.enableAutoSpace)
+        // 请将$r('app.string.Demo_autoSpacingButton')替换为实际资源文件，在本示例中该资源文件的value值为"开启中西文自动间距"
+        Button($r('app.string.Demo_autoSpacingButton'))
+          .fontSize(20)
+          .onClick(() => {
+            this.enableAutoSpace = true;
+          })
       }
-    }
+      // [StartExclude richEditor_enableAutoSpacing]
+      /* 请将$r('app.string.Set_Attributes_title_12_desc')替换为实际资源文件，
+       在本示例中该资源文件的value值为"通过enableAutoSpacing设置是否开启中文与西文的自动间距" */
+      Text($r('app.string.Set_Attributes_title_12_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_enableAutoSpacing]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
 }
+// [End richEditor_enableAutoSpacing]
 
 // [Start richEditor_prepareMenu]
 @Component
@@ -555,27 +644,40 @@ struct PrepareMenu {
 
   build() {
     Column() {
-      ComponentCard({
-        // 请将$r('app.string.Set_Attributes_title_13')替换为实际资源文件，在本示例中该资源文件的value值为"管理选中菜单项"
-        title: $r('app.string.Set_Attributes_title_13'),
-        /* 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，在本示例中该资源文件的
-         value值为"当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置" */
-        description: $r('app.string.Set_Attributes_title_13_desc')
-      }) {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan('RichEditor editMenuOptions');
-          })
-          .editMenuOptions(this.editMenuOptions)
-          .onSelectionChange((range: RichEditorRange) => {
-            this.endIndex = range.end;
-          })
-          .height(50)
-          .margin({ top: 100 })
-          .borderWidth(1)
-          .borderColor(Color.Red)
-      }
-    }
+      // [StartExclude richEditor_prepareMenu]
+      // 请将$r('app.string.Set_Attributes_title_13')替换为实际资源文件，在本示例中该资源文件的value值为"管理选中菜单项"
+      Text($r('app.string.Set_Attributes_title_13'))
+        .fontSize(14)
+        .fontColor('#666')
+      // [EndExclude richEditor_prepareMenu]
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor editMenuOptions');
+        })
+        .editMenuOptions(this.editMenuOptions)
+        .onSelectionChange((range: RichEditorRange) => {
+          this.endIndex = range.end;
+        })
+        .height(50)
+        .margin({ top: 100 })
+        .borderWidth(1)
+        .borderColor(Color.Red)
+      // [StartExclude richEditor_prepareMenu]
+      /* 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，在本示例中该资源文件的
+       value值为"当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置" */
+      Text($r('app.string.Set_Attributes_title_13_desc'))
+        .backgroundColor('#eee')
+        .borderRadius(4)
+        .padding(4)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+      // [EndExclude richEditor_prepareMenu]
+    }.alignItems(HorizontalAlign.Start)
+    .backgroundColor('#fff')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
   }
 }
 // [End richEditor_prepareMenu]
