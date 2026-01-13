@@ -17,6 +17,8 @@
 - 依次点击'初始化'、'开始录制'按钮，即可开始录制音频。
 - 点击'停止录制'、'释放资源'按钮，即可结束录制。
 - 点击'查看状态'按钮，即可在日志信息下方打印当前录制流的状态。
+- 依次点击'初始化录制内容'、'开始播放'按钮，即可播放录制到的内容。
+- 依次点击'停止播放'、'释放播放资源'按钮，即可结束播放。
 
   <img src='screenshots/capture.png' width=320>
 
@@ -65,6 +67,10 @@
   - 点击'停止录制'按钮，调用`audioCapturer.stop`，停止录制。
   - 点击'释放资源'按钮，调用`audioCapturer.release`，释放音频流资源并注销回调。
   - 点击'获取状态'按钮，通过获取`audioCapturer.state`信息查看当前音频流状态。
+  - 点击'初始化录制内容'按钮，开始配置`AudioRendererOptions`内容，注意播放参数要与录制参数保持一致才能正常播放，接着配置播放数据回调并订阅监听，最后调用`createAudioRenderer`创建播放实例。
+  - 点击'开始播放'按钮，调用`audioRenderer.start`，开始渲染音频。
+  - 点击'停止播放'按钮，调用`audioRenderer.stop`，停止渲染音频。
+  - 点击'释放资源'按钮，调用`audioRenderer.release`，销毁实例，释放资源。
 
 ### 管理麦克风状态
 - 源码参考：[MacManager.ets](entry/src/main/ets/pages/MacManager.ets)  
