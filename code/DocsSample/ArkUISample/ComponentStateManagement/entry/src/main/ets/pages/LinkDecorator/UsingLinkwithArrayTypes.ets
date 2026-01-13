@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start link_arry_type]
+// [Start link_array_type]
 @Component
 struct ArrayTypesChild {
   @Link items: number[];
@@ -63,4 +63,4 @@ struct ArrayTypes {
     }
   }
 }
-// [End link_arry_type]
+// [End link_array_type]

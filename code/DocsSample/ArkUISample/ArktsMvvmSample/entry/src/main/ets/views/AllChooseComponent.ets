@@ -29,7 +29,7 @@ export struct AllChooseComponent {
       Button(`${this.titleName}`, { type: ButtonType.Capsule })
         .onClick(() => {
           this.todoListViewModel.chooseAll(); // View层点击事件发生时，调用ViewModel层方法chooseAll处理逻辑
-          this.titleName = this.todoListViewModel.isChoosen ?
+          this.titleName = this.todoListViewModel.isChosen ?
             // 请在resources\base\element\string.json文件中配置name为'check_all'，value为非空字符串的资源
             this.context1.resourceManager.getStringSync($r('app.string.check_all').id)
             // 请在resources\base\element\string.json文件中配置name为'deselect_all'，value为非空字符串的资源
@@ -39,7 +39,7 @@ export struct AllChooseComponent {
         .fontWeight(FontWeight.Bold)
         .backgroundColor('#f7f6cc74')
     }
-    .padding({ left: this.todoListViewModel.isChoosen ? 15 : 0 })
+    .padding({ left: this.todoListViewModel.isChosen ? 15 : 0 })
     .width('100%')
     .margin({ top: 10, bottom: 10 })
   }

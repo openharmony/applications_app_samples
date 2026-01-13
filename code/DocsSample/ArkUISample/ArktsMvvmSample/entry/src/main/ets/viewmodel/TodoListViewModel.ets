@@ -24,7 +24,7 @@ export class ThingViewModelArray extends Array<ThingViewModel> {
 
 @Observed
 export default class TodoListViewModel {
-  @Track public isChoosen: boolean = true;
+  @Track public isChosen: boolean = true;
   @Track public things: ThingViewModelArray = new ThingViewModelArray();
 
   async loadTasks(context: common.UIAbilityContext) {
@@ -39,9 +39,9 @@ export default class TodoListViewModel {
 
   chooseAll(): void {
     for (let thing of this.things) {
-      thing.isFinish = this.isChoosen;
+      thing.isFinish = this.isChosen;
     }
-    this.isChoosen = !this.isChoosen;
+    this.isChosen = !this.isChosen;
   }
 }
 // [End to_do_list_view_model]
