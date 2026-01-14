@@ -4,7 +4,7 @@
 
 本示例主要展示了使用HKDF进行密钥派生通过await、Promis、同步返回场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用HKDF进行密钥派生](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
+- [使用HKDF进行密钥派生](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
 
 ### 效果预览
 

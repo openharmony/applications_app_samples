@@ -4,9 +4,9 @@
 
 本示例主要展示了使用ECDH进行密钥协商(await方式和同步方式)、使用X25519进行密钥协商(await方式和同步方式)、使用DH进行密钥协商(await方式和同步方式)场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用ECDH进行密钥协商](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
-- [使用X25519进行密钥协商](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
-- [使用DH进行密钥协商](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
+- [使用ECDH进行密钥协商](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
+- [使用X25519进行密钥协商](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
+- [使用DH进行密钥协商](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
 
 ### 效果预览
 
