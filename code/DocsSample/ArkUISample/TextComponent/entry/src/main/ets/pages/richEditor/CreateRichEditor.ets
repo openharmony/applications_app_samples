@@ -56,7 +56,6 @@ export struct CreateRichEditor {
             .onReady(() => {
               this.controller.setStyledString(this.mutableStyledString);
             })
-
         }
         // [StartExclude richEditor_create]
         .alignItems(HorizontalAlign.Start)
@@ -65,7 +64,6 @@ export struct CreateRichEditor {
         .padding(12)
         .width('100%')
         // [EndExclude richEditor_create_span]
-
         Column({ space: 3 }) {
           // [StartExclude richEditor_create_span]
           /* 请将$r('app.string.Create_RichEditor_Component_title_2')替换为实际资源文件，
