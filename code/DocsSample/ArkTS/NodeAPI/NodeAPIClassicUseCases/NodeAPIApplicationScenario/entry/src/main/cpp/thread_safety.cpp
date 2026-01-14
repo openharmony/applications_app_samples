@@ -170,6 +170,11 @@ void TsfnFinalizeCallback(napi_env env, void* finalizeData, void* finalizeHint)
         napi_delete_reference(env, ctx->callbackRef);
         delete ctx;
     }
+
+    if (g_ref != nullptr) {
+        napi_status status = napi_delete_reference(env, g_ref);
+        g_ref = nullptr;
+    }
 }
 
 // ArkTS 调用的入口函数

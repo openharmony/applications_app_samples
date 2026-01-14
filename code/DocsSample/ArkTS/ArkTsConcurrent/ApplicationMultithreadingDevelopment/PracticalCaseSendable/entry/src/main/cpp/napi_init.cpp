@@ -1,19 +1,19 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright (C) 2026 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 // [Start init_sendable]
-// napi_init.cpp。
+// napi_init.cpp
 #include "napi/native_api.h"
 #include "hilog/log.h"
 
@@ -45,7 +45,16 @@ MyObject::~MyObject() {}
 void MyObject::Destructor(napi_env env, void *nativeObject, [[maybe_unused]] void *finalizeHint)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
-    reinterpret_cast<MyObject *>(nativeObject)->~MyObject();
+    delete reinterpret_cast<MyObject *>(nativeObject);
+
+    // 释放 g_ref 避免内存泄漏。
+    if (g_ref != nullptr) {
+        napi_status status = napi_delete_reference(env, g_ref);
+        if (status != napi_ok) {
+            OH_LOG_ERROR(LOG_APP, "Failed to delete g_ref");
+        }
+        g_ref = nullptr;
+    }
 }
 
 // 在构造函数中绑定ArkTS Sendable对象与C++对象。
