@@ -45,19 +45,10 @@ MyObject::~MyObject() {}
 void MyObject::Destructor(napi_env env, void *nativeObject, [[maybe_unused]] void *finalizeHint)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
-    delete reinterpret_cast<MyObject *>(nativeObject);
-
-    // 释放 g_ref 避免内存泄漏。
-    if (g_ref != nullptr) {
-        napi_status status = napi_delete_reference(env, g_ref);
-        if (status != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "Failed to delete g_ref");
-        }
-        g_ref = nullptr;
-    }
+    reinterpret_cast<MyObject *>(nativeObject)->~MyObject();
 }
 
-// 在构造函数中绑定ArkTS Sendable对象与C++对象。
+// 在构造函数中绑定ArkTS Sendable对象与C++对象
 napi_value MyObject::New(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::New called");
@@ -109,7 +100,7 @@ napi_value MyObject::GetValue(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr);
 
     MyObject *obj;
-    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作。
+    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作
     napi_unwrap_sendable(env, jsThis, reinterpret_cast<void **>(&obj));
     napi_value num;
     napi_create_double(env, obj->value_, &num);
@@ -129,7 +120,7 @@ napi_value MyObject::SetValue(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, &value, &jsThis, nullptr);
 
     MyObject *obj;
-    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作。
+    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作
     napi_unwrap_sendable(env, jsThis, reinterpret_cast<void **>(&obj));
     napi_get_value_double(env, value, &obj->value_);
 
@@ -145,7 +136,7 @@ napi_value MyObject::PlusOne(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, nullptr, nullptr, &jsThis, nullptr);
 
     MyObject *obj;
-    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作。
+    // 通过napi_unwrap_sendable将jsThis之前绑定的C++对象取出，并对其进行操作
     napi_unwrap_sendable(env, jsThis, reinterpret_cast<void **>(&obj));
     obj->value_ += 1;
     napi_value num;
@@ -166,18 +157,18 @@ napi_value MyObject::Init(napi_env env, napi_value exports)
     napi_value cons;
     // 定义一个Sendable class MyObject。
     napi_define_sendable_class(env, "MyObject", NAPI_AUTO_LENGTH, New, nullptr,
-                               sizeof(properties) / sizeof(properties[0]), properties, nullptr,
-                               &cons);
+                               sizeof(properties) / sizeof(properties[0]), properties, nullptr, &cons);
 
     napi_create_reference(env, cons, 1, &g_ref);
-    // 在exports对象上挂载MyObject类。
+    // 在exports对象上挂载MyObject类
     napi_set_named_property(env, exports, "MyObject", cons);
     return exports;
 }
 
 EXTERN_C_START
 // 模块初始化。
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     MyObject::Init(env, exports);
     return exports;
 }
