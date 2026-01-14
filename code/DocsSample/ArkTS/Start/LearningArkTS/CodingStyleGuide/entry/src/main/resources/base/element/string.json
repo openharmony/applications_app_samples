@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CodingStyleGuide"
+    },
+    {
+      "name": "state_not_initialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "log_no_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "real_time_status",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "upper_camel_case",
+      "value": "ArkTs编译规范-首字母大写的驼峰命名法"
+    },
+    {
+      "name": "test_upper_camel_case_complete",
+      "value": "测试首字母大写的驼峰命名法完成"
+    },
+    {
+      "name": "lower_camel_case",
+      "value": "ArkTs编译规范-首字母小写的驼峰命名法"
+    },
+    {
+      "name": "test_lower_camel_case_complete",
+      "value": "测试首字母小写的驼峰命名法完成"
+    },
+    {
+      "name": "constant_naming_uppercase",
+      "value": "ArkTs编译规范-常量命名全大写"
+    },
+    {
+      "name": "test_constant_naming_complete",
+      "value": "测试常量命名全大写完成"
+    },
+    {
+      "name": "boolean_naming",
+      "value": "ArkTs编译规范-布尔变量命名"
+    },
+    {
+      "name": "test_boolean_naming_complete",
+      "value": "测试布尔变量命名完成"
+    },
+    {
+      "name": "space_indentation",
+      "value": "ArkTs编译规范-使用空格缩进"
+    },
+    {
+      "name": "test_space_indentation_complete",
+      "value": "测试使用空格缩进完成"
+    },
+    {
+      "name": "use_braces",
+      "value": "ArkTs编译规范-使用大括号"
+    },
+    {
+      "name": "test_use_braces_complete",
+      "value": "测试使用大括号完成"
+    },
+    {
+      "name": "comprehensive_test",
+      "value": "ArkTs编译规范-综合"
+    },
+    {
+      "name": "test_comprehensive_complete",
+      "value": "测试综合完成"
+    }
+  ]
+}
