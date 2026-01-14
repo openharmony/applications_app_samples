@@ -4,10 +4,10 @@
 
 本示例主要展示了使用SM4对称密钥（ECB模式）加解密(ArkTS)、使用SM4对称密钥（CBC模式）加解密(ArkTS)、使用SM4对称密钥（GCM模式）加解密(ArkTS)、使用SM4对称密钥（GCM模式）分段加解密(ArkTS)场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用SM4对称密钥（ECB模式）加解密(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-ecb.md)
-- [使用SM4对称密钥（CBC模式）加解密(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-cbc.md)
-- [使用SM4对称密钥（GCM模式）加解密(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm.md)
-- [使用SM4对称密钥（GCM模式）分段加解密(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
+- [使用SM4对称密钥（ECB模式）加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-ecb.md)
+- [使用SM4对称密钥（CBC模式）加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-cbc.md)
+- [使用SM4对称密钥（GCM模式）加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm.md)
+- [使用SM4对称密钥（GCM模式）分段加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
 
 ### 效果预览
 

@@ -4,9 +4,9 @@
 
 本示例主要展示了使用RSA非对称密钥（PKCS1模式）加解密、使用RSA非对称密钥分段加解密、使用RSA非对称密钥（PKCS1_OAEP模式）加解密场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用RSA非对称密钥（PKCS1模式）加解密](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
-- [使用RSA非对称密钥分段加解密](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)
-- [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
+- [使用RSA非对称密钥（PKCS1模式）加解密](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
+- [使用RSA非对称密钥分段加解密](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)
+- [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
 
 ### 效果预览
 

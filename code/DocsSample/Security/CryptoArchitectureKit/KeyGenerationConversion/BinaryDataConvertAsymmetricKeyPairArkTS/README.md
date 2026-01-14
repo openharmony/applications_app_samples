@@ -6,7 +6,7 @@
 
 本示例主要展示了指定二进制数据转换RSA密钥对、指定二进制数据转换ECC密钥对、 指定PKCS8二进制数据转换ECC私钥和指定二进制数据转换SM2密钥对场景。该工程中展示的代码详细描述可查如下链接。
 
-- [ 指定二进制数据转换非对称密钥对(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair.md)
+- [ 指定二进制数据转换非对称密钥对(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair.md)
 
 ### 效果预览
 

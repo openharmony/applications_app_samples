@@ -4,7 +4,7 @@
 
 本示例主要展示了使用PBKDF2进行密钥派生(通过await、Promise、同步方式返回结果)的场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用PBKDF2进行密钥派生](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
+- [使用PBKDF2进行密钥派生](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
 
 ### 效果预览
 
