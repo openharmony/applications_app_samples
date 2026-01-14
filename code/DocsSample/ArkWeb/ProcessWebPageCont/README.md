@@ -16,9 +16,9 @@
 | ------------------------------------------------------------ |
 | <img src="./screenshots/InitiatePrintW3CAPI.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
-1. 点击print按钮，触发window.print()操作，即可对页面内容进行打印。
+1. 使用W3C标准接口window.print，对页面内容进行打印，参考源码：[InitiatePrintW3CAPI.ets](./entry/src/main/ets/pages/InitiatePrintW3CAPI.ets)
 
 ### InitiatePrintAppAPI
 
@@ -32,9 +32,9 @@
 | ------------------------------------------------------------ |
 | <img src="./screenshots/InitiatePrintAppAPI.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
-1. 点击createWebPrintDocumentAdapter按钮应用侧会创建打印适配器，并将其传入打印接口，以触发打印操作。
+1. 使用webview的[createWebPrintDocumentAdapter](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebprintdocumentadapter11)接口，在应用侧创建打印适配器，并将其传入打印接口print.print，以触发打印操作，参考源码：[InitiatePrintAppAPI.ets](./entry/src/main/ets/pages/InitiatePrintAppAPI.ets)
 
 ## 使用Web组件的PDF文档预览能力
 
