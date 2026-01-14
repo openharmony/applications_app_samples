@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PerformantPractices"
+    },
+    {
+      "name": "state_not_initialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "log_no_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "real_time_status",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "high_perf_declaration_expression",
+      "value": "高性能编程-声明与表达式"
+    },
+    {
+      "name": "test_declaration_expression_complete",
+      "value": "测试声明与表达式完成"
+    },
+    {
+      "name": "high_perf_constant_in_loop",
+      "value": "高性能编程-循环中常量"
+    },
+    {
+      "name": "test_constant_in_loop_complete",
+      "value": "测试循环中常量完成"
+    },
+    {
+      "name": "high_perf_outside_variable",
+      "value": "高性能编程-函数外变量"
+    },
+    {
+      "name": "test_outside_variable_complete",
+      "value": "测试函数外变量完成"
+    },
+    {
+      "name": "high_perf_optional_parameter",
+      "value": "高性能编程-可选参数"
+    },
+    {
+      "name": "test_optional_parameter_complete",
+      "value": "测试可选参数完成"
+    },
+    {
+      "name": "high_perf_type_array",
+      "value": "高性能编程-类型数组"
+    },
+    {
+      "name": "test_type_array_complete",
+      "value": "测试类型数组完成"
+    },
+    {
+      "name": "high_perf_sparse_array",
+      "value": "高性能编程-稀疏数组"
+    },
+    {
+      "name": "test_sparse_array_complete",
+      "value": "测试稀疏数组完成"
+    },
+    {
+      "name": "high_perf_union_type_array",
+      "value": "高性能编程-联合类型数组"
+    },
+    {
+      "name": "test_union_type_array_complete",
+      "value": "测试联合类型数组完成"
+    },
+    {
+      "name": "high_perf_avoid_exception",
+      "value": "高性能编程-避免频繁异常"
+    },
+    {
+      "name": "test_avoid_exception_complete",
+      "value": "测试避免频繁异常完成"
+    }
+  ]
+}
