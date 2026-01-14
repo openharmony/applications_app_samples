@@ -756,6 +756,15 @@ void setTextInput10(ArkUI_NodeHandle &textInput10, ArkUI_NodeHandle &textInput10
     });
 }
 
+void setTextInputDirection(ArkUI_NodeHandle &textInput11)
+{
+    ArkUI_AttributeItem input_Item = {.string = "测试TextInput NODE_TEXT_INPUT_DIRECTION "};
+    Manager::nodeAPI_->setAttribute(textInput11, NODE_TEXT_INPUT_TEXT, &input_Item);
+    ArkUI_NumberValue directionValue[] = {{.i32 = ARKUI_TEXT_DIRECTION_RTL}};
+    ArkUI_AttributeItem direction_item = {directionValue, sizeof(directionValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput11, NODE_TEXT_INPUT_DIRECTION, &direction_item);
+}
+
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -1539,6 +1548,15 @@ void setText18(ArkUI_NodeHandle &text18)
     Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_OVERFLOW, &overflowItem);
 }
 
+void setTextDirection(ArkUI_NodeHandle &text19)
+{
+    ArkUI_AttributeItem content_item = {};
+    content_item.string = "测试Text NODE_TEXT_DIRECTION";
+    Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_CONTENT, &content_item);
+    ArkUI_NumberValue directionValue[] = {{.i32 = ARKUI_TEXT_DIRECTION_RTL}};
+    ArkUI_AttributeItem direction_item = {directionValue, sizeof(directionValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_DIRECTION, &direction_item);
+}
 
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
@@ -1832,6 +1850,15 @@ void setTextArea11(ArkUI_NodeHandle &textArea11, ArkUI_NodeHandle &textArea11But
             reinterpret_cast<ArkUI_TextContentBaseController *>(controller),
             start, end);
     });
+}
+
+void setTextAreaDirecton(ArkUI_NodeHandle &textArea12)
+{
+    ArkUI_AttributeItem input_Item = {.string = "测试TextArea NODE_TEXT_AREA_DIRECTION "};
+    Manager::nodeAPI_->setAttribute(textArea12, NODE_TEXT_AREA_TEXT, &input_Item);
+    ArkUI_NumberValue directionValue[] = {{.i32 = ARKUI_TEXT_DIRECTION_RTL}};
+    ArkUI_AttributeItem direction_item = {directionValue, sizeof(directionValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea12, NODE_TEXT_AREA_DIRECTION, &direction_item);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -2164,13 +2191,16 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text11_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text19 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setText9(text9);
     setText10(text10);
     setText11(text11, text11_2);
+    setTextDirection(text19);
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
     Manager::nodeAPI_->addChild(textContainer, text11_2);
+    Manager::nodeAPI_->addChild(textContainer, text19);
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
@@ -2201,6 +2231,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput9Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textInput10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput10Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     setTextInput1(textInput1);
@@ -2213,6 +2244,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setTextInput8(textInput8);
     setTextInput9(textInput9, textInput9Button1);
     setTextInput10(textInput10, textInput10Button);
+    setTextInputDirection(textInput11);
     setTextInputSelectAI(textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
@@ -2229,14 +2261,31 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput9Button1);
     Manager::nodeAPI_->addChild(textContainer, textInput10);
     Manager::nodeAPI_->addChild(textContainer, textInput10Button);
+    Manager::nodeAPI_->addChild(textContainer, textInput11);
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
-void setAllTextArea(ArkUI_NodeHandle &textContainer)
+
+void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    setTextArea1(textArea1);
+    setTextArea2(textArea2);
+    setTextArea3(textArea3);
+    setTextArea4(textArea4);
+    Manager::nodeAPI_->addChild(textContainer, textArea1);
+    Manager::nodeAPI_->addChild(textContainer, textArea2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
+                 Manager::nodeAPI_->getAttribute(textArea2, NODE_TEXT_AREA_LINE_SPACING)->value[VALUE_0].i32);
+    Manager::nodeAPI_->addChild(textContainer, textArea3);
+    Manager::nodeAPI_->addChild(textContainer, textArea4);
+}
+
+void setAllTextArea(ArkUI_NodeHandle &textContainer)
+{
+    setAllTextAreaPart1(textContainer);
     ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea6_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -2249,11 +2298,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea10Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textArea11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea11Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_NodeHandle textArea12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    setTextArea1(textArea1);
-    setTextArea2(textArea2);
-    setTextArea3(textArea3);
-    setTextArea4(textArea4);
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
@@ -2262,12 +2308,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea9(textArea9);
     setTextArea10(textArea10, textArea10Button1);
     setTextArea11(textArea11, textArea11Button);
-    Manager::nodeAPI_->addChild(textContainer, textArea1);
-    Manager::nodeAPI_->addChild(textContainer, textArea2);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
-                 Manager::nodeAPI_->getAttribute(textArea2, NODE_TEXT_AREA_LINE_SPACING)->value[VALUE_0].i32);
-    Manager::nodeAPI_->addChild(textContainer, textArea3);
-    Manager::nodeAPI_->addChild(textContainer, textArea4);
+    setTextAreaDirecton(textArea12);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
@@ -2281,6 +2322,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea10Button1);
     Manager::nodeAPI_->addChild(textContainer, textArea11);
     Manager::nodeAPI_->addChild(textContainer, textArea11Button);
+    Manager::nodeAPI_->addChild(textContainer, textArea12);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)
