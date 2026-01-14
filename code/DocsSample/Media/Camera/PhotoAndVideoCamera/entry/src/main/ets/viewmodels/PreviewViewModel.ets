@@ -65,7 +65,7 @@ class PreviewViewModel {
   }
 
   // [Start getProfile]
-  getProfile: (cameraOrientation: number,
+  public getProfile: (cameraOrientation: number,
     picFormat: camera.CameraFormat) => camera.Profile = (cameraOrientation, picFormat) => {
     const displaySize: Size = WindowUtil.getMaxDisplaySize(this.getPreviewRatio());
     const displayRotation = display.getDefaultDisplaySync().rotation * 90;

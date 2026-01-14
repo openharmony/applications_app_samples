@@ -27,7 +27,7 @@ export class CameraManager {
   private cameraInput?: camera.CameraInput;
   private outputManagers: OutputManager[] = [];
   private isHdr: boolean = false;
-  private xComponentSurfaceId: string = "";
+  private xComponentSurfaceId: string = '';
   private cameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_UNSPECIFIED;
   private sceneMode: camera.SceneMode = camera.SceneMode.NORMAL_PHOTO;
   private ratio: number = 0;
