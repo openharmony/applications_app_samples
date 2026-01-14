@@ -192,7 +192,7 @@ struct event4 {
       Text($r('app.string.Add_Event_title_4'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventInput
+      // [EndExclude richEditor_eventInput]
       Column({ space: 3 }) {
         // 请将$r('app.string.xxx')替换为开发者所需的资源文件
         RichEditor(this.options)
@@ -299,7 +299,7 @@ struct on_cut_copy_paste {
       Text($r('app.string.Add_Event_title_5'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventPaste
+      // [EndExclude richEditor_eventPaste]
       Column({ space: 3 }) {
         RichEditor(this.options)
           .onReady(() => {
@@ -358,7 +358,7 @@ struct event6 {
       Text($r('app.string.Add_Event_title_6'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventCut
+      // [EndExclude richEditor_eventCut]
       Column({ space: 3 }) {
         RichEditor(this.options)
           .onReady(() => {
@@ -419,7 +419,7 @@ struct event7 {
       Text($r('app.string.Add_Event_title_7'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventCopy
+      // [EndExclude richEditor_eventCopy]
       Column({ space: 3 }) {
         RichEditor(this.options)
           .onReady(() => {
