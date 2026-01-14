@@ -15,14 +15,14 @@
 
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared()
 AppStorage.setOrCreate('message', 'UIExtensionAbility')
 
-@Entry(storage)
+@Entry()
 @Component
 struct Extension {
   @StorageLink('message') storageLink: string = '';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
   pathStack: NavPathStack = new NavPathStack()
 
   @Builder
@@ -60,7 +60,7 @@ struct Extension {
             if (this.session != undefined) {
               this.session.terminateSelf();
             }
-            storage.clear()
+            this.storage?.clear()
           })
           Button('terminate with result').onClick(()=>{
             if (this.session != undefined) {
@@ -72,7 +72,7 @@ struct Extension {
                 }
               })
             }
-            storage.clear()
+            this.storage?.clear()
           })
 
           Button($r('app.string.UIExtensionComponent_button2')).onClick(()=> {
