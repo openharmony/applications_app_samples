@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_five_share2]
+// [Start localStorage_page_five_share2]
 
 @Builder
 export function PageBuilder() {
@@ -52,4 +52,4 @@ struct PageFiveShareChange {
   }
 }
 
-// [End localtorage_page_five_share2]
+// [End localStorage_page_five_share2]
