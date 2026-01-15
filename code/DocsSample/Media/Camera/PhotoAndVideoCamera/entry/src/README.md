@@ -76,11 +76,9 @@
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行，支持设备：华为手机、平板。
+1. 本示例仅支持标准系统上运行，支持设备：华为手机。 
 
-2.系统版本：HarmonyOS 5.1.1 Release及以上。
+2. 本示例支持API20版本SDK，版本号：6.0.0.47。
 
-3.DevEco Studio版本：DevEco Studio 5.1.1 Release及以上。
-
-4.HarmonyOS SDK版本：HarmonyOS 5.1.1 Release及以上。
+3. 本示例已支持使DevEco Studio 6.0.0 Release(构建版本：6.0.0.858，构建 2025年9月25日)编译运行。
 
