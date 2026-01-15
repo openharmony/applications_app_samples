@@ -56,7 +56,7 @@ struct Index {
       this.data.pushData(i.toString());
     }
 
-    for (let i = 30; i <= 80; i++) { // 循环50次
+    for (let i = 30; i < 80; i++) { // 循环50次
       this.data02.pushData(i.toString());
     }
   }
