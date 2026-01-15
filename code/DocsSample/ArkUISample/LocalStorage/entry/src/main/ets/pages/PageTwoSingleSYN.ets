@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_two_single_syn]
+// [Start localStorage_page_two_single_syn]
 // 创建新实例并使用给定对象初始化
 let paraOneLocal: Record<string, number> = { 'PropA': 47 };
 let storageOneLocal: LocalStorage = new LocalStorage(paraOneLocal);
@@ -49,4 +49,4 @@ struct ChildOne {
   }
 }
 
-// [End localtorage_page_two_single_syn]
+// [End localStorage_page_two_single_syn]
