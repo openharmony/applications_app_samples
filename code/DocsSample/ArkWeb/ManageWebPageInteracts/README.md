@@ -111,6 +111,8 @@ entry2/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+#### 具体实现
+1. 在应用代码中设置UIContext的软键盘避让模式[setKeyboardAvoidMode()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#setkeyboardavoidmode11)。ArkWeb组件支持Resize和Offset两种模式。参考源码：[OpenPageNewWin.ets](./entry2/src/main/ets/entry2ability/Entry2Ability.ets)
 
 ### 相关权限
 
