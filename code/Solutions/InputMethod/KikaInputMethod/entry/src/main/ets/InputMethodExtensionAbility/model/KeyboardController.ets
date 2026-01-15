@@ -345,7 +345,7 @@ export class InputHandler {
   }
 }
 
-// [Start input_case_input_KeyboardControler358]
+// [Start input_case_input_KeyboardController358]
 class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
@@ -492,9 +492,9 @@ class KeyboardController {
       })
     }
   }
-  // [End input_case_input_KeyboardControler358]
+  // [End input_case_input_KeyboardController358]
 
-  // [Start input_case_input_KeyboardControler507]
+  // [Start input_case_input_KeyboardController507]
   private registerListener(): void {
     this.inputHandle.addLog('registerListener');
 
@@ -571,9 +571,9 @@ class KeyboardController {
       });
     }
   }
-  // [End input_case_input_KeyboardControler507]
+  // [End input_case_input_KeyboardController507]
 
-  // [Start input_case_input_KeyboardControler587]
+  // [Start input_case_input_KeyboardController587]
   public isShiftKeyHold(): boolean {
     if (this.keyCodes.length === 0) {
       return false;
@@ -713,4 +713,4 @@ class KeyboardController {
 }
 
 export const keyboardController: KeyboardController = new KeyboardController();
-// [End input_case_input_KeyboardControler587]
+// [End input_case_input_KeyboardController587]
