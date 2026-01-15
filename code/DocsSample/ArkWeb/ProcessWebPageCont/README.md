@@ -54,9 +54,10 @@
 | ------------------------------------------------------- |
 | <img src="./screenshots/PreviewPDF.png" width="360;" /> |
 
-使用说明
 
-1. Web组件创建时指定默认加载的网络PDF文档example.com/test.pdf。
+#### 具体实现
+
+1. 使用Web组件的src参数传入不同来源的PDF文件，以加载PDF文档，参考源码：[PreviewPDF.ets](./entry/src/main/ets/pages/PreviewPDF.ets)
 
 ## 网页中安全区域计算和避让适配
 
