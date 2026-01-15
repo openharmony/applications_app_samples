@@ -1,5 +1,5 @@
 // [Start napi_create_async_work_worker]
-// entry/src/main/ets/worker/worker.ets
+// entry/src/main/ets/workers/Worker.ets
 
 import nativeModule from 'libentry1.so';
 import { worker, MessageEvents } from '@kit.ArkTS';
