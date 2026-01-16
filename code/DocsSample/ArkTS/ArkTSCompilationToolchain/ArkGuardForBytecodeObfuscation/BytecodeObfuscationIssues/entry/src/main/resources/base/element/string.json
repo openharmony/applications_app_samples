@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BytecodeObfuscationIssues"
+    },
+    {
+      "name": "index_title",
+      "value": "Index"
+    },
+    {
+      "name": "main_page",
+      "value": "主页面"
+    },
+    {
+      "name": "test_decorator",
+      "value": "测试装饰器"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_obj_obfuscation",
+      "value": "测试对象字节码混淆"
+    },
+    {
+      "name": "test_obj_obfuscation_complete",
+      "value": "测试对象字节码混淆完成"
+    },
+    {
+      "name": "test_property_obfuscation",
+      "value": "测试属性字节码混淆"
+    },
+    {
+      "name": "test_property_obfuscation_complete",
+      "value": "测试属性字节码混淆完成"
+    },
+    {
+      "name": "test_external_function",
+      "value": "测试外源函数"
+    },
+    {
+      "name": "test_external_function_complete",
+      "value": "测试外源函数完成"
+    },
+    {
+      "name": "test_external_namespace",
+      "value": "测试外源命名空间"
+    },
+    {
+      "name": "test_external_namespace_complete",
+      "value": "测试外源命名空间完成"
+    }
+  ]
+}
