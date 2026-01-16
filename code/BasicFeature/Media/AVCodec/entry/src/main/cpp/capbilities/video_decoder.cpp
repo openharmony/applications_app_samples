@@ -90,6 +90,9 @@ int32_t VideoDecoder::Configure(const SampleInfo &sampleInfo)
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, sampleInfo.frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, sampleInfo.pixelFormat);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, sampleInfo.rotation);
+    if (sampleInfo.codecSyncMode) {
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, sampleInfo.codecSyncMode);
+    }
 
     AVCODEC_SAMPLE_LOGI("====== VideoDecoder config ======");
     AVCODEC_SAMPLE_LOGI("%{public}d*%{public}d, %{public}.1ffps", sampleInfo.videoWidth, sampleInfo.videoHeight,
@@ -120,9 +123,11 @@ int32_t VideoDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     }
 
     // SetCallback for video decoder
-    ret = SetCallback(codecUserData);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
-                             "Set callback failed, ret: %{public}d", ret);
+    if (!sampleInfo.codecSyncMode) {
+        ret = SetCallback(codecUserData);
+        CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
+                                "Set callback failed, ret: %{public}d", ret);
+    }
 
     // Prepare video decoder
     {
@@ -131,6 +136,135 @@ int32_t VideoDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     }
 
     return AVCODEC_SAMPLE_ERR_OK;
+}
+
+OH_AVBuffer *VideoDecoder::GetInputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
+{
+    CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, nullptr, "Decoder is null");
+    std::shared_lock<std::shared_mutex> lock(codecMutex);
+    int32_t ret = OH_VideoDecoder_QueryInputBuffer(decoder_, &info.bufferIndex, timeoutUs);
+    switch (ret) {
+        case AV_ERR_OK: {
+            OH_AVBuffer *buffer = OH_VideoDecoder_GetInputBuffer(decoder_, info.bufferIndex);
+            CHECK_AND_RETURN_RET_LOG(buffer != nullptr, nullptr, "Input buffer is null");
+            return buffer;
+        /**
+            uint8_t *addr = OH_AVBuffer_GetAddr(buffer);
+            CHECK_AND_RETURN_RET_LOG(addr != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Input buffer addr is null");
+            // buffer数据填充。
+            int32_t capacity = OH_AVBuffer_GetCapacity(buffer);
+            if (size > capacity) {
+                // 异常处理。
+            }
+            memcpy(addr, frameData, size);
+
+            OH_AVCodecBufferAttr info;
+            // buffer属性配置。
+            // 配置帧数据的输入尺寸、偏移量、时间戳等字段信息。
+            info.size = size;
+            info.offset = offset;
+            info.pts = pts;
+            if (inFile_->eof()) {
+                info.flags = AVCODEC_BUFFER_FLAGS_EOS;
+            } else {
+                info.flags = flags;
+            }
+            OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(buffer, &info);
+            if (setBufferRet != AV_ERR_OK) {
+                // 异常处理。
+                return false;
+            }
+
+            OH_AVErrCode pushInputRet = OH_VideoDecoder_PushInputBuffer(videoDec, index);
+            if (pushInputRet != AV_ERR_OK) {
+                // 异常处理。
+                return false;
+            }
+            if (inFile_->eof()) {
+                inputDone = 1;
+            }
+            break;
+        **/
+        }
+        case AV_ERR_TRY_AGAIN_LATER: {
+            AVCODEC_SAMPLE_LOGE("Get input buffer timeout.");
+            return nullptr;
+        }
+        default: {
+            return nullptr;
+        }
+    }
+    return nullptr;
+}
+
+bool VideoDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
+{
+    CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, false, "Decoder is null.");
+    std::shared_lock<std::shared_mutex> lock(codecMutex);
+
+    int32_t  ret = OH_VideoDecoder_QueryOutputBuffer(decoder_, &info.bufferIndex, timeoutUs);
+    switch (ret) {
+        case AV_ERR_OK: {
+            OH_AVBuffer *buffer = OH_VideoDecoder_GetOutputBuffer(decoder_, info.bufferIndex);
+            CHECK_AND_RETURN_RET_LOG(buffer != nullptr, false, "Output buffer is null.");
+            // 获取解码后信息。
+            OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info.attr);
+            CHECK_AND_RETURN_RET_LOG(getBufferRet == AV_ERR_OK, false, "Get buffer attr error.");
+            return true;
+            /**
+            if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
+                outputDone = 1;
+            }
+
+            // 解码输出数据处理。
+            // 值由开发者决定。
+            bool isRender;
+            bool isNeedRenderAtTime;
+            OH_AVErrCode result = AV_ERR_OK;
+            if (isRender) {
+                // 显示并释放已完成处理的信息，index为对应buffer队列的下标。
+                if (isNeedRenderAtTime){
+                    // 获取系统绝对时间，renderTimestamp由开发者结合业务指定显示时间。
+                    int64_t renderTimestamp =
+                        std::chrono::duration_cast<std::chrono::nanoseconds>
+                            (std::chrono::high_resolution_clock::now().time_since_epoch()).count();
+                    result = OH_VideoDecoder_RenderOutputBufferAtTime(videoDec, index, renderTimestamp);
+                } else {
+                    result = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
+                }
+            } else {
+                // 释放已完成处理的信息。
+                result = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
+            }
+            if (result != AV_ERR_OK) {
+                // 异常处理。
+                return false;
+            }
+            break;
+            **/
+        }
+        case AV_ERR_TRY_AGAIN_LATER: {
+            AVCODEC_SAMPLE_LOGE("Get input buffer timeout.");
+            return false;
+        }
+        case AV_ERR_STREAM_CHANGED: {
+            int32_t width = 0;
+            int32_t height = 0;
+            auto format =
+                std::shared_ptr<OH_AVFormat>(OH_VideoDecoder_GetOutputDescription(decoder_), OH_AVFormat_Destroy);
+            CHECK_AND_BREAK_LOG(format != nullptr, "Format is nullptr.");
+            // 获取新宽高。
+            bool getIntRet = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_WIDTH, &width) &&
+                             OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+            CHECK_AND_BREAK_LOG(getIntRet, "Decoder get int value failed.");
+            AVCODEC_SAMPLE_LOGI("Stream Changed. Width: %{public}i, height: %{public}i", width, height);
+            return GetOutputBuffer(info, timeoutUs);
+        }
+        default: {
+            return false;
+        }
+    }
+    return false;
 }
 
 int32_t VideoDecoder::Start()

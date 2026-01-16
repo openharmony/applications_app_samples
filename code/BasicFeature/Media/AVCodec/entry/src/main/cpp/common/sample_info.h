@@ -60,6 +60,7 @@ struct SampleInfo {
     int32_t rangFlag = 1;
     int32_t codecType = 0;
     int32_t codecRunMode = 0;
+    int32_t codecSyncMode = 0;
     string outputFilePath;
 
     int32_t audioSampleForamt = 0;

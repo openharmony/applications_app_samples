@@ -19,9 +19,14 @@ export const playNative: (
   inputFileSize: number,
   videoDecoderType: number,
   videoDecoderRunMode: number,
+  videoDecoderSyncMode: number,
   cbFn: () => void
 ) => void
 
 export const setPlaybackSpeed: (
   speed: number,
+) => void
+
+export const setTransform: (
+  transformHint: number,
 ) => void

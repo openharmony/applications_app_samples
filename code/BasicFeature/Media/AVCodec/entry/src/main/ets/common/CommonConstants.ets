@@ -69,16 +69,28 @@ export class CommonConstants {
    */
   public static readonly VIDEO_DECODER_RUN_MODE: string[] = ['SurfaceMode', 'BufferMode'];
   /**
+   * Video decoder synchronization mode.
+   */
+  public static readonly VIDEO_DECODER_SYNC_MODE: string[] = ['ASYNC', 'SYNC'];
+  /**
+   * Video transform type.
+   */
+  public static readonly TRANSFORM_TYPE: string[] = [
+    '不旋转', '旋转90度', '旋转180度', '旋转270度', '水平翻转', '垂直翻转', '水平翻转并旋转90度', '垂直翻转并旋转90度',
+    '水平翻转并旋转180度', '垂直翻转并旋转180度', '水平翻转并旋转270度', '垂直翻转并旋转270度'
+  ];
+  /**
    * Video playerInfo.
    */
   public static readonly PLAYER_INFO: string[][] = [
-    CommonConstants.VIDEO_DECODE_TYPE, CommonConstants.VIDEO_DECODER_RUN_MODE
+    CommonConstants.VIDEO_DECODE_TYPE, CommonConstants.VIDEO_DECODER_RUN_MODE, CommonConstants.VIDEO_DECODER_SYNC_MODE
   ];
   /**
    * Video recorderInfo.
    */
   public static readonly RECORDER_INFO: string[][] = [
-    CommonConstants.VIDEO_MIMETYPE, CommonConstants.VIDEO_RESOLUTION, CommonConstants.VIDEO_FRAMERATE
+    CommonConstants.VIDEO_MIMETYPE, CommonConstants.VIDEO_RESOLUTION, CommonConstants.VIDEO_FRAMERATE,
+    CommonConstants.VIDEO_DECODER_SYNC_MODE
   ];
   /**
    * Playback speed.
@@ -131,7 +143,7 @@ export class CommonConstants {
   /**
    * Selected text style font size.
    */
-  public static readonly SELECTED_TEXT_STYLE_FONT_SIZE: number = 15;
+  public static readonly SELECTED_TEXT_STYLE_FONT_SIZE: number = 9;
   /**
    * The number corresponding to true.
    */

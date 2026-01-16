@@ -23,11 +23,13 @@
 #include <thread>
 #include <unistd.h>
 #include <ohaudio/native_audiorenderer.h>
+#include <multimedia/player_framework/native_avbuffer.h>
 #include <ohaudio/native_audiostreambuilder.h>
+#include <native_window/external_window.h>
+#include <native_buffer/native_buffer.h>
 #include <fstream>
 #include "video_decoder.h"
 #include "audio_decoder.h"
-#include "multimedia/player_framework/native_avbuffer.h"
 #include "demuxer.h"
 #include "sample_info.h"
 #include "plugin_manager.h"
@@ -46,10 +48,13 @@ public:
     int32_t Init(SampleInfo &sampleInfo);
     int32_t Start();
     void SetSpeed(float multiplier);
+    void SetTransform(int32_t transformHint);
 
 private:
-    void VideoDecInputThread();
-    void VideoDecOutputThread();
+    void VideoDecInputAsyncThread();
+    void VideoDecOutputAsyncThread();
+    void VideoDecInputSyncThread();
+    void VideoDecOutputSyncThread();
     void AudioDecInputThread();
     void AudioDecOutputThread();
     void Release();
@@ -86,6 +91,7 @@ private:
     std::atomic<bool> isReleased_ { false };
     std::atomic<bool> isAudioDone { false };
     std::atomic<bool> isVideoDone { false };
+    std::atomic<bool> isLoop_ { false };
     std::unique_ptr<std::thread> videoDecInputThread_ = nullptr;
     std::unique_ptr<std::thread> videoDecOutputThread_ = nullptr;
     std::unique_ptr<std::thread> audioDecInputThread_ = nullptr;
@@ -106,6 +112,7 @@ private:
     std::ofstream audioOutputFile_; // for debug
 #endif
     float speed = 1.0f;
+    int32_t transformHint = 0;
 };
 
 #endif // VIDEO_CODEC_PLAYER_H

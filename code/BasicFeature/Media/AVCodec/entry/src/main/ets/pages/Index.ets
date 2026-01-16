@@ -34,8 +34,10 @@ const DATETIME: DateTimeUtil = new DateTimeUtil();
 export struct Player {
   @State buttonEnabled: boolean = true;
   @State isShow: boolean = false;
+  private transformType: number = 0;
   private videoDecoderType: number = 0;
   private videoDecoderRunMode: number = 0;
+  private videoDecoderSyncMode: number = 0;
   private cameraData: CameraDataModel = new CameraDataModel();
   private selectFilePath: string | null = null;
   private display = display.getDefaultDisplaySync();
@@ -106,6 +108,10 @@ export struct Player {
     player.setPlaybackSpeed(speed);
   }
 
+  setTransform(transformHint: number) {
+    player.setTransform(transformHint);
+  }
+
   play() {
     let inputFile = fileIo.openSync(this.selectFilePath, fileIo.OpenMode.READ_ONLY);
     if (!inputFile) {
@@ -117,7 +123,7 @@ export struct Player {
     }
     this.buttonEnabled = false;
     player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, this.videoDecoderType,
-      this.videoDecoderRunMode, () => {
+      this.videoDecoderRunMode, this.videoDecoderSyncMode, () => {
         Logger.info(TAG, 'player JSCallback');
         this.buttonEnabled = true;
         fileIo.close(inputFile);
@@ -170,14 +176,18 @@ export struct Player {
       .size({
         width: '18.5%',
         height: $r('app.float.index_button_height')
-      })
-      .enabled(this.buttonEnabled)
+      })// .enabled(this.buttonEnabled)
       .margin({ bottom: $r('app.float.button_margin_bottom') })
       .onClick(() => {
         this.getUIContext().showTextPickerDialog({
           defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
           selectedTextStyle: ({
             font: ({
+              size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+            })
+          }),
+          textStyle:({
+            font:({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
@@ -217,6 +227,19 @@ export struct Player {
                 break;
             }
 
+            switch (value.value[2]) {
+              case Const.VIDEO_DECODER_SYNC_MODE[0]: {
+                this.videoDecoderSyncMode = 0;
+                break;
+              }
+              case Const.VIDEO_DECODER_SYNC_MODE[1]: {
+                this.videoDecoderSyncMode = 1;
+                break;
+              }
+              default:
+                break;
+            }
+
             this.getUIContext().getPromptAction().showToast({
               message: $r('app.string.success'),
               duration: Const.DURATION,
@@ -243,6 +266,11 @@ export struct Player {
           defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
           selectedTextStyle: ({
             font: ({
+              size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+            })
+          }),
+          textStyle:({
+            font:({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
@@ -299,6 +327,19 @@ export struct Player {
               default:
                 break;
             }
+
+            switch (value.value[3]) {
+              case Const.VIDEO_DECODER_SYNC_MODE[0]: {
+                this.cameraData.isSync = 0;
+                break;
+              }
+              case Const.VIDEO_DECODER_SYNC_MODE[1]: {
+                this.cameraData.isSync = 1;
+                break;
+              }
+              default:
+                break;
+            }
             this.checkIsProfileSupport();
           }
         })
@@ -335,7 +376,7 @@ export struct Player {
             if (this.cameraData.outputfd !== null) {
               recorder.initNative(this.cameraData.outputfd, this.cameraData.videoCodecMime, this.cameraData.cameraWidth,
                 this.cameraData.cameraHeight, this.cameraData.frameRate, this.cameraData.isHDRVivid,
-                this.cameraData.bitRate, this.cameraData.format).then((data) => {
+                this.cameraData.bitRate, this.cameraData.format, this.cameraData.isSync).then((data) => {
                 if (data.surfaceId !== null) {
                   this.cameraData.surfaceId = data.surfaceId;
                   this.getUIContext().getRouter().pushUrl({
@@ -415,7 +456,98 @@ export struct Player {
 
       Column() {
         Row() {
-          this.PlayerSettingButton()
+          if (this.buttonEnabled) {
+            this.PlayerSettingButton()
+          } else {
+            Button('Flip')
+              .size({
+                width: '18.5%',
+                height: $r('app.float.index_button_height')
+              })
+              .margin({ bottom: $r('app.float.button_margin_bottom') })
+              .onClick(() => {
+                this.getUIContext().showTextPickerDialog({
+                  defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
+                  selectedTextStyle: ({
+                    font: ({
+                      size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+                    })
+                  }),
+                  range: Const.TRANSFORM_TYPE,
+                  canLoop: false,
+                  alignment: DialogAlignment.Center,
+                  backgroundColor: Color.White,
+                  backgroundBlurStyle: BlurStyle.BACKGROUND_ULTRA_THICK,
+                  onAccept: (value: TextPickerResult) => {
+                    switch (value.value) {
+                      case '不旋转': {
+                        this.transformType = 0;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '旋转90度': {
+                        this.transformType = 1;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '旋转180度': {
+                        this.transformType = 2;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '旋转270度': {
+                        this.transformType = 3;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '水平翻转': {
+                        this.transformType = 4;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '垂直翻转': {
+                        this.transformType = 5;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '水平翻转并旋转90度': {
+                        this.transformType = 6;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '垂直翻转并旋转90度': {
+                        this.transformType = 7;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '水平翻转并旋转180度': {
+                        this.transformType = 8;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '垂直翻转并旋转180度': {
+                        this.transformType = 9;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '水平翻转并旋转270度': {
+                        this.transformType = 10;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case '垂直翻转并旋转270度': {
+                        this.transformType = 11;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      default:
+                        break;
+                    }
+                  }
+                })
+              })
+          }
+
 
           Blank(5)
           Button(this.buttonEnabled ? $r('app.string.play') : $r('app.string.playing'))

@@ -16,13 +16,15 @@
 #ifndef VIDEODECODER_H
 #define VIDEODECODER_H
 
-#include "multimedia/player_framework/native_avcodec_videodecoder.h"
-#include "multimedia/player_framework/native_avcapability.h"
-#include "multimedia/player_framework/native_avbuffer_info.h"
+#include <multimedia/player_framework/native_avcodec_videodecoder.h>
+#include <multimedia/player_framework/native_avcapability.h>
+#include <multimedia/player_framework/native_avbuffer_info.h>
+#include <multimedia/player_framework/native_averrors.h>
 #include "sample_info.h"
 #include "sample_callback.h"
 #include "dfx/error/av_codec_sample_error.h"
 #include "av_codec_sample_log.h"
+#include <shared_mutex>
 
 class VideoDecoder {
 public:
@@ -32,6 +34,8 @@ public:
     int32_t Create(const std::string &videoCodecMime, int32_t videoDecoderType);
     int32_t Config(const SampleInfo &sampleInfo, CodecUserData *codecUserData);
     int32_t PushInputBuffer(CodecBufferInfo &info);
+    OH_AVBuffer* GetInputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
+    bool GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
     int32_t FreeOutputBuffer(uint32_t bufferIndex, bool render);
     int32_t FreeOutputBuffer(uint32_t bufferIndex, bool render, int64_t timeStamp);
     int32_t Start();
@@ -43,6 +47,7 @@ private:
     OH_AVCodec *GetCodecByCategory(const char *mime, bool isEncoder, OH_AVCodecCategory category);
     
     bool isAVBufferMode_ = false;
+    std::shared_mutex codecMutex;
     OH_AVCodec *decoder_;
 };
 #endif // VIDEODECODER_H
