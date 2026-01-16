@@ -36,7 +36,7 @@ struct Unicode {
   }
   // [End Dns_GetSource]
 
-  // [Start Dns_GetAddress_Ascii]
+  // [Start Dns_GetAddress_Ascii_Fun]
   getAddressName(isChange: boolean) {
     this.ipResult = '';
     connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
@@ -62,7 +62,7 @@ struct Unicode {
     });
   }
 
-  // [end Dns_GetAddress_Ascii]
+  // [End Dns_GetAddress_Ascii_Fun]
 
   build() {
     RelativeContainer() {
