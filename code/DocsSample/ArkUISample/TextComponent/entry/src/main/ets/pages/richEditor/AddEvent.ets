@@ -61,7 +61,7 @@ struct event2 {
       Text($r('app.string.Add_Event_title_2'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventSelectChange
+      // [EndExclude richEditor_eventSelectChange]
       Column({ space: 3 }) {
         // 请将$r('app.string.xxx')替换为实际资源文件
         RichEditor(this.options)
@@ -118,7 +118,7 @@ struct event3 {
       Text($r('app.string.Add_Event_title_3'))
         .fontSize(14)
         .fontColor('#666')
-      // [EndExclude richEditor_eventChange
+      // [EndExclude richEditor_eventChange]
       Column({ space: 3 }) {
         RichEditor(this.options)
           .onReady(() => {

@@ -78,10 +78,15 @@ export struct GridEts {
       .height(50)
       .opacity(1.0)
   }
-
+  //[EndExclude grid_previewData_start]
+  //[EndExclude grid_styles_start]
+  //[EndExclude grid_numberBadge_start]
   build() {
     NavDestination() {
       Column({ space: 5 }) {
+        //[StartExclude grid_previewData_start]
+        //[StartExclude grid_styles_start]
+        //[StartExclude grid_numberBadge_start]
         // 请将$r('app.string.Select_All')替换为实际资源文件，在本示例中该资源文件的value值为"全选"
         Button($r('app.string.Select_All'))
           .onClick(() => {
@@ -107,9 +112,18 @@ export struct GridEts {
               }
             }
           })
+        //[EndExclude grid_previewData_start]
+        //[EndExclude grid_styles_start]
+        //[EndExclude grid_numberBadge_start]
         //[Start grid_start]
         Grid() {
+          //[StartExclude grid_previewData_start]
+          //[StartExclude grid_styles_start]
+          //[StartExclude grid_numberBadge_start]
           ForEach(this.numbers, (idx: number) => {
+          //[EndExclude grid_previewData_start]
+          //[EndExclude grid_styles_start]
+          //[EndExclude grid_numberBadge_start]
             GridItem() {
               Column()
                 .backgroundColor(Color.Blue)
@@ -120,6 +134,9 @@ export struct GridEts {
             }
             //[Start dragPreview_Start]
             //[StartExclude grid_start]
+            //[StartExclude grid_previewData_start]
+            //[StartExclude grid_styles_start]
+            //[StartExclude grid_numberBadge_start]
             .dragPreview({
               pixelMap: this.pixmap
             })
@@ -139,7 +156,7 @@ export struct GridEts {
               normal: this.normalStyles,
               selected: this.selectStyles
             })
-            //[End grid_styles_start]
+            //[StartExclude grid_styles_start]
             //[EndExclude grid_isSelected_start]
             //[EndExclude grid_previewData_start]
             //[EndExclude grid_numberBadge_start]
@@ -189,11 +206,11 @@ export struct GridEts {
               }
               //[EndExclude grid_isSelected_start]
             })
-            //[End grid_previewData_start]
+            //[StartExclude grid_previewData_start]
             //[End grid_isSelected_start]
             // 多选场景右上角数量角标需要应用设置numberBadge参数
             .dragPreviewOptions({ numberBadge: this.numberBadge })
-            //[End grid_numberBadge_start]
+            //[StartExclude grid_numberBadge_start]
             .onPreDrag((status: PreDragStatus) => {
               // 1.长按时通知，350ms回调
               if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
@@ -218,10 +235,15 @@ export struct GridEts {
             .onDragEnd(() => {
               this.finished = false;
             })
-
             //[EndExclude grid_start]
           }, (idx: string) => idx)
+          //[EndExclude grid_styles_start]
+          //[EndExclude grid_previewData_start]
+          //[EndExclude grid_numberBadge_start]
         }
+        //[StartExclude grid_styles_start]
+        //[StartExclude grid_numberBadge_start]
+        //[StartExclude grid_previewData_start]
         //[End grid_start]
         .width('100%')
         .height('100%')
@@ -257,10 +279,15 @@ export struct GridEts {
             })
           }, (idx: string) => idx)
         }
-
+        //[EndExclude grid_previewData_start]
+        //[EndExclude grid_styles_start]
+        //[EndExclude grid_numberBadge_start]
         //[End gridExample_start]
       }.width('100%').margin({ top: 5 }).height('100%')
     }
+    //[StartExclude grid_numberBadge_start]
+    //[StartExclude grid_previewData_start]
+    //[StartExclude grid_styles_start]
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
@@ -268,7 +295,12 @@ export struct GridEts {
     })
     // 请将$r('app.string.Pages_Index_GridExample')替换为实际资源文件，在本示例中该资源文件的value值为"网格拖拽事件/GridExample"
     .title($r('app.string.Pages_Index_GridExample'))
+    //[EndExclude grid_previewData_start]
+    //[EndExclude grid_styles_start]
+    //[EndExclude grid_numberBadge_start]
   }
+  //[End grid_previewData_start]
+  //[End grid_styles_start]
+  //[End grid_numberBadge_start]
 }
-
 //[End GridEts_start]
