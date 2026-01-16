@@ -30,7 +30,7 @@ class TransferInfo {
   public info: notificationExtensionSubscription.NotificationInfo | undefined
   public cancelHashCodes: Array<string> | undefined
 }
-
+// Spp means Serial Port Profile
 class SppClientManager {
   private clientNumber: number = -1;
   private peerDevice: string = '';
