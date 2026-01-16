@@ -198,7 +198,6 @@
 1. 使能[multiWindowAccess()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md#multiwindowaccess9)情况下，通知用户新建窗口请求。
 2. 当有新窗口打开时，应用侧在[onWindowNew()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownew9)接口。开发者需要在此接口事件中新建窗口来处理Web组件的窗口请求，参考源码：[OpenPageNewWin.ets](./entry/src/main/ets/pages/OpenPageNewWin.ets)
 
-code/DocsSample/ArkWeb/SetBasicAttrsEvts/SetBasicAttrsEvtsOne/entry/src/main/ets/pages/OpenPageNewWin.ets
 #  管理位置权限
 
 ### ManageLocPerms
