@@ -110,7 +110,7 @@ async function activeSession(){
     concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
   };
 
-  // 激活AudioSession，即抢占焦点
+  // 激活AudioSession，即抢占焦点。
   audioSessionManager.activateAudioSession(strategy).then(() => {
     console.info('Succeeded in doing activateAudioSession.');
     // [StartExclude active_audiosession]
@@ -162,7 +162,7 @@ async function activeSession(){
 async function deactiveSession(){
   // [EndExclude all_sessionprocess]
   // [EndExclude all_focusprocess]
-  // 结束AudioSession，即释放焦点
+  // 结束AudioSession，即释放焦点。
   audioSessionManager.deactivateAudioSession().then(() => {
     console.info('Succeeded in doing deactivateAudioSession.');
     // [StartExclude deactive_audiosession]
