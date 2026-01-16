@@ -16,11 +16,12 @@ import { image } from '@kit.ImageKit';
 import { GotoButton, MyButton } from '../utils/MyButton'
 import { SourceFunctions } from '../utils/SourceFunctions'
 import { common } from '@kit.AbilityKit';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct EditExif {
-  @State message: number = 0;
+  @State message: string = 'loading...';
   @State picture: image.Picture | null = null;
   @State returnMessage: string = 'No';
   @State fileName: string = 'test.jpeg';
@@ -41,6 +42,7 @@ struct EditExif {
     image.PropertyKey.EXPOSURE_TIME,
     image.PropertyKey.F_NUMBER
   ];
+  @State promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Row() {
@@ -102,7 +104,8 @@ struct EditExif {
           })
           .margin({ top: 5 })
           .onClick(() => {
-            this.test.getImageProperty(this.propertyKey);
+            this.message = this.test.getImageProperty(this.propertyKey);
+            this.promptAction.showToast({ message: this.message });
           })
         Blank().height(20);
         Divider();
@@ -130,7 +133,8 @@ struct EditExif {
           })
           .margin({ top: 5 })
           .onClick(() => {
-            this.test.modifyImageProperty(this.propertyKey, this.value);
+            this.message = this.test.modifyImageProperty(this.propertyKey, this.value);
+            this.promptAction.showToast({ message: this.message });
           })
         Blank().height(20);
         Divider();

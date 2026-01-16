@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "applySync_use_title",
+      "value": "applySync接口使用规则"
+    },
+    {
+      "name": "flushUpdates_use_title",
+      "value": "flushUpdates接口使用规则"
+    },
+    {
+      "name": "flushUIUpdates_use_title",
+      "value": "flushUIUpdates接口使用规则"
+    },
+    {
+      "name": "applySync_nested_applySync",
+      "value": "applySync接口中嵌套applySync"
+    },
+    {
+      "name": "applySync_nested_others",
+      "value": "applySync接口中嵌套flushUpdates/flushUIUpdates"
+    },
+    {
+      "name": "called_in_computed",
+      "value": "不允许在@Computed中调用applySync/flushUpdates/flushUIUpdates"
+    },
+    {
+      "name": "called_in_monitor",
+      "value": "不允许在@Monitor中调用flushUpdates/flushUIUpdates"
+    },
+    {
+      "name": "use_with_animateTo",
+      "value": "动效场景"
+    },
+    {
+      "name": "use_with_pageTransition",
+      "value": "路由场景"
+    }
+  ]
+}

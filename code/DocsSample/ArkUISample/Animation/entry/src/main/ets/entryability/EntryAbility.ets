@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,9 +17,9 @@
 // 程序入口处的onWindowStageCreate增加对窗口宽高等的抓取
 
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { display, window } from '@kit.ArkUI';
 import { WindowUtils } from '../utils/WindowUtils';
 // [Start window_stage]
+import { display, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;

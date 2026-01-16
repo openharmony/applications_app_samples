@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start Create_Node]
+
 import { BuilderNode, FrameNode, NodeContent, NodeController, typeNode } from '@kit.ArkUI';
 import entry from 'libentry.so';
 import { webview } from '@kit.ArkWeb';
@@ -52,7 +55,7 @@ class MyNodeController extends NodeController {
 
 @Builder
 function buildTextWithFunc(fun: Function) {
-  Web({ src: 'www.baidu.com', controller: new webview.WebviewController() })
+  Web({ src: 'https://www.example.com', controller: new webview.WebviewController() })
 }
 
 @Builder
@@ -123,3 +126,5 @@ struct Index {
     }.width('100%')
   }
 }
+
+// [End Create_Node]

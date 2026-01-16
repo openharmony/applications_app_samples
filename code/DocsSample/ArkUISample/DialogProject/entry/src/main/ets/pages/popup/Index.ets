@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,6 +26,7 @@ import { AvoidSoftKeyboardPopupExample } from './PopupAvoidSoftKeyboard';
 import { PolymorphicEffectPopupExample } from './PopupPolymorphicEffect';
 import { SupportedAvoidAxisPopupExample } from './PopupSupportedAvoidAxis';
 import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup';
+import { OpenPopupWithTargetIdString } from './globalpopupsindependentofuicomponents/OpenPopupWithTargetIdString';
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';
 
@@ -80,6 +81,11 @@ const routes: Route[] = [
     name: `${Popup_ROUTE_PREFIX}/OpenPopupExample`,
     title: resource.resourceToString($r('app.string.StylePopup_global')),
     description: $r('app.string.StylePopup_global_des'),
+  },
+  {
+    name: `${Popup_ROUTE_PREFIX}/OpenPopupWithTargetIdString`,
+    title: resource.resourceToString($r('app.string.OpenPopupWithTargetIdString')),
+    description: $r('app.string.StylePopup_global_des'),
   }
 ]
 
@@ -107,6 +113,8 @@ export function PopupDestination(name: string) {
     SupportedAvoidAxisPopupExample();
   } else if (name === routes[9].name) {
     OpenPopup();
+  } else if (name === routes[10].name) {
+    OpenPopupWithTargetIdString();
   }
 }
 

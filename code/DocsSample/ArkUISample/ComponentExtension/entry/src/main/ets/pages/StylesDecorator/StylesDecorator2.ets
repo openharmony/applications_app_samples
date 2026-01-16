@@ -15,17 +15,17 @@
 
 // [Start style_not_parameter]
 // 正确写法
-@Styles
-function globalFancy () {
-  .width(100)
-}
+  @Styles
+  function globalFancy () {
+    .width(100)
+  }
 // [End style_not_parameter]
 // [Start style_not_if]
 // 正确写法
-@Styles
-function backgroundColorStyle() {
-  .backgroundColor(Color.Red)
-}
+  @Styles
+  function backgroundColorStyle() {
+    .backgroundColor(Color.Red)
+  }
 // [End style_not_if]
 // [Start inner_style]
 @Entry

@@ -44,8 +44,8 @@ struct Index {
             this.rawfileListMsg = 'FileList = ' + rawFileList;
             hilog.info(DOMAIN, TAG, this.rawfileListMsg);
 
-            // 'subrawfile'仅作示例，请替换为实际使用的资源
-            let ret: boolean = testNapi.isRawDir(this.resMgr, 'subrawfile');
+            // 'sub_rawfile'仅作示例，请替换为实际使用的资源
+            let ret: boolean = testNapi.isRawDir(this.resMgr, 'sub_rawfile');
             this.retMsg = 'isRawDir = ' + ret;
             hilog.info(DOMAIN, TAG, this.retMsg);
 

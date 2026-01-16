@@ -4,11 +4,11 @@
 
 本示例主要展示了使用AES对称密钥(C/C++)GCM模式、CCM模式、CBC模式、ECB模式以及GCM模式分段加解密场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用AES对称密钥（GCM模式）加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
-- [使用AES对称密钥（CCM模式）加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
-- [使用AES对称密钥（CBC模式）加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
-- [使用AES对称密钥（ECB模式）加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb-ndk.md)
-- [使用AES对称密钥（GCM模式）分段加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
+- [使用AES对称密钥（GCM模式）加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+- [使用AES对称密钥（CCM模式）加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
+- [使用AES对称密钥（CBC模式）加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
+- [使用AES对称密钥（ECB模式）加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb-ndk.md)
+- [使用AES对称密钥（GCM模式）分段加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
 
 ### 效果预览
 
@@ -80,6 +80,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/EncryptionDecryption/EncryptionDecryptionGuidanceAes > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

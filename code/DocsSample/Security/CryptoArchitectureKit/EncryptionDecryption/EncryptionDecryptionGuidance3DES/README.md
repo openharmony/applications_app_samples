@@ -4,8 +4,8 @@
 
 本示例主要展示了使用3DES对称密钥（ECB模式）加解密(ArkTS)的同步异步方法和C/C++场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用3DES对称密钥（ECB模式）加解密(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
-- [使用3DES对称密钥（ECB模式）加解密(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
+- [使用3DES对称密钥（ECB模式）加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
+- [使用3DES对称密钥（ECB模式）加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
 
 ### 效果预览
 
@@ -76,6 +76,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/EncryptionDecryption/EncryptionDecryptionGuidance3DES > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

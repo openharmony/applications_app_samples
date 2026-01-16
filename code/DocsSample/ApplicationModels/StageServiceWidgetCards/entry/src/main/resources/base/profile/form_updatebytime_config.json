@@ -21,7 +21,7 @@
     },
     {
       "name": "ScheduledUpdateTime",
-      "description": "$string:widget_scheupdatetime_desc",
+      "description": "$string:widget_scheduledUpdateTime_desc",
       "src": "./ets/scheduledupdatetime/pages/ScheduledUpdateTimeCard.ets",
       "uiSyntax": "arkts",
       "window": {

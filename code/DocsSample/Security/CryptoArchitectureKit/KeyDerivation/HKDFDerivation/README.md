@@ -4,7 +4,7 @@
 
 本示例主要展示了使用HKDF进行密钥派生通过await、Promis、同步返回场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用HKDF进行密钥派生](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
+- [使用HKDF进行密钥派生](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
 
 ### 效果预览
 
@@ -31,6 +31,7 @@ entry/src/
  │   │       ├── Await.ets
  │   │       ├── Promise.ets
  │   │       ├── Sync.ets
+ │   │       ├── CppTestr.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
@@ -65,6 +66,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/KeyDerivation/HKDFDerivation > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

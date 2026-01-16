@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start sm2_create_asn1_ciphertext]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testGenCipherTextBySpec() {
@@ -27,6 +28,8 @@ function testGenCipherTextBySpec() {
   let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
   console.info('genCipherTextBySpec success');
 }
+
+// [End sm2_create_asn1_ciphertext]
 
 @Entry
 @Component

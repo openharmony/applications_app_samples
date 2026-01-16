@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,19 +14,20 @@
  */
 
 import Napi from 'libentry.so';
-import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  private nodeContent = new NodeContent();
-  aboutToAppear() {
-    // 创建并设置ID
-    Napi.createNativeNode(this.nodeContent);
-  }
   build() {
     Column() {
-      ContentSlot(this.nodeContent)
+      Button('ModifyFirstPage')
+        .width(200)
+        .height(50)
+        .backgroundColor('#FF6B35')
+        .fontColor(Color.White)
+        .onClick(() => {
+          Napi.modifyPageOneButton();
+        })
     }
     .width('100%')
     .height('100%')

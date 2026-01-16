@@ -201,7 +201,7 @@ napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     OH_LOG_ERROR(LOG_APP, "kkk OH_ArkUI_GetNodeContentFromNapiValue Failed %{public}d");
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -297,7 +297,7 @@ napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -360,7 +360,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -524,7 +524,7 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -582,7 +582,7 @@ void NativeEntry::RegisterNodeEventReceiver()
         // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
         switch (eventType) {
             case NODE_ON_CLICK_EVENT:{
-                //实现具体业务
+                // 实现具体业务
                 break;
             }
             default:{
@@ -603,15 +603,15 @@ napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取NodeContent
+    // 获取NodeContent。
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     // 创建自定义容器和自定义绘制组件。
     auto node = std::make_shared<ArkUICustomContainerNode>();
-    // 浅灰色
+    // 浅灰色。
     node->SetBackgroundColor(0xFFD5D5D5);
     auto customNode = std::make_shared<ArkUICustomNode>();
-    // 深灰色
+    // 深灰色。
     customNode->SetBackgroundColor(0xFF707070);
     customNode->SetWidth(SIZE_150);
     customNode->SetHeight(SIZE_150);
@@ -619,12 +619,10 @@ napi_value CreateNativeRoots(napi_env env, napi_callback_info info)
     // 保持Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
     g_env = env;
-        // [StartExclude arkUICustomNodeCpp_start]
-        //创建文本列表
-        auto list = CreateTextListExample();
-        //保持Native侧对象到管理类中，维护生命周期。
-        NativeEntry::GetInstance()->SetRootNode(list);
-        // [EndExclude arkUICustomNodeCpp_start]
+    // 创建文本列表。
+    auto list = CreateTextListExample();
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetRootNode(list);
     return nullptr;
 }
 // [EndExclude arkUICustomNodeCpp_start]
@@ -636,16 +634,16 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取NodeContent
+    // 获取NodeContent。
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
     // 创建自定义容器和自定义绘制组件。
     auto node = std::make_shared<ArkUICustomContainerNode>();
-    node->SetBackgroundColor(0xFFD5D5D5); // 浅灰色
+    node->SetBackgroundColor(0xFFD5D5D5); // 浅灰色。
     auto customNode = std::make_shared<ArkUICustomNode>();
-    customNode->SetBackgroundColor(0xFF707070); // 深灰色
+    customNode->SetBackgroundColor(0xFF707070); // 深灰色。
     customNode->SetWidth(SIZE_150);
     customNode->SetHeight(SIZE_150);
     node->AddChild(customNode);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import { ComponentCard } from '../../common/Card';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -22,44 +20,48 @@ export struct BackplaneHighlighting {
   // [Start richEditor_selection]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_selection]
 
   build() {
+    // [StartExclude richEditor_selection]
     NavDestination() {
+    // [EndExclude richEditor_selection]
       Column({ space: 12 }) {
-        ComponentCard() {
-          Column({ space: 3 }) {
-            // [EndExclude richEditor_selection]
-            RichEditor(this.options)
-              .onReady(() => {
-                // 请将$r('app.string.BackplaneHighlighting_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处选中0-2位置的文本。"
-                this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
-                  style: {
-                    fontColor: Color.Black,
-                    fontSize: 15
-                  }
-                })
-              })
-              .width(300)
-              .height(60)
-            // 请将$r('app.string.BackplaneHighlighting_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"setSelection(0,2)"
-            Button($r('app.string.BackplaneHighlighting_Button_1'), {
-              buttonStyle: ButtonStyleMode.NORMAL
+        RichEditor(this.options)
+          .onReady(() => {
+            // 请将$r('app.string.BackplaneHighlighting_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处选中0-2位置的文本。"
+            this.controller.addTextSpan($r('app.string.BackplaneHighlighting_Text_1'), {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
             })
-              .height(30)
-              .fontSize(13)
-              .onClick(() => {
-                this.controller.setSelection(0, 2)
-              })
-            // [End richEditor_selection]
-          }
-        }
+          })
+          .width(300)
+          .height(60)
+        Row() {
+          // 请将$r('app.string.BackplaneHighlighting_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"setSelection(0,2)"
+          Button($r('app.string.BackplaneHighlighting_Button_1'), {
+            buttonStyle: ButtonStyleMode.NORMAL
+          })
+            .height(30)
+            .fontSize(13)
+            .onClick(() => {
+              this.controller.setSelection(0, 2)
+            })
+        }.justifyContent(FlexAlign.Center).width('100%')
       }
+    // [StartExclude richEditor_selection]
+      .alignItems(HorizontalAlign.Start)
+      .backgroundColor('#fff')
+      .borderRadius(12)
+      .padding(12)
       .width('100%')
-      .padding({ left: 12, right: 12 })
     }
+    .padding({ left: 12, right: 12 })
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.Backplane_Highlighting_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置组件内的内容选中时部分背板高亮"
     .title($r('app.string.Backplane_Highlighting_title'))
+    // [EndExclude richEditor_selection]
   }
+  // [End richEditor_selection]
 }

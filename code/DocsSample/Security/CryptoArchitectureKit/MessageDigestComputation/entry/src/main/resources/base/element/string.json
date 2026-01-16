@@ -37,6 +37,22 @@
       "value": "Segmentation C++"
     },
     {
+      "name": "sha3_single_time",
+      "value": "SHA3 SingleTime C++"
+    },
+    {
+      "name": "sha3_segmentation",
+      "value": "SHA3 Segmentation C++"
+    },
+    {
+      "name": "md5_single_time",
+      "value": "MD5 SingleTime C++"
+    },
+    {
+      "name": "md5_segmentation",
+      "value": "MD5 Segmentation C++"
+    },
+    {
       "name": "call_segmentation_async",
       "value": "Call SegmentationAsync"
     },
@@ -51,6 +67,42 @@
     {
       "name": "call_single_time_sync",
       "value": "Call SingleTimeSync"
+    },
+    {
+      "name": "call_md5_single_time_async",
+      "value": "Call MD5 SingleTimeAsync"
+    },
+    {
+      "name": "call_md5_single_time_sync",
+      "value": "Call MD5 SingleTimeSync"
+    },
+    {
+      "name": "call_md5_segmentation_async",
+      "value": "Call MD5 SegmentationAsync"
+    },
+    {
+      "name": "call_md5_segmentation_sync",
+      "value": "Call MD5 SegmentationSync"
+    },
+    {
+      "name": "call_sha3_single_time_async",
+      "value": "Call SHA3 SingleTimeAsync"
+    },
+    {
+      "name": "call_sha3_single_time_sync",
+      "value": "Call SHA3 SingleTimeSync"
+    },
+    {
+      "name": "call_sha3_segmentation_async",
+      "value": "Call SHA3 SegmentationAsync"
+    },
+    {
+      "name": "call_sha3_segmentation_sync",
+      "value": "Call SHA3 SegmentationSync"
+    },
+    {
+      "name": "cpp_test",
+      "value": "Cpp Test"
     }
   ]
 }

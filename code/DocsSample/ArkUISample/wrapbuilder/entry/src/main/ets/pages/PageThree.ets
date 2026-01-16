@@ -29,7 +29,6 @@ function yourBuilder(value: string, size: number) {
 
 const builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(myBuilder0), wrapBuilder(yourBuilder)];
 
-
 @Entry
 @Component
 struct IndexItem {
@@ -37,9 +36,7 @@ struct IndexItem {
   IndexItem() {
     ForEach(builderArr, (item: WrappedBuilder<[string, number]>) => {
       item.builder('Hello World', 30);
-    }
-
-    )
+    })
   }
 
   build() {

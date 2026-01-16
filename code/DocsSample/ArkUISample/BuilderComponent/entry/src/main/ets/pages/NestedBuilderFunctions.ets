@@ -29,7 +29,9 @@ function parentBuilder($$: ThisTmp) {
         .fontColor('#e6000000')
         .borderRadius(20)
         .textAlign(TextAlign.Center)
+      // 调用自定义组件HelloComponent
       HelloComponent({ message: $$.paramA1 })
+      // 调用全局@Builder函数childBuilder
       childBuilder({ paramA1: $$.paramA1 })
     }
   }
@@ -65,7 +67,9 @@ function childBuilder($$: ThisTmp) {
         .fontColor('#e6000000')
         .borderRadius(20)
         .textAlign(TextAlign.Center)
+      // 调用自定义组件HelloChildComponent
       HelloChildComponent({ message: $$.paramA1 })
+      // 调用全局@Builder函数grandsonBuilder
       grandsonBuilder({ paramA1: $$.paramA1 })
     }
   }
@@ -101,6 +105,7 @@ function grandsonBuilder($$: ThisTmp) {
         .fontColor('#e6000000')
         .borderRadius(20)
         .textAlign(TextAlign.Center)
+      // 调用自定义组件HelloGrandsonComponent
       HelloGrandsonComponent({ message: $$.paramA1 })
     }
   }
@@ -131,6 +136,7 @@ struct ParentExample {
 
   build() {
     Column() {
+      // 调用全局@Builder函数parentBuilder
       parentBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         this.label = 'ArkUI';

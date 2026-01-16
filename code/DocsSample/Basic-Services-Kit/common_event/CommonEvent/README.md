@@ -27,7 +27,7 @@
 
 #### 介绍
 
-1. 动态订阅者完成业务需求后，应主动取消订阅。通过调用[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/common-event/common-event-unsubscription.md#%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)方法，取消订阅事件。
+1. 动态订阅者完成业务需求后，应主动取消订阅。通过调用[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法，取消订阅事件。
 
 #### 效果预览
 
@@ -35,13 +35,13 @@
 
 #### 使用说明
 
-1. 取消动态订阅公共事件通过调用[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/common-event/common-event-unsubscription.md#%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)方法实现，在完成事件监听需求后应及时取消订阅以释放资源，避免内存泄漏。
+1. 取消动态订阅公共事件通过调用[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法实现，在完成事件监听需求后应及时取消订阅以释放资源，避免内存泄漏。
 
 ### 发布公共事件
 
 #### 介绍
 
-1. 当需要发布某个公共事件时，可以通过[publish()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/common-event/common-event-publish.md#%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。
+1. 当需要发布某个公共事件时，可以通过[publish()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish)方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。
 
 #### 效果预览
 
@@ -81,7 +81,7 @@ entry/src/main/
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)介绍。
 3. 创建订阅者，保存返回的订阅者对象subscriber，用于执行后续的订阅、退订、接收事件回调等操作。
 4. 创建订阅回调函数，订阅回调函数会在接收到事件时触发。订阅回调函数返回的data内包含了公共事件的名称、发布者携带的数据等信息，公共事件数据的详细参数和数据类型请见[CommonEventData文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventData.md)介绍。
-5. 调用CommonEvent中的[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/common-event/common-event-unsubscription.md#%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E)方法取消订阅某事件。
+5. 调用CommonEvent中的[unsubscribe()](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅某事件。
 6. 发布不携带信息的公共事件，传入需要发布的事件名称和回调函数，发布事件。
 7. 发布携带信息的公共事件，携带信息的公共事件，可以发布为无序公共事件、有序公共事件和粘性事件，可以通过参数[CommonEventPublishData](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)的isOrdered、isSticky的字段进行设置。
 
@@ -97,7 +97,7 @@ entry/src/main/
 
 1. 本示例仅支持标准系统上运行。
 2. 本示例支持API version 20及以上版本的SDK。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.878，构建 2025年12月24日)编译运行。
 
 ### 下载
 

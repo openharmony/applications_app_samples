@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/prikeyGetPubkeyAsync",
+    "pages/prikeyGetPubKeySync",
+    "pages/prikeyEncoding",
+    "pages/prikeyDecoding"
+  ]
+}

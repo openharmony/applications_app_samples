@@ -16,7 +16,9 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
+
+const promptAction = new PromptAction();
 
 export async function reEncoding(context : Context, fd : number) {
   // 首先获取图片文件的fd，创建ImageSource。

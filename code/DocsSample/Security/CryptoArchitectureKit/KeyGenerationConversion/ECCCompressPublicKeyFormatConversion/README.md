@@ -2,19 +2,20 @@
 
 ### 介绍
 
-可通过指定ECC公钥数据，生成公钥对象（PubKey）；也可从公钥对象（PubKey）中，获取ECC公钥数据。当前仅支持ECC算法中，满足X509规范的压缩/非压缩格式的公钥数据。此处的公钥数据应当是完整的X509公钥，对于只使用点数据的情况.
+可通过指定ECC公钥数据，生成公钥对象（PubKey）；也可从公钥对象（PubKey）中，获取ECC公钥数据。当前仅支持ECC算法中，满足X509规范的压缩/非压缩格式的公钥数据。此处的公钥数据应当是完整的X509公钥，对于只使用点数据的情况，请参考使用ECC压缩/非压缩点格式转换场景。
 
 本示例主要展示了使用ECC压缩/非压缩公钥格式转换(ArkTS)、使用ECC压缩/非压缩公钥格式转换(C/C++)、使用ECC压缩/非压缩点格式转换场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [使用ECC压缩/非压缩公钥格式转换(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
-- [使用ECC压缩/非压缩公钥格式转换(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
-- [使用ECC压缩/非压缩点格式转换](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
+- [使用ECC压缩/非压缩公钥格式转换(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
+- [使用ECC压缩/非压缩公钥格式转换(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
+- [使用ECC压缩/非压缩点格式转换](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
+- [使用ECC压缩/非压缩点格式转换](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point-ndk.md)
 
 ### 效果预览
 
 | 首页效果图                                                   | 执行结果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <img src="./screenshots/ECCCompressPublicKeyFormatConversion1.png" style="zoom: 50%;" /> | <img src="./screenshots/ECCCompressPublicKeyFormatConversion2.png" style="zoom: 50%;" /> |
+|---------------------------------------------------------| ------------------------------------------------------------ |
+| <img src="./screenshots/home.png" style="zoom: 50%;" /> | <img src="./screenshots/ECCCompressPublicKeyFormatConversion2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
 
@@ -30,16 +31,20 @@ entry/src/
  │   ├── cpp
  │   │   ├── types
  │   │   |   ├── libentry
- │   │   |       ├── index.d.ts
+ │   │   |       ├── Index.d.ts
  │   │   |       ├── oh-package.json5
  │   │   |   ├── project
  │   │   |       ├── specifyUncompressedPublicKey.cpp
+ │   │   |       ├── compressedPointData.cpp
+ │   │   |       ├── getKeyObject.cpp
  │   │   |       ├── file.h
- │   │   ├── CMakeList.txt
+ │   │   ├── CMakeLists.txt
  │   │   ├── napi_init.cpp
  │   ├── ets
  │   │   ├── entryability
+ │   │   |   ├── EntryAbility.ets
  │   │   ├── entrybackupability
+ │   │   |   ├── EntryBackupAbility.ets
  │   │   ├── pages
  │   │       ├── Index.ets               // 使用ECC压缩/非压缩格式转换示例代码
  │   │       ├── CompressedPointData.ets
@@ -79,6 +84,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/KeyGenerationConversion/ECCCompressPublicKeyFormatConversion > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

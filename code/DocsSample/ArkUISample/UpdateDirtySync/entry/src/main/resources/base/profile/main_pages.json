@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AnimateToUse",
+    "pages/ApplySyncNestApplySync",
+    "pages/ApplySyncNestOthers",
+    "pages/ApplySyncUse",
+    "pages/CallInComputed",
+    "pages/CallInMonitor",
+    "pages/FlushUIUpdatesUse",
+    "pages/FlushUpdatesUse",
+    "pages/PageUse",
+    "pages/PageTransitionTwo"
+  ]
+}

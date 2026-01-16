@@ -16,6 +16,7 @@ import { AppLog } from '../utils/Logger'
 import {Router} from '@ohos.arkui.UIContext';
 import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
+import { PromptAction } from '@kit.ArkUI';
 
 const router = new Router();
 const TAG: string = 'DEBUG TEST';
@@ -30,16 +31,18 @@ export struct MyButton {
   public value = '';
   public chooseFun = 'fun';
   public fileName: string = 'test.jpeg';
-  public fun: () => void = () => {};
-  public fun1: (context: common.UIAbilityContext, fileName: string) => Promise<void> = () => {
-    return new Promise(() => {});
+  @State loadMessage: string = 'loading...';
+  public fun: () => string = () => { return this.loadMessage; };
+  public fun1: (context: common.UIAbilityContext, fileName: string) => Promise<string> = () => {
+    return new Promise(() => { this.loadMessage; });
   };
-  public fun2: (propertyKey: string) => void = () => {};
-  public fun3: (propertyKey: string, value: string) => void = () => {};
-  public fun4: () => void = () => {};
-  public fun5: (context: common.UIAbilityContext, fileName: string) => void = () => {};
+  public fun2: (propertyKey: string) => string = () => { return this.loadMessage; };
+  public fun3: (propertyKey: string, value: string) => string = () => { return this.loadMessage; };
+  public fun4: () => string = () => { return this.loadMessage; };
+  public fun5: (context: common.UIAbilityContext, fileName: string) => string = () => { return this.loadMessage; };
   public text = 'This is a button';
   @State returnMessage: string = 'No';
+  @State promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Row() {
@@ -62,30 +65,37 @@ export struct MyButton {
             this.logger.log('\n start->>>>>>>>>>>>>>>>>>>>>>');
             switch(this.chooseFun) {
               case 'fun':
-                this.fun();
+                this.loadMessage = this.fun();
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'fun1':
-                await this.fun1(this.context, this.fileName);
+                this.loadMessage = await this.fun1(this.context, this.fileName);
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'fun2':
                 console.log(`this.propertyKey ${this.propertyKey}`);
-                this.fun2(this.propertyKey);
+                this.loadMessage = this.fun2(this.propertyKey);
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'fun3':
                 console.log(`fun3 this.value ${this.value}`);
-                this.fun3(this.propertyKey, this.value);
+                this.loadMessage = this.fun3(this.propertyKey, this.value);
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'fun5':
-                this.fun5(this.context, this.fileName);
+                this.loadMessage = this.fun5(this.context, this.fileName);
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'funGroup':
-                await this.fun1(this.context, this.fileName);
-                this.fun();
-                this.fun4();
+                this.loadMessage = await this.fun1(this.context, this.fileName);
+                this.loadMessage = this.fun();
+                this.loadMessage = this.fun4();
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'funGroup1':
-                this.fun();
-                this.fun4();
+                this.loadMessage = this.fun();
+                this.loadMessage = this.fun4();
+                this.promptAction.showToast({ message: this.loadMessage });
                 break;
               case 'noFun':
                 this.fileName = this.fileName;

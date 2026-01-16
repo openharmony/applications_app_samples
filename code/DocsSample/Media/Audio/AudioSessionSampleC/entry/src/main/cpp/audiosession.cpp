@@ -85,6 +85,12 @@ void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
         case AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK:
           // 此分支表示系统已将音频音量恢复正常。
             break;
+        case AUDIO_SESSION_STATE_CHANGE_HINT_MUTE_SUGGESTION:
+          // 此分支表示其他应用开始播放非混音音频，系统可自行决定是否静音。
+            break;
+        case AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION:
+          // 此分支表示其他应用的非混音音频播放结束，系统可自行决定是否取消静音。
+            break;
         default:
             break;
     }
@@ -108,11 +114,18 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
     }
     // [End cget_sessionmanager]
     // [Start cset_audioscene]
+    // [Start cenable_muteSuggestion]
     // [EndExclude clistencallback_process]
     // AUDIO_SESSION_SCENE_MEDIA 仅为示例，实际使用时请根据具体情况进行修改。
     OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
+    // [StartExclude cset_audioscene]
+    // 启用混音播放下静音建议。
+    OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers(audioSessionManager, true);
+    // [EndExclude cset_audioscene]
     // [Start cactive_sessionmanager]
-    // CONCURRENCY_MIX_WITH_OTHERS 是示例，实际使用时请根据情况修改
+    // [StartExclude cenable_muteSuggestion]
+    // CONCURRENCY_MIX_WITH_OTHERS 是示例，实际使用时请根据情况修改。
+    // [EndExclude cenable_muteSuggestion]
     // [EndExclude csessionactive_process]
     OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
     
@@ -120,6 +133,7 @@ napi_value AudioSessionActive(napi_env env, napi_callback_info info)
     OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
     // [StartExclude clistencallback_process]
     // [End cset_audioscene]
+    // [End cenable_muteSuggestion]
     // [End cactive_sessionmanager]
     // 查询音频会话是否已激活。
     // [Start ccheck_isactivated]

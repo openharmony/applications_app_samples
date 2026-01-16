@@ -65,7 +65,8 @@ export default class GetMediaFromFavoritesAbility extends UIAbility {
     try {
       const atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       const permissionResult = await atManager.requestPermissionsFromUser(this.context, [
-        'ohos.permission.READ_IMAGEVIDEO'
+        'ohos.permission.READ_IMAGEVIDEO',
+        'ohos.permission.WRITE_IMAGEVIDEO'
       ]);
 
       expect(permissionResult.permissions.length).assertEqual(2);

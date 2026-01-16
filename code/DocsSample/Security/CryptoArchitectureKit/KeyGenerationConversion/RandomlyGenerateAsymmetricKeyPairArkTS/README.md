@@ -6,7 +6,7 @@
 
 本示例主要展示了随机生成非对称密钥对(ArkTS)，随机生成RSA、SM2密钥对场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [随机生成非对称密钥对(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-asym-key-pair-randomly.md)
+- [随机生成非对称密钥对(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-asym-key-pair-randomly.md)
 
 ### 效果预览
 
@@ -70,6 +70,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/KeyGenerationConversion/RandomlyGenerateAsymmetricKeyPairArkTS > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

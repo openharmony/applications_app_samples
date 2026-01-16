@@ -73,6 +73,8 @@ async function rsaSignatureBySegment() {
   }
 }
 
+// [End pkcs1_seg_verify_rsa_keypair_sign_async]
+
 @Entry
 @Component
 struct Index {
@@ -96,4 +98,3 @@ struct Index {
     .width('100%')
   }
 }
-// [End pkcs1_seg_verify_rsa_keypair_sign_async]

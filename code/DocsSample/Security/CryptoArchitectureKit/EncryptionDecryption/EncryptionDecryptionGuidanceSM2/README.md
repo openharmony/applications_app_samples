@@ -4,8 +4,8 @@
 
 本示例主要展示了使用SM2非对称密钥加解密及密文格式转换场景 。该工程中展示的代码详细描述可查如下链接。
 
-- [使用SM2非对称密钥加解密](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
-- [使用SM2密文格式转换](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion.md)
+- [使用SM2非对称密钥加解密](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
+- [使用SM2密文格式转换](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion.md)
 
 ### 效果预览
 
@@ -68,6 +68,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/CryptoArchitectureKit/EncryptionDecryption/EncryptionDecryptionGuidanceSM2 > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

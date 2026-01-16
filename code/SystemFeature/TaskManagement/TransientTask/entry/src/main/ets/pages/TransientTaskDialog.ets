@@ -16,52 +16,56 @@
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// [Start request_suspend_delay]
+let id: number = -1;         // 申请短时任务ID
+let delayTime: number;  // 本次申请短时任务的剩余时间
+
+// 申请短时任务
+function requestSuspendDelay() {
+  let myReason = 'test requestSuspendDelay';   // 申请原因
+  try {
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+      // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
+      console.info('suspend delay task will timeout');
+      try {
+        backgroundTaskManager.cancelSuspendDelay(id);
+      } catch (error) {
+        console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      }
+    })
+    id = delayInfo.requestId;
+    delayTime = delayInfo.actualDelayTime;
+    console.info(`Operation requestSuspendDelay failed. id is ${id} delayTime is ${delayTime}`);
+  } catch (error) {
+    console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  }
+}
+// [End request_suspend_delay]
+
+// [Start get_time]
+async function getRemainingDelayTime() {
+  backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
+    console.info(`Succeeded in getting remaining delay time. time is ${res}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
+  })
+}
+// [End get_time]
+
+// [Start cancel_suspend_delay]
+function cancelSuspendDelay() {
+  try {
+    backgroundTaskManager.cancelSuspendDelay(id);
+    console.info('Operation cancelSuspendDelay Succeeded.');
+  } catch (error) {
+    console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  }
+}
+// [End cancel_suspend_delay]
+
 @Component
 export struct TransientTaskDialog {
-  // [Start request_suspend_delay]
-  @State requestId : number = 0;  // 申请短时任务ID
-  @State delayTime : number = 0;  // 本次申请短时任务的剩余时间
-
-  requestSuspendDelay() {
-    let myReason = 'test requestSuspendDelay';   // 申请原因
-    try {
-      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
-        console.info('suspend delay task will timeout');
-      })
-      this.requestId = delayInfo.requestId;
-      this.delayTime = delayInfo.actualDelayTime;
-      console.info(`Succeeded in requestSuspendDelay. requestId is :${this.requestId}, delayTime is :${this.delayTime}`);
-    } catch (error) {
-      console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-    }
-  }
-  // [End request_suspend_delay]
-
-  // [Start get_time]
-  getRemainingDelayTime() {
-    try {
-      backgroundTaskManager.getRemainingDelayTime(this.requestId).then((res: number) => {
-        console.info(`Succeeded in getting remaining delay time. delay time is :${res}`);
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
-      })
-    } catch (error) {
-      console.error(`Operation getRemainingDelayTime failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-    }
-  }
-  // [End get_time]
-
-  // [Start cancel_suspend_delay]
-  cancelSuspendDelay() {
-    try {
-      backgroundTaskManager.cancelSuspendDelay(this.requestId);
-      console.info('Succeeded in cancelSuspendDelay');
-    } catch (error) {
-      console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-    }
-  }
-  // [End cancel_suspend_delay]
+ @State requestId: number = -1;
 
   build() {
     Column() {
@@ -77,7 +81,8 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.requestSuspendDelay();
+          requestSuspendDelay();
+          this.requestId = id;
         })
       Button($r('app.string.get_remaining_delay_time'))
         .id('get_remaining_delay_time')
@@ -87,7 +92,7 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.getRemainingDelayTime();
+          getRemainingDelayTime();
         })
       Button($r('app.string.cancel_suspend_delay'))
         .id('cancel_suspend_delay')
@@ -97,7 +102,7 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.cancelSuspendDelay();
+          cancelSuspendDelay();
         })
     }.width('100%')
     .margin({ top: 5 })

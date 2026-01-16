@@ -1,0 +1,284 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "IntroductionToArkTS"
+    },
+    {
+      "name": "BasicKnowledge",
+      "value": "基本知识"
+    },
+    {
+      "name": "Function",
+      "value": "函数"
+    },
+    {
+      "name": "Class",
+      "value": "类"
+    },
+    {
+      "name": "GenericTypesAndFunctions",
+      "value": "泛型类型和函数"
+    },
+    {
+      "name": "Uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "No_log_information_available",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "Realtime_status_information",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "Current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "Log_information",
+      "value": "日志信息"
+    },
+    {
+      "name": "Test_float_data_type",
+      "value": "测试浮点数类型"
+    },
+    {
+      "name": "Test_float_data_type_finish",
+      "value": "测试浮点数类型完成"
+    },
+    {
+      "name": "Test_BigInt_data_type",
+      "value": "测试BigInt类型"
+    },
+    {
+      "name": "Test_BigInt_data_type_finish",
+      "value": "测试BigInt类型完成"
+    },
+    {
+      "name": "Test_Bool_data_type",
+      "value": "测试Bool类型"
+    },
+    {
+      "name": "Test_Bool_data_type_finish",
+      "value": "测试Bool类型完成"
+    },
+    {
+      "name": "Test_Operator",
+      "value": "测试运算符"
+    },
+    {
+      "name": "Test_Operator_finish",
+      "value": "测试运算符完成"
+    },
+    {
+      "name": "Test_Instanceof",
+      "value": "测试instanceof"
+    },
+    {
+      "name": "Test_Instanceof_finish",
+      "value": "测试instanceof完成"
+    },
+    {
+      "name": "Test_if_else",
+      "value": "测试if-else"
+    },
+    {
+      "name": "Test_if_else_finish",
+      "value": "测试if-else完成"
+    },
+    {
+      "name": "Test_ConditionalExpression",
+      "value": "测试条件表达式"
+    },
+    {
+      "name": "Test_ConditionalExpression_finish",
+      "value": "测试条件表达式完成"
+    },
+    {
+      "name": "Test_ForOf",
+      "value": "测试for-of循环"
+    },
+    {
+      "name": "Test_ForOf_finish",
+      "value": "测试for-of循环完成"
+    },
+    {
+      "name": "Test_AliasesType",
+      "value": "测试Aliases类型"
+    },
+    {
+      "name": "Test_AliasesType_finish",
+      "value": "测试Aliases类型完成"
+    },
+    {
+      "name": "Test_ProcessNormal",
+      "value": "测试异常处理(正常)"
+    },
+    {
+      "name": "Test_ProcessNormal_finish",
+      "value": "测试异常处理(正常)完成"
+    },
+    {
+      "name": "Test_ProcessError",
+      "value": "测试异常处理(除零错误)"
+    },
+    {
+      "name": "Test_ProcessError_finish",
+      "value": "测试异常处理(除零错误)完成"
+    },
+    {
+      "name": "Test_ProcessData",
+      "value": "测试数据处理"
+    },
+    {
+      "name": "Test_ProcessData_finish",
+      "value": "测试数据处理完成"
+    },
+    {
+      "name": "Test_Class",
+      "value": "测试类的基本用法"
+    },
+    {
+      "name": "Test_Class_finish",
+      "value": "测试类的基本用法完成"
+    },
+    {
+      "name": "Test_InstanceField",
+      "value": "测试实例字段"
+    },
+    {
+      "name": "Test_InstanceField_finish",
+      "value": "测试实例字段完成"
+    },
+    {
+      "name": "Test_ClassSetterAge",
+      "value": "测试类的Setter/Getter"
+    },
+    {
+      "name": "Test_ClassSetterAge_finish",
+      "value": "测试类的Setter/Getter完成"
+    },
+    {
+      "name": "Test_ClassSetterAgeError",
+      "value": "测试Setter错误处理"
+    },
+    {
+      "name": "Test_ClassSetterAgeError_finish",
+      "value": "测试Setter错误处理完成"
+    },
+    {
+      "name": "Test_InstanceFunction",
+      "value": "测试实例方法"
+    },
+    {
+      "name": "Test_InstanceFunction_finish",
+      "value": "测试实例方法完成"
+    },
+    {
+      "name": "Test_StaticMethod",
+      "value": "测试静态方法"
+    },
+    {
+      "name": "Test_StaticMethod_finish",
+      "value": "测试静态方法完成"
+    },
+    {
+      "name": "Test_Record",
+      "value": "测试Record类型"
+    },
+    {
+      "name": "Test_Record_finish",
+      "value": "测试Record类型完成"
+    },
+    {
+      "name": "Test_HelloWithoutParam",
+      "value": "测试hello函数(无参数)"
+    },
+    {
+      "name": "Test_HelloWithoutParam_finish",
+      "value": "测试hello函数(无参数)完成"
+    },
+    {
+      "name": "Test_HelloWithParam",
+      "value": "测试hello函数(带参数)"
+    },
+    {
+      "name": "Test_HelloWithParam_finish",
+      "value": "测试hello函数(带参数)完成"
+    },
+    {
+      "name": "Test_OptionalFunction",
+      "value": "测试可选参数函数"
+    },
+    {
+      "name": "Test_OptionalFunction_finish",
+      "value": "测试可选参数函数完成"
+    },
+    {
+      "name": "Test_RestParameter",
+      "value": "测试剩余参数"
+    },
+    {
+      "name": "Test_RestParameter_finish",
+      "value": "测试剩余参数完成"
+    },
+    {
+      "name": "Test_Hi1",
+      "value": "测试hi1函数"
+    },
+    {
+      "name": "Test_Hi1_finish",
+      "value": "测试hi1函数完成"
+    },
+    {
+      "name": "Test_Hi2",
+      "value": "测试hi2函数"
+    },
+    {
+      "name": "Test_Hi2_finish",
+      "value": "测试hi2函数完成"
+    },
+    {
+      "name": "Test_Func",
+      "value": "测试作用域"
+    },
+    {
+      "name": "Test_Func_finish",
+      "value": "测试作用域完成"
+    },
+    {
+      "name": "Test_FunctionInvoke",
+      "value": "测试函数调用"
+    },
+    {
+      "name": "Test_FunctionInvoke_finish",
+      "value": "测试函数调用完成"
+    },
+    {
+      "name": "Test_Closure",
+      "value": "测试闭包"
+    },
+    {
+      "name": "Test_Closure_finish",
+      "value": "测试闭包完成"
+    },
+    {
+      "name": "Test_GenericTypes",
+      "value": "测试泛型类型"
+    },
+    {
+      "name": "Test_GenericTypes_finish",
+      "value": "测试泛型类型完成"
+    }
+  ]
+}

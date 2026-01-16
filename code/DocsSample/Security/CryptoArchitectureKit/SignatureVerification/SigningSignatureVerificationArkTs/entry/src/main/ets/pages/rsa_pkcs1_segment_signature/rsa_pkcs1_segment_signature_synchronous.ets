@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start pkcs1_seg_verify_rsa_keypair_sign_async]
+// [Start pkcs1_seg_verify_rsa_keypair_sign_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -73,6 +73,8 @@ function rsaSignatureBySegment() {
   }
 }
 
+// [End pkcs1_seg_verify_rsa_keypair_sign_sync]
+
 @Entry
 @Component
 struct Index {
@@ -96,4 +98,3 @@ struct Index {
     .width('100%')
   }
 }
-// [End pkcs1_seg_verify_rsa_keypair_sign_async]

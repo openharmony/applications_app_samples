@@ -59,7 +59,7 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let fileListText = await driver.findComponent(ON.id('get_file_list'));
-      expect(await fileListText.getText() === 'FileList = rawfile.txt,rawfile1.txt,subrawfile').assertTrue();
+      expect(await fileListText.getText() === 'FileList = rawfile.txt,rawfile1.txt,sub_rawfile').assertTrue();
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetFileListTest end');
       done();
     })

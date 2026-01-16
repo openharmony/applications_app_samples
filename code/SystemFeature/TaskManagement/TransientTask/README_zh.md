@@ -4,7 +4,7 @@
 
 本示例主要展示后台任务中的短时任务。
 
-通过[@ohos.resourceschedule.backgroundTaskManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[Timer](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/common/js-apis-timer.md) 等接口，实现应用退后台仍然可以计数的功能，展现短时任务的机制。
+通过[@ohos.resourceschedule.backgroundTaskManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，实现应用申请短时任务的功能。
 
 ### 效果预览
 
@@ -27,7 +27,6 @@ entry/src/main/ets/
 |   |---MyAbilityStage.ts                    
 |---pages
 |   |---Index.ets                            // 首页
-|   |---Interval.ets                         // 定时计数
 |   |---TitleBar.ets                         // 标题
 |   |---TransientTaskDialog.ets              // 短时任务
 |---util
@@ -35,7 +34,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 该示例使用requestSuspendDelay方法申请短时任务，延迟挂起，setInterval方法进行计数，实现应用退后台仍然可以计数的功能。
+* 该示例使用[requestSuspendDelay](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)方法申请短时任务，使用[getRemainingDelayTime](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime)获取短时任务剩余时间，使用[cancelSuspendDelay](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)取消短时任务。
 * 源码链接：[Interval.ets](entry/src/main/ets/pages/Interval.ets)，[TransientTaskDialog.ets](entry/src/main/ets/pages/TransientTaskDialog.ets)
 * 接口参考：[@ohos.resourceschedule.backgroundTaskManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[timer](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/common/js-apis-timer.md)
 
@@ -49,11 +48,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备:RK3568；
+1.本示例仅支持标准系统上运行,支持设备：RK3568；
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例已适配API version 20版本SDK，版本号：6.0 Release；
 
-3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 5.0.5.306， built on December 12, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(6.0 Release)及以上版本才可编译运行。
 
 ### 下载
 

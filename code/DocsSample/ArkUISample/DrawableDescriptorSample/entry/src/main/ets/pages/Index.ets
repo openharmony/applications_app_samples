@@ -138,6 +138,9 @@ struct DrawablePage {
     this.loadPixelMapArray();
     napiAgent.setAnimationDuration(this.imagePixelMapArrayId, this.newDuration);
     this.animationDuration = napiAgent.getAnimationDuration(this.imagePixelMapArrayId);
+    if (this.animationIteration > 0) {
+      napiAgent.setAnimationIteration(this.imagePixelMapArrayId, this.animationIteration);
+    }
   }
 
   // 设置输入的iteration
@@ -149,6 +152,9 @@ struct DrawablePage {
     this.loadPixelMapArray();
     napiAgent.setAnimationIteration(this.imagePixelMapArrayId, this.newIteration);
     this.animationIteration = napiAgent.getAnimationIteration(this.imagePixelMapArrayId);
+    if (this.animationDuration > 0) {
+      napiAgent.setAnimationDuration(this.imagePixelMapArrayId, this.animationDuration);
+    }
   }
 
   // 页面销毁时释放资源

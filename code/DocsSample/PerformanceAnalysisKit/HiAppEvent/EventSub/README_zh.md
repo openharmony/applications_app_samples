@@ -491,12 +491,13 @@ HiAppEvent eventInfo.params.log_over_limit=xx
 
 3.C++实现了onReceive和onTrigger两种观察者。
 
-##### 10.订阅Arkweb抛滑丢帧事件（C/C++）
+##### 10.订阅Arkweb抛滑丢帧事件（ArkTS）
 
-本示例主要展示了订阅Arkweb抛滑丢帧事件的功能，包括构造AkrWeb抛滑丢帧场景及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该丢帧事件的订阅。
+1.在应用侧主界面，点击“ArkWebFlingJank ArkTs”按钮，跳转到Web页面，等待页面加载完成；
 
-1.在应用侧主界面，点击“ArkWebFlingJank ArkTs”按钮；
-2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志示例结果为：
+2.多次滑动页面，会触发页面丢帧，上报Arkweb抛滑丢帧事件；
+
+3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志示例结果为：
 
 ```text
 HiAppEvent eventInfo.domain=OS

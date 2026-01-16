@@ -108,7 +108,6 @@ static napi_value GetTransientTaskInfo(napi_env env, napi_callback_info info)
     }
     return result;
 }
-
 // [End encapsulation_function]
 
 // [Start registration_function]

@@ -14,7 +14,7 @@
 */
 
 // [Start render_process]
-// [Start init_callback]
+// [Start init_oncallback]
 // [Start create_audiorender]
 // [Start get_volumemanager]
 // [Start get_systemvolume]
@@ -49,6 +49,7 @@ import { audio } from '@kit.AudioKit';
 // [Start render_start]
 // [Start render_stop]
 // [Start render_release]
+// [Start init_callback]
 // [Start Renderset_streamvolume]
 // [EndExclude get_allstreaminfo]
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -60,6 +61,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude render_release]
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
+// [StartExclude init_oncallback]
 // [StartExclude render_process]
 // [StartExclude init_callback]
 import { media } from '@kit.MediaKit';
@@ -94,10 +96,12 @@ let audioRoutingManager = audioManager.getRoutingManager();
 // [EndExclude render_process]
 const TAG = 'AudioRendererDemo';
 // [EndExclude init_callback]
+// [EndExclude init_oncallback]
 class Options {
   public offset?: number;
   public length?: number;
 }
+// [StartExclude init_oncallback]
 // [StartExclude init_callback]
 // [StartExclude render_process]
 // 全局变量用于UI更新回调
@@ -127,8 +131,9 @@ let writeDataCallback: audio.AudioRendererWriteDataCallback;
 
 async function initArguments(context: common.UIAbilityContext) {
   // [EndExclude init_callback]
+  // [EndExclude init_oncallback]
   let bufferSize: number = 0;
-  let file = await context.resourceManager.getRawFd('32_xiyouji.pcm');
+  let file = await context.resourceManager.getRawFd('S16LE_2_48000.pcm');
   writeDataCallback = (buffer: ArrayBuffer) => {
     let options: Options = {
       offset: bufferSize,
@@ -139,7 +144,8 @@ async function initArguments(context: common.UIAbilityContext) {
     try {
       let bufferLength = fs.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-      // 如果当前回调传入的数据不足一帧，空白区域需要使用静音数据填充，否则会导致播放出现杂音。
+      // 系统会判定buffer有效，正常播放
+      // [StartExclude init_oncallback]
       if (bufferLength < buffer.byteLength) {
         let view = new DataView(buffer);
         for (let i = bufferLength; i < buffer.byteLength; i++) {
@@ -149,16 +155,21 @@ async function initArguments(context: common.UIAbilityContext) {
       }
       // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。
       // 如果开发者不希望播放某段buffer，返回audio.AudioDataCallbackResult.INVALID即可。
+      // [EndExclude init_oncallback]
       return audio.AudioDataCallbackResult.VALID;
     } catch (error) {
       console.error('Error reading file:', error);
       // [StartExclude render_process]
+      // 系统会判定buffer无效，不播放
+      // [StartExclude init_oncallback]
       globalLogUpdate('Error reading file: ' + error, true);
       // [EndExclude render_process]
       // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。
+      // [EndExclude init_oncallback]
       return audio.AudioDataCallbackResult.INVALID;
     }
   };
+  // [StartExclude init_oncallback]
 }
 
 // 初始化，创建实例，设置监听事件。
@@ -175,7 +186,9 @@ async function init() {
       audioRenderer = renderer;
       if (audioRenderer !== undefined) {
         // [EndExclude init_callback]
+        // [EndExclude init_oncallback]
         audioRenderer.on('writeData', writeDataCallback);
+        // [End init_oncallback]
         // [End init_callback]
         // [StartExclude render_process]
         // [StartExclude create_audiorender]

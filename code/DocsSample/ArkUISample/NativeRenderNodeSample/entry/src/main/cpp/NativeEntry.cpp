@@ -549,7 +549,7 @@ napi_value CreateRenderNodeExample(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -578,7 +578,7 @@ napi_value CreateRenderNodePropertyExample(napi_env env, napi_callback_info info
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -606,7 +606,7 @@ napi_value CreateRenderNodeCustomDrawExample(napi_env env, napi_callback_info in
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -637,6 +637,8 @@ napi_value CreateRenderNodeCustomDrawExample(napi_env env, napi_callback_info in
     scrollNode->AddChild(columnNode);
     return nullptr;
 }
+
+// [Start Create_RootNode]
 
 std::shared_ptr<ArkUIBaseNode> custom_ = nullptr;
 std::shared_ptr<ArkUIRenderNode> render_ = nullptr;
@@ -679,7 +681,7 @@ napi_value CreateRenderNodeGetNodeExample(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr, nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -701,15 +703,19 @@ napi_value CreateRenderNodeGetNodeExample(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// [End Create_RootNode]
+
 ArkUI_NodeHandle nodeHandle_ = nullptr;
 ArkUI_RenderNodeHandle renderHandle_ = nullptr;
+
+// [Start Adopt_Node]
 
 napi_value Adopt(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     int32_t result = OH_ArkUI_GetNodeHandleFromNapiValue(env, args[0], &nodeHandle_);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         return nullptr;
@@ -720,14 +726,22 @@ napi_value Adopt(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// [End Adopt_Node]
+
+
+// [Start Remove_Adopt_Node]
+
 napi_value RemoveAdopt(napi_env env, napi_callback_info info)
 {
     OH_ArkUI_NativeModule_RemoveAdoptedChild(custom_->GetHandle(), nodeHandle_);
+    // 解除节点的接纳状态后，需要额外调用OH_ArkUI_RenderNodeUtils_DisposeNode释放对应的渲染节点，否则会导致内存泄漏。
     OH_ArkUI_RenderNodeUtils_DisposeNode(renderHandle_);
     nodeHandle_ = nullptr;
     renderHandle_ = nullptr;
     return nullptr;
 }
+
+// [End Remove_Adopt_Node]
 
 napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
 {
@@ -735,7 +749,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取ArkTs侧组件挂载点。
+    // 获取ArkTS侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {

@@ -30,7 +30,7 @@ export default class EntryAbility extends UIAbility {
     testNapi.setSchemeHandler();
   }
 
-// [End register_init_scheme]
+// [StartExclude register_init_scheme]
   onDestroy(): void {
 
   }
@@ -54,4 +54,6 @@ export default class EntryAbility extends UIAbility {
   onBackground(): void {
 
   }
+  // [EndExclude register_init_scheme]
 };
+// [End register_init_scheme]

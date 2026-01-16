@@ -17,7 +17,8 @@ class GlobalTmp1 {
   public strValue: string = 'Hello';
 }
 
-@Builder function overBuilder1(param: GlobalTmp1, num: number) {
+@Builder
+function overBuilder1(param: GlobalTmp1, num: number) {
   Column() {
     Text(`strValue: ${param.strValue}`)
     Text(`num: ${num}`)
@@ -29,12 +30,13 @@ class GlobalTmp1 {
 struct Parent1 {
   @State objParam: GlobalTmp1 = new GlobalTmp1();
   @State num: number = 0;
+
   build() {
     Column() {
       Text('UI Rendered via @Builder')
         .fontSize(20)
       // 使用了两个参数，用法错误。
-      overBuilder1({strValue: this.objParam.strValue}, this.num)
+      overBuilder1({ strValue: this.objParam.strValue }, this.num)
       Line()
         .width('100%')
         .height(10)

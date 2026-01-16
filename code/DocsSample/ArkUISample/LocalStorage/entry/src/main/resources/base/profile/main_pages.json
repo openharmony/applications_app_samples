@@ -2,7 +2,7 @@
   "src": [
     "pages/Index",
     "pages/PageOneDoubleSYN",
-    "pages/PageTwoSigleSYN",
+    "pages/PageTwoSingleSYN",
     "pages/PageTwoWaySYN",
     "pages/PageFourStateVariableSYN",
     "pages/PageFiveShare",

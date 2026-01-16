@@ -47,19 +47,39 @@ export default function eccCompressPublicKeyFormatConversionTest() {
     it('testEccCompressPublicKeyFormatConversion001', 0, async () => {
       console.info('uitest: testEccCompressPublicKeyFormatConversion001 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('SpecifyUncompressedPublicKey'));
+      const button1 = await driver.findComponent(ON.text('SpecifyUncompressedPublicKey C++'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('doTestEccDataCovert Success Result:0'));
+      await driver.assertComponentExist(ON.text('doTestEccDataCovert Success'));
       console.info('uitest: testEccCompressPublicKeyFormatConversion001 end');
+    })
+    it('testEccCompressPublicKeyFormatConversion002', 0, async () => {
+      console.info('uitest: testEccCompressPublicKeyFormatConversion002 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('CompressedPointData C++'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('doTestEccPointUncompressedToCompressed Success'));
+      console.info('uitest: testEccCompressPublicKeyFormatConversion002 end');
+    })
+    it('testEccCompressPublicKeyFormatConversion003', 0, async () => {
+      console.info('uitest: testEccCompressPublicKeyFormatConversion003 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('GetKeyObject C++'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('doTestEccPointCompressedToPoint Success'));
+      console.info('uitest: testEccCompressPublicKeyFormatConversion003 end');
     })
 
     /**
      * 点击按钮，使用ECC压缩/非压缩公钥格式转换(ArkTS)
      */
-    it('testEccCompressPublicKeyFormatConversion002', 0, async () => {
-      console.info('uitest: testEccCompressPublicKeyFormatConversion002 begin');
+    it('testEccCompressPublicKeyFormatConversion004', 0, async () => {
+      console.info('uitest: testEccCompressPublicKeyFormatConversion004 begin');
       const driver = Driver.create();
       const button1 = await driver.findComponent(ON.text('SpecifyUncompressedPublicKeyArkTS'));
       await driver.delayMs(1000);
@@ -69,15 +89,15 @@ export default function eccCompressPublicKeyFormatConversionTest() {
       await button2.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('SpecifyUncompressedPublicKey Success'));
-      console.info('uitest: testEccCompressPublicKeyFormatConversion002 end');
+      console.info('uitest: testEccCompressPublicKeyFormatConversion004 end');
       await driver.pressBack();
     })
 
     /**
      * 点击按钮，使用ECC压缩/非压缩点格式转换(指定非压缩点数据转换为压缩点数据)
      */
-    it('testEccCompressPublicKeyFormatConversion003', 0, async () => {
-      console.info('uitest: testEccCompressPublicKeyFormatConversion003 begin');
+    it('testEccCompressPublicKeyFormatConversion005', 0, async () => {
+      console.info('uitest: testEccCompressPublicKeyFormatConversion005 begin');
       const driver = Driver.create();
       const button1 = await driver.findComponent(ON.text('CompressedPointData'));
       await driver.delayMs(1000);
@@ -87,15 +107,15 @@ export default function eccCompressPublicKeyFormatConversionTest() {
       await button2.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('CompressedPointData Success'));
-      console.info('uitest: testEccCompressPublicKeyFormatConversion003 end');
+      console.info('uitest: testEccCompressPublicKeyFormatConversion005 end');
       await driver.pressBack();
     })
 
     /**
      * 点击按钮，使用ECC压缩/非压缩点格式转换(指定压缩点数据获取密钥对象)
      */
-    it('testEccCompressPublicKeyFormatConversion004', 0, async () => {
-      console.info('uitest: testEccCompressPublicKeyFormatConversion004 begin');
+    it('testEccCompressPublicKeyFormatConversion006', 0, async () => {
+      console.info('uitest: testEccCompressPublicKeyFormatConversion006 begin');
       const driver = Driver.create();
       const button1 = await driver.findComponent(ON.text('GetKeyObject'));
       await driver.delayMs(1000);
@@ -105,7 +125,7 @@ export default function eccCompressPublicKeyFormatConversionTest() {
       await button2.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('GetKeyObject Success'));
-      console.info('uitest: testEccCompressPublicKeyFormatConversion004 end');
+      console.info('uitest: testEccCompressPublicKeyFormatConversion006 end');
       await driver.pressBack();
     })
   })

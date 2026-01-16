@@ -9,9 +9,9 @@
 
 ### 效果预览
 
-| 主界面                            | 输出日志                           | 
-|--------------------------------|--------------------------------|
-| ![image](screenshots/img1.png) | ![image](screenshots/img8.png)  | 
+| 主界面                            | 输出日志                                         | 
+|--------------------------------|----------------------------------------------|
+| <img src="screenshots/img1.png" width="200"> | <img src="screenshots/img8.png" width="500"> | 
 
 
 ### 使用说明
@@ -69,21 +69,23 @@ entry/src/
 
 ### 具体实现
 
-* 设置公共事件信息并订阅公共事件的功能封装在common_event_subscriber，源码参考[common_event_subscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
-    * 订阅信息 / 订阅者：Create*/Destroy*封装 API，管理资源生命周期；
-    * 事件订阅：Subscribe()调用OH_CommonEvent_Subscribe()完成订阅；
-    * 事件解析：OnReceive()回调解析基础信息，Get*Param()系列函数解析多类型附加参数；
-    * 有序事件：Abort*/ClearAbort*处理中止逻辑，Set*/GetFromSubscriber()读写事件数据。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+* 设置公共事件信息并订阅公共事件的功能封装在common_event_subscribe，源码参考[common_event_subscribe.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_subscribe.cpp)
+  * 订阅信息 / 订阅者：CreateSubscriber()/DestroySubscriber()封装 API，管理资源生命周期；
+  * 事件订阅：Subscribe()调用[OH_CommonEvent_Subscribe](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_subscribe)完成订阅；
+  * 销毁订阅：DestroySubscriber()调用[OH_CommonEvent_DestroySubscriber](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_DestroySubscriber)销毁订阅；
+  * 事件解析：OnReceive()回调解析基础信息，调用[OH_CommonEvent_GetEventFromRcvData](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_GetEventFromRcvData)获取回调公共事件名称；
+  * 有序事件：AbortCommonEvent()调用[OH_CommonEvent_IsOrderedCommonEvent](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_IsOrderedCommonEvent)判断是否为有序公共事件；
+    ClearAbortCommonEvent调用[OH_CommonEvent_AbortCommonEvent](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_AbortCommonEvent)处理中止逻辑，接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
 
 * 设置发布公共事件信息并发布公共事件的功能封装在common_event_publish，源码参考[common_event_publish.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_publish.cpp)
-    * 基础事件发布：Publish()调用OH_CommonEvent_Publish()发布无属性公共事件；
-    * 带属性事件发布：PublishWithInfo()调用OH_CommonEvent_PublishWithInfo()发布含自定义属性的事件；
-    * 附加参数创建：CreateParameters()封装 API，设置 int/long/double 等基础类型及数组类型附加参数；
-    * 发布属性配置：SetPublishInfo()创建PublishInfo，配置有序事件、包名、权限、结果码、数据及附加参数；
-    * 资源销毁：DestroyPublishInfo()释放Parameters和PublishInfo资源，避免内存泄漏。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+  * 基础事件发布：Publish()调用[OH_CommonEvent_Publish](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish)发布无属性公共事件；
+  * 带属性事件发布：PublishWithInfo()调用[OH_CommonEvent_PublishWithInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_PublishWithInfo)发布含自定义属性的事件；
+  * 附加参数创建：CreateParameters()封装 API，调用[OH_CommonEvent_CreateParameters](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_CreateParameters)设置 int/long/double 等基础类型及数组类型附加参数；
+  * 发布属性配置：SetPublishInfo()创建PublishInfo，调用[OH_CommonEvent_CreatePublishInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_CreatePublishInfo)等配置有序事件、包名、权限、结果码、数据及附加参数；
+  * 资源销毁：DestroyPublishInfo()释放Parameters和PublishInfo资源，调用[OH_CommonEvent_DestroyParameters](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_DestroyParameters)和[OH_CommonEvent_DestroyPublishInfo](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#OH_CommonEvent_DestroyPublishInfo)避免内存泄漏。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
 
-* 取消订阅公共事件的功能封装在common_event_unsubscriber，源码参考[common_event_unsubscriber.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_unsubscribe.cpp)
-    * 事件退订：Unsubscribe()封装 API OH_CommonEvent_UnSubscribe()，传入已创建的订阅者对象即可完成事件退订，返回值标识退订操作结果。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
+* 取消订阅公共事件的功能封装在common_event_unsubscribe，源码参考[common_event_unsubscribe.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Basic-Services-Kit/common_event/NativeCommonEvent/entry/src/main/cpp/common_event_unsubscribe.cpp)
+  * 事件退订：Unsubscribe()封装 API [OH_CommonEvent_UnSubscribe](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_unsubscribe)，传入已创建的订阅者对象即可完成事件退订，返回值标识退订操作结果。接口参考:[oh_commonevent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md)
 
 
 ### 相关权限
@@ -97,8 +99,8 @@ entry/src/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行。
-2. 本示例为Stage模型，支持API version 18及以上版本的SDK。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0 Release)才可编译运行。
+2. 本示例支持API version 18及以上版本的SDK。
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.878，构建 2025年12月24日)编译运行。
 
 ### 下载
 

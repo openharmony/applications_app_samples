@@ -7,13 +7,13 @@
 
 ### 效果预览
 
-| 项目主界面                    | 弹窗通知授权                        | 
-|----------------------------|----------------------------|
-| ![image](screenshot/mainInterface.png) | ![image](screenshot/requestNotificationDialog.png) |
+| 项目主界面                                                | 弹窗通知授权                                                           | 
+|------------------------------------------------------|------------------------------------------------------------------|
+| <img src="screenshot/mainInterface.png" width="200"> | <img src="screenshot/requestNotificationDialog.png" width="200"> |
 
 | 发布文本类型通知                                           | 进度条类型通知                  |
 |----------------------------------------------------|----------------------------|
-| ![image](screenshot/multLinesTextNotification.png) | ![image](screenshot/progressTextNotification.png) |
+| <img src="screenshot/multLinesTextNotification.png" width="200">  | <img src="screenshot/progressTextNotification.png" width="200"> |
 
 
 
@@ -95,8 +95,8 @@ entry/src/
    * 更新通知：通过点击界面中的 “更新通知” 按钮，构造相同 ID 为 5 的通知，设置 updateOnly 为 true ，修改进度值为 99%，调用 notificationManager.publish() 实现增量更新，不创建新通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 
 * 取消通知的功能封装在CancelNotification，源码参考：[CancelNotification.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/CancelNotification.ets)
-   * 发布按钮：通过点击界面中的 “发布普通文本类型通知” 按钮，构造 NotificationRequest（普通文本类型），调用 notificationManager.publish() 发布 ID=1 的通知。
-   * 取消按钮：通过点击界面中的 “取消通知” 按钮，调用 notificationManager.cancel(1, callback)，通过通知 ID 精准取消已发布的通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
+   * 发布通知：通过点击界面中的 “发布普通文本类型通知” 按钮，构造 NotificationRequest（普通文本类型），调用 notificationManager.publish() 发布 ID=1 的通知。
+   * 取消通知：通过点击界面中的 “取消通知” 按钮，调用 notificationManager.cancel(1, callback)，通过通知 ID 精准取消已发布的通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 
 * 清除跨设备场景下的重复通知功能封装在ClearDuplicateNotifications，源码参考：[ClearDuplicateNotifications.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/ClearDuplicateNotifications.ets)
    * 通过点击界面中的 “发布通知消息……” 按钮，去构造通知对象，并额外添加 appMessageId: 'test_appMessageId_1'（自定义唯一标识）。然后调用 notificationManager.publish() 发布通知，系统会根据 appMessageId 去重，避免重复显示同一类通知。[@ohos.notificationManager (NotificationManager模块)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
@@ -111,10 +111,10 @@ entry/src/
 
 ### 约束与限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568；
-2. 本示例支持API20版本SDK，版本号：6.0.0.47；
-3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年11月11日)编译运行；
-4. 高等级APL特殊签名说明：无；
+1. 本示例支持标准系统上运行，支持设备：RK3568。
+2. 本示例支持API version 20及以上版本的SDK。
+3. 本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.878，构建 2025年12月24日)编译运行。
+4. 高等级APL特殊签名说明：无。
 
 ### 下载
 

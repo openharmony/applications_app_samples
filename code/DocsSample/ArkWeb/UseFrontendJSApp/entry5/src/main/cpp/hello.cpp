@@ -15,12 +15,7 @@
 
 // [Start the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page]
 #include "napi/native_api.h"
-#include <bits/alltypes.h>
-#include <memory>
 #include <string>
-#include <sys/types.h>
-#include <iostream>
-#include <map>
 #include "hilog/log.h"
 #include "web/arkweb_interface.h"
 #include <thread>
@@ -38,18 +33,18 @@ static void WebMessagePortCallback(
 {
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
-        "Native Development Kit WebMesagePortCallback webTag:%{public}s,messageType:%{public}d",
+        "Native Development Kit WebMessagePortCallback webTag:%{public}s,messageType:%{public}d",
         webTag, webMessage->getType(message));
     size_t len = 0;
     void *back = webMessage->getData(message, &len);
     if (webMessage->getType(message) == ArkWeb_WebMessageType::ARKWEB_STRING) {
         OH_LOG_Print(
             LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
-            "Native Development Kit WebMesagePortCallback message:%{public}s,messageSize:%{public}d", back, len);
+            "Native Development Kit WebMessagePortCallback message:%{public}s,messageSize:%{public}d", back, len);
     } else if (webMessage->getType(message) == ArkWeb_WebMessageType::ARKWEB_BUFFER) {
         OH_LOG_Print(
             LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
-            "Native Development Kit WebMesagePortCallback messageSize:%{public}d", len);
+            "Native Development Kit WebMessagePortCallback messageSize:%{public}d", len);
     }
 }
 

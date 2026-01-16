@@ -122,6 +122,42 @@ entry/src/main/
 3. 点击deleteJavaScriptRegister按钮删除Web端注册的testObjName对象。
 4. 点击Click Me!按钮，触发callArkTS函数。
 
+### RegisterJavaScriptProxyOne
+
+#### 介绍
+
+本示例用于补充介绍前端页面调用应用侧函数方式，在Web组件初始时使用registerJavaScriptProxy()接口注册应用侧代码。
+
+#### 效果预览
+
+| 主页                                                         | 触发callArkTS                                                |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="screenshots\RegisterJavaScriptProxy_one_1.png" width="360;" /> | <img src="screenshots\RegisterJavaScriptProxy_one_2.png" width="360;" /> |
+
+使用说明
+
+1. 直接点击Click Me!按钮，触发callArkTS函数。
+2. 点击deleteJavaScriptRegister按钮删除Web端注册的testObjName对象。
+3. 点击Click Me!按钮，不会触发callArkTS函数。
+
+### RegisterJavaScriptProxyTwo
+
+#### 介绍
+
+本示例用于补充介绍前端页面调用应用侧函数方式，在页面加载完成后使用registerJavaScriptProxy()接口注册应用侧代码。
+
+#### 效果预览
+
+| 主页                                                         | 触发callArkTS                                                |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="screenshots\RegisterJavaScriptProxy_two_1.png" width="360;" /> | <img src="screenshots\RegisterJavaScriptProxy_two_2.png" width="360;" /> |
+
+使用说明
+
+1. 直接点击Click Me!按钮，触发callArkTS函数。
+2. 点击deleteJavaScriptRegister按钮删除Web端注册的testObjName对象。
+3. 点击Click Me!按钮，不会触发callArkTS函数。
+
 ### UsageOfComplexTypes_one
 
 #### 介绍

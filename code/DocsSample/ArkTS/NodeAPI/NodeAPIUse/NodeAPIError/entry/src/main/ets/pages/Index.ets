@@ -14,7 +14,7 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi, { MyObject } from 'libentry.so';
+import testNapi from 'libentry.so';
 
 @Entry
 @Component
@@ -27,13 +27,14 @@ struct Index {
     '3.napiCreateRangeError',
     '4.napiCreateErrorAndNapiThrow',
     '5.napiThrowError',
-    '6.napiThrowTypeError',
-    '7.napiThrowRangeError',
-    '8.napiIsError',
-    '9.napiGetAndClearLastException',
-    '10.napiIsExceptionPending',
-    '11.napiFatalError',
-    '12.napiFatalException'
+    '6.napiThrowBusinessError',
+    '7.napiThrowTypeError',
+    '8.napiThrowRangeError',
+    '9.napiIsError',
+    '10.napiGetAndClearLastException',
+    '11.napiIsExceptionPending',
+    '12.napiFatalError',
+    '13.napiFatalException'
   ]
 
   build() {
@@ -153,7 +154,25 @@ struct Index {
                     // [EndExclude ark_napi_throw_error]
                   }
                   // [End ark_napi_throw_error]
-                } else if (item === '6.napiThrowTypeError') {
+                } else if (item == '6.napiThrowBusinessError') {
+                  // [Start ark_napi_throw_business_error]
+                  // napi_throw_business_error
+                  try {
+                    testNapi.napiThrowBusinessError();
+                    // [StartExclude ark_napi_throw_business_error]
+                    this.result = 'napiThrowBusinessErrorSuccess';
+                    // [EndExclude ark_napi_throw_business_error]
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag',
+                      'Test Node-API napi_throw_error errorCode: %{public}d , errorManager: %{public}s', error.code,
+                      error.message);
+                    console.info(typeof error.code);// "number"
+                    // [StartExclude ark_napi_throw_business_error]
+                    this.result = 'napiThrowBusinessErrorFail';
+                    // [EndExclude ark_napi_throw_business_error]
+                  }
+                  // [End ark_napi_throw_business_error]
+                } else if (item === '7.napiThrowTypeError') {
                   // [Start ark_napi_throw_type_error]
                   // napi_throw_type_error
                   try {
@@ -185,7 +204,7 @@ struct Index {
                     // [EndExclude ark_napi_throw_type_error]
                   }
                   // [End ark_napi_throw_type_error]
-                } else if (item === '7.napiThrowRangeError') {
+                } else if (item === '8.napiThrowRangeError') {
                   // [Start ark_napi_throw_range_error]
                   // napi_throw_range_error
                   try {
@@ -218,7 +237,7 @@ struct Index {
                     // [EndExclude ark_napi_throw_range_error]
                   }
                   // [End ark_napi_throw_range_error]
-                } else if (item === '8.napiIsError') {
+                } else if (item === '9.napiIsError') {
                   // [Start ark_napi_is_error]
                   // napi_is_error
                   try {
@@ -238,7 +257,7 @@ struct Index {
                     // [EndExclude ark_napi_is_error]
                   }
                   // [End ark_napi_is_error]
-                } else if (item === '9.napiGetAndClearLastException') {
+                } else if (item === '10.napiGetAndClearLastException') {
                   // [Start ark_napi_get_and_clear_last_exception]
                   // napi_get_and_clear_last_exception
                   // 这里获取到最后一个未处理的异常
@@ -247,9 +266,14 @@ struct Index {
                     testNapi.getAndClearLastException());
                   // [End ark_napi_get_and_clear_last_exception]
                   this.result = 'napiGetAndClearLastExceptionSuccess';
-                } else if (item === '10.napiIsExceptionPending') {
+                } else if (item === '11.napiIsExceptionPending') {
                   // [Start ark_napi_is_exception_pending]
                   // napi_is_exception_pending
+                  interface MyObject {
+                    code: string;
+                    message: string;
+                  }
+
                   try {
                     let result = testNapi.isExceptionPending() as MyObject;
                     hilog.info(0x0000, 'testTag',
@@ -265,7 +289,7 @@ struct Index {
                     // [EndExclude ark_napi_is_exception_pending]
                   }
                   // [End ark_napi_is_exception_pending]
-                } else if (item === '11.napiFatalError') {
+                } else if (item === '12.napiFatalError') {
                   // [Start ark_napi_fatal_error]
                   // napi_fatal_error 请注意，使用napi_fatal_error函数会导致应用进程直接终止，因此应该谨慎使用，仅在遇到无法恢复的严重错误时才应该调用该函数
                   // 模拟一个致命错误条件
@@ -281,7 +305,7 @@ struct Index {
                     // [EndExclude ark_napi_fatal_error]
                   }
                   // [End ark_napi_fatal_error]
-                } else if (item === '12.napiFatalException') {
+                } else if (item === '13.napiFatalException') {
                   // napi_fatal_exception 请注意，使用napi_fatal_error函数会导致应用进程直接终止，因此应该谨慎使用，仅在遇到无法恢复的严重错误时才应该调用该函数
                   // 模拟一个致命错误条件
                   try {

@@ -30,7 +30,7 @@ struct Index {
     },
     {
       name: 'PageTwo',
-      path: 'pages/PageTwoSigleSYN'
+      path: 'pages/PageTwoSingleSYN'
     },
     {
       name: 'PageThree',

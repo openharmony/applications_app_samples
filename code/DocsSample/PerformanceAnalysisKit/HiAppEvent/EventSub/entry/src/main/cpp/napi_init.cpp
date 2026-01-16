@@ -20,16 +20,20 @@
 #include <thread>
 // [End Pss_Leak_Header]
 
+// [Start EventSub_napi_nohiappevent_Header]
 // [Start EventSub_napi_Header]
 #include "napi/native_api.h"
+// [StartExclude EventSub_napi_nohiappevent_Header]
+// 根据工程中三方库jsoncpp的位置适配引用json.h的路径
 #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
-#include "hilog/log.h"
 #include "hiappevent/hiappevent.h"
-#include "hiappevent/hiappevent_event.h"
+// [EndExclude EventSub_napi_nohiappevent_Header]
+#include "hilog/log.h"
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
 // [End EventSub_napi_Header]
+// [End EventSub_napi_nohiappevent_Header]
 
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>

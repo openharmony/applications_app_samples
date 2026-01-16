@@ -76,6 +76,7 @@ struct ParentDemo {
       Text('UI Rendered via @Builder')
         .fontSize(20)
         .margin(12)
+      // 调用全局@Builder函数overBuilder
       overBuilder({
         strValue: this.objParam.strValue,
         numValue: this.objParam.numValue,

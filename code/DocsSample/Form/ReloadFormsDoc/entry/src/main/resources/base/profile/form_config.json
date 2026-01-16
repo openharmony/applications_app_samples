@@ -1,0 +1,25 @@
+{
+  "forms": [
+    {
+      "name": "ReloadByUIAbility",
+      "displayName": "$string:ReloadByUIAbility_display_name",
+      "description": "$string:ReloadByUIAbility_desc",
+      "src": "./ets/reloadbyuiability/pages/ReloadByUIAbilityCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": true,
+      "isDefault": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}

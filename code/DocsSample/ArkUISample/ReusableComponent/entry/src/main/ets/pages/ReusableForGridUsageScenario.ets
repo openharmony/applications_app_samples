@@ -46,7 +46,7 @@ struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 1; i < 1000; i++) { // 循环1000次
+    for (let i = 1; i <= 1000; i++) { // 循环1000次
       this.data.pushData(i);
     }
   }

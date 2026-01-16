@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pss_verify_rsa_keypair_sign_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -101,6 +102,8 @@ function verifyMessagePSS() {
     console.error('verify failed');
   }
 }
+
+// [End pss_verify_rsa_keypair_sign_sync]
 
 @Entry
 @Component

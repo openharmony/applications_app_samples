@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_local_set_sample]
+// [Start localStorage_local_set_sample]
 @Entry
 @Component
 struct LocalSetSample {
@@ -49,4 +49,4 @@ struct LocalSetSample {
   }
 }
 
-// [End localtorage_local_set_sample]
+// [End localStorage_local_set_sample]

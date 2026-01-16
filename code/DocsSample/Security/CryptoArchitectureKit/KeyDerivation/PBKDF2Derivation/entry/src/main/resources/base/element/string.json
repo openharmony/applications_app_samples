@@ -35,6 +35,10 @@
     {
       "name": "call_sync",
       "value": "Call Sync"
+    },
+    {
+      "name": "call_cpp_test",
+      "value": "Call Cpp Test"
     }
   ]
 }

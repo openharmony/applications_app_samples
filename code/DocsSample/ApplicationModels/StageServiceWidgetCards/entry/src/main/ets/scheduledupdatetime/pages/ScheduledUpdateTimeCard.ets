@@ -19,7 +19,7 @@ let storageScheUpdate = new LocalStorage();
 @Component
 struct ScheduledUpdateTimeCard {
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
-  @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.widget_scheupdatetime_desc');
+  @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.widget_scheduledUpdateTime_desc');
 
   build() {
     Column() {

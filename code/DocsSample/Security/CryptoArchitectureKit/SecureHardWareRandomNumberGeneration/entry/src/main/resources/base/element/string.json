@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SecureRandomNumberGeneration"
+    },
+    {
+      "name": "call_await",
+      "value": "Call Await"
+    },
+    {
+      "name": "call_sync",
+      "value": "Call Sync"
+    },
+    {
+      "name": "call_cpp_test",
+      "value": "Call Cpp Test"
+    }
+  ]
+}

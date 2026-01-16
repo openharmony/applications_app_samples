@@ -13,15 +13,18 @@
  * limitations under the License.
  */
 
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+// [Start set_web_darkmode_auto]
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want, Configuration } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 将当前colorMode放在AppStorage中。
+    AppStorage.setOrCreate<ConfigurationConstant.ColorMode>('currentColorMode', this.context.config.colorMode);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
-
+  // [StartExclude set_web_darkmode_auto]
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -53,4 +56,13 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude set_web_darkmode_auto]
+  onConfigurationUpdate(newConfig: Configuration): void {
+    // 动态更新深浅色状态。
+    const currentColorMode: ConfigurationConstant.ColorMode | undefined = AppStorage.get('currentColorMode');
+    if (currentColorMode !== newConfig.colorMode) {
+      AppStorage.setOrCreate<ConfigurationConstant.ColorMode>('currentColorMode', newConfig.colorMode);
+    }
+  }
 }
+// [End set_web_darkmode_auto]

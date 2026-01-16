@@ -1,12 +1,9 @@
 # 应用内状态管理和其他常见问题
 
 ## 介绍
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本工程帮助开发者更好地理解应用内状态管理的常见问题。该工程中展示的代码详细描述可查如下链接：
 
 [应用内状态变管理和其他常见问题](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-state-management-faq-application-and-others.md)。
-
-## 示例文档
-[MVVM模式（V2）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-mvvm-v2.md)。
    
 ## 效果预览
 |首页                                   |

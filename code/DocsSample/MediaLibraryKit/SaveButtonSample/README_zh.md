@@ -92,7 +92,7 @@ entry/src/main/resources/                # 资源文件
 ```
 git init
 git config core.sparsecheckout true
-echo MediaLibraryKit/SaveButtonSample/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/MediaLibraryKit/SaveButtonSample/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

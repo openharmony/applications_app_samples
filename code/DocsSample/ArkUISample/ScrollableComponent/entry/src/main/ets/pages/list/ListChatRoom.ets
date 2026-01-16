@@ -27,6 +27,7 @@ interface Message {
 @Component
 export struct ListChatRoom {
   // 自定义消息组件
+  // [Start message_item_construct]
   @Builder
   MessageItem(message: Message) {
     Column() {
@@ -41,6 +42,7 @@ export struct ListChatRoom {
     .alignItems(HorizontalAlign.Start)
     .margin({ bottom: 8 })
   }
+  // [End message_item_construct]
 
   // 发送消息方法
   sendMessage() {

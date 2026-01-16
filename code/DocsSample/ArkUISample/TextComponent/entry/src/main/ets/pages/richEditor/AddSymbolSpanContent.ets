@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import { ComponentCard } from '../../common/Card';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -22,49 +20,53 @@ export struct AddSymbolSpanContent {
   // [Start richEditor_addSymbol]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [StartExclude richEditor_addSymbol]
 
   build() {
+    // [StartExclude richEditor_addSymbol]
     NavDestination() {
+    // [EndExclude richEditor_addSymbol]
       Column({ space: 12 }) {
-        ComponentCard() {
-          Column({ space: 3 }) {
-            // [EndExclude richEditor_addSymbol]
-            RichEditor(this.options)
-              .onReady(() => {
-                // 请将$r('app.string.AddSymbolSpanContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加symbol"
-                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
-                  style: {
-                    fontColor: Color.Black,
-                    fontSize: 15
-                  }
-                })
-              })
-              .width(300)
-              .height(100)
-            // 请将$r('app.string.AddSymbolSpanContent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"addSymbolSpan"
-            Button($r('app.string.AddSymbolSpanContent_Button_1'), {
-              buttonStyle: ButtonStyleMode.NORMAL
+        RichEditor(this.options)
+          .onReady(() => {
+            // 请将$r('app.string.AddSymbolSpanContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加symbol"
+            this.controller.addTextSpan($r('app.string.AddSymbolSpanContent_Text_1'), {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
             })
-              .height(30)
-              .fontSize(13)
-              .onClick(() => {
-                // 请将$r('sys.symbol.basketball_fill')替换为开发者所需的资源文件
-                this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
-                  style: {
-                    fontSize: 30
-                  }
-                })
+          })
+          .width(300)
+          .height(100)
+        Row() {
+          // 请将$r('app.string.AddSymbolSpanContent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"addSymbolSpan"
+          Button($r('app.string.AddSymbolSpanContent_Button_1'), {
+            buttonStyle: ButtonStyleMode.NORMAL
+          })
+            .height(30)
+            .fontSize(13)
+            .onClick(() => {
+              // 请将$r('sys.symbol.basketball_fill')替换为开发者所需的资源文件
+              this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
+                style: {
+                  fontSize: 30
+                }
               })
-            // [End richEditor_addSymbol]
-          }
-        }
+            })
+        }.justifyContent(FlexAlign.Center).width('100%')
       }
+    // [StartExclude richEditor_addSymbol]
+      .alignItems(HorizontalAlign.Start)
+      .backgroundColor('#fff')
+      .borderRadius(12)
+      .padding(12)
       .width('100%')
-      .padding({ left: 12, right: 12 })
     }
+    .padding({ left: 12, right: 12 })
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.Add_SymbolSpanContent_title')替换为实际资源文件，在本示例中该资源文件的value值为"添加SymbolSpan内容"
     .title($r('app.string.Add_SymbolSpanContent_title'))
+    // [EndExclude richEditor_addSymbol]
   }
+  // [End richEditor_addSymbol]
 }

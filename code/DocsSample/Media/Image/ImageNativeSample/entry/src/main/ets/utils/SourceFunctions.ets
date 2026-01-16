@@ -24,125 +24,149 @@ export class SourceFunctions {
 
   private logger = new AppLog(TAG);
 
-  async createImageSource(context: common.UIAbilityContext, fileName: string): Promise<void> {
+  async createImageSource(context: common.UIAbilityContext, fileName: string): Promise<string> {
+    let message: string = '';
     let filePath = context.filesDir + '/' + fileName;
     await pushSourceToBox(context, fileName);
     let errorCode = testNapi.createImageSource(filePath);
     this.logger.check_result('Create imageSource' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'Create imageSource success.'});
+      message = 'Create imageSource success.';
     } else {
       this.logger.log('Create imageSource error is: ' + errorCode);
-      promptAction.showToast({ message: 'Create imageSource error is: ' + errorCode});
+      message = 'Create imageSource error is: ' + errorCode;
     }
+    return message;
   }
 
-  getImageInfo() {
+  getImageInfo(): string {
+    let message: string = '';
     let width = testNapi.getImageInfo();
     this.logger.log(`Get the width of the imageSource is ${width}.`);
-    promptAction.showToast({ message: `Get the width of the imageSource is ${width}.`});
+    message = `Get the width of the imageSource is ${width}.`;
+    return message;
   }
 
-  getImageProperty(key: string) {
+  getImageProperty(key: string): string {
+    let message: string = '';
     this.logger.log(`Get the key is ${key}.`);
     let value = testNapi.getImageProperty(key);
     this.logger.log(`Get the value of ${key} is ${value}.`);
-    promptAction.showToast({ message: `Get the value of ${key} is ${value}.`});
+    message = `Get the value of ${key} is ${value}.`;
+    return message;
   }
 
-  modifyImageProperty(key: string, value: string): void {
+  modifyImageProperty(key: string, value: string): string {
+    let message: string = '';
     let errorCode = testNapi.modifyImageProperty(key, value);
     this.logger.check_result('ModifyImageProperty' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'ModifyImageProperty success.'});
+      message = 'ModifyImageProperty success.';
     } else {
-      promptAction.showToast({ message: `ModifyImageProperty failed with ${errorCode}.`});
+      message = `ModifyImageProperty failed with ${errorCode}.`;
       this.logger.log(`ModifyImageProperty failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  createPixelMap(): void {
+  createPixelMap(): string {
+    let message: string = '';
     let errorCode = testNapi.createPixelMap();
     this.logger.check_result('CreatePixelMap' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'CreatePixelMap success.'});
+      message = 'CreatePixelMap success.';
     } else {
-      promptAction.showToast({ message: `CreatePixelMap failed with ${errorCode}.`});
+      message = `CreatePixelMap failed with ${errorCode}.`;
       this.logger.log(`CreatePixelMap failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  getFrameCount() {
+  getFrameCount(): string {
+    let message: string = '';
     let count = testNapi.getFrameCount();
-    promptAction.showToast({ message: `GetFrameCount return count ${count}.`});
+    message = `GetFrameCount return count ${count}.`;
+    return message;
   }
 
-  createPixelmapList(): void {
+  createPixelmapList(): string {
+    let message: string = '';
     let errorCode = testNapi.createPixelmapList();
     this.logger.check_result('CreatePixelMapList' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'CreatePixelMapList success.'});
+      message = 'CreatePixelMapList success.';
     } else {
-      promptAction.showToast({ message: `CreatePixelMapList failed with ${errorCode}.`});
+      message = `CreatePixelMapList failed with ${errorCode}.`;
       this.logger.log(`CreatePixelMapList failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  getDelayTimeList() {
+  getDelayTimeList(): string {
+    let message: string = '';
     let errorCode = testNapi.getDelayTimeList();
     this.logger.check_result('GetDelayTimeList' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'GetDelayTimeList success.'});
+      message = 'GetDelayTimeList success.';
     } else {
-      promptAction.showToast({ message: `GetDelayTimeList failed with ${errorCode}.`});
+      message = `GetDelayTimeList failed with ${errorCode}.`;
       this.logger.log(`GetDelayTimeList failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  releaseImageSource() {
+  releaseImageSource(): string {
+    let message: string = '';
     let errorCode = testNapi.releaseImageSource();
     this.logger.check_result('ReleaseImageSource' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'ReleaseImageSource success.'});
+      message = 'ReleaseImageSource success.';
     } else {
-      promptAction.showToast({ message: `ReleaseImageSource failed with ${errorCode}.`});
+      message = `ReleaseImageSource failed with ${errorCode}.`;
       this.logger.log(`ReleaseImageSource failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  async createPixelmapUsingAllocator(context: common.UIAbilityContext, fileName: string): Promise<void> {
+  async createPixelmapUsingAllocator(context: common.UIAbilityContext, fileName: string): Promise<string> {
+    let message: string = '';
     let filePath = context.filesDir + '/' + fileName;
     await pushSourceToBox(context, fileName);
     let errorCode = testNapi.testStrideWithAllocatorType(filePath);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'CreatePixelMapUsingAllocator success.'});
+      message = 'CreatePixelMapUsingAllocator success.';
     } else {
       this.logger.log('CreatePixelMapUsingAllocator error is: ' + errorCode);
-      promptAction.showToast({ message: 'CreatePixelMapUsingAllocator error is: ' + errorCode});
+      message = 'CreatePixelMapUsingAllocator error is: ' + errorCode;
     }
+    return message;
   }
 
-  packToFileFromImageSourceTestJs(context: common.UIAbilityContext, fileName: string) {
+  packToFileFromImageSourceTestJs(context: common.UIAbilityContext, fileName: string): string {
+    let message: string = '';
     const fd = getFileFd(context, fileName);
     let errorCode = testNapi.packToFileFromImageSourceTestJs(fd);
     this.logger.check_result('PackToFileFromImageSourceTestJs' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'PackToFileFromImageSourceTestJs success.'});
+      message = 'PackToFileFromImageSourceTestJs success.';
     } else {
-      promptAction.showToast({ message: `PackToFileFromImageSourceTestJs failed with ${errorCode}.`});
+      message = `PackToFileFromImageSourceTestJs failed with ${errorCode}.`;
       this.logger.log(`PackToFileFromImageSourceTestJs failed with ${errorCode}.`);
     }
+    return message;
   }
 
-  packToFileFromPixelmapTestJs(context: common.UIAbilityContext, fileName: string) {
+  packToFileFromPixelmapTestJs(context: common.UIAbilityContext, fileName: string): string {
+    let message: string = '';
     let fd = getFileFd(context, fileName);
     let errorCode = testNapi.packToFileFromPixelmapTestJs(fd);
     this.logger.check_result('PackToFileFromPixelmapTestJs' , errorCode);
     if(errorCode === 0) {
-      promptAction.showToast({ message: 'PackToFileFromPixelmapTestJs success.'});
+      message = 'PackToFileFromPixelmapTestJs success.';
     } else {
-      promptAction.showToast({ message: `PackToFileFromPixelmapTestJs failed with ${errorCode}.`});
+      message = `PackToFileFromPixelmapTestJs failed with ${errorCode}.`;
       this.logger.log(`PackToFileFromPixelmapTestJs failed with ${errorCode}.`);
     }
+    return message;
   }
 }

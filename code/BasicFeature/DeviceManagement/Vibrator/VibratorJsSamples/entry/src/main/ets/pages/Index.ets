@@ -16,7 +16,7 @@
 import { vibrator } from '@kit.SensorServiceKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End vibrator_js_development_dependency_import_example]
 
 // [Start vibrator_js_define_variables_example]

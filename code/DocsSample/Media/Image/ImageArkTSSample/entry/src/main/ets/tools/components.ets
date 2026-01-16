@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import {Router} from '@ohos.arkui.UIContext';
+import { Router } from '@ohos.arkui.UIContext';
 import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 import hdrCapability from '@ohos.graphics.hdrCapability';

@@ -15,18 +15,18 @@
 
 // [Start webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages]
 import testNapi from 'libentry.so';
-import web_webview from '@ohos.web.webview';
-import { BusinessError } from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
   @State webTag: string = 'postMessage';
-  controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
+  controller: webview.WebviewController = new webview.WebviewController(this.webTag);
   @State h5Log: string = 'Display received message send from HTML';
 
   aboutToAppear() {
-    web_webview.WebviewController.setWebDebuggingAccess(true);
+    webview.WebviewController.setWebDebuggingAccess(true);
     // 初始化web Native Development Kit
     testNapi.nativeWebInit(this.webTag);
   }

@@ -15,9 +15,7 @@
 
 // [Start Saving_MediaAsset_Using_Authorization_Popup]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-// [StartExclude Saving_MediaAsset_Using_Authorization_Popup]
 import { common } from '@kit.AbilityKit';
-// [EndExclude Saving_MediaAsset_Using_Authorization_Popup]
 import { fileIo } from '@kit.CoreFileKit';
 
 // [StartExclude Saving_MediaAsset_Using_Authorization_Popup]

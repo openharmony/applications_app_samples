@@ -270,12 +270,20 @@
       "value": "不依赖UI组件的全局气泡提示"
     },
     {
+      "name": "OpenMenuWithTargetIdString",
+      "value": "target的id属性设置为string时弹出全局菜单"
+    },
+    {
       "name": "CreateMenu_des",
       "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
     },
     {
       "name": "OpenMenu_des",
       "value": "通过使用全局接口openMenu的方式，在无UI组件的场景下直接或封装使用。"
+    },
+    {
+      "name": "OpenMenuWithTargetIdString_des",
+      "value": "通过使用全局接口openMenu的方式，target的id属性设置为string时弹出全局菜单"
     },
     {
       "name": "Customdialog_title",
@@ -386,6 +394,10 @@
       "value": "全局气泡提示"
     },
     {
+      "name": "OpenPopupWithTargetIdString",
+      "value": "target的id属性设置为string时弹出全局气泡"
+    },
+    {
       "name": "StylePopup_des",
       "value": "气泡除了可以通过builder实现自定义气泡，还可以通过接口设置气泡的样式和显示效果。"
     },
@@ -416,6 +428,10 @@
     {
       "name": "StylePopup_global_des",
       "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
+    },
+    {
+      "name": "OpenPopupWithTargetIdString_des",
+      "value": "通过使用全局接口openPopup的方式，target的id属性设置为string时弹出全局气泡"
     },
     {
       "name": "toast",

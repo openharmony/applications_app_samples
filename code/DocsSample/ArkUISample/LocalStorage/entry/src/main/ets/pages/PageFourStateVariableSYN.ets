@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_four_state_variable_syn]
+// [Start localStorage_page_four_state_variable_syn]
 let count: Record<string, number> = { 'countStorage': 1 };
 let storageFour: LocalStorage = new LocalStorage(count);
 
@@ -92,4 +92,4 @@ struct ParentFour {
   }
 }
 
-// [End localtorage_page_four_state_variable_syn]
+// [End localStorage_page_four_state_variable_syn]

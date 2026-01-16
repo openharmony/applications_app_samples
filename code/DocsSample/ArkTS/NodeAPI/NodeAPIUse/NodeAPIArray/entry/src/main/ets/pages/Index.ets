@@ -103,24 +103,26 @@ struct Index {
                 } else if (item === '5.napiSetElement') {
                   // [Start ark_napi_set_element]
                   // 使用Node-API接口进行array相关开发 napi_set_element
-                  let arr = [10, 20, 30];
-                  testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
-                  testNapi.napiSetElement<number | string>(arr, 2, 50);
-                  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
-                  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
-
-                  interface MyObject {
-                    first: number;
-                    second: number;
+                  try {
+                    let arr = [10, 20, 30];
+                    testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
+                    testNapi.napiSetElement<number | string>(arr, 2, 50);
+                    hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
+                    hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
+                    interface MyObject {
+                      first: number;
+                      second: number;
+                    }
+                    let obj: MyObject = {
+                      first: 1,
+                      second: 2
+                    };
+                    testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
+                    let objAsString = JSON.stringify(arr[4]);
+                    hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', 'Test Node-API napi_set_element error: %{public}s', error.message);
                   }
-
-                  let obj: MyObject = {
-                    first: 1,
-                    second: 2
-                  };
-                  testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
-                  let objAsString = JSON.stringify(arr[4]);
-                  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
                   // [End ark_napi_set_element]
                   this.result = 'napiSetElementSuccess';
                 } else if (item === '6.napiGetElement') {
@@ -177,6 +179,7 @@ struct Index {
                 } else if (item === '9.napiCreateTypedArray') {
                   // [Start ark_napi_create_typed_array]
                   // 使用Node-API接口进行array相关开发 napi_create_typedarray
+                  // 传递要创建的类型值
                   let typedArray = testNapi.createTypedArray<Int8Array>(testNapi.TypedArrayTypes["INT8_ARRAY"]);
                   if (typedArray instanceof Int8Array) {
                     hilog.info(0x0000, 'testTag', ' Node-API napi_create_typedarray: Int8Array');
@@ -225,16 +228,17 @@ struct Index {
                     ARRAY_BUFFER = 3, // TypedArray下的ArrayBuffer
                     BYTE_OFFSET = 4 // 数组的第一个元素所在的基础原生数组中的字节偏移量
                   };
-                  let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-                  // 将arraybuffer转为数组
-                  let arr = new Array(new Int8Array(arrbuff));
-                  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
-                  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s',
-                    testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
-                  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d',
-                    testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
-                  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d',
-                    testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+                  try {
+                    let arrBuffer = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+                    // 将arraybuffer转为数组
+                    let arr = new Array(new Int8Array(arrBuffer));
+                    hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
+                    hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
+                    hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
+                    hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_typedarray_info error: %{public}s', error.message);
+                  }
                   // [End ark_napi_get_typed_array_info]
                   this.result = 'napiGetTypedArrayInfoSuccess';
                 } else if (item === '12.napiCreateDataView') {
@@ -280,17 +284,19 @@ struct Index {
                     ARRAY_BUFFER = 1,
                     BYTE_OFFSET = 2,
                   };
-                  // 传入DataView类型参数查询DataView的字节数
-                  hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d',
-                    testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
-                  // 传入DataView类型参数查询DataView的ArrayBuffer
-                  let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-                  // 将arraybuffer转为数组
-                  let arr = Array.from(new Int8Array(arrbuff));
-                  hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
-                  // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
-                  hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d',
-                    testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+                  try {
+                    // 传入DataView类型参数查询DataView的字节数
+                    hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+                    // 传入DataView类型参数查询DataView的ArrayBuffer
+                    let arrBuffer = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+                    // 将arraybuffer转为数组
+                    let arr = Array.from(new Int8Array(arrBuffer));
+                    hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+                    // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
+                    hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_dataview_info error: %{public}s', error.message);
+                  }
                   // [End ark_napi_get_data_view_info]
                   this.result = 'napiGetDataViewInfoSuccess';
                 }

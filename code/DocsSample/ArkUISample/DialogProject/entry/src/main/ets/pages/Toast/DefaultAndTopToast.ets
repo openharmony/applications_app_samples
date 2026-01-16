@@ -30,13 +30,9 @@ export struct DefaultAndTopToastExample {
       // [EndExclude toast_showDefaultAndTop]
       Column({ space: 10 }) {
         TextInput()
-        Button() {
-          Text('Toast of the DEFAULT type')
-            .fontSize(20)
-            .fontWeight(FontWeight.Bold)
-        }
-        .height('100')
-        .width('100%')
+        Button('Toast of the DEFAULT type')
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
         .onClick(() => {
           try {
             this.getUIContext().getPromptAction().showToast({
@@ -52,14 +48,9 @@ export struct DefaultAndTopToastExample {
           }
         })
 
-        Blank().height(200);
-        Button() {
-          Text('Toast of the TOPMOST type')
-            .fontSize(20)
-            .fontWeight(FontWeight.Bold)
-        }
-        .height('100')
-        .width('100%')
+        Button('Toast of the TOPMOST type')
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
         .onClick(() => {
           try {
             this.getUIContext().getPromptAction().showToast({

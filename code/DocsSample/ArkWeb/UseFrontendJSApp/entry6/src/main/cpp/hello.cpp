@@ -16,11 +16,8 @@
 // [Start node_api_layer_code]
 // entry6/src/main/cpp/hello.cpp
 #include "napi/native_api.h"
-#include <bits/alltypes.h>
 #include <memory>
 #include <string>
-#include <sys/types.h>
-#include <thread>
 
 #include "hilog/log.h"
 #include "web/arkweb_interface.h"

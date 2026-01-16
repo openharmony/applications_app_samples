@@ -29,7 +29,7 @@ export struct LocalExtendUIStateVariable {
 // [Start Extend_Refresh_rendering_four]
 @Extend(Text)
 function fancy(fontSize: number) {
-  .fontColor(Color.Red)
+  .fontColor(Color.Blue)
   .fontSize(fontSize)
 }
 
@@ -39,13 +39,14 @@ struct FancyUse {
   @State fontSizeValue: number = 20;
 
   build() {
-    Row({ space: 10 }) {
+    Column({ space: 10 }) {
       Text('Fancy')
         .fancy(this.fontSizeValue)
         .onClick(() => {
           this.fontSizeValue = 30;
         })
     }
+    .width('100%')
   }
 }
 // [End Extend_Refresh_rendering_four]
