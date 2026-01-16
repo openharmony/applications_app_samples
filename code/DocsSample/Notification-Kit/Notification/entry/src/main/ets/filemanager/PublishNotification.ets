@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -86,9 +86,9 @@ export struct PublishNotification {
           .onClick(() => {
             // [Start check_progress_template_download]
             notificationManager.isSupportTemplate('downloadTemplate').then((data: boolean) => {
-              let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
+              let isSupportTemplate: boolean = data; // isSupportTemplate的值为true表示支持downloadTemplate模板类通知，false表示不支持
               hilog.info(DOMAIN_NUMBER, TAG,
-                `Succeeded in supporting download template notification. data is ${isSupportTpl}`);
+                `Succeeded in supporting download template notification. data is ${isSupportTemplate}`);
             }).catch((err: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG,
                 `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
