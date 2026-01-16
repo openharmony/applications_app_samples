@@ -126,7 +126,7 @@ int32_t VideoDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     if (!sampleInfo.codecSyncMode) {
         ret = SetCallback(codecUserData);
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
-                                "Set callback failed, ret: %{public}d", ret);
+                                 "Set callback failed, ret: %{public}d", ret);
     }
 
     // Prepare video decoder

@@ -64,10 +64,10 @@ int32_t VideoEncoder::Config(SampleInfo &sampleInfo, CodecUserData *codecUserDat
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Get surface failed");
     
     // SetCallback for video encoder
-    if(!sampleInfo.codecSyncMode) {
+    if (!sampleInfo.codecSyncMode) {
         ret = SetCallback(codecUserData);
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
-                             "Set callback failed, ret: %{public}d", ret);
+                                 "Set callback failed, ret: %{public}d", ret);
     }
 
     // Prepare video encoder

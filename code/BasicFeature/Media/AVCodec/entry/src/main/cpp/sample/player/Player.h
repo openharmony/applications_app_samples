@@ -48,7 +48,7 @@ public:
     int32_t Init(SampleInfo &sampleInfo);
     int32_t Start();
     void SetSpeed(float multiplier);
-    void SetTransform(int32_t transformHint);
+    void SetTransform(int32_t hint);
 
 private:
     void VideoDecInputAsyncThread();

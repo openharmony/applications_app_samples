@@ -294,13 +294,13 @@ void Player::SetSpeed(float multiplier)
     }
 }
 
-void Player::SetTransform(int32_t transformHint)
+void Player::SetTransform(int32_t hint)
 {
-    if (this->transformHint == transformHint) {
+    if (this->transformHint == hint) {
         AVCODEC_SAMPLE_LOGW("Same transform hint value");
         return;
     }
-    this->transformHint = transformHint;
+    this->transformHint = hint;
     int32_t operationCode = SET_TRANSFORM;
     OH_NativeWindow_NativeWindowHandleOpt(sampleInfo_.window, operationCode, this->transformHint);
 }
@@ -527,8 +527,8 @@ void Player::VideoDecInputSyncThread()
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) && isLoop_) {
             int32_t ret = demuxer_->Seek(0);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
-            ret = demuxer_->ReadSample(demuxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                             bufferInfo.attr);
+            ret = demuxer_->ReadSample(demuxer_->
+                    GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
         }
 
@@ -561,8 +561,8 @@ void Player::VideoDecInputAsyncThread()
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) && isLoop_) {
             int32_t ret = demuxer_->Seek(0);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
-            ret = demuxer_->ReadSample(demuxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
-                             bufferInfo.attr);
+            ret = demuxer_->ReadSample(demuxer_->
+                GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
             CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
         }
 
