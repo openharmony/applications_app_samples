@@ -34,11 +34,11 @@ namespace NativeModule {
 // [EndExclude ScrollToIndex]
 // [EndExclude ScrollBy]
 class ArkUIListNode : public ArkUINode {
+    // [StartExclude SetSticky]
+public:
     // [StartExclude ScrollToIndex]
     // [StartExclude ScrollTo]
     // [StartExclude ScrollBy]
-    // [StartExclude SetSticky]
-public:
     ArkUIListNode() // 创建ArkUI的列表组件。
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST)) {}
 
