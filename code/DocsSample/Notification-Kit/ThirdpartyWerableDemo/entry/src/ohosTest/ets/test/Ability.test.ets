@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level } from '@ohos/hypium';
-import { Driver, ON, Component } from '@kit.TestKit';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import { Driver, ON, Component, abilityDelegatorRegistry } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 
-const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 let driver = Driver.create();
 
 function sleep(time: number) {
@@ -29,7 +28,7 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
-      const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      const delegator = abilityDelegatorRegistry.getAbilityDelegator();
       let want: Want = {
         bundleName: 'com.example.thirdparty.wearable',
         abilityName: 'EntryAbility',
