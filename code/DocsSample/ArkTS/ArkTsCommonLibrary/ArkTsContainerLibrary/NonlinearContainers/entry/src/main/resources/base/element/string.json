@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NonlinearContainers"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_hashmap",
+      "value": "测试HashMap"
+    },
+    {
+      "name": "test_hashmap_complete",
+      "value": "测试HashMap完成"
+    },
+    {
+      "name": "test_treemap",
+      "value": "测试TreeMap"
+    },
+    {
+      "name": "test_treemap_complete",
+      "value": "测试TreeMap完成"
+    },
+    {
+      "name": "test_lightweightmap",
+      "value": "测试LightWeightMap"
+    },
+    {
+      "name": "test_lightweightmap_complete",
+      "value": "测试LightWeightMap完成"
+    },
+    {
+      "name": "test_plainarray",
+      "value": "测试PlainArray"
+    },
+    {
+      "name": "test_plainarray_complete",
+      "value": "测试PlainArray完成"
+    }
+  ]
+}
