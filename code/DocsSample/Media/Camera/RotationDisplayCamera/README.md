@@ -67,12 +67,12 @@
 3. 在[module.json5](./entry/src/main/module.json5)中配置`orientation`字段为`follow_desktop`，实现应用在直板机和折叠机折叠态为竖屏模式，在平板和折叠机展开态默认可旋转。
 ### 相关权限
 
-- ohos.permission.CAMERA：用于相机操作
-- ohos.permission.MICROPHONE：麦克风权限，用于录像
-- ohos.permission.MEDIA_LOCATION: 用于获取地理信息
-- ohos.permission.WRITE_IMAGEVIDEO：用于写入媒体文件
-- hos.permission.READ_IMAGEVIDEO：用于读取媒体文件
-- ohos.permission.ACCELEROMETER：用于加速度传感器
+- ohos.permission.CAMERA：用于相机操作。
+- ohos.permission.MICROPHONE：麦克风权限，用于录像。
+- ohos.permission.MEDIA_LOCATION: 用于获取地理信息。
+- ohos.permission.WRITE_IMAGEVIDEO：用于写入媒体文件。
+- hos.permission.READ_IMAGEVIDEO：用于读取媒体文件。
+- ohos.permission.ACCELEROMETER：用于加速度传感器。
 
 
 ### 约束与限制

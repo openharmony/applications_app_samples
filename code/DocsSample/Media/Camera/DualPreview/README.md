@@ -45,12 +45,12 @@
 
 ### 相关权限
 
-- ohos.permission.CAMERA：用于相机操作
-- ohos.permission.MICROPHONE：麦克风权限，用于录像
-- ohos.permission.MEDIA_LOCATION: 用于获取地理信息
-- ohos.permission.WRITE_IMAGEVIDEO：用于写入媒体文件
-- hos.permission.READ_IMAGEVIDEO：用于读取媒体文件
-- ohos.permission.APPROXIMATELY_LOCATION：用于获取当前位置
+- ohos.permission.CAMERA：用于相机操作。
+- ohos.permission.MICROPHONE：麦克风权限，用于录像。
+- ohos.permission.MEDIA_LOCATION: 用于获取地理信息。
+- ohos.permission.WRITE_IMAGEVIDEO：用于写入媒体文件。
+- hos.permission.READ_IMAGEVIDEO：用于读取媒体文件。
+- ohos.permission.APPROXIMATELY_LOCATION：用于获取当前位置。
 
 
 ### 约束与限制

@@ -35,12 +35,12 @@
 ### 具体实现
 
 1. 使用Camera Kit相关能力。
-2. 使用animateToImmediately接口实现闪黑或者模糊等动效的实现
+2. 使用animateToImmediately接口实现闪黑或者模糊等动效的实现。
 
 ### 相关权限
 
-- ohos.permission.CAMERA：用于相机操作
-- ohos.permission.MICROPHONE：麦克风权限，用于录像
+- ohos.permission.CAMERA：用于相机操作。
+- ohos.permission.MICROPHONE：麦克风权限，用于录像。
 
 ### 约束与限制
 
