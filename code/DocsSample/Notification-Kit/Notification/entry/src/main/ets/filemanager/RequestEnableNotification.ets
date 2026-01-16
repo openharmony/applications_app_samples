@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,9 +35,9 @@ export struct RequestEnableNotification {
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
             // [Start request_enable_notification_permission]
-            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             notificationManager.isNotificationEnabled().then((data: boolean) => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'isNotificationEnabled success, data: ' + JSON.stringify(data));
+              hilog.info(DOMAIN_NUMBER, TAG, `isNotificationEnabled success, data: ${data}` );
               if (!data) {
                 notificationManager.requestEnableNotification(context).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
@@ -62,9 +62,9 @@ export struct RequestEnableNotification {
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
             // [Start reapply_notify_auth_halfmodal]
-            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             notificationManager.isNotificationEnabled().then((data: boolean) => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'isNotificationEnabled success, data: ' + JSON.stringify(data));
+              hilog.info(DOMAIN_NUMBER, TAG, `isNotificationEnabled success, data:  ${data}`);
               if (!data) {
                 notificationManager.openNotificationSettings(context).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettings success`);
