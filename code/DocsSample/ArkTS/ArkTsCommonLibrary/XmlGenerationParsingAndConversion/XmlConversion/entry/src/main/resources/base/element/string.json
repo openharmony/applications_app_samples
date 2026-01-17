@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "XmlConversion"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_convert_xml",
+      "value": "测试ConvertXML"
+    },
+    {
+      "name": "test_convert_xml_complete",
+      "value": "测试ConvertXML完成"
+    }
+  ]
+}
