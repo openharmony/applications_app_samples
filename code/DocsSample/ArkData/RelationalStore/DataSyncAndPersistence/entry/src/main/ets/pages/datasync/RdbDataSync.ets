@@ -18,13 +18,15 @@ import { relationalStore } from '@kit.ArkData'; // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 // [End sync_import]
 
 // [Start setDefaultDistributedTables]
 // [Start setCollaborationDistributedTables]
 // [Start setSingleDistributedTables]
-let context = getContext();
+const context = new UIContext().getHostContext() as common.UIAbilityContext;
 let store: relationalStore.RdbStore | undefined = undefined;
 // [StartExclude setDefaultDistributedTables]
 // [StartExclude setCollaborationDistributedTables]
