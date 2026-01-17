@@ -17,13 +17,16 @@
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
+// 子Worker与父Worker通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
   console.info(resource.resourceToString($r('app.string.Not_one_childworker_worker1')) + e.data);
 
-  // 父Worker销毁后，子Worker向父Worker发送信息，行为不可预期
+  // 父Worker销毁后，子Worker向父Worker发送信息
   workerPort.postMessage(resource.resourceToString($r('app.string.Not_one_childworker_worker2')));
+
+  // 延迟再次发送
   setTimeout(() => {
     workerPort.postMessage(resource.resourceToString($r('app.string.Not_one_childworker_worker2')));
   }, 1000);

@@ -17,32 +17,38 @@
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
+// 父Worker线程中与主线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
   console.info(resource.resourceToString($r('app.string.Not_two_parentworker_worker1')) + e.data);
 
-  // 父Worker销毁后创建子Worker，行为不可预期
+  // 父Worker销毁后创建子Worker
   workerPort.close();
   let childworker = new worker.ThreadWorker('entry/ets/notrecommendedtwoworker/childworker.ets');
 
-  // 子Worker线程未确认创建成功前销毁父Worker，行为不可预期
+  // 子Worker线程未确认创建成功前销毁父Worker
   // let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
   // workerPort.close();
 
+  // 接收子Worker返回的消息
   childworker.onmessage = (e: MessageEvents) => {
     console.info(resource.resourceToString($r('app.string.Not_two_parentworker_worker2')) + e.data);
   }
 
+  // 子Worker正常退出后的回调
   childworker.onexit = () => {
     console.info(resource.resourceToString($r('app.string.Not_two_parentworker_worker3')));
+    // 父Worker已经或即将退出时，再次通过父Worker端口发送消息
     workerPort.postMessage(resource.resourceToString($r('app.string.Not_two_parentworker_worker4')));
   }
 
+  // 子Worker运行过程中发生未被捕获的异常或运行错误时的回调
   childworker.onAllErrors = (err: ErrorEvent) => {
     console.error(resource.resourceToString($r('app.string.Not_two_parentworker_worker5')) + err);
   }
 
+  // 向子Worker发送启动消息
   childworker.postMessage(resource.resourceToString($r('app.string.Not_two_parentworker_worker6')));
 }
 // [End not_recommended_example]
