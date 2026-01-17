@@ -5,6 +5,7 @@
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
 1. [属性修改器 (AttributeModifier)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-extension-attributeModifier.md)。
+2. [按钮与选择组件常见问题](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-select-component-faq.md)
 
 ### 效果预览
 
@@ -32,10 +33,11 @@ entry/src/main/ets/
 |   |---ButtonModifier04.ets                   //定义ButtonModifier
 |---entryability
 |---pages
-|   |---Button1.ets                         // 按钮主题切换与多态样式       
-|   |---Button2.ets                         // 按钮主题切换与多态样式  
-|   |---Button3.ets                         // 按钮主题切换与多态样式  
-|   |---Button4.ets                         // 按钮主题切换与多态样式                     
+|   |---Button1.ets                         // 按钮主题切换与多态样式
+|   |---Button2.ets                         // 按钮主题切换与多态样式
+|   |---Button3.ets                         // 按钮主题切换与多态样式
+|   |---Button4.ets                         // 按钮主题切换与多态样式
+|   |---ButtonModifierFAQ.ets               // AttributeModifier字体属性FAQ
 entry/src/ohosTest/ets
 |---test
 |   |---Button1.test.ets                       // 对应页面测试代码
