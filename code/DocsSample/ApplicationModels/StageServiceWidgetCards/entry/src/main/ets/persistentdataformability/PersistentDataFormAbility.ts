@@ -55,4 +55,5 @@ export default class PersistentDataFormAbility extends FormExtensionAbility {
     return formInfo.FormState.READY;
   }
 }
+
 // [End persistent_data_form_ability]

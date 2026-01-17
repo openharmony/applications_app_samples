@@ -22,19 +22,24 @@ const DOMAIN = 0xFF00;
 
 export class ExtensionEvent {
   private static storage = new LocalStorage(LOCAL);
+
   public static getStorage(): LocalStorage {
     return ExtensionEvent.storage;
   }
-  private startSecondPage: () => void = (): void => {
-    hilog.info(DOMAIN, TAG, `${TAG} startSecondPage is empty!`);
-  };
+
   public setStartSecondPage(startSecondPage: () => void) {
     hilog.info(DOMAIN, TAG, `${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
+
   public async startFormEditSecondPage() {
     hilog.info(DOMAIN, TAG, `${TAG} startFormEditSecondPage call`);
     this.startSecondPage();
   }
+
+  private startSecondPage: () => void = (): void => {
+    hilog.info(DOMAIN, TAG, `${TAG} startSecondPage is empty!`);
+  };
 }
+
 // [End FormEditDemo_ExtensionEvent]

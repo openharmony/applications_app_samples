@@ -15,7 +15,7 @@
 // [Start FormEditDemo_EntryFormEditAbility]
 // entry/src/main/ets/entryformeditability/EntryFormEditAbility.ets
 import { FormEditExtensionAbility } from '@kit.FormKit';
-import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
+import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -24,19 +24,22 @@ let storage: LocalStorage = ExtensionEvent.getStorage();
 const DOMAIN = 0xFF00;
 
 export default class EntryFormEditAbility extends FormEditExtensionAbility {
-
   onCreate() {
     hilog.info(DOMAIN, TAG, `${TAG} onCreate`);
   }
+
   onForeground(): void {
     hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onForeground.....`);
   }
+
   onBackground(): void {
     hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onBackground......`);
   }
+
   onDestroy(): void {
     hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onDestroy......`);
   }
+
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     hilog.info(DOMAIN, TAG, `${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
     // 获取被编辑卡片的卡片ID
@@ -62,13 +65,16 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
       hilog.error(DOMAIN, TAG, `${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
   }
+
   onSessionDestroy(session: UIExtensionContentSession) {
     hilog.info(DOMAIN, TAG, `${TAG} onSessionDestroy`);
   }
+
   private startSecondPage() {
     const bundleName: string = this.context.extensionAbilityInfo.bundleName;
     const secPageAbilityName: string = 'FormEditSecPageAbility';
-    hilog.info(DOMAIN, TAG, `${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
+    hilog.info(DOMAIN, TAG,
+      `${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
       // 拉起二级编辑页
       this.context.startSecondPage({
@@ -83,4 +89,5 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     }
   }
 };
+
 // [End FormEditDemo_EntryFormEditAbility]

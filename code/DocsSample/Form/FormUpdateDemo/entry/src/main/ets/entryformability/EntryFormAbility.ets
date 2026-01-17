@@ -26,7 +26,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
-    let formData: Record<string, string> = { };
+    let formData: Record<string, string> = {};
     return formBindingData.createFormBindingData(formData);
   }
 
@@ -36,6 +36,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onUpdateForm(formId: string): void {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+
     // ...
     class FormDataClass {
       title: string = 'Title Update.'; // 和卡片布局中对应

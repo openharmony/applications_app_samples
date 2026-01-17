@@ -107,4 +107,5 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
     });
   }
 }
+
 // [End update_by_status_form_ability]

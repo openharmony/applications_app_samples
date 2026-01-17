@@ -68,4 +68,5 @@ struct WidgetUpdateCallCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 // [End widget_update_call_card]

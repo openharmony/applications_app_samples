@@ -37,7 +37,9 @@ struct AttrAnimationCard {
         curve: Curve.EaseOut,
         playMode: PlayMode.Normal,
       })
-    }.height('100%').width('100%')
+    }
+    .height('100%')
+    .width('100%')
     .justifyContent(FlexAlign.Center)
     .backgroundImage($r('app.media.CardExampleBkg'))
     .backgroundImageSize(ImageSize.Cover)

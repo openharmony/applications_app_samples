@@ -39,8 +39,8 @@ struct Index {
           temporary: false,
         })
           .size({
-            width:200,
-            height:200,
+            width: 200,
+            height: 200,
           })
           .borderColor(Color.Black)
           .borderRadius(10)
@@ -68,7 +68,8 @@ struct Index {
               formHost.requestForm(this.formId).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'EntryFormAbility requestForm success.');
               }).catch((error: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
+                hilog.error(DOMAIN_NUMBER, TAG,
+                  `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
                 hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${this.formId}`);
               })
             }
@@ -83,4 +84,5 @@ struct Index {
     .height('100%')
   }
 }
+
 // [End FormUpdate_page]

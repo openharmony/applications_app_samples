@@ -40,4 +40,5 @@ struct WidgetPersistentDataCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 // [End widget_persistent_data_card]

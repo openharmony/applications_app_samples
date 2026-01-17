@@ -20,6 +20,7 @@ import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 // [End import_entry_form_ability]
 
 // [Start form_extension_ability_interface]
@@ -81,12 +82,14 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
+
     // [StartExclude form_extension_lifecycle_interface]
     // [StartExclude entry_form_ability]
     class FormDataClass {
       title: string = 'Title Update.'; // 和卡片布局中对应
       detail: string = 'Description update success.'; // 和卡片布局中对应
     }
+
     // [StartExclude update_by_message_form_ability]
     // 请根据业务替换为实际刷新的卡片数据
     // [EndExclude update_by_message_form_ability]
@@ -121,6 +124,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
+
   // [EndExclude form_extension_lifecycle_interface]
 
   onAcquireFormState(want: Want): formInfo.FormState {
@@ -129,8 +133,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // [EndExclude update_by_message_form_ability]
     return formInfo.FormState.READY;
   }
+
   // [EndExclude update_form_interface]
 }
+
 // [End entry_form_ability]
 // [End form_extension_ability_interface]
 // [End update_form_interface]

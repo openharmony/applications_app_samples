@@ -43,4 +43,5 @@ struct WidgetCard {
     })
   }
 }
+
 // [End liveform_WidgetCard]

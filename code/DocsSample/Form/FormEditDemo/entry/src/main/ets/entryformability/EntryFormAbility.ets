@@ -13,35 +13,47 @@
  * limitations under the License.
  */
 
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
+import { PreferencesUtil } from '../common/PreferencesUtil';
+import { FormData } from '../common/CommonData';
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
-    // Called to return a FormBindingData object.
-    const formData = '';
-    return formBindingData.createFormBindingData(formData);
+    let editFormId: string = '';
+    let formId: string = '';
+    // 初始化首选项数据库
+    let util = PreferencesUtil.getInstance();
+    let preferences = util.getPreferences(this.context);
+    if (want.parameters) {
+      formId = want.parameters[formInfo.FormParam.IDENTITY_KEY] as string;
+      editFormId = want.parameters['ohos.extra.param.key.edit_form_id'] as string;
+    }
+    // 如果是编辑页面的预览卡片需要在创建时把编辑的卡片信息更新到预览卡片上
+    if (editFormId && preferences) {
+      let formData: FormData = util.getValue(preferences, editFormId) as FormData;
+      return formBindingData.createFormBindingData({
+        'message': formData.text
+      });
+    }
+
+    return formBindingData.createFormBindingData('');
   }
 
   onCastToNormalForm(formId: string) {
-    // Called when the form provider is notified that a temporary form is successfully
-    // converted to a normal form.
   }
 
   onUpdateForm(formId: string) {
-    // Called to notify the form provider to update a specified form.
   }
 
   onFormEvent(formId: string, message: string) {
-    // Called when a specified message event defined by the form provider is triggered.
   }
 
   onRemoveForm(formId: string) {
-    // Called to notify the form provider that a specified form has been destroyed.
   }
 
   onAcquireFormState(want: Want) {
-    // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
 }

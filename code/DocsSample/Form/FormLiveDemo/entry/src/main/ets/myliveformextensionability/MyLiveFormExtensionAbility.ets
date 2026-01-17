@@ -15,7 +15,7 @@
 
 // [Start liveform_LiveFormExtensionAbility]
 // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
-import { formInfo, LiveFormInfo, LiveFormExtensionAbility } from '@kit.FormKit';
+import { formInfo, LiveFormExtensionAbility, LiveFormInfo } from '@kit.FormKit';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -47,4 +47,5 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
     hilog.info(DOMAIN, 'testTag', `MyLiveFormExtensionAbility onDestroy`);
   }
 };
+
 // [End liveform_LiveFormExtensionAbility]

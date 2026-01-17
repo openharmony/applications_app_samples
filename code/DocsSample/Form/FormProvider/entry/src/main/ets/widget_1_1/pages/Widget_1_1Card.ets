@@ -73,5 +73,4 @@ struct Widget_1_1Card {
       });
     })
   }
-
 }

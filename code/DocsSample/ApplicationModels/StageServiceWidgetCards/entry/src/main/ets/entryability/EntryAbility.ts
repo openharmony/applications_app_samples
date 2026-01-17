@@ -77,4 +77,5 @@ export default class EntryAbility extends UIAbility {
     });
   }
 }
+
 // [End entry_ability]

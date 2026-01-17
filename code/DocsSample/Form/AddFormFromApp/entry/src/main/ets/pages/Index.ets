@@ -21,7 +21,6 @@ import { Prompt } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
@@ -40,7 +39,7 @@ struct Index {
             try {
               formProvider.openFormManager(want);
             } catch (error) {
-              Prompt.showToast({message: (error as BusinessError).message});
+              Prompt.showToast({ message: (error as BusinessError).message });
               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
             }
           })

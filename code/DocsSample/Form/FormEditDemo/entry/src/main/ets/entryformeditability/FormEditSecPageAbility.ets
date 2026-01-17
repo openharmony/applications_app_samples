@@ -15,7 +15,7 @@
 // [Start FormEditDemo_FormEditSecPageAbility]
 // entry/src/main/ets/entryformeditability/FormEditSecPageAbility.ets
 import { FormEditExtensionAbility } from '@kit.FormKit';
-import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
+import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -28,12 +28,15 @@ export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   onCreate() {
     hilog.info(DOMAIN, TAG, `Ability onCreate`);
   }
+
   onForeground(): void {
     hilog.info(DOMAIN, TAG, `Ability onForeground`);
   }
+
   onBackground(): void {
     hilog.info(DOMAIN, TAG, `Ability onBackground`);
   }
+
   onDestroy(): void {
     hilog.info(DOMAIN, TAG, `Ability onDestroy`);
   }
@@ -55,6 +58,6 @@ export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
     hilog.info(DOMAIN, TAG, `onSessionDestroy`);
   }
-
 }
+
 // [End FormEditDemo_FormEditSecPageAbility]

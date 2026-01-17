@@ -67,4 +67,5 @@ struct WidgetUpdateRouterCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 // [End widget_updt_router_card]

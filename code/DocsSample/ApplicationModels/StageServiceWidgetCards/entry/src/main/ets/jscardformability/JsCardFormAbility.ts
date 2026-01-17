@@ -24,6 +24,7 @@ import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
 import { Configuration } from '@kit.ArkUI';
+
 // [EndExclude receive_message_interface]
 
 const TAG: string = 'JsCardFormAbility';
@@ -73,6 +74,7 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
   }
   ;
 };
+
 // [EndExclude js_card_form_ability]
 // [EndExclude update_form_interface]
 // [EndExclude receive_message_interface]
@@ -120,12 +122,14 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
+
   // [StartExclude update_form_interface]
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
     // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
+
   // [EndExclude receive_message_interface]
 
   onFormEvent(formId: string, message: string): void {
@@ -138,6 +142,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
     }
   }
+
   // [StartExclude receive_message_interface]
   // [EndExclude remove_form_interface]
   onRemoveForm(formId: string): void {
@@ -147,6 +152,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
   }
+
   // [StartExclude js_card_form_ability]
 
   onConfigurationUpdate(config: Configuration) {
@@ -159,11 +165,13 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
     return formInfo.FormState.READY;
   }
+
   // [EndExclude js_card_form_ability]
   // [EndExclude remove_form_interface]
   // [EndExclude update_form_interface]
   // [EndExclude receive_message_interface]
 }
+
 // [End js_card_form_ability]
 // [End remove_form_interface]
 // [End update_form_interface]

@@ -35,7 +35,8 @@ export default class EntryAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. code: %{public}d, message: %{public}s', err.code,
+          err.message);
         return;
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');

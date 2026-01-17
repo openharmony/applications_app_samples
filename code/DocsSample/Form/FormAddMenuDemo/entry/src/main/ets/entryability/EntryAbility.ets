@@ -24,20 +24,20 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 获取router事件中传递的targetPage参数
-    Logger.info( `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+    Logger.info('Ability onCreate');
     if (want?.parameters?.params) {
       let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
       this.selectPage = params.targetPage as string;
-      Logger.info( `onCreate selectPage: ${this.selectPage}`);
+      Logger.info(`onCreate selectPage: ${this.selectPage}`);
     }
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    Logger.info(`Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+    Logger.info('Ability onNewWant.');
     if (want?.parameters?.params) {
       let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
       this.selectPage = params.targetPage as string;
-      Logger.info( `onNewWant selectPage: ${this.selectPage}`);
+      Logger.info(`onNewWant selectPage: ${this.selectPage}`);
     }
     if (this.currentWindowStage !== null) {
       this.onWindowStageCreate(this.currentWindowStage);
@@ -45,11 +45,10 @@ export default class EntryAbility extends UIAbility {
   }
 
   onDestroy(): void {
-    Logger.info('Ability onDestroy');
+    Logger.info('Ability onDestroy.');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     let targetPage: string;
     // 根据传递的targetPage不同，选择拉起不同的页面
     switch (this.selectPage) {
@@ -65,7 +64,7 @@ export default class EntryAbility extends UIAbility {
     Logger.info('load targetPage: %{public}s', targetPage);
     windowStage.loadContent(targetPage, (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        Logger.error(`Failed to load the content. code: ${err.code}, message: ${err.message}.`);
         return;
       }
       Logger.info('Succeeded in loading the content.');
@@ -73,17 +72,14 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
-    Logger.info('Ability onWindowStageDestroy');
+    Logger.info('Ability onWindowStageDestroy.');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
-    Logger.info('Ability onForeground');
+    Logger.info('Ability onForeground.');
   }
 
   onBackground(): void {
-    // Ability has back to background
-    Logger.info('Ability onBackground');
+    Logger.info('Ability onBackground.');
   }
 }

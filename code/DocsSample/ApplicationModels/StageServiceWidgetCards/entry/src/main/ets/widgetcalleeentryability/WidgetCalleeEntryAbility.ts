@@ -92,4 +92,5 @@ export default class WidgetCalleeEntryAbility extends UIAbility {
     });
   }
 }
+
 // [End widget_callee_entry_ability]
