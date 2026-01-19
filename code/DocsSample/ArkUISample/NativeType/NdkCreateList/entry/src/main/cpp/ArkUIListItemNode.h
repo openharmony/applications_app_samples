@@ -25,9 +25,11 @@ public:
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
     ~ArkUIListItemNode() override
     {
+        // 销毁ListItemSwipeActionOption实例
         if (swipeAction_) {
             OH_ArkUI_ListItemSwipeActionOption_Dispose(swipeAction_);
         }
+        // 销毁ListItemSwipeActionItem实例
         if (swipeItem_) {
             OH_ArkUI_ListItemSwipeActionItem_Dispose(swipeItem_);
         }
@@ -35,9 +37,13 @@ public:
     void SetSwiperAction(std::shared_ptr<ArkUINode> node)
     {
         swipeContent_ = node;
+        // 创建ListItemSwipeActionItem接口设置的配置项
         swipeItem_ = OH_ArkUI_ListItemSwipeActionItem_Create();
+        // 设置ListItemSwipeActionItem的布局内容
         OH_ArkUI_ListItemSwipeActionItem_SetContent(swipeItem_, node->GetHandle());
+        // 创建ListItemSwipeActionOption接口设置的配置项
         swipeAction_ = OH_ArkUI_ListItemSwipeActionOption_Create();
+        // 设置ListItemSwipeActionItem的右侧（垂直布局）或下方（横向布局）布局内容
         OH_ArkUI_ListItemSwipeActionOption_SetEnd(swipeAction_, swipeItem_);
         ArkUI_AttributeItem Item = {.object = swipeAction_};
         nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_SWIPE_ACTION, &Item);

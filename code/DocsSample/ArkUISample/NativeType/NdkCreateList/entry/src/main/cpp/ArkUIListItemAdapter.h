@@ -15,7 +15,7 @@
 // [Start Lazy_loading_of_text_list]
 // [Start Item_adapter]
 // [Start Remove_Item]
-// ArkUIListItemAdapter
+// ArkUIListItemAdapter.h
 // [StartExclude Item_adapter]
 // [StartExclude Remove_Item]
 // 用于文本列表懒加载功能代码。
@@ -129,14 +129,18 @@ private:
 
     void OnAdapterEvent(ArkUI_NodeAdapterEvent *event)
     {
+        // 获取事件类型
         auto type = OH_ArkUI_NodeAdapterEvent_GetType(event);
         switch (type) {
+            // Adapter需要添加新元素时获取新元素的唯一标识符
             case NODE_ADAPTER_EVENT_ON_GET_NODE_ID:
                 OnNewItemIdCreated(event);
                 break;
+            // Adapter需要添加新元素时获取新元素的内容
             case NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER:
                 OnNewItemAttached(event);
                 break;
+            // Adapter将元素移除
             case NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER:
                 OnItemDetached(event);
                 break;

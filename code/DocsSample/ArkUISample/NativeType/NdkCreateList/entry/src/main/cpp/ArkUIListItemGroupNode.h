@@ -29,18 +29,22 @@ public:
     void SetHeader(std::shared_ptr<ArkUINode> node)
     {
         if (node) {
+            // 创建一个属性项，把节点的句柄放进去，并设置头部
             ArkUI_AttributeItem Item = { .object = node->GetHandle() };
             nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item);
         } else {
+            // 如果传入的是空指针（nullptr），说明要移除已有的头部
             nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER);
         }
     }
     void SetFooter(std::shared_ptr<ArkUINode> node)
     {
         if (node) {
+            // 创建一个属性项，把节点的句柄放进去，并设置尾部
             ArkUI_AttributeItem Item = { .object= node->GetHandle() };
             nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item);
         } else {
+            // 如果传入的是空指针（nullptr），说明要移除已有的尾部
             nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER);
         }
     }
