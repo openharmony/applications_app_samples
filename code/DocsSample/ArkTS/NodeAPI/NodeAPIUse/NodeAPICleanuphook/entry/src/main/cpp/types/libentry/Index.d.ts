@@ -14,9 +14,9 @@
  */
 
 // [Start napi_remove_add_env_cleanup_hook_api]
-export const napiEnvCleanUpHook: () => Object | void;
+export const napiEnvCleanUpHook: () => Object | undefined;
 // [End napi_remove_add_env_cleanup_hook_api]
 
 // [Start napi_add_remove_async_cleanup_hook_api]
-export const napiAsyncCleanUpHook: () => boolean | void;
+export const napiAsyncCleanUpHook: () => boolean | undefined;
 // [End napi_add_remove_async_cleanup_hook_api]
