@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start web_DataDetector_Hightlighting]
+// [Start web_DataDetector_Highlighting]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -43,4 +43,4 @@ struct Index {
     .width('100%')
   }
 }
-// [End web_DataDetector_Hightlighting]
+// [End web_DataDetector_Highlighting]
