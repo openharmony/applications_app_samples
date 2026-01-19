@@ -36,6 +36,11 @@ let demandList: listItem[] = [
     router: 'pages/V1Link',
   },
   {
+    name: 'V1Track',
+    description: 'This is V1\'s @Track decorator object call canBeObserved scene',
+    router: 'pages/V1Track',
+  },
+  {
     name: 'V1ObjectLink',
     description: 'This is V1\'s @ObjectLink decorator object call canBeObserved scene',
     router: 'pages/V1ObjectLink',
@@ -114,6 +119,46 @@ let demandList: listItem[] = [
     name: 'V1AndV2Compatibility',
     description: 'This is v1 enableV2Compatibility object to v2 call canBeObserved scene',
     router: 'pages/V1AndV2Compatibility',
+  },
+  {
+    name: 'CaseABCallError',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseABCallError',
+  },
+  {
+    name: 'CaseABCallRight',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseABCallRight',
+  },
+  {
+    name: 'CaseArrayForEachError',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseArrayForEachError',
+  },
+  {
+    name: 'CaseArrayForEachRight',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseArrayForEachRight',
+  },
+  {
+    name: 'CaseArrayObservedError',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseArrayObservedError',
+  },
+  {
+    name: 'CaseArrayObservedRight',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseArrayObservedRight',
+  },
+  {
+    name: 'CaseControlCounterError',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseControlCounterError',
+  },
+  {
+    name: 'CaseControlCounterRight',
+    description: 'Case study of frequently asked questions',
+    router: 'pages/CaseControlCounterRight',
   },
 ];
 

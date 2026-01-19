@@ -15,6 +15,14 @@ entry/src/main/ets/
 ├── entrybackupability
 │   └── EntryBackupAbility.ets
 └── pages
+    ├── CaseABCallError.ets             // 状态管理常见问题a.b(this.object)错误案例
+    ├── CaseABCallRight.ets             // 状态管理常见问题a.b(this.object)正确案例
+    ├── CaseArrayForEachError.ets       // 状态管理常见问题组件过多导致性能下降错误案例
+    ├── CaseArrayForEachRight.ets       // 状态管理常见问题组件过多导致性能下降正确案例
+    ├── CaseArrayObservedError.ets      // 状态管理常见问题ForEach结合对象UI不刷新错误案例
+    ├── CaseArrayObservedRight.ets      // 状态管理常见问题ForEach结合对象UI不刷新正确案例
+    ├── CaseControlCounterError.ets     // 状态管理常见问题数据重置UI不刷新错误案例
+    ├── CaseControlCounterRight.ets     // 状态管理常见问题数据重置UI不刷新正确案例
     ├── V1AndV2Compatibility.ets        // v1使用enableV2Compatiblity方法封装对象传入v2组件
     ├── V1BuiltIn.ets                   // v1 built-in类型数据使用场景
     ├── V1Link.ets                      // v1@Link装饰器使用场景
@@ -26,7 +34,8 @@ entry/src/main/ets/
     ├── V1ProvideAndConsume.ets         // v1@Provide和@Consume装饰器使用场景        
     ├── V1State.ets                     // v1@State装饰器使用场景        
     ├── V1StorageLink.ets               // v1@StorageLink装饰器使用场景        
-    ├── V1StorageProp.ets               // v1@StorageProp装饰器使用场景        
+    ├── V1StorageProp.ets               // v1@StorageProp装饰器使用场景
+    ├── V1Track.ets                     // v1@Track装饰器使用场景      
     ├── V2BuiltIn.ets                   // v2 built-in类型数据使用场景        
     ├── V2Computed.ets                  // v2@Computed装饰器使用场景        
     ├── V2Local.ets                     // v2@Local装饰器使用场景        

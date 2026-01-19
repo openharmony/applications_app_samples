@@ -15,12 +15,13 @@
 
 // [Start v1_built_in]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';
 
 // 提供判断对象是否为可被观察对象的方法
 function test(obj: object): void {
-  console.info(TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(obj))}`);
+  hilog.info(0x00, TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(obj))}`);
 }
 
 @Entry
