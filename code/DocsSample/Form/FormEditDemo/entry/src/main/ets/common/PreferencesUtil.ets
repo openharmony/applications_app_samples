@@ -98,4 +98,5 @@ export class PreferencesUtil {
     }
   }
 }
+
 // [End FormEditDemo_PreferencesUtil]

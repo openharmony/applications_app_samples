@@ -30,11 +30,12 @@ struct FormEditIndex {
   context1 = this.getUIContext().getHostContext();
   @State message1: string = this.context1!.resourceManager.getStringSync($r('app.string.button_one').id);
   @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
+
   updateForm(message: string) {
     let util = PreferencesUtil.getInstance();
     let preferences = util.getPreferences(this.getUIContext().getHostContext() as Context) as preferences.Preferences;
     let formId: string = util.getValue(preferences) as string;
-    if (!formId ) {
+    if (!formId) {
       hilog.info(DOMAIN, TAG, `1111111111`);
       return;
     }
@@ -82,6 +83,6 @@ struct FormEditIndex {
     .justifyContent(FlexAlign.Center)
     .width('100%')
   }
-
 }
+
 // [End FormEditUIAbility_FormEditIndex]

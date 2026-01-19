@@ -20,27 +20,22 @@ struct WidgetCard {
    * The title.
    */
   readonly TITLE: string = 'Hello World';
-
   /*
    * The action type.
    */
   readonly ACTION_TYPE: string = 'router';
-
   /*
    * The ability name.
    */
   readonly ABILITY_NAME: string = 'EntryAbility';
-
   /*
    * The message.
    */
   readonly MESSAGE: string = 'add detail';
-
   /*
    * The with percentage setting.
    */
   readonly FULL_WIDTH_PERCENT: string = '100%';
-
   /*
    * The height percentage setting.
    */

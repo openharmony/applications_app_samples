@@ -40,4 +40,5 @@ struct WidgetProcessDataCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 // [End widget_process_data_card]

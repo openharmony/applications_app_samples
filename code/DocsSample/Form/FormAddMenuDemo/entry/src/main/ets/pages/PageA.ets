@@ -16,7 +16,6 @@
 @Entry
 @Component
 struct PageA {
-
   build() {
     RelativeContainer() {
       Text($r('app.string.page_a_title'))

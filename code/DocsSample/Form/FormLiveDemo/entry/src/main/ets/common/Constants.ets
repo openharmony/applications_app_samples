@@ -28,4 +28,5 @@ export class Constants {
   // 互动卡片动效超范围，动效时长
   public static readonly OVERFLOW_DURATION: number = 3500;
 }
+
 // [End liveform_Constants]

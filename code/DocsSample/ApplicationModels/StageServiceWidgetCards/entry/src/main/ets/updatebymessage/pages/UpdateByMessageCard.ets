@@ -72,4 +72,5 @@ struct UpdateByMessageCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 // [End update_by_message_card]

@@ -20,7 +20,7 @@ import { ExtensionEvent } from '../model/ExtensionEvent';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PreferencesUtil } from '../common/PreferencesUtil'
+import { PreferencesUtil } from '../common/PreferencesUtil';
 import { FormData } from '../common/CommonData';
 import { preferences } from '@kit.ArkData';
 import FormEditExtensionContext from 'application/FormEditExtensionContext';
@@ -37,9 +37,12 @@ struct FormEditExtension {
   @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
   private formId: string = storage.get('formId') as string;
   private previewFormId: string = storage.get('previewFormId') as string;
-  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session') as UIExtensionContentSession;
+  private session: UIExtensionContentSession =
+    storage.get<UIExtensionContentSession>('session') as UIExtensionContentSession;
   private extensionEvent: ExtensionEvent = storage.get<ExtensionEvent>('extensionEvent') as ExtensionEvent;
-  private context: FormEditExtensionContext = storage.get<FormEditExtensionContext>('context') as FormEditExtensionContext;
+  private context: FormEditExtensionContext =
+    storage.get<FormEditExtensionContext>('context') as FormEditExtensionContext;
+
   updateForm(message: string) {
     if (!this.formId && !this.previewFormId) {
       return;
@@ -78,9 +81,12 @@ struct FormEditExtension {
       hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
   }
+
   onPageShow() {
-    hilog.info(DOMAIN, TAG, `${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    hilog.info(DOMAIN, TAG,
+      `${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
   }
+
   build() {
     Row() {
       Column() {
@@ -122,4 +128,5 @@ struct FormEditExtension {
     .width('100%')
   }
 }
+
 // [End FormEditDemo_FormEditExtension]

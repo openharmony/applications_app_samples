@@ -15,7 +15,7 @@
 
 // [Start liveform_EntryFormAbility]
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
-import { formInfo, formProvider, FormExtensionAbility } from '@kit.FormKit';
+import { FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // Constants实现参考“互动卡片动效工具函数实现”小节
 import { Constants } from '../common/Constants';
@@ -75,4 +75,5 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }
   }
 }
+
 // [End liveform_EntryFormAbility]

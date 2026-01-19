@@ -15,12 +15,13 @@
 // [Start FormEditDemo_CommonData]
 // entry/src/main/ets/common/CommonData.ets
 export class FormData {
-  private formId: string = '';
-  private text: string = 'Hello World';
+  public formId: string = '';
+  public text: string = 'Hello World';
 
   constructor(formId: string, text?: string) {
     this.formId = formId;
     this.text = text ? text : 'Hello World';
   }
 }
+
 // [End FormEditDemo_CommonData]

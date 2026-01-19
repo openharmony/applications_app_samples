@@ -83,4 +83,5 @@ export default class EntryEditAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+
 // [End FormEditUIAbility_EntryEditAbility]

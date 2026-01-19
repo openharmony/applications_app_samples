@@ -94,4 +94,5 @@ struct CustomCanvasDrawingCard {
     }.height('100%').width('100%')
   }
 }
+
 // [End custom_drawing]

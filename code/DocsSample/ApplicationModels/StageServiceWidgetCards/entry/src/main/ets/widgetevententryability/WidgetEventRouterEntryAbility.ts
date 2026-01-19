@@ -66,4 +66,5 @@ export default class WidgetEventRouterEntryAbility extends UIAbility {
     });
   }
 }
+
 // [End widget_event_router_entry_ability]

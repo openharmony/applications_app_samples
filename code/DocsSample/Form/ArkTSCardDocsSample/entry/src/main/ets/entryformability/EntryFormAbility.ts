@@ -76,7 +76,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onConfigurationUpdate(config) {
     // 当系统配置信息置更新时触发的回调
-    console.info('[EntryFormAbility] configurationUpdate:' + JSON.stringify(config));
+    console.info('[EntryFormAbility] onConfigurationUpdate');
   }
 
   onAcquireFormState(want) {

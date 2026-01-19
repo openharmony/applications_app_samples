@@ -42,4 +42,5 @@ export default class ProcessDataFormAbility extends FormExtensionAbility {
     return formInfo.FormState.READY;
   }
 }
+
 // [End process_data_form_ability]

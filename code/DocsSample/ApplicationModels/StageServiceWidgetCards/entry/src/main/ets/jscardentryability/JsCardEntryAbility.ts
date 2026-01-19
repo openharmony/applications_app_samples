@@ -23,6 +23,7 @@ import type window from '@ohos.window';
 
 const TAG: string = 'JsCardEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
+
 // [End js_card_entry_ability]
 
 export default class JsCardEntryAbility extends UIAbility {
@@ -51,6 +52,8 @@ export default class JsCardEntryAbility extends UIAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
+
   // [EndExclude receive_router_event]
 }
+
 // [End receive_router_event]
