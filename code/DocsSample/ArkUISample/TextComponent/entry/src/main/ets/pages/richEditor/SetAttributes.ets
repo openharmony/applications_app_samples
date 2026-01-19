@@ -257,8 +257,10 @@ struct attr4 {
         .fontSize(14)
         .fontColor('#666')
       // [EndExclude richEditor_maxLines]
-      /* 请将$r('app.string.SetAttributes_Text_7')替换为实际资源文件，在本示例中该资源文件的
-       value值为"组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行" */
+      /*
+       * 请将$r('app.string.SetAttributes_Text_7')替换为实际资源文件，在本示例中该资源文件的
+       * value值为"组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行"
+       */
       RichEditor(this.options)
         .onReady(() => {
           this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_7')),
@@ -663,8 +665,10 @@ struct PrepareMenu {
         .borderWidth(1)
         .borderColor(Color.Red)
       // [StartExclude richEditor_prepareMenu]
-      /* 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，在本示例中该资源文件的
-       value值为"当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置" */
+      /*
+       * 请将$r('app.string.Set_Attributes_title_13_desc')替换为实际资源文件，在本示例中该资源文件的
+       * value值为"当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置"
+       */
       Text($r('app.string.Set_Attributes_title_13_desc'))
         .backgroundColor('#eee')
         .borderRadius(4)
