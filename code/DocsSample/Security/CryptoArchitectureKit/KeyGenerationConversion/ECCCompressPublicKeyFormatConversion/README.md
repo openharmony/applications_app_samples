@@ -6,9 +6,9 @@
 
 本示例主要展示了使用ECC压缩/非压缩公钥格式转换(ArkTS)、使用ECC压缩/非压缩公钥格式转换(C/C++)、使用ECC压缩/非压缩点格式转换场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [使用ECC压缩/非压缩公钥格式转换(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
-- [使用ECC压缩/非压缩公钥格式转换(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
-- [使用ECC压缩/非压缩点格式转换](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
+- [使用ECC压缩/非压缩公钥格式转换(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
+- [使用ECC压缩/非压缩公钥格式转换(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
+- [使用ECC压缩/非压缩点格式转换](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
 - [使用ECC压缩/非压缩点格式转换](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point-ndk.md)
 
 ### 效果预览

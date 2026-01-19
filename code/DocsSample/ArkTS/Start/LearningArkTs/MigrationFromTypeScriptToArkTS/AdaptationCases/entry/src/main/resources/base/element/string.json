@@ -1,0 +1,148 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AdaptationCases"
+    },
+    {
+      "name": "state_not_initialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "log_no_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "real_time_status",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "test_foo_callback",
+      "value": "测试foo回调函数"
+    },
+    {
+      "name": "test_foo_callback_complete",
+      "value": "testFooCallback完成"
+    },
+    {
+      "name": "test_print_obj",
+      "value": "测试printObj函数"
+    },
+    {
+      "name": "test_print_obj_complete",
+      "value": "testPrintObj完成"
+    },
+    {
+      "name": "test_controller",
+      "value": "测试Controller"
+    },
+    {
+      "name": "test_controller_complete",
+      "value": "testController完成"
+    },
+    {
+      "name": "test_no_ctor_signatures",
+      "value": "测试使用type定义工厂函数或普通函数类型"
+    },
+    {
+      "name": "test_no_ctor_signatures_complete",
+      "value": "testNoCtorSignatures完成"
+    },
+    {
+      "name": "test_map_iteration",
+      "value": "测试Map遍历"
+    },
+    {
+      "name": "test_map_iteration_complete",
+      "value": "testMapIteration完成"
+    },
+    {
+      "name": "test_object_entries",
+      "value": "测试Object.entries"
+    },
+    {
+      "name": "test_object_entries_complete",
+      "value": "testObjectEntries完成"
+    },
+    {
+      "name": "test_class_foo",
+      "value": "测试Test类的foo方法"
+    },
+    {
+      "name": "test_class_foo_complete",
+      "value": "testTestClassFoo完成"
+    },
+    {
+      "name": "test_controller_in_block",
+      "value": "测试Controller in block"
+    },
+    {
+      "name": "test_controller_in_block_complete",
+      "value": "testControllerInBlock完成"
+    },
+    {
+      "name": "test_class_a_foo_apply",
+      "value": "测试A类的fooApply"
+    },
+    {
+      "name": "test_class_a_foo_apply_complete",
+      "value": "testClassAFooApply完成"
+    },
+    {
+      "name": "test_menu_controller",
+      "value": "测试TestMenu Controller"
+    },
+    {
+      "name": "test_menu_controller_complete",
+      "value": "testTestMenuController完成"
+    },
+    {
+      "name": "test_c1_c2_values",
+      "value": "测试C1和C2静态值"
+    },
+    {
+      "name": "test_c1_c2_values_complete",
+      "value": "testGetC1C2Values完成"
+    },
+    {
+      "name": "test_foo_static_method",
+      "value": "测试Foo静态方法"
+    },
+    {
+      "name": "test_foo_static_method_complete",
+      "value": "testFooStaticMethod完成"
+    },
+    {
+      "name": "index_title",
+      "value": "Index"
+    },
+    {
+      "name": "basic_adaptation_scenario",
+      "value": "基础适配场景"
+    },
+    {
+      "name": "using_state_outside_struct",
+      "value": "Struct组件外使用状态变量"
+    },
+    {
+      "name": "union_types_in_struct",
+      "value": "Struct支持联合类型的方案"
+    }
+  ]
+}

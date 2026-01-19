@@ -29,8 +29,6 @@ import { getResourceString } from '../util/ResourceUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit'
 import { UIContext } from '@kit.ArkUI';
 
-let context = new UIContext().getHostContext() as common.UIAbilityContext;
-
 let HILOG_DLP_DOMAIN: number = 0Xf888;
 let HILOG_TAG: string = 'DLPManager';
 
@@ -72,6 +70,8 @@ struct FilePicker {
   // dlp文件信息
   @StorageLink('dlpFileInfos') dlpFileInfos: Array<TestDlpFileInfo> = [];
 
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   async aboutToAppear() {
     Logger.info(`aboutToAppear start`);
     hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'aboutToAppear start');
@@ -96,7 +96,7 @@ struct FilePicker {
     this.isFlag = false;
     try {
       let DocumentSaveOptions = new picker.DocumentSaveOptions();
-      DocumentSaveOptions.newFileNames = [getResourceString(context, $r('app.string.init_file_name'))];
+      DocumentSaveOptions.newFileNames = [getResourceString(this.context, $r('app.string.init_file_name'))];
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
         Logger.info('DocumentViewPicker.save successfully');
@@ -162,7 +162,7 @@ struct FilePicker {
         myUri: myUri,
       },
     };
-    context.startAbility(want, (err: BusinessError) => {
+    this.context.startAbility(want, (err: BusinessError) => {
       Logger.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
       hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
     });

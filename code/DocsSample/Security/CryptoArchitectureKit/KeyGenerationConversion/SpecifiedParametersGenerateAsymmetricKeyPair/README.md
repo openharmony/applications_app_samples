@@ -4,7 +4,7 @@
 
 本示例主要展示了指定密钥参数生成非对称密钥对(ArkTS、C/C++)场景。以RSA、ECC、SM2为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。该对象可用于后续的加解密等操作。获取的密钥参数属性可用于存储或运输。该工程中展示的代码详细描述可查如下链接。
 
-- [指定密钥参数生成非对称密钥对(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
+- [指定密钥参数生成非对称密钥对(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
 - [指定密钥参数生成非对称密钥对(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec-ndk.md)
 
 ### 效果预览

@@ -6,7 +6,7 @@
 
 本示例主要展示了指定二进制数据转换RSA密钥对、 指定二进制数据转换ECC密钥对、 指定二进制数据转换SM2密钥对的场景。该工程中展示的代码详细描述可查如下链接。
 
-- [指定二进制数据转换非对称密钥对(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair-ndk.md)
+- [指定二进制数据转换非对称密钥对(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair-ndk.md)
 
 ### 效果预览
 

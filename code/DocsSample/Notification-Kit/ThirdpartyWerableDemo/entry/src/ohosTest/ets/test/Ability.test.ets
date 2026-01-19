@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
-import { Driver, ON, Component, Point, MatchPattern } from '@kit.TestKit';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, Level } from '@ohos/hypium';
+import { Driver, ON, Component } from '@kit.TestKit';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Want } from '@kit.AbilityKit';
 
@@ -24,12 +23,6 @@ let driver = Driver.create();
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
-}
-
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = delegator.getAppContext().resourceManager;
-  let text = await manage.getStringValue(resource);
-  return text;
 }
 
 export default function abilityTest() {
@@ -77,35 +70,20 @@ export default function abilityTest() {
           await driver.findComponent(ON.type('Button').text('允许').within(ON.type('Dialog')));
         await box1.click();
         await sleep(1000);
+        let event: string = await AppStorage.get('event')!;
+        expect(event).assertEqual('requestPermissionsFromUser');
         done();
       })
 
     /**
-     * @tc.number SUB_SAMPLE_NOTIFICATION_0200
-     * @tc.name SUB_SAMPLE_NOTIFICATION_0200
-     * @tc.desc Opens the notification extension subscription settings page of the application
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
-     */
-    it('SUB_SAMPLE_NOTIFICATION_0200', Level.LEVEL1,
-      async (done: Function) => {
-        let box1: Component =
-          await driver.findComponent(ON.text('openSubscriberSettings'));
-        await box1.click();
-        await sleep(1000);
-        done();
-      })
-
-    /**
-     * @tc.number SUB_SAMPLE_NOTIFICATION_0300
-     * @tc.name SUB_SAMPLE_NOTIFICATION_0300
+     * @tc.number SUB_SAMPLE_ThirdPartyWearable_0200
+     * @tc.name SUB_SAMPLE_ThirdPartyWearable_0200
      * @tc.desc Obtains the Bluetooth device that has been paired with the current device and the pair state of the device
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('SUB_SAMPLE_NOTIFICATION_0300', Level.LEVEL1,
+    it('SUB_SAMPLE_ThirdPartyWearable_0200', Level.LEVEL1,
       async (done: Function) => {
         let box1: Component =
           await driver.findComponent(ON.text('queryBluetooth'));
@@ -115,40 +93,46 @@ export default function abilityTest() {
         await sleep(500);
         await checkBoxs[0].click();
         await sleep(1000);
+        let event: string = await AppStorage.get('event')!;
+        expect(event).assertEqual('queryBluetooth');
         done();
       })
 
     /**
-     * @tc.number SUB_SAMPLE_NOTIFICATION_0400
-     * @tc.name SUB_SAMPLE_NOTIFICATION_0400
+     * @tc.number SUB_SAMPLE_ThirdPartyWearable_0300
+     * @tc.name SUB_SAMPLE_ThirdPartyWearable_0300
      * @tc.desc Subscribe the notification extension when the bluetooth addr is connected
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('SUB_SAMPLE_NOTIFICATION_0400', Level.LEVEL1,
+    it('SUB_SAMPLE_ThirdPartyWearable_0300', Level.LEVEL1,
       async (done: Function) => {
         let box1: Component =
           await driver.findComponent(ON.text('subscribe'));
         await box1.click();
         await sleep(1000);
+        let event: string = await AppStorage.get('event')!;
+        expect(event).assertEqual('subscribe');
         done();
       })
 
     /**
-     * @tc.number SUB_SAMPLE_NOTIFICATION_0500
-     * @tc.name SUB_SAMPLE_NOTIFICATION_0500
+     * @tc.number SUB_SAMPLE_ThirdPartyWearable_0400
+     * @tc.name SUB_SAMPLE_ThirdPartyWearable_0400
      * @tc.desc Unsubscribe the notification extension.
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('SUB_SAMPLE_NOTIFICATION_0500', Level.LEVEL1,
+    it('SUB_SAMPLE_ThirdPartyWearable_0400', Level.LEVEL1,
       async (done: Function) => {
         let box1: Component =
           await driver.findComponent(ON.text('unsubscribe'));
         await box1.click();
         await sleep(1000);
+        let event: string = await AppStorage.get('event')!;
+        expect(event).assertEqual('unsubscribe');
         done();
       })
   })

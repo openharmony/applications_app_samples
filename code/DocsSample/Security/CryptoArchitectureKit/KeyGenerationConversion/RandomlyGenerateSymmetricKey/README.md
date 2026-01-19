@@ -6,7 +6,7 @@
 
 本示例主要展示了随机生成对称密钥(C/C++)，随机生成AES、SM4密钥场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [随机生成对称密钥(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-sym-key-randomly-ndk.md)
+- [随机生成对称密钥(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-sym-key-randomly-ndk.md)
 
 ### 效果预览
 

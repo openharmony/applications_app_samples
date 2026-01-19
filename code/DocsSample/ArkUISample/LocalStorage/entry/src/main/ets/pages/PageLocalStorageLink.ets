@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_local_storage_link]
+// [Start localStorage_page_local_storage_link]
 @Component
 struct LocalStorageLinkComponent {
   @LocalStorageLink('LinkA') linkA: number | null = null;
@@ -77,4 +77,4 @@ struct LinkIndex {
   }
 }
 
-// [End localtorage_page_local_storage_link]
+// [End localStorage_page_local_storage_link]

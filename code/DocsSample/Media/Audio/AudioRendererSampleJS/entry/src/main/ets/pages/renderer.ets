@@ -133,7 +133,7 @@ async function initArguments(context: common.UIAbilityContext) {
   // [EndExclude init_callback]
   // [EndExclude init_oncallback]
   let bufferSize: number = 0;
-  let file = await context.resourceManager.getRawFd('32_xiyouji.pcm');
+  let file = await context.resourceManager.getRawFd('S16LE_2_48000.pcm');
   writeDataCallback = (buffer: ArrayBuffer) => {
     let options: Options = {
       offset: bufferSize,

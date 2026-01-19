@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start localtorage_page_one_double_syn]
+// [Start localStorage_page_one_double_syn]
 class Data {
   public code: number;
 
@@ -77,4 +77,4 @@ struct Parent {
   }
 }
 
-// [End localtorage_page_one_double_syn]
+// [End localStorage_page_one_double_syn]

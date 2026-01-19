@@ -37,7 +37,7 @@ function convertECCAsyKeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
-// [End bin_convertbin_convert_ecc_keypair_sync]
+// [End bin_convert_ecc_keypair_sync]
 
 @Entry
 @Component

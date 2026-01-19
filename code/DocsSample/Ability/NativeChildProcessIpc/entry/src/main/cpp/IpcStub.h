@@ -32,7 +32,7 @@ private:
     IpcStub(const IpcStub&&) = delete;
     IpcStub& operator = (const IpcStub&&) = delete;
     
-    static void OnRemoteObjectDestory(void *userData);
+    static void OnRemoteObjectDestroy(void *userData);
     static int OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHIPCParcel *reply, void *userData);
     static void* OnIpcMemAlloc(int32_t len);
     static void ReleaseIpcMem(void* ipcMem);

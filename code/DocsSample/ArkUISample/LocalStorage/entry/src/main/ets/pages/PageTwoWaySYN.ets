@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_two_way_syn]
+// [Start localStorage_page_two_way_syn]
 // 构造LocalStorage实例
 let paraOne: Record<string, number> = { 'PropA': 47 };
 let storageOne: LocalStorage = new LocalStorage(paraOne);
@@ -40,4 +40,4 @@ struct ParentTwo {
   }
 }
 
-// [End localtorage_page_two_way_syn]
+// [End localStorage_page_two_way_syn]

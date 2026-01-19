@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "JsonExtensionLibrary"
+    },
+    {
+      "name": "parsing_nested_quotes",
+      "value": "解析包含嵌套引号的JSON字符串场景"
+    },
+    {
+      "name": "parsing_big_ints",
+      "value": "解析包含大整数的JSON字符串场景"
+    },
+    {
+      "name": "serializing_bigint_objects",
+      "value": "序列化BigInt对象场景"
+    },
+    {
+      "name": "serializing_floating_point",
+      "value": "序列化浮点数number场景"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_parsing_nested_quotes_method1",
+      "value": "测试解析包含嵌套引号的JSON字符串场景, 方式1"
+    },
+    {
+      "name": "test_parsing_nested_quotes_method1_complete",
+      "value": "测试解析包含嵌套引号的JSON字符串场景, 方式1完成"
+    },
+    {
+      "name": "test_parsing_nested_quotes_method2",
+      "value": "测试解析包含嵌套引号的JSON字符串场景, 方式2"
+    },
+    {
+      "name": "test_parsing_nested_quotes_method2_complete",
+      "value": "测试解析包含嵌套引号的JSON字符串场景, 方式2完成"
+    },
+    {
+      "name": "test_parsing_big_ints",
+      "value": "测试解析包含大整数的JSON字符串场景"
+    },
+    {
+      "name": "test_parsing_big_ints_complete",
+      "value": "测试解析包含大整数的JSON字符串场景完成"
+    },
+    {
+      "name": "test_serializing_bigint_method1",
+      "value": "测试序列化BigInt对象场景, 方式1"
+    },
+    {
+      "name": "test_serializing_bigint_method1_complete",
+      "value": "测试序列化BigInt对象场景, 方式1完成"
+    },
+    {
+      "name": "test_serializing_bigint_method2",
+      "value": "测试序列化BigInt对象场景, 方式2"
+    },
+    {
+      "name": "test_serializing_bigint_method2_complete",
+      "value": "测试序列化BigInt对象场景, 方式2完成"
+    },
+    {
+      "name": "test_serializing_floating_point",
+      "value": "测试序列化浮点数number场景"
+    },
+    {
+      "name": "test_serializing_floating_point_complete",
+      "value": "测试序列化浮点数number场景完成"
+    }
+  ]
+}

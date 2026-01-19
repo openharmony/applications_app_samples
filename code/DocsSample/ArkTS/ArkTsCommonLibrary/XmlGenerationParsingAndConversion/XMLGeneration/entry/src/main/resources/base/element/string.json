@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "XMLGeneration"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_xml_serializer",
+      "value": "测试XmlSerializer"
+    },
+    {
+      "name": "test_xml_serializer_complete",
+      "value": "测试XmlSerializer完成"
+    },
+    {
+      "name": "test_xml_serializer_method2",
+      "value": "测试XmlSerializer第二种构造方法"
+    },
+    {
+      "name": "test_xml_serializer_method2_complete",
+      "value": "测试XmlSerializer第二种构造方法完成"
+    },
+    {
+      "name": "test_xml_dynamic_serializer",
+      "value": "测试XmlDynamicSerializer"
+    },
+    {
+      "name": "test_xml_dynamic_serializer_complete",
+      "value": "测试XmlDynamicSerializer完成"
+    }
+  ]
+}

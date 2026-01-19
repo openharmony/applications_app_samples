@@ -29,7 +29,7 @@
 // [End napi_ark_runtime_build]
     "sourceOption": {
       "workers": [
-        "./src/main/ets/worker/worker.ets"
+        "./src/main/ets/workers/Worker.ets"
       ]
     },
     "externalNativeOptions": {

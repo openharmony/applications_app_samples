@@ -1,10 +1,10 @@
 # Web页面显示内容滚动
 
-### 介绍
+## 介绍
 
 本工程主要实现了对以下指南文档中 [Web页面显示内容滚动](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-content-scrolling.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
-### 使用说明
+## 使用说明
 
 1. 此 Web 组件有页面展示。
 

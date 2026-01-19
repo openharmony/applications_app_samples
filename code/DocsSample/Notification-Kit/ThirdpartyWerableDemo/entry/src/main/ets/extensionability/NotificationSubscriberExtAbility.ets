@@ -30,7 +30,7 @@ class TransferInfo {
   public info: notificationExtensionSubscription.NotificationInfo | undefined
   public cancelHashCodes: Array<string> | undefined
 }
-
+// Spp means Serial Port Profile
 class SppClientManager {
   private clientNumber: number = -1;
   private peerDevice: string = '';
@@ -75,7 +75,7 @@ class SppClientManager {
     const arrayBuffer = uint8Array.buffer;
 
     socket.sppWrite(this.clientNumber, arrayBuffer);
-    hilog.info(DOMAIN, 'testTag', `sending success size：${arrayBuffer.byteLength} bytes, data: ${jsonStr}`);
+    hilog.info(DOMAIN, 'testTag', `sending success size: ${arrayBuffer.byteLength} bytes, data: ${jsonStr}`);
   }
 
   public sendNotificationData(notificationInfo: notificationExtensionSubscription.NotificationInfo) {
@@ -172,7 +172,7 @@ export class NotificationSubscriberExtAbility extends NotificationSubscriberExte
     }
   }
 
-  // Called back when notifications is cancelled.
+  // Called back when notifications are cancelled.
   //[EndExclude callback_start]
   onCancelMessages(hashCodes: Array<string>): void {
     hilog.info(DOMAIN, 'testTag', `on cancel message ${JSON.stringify(hashCodes)}`)

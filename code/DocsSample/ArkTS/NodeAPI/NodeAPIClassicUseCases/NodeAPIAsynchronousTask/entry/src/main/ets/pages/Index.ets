@@ -72,7 +72,7 @@ struct Index {
           .margin(3)
           .onClick(() => {
             // [Start AsyncWorkCallbackWorker]
-            const wk = new worker.ThreadWorker('entry/ets/worker/worker.ets');
+            const wk = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
             wk.postMessage({num1, num2});
             wk.onmessage = (msg) => {
               console.info('result is:', msg.data);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ export struct AddWantAgent {
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
             // [Start create_pub_event_agent_info]
-            let wantAgentObj: WantAgent; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
+            let wantAgentObj: WantAgent | null = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
 
             // 通过WantAgentInfo的operationType设置动作类型
             let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -73,7 +73,7 @@ export struct AddWantAgent {
                 },
                 id: 6,
                 // 通知消息的WantAgent
-                wantAgent: wantAgentObj
+                wantAgent: wantAgentObj!
               };
 
               notificationManager.publish(notificationRequest, (err: BusinessError) => {
@@ -90,7 +90,7 @@ export struct AddWantAgent {
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
             // [Start create_launch_uiability_agent_info]
-            let wantAgentObj: WantAgent; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
+            let wantAgentObj: WantAgent | null = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
 
             // 通过WantAgentInfo的operationType设置动作类型
             let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -129,7 +129,7 @@ export struct AddWantAgent {
                 title: 'open_the_app',
                 // wantAgentObj使用前需要保证已被赋值（即步骤3执行完成）
                 // 通知按钮的WantAgent
-                wantAgent: wantAgentObj
+                wantAgent: wantAgentObj!
               };
 
               // 构造NotificationRequest对象
@@ -144,7 +144,7 @@ export struct AddWantAgent {
                 },
                 id: 6,
                 // 通知消息的WantAgent
-                wantAgent: wantAgentObj,
+                wantAgent: wantAgentObj!,
                 // 通知按钮
                 actionButtons: [actionButton],
               };

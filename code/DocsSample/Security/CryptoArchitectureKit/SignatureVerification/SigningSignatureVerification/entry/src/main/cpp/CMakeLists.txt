@@ -12,5 +12,5 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include
                     ${NATIVERENDER_ROOT_PATH}/types/project)
 
-add_library(entry SHARED napi_init.cpp types/project/rsa_pkcs1_segment_signature.cpp types/project/rsa_pkcs1_signature_restoration.cpp types/project/rsa_pkcs1_signature_validator.cpp types/project/rsa_pss_verification_tool.cpp types/project/ecdsa_signature_verification.cpp types/project/sm2_signature_verification.cpp)
+add_library(entry SHARED napi_init.cpp types/project/rsa_pkcs1_segment_signature.cpp types/project/rsa_pkcs1_signature_restoration.cpp types/project/rsa_pkcs1_signature_validator.cpp types/project/rsa_pss_verification_tool.cpp types/project/ecdsa_signature_verification.cpp types/project/sm2_signature_verification.cpp types/project/sm2_signature_format_conversion_der.cpp types/project/sm2_der_convert_r_s.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so libohcrypto.so libhilog_ndk.z.so)

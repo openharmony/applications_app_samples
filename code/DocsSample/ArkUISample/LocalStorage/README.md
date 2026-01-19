@@ -60,7 +60,7 @@ entry
     │   │       ├── PageSixLocalStorage.ets //将LocalStorage实例从UIAbility共享到一个或多个页面
     │   │       ├── PageSixLocalStorageA.ets //将LocalStorage实例从UIAbility共享到一个或多个页面
     │   │       ├── PageSixLocalStorageB.ets //将LocalStorage实例从UIAbility共享到一个或多个页面
-    │   │       ├── PageTowSigleSYN.ets  //@LocalStorageProp和LocalStorage单向同步的简单场景
+    │   │       ├── PageTowSingleSYN.ets  //@LocalStorageProp和LocalStorage单向同步的简单场景
     │   │       └── PageTwoWaySYN.ets //@LocalStorageLink和LocalStorage双向同步的简单场景
     │   ├── module.json5
     │   └── resources

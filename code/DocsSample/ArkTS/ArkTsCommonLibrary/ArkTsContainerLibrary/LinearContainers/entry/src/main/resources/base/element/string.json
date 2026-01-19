@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "LinearContainers"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_arraylist",
+      "value": "测试ArrayList"
+    },
+    {
+      "name": "test_arraylist_complete",
+      "value": "测试ArrayList完成"
+    },
+    {
+      "name": "test_deque",
+      "value": "测试Deque"
+    },
+    {
+      "name": "test_deque_complete",
+      "value": "测试Deque完成"
+    },
+    {
+      "name": "test_stack",
+      "value": "测试Stack"
+    },
+    {
+      "name": "test_stack_complete",
+      "value": "测试Stack完成"
+    },
+    {
+      "name": "test_list",
+      "value": "测试List"
+    },
+    {
+      "name": "test_list_complete",
+      "value": "测试List完成"
+    }
+  ]
+}

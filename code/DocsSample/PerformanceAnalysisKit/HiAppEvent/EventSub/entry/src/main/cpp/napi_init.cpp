@@ -1218,6 +1218,7 @@ static napi_value RegisterAppHicollieWatcherT(napi_env env, napi_callback_info i
 // [EndExclude AppEvent_C++_Init]
 
 // [Start Pss_Leak]
+// 读 /proc/self/smaps_rollup 中的 PSS 字段，统计当前进程的 PSS (单位 KB)
 static int GetCurrentProcessPss()
 {
     std::ifstream smapsFile("/proc/self/smaps_rollup");
@@ -1242,6 +1243,7 @@ static int GetCurrentProcessPss()
     return totalPss;
 }
 
+// 读取当前进程的 FD 数量
 static int GetCurrentFd()
 {
     std::ifstream fdFile("/proc/self/fd_num");
@@ -1258,6 +1260,7 @@ static int GetCurrentFd()
     return std::stoi(line);
 }
 
+// 申请 size 字节内存并写入数据（用 'a' 填充），制造 native 内存增长
 static bool InjectNativeLeakMallocWithSize(int size, char *p)
 {
     const size_t maxSafe = 1073741824;
@@ -1278,6 +1281,7 @@ static bool InjectNativeLeakMallocWithSize(int size, char *p)
     return true;
 }
 
+// 循环申请/释放内存，使进程 PSS 持续接近 target
 static void InjectNativeLeakMallocUntil(int target)
 {
     constexpr int leakSizePerTime = 5000000;
@@ -1305,6 +1309,7 @@ static void InjectNativeLeakMallocUntil(int target)
     printf("InjectNativeLeakMallocUntil target = %d success\n", target);
 }
 
+// 启动后台执行的 InjectNativeLeakMallocUntil 线程，使 native 内存占用接近 leakSize
 static void StartNativeLeak(int leakSize)
 {
     std::cout << "Start inject malloc until" << leakSize << "KB" << std::endl;
@@ -1313,6 +1318,7 @@ static void StartNativeLeak(int leakSize)
     std::cout << "Inject finished." << std::endl;
 }
 
+// N-API 导出方法
 static napi_value LeakMB(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;

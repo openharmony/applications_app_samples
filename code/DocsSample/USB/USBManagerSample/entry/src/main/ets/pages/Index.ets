@@ -40,56 +40,56 @@ struct Index {
       return;
     }
     /*
-    deviceList结构示例
-    [
-      {
-        name: '1-1',
-        serial: '',
-        manufacturerName: '',
-        productName: '',
-        version: '',
-        vendorId: 7531,
-        productId: 2,
-        clazz: 9,
-        subClass: 0,
-        protocol: 1,
-        devAddress: 1,
-        busNum: 1,
-        configs: [
-          {
-            id: 1,
-            attributes: 224,
-            isRemoteWakeup: true,
-            isSelfPowered: true,
-            maxPower: 0,
-            name: '1-1',
-            interfaces: [
-              {
-                id: 0,
-                protocol: 0,
-                clazz: 9,
-                subClass: 0,
-                alternateSetting: 0,
-                name: '1-1',
-                endpoints: [
-                  {
-                    address: 129,
-                    attributes: 3,
-                    interval: 12,
-                    maxPacketSize: 4,
-                    direction: 128,
-                    number: 1,
-                    type: 3,
-                    interfaceId: 0,
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-    */
+      deviceList结构示例
+      [
+        {
+          name: '1-1',
+          serial: '',
+          manufacturerName: '',
+          productName: '',
+          version: '',
+          vendorId: 7531,
+          productId: 2,
+          clazz: 9,
+          subClass: 0,
+          protocol: 1,
+          devAddress: 1,
+          busNum: 1,
+          configs: [
+            {
+              id: 1,
+              attributes: 224,
+              isRemoteWakeup: true,
+              isSelfPowered: true,
+              maxPower: 0,
+              name: '1-1',
+              interfaces: [
+                {
+                  id: 0,
+                  protocol: 0,
+                  clazz: 9,
+                  subClass: 0,
+                  alternateSetting: 0,
+                  name: '1-1',
+                  endpoints: [
+                    {
+                      address: 129,
+                      attributes: 3,
+                      interval: 12,
+                      maxPacketSize: 4,
+                      direction: 128,
+                      number: 1,
+                      type: 3,
+                      interfaceId: 0,
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+     */
     this.deviceList_ = deviceList;
     // [End getDevices]
   }
@@ -136,9 +136,9 @@ struct Index {
     }
     let interface1: usbManager.USBInterface = deviceList?.[0]?.configs?.[0]?.interfaces?.[0];
     /*
-     打开对应接口，在设备信息（deviceList）中选取对应的interface。
-    interface1为设备配置中的一个接口。
-    */
+      打开对应接口，在设备信息（deviceList）中选取对应的interface。
+      interface1为设备配置中的一个接口。
+     */
     usbManager.claimInterface(pipe, interface1, true);
     this.pipe_ = pipe;
     this.interface_ = interface1;
@@ -157,9 +157,9 @@ struct Index {
     let pipe: usbManager.USBDevicePipe = this.pipe_;
     let interface1: usbManager.USBInterface = this.interface_;
     /*
-    读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
-    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
-    */
+      读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
+     （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
+     */
     let inEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[1];
     let outEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[0];
     let dataUint8Array: Uint8Array = new Uint8Array(1024);
@@ -205,14 +205,14 @@ struct Index {
     }
     let pipe: usbManager.USBDevicePipe = this.pipe_;
     /*
-    构造控制传输参数
-    */
+      构造控制传输参数
+     */
     let param: usbManager.USBDeviceRequestParams = {
-      bmRequestType: 0x80, //0x80指一次由设备到主机的标准请求命令
-      bRequest: 0x06, //0x06指获取描述符
-      wValue: 0x01 << 8 | 0, //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
-      wIndex: 0, //索引值，可填0
-      wLength: 18, //描述符的长度，此处18表示设备描述符长度，最大支持1024
+      bmRequestType: 0x80, // 0x80指一次由设备到主机的标准请求命令
+      bRequest: 0x06, // 0x06指获取描述符
+      wValue: 0x01 << 8 | 0, // 该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
+      wIndex: 0, // 索引值，可填0
+      wLength: 18, // 描述符的长度，此处18表示设备描述符长度，最大支持1024
       data: new Uint8Array(18)
     };
 

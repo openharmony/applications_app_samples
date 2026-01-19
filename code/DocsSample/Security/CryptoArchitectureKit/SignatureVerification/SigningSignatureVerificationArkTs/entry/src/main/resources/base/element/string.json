@@ -107,6 +107,22 @@
     {
       "name": "call_sm2_signature_synchronous",
       "value": "Call SM2Signature Synchronous"
+    },
+    {
+      "name": "call_sm2_sign_data_der_to_rs",
+      "value": "Call SM2 Sign Data DER to RS"
+    },
+    {
+      "name": "call_sm2_sign_data_rs_to_der",
+      "value": "Call SM2 Sign Data RS to DER"
+    },
+    {
+      "name": "sm2_sign_data_der_to_rs",
+      "value": "SM2 Sign Data DER to RS"
+    },
+    {
+      "name": "sm2_sign_data_rs_to_der",
+      "value": "SM2 Sign Data RS to DER"
     }
   ]
 }

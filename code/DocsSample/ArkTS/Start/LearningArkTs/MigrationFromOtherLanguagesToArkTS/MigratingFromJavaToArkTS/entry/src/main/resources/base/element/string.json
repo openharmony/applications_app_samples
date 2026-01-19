@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MigratingFromJavaToArkTS"
+    },
+    {
+      "name": "index_notInitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "index_noLogMessages",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "index_realTimeStatusInformation",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "index_currentState",
+      "value": "当前状态"
+    },
+    {
+      "name": "index_logMessages",
+      "value": "日志信息"
+    },
+    {
+      "name": "index_testTypeAnnotation",
+      "value": "测试类型注解"
+    },
+    {
+      "name": "index_typeAnnotationTestCompleted",
+      "value": "测试类型注解完成"
+    },
+    {
+      "name": "index_testFunctionDefinition",
+      "value": "测试函数定义"
+    },
+    {
+      "name": "index_functionDefinitionTestCompleted",
+      "value": "测试函数定义完成"
+    },
+    {
+      "name": "index_testFunctionOverload",
+      "value": "测试函数重载"
+    },
+    {
+      "name": "index_functionOverloadTestCompleted",
+      "value": "测试函数重载完成"
+    },
+    {
+      "name": "index_testImportingContainerCollections",
+      "value": "测试引入容器集"
+    },
+    {
+      "name": "index_containerCollectionsImportTestCompleted",
+      "value": "测试引入容器集完成"
+    },
+    {
+      "name": "index_testNamespace",
+      "value": "测试命名空间"
+    },
+    {
+      "name": "index_namespaceTestCompleted",
+      "value": "测试命名空间完成"
+    },
+    {
+      "name": "index_testThisContext",
+      "value": "测试this上下文"
+    },
+    {
+      "name": "index_thisContextTestCompleted",
+      "value": "测试this上下文完成"
+    },
+    {
+      "name": "index_testTypeInference",
+      "value": "测试类型推断"
+    },
+    {
+      "name": "index_typeInferenceTestCompleted",
+      "value": "测试类型推断完成"
+    },
+    {
+      "name": "index_testOptionalProperties",
+      "value": "测试可选属性"
+    },
+    {
+      "name": "index_optionalPropertiesTestCompleted",
+      "value": "测试可选属性完成"
+    },
+    {
+      "name": "index_testUnionTypes",
+      "value": "测试联合类型"
+    },
+    {
+      "name": "index_unionTypesTestCompleted",
+      "value": "测试联合类型完成"
+    }
+  ]
+}

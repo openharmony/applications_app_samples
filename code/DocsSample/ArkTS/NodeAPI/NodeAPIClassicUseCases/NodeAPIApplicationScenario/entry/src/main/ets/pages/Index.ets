@@ -96,7 +96,7 @@ struct Index {
         .onClick(() => {
           // [Start napi_call_threadsafe_function_worker_ets]
           // index.ets
-          const wk = new worker.ThreadWorker('entry/ets/worker/worker.ets');
+          const wk = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
           wk.postMessage('Start');
           wk.onmessage = (msg) => {
             console.info('[Main] Received:', msg.data);

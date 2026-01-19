@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "XmlParsing"
+    },
+    {
+      "name": "parsing_tags_values",
+      "value": "解析XML标签和标签值"
+    },
+    {
+      "name": "parsing_attributes_values",
+      "value": "解析XML属性和属性值"
+    },
+    {
+      "name": "parsing_event_types",
+      "value": "解析XML事件类型和元素信息"
+    },
+    {
+      "name": "example_scenario",
+      "value": "场景示例"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_parsing_tags_values",
+      "value": "测试解析XML标签和标签值"
+    },
+    {
+      "name": "test_parsing_tags_values_complete",
+      "value": "测试解析XML标签和标签值完成"
+    },
+    {
+      "name": "test_parsing_attributes_values",
+      "value": "测试解析XML属性和属性值"
+    },
+    {
+      "name": "test_parsing_attributes_values_complete",
+      "value": "测试解析XML属性和属性值完成"
+    },
+    {
+      "name": "test_parsing_event_types",
+      "value": "测试解析XML事件类型和元素信息"
+    },
+    {
+      "name": "test_parsing_event_types_complete",
+      "value": "测试解析XML事件类型和元素信息完成"
+    },
+    {
+      "name": "test_example_scenario",
+      "value": "测试场景示例"
+    },
+    {
+      "name": "test_example_scenario_complete",
+      "value": "测试场景示例完成"
+    }
+  ]
+}

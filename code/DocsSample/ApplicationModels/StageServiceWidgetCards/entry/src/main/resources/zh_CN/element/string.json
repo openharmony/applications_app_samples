@@ -189,7 +189,7 @@
       "value": "定时刷新"
     },
     {
-      "name": "widget_scheupdatetime_desc",
+      "name": "widget_scheduledUpdateTime_desc",
       "value": "定点刷新"
     },
     {

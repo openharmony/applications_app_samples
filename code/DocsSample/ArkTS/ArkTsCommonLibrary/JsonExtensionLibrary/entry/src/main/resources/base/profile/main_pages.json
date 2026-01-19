@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/ParsingContainingBigInts",
+    "pages/ParsingContainingNestedQuotationMarks",
+    "pages/SerializingBigIntObjects",
+    "pages/SerializingFloatingPointNumbers"
+  ]
+}

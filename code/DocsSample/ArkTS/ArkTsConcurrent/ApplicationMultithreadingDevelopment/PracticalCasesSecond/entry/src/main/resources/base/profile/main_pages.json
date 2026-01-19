@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/GetRecentList",
+    "pages/TaskpoolCancel",
+    "pages/TaskpoolAsyncLevel",
+    "pages/TaskpoolWaterFlow",
+    "pages/workerAndTaskpool",
+    "pages/Book1",
+    "pages/Book2",
+    "pages/Book3",
+    "pages/Book4"
+  ]
+}

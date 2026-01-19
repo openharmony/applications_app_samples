@@ -65,7 +65,7 @@ export struct showActionSheetExample {
                   {
                     title: 'pears',
                     action: () => {
-                      console.log('pears');
+                      console.info('pears');
                     }
                   }
                 ]

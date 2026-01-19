@@ -1,0 +1,136 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArktsRuntimeFag"
+    },
+    {
+      "name": "index_title",
+      "value": "Index"
+    },
+    {
+      "name": "state_variable_decorator_page",
+      "value": "状态变量装饰器页面"
+    },
+    {
+      "name": "runtime_common_issues_page",
+      "value": "运行时常见问题页面"
+    },
+    {
+      "name": "state_not_initialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "log_no_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "real_time_status",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "test_boundary_handling",
+      "value": "测试边界处理"
+    },
+    {
+      "name": "test_boundary_handling_complete",
+      "value": "测试边界处理完成"
+    },
+    {
+      "name": "test_lookahead_lookbehind",
+      "value": "测试先行断言嵌套后行断言"
+    },
+    {
+      "name": "test_lookahead_lookbehind_complete",
+      "value": "测试先行断言嵌套后行断言完成"
+    },
+    {
+      "name": "test_ignore_case",
+      "value": "测试大小写忽略"
+    },
+    {
+      "name": "test_ignore_case_complete",
+      "value": "测试大小写忽略完成"
+    },
+    {
+      "name": "test_last_index_empty_group",
+      "value": "测试最后索引与空组"
+    },
+    {
+      "name": "test_last_index_empty_group_complete",
+      "value": "测试最后索引与空组完成"
+    },
+    {
+      "name": "test_hyphen_in_char_class",
+      "value": "测试字符类中连字符"
+    },
+    {
+      "name": "test_hyphen_in_char_class_complete",
+      "value": "测试字符类中连字符完成"
+    },
+    {
+      "name": "test_named_capture_group",
+      "value": "测试具名捕获组访问"
+    },
+    {
+      "name": "test_named_capture_group_complete",
+      "value": "测试具名捕获组访问完成"
+    },
+    {
+      "name": "test_named_capture_group_fallback",
+      "value": "测试具名捕获组规避方案"
+    },
+    {
+      "name": "test_named_capture_group_fallback_complete",
+      "value": "测试具名捕获组规避方案完成"
+    },
+    {
+      "name": "test_regex_alternation",
+      "value": "测试正则交替运算符"
+    },
+    {
+      "name": "test_regex_alternation_complete",
+      "value": "测试正则交替运算符完成"
+    },
+    {
+      "name": "test_replace_empty_string",
+      "value": "测试替换空字符串"
+    },
+    {
+      "name": "test_replace_empty_string_complete",
+      "value": "测试替换空字符串完成"
+    },
+    {
+      "name": "test_async_error_catch",
+      "value": "测试异步错误捕获"
+    },
+    {
+      "name": "test_async_error_catch_complete",
+      "value": "测试异步错误捕获完成"
+    },
+    {
+      "name": "test_array_flatmap",
+      "value": "测试数组映射"
+    },
+    {
+      "name": "test_array_flatmap_complete",
+      "value": "测试数组映射完成"
+    }
+  ]
+}

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_five_share]
+// [Start localStorage_page_five_share]
 // PageFiveShare.ets
 // 预览器上不支持获取页面共享的LocalStorage实例
 @Entry({ useSharedStorage: true })
@@ -41,4 +41,4 @@ struct PageFiveShare {
   }
 }
 
-// [End localtorage_page_five_share]
+// [End localStorage_page_five_share]

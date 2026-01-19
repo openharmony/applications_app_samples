@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start localtorage_page_six_local_storageB]
+// [Start localStorage_page_six_local_storageB]
 let localStorageBOne: LocalStorage = new LocalStorage();
 localStorageBOne.setOrCreate('propA', 'propA');
 
@@ -54,7 +54,7 @@ struct Child {
   }
 }
 
-// [End localtorage_page_six_local_storageB]
+// [End localStorage_page_six_local_storageB]
 const nestedObjectIndexOne = Child;
 
 export default nestedObjectIndexOne;

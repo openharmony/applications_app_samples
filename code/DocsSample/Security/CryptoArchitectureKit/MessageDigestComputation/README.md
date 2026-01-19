@@ -4,8 +4,8 @@
 
 本示例主要展示了消息摘要计算(ArkTS)、消息摘要计算(C/C++)场景。该示例支持三种摘要算法：MD5、SHA256、SHA3，每种算法都提供了单次计算和分段计算两种模式，以及同步和异步两种调用方式。该工程中展示的代码详细描述可查如下链接。
 
-- [消息摘要计算SHA256(ArkTS)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-- [消息摘要计算SHA256(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+- [消息摘要计算SHA256(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+- [消息摘要计算SHA256(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
 - [消息摘要计算MD5(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest-md5.md)
 - [消息摘要计算MD5(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md)
 - [消息摘要计算SHA3(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-generate-message-digest-sha3.md)
