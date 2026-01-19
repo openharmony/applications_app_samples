@@ -29,7 +29,8 @@ struct Index {
     { name: 'LazyForEach、if、 Mixed scenario of component reuse and component freezing', path: 'View/ComponentReuse2' },
     { name: 'Mixing Navigation and TabContent', path: 'View/ComponentMixing' },
     { name: 'Page and LazyForEach', path: 'View/ComponentMixing1' },
-    { name: 'Constraints', path: 'View/Constraints' }
+    { name: 'Constraints', path: 'View/Constraints' },
+    { name: 'Freeze and Reuse', path: 'View/FreezeReuse' }
   ];
 
   build() {

@@ -11,6 +11,7 @@
     "View/ComponentReuse2",
     "View/ComponentMixing",
     "View/ComponentMixing1",
-    "View/Constraints"
+    "View/Constraints",
+    "View/FreezeReuse"
   ]
 }
