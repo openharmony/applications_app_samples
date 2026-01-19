@@ -59,6 +59,13 @@ struct Index {
             })
         }
 
+        Row() {
+          Button('ButtonModifierFAQ')
+            .onClick(() => {
+              this.getUIContext().getRouter().pushUrl({ url: 'pages/ButtonModifierFAQ'})
+            })
+        }
+
       }.width('100%')
       .alignItems(HorizontalAlign.Center)
       .justifyContent(FlexAlign.Center)
