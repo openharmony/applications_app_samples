@@ -1,0 +1,37 @@
+{
+  "devices": {
+    "general": [
+      "tablet",
+      "default"
+    ],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Account.AppAccount",
+          "SystemCapability.Account.OsAccount",
+          "SystemCapability.Test.PerfTest",
+          "SystemCapability.ArkUI.ArkUI.Libuv",
+          "SystemCapability.ArkUi.Graphics3D",
+          "SystemCapability.Security.DataTransitManager",
+          "SystemCapability.PowerManager.BatteryManager.Extension",
+          "SystemCapability.PowerManager.PowerManager.Extension",
+          "SystemCapability.Security.DeviceSecurityLevel",
+          "SystemCapability.UserIAM.UserAuth.PinAuth",
+          "SystemCapability.Window.SessionManager",
+          "SystemCapability.HiviewDFX.HiDumper",
+          "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
+          "SystemCapability.Security.DeviceAuth",
+          "SystemCapability.PowerManager.BatteryManager.Extension",
+          "SystemCapability.Security.DataTransitManager",
+          "SystemCapability.PowerManager.PowerManager.Extension",
+          "SystemCapability.Security.DeviceAuth",
+          "SystemCapability.HiviewDFX.HiDumper",
+          "SystemCapability.Security.DeviceSecurityLevel",
+          "SystemCapability.Window.SessionManager",
+          "SystemCapability.UserIAM.UserAuth.PinAuth",
+          "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast"
+        ]
+      }
+    ]
+  }
+}
