@@ -1739,6 +1739,10 @@
       "value": "文本超长时如何展示2"
     },
     {
+      "name": "CustomAndBlockMenus",
+      "value": "屏蔽系统菜单回调和自定义扩展菜单"
+    },
+    {
       "name": "Text_Long_description",
       "value": "Text组件中内容太多，超出父组件容器Column的高度，导致显示混乱。如何让文本显示在父组件容器的区域内"
     },

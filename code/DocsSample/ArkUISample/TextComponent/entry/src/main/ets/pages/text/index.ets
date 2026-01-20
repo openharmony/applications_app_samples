@@ -41,6 +41,7 @@ import { LengthMetric } from './LengthMetric';
 import { DisplayedTogether } from './DisplayedTogether';
 import { TextLong } from './TextLong';
 import { TextLongTow } from './TextLongTow';
+import { CustomAndBlockMenus } from './CustomAndBlockMenus';
 
 export const TEXT_ROUTE_PREFIX: string = 'text';
 
@@ -169,6 +170,11 @@ const routes: Route[] = [
     name: `${TEXT_ROUTE_PREFIX}/TextLongTow`,
     title: resource.resourceToString($r('app.string.Text_Long_Tow')),
     description: $r('app.string.Text_Long_Tow_description')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/CustomAndBlockMenus`,
+    title: resource.resourceToString($r('app.string.CustomAndBlockMenus')),
+    description: $r('app.string.CustomAndBlockMenus')
   }
 ];
 
@@ -226,6 +232,8 @@ export function TextDestination(name: string) {
     TextLong();
   } else if (name === routes[24].name) {
     TextLongTow();
+  } else if (name === routes[25].name) {
+    CustomAndBlockMenus();
   }
 }
 
