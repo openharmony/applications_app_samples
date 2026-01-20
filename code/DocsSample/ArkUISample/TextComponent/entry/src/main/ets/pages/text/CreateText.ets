@@ -23,8 +23,7 @@ export struct CreateText {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatText_title_1') }) {
           // [Start create_a_text_in_one_way]
-          // 请将$r('app.string.CreateText_Text_new')替换为实际资源文件，在本示例中该资源文件的value值为"我是一段文本"
-          Text($r('app.string.CreateText_Text_new'))
+          Text('我是一段文本')
           // [End create_a_text_in_one_way]
         }
 
