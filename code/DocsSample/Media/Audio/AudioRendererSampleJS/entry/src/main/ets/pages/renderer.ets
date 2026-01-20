@@ -136,19 +136,21 @@ async function initArguments(context: common.UIAbilityContext) {
   let file = await context.resourceManager.getRawFd('S16LE_2_48000.pcm');
   writeDataCallback = (buffer: ArrayBuffer) => {
     let options: Options = {
-      offset: bufferSize,
+      offset: bufferSize + file.offset,
       length: buffer.byteLength
     };
     // [StartExclude init_callback]
-
+    if (bufferSize > file.length) {
+      return audio.AudioDataCallbackResult.INVALID;
+    }
     try {
       let bufferLength = fs.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
       // 系统会判定buffer有效，正常播放
       // [StartExclude init_oncallback]
-      if (bufferLength < buffer.byteLength) {
+      if (bufferSize > file.length) {
         let view = new DataView(buffer);
-        for (let i = bufferLength; i < buffer.byteLength; i++) {
+        for (let i = bufferSize - file.length; i < buffer.byteLength; i++) {
           // 空白区域填充静音数据。当使用音频采样格式为SAMPLE_FORMAT_U8时0x7F为静音数据，使用其他采样格式时0为静音数据。
           view.setUint8(i, 0);
         }
