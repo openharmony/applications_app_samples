@@ -16,7 +16,6 @@
 #ifndef VULKAN_EXAMPLE_H
 #define VULKAN_EXAMPLE_H
 #include "vulkan/vulkan.h"
-#include "logger_common.h"
 #include "vulkan_utils.h"
 #include <native_window/external_window.h>
 #include <iostream>
