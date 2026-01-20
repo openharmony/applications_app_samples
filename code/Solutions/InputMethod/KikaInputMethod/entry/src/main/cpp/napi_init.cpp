@@ -111,10 +111,10 @@ void SendKeyboardStatusFunc(InputMethod_TextEditorProxy *proxy, InputMethod_Keyb
 {
     if (status == InputMethod_KeyboardStatus::IME_KEYBOARD_STATUS_HIDE) {
         g_flagShow = false;
-        SetText("键盘已经被被隐藏");
+        SetText("键盘已经被隐藏");
     } else if (status == InputMethod_KeyboardStatus::IME_KEYBOARD_STATUS_SHOW && g_flagShow != true) {
         g_flagShow = true;
-        SetText("键盘已经被被拉起");
+        SetText("键盘已经被拉起");
     }
 }
 
@@ -135,7 +135,7 @@ void MoveCursorFunc(InputMethod_TextEditorProxy *proxy, InputMethod_Direction di
     } else if (direction == InputMethod_Direction::IME_DIRECTION_RIGHT) {
         SetText("光标正在向 右  移动");
     } else {
-        SetText("光标正在 出现错误");
+        SetText("光标移动 出现错误");
     }
 }
 
@@ -174,7 +174,7 @@ int32_t ReceivePrivateCommandFunc(InputMethod_TextEditorProxy *proxy, InputMetho
 int32_t SetPreviewTextFunc(InputMethod_TextEditorProxy *proxy, const char16_t *text, size_t length, int32_t start,
     int32_t end)
 {
-    SetText("处处理设置预上屏文本请求");
+    SetText("处理设置预上屏文本请求");
     return 0;
 }
 
