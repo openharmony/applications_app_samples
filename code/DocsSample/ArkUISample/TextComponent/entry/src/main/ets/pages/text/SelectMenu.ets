@@ -68,10 +68,6 @@ export struct SelectMenu {
     if (menuItem.id.equals(TextMenuItemId.of('customMenu2'))) {
       // 请将$r('app.string.SelectMenu_Text_customMenu')替换为实际资源文件，在本示例中该资源文件的value值为"拦截 id: customMenu2 start:"
       hilog.info(0x0000, 'Sample_TextComponent',
-        resource.resourceToString($r('app.string.SelectMenu_Text_customMenu'))
-          + textRange.start + '; end:' +
-        textRange.end);
-      hilog.info(0x0000, 'Sample_TextComponent',
         this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_customMenu')
           .id) + textRange.start + '; end:' +
         textRange.end);
