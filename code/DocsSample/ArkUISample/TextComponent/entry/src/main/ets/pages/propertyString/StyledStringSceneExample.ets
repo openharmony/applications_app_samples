@@ -29,7 +29,8 @@ export struct StyledStringSceneExample {
   //创建含段落样式的对象paragraphStyledString1
   // 请将$r('app.string.StyledStringSceneExample_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"您的豪华钻石已过期1天\n续费可继续享受会员专属权益"
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_1')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringSceneExample_Text_1').id), [
       {
         start: 0,
         length: 4,
@@ -63,7 +64,8 @@ export struct StyledStringSceneExample {
     ]);
   // 请将$r('app.string.StyledStringSceneExample_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"\n￥4.88￥15"
   paragraphStyledString2: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_2')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringSceneExample_Text_2').id), [
     {
       start: 0,
       length: 4,
@@ -109,7 +111,8 @@ export struct StyledStringSceneExample {
   ]);
   // 请将$r('app.string.StyledStringSceneExample_Text_3')替换为实际资源文件，在本示例中该资源文件的value值为"\n02时06分后将失去该优惠"
   paragraphStyledString3: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_3')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringSceneExample_Text_3').id), [
     {
       start: 0,
       length: 4,

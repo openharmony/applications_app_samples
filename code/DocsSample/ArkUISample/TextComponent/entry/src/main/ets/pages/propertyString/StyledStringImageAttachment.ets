@@ -64,7 +64,8 @@ export struct StyledStringImageAttachment {
   //创建含段落样式的对象paragraphStyledString1
   // 请将$r('app.string.StyledStringImageAttachment_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"\n品牌相纸 高清冲印30张\n限时直降5.15元 限量赠送"
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_1')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringImageAttachment_Text_1').id), [
     {
       start: 0,
       length: 28,
@@ -92,7 +93,8 @@ export struct StyledStringImageAttachment {
   ]);
   // 请将$r('app.string.StyledStringImageAttachment_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"\n￥16.21 3000+人好评"
   paragraphStyledString2: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_2')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringImageAttachment_Text_2').id), [
     {
       start: 0,
       length: 5,
