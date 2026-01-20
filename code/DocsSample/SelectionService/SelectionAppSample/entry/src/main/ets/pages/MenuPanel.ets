@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
+// [Start MenuPanel]
 import { SelectionModel } from '../models/SelectionModel';
 import { selectionManager, PanelInfo, BusinessError, PanelType, SelectionExtensionContext } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -38,7 +39,7 @@ struct MenuPanel {
         SelectionModel.getInstance().setSelectionPanel(panel);
         hilog.info(0x0000, 'SelectionExtensionAbility', 'Succeed to create main panel');
         if (this.selectionInfo !== undefined) {
-          panel.moveTo(this.selectionInfo.startDisplayX + 100, this.selectionInfo.startDisplayY + 100);
+          panel.moveToGlobalDisplay(this.selectionInfo.startDisplayX + 100, this.selectionInfo.startDisplayY + 100);
         }
         try {
           panel.on('destroyed', () => {
@@ -71,10 +72,10 @@ struct MenuPanel {
       });
   }
 
-  startEntryAbility() {
+  startEntryAbility() {   // 拉起应用
     let wantAbility: Want = {
-      bundleName: 'com.selection.selectionapplication',
-      abilityName: 'EntryAbility',
+      bundleName: 'com.selection.selectionapplication',   // 应用的bundleName
+      abilityName: 'EntryAbility',    // 应用的abilityName
     };
     let context: SelectionExtensionContext | undefined = SelectionModel.getInstance().getContext();
     if (context !== undefined) {
@@ -104,3 +105,4 @@ struct MenuPanel {
     .width('100%')
   }
 }
+// [End MenuPanel]

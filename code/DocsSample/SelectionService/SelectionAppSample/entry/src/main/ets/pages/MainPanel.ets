@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
+// [Start MainPanel]
 import { SelectionModel } from '../models/SelectionModel';
-import selectionManager from '@ohos.selectionInput.selectionManager';
+import { selectionManager } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct MainPanel {
   @State message: string = 'MainPanel';
 
   aboutToAppear(): void {
-    let selectionInfo: selectionManager.SelectionInfo | undefined = SelectionModel.getInstance().getSelectionInfo();
-    if (selectionInfo !== undefined) {
-      this.message = JSON.stringify(selectionInfo);
+    let content: string | undefined = SelectionModel.getInstance().getSelectionContent();
+    if (content !== undefined) {
+      this.message = content;
     }
   }
 
@@ -41,7 +42,7 @@ struct MainPanel {
       if (event.type === TouchType.Down) {
         let selectionPanel: selectionManager.Panel | undefined = SelectionModel.getInstance().getSelectionPanel();
         if (selectionPanel !== undefined) {
-          selectionPanel.startMoving();
+          selectionPanel.startMoving();   // 调用selectionManager提供的startMoving接口可实现划词面板随鼠标拖动
         }
       }
     })
@@ -50,3 +51,4 @@ struct MainPanel {
     .width('100%')
   }
 }
+// [End MainPanel]

@@ -13,19 +13,22 @@
  * limitations under the License.
  */
 
+// [Start SelectionModel]
 import { selectionManager, SelectionExtensionContext } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export class SelectionModel {
   private selectionInfo: selectionManager.SelectionInfo | undefined;
+  private selectionContent: string | undefined;
   private selectionPanel: selectionManager.Panel | undefined;
   private context: SelectionExtensionContext | undefined;
   private listener: (selectionInfo: selectionManager.SelectionInfo) => void;
 
   private constructor() {
+    this.selectionInfo = undefined;
+    this.selectionContent = undefined;
     this.selectionPanel = undefined;
     this.context = undefined;
-    this.selectionInfo = undefined;
     this.listener = (selectionInfo: selectionManager.SelectionInfo) => {
       hilog.info(0x0000, 'SelectionModel', `Received selection selectionInfo: ${selectionInfo}`);
     }
@@ -38,9 +41,20 @@ export class SelectionModel {
     return globalThis.instance;
   }
 
+  public getSelectionInfo(): selectionManager.SelectionInfo | undefined {
+    return this.selectionInfo;
+  }
+
   public setSelectionInfo(selectionInfo: selectionManager.SelectionInfo) {
-    this.listener(selectionInfo);
     this.selectionInfo = selectionInfo;
+  }
+
+  public getSelectionContent(): string | undefined {
+    return this.selectionContent;
+  }
+
+  public setSelectionContent(selectionContent: string) {
+    this.selectionContent = selectionContent;
   }
 
   public getSelectionPanel(): selectionManager.Panel | undefined {
@@ -62,8 +76,5 @@ export class SelectionModel {
   public registerListener(listener: (selectionInfo: selectionManager.SelectionInfo) => void) {
     this.listener = listener;
   }
-
-  public getSelectionInfo(): selectionManager.SelectionInfo | undefined {
-    return this.selectionInfo;
-  }
 }
+// [End SelectionModel]
