@@ -20,7 +20,7 @@ import { notificationExtensionSubscription, NotificationSubscriberExtensionAbili
 //[StartExclude callback_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { socket } from '@kit.ConnectivityKit'
-import {util} from '@kit.ArkTS'; 
+import { util } from '@kit.ArkTS'; 
 //[EndExclude callback_start]
 
 const DOMAIN = 0x0000;
