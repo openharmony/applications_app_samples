@@ -54,7 +54,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 
@@ -73,7 +73,7 @@ async function aesCBC() {
       console.error('decrypt failed');
     }
   } catch (error) {
-    console.error(`AES CBC “${error}“, error code: ${error.code}`);
+    console.error(`AES CBC failed: errCode: ${error.code}, message: ${error.message}`);
   }
 }
 // [End cbc_encrypt_decrypt_aes_symkey_async]

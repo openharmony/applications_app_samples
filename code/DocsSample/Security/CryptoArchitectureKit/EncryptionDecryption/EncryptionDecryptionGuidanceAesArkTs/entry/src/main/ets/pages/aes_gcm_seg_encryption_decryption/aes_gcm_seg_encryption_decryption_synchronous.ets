@@ -86,7 +86,7 @@ function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramew
   }
   let decryptData = decoder.doFinalSync(null);
   if (decryptData == null) {
-    console.info('GCM decrypt success, decryptData is null');
+    console.info('GCM decrypt result: success, decryptData is null.');
   }
   let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
   return decryptBlob;
@@ -96,7 +96,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let symKey = aesGenerator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 
@@ -108,10 +108,10 @@ function main() {
   let encryptText = encryptMessageUpdateBySegment(symKey, plainText);
   let decryptText = decryptMessage(symKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 // [End gcm_seg_encrypt_decrypt_aes_symkey_sync]

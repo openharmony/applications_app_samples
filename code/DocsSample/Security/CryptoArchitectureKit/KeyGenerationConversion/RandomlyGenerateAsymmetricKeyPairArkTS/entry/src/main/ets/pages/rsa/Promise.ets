@@ -27,8 +27,8 @@ function generateAsyKey() {
     // 获取非对称密钥对的二进制数据
     let pkBlob = pubKey.getEncoded();
     let skBlob = priKey.getEncoded();
-    console.info('pk bin data' + pkBlob.data);
-    console.info('sk bin data' + skBlob.data);
+    console.info('pk bin data: ' + pkBlob.data);
+    console.info('sk bin data: ' + skBlob.data);
   });
 }
 // [End generate_rsa_keypair]

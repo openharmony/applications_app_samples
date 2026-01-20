@@ -29,7 +29,7 @@ async function kdfAwait() {
   };
   let kdf = cryptoFramework.createKdf('X963KDF|SHA256');
   let secret = await kdf.generateSecret(spec);
-  console.info('key derivation output is ' + secret.data);
+  console.info('key derivation output: ' + secret.data);
 }
 // [End use_x963kdf_for_key_derivation_await]
 @Entry

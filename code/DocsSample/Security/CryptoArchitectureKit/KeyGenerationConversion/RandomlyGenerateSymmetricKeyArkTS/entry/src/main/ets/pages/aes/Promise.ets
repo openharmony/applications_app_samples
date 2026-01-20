@@ -24,7 +24,7 @@ function testGenerateAesKey() {
   promiseSymKey.then(key => {
     // 获取对称密钥的二进制数据，输出256位密钥。长度为32字节
     let encodedKey = key.getEncoded();
-    console.info('key hex:' + encodedKey.data);
+    console.info('key hex: ' + encodedKey.data);
   });
 }
 // [End generate_aes_key]

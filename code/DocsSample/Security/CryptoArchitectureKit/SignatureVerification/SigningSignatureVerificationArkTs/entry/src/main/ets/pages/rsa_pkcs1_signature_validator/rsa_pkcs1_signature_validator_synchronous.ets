@@ -36,7 +36,7 @@ function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey:
   verifier.initSync(pubKey);
   verifier.updateSync(input1); // 如果明文较短，可以直接调用verify接口一次性传入
   let res = verifier.verifySync(input2, signMessageBlob);
-  console.info('verify result is ' + res);
+  console.info('verify result: ' + res);
   return res;
 }
 
@@ -47,9 +47,9 @@ function main() {
   let signData = signMessagePromise(keyPair.priKey);
   let verifyResult = verifyMessagePromise(signData, keyPair.pubKey);
   if (verifyResult === true) {
-    console.info('verify success');
+    console.info('verify result: success.');
   } else {
-    console.error('verify failed');
+    console.error('verify result: failed.');
   }
 }
 // [End pkcs1_verify_rsa_keypair_sign_sync]

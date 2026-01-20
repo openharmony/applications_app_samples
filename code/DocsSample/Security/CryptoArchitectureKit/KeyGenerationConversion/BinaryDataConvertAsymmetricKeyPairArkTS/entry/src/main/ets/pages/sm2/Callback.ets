@@ -31,10 +31,10 @@ function convertSM2AsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
   generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
     if (error) {
-      console.error(`convertKey failed, ${error.code}, ${error.message}`);
+      console.error(`convertKey failed: errCode: ${error.code}, message: ${error.message}`);
       return;
     }
-    console.info('convertKey success');
+    console.info('convertKey result: success.');
   });
 }
 // [End bin_convert_sm2_keypair]

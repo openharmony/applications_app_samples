@@ -28,10 +28,10 @@ async function dhAwait() {
   let secret2 = await keyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
   // 两种协商的结果应当一致
   if (secret1.data.toString() === secret2.data.toString()) {
-    console.info('DH success');
-    console.info('DH output is ' + secret1.data);
+    console.info('DH result: success.');
+    console.info('DH output: ' + secret1.data);
   } else {
-    console.error('DH result is not equal');
+    console.error('DH result is not equal.');
   }
 }
 // [End use_dh_for_key_negotiation_async]

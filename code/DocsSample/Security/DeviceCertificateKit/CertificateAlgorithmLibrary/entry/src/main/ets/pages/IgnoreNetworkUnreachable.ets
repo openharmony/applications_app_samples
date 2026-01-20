@@ -124,7 +124,7 @@ async function createX509Cert(certData: string): Promise<cert.X509Cert> {
     x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    console.error(`createX509Cert failed: errCode: ${e.code}, message: ${e.message}`);
   }
   return x509Cert;
 }
@@ -138,14 +138,14 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     x509CertChain = cert.createX509CertChain([leaf, intermediate, root]);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    console.error(`createX509CertChain failed: errCode: ${e.code}, message: ${e.message}`);
   }
   return x509CertChain;
 }
 
 async function validateCRL() {
   const certChain = await createX509CertChain();
-  console.info('createX509CertChain success');
+  console.info('createX509CertChain result: success.');
   const root = await createX509Cert(rootCert);
   // 证书链校验数据，需业务自行赋值。
   const param: cert.CertChainValidationParameters = {
@@ -159,7 +159,7 @@ async function validateCRL() {
   }
   try {
     await certChain.validate(param);
-    console.info('validateCRL success.');
+    console.info('validateCRL result: success.');
   } catch (err) {
     console.error(`X509CertChain validate failed: errCode: ${err.code}, message: ${err.message}`);
   }

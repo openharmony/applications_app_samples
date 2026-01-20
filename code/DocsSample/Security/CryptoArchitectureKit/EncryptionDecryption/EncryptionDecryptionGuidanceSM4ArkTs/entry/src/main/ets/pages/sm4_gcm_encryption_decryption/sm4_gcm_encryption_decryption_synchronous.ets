@@ -63,7 +63,7 @@ function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramew
   // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
   let decryptData = decoder.doFinalSync(null);
   if (decryptData == null) {
-    console.info('GCM decrypt success, decryptData is null');
+    console.info('GCM decrypt result: success, decryptData is null.');
   }
   return decryptUpdate;
 }
@@ -72,7 +72,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
   let symKey = sm4Generator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 
@@ -84,10 +84,10 @@ function main() {
   let encryptText = encryptMessage(symKey, plainText);
   let decryptText = decryptMessage(symKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 // [End sync_symmetry_encrypt_decrypt_sm4_gcm]

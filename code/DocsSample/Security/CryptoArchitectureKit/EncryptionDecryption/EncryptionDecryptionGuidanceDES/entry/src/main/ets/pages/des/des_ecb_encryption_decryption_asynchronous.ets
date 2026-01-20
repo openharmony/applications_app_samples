@@ -37,7 +37,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let symGenerator = cryptoFramework.createSymKeyGenerator('DES64');
   let symKey = await symGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 
@@ -49,10 +49,10 @@ async function main() {
   let encryptText = await encryptMessagePromise(symKey, plainText);
   let decryptText = await decryptMessagePromise(symKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 // [End async_symmetry_encrypt_decrypt]

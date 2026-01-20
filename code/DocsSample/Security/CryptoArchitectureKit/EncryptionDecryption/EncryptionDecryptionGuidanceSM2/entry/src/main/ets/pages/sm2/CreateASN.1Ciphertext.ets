@@ -26,7 +26,7 @@ function testGenCipherTextBySpec() {
   }
   // 此处的data可直接使用cryptoFramework进行SM2解密
   let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
-  console.info('genCipherTextBySpec success');
+  console.info('genCipherTextBySpec result: success.');
 }
 
 // [End sm2_create_asn1_ciphertext]

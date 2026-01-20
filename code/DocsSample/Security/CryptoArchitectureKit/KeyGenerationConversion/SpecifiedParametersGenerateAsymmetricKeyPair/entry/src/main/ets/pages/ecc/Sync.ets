@@ -18,11 +18,11 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
   if (typeof bnValue === 'string') {
-    console.error('type is string');
+    console.error('type: string');
     return;
   }
   if (typeof bnValue === 'number') {
-    console.error('type is number');
+    console.error('type: number');
     return;
   }
   console.info(bnName + ':');
@@ -88,7 +88,7 @@ function showEccSpecDetailInfo(key: cryptoFramework.PubKey | cryptoFramework.Pri
       showBigIntInfo('--- pkY', pkY);
     }
   } catch (e) {
-    console.error(`getAsyKeySpec failed, ${e.code}, ${e.message}`);
+    console.error(`getAsyKeySpec failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 
@@ -102,11 +102,11 @@ function testEccUseCommKeySpecGetSync() {
       showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性
       showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性
     } else {
-      console.error('get key pair result fail!');
+      console.error('get key pair result: fail!');
     }
   } catch (e) {
     // 逻辑错误等异常在此捕获
-    console.error(`get key pair result fail, ${e.code}, ${e.message}`);
+    console.error(`get key pair failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End specify_parameter_generate_ecc_keypair_sync]

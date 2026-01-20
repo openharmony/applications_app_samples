@@ -71,11 +71,11 @@ async function prikeyGetPubKeyAsync() {
     let priKey = keyPair.priKey;
     let pubkey = await priKey.getPubKey();
     let pkBlob = pubkey.getEncoded();
-    console.info('pk1 bin data' + pkBlob.data);
+    console.info('pk1 bin data: ' + pkBlob.data);
     let ret: boolean = compareUint8Array(pkBlob.data, expectPkdata);
-    console.info('result is ' + ret);
+    console.info('result: ' + ret);
   } catch (e) {
-    console.error(`get pubkey from prikey failed, ${e.code}, ${e.message}`);
+    console.error(`get pubkey from prikey failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End prikey_get_pubkey_async]

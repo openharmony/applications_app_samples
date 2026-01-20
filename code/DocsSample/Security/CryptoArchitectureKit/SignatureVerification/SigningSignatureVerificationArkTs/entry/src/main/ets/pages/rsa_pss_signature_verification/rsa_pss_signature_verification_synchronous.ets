@@ -97,9 +97,9 @@ function verifyMessagePSS() {
   verifyer.updateSync(input1);
   let verifyResult = verifyer.verifySync(input2, signMessageBlob);
   if (verifyResult === true) {
-    console.info('verify success');
+    console.info('verify result: success.');
   } else {
-    console.error('verify failed');
+    console.error('verify result: failed.');
   }
 }
 

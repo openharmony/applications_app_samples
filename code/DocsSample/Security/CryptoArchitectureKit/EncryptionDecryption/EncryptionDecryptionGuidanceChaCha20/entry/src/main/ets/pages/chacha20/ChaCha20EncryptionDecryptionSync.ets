@@ -55,7 +55,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let chacha20Generator = cryptoFramework.createSymKeyGenerator('ChaCha20');
   let symKey = chacha20Generator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 
@@ -69,13 +69,13 @@ function main() {
     let encryptText = encryptMessage(symKey, plainText);
     let decryptText = decryptMessage(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok');
+      console.info('decrypt ok.');
       console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
     } else {
       console.error('decrypt failed.');
     }
   } catch (error) {
-    console.error(`decrypt failed, error info is ${error}, error code: ${error.code}`);
+    console.error(`decrypt failed: errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

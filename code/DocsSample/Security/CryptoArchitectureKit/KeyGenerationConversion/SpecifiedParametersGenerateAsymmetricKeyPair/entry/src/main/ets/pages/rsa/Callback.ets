@@ -48,11 +48,11 @@ function genRsa2048PubKeySpec() {
 function compareRsaPubKeyBySpec(rsaKeySpec: cryptoFramework.RSAPubKeySpec, n: bigint | string | number,
   e: bigint | string | number) {
   if (typeof n === 'string' || typeof e === 'string') {
-    console.error('type is string');
+    console.error('type: string');
     return false;
   }
   if (typeof n === 'number' || typeof e === 'number') {
-    console.error('type is number');
+    console.error('type: number');
     return false;
   }
   if (rsaKeySpec.params.n != n) {
@@ -70,7 +70,7 @@ function rsaUsePubKeySpecGetCallback() {
   let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
   rsaGeneratorSpec.generatePubKey((error, key) => {
     if (error) {
-      console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
+      console.error('generate pubKey failed, ' + 'error code: ' + error.code + 'error message' + error.message);
     }
     let pubKey = key;
     let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);

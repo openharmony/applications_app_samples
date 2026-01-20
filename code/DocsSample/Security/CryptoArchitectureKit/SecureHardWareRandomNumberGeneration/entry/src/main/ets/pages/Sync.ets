@@ -26,11 +26,11 @@ function doRandBySync() {
     if (randData.data.length !== 0) {
       console.info('[Sync]: rand result: ' + randData.data);
     } else {
-      console.error('[Sync]: get rand result fail!');
+      console.error('[Sync]: get rand result: fail!');
     }
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    console.error(`do rand failed, ${e.code}, ${e.message}`);
+    console.error(`do rand failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End secure_hard_ware_random_number_generation_sync]

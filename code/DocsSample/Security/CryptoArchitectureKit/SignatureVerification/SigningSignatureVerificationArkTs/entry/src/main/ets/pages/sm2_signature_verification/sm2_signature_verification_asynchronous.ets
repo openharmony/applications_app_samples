@@ -35,7 +35,7 @@ async function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, p
   await verifier.init(pubKey);
   await verifier.update(input1); // 如果明文较短，可以直接调用verify接口一次性传入
   let res = await verifier.verify(input2, signMessageBlob);
-  console.info('verify result is ' + res);
+  console.info('verify result = ' + res);
   return res;
 }
 
@@ -46,9 +46,9 @@ async function main() {
   let signData = await signMessagePromise(keyPair.priKey);
   let verifyResult = await verifyMessagePromise(signData, keyPair.pubKey);
   if (verifyResult === true) {
-    console.info('verify success');
+    console.info('verify result: success.');
   } else {
-    console.error('verify failed');
+    console.error('verify result: failed.');
   }
 }
 

@@ -170,6 +170,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary007 end');
+      await driver.pressBack();
       done();
     })
 
@@ -188,6 +189,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary008 end');
+      await driver.pressBack();
       done();
     })
 
@@ -209,6 +211,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary009 end');
+      await driver.pressBack();
       done();
     })
 
@@ -230,6 +233,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary010 end');
+      await driver.pressBack();
       done();
     })
 
@@ -251,6 +255,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary011 end');
+      await driver.pressBack();
       done();
     })
 
@@ -272,6 +277,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary012 end');
+      await driver.pressBack();
       done();
     })
 
@@ -293,6 +299,8 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary013 end');
+      await driver.pressBack();
+      await driver.pressBack();
       done();
     })
 
@@ -314,6 +322,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary014 end');
+      await driver.pressBack();
       done();
     })
 
@@ -335,6 +344,8 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary015 end');
+      await driver.pressBack();
+      await driver.pressBack();
       done();
     })
 
@@ -356,6 +367,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary016 end');
+      await driver.pressBack();
       done();
     })
 
@@ -377,6 +389,7 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary017 end');
+      await driver.pressBack();
       done();
     })
 
@@ -398,6 +411,8 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary018 end');
+      await driver.pressBack();
+      await driver.pressBack();
       done();
     })
 

@@ -37,7 +37,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let symGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
   let symKey = symGenerator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 

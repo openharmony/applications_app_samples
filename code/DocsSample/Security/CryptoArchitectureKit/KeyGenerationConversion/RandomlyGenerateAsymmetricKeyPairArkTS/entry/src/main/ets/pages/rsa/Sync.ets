@@ -28,13 +28,13 @@ function generateAsyKeySync() {
       // 获取非对称密钥对的二进制数据
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
-      console.info('pk bin data' + pkBlob.data);
-      console.info('sk bin data' + skBlob.data);
+      console.info('pk bin data: ' + pkBlob.data);
+      console.info('sk bin data: ' + skBlob.data);
     } else {
-      console.error('[Sync]: get key pair result fail!');
+      console.error('[Sync]: get key pair result: fail!');
     }
   } catch (e) {
-    console.error(`get key pair failed, ${e.code}, ${e.message}`);
+    console.error(`get key pair failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End generate_rsa_keypair_sync]

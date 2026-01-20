@@ -20,7 +20,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
   let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 
@@ -43,7 +43,7 @@ async function doLoopHmac() {
   let macOutput = await mac.doFinal();
   console.info('HMAC result: ' + macOutput.data);
   let macLen = mac.getMacLength();
-  console.info('HMAC len:' + macLen);
+  console.info('HMAC len: ' + macLen);
 }
 
 

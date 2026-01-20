@@ -39,7 +39,7 @@ async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) 
   let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
   let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return keyPair;
 }
 
@@ -88,12 +88,12 @@ async function main() {
   let encryptText = await encryptMessagePromise(pubKey, plainText);
   let decryptText = await decryptMessagePromise(priKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     // 把Uint8Array按utf-8编码为字符串
     let messageDecrypted = buffer.from(decryptText.data).toString('utf-8');
     console.info('decrypted result string:' + messageDecrypted);
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 

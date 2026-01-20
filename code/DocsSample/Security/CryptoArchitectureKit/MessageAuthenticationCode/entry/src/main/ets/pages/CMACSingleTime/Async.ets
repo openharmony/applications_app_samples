@@ -20,7 +20,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 async function doCmac() {
@@ -37,9 +37,9 @@ async function doCmac() {
   // 数据量不多时，可以一次性更新，将所有数据传入，接口没有入参长度限制。
   await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let macResult = await mac.doFinal();
-  console.info('CMAC result:' + macResult.data);
+  console.info('CMAC result: ' + macResult.data);
   let macLen = mac.getMacLength();
-  console.info('CMAC len:' + macLen);
+  console.info('CMAC len: ' + macLen);
 }
 
 

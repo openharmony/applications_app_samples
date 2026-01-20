@@ -150,7 +150,7 @@ async function doTestCreatePkcs12Sync() {
 
   try {
     let p12 = cert.createPkcs12Sync(data, config);
-    console.info(`createPkcs12Sync succeed p12 = ` + p12);
+    console.info(`createPkcs12Sync result: success, p12 = ` + p12);
     let conf: cert.Pkcs12ParsingConfig = {
       password: '123456',
       needsCert: true,
@@ -159,7 +159,7 @@ async function doTestCreatePkcs12Sync() {
       needsOtherCerts: true,
     };
     let out: cert.Pkcs12Data = cert.parsePkcs12(p12, conf);
-    console.info(`parsePKCS12 succeed.`);
+    console.info(`parsePKCS12 result: success.`);
     if (out.privateKey) {
       console.info(`privateKey:` + out.privateKey.toString());
     }

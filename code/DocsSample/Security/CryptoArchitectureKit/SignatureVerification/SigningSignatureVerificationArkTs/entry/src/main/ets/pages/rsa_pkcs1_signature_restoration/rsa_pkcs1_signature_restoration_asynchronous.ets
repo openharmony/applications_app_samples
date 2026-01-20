@@ -45,7 +45,7 @@ async function main() {
   if (rawSignData != null) {
     console.info('recover result: ' + rawSignData.data);
   } else {
-    console.error('get verify recover result fail!');
+    console.error('get verify recover result: fail!');
   }
 }
 // [End pkcs1_recover_rsa_keypair_sign_async]

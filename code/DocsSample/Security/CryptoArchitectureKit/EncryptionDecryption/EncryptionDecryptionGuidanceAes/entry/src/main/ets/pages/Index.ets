@@ -52,7 +52,7 @@ struct Index {
       Button($r('app.string.call_aes_gcm_segment'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.testAesEcb();
+          let ret: number = testNapi.testAesGcmSeg();
           this.message = 'AES_GCM_SegmentSuccess Result:' + ret.toString();
         })
     }

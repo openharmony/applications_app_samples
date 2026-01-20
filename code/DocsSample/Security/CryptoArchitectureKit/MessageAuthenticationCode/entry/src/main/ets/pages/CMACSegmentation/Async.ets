@@ -22,7 +22,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 async function doLoopCmac() {
@@ -47,7 +47,7 @@ async function doLoopCmac() {
   let macOutput = await mac.doFinal();
   console.info('CMAC result: ' + macOutput.data);
   let macLen = mac.getMacLength();
-  console.info('CMAC len:' + macLen);
+  console.info('CMAC len: ' + macLen);
 }
 
 // [End message_authentication_code_calculation_cmac_segmentation_async]

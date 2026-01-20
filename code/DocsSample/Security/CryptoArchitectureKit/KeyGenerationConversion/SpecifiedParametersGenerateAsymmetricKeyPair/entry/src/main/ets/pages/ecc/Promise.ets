@@ -20,11 +20,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 打印bigint信息
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
   if (typeof bnValue === 'string') {
-    console.error('type is string');
+    console.error('type: string');
     return;
   }
   if (typeof bnValue === 'number') {
-    console.error('type is number');
+    console.error('type: number');
     return;
   }
   console.info(bnName + ':');
@@ -90,9 +90,8 @@ function showEccSpecDetailInfo(key: cryptoFramework.PubKey | cryptoFramework.Pri
       showBigIntInfo('--- pkY', pkY);
     }
   } catch (error) {
-    console.error('getAsyKeySpec error');
     let e: BusinessError = error as BusinessError;
-    console.error(`getAsyKeySpec failed, ${e.code}, ${e.message}`);
+    console.error(`getAsyKeySpec failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 
@@ -107,14 +106,12 @@ function testEccUseCommKeySpecGet() {
       showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性
     }).catch((error: BusinessError) => {
       // 逻辑错误等异步异常在此捕获
-      console.error('generateComm error');
-      console.error('error code: ' + error.code + ', message is: ' + error.message);
+      console.error(`generateComm failed: errCode: ${error.code}, message: ${error.message}`);
     })
   } catch (error) {
     // 参数错误等同步异常在此捕获
-    console.error('testEccUseCommSpec error');
     let e: BusinessError = error as BusinessError;
-    console.error(`ecc comm spec failed, ${e.code}, ${e.message}`);
+    console.error(`ecc comm spec failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End specify_parameter_generate_ecc_keypair]
