@@ -142,8 +142,10 @@ export struct StyledStringImageAttachment {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude styledStringImageAttachment_start]
         // 请将$r('app.string.StyledStringImageAttachment_title')替换为实际资源文件，在本示例中该资源文件的value值为"通过ImageAttachment来添加图片"
         ComponentCard({ title: $r('app.string.StyledStringImageAttachment_title') }) {
+          // [EndExclude styledStringImageAttachment_start]
           Row() {
             Column({ space: 10 }) {
               Text(undefined, { controller: this.controller })
@@ -175,10 +177,12 @@ export struct StyledStringImageAttachment {
           .height('100%')
           .backgroundColor('#F8F8FF')
         }
+        // [StartExclude styledStringImageAttachment_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude styledStringImageAttachment_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.StyledStringImageAttachment_title')替换为实际资源文件，在本示例中该资源文件的value值为"通过ImageAttachment来添加图片"

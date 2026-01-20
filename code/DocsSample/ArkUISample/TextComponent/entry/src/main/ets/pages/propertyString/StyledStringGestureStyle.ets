@@ -139,8 +139,10 @@ export struct StyledStringGestureStyle {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude styledStringGestureStyle_start]
         // 请将$r('app.string.TStyledStringGestureStyle_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置事件"
         ComponentCard({ title: $r('app.string.TStyledStringGestureStyle_title') }) {
+          // [EndExclude styledStringGestureStyle_start]
           Row() {
             Column() {
               // 请将$r('app.string.StyledStringGestureStyle_button_content')替换为实际资源文件，在本示例中该资源文件的value值为"响应属性字符串事件改变背景色"
@@ -157,10 +159,12 @@ export struct StyledStringGestureStyle {
           }
           .height('100%')
         }
+        // [StartExclude styledStringGestureStyle_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude styledStringGestureStyle_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.TStyledStringGestureStyle_title')替换为实际资源文件，在本示例中该资源文件的value值为"设置事件"

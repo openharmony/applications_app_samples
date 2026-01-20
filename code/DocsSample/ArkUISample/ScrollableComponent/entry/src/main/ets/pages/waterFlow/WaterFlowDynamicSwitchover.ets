@@ -135,8 +135,10 @@ export struct WaterFlowDynamicSwitchover {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude waterFlowDynamicSwitchover_start]
         // 请将$r('app.string.WaterFlowDynamicSwitchover_title')替换为实际资源文件，在本示例中该资源文件的value值为"动态切换列数"
         ComponentCard({ title: $r('app.string.WaterFlowDynamicSwitchover_title') }) {
+          // [EndExclude waterFlowDynamicSwitchover_start]
           Column({ space: 2 }) {
             // 请将$r('app.string.waterFlow_text2')替换为实际资源文件，在本示例中该资源文件的value值为"切换列数 "
             Button($r('app.string.waterFlow_text2')).fontSize(20).onClick(() => {
@@ -178,9 +180,11 @@ export struct WaterFlowDynamicSwitchover {
             // [EndExclude waterFlowDynamicSwitchover_start]
           }
         }
+        // [StartExclude waterFlowDynamicSwitchover_start]
       }
       .width('100%')
       .height('100%')
+      // [EndExclude waterFlowDynamicSwitchover_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.WaterFlowDynamicSwitchover_title')替换为实际资源文件，在本示例中该资源文件的value值为"动态切换列数"

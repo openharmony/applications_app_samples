@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ComponentCard } from '../../common/Card';
 // [Start arcListContentsTitle_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
-import { ComponentCard } from '../../common/Card';
 import { common } from '@kit.AbilityKit';
 
 class Contact {
@@ -45,8 +45,10 @@ export struct ArcListContents {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude arcListContentsTitle_start]
         // 请将$r('app.string.ArcListContents_title')替换为实际资源文件，在本示例中该资源文件的value值为"迭代弧形列表内容"
         ComponentCard({ title: $r('app.string.ArcListContents_title') }) {
+          // [EndExclude arcListContentsTitle_start]
           ArcList({ initialIndex: 2 }) {
             ForEach(this.contacts, (item: Contact) => {
               ArcListItem() {
@@ -74,10 +76,12 @@ export struct ArcListContents {
           .borderRadius('233px')
           .backgroundColor(Color.Black)
         }
+        // [StartExclude arcListContentsTitle_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude arcListContentsTitle_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.ArcListContents_title')替换为实际资源文件，在本示例中该资源文件的value值为"迭代弧形列表内容"

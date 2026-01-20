@@ -143,8 +143,10 @@ export struct StyledStringSceneExample {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude styledStringSceneExample_start]
         // 请将$r('app.string.StyledStringSceneExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"场景示例"
         ComponentCard({ title: $r('app.string.StyledStringSceneExample_title') }) {
+          // [EndExclude styledStringSceneExample_start]
           Row() {
             Column({ space: 5 }) {
               Text(undefined, { controller: this.controller })
@@ -170,10 +172,12 @@ export struct StyledStringSceneExample {
           }
           .height('60%')
         }
+        // [StartExclude styledStringSceneExample_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude styledStringSceneExample_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.StyledStringSceneExample_title')替换为实际资源文件，在本示例中该资源文件的value值为"场景示例"

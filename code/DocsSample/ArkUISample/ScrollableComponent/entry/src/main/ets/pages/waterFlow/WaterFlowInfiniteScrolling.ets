@@ -112,8 +112,10 @@ export struct WaterFlowInfiniteScrolling {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude WaterFlowInfiniteScrolling_start]
         // 请将$r('app.string.WaterFlowInfiniteScrolling_title')替换为实际资源文件，在本示例中该资源文件的value值为"无限滚动（到达末尾时新增数据）"
         ComponentCard({ title: $r('app.string.WaterFlowInfiniteScrolling_title') }) {
+          // [EndExclude WaterFlowInfiniteScrolling_start]
           WaterFlow({ footer: this.itemFoot(), layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW }) {
             LazyForEach(this.dataSource, (item: number) => {
               FlowItem() {
@@ -136,10 +138,12 @@ export struct WaterFlowInfiniteScrolling {
             }, 1000)
           })
         }
+        // [StartExclude WaterFlowInfiniteScrolling_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude WaterFlowInfiniteScrolling_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.WaterFlowInfiniteScrolling_title')替换为实际资源文件，在本示例中该资源文件的value值为"无限滚动（到达末尾时新增数据）"

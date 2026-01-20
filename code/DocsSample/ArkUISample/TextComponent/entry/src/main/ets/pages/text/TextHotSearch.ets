@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-// [Start the_text_fact_example]
 import { ComponentCard } from '../../common/Card';
-
+// [Start the_text_fact_example]
 @Entry
 @Component
 export struct TextHotSearch {
