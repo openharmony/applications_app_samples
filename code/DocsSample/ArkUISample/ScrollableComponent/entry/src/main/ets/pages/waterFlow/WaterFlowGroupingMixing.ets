@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -98,8 +98,10 @@ export struct WaterFlowGroupingMixing {
 
   build() {
     NavDestination() {
+      // [StartExclude waterFlowGroupingMixing_start]
       // 请将$r('app.string.WaterFlowGroupingMixing_title')替换为实际资源文件，在本示例中该资源文件的value值为"分组混合布局"
       ComponentCard({ title: $r('app.string.WaterFlowGroupingMixing_title') }) {
+        // [EndExclude waterFlowGroupingMixing_start]
         WaterFlow({ layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW, sections: this.sections }) {
           LazyForEach(this.dataSource, (item: number) => {
             FlowItem() {
@@ -140,9 +142,11 @@ export struct WaterFlowGroupingMixing {
         })
         .margin(10)
       }
+      // [StartExclude waterFlowGroupingMixing_start]
     }.backgroundColor('#f1f2f3')
     // 请将$r('app.string.WaterFlowGroupingMixing_title')替换为实际资源文件，在本示例中该资源文件的value值为"分组混合布局"
     .title($r('app.string.WaterFlowGroupingMixing_title'))
+    // [EndExclude waterFlowGroupingMixing_start]
   }
 }
 // [End waterFlowGroupingMixing_start]

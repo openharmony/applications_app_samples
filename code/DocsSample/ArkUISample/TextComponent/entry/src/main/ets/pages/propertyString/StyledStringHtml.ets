@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -48,8 +48,10 @@ export struct StyledStringHtml {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude styledStringHtml_start]
         // 请将$r('app.string.StyledStringHtml_title')替换为实际资源文件，在本示例中该资源文件的value值为"格式转换"
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
+          // [EndExclude styledStringHtml_start]
           Column() {
             Text(undefined, { controller: this.controller1 }).height(100)
             Row() {
@@ -57,7 +59,8 @@ export struct StyledStringHtml {
               Button($r('app.string.StyledStringHtml_Button_1')).onClick(() => {
                 // 请将$r('app.string.StyledStringHtml_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"属性字符串"
                 let mutableStyledString1: MutableStyledString =
-                  new MutableStyledString(resource.resourceToString($r('app.string.StyledStringHtml_Text_1')), [{
+                  new MutableStyledString(this.getUIContext()
+                    .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringHtml_Text_1').id), [{
                   start: 0,
                   length: 6,
                   styledKey: StyledStringKey.FONT,
@@ -88,10 +91,12 @@ export struct StyledStringHtml {
             Text(this.html)
           }.width('100%')
         }
+        // [StartExclude styledStringHtml_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude styledStringHtml_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.StyledStringHtml_title')替换为实际资源文件，在本示例中该资源文件的value值为"格式转换"

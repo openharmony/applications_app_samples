@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,8 +22,10 @@ export struct ArcListShow {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude arcListShow_start]
         // 请将$r('app.string.ArcListShow_title')替换为实际资源文件，在本示例中该资源文件的value值为"在弧形列表中显示数据"
         ComponentCard({ title: $r('app.string.ArcListShow_title') }) {
+          // [EndExclude arcListShow_start]
           ArcList({ initialIndex: 2 }) {
             ArcListItem() {
               Row() {
@@ -118,10 +120,12 @@ export struct ArcListShow {
           .borderRadius('233px')
           .backgroundColor(Color.Black)
         }
+      // [StartExclude arcListShow_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude arcListShow_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.ArcListShow_title')替换为实际资源文件，在本示例中该资源文件的value值为"在弧形列表中显示数据"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -64,7 +64,8 @@ export struct StyledStringImageAttachment {
   //创建含段落样式的对象paragraphStyledString1
   // 请将$r('app.string.StyledStringImageAttachment_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"\n品牌相纸 高清冲印30张\n限时直降5.15元 限量赠送"
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_1')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringImageAttachment_Text_1').id), [
     {
       start: 0,
       length: 28,
@@ -92,7 +93,8 @@ export struct StyledStringImageAttachment {
   ]);
   // 请将$r('app.string.StyledStringImageAttachment_Text_2')替换为实际资源文件，在本示例中该资源文件的value值为"\n￥16.21 3000+人好评"
   paragraphStyledString2: MutableStyledString =
-    new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_2')), [
+    new MutableStyledString(this.getUIContext()
+      .getHostContext()!.resourceManager.getStringSync($r('app.string.StyledStringImageAttachment_Text_2').id), [
     {
       start: 0,
       length: 5,
@@ -140,8 +142,10 @@ export struct StyledStringImageAttachment {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude styledStringImageAttachment_start]
         // 请将$r('app.string.StyledStringImageAttachment_title')替换为实际资源文件，在本示例中该资源文件的value值为"通过ImageAttachment来添加图片"
         ComponentCard({ title: $r('app.string.StyledStringImageAttachment_title') }) {
+          // [EndExclude styledStringImageAttachment_start]
           Row() {
             Column({ space: 10 }) {
               Text(undefined, { controller: this.controller })
@@ -173,10 +177,12 @@ export struct StyledStringImageAttachment {
           .height('100%')
           .backgroundColor('#F8F8FF')
         }
+        // [StartExclude styledStringImageAttachment_start]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude styledStringImageAttachment_start]
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.StyledStringImageAttachment_title')替换为实际资源文件，在本示例中该资源文件的value值为"通过ImageAttachment来添加图片"

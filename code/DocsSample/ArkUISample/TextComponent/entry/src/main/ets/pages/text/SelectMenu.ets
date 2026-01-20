@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,6 +23,7 @@ export struct SelectMenu {
   // [Start set_selection_menu_with_bindselectionmenu]
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
+
   // [End set_selection_menu_with_bindselectionmenu]
   // [Start Right_Click_Text_CustomMenu]
   // 定义菜单项
@@ -43,6 +44,7 @@ export struct SelectMenu {
       }.backgroundColor('#F0F0F0')
     }
   }
+
   // [End Right_Click_Text_CustomMenu]
   // [Start onCreate_Menu]
   // 定义onCreateMenu，onMenuItemClick
@@ -66,25 +68,30 @@ export struct SelectMenu {
     if (menuItem.id.equals(TextMenuItemId.of('customMenu2'))) {
       // 请将$r('app.string.SelectMenu_Text_customMenu')替换为实际资源文件，在本示例中该资源文件的value值为"拦截 id: customMenu2 start:"
       hilog.info(0x0000, 'Sample_TextComponent',
-        resource.resourceToString($r('app.string.SelectMenu_Text_customMenu')) + textRange.start + '; end:' +
+        this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_customMenu')
+          .id) + textRange.start + '; end:' +
         textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
       // 请将$r('app.string.SelectMenu_Text_copy')替换为实际资源文件，在本示例中该资源文件的value值为"拦截 COPY start:"
       hilog.info(0x0000, 'Sample_TextComponent',
-        resource.resourceToString($r('app.string.SelectMenu_Text_copy')) + textRange.start + '; end:' + textRange.end);
+        this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_copy').id) +
+        textRange.start + '; end:' + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
       // 请将$r('app.string.SelectMenu_Text_SelectionAll')替换为实际资源文件，在本示例中该资源文件的value值为"不拦截 SELECT_ALL start:"
       hilog.info(0x0000, 'Sample_TextComponent',
-        resource.resourceToString($r('app.string.SelectMenu_Text_SelectionAll')) + textRange.start + '; end:' +
+        this.getUIContext()
+          .getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_SelectionAll').id) +
+        textRange.start + '; end:' +
         textRange.end);
       return false;
     }
     return false;
   };
+
   // [End onCreate_Menu]
   build() {
     NavDestination() {
@@ -108,12 +115,14 @@ export struct SelectMenu {
               onAppear: () => {
                 // 请将$r('app.string.SelectMenu_Text_Ejected')替换为实际资源文件，在本示例中该资源文件的value值为"自定义选择菜单弹出时触发该回调"
                 hilog.info(0x0000, 'Sample_TextComponent',
-                  resource.resourceToString($r('app.string.SelectMenu_Text_Ejected')));
+                  this.getUIContext()
+                    .getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_Ejected').id));
               },
               onDisappear: () => {
                 // 'SelectMenu_Text_Close'资源文件中的value值为'自定义选择菜单关闭时触发该回调'
                 hilog.info(0x0000, 'Sample_TextComponent',
-                  resource.resourceToString($r('app.string.SelectMenu_Text_Close')));
+                  this.getUIContext()
+                    .getHostContext()!.resourceManager.getStringSync($r('app.string.SelectMenu_Text_Close').id));
               }
             })
           // [End set_selection_menu_with_bindselectionmenu_sec]
