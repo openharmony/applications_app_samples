@@ -310,6 +310,8 @@ napi_property_descriptor desc[] = {
         nullptr, nullptr, napi_default, nullptr},
     {"createContainerPickerTimeNode", nullptr, Manager::createContainerPickerTimeNode, nullptr,
         nullptr, nullptr, napi_default, nullptr},
+    {"createMatrix4NativeNode", nullptr, Manager::createMatrix4NativeNode, nullptr,
+        nullptr, nullptr, napi_default, nullptr},
 };
 static napi_value Init(napi_env env, napi_value exports) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "Init begins");

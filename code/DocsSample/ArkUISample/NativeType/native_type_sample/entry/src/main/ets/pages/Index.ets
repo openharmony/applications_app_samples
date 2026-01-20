@@ -49,6 +49,7 @@ struct MenuIndex {
       { title: 'CalendarPicker', url: 'pages/page_calendar_picker' },
       { title: 'ImageAnimator', url: 'pages/page_image_animator' },
       { title: 'ContainerPicker', url: 'pages/page_container_picker' },
+      { title: 'Matrix4', url: 'pages/page_matrix4' },
     ];
 
   build() {

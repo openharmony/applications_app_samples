@@ -113,6 +113,8 @@ entry/src/main/cpp/
 ├── ListMaker.h
 ├── manager.cpp 
 ├── manager.h
+├── Matrix4.cpp 
+├── Matrix4.h 
 ├── napi_init.cpp
 ├── PublicEvent.cpp
 ├── PublicEvent.h
@@ -147,6 +149,7 @@ entry/src/main/ets/
     ├── PageGrid.ets       (Grid页面)
     ├── page_imagespan.ets (imagespan页面)
     ├── page_list.ets      (List页面)
+    ├── page_Matrix4.ets      (Matrix4页面)
     ├── page_refresh.ets   (Refresh页面)
     ├── page_scroll.ets    (Scroll页面)
     ├── page_swiper.ets    (Swiper页面)
