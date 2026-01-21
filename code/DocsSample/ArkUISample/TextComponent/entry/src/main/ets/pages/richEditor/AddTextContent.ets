@@ -27,7 +27,7 @@ export struct AddTextContent {
       Column({ space: 3 }) {
         RichEditor(this.options)
           .onReady(() => {
-            // 请将$r('app.string.AddTextContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加text"
+            // 请将$r('app.string.AddTextContent_Text_1')替换为实际资源文件，在本示例中该资源文件的value值为"点击按钮在此处添加text。"
             this.controller.addTextSpan($r('app.string.AddTextContent_Text_1'), {
               style: {
                 fontColor: Color.Black,
