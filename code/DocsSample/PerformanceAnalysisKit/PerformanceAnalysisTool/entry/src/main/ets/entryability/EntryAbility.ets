@@ -18,7 +18,6 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hichecker, hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -28,12 +27,7 @@ export default class EntryAbility extends UIAbility {
     const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
     const imagePackerObj: image.ImagePacker = image.createImagePacker();
     let packOpts: image.PackingOption = { format:"image/jpeg", quality:98 };
-    imagePackerObj.packToData(imageSourceObj, packOpts)
-      .then((data: ArrayBuffer) => {
-        console.info('Succeeded in packing the image.');
-      }).catch((error: BusinessError) => {
-      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-    });
+    imagePackerObj.packToData(imageSourceObj, packOpts);
     // 以上5行通过image子系统触发检测规则
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
