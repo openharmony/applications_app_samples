@@ -14,6 +14,7 @@
 */
 
 import abilityTest from './Ability.test';
+import additionalTestsTest from './AdditionalTests.test';
 import arkRegexComplianceTest from './ArktsRuntimeFag.test';
 import localTest from './Local.test';
 
@@ -21,4 +22,5 @@ export default function testsuite() {
   abilityTest();
   arkRegexComplianceTest();
   localTest();
+  additionalTestsTest();
 }

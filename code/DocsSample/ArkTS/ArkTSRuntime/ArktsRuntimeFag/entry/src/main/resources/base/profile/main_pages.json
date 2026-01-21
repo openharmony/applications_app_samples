@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Local",
-    "pages/Scene"
+    "pages/Scene",
+    "pages/Additional"
   ]
 }

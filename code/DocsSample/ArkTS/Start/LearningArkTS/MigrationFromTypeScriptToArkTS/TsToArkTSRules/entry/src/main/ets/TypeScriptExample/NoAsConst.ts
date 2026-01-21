@@ -13,18 +13,12 @@
  * limitations under the License.
  */
 // [Start no_asConst_ts]
-// 'string'类型。
-let x: string = 'hello';
+// 'hello'类型
+let x = 'hello' as const;
 
-// 'number[]'类型。
-let y: number[] = [10, 20];
+// 'readonly [10, 20]'类型
+let y = [10, 20] as const;
 
-class Label {
-  text: string = '';
-}
-
-// 'Label'类型。
-let z: Label = {
-  text: 'hello',
-}
+// '{ readonly text: 'hello' }'类型
+let z = { text: 'hello' } as const;
 // [End no_asConst_ts]

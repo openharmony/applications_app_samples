@@ -66,15 +66,16 @@ export class MyClass01 {
 // [End optionExample_enablePropertyObfuscation2]
 
 // [Start optionExample_enablePropertyObfuscation3]
+let person1 = {exampleName: "aaa"};
+let name = person1.exampleName;
+// [End optionExample_enablePropertyObfuscation3]
+
 // [Start optionExample_enableStringPropertyObfuscation1]
+// 混淆前：
 // example.ts
 let person = {"exampleName": "abc"};
 person["exampleAge"] = 22;
 // [End optionExample_enableStringPropertyObfuscation1]
-
-let person1 = {exampleName: "aaa"};
-let name = person1.exampleName;
-// [End optionExample_enablePropertyObfuscation3]
 
 // [Start optionExample_enableStringPropertyObfuscation2]
 // SDK API文件@ohos.app.ability.wantConstant片段：
