@@ -116,7 +116,7 @@ struct MyStateSample {
     } as request.agent.Config;
     (request.agent.create(context, config) as Promise<request.agent.Task>)
       .then((task: request.agent.Task) => {
-        task.on('completed', (progress: request.agent.Progress) => {
+        task.onCompleted((progress: request.agent.Progress) => {
           if (taskNo == 'A') {
             this.completeTaskA();
           } else if (taskNo == 'B') {
@@ -127,7 +127,7 @@ struct MyStateSample {
           hilog.info(0x0000, 'testTag', `下载完成 ${taskNo}`);
         });
 
-        task.on('progress', (progress: request.agent.Progress) => {
+        task.onProgress((progress: request.agent.Progress) => {
           hilog.info(0x0000, 'testTag', JSON.stringify(progress));
         }); // 下载进度更新回调
         task.start((err: BusinessError | null) => {

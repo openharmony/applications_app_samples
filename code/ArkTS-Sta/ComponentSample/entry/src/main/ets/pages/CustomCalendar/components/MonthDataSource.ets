@@ -135,7 +135,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {CustomDataType} data - 修改后的值。
    */
   public addData(index: number, data: Month): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index.toInt(), 0, data);
     this.notifyDataAdd(index);
   }
 
