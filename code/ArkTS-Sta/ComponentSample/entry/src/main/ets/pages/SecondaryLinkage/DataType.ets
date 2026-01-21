@@ -175,7 +175,7 @@ export class MyDataSource extends BasicDataSource {
    * @param {CustomDataType} data - 修改后的值。
    */
   public addData(index: number, data: CustomDataType): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index.toInt(), 0, data);
     this.notifyDataAdd(index);
   }
 

@@ -137,7 +137,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * @param index
    */
   public addItem(index: number): void {
-    this.dataArray.splice(index, 0, this.dataArray[this.dataArray.length]);
+    this.dataArray.splice(index.toInt(), 0, this.dataArray[this.dataArray.length]);
     this.notifyDataAdd(index);
   }
 

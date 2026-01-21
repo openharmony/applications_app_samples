@@ -148,7 +148,7 @@ export class MyDataSource extends BasicDataSource {
    * @param {string} data - 修改后的值。
    */
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index.toInt(), 0, data);
     this.notifyDataAdd(index);
   }
 

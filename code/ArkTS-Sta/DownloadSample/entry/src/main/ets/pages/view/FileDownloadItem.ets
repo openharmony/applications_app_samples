@@ -129,8 +129,8 @@ export struct FileDownloadItem {
         .then((task: request.agent.Task) => {
           this.downloadTask = task as request.agent.Task;
           // 注册下载任务相关回调
-          task.on('completed', this.completedCallback); // 下载任务完成回调
-          task.on('progress', this.progressCallback); // 下载进度更新回调
+          taskCompleted.on(this.completedCallback); // 下载任务完成回调
+          taskProgress.on(this.progressCallback); // 下载进度更新回调
 
           // 启动下载任务。本例在每个FileDownloadItem中使用task.start方法启动各自的下载任务。
           task.start((err: BusinessError | null) => {

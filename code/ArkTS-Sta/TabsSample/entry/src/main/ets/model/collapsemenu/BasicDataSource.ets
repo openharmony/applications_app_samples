@@ -79,11 +79,11 @@ export class ArticleSource<T> extends BasicDataSource<T> {
   }
   // 插入单个数据
   public addData(index: number, data: T): void {
-    this.articleData.splice(index, 0, data);
+    this.articleData.splice(index.toInt(), 0, data);
     this.notifyDataAdd(index);
   }
   public updateData(index: number, data: T): void {
-    this.articleData.splice(index, 1, data);
+    this.articleData.splice(index.toInt(), 1, data);
     this.notifyDataChange(index);
   }
   // 添加数据
