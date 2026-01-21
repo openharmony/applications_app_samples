@@ -1,0 +1,22 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CompareSyncMonitorWithMonitor",
+    "pages/MonitorMultipleVariables",
+    "pages/MonitorObjectVariable",
+    "pages/MonitorVariablesInObservedV2Class",
+    "pages/MonitorTwoLayerVariablesInObservedV2Class",
+    "pages/MonitorVariableInBaseDerivedClass",
+    "pages/MonitorVariablesInMultidimensionalArrays",
+    "pages/MonitorEntireObjectChangeButPropertyNoChange",
+    "pages/SyncMonitorBehavesDifferentlyFromMonitor",
+    "pages/WildcardMonitorObjectPropertyChange",
+    "pages/WildcardMonitorArrayItemChange",
+    "pages/WildcardMonitorNestedObjectPropertyChange",
+    "pages/WildcardMonitorArrayFirstItemChange",
+    "pages/MonitorTheSameVariableTwoTimes",
+    "pages/EffectiveAndIneffectiveTimesOfVariableMonitoring",
+    "pages/MonitorComputedVariable",
+    "pages/MonitorVariableFromAccessibleToInaccessible"
+  ]
+}
