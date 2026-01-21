@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { MyObject } from 'libentry.so'
 let object : MyObject = new MyObject(0);
 object.value = 1023;

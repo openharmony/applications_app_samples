@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import worker from '@ohos.worker';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { worker } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 
 @Entry

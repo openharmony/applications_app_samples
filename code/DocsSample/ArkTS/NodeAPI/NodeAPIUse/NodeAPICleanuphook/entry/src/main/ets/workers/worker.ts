@@ -14,15 +14,15 @@
  */
 
 // [Start connect_with_main_thread]
-import hilog from '@ohos.hilog';
-import worker from '@ohos.worker';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { worker } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
 // 处理来自主线程的消息
-parent.onmessage = function(message) {
+parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
-}
+};
 // [End connect_with_main_thread]
