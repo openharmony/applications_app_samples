@@ -8,7 +8,7 @@ const port = worker.workerPort;
 
 port.onmessage = (e : MessageEvents) => {
     console.info('Worker thread received data:', e.data.num1 + '、' + e.data.num2);
-    nativeModule.asyncWork(e.data.num1, e.data.num2, (result) => {
+    nativeModule.asyncWork(e.data.num1, e.data.num2, (result: number) => {
         port.postMessage(result);
     });
 }

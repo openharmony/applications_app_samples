@@ -21,7 +21,7 @@ import nativeModule from 'libentry1.so';
 @Concurrent
 function nativeCall(num1 : number, num2 : number): void {
   console.info('Taskpool thread received data:', + num1 + '、' + num2);
-  nativeModule.asyncWork(num1, num2, (result) => {
+  nativeModule.asyncWork(num1, num2, (result: number) => {
     hilog.info(0x0000, 'XXX', 'result is: %{public}d', result);
   });
 }
@@ -52,7 +52,7 @@ struct Index {
           .margin(3)
           .onClick(() => {
             // [Start promise_call_interface]
-            testNapi.asyncWork(1024).then((result) => {
+            testNapi.asyncWork(1024).then((result: number) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
             });
             // [End promise_call_interface]
@@ -62,7 +62,7 @@ struct Index {
           .margin(3)
           .onClick(() => {
             // [Start callback_call_interface]
-            nativeModule.asyncWork(num1, num2, (result) => {
+            nativeModule.asyncWork(num1, num2, (result: number) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
             });
             // [End callback_call_interface]
