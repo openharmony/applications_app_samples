@@ -1,0 +1,6 @@
+{
+  "src": [
+    "InputMethodExtensionAbility/pages/Index",
+    "pages/PrivatePreview"
+  ]
+}
