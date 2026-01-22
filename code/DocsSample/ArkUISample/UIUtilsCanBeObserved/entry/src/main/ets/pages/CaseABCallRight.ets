@@ -29,7 +29,7 @@ class Balloon {
     hilog.info(0x00, 'test_log', `res: ${JSON.stringify(UIUtils.canBeObserved(balloon))}`);
     balloon.volume += 2;
   }
-  // [End case_a_b_call_right_reduceVolume]
+  // [End case_a_b_call_right_increaseVolume]
 }
 
 @Entry
