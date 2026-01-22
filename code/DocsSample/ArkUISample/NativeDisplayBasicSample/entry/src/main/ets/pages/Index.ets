@@ -78,7 +78,7 @@ struct Index {
   }
 
   private callDealListenCallback(): void {
-    this.promptAction.openToast({ message: '调用regiseter change方法' }).catch((error: Error) => {
+    this.promptAction.openToast({ message: '调用register change方法' }).catch((error: Error) => {
       console.error(`callDealListenCallback error ${JSON.stringify(error)}`);
     }).then(() => {
       let registerIndex = displayNapi.registerDisplayChange();
