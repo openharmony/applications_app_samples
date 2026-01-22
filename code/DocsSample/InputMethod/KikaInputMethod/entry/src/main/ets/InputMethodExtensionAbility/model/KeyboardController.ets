@@ -19,7 +19,7 @@ import { display } from '@kit.ArkUI';
 import windowManager from '@ohos.window';
 import Log from '../../model/Log';
 import { BusinessError } from '@ohos.base';
-import { GetHardKeyValue } from '../../model/HardKeyUtils';
+import { getHardKeyValue } from '../../model/HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../../common/StyleConfiguration';
 
@@ -598,7 +598,7 @@ class KeyboardController {
     if (this.isSpecialKeyPress || keyCode === KeyCode.KEYCODE_ALT_LEFT || keyCode === KeyCode.KEYCODE_ALT_RIGHT) {
       return false;
     }
-    let keyValue: string = GetHardKeyValue(keyCode, this.isShiftKeyHold());
+    let keyValue: string = getHardKeyValue(keyCode, this.isShiftKeyHold());
     if (keyValue === '') {
       this.inputHandle.addLog('onKeyDown: unknown keyCode');
       this.isSpecialKeyPress = true;
@@ -624,7 +624,7 @@ class KeyboardController {
     }
 
     if (this.isSpecialKeyPress) {
-      let keyValue = GetHardKeyValue(keyCode, this.isShiftKeyHold());
+      let keyValue = getHardKeyValue(keyCode, this.isShiftKeyHold());
       if (!keyValue) {
         this.isSpecialKeyPress = true;
       }
