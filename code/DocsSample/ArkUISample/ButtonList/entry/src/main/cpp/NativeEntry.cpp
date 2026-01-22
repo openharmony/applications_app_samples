@@ -16,7 +16,6 @@
 // NativeEntry.cpp
 
 #include <arkui/native_node_napi.h>
-#include <hilog/log.h>
 #include <js_native_api.h>
 #include "NativeEntry.h"
 #include "NormalTextListExample.h"
