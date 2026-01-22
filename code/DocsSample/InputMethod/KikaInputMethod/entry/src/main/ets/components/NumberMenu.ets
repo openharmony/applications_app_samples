@@ -27,8 +27,8 @@ export struct NumberMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   private numberList: sourceListType[] = numberSourceListData;
-  private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_2;
-  private returnWidth: Resource = this.inputStyle.returnButtonWidthType_2;
+  private spaceWidth: Resource = this.inputStyle.spaceButtonWidth2;
+  private returnWidth: Resource = this.inputStyle.returnButtonWidthType2;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
