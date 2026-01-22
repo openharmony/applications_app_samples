@@ -48,12 +48,14 @@ export struct AccessibilityText {
         // [End accessibility_level_start]
         // [Start accessibility_text_group_start]
         Column() {
-          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
+          Image($r('app.media.play')) // 仅图标，无默认文本
+          .width(60)
+          .height(60)
+          .accessibilityText($r('app.string.PalyDemonAccessibilityText'))
+          .onClick(() => {
+              // 播放音频、视频的核心逻辑
+          })
         }
-        .accessibilityGroup(true)
-          .accessibilityLevel('yes')
-          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
-          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
 
         // [End accessibility_text_group_start]
         // [Start accessibility_description_start]
