@@ -15,6 +15,7 @@
 
 // [Start v2_monitor]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';
 
@@ -32,7 +33,7 @@ class MonitorUser {
 
   // 在对象中提供判断该对象是否为可被观察对象的方法
   test(): void {
-    console.info(TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
+    hilog.info(0x00, TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
   }
 }
 
@@ -68,12 +69,12 @@ export struct Child01 {
 
   @Monitor('monitorUser.name')
   onChild01NameChange(): void {
-    console.info(TAG, `onChild01NameChange`);
+    hilog.info(0x00, TAG, `onChild01NameChange`);
   }
 
   @Monitor('monitorUser.age')
   onChild01AgeChange(): void {
-    console.info(TAG, `onChild01AgeChange`);
+    hilog.info(0x00, TAG, `onChild01AgeChange`);
   }
 
   build() {
@@ -89,7 +90,7 @@ export struct Child02 {
 
   @Monitor('monitorUser.name')
   onChild02NameChange(): void {
-    console.info(TAG, `onChild02NameChange`);
+    hilog.info(0x00, TAG, `onChild02NameChange`);
   }
 
   build() {
@@ -105,7 +106,7 @@ export struct Child03 {
 
   @Monitor('monitorUser.age')
   onChild03AgeChange(): void {
-    console.info(TAG, `onChild03AgeChange`);
+    hilog.info(0x00, TAG, `onChild03AgeChange`);
   }
 
   build() {
@@ -121,12 +122,12 @@ export struct Child04 {
 
   @Monitor('monitorUser.name')
   onChild04NameChange(): void {
-    console.info(TAG, `onChild04NameChange`);
+    hilog.info(0x00, TAG, `onChild04NameChange`);
   }
 
   @Monitor('monitorUser.age')
   onChild04AgeChange(): void {
-    console.info(TAG, `onChild04AgeChange`);
+    hilog.info(0x00, TAG, `onChild04AgeChange`);
   }
 
   build() {

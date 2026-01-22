@@ -4,6 +4,7 @@
     "pages/V1State",
     "pages/V1Prop",
     "pages/V1Link",
+    "pages/V1Track",
     "pages/V1ObjectLink",
     "pages/V1StorageLink",
     "pages/V1StorageProp",
@@ -19,6 +20,14 @@
     "pages/V2ProviderAndConsumer",
     "pages/V2MakeObserved",
     "pages/V2BuiltIn",
-    "pages/V1AndV2Compatibility"
+    "pages/V1AndV2Compatibility",
+    "pages/CaseABCallError",
+    "pages/CaseABCallRight",
+    "pages/CaseArrayForEachError",
+    "pages/CaseArrayForEachRight",
+    "pages/CaseArrayObservedError",
+    "pages/CaseArrayObservedRight",
+    "pages/CaseControlCounterError",
+    "pages/CaseControlCounterRight"
   ]
 }

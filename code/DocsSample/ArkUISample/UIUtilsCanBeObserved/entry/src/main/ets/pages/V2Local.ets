@@ -15,6 +15,7 @@
 
 // [Start v2_local]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';
 
@@ -32,28 +33,24 @@ class LocalUser {
 
   // 在对象中提供判断该对象是否为可被观察对象的方法
   test(): void {
-    console.info(TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
+    hilog.info(0x00, TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
   }
 }
 
 @Entry
 @ComponentV2
 struct V2Local {
-  @Local localUser: LocalUser = new LocalUser('Goat', 35);
+  @Local localUser: LocalUser = new LocalUser('Michael', 29);
 
   build() {
     Column({ space: 20 }) {
-
       Text('index ' + this.localUser.name)
-
       Text('index ' + this.localUser.age)
-
       Button('test')
         .onClick(() => {
           // 开发者可以在任意页面中使用接口来判断当前对象是否为可被观察对象
           this.localUser.test();
         })
-
     }
     .height('100%')
     .width('100%')

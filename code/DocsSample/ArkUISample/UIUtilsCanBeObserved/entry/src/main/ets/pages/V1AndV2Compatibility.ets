@@ -15,6 +15,7 @@
 
 // [Start v1_and_v2_compatibility]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';
 
@@ -29,7 +30,7 @@ class CompatibilityUser {
 
   // 在对象中提供判断该对象是否为可被观察对象的方法
   test(): void {
-    console.info(TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
+    hilog.info(0x00, TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
   }
 }
 
@@ -37,22 +38,21 @@ class CompatibilityUser {
 @Component
 struct V1AndV2Compatibility {
   // 被enableV2Compatibility转换的V1对象必须是可被观察的V1对象
-  @State temp: CompatibilityUser = new CompatibilityUser('Galen', 43);
+  @State temp: CompatibilityUser = new CompatibilityUser('Thomas', 43);
   @State compatibilityUser: CompatibilityUser = UIUtils.enableV2Compatibility(this.temp);
 
   build() {
     Column({ space: 20 }) {
+      Text('V1 name: ' + this.compatibilityUser.name)
+      Text('V1 age: ' + this.compatibilityUser.age)
 
-      Child01({ compatibilityUser: this.compatibilityUser })
-
-      Child02({ compatibilityUser: this.compatibilityUser })
+      V2Child({ compatibilityUser: this.compatibilityUser })
 
       Button('test')
         .onClick(() => {
           // 开发者可以在任意页面中使用接口来判断当前对象是否为可被观察对象
           this.compatibilityUser.test();
         })
-
     }
     .height('100%')
     .width('100%')
@@ -61,37 +61,14 @@ struct V1AndV2Compatibility {
   }
 }
 
-@Component
-export struct Child01 {
-  @State compatibilityUser: CompatibilityUser = new CompatibilityUser();
-
-  build() {
-    Column() {
-      Text('Child01 ' + this.compatibilityUser.name)
-    }
-  }
-}
-
 @ComponentV2
-export struct Child02 {
+export struct V2Child {
   @Param compatibilityUser: CompatibilityUser = new CompatibilityUser();
 
   build() {
     Column() {
-      Text('Child02 ' + this.compatibilityUser.age)
-
-      Child03({ compatibilityUser: this.compatibilityUser })
-    }
-  }
-}
-
-@ComponentV2
-export struct Child03 {
-  @Param compatibilityUser: CompatibilityUser = new CompatibilityUser();
-
-  build() {
-    Column() {
-      Text('Child03 ' + this.compatibilityUser.name)
+      Text('V2Child name ' + this.compatibilityUser.name)
+      Text('V2Child age ' + this.compatibilityUser.age)
     }
   }
 }

@@ -15,37 +15,40 @@
 
 // [Start v1_state]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'CanBeObserved';
 
 class StateUser {
   public name?: string;
+  public age?: number;
 
-  constructor(name?: string) {
+  constructor(name?: string, age?: number) {
     this.name = name ?? '';
+    this.age = age ?? 0;
   }
 
   // 在对象中提供判断该对象是否为可被观察对象的方法
   test(): void {
-    console.info(TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
+    hilog.info(0x00, TAG, `res: ${JSON.stringify(UIUtils.canBeObserved(this))}`);
   }
 }
 
 @Entry
 @Component
 struct V1State {
-  @State stateUser: StateUser = new StateUser('Aki');
+  // V1组件中使用@State装饰对象时，会将该对象变成可被观察对象
+  @State stateUser: StateUser = new StateUser('James', 33);
 
   build() {
     Column({ space: 20 }) {
-
-      Child01({ stateUser: this.stateUser })
-
-      Child02({ stateUser: this.stateUser })
-
+      // 组件使用了可被观察对象的属性
+      Text('user name: ' + this.stateUser.name)
+      // 组件使用了可被观察对象的属性
+      Text('user age: ' + this.stateUser.age)
       Button('test')
         .onClick(() => {
-          // 开发者可以在任意页面中使用接口来判断当前对象是否为可被观察对象
+          // 开发者可以在任意页面中使用接口来判断当前对象是否为可被观察对象，并且可被获取对象关联的组件信息
           this.stateUser.test();
         })
 
@@ -54,41 +57,6 @@ struct V1State {
     .width('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-  }
-}
-
-@Component
-export struct Child01 {
-  @State stateUser: StateUser = new StateUser();
-
-  build() {
-    Column() {
-      Text('Child01 ' + this.stateUser.name)
-
-      Child03({ stateUser: this.stateUser })
-    }
-  }
-}
-
-@Component
-export struct Child02 {
-  @State stateUser: StateUser = new StateUser();
-
-  build() {
-    Column() {
-      Text('Child02 ' + this.stateUser.name)
-    }
-  }
-}
-
-@Component
-export struct Child03 {
-  @State stateUser: StateUser = new StateUser();
-
-  build() {
-    Column() {
-      Text('Child03 ' + this.stateUser.name)
-    }
   }
 }
 // [End v1_state]

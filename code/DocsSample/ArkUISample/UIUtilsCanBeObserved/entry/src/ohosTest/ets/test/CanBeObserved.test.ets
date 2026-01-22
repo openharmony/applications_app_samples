@@ -401,5 +401,182 @@ export default function CanBeObservedTest() {
       await driver.delayMs(1000);
       done();
     });
+
+    /*
+      * @tc.number     : CanBeObserved_020
+      * @tc.name       : testV1Track
+      * @tc.desc       : 测试V1Track场景
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testV1Track', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/V1Track' });
+      await driver.delayMs(1000);
+      let btn = await driver.findComponent(ON.type('Button'));
+      await btn.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_021
+      * @tc.name       : testCaseABCallError
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseABCallError', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseABCallError' });
+      await driver.delayMs(1000);
+      let btn1 = await driver.findComponent(ON.text('increaseVolume'));
+      await btn1.click();
+      await driver.delayMs(1000);
+      let btn2 = await driver.findComponent(ON.text('reduceVolume'));
+      await btn2.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_022
+      * @tc.name       : testCaseABCallRight
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseABCallRight', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseABCallRight' });
+      await driver.delayMs(1000);
+      let btn1 = await driver.findComponent(ON.text('increaseVolume'));
+      await btn1.click();
+      await driver.delayMs(1000);
+      let btn2 = await driver.findComponent(ON.text('reduceVolume'));
+      await btn2.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_023
+      * @tc.name       : testCaseArrayForEachError
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseArrayForEachError', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseArrayForEachError' });
+      await driver.delayMs(1000);
+      let txt = await driver.findComponent(ON.text('Font Size List'));
+      await txt.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_024
+      * @tc.name       : testCaseArrayForEachRight
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseArrayForEachRight', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseArrayForEachRight' });
+      await driver.delayMs(1000);
+      let txt = await driver.findComponent(ON.text('Font Size List'));
+      await txt.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_025
+      * @tc.name       : testCaseArrayObservedError
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseArrayObservedError', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseArrayObservedError' });
+      await driver.delayMs(1000);
+      let btn = await driver.findComponent(ON.text('X'));
+      await btn.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_026
+      * @tc.name       : testCaseArrayObservedRight
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseArrayObservedRight', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseArrayObservedRight' });
+      await driver.delayMs(1000);
+      let btn = await driver.findComponent(ON.text('X'));
+      await btn.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_027
+      * @tc.name       : testCaseControlCounterError
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseControlCounterError', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseControlCounterError' });
+      await driver.delayMs(1000);
+      let btn = await driver.findComponent(ON.text('move'));
+      await btn.click();
+      await driver.delayMs(1000);
+      done();
+    });
+
+    /*
+      * @tc.number     : CanBeObserved_028
+      * @tc.name       : testCaseControlCounterRight
+      * @tc.desc       : 测试常见问题案例分析
+      * @tc.size       : MediumTest
+      * @tc.type       : Function
+      * @tc.level      : Level 1
+      */
+    it('testCaseControlCounterRight', 0, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await router.pushUrl({ url: 'pages/CaseControlCounterRight' });
+      await driver.delayMs(1000);
+      let btn = await driver.findComponent(ON.text('move'));
+      await btn.click();
+      await driver.delayMs(1000);
+      done();
+    });
   })
 }
