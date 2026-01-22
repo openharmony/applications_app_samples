@@ -51,7 +51,7 @@ export struct AccessibilityText {
           Image($r('app.media.play')) // 仅图标，无默认文本
           .width(60)
           .height(60)
-          .accessibilityText($r('app.string.PalyDemonAccessibilityText'))
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text12'))
           .onClick(() => {
               // 播放音频、视频的核心逻辑
           })
@@ -60,15 +60,16 @@ export struct AccessibilityText {
         // [End accessibility_text_group_start]
         // [Start accessibility_description_start]
         Column() {
-          Text('HelloWorld')
-        }
-        .accessibilityGroup(true)
+          Button()
+          .width(120)
+          .height(40)
           .accessibilityLevel('yes')
-          // 请将$r('app.string.UniversalAttributesAccessibility_text7')替换为实际资源文件，在本示例中该资源文件的value值为"分组"
-          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-          /* 请将$r('app.string.UniversalAttributesAccessibility_text8')替换为实际资源文件，
-             在本示例中该资源文件的value值为"Column组件可以被选中，播报的内容是“分组”" */
-          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text12'))
+          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text13'))
+          .onClick(() => {
+              // 播放音频、视频的核心逻辑
+          })
+        }
 
         // [End accessibility_description_start]
         // [Start accessibility_checked_start]

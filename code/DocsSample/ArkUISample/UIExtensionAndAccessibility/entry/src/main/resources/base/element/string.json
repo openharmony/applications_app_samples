@@ -161,8 +161,12 @@
       "value": "通过EmbeddedComponent拉起EmbeddedUIExtensionAbility"
     },
     {
-      "name": "PalyDemonAccessibilityText",
+      "name": "UniversalAttributesAccessibility_text12",
       "value": "播放"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text13",
+      "value": "单指双击即可播放"
     }
   ]
 }
