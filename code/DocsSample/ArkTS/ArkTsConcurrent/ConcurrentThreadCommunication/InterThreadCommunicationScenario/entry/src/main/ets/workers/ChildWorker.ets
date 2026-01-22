@@ -14,8 +14,9 @@
  */
  
 // [Start child_worker]
+// ChildWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker} from '@kit.ArkTS'
-import { CopyEntry } from '../managers/CopyEntry'
+import { CopyEntry } from '../Sendable/CopyEntry'
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 

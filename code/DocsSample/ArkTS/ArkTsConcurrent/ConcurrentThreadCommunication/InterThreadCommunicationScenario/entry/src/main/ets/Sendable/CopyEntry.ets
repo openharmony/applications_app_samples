@@ -14,12 +14,13 @@
  */
  
 // [Start copy_entry_class]
+// CopyEntry.ets
 @Sendable
 export class CopyEntry {
   // 克隆类型
-  public type: string;
+  type: string;
   // 文件路径
-  public filePath: string;
+  filePath: string;
   constructor(type: string, filePath: string) {
     this.type = type;
     this.filePath = filePath;
