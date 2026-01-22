@@ -25,7 +25,7 @@ function prikeyEncoding() {
   }
   let priPemKey = keyPair.priKey;
   let priString = priPemKey.getEncodedPem('PKCS1', options);
-  console.info('[sync]TestPriKeyPkcs1Encoded priString output is ' + priString);
+  console.info('[sync]TestPriKeyPkcs1Encoded priString output: ' + priString);
 }
 // [End prikey_encoding]
 

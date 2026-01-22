@@ -29,10 +29,10 @@ function convertAsyKey() {
   let pkBlob: cryptoFramework.DataBlob = { data: pkVal };
   rsaGenerator.convertKey(pkBlob, null, (err, keyPair) => {
     if (err) {
-      console.error(`convertKey failed, ${err.code}, ${err.message}`);
+      console.error(`convertKey failed: errCode: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info('convertKey success');
+    console.info('convertKey result: success.');
   });
 }
 // [End bin_convert_rsa_keypair]

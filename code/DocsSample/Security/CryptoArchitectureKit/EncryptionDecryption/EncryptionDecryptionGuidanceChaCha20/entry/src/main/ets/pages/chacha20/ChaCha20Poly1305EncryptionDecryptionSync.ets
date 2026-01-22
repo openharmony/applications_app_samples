@@ -63,7 +63,7 @@ function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramew
   // poly1305模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
   let decryptData = decoder.doFinalSync(null);
   if (decryptData === null) {
-    console.info('poly1305 decrypt success, decryptData is null');
+    console.info('poly1305 decrypt result: success, decryptData is null.');
   }
   return decryptUpdata;
 }
@@ -71,7 +71,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let chacha20Generator = cryptoFramework.createSymKeyGenerator('ChaCha20');
   let symKey = chacha20Generator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 function main() {
@@ -84,13 +84,13 @@ function main() {
     let encryptText = encryptMessage(symKey, plainText);
     let decryptText = decryptMessage(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok');
+      console.info('decrypt ok.');
       console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
     } else {
       console.error('decrypt failed.');
     }
   } catch (error) {
-    console.error(`decrypt failed, error info is ${error}, error code: ${error.code}`);
+    console.error(`decrypt failed: errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

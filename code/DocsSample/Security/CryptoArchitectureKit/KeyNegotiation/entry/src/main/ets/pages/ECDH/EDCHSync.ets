@@ -39,10 +39,10 @@ function ecdhAwait() {
   let secret2 = eccKeyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
   // 两种协商的结果应当一致
   if (secret1.data.toString() === secret2.data.toString()) {
-    console.info('ecdh success');
-    console.info('ecdh output is ' + secret1.data);
+    console.info('ecdh result: success.');
+    console.info('ecdh output: ' + secret1.data);
   } else {
-    console.error('ecdh result is not equal');
+    console.error('ecdh result is not equal.');
   }
 }
 

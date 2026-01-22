@@ -24,7 +24,7 @@ function testGenerateSM4Key() {
   promiseSymKey.then(key => {
     // 获取对称密钥的二进制数据，输出128位字节流。长度为16字节
     let encodedKey = key.getEncoded();
-    console.info('key hex:' + encodedKey.data);
+    console.info('key hex: ' + encodedKey.data);
   });
 }
 // [End generate_sm4_key]

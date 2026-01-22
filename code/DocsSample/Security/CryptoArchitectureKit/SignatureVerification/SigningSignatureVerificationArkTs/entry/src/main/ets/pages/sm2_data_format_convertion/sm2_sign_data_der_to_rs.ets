@@ -23,10 +23,10 @@ function testSm2SignDataDerToRs() {
         179, 49, 225, 70, 36, 117, 88, 154, 154, 27, 194, 161, 3, 1, 115, 2, 32, 51, 9, 53, 55, 248, 82, 7, 159, 179,
         144, 57, 151, 195, 17, 31, 106, 123, 32, 139, 219, 6, 253, 62, 240, 181, 134, 214, 107, 27, 230, 175, 40]);
     let spec: cryptoFramework.EccSignatureSpec = cryptoFramework.SignatureUtils.genEccSignatureSpec(data);
-    console.info('genEccSignatureSpec success');
+    console.info('genEccSignatureSpec result: success.');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error(`ecc error, ${e.code}, ${e.message}`);
+    console.error(`ecc failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End sm2_sign_data_der_to_rs]

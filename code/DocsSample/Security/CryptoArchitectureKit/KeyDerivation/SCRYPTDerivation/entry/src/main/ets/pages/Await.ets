@@ -33,7 +33,7 @@ async function scryptAwait() {
     };
     let kdf = cryptoFramework.createKdf('SCRYPT');
     let secret = await kdf.generateSecret(spec);
-    console.info('key derivation output is ' + secret.data);
+    console.info('key derivation output: ' + secret.data);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     console.error('key derivation failed, errCode: ' + e.code + ', errMsg: ' + e.message);

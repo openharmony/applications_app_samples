@@ -44,18 +44,18 @@ function testPkcs1ToPkcs8BySync() {
   try {
     let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
     if (keyPairData != null) {
-      console.info('[Sync]: convert pem key pair success');
+      console.info('[Sync]: convert pem key pair result: success.');
     } else {
-      console.error('[Sync]: convert pem key pair result fail!');
+      console.error('[Sync]: convert pem key pair result: fail.');
     }
     let priPemKey = keyPairData.priKey;
     let pubPemKey = keyPairData.pubKey;
     let priString = priPemKey.getEncodedPem('PKCS8');
     let pubString = pubPemKey.getEncodedPem('X509');
-    console.info('[Sync]TestPkcs1ToPkcs8BySync priString output is ' + priString);
-    console.info('[Sync]TestPkcs1ToPkcs8BySync pubString output is ' + pubString);
+    console.info('[Sync]TestPkcs1ToPkcs8BySync priString output: ' + priString);
+    console.info('[Sync]TestPkcs1ToPkcs8BySync pubString output: ' + pubString);
   } catch (e) {
-    console.error(`Sync error, ${e.code}, ${e.message}`);
+    console.error(`Sync failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End specify_pem_string_convert_rsa_keypair_sync]

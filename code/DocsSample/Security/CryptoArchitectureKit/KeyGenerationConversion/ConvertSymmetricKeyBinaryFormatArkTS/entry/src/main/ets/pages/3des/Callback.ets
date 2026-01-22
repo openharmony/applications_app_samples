@@ -35,7 +35,7 @@ function testConvertSymKey() {
     symKeyGenerator.convertKey(keyMaterialBlob, (error, key) => {
       if (error) { // 如果业务逻辑执行失败，则callback的第一个参数返回错误信息，即异步抛出异常
         let e: BusinessError = error as BusinessError;
-        console.error(`convertKey error, ${e.code}, ${e.message}`);
+        console.error(`convertKey failed: errCode: ${e.code}, message: ${e.message}`);
         return;
       }
       console.info('key algName：' + key.algName);
@@ -45,7 +45,7 @@ function testConvertSymKey() {
     })
   } catch (error) { // 参数检查发现错误立即抛出异常
     let e: BusinessError = error as BusinessError;
-    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+    console.error(`convertKey failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End generate_3des_key]

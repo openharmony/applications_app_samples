@@ -46,8 +46,8 @@ async function testPkcs1ToPkcs8ByPromise() {
   let pubPemKey = keyPair.pubKey;
   let priString = priPemKey.getEncodedPem('PKCS8');
   let pubString = pubPemKey.getEncodedPem('X509');
-  console.info('[promise]TestPkcs1ToPkcs8ByPromise priString output is ' + priString);
-  console.info('[promise]TestPkcs1ToPkcs8ByPromise pubString output is ' + pubString);
+  console.info('[promise]TestPkcs1ToPkcs8ByPromise priString output: ' + priString);
+  console.info('[promise]TestPkcs1ToPkcs8ByPromise pubString output: ' + pubString);
 }
 // [End specify_pem_string_convert_rsa_keypair]
 

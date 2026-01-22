@@ -60,7 +60,7 @@ function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let symKey = aesGenerator.convertKeySync(symKeyBlob);
-  console.info('convertKeySync success');
+  console.info('convertKeySync result: success.');
   return symKey;
 }
 
@@ -72,10 +72,10 @@ function main() {
   let encryptText = encryptMessage(symKey, plainText);
   let decryptText = decryptMessage(symKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 // [End ccm_encrypt_decrypt_aes_symkey_sync]

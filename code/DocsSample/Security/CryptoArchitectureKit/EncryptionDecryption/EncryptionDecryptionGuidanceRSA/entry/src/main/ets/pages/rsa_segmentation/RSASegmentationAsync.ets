@@ -72,10 +72,10 @@ async function rsaEncryptLongMessage() {
   let encryptText = await rsaEncryptBySegment(keyPair.pubKey, plainText);
   let decryptText = await rsaDecryptBySegment(keyPair.priKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 

@@ -31,7 +31,7 @@ async function kdfAwait() {
   };
   let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
   let secret = await kdf.generateSecret(spec);
-  console.info('key derivation output is ' + secret.data);
+  console.info('key derivation output: ' + secret.data);
 }
 // [End use_hkdf_for_key_derivation_await]
 @Entry

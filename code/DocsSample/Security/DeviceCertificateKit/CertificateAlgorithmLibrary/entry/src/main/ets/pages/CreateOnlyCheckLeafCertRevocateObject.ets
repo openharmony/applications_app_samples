@@ -175,9 +175,9 @@ async function doTestLeafCertCrlCheck() {
       }
     };
     await x509CertChain.validate(param);
-    console.info(`validate result is success.`);
+    console.info(`validate result: success.`);
   } catch (error) {
-    console.error(`x509CertChain validate failed error code is: ` + error.code);
+    console.error(`x509CertChain validate failed: errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

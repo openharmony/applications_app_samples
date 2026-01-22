@@ -64,9 +64,9 @@ async function rsaUseSpecDecryptOAEPPromise() {
   let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
   // 比较get出来的P字节流与set进去的P字节流是否一致
   if (retP.toString() != pSource.toString()) {
-    console.error('error init pSource' + retP);
+    console.error('error init pSource ' + retP);
   } else {
-    console.info('pSource changed ==' + retP);
+    console.info('pSource changed == ' + retP);
   }
   // 进行OAEP其他参数的get操作
   let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
@@ -81,9 +81,9 @@ async function rsaUseSpecDecryptOAEPPromise() {
   retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
   // 比较get出来的P字节流与set进去的P字节流是否一致
   if (retP.toString() != pSource.toString()) {
-    console.error('error init pSource' + retP);
+    console.error('error init pSource ' + retP);
   } else {
-    console.info('pSource changed ==' + retP);
+    console.info('pSource changed == ' + retP);
   }
   // 进行OAEP其他参数的get操作
   md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
@@ -97,9 +97,9 @@ async function rsaUseSpecDecryptOAEPPromise() {
   let decodeData = await decoder.doFinal(cipherDataBlob);
   // 解密成功
   if (decodeData.data.toString() === input.data.toString()) {
-    console.info('oaep decrypt success');
+    console.info('oaep decrypt result: success.');
   } else {
-    console.error('oaep decrypt fail');
+    console.error('oaep decrypt result: fail.');
   }
 }
 // [End pss_verify_rsa_keypair_sign_async]

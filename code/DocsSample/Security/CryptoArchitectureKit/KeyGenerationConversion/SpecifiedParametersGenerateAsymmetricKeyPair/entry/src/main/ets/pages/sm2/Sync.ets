@@ -40,10 +40,10 @@ function sm2TestSync() {
       let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
       console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
     } else {
-      console.error('get key pair result fail!');
+      console.error('get key pair result: fail!');
     }
   } catch (e) {
-    console.error(`get key pair result fail, ${e.code}, ${e.message}`);
+    console.error(`get key pair failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End specify_parameter_generate_sm2_keypair_sync]

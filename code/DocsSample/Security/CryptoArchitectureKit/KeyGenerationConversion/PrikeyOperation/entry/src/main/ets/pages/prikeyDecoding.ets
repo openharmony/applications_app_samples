@@ -42,10 +42,10 @@ async function prikeyDecoding() {
     .then(keyPair => {
       let priKey = keyPair.priKey;
       if (priKey) {
-        console.info('convertPemKey success.');
+        console.info('convertPemKey result: success.');
       }
     }).catch((error: BusinessError) => {
-    console.error('convertPemKey error, error message is ' + error.message);
+    console.error(`convertPemKey failed: errCode: ${error.code}, message: ${error.message}`);
   });
 }
 // [End prikey_decoding]

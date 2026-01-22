@@ -124,7 +124,7 @@ function test() {
   // [EndExclude trust_array_constructed_from_p12_file_during_validation]
   try {
     cert.createTrustAnchorsWithKeyStore(p12Data, '123456').then((data) => {
-      console.info('createTrustAnchorsWithKeyStore success, the num of result is :' + data.length);
+      console.info('createTrustAnchorsWithKeyStore result: success, the num of result is :' + data.length);
     }).catch((err: BusinessError) => {
       console.error(`createTrustAnchorsWithKeyStore failed, errCode: ${err.code}, message: ${err.message}`);
     })

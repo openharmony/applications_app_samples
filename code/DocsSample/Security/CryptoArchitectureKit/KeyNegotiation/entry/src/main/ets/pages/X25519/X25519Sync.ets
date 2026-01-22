@@ -35,10 +35,10 @@ function x25519Await() {
   let secret2 = keyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
   // 两种协商的结果应当一致
   if (secret1.data.toString() === secret2.data.toString()) {
-    console.info('x25519 success');
-    console.info('x25519 output is ' + secret1.data);
+    console.info('x25519 result: success.');
+    console.info('x25519 output: ' + secret1.data);
   } else {
-    console.error('x25519 result is not equal');
+    console.error('x25519 result is not equal.');
   }
 }
 // [End use_x25519a_for_key_negotiation_sync]

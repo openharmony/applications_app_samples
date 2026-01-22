@@ -32,10 +32,10 @@ function convertSM2AsyKeySync() {
   try {
     let keyPair = generator.convertKeySync(pubKeyBlob, priKeyBlob);
     if (keyPair != null) {
-      console.info('convertKeySync success');
+      console.info('convertKeySync result: success.');
     }
   } catch (e) {
-    console.error(`get key pair failed, ${e.code}, ${e.message}`);
+    console.error(`get key pair failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End bin_convert_sm2_keypair_sync]

@@ -25,7 +25,7 @@ function kdfSync() {
   };
   let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
   let secret = kdf.generateSecretSync(spec);
-  console.info('[Sync]key derivation output is ' + secret.data);
+  console.info('[Sync]key derivation output: ' + secret.data);
 }
 
 // [End use_pbkdf2_for_key_derivation_sync]

@@ -23,7 +23,7 @@ async function doRand() {
     rand.setSeed({ data: seed });
     let len = 12;
     let randOutput = await rand.generateRandom(len);
-    console.info('rand output:' + randOutput.data);
+    console.info('rand output: ' + randOutput.data);
   }
 // [End secure_hard_ware_random_number_generation_await]
 

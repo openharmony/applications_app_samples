@@ -24,11 +24,11 @@ function testSm2SignDataRsToDer() {
     };
 
     let data = cryptoFramework.SignatureUtils.genEccSignature(spec);
-    console.info('genEccSignature success');
-    console.info('data is ' + data);
+    console.info('genEccSignature result: success.');
+    console.info('data = ' + data);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error(`ecc error, ${e.code}, ${e.message}`);
+    console.error(`ecc failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End sm2_sign_data_rs_to_der]

@@ -86,7 +86,7 @@ async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText:
   }
   let decryptData = await decoder.doFinal(null);
   if (decryptData == null) {
-    console.info('GCM decrypt success, decryptData is null');
+    console.info('GCM decrypt result: success, decryptData is null.');
   }
   let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
   return decryptBlob;
@@ -96,7 +96,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
   let symKey = await sm4Generator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 
@@ -108,10 +108,10 @@ async function sm4() {
   let encryptText = await encryptMessageUpdateBySegment(symKey, plainText);
   let decryptText = await decryptMessagePromise(symKey, encryptText);
   if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
+    console.info('decrypt ok.');
     console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
   } else {
-    console.error('decrypt failed');
+    console.error('decrypt failed.');
   }
 }
 // [End async_symmetry_encrypt_decrypt_sm4_gcm_seg]

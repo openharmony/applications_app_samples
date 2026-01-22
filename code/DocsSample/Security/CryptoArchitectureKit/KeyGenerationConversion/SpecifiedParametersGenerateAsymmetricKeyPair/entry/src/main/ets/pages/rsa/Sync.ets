@@ -48,11 +48,11 @@ function genRsa2048PubKeySpec() {
 function compareRsaPubKeyBySpec(rsaKeySpec: cryptoFramework.RSAPubKeySpec, n: bigint | string | number,
   e: bigint | string | number) {
   if (typeof n === 'string' || typeof e === 'string') {
-    console.error('type is string');
+    console.error('type: string');
     return false;
   }
   if (typeof n === 'number' || typeof e === 'number') {
-    console.error('type is number');
+    console.error('type: number');
     return false;
   }
   if (rsaKeySpec.params.n != n) {
@@ -79,10 +79,10 @@ function rsaUsePubKeySpecGetSync() {
         console.info('n, e in the pubKey are same as the spec.');
       }
     } else {
-      console.error('get pub key result fail!');
+      console.error('get pub key result: fail!');
     }
   } catch (e) {
-    console.error(`get pub key result fail, ${e.code}, ${e.message}`);
+    console.error(`get pub key result failed: errCode: ${e.code}, message: ${e.message}`);
   }
 }
 // [End specify_parameter_generate_rsa_keypair_sync]

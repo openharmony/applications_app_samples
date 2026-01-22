@@ -30,10 +30,10 @@ async function main() {
     let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
     generator.convertKey(pubBlob, skBlob, (error, data) => {
       if (error) {
-        console.error(`convertKey failed, ${error.code}, ${error.message}`);
+        console.error(`convertKey failed: errCode: ${error.code}, message: ${error.message}`);
         return;
       }
-      console.info('convertKey success');
+      console.info('convertKey result: success.');
     });
   });
 }
