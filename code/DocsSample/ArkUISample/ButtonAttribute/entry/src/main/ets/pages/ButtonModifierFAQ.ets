@@ -40,7 +40,7 @@ struct Index {
   build() {
     Column() {
       Text('normal')
-      // Button直接使用labelStyle，font属性中的weight默认值为500
+      // Button直接设置labelStyle，font属性中的weight默认值为500
       Button('DemoButtonTest')
         .width(100)
         .labelStyle({})
