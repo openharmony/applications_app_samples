@@ -14,9 +14,9 @@
 
 使用说明
 
-1. 在桌面长按应用图标，拉起卡片管理页面；
+1. 在桌面长按应用图标，拉起卡片管理页面。
 
-2. 用户可在卡片管理页面， 左右滑动切换卡片，点击“添加至桌面”按钮，此时在桌面即可看到新添加的卡片；
+2. 用户可在卡片管理页面， 左右滑动切换卡片，点击“添加至桌面”按钮，此时在桌面即可看到新添加的卡片。
 
 ### 工程目录
 
@@ -52,7 +52,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-  * 创建卡片，参考[创建卡片](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-creation.md)；
+  * 创建卡片，参考[创建卡片](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-creation.md)。
 
 ### 相关权限
 
@@ -64,13 +64,13 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.  本示例支持标准系统上运行，支持设备：RK3568；
+1.  本示例支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.47；
+2. 本示例支持API version 20版本SDK，版本号：6.0.0.47。
 
-3.  本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年10月21日)编译运行；
+3.  本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年10月21日)编译运行。
 
-4. 高等级APL特殊签名说明：无；
+4. 高等级APL特殊签名说明：无。
 
 ### 下载
 
