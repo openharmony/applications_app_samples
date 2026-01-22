@@ -128,13 +128,13 @@ struct PrivatePreview {
       CustomInput()
       // [End input_case_input_CustomInput]
 
-// [Start input_case_input_KeyboardAppearance]
+      // [Start input_case_input_KeyboardAppearance]
       TextArea({placeholder: '沉浸模式'})
         .keyboardAppearance(KeyboardAppearance.IMMERSIVE)
 
       TextArea({placeholder: '非沉浸模式'})
         .keyboardAppearance(KeyboardAppearance.NONE_IMMERSIVE)
-// [End input_case_input_KeyboardAppearance]
+      // [End input_case_input_KeyboardAppearance]
 
       Text(this.textFunc) // Text组件作为自绘编辑框的文本显示组件。
         .fontSize(16)

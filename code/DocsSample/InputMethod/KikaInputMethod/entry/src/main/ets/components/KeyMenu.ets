@@ -24,11 +24,11 @@ import { ReturnItem } from './ReturnItem';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 @Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
+  .backgroundColor($r('app.color.keyItemGrayPressed'));
 }
 
 @Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
+  .backgroundColor($r('app.color.keyItemGray'));
 }
 
 // key键盘
@@ -38,18 +38,18 @@ export struct KeyMenu {
   @Consume menuType: number;
   @Provide keyState: number = KeyState.LOWER_CASE;
   private keyList: keySourceListType[] = keySourceListData;
-  private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
-  private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
-  @State styleMode: number = 1
+  private spaceWidth: Resource = this.inputStyle.spaceButtonWidth1;
+  private returnWidth: Resource = this.inputStyle.returnButtonWidthType1;
+  @State styleMode: number = 1;
 
   // 如果是沉浸模式，设置新样式
   aboutToAppear(): void {
 
     inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr : inputMethodEngine.EditorAttribute) => {
       if (attr.immersiveMode == 1) {
-        this.styleMode = 0
+        this.styleMode = 0;
       } else {
-        this.styleMode = 1
+        this.styleMode = 1;
       }
     })
   }
@@ -59,22 +59,22 @@ export struct KeyMenu {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.keyList.slice(0, 10), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item })
-        }, (item: keySourceListType) => item.content)
+          KeyItemNumber({ keyValue: item });
+        }, (item: keySourceListType) => item.content);
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop });
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Stack() {
-        }.width('4%').height(0)
+        }.width('4%').height(0);
 
         ForEach(this.keyList.slice(10, 19), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item })
-        }, (item: keySourceListType) => item.content)
+          KeyItemNumber({ keyValue: item });
+        }, (item: keySourceListType) => item.content);
         Stack() {
-        }.width('4%').height(0)
+        }.width('4%').height(0);
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
@@ -86,7 +86,7 @@ export struct KeyMenu {
             .width(this.inputStyle.featurePicSize)
             .height(this.inputStyle.featurePicSize)
         }
-        .backgroundColor($r('app.color.key_item_gray'))
+        .backgroundColor($r('app.color.keyItemGray'))
         .borderRadius(4)
         .onClick(() => {
           if (this.keyState === KeyState.LOWER_CASE) {
@@ -107,22 +107,22 @@ export struct KeyMenu {
         ForEach(this.keyList.slice(19), (item: keySourceListType) => {
           KeyItemNumber({ keyValue: item })
         }, (item: keySourceListType) => item.content)
-        DeleteItem()
+        DeleteItem();
       }
-      .width('100%')
-      .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .width('100%');
+      .height(this.inputStyle.basicButtonHeight);
+      .margin({ top: this.inputStyle.paddingTop });
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
-        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
-        SpaceItem({ spaceWith: this.spaceWidth })
-        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
-        ReturnItem({ returnWidth: this.returnWidth })
+        KeyItemGray({ keyValue: MenuKey.NUMBER_KEY });
+        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } });
+        SpaceItem({ spaceWith: this.spaceWidth });
+        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } });
+        ReturnItem({ returnWidth: this.returnWidth });
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop });
 
     }
     .width('100%')
@@ -131,6 +131,6 @@ export struct KeyMenu {
       left: this.inputStyle.paddingLeftRight,
       right: this.inputStyle.paddingLeftRight
     })
-    .backgroundColor(this.styleMode == 1 ? '' : '#ffffff')
+    .backgroundColor(this.styleMode === 1 ? '' : '#ffffff');
   }
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-export function GetHardKeyValue(keyCode: number, isShift: boolean): string {
+export function getHardKeyValue(keyCode: number, isShift: boolean): string {
   let keyList: Map<number, string> = new Map<number, string>();
   keyList.set(2000, '0');
   keyList.set(2001, '1');
