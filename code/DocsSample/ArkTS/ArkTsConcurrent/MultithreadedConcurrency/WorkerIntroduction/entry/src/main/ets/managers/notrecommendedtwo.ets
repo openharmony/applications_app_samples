@@ -33,21 +33,25 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // 主线程中创建父worker对象
+          // 主线程中创建父Worker对象
           const parentworker = new worker.ThreadWorker('entry/ets/notrecommendedtwoworker/parentworker.ets');
 
+          // 接收父Worker返回的消息
           parentworker.onmessage = (e: MessageEvents) => {
             console.info(resource.resourceToString($r('app.string.Not_recommended1')) + e.data);
           }
 
+          // 父Worker正常退出后的回调
           parentworker.onexit = () => {
             console.info(resource.resourceToString($r('app.string.Not_recommended2')));
           }
 
+          // 父Worker运行过程中发生未被捕获的异常或运行错误时的回调
           parentworker.onAllErrors = (err: ErrorEvent) => {
             console.error(resource.resourceToString($r('app.string.Not_recommended3')) + err);
           }
 
+          // 向父Worker发送启动消息，用于触发其onmessage中的处理逻辑
           parentworker.postMessage(resource.resourceToString($r('app.string.Not_recommended4')));
           this.message = 'success';
         })

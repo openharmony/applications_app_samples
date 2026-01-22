@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// {Start create_worker_object_register_callback_function]
+// [Start create_worker_object_register_callback_function]
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 
 @Entry
@@ -66,4 +66,4 @@ struct Index {
     .width('100%')
   }
 }
-// {End create_worker_object_register_callback_function]
+// [End create_worker_object_register_callback_function]

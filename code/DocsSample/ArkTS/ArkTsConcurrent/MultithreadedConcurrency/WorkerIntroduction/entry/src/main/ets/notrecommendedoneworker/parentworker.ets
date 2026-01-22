@@ -17,26 +17,33 @@
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
+// 父Worker线程中与主线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
   console.info(resource.resourceToString($r('app.string.Not_one_parentworker_worker1')) + e.data);
 
-  let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
+  // 收到主线程指令后，创建子Worker
+  let childworker = new worker.ThreadWorker('entry/ets/notrecommendedoneworker/childworker.ets');
 
+  // 接收子Worker的执行结果
   childworker.onmessage = (e: MessageEvents) => {
     console.info(resource.resourceToString($r('app.string.Not_one_parentworker_worker2')) + e.data);
   }
 
+  // 子Worker正常退出后的回调
   childworker.onexit = () => {
     console.info(resource.resourceToString($r('app.string.Not_one_parentworker_worker3')));
+    // 父Worker已经或即将退出时，再次通过父Worker端口发送消息
     workerPort.postMessage(resource.resourceToString($r('app.string.Not_one_parentworker_worker4')));
   }
 
+  // 子Worker运行过程中发生未被捕获的异常或运行错误时的回调
   childworker.onAllErrors = (err: ErrorEvent) => {
     console.error(resource.resourceToString($r('app.string.Not_one_parentworker_worker5')) + err);
   }
 
+  // 向子Worker发送启动消息，用于触发其onmessage中的处理逻辑
   childworker.postMessage(resource.resourceToString($r('app.string.Not_one_parentworker_worker6')));
 
   // 创建子Worker后，销毁父Worker

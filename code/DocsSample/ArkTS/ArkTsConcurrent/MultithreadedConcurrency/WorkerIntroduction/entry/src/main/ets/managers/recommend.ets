@@ -14,6 +14,7 @@
  */
 
 // [Start recommended_example]
+// 主线程示例：创建父Worker，并监听其生命周期
 import resource from '../util/resource';
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
@@ -33,21 +34,25 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // 主线程中创建父worker对象
+          // 主线程中创建父Worker对象
           const parentworker = new worker.ThreadWorker('entry/ets/recommendworkers/parentworker.ets');
 
+          // 接收父Worker返回的消息
           parentworker.onmessage = (e: MessageEvents) => {
             console.info(resource.resourceToString($r('app.string.recommend1')) + e.data);
           }
 
+          // 父Worker正常退出后的回调
           parentworker.onexit = () => {
             console.info(resource.resourceToString($r('app.string.recommend2')));
           }
 
+          // 父Worker运行过程中发生未被捕获的异常或运行错误时的回调
           parentworker.onAllErrors = (err: ErrorEvent) => {
             console.error(resource.resourceToString($r('app.string.recommend3')) + err);
           }
 
+          // 向父Worker发送启动消息，用于触发其onmessage中的处理逻辑
           parentworker.postMessage(resource.resourceToString($r('app.string.recommend4')));
           this.message = 'success';
         })

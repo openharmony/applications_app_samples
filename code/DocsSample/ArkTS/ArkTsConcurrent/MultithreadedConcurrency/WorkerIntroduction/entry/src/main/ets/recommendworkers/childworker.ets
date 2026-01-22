@@ -14,16 +14,18 @@
  */
 
 // [Start recommended_example]
+// 子Worker示例：执行业务逻辑，完成后主动退出
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// 创建子Worker线程中与父Worker线程通信的对象
+// 子Worker线程中与父Worker线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
   if (e.data == resource.resourceToString($r('app.string.Recommend_child_worker1'))) {
     // 子Worker线程业务逻辑...
     console.info(resource.resourceToString($r('app.string.Recommend_child_worker2')));
+    // 子Worker任务完成后退出
     workerPort.close();
   }
 }

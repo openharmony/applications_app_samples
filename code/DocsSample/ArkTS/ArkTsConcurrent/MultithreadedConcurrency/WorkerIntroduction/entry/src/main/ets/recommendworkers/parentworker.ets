@@ -14,33 +14,39 @@
  */
 
 // [Start recommended_example]
+// 父Worker示例：负责创建子Worker，并在子Worker退出后再退出自身
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// 创建父Worker线程中与主线程通信的对象
+// 父Worker线程中与主线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
+  // 收到主线程指令后，创建子Worker
   if (e.data == resource.resourceToString($r('app.string.Recommend_parentworker_worker1'))) {
     let childworker = new worker.ThreadWorker('entry/ets/recommendworkers/childworker.ets');
 
+    // 接收子Worker的执行结果
     childworker.onmessage = (e: MessageEvents) => {
       console.info(resource.resourceToString($r('app.string.Recommend_parentworker_worker2')) + e.data);
       if (e.data == resource.resourceToString($r('app.string.Recommend_parentworker_worker3'))) {
+        // 子Worker任务完成后，通知主线程
         workerPort.postMessage(resource.resourceToString($r('app.string.Recommend_parentworker_worker4')));
       }
     }
 
+    // 子Worker退出后再销毁父Worker
     childworker.onexit = () => {
       console.info(resource.resourceToString($r('app.string.Recommend_parentworker_worker5')));
-      // 子Worker退出后再销毁父Worker
       workerPort.close();
     }
 
+    // 子Worker运行过程中发生未被捕获的异常或运行错误时的回调
     childworker.onAllErrors = (err: ErrorEvent) => {
       console.error(resource.resourceToString($r('app.string.Recommend_parentworker_worker6')) + err);
     }
 
+    // 向子Worker发送启动消息，用于触发其onmessage中的处理逻辑
     childworker.postMessage(resource.resourceToString($r('app.string.Recommend_parentworker_worker7')));
   }
 }
