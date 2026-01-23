@@ -54,7 +54,7 @@ export class MyNodeController extends NodeController {
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.info('makeNode, uiContext is undefined? : ' + (uiContext === undefined));
-    if (this.rootNode != null) {
+    if (this.rootNode !== null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
     }
@@ -92,7 +92,7 @@ export class MyNodeController extends NodeController {
   // 此函数为自定义函数，可作为初始化函数使用
   // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容
   initWeb(url: ResourceStr, uiContext: UIContext) {
-    if (this.rootNode != null) {
+    if (this.rootNode !== null) {
       return;
     }
     this.originUrl = url;

@@ -108,7 +108,7 @@ export default function abilityTest() {
       await (await driver.findComponent(ON.id('recycleNWebs'))).click();
       await driver.delayMs(1000);
       let src2: string = await textInfo.getText();
-      console.log(src2);
+      console.info(src2);
       expect(src2).assertContain('[recycledNWebs]\n[1]');
       expect(src2).assertContain('.com\n[2]about:blank?tab=1\n[3]about:blank?tab=2');
 
