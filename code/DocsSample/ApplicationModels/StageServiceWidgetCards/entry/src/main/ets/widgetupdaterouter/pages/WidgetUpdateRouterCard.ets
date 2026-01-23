@@ -14,6 +14,7 @@
  */
 
 // [Start widget_update_router_card]
+// entry/src/main/ets/widgetupdaterouter/pages/WidgetUpdateRouterCard.ets
 let storageUpdateRouter = new LocalStorage();
 
 @Entry(storageUpdateRouter)

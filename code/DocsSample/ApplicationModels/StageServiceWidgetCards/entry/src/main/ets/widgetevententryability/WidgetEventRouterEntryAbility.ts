@@ -14,6 +14,7 @@
  */
 
 // [Start widget_event_router_entry_ability]
+// entry/src/main/ets/widgetevententryability/WidgetEventRouterEntryAbility.ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';

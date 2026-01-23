@@ -14,6 +14,7 @@
  */
 
 // [Start widget_update_by_status_card]
+// entry/src/main/ets/widgetupdatebystatus/pages/WidgetUpdateByStatusCard.ets
 let storageUpdateByStatus = new LocalStorage();
 
 @Entry(storageUpdateByStatus)
