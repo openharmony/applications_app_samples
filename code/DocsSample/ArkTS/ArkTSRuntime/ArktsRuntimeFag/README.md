@@ -20,10 +20,13 @@
 
 ```
 ├───entry/src/main/ets
-│   ├───pages                               
+│   ├───pages
+│   │   └───Additional.ets                                   // 额外的页。                               
 │   │   └───Index.ets                                        // 首页。
 │   │   └───Local.ets                                        // 状态变量装饰器页。
 │   │   └───Scene.ets                                        // 运行时常见问题场景页。
+│   │   └───test1.js                                         // test1页。
+│   │   └───test2.js                                         // test2页。
 └───entry/src/main/resources                                 // 资源目录。         
 ```
 
@@ -47,6 +50,10 @@
     * 点击'测试替换空字符串'按钮，调用`str.replace`将空字符串`""`替换为"abc"，展示方舟字符串`replace`接口对于第一个参数为空字符串的场景与预期不一致的问题，并演示使用正则表达式`/^/`表示字符串起始符作为规避方案。
     * 点击'测试异步错误捕获'按钮，调用异步函数`foo()`抛出错误，并通过`errorManager.on("unhandledRejection")`注册全局错误处理器来捕获异步函数内部的未处理Promise拒绝，展示Async函数内部异常的捕获方式。
     * 点击'测试数组映射'按钮，创建两个数组的Proxy对象，将它们放入数组中后调用`flatMap`方法，展示方舟`Array.flatMap()`接口对于Proxy对象处理与预期不一致的问题，并演示使用`map(x => x).flat()`作为规避方案。
+    * 点击'测试Int32Array的map问题'按钮，创建`Int32Array`数组并使用`map`方法对每个元素应用`Math.pow(val, 1) * 100`操作，在触发内联缓存优化后展示方舟对于`Int32Array.map`方法处理与预期不一致的问题。
+    * 点击'测试Int32Array转换规避方案'按钮，将`Int32Array`通过`Array.from`转换为普通数组后再使用`map`方法，展示规避`Int32Array.map`问题的方法。
+    * 点击'测试parseFloat极小数'按钮，调用`parseFloat("5e-324")`解析极小数值，展示方舟对于`parseFloat`处理极小浮点数与预期不一致的问题。
+    * 点击'测试Set配合Array.from'按钮，创建包含两个数组的`Set`集合，使用`Array.from`将`Set`转换为数组并序列化为JSON，展示方舟对于`Set`配合`Array.from`使用时与预期不一致的问题。
 
 ## 依赖
 
@@ -76,3 +83,4 @@ git config core.sparsecheckout true
 echo code/DocsSample/ArkTS/ArkTSRuntime/ArktsRuntimeFag > .git/info/sparse-checkout
 git remote add origin OpenHarmony/applications_app_samples
 git pull origin master
+```

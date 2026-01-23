@@ -44,4 +44,4 @@ export class TestClass {
 export class SendableItem {
   public name: string = '';
 }
-// [Start define_sendableThree]
+// [End define_sendableThree]

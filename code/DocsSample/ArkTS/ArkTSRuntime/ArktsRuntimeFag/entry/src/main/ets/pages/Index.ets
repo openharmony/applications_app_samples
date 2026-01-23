@@ -25,6 +25,7 @@ struct Index {
         this.textComponent($r('app.string.index_title'));
         this.buttonComponent($r('app.string.state_variable_decorator_page'), 'pages/Local');
         this.buttonComponent($r('app.string.runtime_common_issues_page'), 'pages/Scene');
+        this.buttonComponent($r('app.string.additional_page'), 'pages/Additional');
       }
       .width('100%')
       .padding(20)

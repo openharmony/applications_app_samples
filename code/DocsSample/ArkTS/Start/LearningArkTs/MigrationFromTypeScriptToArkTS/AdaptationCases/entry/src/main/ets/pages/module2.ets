@@ -14,7 +14,7 @@
  */
 
 // [Start no_type_query_two]
-// 文件名：module2.ets
+// module2.ets
 import { C } from './module1'
 let t: C = { value: 123 };
 // [End no_type_query_two]

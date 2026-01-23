@@ -14,12 +14,9 @@
 */
 
 // [Start export_ts]
-// 混淆前。
+// 混淆前
 // export.ts
 export namespace NS {
-  export function foo() {
-    console.info(`export NS function foo is called`);
-  }
+  export function foo() { }
 }
 // [End export_ts]
-

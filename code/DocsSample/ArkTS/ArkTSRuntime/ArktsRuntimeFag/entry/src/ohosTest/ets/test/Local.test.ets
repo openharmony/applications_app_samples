@@ -71,5 +71,19 @@ export default function localTest() {
         done
       );
     });
+
+    /**
+     * @tc.number ArkRegexCompliance_Back_0001
+     * @tc.name ArkRegexCompliance_Back_0001
+     * @tc.desc Test back
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('ArkRegexCompliance_Back_0001', Level.LEVEL1, async (done: Function) => {
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    });
   });
 }

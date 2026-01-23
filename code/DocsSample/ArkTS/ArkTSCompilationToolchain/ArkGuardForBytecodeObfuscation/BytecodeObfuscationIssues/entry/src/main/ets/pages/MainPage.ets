@@ -80,7 +80,9 @@ async function loadAndUseAdd() {
     console.error('Failure reason:', error);
   }
 }
-// [StartExclude import_utils]
+
+loadAndUseAdd();
+// [End import_utils]
 
 function testExportNamespace() {
   // [EndExclude import_ns]
@@ -196,9 +198,7 @@ struct IndexArkTs {
           .justifyContent(FlexAlign.Center)
           .margin({ bottom: 12 })
           .onClick(() => {
-            // [EndExclude import_utils]
             loadAndUseAdd();
-            // [End import_utils]
             this.currentState = $r('app.string.test_external_function_complete');
           })
 

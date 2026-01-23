@@ -14,7 +14,7 @@
  */
 
 // [Start no_type_query_one]
-// 文件名：module1.ets
+// module1.ets
 class C {
   public value: number = 0
 }

@@ -93,7 +93,7 @@ function testRegexHyphenInCharacterClass() {
   let logMsg = 'before reg.exec(str) = ' + reg.exec(str) + '\n';
 
   {
-    // 规避方案：使用转义后的"-"。
+    // 规避方案：使用转义后的'-'。
     // [Start test_afterRegexHyphenInCharacterClass]
     let str = 'a-b';
     let reg = /[+\-\s]/;
@@ -114,8 +114,8 @@ function testNamedCaptureGroupAccess() {
   let reg = new RegExp('(a)(?<b>b)');
   let res = reg.exec('ab');
   console.info('JSON.stringify(res?.groups) = ' + JSON.stringify(res?.groups));
-  // 期望输出: JSON.stringify(res?.groups) = {"b":"b"}。
-  // 实际输出: JSON.stringify(res?.groups) = {"b":"a"}。
+  // 期望输出: JSON.stringify(res?.groups) = {'b':'b'}。
+  // 实际输出: JSON.stringify(res?.groups) = {'b':'a'}。
   // [End test_namedCaptureGroupAccess]
 
   let logMsg = 'JSON.stringify(res?.groups) = ' + JSON.stringify(res?.groups);
@@ -144,7 +144,7 @@ function testRegexAlternationOperator() {
   let reg = /a(?:|x)$/;
   let res = reg.exec('ax');
   console.info('JSON.stringify(res) = ' + JSON.stringify(res));
-  // 期望输出: JSON.stringify(res) = ["ax"]。
+  // 期望输出: JSON.stringify(res) = ['ax']。
   // 实际输出: JSON.stringify(res) = null。
   // [End test_beforeRegexAlternationOperator]
 

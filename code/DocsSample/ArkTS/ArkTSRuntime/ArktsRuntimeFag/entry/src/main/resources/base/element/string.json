@@ -131,6 +131,42 @@
     {
       "name": "test_array_flatmap_complete",
       "value": "测试数组映射完成"
+    },
+    {
+      "name": "test_int32array_map_issue",
+      "value": "测试Int32Array的map问题"
+    },
+    {
+      "name": "test_int32array_map_issue_complete",
+      "value": "测试Int32Array的map问题完成"
+    },
+    {
+      "name": "test_int32array_map_workaround",
+      "value": "测试Int32Array转换规避方案"
+    },
+    {
+      "name": "test_int32array_map_workaround_complete",
+      "value": "测试Int32Array转换规避方案完成"
+    },
+    {
+      "name": "test_parsefloat_tiny_number",
+      "value": "测试parseFloat极小数"
+    },
+    {
+      "name": "test_parsefloat_tiny_number_complete",
+      "value": "测试parseFloat极小数完成"
+    },
+    {
+      "name": "test_set_array_from",
+      "value": "测试Set配合Array.from"
+    },
+    {
+      "name": "test_set_array_from_complete",
+      "value": "测试Set配合Array.from完成"
+    },
+    {
+      "name": "additional_page",
+      "value": "额外的页面"
     }
   ]
 }

@@ -176,7 +176,7 @@ let obj = new jsonTest();
 const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被保留。
 // [End optionExample_keepPropertyName3]
 
-// [EndExclude optionExample_keepPropertyName4]
+// [Start optionExample_keepPropertyName4]
 const valueBucket: ValuesBucket = {
   ID1: 'ID1', // ID1应该被保留。
   NAME1: 'jack', // NAME1应该被保留。
