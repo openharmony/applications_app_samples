@@ -16,7 +16,7 @@
 // [Start listen_window_stage]
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0X0000;
 const TAG: string = '[Sample_ListenWindowStage]';
