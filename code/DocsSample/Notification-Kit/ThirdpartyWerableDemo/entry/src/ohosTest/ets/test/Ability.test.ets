@@ -17,7 +17,6 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level
 import { Driver, ON, Component, abilityDelegatorRegistry } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 let driver = Driver.create();
 
 function sleep(time: number) {
@@ -66,7 +65,7 @@ export default function abilityTest() {
       async (done: Function) => {
         await sleep(1000);
         let box1: Component =
-          await driver.findComponent(ON.type('Button').text('允许').within(ON.type('Dialog')));
+          await driver.findComponent(ON.text('允许'));
         await box1.click();
         await sleep(1000);
         let event: string = await AppStorage.get('event')!;
