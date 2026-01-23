@@ -14,8 +14,9 @@
  */
  
 // [Start parent_worker]
+// ParentWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker, collections, ArkTSUtils } from '@kit.ArkTS'
-import { CopyEntry } from '../managers/CopyEntry'
+import { CopyEntry } from '../Sendable/CopyEntry'
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -28,8 +29,8 @@ let sum = 0;
 // 异步锁
 const asyncLock = new ArkTSUtils.locks.AsyncLock();
 // 创建子Worker
-const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
-const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
+const copyWorker1 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
+const copyWorker2 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
 workerPort.onmessage = (e : MessageEvents) => {
   let array = e.data as collections.Array<CopyEntry>;

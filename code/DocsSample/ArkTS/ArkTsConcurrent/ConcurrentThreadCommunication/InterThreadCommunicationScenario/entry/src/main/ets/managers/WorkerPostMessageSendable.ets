@@ -14,51 +14,46 @@
  */
 
 // [Start multi_worker_high_performance_communication]
+// Index.ets
 import { worker, collections } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { CopyEntry } from './CopyEntry'
+import { CopyEntry } from '../Sendable/CopyEntry'
 
 function promiseCase() {
   let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
     setTimeout(() => {
-      resolve(1);
-    }, 100)
-  }).then(undefined, (error: BusinessError) => {
-  })
+      resolve();
+    }, 100);
+  });
   return p;
 }
 
 async function postMessageTest() {
-  let ss = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
-  let res = undefined;
-  let flag = false;
+  let ss = new worker.ThreadWorker('entry/ets/workers/ParentWorker.ets');
   let isTerminate = false;
   ss.onexit = () => {
     isTerminate = true;
   }
-  // 接收Worker线程发送的消息
-  ss.onmessage = (e) => {
-    res = e.data;
-    flag = true;
-    console.info('worker:: res is  ' + res);
+  let array = new collections.Array<CopyEntry>();
+  // 准备数据
+  for (let i = 0; i < 4; i++) {
+    if (i % 2 == 0) {
+      array.push(new CopyEntry('copy1', 'file://copy1.txt'));
+    } else {
+      array.push(new CopyEntry('copy2', 'file://copy2.txt'));
+    }
   }
   // 给Worker线程发送消息
-  ss.postMessage('hello world');
-  while (!flag) {
-    await promiseCase();
-  }
-
-  ss.terminate();
+  ss.postMessageWithSharedSendable(array);
   while (!isTerminate) {
     await promiseCase();
   }
+  console.info('Worker线程已退出');
 }
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
-
   build() {
     Row() {
       Column() {
@@ -67,7 +62,9 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             postMessageTest();
+            // [StartExclude multi_worker_high_performance_communication]
             this.message = 'success';
+            // [EndExclude multi_worker_high_performance_communication]
           })
       }
       .width('100%')
