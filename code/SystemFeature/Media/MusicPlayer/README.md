@@ -282,7 +282,7 @@ switch (this.curLoopMode) {
 ### 下载
 
 如需单独下载本工程，执行如下命令：
-```javascript
+```
 git init
 git config core.sparsecheckout true
 echo /code/SystemFeature/Media/MusicPlayer/ > .git/info/sparse-checkout
