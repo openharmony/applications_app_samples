@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "float_1",
+      "value": "30.6"
+    },
+    {
+      "name": "text_width_120",
+      "value": "120px"
+    },
+    {
+      "name": "text_height_50",
+      "value": "50px"
+    },
+    {
+      "name": "size_200",
+      "value": "200px"
+    },
+    {
+      "name": "size_120",
+      "value": "120px"
+    },
+    {
+      "name": "size_100",
+      "value": "100px"
+    },
+    {
+      "name": "size_50",
+      "value": "50px"
+    },
+    {
+      "name": "size_60",
+      "value": "60px"
+    },
+    {
+      "name": "size_40",
+      "value": "40px"
+    }
+  ]
+}
