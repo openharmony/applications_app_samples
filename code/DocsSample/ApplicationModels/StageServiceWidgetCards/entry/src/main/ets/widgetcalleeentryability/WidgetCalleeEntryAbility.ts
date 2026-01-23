@@ -14,6 +14,7 @@
  */
 
 // [Start widget_callee_entry_ability]
+// entry/src/main/ets/widgetcalleeentryability/WidgetCalleeEntryAbility.ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';

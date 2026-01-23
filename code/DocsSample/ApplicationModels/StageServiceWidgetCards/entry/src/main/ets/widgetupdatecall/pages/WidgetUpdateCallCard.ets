@@ -14,6 +14,7 @@
  */
 
 // [Start widget_update_call_card]
+// entry/src/main/ets/widgetupdatecall/pages/WidgetUpdateCallCard.ets
 let storageUpdateCall = new LocalStorage();
 
 @Entry(storageUpdateCall)
