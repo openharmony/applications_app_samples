@@ -45,8 +45,11 @@ find_library(
 add_library(nativerender SHARED
             render/plugin_manager.cpp
             render/plugin_render.cpp
-            render/vulkan/vulkan_example.cpp
-            render/vulkan/vulkan_utils.cpp
             plugin.cpp)
 
-target_link_libraries(nativerender PUBLIC ${hilog-lib}  ${libuv-lib} ${libnapi-lib} ${libace-lib} librawfile.z.so)
+#add_library(localvulkan SHARED
+#            render/vulkan/vulkan_example.cpp
+#            render/vulkan/vulkan_utils.cpp)
+
+target_link_libraries(nativerender PUBLIC ${hilog-lib}  ${libuv-lib} ${libnapi-lib} ${libace-lib} librawfile.z.so )
+target_link_libraries(nativerender PUBLIC ${NATIVERENDER_ROOT_PATH}/../../../libs/arm64-v8a/liblocalvulkan.so)

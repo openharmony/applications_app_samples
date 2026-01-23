@@ -17,7 +17,6 @@
 #include "logger_common.h"
 #include "render/plugin_manager.h"
 #include <js_native_api_types.h>
-#include "plugin_manager.h"
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
