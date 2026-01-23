@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start photo_access_helper_preperation]
+// [Start photo_access_helper_preparation]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
@@ -34,4 +34,4 @@ struct Index {
     .height('90%')
   }
 }
-// [End photo_access_helper_preperation]
+// [End photo_access_helper_preparation]
