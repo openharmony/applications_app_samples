@@ -54,15 +54,15 @@ struct Index {
       photoSelectOptions.isPhotoTakingSupported = true;
       // [End PickerMediaLibrary_configOptions]
       
-      console.log('调用PhotoViewPicker.select接口，拉起图库界面');
+      console.info('调用PhotoViewPicker.select接口，拉起图库界面');
       
       // 调用PhotoViewPicker.select接口拉起图库界面进行文件选择
       // [Start PickerMediaLibrary_select]
       const result = await photoViewPicker.select(photoSelectOptions);
             
       // 文件选择成功后，返回PhotoSelectResult结果集
-      console.log('选择成功，返回结果: ' + JSON.stringify(result));
-      console.log('选择的文件数量: ' + result.photoUris.length);
+      console.info('选择成功，返回结果: ' + JSON.stringify(result));
+      console.info('选择的文件数量: ' + result.photoUris.length);
       
       // 更新选中的URI列表
       this.selectedUris = result.photoUris;
@@ -73,7 +73,7 @@ struct Index {
       
       // 调用工具类处理结果
       this.processedItems = MediaLibraryPickerUtils.handleSelectResult(this.selectedUris);
-      console.log('处理后的结果数量: ' + this.processedItems.length);
+      console.info('处理后的结果数量: ' + this.processedItems.length);
       // [End PickerMediaLibrary_select]
 
       // 显示处理结果
