@@ -4,7 +4,7 @@
 
 ### 介绍
 
-1. 实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-render-mode.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+1. 实现指南文档[Web组件渲染模式](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-render-mode.md)中示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -15,13 +15,17 @@
 使用说明
 
 1. 使用renderMode设置渲染模式为 ASYNC_RENDER (同步渲染模式)。
+
+## 具体实现
+* 设置Web组件为同步渲染模式`Web({src: '', controller: this.webviewController, renderMode: RenderMode.ASYNC_RENDER})`，参考源码：[RenderMode.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/WebRenderLayout/entry/src/main/ets/pages/RenderMode.ets)
+
 # Web组件大小自适应页面内容布局
 
 ## FitPageContent
 
 ### 介绍
 
-1. 实现对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/web-fit-content.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+1. 实现指南文档[Web组件大小自适应页面内容布局](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-fit-content.md)中示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -31,7 +35,14 @@
 
 使用说明
 
-1. 使用Web组件大小自适应页面内容布局模式layoutMode(WebLayoutMode.FIT_CONTENT)时，能使Web组件的大小根据页面内容自适应变化。
+1. 使用Web组件大小自适应页面内容布局模式`layoutMode(WebLayoutMode.FIT_CONTENT)`时，能使Web组件的大小根据页面内容自适应变化。
+
+## 具体实现
+
+* 开启渲染模式，设置Web组件大小自适应页面内容布局模式，并关闭过滚动模式，参考源码：[FitPageContent.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/WebRenderLayout/entry/src/main/ets/pages/FitPageContent.ets)
+   * 设置Web组件为同步渲染模式`Web({src: '', controller: this.webviewController, renderMode: RenderMode.ASYNC_RENDER})`。
+   * 通过layoutMode(WebLayoutMode.FIT_CONTENT)Web组件大小自适应页面内容布局模式。
+   * 通过overScrollMode(OverScrollMode.NEVER)设置过滚动模式为关闭状态。
 
 ## 工程目录
 
@@ -53,7 +64,7 @@ entry/src/main/
 
 ## 相关权限
 
-[ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ## 依赖
 
@@ -73,6 +84,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebRenderLayout > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
