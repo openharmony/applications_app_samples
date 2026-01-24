@@ -427,7 +427,7 @@ class KeyboardController {
       this.panel = panel;
       panel.resize(dWidth, keyHeight).then(() => {
         panel.moveTo(0, this.barPosition).then(() => {
-          panel.setUiContent('pages/Index').then(() => {
+          panel.setUiContent('InputMethodExtensionAbility/pages/Index').then(() => {
             this.inputHandle.addLog('loadContent finished');
           })
         })
