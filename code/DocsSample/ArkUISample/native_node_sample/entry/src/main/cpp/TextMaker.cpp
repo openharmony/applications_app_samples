@@ -1558,6 +1558,91 @@ void setTextDirection(ArkUI_NodeHandle &text19)
     Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_DIRECTION, &direction_item);
 }
 
+void setText20(ArkUI_NodeHandle &text20, ArkUI_NodeHandle &text21)
+{
+    ArkUI_AttributeItem content_item = {};
+    content_item.string = "这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_CONTENT, &content_item);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 100.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text20, NODE_WIDTH, &width_item);
+    ArkUI_NumberValue maxLinesValue[] = {{.i32 = VALUE_3} };
+    ArkUI_AttributeItem maxLinesItem = {maxLinesValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_MAX_LINES, &maxLinesItem);
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_OVERFLOW, &textOverFlowItem);
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_CONTENT, &content_item);
+    Manager::nodeAPI_->setAttribute(text21, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_MAX_LINES, &maxLinesItem);
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_OVERFLOW, &textOverFlowItem);
+    ArkUI_NumberValue ellipsisModeValue2[] = {{.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER}};
+    ArkUI_AttributeItem ellipsisModeItem2 = {ellipsisModeValue2, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem2);
+}
+
+void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string = "这是一段超长文本，用来测试省略号位置ellipsisMode 这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_WIDTH, &width_item);
+    
+    ArkUI_NumberValue styleValue[] = {{.i32 = ARKUI_TEXTINPUT_STYLE_INLINE}};
+    ArkUI_AttributeItem styleItem = {styleValue, 1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_STYLE, &styleItem);
+    
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_TEXT_OVERFLOW, &textOverFlowItem);
+    
+    ArkUI_AttributeItem content_item2 = {};
+    content_item2.string = "这是一段超长文本，用来测试文本超长时的显示方式textOverflow 这是一段超长文本，用来测试文本超长时的显示方式textOverflow";
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT, &content_item2);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_STYLE, &styleItem);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT_OVERFLOW, &textOverFlowItem);
+}
+
+void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string = "这是一段超长文本，用来测试省略号位置ellipsisMode 这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_WIDTH, &width_item);
+    
+    ArkUI_NumberValue maxLinesValue[] = {{.i32 = VALUE_3} };
+    ArkUI_AttributeItem maxLinesItem = {maxLinesValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_MAX_LINES, &maxLinesItem);
+    
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
+    
+    ArkUI_AttributeItem content_item2 = {};
+    content_item2.string = "这是一段超长文本，用来测试文本超长时的显示方式textOverflow 这是一段超长文本，用来测试文本超长时的显示方式textOverflow";
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT, &content_item2);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_MAX_LINES, &maxLinesItem);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
+}
+
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
     auto basicText2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -2192,15 +2277,20 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text11_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text19 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text20 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text21 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setText9(text9);
     setText10(text10);
     setText11(text11, text11_2);
     setTextDirection(text19);
+    setText20(text20, text21);
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
     Manager::nodeAPI_->addChild(textContainer, text11_2);
     Manager::nodeAPI_->addChild(textContainer, text19);
+    Manager::nodeAPI_->addChild(textContainer, text20);
+    Manager::nodeAPI_->addChild(textContainer, text21);
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
@@ -2215,7 +2305,7 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, column);
 }
 
-void setAllTextInput(ArkUI_NodeHandle &textContainer)
+void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textInput1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
@@ -2265,6 +2355,21 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
 
+void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
+{
+    ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    setTextInput13(textInput13, textInput14);
+    Manager::nodeAPI_->addChild(textContainer, textInput13);
+    Manager::nodeAPI_->addChild(textContainer, textInput14);
+}
+
+void setAllTextInput(ArkUI_NodeHandle &textContainer)
+{
+    setAllTextInputPart1(textContainer);
+    setAllTextInputPart2(textContainer);
+}
+
 void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -2300,6 +2405,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea11Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textArea12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
@@ -2309,6 +2416,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea10(textArea10, textArea10Button1);
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
+    setTextArea14(textArea14, textArea15);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
@@ -2323,6 +2431,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea11);
     Manager::nodeAPI_->addChild(textContainer, textArea11Button);
     Manager::nodeAPI_->addChild(textContainer, textArea12);
+    Manager::nodeAPI_->addChild(textContainer, textArea14);
+    Manager::nodeAPI_->addChild(textContainer, textArea15);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)
