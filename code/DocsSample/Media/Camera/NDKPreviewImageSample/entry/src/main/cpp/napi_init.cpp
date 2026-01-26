@@ -283,11 +283,10 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     uint64_t receiverSurfaceID = 0;
     g_isFirstBuffer = true;
     InitImageReceiver(receiverSurfaceID);
-    const char *surfaceIdStr = g_xComponentSurfaceId.c_str();
-    const char *surfaceIdSlaveStr = std::to_string(receiverSurfaceID).c_str();
-    ndkCamera_ =
-        new NDKCamera(const_cast<char *>(surfaceIdStr), videoSurfaceId, static_cast<Camera_SceneMode>(sceneMode),
-        static_cast<Camera_Position>(cameraPosition), const_cast<char *>(surfaceIdSlaveStr));
+    std::string surfaceIdSlaveStr = std::to_string(receiverSurfaceID);
+    ndkCamera_ = new NDKCamera(const_cast<char *>(g_xComponentSurfaceId.c_str()), videoSurfaceId,
+        static_cast<Camera_SceneMode>(sceneMode), static_cast<Camera_Position>(cameraPosition),
+        const_cast<char *>(surfaceIdSlaveStr.c_str()));
     g_isFront = (cameraPosition == 2); // 2是前置镜头camera_postion_front
     previewRotation = ndkCamera_->GetPreviewRotation(g_displayRotation);
     OH_LOG_ERROR(LOG_APP, "InitCamera End");
