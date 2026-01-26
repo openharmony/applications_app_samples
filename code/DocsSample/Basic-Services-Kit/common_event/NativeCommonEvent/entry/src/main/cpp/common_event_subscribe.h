@@ -18,8 +18,6 @@
 
 // [Start event_subscriber_import]
 #include <cstdint>
-#include <cstdio>
-#include <cwchar>
 #include <cstring>
 #include "hilog/log.h"
 #include "BasicServicesKit/oh_commonevent.h"
