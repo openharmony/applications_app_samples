@@ -63,7 +63,7 @@
       "com.ohos.note"
     ],
     "startMode": "mainTask",
-    "buildVersion": "1"
+    "buildVersion": "1.0.0"
     // [EndExclude app_json5_configuration]
     // [EndExclude app_json5_appEnvironments]
     // [EndExclude app_json5_multiAppMode]
