@@ -426,30 +426,34 @@ export struct modeSwitchPage {
 
   //保存视频文件
   async readWriteFile(sourceUri: string, destUri: string): Promise<void> {
-    // 打开文件
-    let srcFile = fileIo.openSync(sourceUri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-    let destFile = fileIo.openSync(destUri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-    // 读取源文件内容并写入至目的文件
-    let bufSize = 4096;
-    let readSize = 0;
-    let buf = new ArrayBuffer(bufSize);
-    let readOptions: ReadOptions = {
-      offset: readSize,
-      length: bufSize
-    };
-    let readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
-    while (readLen > 0) {
-      readSize += readLen;
-      let writeOptions: WriteOptions = {
-        length: readLen
+    try {
+      // 打开文件
+      let srcFile = fileIo.openSync(sourceUri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      let destFile = fileIo.openSync(destUri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      // 读取源文件内容并写入至目的文件
+      let bufSize = 4096;
+      let readSize = 0;
+      let buf = new ArrayBuffer(bufSize);
+      let readOptions: ReadOptions = {
+        offset: readSize,
+        length: bufSize
       };
-      fileIo.writeSync(destFile.fd, buf, writeOptions);
-      readOptions.offset = readSize;
-      readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
+      let readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
+      while (readLen > 0) {
+        readSize += readLen;
+        let writeOptions: WriteOptions = {
+          length: readLen
+        };
+        fileIo.writeSync(destFile.fd, buf, writeOptions);
+        readOptions.offset = readSize;
+        readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
+      }
+      // 关闭文件
+      fileIo.closeSync(srcFile);
+      fileIo.closeSync(destFile);
+    } catch (err) {
+      Logger.info(this.tag, 'readWriteFile err: ' + JSON.stringify(err));
     }
-    // 关闭文件
-    fileIo.closeSync(srcFile);
-    fileIo.closeSync(destFile);
   }
 
   //暂停录像

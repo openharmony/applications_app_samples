@@ -37,7 +37,7 @@ export struct FlashingLightPage {
   };
 
   // Return to selected image
-  getImageDefault() {
+  getImageDefault(): Resource {
     if (this.flashingNum == 0) {
       return this.flashIcon.iconOff;
     }
@@ -50,7 +50,7 @@ export struct FlashingLightPage {
     if (this.flashingNum == 3) {
       return this.flashIcon.iconAlwaysOn;
     }
-    return;
+    return this.flashIcon.iconOff;
   }
 
   build() {
@@ -59,7 +59,7 @@ export struct FlashingLightPage {
         Row() {
           Button() {
             Image(this.getImageDefault())
-              .width('60px').height('60px').fillColor('#FFFFFF');
+              .width('60px').height('60px').fillColor($r('app.color.white'));
           }
           .width('80px')
           .height('80px')
@@ -74,7 +74,7 @@ export struct FlashingLightPage {
           Image($r('app.media.ic_camera_public_flash_auto'))
             .width('80px')
             .height('80px')
-            .fillColor(this.flashingNum == 2 ? $r('app.color.theme_color') : '')
+            .fillColor(this.flashingNum == 2 ? $r('app.color.theme_color') : undefined)
             .onClick(() => {
               this.flashingNum = 2;
               this.flashingBol = true;
@@ -83,7 +83,7 @@ export struct FlashingLightPage {
           Image($r('app.media.ic_camera_public_flash_off'))
             .width('80px')
             .height('80px')
-            .fillColor(this.flashingNum == 0 ? $r('app.color.theme_color') : '')
+            .fillColor(this.flashingNum == 0 ? $r('app.color.theme_color') : undefined)
             .onClick(() => {
               this.flashingNum = 0;
               this.flashingBol = true;
@@ -92,7 +92,7 @@ export struct FlashingLightPage {
           Image($r('app.media.ic_camera_public_flash_on'))
             .width('80px')
             .height('80px')
-            .fillColor(this.flashingNum == 1 ? $r('app.color.theme_color') : '')
+            .fillColor(this.flashingNum == 1 ? $r('app.color.theme_color') : undefined)
             .onClick(() => {
               this.flashingNum = 1;
               this.flashingBol = true;
@@ -101,7 +101,7 @@ export struct FlashingLightPage {
           Image($r('app.media.flash_always_on'))
             .width('80px')
             .height('80px')
-            .fillColor(this.flashingNum == 3 ? $r('app.color.theme_color') : '')
+            .fillColor(this.flashingNum == 3 ? $r('app.color.theme_color') : undefined)
             .onClick(() => {
               this.flashingNum = 3;
               this.flashingBol = true;
@@ -112,7 +112,6 @@ export struct FlashingLightPage {
         .borderRadius('40px')
         .width('300px')
         .height('80px')
-        .zIndex(999)
       }
     }
     .position({ x: '25%', y: '2.5%' })
