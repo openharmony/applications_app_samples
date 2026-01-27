@@ -618,8 +618,6 @@ Camera_ErrorCode NDKCamera::GetSupportedOutputCapability(void)
 Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
 {
     const Camera_Profile *selectedProfile = nullptr;
-    OH_LOG_INFO(LOG_APP, "CreatePreviewOutput selectedProfile desired %{public}u*%{public}u", desiredPreviewW_,
-        desiredPreviewH_);
     if (desiredPreviewW_ > 0 && desiredPreviewH_ > 0) {
         selectedProfile = FindPreviewProfileBySize(desiredPreviewW_, desiredPreviewH_);
         if (selectedProfile) {
@@ -638,19 +636,13 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
         selectedProfile = temp;
     }
     previewProfile_ = selectedProfile;
-    OH_LOG_INFO(LOG_APP, "CreatePreviewOutput cachedVideoProfile %{public}p", videoProfile_);
-    OH_LOG_INFO(LOG_APP, "CreatePreviewOutput previewProfile_%{public}u*%{public}u", previewProfile_->size.width,
-        previewProfile_->size.height);
     if (previewProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput Get previewProfiles failed.");
-        return CAMERA_INVALID_ARGUMENT;
     }
     for (int i = 0; i < cameraOutputCapability_->photoProfilesSize; i++) {
         profile_ = cameraOutputCapability_->photoProfiles[i];
-        OH_LOG_INFO(LOG_APP, "CreatePreviewOutput photoProfile_%{public}u*%{public}u format: %{public}d",
-            profile_->size.width, profile_->size.height, profile_->format);
         if (profile_->size.width == selectedProfile->size.width &&
-        profile_->size.height == selectedProfile->size.height) {
+            profile_->size.height == selectedProfile->size.height) {
             break;
         }
     }
@@ -666,11 +658,10 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
     }
     ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceId_, &previewOutput_);
     OH_LOG_ERROR(LOG_APP,
-        "CreatePreviewOutput previewProfile_ video width %{public}d, height: %{public}d， format: %{public}d",
+        "CreatePreviewOutput previewProfile_ preview width %{public}d, height: %{public}d， format: %{public}d",
         previewProfile_->size.width, previewProfile_->size.height, previewProfile_->format);
     if (previewSurfaceId_ == nullptr || previewOutput_ == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput failed.");
-        return CAMERA_INVALID_ARGUMENT;
     }
     PreviewOutputRegisterCallback();
     return ret_;

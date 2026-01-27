@@ -32,7 +32,7 @@ MediaLibrary_RequestId g_requestId;
 MediaLibrary_RequestOptions requestOptions;
 bool g_isMovingPhoto = false;
 bool g_isSavingPhoto = true;
-const char *g_uri;
+const char *uri_;
 char *g_mediaQualityCb;
 MediaLibrary_DeliveryMode g_deliveryMode = MEDIA_LIBRARY_BALANCED_MODE;
 
@@ -547,13 +547,11 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
         ret_ = CanPreconfigWithRatio(&isSuccess_);
         if (ret_ != CAMERA_OK) {
             DRAWING_LOGD("NDKCamera::CreatePreviewOutput CanPreconfigWithRatio failed!");
-            return CAMERA_INVALID_ARGUMENT;
         }
     } else if (preconfigMode_ == TYPE_PRECONFIG_MODE) {
         ret_ = CanPreconfig(&isSuccess_);
         if (ret_ != CAMERA_OK) {
             DRAWING_LOGD("NDKCamera::CreatePreviewOutput CanPreconfig failed!");
-            return CAMERA_INVALID_ARGUMENT;
         }
     }
 
@@ -562,40 +560,27 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
         profile_ = cameraOutputCapability_->previewProfiles[0];
         if (profile_ == nullptr) {
             OH_LOG_ERROR(LOG_APP, "Get previewProfiles failed.");
-            return CAMERA_INVALID_ARGUMENT;
         }
         cameraProfile_ = cameraOutputCapability_->previewProfiles[0];
 
         ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, cameraProfile_, previewSurfaceId_, &previewOutput_);
         if (previewSurfaceId_ == nullptr || previewOutput_ == nullptr || ret_ != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput failed.");
-            return CAMERA_INVALID_ARGUMENT;
         }
         PreviewOutputRegisterCallback();
         return ret_;
     } else {
-        DRAWING_LOGD("NDKCamera::CreatePreviewOutput into preconfig branch!");
         if (preconfigMode_ == TYPE_RATIO_PRECONFIG_MODE) {
             ret_ = PreconfigWithRatio();
-            if (ret_ != CAMERA_OK) {
-                DRAWING_LOGD("NDKCamera::CreatePreviewOutput PreconfigWithRatio failed!");
-                return CAMERA_INVALID_ARGUMENT;
-            }
         } else {
             ret_ = Preconfig();
-            if (ret_ != CAMERA_OK) {
-                DRAWING_LOGD("NDKCamera::CreatePreviewOutput Preconfig failed!");
-                return CAMERA_INVALID_ARGUMENT;
-            }
         }
         preconfigged_ = true;
         ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, previewSurfaceId_, &previewOutput_);
         if (previewOutput_ == nullptr || ret_ != CAMERA_OK) {
-            DRAWING_LOGD("OH_CameraManager_CreatePreviewOutputUsedInPreconfig failed!");
             OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput failed.");
             return CAMERA_INVALID_ARGUMENT;
         }
-        DRAWING_LOGD("OH_CameraManager_CreatePreviewOutputUsedInPreconfig return with ret code: %{public}d!", ret_);
         PreviewOutputRegisterCallback();
         return ret_;
     }
@@ -1586,11 +1571,11 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetGetUri(OH_MediaAsset *mediaAsset)
 {
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri start!");
     const char *uri = nullptr;
-    result = OH_MediaAsset_GetUri(mediaAsset, &g_uri);
-    if (g_uri == nullptr || result != MEDIA_LIBRARY_OK) {
+    result = OH_MediaAsset_GetUri(mediaAsset, &uri_);
+    if (uri_ == nullptr || result != MEDIA_LIBRARY_OK) {
         DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri uri: %{public}s", g_uri);
+    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri uri: %{public}s", uri_);
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
     return result;
 }
@@ -1804,8 +1789,8 @@ void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaL
         g_mediaQualityCb = "high";
         qCb(g_mediaQualityCb);
     }
-    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails GetUri g_uri = %{public}s", g_uri);
-    cb(const_cast<char *>(g_uri));
+    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails GetUri uri_ = %{public}s", uri_);
+    cb(const_cast<char *>(uri_));
     NDKCamera::ChangeRequestAddResourceWithBuffer(imageSourceNative);
     return;
 }

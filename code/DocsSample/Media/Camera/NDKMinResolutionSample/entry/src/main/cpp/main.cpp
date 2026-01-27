@@ -169,12 +169,7 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     uint32_t cameraDeviceIndex;
     napi_get_value_uint32(env, args[ARGS_FIVE], &cameraDeviceIndex);
 
-    OH_LOG_ERROR(LOG_APP, "InitCamera focusMode : %{public}d", focusMode);
-    OH_LOG_ERROR(LOG_APP, "InitCamera surfaceId : %{public}s", surfaceId);
-    OH_LOG_ERROR(LOG_APP, "InitCamera cameraDeviceIndex : %{public}d", cameraDeviceIndex);
-
     if (g_ndkCamera) {
-        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }

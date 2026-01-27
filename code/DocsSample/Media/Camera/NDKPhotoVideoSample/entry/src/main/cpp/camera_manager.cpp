@@ -250,20 +250,16 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
 {
     OH_LOG_INFO(LOG_APP, "Start SessionFlowFn IN.");
     // Start configuring session
-    OH_LOG_INFO(LOG_APP, "session beginConfig.");
     Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession_);
 
     // Add CameraInput to the session
-    OH_LOG_INFO(LOG_APP, "session addInput.");
     ret = OH_CaptureSession_AddInput(captureSession_, cameraInput_);
 
     // Add previewOutput to the session
-    OH_LOG_INFO(LOG_APP, "session add Preview Output.");
     ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
 
     if (isVideo) {
         // Adding VideoOutput to the Session
-        OH_LOG_INFO(LOG_APP, "session add Video Output.");
         AddVideoOutput();
         if (isHdrVideo) {
             // HDR Vivid 视频需要设置色彩空间为OH_COLORSPACE_BT2020_HLG_LIMIT
@@ -272,19 +268,14 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
         }
     } else {
         // Adding PhotoOutput to the Session
-        OH_LOG_INFO(LOG_APP, "session add Photo Output.");
         AddPhotoOutput();
         ret = CreateMetadataOutput();
-        OH_LOG_INFO(LOG_APP, "startPhoto CreateMetadataOutput ret = %{public}d.", ret);
         ret = OH_CaptureSession_AddMetadataOutput(captureSession_, metadataOutput_);
-        OH_LOG_INFO(LOG_APP, "startPhoto AddMetadataOutput ret = %{public}d.", ret);
-
         OH_NativeBuffer_ColorSpace colorSpace = OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_FULL;
         SetColorSpace(colorSpace);
     }
 
     // Submit configuration information
-    OH_LOG_INFO(LOG_APP, "session commitConfig");
     ret = OH_CaptureSession_CommitConfig(captureSession_);
     
     if (isVideo) {
@@ -303,17 +294,11 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     // Start Session Work
     OH_LOG_INFO(LOG_APP, "session start");
     ret = OH_CaptureSession_Start(captureSession_);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "session success");
-    }
 
     // Start focusing
-    OH_LOG_INFO(LOG_APP, "IsFocusMode start");
     ret = IsFocusMode(focusMode_);
-    OH_LOG_INFO(LOG_APP, "IsFocusMode success");
 
     // Start GetSupport
-    OH_LOG_INFO(LOG_APP, "GetSupportedFrameRates start");
     const uint32_t maxFrameRateRanges = 10; // 假设最多10个帧率范围
     frameRateRange = (Camera_FrameRateRange *)malloc(sizeof(Camera_FrameRateRange) * maxFrameRateRanges);
     uint32_t size = maxFrameRateRanges;
@@ -1271,126 +1256,132 @@ Camera_ErrorCode NDKCamera::RegisterBufferCb(void *cb)
     return CAMERA_OK;
 }
 
-void OnPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo)
+static bool ProcessImageNative(OH_ImageNative* imageNative, uint32_t** components,
+                               OH_NativeBuffer** nativeBuffer, size_t* nativeBufferSize)
 {
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable start!");
-    OH_ImageNative *imageNative;
-    Camera_ErrorCode errCode = OH_PhotoNative_GetMainImage(photo, &imageNative);
-    if (errCode != CAMERA_OK || imageNative == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoNative_GetMainImage call failed, errorCode: %{public}d", errCode);
-        return;
+    if (imageNative == nullptr || components == nullptr || nativeBuffer == nullptr || nativeBufferSize == nullptr) {
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable errCode:%{public}d imageNative:%{public}p", errCode, imageNative);
-    // 读取OH_ImageNative的 size 属性。
+
     Image_Size size;
     Image_ErrorCode imageErr = OH_ImageNative_GetImageSize(imageNative, &size);
     if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetImageSize call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        return;
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d width:%{public}d height:%{public}d", imageErr,
-        size.width, size.height);
-    // 读取OH_ImageNative的组件列表的元素个数。
+
     size_t componentTypeSize = 0;
     imageErr = OH_ImageNative_GetComponentTypes(imageNative, nullptr, &componentTypeSize);
     if (imageErr != IMAGE_SUCCESS || componentTypeSize == 0) {
-        OH_LOG_ERROR(LOG_APP, "cOH_ImageNative_GetComponentTypes call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        return;
+        OH_LOG_ERROR(LOG_APP, "GetComponentTypes failed: %{public}d, size: %{public}zu",
+            imageErr, componentTypeSize);
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d componentTypeSize:%{public}zu", imageErr,
-        componentTypeSize);
-    // 读取OH_ImageNative的组件列表。
-    if (componentTypeSize == 0 || componentTypeSize > (SIZE_MAX / sizeof(size_t))) {
-        OH_LOG_ERROR(LOG_APP, "componentTypeSize is 0");
-        OH_ImageNative_Release(imageNative);
-        return;
+
+    if (componentTypeSize > (SIZE_MAX / sizeof(uint32_t))) {
+        OH_LOG_ERROR(LOG_APP, "componentTypeSize too large: %{public}zu", componentTypeSize);
+        return false;
     }
-    uint32_t *components = new (std::nothrow) uint32_t[componentTypeSize];
-    if (!components) {
-        OH_LOG_ERROR(LOG_APP, "Failed to allocate memory");
-        OH_ImageNative_Release(imageNative);
-        return;
+    
+    uint32_t* compArray = new (std::nothrow) uint32_t[componentTypeSize];
+    if (!compArray) {
+        return false;
     }
-    imageErr = OH_ImageNative_GetComponentTypes(imageNative, &components, &componentTypeSize);
+    
+    size_t tempSize = componentTypeSize;
+    imageErr = OH_ImageNative_GetComponentTypes(imageNative, &compArray, &tempSize);
     if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetComponentTypes call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        delete[] components;
-        return;
+        delete[] compArray;
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetComponentTypes imageErr:%{public}d", imageErr);
-    // 读取OH_ImageNative的第一个组件所对应的缓冲区对象。
-    OH_NativeBuffer *nativeBuffer = nullptr;
-    imageErr = OH_ImageNative_GetByteBuffer(imageNative, components[0], &nativeBuffer);
+    *components = compArray;
+
+    imageErr = OH_ImageNative_GetByteBuffer(imageNative, compArray[0], nativeBuffer);
     if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetByteBuffer call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        delete[] components;
-        return;
+        delete[] compArray;
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetByteBuffer imageErr:%{public}d", imageErr);
-    // 读取OH_ImageNative的第一个组件所对应的缓冲区大小。
-    size_t nativeBufferSize = 0;
-    imageErr = OH_ImageNative_GetBufferSize(imageNative, components[0], &nativeBufferSize);
+
+    imageErr = OH_ImageNative_GetBufferSize(imageNative, compArray[0], nativeBufferSize);
     if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetBufferSize call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        delete[] components;
-        return;
+        delete[] compArray;
+        return false;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d nativeBufferSize:%{public}zu", imageErr,
-        nativeBufferSize);
-    // 读取OH_ImageNative的第一个组件所对应的像素行宽。
+
     int32_t rowStride = 0;
-    imageErr = OH_ImageNative_GetRowStride(imageNative, components[0], &rowStride);
-    if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetRowStride call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
-        delete[] components;
-        return;
-    }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d rowStride:%{public}d", imageErr, rowStride);
-    // 读取OH_ImageNative的第一个组件所对应的像素大小。
     int32_t pixelStride = 0;
-    imageErr = OH_ImageNative_GetPixelStride(imageNative, components[0], &pixelStride);
-    if (imageErr != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetPixelStride call failed, errorCode: %{public}d", imageErr);
-        OH_ImageNative_Release(imageNative);
+    OH_ImageNative_GetRowStride(imageNative, compArray[0], &rowStride);
+    OH_ImageNative_GetPixelStride(imageNative, compArray[0], &pixelStride);
+    OH_LOG_INFO(LOG_APP, "Buffer size: %{public}zu, strides: %{public}d/%{public}d",
+        *nativeBufferSize, rowStride, pixelStride);
+
+    return true;
+}
+
+
+static void CleanupResources(OH_ImageNative* imageNative, uint32_t* components,
+                             OH_NativeBuffer* nativeBuffer, void* virAddr)
+{
+    if (components) {
         delete[] components;
+    }
+    
+    if (imageNative) {
+        int32_t ret = OH_ImageNative_Release(imageNative);
+        if (ret != 0) {
+            OH_LOG_ERROR(LOG_APP, "Release image failed: %{public}d", ret);
+        }
+    }
+    
+    if (nativeBuffer && virAddr) {
+        int32_t ret = OH_NativeBuffer_Unmap(nativeBuffer);
+        if (ret != 0) {
+            OH_LOG_ERROR(LOG_APP, "Unmap buffer failed: %{public}d", ret);
+        }
+    }
+}
+
+
+void OnPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo)
+{
+    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable start!");
+
+    OH_ImageNative *imageNative = nullptr;
+    Camera_ErrorCode errCode = OH_PhotoNative_GetMainImage(photo, &imageNative);
+    if (errCode != CAMERA_OK || !imageNative) {
+        OH_LOG_ERROR(LOG_APP, "GetMainImage failed: %{public}d", errCode);
         return;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d pixelStride:%{public}d", imageErr, pixelStride);
-    // 将ION内存映射到进程空间。
-    void *virAddr = nullptr; // 指向映射内存的虚拟地址，解除映射后这个指针将不再有效。
-    int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr); // 映射后通过第二个参数virAddr返回内存的首地址。
-    if (ret != 0) {
-        OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Map call failed, errorCode: %{public}d", ret);
-        OH_ImageNative_Release(imageNative);
-        delete[] components;
+
+    uint32_t* components = nullptr;
+    OH_NativeBuffer* nativeBuffer = nullptr;
+    size_t nativeBufferSize = 0;
+    
+    if (!ProcessImageNative(imageNative, &components, &nativeBuffer, &nativeBufferSize)) {
+        CleanupResources(imageNative, components, nullptr, nullptr);
         return;
     }
-    OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
-    // 调用NAPI层buffer回调。
+
+    void* virAddr = nullptr;
+    int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr);
+    if (ret != 0 || !virAddr) {
+        OH_LOG_ERROR(LOG_APP, "Map buffer failed: %{public}d", ret);
+        CleanupResources(imageNative, components, nativeBuffer, nullptr);
+        return;
+    }
+
     auto cb = (void (*)(void *, size_t))(g_bufferCb);
-    if (!virAddr || nativeBufferSize <= 0) {
-        OH_LOG_INFO(LOG_APP, "On buffer callback failed");
-        return;
+    if (cb && virAddr && nativeBufferSize > 0) {
+        cb(virAddr, nativeBufferSize);
+        OH_LOG_INFO(LOG_APP, "Buffer callback called");
+    } else {
+        OH_LOG_ERROR(LOG_APP, "Invalid callback parameters");
     }
-    cb(virAddr, nativeBufferSize);
-    // 释放资源。
-    delete[] components;
-    ret = OH_ImageNative_Release(imageNative);
-    if (ret != 0) {
-        OH_LOG_ERROR(LOG_APP, "OH_ImageNative_Release call failed., errorCode: %{public}d", ret);
-    }
-    ret = OH_NativeBuffer_Unmap(nativeBuffer); // 在处理完之后，解除映射并释放缓冲区。
-    if (ret != 0) {
-        OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Unmap call failed, errorCode: %{public}d", ret);
-    }
+
+    CleanupResources(imageNative, components, nativeBuffer, virAddr);
+    
     OH_LOG_INFO(LOG_APP, "OnPhotoAvailable end");
 }
+
 Camera_ErrorCode NDKCamera::PhotoOutputRegisterPhotoAvailableCallback(void)
 {
     OH_LOG_INFO(LOG_APP, "NDKCamera::PhotoOutputRegisterPhotoAvailableCallback start!");
