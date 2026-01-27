@@ -77,6 +77,7 @@ public:
     static napi_value CreateScrollNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateRefreshNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateListNativeNode(napi_env env, napi_callback_info info);
+    static napi_value createMatrix4NativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeButtonNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeSliderNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeCheckboxShapePage(napi_env env, napi_callback_info info);

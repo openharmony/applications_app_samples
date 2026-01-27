@@ -66,3 +66,4 @@ export const createContainerPickerMonthNode: (content: Object) => void;
 export const createContainerPickerRegionNode: (content: Object) => void;
 export const createContainerPickerTypesNode: (content: Object) => void;
 export const createContainerPickerTimeNode: (content: Object) => void;
+export const createMatrix4NativeNode: (content: Object) => void;
