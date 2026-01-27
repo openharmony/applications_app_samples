@@ -100,13 +100,13 @@ struct Index {
                   this.result = 'createStringLatin1 tested';
                 } else if (item === '7. CreateExternalStringUtf16') {
                   // [Start ark_napi_create_external_string_utf16]
-                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s',
+                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_external_string_utf16:%{public}s',
                     testNapi.CreateExternalStringUtf16());
                   // [End ark_napi_create_external_string_utf16]
                   this.result = 'CreateExternalStringUtf16 tested';
                 } else if (item === '8. CreateExternalStringAscii') {
                   // [Start ark_napi_create_external_string_ascii]
-                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s',
+                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_external_string_ascii:%{public}s',
                     testNapi.CreateExternalStringAscii());
                   // [End ark_napi_create_external_string_ascii]
                   this.result = 'CreateExternalStringAscii tested';
