@@ -126,7 +126,7 @@ struct Index {
    * Obtains the object that supports the specified camera device.
    */
   getSupportedCamerasFn(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
-    let supportedCameras: Array<camera.CameraDevice> = [];
+    let supportedCameras: camera.CameraDevice[] = [];
     try {
       supportedCameras = cameraManager.getSupportedCameras();
       for (let i = 0; i < supportedCameras.length; i++) {

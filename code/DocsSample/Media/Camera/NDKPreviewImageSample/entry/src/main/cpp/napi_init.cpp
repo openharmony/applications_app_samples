@@ -38,7 +38,7 @@ static uint32_t g_imageHeight = 0;                 // 全局变量，存储相�
 static std::string g_xComponentSurfaceId = "";      // 存储JS侧XComponentId主图
 static std::string g_xComponentSurfaceIdSlave = ""; // 存储JS侧XComponentId主图
 static uint32_t g_jpegComponent = 2000;
-static NDKCamera *ndkCamera_ = nullptr;
+static NDKCamera *g_ndkCamera = nullptr;
 bool g_isFirstBuffer = true;
 const uint32_t ALIGNMENT = 16;
 const int32_t ARGS_TWO = 2;
@@ -59,11 +59,11 @@ static napi_value ReleaseCamera(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    ndkCamera_->ReleaseCamera();
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        delete ndkCamera_;
-        ndkCamera_ = nullptr;
+    g_ndkCamera->ReleaseCamera();
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        delete g_ndkCamera;
+        g_ndkCamera = nullptr;
     }
     OH_LOG_ERROR(LOG_APP, "ReleaseCamera End");
     napi_create_int32(env, argc, &result);
@@ -84,7 +84,7 @@ void copyBuffer(OH_NativeBuffer *srcBuffer, size_t srcSize, OHNativeWindowBuffer
 
     void *mappedAddr =
         mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
-    memcpy(static_cast<unsigned char *>(mappedAddr), static_cast<unsigned char *>(srcVir), srcSize);
+    std::memcpy(static_cast<unsigned char *>(mappedAddr), static_cast<unsigned char *>(srcVir), srcSize);
     munmap(mappedAddr, bufferHandle->size);
 
     OH_NativeBuffer_Unmap(srcBuffer);
@@ -270,10 +270,10 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
         "InitCamera previewSurfaceId:%{public}s videoSurfaceId:%{public}s sceneMode:%{public}d "
         "cameraPosition:%{public}d",
         previewSurfaceId, videoSurfaceId, sceneMode, cameraPosition);
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        delete ndkCamera_;
-        ndkCamera_ = nullptr;
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        delete g_ndkCamera;
+        g_ndkCamera = nullptr;
     }
 
     g_imageWidth = PREVIEW_WIDTH;
@@ -284,66 +284,14 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     g_isFirstBuffer = true;
     InitImageReceiver(receiverSurfaceID);
     std::string surfaceIdSlaveStr = std::to_string(receiverSurfaceID);
-    ndkCamera_ = new NDKCamera(const_cast<char *>(g_xComponentSurfaceId.c_str()), videoSurfaceId,
+    g_ndkCamera = new NDKCamera(const_cast<char *>(g_xComponentSurfaceId.c_str()), videoSurfaceId,
         static_cast<Camera_SceneMode>(sceneMode), static_cast<Camera_Position>(cameraPosition),
         const_cast<char *>(surfaceIdSlaveStr.c_str()));
     g_isFront = (cameraPosition == 2); // 2是前置镜头camera_postion_front
-    previewRotation = ndkCamera_->GetPreviewRotation(g_displayRotation);
+    previewRotation = g_ndkCamera->GetPreviewRotation(g_displayRotation);
     OH_LOG_ERROR(LOG_APP, "InitCamera End");
     napi_create_int32(env, argc, &result);
     return result;
-}
-
-struct Capture_Setting {
-    int32_t quality;
-    int32_t rotation;
-    int32_t location;
-    bool mirror;
-    int32_t latitude;
-    int32_t longitude;
-    int32_t altitude;
-};
-
-static napi_value GetCaptureParam(napi_env env, napi_value captureConfigValue, Capture_Setting *config)
-{
-    napi_value value = nullptr;
-    napi_get_named_property(env, captureConfigValue, "quality", &value);
-    napi_get_value_int32(env, value, &config->quality);
-
-    napi_get_named_property(env, captureConfigValue, "rotation", &value);
-    napi_get_value_int32(env, value, &config->rotation);
-
-    napi_get_named_property(env, captureConfigValue, "mirror", &value);
-    napi_get_value_bool(env, value, &config->mirror);
-
-    napi_get_named_property(env, captureConfigValue, "latitude", &value);
-    napi_get_value_int32(env, value, &config->latitude);
-
-    napi_get_named_property(env, captureConfigValue, "longitude", &value);
-    napi_get_value_int32(env, value, &config->longitude);
-
-    napi_get_named_property(env, captureConfigValue, "altitude", &value);
-    napi_get_value_int32(env, value, &config->altitude);
-
-    OH_LOG_INFO(LOG_APP,
-        "get quality %{public}d, rotation %{public}d, mirror %{public}d, latitude "
-        "%{public}d, longitude %{public}d, altitude %{public}d",
-        config->quality, config->rotation, config->mirror, config->latitude, config->longitude, config->altitude);
-    return 0;
-}
-
-static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting *photoSetting, Camera_Location *location)
-{
-    if (photoSetting == nullptr || location == nullptr) {
-        OH_LOG_INFO(LOG_APP, "photoSetting is null");
-    }
-    photoSetting->quality = static_cast<Camera_QualityLevel>(settings.quality);
-    photoSetting->rotation = static_cast<Camera_ImageRotation>(settings.rotation);
-    photoSetting->mirror = settings.mirror;
-    location->altitude = settings.altitude;
-    location->latitude = settings.latitude;
-    location->longitude = settings.longitude;
-    photoSetting->location = location;
 }
 
 static napi_value TakePicture(napi_env env, napi_callback_info info)
@@ -356,7 +304,7 @@ static napi_value TakePicture(napi_env env, napi_callback_info info)
     napi_value result;
     int rotation = 0;
     napi_status status = napi_get_value_int32(env, js_value, &rotation);
-    Camera_ErrorCode ret = ndkCamera_->TakePicture(rotation);
+    Camera_ErrorCode ret = g_ndkCamera->TakePicture(rotation);
     OH_LOG_ERROR(LOG_APP, "TakePicture result is %{public}d, rotation is %{public}d", ret, rotation);
     napi_create_int32(env, ret, &result);
     return result;
@@ -370,7 +318,7 @@ static napi_value SaveCurPhoto(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     napi_value result;
-    Camera_ErrorCode ret = ndkCamera_->SaveCurPhoto();
+    Camera_ErrorCode ret = g_ndkCamera->SaveCurPhoto();
     OH_LOG_ERROR(LOG_APP, "SaveCurPhoto result is %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
@@ -438,7 +386,7 @@ static napi_value SetBufferCb(napi_env env, napi_callback_info info)
     } else {
         OH_LOG_ERROR(LOG_APP, "SetBufferCb callbackRef is null");
     }
-    ndkCamera_->RegisterBufferCb(reinterpret_cast<void *>(BufferCb));
+    g_ndkCamera->RegisterBufferCb(reinterpret_cast<void *>(BufferCb));
     return result;
 }
 
@@ -640,7 +588,7 @@ static napi_value SetFoldCb(napi_env env, napi_callback_info info)
     } else {
         OH_LOG_ERROR(LOG_APP, "SetFoldCb callbackRef is null");
     }
-    ndkCamera_->RegisterFoldCb(reinterpret_cast<void *>(FoldCb));
+    g_ndkCamera->RegisterFoldCb(reinterpret_cast<void *>(FoldCb));
     return result;
 }
 
@@ -657,10 +605,10 @@ static napi_value UpdateRotateForCamera(napi_env env, napi_callback_info info)
     napi_status status = napi_get_value_int32(env, js_value, &rotation);
     OH_LOG_ERROR(LOG_APP, "UpdateRotate rotation:%{public}d", rotation);
     g_displayRotation = rotation;
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        ndkCamera_->UpdateRotateForCamera(rotation);
-        previewRotation = ndkCamera_->GetPreviewRotation(g_displayRotation);
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        g_ndkCamera->UpdateRotateForCamera(rotation);
+        previewRotation = g_ndkCamera->GetPreviewRotation(g_displayRotation);
     }
     return result;
 }
@@ -679,10 +627,10 @@ static napi_value GetVideoRotation(napi_env env, napi_callback_info info)
     OH_LOG_ERROR(LOG_APP, "GetVideoRotation deviceDegree:%{public}d", deviceDegree);
 
     int32_t videoRotation = 0; // 用于保存视频旋转角度
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        // 调用 ndkCamera_ 获取视频旋转角度
-        videoRotation = ndkCamera_->GetVideoRotation(deviceDegree);
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        // 调用 g_ndkCamera 获取视频旋转角度
+        videoRotation = g_ndkCamera->GetVideoRotation(deviceDegree);
     }
     // 创建一个返回的 napi_value，将 videoRotation 转换为 JavaScript 中的整数
     napi_create_int32(env, videoRotation, &result);
@@ -704,9 +652,9 @@ static napi_value StartVideoOutput(napi_env env, napi_callback_info info)
     napi_status status =
         napi_get_value_string_utf8(env, argv[0], videoSurfaceId, sizeof(videoSurfaceId), &surfaceIdLen);
     OH_LOG_ERROR(LOG_APP, "StartVideoOutput");
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        ndkCamera_->VideoOutputStart(videoSurfaceId);
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        g_ndkCamera->VideoOutputStart(videoSurfaceId);
     }
     return result;
 }
@@ -723,9 +671,9 @@ static napi_value StopVideoOutput(napi_env env, napi_callback_info info)
     int32_t deviceDegree = 0;
     napi_status status = napi_get_value_int32(env, js_value, &deviceDegree);
     OH_LOG_ERROR(LOG_APP, "StopVideoOutput");
-    if (ndkCamera_) {
-        OH_LOG_ERROR(LOG_APP, "ndkCamera_ is not null");
-        ndkCamera_->VideoOutputStop();
+    if (g_ndkCamera) {
+        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
+        g_ndkCamera->VideoOutputStop();
     }
     return result;
 }

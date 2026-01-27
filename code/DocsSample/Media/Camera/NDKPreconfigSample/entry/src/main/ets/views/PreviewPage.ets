@@ -21,8 +21,8 @@ import cameraDemo from 'libentry.so';
 
 
 class RouTmp {
-  uri: string = ''
-  pixelMap:PixelMap | undefined = undefined
+  private uri: string = ''
+  private pixelMap:PixelMap | undefined = undefined
 
 }
 @Entry
