@@ -17,7 +17,6 @@
 #define COMMON_EVENT_UNSUBSCRIBE_H
 
 // [Start event_unsubscriber_import]
-#include <cstdint>
 #include "hilog/log.h"
 #include "BasicServicesKit/oh_commonevent.h"
 // [End event_unsubscriber_import]

@@ -39,6 +39,10 @@ std::vector<std::string> g_publishedEvents;
 napi_value NAPI_CreateSubscribeInfo(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 创建订阅者信息
     const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
     int32_t eventsNum = 2;
@@ -56,7 +60,7 @@ napi_value NAPI_DestroySubscribeInfo(napi_env env, napi_callback_info info)
 {
     napi_value result;
     napi_status status;
-
+    
     size_t argc = 0;
     napi_value argv[0];
     status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
@@ -123,6 +127,10 @@ napi_value NAPI_DestroySubscriber(napi_env env, napi_callback_info info)
 napi_value NAPI_GetSubscribeInfoState(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
     napi_get_boolean(env, (g_subscribeInfo != nullptr), &result);
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscribeInfoState success");
     return result;
@@ -131,6 +139,10 @@ napi_value NAPI_GetSubscribeInfoState(napi_env env, napi_callback_info info)
 napi_value NAPI_GetSubscriberState(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
     napi_get_boolean(env, (g_subscriber != nullptr), &result);
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscriberState success");
     return result;
@@ -139,6 +151,10 @@ napi_value NAPI_GetSubscriberState(napi_env env, napi_callback_info info)
 napi_value NAPI_GetSubscribeState(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
     napi_get_boolean(env, g_isSubscribed, &result);
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscribeState success");
     return result;
@@ -147,6 +163,10 @@ napi_value NAPI_GetSubscribeState(napi_env env, napi_callback_info info)
 napi_value NAPI_GetPublishedEvents(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
     napi_create_array(env, &result);
 
     uint32_t index = 0;
@@ -339,7 +359,9 @@ napi_value NAPI_ClearAllStates(napi_env env, napi_callback_info info)
 napi_value NAPI_SetPublishInfo(napi_env env, napi_callback_info info)
 {
     napi_value result;
-
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     const char *bundleName = "com.samples.commoneventpublish";
     const char *permissions[] = {};
     int32_t num = 0;
@@ -358,6 +380,9 @@ napi_value NAPI_DestroyPublishInfo(napi_env env, napi_callback_info info)
 {
     napi_value result;
     int32_t ret = -1;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     // 创建publishInfo，设置是否为有序公共事件，取值为true，表示有序公共事件；取值为false，表示无序公共事件
     CommonEvent_PublishInfo *publishInfo = OH_CommonEvent_CreatePublishInfo(true);
@@ -376,6 +401,9 @@ napi_value NAPI_DestroyPublishInfo(napi_env env, napi_callback_info info)
 napi_value NAPI_GetParameters(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     const CommonEvent_RcvData *data;
     ::GetParameters(data);
@@ -399,6 +427,9 @@ napi_value NAPI_GetParameters(napi_env env, napi_callback_info info)
 napi_value NAPI_SetToSubscriber(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
     int32_t eventsNum = 2;
@@ -419,6 +450,9 @@ napi_value NAPI_SetToSubscriber(napi_env env, napi_callback_info info)
 napi_value NAPI_GetFromSubscriber(napi_env env, napi_callback_info info)
 {
     napi_value result;
+    size_t argc = 1;
+    napi_value args[1] = { nullptr };
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     const char *events[] = {"usual.event.TEST", "usual.event.SCREEN_ON"};
     int32_t eventsNum = 2;
