@@ -159,7 +159,7 @@ struct Index {
 
   async requestCameraPermission(context: common.UIAbilityContext) {
     const atManager = abilityAccessCtrl.createAtManager();
-    const permissions: Array<Permissions> = ['ohos.permission.CAMERA'];
+    const permissions: Permissions[] = ['ohos.permission.CAMERA'];
     try {
       const result = await atManager.requestPermissionsFromUser(context, permissions);
       if (result.authResults[0] === 0) {
