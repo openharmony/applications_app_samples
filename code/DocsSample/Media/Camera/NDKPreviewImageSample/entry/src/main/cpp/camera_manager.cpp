@@ -21,101 +21,12 @@
 namespace OHOS_CAMERA_NDK_SAMPLE {
 static void *g_foldCb = nullptr;
 const int32_t NUM_FIVE = 5;
-const int32_t NUM_480 = 480;
-const int32_t NUM_640 = 640;
 const int32_t NUM_720 = 720;
 const int32_t NUM_1080 = 1080;
-const int32_t NUM_1280 = 1280;
-const int32_t NUM_1440 = 1440;
 const int32_t NUM_1920 = 1920;
-const int32_t NUM_2160 = 2160;
-const int32_t NUM_2304 = 2304;
 const int32_t NUM_3072 = 3072;
-const int32_t NUM_3120 = 3120;
 const int32_t NUM_4096 = 4096;
 const int32_t FRAME_MAX = 30;
-
-void NDKCamera::UpdateProfiles()
-{
-    OH_LOG_INFO(LOG_APP, "UpdateProfiles profileNum:%{public}d ratio:%{public}d", profileNum_, ratio_);
-    switch (ratio_) {
-        case RATIO1_1:
-            if (profileNum_ == NUM_720) {
-                previewWidth_ = NUM_720;
-                previewHeight_ = NUM_720;
-                photoWidth_ = NUM_720;
-                photoHeight_ = NUM_720;
-                videoWidth_ = NUM_720;
-                videoHeight_ = NUM_720;
-            } else if (profileNum_ == NUM_1080) {
-                previewWidth_ = NUM_1080;
-                previewHeight_ = NUM_1080;
-                photoWidth_ = NUM_1080;
-                photoHeight_ = NUM_1080;
-                videoWidth_ = NUM_1080;
-                videoHeight_ = NUM_1080;
-            } else if (profileNum_ == NUM_4096) {
-                previewWidth_ = NUM_1080;
-                previewHeight_ = NUM_1080;
-                photoWidth_ = NUM_2160;
-                photoHeight_ = NUM_2160;
-                videoWidth_ = NUM_3120;
-                videoHeight_ = NUM_3120;
-            }
-        case RATIO4_3:
-            if (profileNum_ == NUM_720) {
-                previewWidth_ = NUM_640;
-                previewHeight_ = NUM_480;
-                photoWidth_ = NUM_640;
-                photoHeight_ = NUM_480;
-                videoWidth_ = NUM_640;
-                videoHeight_ = NUM_480;
-            } else if (profileNum_ == NUM_1080) {
-                previewWidth_ = NUM_1920;
-                previewHeight_ = NUM_1440;
-                photoWidth_ = NUM_1920;
-                photoHeight_ = NUM_1440;
-                videoWidth_ = NUM_1920;
-                videoHeight_ = NUM_1440;
-            } else if (profileNum_ == NUM_4096) {
-                previewWidth_ = NUM_1920;
-                previewHeight_ = NUM_1440;
-                photoWidth_ = NUM_4096;
-                photoHeight_ = NUM_3072;
-                videoWidth_ = NUM_4096;
-                videoHeight_ = NUM_3072;
-            }
-        case RATIO16_9:
-            if (profileNum_ == NUM_720) {
-                previewWidth_ = NUM_1280;
-                previewHeight_ = NUM_720;
-                photoWidth_ = NUM_1280;
-                photoHeight_ = NUM_720;
-                videoWidth_ = NUM_1280;
-                videoHeight_ = NUM_720;
-            } else if (profileNum_ == NUM_1080) {
-                previewWidth_ = NUM_1280;
-                previewHeight_ = NUM_720;
-                photoWidth_ = NUM_1920;
-                photoHeight_ = NUM_1080;
-                videoWidth_ = NUM_1920;
-                videoHeight_ = NUM_1080;
-            } else if (profileNum_ == NUM_4096) {
-                previewWidth_ = NUM_1280;
-                previewHeight_ = NUM_720;
-                photoWidth_ = NUM_4096;
-                photoHeight_ = NUM_2304;
-                videoWidth_ = NUM_4096;
-                videoHeight_ = NUM_2304;
-            }
-        default: {
-        }
-            OH_LOG_INFO(LOG_APP,
-                "UpdateProfiles previewWidth:%{public}d previewHeight:%{public}d photoWidth:%{public}d "
-                "photoHeight:%{public}d videoWidth_%{public}d videoHeight:%{public}d",
-                previewWidth_, previewHeight_, photoWidth_, photoHeight_, videoWidth_, videoHeight_);
-    }
-}
 
 void NDKCamera::GetCameraDevice()
 {
@@ -156,25 +67,15 @@ NDKCamera::NDKCamera(char *previewSurfaceId, char *videoSurfaceId, Camera_SceneM
         OH_LOG_INFO(LOG_APP, "Get CameraManager failed.");
     }
     ret_ = OH_CameraManager_GetSupportedCameras(cameraManager_, &cameras_, &size_);
-    if (ret_ != CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
-    }
     GetCameraDevice();
     OH_LOG_INFO(LOG_APP, "cameraDeviceIndex:%{public}d", cameraDeviceIndex_);
     ret_ = OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(cameraManager_,
         &cameras_[cameraDeviceIndex_], sceneMode_, &cameraOutputCapability_);
-    if (ret_ != CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode failed.");
-    }
-    UpdateProfiles();
     ret = OH_CameraManager_CreateCaptureSession(cameraManager_, &captureSession_);
     if (captureSession_ == nullptr || ret != CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "Create captureSession failed.");
     }
     ret = OH_CaptureSession_SetSessionMode(captureSession_, sceneMode_);
-    if (ret_ != CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetSessionMode failed.");
-    }
 
     ret_ = OH_CameraManager_CreateCameraInput(cameraManager_, &cameras_[cameraDeviceIndex_], &cameraInput_);
     if (cameraInput_ == nullptr || ret_ != CAMERA_OK) {
@@ -184,127 +85,17 @@ NDKCamera::NDKCamera(char *previewSurfaceId, char *videoSurfaceId, Camera_SceneM
     if (ret_ != CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "CameraInput_Open failed.");
     }
-    for (int i = 0; i < cameraOutputCapability_->previewProfilesSize; i++) {
-        OH_LOG_INFO(LOG_APP, "CreatePreviewOutput width:%{public}d height:%{public}d format:%{public}d",
-            cameraOutputCapability_->previewProfiles[i]->size.width,
-            cameraOutputCapability_->previewProfiles[i]->size.height,
-            cameraOutputCapability_->previewProfiles[i]->format);
-    }
 
     if (sceneMode_ == NORMAL_PHOTO) {
-        OH_LOG_INFO(LOG_APP, "NDKCamera NORMAL_PHOTO");
-        previewProfile_ = cameraOutputCapability_->previewProfiles[0];
-        previewProfile_->size.width = NUM_1920;
-        previewProfile_->size.height = NUM_1080;
-        previewProfile_->format = CAMERA_FORMAT_YUV_420_SP;
-        ret_ =
-            OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceId_, &previewOutput_);
-        if (previewOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
-        }
-        ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceSlaveId_,
-            &previewSlaveOutput_);
-        if (previewSlaveOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
-        }
-        for (int i = 0; i < cameraOutputCapability_->photoProfilesSize; i++) {
-            OH_LOG_INFO(LOG_APP, "CreatePhotoOutput width:%{public}d height:%{public}d format:%{public}d",
-                cameraOutputCapability_->photoProfiles[i]->size.width,
-                cameraOutputCapability_->photoProfiles[i]->size.height,
-                cameraOutputCapability_->photoProfiles[i]->format);
-        }
-        photoProfile_ = cameraOutputCapability_->photoProfiles[0];
-        photoProfile_->size.width = NUM_1920;
-        photoProfile_->size.height = NUM_1080;
-        photoProfile_->format = CAMERA_FORMAT_JPEG;
-        ret_ = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager_, photoProfile_, &photoOutput_);
-        if (photoOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePhotoOutput failed.");
-        }
-        PhotoOutputRegisterPhotoAssetAvailableCallback();
+        CreatePreviewOutput();
+        CreatePhotoOutput();
     } else if (sceneMode_ == NORMAL_VIDEO) {
-        OH_LOG_INFO(LOG_APP, "NDKCamera NORMAL_VIDEO");
-        previewProfile_ = cameraOutputCapability_->previewProfiles[0];
-        previewProfile_->size.width = NUM_1920;
-        previewProfile_->size.height = NUM_1080;
-        previewProfile_->format = CAMERA_FORMAT_YUV_420_SP;
-        ret_ =
-            OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceId_, &previewOutput_);
-        if (previewOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
-        }
-        ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceSlaveId_,
-            &previewSlaveOutput_);
-        if (previewSlaveOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
-        }
-
-        photoProfile_ = cameraOutputCapability_->photoProfiles[0];
-        photoProfile_->size.width = NUM_1920;
-        photoProfile_->size.height = NUM_1080;
-        photoProfile_->format = CAMERA_FORMAT_JPEG;
-        ret_ = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager_, photoProfile_, &photoOutput_);
-        if (photoOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreatePhotoOutput failed.");
-        }
-        PhotoOutputRegisterPhotoAssetAvailableCallback();
-
-        for (int i = 0; i < cameraOutputCapability_->videoProfilesSize; i++) {
-            OH_LOG_INFO(LOG_APP,
-                "CreateVideoOutput width:%{public}d height:%{public}d format:%{public}d min:%{public}d max:%{public}d",
-                cameraOutputCapability_->videoProfiles[i]->size.width,
-                cameraOutputCapability_->videoProfiles[i]->size.height,
-                cameraOutputCapability_->videoProfiles[i]->format, cameraOutputCapability_->videoProfiles[i]->range.min,
-                cameraOutputCapability_->videoProfiles[i]->range.max);
-        }
-        videoProfile_ = cameraOutputCapability_->videoProfiles[0];
-        OH_LOG_INFO(LOG_APP, "NDKCamera 11.");
-        videoProfile_->size.width = NUM_1920;
-        videoProfile_->size.height = NUM_1080;
-        videoProfile_->format = CAMERA_FORMAT_YUV_420_SP;
-        videoProfile_->range.min = 1;
-        videoProfile_->range.max = FRAME_MAX;
-        ret_ = OH_CameraManager_CreateVideoOutput(cameraManager_, videoProfile_, videoSurfaceId_, &videoOutput_);
-        if (videoOutput_ == nullptr || ret_ != CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "CreateVideoOutput failed ret:%{public}d.", ret_);
-        }
+        CreatePreviewOutput();
+        CreatePhotoOutput();
+        CreateVideoOutput();
     }
-    ret = OH_CaptureSession_BeginConfig(captureSession_);
-    ret = OH_CaptureSession_AddInput(captureSession_, cameraInput_);
-    ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
-    ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewSlaveOutput_);
-    if (sceneMode_ == NORMAL_PHOTO) {
-        ret = OH_CaptureSession_AddPhotoOutput(captureSession_, photoOutput_);
-    } else if (sceneMode_ == NORMAL_VIDEO) {
-        ret = OH_CaptureSession_AddPhotoOutput(captureSession_, photoOutput_);
-        ret = OH_CaptureSession_AddVideoOutput(captureSession_, videoOutput_);
-    }
-    ret = OH_CaptureSession_CommitConfig(captureSession_);
-    if (sceneMode_ == NORMAL_VIDEO) {
-        bool isMirrorSupported = false;
-        ret = OH_VideoOutput_IsMirrorSupported(videoOutput_, &isMirrorSupported);
-        OH_LOG_INFO(LOG_APP, "VideoOutput IsMirrorSupported: %{public}d", isMirrorSupported);
-        if (isMirrorSupported) {
-            OH_VideoOutput_EnableMirror(videoOutput_, isMirrorSupported);
-        }
-    }
-    ret = OH_CaptureSession_Start(captureSession_);
-
-    OH_NativeBuffer_ColorSpace curColorSpace;
-    OH_CaptureSession_GetActiveColorSpace(captureSession_, &curColorSpace);
-    OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces curColorSpace1:%{public}d", curColorSpace);
-    OH_NativeBuffer_ColorSpace *colorSpace;
-    uint32_t size;
-    OH_CaptureSession_GetSupportedColorSpaces(captureSession_, &colorSpace, &size);
-    for (int i = 0; i < size; i++) {
-        OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces colorSpace:%{public}d", colorSpace[i]);
-        if (OH_COLORSPACE_BT2020_HLG_LIMIT == colorSpace[i]) {
-            OH_CaptureSession_SetActiveColorSpace(captureSession_, OH_COLORSPACE_BT2020_HLG_LIMIT);
-            OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces set video hdr!");
-        }
-    }
-    OH_CaptureSession_GetActiveColorSpace(captureSession_, &curColorSpace);
-    OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces curColorSpace2:%{public}d", curColorSpace);
+    SessionFlowFn();
+    SetColorSpace();
 }
 
 NDKCamera::~NDKCamera()
@@ -338,6 +129,101 @@ NDKCamera::~NDKCamera()
         cameraManager_ = nullptr;
     }
     OH_LOG_INFO(LOG_APP, "~NDKCamera exit");
+}
+
+Camera_ErrorCode NDKCamera::CreatePreviewOutput()
+{
+    previewProfile_ = cameraOutputCapability_->previewProfiles[0];
+    previewProfile_->size.width = NUM_1920;
+    previewProfile_->size.height = NUM_1080;
+    previewProfile_->format = CAMERA_FORMAT_YUV_420_SP;
+    ret_ =
+        OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceId_, &previewOutput_);
+    if (previewOutput_ == nullptr || ret_ != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
+    }
+    ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceSlaveId_,
+        &previewSlaveOutput_);
+    if (previewSlaveOutput_ == nullptr || ret_ != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "CreatePreviewOutput failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::CreatePhotoOutput()
+{
+    photoProfile_ = cameraOutputCapability_->photoProfiles[0];
+    photoProfile_->size.width = NUM_1920;
+    photoProfile_->size.height = NUM_1080;
+    photoProfile_->format = CAMERA_FORMAT_JPEG;
+    ret_ = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager_, photoProfile_, &photoOutput_);
+    if (photoOutput_ == nullptr || ret_ != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "CreatePhotoOutput failed.");
+    }
+    PhotoOutputRegisterPhotoAssetAvailableCallback();
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::CreateVideoOutput()
+{
+    videoProfile_ = cameraOutputCapability_->videoProfiles[0];
+    videoProfile_->size.width = NUM_1920;
+    videoProfile_->size.height = NUM_1080;
+    videoProfile_->format = CAMERA_FORMAT_YUV_420_SP;
+    videoProfile_->range.min = 1;
+    videoProfile_->range.max = FRAME_MAX;
+    ret_ = OH_CameraManager_CreateVideoOutput(cameraManager_, videoProfile_, videoSurfaceId_, &videoOutput_);
+    if (videoOutput_ == nullptr || ret_ != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "CreateVideoOutput failed ret:%{public}d.", ret_);
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::SessionFlowFn()
+{
+    OH_LOG_INFO(LOG_APP, "SessionFlowFn start.");
+    ret_ = OH_CaptureSession_BeginConfig(captureSession_);
+    ret_ = OH_CaptureSession_AddInput(captureSession_, cameraInput_);
+    ret_ = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
+    ret_ = OH_CaptureSession_AddPreviewOutput(captureSession_, previewSlaveOutput_);
+    if (sceneMode_ == NORMAL_PHOTO) {
+        ret_ = OH_CaptureSession_AddPhotoOutput(captureSession_, photoOutput_);
+    } else if (sceneMode_ == NORMAL_VIDEO) {
+        ret_ = OH_CaptureSession_AddPhotoOutput(captureSession_, photoOutput_);
+        ret_ = OH_CaptureSession_AddVideoOutput(captureSession_, videoOutput_);
+    }
+    ret_ = OH_CaptureSession_CommitConfig(captureSession_);
+    if (sceneMode_ == NORMAL_VIDEO) {
+        bool isMirrorSupported = false;
+        ret_ = OH_VideoOutput_IsMirrorSupported(videoOutput_, &isMirrorSupported);
+        OH_LOG_INFO(LOG_APP, "VideoOutput IsMirrorSupported: %{public}d", isMirrorSupported);
+        if (isMirrorSupported) {
+            OH_VideoOutput_EnableMirror(videoOutput_, isMirrorSupported);
+        }
+    }
+    ret_ = OH_CaptureSession_Start(captureSession_);
+    OH_LOG_INFO(LOG_APP, "SessionFlowFn end.");
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::SetColorSpace()
+{
+    OH_NativeBuffer_ColorSpace curColorSpace;
+    OH_CaptureSession_GetActiveColorSpace(captureSession_, &curColorSpace);
+    OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces curColorSpace1:%{public}d", curColorSpace);
+    OH_NativeBuffer_ColorSpace *colorSpace;
+    uint32_t size;
+    OH_CaptureSession_GetSupportedColorSpaces(captureSession_, &colorSpace, &size);
+    for (int i = 0; i < size; i++) {
+        OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces colorSpace:%{public}d", colorSpace[i]);
+        if (OH_COLORSPACE_BT2020_HLG_LIMIT == colorSpace[i]) {
+            OH_CaptureSession_SetActiveColorSpace(captureSession_, OH_COLORSPACE_BT2020_HLG_LIMIT);
+            OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces set video hdr!");
+        }
+    }
+    OH_CaptureSession_GetActiveColorSpace(captureSession_, &curColorSpace);
+    OH_LOG_INFO(LOG_APP, "GetSupportedColorSpaces curColorSpace2:%{public}d", curColorSpace);
+    return ret_;
 }
 
 Camera_ErrorCode NDKCamera::ReleaseCamera(void)

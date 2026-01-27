@@ -68,6 +68,11 @@ public:
     Camera_ErrorCode TakePicture(int rotation);
     Camera_ErrorCode SaveCurPhoto();
     Camera_ErrorCode ChangeSceneMode(Camera_SceneMode sceneMode);
+    Camera_ErrorCode CreatePreviewOutput();
+    Camera_ErrorCode CreatePhotoOutput();
+    Camera_ErrorCode CreateVideoOutput();
+    Camera_ErrorCode SessionFlowFn();
+    Camera_ErrorCode SetColorSpace();
     Camera_ErrorCode PhotoOutputRegisterPhotoAssetAvailableCallback(void);
     Camera_ErrorCode PhotoOutputUnRegisterPhotoAssetAvailableCallback(void);
     Camera_ErrorCode RegisterFoldCallback();
@@ -86,14 +91,6 @@ private:
         RATIO16_9,
     };
 
-    int32_t previewWidth_ = 0;
-    int32_t previewHeight_ = 0;
-    int32_t photoWidth_ = 0;
-    int32_t photoHeight_ = 0;
-    int32_t videoWidth_ = 0;
-    int32_t videoHeight_ = 0;
-
-    void  UpdateProfiles();
     void  GetCameraDevice();
     NDKCamera(const NDKCamera &) = delete;
     NDKCamera &operator=(const NDKCamera &) = delete;

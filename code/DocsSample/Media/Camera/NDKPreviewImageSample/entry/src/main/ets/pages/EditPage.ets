@@ -29,9 +29,9 @@ import { Constants } from '../common/Constants';
 const TAG = 'EditPage';
 
 class RequestImageParams {
-  private context: Context | undefined = undefined;
-  private photoAsset: photoAccessHelper.PhotoAsset | undefined = undefined;
-  private callback: Function = () => {
+  public context: Context | undefined = undefined;
+  public photoAsset: photoAccessHelper.PhotoAsset | undefined = undefined;
+  public callback: Function = () => {
   };
 }
 

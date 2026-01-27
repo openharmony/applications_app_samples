@@ -32,7 +32,7 @@ const OH_ImageSourceNative *imageSourceNaive;
 OH_MediaAssetManager *mediaAssetManager;
 MediaLibrary_RequestId g_requestId;
 MediaLibrary_RequestOptions requestOptions;
-const char *g_uri;
+const char *uri;
 char *g_mediaQualityCb;
 MediaLibrary_DeliveryMode g_deliveryMode = MEDIA_LIBRARY_BALANCED_MODE;
 
@@ -125,9 +125,6 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
         OH_LOG_INFO(LOG_APP,
             "Constructor: sceneMode %{public}d converted to sceneMode_=%{public}d", sceneMode, sceneMode_);
     }
-    OH_LOG_INFO(LOG_APP,
-        "Constructor received: preconfigMode=%{public}d, preconfigType=%{public}d, preconfigRatio=%{public}d",
-        preconfigMode, preconfigType, preconfigRatio);
 
     auto preconfigTypeItr = g_int32ToCameraPreconfigType.find(preconfigType);
     if (preconfigTypeItr != g_int32ToCameraPreconfigType.end()) {
@@ -145,8 +142,6 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
 
     // expect CAMERA_OK
     ret = OH_CaptureSession_SetSessionMode(captureSession_, sceneMode_);
-    OH_LOG_INFO(LOG_APP,
-        "OH_CaptureSession_SetSessionMode sceneMode_: %{public}d! ret code: %{public}d", sceneMode_, ret);
 
     CaptureSessionRegisterCallback();
     GetSupportedCameras();
@@ -375,31 +370,14 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     OH_LOG_INFO(LOG_APP, "session beginConfig.");
     Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession_);
 
-    isSuccess_ = false;
-    CanAddInput(&isSuccess_);
-    if (!isSuccess_) {
-        OH_LOG_INFO(LOG_APP, "NDKCamera::SessionFlowFn can not add input!");
-        return Camera_ErrorCode::CAMERA_OPERATION_NOT_ALLOWED;
-    }
-
     // Add CameraInput to the session
     OH_LOG_INFO(LOG_APP, "session addInput.");
     ret = OH_CaptureSession_AddInput(captureSession_, cameraInput_);
-
-    isSuccess_ = false;
-    CanAddPreviewOutput(&isSuccess_);
-    if (!isSuccess_) {
-        OH_LOG_INFO(LOG_APP, "NDKCamera::SessionFlowFn can not add preview output!");
-        return Camera_ErrorCode::CAMERA_OPERATION_NOT_ALLOWED;
-    }
 
     // Add previewOutput to the session
     OH_LOG_INFO(LOG_APP, "session add Preview Output.");
     ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
     if (sceneMode_ == Camera_SceneMode::NORMAL_VIDEO) {
-        if (videoOutput_ == nullptr) {
-            OH_LOG_INFO(LOG_APP, "videoOutput_ is nullptr");
-        }
         ret = OH_CaptureSession_AddVideoOutput(captureSession_, videoOutput_);
         bool isMirrorSupported = false;
         ret = OH_VideoOutput_IsMirrorSupported(videoOutput_, &isMirrorSupported);
@@ -413,9 +391,6 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
         }
         VideoOutputRegisterCallback();
     } else {
-        if (photoOutput_ == nullptr) {
-            OH_LOG_INFO(LOG_APP, "photoOutput_ is nullptr");
-        }
         ret = AddPhotoOutput();
     }
     
@@ -430,27 +405,11 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     // Start Session Work
     OH_LOG_INFO(LOG_APP, "session start");
     ret = OH_CaptureSession_Start(captureSession_);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "session success");
-    }
-
-    // Get and print active profiles after session started
-    OH_LOG_INFO(LOG_APP, "===== Getting Active Profiles =====");
-    GetActivePreviewOutputProfile();
-    if (photoOutput_&& sceneMode_ == Camera_SceneMode::NORMAL_PHOTO) {
-        GetActivePhotoOutputProfile();
-    }
-    if (videoOutput_ && sceneMode_ == Camera_SceneMode::NORMAL_VIDEO) {
-        GetActiveVideoOutputProfile();
-    }
 
     // Start focusing
-    OH_LOG_INFO(LOG_APP, "IsFocusMode start");
     ret = IsFocusMode(focusMode_);
-    OH_LOG_INFO(LOG_APP, "IsFocusMode success");
 
     // Start GetSupport
-    OH_LOG_INFO(LOG_APP, "GetSupportedFrameRates start");
     const uint32_t maxFrameRateRanges = 10;
     Camera_FrameRateRange *frameRateRange =
         (Camera_FrameRateRange *)malloc(sizeof(Camera_FrameRateRange) * maxFrameRateRanges);
@@ -1576,11 +1535,11 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetGetUri(OH_MediaAsset *mediaAsset)
 {
     OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri start!");
     const char *uri = nullptr;
-    result = OH_MediaAsset_GetUri(mediaAsset, &g_uri);
-    if (g_uri == nullptr || result != MEDIA_LIBRARY_OK) {
+    result = OH_MediaAsset_GetUri(mediaAsset, &uri);
+    if (uri == nullptr || result != MEDIA_LIBRARY_OK) {
         OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri failed.");
     }
-    OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri uri: %{public}s", g_uri);
+    OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri uri: %{public}s", uri);
     OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
     return result;
 }
@@ -1790,8 +1749,8 @@ void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaL
         g_mediaQualityCb = "high";
         qCb(g_mediaQualityCb);
     }
-    OH_LOG_INFO(LOG_APP, "OnRequsetImageDataPreparedWithDetails GetUri g_uri = %{public}s", g_uri);
-    cb(const_cast<char *>(g_uri));
+    OH_LOG_INFO(LOG_APP, "OnRequsetImageDataPreparedWithDetails GetUri uri = %{public}s", uri);
+    cb(const_cast<char *>(uri));
     NDKCamera::ChangeRequestAddResourceWithBuffer(imageSourceNative);
     return;
 }

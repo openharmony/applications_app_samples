@@ -224,54 +224,24 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     size_t argc = 5;
     napi_value argv[5];
     napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to get arguments");
-        return nullptr;
-    }
     char previewSurfaceId[256];
     size_t surfaceIdLen;
     status = napi_get_value_string_utf8(env, argv[0], previewSurfaceId, sizeof(previewSurfaceId), &surfaceIdLen);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to convert surfaceId to string");
-        return nullptr;
-    }
-
     char previewSurfaceIdSlave[256];
     status =
         napi_get_value_string_utf8(env, argv[1], previewSurfaceIdSlave, sizeof(previewSurfaceIdSlave), &surfaceIdLen);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to convert surfaceId to string");
-        return nullptr;
-    }
 
     char videoSurfaceId[256];
     status = napi_get_value_string_utf8(env, argv[ARGS_TWO], videoSurfaceId, sizeof(videoSurfaceId), &surfaceIdLen);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to convert surfaceId to string");
-        return nullptr;
-    }
 
     int32_t sceneMode = 0;
     status = napi_get_value_int32(env, argv[ARGS_THREE], &sceneMode);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to convert sceneMode to int32");
-        return nullptr;
-    }
 
     int32_t cameraPosition = 0;
     status = napi_get_value_int32(env, argv[ARGS_FOUR], &cameraPosition);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to convert sceneMode to int32");
-        return nullptr;
-    }
 
     napi_value result;
-    OH_LOG_ERROR(LOG_APP,
-        "InitCamera previewSurfaceId:%{public}s videoSurfaceId:%{public}s sceneMode:%{public}d "
-        "cameraPosition:%{public}d",
-        previewSurfaceId, videoSurfaceId, sceneMode, cameraPosition);
     if (g_ndkCamera) {
-        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }
@@ -442,133 +412,138 @@ static Camera_FoldStatusInfo *DeepCopyFoldStatusInfo(Camera_FoldStatusInfo *src)
     return dst;
 }
 
-// 释放复制的数据
-static void FreeFoldStatusInfo(Camera_FoldStatusInfo *data)
+static napi_value CreateJsCameraObject(napi_env env, Camera_Device *camera, uint32_t index)
 {
-    if (data == nullptr) {
+    if (camera == nullptr) {
+        return nullptr;
+    }
+
+    napi_value cameraObject;
+    napi_create_object(env, &cameraObject);
+
+    // 相机ID
+    napi_value jsCameraId;
+    napi_create_string_utf8(env, camera->cameraId, NAPI_AUTO_LENGTH, &jsCameraId);
+    napi_set_named_property(env, cameraObject, "cameraId", jsCameraId);
+
+    // 相机位置
+    napi_value jsCameraPosition;
+    napi_create_int32(env, camera->cameraPosition, &jsCameraPosition);
+    napi_set_named_property(env, cameraObject, "cameraPosition", jsCameraPosition);
+
+    // 相机类型
+    napi_value jsCameraType;
+    napi_create_int32(env, camera->cameraType, &jsCameraType);
+    napi_set_named_property(env, cameraObject, "cameraType", jsCameraType);
+
+    // 连接类型
+    napi_value jsConnectionType;
+    napi_create_int32(env, camera->connectionType, &jsConnectionType);
+    napi_set_named_property(env, cameraObject, "connectionType", jsConnectionType);
+
+    // 索引
+    napi_value jsIndex;
+    napi_create_uint32(env, index, &jsIndex);
+    napi_set_named_property(env, cameraObject, "index", jsIndex);
+
+    return cameraObject;
+}
+
+static napi_value CreateFoldStatusJsObject(napi_env env, Camera_FoldStatusInfo *foldData)
+{
+    napi_value jsObject;
+    napi_create_object(env, &jsObject);
+
+    // cameraSize属性
+    napi_value jsCameraSize;
+    napi_create_uint32(env, foldData->cameraSize, &jsCameraSize);
+    napi_set_named_property(env, jsObject, "cameraSize", jsCameraSize);
+
+    // foldStatus属性
+    napi_value jsFoldStatus;
+    napi_create_int32(env, foldData->foldStatus, &jsFoldStatus);
+    napi_set_named_property(env, jsObject, "foldStatus", jsFoldStatus);
+
+    // 创建相机数组
+    napi_value jsCamerasArray;
+    napi_create_array_with_length(env, foldData->cameraSize, &jsCamerasArray);
+
+    if (foldData->supportedCameras != nullptr) {
+        for (uint32_t i = 0; i < foldData->cameraSize; i++) {
+            Camera_Device *camera = foldData->supportedCameras[i];
+            if (camera == nullptr) {
+                continue;
+            }
+            napi_value cameraObject = CreateJsCameraObject(env, camera, i);
+            if (cameraObject != nullptr) {
+                napi_set_element(env, jsCamerasArray, i, cameraObject);
+            }
+        }
+    }
+
+    napi_set_named_property(env, jsObject, "supportedCameras", jsCamerasArray);
+    return jsObject;
+}
+
+static void FoldAsyncComplete(napi_env env, napi_status status, void *data)
+{
+    Camera_FoldStatusInfo *foldData = static_cast<Camera_FoldStatusInfo *>(data);
+    if (foldData == nullptr) {
         return;
     }
 
-    // 释放相机数组
-    if (data->supportedCameras != nullptr) {
-        for (uint32_t i = 0; i < data->cameraSize; i++) {
-            if (data->supportedCameras[i] != nullptr) {
-                // 释放 cameraId 字符串
-                if (data->supportedCameras[i]->cameraId != nullptr) {
-                    delete[] data->supportedCameras[i]->cameraId;
-                }
-                // 释放 Camera_Device 结构体
-                delete data->supportedCameras[i];
-            }
-        }
-        // 释放相机指针数组
-        delete[] data->supportedCameras;
+    OH_LOG_ERROR(LOG_APP, "FoldCb foldData! cameraSize: %{public}u, foldStatus: %{public}d", foldData->cameraSize,
+        foldData->foldStatus);
+    napi_value callback = nullptr;
+    napi_get_reference_value(env, foldCbRef_, &callback);
+
+    if (callback == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "FoldCb callback is null");
+        return;
     }
 
-    // 释放主结构体
-    delete data;
+    OH_LOG_ERROR(LOG_APP, "FoldCb callback is full");
+
+    napi_value jsObject = CreateFoldStatusJsObject(env, foldData);
+
+    napi_value retVal;
+    napi_call_function(env, nullptr, callback, 1, &jsObject, &retVal);
+}
+
+static bool CreateFoldAsyncWork(napi_env env, Camera_FoldStatusInfo *copyData)
+{
+    napi_value asyncResourceName;
+    napi_create_string_utf8(env, "FoldCb", NAPI_AUTO_LENGTH, &asyncResourceName);
+
+    napi_async_work work;
+    napi_status status = napi_create_async_work(
+        env, nullptr, asyncResourceName,
+        [](napi_env env, void *data) {},
+        FoldAsyncComplete,
+        copyData, &work);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Failed to create async work");
+        return false;
+    }
+
+    napi_queue_async_work_with_qos(env, work, napi_qos_user_initiated);
+    return true;
 }
 
 static void FoldCb(Camera_FoldStatusInfo *foldStatusInfo)
 {
     OH_LOG_ERROR(LOG_APP, "FoldCb start! cameraSize: %{public}u, foldStatus: %{public}d", foldStatusInfo->cameraSize,
         foldStatusInfo->foldStatus);
-    napi_value asyncResource = nullptr;
-    napi_value asyncResourceName = nullptr;
-    napi_async_work work;
-    for (uint32_t i = 0; i < foldStatusInfo->cameraSize; i++) {
-        if (foldStatusInfo->supportedCameras[i] != nullptr) {
-            OH_LOG_ERROR(LOG_APP, "FoldCb foldStatusInfo supportedCameras is not null %{public}d", i);
-            OH_LOG_INFO(LOG_APP, "FoldStatus camera %{public}s", foldStatusInfo->supportedCameras[i]->cameraId);
-        } else {
-            OH_LOG_ERROR(LOG_APP, "FoldCb foldStatusInfo supportedCameras is null %{public}d", i);
-        }
-    }
     Camera_FoldStatusInfo *copyData = DeepCopyFoldStatusInfo(foldStatusInfo);
-    for (uint32_t i = 0; i < copyData->cameraSize; i++) {
-        if (copyData->supportedCameras[i] != nullptr) {
-            OH_LOG_ERROR(LOG_APP, "FoldCb copyData supportedCameras is not null %{public}d", i);
-            OH_LOG_INFO(LOG_APP, "FoldStatus camera %{public}s", copyData->supportedCameras[i]->cameraId);
-        } else {
-            OH_LOG_ERROR(LOG_APP, "FoldCb copyData supportedCameras is null %{public}d", i);
-        }
-    }
-
-    napi_create_string_utf8(env_, "FoldCb", NAPI_AUTO_LENGTH, &asyncResourceName);
-
-    napi_status status = napi_create_async_work(
-        env_, asyncResource, asyncResourceName, [](napi_env env, void *data) {},
-        [](napi_env env, napi_status status, void *data) {
-            Camera_FoldStatusInfo *foldData = static_cast<Camera_FoldStatusInfo *>(data);
-            OH_LOG_ERROR(LOG_APP, "FoldCb foldData! cameraSize: %{public}u, foldStatus: %{public}d",
-                foldData->cameraSize, foldData->foldStatus);
-            for (uint32_t i = 0; i < foldData->cameraSize; i++) {
-                if (foldData->supportedCameras[i] != nullptr) {
-                    OH_LOG_ERROR(LOG_APP, "FoldCb foldData supportedCameras is not null %{public}d", i);
-                    OH_LOG_INFO(LOG_APP, "FoldStatus camera %{public}s", foldData->supportedCameras[i]->cameraId);
-                } else {
-                    OH_LOG_ERROR(LOG_APP, "FoldCb foldData supportedCameras is null %{public}d", i);
-                }
-            }
-            napi_value retVal;
-            napi_value callback = nullptr;
-            napi_get_reference_value(env, foldCbRef_, &callback);
-            if (callback) {
-                OH_LOG_ERROR(LOG_APP, "FoldCb callback is full");
-            } else {
-                OH_LOG_ERROR(LOG_APP, "FoldCb callback is null");
-            }
-            napi_value jsObject;
-            napi_create_object(env, &jsObject);
-            napi_value jsCameraSize;
-            napi_create_uint32(env, foldData->cameraSize, &jsCameraSize);
-            napi_set_named_property(env, jsObject, "cameraSize", jsCameraSize);
-            napi_value jsFoldStatus;
-            napi_create_int32(env, foldData->foldStatus, &jsFoldStatus);
-            napi_set_named_property(env, jsObject, "foldStatus", jsFoldStatus);
-
-            napi_value jsCamerasArray;
-            napi_create_array_with_length(env, foldData->cameraSize, &jsCamerasArray);
-            if (foldData->supportedCameras != nullptr) {
-                for (uint32_t i = 0; i < foldData->cameraSize; i++) {
-                    Camera_Device *camera = foldData->supportedCameras[i];
-                    OH_LOG_ERROR(LOG_APP, "FoldCb callback is 111111111111 %{public}s", camera->cameraId);
-                    napi_value cameraObject;
-                    napi_create_object(env, &cameraObject);
-
-                    napi_value jsCameraId;
-                    napi_create_string_utf8(env, camera->cameraId, NAPI_AUTO_LENGTH, &jsCameraId);
-                    napi_set_named_property(env, cameraObject, "cameraId", jsCameraId);
-
-                    napi_value jsCameraPosition;
-                    napi_create_int32(env, camera->cameraPosition, &jsCameraPosition);
-                    napi_set_named_property(env, cameraObject, "cameraPosition", jsCameraPosition);
-
-                    napi_value jsCameraType;
-                    napi_create_int32(env, camera->cameraType, &jsCameraType);
-                    napi_set_named_property(env, cameraObject, "cameraType", jsCameraType);
-
-                    napi_value jsConnectionType;
-                    napi_create_int32(env, camera->connectionType, &jsConnectionType);
-                    napi_set_named_property(env, cameraObject, "connectionType", jsConnectionType);
-
-                    napi_value jsIndex;
-                    napi_create_uint32(env, i, &jsIndex);
-                    napi_set_named_property(env, cameraObject, "index", jsIndex);
-                    napi_set_element(env, jsCamerasArray, i, cameraObject);
-                }
-            }
-            napi_set_named_property(env, jsObject, "supportedCameras", jsCamerasArray);
-
-            napi_call_function(env, nullptr, callback, 1, &jsObject, &retVal);
-        },
-        copyData, &work);
-    // 错误检查：创建异步工作失败时释放内存
-    if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "Failed to create async work");
+    if (copyData == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "DeepCopyFoldStatusInfo failed");
         return;
     }
-    napi_queue_async_work_with_qos(env_, work, napi_qos_user_initiated);
+
+    // 创建异步工作
+    if (!CreateFoldAsyncWork(env_, copyData)) {
+        OH_LOG_ERROR(LOG_APP, "CreateFoldAsyncWork failed");
+    }
 }
 
 static napi_value SetFoldCb(napi_env env, napi_callback_info info)

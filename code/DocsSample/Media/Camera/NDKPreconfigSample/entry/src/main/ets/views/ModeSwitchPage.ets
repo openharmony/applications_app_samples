@@ -445,7 +445,7 @@ export struct modeSwitchPage {
     }
     let imgPhotoUri: string = await accessHelper.createAsset(photoType, extension, options);
     //指定待保存到媒体库的位于应用沙箱的图片uri
-    let srcFileUris: Arraystring[] = [
+    let srcFileUris: string[] = [
       imgPhotoUri
     ];
     // 指定待保存照片的创建选项,包括文件后缀和照片类型,标题和照片子类型可选

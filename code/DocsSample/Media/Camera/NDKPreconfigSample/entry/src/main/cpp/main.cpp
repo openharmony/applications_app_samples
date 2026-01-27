@@ -135,14 +135,7 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     photoId = new char[typeLen + 1];
     napi_get_value_string_utf8(env, args[ARGS_NINE], photoId, typeLen + 1, &typeLen);
 
-    OH_LOG_ERROR(LOG_APP, "InitCamera focusMode : %{public}d, surfaceId : %{public}s", focusMode, surfaceId);
-    OH_LOG_ERROR(LOG_APP, "InitCamera DeviceIndex: %{public}d, sceneMode: %{public}d", cameraDeviceIndex, sceneMode);
-    OH_LOG_ERROR(LOG_APP, "InitCamera preconfigType : %{public}d", preconfigType);
-    OH_LOG_ERROR(LOG_APP, "InitCamera preconfigRatio : %{public}d", preconfigRatio);
-    OH_LOG_ERROR(LOG_APP, "InitCamera photoOutputType : %{public}d", photoOutputType);
-
     if (g_ndkCamera) {
-        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }

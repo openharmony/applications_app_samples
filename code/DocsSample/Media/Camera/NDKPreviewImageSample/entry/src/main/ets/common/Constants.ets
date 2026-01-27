@@ -17,170 +17,170 @@ export class Constants {
   /**
    * Surface height in xComponent.
    */
-  static public readonly X_COMPONENT_SURFACE_HEIGHT = 1920;
+  public static readonly X_COMPONENT_SURFACE_HEIGHT = 1920;
 
   /**
    * Surface width in xComponent.
    */
-  static public readonly X_COMPONENT_SURFACE_WIDTH = 1080;
+  public static readonly X_COMPONENT_SURFACE_WIDTH = 1080;
 
   /**
    * Border width in xComponent.
    */
-  static public readonly X_COMPONENT_BORDER_WIDTH = 0.5;
+  public static readonly X_COMPONENT_BORDER_WIDTH = 0.5;
 
   /**
    * Border width in capture button.
    */
-  static public readonly CAPTURE_BUTTON_BORDER_WIDTH = 3;
+  public static readonly CAPTURE_BUTTON_BORDER_WIDTH = 3;
 
   /**
    * Border radius size in capture button.
    */
-  static public readonly CAPTURE_BUTTON_BORDER_RADIUS = 70;
+  public static readonly CAPTURE_BUTTON_BORDER_RADIUS = 70;
 
   /**
    * Margins of the component.
    */
-  static public readonly CAPTURE_BUTTON_COLUMN_MARGIN = 24;
+  public static readonly CAPTURE_BUTTON_COLUMN_MARGIN = 24;
 
   /**
    * paddings of the component.
    */
-  static public readonly CAPTURE_BUTTON_COLUMN_PADDING = 24;
+  public static readonly CAPTURE_BUTTON_COLUMN_PADDING = 24;
 
   /**
    * size of the back icon.
    */
-  static public readonly BACK_ICON_SIZE = 24;
+  public static readonly BACK_ICON_SIZE = 24;
 
   /**
    * size of the back icon.
    */
-  static public readonly IMAGE_SIZE = 25;
+  public static readonly IMAGE_SIZE = 25;
 
   /**
    * Margins of the back icon.
    */
-  static public readonly BACK_ICON_MARGIN = 24;
+  public static readonly BACK_ICON_MARGIN = 24;
 
   /**
    * The full percentage of component.
    */
-  static public readonly FULL_PERCENT: string = '100%';
+  public static readonly FULL_PERCENT: string = '100%';
 
   /**
    * The Eighty-five percent of component.
    */
-  static public readonly EIGHTY_FIVE_PERCENT: string = '85%';
+  public static readonly EIGHTY_FIVE_PERCENT: string = '85%';
 
   /**
    * The Eighty percent of component.
    */
-  static public readonly EIGHTY_PERCENT: string = '80%';
+  public static readonly EIGHTY_PERCENT: string = '80%';
 
   /**
    * The seventy-five percent of the components.
    */
-  static public readonly SEVENTY_FIVE_PERCENT: string = '75%';
+  public static readonly SEVENTY_FIVE_PERCENT: string = '75%';
 
   /**
    * The seventy percent of the components.
    */
-  static public readonly SEVENTY_PERCENT: string = '70%';
+  public static readonly SEVENTY_PERCENT: string = '70%';
 
   /**
    * The forty percent of the components.
    */
-  static public readonly FORTY_PERCENT: string = '40%';
+  public static readonly FORTY_PERCENT: string = '40%';
 
   /**
    * The thirty percent of the components.
    */
-  static public readonly THIRTY_PERCENT: string = '30%';
+  public static readonly THIRTY_PERCENT: string = '30%';
 
   /**
    * The fifteen percent of the bottom of the margin.
    */
-  static public readonly FIFTEEN_PERCENT: string = '15%';
+  public static readonly FIFTEEN_PERCENT: string = '15%';
 
   /**
    * The ten percent of the bottom of the margin.
    */
-  static public readonly TEN_PERCENT: string = '10%';
+  public static readonly TEN_PERCENT: string = '10%';
 
   /**
    * The zero percent of the bottom of the margin.
    */
-  static public readonly ZERO_PERCENT: string = '0%';
+  public static readonly ZERO_PERCENT: string = '0%';
 
   /**
    * border radius.
    */
-  static public readonly TEXT_BORDER_RADIUS: number = 25;
+  public static readonly TEXT_BORDER_RADIUS: number = 25;
 
   /**
    * font size.
    */
-  static public readonly FONT_SIZE_14: number = 14;
+  public static readonly FONT_SIZE_14: number = 14;
 
   /**
    * column space.
    */
-  static public readonly COLUMN_SPACE_24: number = 24;
+  public static readonly COLUMN_SPACE_24: number = 24;
 
   /**
    * row space.
    */
-  static public readonly ROW_SPACE_24: number = 24;
+  public static readonly ROW_SPACE_24: number = 24;
 
   /**
    * default zoom ratio.
    */
-  static public readonly DEFAULT_ZOOM_RATIO: number = 1;
+  public static readonly DEFAULT_ZOOM_RATIO: number = 1;
 
   /**
    * border radius.
    */
-  static public readonly BORDER_RADIUS_14: number = 14;
+  public static readonly BORDER_RADIUS_14: number = 14;
 
   /**
    * capture Column width.
    */
-  static public readonly CAPTURE_COLUMN_WIDTH: number = 50;
+  public static readonly CAPTURE_COLUMN_WIDTH: number = 50;
 
   /**
    * capture Column width.
    */
-  static public readonly CAPTURE_ROW_HEIGHT: number = 28;
+  public static readonly CAPTURE_ROW_HEIGHT: number = 28;
 
   /**
    * AUDIO_BITRATE.
    */
-  static public readonly AUDIO_BITRATE: number = 48000;
+  public static readonly AUDIO_BITRATE: number = 48000;
 
   /**
    * AUDIO_CHANNELS.
    */
-  static public readonly AUDIO_CHANNELS: number = 2;
+  public static readonly AUDIO_CHANNELS: number = 2;
 
   /**
    * AUDIO_SAMPLE_RATE.
    */
-  static public readonly AUDIO_SAMPLE_RATE: number = 48000;
+  public static readonly AUDIO_SAMPLE_RATE: number = 48000;
 
   /**
    * VIDEO_BITRATE.
    */
-  static public readonly VIDEO_BITRATE: number = 8000000;
+  public static readonly VIDEO_BITRATE: number = 8000000;
 
   /**
    * VIDEO_FRAME.
    */
-  static public readonly MAX_VIDEO_FRAME: number = 60;
+  public static readonly MAX_VIDEO_FRAME: number = 60;
 
   /**
    * edit page.
    */
-  static public readonly EDIT_PAGE_NAME = 'EditPage';
+  public static readonly EDIT_PAGE_NAME = 'EditPage';
 };
