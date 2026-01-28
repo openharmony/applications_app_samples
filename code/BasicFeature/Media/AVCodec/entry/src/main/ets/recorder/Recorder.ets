@@ -131,8 +131,9 @@ function setColorSpaceBeforeCommitConfig(session: camera.VideoSession, isHdr: nu
 @Entry
 @Component
 export struct Recorder {
-  private START_RECORDER: string = '开始录制';
-  private STOP_RECORDER: string = '停止录制';
+  private START_RECORDER: string =
+    globalThis.context.resourceManager.getStringSync($r('app.string.start_recording').id);
+  private STOP_RECORDER: string = globalThis.context.resourceManager.getStringSync($r('app.string.end_recording').id);
   @State isRecorderTimeTextHide: boolean = true;
   @State buttonText: string = this.START_RECORDER;
   @State buttonEnabled: boolean = true;

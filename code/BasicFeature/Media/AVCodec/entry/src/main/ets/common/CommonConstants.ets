@@ -76,8 +76,18 @@ export class CommonConstants {
    * Video transform type.
    */
   public static readonly TRANSFORM_TYPE: string[] = [
-    '不旋转', '旋转90度', '旋转180度', '旋转270度', '水平翻转', '垂直翻转', '水平翻转并旋转90度', '垂直翻转并旋转90度',
-    '水平翻转并旋转180度', '垂直翻转并旋转180度', '水平翻转并旋转270度', '垂直翻转并旋转270度'
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_NONE').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_270').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT270').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT270').id)
   ];
   /**
    * Video playerInfo.

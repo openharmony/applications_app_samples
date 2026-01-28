@@ -41,7 +41,9 @@ export struct Player {
   private cameraData: CameraDataModel = new CameraDataModel();
   private selectFilePath: string | null = null;
   private display = display.getDefaultDisplaySync();
-  private sourcePath: string[] = ['从文件管理选取', '从图库选取'];
+  private sourcePath: string[] =
+    [globalThis.context.resourceManager.getStringSync($r('app.string.select_from_filemanager').id),
+      globalThis.context.resourceManager.getStringSync($r('app.string.select_from_album').id)];
 
   selectFile() {
     TextPickerDialog.show({
@@ -50,10 +52,10 @@ export struct Player {
       selected: 0,
       onAccept: (value: TextPickerResult) => {
         switch (value.value) {
-          case '从文件管理选取':
+          case globalThis.context.resourceManager.getStringSync($r('app.string.select_from_filemanager').id):
             this.selectDocFile();
             break;
-          case '从图库选取':
+          case globalThis.context.resourceManager.getStringSync($r('app.string.select_from_album').id):
             this.selectAlbumFile();
             break;
           default:
@@ -172,7 +174,7 @@ export struct Player {
 
   @Builder
   PlayerSettingButton() {
-    Button('设置')
+    Button($r('app.string.setting'))
       .size({
         width: '18.5%',
         height: $r('app.float.index_button_height')
@@ -186,8 +188,8 @@ export struct Player {
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
-          textStyle:({
-            font:({
+          textStyle: ({
+            font: ({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
@@ -254,7 +256,7 @@ export struct Player {
 
   @Builder
   RecorderSettingButton() {
-    Button('设置')
+    Button($r('app.string.setting'))
       .enabled(this.buttonEnabled)
       .size({
         width: '18.5%',
@@ -269,8 +271,8 @@ export struct Player {
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
-          textStyle:({
-            font:({
+          textStyle: ({
+            font: ({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
           }),
@@ -480,62 +482,72 @@ export struct Player {
                   backgroundBlurStyle: BlurStyle.BACKGROUND_ULTRA_THICK,
                   onAccept: (value: TextPickerResult) => {
                     switch (value.value) {
-                      case '不旋转': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_NONE')
+                        .id): {
                         this.transformType = 0;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '旋转90度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_90')
+                        .id): {
                         this.transformType = 1;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '旋转180度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_180')
+                        .id): {
                         this.transformType = 2;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '旋转270度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_270')
+                        .id): {
                         this.transformType = 3;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '水平翻转': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H').id): {
                         this.transformType = 4;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '垂直翻转': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V').id): {
                         this.transformType = 5;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '水平翻转并旋转90度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT90')
+                        .id): {
                         this.transformType = 6;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '垂直翻转并旋转90度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT90')
+                        .id): {
                         this.transformType = 7;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '水平翻转并旋转180度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT180')
+                        .id): {
                         this.transformType = 8;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '垂直翻转并旋转180度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT180')
+                        .id): {
                         this.transformType = 9;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '水平翻转并旋转270度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT270')
+                        .id): {
                         this.transformType = 10;
                         this.setTransform(this.transformType);
                         break;
                       }
-                      case '垂直翻转并旋转270度': {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT270')
+                        .id): {
                         this.transformType = 11;
                         this.setTransform(this.transformType);
                         break;
@@ -561,7 +573,7 @@ export struct Player {
             .enabled(this.buttonEnabled)
             .margin({ bottom: $r('app.float.button_margin_bottom') })
           Blank(5)
-          Button('倍速')
+          Button($r('app.string.adjust_playback_speed'))
             .enabled(!this.buttonEnabled)
             .size({
               width: '18.5%',
@@ -569,7 +581,7 @@ export struct Player {
             })
             .margin({ bottom: $r('app.float.button_margin_bottom') })
             .onClick(() => {
-              this.getUIContext().getPromptAction().showToast({ message: '播放时长按播放窗口也可倍速播放' });
+              this.getUIContext().getPromptAction().showToast({ message: $r('app.string.alert2') });
               TextPickerDialog.show({
                 defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
                 selectedTextStyle: ({
