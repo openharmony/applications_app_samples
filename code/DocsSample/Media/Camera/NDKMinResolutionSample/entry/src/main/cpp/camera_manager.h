@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,9 +41,18 @@
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
   public:
+    struct CameraBuildingConfig {
+        char *str;
+        uint32_t focusMode;
+        uint32_t cameraDeviceIndex;
+        uint32_t width;
+        uint32_t height;
+        char *videoId;
+        char *photoId;
+        Camera_SceneMode sceneMode;
+    };
     ~NDKCamera();
-NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t width, uint32_t height, char *videoId,
-          char *photoId, Camera_SceneMode sceneMode);
+    explicit NDKCamera(CameraBuildingConfig config);
 
     static void Destroy()
     {
@@ -111,7 +120,7 @@ NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t wi
     Camera_ErrorCode TakePicture(int32_t degree);
     Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting);
     Camera_ImageRotation GetVideoRotation(int32_t deviceDegree);
-    
+
     // callback
     Camera_ErrorCode CameraManagerRegisterCallback(void);
     Camera_ErrorCode CameraInputRegisterCallback(void);

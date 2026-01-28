@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,6 +31,15 @@ static bool g_isHdr = false;
 static bool g_isMacro = false;
 static bool g_isVideo = false;
 size_t g_size = 0;
+
+struct CameraBuildConfig {
+    char *str;
+    uint32_t focusMode;
+    uint32_t cameraDeviceIndex;
+    bool isVideo;
+    bool isHdr;
+    char *videoId;
+};
 
 static napi_value SetZoomRatio(napi_env env, napi_callback_info info)
 {
@@ -231,6 +240,16 @@ static napi_value IsVideoStabilizationModeSupported(napi_env env, napi_callback_
     return result;
 }
 
+static void SetCameraConfig(CameraBuildConfig config, NDKCamera::CameraBuildingConfig *cameraConfig)
+{
+    cameraConfig->str = config.str;
+    cameraConfig->focusMode = config.focusMode;
+    cameraConfig->cameraDeviceIndex = config.cameraDeviceIndex;
+    cameraConfig->isVideo = config.isVideo;
+    cameraConfig->isHdr = config.isHdr;
+    cameraConfig->videoId = config.videoId;
+}
+
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
     OH_LOG_ERROR(LOG_APP, "InitCamera Start");
@@ -239,35 +258,32 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     napi_value args[4] = {nullptr};
     napi_value result;
     size_t typeLen = 0;
-    char* surfaceId = nullptr;
+    CameraBuildConfig configInner;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
-    surfaceId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
-    
-    char* videoId = nullptr;
+    configInner.str = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[0], configInner.str, typeLen + 1, &typeLen);
+
     napi_get_value_string_utf8(env, args[1], nullptr, 0, &typeLen);
-    videoId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[1], videoId, typeLen + 1, &typeLen);
+    configInner.videoId = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[1], configInner.videoId, typeLen + 1, &typeLen);
 
-    int32_t focusMode;
-    napi_get_value_int32(env, args[ARGS_TWO], &focusMode);
+    napi_get_value_uint32(env, args[ARGS_TWO], &configInner.focusMode);
 
-    uint32_t cameraDeviceIndex;
-    napi_get_value_uint32(env, args[ARGS_THREE], &cameraDeviceIndex);
+    napi_get_value_uint32(env, args[ARGS_THREE], &configInner.cameraDeviceIndex);
+    configInner.isVideo = g_isVideo;
+    configInner.isHdr = g_isHdr;
 
-    OH_LOG_ERROR(LOG_APP, "InitCamera focusMode : %{public}d", focusMode);
-    OH_LOG_ERROR(LOG_APP, "InitCamera surfaceId : %{public}s", surfaceId);
-    OH_LOG_ERROR(LOG_APP, "InitCamera cameraDeviceIndex : %{public}d", cameraDeviceIndex);
+    NDKCamera::CameraBuildingConfig cameraConfig;
+    SetCameraConfig(configInner, &cameraConfig);
 
     if (g_ndkCamera) {
-        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }
-    g_ndkCamera = new NDKCamera(surfaceId, videoId, focusMode, cameraDeviceIndex, g_isVideo, g_isHdr);
+    g_ndkCamera = new NDKCamera(cameraConfig);
     if (g_isHdr) {
         g_ndkCamera->EnableHdrVideo(g_isHdr);
     }

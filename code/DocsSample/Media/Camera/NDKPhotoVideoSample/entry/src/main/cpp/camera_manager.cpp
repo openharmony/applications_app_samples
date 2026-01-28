@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,11 +33,11 @@ const int32_t NUM_1920 = 1920;
 const int32_t NUM_1080 = 1080;
 const int32_t NUM_30 = 30;
 
-NDKCamera::NDKCamera(char *str, char *videoId, uint32_t focusMode, uint32_t cameraDeviceIndex, bool isVideo, bool isHdr)
-    : previewSurfaceId_(str),
+NDKCamera::NDKCamera(CameraBuildingConfig config)
+    : previewSurfaceId_(config.str),
       cameras_(nullptr),
-      focusMode_(focusMode),
-      cameraDeviceIndex_(cameraDeviceIndex),
+      focusMode_(config.focusMode),
+      cameraDeviceIndex_(config.cameraDeviceIndex),
       cameraOutputCapability_(nullptr),
       cameraInput_(nullptr),
       captureSession_(nullptr),
@@ -56,9 +56,9 @@ NDKCamera::NDKCamera(char *str, char *videoId, uint32_t focusMode, uint32_t came
       maxExposureBias_(0),
       step_(0),
       ret_(CAMERA_OK),
-      isHdrVideo(isHdr),
-      isVideo(isVideo),
-      videoId_(videoId)
+      isHdrVideo(config.isHdr),
+      isVideo_(config.isVideo),
+      videoId_(config.videoId)
 {
     valid_ = false;
     ReleaseCamera();
@@ -71,8 +71,8 @@ NDKCamera::NDKCamera(char *str, char *videoId, uint32_t focusMode, uint32_t came
     if (captureSession_ == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "Create captureSession failed.");
     }
-    OH_LOG_ERROR(LOG_APP, "InitCamera isVideoMode: %{public}d", isVideo);
-    if (isVideo) {
+    OH_LOG_ERROR(LOG_APP, "InitCamera isVideoMode: %{public}d", isVideo_);
+    if (isVideo_) {
         ret = OH_CaptureSession_SetSessionMode(captureSession_, Camera_SceneMode::NORMAL_VIDEO);
     } else {
         ret = OH_CaptureSession_SetSessionMode(captureSession_, Camera_SceneMode::NORMAL_PHOTO);
@@ -81,7 +81,7 @@ NDKCamera::NDKCamera(char *str, char *videoId, uint32_t focusMode, uint32_t came
     GetSupportedCameras();
     GetSupportedOutputCapability();
     CreatePreviewOutput();
-    if (isVideo) {
+    if (isVideo_) {
         CreateVideoOutput(videoId_);
     } else {
         CreatePhotoOutputWithoutSurfaceId();
@@ -258,7 +258,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     // Add previewOutput to the session
     ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
 
-    if (isVideo) {
+    if (isVideo_) {
         // Adding VideoOutput to the Session
         AddVideoOutput();
         if (isHdrVideo) {
@@ -277,8 +277,8 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
 
     // Submit configuration information
     ret = OH_CaptureSession_CommitConfig(captureSession_);
-    
-    if (isVideo) {
+
+    if (isVideo_) {
         bool isMirrorSupported = false;
         ret = OH_VideoOutput_IsMirrorSupported(videoOutput_, &isMirrorSupported);
         OH_LOG_INFO(LOG_APP, "VideoOutput IsMirrorSupported: %{public}d", isMirrorSupported);
@@ -1281,12 +1281,12 @@ static bool ProcessImageNative(OH_ImageNative* imageNative, uint32_t** component
         OH_LOG_ERROR(LOG_APP, "componentTypeSize too large: %{public}zu", componentTypeSize);
         return false;
     }
-    
+
     uint32_t* compArray = new (std::nothrow) uint32_t[componentTypeSize];
     if (!compArray) {
         return false;
     }
-    
+
     size_t tempSize = componentTypeSize;
     imageErr = OH_ImageNative_GetComponentTypes(imageNative, &compArray, &tempSize);
     if (imageErr != IMAGE_SUCCESS) {
@@ -1324,14 +1324,14 @@ static void CleanupResources(OH_ImageNative* imageNative, uint32_t* components,
     if (components) {
         delete[] components;
     }
-    
+
     if (imageNative) {
         int32_t ret = OH_ImageNative_Release(imageNative);
         if (ret != 0) {
             OH_LOG_ERROR(LOG_APP, "Release image failed: %{public}d", ret);
         }
     }
-    
+
     if (nativeBuffer && virAddr) {
         int32_t ret = OH_NativeBuffer_Unmap(nativeBuffer);
         if (ret != 0) {
@@ -1355,7 +1355,7 @@ void OnPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo)
     uint32_t* components = nullptr;
     OH_NativeBuffer* nativeBuffer = nullptr;
     size_t nativeBufferSize = 0;
-    
+
     if (!ProcessImageNative(imageNative, &components, &nativeBuffer, &nativeBufferSize)) {
         CleanupResources(imageNative, components, nullptr, nullptr);
         return;
@@ -1378,7 +1378,7 @@ void OnPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo)
     }
 
     CleanupResources(imageNative, components, nativeBuffer, virAddr);
-    
+
     OH_LOG_INFO(LOG_APP, "OnPhotoAvailable end");
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,19 +31,18 @@ std::mutex NDKCamera::mtx_;
 const int32_t NUM_1080P_WIDTH = 1920;
 const int32_t NUM_1080P_HEIGHT = 1080;
 
-NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t width, uint32_t height,
-                     char *videoId, char *photoId, Camera_SceneMode sceneMode)
-    : previewSurfaceId_(str),
+NDKCamera::NDKCamera(CameraBuildingConfig config)
+    : previewSurfaceId_(config.str),
       cameras_(nullptr),
-      focusMode_(focusMode),
-      cameraDeviceIndex_(cameraDeviceIndex),
+      focusMode_(config.focusMode),
+      cameraDeviceIndex_(config.cameraDeviceIndex),
       cameraOutputCapability_(nullptr),
       cameraInput_(nullptr),
       captureSession_(nullptr),
       size_(0),
       isCameraMuted_(nullptr),
       profile_(nullptr),
-      photoSurfaceId_(photoId),
+      photoSurfaceId_(config.photoId),
       previewOutput_(nullptr),
       photoOutput_(nullptr),
       metaDataObjectType_(nullptr),
@@ -55,10 +54,10 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
       maxExposureBias_(0),
       step_(0),
       ret_(CAMERA_OK),
-      desiredPreviewW_(width),
-      desiredPreviewH_(height),
-      videoSurfaceId_(videoId),
-      sceneMode_(sceneMode)
+      desiredPreviewW_(config.width),
+      desiredPreviewH_(config.height),
+      videoSurfaceId_(config.videoId),
+      sceneMode_(config.sceneMode)
 {
     valid_ = false;
     ReleaseCamera();
@@ -77,7 +76,7 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
     GetSupportedOutputCapability();
     CreatePreviewOutput();
     if (sceneMode_ == Camera_SceneMode::NORMAL_VIDEO) {
-        CreateVideoOutput(videoId);
+        CreateVideoOutput(videoSurfaceId_);
     } else {
         CreatePhotoOutput(photoSurfaceId_);
     }
@@ -482,7 +481,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     // Add previewOutput to the session
     OH_LOG_INFO(LOG_APP, "session add Preview Output.");
     ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
-    
+
     if (sceneMode_ == Camera_SceneMode::NORMAL_VIDEO) {
         if (videoOutput_ == nullptr) {
             OH_LOG_INFO(LOG_APP, "videoOutput_ is nullptr");
@@ -646,7 +645,7 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
             break;
         }
     }
-    
+
     for (int i = 0; i < cameraOutputCapability_->videoProfilesSize; i++) {
         videoProfile_ = cameraOutputCapability_->videoProfiles[i];
         if (videoProfile_->size.width == selectedProfile->size.width &&
@@ -680,7 +679,7 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutput(char *photoSurfaceId)
         OH_LOG_ERROR(LOG_APP, "CreatePhotoOutput failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
-    
+
     OH_LOG_ERROR(LOG_APP,
         "CreatePhotoOutput Profile_ video width %{public}d, height: %{public}d， format: %{public}d",
         profile_->size.width, profile_->size.height, profile_->format);

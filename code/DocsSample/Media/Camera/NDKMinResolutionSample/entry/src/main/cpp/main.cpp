@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,6 +36,17 @@ struct CaptureSetting {
     int32_t latitude;
     int32_t longitude;
     int32_t altitude;
+};
+
+struct CameraBuildConfig {
+    char *str;
+    uint32_t focusMode;
+    uint32_t cameraDeviceIndex;
+    uint32_t width;
+    uint32_t height;
+    char *videoId;
+    char *photoId;
+    Camera_SceneMode sceneMode;
 };
 
 struct DesiredRes {
@@ -134,6 +145,18 @@ static napi_value IsVideoStabilizationModeSupported(napi_env env, napi_callback_
     return result;
 }
 
+static void SetCameraConfig(CameraBuildConfig config, NDKCamera::CameraBuildingConfig *cameraConfig)
+{
+    cameraConfig->str = config.str;
+    cameraConfig->focusMode = config.focusMode;
+    cameraConfig->cameraDeviceIndex = config.cameraDeviceIndex;
+    cameraConfig->sceneMode = config.sceneMode;
+    cameraConfig->width = config.width;
+    cameraConfig->height = config.height;
+    cameraConfig->videoId = config.videoId;
+    cameraConfig->photoId = config.photoId;
+}
+
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
     OH_LOG_ERROR(LOG_APP, "InitCamera Start");
@@ -142,39 +165,39 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     napi_value args[6] = {nullptr};
     napi_value result;
     size_t typeLen = 0;
-    char* surfaceId = nullptr;
+    CameraBuildConfig configInner;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
-    surfaceId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
-    
-    char* videoId = nullptr;
+    configInner.str = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[0], configInner.str, typeLen + 1, &typeLen);
+
     napi_get_value_string_utf8(env, args[1], nullptr, 0, &typeLen);
-    videoId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[1], videoId, typeLen + 1, &typeLen);
-    
-    char* photoId = nullptr;
+    configInner.videoId = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[1], configInner.videoId, typeLen + 1, &typeLen);
+
     napi_get_value_string_utf8(env, args[ARGS_TWO], nullptr, 0, &typeLen);
-    photoId = new char[typeLen + ARGS_TWO];
-    napi_get_value_string_utf8(env, args[ARGS_TWO], photoId, typeLen + 1, &typeLen);
+    configInner.photoId = new char[typeLen + ARGS_TWO];
+    napi_get_value_string_utf8(env, args[ARGS_TWO], configInner.photoId, typeLen + 1, &typeLen);
 
     int32_t sceneMode;
     napi_get_value_int32(env, args[ARGS_THREE], &sceneMode);
-    
-    int32_t focusMode;
-    napi_get_value_int32(env, args[ARGS_FOUR], &focusMode);
+    configInner.sceneMode = static_cast<Camera_SceneMode>(sceneMode);
 
-    uint32_t cameraDeviceIndex;
-    napi_get_value_uint32(env, args[ARGS_FIVE], &cameraDeviceIndex);
+    napi_get_value_uint32(env, args[ARGS_FOUR], &configInner.focusMode);
+
+    napi_get_value_uint32(env, args[ARGS_FIVE], &configInner.cameraDeviceIndex);
+    configInner.width = g_desired.previewW;
+    configInner.height = g_desired.previewH;
+    NDKCamera::CameraBuildingConfig cameraConfig;
+    SetCameraConfig(configInner, &cameraConfig);
 
     if (g_ndkCamera) {
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }
-    g_ndkCamera = new NDKCamera(surfaceId, focusMode, cameraDeviceIndex, g_desired.previewW, g_desired.previewH,
-                               videoId, photoId, static_cast<Camera_SceneMode>(sceneMode));
+    g_ndkCamera = new NDKCamera(cameraConfig);
     if (g_desired.previewW && g_desired.previewH) {
         g_ndkCamera->SetPreviewResolution(g_desired.previewW, g_desired.previewH);
         OH_LOG_INFO(LOG_APP, "SetPreviewResolution %{public}u*%{public}u", g_desired.previewW, g_desired.previewH);
@@ -407,7 +430,7 @@ static napi_value GetVideoFrameWidth(napi_env env, napi_callback_info info)
 
     napi_value result = nullptr;
     napi_create_int32(env, g_desired.videoW, &result);
-    
+
     OH_LOG_ERROR(LOG_APP, "GetVideoFrameWidth End");
     return result;
 }
@@ -421,7 +444,7 @@ static napi_value GetVideoFrameHeight(napi_env env, napi_callback_info info)
 
     napi_value result = nullptr;
     napi_create_int32(env, g_desired.videoH, &result);
-    
+
     OH_LOG_ERROR(LOG_APP, "GetVideoFrameHeight End");
     return result;
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,6 +23,7 @@
 
 using namespace OHOS_CAMERA_SAMPLE;
 static NDKCamera *g_ndkCamera = nullptr;
+static bool g_isMovingPhoto = false;
 const int32_t ARGS_TWO = 2;
 const int32_t ARGS_THREE = 3;
 const int32_t ARGS_FOUR = 4;
@@ -39,6 +40,19 @@ struct CaptureSetting {
     int32_t latitude;
     int32_t longitude;
     int32_t altitude;
+};
+
+struct CameraBuildConfig {
+    char *str;
+    uint32_t focusMode;
+    uint32_t cameraDeviceIndex;
+    uint32_t sceneMode;
+    uint32_t preconfigMode;
+    uint32_t preconfigType;
+    uint32_t preconfigRatio;
+    uint32_t photoOutputType;
+    bool isMovingPhoto;
+    bool isSavingPhoto;
 };
 
 static napi_value SetZoomRatio(napi_env env, napi_callback_info info)
@@ -131,6 +145,20 @@ static napi_value IsVideoStabilizationModeSupported(napi_env env, napi_callback_
     return result;
 }
 
+static void SetCameraConfig(CameraBuildConfig config, NDKCamera::CameraBuildingConfig *cameraConfig)
+{
+    cameraConfig->str = config.str;
+    cameraConfig->focusMode = config.focusMode;
+    cameraConfig->cameraDeviceIndex = config.cameraDeviceIndex;
+    cameraConfig->sceneMode = config.sceneMode;
+    cameraConfig->preconfigMode = config.preconfigMode;
+    cameraConfig->preconfigType = config.preconfigType;
+    cameraConfig->preconfigRatio = config.preconfigRatio;
+    cameraConfig->photoOutputType = config.photoOutputType;
+    cameraConfig->isMovingPhoto = config.isMovingPhoto;
+    cameraConfig->isSavingPhoto = config.isSavingPhoto;
+}
+
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
     OH_LOG_ERROR(LOG_APP, "InitCamera Start");
@@ -138,58 +166,47 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     size_t argc = 10;
     napi_value args[10] = {nullptr};
     napi_value result;
+    CameraBuildConfig configInner;
     size_t typeLen = 0;
-    char *surfaceId = nullptr;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
-    surfaceId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
+    configInner.str = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[0], configInner.str, typeLen + 1, &typeLen);
 
     napi_valuetype valuetype1;
     napi_typeof(env, args[1], &valuetype1);
 
-    int32_t focusMode;
-    napi_get_value_int32(env, args[1], &focusMode);
+    napi_get_value_uint32(env, args[1], &configInner.focusMode);
 
-    uint32_t cameraDeviceIndex;
-    napi_get_value_uint32(env, args[ARGS_TWO], &cameraDeviceIndex);
+    napi_get_value_uint32(env, args[ARGS_TWO], &configInner.cameraDeviceIndex);
 
-    uint32_t sceneMode;
-    napi_get_value_uint32(env, args[ARGS_THREE], &sceneMode);
+    napi_get_value_uint32(env, args[ARGS_THREE], &configInner.sceneMode);
 
-    uint32_t preconfigMode;
-    napi_get_value_uint32(env, args[ARGS_FOUR], &preconfigMode);
+    napi_get_value_uint32(env, args[ARGS_FOUR], &configInner.preconfigMode);
 
-    uint32_t preconfigType;
-    napi_get_value_uint32(env, args[ARGS_FIVE], &preconfigType);
+    napi_get_value_uint32(env, args[ARGS_FIVE], &configInner.preconfigType);
 
-    uint32_t preconfigRatio;
-    napi_get_value_uint32(env, args[ARGS_SIX], &preconfigRatio);
+    napi_get_value_uint32(env, args[ARGS_SIX], &configInner.preconfigRatio);
 
-    bool photoOutputType;
-    napi_get_value_bool(env, args[ARGS_SEVEN], &photoOutputType);
+    napi_get_value_uint32(env, args[ARGS_SEVEN], &configInner.photoOutputType);
 
-    bool isMovingPhoto;
-    napi_get_value_bool(env, args[ARGS_EIGHT], &isMovingPhoto);
+    napi_get_value_bool(env, args[ARGS_EIGHT], &configInner.isMovingPhoto);
 
-    bool isSavingPhoto;
-    napi_get_value_bool(env, args[ARGS_NINE], &isSavingPhoto);
+    napi_get_value_bool(env, args[ARGS_NINE], &configInner.isSavingPhoto);
 
-    OH_LOG_ERROR(LOG_APP, "InitCamera focusMode : %{public}d, surfaceId : %{public}s", focusMode, surfaceId);
-    OH_LOG_ERROR(LOG_APP, "InitCamera DeviceIndex: %{public}d, sceneMode: %{public}d", cameraDeviceIndex, sceneMode);
-    OH_LOG_ERROR(LOG_APP, "InitCamera preconfigType : %{public}d", preconfigType);
-    OH_LOG_ERROR(LOG_APP, "InitCamera preconfigRatio : %{public}d", preconfigRatio);
-    OH_LOG_ERROR(LOG_APP, "InitCamera photoOutputType : %{public}d", photoOutputType);
+    NDKCamera::CameraBuildingConfig cameraConfig;
 
+    SetCameraConfig(configInner, &cameraConfig);
     if (g_ndkCamera) {
-        OH_LOG_ERROR(LOG_APP, "g_ndkCamera is not null");
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }
-    g_ndkCamera = new NDKCamera(surfaceId, focusMode, cameraDeviceIndex, sceneMode, preconfigMode, preconfigType,
-        preconfigRatio, photoOutputType, isMovingPhoto, isSavingPhoto);
+    g_ndkCamera = new NDKCamera(cameraConfig);
+    if (g_isMovingPhoto) {
+        g_ndkCamera->EnableMovingPhoto(g_isMovingPhoto);
+    }
     OH_LOG_ERROR(LOG_APP, "InitCamera End");
     napi_create_int32(env, argc, &result);
     return result;
@@ -402,7 +419,7 @@ static napi_value StartPhotoOrVideo(napi_env env, napi_callback_info info)
     napi_get_value_string_utf8(env, args[ARGS_TWO], nullptr, 0, &plen);
     std::unique_ptr<char[]> photoId = std::make_unique<char[]>(plen + 1);
     napi_get_value_string_utf8(env, args[ARGS_TWO], photoId.get(), plen + 1, &plen);
-    
+
     int32_t degree;
     napi_get_value_int32(env, args[ARGS_THREE], &degree);
 
@@ -483,6 +500,7 @@ static napi_value EnableMovingPhoto(napi_env env, napi_callback_info info)
 
     bool isMovingPhoto;
     napi_get_value_bool(env, args[0], &isMovingPhoto);
+    g_isMovingPhoto = isMovingPhoto;
 
     g_ndkCamera->EnableMovingPhoto(isMovingPhoto);
     OH_LOG_INFO(LOG_APP, "EnableMovingPhoto end.");

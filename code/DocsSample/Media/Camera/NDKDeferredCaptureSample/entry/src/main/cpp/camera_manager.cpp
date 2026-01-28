@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ MediaLibrary_RequestId g_requestId;
 MediaLibrary_RequestOptions requestOptions;
 bool g_isMovingPhoto = false;
 bool g_isSavingPhoto = true;
-const char *uri_;
+const char *URI;
 char *g_mediaQualityCb;
 MediaLibrary_DeliveryMode g_deliveryMode = MEDIA_LIBRARY_BALANCED_MODE;
 
@@ -58,13 +58,11 @@ const std::unordered_map<uint32_t, Camera_PreconfigRatio> g_int32ToCameraPreconf
 const int32_t ARGS_TWO = 2;
 const int32_t BUFFER_SIZE = 100000;
 
-NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t sceneMode,
-    uint32_t preconfigMode, uint32_t preconfigType, uint32_t preconfigRatio, uint32_t photoOutputType,
-    bool isMovingPhoto, bool isSavingPhoto)
-    : previewSurfaceId_(str),
+NDKCamera::NDKCamera(CameraBuildingConfig config)
+    : previewSurfaceId_(config.str),
       cameras_(nullptr),
-      focusMode_(focusMode),
-      cameraDeviceIndex_(cameraDeviceIndex),
+      focusMode_(config.focusMode),
+      cameraDeviceIndex_(config.cameraDeviceIndex),
       cameraOutputCapability_(nullptr),
       cameraInput_(nullptr),
       captureSession_(nullptr),
@@ -91,15 +89,15 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
       activePhotoProfile_(nullptr),
       activeVideoProfile_(nullptr),
       sceneModeSize_(0),
-      preconfigMode_(preconfigMode),
+      preconfigMode_(config.preconfigMode),
       isSuccess_(false),
       preconfigged_(false),
-      photoOutputType_(photoOutputType),
-      isMovingPhoto_(isMovingPhoto)
+      photoOutputType_(config.photoOutputType),
+      isMovingPhoto_(config.isMovingPhoto)
 {
     valid_ = false;
-    g_isMovingPhoto = isMovingPhoto;
-    g_isSavingPhoto = isSavingPhoto;
+    g_isMovingPhoto = config.isMovingPhoto;
+    g_isSavingPhoto = config.isSavingPhoto;
     ReleaseCamera();
     Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager_);
     if (cameraManager_ == nullptr || ret != CAMERA_OK) {
@@ -111,15 +109,15 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
         OH_LOG_ERROR(LOG_APP, "Create captureSession failed.");
     }
 
-    auto itr1 = g_int32ToCameraSceneMode.find(sceneMode);
+    auto itr1 = g_int32ToCameraSceneMode.find(config.sceneMode);
     if (itr1 != g_int32ToCameraSceneMode.end()) {
         sceneMode_ = itr1->second;
     }
-    auto itr2 = g_int32ToCameraPreconfigType.find(preconfigType);
+    auto itr2 = g_int32ToCameraPreconfigType.find(config.preconfigType);
     if (itr2 != g_int32ToCameraPreconfigType.end()) {
         preconfigType_ = itr2->second;
     }
-    auto itr3 = g_int32ToCameraPreconfigRatio.find(preconfigRatio);
+    auto itr3 = g_int32ToCameraPreconfigRatio.find(config.preconfigRatio);
     if (itr3 != g_int32ToCameraPreconfigRatio.end()) {
         preconfigRatio_ = itr3->second;
     }
@@ -1570,12 +1568,11 @@ Camera_ErrorCode NDKCamera::PhotoNativeRelease(OH_PhotoNative *photoNative)
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetUri(OH_MediaAsset *mediaAsset)
 {
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri start!");
-    const char *uri = nullptr;
-    result = OH_MediaAsset_GetUri(mediaAsset, &uri_);
-    if (uri_ == nullptr || result != MEDIA_LIBRARY_OK) {
+    result = OH_MediaAsset_GetUri(mediaAsset, &URI);
+    if (URI == nullptr || result != MEDIA_LIBRARY_OK) {
         DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri uri: %{public}s", uri_);
+    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri uri: %{public}s", URI);
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
     return result;
 }
@@ -1789,8 +1786,8 @@ void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaL
         g_mediaQualityCb = "high";
         qCb(g_mediaQualityCb);
     }
-    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails GetUri uri_ = %{public}s", uri_);
-    cb(const_cast<char *>(uri_));
+    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails GetUri uri_ = %{public}s", URI);
+    cb(const_cast<char *>(URI));
     NDKCamera::ChangeRequestAddResourceWithBuffer(imageSourceNative);
     return;
 }

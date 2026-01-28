@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,10 +54,20 @@
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
   public:
+    struct CameraBuildingConfig {
+        char *str;
+        uint32_t focusMode;
+        uint32_t cameraDeviceIndex;
+        uint32_t sceneMode;
+        uint32_t preconfigMode;
+        uint32_t preconfigType;
+        uint32_t preconfigRatio;
+        uint32_t photoOutputType;
+        bool isMovingPhoto;
+        bool isSavingPhoto;
+    };
     ~NDKCamera();
-    NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex,
-      uint32_t sceneMode, uint32_t preconfigMode, uint32_t preconfigType, uint32_t preconfigRatio,
-      uint32_t photoOutputType, bool isMovingPhoto, bool isSavingPhoto);
+    explicit NDKCamera(CameraBuildingConfig config);
     Camera_ErrorCode IsVideoModeAvailable(bool* available);
     static void Destroy()
     {
