@@ -24,7 +24,9 @@ struct Index {
     'Reset Result Message',
     '1.napiOpenHandleScope',
     '2.napiOpenEscapableHandleScope',
-    '3.napiAddFinalizer'
+    '3.napiAddFinalizer',
+    '4.napiCreateWeakReference',
+    '5.napiCreateStrongReference'
   ]
 
   build() {
@@ -109,6 +111,37 @@ struct Index {
                     // [EndExclude ark_napi_create_delete_reference]
                   }
                   // [End ark_napi_create_delete_reference]
+                } else if (item === '4.napiCreateWeakReference') {
+                  // [Start napi_create_weak_reference]
+                  try {
+                    testNapi.createWeakReference();
+                    hilog.info(0x0000, 'testTag', 'reference test: %{public}s', testNapi.getWeakReferenceValue());
+                    // [StartExclude napi_create_weak_reference]
+                    this.result = 'napiCreateWeakReferenceSuccess';
+                    // [EndExclude napi_create_weak_reference]
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', `调用错误：${error.message}`);
+                    // [StartExclude napi_create_weak_reference]
+                    this.result = 'napiCreateWeakReferenceFail';
+                    // [EndExclude napi_create_weak_reference]
+                  }
+                  // [End napi_create_weak_reference]
+                } else if (item === '5.napiCreateStrongReference') {
+                  // [Start napi_create_weak_reference]
+                  try {
+                    testNapi.createStrongReference();
+                    hilog.info(0x0000, 'testTag', 'reference test: %{public}s', testNapi.getStrongReferenceValue());
+                    testNapi.cleanupStrongReference();
+                    // [StartExclude napi_create_weak_reference]
+                    this.result = 'napiCreateStrongReferenceSuccess';
+                    // [EndExclude napi_create_weak_reference]
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', `调用错误：${error.message}`);
+                    // [StartExclude napi_create_weak_reference]
+                    this.result = 'napiCreateStrongReferenceFail';
+                    // [EndExclude napi_create_weak_reference]
+                  }
+                  // [End napi_create_weak_reference]
                 }
               })
           }
