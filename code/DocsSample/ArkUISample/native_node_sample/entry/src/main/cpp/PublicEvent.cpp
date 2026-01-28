@@ -677,6 +677,14 @@ void AddColumnChildNode(ArkUI_NodeHandle &node)
     Manager::nodeAPI_->setAttribute(button4, NODE_BUTTON_LABEL, &buttonLabel4);
     SetButtonTouchEventAttribute(button4);
 
+    ArkUI_NumberValue clickSound1[] = {{.i32 = 0}};
+    ArkUI_AttributeItem enableClickSound1 = {clickSound1, 1};
+    Manager::nodeAPI_->setAttribute(button1, NODE_ENABLE_CLICK_SOUND_EFFECT, &enableClickSound1);
+    
+    ArkUI_NumberValue clickSound2[] = {{.i32 = 1}};
+    ArkUI_AttributeItem enableClickSound2 = {clickSound2, 1};
+    Manager::nodeAPI_->setAttribute(button4, NODE_ENABLE_CLICK_SOUND_EFFECT, &enableClickSound2);
+
     SetAttributeAboutResponseRegionList(button1, ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER);
     Manager::nodeAPI_->registerNodeEvent(button1, NODE_ON_CLICK_EVENT, 1, nullptr);
 
