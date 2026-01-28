@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,6 +39,19 @@ struct CaptureSetting {
     int32_t latitude;
     int32_t longitude;
     int32_t altitude;
+};
+
+struct CameraBuildConfig {
+    char *str;
+    uint32_t focusMode;
+    uint32_t cameraDeviceIndex;
+    uint32_t sceneMode;
+    uint32_t preconfigMode;
+    uint32_t preconfigType;
+    uint32_t preconfigRatio;
+    uint32_t photoOutputType;
+    char *videoId;
+    char *photoId;
 };
 
 static napi_value SetZoomRatio(napi_env env, napi_callback_info info)
@@ -85,6 +98,20 @@ static napi_value SetRequestOption(napi_env env, napi_callback_info info)
     return result;
 }
 
+static void SetCameraConfig(CameraBuildConfig config, NDKCamera::CameraBuildingConfig *cameraConfig)
+{
+    cameraConfig->str = config.str;
+    cameraConfig->focusMode = config.focusMode;
+    cameraConfig->cameraDeviceIndex = config.cameraDeviceIndex;
+    cameraConfig->sceneMode = config.sceneMode;
+    cameraConfig->preconfigMode = config.preconfigMode;
+    cameraConfig->preconfigType = config.preconfigType;
+    cameraConfig->preconfigRatio = config.preconfigRatio;
+    cameraConfig->photoOutputType = config.photoOutputType;
+    cameraConfig->videoId = config.videoId;
+    cameraConfig->photoId = config.photoId;
+}
+
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
     OH_LOG_ERROR(LOG_APP, "InitCamera Start");
@@ -93,55 +120,45 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     napi_value args[10] = {nullptr};
     napi_value result;
     size_t typeLen = 0;
-    char* surfaceId = nullptr;
+    CameraBuildConfig configInner;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
-    surfaceId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
+    configInner.str = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[0], configInner.str, typeLen + 1, &typeLen);
 
-    napi_valuetype valuetype1;
-    napi_typeof(env, args[1], &valuetype1);
+    napi_get_value_uint32(env, args[1], &configInner.focusMode);
 
-    int32_t focusMode;
-    napi_get_value_int32(env, args[1], &focusMode);
+    napi_get_value_uint32(env, args[ARGS_TWO], &configInner.cameraDeviceIndex);
 
-    uint32_t cameraDeviceIndex;
-    napi_get_value_uint32(env, args[ARGS_TWO], &cameraDeviceIndex);
+    napi_get_value_uint32(env, args[ARGS_THREE], &configInner.sceneMode);
 
-    uint32_t sceneMode;
-    napi_get_value_uint32(env, args[ARGS_THREE], &sceneMode);
+    napi_get_value_uint32(env, args[ARGS_FOUR], &configInner.preconfigMode);
 
-    uint32_t preconfigMode;
-    napi_get_value_uint32(env, args[ARGS_FOUR], &preconfigMode);
+    napi_get_value_uint32(env, args[ARGS_FIVE], &configInner.preconfigType);
 
-    uint32_t preconfigType;
-    napi_get_value_uint32(env, args[ARGS_FIVE], &preconfigType);
+    napi_get_value_uint32(env, args[ARGS_SIX], &configInner.preconfigRatio);
 
-    uint32_t preconfigRatio;
-    napi_get_value_uint32(env, args[ARGS_SIX], &preconfigRatio);
+    napi_get_value_uint32(env, args[ARGS_SEVEN], &configInner.photoOutputType);
 
-    bool photoOutputType;
-    napi_get_value_bool(env, args[ARGS_SEVEN], &photoOutputType);
-    
-    char* videoId = nullptr;
     napi_get_value_string_utf8(env, args[ARGS_EIGHT], nullptr, 0, &typeLen);
-    videoId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[ARGS_EIGHT], videoId, typeLen + 1, &typeLen);
-    
-    char* photoId = nullptr;
+    configInner.videoId = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[ARGS_EIGHT], configInner.videoId, typeLen + 1, &typeLen);
+
     napi_get_value_string_utf8(env, args[ARGS_NINE], nullptr, 0, &typeLen);
-    photoId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[ARGS_NINE], photoId, typeLen + 1, &typeLen);
+    configInner.photoId = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[ARGS_NINE], configInner.photoId, typeLen + 1, &typeLen);
+
+    NDKCamera::CameraBuildingConfig cameraConfig;
+
+    SetCameraConfig(configInner, &cameraConfig);
 
     if (g_ndkCamera) {
         delete g_ndkCamera;
         g_ndkCamera = nullptr;
     }
-    g_ndkCamera = new NDKCamera(surfaceId, focusMode, cameraDeviceIndex,
-        sceneMode, preconfigMode, preconfigType, preconfigRatio,
-        photoOutputType, videoId, photoId);
+    g_ndkCamera = new NDKCamera(cameraConfig);
     OH_LOG_ERROR(LOG_APP, "InitCamera End");
     napi_create_int32(env, argc, &result);
     return result;

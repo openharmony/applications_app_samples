@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ const OH_ImageSourceNative *imageSourceNaive;
 OH_MediaAssetManager *mediaAssetManager;
 MediaLibrary_RequestId g_requestId;
 MediaLibrary_RequestOptions requestOptions;
-const char *uri;
+const char *URI;
 char *g_mediaQualityCb;
 MediaLibrary_DeliveryMode g_deliveryMode = MEDIA_LIBRARY_BALANCED_MODE;
 
@@ -68,20 +68,18 @@ const std::unordered_map<uint32_t, Camera_PreconfigRatio> g_int32ToCameraPreconf
     { 1, Camera_PreconfigRatio::PRECONFIG_RATIO_4_3 },
     { 2, Camera_PreconfigRatio::PRECONFIG_RATIO_16_9 } };
 
-NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t sceneMode,
-    uint32_t preconfigMode, uint32_t preconfigType, uint32_t preconfigRatio, uint32_t photoOutputType,
-    char *videoId, char *photoId)
-    : previewSurfaceId_(str),
+NDKCamera::NDKCamera(CameraBuildingConfig config)
+    : previewSurfaceId_(config.str),
       cameras_(nullptr),
-      focusMode_(focusMode),
-      cameraDeviceIndex_(cameraDeviceIndex),
+      focusMode_(config.focusMode),
+      cameraDeviceIndex_(config.cameraDeviceIndex),
       cameraOutputCapability_(nullptr),
       cameraInput_(nullptr),
       captureSession_(nullptr),
       size_(0),
       isCameraMuted_(nullptr),
       profile_(nullptr),
-      photoSurfaceId_(photoId),
+      photoSurfaceId_(config.photoId),
       previewOutput_(nullptr),
       photoOutput_(nullptr),
       metaDataObjectType_(nullptr),
@@ -101,11 +99,11 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
       activePhotoProfile_(nullptr),
       activeVideoProfile_(nullptr),
       sceneModeSize_(0),
-      preconfigMode_(preconfigMode),
+      preconfigMode_(config.preconfigMode),
       isSuccess_(false),
       preconfigged_(true),
-      photoOutputType_(photoOutputType),
-      videoSurfaceId_(videoId)
+      photoOutputType_(config.photoOutputType),
+      videoSurfaceId_(config.videoId)
 {
     valid_ = false;
     ReleaseCamera();
@@ -119,14 +117,14 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
         OH_LOG_ERROR(LOG_APP, "Create captureSession failed.");
     }
 
-    auto sceneModeItr = g_int32ToCameraSceneMode.find(sceneMode);
+    auto sceneModeItr = g_int32ToCameraSceneMode.find(config.sceneMode);
     if (sceneModeItr != g_int32ToCameraSceneMode.end()) {
         sceneMode_ = sceneModeItr->second;
         OH_LOG_INFO(LOG_APP,
-            "Constructor: sceneMode %{public}d converted to sceneMode_=%{public}d", sceneMode, sceneMode_);
+            "Constructor: sceneMode %{public}d converted to sceneMode_=%{public}d", config.sceneMode, sceneMode_);
     }
 
-    auto preconfigTypeItr = g_int32ToCameraPreconfigType.find(preconfigType);
+    auto preconfigTypeItr = g_int32ToCameraPreconfigType.find(config.preconfigType);
     if (preconfigTypeItr != g_int32ToCameraPreconfigType.end()) {
         preconfigType_ = preconfigTypeItr->second;
         OH_LOG_INFO(LOG_APP, "preconfigType_ converted to: %{public}d", preconfigType_);
@@ -134,7 +132,7 @@ NDKCamera::NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex, 
 
     isHdrVideo = (preconfigType_ == Camera_PreconfigType::PRECONFIG_HIGH_QUALITY);
 
-    auto preconfigRatioItr = g_int32ToCameraPreconfigRatio.find(preconfigRatio);
+    auto preconfigRatioItr = g_int32ToCameraPreconfigRatio.find(config.preconfigRatio);
     if (preconfigRatioItr != g_int32ToCameraPreconfigRatio.end()) {
         preconfigRatio_ = preconfigRatioItr->second;
         OH_LOG_INFO(LOG_APP, "preconfigRatio_ converted to: %{public}d", preconfigRatio_);
@@ -393,7 +391,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     } else {
         ret = AddPhotoOutput();
     }
-    
+
     // Submit configuration information
     OH_LOG_INFO(LOG_APP, "session commitConfig");
     ret = OH_CaptureSession_CommitConfig(captureSession_);
@@ -517,7 +515,7 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
         OH_LOG_INFO(LOG_APP, "NDKCamera::CreatePreviewOutput CanPreconfigWithRatio failed!");
     }
     OH_LOG_INFO(LOG_APP, "CanPreconfigWithRatio returned isSuccess=%{public}d", isSuccess_);
-    
+
     ret_ = PreconfigWithRatio();
     if (ret_ != CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "NDKCamera::CreatePreviewOutput PreconfigWithRatio failed!");
@@ -1534,12 +1532,11 @@ Camera_ErrorCode NDKCamera::PhotoNativeRelease(OH_PhotoNative *photoNative)
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetUri(OH_MediaAsset *mediaAsset)
 {
     OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri start!");
-    const char *uri = nullptr;
-    result = OH_MediaAsset_GetUri(mediaAsset, &uri);
-    if (uri == nullptr || result != MEDIA_LIBRARY_OK) {
+    result = OH_MediaAsset_GetUri(mediaAsset, &URI);
+    if (URI == nullptr || result != MEDIA_LIBRARY_OK) {
         OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri failed.");
     }
-    OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri uri: %{public}s", uri);
+    OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri uri: %{public}s", URI);
     OH_LOG_INFO(LOG_APP, "NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
     return result;
 }
@@ -1749,8 +1746,8 @@ void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaL
         g_mediaQualityCb = "high";
         qCb(g_mediaQualityCb);
     }
-    OH_LOG_INFO(LOG_APP, "OnRequsetImageDataPreparedWithDetails GetUri uri = %{public}s", uri);
-    cb(const_cast<char *>(uri));
+    OH_LOG_INFO(LOG_APP, "OnRequsetImageDataPreparedWithDetails GetUri uri = %{public}s", URI);
+    cb(const_cast<char *>(URI));
     NDKCamera::ChangeRequestAddResourceWithBuffer(imageSourceNative);
     return;
 }
