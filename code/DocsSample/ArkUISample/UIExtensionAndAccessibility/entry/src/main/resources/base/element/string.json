@@ -65,6 +65,10 @@
       "value": "使用无障碍属性 3"
     },
     {
+      "name": "UniversalAttributesAccessibility_title4",
+      "value": "使用无障碍属性 测试集合"
+    },
+    {
       "name": "Embedded_Component_description",
       "value": "展示 EmbeddedComponent 组件的基础使用方式"
     },
@@ -167,6 +171,34 @@
     {
       "name": "UniversalAttributesAccessibility_text13",
       "value": "单指双击即可播放"
+    },
+    {
+      "name": "AccessibilityTextCase01",
+      "value": "accessibilityText不做设置"
+    },
+    {
+      "name": "AccessibilityTextCase02",
+      "value": "accessibilityText做设置"
+    },
+    {
+      "name": "AccessibilityDescriptionCase01",
+      "value": "accessibilityDescription做设置"
+    },
+    {
+      "name": "AccessibilityDescriptionCase02",
+      "value": "accessibilityDescription不做设置"
+    },
+    {
+      "name": "AccessibilityGroupCase01",
+      "value": "accessibilityGroup不做设置"
+    },
+    {
+      "name": "AccessibilityGroupCase02",
+      "value": "accessibilityGroup做设置"
+    },
+    {
+      "name": "AccessibilityLevelCase01",
+      "value": "accessibilityLevel测试"
     }
   ]
 }
