@@ -26,7 +26,7 @@ let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let manager: resourceManager.ResourceManager;
 const driver = Driver.create();
 
-// 通用的测试函数。
+// 通用的测试函数
 async function runTest(testCaseName: string, buttonText: string, delayTime: number, description: string,
   done: Function) {
   hilog.info(DOMAIN, TAG, BUNDLE + `${description}, begin`);
@@ -34,14 +34,14 @@ async function runTest(testCaseName: string, buttonText: string, delayTime: numb
   let btnAccept = await driver.findComponent(ON.text(buttonText));
   if (btnAccept !== undefined) {
     await btnAccept.click();
-    await driver.delayMs(delayTime); // 等待操作完成。
+    await driver.delayMs(delayTime); // 等待操作完成
   }
   else {
     await driver.delayMs(delayTime);
   }
 
   hilog.info(DOMAIN, TAG, BUNDLE + `${description}, end`);
-  done(); // 测试完成。
+  done(); // 测试完成
 }
 
 export default function MultithreadingAppsTest() {
@@ -80,11 +80,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_EnterPage_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_EnterPage_0001', // 测试用例名称。
-        '跳转到TaskPool指定任务并发度场景', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'MultithreadingApps_EnterPage', // 描述。
-        done // done 回调。
+        'MultithreadingApps_EnterPage_0001', // 测试用例名称
+        '跳转到TaskPool指定任务并发度场景', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'MultithreadingApps_EnterPage', // 描述
+        done // done 回调
       );
     })
 
@@ -98,11 +98,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_trigger_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_trigger_0001', // 测试用例名称。
-        '触发采集任务', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Trigger task', // 描述。
-        done // done 回调。
+        'MultithreadingApps_trigger_0001', // 测试用例名称
+        '触发采集任务', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Trigger task', // 描述
+        done // done 回调
       );
     })
 
@@ -134,11 +134,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_EnterPage_0003', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_EnterPage_0003', // 测试用例名称。
-        '跳转到ArkUI瀑布流渲染场景', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Enter WaterFlowRender page', // 描述。
-        done // done 回调。
+        'MultithreadingApps_EnterPage_0003', // 测试用例名称
+        '跳转到ArkUI瀑布流渲染场景', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Enter WaterFlowRender page', // 描述
+        done // done 回调
       );
     })
 
@@ -170,11 +170,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_EnterPage_0005', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_EnterPage_0005', // 测试用例名称。
-        '跳转到获取最近访问列表场景', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Enter RecentList page', // 描述。
-        done // done 回调。
+        'MultithreadingApps_EnterPage_0005', // 测试用例名称
+        '跳转到获取最近访问列表场景', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Enter RecentList page', // 描述
+        done // done 回调
       );
     })
 
@@ -188,11 +188,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_Visit_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_Visit_0001', // 测试用例名称。
-        'third', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Visit the third book', // 描述。
-        done // done 回调。
+        'MultithreadingApps_Visit_0001', // 测试用例名称
+        'third', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Visit the third book', // 描述
+        done // done 回调
       );
     })
 
@@ -242,11 +242,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_EnterPage_0007', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_EnterPage_0007', // 测试用例名称。
-        '跳转到多线程取消TaskPool任务场景', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Cancel Taskpool', // 描述。
-        done // done 回调。
+        'MultithreadingApps_EnterPage_0007', // 测试用例名称
+        '跳转到多线程取消TaskPool任务场景', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Cancel Taskpool', // 描述
+        done // done 回调
       );
     })
 
@@ -260,11 +260,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_Cancel_Taskpool_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_Cancel_Taskpool_0001', // 测试用例名称。
-        'CancelTaskpool', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Cancel Taskpool', // 描述。
-        done // done 回调。
+        'MultithreadingApps_Cancel_Taskpool_0001', // 测试用例名称
+        'CancelTaskpool', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Cancel Taskpool', // 描述
+        done // done 回调
       );
     })
 
@@ -296,11 +296,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_EnterPage_0009', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_EnterPage_0009', // 测试用例名称。
-        '跳转到Worker常驻线程并发处理场景', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Worker Concurrency', // 描述。
-        done // done 回调。
+        'MultithreadingApps_EnterPage_0009', // 测试用例名称
+        '跳转到Worker常驻线程并发处理场景', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Worker Concurrency', // 描述
+        done // done 回调
       );
     })
 
@@ -314,11 +314,11 @@ export default function MultithreadingAppsTest() {
      */
     it('MultithreadingApps_Worker_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'MultithreadingApps_Worker_0001', // 测试用例名称。
-        '在主线程中创建Worker线程并发送消息', // 按钮文本。
-        2000, // 延时 2000 毫秒。
-        'Create Worker', // 描述。
-        done // done 回调。
+        'MultithreadingApps_Worker_0001', // 测试用例名称
+        '在主线程中创建Worker线程并发送消息', // 按钮文本
+        2000, // 延时 2000 毫秒
+        'Create Worker', // 描述
+        done // done 回调
       );
     })
 

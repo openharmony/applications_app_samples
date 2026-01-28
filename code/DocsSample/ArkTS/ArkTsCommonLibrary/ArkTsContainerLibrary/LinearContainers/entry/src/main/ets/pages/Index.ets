@@ -14,23 +14,24 @@
 */
 
 // [Start linear_container]
-import { ArrayList, Deque, Stack, List } from '@kit.ArkTS'; // 导入ArrayList,Deque,Stack,List模块。
+import { ArrayList, Deque, Stack, List } from '@kit.ArkTS'; // 导入ArrayList，Deque，Stack，List模块
 
-// [StartExclude linear_container]
+  // [StartExclude linear_container]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testArrayList() {
   // [EndExclude linear_container]
+  // ArrayList
   let arrayList1: ArrayList<string> = new ArrayList();
-  arrayList1.add('a'); // 增加一个值为'a'的元素。
+  arrayList1.add('a'); // 增加一个值为'a'的元素
   let arrayList2: ArrayList<number> = new ArrayList();
-  arrayList2.add(1); // 增加一个值为1的元素。
-  console.info(`result: ${arrayList2[0]}`); // 访问索引为0的元素。输出：result: 1。
+  arrayList2.add(1); // 增加一个值为1的元素
+  console.info(`result: ${arrayList2[0]}`); // 访问索引为0的元素。输出：result: 1
   // [StartExclude linear_container]
   let logMsg = `result: ${arrayList2[0]}\n`;
   // [EndExclude linear_container]
-  arrayList1[0] = 'one'; // 修改索引为0的元素。
-  console.info(`result: ${arrayList1[0]}`); // 输出：result: one。
+  arrayList1[0] = 'one'; // 修改索引为0的元素
+  console.info(`result: ${arrayList1[0]}`); // 输出：result: one
   // [StartExclude linear_container]
   logMsg += `result: ${arrayList1[0]}`;
 
@@ -41,16 +42,17 @@ function testArrayList() {
 
 function testDeque() {
   // [EndExclude linear_container]
+  // Deque
   let deque1: Deque<string> = new Deque();
-  deque1.insertFront('a'); // 头部增加一个值为'a'的元素。
+  deque1.insertFront('a'); // 头部增加一个值为'a'的元素
   let deque2: Deque<number> = new Deque();
-  deque2.insertFront(1); // 头部增加一个值为1的元素。
-  console.info(`result: ${deque2.getFirst()}`); // 访问队列首部的元素。输出：result: 1。
+  deque2.insertFront(1); // 头部增加一个值为1的元素
+  console.info(`result: ${deque2.getFirst()}`); // 访问队列首部的元素。输出：result: 1
   // [StartExclude linear_container]
   let logMsg = `result: ${deque2.getFirst()}\n`;
   // [EndExclude linear_container]
-  deque1.insertEnd('one'); // 尾部增加一个值为'one'的元素。
-  console.info(`result: ${deque1.getLast()}`); // 访问队列尾部的元素。输出：result: one。
+  deque1.insertEnd('one'); // 尾部增加一个值为'one'的元素
+  console.info(`result: ${deque1.getLast()}`); // 访问队列尾部的元素。输出：result: one
   // [StartExclude linear_container]
   logMsg += `result: ${deque1.getLast()}`;
 
@@ -61,19 +63,20 @@ function testDeque() {
 
 function testStack() {
   // [EndExclude linear_container]
+  // Stack
   let stack1: Stack<string> = new Stack();
-  stack1.push('a'); // 向栈里增加一个值为'a'的元素。
+  stack1.push('a'); // 向栈里增加一个值为'a'的元素
   let stack2: Stack<number> = new Stack();
-  stack2.push(1); // 向栈里增加一个值为1的元素。
-  console.info(`result: ${stack1.peek()}`); // 访问栈顶元素。输出：result: a。
+  stack2.push(1); // 向栈里增加一个值为1的元素
+  console.info(`result: ${stack1.peek()}`); // 访问栈顶元素。输出：result: a
   // [StartExclude linear_container]
   let logMsg = `result: ${stack1.peek()}\n`;
   // [EndExclude linear_container]
-  console.info(`result: ${stack2.pop()}`); // 删除栈顶元素并返回该删除元素。输出：result: 1。
+  console.info(`result: ${stack2.pop()}`); // 删除栈顶元素并返回该删除元素。输出：result: 1
   // [StartExclude linear_container]
   logMsg += `result: ${stack2.pop()}\n`;
   // [EndExclude linear_container]
-  console.info(`result: ${stack2.length}`); // 输出：result: 0。
+  console.info(`result: ${stack2.length}`); // 输出：result: 0
   // [StartExclude linear_container]
   logMsg += `result: ${stack2.length}`;
 
@@ -84,18 +87,19 @@ function testStack() {
 
 function testList() {
   // [EndExclude linear_container]
+  // List
   let list1: List<string> = new List();
-  list1.add('a'); // 增加一个值为'a'的元素。
+  list1.add('a'); // 增加一个值为'a'的元素
   let list2: List<number> = new List();
-  list2.insert(0, 0); // 在0号位置插入（增加）一个值为0的元素。
+  list2.insert(0, 0); // 在0号位置插入（增加）一个值为0的元素
   let list3: List<Array<number>> = new List();
   let b2 = [1, 2, 3];
-  list3.add(b2); // 增加一个Array类型的元素。
-  console.info(`result: ${list1[0]}`); // 访问索引为0的元素。输出：result: a。
+  list3.add(b2); // 增加一个Array类型的元素
+  console.info(`result: ${list1[0]}`); // 访问索引为0的元素。输出：result: a
   // [StartExclude linear_container]
   let logMsg = `result: ${list1[0]}\n`;
   // [EndExclude linear_container]
-  console.info(`result: ${list3.get(0)}`); // 访问索引为0的元素。输出：result: 1,2,3。
+  console.info(`result: ${list3.get(0)}`); // 访问索引为0的元素。输出：result: 1,2,3
   // [End linear_container]
   logMsg += `result: ${list3.get(0)}`;
 

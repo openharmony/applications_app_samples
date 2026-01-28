@@ -19,16 +19,16 @@ import { BusinessError } from '@kit.BasicServicesKit'
 import { printArgs} from './utils'
 @Concurrent
 function createTask(a: number, b:number) {
-  // 支持的序列化类型。
+  // 支持的序列化类型
   let sum = a + b;
   return sum;
 }
 
 function executeTask() {
-  // task。
+  // task
   let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
   taskpool.execute(task).then((res) => {
-    // task1。
+    // task1
     let task1: taskpool.Task = new taskpool.Task(printArgs, res);
   }).catch((e: BusinessError) => {
     console.error('execute task failed ' + e.message);

@@ -25,7 +25,7 @@ export class A {
 // [End define_sendable]
 
 // [Start define_sendableTwo]
-// sendable.ets，与Index.ets在同级目录下。
+// sendable.ets，与Index.ets在同级目录下
 @Sendable
 export class TestClass {
   public name: string = 'test';
@@ -39,7 +39,7 @@ export class TestClass {
 // [End define_sendableTwo]
 
 // [Start define_sendableThree]
-// sendable.ets。
+// sendable.ets
 @Sendable
 export class SendableItem {
   public name: string = '';
