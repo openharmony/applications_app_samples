@@ -17,6 +17,8 @@
 import { relationalStore } from '@kit.ArkData'; // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 const DOMAIN = 0x0000;
 
 let store: relationalStore.RdbStore | undefined = undefined;
@@ -41,7 +43,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   tokenizer: tokenType,
 };
 // [StartExclude persistence_get_store]
-export async function rdbDataPersistence(context: Context) {
+export async function rdbDataPersistence() {
   // [EndExclude persistence_get_store]
   // 判断数据库版本，如果不匹配则需进行升降级操作
   // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY)
@@ -50,6 +52,7 @@ export async function rdbDataPersistence(context: Context) {
     'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, ADDRESS TEXT)';
   if (store === undefined) {
     try {
+      const context = new UIContext().getHostContext() as common.UIAbilityContext;
       store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     } catch (e) {
       const err = e as BusinessError;
@@ -320,6 +323,7 @@ export async function rdbDataPersistence(context: Context) {
 
   // [Start persistence_delete_store]
   // 删除数据库
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
     if (err) {
       hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
