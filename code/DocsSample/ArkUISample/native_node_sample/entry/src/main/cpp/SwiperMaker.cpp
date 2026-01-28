@@ -66,6 +66,8 @@ namespace ConstIde {
     const float NUMBER_3000_MS = 3000.0;
     const uint32_t BACKGROUND_COLOR = 0x2AA1A6B1;
     const uint32_t DURATION = 1000;
+
+    const float NUMBER_DRAG_BY_150 = 150.0;
 } // namespace ConstIde
 
 void SwiperMaker::createSwiperNode(ArkUI_NodeHandle &swiper)
@@ -715,8 +717,60 @@ ArkUI_NodeHandle SwiperMaker::CreateButtonNodeWithFinishAnimation(ArkUI_NodeHand
     ArkUI_AttributeItem btn1TextItem = { .string = "停止上面的Swiper正在执行的翻页动画" };
     Manager::nodeAPI_->setAttribute(button->GetHandle(), NODE_BUTTON_LABEL, &btn1TextItem);
     button->RegisterOnClick([swiper](ArkUI_NodeEvent*) {
-        int32_t eventId = OH_ArkUI_Swiper_FinishAnimation(swiper);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "eventId is :%{public}d", eventId);
+        int32_t ret = OH_ArkUI_Swiper_FinishAnimation(swiper);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "eventId is :%{public}d", ret);
+    });
+    return button->GetHandle();
+}
+
+ArkUI_NodeHandle SwiperMaker::CreateButtonNodeWithFakeDrag(ArkUI_NodeHandle &swiper)
+{
+    static ButtonMaker *button = new ButtonMaker();
+    ArkUI_AttributeItem btn1TextItem = {.string = "模拟拖动"};
+    Manager::nodeAPI_->setAttribute(button->GetHandle(), NODE_BUTTON_LABEL, &btn1TextItem);
+    button->RegisterOnClick([swiper](ArkUI_NodeEvent *) {
+        bool ret = false;
+        bool isSuccess = false;
+        ret = OH_ArkUI_Swiper_IsFakeDragging(swiper, &isSuccess);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_IsFakeDragging func errcode :%{public}d, isSuccess %{public}d", ret, isSuccess);
+        ret = OH_ArkUI_Swiper_StartFakeDrag(swiper, &isSuccess);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_StartFakeDrag func errcode :%{public}d, isSuccess %{public}d", ret, isSuccess);
+        ret = OH_ArkUI_Swiper_FakeDragBy(swiper, ConstIde::NUMBER_DRAG_BY_150, &isSuccess);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_FakeDragBy func errcode :%{public}d, isSuccess %{public}d", ret, isSuccess);
+        ret = OH_ArkUI_Swiper_StopFakeDrag(swiper, &isSuccess);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_StopFakeDrag func errcode :%{public}d, isSuccess %{public}d", ret, isSuccess);
+    });
+    return button->GetHandle();
+}
+
+ArkUI_NodeHandle SwiperMaker::CreateButtonNodeWithShowPrevious(ArkUI_NodeHandle &swiper)
+{
+    static ButtonMaker *button = new ButtonMaker();
+    ArkUI_AttributeItem btn1TextItem = {.string = "向前翻一页"};
+    Manager::nodeAPI_->setAttribute(button->GetHandle(), NODE_BUTTON_LABEL, &btn1TextItem);
+    button->RegisterOnClick([swiper](ArkUI_NodeEvent *) {
+        bool ret = false;
+        ret = OH_ArkUI_Swiper_ShowPrevious(swiper);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_ShowPrevious func errcode :%{public}d", ret);
+    });
+    return button->GetHandle();
+}
+
+ArkUI_NodeHandle SwiperMaker::CreateButtonNodeWithShowNext(ArkUI_NodeHandle &swiper)
+{
+    static ButtonMaker *button = new ButtonMaker();
+    ArkUI_AttributeItem btn1TextItem = {.string = "向后翻一页"};
+    Manager::nodeAPI_->setAttribute(button->GetHandle(), NODE_BUTTON_LABEL, &btn1TextItem);
+    button->RegisterOnClick([swiper](ArkUI_NodeEvent *) {
+        bool ret = false;
+        ret = OH_ArkUI_Swiper_ShowNext(swiper);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+                     "OH_ArkUI_Swiper_ShowNext func errcode :%{public}d", ret);
     });
     return button->GetHandle();
 }
@@ -755,6 +809,9 @@ ArkUI_NodeHandle SwiperMaker::CreateNativeNode()
     static ArkUI_NodeHandle swiper3 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     static ArkUI_NodeHandle swiper4 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     static ArkUI_NodeHandle button1 = SwiperMaker::CreateButtonNodeWithFinishAnimation(swiper4);
+    static ArkUI_NodeHandle button2 = SwiperMaker::CreateButtonNodeWithFakeDrag(swiper4);
+    static ArkUI_NodeHandle button3 = SwiperMaker::CreateButtonNodeWithShowPrevious(swiper4);
+    static ArkUI_NodeHandle button4 = SwiperMaker::CreateButtonNodeWithShowNext(swiper4);
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     BaseUtils::SetNodeBackGroundColor(scroll, ConstIde::BACKGROUND_COLOR); // 设置节点背景颜色为淡灰色
     ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
@@ -774,6 +831,9 @@ ArkUI_NodeHandle SwiperMaker::CreateNativeNode()
     Manager::nodeAPI_->addChild(column, swiper3);
     Manager::nodeAPI_->addChild(column, swiper4);
     Manager::nodeAPI_->addChild(column, button1);
+    Manager::nodeAPI_->addChild(column, button2);
+    Manager::nodeAPI_->addChild(column, button3);
+    Manager::nodeAPI_->addChild(column, button4);
     Manager::nodeAPI_->addChild(scroll, column);
     return scroll;
 }
