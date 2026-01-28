@@ -25,7 +25,6 @@ const DOMAIN = 0x0000;
 
 // [Start setDefaultDistributedTables]
 // [Start setCollaborationDistributedTables]
-const context = new UIContext().getHostContext() as common.UIAbilityContext;
 let store: relationalStore.RdbStore | undefined = undefined;
 // [StartExclude setDefaultDistributedTables]
 // [StartExclude setCollaborationDistributedTables]
@@ -36,6 +35,7 @@ export async function setDefaultDistributedTables() {
     securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
   };
   // 打开数据库并设置分布式表
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
     store = rdbStore;
     await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
@@ -57,9 +57,9 @@ export async function setCollaborationDistributedTables() {
   const DISTRIBUTED_CONFIG: relationalStore.DistributedConfig = {
     autoSync: false,
     asyncDownloadAsset: false,
-    enableCloud: false,
-    tableType: relationalStore.DistributedTableType.DEVICE_COLLABORATION
+    enableCloud: false
   }
+  const context = new UIContext().getHostContext() as common.UIAbilityContext;
   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
     store = rdbStore;
     await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
