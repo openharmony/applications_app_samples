@@ -15,7 +15,7 @@
 
 // [Start PickerMediaLibrary_import]
 import { fileIo } from '@kit.CoreFileKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 // [End PickerMediaLibrary_import]
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
