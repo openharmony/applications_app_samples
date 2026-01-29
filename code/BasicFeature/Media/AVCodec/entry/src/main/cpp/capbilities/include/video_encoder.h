@@ -16,11 +16,12 @@
 #ifndef VIDEOENCODER_H
 #define VIDEOENCODER_H
 
-#include "multimedia/player_framework/native_avcodec_videoencoder.h"
-#include "multimedia/player_framework/native_avbuffer_info.h"
+#include <multimedia/player_framework/native_avcodec_videoencoder.h>
+#include <multimedia/player_framework/native_avbuffer_info.h>
+#include <native_window/external_window.h>
+#include <native_window/buffer_handle.h>
+#include <shared_mutex>
 #include "sample_info.h"
-#include "native_window/external_window.h"
-#include "native_window/buffer_handle.h"
 #include "sample_callback.h"
 #include "dfx/error/av_codec_sample_error.h"
 #include "av_codec_sample_log.h"
@@ -33,6 +34,7 @@ public:
     int32_t Create(const std::string &videoCodecMime);
     int32_t Config(SampleInfo &sampleInfo, CodecUserData *codecUserData);
     int32_t Start();
+    bool GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
     int32_t PushInputBuffer(CodecBufferInfo &info);
     int32_t FreeOutputBuffer(uint32_t bufferIndex);
     int32_t NotifyEndOfStream();
@@ -44,6 +46,7 @@ private:
     int32_t Configure(const SampleInfo &sampleInfo);
     int32_t GetSurface(SampleInfo &sampleInfo);
     bool isAVBufferMode_ = false;
+    std::shared_mutex codecMutex;
     OH_AVCodec *encoder_ = nullptr;
 };
 #endif // VIDEOENCODER_H

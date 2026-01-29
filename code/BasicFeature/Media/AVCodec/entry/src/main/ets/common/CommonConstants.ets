@@ -69,16 +69,38 @@ export class CommonConstants {
    */
   public static readonly VIDEO_DECODER_RUN_MODE: string[] = ['SurfaceMode', 'BufferMode'];
   /**
+   * Video decoder synchronization mode.
+   */
+  public static readonly VIDEO_DECODER_SYNC_MODE: string[] = ['ASYNC', 'SYNC'];
+  /**
+   * Video transform type.
+   */
+  public static readonly TRANSFORM_TYPE: string[] = [
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_NONE').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_270').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT90').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT180').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT270').id),
+    globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT270').id)
+  ];
+  /**
    * Video playerInfo.
    */
   public static readonly PLAYER_INFO: string[][] = [
-    CommonConstants.VIDEO_DECODE_TYPE, CommonConstants.VIDEO_DECODER_RUN_MODE
+    CommonConstants.VIDEO_DECODE_TYPE, CommonConstants.VIDEO_DECODER_RUN_MODE, CommonConstants.VIDEO_DECODER_SYNC_MODE
   ];
   /**
    * Video recorderInfo.
    */
   public static readonly RECORDER_INFO: string[][] = [
-    CommonConstants.VIDEO_MIMETYPE, CommonConstants.VIDEO_RESOLUTION, CommonConstants.VIDEO_FRAMERATE
+    CommonConstants.VIDEO_MIMETYPE, CommonConstants.VIDEO_RESOLUTION, CommonConstants.VIDEO_FRAMERATE,
+    CommonConstants.VIDEO_DECODER_SYNC_MODE
   ];
   /**
    * Playback speed.
@@ -131,7 +153,7 @@ export class CommonConstants {
   /**
    * Selected text style font size.
    */
-  public static readonly SELECTED_TEXT_STYLE_FONT_SIZE: number = 15;
+  public static readonly SELECTED_TEXT_STYLE_FONT_SIZE: number = 9;
   /**
    * The number corresponding to true.
    */

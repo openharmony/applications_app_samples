@@ -44,7 +44,8 @@ public:
     int32_t Stop();
 
 private:
-    void EncOutputThread();
+    void VideoEncOutputAsyncThread();
+    void VideoEncOutputSyncThread();
     void AudioEncInputThread();
     void AudioEncOutputThread();
     void Release();

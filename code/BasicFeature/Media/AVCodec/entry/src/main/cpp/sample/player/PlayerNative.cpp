@@ -62,11 +62,23 @@ napi_value PlayerNative::SetPlaybackSpeed(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+napi_value PlayerNative::SetTransform(napi_env env, napi_callback_info info)
+{
+    int32_t transformHint;
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    napi_get_value_int32(env, args[0], &transformHint);
+    Player::GetInstance().SetTransform(transformHint);
+    return nullptr;
+}
+
 napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
 {
     SampleInfo sampleInfo;
-    size_t argc = 6;                    // 参数个数，这里ArkTS往native测传递了四个参数，故此处赋值为4
-    napi_value args[6] = {nullptr};     // napi_value类型数组，用于存储接收的ArkTS侧参数
+    size_t argc = 7;                    // 参数个数，这里ArkTS往native测传递了七个参数，故此处赋值为7
+    napi_value args[7] = {nullptr};     // napi_value类型数组，用于存储接收的ArkTS侧参数
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);  // 从info中获取参数信息到参数数组args[]
     
     int index = 0;
@@ -75,6 +87,7 @@ napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
     napi_get_value_int64(env, args[index++], &sampleInfo.inputFileSize);
     napi_get_value_int32(env, args[index++], &sampleInfo.codecType);
     napi_get_value_int32(env, args[index++], &sampleInfo.codecRunMode);
+    napi_get_value_int32(env, args[index++], &sampleInfo.codecSyncMode);
     
     auto asyncContext = new CallbackContext();
     asyncContext->env = env;
@@ -95,6 +108,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor classProp[] = {
         {"playNative", nullptr, PlayerNative::Play, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"setPlaybackSpeed", nullptr, PlayerNative::SetPlaybackSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setTransform", nullptr, PlayerNative::SetTransform, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     
     NativeXComponentSample::PluginManager::GetInstance()->Export(env, exports);

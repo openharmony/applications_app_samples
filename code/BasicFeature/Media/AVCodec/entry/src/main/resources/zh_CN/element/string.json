@@ -37,6 +37,10 @@
       "value": "本设备相机不支持此类型录像流，将切换至默认配置"
     },
     {
+      "name": "alert2",
+      "value": "播放时长按播放窗口也可倍速播放"
+    },
+    {
       "name": "success",
       "value": "成功"
     },
@@ -63,6 +67,78 @@
     {
       "name": "full_height",
       "value": "100%"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_NONE",
+      "value": "不旋转"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_90",
+      "value": "旋转90度"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_180",
+      "value": "旋转180度"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_270",
+      "value": "旋转270度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H",
+      "value": "水平翻转"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V",
+      "value": "垂直翻转"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT90",
+      "value": "水平翻转并旋转90度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT90",
+      "value": "垂直翻转并旋转90度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT180",
+      "value": "水平翻转并旋转180度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT180",
+      "value": "垂直翻转并旋转180度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT270",
+      "value": "水平翻转并旋转270度"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT270",
+      "value": "垂直翻转并旋转270度"
+    },
+    {
+      "name": "select_from_filemanager",
+      "value": "从文件管理选取"
+    },
+    {
+      "name": "select_from_album",
+      "value": "从相册选取"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "adjust_playback_speed",
+      "value": "倍速"
+    },
+    {
+      "name": "start_recording",
+      "value": "开始录制"
+    },
+    {
+      "name": "end_recording",
+      "value": "结束录制"
     }
   ]
 }

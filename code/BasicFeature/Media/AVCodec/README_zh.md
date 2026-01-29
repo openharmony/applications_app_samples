@@ -25,14 +25,17 @@ AVCodec 部件示例 Sample，基于 API12 构建，提供视频播放（含音�
 
 ### 效果预览
 
-| 播放（模式选择）                                  | 播放（选择播放路径）                                    | 播放（横屏）                                | 播放(竖屏)                                |
-|-------------------------------------------|-----------------------------------------------|---------------------------------------|---------------------------------------|
-| ![播放_模式选择.jepg](screenshots/播放_模式选择.jpeg) | ![播放_选择播放路径.jpeg](screenshots/播放_选择播放路径.jpeg) | ![播放_横屏.jpeg](screenshots/播放_横屏.jpeg) | ![播放_竖屏.jpeg](screenshots/播放_竖屏.jpeg) |
+| 播放（模式选择）                                  | 播放（选择播放路径）          | 播放（横屏）        |
+|-------------------------------------------|------------------------------|--------------------------|
+| ![播放_模式选择.jepg](screenshots/播放_模式选择.jpeg) | ![播放_选择播放路径.jpeg](screenshots/播放_选择播放路径.jpeg) | ![播放_横屏.jpeg](screenshots/播放_横屏.jpeg) | 
 
-| 播放（倍速）                                | 录制（选择相机分辨率）                                     | 录制（开始录制）                                  |
-|---------------------------------------|-------------------------------------------------|-------------------------------------------|
-| ![播放_倍速.jpeg](screenshots/播放_倍速.jpeg) | ![录制_选择相机分辨率.jpeg](screenshots/录制_选择相机分辨率.jpeg) | ![录制_开始录制.jpeg](screenshots/录制_开始录制.jpeg) |
+|播放(竖屏)      | 播放（倍速）                    | 播放（变换矩阵）            | 
+|-----------------------|----------------------|----------------------------------|
+|![播放_竖屏.jpeg](screenshots/播放_竖屏.jpeg) | ![播放_倍速.jpeg](screenshots/播放_倍速.jpeg) | ![播放_变换矩阵.jpeg](screenshots/播放_变换矩阵.jpeg) |
 
+|播放（垂直翻转并旋转90度）    | 录制（模式选择）                                  | 录制（开始录制）         | 
+|-----------------------|-------------------------------------------|--------------------------------------------|
+| ![播放_垂直翻转并旋转90度.jpeg](screenshots/播放_垂直翻转并旋转90度.jpeg) | ![录制_模式选择.jpeg](screenshots/录制_模式选择.jpeg) | ![录制_开始录制.jpeg](screenshots/录制_开始录制.jpeg) |
 ### 使用说明
 
 弹出是否允许“AVCodec”使用相机？点击“允许”
@@ -474,7 +477,7 @@ if (static_cast<double>(waitTimeUs) > VSYNC_TIME * LIP_SYNC_BALANCE_VALUE) {
 DumpOutput(bufferInfo);
 int32_t ret = videoDecoder_->FreeOutputBuffer(bufferInfo.bufferIndex,
     sampleInfo_.codecRunMode ? false : !dropFrame,
-    VSYNC_TIME * LIP_SYNC_BALANCE_VALUE * MS_TO_S + GetCurrentTime());
+    VSYNC_TIME * LIP_SYNC_BALANCE_VALUE * MICROSECOND_TO_S + GetCurrentTime());
 if (ret != AVCODEC_SAMPLE_ERR_OK) {
     AVCODEC_SAMPLE_LOGE("FreeOutputBuffer failed: %{public}d", ret);
     return false;
@@ -557,9 +560,9 @@ XComponent Camera
 
 1.本示例仅支持标准系统上运行，支持Phone, RK3568;
 
-2.本示例为Stage模型，仅支持 API12 及以上版本SDK, SDK版本号5.0.0.19及以上版本,镜像版本号支持5.0.0.19及以上版本;
+2.本示例为Stage模型，仅支持 API20 及以上版本SDK, SDK版本号6.0.0.47及以上版本,镜像版本号支持5.0.0.19及以上版本;
 
-3.本示例需要使用DevEco Studio 5.0 才可编译运行。
+3.本示例需要使用DevEco Studio 6.0 才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：

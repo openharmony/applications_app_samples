@@ -30,5 +30,6 @@ class PlayerNative {
 public:
     static napi_value Play(napi_env env, napi_callback_info info);
     static napi_value SetPlaybackSpeed(napi_env env, napi_callback_info info);
+    static napi_value SetTransform(napi_env env, napi_callback_info info);
 };
 #endif // VIDEO_CODEC_SAMPLE_PLAYER_NATIVE_H

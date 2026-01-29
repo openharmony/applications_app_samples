@@ -25,6 +25,7 @@ namespace {
 using namespace std::chrono_literals;
 constexpr int64_t MICROSECOND = 1000000;
 constexpr int32_t INPUT_FRAME_BYTES = 2 * 1024;
+constexpr int64_t TIMEOUT_US = 5000000;
 }
 
 Recorder::~Recorder() { StartRelease(); }
@@ -86,7 +87,11 @@ int32_t Recorder::Start()
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Encoder start failed");
 
     isStarted_ = true;
-    encOutputThread_ = std::make_unique<std::thread>(&Recorder::EncOutputThread, this);
+    if (sampleInfo_.codecSyncMode) {
+        encOutputThread_ = std::make_unique<std::thread>(&Recorder::VideoEncOutputSyncThread, this);
+    } else {
+        encOutputThread_ = std::make_unique<std::thread>(&Recorder::VideoEncOutputAsyncThread, this);
+    }
     if (encOutputThread_ == nullptr) {
         AVCODEC_SAMPLE_LOGE("Create thread failed");
         StartRelease();
@@ -118,7 +123,39 @@ int32_t Recorder::Start()
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
-void Recorder::EncOutputThread()
+void Recorder::VideoEncOutputSyncThread()
+{
+    while (true) {
+        CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
+        std::unique_lock<std::mutex> lock(encContext_->outputMutex);
+        CodecBufferInfo bufferInfo(nullptr);
+        CHECK_AND_BREAK_LOG(videoEncoder_
+                            ->GetOutputBuffer(bufferInfo, TIMEOUT_US), "VD Get out buffer failed, thread out");
+        CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
+        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        lock.unlock();
+        if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) ||
+                (bufferInfo.attr.flags == AVCODEC_BUFFER_FLAGS_NONE)) {
+                    encContext_->outputFrameCount++;
+                    bufferInfo.attr.pts = encContext_->outputFrameCount * MICROSECOND / sampleInfo_.frameRate;
+        } else {
+            bufferInfo.attr.pts = 0;
+        }
+
+        AVCODEC_SAMPLE_LOGW("Out buffer count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
+                            encContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags,
+                            bufferInfo.attr.pts);
+
+        muxer_->WriteSample(muxer_->GetVideoTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
+                            bufferInfo.attr);
+        int32_t ret = videoEncoder_->FreeOutputBuffer(bufferInfo.bufferIndex);
+        CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
+    }
+    AVCODEC_SAMPLE_LOGI("Exit, frame count: %{public}u", encContext_->outputFrameCount);
+    StartRelease();
+}
+
+void Recorder::VideoEncOutputAsyncThread()
 {
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");

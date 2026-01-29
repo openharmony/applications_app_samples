@@ -34,12 +34,16 @@ const DATETIME: DateTimeUtil = new DateTimeUtil();
 export struct Player {
   @State buttonEnabled: boolean = true;
   @State isShow: boolean = false;
+  private transformType: number = 0;
   private videoDecoderType: number = 0;
   private videoDecoderRunMode: number = 0;
+  private videoDecoderSyncMode: number = 0;
   private cameraData: CameraDataModel = new CameraDataModel();
   private selectFilePath: string | null = null;
   private display = display.getDefaultDisplaySync();
-  private sourcePath: string[] = ['从文件管理选取', '从图库选取'];
+  private sourcePath: string[] =
+    [globalThis.context.resourceManager.getStringSync($r('app.string.select_from_filemanager').id),
+      globalThis.context.resourceManager.getStringSync($r('app.string.select_from_album').id)];
 
   selectFile() {
     TextPickerDialog.show({
@@ -48,10 +52,10 @@ export struct Player {
       selected: 0,
       onAccept: (value: TextPickerResult) => {
         switch (value.value) {
-          case '从文件管理选取':
+          case globalThis.context.resourceManager.getStringSync($r('app.string.select_from_filemanager').id):
             this.selectDocFile();
             break;
-          case '从图库选取':
+          case globalThis.context.resourceManager.getStringSync($r('app.string.select_from_album').id):
             this.selectAlbumFile();
             break;
           default:
@@ -106,6 +110,10 @@ export struct Player {
     player.setPlaybackSpeed(speed);
   }
 
+  setTransform(transformHint: number) {
+    player.setTransform(transformHint);
+  }
+
   play() {
     let inputFile = fileIo.openSync(this.selectFilePath, fileIo.OpenMode.READ_ONLY);
     if (!inputFile) {
@@ -117,7 +125,7 @@ export struct Player {
     }
     this.buttonEnabled = false;
     player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, this.videoDecoderType,
-      this.videoDecoderRunMode, () => {
+      this.videoDecoderRunMode, this.videoDecoderSyncMode, () => {
         Logger.info(TAG, 'player JSCallback');
         this.buttonEnabled = true;
         fileIo.close(inputFile);
@@ -166,17 +174,21 @@ export struct Player {
 
   @Builder
   PlayerSettingButton() {
-    Button('设置')
+    Button($r('app.string.setting'))
       .size({
         width: '18.5%',
         height: $r('app.float.index_button_height')
-      })
-      .enabled(this.buttonEnabled)
+      })// .enabled(this.buttonEnabled)
       .margin({ bottom: $r('app.float.button_margin_bottom') })
       .onClick(() => {
         this.getUIContext().showTextPickerDialog({
           defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
           selectedTextStyle: ({
+            font: ({
+              size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+            })
+          }),
+          textStyle: ({
             font: ({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
@@ -217,6 +229,19 @@ export struct Player {
                 break;
             }
 
+            switch (value.value[2]) {
+              case Const.VIDEO_DECODER_SYNC_MODE[0]: {
+                this.videoDecoderSyncMode = 0;
+                break;
+              }
+              case Const.VIDEO_DECODER_SYNC_MODE[1]: {
+                this.videoDecoderSyncMode = 1;
+                break;
+              }
+              default:
+                break;
+            }
+
             this.getUIContext().getPromptAction().showToast({
               message: $r('app.string.success'),
               duration: Const.DURATION,
@@ -231,7 +256,7 @@ export struct Player {
 
   @Builder
   RecorderSettingButton() {
-    Button('设置')
+    Button($r('app.string.setting'))
       .enabled(this.buttonEnabled)
       .size({
         width: '18.5%',
@@ -242,6 +267,11 @@ export struct Player {
         this.getUIContext().showTextPickerDialog({
           defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
           selectedTextStyle: ({
+            font: ({
+              size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+            })
+          }),
+          textStyle: ({
             font: ({
               size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
             })
@@ -299,6 +329,19 @@ export struct Player {
               default:
                 break;
             }
+
+            switch (value.value[3]) {
+              case Const.VIDEO_DECODER_SYNC_MODE[0]: {
+                this.cameraData.isSync = 0;
+                break;
+              }
+              case Const.VIDEO_DECODER_SYNC_MODE[1]: {
+                this.cameraData.isSync = 1;
+                break;
+              }
+              default:
+                break;
+            }
             this.checkIsProfileSupport();
           }
         })
@@ -335,7 +378,7 @@ export struct Player {
             if (this.cameraData.outputfd !== null) {
               recorder.initNative(this.cameraData.outputfd, this.cameraData.videoCodecMime, this.cameraData.cameraWidth,
                 this.cameraData.cameraHeight, this.cameraData.frameRate, this.cameraData.isHDRVivid,
-                this.cameraData.bitRate, this.cameraData.format).then((data) => {
+                this.cameraData.bitRate, this.cameraData.format, this.cameraData.isSync).then((data) => {
                 if (data.surfaceId !== null) {
                   this.cameraData.surfaceId = data.surfaceId;
                   this.getUIContext().getRouter().pushUrl({
@@ -415,7 +458,108 @@ export struct Player {
 
       Column() {
         Row() {
-          this.PlayerSettingButton()
+          if (this.buttonEnabled) {
+            this.PlayerSettingButton()
+          } else {
+            Button('Flip')
+              .size({
+                width: '18.5%',
+                height: $r('app.float.index_button_height')
+              })
+              .margin({ bottom: $r('app.float.button_margin_bottom') })
+              .onClick(() => {
+                this.getUIContext().showTextPickerDialog({
+                  defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
+                  selectedTextStyle: ({
+                    font: ({
+                      size: Const.SELECTED_TEXT_STYLE_FONT_SIZE
+                    })
+                  }),
+                  range: Const.TRANSFORM_TYPE,
+                  canLoop: false,
+                  alignment: DialogAlignment.Center,
+                  backgroundColor: Color.White,
+                  backgroundBlurStyle: BlurStyle.BACKGROUND_ULTRA_THICK,
+                  onAccept: (value: TextPickerResult) => {
+                    switch (value.value) {
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_NONE')
+                        .id): {
+                        this.transformType = 0;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_90')
+                        .id): {
+                        this.transformType = 1;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_180')
+                        .id): {
+                        this.transformType = 2;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_ROTATE_270')
+                        .id): {
+                        this.transformType = 3;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H').id): {
+                        this.transformType = 4;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V').id): {
+                        this.transformType = 5;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT90')
+                        .id): {
+                        this.transformType = 6;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT90')
+                        .id): {
+                        this.transformType = 7;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT180')
+                        .id): {
+                        this.transformType = 8;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT180')
+                        .id): {
+                        this.transformType = 9;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_H_ROT270')
+                        .id): {
+                        this.transformType = 10;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      case globalThis.context.resourceManager.getStringSync($r('app.string.NATIVEBUFFER_FLIP_V_ROT270')
+                        .id): {
+                        this.transformType = 11;
+                        this.setTransform(this.transformType);
+                        break;
+                      }
+                      default:
+                        break;
+                    }
+                  }
+                })
+              })
+          }
+
 
           Blank(5)
           Button(this.buttonEnabled ? $r('app.string.play') : $r('app.string.playing'))
@@ -429,7 +573,7 @@ export struct Player {
             .enabled(this.buttonEnabled)
             .margin({ bottom: $r('app.float.button_margin_bottom') })
           Blank(5)
-          Button('倍速')
+          Button($r('app.string.adjust_playback_speed'))
             .enabled(!this.buttonEnabled)
             .size({
               width: '18.5%',
@@ -437,7 +581,7 @@ export struct Player {
             })
             .margin({ bottom: $r('app.float.button_margin_bottom') })
             .onClick(() => {
-              this.getUIContext().getPromptAction().showToast({ message: '播放时长按播放窗口也可倍速播放' });
+              this.getUIContext().getPromptAction().showToast({ message: $r('app.string.alert2') });
               TextPickerDialog.show({
                 defaultPickerItemHeight: Const.DEFAULT_PICKER_ITEM_HEIGHT,
                 selectedTextStyle: ({

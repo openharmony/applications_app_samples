@@ -37,6 +37,10 @@
       "value": "This device camera does not support this type of video stream, it will switch to the default configuration"
     },
     {
+      "name": "alert2",
+      "value": "Press and hold the play window during playback to adjust playback speed"
+    },
+    {
       "name": "success",
       "value": "Success"
     },
@@ -63,6 +67,78 @@
     {
       "name": "full_height",
       "value": "100%"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_NONE",
+      "value": "NATIVEBUFFER_ROTATE_NONE"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_90",
+      "value": "NATIVEBUFFER_ROTATE_90"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_180",
+      "value": "NATIVEBUFFER_ROTATE_180"
+    },
+    {
+      "name": "NATIVEBUFFER_ROTATE_270",
+      "value": "NATIVEBUFFER_ROTATE_270"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H",
+      "value": "NATIVEBUFFER_FLIP_H"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V",
+      "value": "NATIVEBUFFER_FLIP_V"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT90",
+      "value": "NATIVEBUFFER_FLIP_H_ROT90"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT90",
+      "value": "NATIVEBUFFER_FLIP_V_ROT90"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT180",
+      "value": "NATIVEBUFFER_FLIP_H_ROT180"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT180",
+      "value": "NATIVEBUFFER_FLIP_V_ROT180"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_H_ROT270",
+      "value": "NATIVEBUFFER_FLIP_H_ROT270"
+    },
+    {
+      "name": "NATIVEBUFFER_FLIP_V_ROT270",
+      "value": "NATIVEBUFFER_FLIP_V_ROT270"
+    },
+    {
+      "name": "select_from_filemanager",
+      "value": "select_from_filemanager"
+    },
+    {
+      "name": "select_from_album",
+      "value": "select_from_album"
+    },
+    {
+      "name": "setting",
+      "value": "setting"
+    },
+    {
+      "name": "adjust_playback_speed",
+      "value": "adjust_playback_speed"
+    },
+    {
+      "name": "start_recording",
+      "value": "Start recording"
+    },
+    {
+      "name": "end_recording",
+      "value": "End recording"
     }
   ]
 }

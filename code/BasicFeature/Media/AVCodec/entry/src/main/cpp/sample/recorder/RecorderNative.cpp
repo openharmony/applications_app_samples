@@ -94,9 +94,11 @@ static SampleInfo ParseSampleInfo(napi_env env, napi_value args[])
     napi_get_value_int64(env, args[index++], &sampleInfo.bitrate);
     
     int32_t format;
-    if (napi_ok == napi_get_value_int32(env, args[index], &format)) {
+    if (napi_ok == napi_get_value_int32(env, args[index++], &format)) {
         sampleInfo.pixelFormat = (format == RGBA) ? AV_PIXEL_FORMAT_RGBA : AV_PIXEL_FORMAT_NV12;
     }
+    
+    napi_get_value_int32(env, args[index], &sampleInfo.codecSyncMode);
     
     sampleInfo.videoCodecMime = videoCodecMime;
     if (sampleInfo.isHDRVivid) {
@@ -128,8 +130,8 @@ static void StartAsyncWork(napi_env env, AsyncCallbackInfo* asyncInfo)
 
 napi_value RecorderNative::Init(napi_env env, napi_callback_info info)
 {
-    size_t argc = 8;
-    napi_value args[8] = {nullptr};
+    size_t argc = 9;
+    napi_value args[9] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     SampleInfo sampleInfo = ParseSampleInfo(env, args);
