@@ -43,8 +43,10 @@ export struct AddBuilderDecoratorContent {
         RichEditor(this.options)
           .onReady(() => {
             this.controller.addTextSpan(
-              /* 请将$r('app.string.AddBuilderDecoratorContent_Text_3')替换为实际资源文件，
-               在本示例中该资源文件的value值为"点击按钮在此处添加builderspan。" */
+              /* 
+               * 请将$r('app.string.AddBuilderDecoratorContent_Text_3')替换为实际资源文件，
+               * 在本示例中该资源文件的value值为"点击按钮在此处添加builderspan。" 
+               */
               $r('app.string.AddBuilderDecoratorContent_Text_3'), {
               style: {
                 fontColor: Color.Black,
@@ -53,7 +55,10 @@ export struct AddBuilderDecoratorContent {
             })
           })
         Row() {
-          // 请将$r('app.string.AddBuilderDecoratorContent_Button_1')替换为实际资源文件，在本示例中该资源文件的value值为"addBuilderSpan"
+          /* 
+           * 请将$r('app.string.AddBuilderDecoratorContent_Button_1')替换为实际资源文件，
+           * 在本示例中该资源文件的value值为"addBuilderSpan" 
+           */
           Button($r('app.string.AddBuilderDecoratorContent_Button_1'), {
             buttonStyle: ButtonStyleMode.NORMAL
           })
