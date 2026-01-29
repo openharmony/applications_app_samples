@@ -65,6 +65,9 @@ public:
     static void EventOnContentWillScroll(ArkUI_NodeEvent *event);
     static void EventOnScrollStateChanged(ArkUI_NodeEvent *event);
     static ArkUI_NodeHandle CreateButtonNodeWithFinishAnimation(ArkUI_NodeHandle &swiper);
+    static ArkUI_NodeHandle CreateButtonNodeWithFakeDrag(ArkUI_NodeHandle &swiper);
+    static ArkUI_NodeHandle CreateButtonNodeWithShowPrevious(ArkUI_NodeHandle &swiper);
+    static ArkUI_NodeHandle CreateButtonNodeWithShowNext(ArkUI_NodeHandle &swiper);
     
     static void SetSwiperEvent(ArkUI_NodeHandle &swiper);
     
