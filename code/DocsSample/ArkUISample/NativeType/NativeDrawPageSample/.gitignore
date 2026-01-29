@@ -1,0 +1,27 @@
+# Build directory
+build/
+.ide/
+.local/
+
+# Distribution files
+*.so
+*.a
+out/
+
+# Temp files
+*.log
+*.swp
+*~
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.metadata/
+.classpath/
+.project/
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
