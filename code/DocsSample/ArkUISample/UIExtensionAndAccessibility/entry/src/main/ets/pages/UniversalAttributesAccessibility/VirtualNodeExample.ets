@@ -18,22 +18,18 @@
 @Component
 struct VirtualNodeExample {
   @Builder customAccessibilityNode() {
-    // 请将$r('app.string.UniversalAttributesAccessibility_text6')替换为实际资源文件，在本示例中该资源文件的value值为"文本2"
-    Text($r('app.string.UniversalAttributesAccessibility_text6'))
+    Text('文本2')
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
   }
+
   build() {
     Column() {
-      // 请将$r('app.string.UniversalAttributesAccessibility_text5')替换为实际资源文件，在本示例中该资源文件的value值为"文本1"
-      Text($r('app.string.UniversalAttributesAccessibility_text5'))
+      Text('文本1')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }
-    .accessibilityGroup(true)
-    .accessibilityLevel('yes')
     .accessibilityVirtualNode(this.customAccessibilityNode)
   }
 }
 //[End virtual_node_example_start]
-
