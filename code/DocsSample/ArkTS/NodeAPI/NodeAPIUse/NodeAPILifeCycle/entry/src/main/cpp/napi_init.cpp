@@ -220,6 +220,121 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
 }
 // [End napi_create_delete_reference]
 
+// [Start napi_create_weak_reference]
+#include "napi/native_api.h"
+
+napi_ref g_weakRef = nullptr;
+
+static napi_value CreateWeakReference(napi_env env, napi_callback_info info)
+{
+    napi_value value = nullptr;
+    napi_create_string_utf8(env, "This is a test property", NAPI_AUTO_LENGTH, &value);
+    napi_value jsObject = nullptr;
+    napi_create_object(env, &jsObject);
+    napi_set_named_property(env, jsObject, "test", value);
+
+    // 清理之前的引用（如果存在）
+    if (g_weakRef != nullptr) {
+        napi_delete_reference(env, g_weakRef);
+        g_weakRef = nullptr;
+    }
+
+    // 创建弱引用，不会阻止垃圾回收，没有其他强引用持有时会被正常回收
+    napi_status status = napi_create_reference(env, jsObject, 0, &g_weakRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create weak reference");
+        return nullptr;
+    }
+
+    return nullptr;
+}
+
+static napi_value GetWeakReferenceValue(napi_env env, napi_callback_info info)
+{
+    napi_value weakValue;
+    napi_status status = napi_get_reference_value(env, g_weakRef, &weakValue);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to get reference value");
+        return nullptr;
+    }
+
+    // 判断对象是否已被回收
+    if (weakValue == nullptr) {
+        napi_throw_error(env, nullptr, "Object has been garbage collected");
+        return nullptr;
+    }
+
+    // 尝试获取对象的属性来确认它仍然有效
+    napi_value result = nullptr;
+    napi_get_named_property(env, weakValue, "test", &result);
+
+    return result;
+}
+// [End napi_create_weak_reference]
+
+// [Start napi_create_strong_reference]
+#include "napi/native_api.h"
+
+// 全局强引用
+napi_ref g_strongRef = nullptr;
+
+// 创建强引用
+static napi_value CreateStrongReference(napi_env env, napi_callback_info info)
+{
+    napi_value value = nullptr;
+    napi_create_string_utf8(env, "This is a test property", NAPI_AUTO_LENGTH, &value);
+    napi_value jsObject = nullptr;
+    napi_create_object(env, &jsObject);
+    napi_set_named_property(env, jsObject, "test", value);
+
+    // 清理之前的强引用（如果存在）
+    if (g_strongRef != nullptr) {
+        napi_delete_reference(env, g_strongRef);
+        g_strongRef = nullptr;
+    }
+
+    // 创建强引用（初始引用计数为1），阻止垃圾回收器回收
+    napi_status status = napi_create_reference(env, jsObject, 1, &g_strongRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create strong reference");
+        return nullptr;
+    }
+
+    return nullptr;
+}
+
+static napi_value GetStrongReferenceValue(napi_env env, napi_callback_info info)
+{
+    napi_value jsValue;
+    napi_status status = napi_get_reference_value(env, g_strongRef, &jsValue);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to get reference value");
+        return nullptr;
+    }
+
+    // 尝试获取对象的属性来确认它仍然有效
+    napi_value result = nullptr;
+    napi_get_named_property(env, jsValue, "test", &result);
+
+    return result;
+}
+
+// 清理强引用
+static napi_value CleanupStrongReference(napi_env env, napi_callback_info info)
+{
+    napi_value ret = nullptr;
+    if (g_strongRef != nullptr) {
+        // 强制删除引用，即使引用计数不为0
+        napi_delete_reference(env, g_strongRef);
+        g_strongRef = nullptr;
+        napi_get_boolean(env, true, &ret);
+        return ret;
+    }
+    napi_get_boolean(env, false, &ret);
+    return ret;
+}
+// [End napi_create_strong_reference]
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -231,7 +346,14 @@ static napi_value Init(napi_env env, napi_value exports)
         {"addFinalizer", nullptr, AddFinalizer, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createReference", nullptr, CreateReference, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"useReference", nullptr, UseReference, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"deleteReference", nullptr, DeleteReference, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"deleteReference", nullptr, DeleteReference, nullptr, nullptr, nullptr, napi_default, nullptr},
+        { "createWeakReference", nullptr, CreateWeakReference, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getWeakReferenceValue", nullptr, GetWeakReferenceValue, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createStrongReference", nullptr, CreateStrongReference, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getStrongReferenceValue", nullptr, GetStrongReferenceValue, nullptr, nullptr, nullptr, napi_default,
+          nullptr },
+        { "cleanupStrongReference", nullptr, CleanupStrongReference, nullptr, nullptr, nullptr, napi_default, nullptr }
+    };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

@@ -32,3 +32,17 @@ export const useReference: () => Object | undefined; // napi_get_reference_value
 
 export const deleteReference: () => string | undefined; // napi_delete_reference、napi_reference_unref
 // [End napi_create_delete_reference_api]
+
+// [Start napi_create_weak_reference]
+export const createWeakReference: () => void;
+
+export const getWeakReferenceValue: () => string;
+// [End napi_create_weak_reference]
+
+// [Start napi_create_weak_reference]
+export const createStrongReference: () => void;
+
+export const getStrongReferenceValue: () => string;
+
+export const cleanupStrongReference: () => void;
+// [End napi_create_weak_reference]
