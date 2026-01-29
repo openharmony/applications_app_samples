@@ -53,12 +53,12 @@ products/phone/entry/src/main/ets
   * 正例场景
     
     * 在ProfitScene的IconItem上添加动画，在IconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到收益。  
-    * 源码链接：[ProfitScene.ets](feature/renderGroup/src/main/ets/pages/ProfitScene.ets)，[IconView.ts](feature/renderGroup/src/main/ets/view/IconView.ets)
+    * 源码链接：[ProfitScene.ets](feature/rendergroup/src/main/ets/pages/ProfitScene.ets)，[IconView.ts](feature/rendergroup/src/main/ets/view/IconView.ets)
   
   * 反例场景
     
     * 在IconView的Image上添加动画，在NonIconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到负收益。  
-    * 源码链接：[NonProfitScene.ets](feature/renderGroup/src/main/ets/pages/NonProfitScene.ets)，[NonIconView.ts](feature/renderGroup/src/main/ets/view/NonIconView.ets)  
+    * 源码链接：[NonProfitScene.ets](feature/rendergroup/src/main/ets/pages/NonProfitScene.ets)，[NonIconView.ts](feature/rendergroup/src/main/ets/view/NonIconView.ets)  
 
 ### 相关权限
 
