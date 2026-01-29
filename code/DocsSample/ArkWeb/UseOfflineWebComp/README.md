@@ -159,6 +159,53 @@ entry3/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* Entry中实现基础离线组件加载显示页面功能。
+  * 在Common.ets文件中封装了离线组件管理工具，功能如下。
+    * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。
+    * 实现initWeb，用于初始化MyNodeController实例。
+    * 重写makeNode函数，用于构建节点树、返回节点并挂载到对应NodeContainer中。该函数在对应NodeContainer创建时调用，或通过rebuild方法调用刷新。
+    * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理。
+    * 实现getNWeb方法，用于获取MyNodeController实例。
+  * 在EntryAbility中，使用createNWeb函数创建离线组件并关联到自定义key值。
+  * 在Index.ets中创建一个NodeContainer组件，并通过getNWeb函数从Common.ets中按key值获取关联的离线组件，传入NodeContainer组件进行显示。
+* Entry1中实现预启动ArkWeb渲染进程功能。
+  * 在Common.ets文件中封装了离线组件管理工具，功能如下。
+    * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。
+    * 实现initWeb，用于初始化MyNodeController实例。
+    * 重写makeNode函数，用于构建节点树、返回节点并挂载到对应NodeContainer中。该函数在对应NodeContainer创建时调用，或通过rebuild方法调用刷新。
+    * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理。
+    * 实现getNWeb方法，用于获取MyNodeController实例。
+  * 在EntryAbility中，使用createNWeb函数并以'about:blank'作为key值创建离线组件。
+  * 显示Index.ets的Index1页面时预启动Render进程。在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面index2。
+  * 在index2.ets中创建一个Web组件，加载示例网页。
+* Entry2中实现预渲染Web页面功能。
+  * 在Common.ets文件中封装了离线组件管理工具，功能如下。
+    * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。
+    * 实现initWeb，用于初始化MyNodeController实例。
+    * 重写makeNode函数，用于构建节点树、返回节点并挂载到对应NodeContainer中。该函数在对应NodeContainer创建时调用，或通过rebuild方法调用刷新。
+    * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理。
+    * 实现getNWeb方法，用于获取MyNodeController实例。
+    * 实现webBuilder方法，使用@Builder进行修饰。在此Builder方法中创建Web组件，并在onPageBegin回调中调用onActive开启渲染；在onFirstMeaningfulPaint回调中调用onInactive，在预渲染完成时触发停止渲染。
+  * 在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面index2。显示Index.ets的Index1页面时预启动Render进程。
+  * 在index2.ets中创建一个Web组件，加载示例网页。
+* Entry3中实现离线Web组件的使用、复用和释放功能。
+  * 在Common.ets文件中封装了离线组件管理工具，功能如下。
+    * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。
+    * 实现initWeb，用于初始化MyNodeController实例。
+    * 重写makeNode函数，用于构建节点树、返回节点并挂载到对应NodeContainer中。该函数在对应NodeContainer创建时调用，或通过rebuild方法调用刷新。
+    * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理；实现recycleNWeb方法，用于当离线组件没有被NodeContainer绑定时安全释放，否则节点在不重绘时会显示空白。
+    * 实现getNWeb方法，用于获取MyNodeController实例。
+    * 实现recycleNWebs方法，用于释放所有离线Web组件；实现restoreNWebs方法，恢复之前释放的离线Web组件。
+    * 实现getFreeWebNode方法，用于获取空闲的NWebNode接口。
+    * 实现getOfflineNWebsInfo方法，用于获取离线组件统计信息的调试接口。
+    * 实现startPreLoad和stopPreload方法，用于启动和停止离线Web组件预加载网页，通过设置webController为Active和Inactive状态进行控制。
+    * 实现webBuilder方法，使用@Builder进行修饰。方法中加载一个Web组件，在组件的onFirstMeaningfulPaint回调中调用stopPreload。
+  * 在Entry3Ability的生命周期onForeground和onBackground分别使用restoreNWebs、recycleNWebs方法进行离线Web组件的释放和恢复。
+  * 在Index.ets中创建多个按钮，分别用于跳转到Home页、释放离线Web组件、强制释放离线Web组件、恢复离线Web组件。
+  * 在Home.ets中，通过在生命周期方法aboutToAppear中调用createNWeb创建3个离线Web组件，并使用startPreLoad进行预加载。在Home页面上创建5个按钮，分别用于：返回Index页、跳转到Page1页面、跳转Page2（加载about:blank）、跳转Page2（加载示例网页1）、跳转Page2（加载示例网页2）。
+  * 在Page1.ets中构造两个MyNodeController实例，分别为node1、node2，其中node1设置加载示例网页。创建一个NavDestination组件，在组件的onWillHide回调中使node2加载'about:blank'页面；在NavDestination组件内创建两个NodeContainer，分别传入node1、node2进行显示。
+  * 在Page2.ets中创建一个NavDestination组件，在组件的onWillHide回调中加载空页面，并结束离线Web组件与页面的绑定；在组件的onWillShow回调中触发加载网页。在NavDestination组件内创建4个按钮，分别用于：重新打开Page2并打开'about:blank'网页、返回Home页面、打开示例网页1、打开示例网页2。
 
 ### 相关权限
 
