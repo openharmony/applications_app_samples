@@ -12,13 +12,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start export_ns]
-// 混淆前。
-// export.ts
-export namespace NS {
-  export function foo() {
-    console.info(`export NS function foo is called`);
-  }
-}
-// [End export_ns]
 
+// [Start testOptionExample_enableFilenameObfuscation]
+// FilenameObfuscationTest/FilenameObfuscationTest.ts
+export function foo () {}
+// [End testOptionExample_enableFilenameObfuscation]

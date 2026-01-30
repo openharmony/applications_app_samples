@@ -12,14 +12,30 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start export_myInfo]
+// 混淆前
+// ExportInterface.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+// [End export_myInfo]
 
-// [Start namespaces_Variables_index]
-//module_index.ts
-import { a, b } from "./module_foo"
-import * as c from "./module_bar"
+// [Start declare_global]
+// ExportInterface.ts
+// 混淆前
+declare global {
+  var myAge : string
+}
+// [End declare_global]
 
-export let d: number = 3;
-
-a + b + d;
-c;
-// [End namespaces_Variables_index]
+// [Start fix_age]
+// ExportInterface.ts
+// 混淆前
+const person = {
+  myAge: 18
+}
+person["myAge"] = 20;
+// [End fix_age]

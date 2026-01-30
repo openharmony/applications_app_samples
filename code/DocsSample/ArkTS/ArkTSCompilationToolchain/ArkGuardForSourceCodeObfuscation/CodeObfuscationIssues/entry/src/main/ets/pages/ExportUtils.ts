@@ -12,21 +12,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start call_decorator]
-// Call the API。
-// a.ets
-import { PersistenceV2 } from '@kit.ArkUI';
-import { Sample } from './Sample2';
 
-@Entry
-@ComponentV2
-export struct Page {
-  prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
-
-  build() {
-    Column() {
-      Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
-    }
-  }
+// [Start export_add]
+// 混淆前
+// ExportUtils.ts
+export function add(a: number, b: number): number {
+  return a + b;
 }
-// [End call_decorator]
+// [End export_add]

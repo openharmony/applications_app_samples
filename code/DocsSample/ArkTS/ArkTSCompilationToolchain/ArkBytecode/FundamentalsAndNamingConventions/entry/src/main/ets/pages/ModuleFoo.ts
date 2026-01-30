@@ -13,10 +13,8 @@
 * limitations under the License.
 */
 
-// [Start export_ts]
-// 混淆前
-// export.ts
-export namespace NS {
-  export function foo() { }
-}
-// [End export_ts]
+// [Start namespaces_Variables_foo]
+//ModuleFoo.ts
+export let a: number = 1;
+export let b: number = 2;
+// [End namespaces_Variables_foo]

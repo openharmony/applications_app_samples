@@ -44,10 +44,10 @@ class B {
 // [End shared_Lexical]
 
 // [Start patch_variables]
-function bar(): void {} // 新增语句，编译补丁。
+function bar(): void {} // 新增语句，编译补丁
 
 function foo2(): void {
-  bar(); // 新增语句，编译补丁。
+  bar(); // 新增语句，编译补丁
 }
 // [End patch_variables]
 
@@ -57,35 +57,35 @@ function foo3(a: number, b: number): void {}
 
 // [Start renaming_index]
 namespace A {
-  function bar() { } // bar的函数名为"#&A*#bar"。
+  function bar() { } // bar的函数名为"#&A*#bar"
 }
 
 namespace A {
-  function foo() { } // foo的函数名为"#&A^1*#foo"，其中"^1" 为重名序号。
+  function foo() { } // foo的函数名为"#&A^1*#foo"，其中"^1" 为重名序号
 }
 // [End renaming_index]
 
 // [Start original_function_name]
-function foo() {}; // 原函数名为"foo"。
-() => { }; // 原函数名为""。
-() => { }; // 原函数名为"^1"。
+function foo() {}; // 原函数名为"foo"
+() => { }; // 原函数名为""
+() => { }; // 原函数名为"^1"
 // [End original_function_name]
 
 {
   // [Start special_function_variable]
-  let a = () => {} // 原函数名为"a"。
+  let a = () => {} // 原函数名为"a"
   // [End special_function_variable]
 }
 
 // [Start avoid_use]
-namespace A { // namespace在字节码中的函数名为"#&#A"。
-  class B { // 构造函数在字节码中的函数名为"#&A~B=#B"。
-    m() { // 函数m在字节码中的函数名为"#&A~B>#m"。
-      return () => {} // 匿名函数在字节码中的函数名为"#&A~B>m*#"。
+namespace A { // namespace在字节码中的函数名为"#&#A"
+  class B { // 构造函数在字节码中的函数名为"#&A~B=#B"
+    m() { // 函数m在字节码中的函数名为"#&A~B>#m"
+      return () => {} // 匿名函数在字节码中的函数名为"#&A~B>m*#"
     }
-    static s() {} // 静态函数s在字节码中的函数名为"#&A~B<#s"。
+    static s() {} // 静态函数s在字节码中的函数名为"#&A~B<#s"
   }
-  enum E { // enum在字节码中的函数名为"#&A%#E"。
+  enum E { // enum在字节码中的函数名为"#&A%#E"
 
   }
 }

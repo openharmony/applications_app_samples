@@ -13,12 +13,13 @@
 * limitations under the License.
 */
 
-// [Start lexical_environments_variables]
-// index.ts
-function foo(): void {
-  let a: number = 1;
-  function bar(): number {
-    return a;
-  }
-}
-// [End lexical_environments_variables]
+// [Start namespaces_Variables_index]
+//ModuleIndex.ts
+import { a, b } from "./module_foo"
+import * as c from "./module_bar"
+
+export let d: number = 3;
+
+a + b + d;
+c;
+// [End namespaces_Variables_index]

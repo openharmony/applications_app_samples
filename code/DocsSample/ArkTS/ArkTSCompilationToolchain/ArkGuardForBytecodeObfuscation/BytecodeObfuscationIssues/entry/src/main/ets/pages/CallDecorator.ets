@@ -12,8 +12,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start call_decorator]
+// Call the API
+// CallDecorator.ets
+import { PersistenceV2 } from '@kit.ArkUI';
+import { Sample } from './SampleChild';
 
-// [Start testOptionExample_keepFileName]
-// file2.ts
-export function foo () {}
-// [End testOptionExample_keepFileName]
+@Entry
+@ComponentV2
+export struct Page {
+  prop: Sample = PersistenceV2.connect(Sample, () => new Sample())!;
+
+  build() {
+    Column() {
+      Text(`Page1 add 1 to prop.p1: ${this.prop.f123.p123}`)
+    }
+  }
+}
+// [End call_decorator]

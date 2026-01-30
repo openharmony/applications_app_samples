@@ -13,10 +13,10 @@
 * limitations under the License.
 */
 
-// [Start export_add]
-// 混淆前。
-// utils.ts
-export function add(a: number, b: number): number {
-  return a + b;
+// [Start export_ts]
+// 混淆前
+// ExportNs.ts
+export namespace NS {
+  export function foo() { }
 }
-// [End export_add]
+// [End export_ts]

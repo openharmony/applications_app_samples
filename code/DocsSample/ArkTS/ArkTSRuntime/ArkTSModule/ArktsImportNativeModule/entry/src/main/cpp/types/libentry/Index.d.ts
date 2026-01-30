@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 // [Start export_add]
-// libentry.so对应的index.d.ts。
+// libentry.so对应的index.d.ts
 export const add: (a: number, b: number) => number;
 // [End export_add]

@@ -13,13 +13,10 @@
 * limitations under the License.
 */
 
-// [Start export_myInfo]
-// 混淆前。
-// file1.ts
-export interface MyInfo {
-  age: number;
-  address: {
-    city1: string;
-  }
+// [Start special_with_slash_period]
+// OriginalFuncName.ts
+let a = {
+  "a.b#c^2": () => {}, // 原函数名为""
+  "x\\y#": () => {} // 原函数名为"^1"
 }
-// [End export_myInfo]
+// [End special_with_slash_period]

@@ -12,13 +12,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start export_interface]
-// file1.ts
-export interface AddressType {
-  city1: string
+// [Start export_ns]
+// 混淆前
+// ExportNs.ts
+export namespace NS {
+  export function foo() {
+    console.info(`export NS function foo is called`);
+  }
 }
-export interface MyInfo {
-  age: number;
-  address: AddressType;
-}
-// [End export_interface]
+// [End export_ns]
+

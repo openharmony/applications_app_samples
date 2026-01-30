@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start testOptionExample_enableFilenameObfuscation]
-// test1/test2.ts
+// [Start testOptionExample_keepFileName]
+// DynamicImportFile.ts
 export function foo () {}
-// [End testOptionExample_enableFilenameObfuscation]
+// [End testOptionExample_keepFileName]

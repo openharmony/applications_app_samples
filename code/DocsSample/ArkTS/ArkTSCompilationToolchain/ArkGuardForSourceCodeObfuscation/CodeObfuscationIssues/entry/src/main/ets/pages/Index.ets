@@ -14,26 +14,41 @@
 */
 
 // [Start call_want]
-// 混淆前。
+// 混淆前
 import { Want } from '@kit.AbilityKit';
-// [StartExclude call_want]
+  // [StartExclude call_want]
+// [Start import_json]
+// 示例JSON文件结构（ImportJson.json）：
+/*
+{
+  "jsonObj": {
+    "jsonProperty": "value"
+  }
+}
+*/
+
+// 混淆前
+import jsonData from './ImportJson.json';
+// [StartExclude import_json]
 // [Start call_myInfo]
-// file2.ts
-import { MyInfo } from './file1';
-// [StartExclude call_myInfo]
+// FileOutside.ts
+import { MyInfo } from './FileInside';
+  // [StartExclude call_myInfo]
 // [Start ns_import]
 // import.ts
-import { NS } from './export';
-// [StartExclude ns_import]
+import { NS } from './ExportNs';
+  // [StartExclude ns_import]
 // [Start call_addNum]
 // example.ets
-// 混淆前。
+// 混淆前
 import testNapi from 'libentry.so';
-// [StartExclude call_addNum]
+  // [StartExclude call_addNum]
 // [Start call_hsp]
-// entry模块。
+// entry模块
 import { addNum } from 'sharedlibrary';
-// [StartExclude call_hsp]
+
+addNum(1, 2);
+// [End call_hsp]
 
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
@@ -81,14 +96,16 @@ function testPropertyObfuscation() {
 async function loadAndUseAdd() {
   let result: number = 0;
   try {
-    const mathUtils = await import('./utils');
+    const mathUtils = await import('./ExportUtils');
     result = mathUtils.add(2, 3);
     console.info(`result = ${result}`);
   } catch (error) {
     console.error('Failure reason:', error);
   }
 }
-// [StartExclude add_call]
+
+loadAndUseAdd();
+// [End add_call]
 
 function testExportNamespace() {
   // [EndExclude ns_import]
@@ -110,9 +127,7 @@ function testLibentryAdd() {
 }
 
 function testHsp() {
-  // [EndExclude call_hsp]
   let sun = addNum(1, 2);
-  // [End call_hsp]
 
   console.info(`sun = ${sun}`);
   let logMsg = `sun = ${sun}`;
@@ -121,6 +136,9 @@ function testHsp() {
     globalLogUpdate(logMsg, false);
   }
 }
+// [EndExclude import_json]
+let jsonProp = jsonData.jsonObj.jsonProperty;
+// [End import_json]
 
 @Entry
 @Component
@@ -228,9 +246,7 @@ struct IndexArkTs {
         .justifyContent(FlexAlign.Center)
         .margin({ bottom: 12 })
         .onClick(() => {
-          // [EndExclude add_call]
           loadAndUseAdd();
-          // [End add_call]
           this.currentState = $r('app.string.test_external_function_complete');
         })
 
