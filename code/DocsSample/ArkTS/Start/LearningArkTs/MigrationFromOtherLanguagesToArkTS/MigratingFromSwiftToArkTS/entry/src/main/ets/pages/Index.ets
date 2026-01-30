@@ -14,7 +14,7 @@
 */
 
 // [Start import_collections]
-// 引入ArkTS标准库中的ArkTS容器集。
+// 引入ArkTS标准库中的ArkTS容器集
 
 import { collections } from '@kit.ArkTS';
 // [End import_collections]
@@ -39,37 +39,37 @@ class B {
 function callFunction(fn: () => void) {
   fn();
 }
-// [StartExclude this_context]
+  // [StartExclude this_context]
 
 // [Start swift_function_definition]
-// 常规函数定义，与Swift类似。
+// 常规函数定义，与Swift类似
 function add(x: number, y: number): number {
   return x + y;
 }
-// [StartExclude swift_function_definition]
+  // [StartExclude swift_function_definition]
 
 // [Start function_overload_demo]
 function foo(x: number): void;            /*  第一个函数定义。  */
 function foo(x: string): void;            /*  第二个函数定义。  */
 function foo(x: number | string): void {  /*  函数实现。       */
 }
-// [StartExclude function_overload_demo]
+  // [StartExclude function_overload_demo]
 
 // [Start optional_parameter]
 function foo2(name?: string) {}  /*  name为可选参数。  */
-// [StartExclude optional_parameter]
+  // [StartExclude optional_parameter]
 
 // [Start namespace_demo]
 namespace Models {
   export class User {
-    // 实现细节。
+    // 实现细节
     // [StartExclude namespace_demo]
     name: string = 'DefaultUser';
     // [EndExclude namespace_demo]
   }
 
   export interface Repository {
-    // 接口定义。
+    // 接口定义
   }
 }
 // [End namespace_demo]
@@ -78,11 +78,11 @@ let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testTypeAnnotation() {
   // [Start swift_type_annotation]
-  // 类型注解（类似Swift）。
+  // 类型注解（类似Swift）
   let age: number = 20;
   const program: string = 'ArkTS';
 
-  // 类型推断（类似Swift的局部变量类型推断）。
+  // 类型推断（类似Swift的局部变量类型推断）
   let version = 5.0;
   // [End swift_type_annotation]
 
@@ -95,7 +95,7 @@ function testTypeAnnotation() {
 
 function testFunctionDefinition() {
   // [EndExclude swift_function_definition]
-  // 简洁的箭头函数形式，类似Swift的闭包语法。
+  // 简洁的箭头函数形式，类似Swift的闭包语法
   const multiply = (a: number, b: number): number => a * b;
   // [End swift_function_definition]
 
@@ -109,8 +109,8 @@ function testFunctionDefinition() {
 
 function testFunctionOverload() {
   // [EndExclude function_overload_demo]
-  foo(123);     //  OK，使用第一个定义。
-  foo('aa'); // OK，使用第二个定义。
+  foo(123);     //  OK，使用第一个定义
+  foo('aa'); // OK，使用第二个定义
   // [End function_overload_demo]
 
   let logMsg = `foo(123) and foo('aa') executed successfully`;
@@ -121,8 +121,8 @@ function testFunctionOverload() {
 
 function testOptionalParameter() {
   // [EndExclude optional_parameter]
-  foo2('hello');     //  OK，传入name参数。
-  foo2();     //  OK，不传name参数。
+  foo2('hello');     //  OK，传入name参数
+  foo2();     //  OK，不传name参数
   // [End optional_parameter]
 
   let logMsg = `foo2('hello') and foo2() executed successfully`;
@@ -154,9 +154,9 @@ function testThisContext() {
   let a: A = new A();
   let b: B = new B();
 
-  // callFunction(a.foo); // 程序crash。this的上下文发生了变化。
-  // b.callFunction(a.foo); // 程序crash。this的上下文发生了变化。
-  b.callFunction(a.foo.bind(b)) // 输出'I'm B'。
+  // callFunction(a.foo); // 程序crash。this的上下文发生了变化
+  // b.callFunction(a.foo); // 程序crash。this的上下文发生了变化
+  b.callFunction(a.foo.bind(b)) // 输出'I'm B'
   // [End this_context]
 
   let logMsg = `b.callFunction: ${b.callFunction(a.foo.bind(b))}`;
@@ -167,7 +167,7 @@ function testThisContext() {
 
 function testTypeInference() {
   // [Start auto_type_inference]
-  let num = 10; // 编译器自动推断num为number类型。
+  let num = 10; // 编译器自动推断num为number类型
   // [End auto_type_inference]
 
   console.info(`num = ${num}, type: number`);
@@ -181,7 +181,7 @@ function testOptionalProperty() {
   // [Start optional_property]
   interface Person {
     name: string;
-    age?: number;  // age是可选属性。
+    age?: number;  // age是可选属性
   }
 
   const person: Person = {
@@ -198,7 +198,7 @@ function testOptionalProperty() {
 
 function testUnionType() {
   // [Start union_type_demo]
-  // 联合类型示例。
+  // 联合类型示例
 
   let value: string | number;
   value = 'hello';
