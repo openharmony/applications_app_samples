@@ -14,7 +14,6 @@
  */
 
 // [Start not_recommended_example]
-import resource from '../util/resource';
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 @Entry
@@ -38,21 +37,21 @@ struct Index {
 
           // 接收父Worker返回的消息
           parentworker.onmessage = (e: MessageEvents) => {
-            console.info(resource.resourceToString($r('app.string.Not_recommended1')) + e.data);
+            console.info('主线程收到父Worker信息 ' + e.data);
           }
 
           // 父Worker正常退出后的回调
           parentworker.onexit = () => {
-            console.info(resource.resourceToString($r('app.string.Not_recommended2')));
+            console.info('父Worker退出');
           }
 
           // 父Worker运行过程中发生未被捕获的异常或运行错误时的回调
           parentworker.onAllErrors = (err: ErrorEvent) => {
-            console.error(resource.resourceToString($r('app.string.Not_recommended3')) + err);
+            console.error('主线程接收到父Worker报错 ' + err);
           }
 
           // 向父Worker发送启动消息，用于触发其onmessage中的处理逻辑
-          parentworker.postMessage(resource.resourceToString($r('app.string.Not_recommended4')));
+          parentworker.postMessage('主线程发送消息给父Worker');
           this.message = 'success';
         })
     }
