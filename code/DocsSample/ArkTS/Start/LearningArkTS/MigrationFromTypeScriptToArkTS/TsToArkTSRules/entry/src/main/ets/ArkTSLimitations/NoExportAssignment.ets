@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_exportAssignTwo]
-// module2。
+// module2
 import * as Pt from './ExportMod'
 
 let p = Pt.Point.origin;

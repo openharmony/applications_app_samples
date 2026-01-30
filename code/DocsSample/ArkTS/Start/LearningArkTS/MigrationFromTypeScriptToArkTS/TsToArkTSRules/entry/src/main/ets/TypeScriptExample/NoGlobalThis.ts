@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 // [Start no_globalThisImport_ts]
-// 全局文件中。
+// 全局文件中
 var abc = 100;
 
-// 从上面引用'abc'。
+// 从上面引用'abc'
 let x = globalThis.abc;
 // [End no_globalThisImport_ts]

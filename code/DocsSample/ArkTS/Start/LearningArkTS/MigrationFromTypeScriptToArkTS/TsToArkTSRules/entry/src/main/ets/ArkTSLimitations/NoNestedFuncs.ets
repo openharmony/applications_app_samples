@@ -14,7 +14,7 @@
  */
 // [Start no_nestedFuncs]
 function addNum(a: number, b: number): void {
-  // 使用lambda函数代替声明函数。
+  // 使用lambda函数代替声明函数
   let logToConsole: (message: string) => void = (message: string): void => {
     console.info(message);
   }

@@ -49,7 +49,7 @@ function testHelloWithParam() {
 function multiply(n: number, coeff: number = 2): number {
   return n * coeff;
 }
-// [StartExclude default_parameter_function]
+  // [StartExclude default_parameter_function]
 function testOptionalFunction() {
   // [EndExclude default_parameter_function]
   multiply(2);  // 返回2*2
@@ -72,7 +72,7 @@ function sum(...numbers: number[]): number {
   }
   return res;
 }
-// [StartExclude rest_parameter_function]
+  // [StartExclude rest_parameter_function]
 function testRestParameter() {
   // [EndExclude rest_parameter_function]
   sum(); // 返回0
@@ -120,7 +120,7 @@ function func() {
   let outerVar = 'I am inside';
   console.info(outerVar); // 输出: I am inside
 }
-// [StartExclude variable_scope]
+  // [StartExclude variable_scope]
 function testFunc() {
   // [EndExclude variable_scope]
   func();
@@ -172,7 +172,7 @@ function f(): () => number {
   let g = (): number => { count++; return count; };
   return g;
 }
-// [StartExclude closure_function]
+  // [StartExclude closure_function]
 function testClosure() {
   // [EndExclude closure_function]
   let z = f();

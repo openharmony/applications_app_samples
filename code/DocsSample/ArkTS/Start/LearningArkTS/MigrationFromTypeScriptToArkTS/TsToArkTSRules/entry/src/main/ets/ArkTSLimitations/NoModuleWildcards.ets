@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_moduleWildCards]
-// 使用代码。
+// 使用代码
 import * as m from './ExportMod'
 console.info('N.foo called: ' + m.N.foo(42));
 // [End no_moduleWildCards]

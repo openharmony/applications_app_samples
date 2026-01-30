@@ -17,7 +17,7 @@
 import { UIAbility } from '@kit.AbilityKit';
 // [End module_import_single]
 // [Start module_import_async]
-// say.ets
+// Say.ets
 export function hi() {
   console.info('Hello');
 }

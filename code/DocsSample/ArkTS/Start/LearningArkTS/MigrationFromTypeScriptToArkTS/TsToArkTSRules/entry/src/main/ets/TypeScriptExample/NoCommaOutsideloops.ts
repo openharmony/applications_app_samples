@@ -18,5 +18,5 @@ for (let i = 0, j = 0; i < 10; ++i, j += 2) {
 }
 
 let x = 0;
-x = (++x, x++); // 1。
+x = (++x, x++); // 1
 // [End no_commaLoops_ts]

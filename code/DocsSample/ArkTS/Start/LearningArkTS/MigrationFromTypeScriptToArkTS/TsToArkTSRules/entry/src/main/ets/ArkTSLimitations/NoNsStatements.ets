@@ -21,6 +21,6 @@ namespace A {
   }
 }
 
-// 调用初始化函数来执行。
+// 调用初始化函数来执行
 A.init();
 // [End no_nsStatements]

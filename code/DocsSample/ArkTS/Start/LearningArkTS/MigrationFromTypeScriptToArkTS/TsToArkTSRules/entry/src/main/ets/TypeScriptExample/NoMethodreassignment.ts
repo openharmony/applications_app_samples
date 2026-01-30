@@ -27,6 +27,6 @@ let c1 = new C();
 let c2 = new C();
 c2.foo = bar;
 
-c1.foo(); // foo。
-c2.foo(); // bar。
+c1.foo(); // foo
+c2.foo(); // bar
 // [End no_reassignMethod_ts]

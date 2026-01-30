@@ -18,7 +18,7 @@ class Point {
   y: string = '';
 }
 let p: Point = { x: '1', y: '2' };
-console.info(p['x']); // 1。
+console.info(p['x']); // 1
 
 class Person {
   name: string = '';

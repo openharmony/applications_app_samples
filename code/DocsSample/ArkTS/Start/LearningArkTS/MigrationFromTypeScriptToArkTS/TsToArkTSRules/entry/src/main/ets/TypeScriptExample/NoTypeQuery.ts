@@ -15,8 +15,8 @@
 // [Start no_typeQuery_ts]
 let n1 = 42;
 let s1 = 'foo';
-console.info(typeof n1); // 'number'。
-console.info(typeof s1); // 'string'。
+console.info(typeof n1); // 'number'
+console.info(typeof s1); // 'string'
 let n2: typeof n1;
 let s2: typeof s1;
 // [End no_typeQuery_ts]

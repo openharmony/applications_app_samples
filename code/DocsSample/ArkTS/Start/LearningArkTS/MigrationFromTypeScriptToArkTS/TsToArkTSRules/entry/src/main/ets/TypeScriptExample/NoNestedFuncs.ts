@@ -15,14 +15,14 @@
 // [Start no_nestedFuncs_ts]
 function addNum(a: number, b: number): void {
 
-  // 函数内声明函数。
+  // 函数内声明函数
   function logToConsole(message: string): void {
     console.info(message);
   }
 
   let result = a + b;
 
-  // 调用函数。
+  // 调用函数
   logToConsole('result is ' + result);
 }
 // [End no_nestedFuncs_ts]

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_implicitReturnTypes_ts]
-// 只有在开启noImplicitAny选项时会产生编译时错误。
+// 只有在开启noImplicitAny选项时会产生编译时错误
 function f(x: number) {
   if (x <= 0) {
     return x;
@@ -21,7 +21,7 @@ function f(x: number) {
   return g(x);
 }
 
-// 只有在开启noImplicitAny选项时会产生编译时错误。
+// 只有在开启noImplicitAny选项时会产生编译时错误
 function g(x: number) {
   return f(x - 1);
 }

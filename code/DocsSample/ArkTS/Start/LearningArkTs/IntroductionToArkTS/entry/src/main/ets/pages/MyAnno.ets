@@ -14,8 +14,8 @@
 */
 
 // [Start annotation_export_autoGenerate_dts]
-// a.ets
-import { ClassAuthor4 } from './author';
+// MyAnno.ets
+import { ClassAuthor4 } from './Author';
 
 export @interface MethodAnno4 {
   data: number = 0;
@@ -31,12 +31,12 @@ class MyClass {
 }
 // [End annotation_export_autoGenerate_dts]
 // [Start annotation_export_example]
-// a.ets
+// MyAnno.ets
 export @interface MyAnno2 {}
 export @interface ClassAuthor2 {}
 // [End annotation_export_example]
 // [Start annotation_import]
-// a.ets
+// MyAnno.ets
 export @interface Anno {}
 
 export @interface ClassAuthor1 {}
@@ -44,10 +44,15 @@ export @interface ClassAuthor1 {}
 console.info('hello');
 // [End annotation_import]
 // [Start annotation_autoGenerate_dts]
-// a.ets
+// MyAnno.ets
 export @interface ClassAuthor5 {}
 
 @interface MethodAnno { // 没导出
   data: number;
 }
 // [End annotation_autoGenerate_dts]
+
+// [Start annotation_interface]
+// MyAnno.ets
+export @interface NameAnno{name: string = ""} // ok
+// [End annotation_interface]

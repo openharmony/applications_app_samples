@@ -14,5 +14,5 @@
  */
 // [Start unique_names_ts]
 let X: string
-type X = number[] // 类型的别名与变量同名。
+type X = number[] // 类型的别名与变量同名
 //  [End unique_names_ts]

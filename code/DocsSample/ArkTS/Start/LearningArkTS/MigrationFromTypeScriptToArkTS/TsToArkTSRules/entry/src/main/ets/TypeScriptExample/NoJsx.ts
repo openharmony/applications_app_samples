@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 // [Start no_jsx_ts]
-let a = +5;    // 5（number类型）。
-let b = +'5';    // 5（number类型）。
-let c = -5;    // -5（number类型）。
-let d = -'5';    // -5（number类型）。
-let e = ~5;    // -6（number类型）。
-let f = ~'5';    // -6（number类型）。
-let g = +'string'; // NaN（number类型）。
+let a = +5;    // 5（number类型）
+let b = +'5';    // 5（number类型）
+let c = -5;    // -5（number类型）
+let d = -'5';    // -5（number类型）
+let e = ~5;    // -6（number类型）
+let f = ~'5';    // -6（number类型）
+let g = +'string'; // NaN（number类型）
 
 function returnTen(): string {
   return '-10';
@@ -29,6 +29,6 @@ function returnString(): string {
   return 'string';
 }
 
-let x = +returnTen();  // -10（number类型）。
-let y = +returnString(); // NaN。
+let x = +returnTen();  // -10（number类型）
+let y = +returnString(); // NaN
 // [End no_jsx_ts]

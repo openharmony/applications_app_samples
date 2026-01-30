@@ -14,8 +14,8 @@
  */
 // [Start no_definiteAssignment_ts]
 class C {
-  name: string  // 只有在开启strictPropertyInitialization选项时会产生编译时错误。
-  age: number   // 只有在开启strictPropertyInitialization选项时会产生编译时错误。
+  name: string  // 只有在开启strictPropertyInitialization选项时会产生编译时错误
+  age: number   // 只有在开启strictPropertyInitialization选项时会产生编译时错误
 }
 
 let c = new C();
@@ -27,8 +27,8 @@ let c = new C();
 // 关闭了类型检查后的代码
 // ...
 
-let s1: string = null; // 没有报错。
+let s1: string = null; // 没有报错
 
 // @ts-ignore
-let s2: string = null; // 没有报错。
+let s2: string = null; // 没有报错
 // [End strict_typingRequired_ts]

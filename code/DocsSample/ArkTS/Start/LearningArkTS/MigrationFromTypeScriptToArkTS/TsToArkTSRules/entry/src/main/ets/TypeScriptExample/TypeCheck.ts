@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start type_check_ts]
-// 只有在开启noImplicitReturns选项时会产生编译时错误。
+// 只有在开启noImplicitReturns选项时会产生编译时错误
 function foo(s: string): string {
   if (s != '') {
     console.info(s);
@@ -23,5 +23,5 @@ function foo(s: string): string {
   }
 }
 
-let n: number = null; // 只有在开启strictNullChecks选项时会产生编译时错误。
+let n: number = null; // 只有在开启strictNullChecks选项时会产生编译时错误
 // [End type_check_ts]

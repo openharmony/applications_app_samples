@@ -39,13 +39,13 @@ function factorial(n: number): number {
   }
   return n * factorial(n - 1);
 }
-// [StartExclude float_type_factorial]
+  // [StartExclude float_type_factorial]
 function testFloatType() {
   // [EndExclude float_type_factorial]
-  factorial(n1) //  7.660344000000002。
-  factorial(n2) //  7.680640444893748。
-  factorial(n3) //  1。
-  factorial(n4) //  9.33262154439441e+157。
+  factorial(n1) //  7.660344000000002
+  factorial(n2) //  7.680640444893748
+  factorial(n3) //  1
+  factorial(n4) //  9.33262154439441e+157
   // [End float_type_factorial]
 
   console.info('factorial(n1): ' + factorial(n1));
@@ -242,12 +242,12 @@ function testIfElse() {
   // [Start if_else_statement]
   let s1 = 'Hello';
   if (s1) {
-    console.info(s1); // 打印"Hello"
+    console.info(s1); // 打印“Hello”
   }
 
   let s2 = 'World';
   if (s2.length != 0) {
-    console.info(s2); // 打印"World"
+    console.info(s2); // 打印“World”
   }
   // [End if_else_statement]
 
@@ -264,13 +264,13 @@ let label2 = 2;
 let label3 = 3;
 // [Start switch_statement]
 switch (expression) {
-  case label1: // 如果label1匹配,则执行
+  case label1: // 如果label1匹配，则执行
     // ...
     // 语句1
     // ...
     break; // 可省略
   case label2:
-  case label3: // 如果label2或label3匹配,则执行
+  case label3: // 如果label2或label3匹配，则执行
     // ...
     // 语句23
     // ...
@@ -374,6 +374,7 @@ do {
 }
 // [Start try_catch]
 try {
+  // 可能发生异常的语句块
   // [StartExclude try_catch]
   let result = 1;
   // [EndExclude try_catch]
