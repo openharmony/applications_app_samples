@@ -97,10 +97,12 @@ export class VideoManager implements OutputManager {
     }
   }
 
+  // [Start is_support_mirror]
   isSupportMirror() {
     let isSupported: boolean | undefined = this.output?.isMirrorSupported();
     return isSupported;
   }
+  // [End is_support_mirror]
 
   // [Start start_video]
   async start(isFront: boolean) {
@@ -110,7 +112,9 @@ export class VideoManager implements OutputManager {
           this.output?.enableMirror(true)
         }
         // [StartExclude start_video]
+        // [Start update_rotation]
         await this.avRecorder.updateRotation(this.getVideoRotation(await this.getGravity()));
+        // [End update_rotation]
         // [EndExclude start_video]
         await this.output?.start();
         await this.avRecorder?.start();
@@ -276,6 +280,7 @@ export class VideoManager implements OutputManager {
     // [End av_config]
   }
 
+  // [Start get_data_gravity]
   getRealData(data: sensor.GravityResponse): number {
     let getDeviceDegree: number = 0;
     let x = data.x;
@@ -327,6 +332,7 @@ export class VideoManager implements OutputManager {
       return 0
     }
   }
+  // [End get_data_gravity]
 
   // [Start get_video_rotation]
   getVideoRotation(deviceDegree: number): camera.ImageRotation {

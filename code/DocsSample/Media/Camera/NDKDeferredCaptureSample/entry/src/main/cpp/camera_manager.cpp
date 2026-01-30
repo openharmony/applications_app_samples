@@ -1659,6 +1659,8 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetRelease()
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetRelease return with ret code: %{public}d!", result);
     return result;
 }
+
+// [Start deferred_photo]
 MediaLibrary_ErrorCode NDKCamera::MediaAssetChangeRequest(OH_MediaAsset *mediaAsset)
 {
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetChangeRequest start!");
@@ -1804,7 +1806,7 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerRequestImage(OH_MediaAsset *m
     DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerRequestImage return with ret code: %{public}d!", result);
     return result;
 }
-
+// [End deferred_photo]
 
 Camera_ErrorCode NDKCamera::IsVideoModeAvailable(bool *available)
 {

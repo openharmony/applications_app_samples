@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+// [Start dual_preview_case]
+// [Start dual_preview_imports]
 import { image } from '@kit.ImageKit';
 import { camera } from '@kit.CameraKit';
 import { display } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End dual_preview_imports]
 import { Logger } from 'commons';
 import OutputManager, { CreateOutputConfig } from './OutputManager';
 import CameraConstant from '../constants/CameraConstants';
@@ -59,14 +62,14 @@ export class ImageReceiverManager implements OutputManager {
     this.output = undefined;
   }
 
-  // [Start init]
+  // [Start init_image_receiver]
   async init(size: Size, format = image.ImageFormat.JPEG, capacity = 8) {
     const receiver = image.createImageReceiver(size, format, capacity);
     const surfaceId = await receiver.getReceivingSurfaceId();
     this.onImageArrival(receiver);
     return surfaceId;
   }
-  // [End init]
+  // [End init_image_receiver]
 
   // [Start getPixelMap]
   async getPixelMap(imgComponent: image.Component, width: number, height: number, stride: number) {
@@ -146,3 +149,4 @@ export class ImageReceiverManager implements OutputManager {
   }
   // [End onImageArrival]
 }
+// [End dual_preview_case]

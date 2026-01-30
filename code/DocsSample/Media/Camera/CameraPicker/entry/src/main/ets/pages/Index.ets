@@ -13,14 +13,18 @@
  * limitations under the License.
  */
 
+// [Start camera_picker_full_example]
+// [Start camera_picker_imports]
 import { camera, cameraPicker as picker } from '@kit.CameraKit';
 import { fileIo, fileUri } from '@kit.CoreFileKit';
+// [End camera_picker_imports]
 
 @Entry
 @Component
 struct Index {
   @State imgSrc: string = '';
-  @State videoSrc: string = '';
+  @State videoSrc: string = '';  
+// [Start camera_picker_profile_setup]
   createPickerProfile(context: Context): picker.PickerProfile {
     let pathDir = context.filesDir;
     let fileName = `${new Date().getTime()}`;
@@ -34,7 +38,9 @@ struct Index {
     };
     return pickerProfile;
   }
+  // [End camera_picker_profile_setup]
 
+  // [Start camera_picker_pick_usage]
   async getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
     let result: picker.PickerResult =
       await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
@@ -42,6 +48,7 @@ struct Index {
     console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
     return result;
   }
+  // [End camera_picker_pick_usage]
 
   getContext(): Context | undefined {
     let uiContext: UIContext = this.getUIContext();
@@ -82,3 +89,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End camera_picker_full_example]

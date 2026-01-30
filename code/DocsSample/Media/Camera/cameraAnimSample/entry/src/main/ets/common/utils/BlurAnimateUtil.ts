@@ -19,8 +19,10 @@ import { Constants } from '../Constants';
 
 const TAG: string = 'BlurAnimateUtil';
 
+// [Start blur_animate_util]
 export class BlurAnimateUtil {
   public static surfaceShot: image.PixelMap;
+  // [StartExclude blur_animate_util]
   public static readonly SHOW_BLUR_DURATION: number = 200;
   public static readonly HIDE_BLUR_DURATION: number = 200;
   public static readonly ROTATION_DURATION: number = 200;
@@ -35,6 +37,7 @@ export class BlurAnimateUtil {
   public static readonly IMG_FLIP_ANGLE_MINUS_90: number = -90;
   public static readonly ANIM_MODE_SWITCH_BLUR = 48;
   public static readonly IMG_SCALE: number = 0.75;
+  // [EndExclude blur_animate_util]
 
   /**
    * 获取surface截图
@@ -67,3 +70,4 @@ export class BlurAnimateUtil {
     return this.surfaceShot;
   }
 }
+// [End blur_animate_util]

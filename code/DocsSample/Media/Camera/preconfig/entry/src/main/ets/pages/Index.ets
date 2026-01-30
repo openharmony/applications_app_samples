@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_XComponent]
 import CameraService from '../model/CameraService';
 import Logger from '../common/utils/Logger';
 import { ModeComponent } from '../views/ModeComponent';
@@ -104,6 +105,7 @@ struct Index {
   private cameras = CameraService.getSupportedCamerasFn(this.mCameraManager);
   private defaultCameraPosition = this.cameras[0].cameraPosition;
 
+  // [StartExclude specify_XComponent]
   registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
     console.info(TAG + 'foldStatusChanged foldStatus: ' + foldStatusInfo.foldStatus);
     for (let i = 0; i < foldStatusInfo.supportedCameras.length; i++) {
@@ -131,6 +133,7 @@ struct Index {
     }
     AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
   }
+  // [EndExclude specify_XComponent]
 
   updateRotation() {
     let cameraPosition = GlobalContext.get().getT<number>('curCameraPosition')
@@ -141,6 +144,7 @@ struct Index {
     }
   }
 
+  // [StartExclude specify_XComponent]
   onFoldStatusChange(): void {
     this.mCameraManager.on('foldStatusChange', this.foldStatusCallback);    
   }
@@ -148,6 +152,7 @@ struct Index {
   offFoldStatusChange(): void {
     this.mCameraManager.off('foldStatusChange', this.foldStatusCallback);
   }
+  // [EndExclude specify_XComponent]
 
   reloadXComponent(): void {
     this.reloadXComponentFlag = !this.reloadXComponentFlag;
@@ -285,6 +290,7 @@ struct Index {
     await CameraService.initCamera(this.surfaceId, curCameraPosition, this.PreconfigType, this.mConfigRatio);
   }
 
+  // [StartExclude specify_XComponent]
   isExpandedOrHalfFolded(): boolean {
     return display.getFoldStatus() === display.FoldStatus.FOLD_STATUS_EXPANDED ||
       display.getFoldStatus() == display.FoldStatus.FOLD_STATUS_HALF_FOLDED
@@ -323,6 +329,7 @@ struct Index {
     await CameraService.initCamera(this.surfaceId, GlobalContext.get().getT<number>('curCameraPosition'),
       this.PreconfigType, this.mConfigRatio);
   }
+  // [EndExclude specify_XComponent]
 
   build() {
     Stack() {
@@ -371,6 +378,7 @@ struct Index {
           // .renderFit(RenderFit.RESIZE_COVER)
         }
       }
+      // [StartExclude specify_XComponent]
       SlideComponent()
 
       ModeComponent({
@@ -427,7 +435,9 @@ struct Index {
       .justifyContent(FlexAlign.Start)
       .position({ x: 0, y: 120 })
     }
+    // [EndExclude specify_XComponent]
     .size({ width: Constants.FULL_PERCENT, height: Constants.FULL_PERCENT })
     .backgroundColor(Color.Black)
   }
 }
+// [End specify_XComponent]

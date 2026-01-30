@@ -62,8 +62,10 @@ export class PreviewManager implements OutputManager {
   setRotate(){
     try {
       Logger.info(TAG_LOG,`setRotate enter`);
+      // [Start preview_rotation]
       let displayRotation = display.getDefaultDisplaySync().rotation;
       let imageRotation = displayRotation * camera.ImageRotation.ROTATION_90;
+      // [End preview_rotation]
       let previewRotation = this.output?.getPreviewRotation(imageRotation);
       let isDisplayLocked: boolean = true;// 建议与setXComponentSurfaceRotation入参的lock属性保持一致
       this.output?.setPreviewRotation(previewRotation, isDisplayLocked);

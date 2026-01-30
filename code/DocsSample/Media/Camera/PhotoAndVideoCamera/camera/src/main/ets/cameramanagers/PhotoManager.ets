@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
+// [Start camera_shooting_case]
+// [Start import_photo_manager]
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+// [End import_photo_manager]
 import { sensor } from '@kit.SensorServiceKit';
 import { Decimal } from '@kit.ArkTS';
 import { image } from '@kit.ImageKit';
@@ -96,6 +99,7 @@ export class PhotoManager implements OutputManager {
 
   // [End create_photo_output]
 
+  // [StartExclude camera_shooting_case]
   // [Start set_photo_cb_double]
   async mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
     phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
@@ -145,6 +149,7 @@ export class PhotoManager implements OutputManager {
   }
 
   // [End set_photo_cb_double]
+  // [EndExclude camera_shooting_case]
 
   // [Start set_photo_cb_single]
   setPhotoOutputCbSingle(photoOutput: camera.PhotoOutput, context: Context) {
@@ -158,6 +163,7 @@ export class PhotoManager implements OutputManager {
   }
   // [End set_photo_cb_single]
 
+  // [Start hdr_shooting_case]
   // [Start save_photo_single]
   mediaLibSavePhotoSingle(context: Context, imageObj: image.Image) {
     imageObj.getComponent(image.ComponentType.JPEG, async (errCode: BusinessError, component: image.Component) => {
@@ -212,6 +218,7 @@ export class PhotoManager implements OutputManager {
     this.setPhotoZoomRatio(photoSession, zoomRatio || 0);
   }
 
+  // [StartExclude camera_shooting_case]
   // [Start set_color_space]
   setColorSpaceBeforeCommitConfig(session: camera.PhotoSession, isHdr: boolean): void {
     let colorSpace: colorSpaceManager.ColorSpace =
@@ -236,7 +243,10 @@ export class PhotoManager implements OutputManager {
     }
   }
   // [End set_color_space]
+  // [EndExclude camera_shooting_case]
 
+  // [StartExclude hdr_shooting_case]
+  // [Start camera_shooting_session_configuration]
   public checkFlash(photoSession: camera.PhotoSession) {
     let flashModeStatus: boolean = false;
     if (photoSession.hasFlash()) {
@@ -290,7 +300,10 @@ export class PhotoManager implements OutputManager {
     }
     photoSession.setZoomRatio(zoomRatio || photoZoomRatio);
   }
+  // [End camera_shooting_session_configuration]
+  // [EndExclude hdr_shooting_case]
 
+  // [StartExclude camera_shooting_case]
   getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
     let colorSpaces: colorSpaceManager.ColorSpace[] = [];
     try {
@@ -301,6 +314,7 @@ export class PhotoManager implements OutputManager {
     return colorSpaces;
   }
 
+  // [StartExclude hdr_shooting_case]
   // [Start get_photo_rotation]
   getPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree: number): camera.ImageRotation {
     let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
@@ -311,8 +325,8 @@ export class PhotoManager implements OutputManager {
     }
     return photoRotation;
   }
-
   // [End get_photo_rotation]
+  // [EndExclude camera_shooting_case]
 
   // [Start capture_photo]
   public async capture(isFront: boolean) {
@@ -333,6 +347,7 @@ export class PhotoManager implements OutputManager {
   }
   // [End capture_photo]
 
+  // [StartExclude camera_shooting_case]
   private calculateDeviceDegree(x: number, y: number, z: number): number {
     let deviceDegree: number = 0;
     // Determine if the device is approaching a vertical position (perpendicular to the ground)
@@ -382,8 +397,9 @@ export class PhotoManager implements OutputManager {
       Logger.error(TAG_LOG, `The enableMovingPhoto call failed. error code: ${error.code}`);
     }
   }
-
   // [End enable_moving_photo]
+  // [EndExclude hdr_shooting_case]
+  // [EndExclude camera_shooting_case]
 
   // [Start photo_release]
   async release() {
@@ -396,4 +412,6 @@ export class PhotoManager implements OutputManager {
     this.output = undefined;
   }
   // [End photo_release]
+  // [End hdr_shooting_case]
 }
+// [End camera_shooting_case]

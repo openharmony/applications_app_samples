@@ -12,19 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start camera_preview_full_example]
 // 相机业务封装层（初始化相机、释放资源、切换摄像头等核心操作）
 import { GlobalContext } from '../common/utils/GlobalContext';
 import Logger from '../common/utils/Logger';
 import { Constants } from '../common/Constants';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+// [Start camera_shooting_imports]
+// [Start camera_recording_imports]
 import { camera } from '@kit.CameraKit';
+// [StartExclude camera_shooting_imports]
 import { media } from '@kit.MediaKit';
+// [EndExclude camera_shooting_imports]
 import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
+// [End camera_recording_imports]
+// [StartExclude camera_shooting_imports]
 import { JSON } from '@kit.ArkTS';
+// [EndExclude camera_shooting_imports]
 import { fileIo } from '@kit.CoreFileKit';
+// [StartExclude camera_shooting_imports]
 import { common } from '@kit.AbilityKit';
 import { display } from '@kit.ArkUI';
+// [EndExclude camera_shooting_imports]
 import { image } from '@kit.ImageKit';
+// [End camera_shooting_imports]
 import { Decimal } from '@kit.ArkTS';
 import { util } from '@kit.ArkTS';
 import { window } from '@kit.ArkUI';
@@ -421,6 +433,7 @@ class CameraService {
     return previewProfiles[index];
   }
 
+  // [StartExclude camera_preview_full_example]
   getPhotoProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
     let photoProfiles = cameraOutputCapability.photoProfiles;
@@ -507,6 +520,7 @@ class CameraService {
     return true;
   }
 
+  // [Start has_camera_at]
   selectCameraDevice(cameras: Array<camera.CameraDevice>,
     cameraPosition: camera.CameraPosition): camera.CameraDevice | undefined {
     let deviceIndex = cameras.findIndex((cameraDevice: camera.CameraDevice) => {
@@ -518,7 +532,7 @@ class CameraService {
     }
     return cameras[deviceIndex];
   }
-
+  // [StartExclude has_camera_at]
   /**
    * Initializing the Camera Function 选定分辨率版本
    * @param surfaceId - the Surface ID
@@ -593,6 +607,7 @@ class CameraService {
         }
       }
       if (this.curSceneMode === camera.SceneMode.NORMAL_VIDEO) {
+        // [Start camera_recording_surface_id]
         this.avRecorder = await this.createAVRecorder();
         if (this.avRecorder === undefined) {
           Logger.error(TAG, 'Failed to create the avRecorder.');
@@ -610,6 +625,7 @@ class CameraService {
           Logger.error(TAG, 'Failed to create the video stream.');
           return;
         }
+      // [End camera_recording_surface_id]
       }
 
       if (!isSameDevice || !this.cameraInput) {
@@ -679,7 +695,9 @@ class CameraService {
       Logger.error(TAG, `setZoomRatioFn fail: ${JSON.stringify(err)}`);
     }
   }
+  // [EndExclude camera_preview_full_example]
 
+  // [Start camera_shooting_take_photo]
   /**
    * Take a photo
    */
@@ -702,6 +720,7 @@ class CameraService {
     await this.photoOutput?.capture(photoSettings);
 
   }
+  // [End camera_shooting_take_photo]
 
   /**
    * Releasing a Session and Related Listening Events
@@ -832,6 +851,7 @@ class CameraService {
     return this.cameraManager;
   }
 
+  // [EndExclude has_camera_at]
   /**
    * Obtains the object that supports the specified camera device.
    */
@@ -850,7 +870,9 @@ class CameraService {
     }
     return supportedCameras;
   }
+  // [End has_camera_at]
 
+  // [Start camera_preview_output_creation]
   /**
    * Creates a previewOutput output object. 创建预览输出流函数
    */
@@ -872,7 +894,9 @@ class CameraService {
     }
     return previewOutput;
   }
+  // [End camera_preview_output_creation]
 
+  // [Start camera_shooting_photo_output]
   /**
    * Creating a photoOutput Object 创建拍照输出流函数
    */
@@ -893,7 +917,9 @@ class CameraService {
     }
     return photoOutput;
   }
+  // [End camera_shooting_photo_output]
 
+  // [Start camera_recording_video_output]
   /**
    * Creating a videoOutput Object 创建视频输出流函数
    */
@@ -914,7 +940,9 @@ class CameraService {
     }
     return videoOutput;
   }
+  // [End camera_recording_video_output]
 
+  // [Start camera_capture_session_start]
   /**
    * Creates a cameraInput output object. 创建相机输入流
    */
@@ -1011,6 +1039,7 @@ class CameraService {
       }
       // Submitting Configuration Information
       await this.session.commitConfig();
+      // [StartExclude camera_capture_session_start]
       try {
         let displayRotation = display.getDefaultDisplaySync().rotation;// 12 90  14 180 平板/手机/PC sdk版本 白名单
         let imageRotation = displayRotation * camera.ImageRotation.ROTATION_90;
@@ -1035,13 +1064,16 @@ class CameraService {
       if (this.curSceneMode === camera.SceneMode.NORMAL_VIDEO) {
         this.setVideoStabilizationFn(this.session as camera.VideoSession, camera.VideoStabilizationMode.MIDDLE);
       }
+      // [EndExclude camera_capture_session_start]
       await this.session.start();
     } catch (error) {
       let err = error as BusinessError;
       Logger.error(TAG, `sessionFlowFn fail : ${JSON.stringify(err)}`);
     }
   }
+  // [End camera_capture_session_start]
 
+  // [StartExclude camera_preview_full_example]
   updateRotateForCamera(imageRotation : camera.ImageRotation) {
     if (this.previewOutput === undefined) {
       return;
@@ -1063,15 +1095,21 @@ class CameraService {
   }
 
   videoOutputCallback(videoOutput: camera.VideoOutput) {
+    // [Start camera_recording_frame_start_listener]
     videoOutput.on('frameStart', (err: BusinessError) => {
       Logger.info(TAG, 'videoOutputCallback frameStart success');
     })
+    // [End camera_recording_frame_start_listener]
+    // [Start camera_recording_frame_end_listener]
     videoOutput.on('frameEnd', (err: BusinessError) => {
       Logger.info(TAG, 'videoOutputCallback frameEnd success');
     })
+    // [End camera_recording_frame_end_listener]
+    // [Start camera_recording_error_listener]
     videoOutput.on('error', (err: BusinessError) => {
       Logger.info(TAG, 'videoOutputCallback error success');
     })
+    // [End camera_recording_error_listener]
   }
 
   /**
@@ -1079,27 +1117,33 @@ class CameraService {
    */
   photoOutputCallBack(photoOutput: camera.PhotoOutput): void {
     try {
+      // [Start camera_shooting_capture_start_listener]
       // Monitoring and photographing start
       photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo): void => {
         Logger.info(TAG, `photoOutputCallBack captureStartWithInfo err: ${err}`);
         Logger.info(TAG, `photoOutputCallBack captureStartWithInfo success: ${JSON.stringify(captureStartInfo)}`);
       });
+      // [End camera_shooting_capture_start_listener]
       // Monitors the output capture of photographing frames.
       photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo): void => {
         Logger.info(TAG, `photoOutputCallBack frameShutter err: ${err}`);
         Logger.info(TAG,
           `photoOutputCallBack frameShutter captureId: ${frameShutterInfo.captureId}, timestamp: ${frameShutterInfo.timestamp}`);
       });
+      // [Start camera_shooting_capture_end_listener]
       // Monitoring and photographing end
       photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo): void => {
         Logger.info(TAG, `photoOutputCallBack captureEnd err: ${err}`);
         Logger.info(TAG,
           `photoOutputCallBack captureEnd captureId: ${captureEndInfo.captureId}, frameCount: ${captureEndInfo.frameCount}`);
       });
+      // [End camera_shooting_capture_end_listener]
+      // [Start camera_shooting_error_listener]
       // Monitoring and photographing exception
       photoOutput.on('error', (data: BusinessError): void => {
         Logger.info(TAG, `photoOutPut data: ${data}`);
       });
+      // [End camera_shooting_error_listener]
       if (!this.is2in1()) {
         photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
           Logger.info(TAG, 'photoAssetAvailable begin');
@@ -1110,6 +1154,7 @@ class CameraService {
           this.handlePhotoAssetCb(photoAsset);
         });
       } else {
+        // [Start camera_shooting_photo_available]
         photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
           Logger.info(TAG, 'photoAvailable start');
           if (errCode || photo === undefined) {
@@ -1136,12 +1181,14 @@ class CameraService {
             imageObj.release();
           });
         });
+        // [End camera_shooting_photo_available]
       }
 
     } catch (err) {
       Logger.error(TAG, 'photoOutputCallBack error');
     }
   }
+  // [EndExclude camera_preview_full_example]
 
   /**
    * Listening to Preview Events
@@ -1149,6 +1196,7 @@ class CameraService {
   previewOutputCallBack(previewOutput: camera.PreviewOutput): void {
     Logger.info(TAG, 'previewOutputCallBack is called');
     try {
+      // [Start camera_preview_output_frame_start_callback]
       previewOutput.on('frameStart', (err: BusinessError): void => {
         if (err !== undefined && err.code !== 0) {
           return;
@@ -1156,20 +1204,25 @@ class CameraService {
         this.frameStartCallback();
         Logger.debug(TAG, 'Preview frame started');
       });
-
+      // [End camera_preview_output_frame_start_callback]
+      // [Start camera_preview_output_frame_end_callback]
       previewOutput.on('frameEnd', (err: BusinessError): void => {
         if (err !== undefined && err.code !== 0) {
           return;
         }
         Logger.debug(TAG, 'Preview frame ended');
       });
+      // [End camera_preview_output_frame_end_callback]
+      // [Start camera_preview_output_error_callback]
       previewOutput.on('error', (previewOutputError: BusinessError): void => {
         Logger.info(TAG, `Preview output previewOutputError: ${previewOutputError}`);
       });
+      // [End camera_preview_output_error_callback]
     } catch (err) {
       Logger.error(TAG, 'previewOutputCallBack error');
     }
   }
+  // [End camera_preview_full_example]
 
   /**
    * Registers the callback function for camera status changes.
@@ -1182,12 +1235,14 @@ class CameraService {
     Logger.info(TAG, `cameraId: ${cameraStatusInfo.camera.cameraId},status: ${cameraStatusInfo.status}`);
   }
 
+  // [Start foldable_camera_fold_status_listener]
   registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
     Logger.info(TAG, 'foldStatusChanged foldStatus: ' + foldStatusInfo.foldStatus);
     for (let i = 0; i < foldStatusInfo.supportedCameras.length; i++) {
       Logger.info(TAG,
         `foldStatusChanged camera[${i}]: ${foldStatusInfo.supportedCameras[i].cameraId},cameraPosition: ${foldStatusInfo.supportedCameras[i].cameraPosition}`);
     }
+    // [StartExclude foldable_camera_fold_status_listener]
     let cameraDevice = this.getCurCameraDevice();
     if (!cameraDevice) {
       Logger.error(TAG, 'foldStatusChanged cameraDevice is undefined');
@@ -1209,9 +1264,11 @@ class CameraService {
       Logger.error(TAG, 'No supported camera device found.');
       return;
     }
+    // [EndExclude foldable_camera_fold_status_listener]
     AppStorage.setOrCreate<number>(';', foldStatusInfo.foldStatus);
   }
-
+  // [StartExclude foldable_camera_fold_status_listener]
+  // [Start foldable_camera_fold_status_display]
   onDisplayFoldStatusChange(foldStatus: display.FoldStatus): void {
     Logger.error(TAG, `onDisplayFoldStatusChange foldStatus: ${foldStatus}`);
     if ((this.preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
@@ -1241,6 +1298,7 @@ class CameraService {
     // foldStatus 变量用来控制显示XComponent组件
     AppStorage.setOrCreate<number>('foldStatus', foldStatus);
   }
+  // [End foldable_camera_fold_status_display]
   /**
    * Monitor camera status changes.
    * @param cameraManager
@@ -1250,7 +1308,7 @@ class CameraService {
     Logger.info(TAG, 'onCameraStatusChange is called');
     cameraManager.on('cameraStatus', this.registerCameraStatusChange);
   }
-
+  // [EndExclude foldable_camera_fold_status_listener]
   /**
    * Monitor fold status changes.
    * @param cameraManager
@@ -1260,6 +1318,7 @@ class CameraService {
     Logger.info(TAG, 'onFoldStatusChange is called');
     cameraManager.on('foldStatusChange', this.foldStatusCallback);
   }
+  // [StartExclude foldable_camera_fold_status_listener]
 
   /**
    * Stops monitoring camera status changes.
@@ -1270,6 +1329,7 @@ class CameraService {
     this.cameraManager?.off('cameraStatus', this.registerCameraStatusChange);
   }
 
+  // [EndExclude foldable_camera_fold_status_listener]
   /**
    * Stops monitoring fold status changes.
    * @returns
@@ -1278,7 +1338,7 @@ class CameraService {
     Logger.info(TAG, 'offFoldStatusChange is called');
     this.cameraManager?.off('foldStatusChange', this.foldStatusCallback);
   }
-
+  // [End foldable_camera_fold_status_listener]
   /**
    * Listen for camera input changes
    * @param cameraInput
@@ -1367,6 +1427,7 @@ class CameraService {
     });
   }
 
+  // [Start camera_recording_start_recording]
   /**
    * Start Recording
    */
@@ -1399,7 +1460,9 @@ class CameraService {
     isFirstRecording = AppStorage.get<boolean>('isFirstRecording');
     Logger.info(TAG, 'startVideo End of call');
   }
+  // [End camera_recording_start_recording]
 
+  // [Start camera_recording_stop_recording]
   /**
    * Stop Recording
    */
@@ -1420,6 +1483,7 @@ class CameraService {
     }
     Logger.info(TAG, 'stopVideo End of call');
   }
+  // [End camera_recording_stop_recording]
 
   getIsRecording(): boolean {
     return this.isRecording;

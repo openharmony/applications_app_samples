@@ -13,16 +13,19 @@
  * limitations under the License.
  */
 
+// [Start preconfig_case]
 import { GlobalContext } from '../common/utils/GlobalContext';
 import Logger from '../common/utils/Logger';
 import { Constants } from '../common/Constants';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+// [Start import_headers]
 import { camera } from '@kit.CameraKit';
-import { media } from '@kit.MediaKit';
 import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+// [End import_headers]
+import { media } from '@kit.MediaKit';
 import { JSON } from '@kit.ArkTS';
 import { fileIo } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 import { display } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { Decimal } from '@kit.ArkTS';
@@ -33,6 +36,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 const TAG = 'CameraService';
 
+// [StartExclude preconfig_case]
 export class SliderValue {
   public min: number = 1;
   public max: number = 6;
@@ -77,6 +81,7 @@ function getPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree: number)
   }
   return photoRotation;
 }
+// [EndExclude preconfig_case]
 
 class CameraService {
   private static readonly ROTATE_ANGLE_0: number = 0;
@@ -174,6 +179,7 @@ class CameraService {
     this.cameraManager = this.getCameraManagerFn();
   }
 
+  // [StartExclude preconfig_case]
   async savePicture2(buffer: ArrayBuffer) {
     let context = getContext(this);
     let filedata = context.filesDir;
@@ -266,6 +272,7 @@ class CameraService {
     return this.curSceneMode;
   }
 
+  // [Start get_surface_size]
   getSurfaceSize(cameraDevice: camera.CameraDevice, configRatio: number): camera.Profile | undefined {
     Logger.info(TAG, `fkr previewProfiles is ${configRatio}`);
     this.cameraOutputCapability =
@@ -322,6 +329,8 @@ class CameraService {
     Logger.info(TAG, `optimalSize: ${JSON.stringify(optimalSize)}`);
     return optimalSize;
   }
+  // [End get_surface_size]
+  // [EndExclude preconfig_case]
 
   getPhotoProfile(cameraOutputCapability: camera.CameraOutputCapability): camera.Profile | undefined {
     let photoProfiles = cameraOutputCapability.photoProfiles;
@@ -703,6 +712,7 @@ class CameraService {
     return supportedCameras;
   }
 
+  // [Start create_preview_photo_output]
   /**
    * Creates a previewOutput output object.
    */
@@ -742,6 +752,7 @@ class CameraService {
     }
     return photoOutput;
   }
+  // [End create_preview_photo_output]
 
   /**
    * Creating a videoOutput Object
@@ -763,6 +774,7 @@ class CameraService {
     return videoOutput;
   }
 
+  // [Start create_open_camera_input]
   /**
    * Creates a cameraInput output object.
    */
@@ -812,6 +824,7 @@ class CameraService {
     }
     return isOpenSuccess;
   }
+  // [End create_open_camera_input]
 
   /**
    * Session Process
@@ -824,6 +837,7 @@ class CameraService {
     configRatio?: number): Promise<void> {
     Logger.info(TAG, `sessionFlowFn enter`);
     try {
+      // [Start create_camera_session]
       // Creating a CaptureSession Instance
       if (this.curSceneMode === camera.SceneMode.NORMAL_PHOTO) {
         this.session = cameraManager.createSession(this.curSceneMode) as camera.PhotoSession;
@@ -831,8 +845,8 @@ class CameraService {
       if (this.curSceneMode === camera.SceneMode.NORMAL_VIDEO) {
         this.session = cameraManager.createSession(this.curSceneMode) as camera.VideoSession;
         Logger.info(TAG, `sessionFlowFn createSession`);
-
       }
+      // [End create_camera_session]
       if (this.session === undefined) {
         return;
       }
@@ -845,6 +859,7 @@ class CameraService {
       } else if (configRatio == 4 / 3) {
         preConfigRatio = camera.PreconfigRatio.PRECONFIG_RATIO_4_3;
       }
+      // [Start get_preconfig]
       try {
         isPreconfigSupport = this.session.canPreconfig(preconfigType, preConfigRatio);
         if (!isPreconfigSupport) {
@@ -865,7 +880,9 @@ class CameraService {
           return;
         }
       }
+      // [End get_preconfig]
 
+      // [Start init_camera]
       // Start Configuration Session
       this.session.beginConfig();
       // Add CameraInput to the session.
@@ -895,6 +912,8 @@ class CameraService {
       }
       // Submitting Configuration Information
       await this.session.commitConfig();
+      // [End init_camera]
+      // [StartExclude preconfig_case]
       try {
         let displayRotation = display.getDefaultDisplaySync().rotation; // 12 90  14 180 平板/手机/PC sdk版本 白名单
         let imageRotation = displayRotation * camera.ImageRotation.ROTATION_90;
@@ -919,13 +938,17 @@ class CameraService {
       if (this.curSceneMode === camera.SceneMode.NORMAL_VIDEO) {
         this.setVideoStabilizationFn(this.session as camera.VideoSession, camera.VideoStabilizationMode.MIDDLE);
       }
+      // [EndExclude preconfig_case]
+      // [Start start_camera]
       await this.session.start();
+      // [End start_camera]
     } catch (error) {
       let err = error as BusinessError;
       Logger.error(TAG, `sessionFlowFn fail : ${JSON.stringify(err)}`);
     }
   }
 
+  // [StartExclude preconfig_case]
   updateRotateForCamera(imageRotation: camera.ImageRotation) {
     if (this.previewOutput === undefined) {
       return;
@@ -1125,6 +1148,7 @@ class CameraService {
     // foldStatus 变量用来控制显示XComponent组件
     AppStorage.setOrCreate<number>('foldStatus', foldStatus);
   }
+  // [EndExclude preconfig_case]
 
   /**
    * Monitor camera status changes.
@@ -1202,6 +1226,7 @@ class CameraService {
     }
   }
 
+  // [StartExclude preconfig_case]
   async createAVRecorder(): Promise<media.AVRecorder | undefined> {
     let avRecorder: media.AVRecorder | undefined = undefined;
     try {
@@ -1360,6 +1385,7 @@ function getVideoRotation(videoOutput: camera.VideoOutput, deviceDegree: number)
   }
   return videoRotation;
 }
-
+// [EndExclude preconfig_case]
 
 export default CameraService.getInstance();
+// [End preconfig_case]
