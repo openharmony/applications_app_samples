@@ -32,3 +32,4 @@ export struct AccessibilityGroupCase02 {
     // [EndExclude accessibility_group_start02]
   }
 }
+// [End accessibility_group_start02]

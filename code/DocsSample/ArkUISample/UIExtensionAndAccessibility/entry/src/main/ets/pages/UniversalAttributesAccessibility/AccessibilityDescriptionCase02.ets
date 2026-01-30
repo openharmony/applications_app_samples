@@ -33,3 +33,4 @@ export struct AccessibilityDescriptionCase02 {
     // [EndExclude accessibility_description_start02]
   }
 }
+// [End accessibility_description_start02]
