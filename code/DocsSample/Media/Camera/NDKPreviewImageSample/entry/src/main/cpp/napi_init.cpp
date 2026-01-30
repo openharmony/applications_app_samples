@@ -99,7 +99,7 @@ void ShowImage(OH_ImageNative *image)
         xComponentSurfaceId);
     OHNativeWindow *nativeWindow = nullptr;
     int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(xComponentSurfaceId, &nativeWindow);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP,
             "ShowImage CreateNativeWindowFromSurfaceId failed, errCode: %{public}d.", res);
         return;
@@ -131,7 +131,7 @@ void ShowImage(OH_ImageNative *image)
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
     int fenceFd = -1;
     res = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage RequestBuffer failed, errCode: %{public}d.", res);
         return;
     }
@@ -141,7 +141,7 @@ void ShowImage(OH_ImageNative *image)
 
     Region region1{};
     res = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, region1);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage FlushBuffer failed, errCode: %{public}d.", res);
         return;
     }

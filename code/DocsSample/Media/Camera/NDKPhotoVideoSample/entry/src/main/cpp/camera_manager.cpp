@@ -567,7 +567,7 @@ Camera_ErrorCode NDKCamera::PhotoOutputRelease(void)
 
 Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
 {
-    OH_LOG_INFO(LOG_APP, "StartVideo begin isHdr. %{public}d", isHdrVideo);
+    OH_LOG_INFO(LOG_APP, "StartVideo begin. videoId: %{public}s, photoId: %{public}s", videoId, photoId);
     return CAMERA_OK;
 }
 

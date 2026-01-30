@@ -624,7 +624,7 @@ Camera_ImageRotation NDKCamera::GetVideoRotation(int32_t deviceDegree)
 
 Camera_ErrorCode NDKCamera::VideoOutputStart(char *videoId)
 {
-    OH_LOG_INFO(LOG_APP, "VideoOutputStart begin.");
+    OH_LOG_INFO(LOG_APP, "VideoOutputStart begin. videoId: %{public}s", videoId);
     Camera_ErrorCode ret = OH_VideoOutput_Start(videoOutput_);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_VideoOutput_Start success.");

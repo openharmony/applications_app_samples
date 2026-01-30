@@ -109,7 +109,7 @@ class NDKCamera {
     void EnableMacro(bool isMacro);
     bool IsControlCenterSupported(void);
     void EnableControlCenter(bool isControlCenter);
-    void SetIsControl(bool isControl);
+    void SetIsControl(bool isControlCenter);
     Camera_ErrorCode PreviewOutputGetSupportedFrameRates(Camera_PreviewOutput* previewOutput,
     Camera_FrameRateRange** frameRateRange, uint32_t* size);
     Camera_ErrorCode PreviewOutputSetFrameRate(uint32_t minFps, uint32_t maxFps);

@@ -732,7 +732,7 @@ Camera_ErrorCode NDKCamera::SetColorSpace(OH_NativeBuffer_ColorSpace colorSpace)
 
 Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
 {
-    OH_LOG_INFO(LOG_APP, "StartVideo: isHdrVideo is %{public}d", isHdrVideo);
+    OH_LOG_INFO(LOG_APP, "StartVideo start: videoId=%{public}s, photoId=%{public}s", videoId, photoId);
 
     return CAMERA_OK;
 }
@@ -758,6 +758,7 @@ Camera_ErrorCode NDKCamera::VideoOutputStart(void)
 
 Camera_ErrorCode NDKCamera::StartPhoto(char *mSurfaceId)
 {
+    OH_LOG_INFO(LOG_APP, "StartPhoto start: mSurfaceId=%{public}s", mSurfaceId);
     return ret_;
 }
 

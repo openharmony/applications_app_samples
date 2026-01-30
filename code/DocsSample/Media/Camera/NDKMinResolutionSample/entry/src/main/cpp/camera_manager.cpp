@@ -810,7 +810,7 @@ Camera_ErrorCode NDKCamera::PhotoOutputRelease(void)
 
 Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
 {
-    OH_LOG_INFO(LOG_APP, "StartVideo begin .");
+    OH_LOG_INFO(LOG_APP, "StartVideo begin. videoId: %{public}s, photoId: %{public}s", videoId, photoId);
     Camera_ErrorCode ret = CAMERA_OK;
     return ret;
 }
@@ -829,6 +829,7 @@ Camera_ErrorCode NDKCamera::VideoOutputStart(void)
 
 Camera_ErrorCode NDKCamera::StartPhoto(char *mSurfaceId)
 {
+    OH_LOG_INFO(LOG_APP, "StartPhoto begin. mSurfaceId: %{public}s", mSurfaceId);
     return ret_;
 }
 
