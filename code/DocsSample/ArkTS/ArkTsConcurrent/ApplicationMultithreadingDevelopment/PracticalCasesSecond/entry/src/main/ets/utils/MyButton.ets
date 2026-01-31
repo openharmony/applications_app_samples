@@ -23,7 +23,7 @@ const TAG: string = 'DEBUG TEST';
 
 @Component
 export struct MyButton {
-  //自定义button。
+  //自定义button
   public logger = new AppLog(TAG);
   public context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   public isOpen = false;

@@ -51,7 +51,7 @@ function tokenFunc(name: xml.EventType, value: xml.ParseInfo): boolean {
   // [EndExclude example_scenario]
   return true;
 }
-// [StartExclude example_scenario]
+  // [StartExclude example_scenario]
 function testExampleScenario() {
   // [EndExclude example_scenario]
   let options: xml.ParseOptions = {

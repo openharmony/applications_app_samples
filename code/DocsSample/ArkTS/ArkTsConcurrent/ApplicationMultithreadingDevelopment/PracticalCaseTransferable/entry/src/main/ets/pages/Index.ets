@@ -54,11 +54,11 @@ function clear() {
   console.info('set size is ' + size + ' after clear');
 }
 
-// [Start load_nativeFunction]
+// [End load_nativeFunction]
 
 // [Start test_nativeFunction]
 async function test(isTransferable: boolean): Promise<string> {
-  // setTransferDetached 设置为true，表示传输方式为转移模式，否则默认传输方式为共享模式。
+  // setTransferDetached 设置为true，表示传输方式为转移模式，否则默认传输方式为共享模式
   if (isTransferable) {
     testNapi.setTransferDetached(isTransferable);
   }
@@ -74,11 +74,11 @@ async function test(isTransferable: boolean): Promise<string> {
   let task3 = new taskpool.Task(store, 4, 5, 6);
   await taskpool.execute(task3);
 
-  // 若默认的传输模式为共享模式，testNapi跨线程传递后，主线程可以继续访问Native对象的值。
-  // 若设置了转移模式，且testNapi已跨线程传递，所以主线程无法继续访问到Native对象的值。
+  // 若默认的传输模式为共享模式，testNapi跨线程传递后，主线程可以继续访问Native对象的值
+  // 若设置了转移模式，且testNapi已跨线程传递，所以主线程无法继续访问到Native对象的值
   let size: number = testNapi.getSetSize();
-  // 共享模式输出的日志为“host thread size is 6”。
-  // 转移模式输出的日志为“host thread size is undefined”。
+  // 共享模式输出的日志为“host thread size is 6”
+  // 转移模式输出的日志为“host thread size is undefined”
   console.info('host thread size is ' + size);
 
   let task4 = new taskpool.Task(erase, 3);
@@ -93,7 +93,7 @@ async function test(isTransferable: boolean): Promise<string> {
   return message;
 }
 
-// [Start test_nativeFunction]
+// [End test_nativeFunction]
 
 // [Start ui_load]
 @Entry
@@ -128,4 +128,4 @@ struct Index {
     .height('100%')
   }
 }
-// [Start ui_load]
+// [End ui_load]
