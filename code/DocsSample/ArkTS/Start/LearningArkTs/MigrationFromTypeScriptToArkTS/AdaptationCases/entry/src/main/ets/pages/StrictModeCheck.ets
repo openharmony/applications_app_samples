@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-// [Start strictProperty_initialization]
 {
+  // [Start strictProperty_initialization]
   interface I {
     name:string
   }
@@ -33,8 +33,8 @@
       this.c = c;
     }
   }
+  // [End strictProperty_initialization]
 }
-// [End strictProperty_initialization]
 // [Start null_is_not_assignable_to_type]
 class A {
   bar() {}
