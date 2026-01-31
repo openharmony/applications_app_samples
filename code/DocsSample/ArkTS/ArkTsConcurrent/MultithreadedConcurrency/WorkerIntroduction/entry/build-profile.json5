@@ -15,21 +15,6 @@
 
 {
   "apiType": "stageMode",
-  // [Start manual_create_worker]
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/recommendworkers/parentworker.ets",
-        "./src/main/ets/recommendworkers/childworker.ets",
-        "./src/main/ets/notrecommendedoneworker/parentworker.ets",
-        "./src/main/ets/notrecommendedoneworker/childworker.ets",
-        "./src/main/ets/notrecommendedtwoworker/parentworker.ets",
-        "./src/main/ets/notrecommendedtwoworker/childworker.ets",
-        './src/main/ets/workers/worker.ets'
-      ]
-    }
-  },
-  // [End manual_create_worker]
   "buildOptionSet": [
     {
       "name": "release",
@@ -52,5 +37,20 @@
     {
       "name": "ohosTest",
     }
-  ]
+  ],
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/recommendworkers/parentworker.ets",
+        "./src/main/ets/recommendworkers/childworker.ets",
+        "./src/main/ets/notrecommendedoneworker/parentworker.ets",
+        "./src/main/ets/notrecommendedoneworker/childworker.ets",
+        "./src/main/ets/notrecommendedtwoworker/parentworker.ets",
+        "./src/main/ets/notrecommendedtwoworker/childworker.ets",
+        './src/main/ets/workers/ChildWorker.ets',
+        './src/main/ets/workers/ParentWorker.ets',
+        './src/main/ets/workers/worker.ets'
+      ]
+    }
+  }
 }

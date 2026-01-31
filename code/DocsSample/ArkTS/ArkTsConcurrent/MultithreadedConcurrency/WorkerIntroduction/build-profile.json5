@@ -57,6 +57,22 @@
     {
       "name": "har",
       "srcPath": "./har",
+    },
+    {
+      "name": "testworkers",
+      "srcPath": "./testworkers",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mainAbility",
+      "srcPath": "./mainAbility",
     }
   ]
 }
