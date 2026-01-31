@@ -154,7 +154,7 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
 {
     // 分配AsyncContent内存
     AsyncContent *data = reinterpret_cast<AsyncContent *>(malloc(sizeof(AsyncContent)));
-    // StartExclude napi_add_remove_async_cleanup_hook]
+    // [StartExclude napi_add_remove_async_cleanup_hook]
     if (data == nullptr) {
         napi_throw_error(env, nullptr, "Test Node-API malloc AsyncContent failed");
         return nullptr;
