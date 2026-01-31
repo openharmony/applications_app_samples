@@ -18,5 +18,7 @@
   "description": "Please describe the basic information.",
   "dependencies": {
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@ohos/hypium": "1.0.6"
+  }
 }
