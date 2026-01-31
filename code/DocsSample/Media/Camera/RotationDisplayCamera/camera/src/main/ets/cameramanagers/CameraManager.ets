@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start import_header]
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End import_header]
 import { display } from '@kit.ArkUI';
 import { Logger } from 'commons';
 import OutputManager, { CreateOutputConfig } from './OutputManager';
@@ -137,10 +139,12 @@ export class CameraManager {
       for (const outputManager of this.outputManagers) {
         if (outputManager.isActive && outputManager instanceof PreviewManager) {
             outputManager.setRotate();
+            // [Start display_change_listener]
             display.off('change');
             display.on('change', () => {
               outputManager.setRotate();
             });
+            // [End display_change_listener]
         }
       };
       await session.start();

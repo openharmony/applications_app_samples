@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start import_section]
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { curves } from '@kit.ArkUI';
+// [End import_section]
 import { Constants } from '../common/Constants';
 import { BlurAnimateUtil } from '../common/utils/BlurAnimateUtil';
 import { GlobalContext } from '../common/utils/GlobalContext';
@@ -46,6 +48,7 @@ struct Index {
   private defaultCameraDeviceIndex = 0;
   private surfaceId = '';
   // 模糊动效
+  // [Start anim_states]
   @State isShowBlur: boolean = false;
   @State isShowBlack: boolean = false;
   @StorageLink('modeChange') @Watch('onModeChange') modeChangeFlag: number = 0;
@@ -59,7 +62,7 @@ struct Index {
   @State shotImgScale: ScaleOptions = { x: 1, y: 1 };
   @State shotImgRotation: RotateOptions = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_0 }
   @State flashBlackOpacity: number = 1;
-
+  // [End anim_states]
   private context: Context | undefined = this.getUIContext().getHostContext();
 
   aboutToAppear(): void {
@@ -87,6 +90,7 @@ struct Index {
   /**
    * 显示模糊动效，模式切换触发
    */
+  // [Start show_blur_anim]
   private async showBlurAnim() {
     Logger.info(TAG, 'showBlurAnim E');
     // 获取已完成的surface截图
@@ -125,10 +129,12 @@ struct Index {
       }
     );
   }
+  // [End show_blur_anim]
 
   /**
    * 隐藏模糊动效，预览流首帧回调触发
    */
+  // [Start hide_blur_anim]
   private hideBlurAnim(): void {
     this.isShowBlack = false;
     Logger.info(TAG, 'hideBlurAnim E');
@@ -147,7 +153,9 @@ struct Index {
       this.shotImgOpacity = 0;
     });
   }
+  // [End hide_blur_anim]
 
+  // [Start rotate_anim]
   /**
    * 先向外翻转90°，前后置切换触发
    */
@@ -280,10 +288,12 @@ struct Index {
       }
     )
   }
+  // [End rotate_anim]
 
   /**
    * 闪黑动效，拍照触发
    */
+  // [Start flash_black_anim]
   private flashBlackAnim() {
     Logger.info(TAG, 'flashBlackAnim E');
     this.flashBlackOpacity = 1;
@@ -300,27 +310,36 @@ struct Index {
       this.flashBlackOpacity = 0;
     })
   }
+  // [End flash_black_anim]
 
+  // [Start on_mode_change]
   onModeChange(): void {
     Logger.info(TAG, 'onModeChange');
     this.showBlurAnim();
   }
+  // [End on_mode_change]
 
+  // [Start on_switch_camera]
   onSwitchCamera(): void {
     Logger.info(TAG, 'onSwitchCamera');
     this.blurFirstAnim();
     this.rotateFirstAnim();
   }
+  // [End on_switch_camera]
 
+  // [Start on_frame_start]
   onFrameStart(): void {
     Logger.info(TAG, 'onFrameStart');
     this.hideBlurAnim();
   }
+  // [End on_frame_start]
 
+  // [Start capture_click]
   onCaptureClick(): void {
     Logger.info(TAG, 'onCaptureClick');
     this.flashBlackAnim();
   }
+  // [End capture_click]
 
   getXComponentOptions(): XComponentOptions {
     let options: XComponentOptions = {
@@ -351,6 +370,7 @@ struct Index {
           .height(this.getUIContext().px2vp(Constants.X_COMPONENT_SURFACE_WIDTH))
       }
 
+      // [Start flash_black_component]
       // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件
       if (this.isShowBlack) {
         Column()
@@ -360,8 +380,9 @@ struct Index {
           .backgroundColor(Color.Black)
           .opacity(this.flashBlackOpacity)
       }
+      // [End flash_black_component]
 
-
+      // [Start blur_component]
       if (this.isShowBlur) {
         Column() {
           Image(this.screenshotPixelMap)
@@ -376,6 +397,7 @@ struct Index {
         .width(this.getUIContext().px2vp(Constants.X_COMPONENT_SURFACE_HEIGHT))
         .height(this.getUIContext().px2vp(Constants.X_COMPONENT_SURFACE_WIDTH))
       }
+      // [End blur_component]
 
       // 曝光框和对焦框
       FocusComponent({

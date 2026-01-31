@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start preconfig_case]
 #include "camera_manager.h"
 #include <cstdint>
 
@@ -620,6 +621,7 @@ Camera_ErrorCode NDKCamera::AddPhotoOutput()
     return ret;
 }
 
+// [StartExclude preconfig_case]
 Camera_ErrorCode NDKCamera::MetadataOutputRegisterCallback(void)
 {
     metaDataObjectType_ = cameraOutputCapability_->supportedMetadataObjectTypes[0];
@@ -645,6 +647,7 @@ Camera_ErrorCode NDKCamera::IsCameraMuted(void)
     }
     return ret_;
 }
+// [EndExclude preconfig_case]
 
 Camera_ErrorCode NDKCamera::PreviewOutputStop(void)
 {
@@ -678,6 +681,7 @@ Camera_ErrorCode NDKCamera::PhotoOutputRelease(void)
     return ret_;
 }
 
+// [StartExclude preconfig_case]
 Camera_ErrorCode NDKCamera::IsVideoStabilizationModeSupportedFn(uint32_t mode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
@@ -729,6 +733,7 @@ Camera_ErrorCode NDKCamera::SetColorSpace(OH_NativeBuffer_ColorSpace colorSpace)
 
     return ret;
 }
+// [EndExclude preconfig_case]
 
 Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
 {
@@ -766,6 +771,7 @@ Camera_ErrorCode NDKCamera::StartPhotoWithOutSurfaceId()
     return ret_;
 }
 
+// [StartExclude preconfig_case]
 // exposure mode
 Camera_ErrorCode NDKCamera::IsExposureModeSupportedFn(uint32_t mode)
 {
@@ -836,6 +842,7 @@ Camera_ErrorCode NDKCamera::IsExposureBiasRange(int exposureBias)
     OH_LOG_INFO(LOG_APP, "IsExposureBiasRange end.");
     return ret_;
 }
+// [EndExclude preconfig_case]
 
 // focus mode
 Camera_ErrorCode NDKCamera::IsFocusModeSupported(uint32_t mode)
@@ -1171,6 +1178,7 @@ Camera_ErrorCode NDKCamera::VideoOutputRegisterCallback(void)
     return ret_;
 }
 
+// [StartExclude preconfig_case]
 // Metadata Callback
 void OnMetadataObjectAvailable(Camera_MetadataOutput *metadataOutput, Camera_MetadataObject *metadataObject,
     uint32_t size)
@@ -1200,6 +1208,7 @@ Camera_ErrorCode NDKCamera::RegisterMetadataOutputCallback(void)
     }
     return ret_;
 }
+// [EndExclude preconfig_case]
 
 // Session Callback
 void CaptureSessionOnFocusStateChange(Camera_CaptureSession *session, Camera_FocusState focusState)
@@ -1764,3 +1773,4 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerRequestImage(OH_MediaAsset *m
     return result;
 }
 } // namespace OHOS_CAMERA_SAMPLE
+// [End preconfig_case]
