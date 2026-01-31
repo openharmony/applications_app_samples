@@ -21,9 +21,9 @@ struct CircleExample {
   build() {
     Column({ space: 10 }) {
       // [StartExclude circle_example_two]
-      //绘制一个直径为150的圆
+      // 绘制一个直径为150的圆
       Circle({ width: 150, height: 150 })
-      //绘制一个直径为150、线条为红色虚线的圆环
+      // 绘制一个直径为150、线条为红色虚线的圆环
       Circle()
         .width(150)
         .height(200)
@@ -33,7 +33,7 @@ struct CircleExample {
         .strokeDashArray([1, 2])
       // [EndExclude circle_example_two]
       // [StartExclude circle_example_one]
-      //绘制一个直径为150的圆
+      // 绘制一个直径为150的圆
       Circle()
         .width(150)
         .height(200)
