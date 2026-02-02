@@ -39,6 +39,8 @@
 #include "ohcamera/video_output.h"
 #include "napi/native_api.h"
 #include "ohcamera/camera_manager.h"
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
 
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
@@ -116,6 +118,8 @@ class NDKCamera {
     Camera_ErrorCode VideoOutputStop(void);
     Camera_ErrorCode VideoOutputRelease(void);
     Camera_ErrorCode TakePicture(int32_t degree);
+    int32_t GetDefaultDisplayRotation();
+    void InitPreviewRotation();
     // callback
     Camera_ErrorCode CameraManagerRegisterCallback(void);
     Camera_ErrorCode CameraInputRegisterCallback(void);

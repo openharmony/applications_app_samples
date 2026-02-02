@@ -18,4 +18,5 @@ target_link_libraries(entry PUBLIC
     librawfile.z.so
     libpixelmap.so
     libnative_buffer.so
+    libnative_display_manager.so
 )
