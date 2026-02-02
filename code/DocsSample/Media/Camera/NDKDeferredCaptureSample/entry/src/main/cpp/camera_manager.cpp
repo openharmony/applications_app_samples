@@ -1308,7 +1308,6 @@ Camera_ErrorCode NDKCamera::CaptureSessionRegisterCallback(void)
     return ret_;
 }
 
-// wang.qg code
 Camera_ErrorCode NDKCamera::GetSupportedSceneModes(void)
 {
     DRAWING_LOGD("NDKCamera::GetSupportedSceneModes start!");
@@ -1325,6 +1324,7 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(void)
     DRAWING_LOGD("NDKCamera::GetSupportedSceneModes return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::GetSupportedOutputCapabilityWithSceneMode(Camera_SceneMode sceneMode)
 {
     DRAWING_LOGD("NDKCamera::GetSupportedOutputCapabilityWithSceneMode start! sceneMode: %{public}d", sceneMode);
@@ -1340,6 +1340,7 @@ Camera_ErrorCode NDKCamera::GetSupportedOutputCapabilityWithSceneMode(Camera_Sce
         sceneMode, ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanAddInput(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanAddInput start!");
@@ -1352,6 +1353,7 @@ Camera_ErrorCode NDKCamera::CanAddInput(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanAddInput return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanAddPreviewOutput(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanAddPreviewOutput start!");
@@ -1364,6 +1366,7 @@ Camera_ErrorCode NDKCamera::CanAddPreviewOutput(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanAddPreviewOutput return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanAddPhotoOutput(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanAddPhotoOutput start!");
@@ -1376,6 +1379,7 @@ Camera_ErrorCode NDKCamera::CanAddPhotoOutput(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanAddPhotoOutput return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanAddVideoOutput(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanAddVideoOutput start!");
@@ -1388,6 +1392,7 @@ Camera_ErrorCode NDKCamera::CanAddVideoOutput(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanAddVideoOutput return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanPreconfig(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanPreconfig start!");
@@ -1401,6 +1406,7 @@ Camera_ErrorCode NDKCamera::CanPreconfig(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanPreconfig return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::Preconfig(void)
 {
     DRAWING_LOGD("NDKCamera::Preconfig start!");
@@ -1412,6 +1418,7 @@ Camera_ErrorCode NDKCamera::Preconfig(void)
     DRAWING_LOGD("NDKCamera::Preconfig return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CanPreconfigWithRatio(bool *isSuccess)
 {
     DRAWING_LOGD("NDKCamera::CanPreconfigWithRatio start!");
@@ -1425,6 +1432,7 @@ Camera_ErrorCode NDKCamera::CanPreconfigWithRatio(bool *isSuccess)
     DRAWING_LOGD("NDKCamera::CanPreconfigWithRatio return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::PreconfigWithRatio(void)
 {
     DRAWING_LOGD("NDKCamera::PreconfigWithRatio start!");
@@ -1436,6 +1444,7 @@ Camera_ErrorCode NDKCamera::PreconfigWithRatio(void)
     DRAWING_LOGD("NDKCamera::PreconfigWithRatio return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::GetActivePreviewOutputProfile(void)
 {
     DRAWING_LOGD("NDKCamera::GetActivePreviewOutputProfile start!");
@@ -1453,6 +1462,7 @@ Camera_ErrorCode NDKCamera::GetActivePreviewOutputProfile(void)
     DRAWING_LOGD("NDKCamera::GetActivePreviewOutputProfile return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::GetActivePhotoOutputProfile(void)
 {
     DRAWING_LOGD("NDKCamera::GetActivePhotoOutputProfile start!");
@@ -1470,58 +1480,27 @@ Camera_ErrorCode NDKCamera::GetActivePhotoOutputProfile(void)
     DRAWING_LOGD("NDKCamera::GetActivePhotoOutputProfile return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 void onPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo)
 {
-    DRAWING_LOGD("[RM005 log] onPhotoAvailable start!");
+    DRAWING_LOGD("onPhotoAvailable start!");
     NDKCamera::PhotoNativeGetMainImage(photo);
     NDKCamera::PhotoNativeRelease(photo);
-    DRAWING_LOGD("[RM005 log] onPhotoAvailable finish!");
+    DRAWING_LOGD("onPhotoAvailable finish!");
 }
+
 Camera_ErrorCode NDKCamera::PhotoOutputRegisterPhotoAvailableCallback(void)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAvailableCallback start!");
+    DRAWING_LOGD("NDKCamera::PhotoOutputRegisterPhotoAvailableCallback start!");
     ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput_, onPhotoAvailable);
     if (ret_ != CAMERA_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAvailableCallback failed.");
+        DRAWING_LOGD("NDKCamera::PhotoOutputRegisterPhotoAvailableCallback failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAvailableCallback return with ret code: %{public}d!",
+    DRAWING_LOGD("NDKCamera::PhotoOutputRegisterPhotoAvailableCallback return with ret code: %{public}d!",
         ret_);
     return ret_;
 }
-void onPhotoAssetAvailable(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset)
-{
-    if (mediaAsset == nullptr) {
-        DRAWING_LOGI("[RM005 log] onPhotoAssetAvailable mediaAsset is nullptr !");
-        return;
-    }
-    DRAWING_LOGD("[RM005 log] onPhotoAssetAvailable start!");
-    NDKCamera::MediaAssetRelease();
-    g_mediaAsset = mediaAsset;
-    NDKCamera::MediaAssetGetUri(mediaAsset);
-    NDKCamera::MediaAssetGetDisplayName(mediaAsset);
-    NDKCamera::MediaAssetGetSize(mediaAsset);
-    NDKCamera::MediaAssetGetDateModifiedMs(mediaAsset);
-    NDKCamera::MediaAssetGetWidth(mediaAsset);
-    NDKCamera::MediaAssetGetHeight(mediaAsset);
-    NDKCamera::MediaAssetGetOrientation(mediaAsset);
-    NDKCamera::MediaAssetManagerCreate();
-    NDKCamera::MediaAssetChangeRequest(mediaAsset);
-    DRAWING_LOGD("[RM005 log] onPhotoAssetAvailable finish!");
-    return;
-}
-Camera_ErrorCode NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback(void)
-{
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback start!");
-    MediaAssetManagerCreate();
-    ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, onPhotoAssetAvailable);
-    if (ret_ != CAMERA_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback failed.");
-    }
-    DRAWING_LOGD(
-        "[RM005 log] NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback return with ret code: %{public}d!",
-        ret_);
-    return ret_;
-}
+
 Camera_ErrorCode NDKCamera::GetActiveVideoOutputProfile(void)
 {
     DRAWING_LOGD("NDKCamera::GetActiveVideoOutputProfile start!");
@@ -1543,269 +1522,326 @@ Camera_ErrorCode NDKCamera::GetActiveVideoOutputProfile(void)
     DRAWING_LOGD("NDKCamera::GetActiveVideoOutputProfile return with ret code: %{public}d!", ret_);
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::PhotoNativeGetMainImage(OH_PhotoNative *photoNative)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeGetMainImage start!");
+    DRAWING_LOGD("NDKCamera::PhotoNativeGetMainImage start!");
     Camera_ErrorCode result = CAMERA_OK;
     OH_ImageNative *imageNative = nullptr;
     result = OH_PhotoNative_GetMainImage(photoNative, &imageNative);
     if (imageNative == nullptr || result != CAMERA_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeGetMainImage failed.");
+        DRAWING_LOGD("NDKCamera::PhotoNativeGetMainImage failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeGetMainImage return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::PhotoNativeGetMainImage return with ret code: %{public}d!", result);
     /* Todo: save 'imageNative' into the device. */
     return result;
 }
+
 Camera_ErrorCode NDKCamera::PhotoNativeRelease(OH_PhotoNative *photoNative)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeRelease start!");
+    DRAWING_LOGD("NDKCamera::PhotoNativeRelease start!");
     Camera_ErrorCode result = CAMERA_OK;
     result = OH_PhotoNative_Release(photoNative);
     if (result != CAMERA_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeRelease failed.");
+        DRAWING_LOGD("NDKCamera::PhotoNativeRelease failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::PhotoNativeRelease return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::PhotoNativeRelease return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetUri(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetUri start!");
     result = OH_MediaAsset_GetUri(mediaAsset, &URI);
     if (URI == nullptr || result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetUri failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri uri: %{public}s", URI);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetUri uri: %{public}s", URI);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetUri return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetDisplayName(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDisplayName start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDisplayName start!");
     const char *displayName = nullptr;
     result = OH_MediaAsset_GetDisplayName(mediaAsset, &displayName);
     if (displayName == nullptr || result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDisplayName failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetDisplayName failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDisplayName displayName: %{public}s", displayName);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDisplayName return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDisplayName displayName: %{public}s", displayName);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDisplayName return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetSize(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetSize start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetSize start!");
     uint32_t mediaAssetSize;
     result = OH_MediaAsset_GetSize(mediaAsset, &mediaAssetSize);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetSize failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetSize failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetSize mediaAssetSize: %{public}d", mediaAssetSize);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetSize return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetSize mediaAssetSize: %{public}d", mediaAssetSize);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetSize return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetDateModifiedMs(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDateModifiedMs start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDateModifiedMs start!");
     uint32_t dateModifiedMs;
     result = OH_MediaAsset_GetDateModifiedMs(mediaAsset, &dateModifiedMs);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDateModifiedMs failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetDateModifiedMs failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDateModifiedMs dateModifiedMs: %{public}lu", dateModifiedMs);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetDateModifiedMs return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDateModifiedMs dateModifiedMs: %{public}lu", dateModifiedMs);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetDateModifiedMs return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetWidth(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetWidth start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetWidth start!");
     uint32_t width;
     result = OH_MediaAsset_GetWidth(mediaAsset, &width);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetWidth failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetWidth failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetWidth width: %{public}d", width);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetWidth return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetWidth width: %{public}d", width);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetWidth return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetHeight(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetHeight start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetHeight start!");
     uint32_t height;
     result = OH_MediaAsset_GetHeight(mediaAsset, &height);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetHeight failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetHeight failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetHeight height: %{public}d", height);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetHeight return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetHeight height: %{public}d", height);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetHeight return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetGetOrientation(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetOrientation start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetGetOrientation start!");
     uint32_t orientation;
     result = OH_MediaAsset_GetOrientation(mediaAsset, &orientation);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetOrientation failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetGetOrientation failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetOrientation orientation: %{public}d", orientation);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetGetOrientation return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetOrientation orientation: %{public}d", orientation);
+    DRAWING_LOGD("NDKCamera::MediaAssetGetOrientation return with ret code: %{public}d!", result);
     return result;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetRelease()
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetRelease start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetRelease start!");
     result = OH_MediaAsset_Release(g_mediaAsset);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetRelease failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetRelease failed.");
     }
     g_mediaAsset = nullptr;
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetRelease return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetRelease return with ret code: %{public}d!", result);
     return result;
 }
 
 // [Start deferred_photo]
+// 分段式拍照回调函数。
+void onPhotoAssetAvailable(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset)
+{
+    if (mediaAsset == nullptr) {
+        DRAWING_LOGI("onPhotoAssetAvailable mediaAsset is nullptr !");
+        return;
+    }
+    DRAWING_LOGD("onPhotoAssetAvailable start!");
+    NDKCamera::MediaAssetRelease();
+    g_mediaAsset = mediaAsset;
+    NDKCamera::MediaAssetGetUri(mediaAsset);
+    NDKCamera::MediaAssetGetDisplayName(mediaAsset);
+    NDKCamera::MediaAssetGetSize(mediaAsset);
+    NDKCamera::MediaAssetGetDateModifiedMs(mediaAsset);
+    NDKCamera::MediaAssetGetWidth(mediaAsset);
+    NDKCamera::MediaAssetGetHeight(mediaAsset);
+    NDKCamera::MediaAssetGetOrientation(mediaAsset);
+    NDKCamera::MediaAssetManagerCreate();
+    NDKCamera::MediaAssetChangeRequest(mediaAsset);
+    DRAWING_LOGD("onPhotoAssetAvailable finish!");
+    return;
+}
+
+// 注册分段式拍照回调。
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback(void)
+{
+    DRAWING_LOGD("NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback start!");
+    MediaAssetManagerCreate();
+    ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, onPhotoAssetAvailable);
+    if (ret_ != CAMERA_OK) {
+        DRAWING_LOGD("NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback failed.");
+    }
+    DRAWING_LOGD(
+        "NDKCamera::PhotoOutputRegisterPhotoAssetAvailableCallback return with ret code: %{public}d!",
+        ret_);
+    return ret_;
+}
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetChangeRequest(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetChangeRequest start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetChangeRequest start!");
     MediaAssetChangeRequestCreate(mediaAsset);
     MediaAssetManagerRequestImage(mediaAsset);
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetChangeRequest finish!");
+    DRAWING_LOGD("NDKCamera::MediaAssetChangeRequest finish!");
     return MEDIA_LIBRARY_OK;
 }
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetChangeRequestCreate(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetChangeRequestCreate start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetChangeRequestCreate start!");
     g_changeRequest = OH_MediaAssetChangeRequest_Create(mediaAsset);
     if (g_changeRequest == nullptr) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetChangeRequestCreate failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetChangeRequestCreate failed.");
     }
     return MEDIA_LIBRARY_OK;
 }
-MediaLibrary_ErrorCode NDKCamera::ChangeRequestAddResourceWithBuffer(OH_ImageSourceNative *imageSourceNative)
-{
-    DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer start!");
-    size_t bufferSize = BUFFER_SIZE;
-    char buffer[BUFFER_SIZE];
-    int fd = open("/data/storage/el2/base/haps/test.jpg", O_RDONLY);
-    int fr = read(fd, buffer, bufferSize);
-    if (fr == -1) {
-        DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer read failed.");
-        return MEDIA_LIBRARY_OK;
-    }
-    if (fr == BUFFER_SIZE) {
-        DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer read not complete.");
-        return MEDIA_LIBRARY_OK;
-    }
-    result = OH_MediaAssetChangeRequest_AddResourceWithBuffer(g_changeRequest,
-        MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, (uint8_t *)buffer, (uint32_t)bufferSize);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer failed.");
-        DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer failed %{public}d.", result);
-        return MEDIA_LIBRARY_OK;
-    }
-    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD(
-            "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges failed.");
-        return MEDIA_LIBRARY_OK;
-    }
-    DRAWING_LOGD("[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges return "
-                 "with ret code: %{public}d!",
-        result);
-    return result;
-}
-MediaLibrary_ErrorCode NDKCamera::ChangeRequestSaveCameraPhoto(void)
-{
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestSaveCameraPhoto start!");
-    result = OH_MediaAssetChangeRequest_SaveCameraPhoto(g_changeRequest,
-        MediaLibrary_ImageFileType::MEDIA_LIBRARY_IMAGE_JPEG);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD(
-            "[RM005 log] NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAssetChangeRequest_SaveCameraPhoto failed.");
-    }
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAssetChangeRequest_SaveCameraPhoto "
-                 "return with ret code: %{public}d!",
-        result);
-    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAccessHelper_ApplyChanges failed.");
-    }
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAccessHelper_ApplyChanges return with "
-                 "ret code: %{public}d!",
-        result);
-    return result;
-}
-MediaLibrary_ErrorCode NDKCamera::ChangeRequestDiscardCameraPhoto(void)
-{
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestDiscardCameraPhoto start!");
-    result = OH_MediaAssetChangeRequest_DiscardCameraPhoto(g_changeRequest);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestDiscardCameraPhoto "
-                     "OH_MediaAssetChangeRequest_DiscardCameraPhoto failed.");
-    }
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAssetChangeRequest_DiscardCameraPhoto "
-                 "return with ret code: %{public}d!",
-        result);
-    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD(
-            "[RM005 log] NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAccessHelper_ApplyChanges failed.");
-    }
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAccessHelper_ApplyChanges return with "
-                 "ret code: %{public}d!",
-        result);
-    return result;
-}
-MediaLibrary_ErrorCode NDKCamera::ChangeRequestRelease(void)
-{
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestRelease start!");
-    result = OH_MediaAssetChangeRequest_Release(g_changeRequest);
-    if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestRelease failed.");
-    }
-    g_changeRequest = nullptr;
-    DRAWING_LOGD("[RM005 log] NDKCamera::ChangeRequestRelease return with ret code: %{public}d!", result);
-    return result;
-}
+
 MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerCreate(void)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerCreate start!");
+    DRAWING_LOGD("NDKCamera::MediaAssetManagerCreate start!");
     mediaAssetManager = OH_MediaAssetManager_Create();
     if (mediaAssetManager == nullptr) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerCreate failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetManagerCreate failed.");
     }
     return MEDIA_LIBRARY_OK;
 }
+
 void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
     MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type, OH_ImageSourceNative *imageSourceNative)
 {
     auto cb = (void (*)(char *))(g_requestImageCallback);
     auto qCb = (void (*)(char *))(g_requestImageQualityCallback);
-    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails start!");
+    DRAWING_LOGD("OnRequsetImageDataPreparedWithDetails start!");
     if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FAST) {
-        DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails into fast quality mode!");
+        DRAWING_LOGD("OnRequsetImageDataPreparedWithDetails into fast quality mode!");
         g_mediaQualityCb = "fast";
         qCb(g_mediaQualityCb);
     } else {
-        DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails into high quality mode!");
+        DRAWING_LOGD("OnRequsetImageDataPreparedWithDetails into high quality mode!");
         g_mediaQualityCb = "high";
         qCb(g_mediaQualityCb);
     }
-    DRAWING_LOGD("[RM005 log] OnRequsetImageDataPreparedWithDetails GetUri uri_ = %{public}s", URI);
+    DRAWING_LOGD("OnRequsetImageDataPreparedWithDetails GetUri uri_ = %{public}s", URI);
     cb(const_cast<char *>(URI));
     NDKCamera::ChangeRequestAddResourceWithBuffer(imageSourceNative);
     return;
 }
+
+// 请求图片数据：deliveryMode/quality 等通过 requestOptions 控制，完成后进回调 OnRequsetImageDataPreparedWithDetails。
 MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerRequestImage(OH_MediaAsset *mediaAsset)
 {
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerRequestImage start! g_deliveryMode = %{public}d",
+    DRAWING_LOGD("NDKCamera::MediaAssetManagerRequestImage start! g_deliveryMode = %{public}d",
         g_deliveryMode);
     requestOptions.deliveryMode = g_deliveryMode;
     result = OH_MediaAssetManager_RequestImage(mediaAssetManager, mediaAsset, requestOptions, &g_requestId,
         OnRequsetImageDataPreparedWithDetails);
     if (result != MEDIA_LIBRARY_OK) {
-        DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerRequestImage failed.");
+        DRAWING_LOGD("NDKCamera::MediaAssetManagerRequestImage failed.");
     }
-    DRAWING_LOGD("[RM005 log] NDKCamera::MediaAssetManagerRequestImage return with ret code: %{public}d!", result);
+    DRAWING_LOGD("NDKCamera::MediaAssetManagerRequestImage return with ret code: %{public}d!", result);
+    return result;
+}
+
+MediaLibrary_ErrorCode NDKCamera::ChangeRequestAddResourceWithBuffer(OH_ImageSourceNative *imageSourceNative)
+{
+    DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer start!");
+    size_t bufferSize = BUFFER_SIZE;
+    char buffer[BUFFER_SIZE];
+    int fd = open("/data/storage/el2/base/haps/test.jpg", O_RDONLY);
+    int fr = read(fd, buffer, bufferSize);
+    if (fr == -1) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer read failed.");
+        return MEDIA_LIBRARY_OK;
+    }
+    if (fr == BUFFER_SIZE) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer read not complete.");
+        return MEDIA_LIBRARY_OK;
+    }
+    result = OH_MediaAssetChangeRequest_AddResourceWithBuffer(g_changeRequest,
+        MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, (uint8_t *)buffer, (uint32_t)bufferSize);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer failed.");
+        DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer failed %{public}d.", result);
+        return MEDIA_LIBRARY_OK;
+    }
+    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD(
+            "NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges failed.");
+        return MEDIA_LIBRARY_OK;
+    }
+    DRAWING_LOGD("NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges return "
+                 "with ret code: %{public}d!",
+        result);
+    return result;
+}
+
+MediaLibrary_ErrorCode NDKCamera::ChangeRequestSaveCameraPhoto(void)
+{
+    DRAWING_LOGD("NDKCamera::ChangeRequestSaveCameraPhoto start!");
+    result = OH_MediaAssetChangeRequest_SaveCameraPhoto(g_changeRequest,
+        MediaLibrary_ImageFileType::MEDIA_LIBRARY_IMAGE_JPEG);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD(
+            "NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAssetChangeRequest_SaveCameraPhoto failed.");
+    }
+    DRAWING_LOGD("NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAssetChangeRequest_SaveCameraPhoto "
+                 "return with ret code: %{public}d!",
+        result);
+    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAccessHelper_ApplyChanges failed.");
+    }
+    DRAWING_LOGD("NDKCamera::ChangeRequestSaveCameraPhoto OH_MediaAccessHelper_ApplyChanges return with "
+                 "ret code: %{public}d!",
+        result);
+    return result;
+}
+
+MediaLibrary_ErrorCode NDKCamera::ChangeRequestDiscardCameraPhoto(void)
+{
+    DRAWING_LOGD("NDKCamera::ChangeRequestDiscardCameraPhoto start!");
+    result = OH_MediaAssetChangeRequest_DiscardCameraPhoto(g_changeRequest);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestDiscardCameraPhoto "
+                     "OH_MediaAssetChangeRequest_DiscardCameraPhoto failed.");
+    }
+    DRAWING_LOGD("NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAssetChangeRequest_DiscardCameraPhoto "
+                 "return with ret code: %{public}d!",
+        result);
+    result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD(
+            "NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAccessHelper_ApplyChanges failed.");
+    }
+    DRAWING_LOGD("NDKCamera::ChangeRequestDiscardCameraPhoto OH_MediaAccessHelper_ApplyChanges return with "
+                 "ret code: %{public}d!",
+        result);
+    return result;
+}
+
+MediaLibrary_ErrorCode NDKCamera::ChangeRequestRelease(void)
+{
+    DRAWING_LOGD("NDKCamera::ChangeRequestRelease start!");
+    result = OH_MediaAssetChangeRequest_Release(g_changeRequest);
+    if (result != MEDIA_LIBRARY_OK) {
+        DRAWING_LOGD("NDKCamera::ChangeRequestRelease failed.");
+    }
+    g_changeRequest = nullptr;
+    DRAWING_LOGD("NDKCamera::ChangeRequestRelease return with ret code: %{public}d!", result);
     return result;
 }
 // [End deferred_photo]
@@ -1835,7 +1871,8 @@ Camera_ErrorCode NDKCamera::IsVideoModeAvailable(bool *available)
     return CAMERA_OK;
 }
 
-int32_t NDKCamera::GetDefaultDisplayRotation() {
+int32_t NDKCamera::GetDefaultDisplayRotation()
+{
     int32_t imageRotation = 0;
     NativeDisplayManager_Rotation displayRotation = DISPLAY_MANAGER_ROTATION_0;
     int32_t ret = OH_NativeDisplayManager_GetDefaultDisplayRotation(&displayRotation);
@@ -1846,7 +1883,8 @@ int32_t NDKCamera::GetDefaultDisplayRotation() {
     return imageRotation;
 }
 
-void NDKCamera::InitPreviewRotation() {
+void NDKCamera::InitPreviewRotation()
+{
     // previewOutput_是创建的预览输出
     Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
     int32_t imageRotation = GetDefaultDisplayRotation();

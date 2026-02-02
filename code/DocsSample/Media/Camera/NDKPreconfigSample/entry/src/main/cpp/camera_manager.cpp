@@ -1653,33 +1653,33 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetChangeRequestCreate(OH_MediaAsset *m
 }
 MediaLibrary_ErrorCode NDKCamera::ChangeRequestAddResourceWithBuffer(OH_ImageSourceNative *imageSourceNative)
 {
-    OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer start!");
+    OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer start!");
     size_t bufferSize = BUFFER_SIZE;
     char buffer[BUFFER_SIZE];
     int fd = open("/data/storage/el2/base/haps/test.jpg", O_RDONLY);
     int fr = read(fd, buffer, bufferSize);
     if (fr == -1) {
-        OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer read failed.");
+        OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer read failed.");
         return MEDIA_LIBRARY_OK;
     }
     if (fr == BUFFER_SIZE) {
-        OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer read not complete.");
+        OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer read not complete.");
         return MEDIA_LIBRARY_OK;
     }
     result = OH_MediaAssetChangeRequest_AddResourceWithBuffer(g_changeRequest,
         MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, (uint8_t *)buffer, (uint32_t)bufferSize);
     if (result != MEDIA_LIBRARY_OK) {
-        OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer failed.");
-        OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer failed %{public}d.", result);
+        OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer failed.");
+        OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer failed %{public}d.", result);
         return MEDIA_LIBRARY_OK;
     }
     result = OH_MediaAccessHelper_ApplyChanges(g_changeRequest);
     if (result != MEDIA_LIBRARY_OK) {
         OH_LOG_INFO(LOG_APP,
-            "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges failed.");
+            "NDKCamera::ChangeRequestAddResourceWithBuffer OH_MediaAccessHelper_ApplyChanges failed.");
         return MEDIA_LIBRARY_OK;
     }
-    OH_LOG_INFO(LOG_APP, "[RM003 log] NDKCamera::ChangeRequestAddResourceWithBuffer "
+    OH_LOG_INFO(LOG_APP, "NDKCamera::ChangeRequestAddResourceWithBuffer "
         "OH_MediaAccessHelper_ApplyChanges return with ret code: %{public}d!", result);
     return result;
 }
@@ -1775,7 +1775,8 @@ MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerRequestImage(OH_MediaAsset *m
     return result;
 }
 
-int32_t NDKCamera::GetDefaultDisplayRotation() {
+int32_t NDKCamera::GetDefaultDisplayRotation()
+{
     int32_t imageRotation = 0;
     NativeDisplayManager_Rotation displayRotation = DISPLAY_MANAGER_ROTATION_0;
     int32_t ret = OH_NativeDisplayManager_GetDefaultDisplayRotation(&displayRotation);
@@ -1786,7 +1787,8 @@ int32_t NDKCamera::GetDefaultDisplayRotation() {
     return imageRotation;
 }
 
-void NDKCamera::InitPreviewRotation() {
+void NDKCamera::InitPreviewRotation()
+{
     // previewOutput_是创建的预览输出
     Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
     int32_t imageRotation = GetDefaultDisplayRotation();

@@ -1310,7 +1310,8 @@ Camera_ErrorCode NDKCamera::CaptureSessionRegisterCallback(void)
     return ret_;
 }
 
-int32_t NDKCamera::GetDefaultDisplayRotation() {
+int32_t NDKCamera::GetDefaultDisplayRotation()
+{
     int32_t imageRotation = 0;
     NativeDisplayManager_Rotation displayRotation = DISPLAY_MANAGER_ROTATION_0;
     int32_t ret = OH_NativeDisplayManager_GetDefaultDisplayRotation(&displayRotation);
@@ -1321,7 +1322,8 @@ int32_t NDKCamera::GetDefaultDisplayRotation() {
     return imageRotation;
 }
 
-void NDKCamera::InitPreviewRotation() {
+void NDKCamera::InitPreviewRotation()
+{
     // previewOutput_是创建的预览输出
     Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
     int32_t imageRotation = GetDefaultDisplayRotation();

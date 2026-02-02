@@ -405,11 +405,9 @@ Camera_ErrorCode NDKCamera::GetSupportedCameras(void)
 Camera_ErrorCode NDKCamera::GetSupportedOutputCapability(void)
 {
     if (isHdrVideo) {
-        OH_LOG_ERROR(LOG_APP, "colorspace 11111 failed.");
         ret_ = OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(cameraManager_,
             &cameras_[cameraDeviceIndex_], Camera_SceneMode::NORMAL_VIDEO, &cameraOutputCapability_);
     } else {
-        OH_LOG_ERROR(LOG_APP, "colorspace 22222222 failed.");
         ret_ = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager_, &cameras_[cameraDeviceIndex_],
             &cameraOutputCapability_);
     }
@@ -519,7 +517,6 @@ Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId)
 }
 // [End create_video_output]
 
-// [Start video_output_start]
 Camera_ErrorCode NDKCamera::AddVideoOutput(void)
 {
     Camera_ErrorCode ret = OH_CaptureSession_AddVideoOutput(captureSession_, videoOutput_);
@@ -603,6 +600,7 @@ Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
     return CAMERA_OK;
 }
 
+// [Start video_output_start]
 Camera_ErrorCode NDKCamera::VideoOutputStart(void)
 {
     OH_LOG_INFO(LOG_APP, "VideoOutputStart begin.");
@@ -1590,7 +1588,8 @@ Camera_ErrorCode NDKCamera::UnregisterControlCenterEffectStatusChangeCallback()
     return ret;
 }
 
-int32_t NDKCamera::GetDefaultDisplayRotation() {
+int32_t NDKCamera::GetDefaultDisplayRotation()
+{
     int32_t imageRotation = 0;
     NativeDisplayManager_Rotation displayRotation = DISPLAY_MANAGER_ROTATION_0;
     int32_t ret = OH_NativeDisplayManager_GetDefaultDisplayRotation(&displayRotation);
@@ -1601,7 +1600,8 @@ int32_t NDKCamera::GetDefaultDisplayRotation() {
     return imageRotation;
 }
 
-void NDKCamera::InitPreviewRotation() {
+void NDKCamera::InitPreviewRotation()
+{
     // previewOutput_是创建的预览输出
     Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
     int32_t imageRotation = GetDefaultDisplayRotation();

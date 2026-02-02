@@ -91,7 +91,7 @@ static napi_value SetRequestOption(napi_env env, napi_callback_info info)
     int32_t requestOption;
     napi_get_value_int32(env, args[0], &requestOption);
 
-    OH_LOG_ERROR(LOG_APP, "[RM005 log] SetRequestOptinon : %{public}d", requestOption);
+    OH_LOG_ERROR(LOG_APP, "SetRequestOptinon : %{public}d", requestOption);
 
     g_ndkCamera->SetRequestOption(requestOption);
     napi_create_int32(env, argc, &result);
@@ -268,7 +268,7 @@ static napi_value RequestImage(napi_env env, napi_callback_info info)
 
 static void RequestImageCb(char *buffer)
 {
-    OH_LOG_ERROR(LOG_APP, "[RM005 log] ly uri = %{public}s", buffer);
+    OH_LOG_ERROR(LOG_APP, "uri = %{public}s", buffer);
     napi_value resource = nullptr;
     napi_async_work work;
     napi_create_string_utf8(g_env, "RequestImageCb", NAPI_AUTO_LENGTH, &resource);
@@ -320,7 +320,7 @@ static napi_value RequestImageQuality(napi_env env, napi_callback_info info)
 
 static void RequestImageQualityCb(char *quality)
 {
-    OH_LOG_ERROR(LOG_APP, "[RM005 log] ly quality = %{public}s", quality);
+    OH_LOG_ERROR(LOG_APP, "quality = %{public}s", quality);
     napi_value resource = nullptr;
     napi_async_work work;
     napi_create_string_utf8(g_env2, "RequestImageQualityCb", NAPI_AUTO_LENGTH, &resource);
