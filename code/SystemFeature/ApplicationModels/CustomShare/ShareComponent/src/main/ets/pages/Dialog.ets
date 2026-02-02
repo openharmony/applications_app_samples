@@ -31,10 +31,15 @@ interface EventHub {
   emit(event: string, ...args: Object[]): void
 }
 
-interface AbilityContext {
-  terminateSelf(): Promise<void>
+// interface AbilityContext {
+//   terminateSelf(): Promise<void>
+//
+//   eventHub: EventHub
+// }
 
-  eventHub: EventHub
+class Data {
+  context = null
+  launchWant = null
 }
 
 let isLand: boolean = true
@@ -136,7 +141,7 @@ export struct ButtonDialogBuilder {
   private detailPriceText: string = ''
   private title: string = ''
   private srcImage: string = ''
-  private context?: AbilityContext
+  private context?: common.UIAbilityContext;
   private contextCaller?: common.UIAbilityContext
   private shareUtils: ShareUtils = new ShareUtils(getContext(this))
   private isLand = mediaQuery.matchMediaSync('(orientation:landscape)')
@@ -181,10 +186,6 @@ export struct ButtonDialogBuilder {
   async aboutToAppear() {
     Logger.info(TAG, `get Component's aboutToAppear success`)
     this.context = getContext(this) as common.UIAbilityContext
-    class Data {
-      context = null
-      launchWant = null
-    }
     let data: Data = { context: null, launchWant: null }
     Logger.info(TAG, 'aboutToAppear')
     this.context.eventHub.emit('getAbilityData', data)
