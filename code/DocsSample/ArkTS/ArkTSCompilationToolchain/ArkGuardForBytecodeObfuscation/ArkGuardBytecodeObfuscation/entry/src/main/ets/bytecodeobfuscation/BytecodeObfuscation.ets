@@ -20,13 +20,13 @@ import testNapi from 'libentry.so'
 
 // [Start etsOptionExample_keepGlobalName]
 // example.ets
-import { testNapi2, testNapi3 as myNapi } from 'libentry.so' // testNapi2 和 testNapi3 应该被保留。
+import { testNapi2, testNapi3 as myNapi } from 'libentry.so' // testNapi2 和 testNapi3 应该被保留
 // [StartExclude etsOptionExample_keepGlobalName]
 
 // [Start etsOptionExample_enablePropertyObfuscation1]
 // example.ets
 @Component struct MyExample {
-  @State message: string = "hello";
+  @State message: string = 'hello';
   data: number[] = [];
 
   build() {
@@ -42,7 +42,7 @@ import { testNapi2, testNapi3 as myNapi } from 'libentry.so' // testNapi2 和 te
 // [End etsOptionExample_enablePropertyObfuscation2]
 
 // [EndExclude etsOptionExample_keepPropertyName1]
-testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name foo。
+testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name foo
 // [End etsOptionExample_keepPropertyName1]
 
 // [EndExclude etsOptionExample_keepGlobalName]
