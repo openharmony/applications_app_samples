@@ -607,6 +607,7 @@ static napi_value TakePicture(napi_env env, napi_callback_info info)
     return result;
 }
 
+// [Start napi_buffer_callback]
 // NAPI层buffer回调方法。
 static void BufferCb(void* buffer, size_t size)
 {
@@ -657,6 +658,7 @@ static void BufferCb(void* buffer, size_t size)
     }
     napi_queue_async_work_with_qos(env_, work, napi_qos_user_initiated);
 }
+// [End napi_buffer_callback]
 
 // 保存ArkTS侧传入的buffer处理回调函数。
 static napi_value SetBufferCb(napi_env env, napi_callback_info info)

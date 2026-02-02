@@ -14,9 +14,11 @@
  */
 
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+// [Start import_module]
 import { camera } from '@kit.CameraKit';
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End import_module]
 import { JSON } from '@kit.ArkTS';
 import { fileIo } from '@kit.CoreFileKit';
 import { GlobalContext } from '../common/utils/GlobalContext';
@@ -585,24 +587,30 @@ class CameraService {
    */
   photoOutputCallBack(photoOutput: camera.PhotoOutput): void {
     try {
+      // [Start capture_start_with_info]
       // 监听拍照开始
       photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo): void => {
         Logger.info(TAG, `photoOutputCallBack captureStartWithInfo success: ${JSON.stringify(captureStartInfo)}`);
       });
+      // [End capture_start_with_info]
       // 监听拍照帧输出捕获
       photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo): void => {
         Logger.info(TAG, `photoOutputCallBack frameShutter captureId:
           ${frameShutterInfo.captureId}, timestamp: ${frameShutterInfo.timestamp}`);
       });
+      // [Start capture_end]
       // 监听拍照结束
       photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo): void => {
         Logger.info(TAG, `photoOutputCallBack captureEnd captureId:
           ${captureEndInfo.captureId}, frameCount: ${captureEndInfo.frameCount}`);
       });
+      // [End capture_end]
+      // [Start photoOutput_error]
       // 监听拍照异常
       photoOutput.on('error', (data: BusinessError): void => {
         Logger.info(TAG, `photoOutPut data: ${JSON.stringify(data)}`);
       });
+      // [End photoOutput_error]
       photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
         Logger.info(TAG, 'photoAssetAvailable begin');
         if (photoAsset === undefined) {
@@ -708,6 +716,7 @@ class CameraService {
    * @param session - 相机捕获会话对象
    * @returns 无返回值
    */
+  // [Start system_pressure_level]
   onSystemPressureLevelChange(session: camera.PhotoSession | camera.VideoSession): void {
     try {
       session.on('systemPressureLevelChange', (error: BusinessError, sysPressureLevel: camera.SystemPressureLevel): void => {
@@ -720,8 +729,10 @@ class CameraService {
       Logger.error(TAG, 'register systemPressureLevelChange failed: ' + JSON.stringify(error));
     }
   }
+  // [End system_pressure_level]
 
   // 相机控制器
+  // [Start is_control_center_support]
   isControlCenterSupport(): boolean | undefined{
     if (this.curSceneMode == camera.SceneMode.NORMAL_VIDEO) {
       let videoSession = this.session as camera.VideoSession;
@@ -729,8 +740,10 @@ class CameraService {
     }
     return false;
   }
+  // [End is_control_center_support]
 
   // 需要满足前置摄像模式
+  // [Start enable_control_center]
   enableControlCenter(isEnable: boolean): void {
     let isSupport = this.isControlCenterSupport();
     if (isSupport) {
@@ -741,12 +754,16 @@ class CameraService {
     }
     Logger.error(TAG, `curStatus not supported.`);
   }
+  // [End enable_control_center]
 
   // 微距能力
+  // [Start is_macro_support]
   isMacroSupport(): boolean | undefined{
     return this.session?.isMacroSupported();
   }
+  // [End is_macro_support]
 
+  // [Start enable_macro]
   enableMacro(isEnable: boolean): void {
     let isSupport = this.isMacroSupport();
     if (isSupport) {
@@ -755,6 +772,7 @@ class CameraService {
     }
     Logger.error(TAG, `enableMacro is refuse.`);
   }
+  // [End enable_macro]
 
   async createAVRecorder(): Promise<media.AVRecorder | undefined> {
     let avRecorder: media.AVRecorder | undefined = undefined;
@@ -917,6 +935,7 @@ class CameraService {
     this.session?.setFocusMode(focusMode);
   }
 
+  // [Start white_balance_mode]
   setWhiteBalanceMode(whiteBalanceMode: camera.WhiteBalanceMode) {
     let isSupported: boolean | undefined = false;
     isSupported = this.session?.isWhiteBalanceModeSupported(whiteBalanceMode);
@@ -930,6 +949,7 @@ class CameraService {
       console.error(TAG, `setWhiteBalance failed, curMode: ${curMode}, setMode: ${whiteBalanceMode}`);
     }
   }
+  // [End white_balance_mode]
 }
 
 export default new CameraService();

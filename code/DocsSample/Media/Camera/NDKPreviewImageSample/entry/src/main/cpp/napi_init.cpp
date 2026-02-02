@@ -70,6 +70,7 @@ static napi_value ReleaseCamera(napi_env env, napi_callback_info info)
     return result;
 }
 
+// [Start image_receiver]
 void copyBuffer(OH_NativeBuffer *srcBuffer, size_t srcSize, OHNativeWindowBuffer *dstBuffer)
 {
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s IN", __func__);
@@ -171,7 +172,9 @@ static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
     }
     OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s SUCCESS", __func__);
 }
+// [End image_receiver]
 
+// [Start init_image_receiver]
 void InitImageReceiver(uint64_t &receiverSurfaceID)
 {
     OH_ImageReceiverOptions *options = nullptr;
@@ -217,6 +220,7 @@ void InitImageReceiver(uint64_t &receiverSurfaceID)
         OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
     }
 }
+// [End init_image_receiver]
 
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {

@@ -15,7 +15,7 @@
 
 #ifndef CAMERA_NDK_CAMERA_H
 #define CAMERA_NDK_CAMERA_H
-
+// [Start import_header]
 #include <cstdint>
 #include <unistd.h>
 #include <string>
@@ -52,6 +52,7 @@
 #include "ohcamera/photo_native.h"
 #include <window_manager/oh_display_info.h>
 #include <window_manager/oh_display_manager.h>
+// [End import_header]
 
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {

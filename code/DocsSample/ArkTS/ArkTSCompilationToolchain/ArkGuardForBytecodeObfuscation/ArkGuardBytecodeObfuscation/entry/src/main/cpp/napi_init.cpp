@@ -40,10 +40,10 @@ static napi_value Add(napi_env env, napi_callback_info info)
 }
 
 static napi_value NAPI_Global_testNapi2(napi_env env, napi_callback_info info) {
-    // 实现代码。
+    // 实现代码
 }
 static napi_value NAPI_Global_testNapi3(napi_env env, napi_callback_info info) {
-    // 实现代码。
+    // 实现代码
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {

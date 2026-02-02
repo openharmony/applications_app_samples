@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start camera_deferred_capture_case]
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -143,6 +144,7 @@ export class PhotoManager implements OutputManager {
 
   // [End set_photo_cb_double]
 
+  // [StartExclude camera_deferred_capture_case]
   // [Start set_photo_cb_single]
   setPhotoOutputCbSingle(photoOutput: camera.PhotoOutput, context: Context) {
     photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
@@ -187,6 +189,7 @@ export class PhotoManager implements OutputManager {
     });
   }
   // [End save_photo_single]
+  // [EndExclude camera_deferred_capture_case]
 
   setPhotoOutputCallback(isSingle: boolean) {
     if (!this.output) {
@@ -209,6 +212,7 @@ export class PhotoManager implements OutputManager {
     this.setPhotoZoomRatio(photoSession, zoomRatio || 0);
   }
 
+  // [StartExclude camera_deferred_capture_case]
   // [Start set_color_space]
   setColorSpaceBeforeCommitConfig(session: camera.PhotoSession, isHdr: boolean): void {
     let colorSpace: colorSpaceManager.ColorSpace =
@@ -233,6 +237,7 @@ export class PhotoManager implements OutputManager {
     }
   }
   // [End set_color_space]
+  // [EndExclude camera_deferred_capture_case]
 
   public checkFlash(photoSession: camera.PhotoSession) {
     let flashModeStatus: boolean = false;
@@ -288,6 +293,7 @@ export class PhotoManager implements OutputManager {
     photoSession.setZoomRatio(zoomRatio || photoZoomRatio);
   }
 
+  // [StartExclude camera_deferred_capture_case]
   getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
     let colorSpaces: colorSpaceManager.ColorSpace[] = [];
     try {
@@ -310,6 +316,7 @@ export class PhotoManager implements OutputManager {
   }
 
   // [End get_photo_rotation]
+  // [EndExclude camera_deferred_capture_case]
 
   // [Start capture_photo]
   public async capture(isFront: boolean) {
@@ -330,6 +337,7 @@ export class PhotoManager implements OutputManager {
   }
   // [End capture_photo]
 
+  // [StartExclude camera_deferred_capture_case]
   private calculateDeviceDegree(x: number, y: number, z: number): number {
     let deviceDegree: number = 0;
     // Determine if the device is approaching a vertical position (perpendicular to the ground)
@@ -381,6 +389,7 @@ export class PhotoManager implements OutputManager {
   }
 
   // [End enable_moving_photo]
+  // [EndExclude camera_deferred_capture_case]
 
   // [Start photo_release]
   async release() {
@@ -394,3 +403,4 @@ export class PhotoManager implements OutputManager {
   }
   // [End photo_release]
 }
+// [End camera_deferred_capture_case]

@@ -15,7 +15,7 @@
 
 // [Start containing_bigInt]
 import { JSON } from '@kit.ArkTS';
-// [StartExclude containing_bigInt]
+  // [StartExclude containing_bigInt]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testParsingContainingBigInts() {
@@ -25,7 +25,7 @@ function testParsingContainingBigInts() {
   let numberObj1 = JSON.parse(numberText) as Object;
   console.info((numberObj1 as object)?.['largeNumber']);    // 112233445566778900
 
-  // 使用PARSE_AS_BIGINT的BigInt模式进行解析，避免出现大整数解析错误。
+  // 使用PARSE_AS_BIGINT的BigInt模式进行解析，避免出现大整数解析错误
   let options: JSON.ParseOptions = {
     bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
   }

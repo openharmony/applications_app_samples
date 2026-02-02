@@ -29,8 +29,8 @@ interface TestObj {
 interface TestStr {
   info: string;
 }
-// [StartExclude json_nesting_method1]
-// [StartExclude json_nesting_method2]
+  // [StartExclude json_nesting_method1]
+  // [StartExclude json_nesting_method2]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testParsing1() {
@@ -54,8 +54,8 @@ function testParsing1() {
 function testParsing2() {
   // [EndExclude json_nesting_method2]
   /*
-   * 将原始JSON字符串`{"info": "{"name": "zhangsan", "age": 18}"}`进行双重转义，
-   * 修改为`{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`。
+   * 将原始JSON字符串`{"info": "{"name": "zhangsan", "age": 18}"}`进行双重转义
+   * 修改为`{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`
    * */
   let jsonStr = `{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`;
   let obj2 = JSON.parse(jsonStr) as TestStr;

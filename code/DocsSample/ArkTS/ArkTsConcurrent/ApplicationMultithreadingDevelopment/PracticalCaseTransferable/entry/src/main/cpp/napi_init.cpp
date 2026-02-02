@@ -48,7 +48,7 @@ public:
         return address;
     }
 
-    // 获取数组大小。
+    // 获取数组大小
     static napi_value GetSetSize(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -69,7 +69,7 @@ public:
         return napiSize;
     }
 
-    // 往数组里插入元素。
+    // 往数组里插入元素
     static napi_value Store(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -104,7 +104,7 @@ public:
         return nullptr;
     }
 
-    // 删除数组元素。
+    // 删除数组元素
     static napi_value Erase(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -140,7 +140,7 @@ public:
         return nullptr;
     }
 
-    // 清空数组。
+    // 清空数组
     static napi_value Clear(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -159,7 +159,7 @@ public:
         return nullptr;
     }
     
-    // 设置传输模式。
+    // 设置传输模式
     static napi_value SetTransferDetached(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -211,7 +211,7 @@ void FinalizeCallback(napi_env env, void *data, void *hint)
     return;
 }
 
-// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作。
+// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
 void* DetachCallback(napi_env env, void *value, void *hint)
 {
     if (hint == nullptr) {
@@ -226,7 +226,7 @@ void* DetachCallback(napi_env env, void *value, void *hint)
     return value;
 }
 
-// 绑定回调，在反序列化时调用。
+// 绑定回调，在反序列化时调用
 napi_value AttachCallback(napi_env env, void* value, void* hint)
 {
     napi_value object = nullptr;
@@ -238,9 +238,9 @@ napi_value AttachCallback(napi_env env, void* value, void* hint)
         {"erase", nullptr, CustomNativeObject::Erase, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"clear", nullptr, CustomNativeObject::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
-    // 将JS对象object和native对象value生命周期进行绑定。
+    // 将JS对象object和native对象value生命周期进行绑定
     napi_wrap(env, object, value, FinalizeCallback, nullptr, nullptr);
-    // JS对象携带native信息。
+    // JS对象携带native信息
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, nullptr);
     return object;
 }

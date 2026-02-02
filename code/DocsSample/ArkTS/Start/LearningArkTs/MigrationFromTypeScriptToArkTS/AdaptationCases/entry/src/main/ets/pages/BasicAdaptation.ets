@@ -53,7 +53,7 @@ function printObj(obj: string) {
   }
   // [EndExclude no_any_unknown]
 }
-// [StartExclude no_any_unknown]
+  // [StartExclude no_any_unknown]
 // [Start json_parser]
 class A {
   public v: number = 0
@@ -79,13 +79,13 @@ function printProperties(obj: Record<string, Object>) {
   // [EndExclude record_type]
 }
 // [End record_type]
-// [Start no_call_signature]
+  // [Start no_call_signature]
 type I = (value: string) => void
 
 function foo(fn: I) {
   fn('abc');
 }
-// [StartExclude no_call_signature]
+  // [StartExclude no_call_signature]
 function testFooCallback() {
   // [EndExclude no_call_signature]
   foo((value: string) => {
@@ -121,7 +121,7 @@ class TestMenu {
     return null;
   }
 }
-// [StartExclude no_ctor_signatures_type]
+  // [StartExclude no_ctor_signatures_type]
 function testControllerValue() {
   // [EndExclude no_ctor_signatures_type]
   let t: TestMenu = new TestMenu();

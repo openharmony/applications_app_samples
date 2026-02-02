@@ -15,7 +15,7 @@
 
 #ifndef CAMERA_NDK_CAMERA_H
 #define CAMERA_NDK_CAMERA_H
-
+// [Start import_header]
 #include <cstdint>
 #include <native_buffer/buffer_common.h>
 #include <unistd.h>
@@ -55,7 +55,7 @@ class NDKCamera {
     };
     ~NDKCamera();
     explicit NDKCamera(CameraBuildingConfig config);
-
+    // [StartExclude import_header]
     static void Destroy()
     {
         if (ndkCamera_ != nullptr) {
@@ -190,6 +190,8 @@ class NDKCamera {
     static NDKCamera *ndkCamera_;
     static std::mutex mtx_;
     volatile bool valid_;
+// [EndExclude import_header]
 };
 } // namespace OHOS_CAMERA_SAMPLE
+// [End import_header]
 #endif // CAMERA_NDK_CAMERA_H

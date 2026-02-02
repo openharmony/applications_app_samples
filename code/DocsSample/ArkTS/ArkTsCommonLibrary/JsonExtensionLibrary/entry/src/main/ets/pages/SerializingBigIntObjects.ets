@@ -16,8 +16,8 @@
 // [Start bigInt_object_method1]
 // [Start bigInt_object_method2]
 import { JSON } from '@kit.ArkTS';
-// [StartExclude bigInt_object_method2]
-// [StartExclude bigInt_object_method1]
+  // [StartExclude bigInt_object_method2]
+  // [StartExclude bigInt_object_method1]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testSerializingBigIntObjects1() {

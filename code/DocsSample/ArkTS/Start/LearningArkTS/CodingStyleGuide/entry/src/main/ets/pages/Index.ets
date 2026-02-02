@@ -292,7 +292,7 @@ function testSpaceSpecification(isJedi: boolean) {
   // [Start highlight_else_incorrectExample]
   if (flag) {
     // ...
-  }else { // else 与其前面的大括号 } 之间没有加空格。
+  }else { // else 与其前面的大括号 } 之间没有加空格
     // ...
   }
   // [End highlight_else_incorrectExample]
@@ -300,31 +300,31 @@ function testSpaceSpecification(isJedi: boolean) {
   // [Start highlight_else_correctExample]
   if (flag) {
     // ...
-  } else { // else 与其前面的大括号 } 之间增加空格。
+  } else { // else 与其前面的大括号 } 之间增加空格
     // ...
   }
   // [End highlight_else_correctExample]
 }
 
-// [EndExclude highlight_keywords_incorrectExample]
+  // [EndExclude highlight_keywords_incorrectExample]
 // 函数名fight和左括号 ( 之间加了空格
 function fightBad (): void {
   console.info('Swooosh!');
 }
 // [End highlight_keywords_incorrectExample]
 
-// [EndExclude highlight_keywords_correctExample]
+  // [EndExclude highlight_keywords_correctExample]
 // 函数名fight和左括号 ( 之间不加空格
 function fight(): void {
   console.info('Swooosh!');
 }
-// [End highlight_keywords_correctExample]
+  // [End highlight_keywords_correctExample]
 
-// [Start highlight_brace_correctExample]
+  // [Start highlight_brace_correctExample]
 function foo() { // 函数声明时，左大括号 { 之前加个空格
   // ...
 }
-// [StartExclude highlight_brace_correctExample]
+  // [StartExclude highlight_brace_correctExample]
 
 interface BarOptions {
   age: string;
@@ -587,18 +587,18 @@ let obj2: I = getObject2(123);
 // [End noESObject_app_correctExample]
 
 {
-  // [Start use_T[]_incorrectExample]
+  // [Start use_T_incorrectExample]
   let x: Array<number> = [1, 2, 3];
   let y: Array<string> = ['a', 'b', 'c'];
-  // [End use_T[]_incorrectExample]
+  // [End use_T_incorrectExample]
 }
 
 {
-  // [Start use_T[]_correctExample]
+  // [Start use_T_correctExample]
   // 统一使用T[]语法。
   let x: number[] = [1, 2, 3];
   let y: string[] = ['a', 'b', 'c'];
-  // [End use_T[]_correctExample]
+  // [End use_T_correctExample]
 }
 
 @Entry

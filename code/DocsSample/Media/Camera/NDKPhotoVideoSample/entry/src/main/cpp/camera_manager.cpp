@@ -20,6 +20,7 @@
 #define LOG_DOMAIN 0x3200
 #define EPSILON 0.00001
 
+// [Start camera_recording_case]
 int AreFloatsEqual(float a, float b)
 {
     return fabs(a - b) < EPSILON;
@@ -33,6 +34,7 @@ const int32_t NUM_1920 = 1920;
 const int32_t NUM_1080 = 1080;
 const int32_t NUM_30 = 30;
 
+// [Start camera_shooting_case]
 NDKCamera::NDKCamera(CameraBuildingConfig config)
     : previewSurfaceId_(config.str),
       cameras_(nullptr),
@@ -66,11 +68,12 @@ NDKCamera::NDKCamera(CameraBuildingConfig config)
     if (cameraManager_ == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "Get CameraManager failed.");
     }
-
+    // [Start create_capture_session]
     ret = OH_CameraManager_CreateCaptureSession(cameraManager_, &captureSession_);
     if (captureSession_ == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "Create captureSession failed.");
     }
+    // [End create_capture_session]
     OH_LOG_ERROR(LOG_APP, "InitCamera isVideoMode: %{public}d", isVideo_);
     if (isVideo_) {
         ret = OH_CaptureSession_SetSessionMode(captureSession_, Camera_SceneMode::NORMAL_VIDEO);
@@ -169,6 +172,8 @@ Camera_ErrorCode NDKCamera::SessionRelease(void)
     return ret;
 }
 
+// [StartExclude camera_recording_case]
+// [StartExclude camera_shooting_case]
 Camera_ErrorCode NDKCamera::IsVideoStabilizationModeSupportedFn(uint32_t mode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
@@ -201,6 +206,8 @@ Camera_ErrorCode NDKCamera::IsVideoStabilizationModeSupportedFn(uint32_t mode)
     }
     return ret;
 }
+// [EndExclude camera_recording_case]
+// [EndExclude camera_shooting_case]
 
 Camera_ErrorCode NDKCamera::SessionBegin(void)
 {
@@ -224,6 +231,7 @@ Camera_ErrorCode NDKCamera::SessionCommitConfig(void)
     return ret;
 }
 
+// [Start session_start]
 Camera_ErrorCode NDKCamera::SessionStart(void)
 {
     Camera_ErrorCode ret = OH_CaptureSession_Start(captureSession_);
@@ -234,7 +242,9 @@ Camera_ErrorCode NDKCamera::SessionStart(void)
     }
     return ret;
 }
+// [End session_start]
 
+// [Start session_stop]
 Camera_ErrorCode NDKCamera::SessionStop(void)
 {
     Camera_ErrorCode ret = OH_CaptureSession_Stop(captureSession_);
@@ -245,10 +255,12 @@ Camera_ErrorCode NDKCamera::SessionStop(void)
     }
     return ret;
 }
+// [End session_stop]
 
 Camera_ErrorCode NDKCamera::SessionFlowFn(void)
 {
     OH_LOG_INFO(LOG_APP, "Start SessionFlowFn IN.");
+    // [Start add_metadata_output]
     // Start configuring session
     Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession_);
 
@@ -277,7 +289,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
 
     // Submit configuration information
     ret = OH_CaptureSession_CommitConfig(captureSession_);
-
+    // [StartExclude add_metadata_output]
     if (isVideo_) {
         bool isMirrorSupported = false;
         ret = OH_VideoOutput_IsMirrorSupported(videoOutput_, &isMirrorSupported);
@@ -290,12 +302,13 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
         uint32_t mode = static_cast<uint32_t>(Camera_VideoStabilizationMode::STABILIZATION_MODE_AUTO);
         IsVideoStabilizationModeSupportedFn(mode);
     }
+    // [EndExclude add_metadata_output]
 
     InitPreviewRotation();
     // Start Session Work
     OH_LOG_INFO(LOG_APP, "session start");
     ret = OH_CaptureSession_Start(captureSession_);
-
+    // [End add_metadata_output]
     // Start focusing
     ret = IsFocusMode(focusMode_);
 
@@ -310,6 +323,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     return ret;
 }
 
+// [Start get_supported_frame_rates]
 // 获取设备支持的预览帧率
 Camera_ErrorCode NDKCamera::PreviewOutputGetSupportedFrameRates(Camera_PreviewOutput *previewOutput,
     Camera_FrameRateRange **frameRateRange, uint32_t *size)
@@ -327,6 +341,7 @@ Camera_ErrorCode NDKCamera::PreviewOutputGetSupportedFrameRates(Camera_PreviewOu
     }
     return ret;
 }
+// [End get_supported_frame_rates]
 
 Camera_ErrorCode NDKCamera::CreateCameraInput(void)
 {
@@ -440,6 +455,7 @@ void NDKCamera::GetProfiles()
     }
 }
 
+// [Start create_preview_output]
 Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
 {
     if (previewProfile_ == nullptr) {
@@ -456,7 +472,9 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
     return ret_;
     PreviewOutputRegisterCallback();
 }
+// [End create_preview_output]
 
+// [Start create_photo_output]
 Camera_ErrorCode NDKCamera::CreatePhotoOutputWithoutSurfaceId()
 {
     OH_LOG_ERROR(LOG_APP, "CreatePhotoOutputWithoutSurfaceId enter.");
@@ -474,10 +492,15 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutputWithoutSurfaceId()
         OH_LOG_ERROR(LOG_APP, "CreatePhotoOutputWithoutSurfaceId failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
+// [StartExclude create_photo_output]
     PhotoOutputRegisterCallback();
+// [EndExclude create_photo_output]
     return ret_;
 }
+// [End create_photo_output]
 
+// [StartExclude camera_shooting_case]
+// [Start create_video_output]
 Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId)
 {
     if (videoProfile_ == nullptr) {
@@ -494,7 +517,9 @@ Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId)
     VideoOutputRegisterCallback();
     return ret_;
 }
+// [End create_video_output]
 
+// [Start video_output_start]
 Camera_ErrorCode NDKCamera::AddVideoOutput(void)
 {
     Camera_ErrorCode ret = OH_CaptureSession_AddVideoOutput(captureSession_, videoOutput_);
@@ -505,7 +530,9 @@ Camera_ErrorCode NDKCamera::AddVideoOutput(void)
     }
     return ret;
 }
+// [EndExclude camera_shooting_case]
 
+// [StartExclude camera_recording_case]
 Camera_ErrorCode NDKCamera::AddPhotoOutput()
 {
     Camera_ErrorCode ret = OH_CaptureSession_AddPhotoOutput(captureSession_, photoOutput_);
@@ -517,6 +544,7 @@ Camera_ErrorCode NDKCamera::AddPhotoOutput()
     return ret;
 }
 
+// [Start create_metadata_output]
 Camera_ErrorCode NDKCamera::CreateMetadataOutput(void)
 {
     metaDataObjectType_ = cameraOutputCapability_->supportedMetadataObjectTypes[0];
@@ -532,6 +560,8 @@ Camera_ErrorCode NDKCamera::CreateMetadataOutput(void)
     MetadataOutputRegisterCallback();
     return ret_;
 }
+// [End create_metadata_output]
+// [EndExclude camera_recording_case]
 
 Camera_ErrorCode NDKCamera::PreviewOutputStop(void)
 {
@@ -566,6 +596,7 @@ Camera_ErrorCode NDKCamera::PhotoOutputRelease(void)
     return ret_;
 }
 
+// [StartExclude camera_shooting_case]
 Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
 {
     OH_LOG_INFO(LOG_APP, "StartVideo begin. videoId: %{public}s, photoId: %{public}s", videoId, photoId);
@@ -583,7 +614,10 @@ Camera_ErrorCode NDKCamera::VideoOutputStart(void)
     }
     return ret;
 }
-
+// [End video_output_start]
+// [EndExclude camera_shooting_case]
+ 
+// [StartExclude camera_recording_case]
 Camera_ErrorCode NDKCamera::StartPhotoWithOutSurfaceId()
 {
     return ret_;
@@ -662,6 +696,7 @@ Camera_ErrorCode NDKCamera::IsExposureBiasRange(int exposureBias)
     return ret_;
 }
 
+// [Start settings_configuration]
 Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
 {
     Camera_FlashMode flashMode = static_cast<Camera_FlashMode>(mode);
@@ -707,6 +742,7 @@ Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
     return ret;
 }
 
+// [Start set_focus_mode]
 // focus mode
 Camera_ErrorCode NDKCamera::IsFocusModeSupported(uint32_t mode)
 {
@@ -741,6 +777,7 @@ Camera_ErrorCode NDKCamera::IsFocusMode(uint32_t mode)
     OH_LOG_INFO(LOG_APP, "IsFocusMode end.");
     return ret_;
 }
+// [End set_focus_mode]
 
 Camera_ErrorCode NDKCamera::setZoomRatioFn(uint32_t zoomRatio)
 {
@@ -773,7 +810,9 @@ Camera_ErrorCode NDKCamera::setZoomRatioFn(uint32_t zoomRatio)
     }
     return ret;
 }
+// [End settings_configuration]
 
+// [Start set_frame_rate]
 Camera_ErrorCode NDKCamera::PreviewOutputSetFrameRate(uint32_t minFps, uint32_t maxFps)
 {
     Camera_ErrorCode ret = OH_PreviewOutput_SetFrameRate(previewOutput_, minFps, maxFps);
@@ -792,7 +831,7 @@ Camera_ErrorCode NDKCamera::PreviewOutputSetFrameRate(uint32_t minFps, uint32_t 
 
     return ret;
 }
-
+// [End set_frame_rate]
 
 // 设置白平衡模式
 Camera_ErrorCode NDKCamera::SetWhiteBalance(int32_t whiteBalance)
@@ -822,6 +861,7 @@ Camera_ErrorCode NDKCamera::SetWhiteBalance(int32_t whiteBalance)
     return ret;
 }
 
+// [StartExclude camera_shooting_case]
 // 设置HDR Vivid 视频
 void NDKCamera::EnableHdrVideo(bool isHdr)
 {
@@ -829,6 +869,7 @@ void NDKCamera::EnableHdrVideo(bool isHdr)
     isHdrVideo = isHdr;
 }
 
+// [Start is_macro_supported]
 bool NDKCamera::IsMacroSupported(Camera_CaptureSession* captureSession)
 {
     //判断设备是否支持微距能力
@@ -848,7 +889,9 @@ bool NDKCamera::IsMacroSupported(Camera_CaptureSession* captureSession)
     }
     return isMacroSupported;
 }
+// [End is_macro_supported]
 
+// [Start enable_macro]
 void NDKCamera::EnableMacro(bool isMacro)
 {
     OH_LOG_INFO(LOG_APP, "EnableMacro: isMacro is %{public}d", isMacro);
@@ -859,6 +902,7 @@ void NDKCamera::EnableMacro(bool isMacro)
         }
     }
 }
+// [End enable_macro]
 
 bool NDKCamera::IsControlCenterSupported()
 {
@@ -924,7 +968,7 @@ Camera_ErrorCode NDKCamera::SetColorSpace(OH_NativeBuffer_ColorSpace colorSpace)
     return ret;
 }
 
-
+// [Start set_focus_point]
 Camera_ErrorCode NDKCamera::IsFocusPoint(float x, float y)
 {
     OH_LOG_INFO(LOG_APP, "IsFocusPoint start.");
@@ -944,6 +988,8 @@ Camera_ErrorCode NDKCamera::IsFocusPoint(float x, float y)
     OH_LOG_INFO(LOG_APP, "IsFocusPoint end.");
     return ret_;
 }
+// [End set_focus_point]
+// [EndExclude camera_recording_case]
 
 int32_t NDKCamera::GetVideoFrameWidth(void)
 {
@@ -987,6 +1033,7 @@ Camera_ImageRotation NDKCamera::GetVideoRotation(int32_t deviceDegree)
     return videoRotation;
 }
 
+// [Start video_output_stop]
 Camera_ErrorCode NDKCamera::VideoOutputStop(void)
 {
     OH_LOG_ERROR(LOG_APP, "enter VideoOutputStop.");
@@ -997,6 +1044,7 @@ Camera_ErrorCode NDKCamera::VideoOutputStop(void)
     }
     return ret_;
 }
+// [End video_output_stop]
 
 Camera_ErrorCode NDKCamera::VideoOutputRelease(void)
 {
@@ -1008,7 +1056,9 @@ Camera_ErrorCode NDKCamera::VideoOutputRelease(void)
     }
     return ret_;
 }
+// [EndExclude camera_shooting_case]
 
+// [Start capture]
 Camera_ErrorCode NDKCamera::TakePicture(int32_t degree)
 {
     Camera_ErrorCode ret = CAMERA_OK;
@@ -1028,6 +1078,7 @@ Camera_ErrorCode NDKCamera::TakePicture(int32_t degree)
     OH_LOG_INFO(LOG_APP, "TakePicture ret = %{public}d.", ret);
     return ret;
 }
+// [End capture]
 
 // CameraManager Callback
 void CameraManagerStatusCallback(Camera_Manager *cameraManager, Camera_StatusInfo *status)
@@ -1076,21 +1127,28 @@ Camera_ErrorCode NDKCamera::CameraInputRegisterCallback(void)
 }
 
 // PreviewOutput Callback
+// [Start start_callback]
 void PreviewOutputOnFrameStart(Camera_PreviewOutput *previewOutput)
 {
     OH_LOG_INFO(LOG_APP, "PreviewOutputOnFrameStart");
 }
+// [End start_callback]
 
+// [Start end_callback]
 void PreviewOutputOnFrameEnd(Camera_PreviewOutput *previewOutput, int32_t frameCount)
 {
     OH_LOG_INFO(LOG_APP, "PreviewOutput frameCount = %{public}d", frameCount);
 }
+// [End end_callback]
 
+// [Start error_callback]
 void PreviewOutputOnError(Camera_PreviewOutput *previewOutput, Camera_ErrorCode errorCode)
 {
     OH_LOG_INFO(LOG_APP, "PreviewOutput errorCode = %{public}d", errorCode);
 }
+// [End error_callback]
 
+// [Start get_listener_and_register_callback]
 PreviewOutput_Callbacks *NDKCamera::GetPreviewOutputListener(void)
 {
     static PreviewOutput_Callbacks previewOutputListener = {
@@ -1109,7 +1167,9 @@ Camera_ErrorCode NDKCamera::PreviewOutputRegisterCallback(void)
     }
     return ret_;
 }
+// [End get_listener_and_register_callback]
 
+// [Start photo_output_start_callback]
 // PhotoOutput Callback
 void PhotoOutputOnFrameStart(Camera_PhotoOutput *photoOutput)
 {
@@ -1120,17 +1180,23 @@ void PhotoOutputOnFrameShutter(Camera_PhotoOutput *photoOutput, Camera_FrameShut
 {
     OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameShutter");
 }
+// [End photo_output_start_callback]
 
+// [Start photo_output_end_callback]
 void PhotoOutputOnFrameEnd(Camera_PhotoOutput *photoOutput, int32_t frameCount)
 {
     OH_LOG_INFO(LOG_APP, "PhotoOutput frameCount = %{public}d", frameCount);
 }
+// [End photo_output_end_callback]
 
+// [Start photo_output_error_callback]
 void PhotoOutputOnError(Camera_PhotoOutput *photoOutput, Camera_ErrorCode errorCode)
 {
     OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
 }
+// [End photo_output_error_callback]
 
+// [Start get_photo_output_listener_and_register_callback]
 PhotoOutput_Callbacks *NDKCamera::GetPhotoOutputListener(void)
 {
     static PhotoOutput_Callbacks photoOutputListener = {
@@ -1150,23 +1216,32 @@ Camera_ErrorCode NDKCamera::PhotoOutputRegisterCallback(void)
     }
     return ret_;
 }
+// [End get_photo_output_listener_and_register_callback]
 
+// [StartExclude camera_shooting_case]
 // VideoOutput Callback
+// [Start video_callback_start]
 void VideoOutputOnFrameStart(Camera_VideoOutput *videoOutput)
 {
     OH_LOG_INFO(LOG_APP, "VideoOutputOnFrameStart");
 }
+// [End video_callback_start]
 
+// [Start video_callback_end]
 void VideoOutputOnFrameEnd(Camera_VideoOutput *videoOutput, int32_t frameCount)
 {
     OH_LOG_INFO(LOG_APP, "VideoOutput frameCount = %{public}d", frameCount);
 }
+// [End video_callback_end]
 
+// [Start video_callback_error]
 void VideoOutputOnError(Camera_VideoOutput *videoOutput, Camera_ErrorCode errorCode)
 {
     OH_LOG_INFO(LOG_APP, "VideoOutput errorCode = %{public}d", errorCode);
 }
+// [End video_callback_error]
 
+// [Start get_video_listener_and_register]
 VideoOutput_Callbacks *NDKCamera::GetVideoOutputListener(void)
 {
     static VideoOutput_Callbacks videoOutputListener = {
@@ -1185,19 +1260,25 @@ Camera_ErrorCode NDKCamera::VideoOutputRegisterCallback(void)
     }
     return ret_;
 }
+// [End get_video_listener_and_register]
 
 // Metadata Callback
+// [Start metadata_callback_available]
 void OnMetadataObjectAvailable(Camera_MetadataOutput *metadataOutput, Camera_MetadataObject *metadataObject,
     uint32_t size)
 {
     OH_LOG_INFO(LOG_APP, "size = %{public}d", size);
 }
+// [End metadata_callback_available]
 
+// [Start metadata_callback_error]
 void OnMetadataOutputError(Camera_MetadataOutput *metadataOutput, Camera_ErrorCode errorCode)
 {
     OH_LOG_INFO(LOG_APP, "OnMetadataOutput errorCode = %{public}d", errorCode);
 }
+// [End metadata_callback_error]
 
+// [Start get_metadata_listener_and_register]
 MetadataOutput_Callbacks *NDKCamera::GetMetadataOutputListener(void)
 {
     static MetadataOutput_Callbacks metadataOutputListener = {
@@ -1215,8 +1296,11 @@ Camera_ErrorCode NDKCamera::MetadataOutputRegisterCallback(void)
     }
     return ret_;
 }
+// [End get_metadata_listener_and_register]
+// [EndExclude camera_shooting_case]
 
 // Session Callback
+// [Start capture_session_callback]
 void CaptureSessionOnFocusStateChange(Camera_CaptureSession *session, Camera_FocusState focusState)
 {
     OH_LOG_INFO(LOG_APP, "CaptureSessionOnFocusStateChange, focusState = %{public}d", focusState);
@@ -1235,7 +1319,9 @@ CaptureSession_Callbacks *NDKCamera::GetCaptureSessionRegister(void)
     };
     return &captureSessionCallbacks;
 }
+// [End capture_session_callback]
 
+// [Start capture_session_register_callback]
 Camera_ErrorCode NDKCamera::CaptureSessionRegisterCallback(void)
 {
     ret_ = OH_CaptureSession_RegisterCallback(captureSession_, GetCaptureSessionRegister());
@@ -1244,7 +1330,10 @@ Camera_ErrorCode NDKCamera::CaptureSessionRegisterCallback(void)
     }
     return ret_;
 }
+// [End capture_session_register_callback]
+// [End camera_recording_case]
 
+// [Start photo_available]
 // 保存NAPI侧注册的buffer处理回调函数。
 Camera_ErrorCode NDKCamera::RegisterBufferCb(void *cb)
 {
@@ -1406,7 +1495,10 @@ Camera_ErrorCode NDKCamera::PhotoOutputUnRegisterPhotoAvailableCallback()
     OH_LOG_INFO(LOG_APP, "PhotoOutputUnRegisterPhotoAvailableCallback return with ret code: %{public}d!", ret);
     return ret;
 }
+// [End photo_available]
+// [End camera_shooting_case]
 
+// [Start torch_status_callback]
 void TorchStatusCallback(Camera_Manager *cameraManager, Camera_TorchStatusInfo *torchStatus)
 {
     OH_LOG_INFO(LOG_APP, "TorchStatusCallback is called! %{public}d", torchStatus->isTorchActive);
@@ -1422,7 +1514,9 @@ Camera_ErrorCode NDKCamera::RegisterTorchStatusCallback(void)
     OH_LOG_INFO(LOG_APP, "NDKCamera::RegisterTorchStatusCallback return with ret code: %{public}d!", ret_);
     return ret;
 }
+// [End torch_status_callback]
 
+// [Start macro_status_callback]
 void MacroStatusCallback(Camera_CaptureSession *captureSession, bool isMacroDetected)
 {
     OH_LOG_INFO(LOG_APP, "MacroStatusCallback isMacro: %{public}d", isMacroDetected);
@@ -1447,7 +1541,9 @@ Camera_ErrorCode NDKCamera::UnregisterMacroStatusCallback()
     }
     return ret;
 }
+// [End macro_status_callback]
 
+// [Start system_pressure_callback]
 void SystemPressureLevelChangeCallback(Camera_CaptureSession *captureSession,
     Camera_SystemPressureLevel systemPressureLevel)
 {
@@ -1464,6 +1560,7 @@ Camera_ErrorCode NDKCamera::RegisterSystemPressureCallback()
     }
     return ret;
 }
+// [End system_pressure_callback]
 
 void ControlCenterEffectStatusChange(Camera_CaptureSession *session,
     Camera_ControlCenterStatusInfo* controlCenterStatusInfo)

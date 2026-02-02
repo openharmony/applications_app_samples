@@ -20,15 +20,15 @@ import { taskpool } from '@kit.ArkTS';
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 workerPort.onmessage = async (e: MessageEvents) => {
   if (e.data.type === 'start') {
-    // 模拟Worker数据处理。
+    // 模拟Worker数据处理
     const processedData = heavyComputation(e.data.data);
 
-    // 调用TaskPool执行并发任务。
+    // 调用TaskPool执行并发任务
     const task = new taskpool.Task(parallelTask, processedData);
     const result = await taskpool.execute(task);
     console.info('Worker线程返回结果: ', result);
 
-    // 将最终结果返回主线程。
+    // 将最终结果返回主线程
     workerPort.postMessage({
       status: 'success',
       result: result

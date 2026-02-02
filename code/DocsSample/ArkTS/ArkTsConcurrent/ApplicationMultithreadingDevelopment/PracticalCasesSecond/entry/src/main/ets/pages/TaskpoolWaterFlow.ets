@@ -18,7 +18,7 @@ import { GotoButton } from '../utils/MyButton';
 import { WaterFlowDataSource } from '../utils/WaterFlowDataSource';
 import { getImgFromDB } from '../utils/Mock';
 
-// 模拟图片数组。
+// 模拟图片数组
 let img = new Array<string>(33);
 export function fillImg(imgArr : Array<string>) {
   img = imgArr;
@@ -35,13 +35,13 @@ struct TaskpoolWaterFlow {
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
-  // 计算FlowItem宽/高。
+  // 计算FlowItem宽/高
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize);
     return (ret > this.minSize ? ret : this.minSize);
   }
 
-  // 设置FlowItem的宽/高数组。
+  // 设置FlowItem的宽/高数组
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize());
@@ -84,7 +84,7 @@ struct TaskpoolWaterFlow {
                 .height('16')
                 .onClick(()=>{});
               // 为了模拟图片加载，使用Text组件显示，正常加载jpg文件时，可以直接使用Image组件，
-              // 参考Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)。
+              // 参考Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)
               if (img[item % 33] == null) {
                 Text('图片加载中...')
                   .width('100%')
@@ -96,7 +96,7 @@ struct TaskpoolWaterFlow {
             }
           }
           .onAppear(() => {
-            // 即将触底时提前增加数据。
+            // 即将触底时提前增加数据
             if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
                 this.dataSource.addLastItem();

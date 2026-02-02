@@ -13,16 +13,21 @@
  * limitations under the License.
  */
 
+// [Start camera_foldable_display]
 import CameraService from '../model/CameraService';
 import Logger from '../common/utils/Logger';
 import { ModeComponent } from '../views/ModeComponent';
 import { SlideComponent } from '../views/SlideComponent';
 import { GlobalContext } from '../common/utils/GlobalContext';
 import { Constants } from  '../common/Constants';
+// [Start camera_preview_imports]
 import { camera } from '@kit.CameraKit';
+// [StartExclude camera_preview_imports]
 import { display, window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
+// [EndExclude camera_preview_imports]
 import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
+// [End camera_preview_imports]
 import { common } from '@kit.AbilityKit';
 import { bundleManager } from '@kit.AbilityKit';
 
@@ -34,9 +39,13 @@ interface ResolutionOption {
   height: number;   // 高度像素
 };
 
+// [Start foldable_camera_xcomponent_management]
+// [Start camera_surface_creation]
 @Entry
 @Component
 struct Index {
+  // [StartExclude camera_surface_creation]
+  // [StartExclude foldable_camera_xcomponent_management]
   private isfirst: boolean = false;
   private static readonly DYNAMIC_FULL_ROTATIO: number = 0;
   private static readonly DYNAMIC_1_1_ROTATIO: number = 1;
@@ -60,12 +69,18 @@ struct Index {
   @State mXComponentWidth: number = Constants.X_COMPONENT_SURFACE_WIDTH;
   @State mXComponentHeight: number = Constants.X_COMPONENT_SURFACE_HEIGHT;
   @StorageLink('isOpenEditPage') isOpenEditPage: boolean = false;
+  // [EndExclude foldable_camera_xcomponent_management]
   @StorageLink('foldStatus') @Watch('reloadXComponent') foldStatus: number = 0;
+  // [EndExclude camera_surface_creation]
   private mXComponentController: XComponentController = new XComponentController();
+  // [StartExclude camera_surface_creation] 
   @State mRotate: number = display.getDefaultDisplaySync().rotation * camera.ImageRotation.ROTATION_90;
   @State reloadXComponentFlag: boolean = false;
+  // [StartExclude foldable_camera_xcomponent_management]
   private windowClass = (getContext() as common.UIAbilityContext).windowStage.getMainWindowSync();
+  // [EndExclude camera_surface_creation]
   private surfaceId = '';
+  // [StartExclude camera_surface_creation]
   private static readonly ROTATE_ANGLE_180: number = 180;
   private mCameraManager: camera.CameraManager = camera.getCameraManager(getContext());
   private targetVersion: number = 0;
@@ -170,11 +185,13 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
   offFoldStatusChange(): void {
     this.mCameraManager.off('foldStatusChange', this.foldStatusCallback);
   }
+  // [EndExclude foldable_camera_xcomponent_management]
   // reloadXComponent()：重新加载预览
   reloadXComponent(): void {
     this.reloadXComponentFlag = !this.reloadXComponentFlag;
   }
-
+  // [StartExclude foldable_camera_xcomponent_management]
+  // [StartExclude camera_foldable_display]
   isIsolateForSpecialType(): boolean {
     return deviceInfo.deviceType == 'tablet' && this.targetVersion <= 50000013;
   }
@@ -314,7 +331,9 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
       await CameraService.stopVideo();
     }
   }
-
+  // [EndExclude camera_surface_creation]
+  // [EndExclude camera_foldable_display]
+  // [EndExclude foldable_camera_xcomponent_management]
   // XComponent加载后执行
   async loadXComponent(): Promise<void> {
     Logger.info(TAG, 'onLoad is called');
@@ -333,6 +352,8 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
       this.currentResolution.width, this.currentResolution.height);
   }
 
+  // [StartExclude foldable_camera_xcomponent_management]
+  // [End camera_surface_creation]
   isExpandedOrHalfFolded(): boolean {
     return display.getFoldStatus() === display.FoldStatus.FOLD_STATUS_EXPANDED ||
       display.getFoldStatus() == display.FoldStatus.FOLD_STATUS_HALF_FOLDED
@@ -368,6 +389,7 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
     Logger.info(TAG, `分辨率已切换至：${this.currentResolution.width}x${this.currentResolution.height}`);
   }
 
+  // [EndExclude foldable_camera_xcomponent_management]
   build() {
     Stack() {
       if (this.isShow) {
@@ -442,4 +464,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
     .size({ width: Constants.FULL_PERCENT, height: Constants.FULL_PERCENT })
     .backgroundColor(Color.Black)
   }
+// [End foldable_camera_xcomponent_management]
 }
+// [End camera_foldable_display]

@@ -7,6 +7,6 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/rendergroup": "file:../../../feature/renderGroup"
+    "@ohos/rendergroup": "file:../../../feature/rendergroup"
   }
 }

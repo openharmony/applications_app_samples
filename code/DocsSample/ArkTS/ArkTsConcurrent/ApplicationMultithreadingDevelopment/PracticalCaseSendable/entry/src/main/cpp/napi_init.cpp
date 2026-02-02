@@ -17,7 +17,7 @@
 #include "napi/native_api.h"
 #include "hilog/log.h"
 
-// 一个native类，它的实例在下面会包装在ArkTS的Sendable对象中。
+// 一个native类，它的实例在下面会包装在ArkTS的Sendable对象中
 class MyObject {
 public:
     static napi_value Init(napi_env env, napi_value exports);
@@ -56,7 +56,7 @@ napi_value MyObject::New(napi_env env, napi_callback_info info)
     napi_value newTarget;
     napi_get_new_target(env, info, &newTarget);
     if (newTarget != nullptr) {
-        // 使用`new MyObject(...)`调用方式。
+        // 使用`new MyObject(...)`调用方式
         size_t argc = 1;
         napi_value args[1];
         napi_value jsThis;
@@ -72,12 +72,12 @@ napi_value MyObject::New(napi_env env, napi_callback_info info)
         MyObject *obj = new MyObject(value);
 
         obj->env_ = env;
-        // 通过napi_wrap_sendable将ArkTS Sendable对象jsThis与C++对象obj绑定。
+        // 通过napi_wrap_sendable将ArkTS Sendable对象jsThis与C++对象obj绑定
         napi_wrap_sendable(env, jsThis, reinterpret_cast<void *>(obj), MyObject::Destructor, nullptr);
 
         return jsThis;
     } else {
-        // 使用`MyObject(...)`调用方式。
+        // 使用`MyObject(...)`调用方式
         size_t argc = 1;
         napi_value args[1];
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -91,7 +91,7 @@ napi_value MyObject::New(napi_env env, napi_callback_info info)
     }
 }
 
-// 取出Native对象的值。
+// 取出Native对象的值
 napi_value MyObject::GetValue(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::GetValue called");
@@ -108,7 +108,7 @@ napi_value MyObject::GetValue(napi_env env, napi_callback_info info)
     return num;
 }
 
-// 设置Native对象的值。
+// 设置Native对象的值
 napi_value MyObject::SetValue(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::SetValue called");
@@ -127,7 +127,7 @@ napi_value MyObject::SetValue(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-// 给Native对象的值加1。
+// 给Native对象的值加1
 napi_value MyObject::PlusOne(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "MyObject::PlusOne called");
@@ -155,7 +155,7 @@ napi_value MyObject::Init(napi_env env, napi_value exports)
     };
 
     napi_value cons;
-    // 定义一个Sendable class MyObject。
+    // 定义一个Sendable class MyObject
     napi_define_sendable_class(env, "MyObject", NAPI_AUTO_LENGTH, New, nullptr,
                                sizeof(properties) / sizeof(properties[0]), properties, nullptr, &cons);
 
@@ -166,7 +166,7 @@ napi_value MyObject::Init(napi_env env, napi_value exports)
 }
 
 EXTERN_C_START
-// 模块初始化。
+// 模块初始化
 static napi_value Init(napi_env env, napi_value exports)
 {
     MyObject::Init(env, exports);
@@ -174,7 +174,7 @@ static napi_value Init(napi_env env, napi_value exports)
 }
 EXTERN_C_END
 
-// 准备模块加载相关信息，将上述Init函数与本模块名等信息记录下来。
+// 准备模块加载相关信息，将上述Init函数与本模块名等信息记录下来
 static napi_module nativeModule = {
     .nm_version = 1,
     .nm_flags = 0,
@@ -185,6 +185,6 @@ static napi_module nativeModule = {
     .reserved = {0},
 };
 
-// 加载so时，自动调用该函数，将上述nativeModule模块注册到系统中。
+// 加载so时，自动调用该函数，将上述nativeModule模块注册到系统中
 extern "C" __attribute__((constructor)) void RegisterObjectWrapModule() { napi_module_register(&nativeModule); }
 // [End init_sendable]

@@ -29,7 +29,7 @@ function query() {
 
 
 export function getImgFromDB() {
-  //此处模拟查询数据库，并返回数据。
+  //此处模拟查询数据库，并返回数据
   let task = new taskpool.Task(query);
   task.onReceiveData(fillImg);
   taskpool.execute(task);
