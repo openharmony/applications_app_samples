@@ -67,7 +67,7 @@ private:
         auto customNode = reinterpret_cast<ArkUICustomNode *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
         switch (type) {
-            //绘制层级由低到高。
+            // 绘制层级由低到高。
             case ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND:
                 customNode->OnDrawBehind(event);
                 break;
