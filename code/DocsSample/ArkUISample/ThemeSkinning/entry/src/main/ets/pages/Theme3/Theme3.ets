@@ -15,6 +15,7 @@
 
 // [Start with_theme]
 import { ThemeControl } from '@kit.ArkUI';
+
 ThemeControl.setDefaultTheme(undefined);
 
 @Entry
@@ -42,6 +43,7 @@ struct DisplayPage3 {
       }
       .backgroundColor($r('sys.color.background_primary'))
       .height('100%')
+      // 扩展安全区，实现沉浸式深浅色变更效果
       .expandSafeArea(
         [SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.END, SafeAreaEdge.BOTTOM, SafeAreaEdge.START])
     }
