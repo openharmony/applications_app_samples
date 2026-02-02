@@ -48,7 +48,7 @@ struct V1OldComponent {
         .onClick(() => {
           this.title = 'new value from V1OldComponent';
         })
-      // 定义一个桥接的\@Component自定义组件，用于V1和V2的变量相互同步
+      // 定义一个桥接的@Component自定义组件，用于V1和V2的变量相互同步
       Bridge()
     }
   }
