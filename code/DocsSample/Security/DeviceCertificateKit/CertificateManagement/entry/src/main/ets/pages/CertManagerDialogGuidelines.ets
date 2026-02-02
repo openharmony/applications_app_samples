@@ -18,6 +18,8 @@ import {
   certDetailDialogSample
 } from '../samples/CertManagerCaDialogSample';
 import { certificateManagerDialogSample } from '../samples/CertManagerDialogSample';
+import { certificateManagerAuthDialogSample } from '../samples/CertManagerAuthDialogSample';
+import { certUkeyDialogSample } from '../samples/CertManagerUkeyDialogSample';
 
 @Entry
 @Component
@@ -51,6 +53,18 @@ struct Index {
         .width('70%')
         .onClick(() => {
           certDetailDialogSample();
+          this.message = 'certDetailDialogSample Success';
+        })
+      Button($r('app.string.call_openAuthorizeDialog'))
+        .width('70%')
+        .onClick(() => {
+          certificateManagerAuthDialogSample();
+          this.message = 'certificateManagerAuthDialogSample Success';
+        })
+      Button($r('app.string.call_openUkeyAuthDialog'))
+        .width('70%')
+        .onClick(() => {
+          certUkeyDialogSample();
           this.message = 'certDetailDialogSample Success';
         })
     }

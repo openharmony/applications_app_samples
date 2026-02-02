@@ -53,6 +53,14 @@
       "value": "Call CertDetailDialog"
     },
     {
+      "name": "call_openAuthorizeDialog",
+      "value": "Call OpenAuthorizeDialog"
+    },
+    {
+      "name": "call_openUkeyAuthDialog",
+      "value": "Call OpenUkeyAuthDialog"
+    },
+    {
       "name": "call_userCASample",
       "value": "Call UserCaSample"
     },

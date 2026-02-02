@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { certificateManagerGetUkeyCertSample } from '../samples/CertManagerGetUkeyCertSample';
+
 // [Start certificate_management_development_guidance]
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -174,6 +176,12 @@ struct Index {
         .width('70%')
         .onClick(()=>{
           privateCredSample();
+          this.message = 'CertManagerGuidelines Success';
+        })
+      Button($r('app.string.call_certManagerGetUkeyCertGuidelines'))
+        .width('70%')
+        .onClick(()=>{
+          certificateManagerGetUkeyCertSample();
           this.message = 'CertManagerGuidelines Success';
         })
     }
