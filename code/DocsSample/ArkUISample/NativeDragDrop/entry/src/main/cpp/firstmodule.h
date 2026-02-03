@@ -78,7 +78,7 @@ void SetData(ArkUI_DragEvent* dragEvent)
     int returnValue;
     OH_UdmfRecord *record = OH_UdmfRecord_Create();
     OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
-    returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
+    returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/base/media/seagull.png");
     returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
     OH_UdmfData *data = OH_UdmfData_Create();
     returnValue = OH_UdmfData_AddRecord(data, record);
