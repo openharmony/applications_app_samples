@@ -39,7 +39,7 @@ void SetTextDataLoadParams()
     OH_Udmf_DataLoadHandler dataLoadHandler = [](OH_UdmfDataLoadInfo *acceptableInfo) {
         OH_UdmfRecord *record = OH_UdmfRecord_Create();
         OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
-        int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
+        int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/base/media/seagull.png");
         returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
         OH_UdmfData *data = OH_UdmfData_Create();
         for (int i = 0; i < 1; i++) {
