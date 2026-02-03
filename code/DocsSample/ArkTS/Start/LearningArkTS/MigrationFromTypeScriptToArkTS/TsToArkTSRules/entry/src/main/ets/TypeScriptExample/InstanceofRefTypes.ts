@@ -15,5 +15,5 @@
 // [Start instanceof_ref_ts]
 let num: number = 42;
 let result = num instanceof Number;
-console.info('result = ', result); // result = false。
+console.info('result = ', result); // result = false
 // [End instanceof_ref_ts]

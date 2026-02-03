@@ -14,7 +14,7 @@
  */
 // [Start no_prototypeAssign_ts]
 let C = function (p) {
-  this.p = p; // 只有在开启noImplicitThis选项时会产生编译时错误。
+  this.p = p; // 只有在开启noImplicitThis选项时会产生编译时错误
 }
 
 C.prototype = {

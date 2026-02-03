@@ -18,5 +18,5 @@ class Person {
 }
 let p = new Person();
 
-let b = 'name' in p; // true。
+let b = 'name' in p; // true
 // [End no_in_ts]

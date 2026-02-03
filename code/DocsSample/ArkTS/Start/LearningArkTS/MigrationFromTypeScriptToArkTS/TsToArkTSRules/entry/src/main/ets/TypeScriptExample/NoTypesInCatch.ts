@@ -16,6 +16,6 @@
 try {
   // ...
 } catch (a: unknown) {
-  // 处理异常。
+  // 处理异常
 }
 // [End noTypes_inCatch_ts]

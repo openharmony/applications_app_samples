@@ -17,7 +17,7 @@ interface I1 {
   f(): string
 }
 
-interface I2 { // I2等价于I1。
+interface I2 { // I2等价于I1
   f(): string
 }
 
@@ -26,7 +26,7 @@ class X {
   s: string = ''
 }
 
-class Y { // Y等价于X。
+class Y { // Y等价于X
   n: number = 0
   s: string = ''
 }
@@ -34,17 +34,17 @@ class Y { // Y等价于X。
 let x = new X();
 let y = new Y();
 
-// 将X对象赋值给Y对象。
+// 将X对象赋值给Y对象
 y = x;
 
-// 将Y对象赋值给X对象。
+// 将Y对象赋值给X对象
 x = y;
 
 function foo(x: X) {
   console.info(x.n + x.s);
 }
 
-// 由于X和Y的API是等价的，所以X和Y是等价的。
+// 由于X和Y的API是等价的，所以X和Y是等价的
 foo(new X());
 foo(new Y());
 // [End no_structuralTyping_ts]

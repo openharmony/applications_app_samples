@@ -13,6 +13,8 @@
 * limitations under the License.
 */
 
+// [Start test_safeAsyncCall]
+  // [StartExclude test_safeAsyncCall]
 import { errorManager } from '@kit.AbilityKit';
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
@@ -198,7 +200,7 @@ function testStringReplaceWithEmptySearchValue() {
 
 // Async函数内部异常的捕获方式。
 function testSafeAsyncCall() {
-  // [Start test_safeAsyncCall]
+  // [EndExclude test_safeAsyncCall]
   errorManager.on('unhandledRejection', (a:ESObject, b:Promise<ESObject>) => {
     console.info('Async test', a);
     // [StartExclude test_safeAsyncCall]

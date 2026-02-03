@@ -42,7 +42,7 @@ class MyHashMap<Key extends Hashable, Value> {
 function last(x: number[]): number {
   return x[x.length - 1];
 }
-// [StartExclude generic_function]
+  // [StartExclude generic_function]
 function testGenericTypes() {
   // [EndExclude generic_function]
   last([1, 2, 3]); // 3
@@ -72,7 +72,7 @@ function foo<T = number>(): void {
 foo();
 // 此函数在语义上等价于下面的调用
 foo<number>();
-// [Start generic_defaultValue]
+// [End generic_defaultValue]
 
 @Entry
 @Component

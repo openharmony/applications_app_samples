@@ -46,7 +46,7 @@ let o5: C3 = {n: 42, s: 'foo'};
 // [Start no_untypedCaseFour]
 abstract class A {}
 class C extends A {}
-let o6: C = {}; // 或 let o6: C = new C()。
+let o6: C = {}; // 或 let o6: C = new C()
 // [End no_untypedCaseFour]
 
 // [Start no_untypedCaseFive]
@@ -67,18 +67,18 @@ class Point {
   public x: number = 0;
   public y: number = 0;
 
-  // 在字面量初始化之前，使用constructor()创建一个有效对象。
-  // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数。
+  // 在字面量初始化之前，使用constructor()创建一个有效对象
+  // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数
 }
 
 function getPoint(o: Point): Point {
   return o;
 }
 
-// 字面量初始化需要显式定义类型。
+// 字面量初始化需要显式定义类型
 let p: Point = {x: 5, y: 10};
 getPoint(p);
 
-// getPoint接受Point类型，字面量初始化生成一个Point的新实例。
+// getPoint接受Point类型，字面量初始化生成一个Point的新实例
 getPoint({x: 5, y: 10});
 // [End no_untypedCaseSix]

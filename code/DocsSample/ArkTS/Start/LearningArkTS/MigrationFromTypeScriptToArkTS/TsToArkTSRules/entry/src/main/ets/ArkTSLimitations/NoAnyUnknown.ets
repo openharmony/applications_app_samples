@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 // [Start no_any_unknown]
-let valueB: boolean = true; // 或者 let valueB = true。
-let valueN: number = 42; // 或者 let valueN = 42。
+let valueB: boolean = true; // 或者 let valueB = true
+let valueN: number = 42; // 或者 let valueN = 42
 let valueO1: Object = true;
 let valueO2: Object = 42;
 // [End no_any_unknown]

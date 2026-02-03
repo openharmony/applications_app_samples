@@ -15,6 +15,6 @@
 // [Start identifier_prop_ts]
 var x = { 'name': 'x', 2: '3' };
 
-console.info(x['name']); // x。
-console.info(x[2]); // 3。
+console.info(x['name']); // x
+console.info(x[2]); // 3
 // [End identifier_prop_ts]

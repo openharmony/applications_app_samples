@@ -25,8 +25,8 @@
 │   │   └───Index.ets                                        // 首页。
 │   │   └───Local.ets                                        // 状态变量装饰器页。
 │   │   └───Scene.ets                                        // 运行时常见问题场景页。
-│   │   └───test1.js                                         // test1页。
-│   │   └───test2.js                                         // test2页。
+│   │   └───TestArray.js                                     // TestArray页。
+│   │   └───TestArrayExt.js                                  // TestArrayExt页。
 └───entry/src/main/resources                                 // 资源目录。         
 ```
 

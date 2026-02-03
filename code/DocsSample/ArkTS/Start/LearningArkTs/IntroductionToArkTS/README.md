@@ -23,10 +23,10 @@ entry/src/
  ├── main
  │   ├── ets
  │   │   └── pages
- │   │       ├── a.d.ets                          // 在.d.ets文件中导出注解
- │   │       ├── a.ets                            // 在ets文件中导出注解
+ │   │       ├── NameAnno.d.ets                   // 在.d.ets文件中导出注解
+ │   │       ├── MyAnno.ets                       // 在ets文件中导出注解
  │   │       ├── Annotation.ets                   // 注解语法使用
- │   │       ├── author.ets                       // a.ets文件导入的内容
+ │   │       ├── Author.ets                       // MyAnno.ets文件导入的内容
  │   │       ├── BasicKnowledge.ets               // 基本知识语法使用
  │   │       ├── Calc.ets                         // ModuleAndKeyword.ets文件导入的内容
  │   │       ├── Class.ets                        // 类的语法使用
@@ -36,8 +36,8 @@ entry/src/
  │   │       ├── Interface.ets                    // 接口的语法使用
  │   │       ├── ModuleAndKeyword.ets             // 模块和关键字的语法使用
  │   │       ├── NullSafety.ets                   // 空安全的语法使用
- │   │       ├── say.ets                          // ModuleAndKeyword.ets文件导入的内容
- │   │       └── utils.ets                        // ModuleAndKeyword.ets文件导入的内容
+ │   │       ├── Say.ets                          // ModuleAndKeyword.ets文件导入的内容
+ │   │       └── Utils.ets                        // ModuleAndKeyword.ets文件导入的内容
  ├── ohosTest
  │   ├── ets
  │   │   └── test

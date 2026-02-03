@@ -15,7 +15,7 @@
 // [Start no_callSignatures_ts]
 type DescribableFunction = {
   description: string
-  (someArg: string): string // call signature。
+  (someArg: string): string // call signature
 }
 
 function doSomething(fn: DescribableFunction): void {

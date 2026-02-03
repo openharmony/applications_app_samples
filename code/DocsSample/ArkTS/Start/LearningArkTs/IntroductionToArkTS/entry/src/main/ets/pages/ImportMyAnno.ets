@@ -13,7 +13,12 @@
 * limitations under the License.
 */
 
-// [Start annotation_export_dts]
-// a.d.ets
-export declare @interface ClassAuthor3 {}
-// [End annotation_export_dts]
+// [Start annotation_class]
+// ImportMyAnno.ets
+import { MyAnno } from './NameAnno';
+
+@MyAnno
+class C {
+  // ...
+}
+// [End annotation_class]

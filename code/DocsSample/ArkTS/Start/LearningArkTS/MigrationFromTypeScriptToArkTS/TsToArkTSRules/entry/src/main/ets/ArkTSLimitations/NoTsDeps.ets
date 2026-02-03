@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 // [Start no_tsDeps]
-// lib2.ets。
+// lib2.ets
 import { C } from './ExportMod'
 // [End no_tsDeps]

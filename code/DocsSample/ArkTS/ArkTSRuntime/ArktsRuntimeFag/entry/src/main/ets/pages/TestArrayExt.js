@@ -14,7 +14,7 @@
 */
 
 // [Start testTwo_one]
-// test2.js
+// TestArrayExt.js
 const typedArr = new Uint16Array([10, 20, 30]);
 try {
    const result = Object.entries(typedArr);

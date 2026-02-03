@@ -13,5 +13,6 @@
  * limitations under the License.
  */
 // [Start no_importAssertions]
+// 编译时将检查导入T的正确性
 import { Something } from './ExportMod'
 // [End no_importAssertions]
