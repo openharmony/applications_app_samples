@@ -47,8 +47,7 @@
 | 波纹动画效果 | 选中圆点时显示扩散波纹动画 | CustomPatternLock.ets:631-673 |
 | 密码正确和密码错误效果绘制 | 绘制密码输入完成后校验结果对应显示效果 | CustomPatternLock.ets:676-686|
 | 密码错误动画效果 | 校验结果为错误时显示错误动画 | CustomPatternLock.ets:689-714 |
-| 事件回调 | onPatternComplete、onDotConnect事件回调 | CustomPatternLock.ets:717
--733 |
+| 事件回调 | onPatternComplete、onDotConnect事件回调 | CustomPatternLock.ets:717-733 |
 | 状态重置 | 重置状态 | CustomPatternLock.ets:738-746 |
 | 密码验证 | 提供正确/错误验证结果 | Index.ets:77-98 |
 
@@ -101,17 +100,17 @@ class CustomCircleStyleOptions {
 
 #### 技术实现细节
 
-1. **坐标转换**：[Canvas](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)绘图使用像素单位为px，组件属性使用像素单位为vp，可通过`[vp2px](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uicontext.md#vp2px12)`进行转换。
+1. **坐标转换**：[Canvas](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)绘图使用像素单位为px，组件属性使用像素单位为vp，可通过[`vp2px`](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkts-apis-uicontext-uicontext.md#vp2px12)进行转换。
 
 2. **触摸判定**：计算触摸点与圆点中心的距离，当距离小于激活圆点背景圆环半径时判定为选中。
 
 3. **中间点自动连接**：当跨越两个格子连接时，自动计算并连接中间点（可通过skipUnselectedPoint属性禁用）。
 
-4. **背景圆环半径动画**：使用`setInterval`定时器驱动背景圆环半径动画，背景圆环半径从未选中圆点半径逐渐变为设置的激活圆点背景圆环半径。
+4. **背景圆环半径动画**：使用[`setInterval`](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/common/js-apis-timer.md#setinterval)定时器驱动背景圆环半径动画，背景圆环半径从未选中圆点半径逐渐变为设置的激活圆点背景圆环半径。
 
-5. **波纹动画**：使用`setInterval`定时器驱动波纹扩散动画，波纹透明度从150逐渐降为0，半径扩散至5倍大小。
+5. **波纹动画**：使用[`setInterval`](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/common/js-apis-timer.md#setinterval)定时器驱动波纹扩散动画，波纹透明度从150逐渐降为0，半径扩散至5倍大小。
 
-6. **密码错误动画**：使用`setInterval`定时器驱动密码错误动画，激活圆点与圆点连线的透明度从100%逐渐降为50%，在逐渐升为100%，执行该过程两次，实现闪烁效果。
+6. **密码错误动画**：使用[`setInterval`](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/common/js-apis-timer.md#setinterval)定时器驱动密码错误动画，激活圆点与圆点连线的透明度从100%逐渐降为50%，在逐渐升为100%，执行该过程两次，实现闪烁效果。
 
 7. **绘制分层**：根据`enableForeground`属性决定激活圆点背景圆环的绘制顺序，支持遮盖或不遮盖宫格圆点。
 
