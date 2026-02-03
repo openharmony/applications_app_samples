@@ -15,7 +15,7 @@
 // [Start set_up_page_level_ad_filtering_switch]
 import { webview } from '@kit.ArkWeb';	
 
-// 演示addAdsBlockAllowedList和addAdsBlockAllowedList配套使用，设置网页级的广告过滤开关。	
+// 演示addAdsBlockAllowedList和addAdsBlockDisallowedList配套使用，设置网页级的广告过滤开关。	
 @Entry	
 @Component	
 struct WebComponent {	
