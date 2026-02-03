@@ -37,6 +37,10 @@
       "value": "Call CertManagerGuidelines"
     },
     {
+      "name": "call_certManagerGetUkeyCertGuidelines",
+      "value": "Call CertManagerGetUkeyCertGuidelines"
+    },
+    {
       "name": "call_certManagerDialogGuidelines",
       "value": "Call CertManagerDialogGuidelines"
     },
