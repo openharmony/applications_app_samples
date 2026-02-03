@@ -22,7 +22,7 @@ async function certUkeyDialogSample() {
   /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
   let context: common.Context = new UIContext().getHostContext() as common.Context;
   /* keyUri为证书凭据的唯一标识符，调用方自行获取，此处仅为示例 */
-  let keyUri: string = "test"
+  let keyUri: string = 'test'
   let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri }
   try {
       certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {

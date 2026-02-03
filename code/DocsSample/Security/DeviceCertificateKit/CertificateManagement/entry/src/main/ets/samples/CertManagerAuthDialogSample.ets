@@ -21,7 +21,7 @@ import { UIContext } from '@kit.ArkUI';
 async function certificateManagerAuthDialogSample() {
   /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
   let context: common.Context = new UIContext().getHostContext() as common.Context;
-  let certTypes: Array<certificateManagerDialog.CertificateType> = [
+  let certTypes: certificateManagerDialog.CertificateType[] = [
     certificateManagerDialog.CertificateType.CREDENTIAL_USER,
     certificateManagerDialog.CertificateType.CREDENTIAL_APP,
     certificateManagerDialog.CertificateType.CREDENTIAL_UKEY
@@ -29,7 +29,8 @@ async function certificateManagerAuthDialogSample() {
   let certPurpose: certificateManager.CertificatePurpose = certificateManager.CertificatePurpose.PURPOSE_DEFAULT;
   let authorizeRequest: certificateManagerDialog.AuthorizeRequest = { certTypes: certTypes, certPurpose: certPurpose };
   try {
-    certificateManagerDialog.openAuthorizeDialog(context, authorizeRequest).then((certReference: certificateManagerDialog.CertReference) => {
+    certificateManagerDialog.openAuthorizeDialog(context, authorizeRequest).then(
+      (certReference: certificateManagerDialog.CertReference) => {
       let reference = certReference;
       console.info(`Success to open authorize dialog.`)
     }).catch((err: BusinessError) => {
