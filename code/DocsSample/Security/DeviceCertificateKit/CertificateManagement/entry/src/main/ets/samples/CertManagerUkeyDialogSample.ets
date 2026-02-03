@@ -12,28 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start certificate_management_ukey_dialog_development_guide]
-import { certificateManagerDialog, certificateManager } from '@kit.DeviceCertificateKit';
+// [Start certificate_management_auth_dialog_development_guide]
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 
-async function certificateManagerUkeyDialogSample() {
-  let keyUri: string = 'test'; /* USB凭据的唯一标识符，此处省略 */
-  let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
-      certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT,
-    }
+async function certUkeyDialogSample() {
+  /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
+  let context: common.Context = new UIContext().getHostContext() as common.Context;
+  /* keyUri为证书凭据的唯一标识符，调用方自行获取，此处仅为示例 */
+  let keyUri: string = "test"
+  let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri }
   try {
-    certificateManager.getUkeyCertificate(keyUri, ukeyInfo).then((cmResult) => {
-        let list = cmResult.credentialDetailList;
-        console.info('Succeeded in getting detail of USB key certificate.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get detail of USB key certificate. Code: ${err.code}, message: ${err.message}`);
-    })
-  } catch (error) {
-    console.error(`Failed to get detail of USB key certificate. Code: ${error.code}, message: ${error.message}`);
+      certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
+          console.info(`Success to open ukey authorization dialog`)
+      }).catch((err: BusinessError) => {
+          console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
+      });
+  } catch (err) {
+      let error = err as BusinessError;
+      console.error(`Failed to open ukey authorization dialog. Code: ${error.code}, message: ${error.message}`);
   }
 }
-// [End certificate_management_ukey_dialog_development_guide]
+// [End certificate_management_auth_dialog_development_guide]
 
-export { certificateManagerUkeyDialogSample };
+export { certUkeyDialogSample };
