@@ -12,30 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start export_myInfo]
-// 混淆前。
-// file1.ts
-export interface MyInfo {
-  age: number;
-  address: {
-    city1: string;
-  }
-}
-// [End export_myInfo]
 
-// [Start declare_global]
-// file.ts
-// 混淆前。
-declare global {
-  var myAge : string
+// [Start special_without_slash_period]
+// DuplicateName.ts
+let B = {
+  b : () => {} // 原函数名为"b"
 }
-// [End declare_global]
-
-// [Start fix_age]
-// file.ts
-// 混淆前。
-const person = {
-  myAge: 18
-}
-person["myAge"] = 20;
-// [End fix_age]
+// [End special_without_slash_period]

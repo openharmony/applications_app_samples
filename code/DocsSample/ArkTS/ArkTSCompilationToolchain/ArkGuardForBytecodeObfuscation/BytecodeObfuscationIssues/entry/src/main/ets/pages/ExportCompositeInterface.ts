@@ -12,11 +12,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
-// [Start special_with_slash_period]
-// test3.ts
-let a = {
-  "a.b#c^2": () => {}, // 原函数名为""。
-  "x\\y#": () => {} // 原函数名为"^1"。
+// [Start export_interface]
+// ExportCompositeInterface.ts
+export interface AddressType {
+  city1: string
 }
-// [End special_with_slash_period]
+export interface MyInfo {
+  age: number;
+  address: AddressType;
+}
+// [End export_interface]

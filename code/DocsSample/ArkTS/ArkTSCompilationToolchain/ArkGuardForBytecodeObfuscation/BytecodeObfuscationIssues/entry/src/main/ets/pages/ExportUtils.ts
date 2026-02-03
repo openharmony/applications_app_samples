@@ -12,14 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
-// [Start export_file]
-// file1.ts
-export interface AddressType {
-  city1: string
+// [Start export_utils]
+// 混淆前
+// ExportUtils.ts
+export function add(a: number, b: number): number {
+  return a + b;
 }
-export interface MyInfo2 {
-  age: number;
-  address: AddressType;
-}
-// [End export_file]
+// [End export_utils]

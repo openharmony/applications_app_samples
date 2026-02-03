@@ -13,8 +13,13 @@
 * limitations under the License.
 */
 
-// [Start namespaces_Variables_foo]
-//module_foo.ts
-export let a: number = 1;
-export let b: number = 2;
-// [End namespaces_Variables_foo]
+// [Start export_myInfo]
+// 混淆前
+// FileInside.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+// [End export_myInfo]

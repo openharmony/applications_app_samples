@@ -13,7 +13,13 @@
 * limitations under the License.
 */
 
-// [Start namespaces_Variables_bar]
-//module_bar.ts
-export let c: number = 4;
-// [End namespaces_Variables_bar]
+// [Start export_file]
+// FileOutside.ts
+export interface AddressType {
+  city1: string
+}
+export interface MyInfo2 {
+  age: number;
+  address: AddressType;
+}
+// [End export_file]

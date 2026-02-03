@@ -12,36 +12,18 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start export_build]
-// 代码1。
-@CustomDialog
-export default struct TmsDialog {
-  controller?: CustomDialogController
-  dialogController:CustomDialogController
-
-  build() {
+// [Start import_json]
+// 示例JSON文件结构（ImportJson.json）：
+/*
+{
+  "jsonObj": {
+    "jsonProperty": "value"
   }
 }
+*/
 
-// 代码2。
-@CustomDialog
-struct Index{
-  controller?: CustomDialogController
-  dialogController?:CustomDialogController
+// 混淆前
+import jsonData from './ImportJson.json';
 
-  build() {
-  }
-}
-// [End export_build]
-
-
-// [Start fix_build]
-@CustomDialog
-export default struct TmsDialog {
-  controller?: CustomDialogController
-  dialogController:CustomDialogController|null = null;  // 修改此处的定义声明方式。
-
-  build() {
-  }
-}
-// [End fix_build]
+let jsonProp = jsonData.jsonObj.jsonProperty;
+// [End import_json]

@@ -12,10 +12,36 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start export_build]
+// 代码1
+@CustomDialog
+export default struct TmsDialog {
+  controller?: CustomDialogController
+  dialogController:CustomDialogController
 
-// [Start special_without_slash_period]
-// test2.ts
-let B = {
-  b : () => {} // 原函数名为"b"。
+  build() {
+  }
 }
-// [End special_without_slash_period]
+
+// 代码2
+@CustomDialog
+struct Index{
+  controller?: CustomDialogController
+  dialogController?:CustomDialogController
+
+  build() {
+  }
+}
+// [End export_build]
+
+
+// [Start fix_build]
+@CustomDialog
+export default struct TmsDialog {
+  controller?: CustomDialogController
+  dialogController:CustomDialogController|null = null;  // 修改此处的定义声明方式
+
+  build() {
+  }
+}
+// [End fix_build]

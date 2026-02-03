@@ -15,6 +15,6 @@
 export const add: (a: number, b: number) => number;
 
 // [Start export_addNum]
-// src/main/cpp/types/libentry/Index.d.ts。
+// src/main/cpp/types/libentry/Index.d.ts
 export const addNum: (a: number, b: number) => number;
 // [End export_addNum]

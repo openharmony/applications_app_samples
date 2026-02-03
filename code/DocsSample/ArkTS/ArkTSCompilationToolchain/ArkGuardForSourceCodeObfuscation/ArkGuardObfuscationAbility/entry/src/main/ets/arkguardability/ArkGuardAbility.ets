@@ -19,14 +19,14 @@ import testNapi from 'libentry.so';
 // [StartExclude etsOptionExample_keepPropertyName1]
 
 // [Start etsOptionExample_keepPropertyName2]
-// example.ets。
+// example.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { http } from '@kit.NetworkKit';
 // [StartExclude etsOptionExample_keepPropertyName2]
 
 // [Start etsOptionExample_keepGlobalName]
 // example.ets
-import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 testNapi3 应该被保留。
+import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 testNapi3 应该被保留
 // [StartExclude etsOptionExample_keepGlobalName]
 
 // [Start etsOptionExample_enablePropertyObfuscation1]
@@ -48,10 +48,10 @@ import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 t
 // [End etsOptionExample_enablePropertyObfuscation2]
 
 // [Start etsOptionExample_useKeepInSource]
-// 保留被标记的注解声明，MyAnnotation不会被混淆。
+// 保留被标记的注解声明，MyAnnotation不会被混淆
 // @KeepSymbol
 @interface MyAnnotation2 {
-  // 标记注解成员无效，authorName不会被收集到白名单。
+  // 标记注解成员无效，authorName不会被收集到白名单
   // @KeepSymbol
   authorName: string;
   revision: number = 1;
@@ -59,7 +59,7 @@ import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 t
 // [End etsOptionExample_useKeepInSource]
 
 // [EndExclude etsOptionExample_keepPropertyName1]
-testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name add。
+testNapi.addNum(2, 3); // add需要保留，示例如：-keep-property-name add
 // [End etsOptionExample_keepPropertyName1]
 
 // [EndExclude etsOptionExample_keepPropertyName2]
@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
       {
         method: http.RequestMethod.POST,
         header: { 'Content-Type': 'application/json' },
-        extraData: { usernameTest: 'test1', passwordTest: 'test2'}, // usernameTest 和 passwordTest 需要被保留。
+        extraData: { usernameTest: 'test1', passwordTest: 'test2'}, // usernameTest 和 passwordTest 需要被保留
       })
   }
 }

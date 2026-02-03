@@ -14,11 +14,14 @@
 */
 
 // [Start dtsOptionExample_keepPropertyName]
-export const add: (a: number, b: number) => number;
+// src/main/cpp/types/libentry/Index.d.ts
+export const addNum: (a: number, b: number) => number;
 // [End dtsOptionExample_keepPropertyName]
 
+export const add: (a: number, b: number) => number;
+
 // [Start dtsOptionExample_keepGlobalName]
-// src/main/cpp/types/libentry/Index.d.ts。
+// src/main/cpp/types/libentry/Index.d.ts
 declare function testNapi2(): void;
 declare function testNapi3(): void;
 // [End dtsOptionExample_keepGlobalName]

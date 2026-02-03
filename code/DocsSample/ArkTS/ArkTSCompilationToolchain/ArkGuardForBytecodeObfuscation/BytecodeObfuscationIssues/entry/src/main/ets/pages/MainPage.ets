@@ -15,17 +15,17 @@
 import { router } from '@kit.ArkUI';
 
 // [Start import_want]
-// 混淆前。
+// 混淆前
 import { Want } from '@kit.AbilityKit';
-// [StartExclude import_want]
+  // [StartExclude import_want]
 // [Start import_myInfo]
-// file2.ts
-import { MyInfo } from './file1';
-// [StartExclude import_myInfo]
+// ExportCompositeInterface.ts
+import { MyInfo } from './ExportCompositeInterface';
+  // [StartExclude import_myInfo]
 // [Start import_ns]
 // import.ts
-import { NS } from './export';
-// [StartExclude import_ns]
+import { NS } from './ExportNs';
+  // [StartExclude import_ns]
 
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
@@ -71,14 +71,12 @@ function testPropertyObfuscation() {
 // [Start import_utils]
 // main.ts
 async function loadAndUseAdd() {
-  let result: number = 0;
-  try {
-    const mathUtils = await import('./utils');
-    result = mathUtils.add(2, 3);
-    console.info(`result = ${result}`);
-  } catch (error) {
-    console.error('Failure reason:', error);
-  }
+    try {
+        const mathUtils = await import('./ExportUtils');
+        const result = mathUtils.add(2, 3);
+    } catch (error) {
+        console.error('Failure reason:', error);
+    }
 }
 
 loadAndUseAdd();

@@ -12,10 +12,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start export_utils]
-// 混淆前。
-// utils.ts
-export function add(a: number, b: number): number {
-  return a + b;
-}
-// [End export_utils]
+
+// [Start namespaces_Variables_bar]
+//ModuleBar.ts
+export let c: number = 4;
+// [End namespaces_Variables_bar]
