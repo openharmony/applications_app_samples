@@ -85,9 +85,7 @@ export default class EntryAbility extends UIAbility {
       }
     })
     abilityConnectionManager.on('receiveData',sessionId,(callbackInfo) => {
-      let decoder = util.TextDecoder.create('utf-8');
-      let str = decoder.decodeWithStream(new Uint8Array(callbackInfo.data));
-      AppStorage.setOrCreate<string>('receiveMessage', str);
+      hilog.info(0x0000, 'testTag', 'Success.');
     })
   }
   // [End abilityconnectionmanager_on]
