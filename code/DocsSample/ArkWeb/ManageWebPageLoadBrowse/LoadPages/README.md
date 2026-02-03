@@ -106,6 +106,14 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 使用Web组件加载页面
+  * 在Web组件创建时，指定默认加载的网络页面，调用loadUrl接口加载指定的网页。
+  * 将本地页面文件放在应用的rawfile目录下，在Web组件创建时，或调用loadUrl接口加载本地页面。
+  * 通过loadData接口实现加载HTML格式的文本数据。
+  * 通过构造的单例对象GlobalContext获取沙箱路径，加载沙箱路径下的本地页面文件，需要开启应用中文件系统的访问fileAccess权限。
+  * 通过data url方式直接加载HTML字符串。
+
 
 ### 相关权限
 
