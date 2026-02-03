@@ -34,4 +34,5 @@ target_link_libraries(entry PUBLIC
     libnative_image.so
     libnative_window.so
     libnative_buffer.so
+    libnative_display_manager.so
 )

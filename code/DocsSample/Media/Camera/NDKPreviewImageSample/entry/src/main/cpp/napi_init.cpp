@@ -70,7 +70,7 @@ static napi_value ReleaseCamera(napi_env env, napi_callback_info info)
     return result;
 }
 
-// [Start image_receiver]
+// [Start image_receiver_callback_show]
 void copyBuffer(OH_NativeBuffer *srcBuffer, size_t srcSize, OHNativeWindowBuffer *dstBuffer)
 {
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s IN", __func__);
@@ -100,7 +100,7 @@ void ShowImage(OH_ImageNative *image)
         xComponentSurfaceId);
     OHNativeWindow *nativeWindow = nullptr;
     int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(xComponentSurfaceId, &nativeWindow);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP,
             "ShowImage CreateNativeWindowFromSurfaceId failed, errCode: %{public}d.", res);
         return;
@@ -132,7 +132,7 @@ void ShowImage(OH_ImageNative *image)
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
     int fenceFd = -1;
     res = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage RequestBuffer failed, errCode: %{public}d.", res);
         return;
     }
@@ -142,7 +142,7 @@ void ShowImage(OH_ImageNative *image)
 
     Region region1{};
     res = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, region1);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage FlushBuffer failed, errCode: %{public}d.", res);
         return;
     }
@@ -172,7 +172,7 @@ static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
     }
     OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s SUCCESS", __func__);
 }
-// [End image_receiver]
+// [End image_receiver_callback_show]
 
 // [Start init_image_receiver]
 void InitImageReceiver(uint64_t &receiverSurfaceID)

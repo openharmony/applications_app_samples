@@ -201,6 +201,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn()
             OH_VideoOutput_EnableMirror(videoOutput_, isMirrorSupported);
         }
     }
+    InitPreviewRotation();
     ret_ = OH_CaptureSession_Start(captureSession_);
     OH_LOG_INFO(LOG_APP, "SessionFlowFn end.");
     return ret_;
@@ -624,7 +625,7 @@ Camera_ImageRotation NDKCamera::GetVideoRotation(int32_t deviceDegree)
 
 Camera_ErrorCode NDKCamera::VideoOutputStart(char *videoId)
 {
-    OH_LOG_INFO(LOG_APP, "VideoOutputStart begin.");
+    OH_LOG_INFO(LOG_APP, "VideoOutputStart begin. videoId: %{public}s", videoId);
     Camera_ErrorCode ret = OH_VideoOutput_Start(videoOutput_);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_VideoOutput_Start success.");
@@ -643,5 +644,32 @@ Camera_ErrorCode NDKCamera::VideoOutputStop(void)
         return CAMERA_INVALID_ARGUMENT;
     }
     return ret_;
+}
+
+int32_t NDKCamera::GetDefaultDisplayRotation()
+{
+    int32_t imageRotation = 0;
+    NativeDisplayManager_Rotation displayRotation = DISPLAY_MANAGER_ROTATION_0;
+    int32_t ret = OH_NativeDisplayManager_GetDefaultDisplayRotation(&displayRotation);
+    if (ret != DISPLAY_MANAGER_OK) {
+        OH_LOG_INFO(LOG_APP, "OH_NativeDisplayManager_GetDefaultDisplayRotation failed.");
+    }
+    imageRotation = displayRotation * IAMGE_ROTATION_90;
+    return imageRotation;
+}
+
+void NDKCamera::InitPreviewRotation()
+{
+    // previewOutput_是创建的预览输出
+    Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
+    int32_t imageRotation = GetDefaultDisplayRotation();
+    Camera_ErrorCode ret = OH_PreviewOutput_GetPreviewRotation(previewOutput_, imageRotation, &previewRotation);
+    if (ret != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_GetPreviewRotation failed.");
+    }
+    ret = OH_PreviewOutput_SetPreviewRotation(previewOutput_, previewRotation, false);
+    if (ret != CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_SetPreviewRotation failed.");
+    }
 }
 } // namespace OHOS_CAMERA_NDK_SAMPLE

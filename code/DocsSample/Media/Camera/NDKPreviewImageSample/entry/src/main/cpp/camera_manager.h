@@ -46,6 +46,9 @@
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
 
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
+
 namespace OHOS_CAMERA_NDK_SAMPLE {
 
 class NDKCamera {
@@ -84,6 +87,8 @@ public:
     Camera_ErrorCode VideoOutputStop(void);
     Camera_ImageRotation GetDeviceRotation();
     Camera_ImageRotation GetPreviewRotation(int32_t rotation);
+    int32_t GetDefaultDisplayRotation();
+    void InitPreviewRotation();
 
 private:
     enum CurRatio {

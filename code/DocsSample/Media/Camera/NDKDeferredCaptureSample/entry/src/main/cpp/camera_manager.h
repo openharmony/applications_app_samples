@@ -50,6 +50,8 @@
 #include "multimedia/media_library/media_asset_manager_capi.h"
 #include "multimedia/media_library/moving_photo_capi.h"
 #include "ohcamera/photo_native.h"
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
 // [End import_header]
 
 namespace OHOS_CAMERA_SAMPLE {
@@ -127,6 +129,8 @@ class NDKCamera {
     Camera_ErrorCode VideoOutputRelease(void);
     Camera_ErrorCode TakePicture(int32_t degree);
     Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting);
+    int32_t GetDefaultDisplayRotation();
+    void InitPreviewRotation();
     // callback
     Camera_ErrorCode CameraManagerRegisterCallback(void);
     Camera_ErrorCode CameraInputRegisterCallback(void);
