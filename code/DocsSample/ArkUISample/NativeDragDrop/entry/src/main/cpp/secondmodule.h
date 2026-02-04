@@ -41,7 +41,7 @@ void SetImageDataLoadParams1(ArkUI_DragEvent* dragEvent)
     OH_Udmf_DataLoadHandler dataLoadHandler = [](OH_UdmfDataLoadInfo *acceptableInfo) {
         OH_UdmfRecord *record = OH_UdmfRecord_Create();
         OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
-        int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
+        int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/base/media/seagull.png");
         returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
         OH_UdmfData *data = OH_UdmfData_Create();
         int dataCount = 6000;
@@ -119,7 +119,7 @@ void GetSecondDragResult1(ArkUI_DragEvent* dragEvent)
     if (result == ARKUI_DRAG_RESULT_SUCCESSFUL && dragResult == true) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Successful!");
         nodeAPI->resetAttribute(dragImage, NODE_IMAGE_SRC);
-        SetImageSrc(dropImage, "/resources/seagull.png");
+        SetImageSrc(dropImage, "/resources/base/media/seagull.png");
     } else {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
     }
@@ -220,7 +220,7 @@ void SecondButtonModule(ArkUI_NodeHandle &column)
     nodeAPI->registerNodeEvent(resetButton, NODE_ON_CLICK_EVENT, 1, nullptr);
     nodeAPI->addNodeEventReceiver(resetButton, [](ArkUI_NodeEvent *event) {
         nodeAPI->resetAttribute(dropImage, NODE_IMAGE_SRC);
-        SetImageSrc(dragImage, "/resources/seagull.png");
+        SetImageSrc(dragImage, "/resources/base/media/seagull.png");
     });
     nodeAPI->addChild(buttonRow, resetButton);
 
@@ -266,7 +266,7 @@ void SecondModule(ArkUI_NodeHandle &root)
     dragImage = nodeAPI->createNode(ARKUI_NODE_IMAGE);
     SetId(dragImage, "dragImage");
     SetCommonAttribute(dragImage, SIZE_140, SIZE_140, DEFAULT_BG_COLOR, BLANK_5);
-    SetImageSrc(dragImage, "/resources/seagull.png");
+    SetImageSrc(dragImage, "/resources/base/media/seagull.png");
     OH_ArkUI_SetNodeDraggable(dragImage, true);
     nodeAPI->registerNodeEvent(dragImage, NODE_ON_PRE_DRAG, 1, nullptr);
     nodeAPI->registerNodeEvent(dragImage, NODE_ON_DRAG_START, 1, nullptr);
