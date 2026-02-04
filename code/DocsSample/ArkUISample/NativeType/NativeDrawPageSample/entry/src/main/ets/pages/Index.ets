@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start Main_Index]
 import render from 'libentry.so';
 import { NodeContent } from '@kit.ArkUI';
 
@@ -33,3 +34,4 @@ struct DrawPage {
     .height('100%')
   }
 }
+// [End Main_Index]

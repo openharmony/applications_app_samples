@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Cpp_NativeEntry]
 // NativeEntry.cpp
 
 #include <arkui/native_node_napi.h>
@@ -66,3 +66,4 @@ napi_value CreateDrawNode(napi_env env, napi_callback_info info)
 }
 
 } // namespace NativeModule
+// [End Cpp_NativeEntry]
