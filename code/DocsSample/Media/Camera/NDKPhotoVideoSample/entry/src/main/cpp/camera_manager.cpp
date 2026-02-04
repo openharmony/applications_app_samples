@@ -261,25 +261,25 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
 {
     OH_LOG_INFO(LOG_APP, "Start SessionFlowFn IN.");
     // [Start add_metadata_output]
-    // Start configuring session
+    // 开始配置会话。
     Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession_);
 
-    // Add CameraInput to the session
+    // 将相机输入流加入会话。
     ret = OH_CaptureSession_AddInput(captureSession_, cameraInput_);
 
-    // Add previewOutput to the session
+    // 将相机预览流加入会话。
     ret = OH_CaptureSession_AddPreviewOutput(captureSession_, previewOutput_);
 
     if (isVideo_) {
-        // Adding VideoOutput to the Session
+        // 将相机录像流加入会话。
         AddVideoOutput();
         if (isHdrVideo) {
-            // HDR Vivid 视频需要设置色彩空间为OH_COLORSPACE_BT2020_HLG_LIMIT
+            // HDR Vivid视频需要设置色彩空间为OH_COLORSPACE_BT2020_HLG_LIMIT。
             OH_NativeBuffer_ColorSpace colorSpace = OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT2020_HLG_LIMIT;
             SetColorSpace(colorSpace);
         }
     } else {
-        // Adding PhotoOutput to the Session
+        // 将相机拍照流加入会话。
         AddPhotoOutput();
         ret = CreateMetadataOutput();
         ret = OH_CaptureSession_AddMetadataOutput(captureSession_, metadataOutput_);
@@ -287,7 +287,7 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
         SetColorSpace(colorSpace);
     }
 
-    // Submit configuration information
+    // 提交会话配置信息。
     ret = OH_CaptureSession_CommitConfig(captureSession_);
     // [StartExclude add_metadata_output]
     if (isVideo_) {
@@ -305,11 +305,11 @@ Camera_ErrorCode NDKCamera::SessionFlowFn(void)
     // [EndExclude add_metadata_output]
 
     InitPreviewRotation();
-    // Start Session Work
+    // 开始会话。
     OH_LOG_INFO(LOG_APP, "session start");
     ret = OH_CaptureSession_Start(captureSession_);
     // [End add_metadata_output]
-    // Start focusing
+    // 开始设置对焦模式。
     ret = IsFocusMode(focusMode_);
 
     // Start GetSupport
@@ -698,7 +698,7 @@ Camera_ErrorCode NDKCamera::IsExposureBiasRange(int exposureBias)
 Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
 {
     Camera_FlashMode flashMode = static_cast<Camera_FlashMode>(mode);
-    // Check for flashing lights
+    // 检查闪光灯。
     bool hasFlash = false;
     Camera_ErrorCode ret = OH_CaptureSession_HasFlash(captureSession_, &hasFlash);
     if (captureSession_ == nullptr || ret != CAMERA_OK) {
@@ -710,7 +710,7 @@ Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
         OH_LOG_ERROR(LOG_APP, "hasFlash fail-----");
     }
 
-    // Check if the flash mode is supported
+    // 查询闪光灯模式是否支持。
     bool isSupported = false;
     ret = OH_CaptureSession_IsFlashModeSupported(captureSession_, flashMode, &isSupported);
     if (ret != CAMERA_OK) {
@@ -722,7 +722,7 @@ Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
         OH_LOG_ERROR(LOG_APP, "isFlashModeSupported fail-----");
     }
 
-    // Set flash mode
+    // 设置闪光灯模式。
     ret = OH_CaptureSession_SetFlashMode(captureSession_, flashMode);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetFlashMode success.");
@@ -730,7 +730,7 @@ Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. %{public}d ", ret);
     }
 
-    // Obtain the flash mode of the current device
+    // 获取当前设备的闪光灯模式。
     ret = OH_CaptureSession_GetFlashMode(captureSession_, &flashMode);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode：%{public}d ", flashMode);
@@ -741,7 +741,7 @@ Camera_ErrorCode NDKCamera::HasFlashFn(uint32_t mode)
 }
 
 // [Start set_focus_mode]
-// focus mode
+// 对焦模式。
 Camera_ErrorCode NDKCamera::IsFocusModeSupported(uint32_t mode)
 {
     Camera_FocusMode focusMode = static_cast<Camera_FocusMode>(mode);
@@ -780,7 +780,7 @@ Camera_ErrorCode NDKCamera::IsFocusMode(uint32_t mode)
 Camera_ErrorCode NDKCamera::setZoomRatioFn(uint32_t zoomRatio)
 {
     float zoom = float(zoomRatio);
-    // Obtain supported zoom range
+    // 获取支持的缩放范围。
     float minZoom;
     float maxZoom;
     Camera_ErrorCode ret = OH_CaptureSession_GetZoomRatioRange(captureSession_, &minZoom, &maxZoom);
@@ -791,7 +791,7 @@ Camera_ErrorCode NDKCamera::setZoomRatioFn(uint32_t zoomRatio)
             minZoom, maxZoom);
     }
 
-    // Set Zoom
+    // 设置缩放比例。
     ret = OH_CaptureSession_SetZoomRatio(captureSession_, zoom);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetZoomRatio success.");
@@ -799,7 +799,7 @@ Camera_ErrorCode NDKCamera::setZoomRatioFn(uint32_t zoomRatio)
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. %{public}d ", ret);
     }
 
-    // Obtain the zoom value of the current device
+    // 获取当前设备的缩放比例。
     ret = OH_CaptureSession_GetZoomRatio(captureSession_, &zoom);
     if (ret == CAMERA_OK) {
         OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatio success. zoom：%{public}f ", zoom);
@@ -870,7 +870,7 @@ void NDKCamera::EnableHdrVideo(bool isHdr)
 // [Start is_macro_supported]
 bool NDKCamera::IsMacroSupported(Camera_CaptureSession* captureSession)
 {
-    //判断设备是否支持微距能力
+    // 判断设备是否支持微距能力。
     bool isMacroSupported = false;
     if (captureSession == nullptr) {
         OH_LOG_ERROR(LOG_APP, "IsMacroSupported: session is nullptr.");
@@ -1520,7 +1520,7 @@ void MacroStatusCallback(Camera_CaptureSession *captureSession, bool isMacroDete
     OH_LOG_INFO(LOG_APP, "MacroStatusCallback isMacro: %{public}d", isMacroDetected);
 }
 
-// 注册回调函数
+// 注册回调函数。
 Camera_ErrorCode NDKCamera::RegisterMacroStatusCallback()
 {
     Camera_ErrorCode ret = OH_CaptureSession_RegisterMacroStatusChangeCallback(captureSession_, MacroStatusCallback);
@@ -1566,7 +1566,7 @@ void ControlCenterEffectStatusChange(Camera_CaptureSession *session,
     OH_LOG_INFO(LOG_APP, "ControlCenterEffectStatusChange isActive: %{public}d", controlCenterStatusInfo->isActive);
 }
 
-// 注册回调函数
+// 注册回调函数。
 Camera_ErrorCode NDKCamera::RegisterControlCenterEffectStatusChangeCallback()
 {
     Camera_ErrorCode ret = OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback(
@@ -1577,7 +1577,7 @@ Camera_ErrorCode NDKCamera::RegisterControlCenterEffectStatusChangeCallback()
     return ret;
 }
 
-// 解注册
+// 解注册。
 Camera_ErrorCode NDKCamera::UnregisterControlCenterEffectStatusChangeCallback()
 {
     Camera_ErrorCode ret = OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(

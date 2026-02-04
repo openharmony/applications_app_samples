@@ -152,7 +152,7 @@ void ShowImage(OH_ImageNative *image)
 static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
 {
     OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s IN", __func__);
-    // 读取 OH_ImageReceiverNative 下一张图片对象
+    // 读取OH_ImageReceiverNative下一张图片对象。
     OH_ImageNative *image = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
     if (errCode != IMAGE_SUCCESS) {
@@ -164,7 +164,7 @@ static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
 
     ShowImage(image);
 
-    // 释放 OH_ImageNative 实例
+    // 释放OH_ImageNative实例。
     errCode = OH_ImageNative_Release(image);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "CallbackReadNextImage %{public}s release image native failed, errCode: %{public}d.",
