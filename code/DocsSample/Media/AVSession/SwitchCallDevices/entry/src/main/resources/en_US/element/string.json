@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "switch_output",
+      "value": "switch_output"
+    },
+    {
+      "name": "switch_input",
+      "value": "switch_input"
+    },
+    {
+      "name": "SwitchCallDevices",
+      "value": "SwitchCallDevices"
+    },
+    {
+      "name": "start",
+      "value": "start"
+    },
+    {
+      "name": "stop",
+      "value": "stop"
+    },
+    {
+      "name": "switch_mockOutput",
+      "value": "mockOutputButton"
+    },
+    {
+      "name": "switch_mockInput",
+      "value": "mockInputButton"
+    },
+    {
+      "name": "switch_OutputDevice",
+      "value": "SwitchOutputDevice"
+    },
+    {
+      "name": "switch_InputDevice",
+      "value": "SwitchInputDevice"
+    }
+  ]
+}
