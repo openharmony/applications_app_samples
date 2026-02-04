@@ -59,6 +59,8 @@ void ExecuteDragPending(ArkUI_DragEvent* dragEvent)
         sleep(1);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC 2");
         OH_ArkUI_NotifyDragResult(requestId, ARKUI_DRAG_RESULT_SUCCESSFUL);
+        OH_ArkUI_NotifySuggestedDropOperation(requestId, ARKUI_DROP_OPERATION_MOVE);
+        OH_ArkUI_NotifyDisableDefaultDropAnimation(requestId, false);
         OH_ArkUI_NotifyDragEndPendingDone(requestId);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC");
     });
@@ -76,6 +78,17 @@ void GetThirdDragResult(ArkUI_DragEvent* dragEvent)
         SetImageSrc(dropImage2, "/resources/base/media/seagull.png");
     } else if (result == ARKUI_DRAG_RESULT_FAILED) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
+    }
+}
+
+void GetThirdDragOperation(ArkUI_DragEvent* dragEvent)
+{
+    ArkUI_DropOperation operation;
+    OH_ArkUI_DragEvent_GetDropOperation(dragEvent, &operation);
+    if (operation == ARKUI_DROP_OPERATION_COPY) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag operation is ARKUI_DROP_OPERATION_COPY!");
+    } else if (operation == ARKUI_DROP_OPERATION_MOVE) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag operation is ARKUI_DROP_OPERATION_MOVE!");
     }
 }
 
@@ -103,6 +116,7 @@ void RegisterNodeEventThirdReceiver1(ArkUI_NodeHandle &dragNode)
             case NODE_ON_DRAG_END: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
                 GetThirdDragResult(dragEvent);
+                GetThirdDragOperation(dragEvent);
                 break;
             }
             default: {
