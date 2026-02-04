@@ -30,6 +30,7 @@ namespace NativeModule {
 
 const unsigned int WIDTH_SIZE = 200;
 const unsigned int GINGERS_NUM_1 = 1;
+const unsigned int NUMBER_2 = 2;
 const unsigned int NUMBER_10 = 10;
 const unsigned int DURATION_NUM_100 = 100;
 const unsigned int DURATION_NUM_1000 = 1000;
@@ -263,8 +264,8 @@ ArkUI_GestureRecognizer* CreatePinchGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建捏合手势
-    // NUMBER_10 = 10
-    auto pinchGesture = gestureApi->createPinchGesture(1, NUMBER_10);
+    // NUMBER_2 = 2，NUMBER_10 = 10
+    auto pinchGesture = gestureApi->createPinchGesture(NUMBER_2, NUMBER_10);
     // [End create_pinch_gesture]
     return pinchGesture;
 }
@@ -276,8 +277,8 @@ ArkUI_GestureRecognizer* CreateRotationGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建旋转手势
-    // NUMBER_10 = 10
-    auto rotationGesture = gestureApi->createRotationGesture(1, NUMBER_10);
+    // NUMBER_2 = 2，NUMBER_10 = 10
+    auto rotationGesture = gestureApi->createRotationGesture(NUMBER_2, NUMBER_10);
     // [End create_rotation_gesture]
     return rotationGesture;
 }

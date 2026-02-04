@@ -21,7 +21,6 @@
 #define MYAPPLICATION_ARKUILISTNODE_H
 
 #include "ArkUINode.h"
-#include <hilog/log.h>
 
 namespace NativeModule {
 class ArkUIListNode : public ArkUINode {
