@@ -14,7 +14,7 @@
  */
 
 // [Start observing_nested_class_properties]
-/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+// GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码。
 import { GenericBasicDataSource } from './GenericBasicDataSource';
 
 class PropertiesDataSource extends GenericBasicDataSource<ClassPropertiesStringData> {
