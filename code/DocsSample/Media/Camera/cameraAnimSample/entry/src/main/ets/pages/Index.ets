@@ -55,8 +55,8 @@ struct Index {
   @StorageLink('switchCamera') @Watch('onSwitchCamera') switchCameraFlag: number = 0;
   @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0;
   @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0;
-  @StorageLink('surfaceShot') screenshotPixelMap: image.PixelMap | undefined = undefined; // 预览流截图
-  @StorageLink('curPosition') curPosition: number = 0; // 当前镜头前后置状态
+  @StorageLink('surfaceShot') screenshotPixelMap: image.PixelMap | undefined = undefined; // 预览流截图。
+  @StorageLink('curPosition') curPosition: number = 0; // 当前镜头前后置状态。
   @State shotImgBlur: number = 0;
   @State shotImgOpacity: number = 1;
   @State shotImgScale: ScaleOptions = { x: 1, y: 1 };
@@ -93,27 +93,27 @@ struct Index {
   // [Start show_blur_anim]
   private async showBlurAnim() {
     Logger.info(TAG, 'showBlurAnim E');
-    // 获取已完成的surface截图
+    // 获取已完成的surface截图。
     let shotPixel = BlurAnimateUtil.getSurfaceShot();
-    // 后置
+    // 后置。
     if (this.curPosition === 0) {
       Logger.info(TAG, 'showBlurAnim BACK');
-      // 直板机后置截图旋转补偿90°
+      // 直板机后置截图旋转补偿90°。
       await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_90);
-      // 直板机后置截图初始翻转0°
+      // 直板机后置截图初始翻转0°。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_0 };
     } else {
       Logger.info(TAG, 'showBlurAnim FRONT');
-      // 直板机前置截图旋转补偿270°
+      // 直板机前置截图旋转补偿270°。
       await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_270);
-      // 直板机前置截图镜像补偿
+      // 直板机前置截图镜像补偿。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_180 };
     }
     this.screenshotPixelMap = shotPixel;
-    // 初始化动效参数
-    this.shotImgBlur = 0; // 无模糊
-    this.shotImgOpacity = 1; // 不透明
-    // 触发页面渲染
+    // 初始化动效参数。
+    this.shotImgBlur = 0; // 无模糊。
+    this.shotImgOpacity = 1; // 不透明。
+    // 触发页面渲染。
     this.isShowBlur = true;
     animateToImmediately(
       {
@@ -124,7 +124,7 @@ struct Index {
         }
       },
       () => {
-        // 截图模糊度变化动效
+        // 截图模糊度变化动效。
         this.shotImgBlur = BlurAnimateUtil.ANIM_MODE_SWITCH_BLUR;
       }
     );
@@ -142,14 +142,14 @@ struct Index {
       duration: BlurAnimateUtil.HIDE_BLUR_DURATION,
       curve: Curve.FastOutSlowIn,
       onFinish: () => {
-        // 模糊组件下树
+        // 模糊组件下树。
         this.isShowBlur = false;
         this.shotImgBlur = 0;
         this.shotImgOpacity = 1;
         Logger.info(TAG, 'hideBlurAnim X');
       }
     }, () => {
-      // 截图透明度变化动效
+      // 截图透明度变化动效。
       this.shotImgOpacity = 0;
     });
   }
@@ -161,39 +161,39 @@ struct Index {
    */
   private async rotateFirstAnim() {
     Logger.info(TAG, 'rotateFirstAnim E');
-    // 获取已完成的surface截图
+    // 获取已完成的surface截图。
     let shotPixel = BlurAnimateUtil.getSurfaceShot();
-    // 后置切前置
+    // 后置切前置。
     if (this.curPosition === 1) {
       Logger.info(TAG, 'rotateFirstAnim BACK');
-      // 直板机后置切前置截图旋转补偿90°
-      await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_90); // Image Kit提供的旋转，用于处理图片本身的旋转
-      // 直板机后置切前置截图初始翻转0°
+      // 直板机后置切前置截图旋转补偿90°。
+      await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_90); // Image Kit提供的旋转，用于处理图片本身的旋转。
+      // 直板机后置切前置截图初始翻转0°。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_0 };
     } else {
       Logger.info(TAG, 'rotateFirstAnim FRONT');
-      // 直板机前置切后置截图旋转补偿270°
+      // 直板机前置切后置截图旋转补偿270°。
       await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_270);
-      // 直板机前置切后置截图初始翻转180°
+      // 直板机前置切后置截图初始翻转180°。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_180 };
     }
     this.screenshotPixelMap = shotPixel;
-    // 触发页面渲染
+    // 触发页面渲染。
     this.isShowBlack = true;
     this.isShowBlur = true;
     animateToImmediately(
       {
         duration: BlurAnimateUtil.ROTATION_DURATION,
-        delay: BlurAnimateUtil.FLIP_DELAY, // 时延保证组件缩放模糊动效先行，再翻转后视觉效果更好
+        delay: BlurAnimateUtil.FLIP_DELAY, // 时延保证组件缩放模糊动效先行，再翻转后视觉效果更好。
         curve: curves.cubicBezierCurve(0.20, 0.00, 0.83, 1.00),
         onFinish: () => {
           Logger.info(TAG, 'rotateFirstAnim X');
-          // 在onFinish后触发二段旋转
+          // 在onFinish后触发二段旋转。
           this.rotateSecondAnim();
         }
       },
       () => {
-        // 截图向翻转动效
+        // 截图向翻转动效。
         if (this.curPosition === 1) {
           this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_90 };
         } else {
@@ -208,18 +208,18 @@ struct Index {
    */
   async rotateSecondAnim() {
     Logger.info(TAG, 'rotateSecondAnim E');
-    // 获取已完成的surface截图
+    // 获取已完成的surface截图。
     let shotPixel = BlurAnimateUtil.getSurfaceShot();
-    // 后置
+    // 后置。
     if (this.curPosition === 1) {
-      // 直板机后置镜头旋转补偿90°
-      await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_90); // Image Kit提供的旋转，用于处理图片本身的旋转
-      // 瞬时调整为-90°，保证二段旋转后，图片不是镜像的
+      // 直板机后置镜头旋转补偿90°。
+      await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_90); // Image Kit提供的旋转，用于处理图片本身的旋转。
+      // 瞬时调整为-90°，保证二段旋转后，图片不是镜像的。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_MINUS_90 };
-    } else { // 前置
-      // 直板机前置截图旋转补偿270°
+    } else { // 前置。
+      // 直板机前置截图旋转补偿270°。
       await shotPixel.rotate(BlurAnimateUtil.IMG_ROTATE_ANGLE_270);
-      // 直板机前置截图镜像补偿
+      // 直板机前置截图镜像补偿。
       this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_180 };
     }
     this.screenshotPixelMap = shotPixel;
@@ -233,7 +233,7 @@ struct Index {
         }
       },
       () => {
-        // 截图翻转为初始状态
+        // 截图翻转为初始状态。
         if (this.curPosition === 1) {
           this.shotImgRotation = { y: BlurAnimateUtil.ROTATE_AXIS, angle: BlurAnimateUtil.IMG_FLIP_ANGLE_0 };
         } else {
@@ -248,9 +248,9 @@ struct Index {
    */
   blurFirstAnim() {
     Logger.info(TAG, 'blurFirstAnim E');
-    // 初始化动效参数
-    this.shotImgBlur = 0; //无模糊
-    this.shotImgOpacity = 1; //不透明
+    // 初始化动效参数。
+    this.shotImgBlur = 0; // 无模糊。
+    this.shotImgOpacity = 1; // 不透明。
     this.shotImgScale = { x: 1, y: 1 };
     animateToImmediately(
       {
@@ -262,9 +262,9 @@ struct Index {
         }
       },
       () => {
-        // 截图模糊度变化动效
+        // 截图模糊度变化动效。
         this.shotImgBlur = BlurAnimateUtil.ANIM_MODE_SWITCH_BLUR;
-        // 截图比例动效
+        // 截图比例动效。
         this.shotImgScale = { x: BlurAnimateUtil.IMG_SCALE, y: BlurAnimateUtil.IMG_SCALE };
       }
     );
@@ -371,7 +371,7 @@ struct Index {
       }
 
       // [Start flash_black_component]
-      // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件
+      // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件。
       if (this.isShowBlack) {
         Column()
           .key('black')
@@ -388,7 +388,7 @@ struct Index {
           Image(this.screenshotPixelMap)
             .blur(this.shotImgBlur)
             .opacity(this.shotImgOpacity)
-            .rotate(this.shotImgRotation)// ArkUI提供的旋转，用于组件沿指定坐标系进行旋转
+            .rotate(this.shotImgRotation)// ArkUI提供的旋转，用于组件沿指定坐标系进行旋转。
             .scale(this.shotImgScale)
             .width(this.getUIContext().px2vp(Constants.X_COMPONENT_SURFACE_HEIGHT))
             .height(this.getUIContext().px2vp(Constants.X_COMPONENT_SURFACE_WIDTH))

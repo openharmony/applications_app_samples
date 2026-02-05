@@ -55,7 +55,7 @@ export class BlurAnimateUtil {
         await this.surfaceShot.release();
       }
       this.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
-        size: { width: Constants.X_COMPONENT_SURFACE_WIDTH, height: Constants.X_COMPONENT_SURFACE_HEIGHT }, // 取预览流profile的宽高
+        size: { width: Constants.X_COMPONENT_SURFACE_WIDTH, height: Constants.X_COMPONENT_SURFACE_HEIGHT }, // 取预览流profile的宽高。
         x: 0,
         y: 0
       });

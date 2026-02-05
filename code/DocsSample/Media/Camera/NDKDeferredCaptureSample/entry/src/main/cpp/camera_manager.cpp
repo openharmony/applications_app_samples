@@ -1740,7 +1740,7 @@ void OnRequsetImageDataPreparedWithDetails(MediaLibrary_ErrorCode result, MediaL
     return;
 }
 
-// 请求图片数据：deliveryMode/quality 等通过 requestOptions 控制，完成后进回调 OnRequsetImageDataPreparedWithDetails。
+// 请求图片数据：deliveryMode/quality等通过requestOptions控制，完成后进回调OnRequsetImageDataPreparedWithDetails。
 MediaLibrary_ErrorCode NDKCamera::MediaAssetManagerRequestImage(OH_MediaAsset *mediaAsset)
 {
     DRAWING_LOGD("NDKCamera::MediaAssetManagerRequestImage start! g_deliveryMode = %{public}d",
