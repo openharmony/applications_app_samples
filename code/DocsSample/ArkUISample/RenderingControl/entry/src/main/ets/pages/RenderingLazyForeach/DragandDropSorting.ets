@@ -14,7 +14,7 @@
  */
 
 // [Start drag_sorting]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: String类型数组的BasicDataSource代码。**/
+// BasicDataSource代码见文档末尾BasicDataSource示例代码: String类型数组的BasicDataSource代码。
 import { BasicDataSource } from './BasicDataSource';
 
 class DragAndDropDataSource extends BasicDataSource {

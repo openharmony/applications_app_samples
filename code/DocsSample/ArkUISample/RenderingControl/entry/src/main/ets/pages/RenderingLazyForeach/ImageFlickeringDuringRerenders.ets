@@ -15,7 +15,7 @@
 
 // [Start image_flickering_during_rerenders]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+// GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码。
 import { GenericBasicDataSource } from './GenericBasicDataSource';
 const TAG = '[Sample_RenderingControl]';
 const DOMAIN = 0xF811;

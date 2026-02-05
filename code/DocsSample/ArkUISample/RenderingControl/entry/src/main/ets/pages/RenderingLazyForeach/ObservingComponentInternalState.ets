@@ -14,7 +14,7 @@
  */
 
 // [Start observing_component_internal_state]
-/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+// GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码。
 import { GenericBasicDataSource } from './GenericBasicDataSource';
 
 class MyStateDataSource extends GenericBasicDataSource<StateStringData> {
