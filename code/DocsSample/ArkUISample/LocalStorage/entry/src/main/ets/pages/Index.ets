@@ -80,7 +80,10 @@ struct Index {
       name: 'PageFifteen',
       path: 'pages/ChangeLocalSetSample'
     },
-
+    {
+      name: 'PageSixteen',
+      path: 'pages/LocalArraySample'
+    },
   ]
 
   build() {

@@ -14,6 +14,7 @@
     "pages/LocalDateSample",
     "pages/LocalMapSample",
     "pages/LocalSetSample",
-    "pages/ChangeLocalSetSample"
+    "pages/ChangeLocalSetSample",
+    "pages/LocalArraySample"
   ]
 }

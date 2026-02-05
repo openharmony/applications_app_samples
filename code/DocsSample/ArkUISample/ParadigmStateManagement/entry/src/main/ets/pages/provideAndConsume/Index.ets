@@ -27,6 +27,8 @@ import { ProvideConsumeProvideError } from './ProvideConsumeProvideError';
 import { ProvideConsumeSetSyncDecorator } from './ProvideConsumeSetSync';
 import { ProvideConsumeThisObject } from './ProvideConsumeThisObject';
 import { ProvideConsumeTwoWay } from './ProvideConsumeTwoWay';
+import { ProvideConsumeArraySyncDecorator } from './ProvideConsumeArraySync';
+import { ProvideConsumeUndefined } from './ProvideConsumeUndefined';
 
 
 export const PROVIDE_AND_CONSUME: string = 'provide_and_consume';
@@ -43,6 +45,10 @@ const routes: Route[] = [
   {
     name: `${PROVIDE_AND_CONSUME}/ProvideConsumeBidirectionalSync`,
     title: resource.resourceToString($r('app.string.provide_consume_bidirectional_sync')),
+  },
+  {
+    name: `${PROVIDE_AND_CONSUME}/ProvideConsumeArraySync`,
+    title: resource.resourceToString($r('app.string.provide_consume_array_sync')),
   },
   {
     name: `${PROVIDE_AND_CONSUME}/ProvideConsumeMapSync`,
@@ -79,6 +85,10 @@ const routes: Route[] = [
   {
     name: `${PROVIDE_AND_CONSUME}/ProvideConsumeThisObject`,
     title: resource.resourceToString($r('app.string.provide_consume_this_object')),
+  },
+  {
+    name: `${PROVIDE_AND_CONSUME}/ProvideConsumeUndefined`,
+    title: resource.resourceToString($r('app.string.provide_consume_undefined')),
   }
 ];
 
@@ -110,6 +120,10 @@ export function provideAndConsumeDestination(name: string) {
     ProvideConsumeProvideError();
   } else if (name === `${PROVIDE_AND_CONSUME}/ProvideConsumeThisObject`) {
     ProvideConsumeThisObject();
+  } else if (name === `${PROVIDE_AND_CONSUME}/ProvideConsumeArraySync`) {
+    ProvideConsumeArraySyncDecorator();
+  } else if (name === `${PROVIDE_AND_CONSUME}/ProvideConsumeUndefined`) {
+    ProvideConsumeUndefined();
   }
 }
 
