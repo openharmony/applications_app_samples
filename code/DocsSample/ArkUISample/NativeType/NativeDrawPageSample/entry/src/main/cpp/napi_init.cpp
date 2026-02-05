@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start napi_init]
 // entry/src/main/cpp/napi_init.cpp
 #include "napi/native_api.h"
 
@@ -42,3 +43,4 @@ static napi_module demoModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+// [End napi_init]

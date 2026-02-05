@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Cpp_indexes]
+// entry/src/main/cpp/types/libentry/Index.d.ts
 import { NodeContent } from '@kit.ArkUI';
 
 export const CreateDrawNode: (content: NodeContent) => void;
+// [End Cpp_indexes]
