@@ -167,6 +167,22 @@
     {
       "name": "stageRules",
       "value": "Stage模型下的文件路径规则"
+    },
+    {
+      "name": "stageRules1",
+      "value": "Stage模型下的文件路径规则1"
+    },
+    {
+      "name": "stageRules2",
+      "value": "Stage模型下的文件路径规则2"
+    },
+    {
+      "name": "stageRules3",
+      "value": "Stage模型下的文件路径规则3"
+    },
+    {
+      "name": "fileNotice",
+      "value": "文件路径注意事项"
     }
   ]
 }

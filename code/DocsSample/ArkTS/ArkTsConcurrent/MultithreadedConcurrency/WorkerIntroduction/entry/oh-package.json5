@@ -22,6 +22,9 @@
   "author": "",
   "license": "",
   "dependencies": {
+    // [StartExclude config_har_dependency]
+    "testworkers": "file:../testworkers",
+    // [EndExclude config_har_dependency]
     "har": "file:../har"
   }
 }

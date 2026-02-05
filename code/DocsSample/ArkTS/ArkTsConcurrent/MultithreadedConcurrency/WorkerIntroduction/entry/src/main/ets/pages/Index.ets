@@ -36,7 +36,7 @@ struct Index {
         });
         CommonButton({
           buttonName: resource.resourceToString($r('app.string.Basic_usage')),
-          buttonUrl: 'managers/basicusage'
+          buttonUrl: 'managers/Index'
         });
         CommonButton({
           buttonName: resource.resourceToString($r('app.string.Cross_har')),
@@ -53,6 +53,22 @@ struct Index {
         CommonButton({
           buttonName: resource.resourceToString($r('app.string.Not_recommended_two')),
           buttonUrl: 'managers/notrecommendedtwo'
+        });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.fileNotice')),
+          buttonUrl: 'managers/CreateWorker'
+        });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.stageRules1')),
+          buttonUrl: 'managers/StageRulesFa'
+        });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.stageRules2')),
+          buttonUrl: 'managers/StageRulesHar'
+        });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.stageRules3')),
+          buttonUrl: 'managers/StageRulesThreadFile'
         });
       }
       .padding('20vp')

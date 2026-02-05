@@ -125,5 +125,65 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
+    it('testStageRules1', 0, async (done: Function) => {
+      console.log('uitest: testStageRules1 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.stageRules1'))));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 = await driver.findComponent(ON.text('Hello World'));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success'));
+      await driver.pressBack();
+      done();
+    })
+    it('testStageRules2', 0, async (done: Function) => {
+      console.log('uitest: testStageRules2 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.stageRules2'))));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 = await driver.findComponent(ON.text('Hello World'));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success'));
+      await driver.pressBack();
+      done();
+    })
+    it('testStageRules3', 0, async (done: Function) => {
+      console.log('uitest: testStageRules3 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.stageRules3'))));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 = await driver.findComponent(ON.text('Hello World'));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success'));
+      await driver.pressBack();
+      done();
+    })
+    it('testFileNotice', 0, async (done: Function) => {
+      console.log('uitest: testFileNotice begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.fileNotice'))));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 = await driver.findComponent(ON.text('Hello World'));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success'));
+      await driver.pressBack();
+      done();
+    })
   })
 }
