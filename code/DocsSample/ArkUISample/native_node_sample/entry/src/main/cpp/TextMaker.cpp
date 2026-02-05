@@ -49,6 +49,7 @@
 #define VALUE_30 30
 #define VALUE_50 50
 #define VALUE_100 100
+#define VALUE_150 150
 #define VALUE_300 300
 #define VALUE_380 380
 #define VALUE_400 400
@@ -87,6 +88,7 @@
 #define FLOAT_50 50.0f
 
 ArkUI_NodeHandle TextMaker::text17 = nullptr;
+ArkUI_NodeHandle TextMaker::text22 = nullptr;
 
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
@@ -1622,6 +1624,69 @@ void setText20(ArkUI_NodeHandle &text20, ArkUI_NodeHandle &text21)
     Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem2);
 }
 
+void setText22More(ArkUI_NodeHandle &text22, ArkUI_NodeHandle &button)
+{
+    if (Manager::nodeAPI_ != nullptr) {
+        Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        auto *layoutManager = Manager::nodeAPI_->getAttribute(TextMaker::text22, NODE_TEXT_LAYOUT_MANAGER);
+        ArkUI_TextLayoutManager *manager = (ArkUI_TextLayoutManager *)layoutManager->object;
+        OH_Drawing_PositionAndAffinity *outPos1;
+        OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate(manager, VALUE_150, VALUE_50, &outPos1);
+        size_t position1 = OH_Drawing_GetPositionFromPositionAndAffinity(outPos1);
+        size_t affinity1 = OH_Drawing_GetAffinityFromPositionAndAffinity(outPos1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate positon = %{public}d affinity = %{public}d",
+            (int)position1, (int)affinity1);
+        OH_Drawing_PositionAndAffinity *outPos2;
+        OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(manager, VALUE_150, VALUE_50, &outPos2);
+        size_t position2 = OH_Drawing_GetPositionFromPositionAndAffinity(outPos2);
+        size_t affinity2 = OH_Drawing_GetAffinityFromPositionAndAffinity(outPos2);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate positon = %{public}d affinity = %{public}d",
+            (int)position2, (int)affinity2);
+        auto *charRange = new (std::nothrow) Boundary(VALUE_20, VALUE_50);
+        OH_Drawing_Range *charRanges = (OH_Drawing_Range *)(charRange);
+        OH_Drawing_Range *outGlyphRange;
+        OH_Drawing_Range *outActualCharRange;
+        OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(manager, charRanges,
+            &outGlyphRange, &outActualCharRange);
+        size_t glyphStart = OH_Drawing_GetStartFromRange(outGlyphRange);
+        size_t glyphEnd = OH_Drawing_GetEndFromRange(outGlyphRange);
+        size_t actualCharStart = OH_Drawing_GetStartFromRange(outActualCharRange);
+        size_t actualCharEnd = OH_Drawing_GetEndFromRange(outActualCharRange);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange glyphStart = "
+            "%{public}d glyphEnd = %{public}d actualCharStart = %{public}d actualCharEnd = %{public}d",
+            (int)glyphStart, (int)glyphEnd, (int)actualCharStart, (int)actualCharEnd);
+        auto *glyphRange = new (std::nothrow) Boundary(VALUE_10, VALUE_30);
+        OH_Drawing_Range *glyphRanges = (OH_Drawing_Range *)(glyphRange);
+        OH_Drawing_Range *outCharRange;
+        OH_Drawing_Range *outActualGlyphRange;
+        OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(manager, glyphRanges,
+            &outCharRange, &outActualGlyphRange);
+        size_t charStart = OH_Drawing_GetStartFromRange(outCharRange);
+        size_t charEnd = OH_Drawing_GetEndFromRange(outCharRange);
+        size_t actualGlyphStart = OH_Drawing_GetStartFromRange(outActualGlyphRange);
+        size_t actualGlyphEnd = OH_Drawing_GetEndFromRange(outActualGlyphRange);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange charStart = "
+            "%{public}d charEnd = %{public}d actualGlyphStart = %{public}d actualGlyphEnd = %{public}d",
+            (int)charStart, (int)charEnd, (int)actualGlyphStart, (int)actualGlyphEnd);
+        });
+    }
+}
+
+void setText22(ArkUI_NodeHandle &text22, ArkUI_NodeHandle &button)
+{
+    ArkUI_AttributeItem button_Item = {.string = "点击获取文本信息"};
+    ArkUI_AttributeItem text_Item = {
+        .string = "HelloWorld  您好，世界! \n HelloWorld  您好，世界! \n HelloWorld  您好，世界! \n"};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &button_Item);
+    Manager::nodeAPI_->setAttribute(TextMaker::text22, NODE_TEXT_CONTENT, &text_Item);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    setText22More(text22, button);
+}
+
 void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14)
 {
     ArkUI_AttributeItem content_item1 = {};
@@ -2316,11 +2381,14 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text19 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text20 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text21 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    TextMaker::text22 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setText9(text9);
     setText10(text10);
     setText11(text11, text11_2);
     setTextDirection(text19);
     setText20(text20, text21);
+    setText22(TextMaker::text22, button);
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
@@ -2328,6 +2396,8 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text19);
     Manager::nodeAPI_->addChild(textContainer, text20);
     Manager::nodeAPI_->addChild(textContainer, text21);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::text22);
+    Manager::nodeAPI_->addChild(textContainer, button);
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
