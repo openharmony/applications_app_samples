@@ -27,7 +27,7 @@ struct RegularBinding {
         .gesture(
           TapGesture()
             .onAction(() => {
-              hilog.info(DOMAIN, TAG,'TapGesture is onAction');
+              console.info('TapGesture is onAction');
             }))
     }
     .height(200)

@@ -60,7 +60,7 @@ struct ColorModeInfo {
     const char* darkMsg;
 };
 
-//注册回调函数
+// 注册回调函数
 void onColorModeChange(ArkUI_SystemColorMode colorMode, void *userData)
 {
     ColorModeInfo* info = static_cast<ColorModeInfo*>(userData);

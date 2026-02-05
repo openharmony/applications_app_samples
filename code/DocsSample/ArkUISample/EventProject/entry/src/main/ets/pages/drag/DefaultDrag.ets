@@ -23,6 +23,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 // [Start drag_hilog_const]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0000;
 const TAG = 'DefaultDragError: ';
 // [End drag_hilog_const]
@@ -67,8 +68,7 @@ export struct DefaultDrag {
       callback(event);
       return true;
     } catch (e) {
-      hilog.error(DOMAIN, TAG, '%{public}s', (e as BusinessError).code + ', message: ' +
-      (e as BusinessError).message);
+      hilog.error(DOMAIN, TAG, `${(e as BusinessError).code}, message: ${(e as BusinessError).message}`);
       return false;
     }
   }
@@ -84,7 +84,6 @@ export struct DefaultDrag {
 
   // [End data_delayed_retry]
   // [EndExclude generate_pix_map]
-
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
     this.getUIContext().getComponentSnapshot().createFromBuilder(() => {
@@ -100,7 +99,6 @@ export struct DefaultDrag {
   }
 
   // [End generate_pix_map]
-
   build() {
     // [StartExclude default_drag]
     NavDestination() {
@@ -218,6 +216,7 @@ export struct DefaultDrag {
         }
         .height('100%')
       }
+      
       // [StartExclude default_drag]
       .width('100%')
       .height('100%')

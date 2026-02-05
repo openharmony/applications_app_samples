@@ -23,7 +23,8 @@ struct MutualExclusion {
 
   build() {
     Column() {
-      Text('Exclusive gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 + '\n')
+      Text('Exclusive gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 +
+        '\n')
         .fontSize(28)
     }
     .height(200)
