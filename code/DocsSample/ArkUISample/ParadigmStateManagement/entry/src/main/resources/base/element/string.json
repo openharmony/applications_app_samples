@@ -265,6 +265,10 @@
       "value": "@Provide变量与后代组件中@Consume变量进行双向同步"
     },
     {
+      "name": "provide_consume_array_sync",
+      "value": "装饰Array类型变量"
+    },
+    {
       "name": "provide_consume_map_sync",
       "value": "@Consume装饰Map类型变量"
     },
@@ -299,6 +303,10 @@
     {
       "name": "provide_consume_this_object",
       "value": "a.b(this.object)不触发UI刷新"
+    },
+    {
+      "name": "provide_consume_undefined",
+      "value": "传入undefined时，@Provide装饰的变量使用本地默认值进行初始化"
     },
     {
       "name": "link",
@@ -479,6 +487,10 @@
     {
       "name": "state_decorate_array_change_text_05",
       "value": "嵌套的属性赋值观察不到"
+    },
+    {
+      "name": "state_input_undefined",
+      "value": "传入undefined时，@State装饰的变量使用本地默认值进行初始化"
     },
     {
       "name": "state_scene_simple_type",

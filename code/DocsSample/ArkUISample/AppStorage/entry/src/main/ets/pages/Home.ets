@@ -25,43 +25,43 @@ interface Ary {
 struct Home {
   ary: Ary[] = [
     {
-      name: 'PageOne',
-      path: 'pages/PageOne'
-    },
-    {
-      name: 'PageTwo',
+      name: '从UI内部使用AppStorage',
       path: 'pages/PageTwo'
     },
     {
-      name: 'PageThree',
+      name: 'AppStorage支持联合类型',
       path: 'pages/PageThree'
     },
     {
-      name: 'PageFour',
+      name: 'AppStorage支持Array类型变量',
+      path: 'pages/PageOne'
+    },
+    {
+      name: 'AppStorage支持Date类型变量',
       path: 'pages/PageFour'
     },
     {
-      name: 'PageFive',
+      name: 'AppStorage支持Map类型变量',
       path: 'pages/PageFive'
     },
     {
-      name: 'PageSix',
+      name: 'AppStorage支持Set类型变量',
       path: 'pages/PageSix'
     },
     {
-      name: 'PageSeven',
+      name: '不建议借助@StorageLink的双向同步机制实现事件通知',
       path: 'pages/ViewData'
     },
     {
-      name: 'PageEight',
+      name: '使用emit订阅事件并接收事件回调',
       path: 'pages/PageEight'
     },
     {
-      name: 'PageNine',
+      name: '将通知事件简化成三元表达式',
       path: 'pages/Gallery'
     },
     {
-      name: 'PageTen',
+      name: '@StorageProp和AppStorage接口配合使用',
       path: 'pages/PageTen'
     },
     {

@@ -96,6 +96,14 @@ struct Index {
       name: 'PageEighteen',
       path: 'pages/PageEighteen'
     },
+    {
+      name: 'PageNineteen',
+      path: 'pages/PageNineteen'
+    },
+    {
+      name: 'PageTwenty',
+      path: 'pages/PageTwenty'
+    },
   ]
 
   build() {
