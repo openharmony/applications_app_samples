@@ -27,6 +27,7 @@
 #include <native_drawing/drawing_round_rect.h>
 #include <native_drawing/drawing_text_blob.h>
 #include <native_drawing/drawing_text_declaration.h>
+#include <arkui/native_interface_focus.h>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -754,6 +755,42 @@ void setTextInput10(ArkUI_NodeHandle &textInput10, ArkUI_NodeHandle &textInput10
             reinterpret_cast<ArkUI_TextContentBaseController *>(controller),
             start, end);
     });
+}
+
+void EventReceiver(ArkUI_NodeEvent* event)
+{
+    // 从事件中提取关键信息（根据ArkUI_NodeEvent结构体定义）
+    ArkUI_NodeHandle node = OH_ArkUI_NodeEvent_GetNodeHandle(event);        // 事件所属节点
+    ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event); // 事件类型
+    // 处理焦点相关事件
+    if (eventType == NODE_ON_CLICK) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button on clicked");
+        ArkUI_NodeHandle nodeHandle;
+        OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("button_keyboard", &nodeHandle);
+        // 使用原生接口OH_ArkUI_FocusRequest请求焦点
+        ArkUI_ErrorCode result = OH_ArkUI_FocusRequest(nodeHandle);
+    } else if (eventType == NODE_ON_NEED_SOFTKEYBOARD) {
+        ArkUI_NumberValue need[] = {0};
+        ArkUI_NumberValue *ifNeed = need;
+        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button NODE_ON_NEED_SOFTKEYBOARD");
+    }
+}
+void setTextInputKeyboard(ArkUI_NodeHandle &textInputKeyBoard, ArkUI_NodeHandle &textInputKeyBoardButton)
+{
+    ArkUI_AttributeItem textItem = {
+        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD"};
+    Manager::nodeAPI_->setAttribute(textInputKeyBoard, NODE_TEXT_INPUT_TEXT, &textItem);
+
+    ArkUI_AttributeItem labelItem = { .string = "focus_Button" };
+    Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_BUTTON_LABEL, &labelItem);
+    ArkUI_AttributeItem nodeIdItem = { .string = "button_keyboard" };
+    Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_ID, &nodeIdItem);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_CLICK, 0, textInputKeyBoardButton);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_NEED_SOFTKEYBOARD, 1,
+                                         textInputKeyBoardButton);
+
+    Manager::nodeAPI_->registerNodeEventReceiver(EventReceiver);
 }
 
 void setTextInputDirection(ArkUI_NodeHandle &textInput11)
@@ -2359,9 +2396,14 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setTextInput13(textInput13, textInput14);
+    setTextInputKeyboard(textInputKeyBoard, textInputKeyBoardButton);
     Manager::nodeAPI_->addChild(textContainer, textInput13);
     Manager::nodeAPI_->addChild(textContainer, textInput14);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoardButton);
 }
 
 void setAllTextInput(ArkUI_NodeHandle &textContainer)
