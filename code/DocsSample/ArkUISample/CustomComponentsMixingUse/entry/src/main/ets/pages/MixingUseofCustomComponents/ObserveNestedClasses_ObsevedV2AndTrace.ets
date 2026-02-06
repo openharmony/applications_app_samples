@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start obseved_trace]
+// [Start observed_trace]
 @ObservedV2
 class Info {
   @Trace public myId: number;
@@ -24,18 +24,18 @@ class Info {
   }
 }
 
-@Observed
+@ObservedV2
 class MessageInfo { // 一层嵌套
-  @Track public info: Info;        // 防止messageId改变导致info的连带刷新
-  @Track public messageId: number; // 防止messageId改变导致info的连带刷新
+  @Trace public info: Info; // 防止messageId改变导致info的连带刷新
+  @Trace public messageId: number; // 防止info改变导致messageId的连带刷新
 
   constructor(info?: Info, messageId?: number) {
-    this.info = info || new Info();   // 使用传入的info或创建一个新的Info
+    this.info = info || new Info(); // 使用传入的info或创建一个新的Info
     this.messageId = messageId || 0;
   }
 }
 
-@Observed
+@ObservedV2
 class MessageInfoNested { // 二层嵌套，MessageInfoNested如果是被@ObservedV2装饰，则不可以被V1的状态变量更新相关的装饰器装饰，如@State
   public messageInfo: MessageInfo;
 
@@ -44,16 +44,16 @@ class MessageInfoNested { // 二层嵌套，MessageInfoNested如果是被@Observ
   }
 }
 
-@Component
+@ComponentV2
 struct Child {
-  @ObjectLink messageInfo: MessageInfo;
+  @Param messageInfo: MessageInfo =  new MessageInfo();
 
   build() {
     Column() {
-      Text(`ObjectLink MessageInfo messageId:${this.messageInfo.messageId}`)  // 经过@ObjectLink拆解之后，可以观测一层类属性变化
+      Text(`Child MessageInfo messageId:${this.messageInfo.messageId}`)
         .fontSize(30)
         .onClick(() => {
-          this.messageInfo.messageId++;
+          this.messageInfo.messageId++; // 刷新
         })
     }
   }
@@ -62,11 +62,10 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State messageInfoNested: MessageInfoNested = new MessageInfoNested();  // 三层嵌套的数据，如何观测内部。
+  messageInfoNested: MessageInfoNested = new MessageInfoNested(); // 三层嵌套的数据，如何观测内部。
 
   build() {
     Column() {
-      // 观察messageInfoNested，@State只有一层观测能力，无法观察到变化
       Text(`messageInfoNested messageId:${this.messageInfoNested.messageInfo.messageId}`)
         .fontSize(30)
         .onClick(() => {
@@ -74,26 +73,26 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`)   // 未被@Trace修饰，无法观测
+      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`) // 未被@Trace修饰，无法观测
         .fontSize(30)
         .onClick(() => {
           this.messageInfoNested.messageInfo.info.name += 'a';
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfoNested myId:${this.messageInfoNested.messageInfo.info.myId}`)   // 被@Trace修饰，无论嵌套多少层都能观测
+      Text(`messageInfoNested myId:${this.messageInfoNested.messageInfo.info.myId}`) // 被@Trace修饰，无论嵌套多少层都能观测
         .fontSize(30)
         .onClick(() => {
           this.messageInfoNested.messageInfo.info.myId++;
         })
       Divider()
         .color(Color.Blue)
-      // 通过@ObjectLink嵌套观察 messageInfoId
-      Child({messageInfo: this.messageInfoNested.messageInfo})      // 经过拆分后，使用@ObjectLink拆分可以观察到深一层的变化
+      // 通过@ObservedV2和@Trace观察messageInfo
+      Child({messageInfo: this.messageInfoNested.messageInfo})
     }
     .height('100%')
     .width('100%')
     .margin(10)
   }
 }
-// [End obseved_trace]
+// [End observed_trace]

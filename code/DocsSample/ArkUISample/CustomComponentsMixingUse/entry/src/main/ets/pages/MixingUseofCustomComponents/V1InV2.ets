@@ -15,7 +15,7 @@
 
 // [Start v2_use_v1]
 @Component
-struct Child3 {
+struct ChildThree {
   @State message: string = 'hello';
 
   build() {
@@ -32,7 +32,7 @@ struct Child3 {
 
 @Entry
 @ComponentV2
-struct Index3 {
+struct IndexThree {
   @Local message: string = 'Hello World';
 
   build() {
@@ -45,7 +45,7 @@ struct Index3 {
         })
       Divider()
         .color(Color.Blue)
-      Child3()
+      ChildThree()
     }
     .height('100%')
     .width('100%')

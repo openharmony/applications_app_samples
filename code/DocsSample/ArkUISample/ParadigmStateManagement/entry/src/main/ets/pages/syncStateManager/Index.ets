@@ -17,6 +17,7 @@ import { CompletedRoutableCard } from '../../common/Card';
 import { Route } from '../../common/Route';
 import resource from '../../common/Resource';
 import { SyncUsageExample } from './SyncUsageExample';
+import { SyncUsageExampleV2 } from './SyncUsageExampleV2'
 
 export const SYNC_STATE_MANAGER_$$: string = 'sync_state_manager_$$';
 
@@ -24,6 +25,10 @@ const routes: Route[] = [
   {
     name: `${SYNC_STATE_MANAGER_$$}/SyncUsageExample`,
     title: resource.resourceToString($r('app.string.sync_usage_example')),
+  },
+  {
+    name: `${SYNC_STATE_MANAGER_$$}/SyncUsageExampleV2`,
+    title: resource.resourceToString($r('app.string.sync_usage_example_v2')),
   }
 ];
 
@@ -33,6 +38,8 @@ export function syncStateManagerDestination(name: string) {
     SyncStateManagerExample();
   } else if (name === `${SYNC_STATE_MANAGER_$$}/SyncUsageExample`) {
     SyncUsageExample()
+  } else if (name === `${SYNC_STATE_MANAGER_$$}/SyncUsageExampleV2`) {
+    SyncUsageExampleV2()
   }
 }
 

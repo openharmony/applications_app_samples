@@ -55,6 +55,11 @@ struct MixingUseofCustomComponents {
         { name: 'V2CommonVariablesToV1CustomComponent', label: $r('app.string.MixingUseofCustomComponents_label6') },
         { name: 'V2InV1', label: $r('app.string.MixingUseofCustomComponents_label7') },
         { name: 'V2StateVariablesToV1CustomComponent', label: $r('app.string.MixingUseofCustomComponents_label8') },
+        { name: 'V2ToV1_ObservedV2AndTrace', label: $r('app.string.MixingUseofCustomComponents_label9') },
+        { name: 'V2ToV1_CommonBuildInClass', label: $r('app.string.MixingUseofCustomComponents_label10') },
+        { name: 'V2ToV1_SimpleData', label: $r('app.string.MixingUseofCustomComponents_label11') },
+        { name: 'V1ToV2_ObservedClass', label: $r('app.string.MixingUseofCustomComponents_label12') },
+        { name: 'V1ToV2_ObservedV2AndTrace', label: $r('app.string.MixingUseofCustomComponents_label13') },
       ]
     },
   ];

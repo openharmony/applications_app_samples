@@ -16,6 +16,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
+    "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
     "routerMap": "$profile:route_map",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
@@ -45,6 +46,16 @@
             ]
           }
         ]
+      },
+      {
+        "name": "PdfEntryAbility",
+        "srcEntry": "./ets/pages/internalmigrate/LocalStorageMultiInstance/PdfEntryAbility.ets",
+        "description": "$string:PdfEntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:PdfEntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "specified"
       }
     ],
     "extensionAbilities": [

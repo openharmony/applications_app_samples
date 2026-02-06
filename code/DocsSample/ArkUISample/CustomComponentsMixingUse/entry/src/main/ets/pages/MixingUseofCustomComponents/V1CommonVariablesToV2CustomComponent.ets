@@ -14,7 +14,7 @@
  */
 
 // [Start v1_to_v2_common_variables]
-class Info2 {
+class InfoTwo {
   public myId: number;
   public name: string;
 
@@ -25,41 +25,41 @@ class Info2 {
 }
 
 @ComponentV2
-struct Child2 {
+struct ChildTwo {
   // V2对数据输入有严格的管理，从父组件接受数据时，必须@Param装饰器进行数据接收
-  @Param @Once message: string = 'hello';                  // 可以观测到变化，同步回父组件依赖@Event，使用了@Once可以修改@Param装饰的变量
-  @Param @Once undefinedVal: string | undefined = undefined;  // 使用了@Once可以修改@Param装饰的变量
-  @Param info: Info2 = new Info2();                         // 观测不到类属性变化
+  @Param @Once message: string = 'hello'; // 可以观测到变化，同步回父组件依赖@Event，使用了@Once可以修改@Param装饰的变量
+  @Param @Once undefinedVal: string | undefined = undefined; // 使用了@Once可以修改@Param装饰的变量
+  @Param info: InfoTwo = new InfoTwo(); // 观测不到类属性变化
   @Require @Param set: Set<number>;
 
   build() {
     Column() {
-      Text(`child message:${this.message}`) // 显示 string
+      Text(`child message:${this.message}`) // 显示string
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.message = 'world';
+          this.message = 'world'; // 刷新当前组件
         })
 
       Divider()
         .color(Color.Blue)
-      Text(`undefinedVal:${this.undefinedVal}`) // 显示 undefinedVal
+      Text(`undefinedVal:${this.undefinedVal}`) // 显示undefinedVal
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefinedVal = 'change to define';
+          this.undefinedVal = 'change to define'; // 刷新当前组件
         })
       Divider()
         .color(Color.Blue)
-      Text(`info id:${this.info.myId}`) // 显示 info:myId
+      Text(`info id:${this.info.myId}`) // 显示info:myId
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.info.myId++;
+          this.info.myId++; // 不刷新
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => {  // 显示 Set
+      ForEach(Array.from(this.set.values()), (item: number) => { // 显示set
         Text(`${item}`)
           .fontSize(30)
       })
@@ -70,11 +70,11 @@ struct Child2 {
 
 @Entry
 @Component
-struct Index2 {
-  message: string = 'Hello World';       // 简单数据
-  undefinedVal: undefined = undefined;    // 简单类型，undefined
-  info: Info2 = new Info2();               // Class类型
-  set: Set<number> = new Set([10, 20]);  // 内置 类型
+struct IndexTwo {
+  message: string = 'Hello World'; // 简单数据
+  undefinedVal: undefined = undefined; // 简单类型，undefined
+  info: InfoTwo = new InfoTwo(); // Class类型
+  set: Set<number> = new Set([10, 20]); // 内置类型
 
   build() {
     Column() {
@@ -86,7 +86,7 @@ struct Index2 {
         })
       Divider()
         .color(Color.Blue)
-      Child2({
+      ChildTwo({
         message: this.message,
         undefinedVal: this.undefinedVal,
         info: this.info,

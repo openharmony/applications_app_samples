@@ -24,6 +24,8 @@ import { LocalQuestionExpectedEffect } from './LocalQuestionExpectedEffect';
 import { LocalQuestionSparkUpdate } from './LocalQuestionSparkUpdate';
 import { LocalQuestionUIUtils } from './LocalQuestionUIUtils';
 import { LocalQuestionV2animateTo } from './LocalQuestionV2animateTo';
+import { LocalQuestionV1animateTo } from './LocalQuestionV1animateTo';
+import { LocalQuestionAnimateToImmediately } from './LocalQuestionAnimateToImmediately';
 import { LocalUseCaseArray } from './LocalUseCaseArray';
 import { LocalUseCaseDate } from './LocalUseCaseDate';
 import { LocalUseCaseJoin } from './LocalUseCaseJoin';
@@ -88,8 +90,16 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.local_question_ui_utils')),
   },
   {
+    name: `${LOCAL}/LocalQuestionV1animateTo`,
+    title: resource.resourceToString($r('app.string.local_question_v1_animate_to')),
+  },
+  {
     name: `${LOCAL}/LocalQuestionV2animateTo`,
     title: resource.resourceToString($r('app.string.local_question_v2_animate_to')),
+  },
+  {
+    name: `${LOCAL}/LocalQuestionAnimateToImmediately`,
+    title: resource.resourceToString($r('app.string.local_question_animateToImmediately')),
   },
   {
     name: `${LOCAL}/LocalQuestionExpectedEffect`,
@@ -130,6 +140,10 @@ export function localDestination(name: string) {
     LocalQuestionUIUtils()
   } else if (name === `${LOCAL}/LocalQuestionV2animateTo`) {
     LocalQuestionV2animateTo()
+  } else if (name === `${LOCAL}/LocalQuestionV1animateTo`) {
+    LocalQuestionV1animateTo()
+  } else if (name === `${LOCAL}/LocalQuestionAnimateToImmediately`) {
+    LocalQuestionAnimateToImmediately();
   } else if (name === `${LOCAL}/LocalQuestionExpectedEffect`) {
     LocalQuestionExpectedEffect()
   }
