@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "index_title",
+      "value": "AVSession Native 示例"
+    },
+    {
+      "name": "btn_set_metadata",
+      "value": "设置媒体元数据"
+    },
+    {
+      "name": "btn_set_playback_state",
+      "value": "设置播放状态"
+    },
+    {
+      "name": "btn_register_play",
+      "value": "注册播放命令回调"
+    },
+    {
+      "name": "realtime_status",
+      "value": "实时状态"
+    },
+    {
+      "name": "current_state",
+      "value": "当前状态："
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息："
+    },
+    {
+      "name": "log_prefix_error",
+      "value": "[错误]"
+    },
+    {
+      "name": "log_prefix_info",
+      "value": "[信息]"
+    },
+    {
+      "name": "state_ready",
+      "value": "准备就绪"
+    },
+    {
+      "name": "log_initial",
+      "value": "等待操作..."
+    },
+    {
+      "name": "state_metadata_set",
+      "value": "元数据已设置"
+    },
+    {
+      "name": "state_failed",
+      "value": "设置失败"
+    },
+    {
+      "name": "state_playback_set",
+      "value": "播放状态已设置"
+    },
+    {
+      "name": "state_callback_registered",
+      "value": "播放回调已注册"
+    },
+    {
+      "name": "state_register_failed",
+      "value": "注册失败"
+    },
+    {
+      "name": "error_set_metadata",
+      "value": "设置元数据失败"
+    },
+    {
+      "name": "error_set_playback_state",
+      "value": "设置播放状态失败"
+    },
+    {
+      "name": "error_register_callback",
+      "value": "注册播放回调失败"
+    }
+  ]
+}

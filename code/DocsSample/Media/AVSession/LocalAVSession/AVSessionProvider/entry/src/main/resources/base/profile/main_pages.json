@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CreateAVSession",
+    "pages/AdvancedPlaybackControlEvents",
+    "pages/Destroy",
+    "pages/DispatchSessionEvent",
+    "pages/GetController",
+    "pages/Off",
+    "pages/SetAVSessionInformation",
+    "pages/SetExtras",
+    "pages/WantAgent",
+    "pages/FixedPlaybackControlCommands"
+  ]
+}
