@@ -14,6 +14,7 @@
  */
 // [Start Cpp_indexes]
 // entry/src/main/cpp/types/libentry/Index.d.ts
+
 import { NodeContent } from '@kit.ArkUI';
 
 export const CreateDrawNode: (content: NodeContent) => void;
