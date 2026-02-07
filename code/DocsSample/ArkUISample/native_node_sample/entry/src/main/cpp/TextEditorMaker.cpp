@@ -67,8 +67,8 @@ constexpr float BOTTOM_MARGIN = 5.0f;
 static ArkUI_NodeHandle textContainer;
 
 /**
- * @brief 添加富文本编辑器的占位符
- * @param textEditor 富文本编辑器节点
+ * @brief 添加文本编辑器编辑器的占位符
+ * @param textEditor 文本编辑器编辑器节点
  * @param value 占位的内容
  */
 void addPlaceHolder(ArkUI_NodeHandle& textEditor, const char* value)
@@ -82,8 +82,8 @@ void addPlaceHolder(ArkUI_NodeHandle& textEditor, const char* value)
 }
 
 /**
- * 初始化富文本编辑器节点
- * @return 返回创建的富文本编辑器节点句柄
+ * 初始化文本编辑器编辑器节点
+ * @return 返回创建的文本编辑器编辑器节点句柄
  */
 ArkUI_NodeHandle initTextEditor()
 {
@@ -94,7 +94,7 @@ ArkUI_NodeHandle initTextEditor()
     ArkUI_NumberValue width = {.f32 = TEXT_EDITOR_WIDTH};
     ArkUI_AttributeItem widthItem = {&width, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_WIDTH, &widthItem);
-    // 将富文本编辑器添加到父容器中
+    // 将文本编辑器编辑器添加到父容器中
     Manager::nodeAPI_->addChild(textContainer, textEditor);
     return textEditor;
 }
@@ -125,7 +125,7 @@ void setTextTitle(const char* title)
 }
 
 /**
- * @brief 设置富文本颜色相关属性
+ * @brief 设置文本编辑器颜色相关属性
  */
 void setTextEditorColor()
 {
@@ -160,7 +160,7 @@ void setTextEditorColor()
 }
 
 /**
- * @brief 设置富文本实体识别相关属性
+ * @brief 设置文本编辑器实体识别相关属性
  */
 void setTextEditorDetector()
 {
@@ -206,7 +206,7 @@ void setTextEditorDetector()
 }
 
 /**
- * @brief 设置富文本单行模式
+ * @brief 设置文本编辑器单行模式
  */
 void setTextEditorSingleLine()
 {
@@ -218,7 +218,7 @@ void setTextEditorSingleLine()
 }
 
 /**
- * @brief 设置富文本样式相关属性
+ * @brief 设置文本编辑器样式相关属性
  */
 void setTextEditorStyle()
 {
@@ -244,7 +244,7 @@ void setTextEditorStyle()
 }
 
 /**
- * @brief 设置富文本自定义键盘
+ * @brief 设置文本编辑器自定义键盘
  */
 void setTextEditorCustomKeyboard()
 {
@@ -262,7 +262,7 @@ void setTextEditorCustomKeyboard()
 }
 
 /**
- * @brief 设置富文本自定义菜单
+ * @brief 设置文本编辑器自定义菜单
  */
 void setTextEditorSelectionMenu()
 {
@@ -336,7 +336,7 @@ void setTextEditorSelectionMenu()
 }
 
 /**
- * @brief 设置富文本部分属性
+ * @brief 设置文本编辑器部分属性
  */
 void setTextEditorOther()
 {
@@ -872,7 +872,7 @@ void setTextEditorStyledStringController()
 }
 
 /**
- * @brief 设置富文本事件
+ * @brief 设置文本编辑器事件
  */
 void setTextEditorEvent()
 {
