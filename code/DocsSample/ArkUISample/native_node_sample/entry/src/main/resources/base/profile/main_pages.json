@@ -15,6 +15,7 @@
     "pages/grid/PageGridIrregularIndexes",
     "pages/grid/PageGridNormal",
     "pages/grid/PageGridGetRectByIndex",
-    "pages/page_linear"
+    "pages/page_linear",
+    "pages/page_text_editor"
   ]
 }

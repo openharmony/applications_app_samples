@@ -36,6 +36,7 @@ target_link_libraries(entry PUBLIC
     libhilog_ndk.z.so
     libnative_drawing.so
     libability_base_want.so
+    libpixelmap.so
 )
 
 target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so)
