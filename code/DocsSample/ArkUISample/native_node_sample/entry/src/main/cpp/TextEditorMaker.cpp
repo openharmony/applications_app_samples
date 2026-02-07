@@ -83,6 +83,8 @@ constexpr int32_t PREVIEW_TEXT_BUFFER_LEN = 100;
 constexpr double GLYPH_DX = 30.0;
 constexpr double GLYPH_DY = 20.0;
 constexpr int32_t RECTS_FOR_RANGE_END = 100;
+constexpr uint32_t SELECT_END = 2;
+constexpr uint32_t PARAGRAPH_SPACING = 5;
 }  // namespace
 
 #define EVENT_ON_SELECTION_CHANGE 1
@@ -623,7 +625,8 @@ void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle* style, uint32_t& width, ui
     OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
     // 获取图片的pixel格式，透明度等信息。
     uint32_t rowStride;
-    int32_t pixelFormat, alphaType;
+    int32_t pixelFormat;
+    int32_t alphaType;
     OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
     OH_PixelmapImageInfo_GetHeight(imageInfo, &height);
     OH_PixelmapImageInfo_GetRowStride(imageInfo, &rowStride);
@@ -666,7 +669,7 @@ void SetTypingParagraphStyle(ArkUI_TextEditorStyledStringController* controller)
                  "LineBreakStrategy: %{public}d",
                  LineBreakStrategy);
     uint32_t spacing;
-    OH_ArkUI_TextEditorParagraphStyle_SetParagraphSpacing(style, 5);
+    OH_ArkUI_TextEditorParagraphStyle_SetParagraphSpacing(style, PARAGRAPH_SPACING);
     OH_ArkUI_TextEditorParagraphStyle_GetParagraphSpacing(style, &spacing);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                  "pixelmapTest OH_ArkUI_TextEditorParagraphStyle_GetParagraphSpacing success, spacing: %{public}d",
@@ -789,6 +792,58 @@ void GetLineCount(ArkUI_TextLayoutManager* layoutManager)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getLineCount  %{public}d", lineCount);
 }
 
+void DoLayoutManager(ArkUI_NodeEvent* event)
+{
+    auto userData = OH_ArkUI_NodeEvent_GetUserData(event);
+    int eventIndex = OH_ArkUI_NodeEvent_GetTargetId(event);
+    auto layoutManager = reinterpret_cast<ArkUI_TextLayoutManager*>(userData);
+    switch (eventIndex) {
+        case BTN_LAYOUT_MANAGER_LINE_COUNT:
+            GetLineCount(layoutManager);
+            break;
+        case BTN_LAYOUT_MANAGER_RECTS_FOR_RANGE:
+            GetRectsForRange(layoutManager);
+            break;
+        case BTN_LAYOUT_MANAGER_GLYPH_POS:
+            GetGlyphPosition(layoutManager);
+            break;
+        case BTN_LAYOUT_MANAGER_LINE_METRICS:
+            GetLineMetrics(layoutManager);
+            break;
+        default:
+            break;
+    }
+}
+
+void DoEditing(ArkUI_TextEditorStyledStringController* controllerGet, int eventIndex)
+{
+    switch (eventIndex) {
+        case BTN_SET_SELECTION:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setSelection(0, 2)");
+            OH_ArkUI_TextEditorStyledStringController_SetSelection(controllerGet, 0, SELECT_END,
+                                                                   ArkUI_MenuPolicy::ARKUI_MENU_POLICY_HIDE);
+            break;
+        case BTN_IS_EDITING:
+            bool isEditing;
+            OH_ArkUI_TextEditorStyledStringController_IsEditing(controllerGet, &isEditing);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "isEditing=%{public}d", isEditing);
+            break;
+        case BTN_STOP_EDITING:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "stopEditing");
+            OH_ArkUI_TextEditorStyledStringController_StopEditing(controllerGet);
+            break;
+        case BTN_PREVIEW_TEXT:
+            GetPreviewText(controllerGet);
+            break;
+        case BTN_DELETE_BACKWARD:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "deleteBackward");
+            OH_ArkUI_TextEditorStyledStringController_DeleteBackward(controllerGet);
+            break;
+        default:
+            break;
+    }
+}
+
 static void OnBtnClickReceive(ArkUI_NodeEvent* event)
 {
     auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
@@ -799,7 +854,8 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
     auto controllerGet = reinterpret_cast<ArkUI_TextEditorStyledStringController*>(userData);
     int eventIndex = OH_ArkUI_NodeEvent_GetTargetId(event);
     int32_t caretPos = 0;
-    auto layoutManager = reinterpret_cast<ArkUI_TextLayoutManager*>(userData);
+    DoLayoutManager(event);
+    DoEditing(controllerGet, eventIndex);
     switch (eventIndex) {
         case BTN_GET_CARET_OFFSET:
             OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(controllerGet, &caretPos);
@@ -820,39 +876,6 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
         case BTN_SET_TYPING_PARAGRAPH_STYLE:
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingParagraphStyle");
             SetTypingParagraphStyle(controllerGet);
-            break;
-        case BTN_SET_SELECTION:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setSelection(0, 2)");
-            OH_ArkUI_TextEditorStyledStringController_SetSelection(controllerGet, 0, 2,
-                                                                   ArkUI_MenuPolicy::ARKUI_MENU_POLICY_HIDE);
-            break;
-        case BTN_IS_EDITING:
-            bool isEditing;
-            OH_ArkUI_TextEditorStyledStringController_IsEditing(controllerGet, &isEditing);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "isEditing=%{public}d", isEditing);
-            break;
-        case BTN_STOP_EDITING:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "stopEditing");
-            OH_ArkUI_TextEditorStyledStringController_StopEditing(controllerGet);
-            break;
-        case BTN_LAYOUT_MANAGER_LINE_COUNT:
-            GetLineCount(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_RECTS_FOR_RANGE:
-            GetRectsForRange(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_GLYPH_POS:
-            GetGlyphPosition(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_LINE_METRICS:
-            GetLineMetrics(layoutManager);
-            break;
-        case BTN_PREVIEW_TEXT:
-            GetPreviewText(controllerGet);
-            break;
-        case BTN_DELETE_BACKWARD:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "deleteBackward");
-            OH_ArkUI_TextEditorStyledStringController_DeleteBackward(controllerGet);
             break;
         default:
             break;

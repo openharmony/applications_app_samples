@@ -22,7 +22,7 @@ class TextEditorMaker {
 public:
     TextEditorMaker(){};
     ~TextEditorMaker(){};
-    static ArkUI_NodeHandle CreateNativeNode();    
+    static ArkUI_NodeHandle CreateNativeNode();
 };
 
 #endif //NATIVE_NODE_SAMPLE_TEXTEDITORMAKER_H
