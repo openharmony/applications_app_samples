@@ -371,9 +371,9 @@ async function func2() {
 // [End optionExample_keepFileName]
 
 // [Start optionExample_keepComments]
-/*
-* @class exportClass
-*/
+/**
+ * @class exportClass
+ */
 export class exportClass {}
 // [End optionExample_keepComments]
 
