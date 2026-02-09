@@ -51,6 +51,10 @@ OH_AudioRenderer_Callbacks callbacks;
 // [StartExclude Render_callBackInit]
 // [StartExclude Render_CustomCallback]
 
+std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
+FILE *g_fp = nullptr;
+int32_t g_mode = 0;
+
 // ==================== 回调函数 - CreateAudioRender 使用 ====================
 // [Start Render_Callback]
 // [Start Render_SetRendererWriteDataCallback]
@@ -63,6 +67,13 @@ static OH_AudioData_Callback_Result MyOnWriteData_New(
 {
     // 将待播放的数据，按audioDataSize长度写入audioData。
     // 如果开发者不希望播放某段audioData，返回AUDIO_DATA_CALLBACK_RESULT_INVALID即可。
+    int32_t readCount = fread(audioData, audioDataSize, 1, g_fp);
+    if (readCount < 0) {
+        return AUDIO_DATA_CALLBACK_RESULT_INVALID;
+    }
+    if (feof(g_fp)) {
+        fseek(g_fp, 0, SEEK_SET);
+    }
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
 // [StartExclude Render_SetRendererWriteDataCallback]
@@ -202,7 +213,10 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     // 设置同时写入PCM数据和元数据的回调。
     OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(builder, metadataCallback, nullptr);
     // [End Render_SetWriteDataWithMetadataCallback]
-    
+
+    g_fp = fopen(g_filePath.c_str(), "rb");
+    OH_AudioRenderer_Start(audioRenderer);
+
     std::stringstream ss;
     ss << "创建播放流成功\n";
     napi_value retVal;
@@ -219,6 +233,11 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
         // [End Render_Destroy]
         ss << "销毁播放流成功";
     }
+    OH_AudioRenderer_Stop(audioRenderer);
+    OH_AudioRenderer_Release(audioRenderer);
+    audioRenderer = nullptr;
+    (void)fclose(g_fp);
+    g_fp = nullptr;
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;
@@ -227,7 +246,8 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
 napi_value SetVolume(napi_env env, napi_callback_info info)
 {
     // [Start Render_SetVolume]
-    float volume = 0.5f;
+    static float volume = 0.1f;
+    volume = volume > 0.5f ? 0.1f : 0.8f;
 
     // 设置当前音频流音量值。
     OH_AudioRenderer_SetVolume(audioRenderer, volume);
@@ -235,7 +255,7 @@ napi_value SetVolume(napi_env env, napi_callback_info info)
     std::stringstream ss;
     ss << "设置音量成功\n";
     ss << "音量值: " << volume;
-    
+
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;
@@ -243,13 +263,16 @@ napi_value SetVolume(napi_env env, napi_callback_info info)
 
 napi_value setLatencyMode(napi_env env, napi_callback_info info)
 {
+    g_mode = g_mode == 0 ? 1 : 0;
     // [Start Render_SetLatencyMode]
-    OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
+    OH_AudioStream_LatencyMode latencyMode = g_mode == 0 ? AUDIOSTREAM_LATENCY_MODE_NORMAL :
+        AUDIOSTREAM_LATENCY_MODE_FAST;
+    OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
     // [End Render_SetLatencyMode]
-    std::stringstream ss;
-    ss << "设置时延模式成功\n";
-    ss << "模式: FAST";
     
+    std::stringstream ss;
+    ss << "设置时延模式成功\n模式: " << (g_mode == 0 ? "NORMAL" : "FAST");
+
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;
@@ -257,14 +280,13 @@ napi_value setLatencyMode(napi_env env, napi_callback_info info)
 
 napi_value getLatencyMode(napi_env env, napi_callback_info info)
 {
+    OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_NORMAL;
     // [Start Render_CheckLatencyMode]
-    OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode
-    (OH_AudioRenderer *renderer, OH_AudioStream_LatencyMode *latencyMode);
+    OH_AudioRenderer_GetLatencyMode(audioRenderer, &latencyMode);
     // [End Render_CheckLatencyMode]
     std::stringstream ss;
-    ss << "获取时延模式成功\n";
-    ss << "当前模式: ";
-    
+    ss << "获取时延模式成功\n当前模式: " << (latencyMode == AUDIOSTREAM_LATENCY_MODE_NORMAL ? "NORMAL" : "FAST");
+
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;

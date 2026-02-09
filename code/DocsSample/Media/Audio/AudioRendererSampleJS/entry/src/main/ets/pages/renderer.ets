@@ -355,15 +355,16 @@ async function release() {
 async function getvolume(){
   // [EndExclude get_systemvolume]
   // 获取指定流的音量。
-  audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  let streamVolume = audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
   // [StartExclude get_systemvolume]
   // [EndExclude get_systemvolume]
   // 获取指定流的最小音量。
-  audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  let minVolume = audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
   // 获取指定流的最大音量。
-  audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  let maxVolume = audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
   // [End get_systemvolume]
+  globalLogUpdate(`stream MUSIC Volume: ${streamVolume}, maxVolume: ${maxVolume}, minVolume: ${minVolume}`, false);
 }
 
 async function listenvolume(){
@@ -485,12 +486,14 @@ async function on(){
     // [EndExclude regist_spacesoundcallback]
   });
   // [End regist_spacesoundcallback]
+  globalLogUpdate(`Succeeded in regist isSpatializationEnabledForCurrentDevice callback`, false);
 }
 
 async function off() {
   // [EndExclude unregist_spacesoundcallback]
   audioSpatializationManager.off('spatializationEnabledChangeForCurrentDevice');
   // [End unregist_spacesoundcallback]
+  globalLogUpdate(`Succeeded in unregist isSpatializationEnabledForCurrentDevice callback`, false);
 }
 
 async function getRendererState(){

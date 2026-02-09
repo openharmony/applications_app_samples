@@ -71,7 +71,9 @@ function listenOutputStatus() {
 function cancelListenOutputStatus() {
   // [EndExclude deviceChange_output]
   // 取消监听音频设备状态变化。
-  audioRoutingManager.off('deviceChange');
+  audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
+    console.info('Should be no callback.');
+  });
   // [End deviceChange_output]
 }
 
@@ -84,6 +86,20 @@ async function getOutputDevices() {
     // [StartExclude get_OutputDevices]
     // 为UI收集设备信息
     let deviceInfo = 'Promise returned to indicate that the device list is obtained.\n';
+    deviceInfo += 'Device count: ' + data.length + '\n';
+    for (let i = 0; i < data.length; i++) {
+      console.info(`Device ${i} - id: ${data[i].id}`);
+      console.info(`Device ${i} - name: ${data[i].name}`);
+      console.info(`Device ${i} - type: ${data[i].deviceType}`);
+      console.info(`Device ${i} - role: ${data[i].deviceRole}`);
+      console.info(`Device ${i} - address: ${data[i].address}`);
+
+      deviceInfo += `Device ${i} - id: ${data[i].id}\n`;
+      deviceInfo += `Device ${i} - name: ${data[i].name}\n`;
+      deviceInfo += `Device ${i} - type: ${data[i].deviceType}\n`;
+      deviceInfo += `Device ${i} - role: ${data[i].deviceRole}\n`;
+      deviceInfo += `Device ${i} - address: ${data[i].address}\n`;
+    }
     if (globalLogUpdate) {
       globalLogUpdate(deviceInfo, false);
     }
@@ -119,7 +135,9 @@ function listenOutputDeviceChangeForRendererInfo() {
 function cancelListenOutputDeviceChangeForRendererInfo() {
   // [EndExclude listen_OutputDeviceChangeForRendererInfo]
   // 取消监听最高优先级输出设备变化。
-  audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+  audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', (desc: audio.AudioDeviceDescriptors) => {
+    console.info('Should be no callback.');
+  });
   // [End listen_OutputDeviceChangeForRendererInfo]
 }
 
@@ -129,12 +147,25 @@ async function getPreferOutputDeviceForRendererInfo() {
   // 获取前先监听
   listenOutputDeviceChangeForRendererInfo();
   // [EndExclude get_PreferOutputDeviceForRendererInfo]
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
-    console.info(`device descriptor: ${desc}`);
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data: audio.AudioDeviceDescriptors) => {
+    console.info(`device descriptor: ${data}`);
 
     // [StartExclude get_PreferOutputDeviceForRendererInfo]
     // 为UI收集信息
-    let preferInfo = `device descriptor: ${desc}\n`;
+    let preferInfo ='Device count: ' + data.length + '\n';
+    for (let i = 0; i < data.length; i++) {
+      console.info(`Device ${i} - id: ${data[i].id}`);
+      console.info(`Device ${i} - name: ${data[i].name}`);
+      console.info(`Device ${i} - type: ${data[i].deviceType}`);
+      console.info(`Device ${i} - role: ${data[i].deviceRole}`);
+      console.info(`Device ${i} - address: ${data[i].address}`);
+
+      preferInfo += `Device ${i} - id: ${data[i].id}\n`;
+      preferInfo += `Device ${i} - name: ${data[i].name}\n`;
+      preferInfo += `Device ${i} - type: ${data[i].deviceType}\n`;
+      preferInfo += `Device ${i} - role: ${data[i].deviceRole}\n`;
+      preferInfo += `Device ${i} - address: ${data[i].address}\n`;
+    }
     if (globalLogUpdate) {
       globalLogUpdate(preferInfo, false);
     }

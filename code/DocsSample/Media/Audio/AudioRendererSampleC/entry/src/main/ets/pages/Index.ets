@@ -14,6 +14,8 @@
 */
 
 import testNapi from 'libentry.so';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 @Entry
 @Component
@@ -25,6 +27,16 @@ struct audiosession {
   updateNapiLog(msg: string) {
     const timestamp = new Date().toLocaleTimeString();
     this.napiReturnLog = `[${timestamp}]\n${msg}`;
+  }
+
+  aboutToAppear() {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let value = context.resourceManager.getRawFileContentSync("S16LE_2_48000.pcm");
+    let myBuffer: ArrayBufferLike = value?.buffer;
+    let filePath = context.filesDir + "/" + "S16LE_2_48000.pcm";
+    let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    fs.writeSync(file.fd, myBuffer);
+    fs.closeSync(file);
   }
 
   build() {
