@@ -15,7 +15,7 @@
 
 // [Start v1_use_v2]
 @ComponentV2
-struct Child6 {
+struct ChildSix {
   @Local message: string = 'hello';
 
   build() {
@@ -32,7 +32,7 @@ struct Child6 {
 
 @Entry
 @Component
-struct Index6 {
+struct IndexSix {
   @State message: string = 'Hello World';
 
   build() {
@@ -45,7 +45,8 @@ struct Index6 {
         })
       Divider()
         .color(Color.Blue)
-      Child6()
+      // 可以只是使用无参数的V2组件
+      ChildSix()
     }
     .height('100%')
     .width('100%')

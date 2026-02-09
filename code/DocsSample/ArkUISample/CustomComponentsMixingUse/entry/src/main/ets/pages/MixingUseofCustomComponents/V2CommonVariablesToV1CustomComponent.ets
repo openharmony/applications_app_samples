@@ -14,7 +14,7 @@
  */
 
 // [Start v2_to_v1_common_variables]
-class Info5 {
+class InfoFive {
   public myId: number;
   public name: string;
 
@@ -25,70 +25,31 @@ class Info5 {
 }
 
 @Component
-struct Child5 {
-  // V1从V2接收的状态变量，若使用装饰器，仅可使用@State、@Prop、@Provide接收
-  @State  message: string = 'hello';             // 可以观测到变化
-  @State info: Info5 = new Info5();                  // 可以观测一层类属性变化
-  @Prop undefinedVal: undefined | string = undefined;
-  @Provide setMap: Set<number> = new Set();
+struct ChildFive {
+  // V1从V2接收的状态变量，仅可使用@State、@Prop、@Provide接收
+  @State info: InfoFive = new InfoFive(); // 可以观测一层类属性变化
+
   build() {
     Column() {
-      Text(`child message:${this.message}`)     // 显示string
+      Text(`info id:${this.info.myId}`) // 显示info:myId
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.message = 'world';
+          this.info.myId++; // 当前组件UI刷新
         })
-      Divider()
-        .color(Color.Blue)
-      Text(`undefinedVal:${this.undefinedVal}`)     // 显示undefinedVal
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          this.undefinedVal = 'change to define';
-        })
-      Divider()
-        .color(Color.Blue)
-      Text(`info id:${this.info.myId}`)             // 显示info:myId
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          this.info.myId++;
-        })
-      Divider()
-        .color(Color.Blue)
-      ForEach(Array.from(this.setMap.values()), (item: number) => {  // 显示 Set
-        Text(`${item}`)
-          .fontSize(30)
-      })
     }
-    .margin(5)
   }
 }
 
 @Entry
 @ComponentV2
-struct Index5 {
-  message: string = 'Hello World';       // 简单数据类型
-  undefinedVal: undefined = undefined;    // 简单数据类型，undefined
-  info: Info5 = new Info5();               // Class类型
-  set: Set<number> = new Set([10, 20]);  // 内置 类型
+struct IndexFive {
+  @Provider() info: InfoFive = new InfoFive(); // Class类型，支持传递
 
   build() {
     Column() {
-      Text(`message:${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          this.message = 'world hello';
-        })
-      Divider()
-        .color(Color.Blue)
-      Child5({
-        message: this.message,
-        undefinedVal: this.undefinedVal,
+      ChildFive({
         info: this.info,
-        setMap: this.set
       })
     }
     .height('100%')

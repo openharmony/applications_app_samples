@@ -149,6 +149,14 @@
       "value": "常见问题：复杂类型常量重复赋值给状态变量触发刷新--使用UIUtils.getTarget()方法示例"
     },
     {
+      "name": "local_question_v1_animate_to",
+      "value": "状态管理V1中使用animateTo动画效果"
+    },
+    {
+      "name": "local_question_animateToImmediately",
+      "value": "状态管理V2中使用animateTo动画效果异常--使用animateToImmediately接口实现预期的显示效果（API version 22之前）"
+    },
+    {
       "name": "local_question_v2_animate_to",
       "value": "状态管理V2中使用animateTo动画效果异常--animateTo暂不支持直接在状态管理V2中使用"
     },
@@ -323,6 +331,10 @@
     {
       "name": "sync_usage_example",
       "value": "使用示例：以TextInput方法的text参数为例"
+    },
+    {
+      "name": "sync_usage_example_v2",
+      "value": "使用示例：TextInput方法的用!!双向绑定text参数为例"
     },
     {
       "name": "migration_data_object_variables",
@@ -637,6 +649,10 @@
       "value": "实现类似LocalStorage实例在子组件树上共享的能力。"
     },
     {
+      "name": "Internal_Trace_multiInstance_V2",
+      "value": "多实例场景LocalStorage的迁移"
+    },
+    {
       "name": "Internal_AppStorage_V1_one",
       "value": "AppStorage与应用进程绑定支持跨Ability数据共享V1one"
     },
@@ -735,6 +751,14 @@
     {
       "name": "Internal_Attribute_Updater_V2",
       "value": "V2:将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新"
+    },
+    {
+      "name": "PdfEntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PdfEntryAbility_label",
+      "value": "label"
     }
   ]
 }

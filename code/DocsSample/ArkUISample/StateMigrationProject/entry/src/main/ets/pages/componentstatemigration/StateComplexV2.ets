@@ -23,12 +23,12 @@ class Child {
 @ComponentV2
 @Entry
 struct Example {
+  // @Local只能观察自身，需要给Child加上@ObservedV2和@Trace
   @Local child: Child = new Child();
 
   build() {
     Column() {
       Text(this.child.value.toString())
-      // @Local只能观察自身，需要给Child加上@ObservedV2和@Trace
       Button('value+1')
         .onClick(() => {
           this.child.value++;
