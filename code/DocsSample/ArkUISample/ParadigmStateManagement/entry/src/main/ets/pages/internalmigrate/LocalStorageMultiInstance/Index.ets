@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [start Internal_localStorage_multi_instance_1]
+// [Start Internal_localStorage_multi_instance_1]
 // Index.ets
 import { common, Want } from '@kit.AbilityKit';
 
