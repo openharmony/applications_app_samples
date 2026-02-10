@@ -46,7 +46,7 @@ struct Index {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`)
+            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${form.id}`)
             this.formId = form.id.toString();
           })
           .onRouter(() => {
