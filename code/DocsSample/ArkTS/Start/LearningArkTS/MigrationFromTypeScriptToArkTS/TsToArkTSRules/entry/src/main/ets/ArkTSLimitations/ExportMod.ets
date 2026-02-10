@@ -18,7 +18,7 @@ export class Mod {}
 export class Something {}
 
 // [Start export_classC]
-// lib1.ets
+// ExportMod.ets
 export class C {
   // ...
 }
@@ -34,7 +34,7 @@ export declare namespace N {
 // [End declare_namespace]
 
 // [Start no_exportAssignOne]
-// module1
+// ExportMod.ets
 export class Point {
   constructor(x: number, y: number) {}
   public static origin = new Point(0, 0)
@@ -42,7 +42,7 @@ export class Point {
 // [End no_exportAssignOne]
 
 // [Start no_globalThisExport]
-// file1
+// ExportMod.ets
 export let abc: number = 100;
 // [End no_globalThisExport]
 

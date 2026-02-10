@@ -17,9 +17,11 @@
 @Sendable
 export class MyObject {
   constructor(arg: number);
+
   plusOne(): number;
 
   public get value(): number;
+
   public set value(newVal: number);
 }
 // [End export_myObject]

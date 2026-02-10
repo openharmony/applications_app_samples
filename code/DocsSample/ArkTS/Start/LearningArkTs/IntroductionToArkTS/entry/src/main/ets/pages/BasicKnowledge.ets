@@ -42,10 +42,10 @@ function factorial(n: number): number {
   // [StartExclude float_type_factorial]
 function testFloatType() {
   // [EndExclude float_type_factorial]
-  factorial(n1) //  7.660344000000002
-  factorial(n2) //  7.680640444893748
-  factorial(n3) //  1
-  factorial(n4) //  9.33262154439441e+157
+  factorial(n1) // 7.660344000000002
+  factorial(n2) // 7.680640444893748
+  factorial(n3) // 1
+  factorial(n4) // 9.33262154439441e+157
   // [End float_type_factorial]
 
   console.info('factorial(n1): ' + factorial(n1));
@@ -96,7 +96,7 @@ let s3 = `The result is ${a}`;
 // [End string_examples]
 // [Start generic_class]
 class Class<T> {
-  //...
+  // ...
 }
 let instance: Class<void>;
 // [End generic_class]

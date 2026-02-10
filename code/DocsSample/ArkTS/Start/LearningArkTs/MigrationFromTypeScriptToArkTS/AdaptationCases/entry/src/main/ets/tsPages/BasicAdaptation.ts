@@ -255,8 +255,8 @@ function foo2(params: Object) {
     }
   }
 
-  let s: C = new C(-2);   //抛出异常
-  let t: C = { value: -2 }; //ArkTS不支持
+  let s: C = new C(-2);   // 抛出异常
+  let t: C = { value: -2 }; // ArkTS不支持
   // [End ts_no_structural_typing_two]
 }
 

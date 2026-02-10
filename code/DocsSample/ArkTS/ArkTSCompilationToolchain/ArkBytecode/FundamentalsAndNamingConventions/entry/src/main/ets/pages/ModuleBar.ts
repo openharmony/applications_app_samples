@@ -14,6 +14,6 @@
 */
 
 // [Start namespaces_Variables_bar]
-//ModuleBar.ts
+// ModuleBar.ts
 export let c: number = 4;
 // [End namespaces_Variables_bar]

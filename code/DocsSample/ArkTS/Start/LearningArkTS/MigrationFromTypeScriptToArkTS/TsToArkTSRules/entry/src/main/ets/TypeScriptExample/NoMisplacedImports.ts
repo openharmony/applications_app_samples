@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 // [Start no_misplaced_imports_ts]
-class B {
+class C {
   s: string = ''
   n: number = 0
 }
 
-import { C } from './ExportMod'
+import foo from './ExportMod'
 // [End no_misplaced_imports_ts]

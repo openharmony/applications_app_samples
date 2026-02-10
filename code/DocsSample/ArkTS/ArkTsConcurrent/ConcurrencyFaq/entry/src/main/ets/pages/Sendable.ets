@@ -15,9 +15,11 @@
 // [Start define_sendable]
 // pages/Sendable.ets
 'use shared'
+
 @Sendable
 export class A {
   public name: string = 'name';
+
   printName(): string {
     return this.name;
   }
@@ -25,13 +27,15 @@ export class A {
 // [End define_sendable]
 
 // [Start define_sendableTwo]
-// sendable.ets，与Index.ets在同级目录下
+// Sendable.ets，与Index.ets在同级目录下
 @Sendable
 export class TestClass {
   public name: string = 'test';
+
   setName(name: string) {
     this.name = name;
   }
+
   getName(): string {
     return this.name;
   }
@@ -39,7 +43,7 @@ export class TestClass {
 // [End define_sendableTwo]
 
 // [Start define_sendableThree]
-// sendable.ets
+// Sendable.ets
 @Sendable
 export class SendableItem {
   public name: string = '';

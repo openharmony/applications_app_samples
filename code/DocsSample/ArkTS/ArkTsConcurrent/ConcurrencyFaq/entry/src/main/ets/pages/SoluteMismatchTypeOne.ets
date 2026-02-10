@@ -23,6 +23,7 @@ export class A {
   constructor(b: B) {
     this.b = b;
   }
+
   public b: B | undefined = undefined;
 }
 // [End define_resolveOne]

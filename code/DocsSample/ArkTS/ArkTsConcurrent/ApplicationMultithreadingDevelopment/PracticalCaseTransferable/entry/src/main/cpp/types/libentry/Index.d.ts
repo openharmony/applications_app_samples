@@ -15,9 +15,14 @@
 // [Start declare_function]
 // Index.d.ts
 export const getAddress: () => number;
+
 export const getSetSize: () => number;
+
 export const store: (a: number) => void;
+
 export const erase: (a: number) => void;
+
 export const clear: () => void;
-export const setTransferDetached: (b : boolean) => number;
+
+export const setTransferDetached: (b: boolean) => number;
 // [End declare_function]

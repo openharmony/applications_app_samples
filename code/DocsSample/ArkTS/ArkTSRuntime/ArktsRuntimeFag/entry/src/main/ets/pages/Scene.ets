@@ -14,18 +14,18 @@
 */
 
 // [Start test_safeAsyncCall]
-  // [StartExclude test_safeAsyncCall]
 import { errorManager } from '@kit.AbilityKit';
+  // [StartExclude test_safeAsyncCall]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
-// 方舟正则运算对于\b处理与预期不一致。
+// 方舟正则运算对于\b处理与预期不一致
 function testWordBoundaryInArkRegex() {
   // [Start test_wordBoundaryInArkRegex]
   let str = '\u2642';
   let res = str.replace(/\b/g, '/');
   console.info('res = ' + res);
-  // 期望输出: res = ♂。
-  // 实际输出: res = /♂/。
+  // 期望输出: res = ♂
+  // 实际输出: res = /♂/
   // [End test_wordBoundaryInArkRegex]
 
   let logMsg = 'res = ' + res;
@@ -34,12 +34,12 @@ function testWordBoundaryInArkRegex() {
   }
 }
 
-// 方舟正则运算对于先行断言((?=pattern)或(?!pattern)) 嵌套在后行断言((?<=pattern)或(?<!pattern))内部的场景与预期不一致。
+// 方舟正则运算对于先行断言((?=pattern)或(?!pattern)) 嵌套在后行断言((?<=pattern)或(?<!pattern))内部的场景与预期不一致
 function testLookbehindWithNestedLookahead() {
   // [Start test_lookbehindWithNestedLookahead]
   console.info(`res:${'abcdef'.match(/(?<=ab(?=c)cd)ef/)}`);
-  // 期望输出: res:ef。
-  // 实际输出: res:null。
+  // 期望输出: res:ef
+  // 实际输出: res:null
   // [End test_lookbehindWithNestedLookahead]
 
   let logMsg = `res:${'abcdef'.match(/(?<=ab(?=c)cd)ef/)}`;
@@ -48,13 +48,13 @@ function testLookbehindWithNestedLookahead() {
   }
 }
 
-// 方舟正则运算对于大小写的处理与预期不一致。
+// 方舟正则运算对于大小写的处理与预期不一致
 function testRegexIgnoreCaseCaseFolding() {
   // [Start test_regexIgnoreCaseCaseFolding]
   let res = /\u{10400}/ui.test('\u{10428}');
   console.info('res = ' + res);
-  // 期望输出: res = true。
-  // 实际输出: res = false。
+  // 期望输出: res = true
+  // 实际输出: res = false
   // [End test_regexIgnoreCaseCaseFolding]
 
   let logMsg = 'res = ' + res;
@@ -63,7 +63,7 @@ function testRegexIgnoreCaseCaseFolding() {
   }
 }
 
-// 方舟正则运算/()/ug匹配时lastIndex与预期不一致。
+// 方舟正则运算/()/ug匹配时lastIndex与预期不一致
 function testRegexLastIndexWithEmptyGroupInGlobalUnicodeMode() {
   // [Start test_regexLastIndexWithEmptyGroupInGlobalUnicodeMode]
   let L = '\ud800';
@@ -72,8 +72,8 @@ function testRegexLastIndexWithEmptyGroupInGlobalUnicodeMode() {
   u.lastIndex = 1;
   u.exec(L + T + L + T);
   console.info('u.lastIndex = ' + u.lastIndex);
-  // 期望输出: u.lastIndex = 0。
-  // 实际输出: u.lastIndex = 1。
+  // 期望输出: u.lastIndex = 0
+  // 实际输出: u.lastIndex = 1
   // [End test_regexLastIndexWithEmptyGroupInGlobalUnicodeMode]
 
   let logMsg = 'u.lastIndex = ' + u.lastIndex;
@@ -82,20 +82,20 @@ function testRegexLastIndexWithEmptyGroupInGlobalUnicodeMode() {
   }
 }
 
-// 方舟正则运算[]内部使用'-'与预期不一致。
+// 方舟正则运算[]内部使用'-'与预期不一致
 function testRegexHyphenInCharacterClass() {
   // [Start test_beforeRegexHyphenInCharacterClass]
   let str = 'a-b';
   let reg = /[+-\s]/;
   console.info('reg.exec(str) = ' + reg.exec(str));
-  // 期望输出: reg.exec(str) = -。
-  // 实际输出: reg.exec(str) = null。
+  // 期望输出: reg.exec(str) = -
+  // 实际输出: reg.exec(str) = null
   // [End test_beforeRegexHyphenInCharacterClass]
 
   let logMsg = 'before reg.exec(str) = ' + reg.exec(str) + '\n';
 
   {
-    // 规避方案：使用转义后的'-'。
+    // 规避方案：使用转义后的'-'
     // [Start test_afterRegexHyphenInCharacterClass]
     let str = 'a-b';
     let reg = /[+\-\s]/;
@@ -110,14 +110,14 @@ function testRegexHyphenInCharacterClass() {
   }
 }
 
-// 方舟正则运算具名捕获组获取与预期不一致。
+// 方舟正则运算具名捕获组获取与预期不一致
 function testNamedCaptureGroupAccess() {
   // [Start test_namedCaptureGroupAccess]
   let reg = new RegExp('(a)(?<b>b)');
   let res = reg.exec('ab');
   console.info('JSON.stringify(res?.groups) = ' + JSON.stringify(res?.groups));
-  // 期望输出: JSON.stringify(res?.groups) = {'b':'b'}。
-  // 实际输出: JSON.stringify(res?.groups) = {'b':'a'}。
+  // 期望输出: JSON.stringify(res?.groups) = {'b':'b'}
+  // 实际输出: JSON.stringify(res?.groups) = {'b':'a'}
   // [End test_namedCaptureGroupAccess]
 
   let logMsg = 'JSON.stringify(res?.groups) = ' + JSON.stringify(res?.groups);
@@ -126,7 +126,7 @@ function testNamedCaptureGroupAccess() {
   }
 }
 
-// 规避方案：计算具名捕获组位置获取具名捕获组匹配的内容。
+// 规避方案：计算具名捕获组位置获取具名捕获组匹配的内容
 function testGetNamedGroupMatchByIndexFallback() {
   // [Start test_getNamedGroupMatchByIndexFallback]
   let reg = new RegExp('(a)(?<b>b)');
@@ -140,17 +140,17 @@ function testGetNamedGroupMatchByIndexFallback() {
   }
 }
 
-// 方舟正则匹配使用'|'与预期不一致。
+// 方舟正则匹配使用'|'与预期不一致
 function testRegexAlternationOperator() {
   // [Start test_beforeRegexAlternationOperator]
   let reg = /a(?:|x)$/;
   let res = reg.exec('ax');
   console.info('JSON.stringify(res) = ' + JSON.stringify(res));
-  // 期望输出: JSON.stringify(res) = ['ax']。
-  // 实际输出: JSON.stringify(res) = null。
+  // 期望输出: JSON.stringify(res) = ['ax']
+  // 实际输出: JSON.stringify(res) = null
   // [End test_beforeRegexAlternationOperator]
 
-  // 规避方案：使用reg2或reg3替换reg1。
+  // 规避方案：使用reg2或reg3替换reg1
   // [Start test_afterRegexAlternationOperator]
   let reg1 = /a(?:|x)$/;
   let reg2 = /a(?:x)?$/;
@@ -171,18 +171,18 @@ function testRegexAlternationOperator() {
   }
 }
 
-// 方舟字符串 replace 接口对于第一个参数为空字符串的场景与预期不一致。
+// 方舟字符串 replace 接口对于第一个参数为空字符串的场景与预期不一致
 function testStringReplaceWithEmptySearchValue() {
   // [Start test_beforeStringReplaceWithEmptySearchValue]
   let str = 'dddd';
   let res = str.replace('', 'abc');
   console.info('res = ' + res);
-  // 期望输出: res = abcdddd。
-  // 实际输出: res = dddd。
+  // 期望输出: res = abcdddd
+  // 实际输出: res = dddd
   // [End test_beforeStringReplaceWithEmptySearchValue]
   let logMsg = 'res = ' + res + '\n';
 
-  // 规避方案：使用正则表达式 /^/ 表示字符串起始符，作为第一个参数。
+  // 规避方案：使用正则表达式 /^/ 表示字符串起始符，作为第一个参数
   {
     // [Start test_afterStringReplaceWithEmptySearchValue]
     let str = 'dddd';
@@ -198,7 +198,7 @@ function testStringReplaceWithEmptySearchValue() {
   }
 }
 
-// Async函数内部异常的捕获方式。
+// Async函数内部异常的捕获方式
 function testSafeAsyncCall() {
   // [EndExclude test_safeAsyncCall]
   errorManager.on('unhandledRejection', (a:ESObject, b:Promise<ESObject>) => {
@@ -218,7 +218,7 @@ async function foo() {
 }
 
 interface ProxyHandler<T> {}
-// 方舟Array.flatMap()接口常见问题。
+// 方舟Array.flatMap()接口常见问题
 function testArrayFlatMapCompliance() {
   // [Start test_arrayFlatMapCompliance]
   let arr1 = [0, 1];
@@ -230,18 +230,18 @@ function testArrayFlatMapCompliance() {
   let res = arr3.flatMap(x => x);
 
   console.info('res length:', res.length.toString());
-  // 期望输出: res length: 4。
-  // 实际输出: res length: 2。
+  // 期望输出: res length: 4
+  // 实际输出: res length: 2
   console.info('res[0] is: ', res[0].toString());
-  // 期望输出: res[0] is: 0。
-  // 实际输出: res[0] is: 0,1。
+  // 期望输出: res[0] is: 0
+  // 实际输出: res[0] is: 0,1
   // [End test_arrayFlatMapCompliance]
 
   let logMsg = 'res length: ' + res.length.toString() + '\nres[0] is:  ' + res[0].toString() + '\n';
 
   {
     // [Start test_afterArrayFlatMapCompliance]
-    // 使用规避方案前。
+    // 使用规避方案前
     let res = arr3.flatMap(x => x);
     // [StartExclude test_afterArrayFlatMapCompliance]
 
@@ -252,7 +252,7 @@ function testArrayFlatMapCompliance() {
   }
   {
     // [EndExclude test_afterArrayFlatMapCompliance]
-    // 使用规避方案后。
+    // 使用规避方案后
     let res = arr3.map(x => x).flat();
     // [End test_afterArrayFlatMapCompliance]
     console.info('res2 length: ', res.length.toString());

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start save_result]
-// Index.ets
+// SaveResult.ets
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { TestClass } from './Sendable'
@@ -22,6 +22,7 @@ import { TestClass } from './Sendable'
 function createTask(a: number): string {
   return `test${a}`;
 }
+
 function executeTask() {
   let testObject: TestClass = new TestClass();
   let task: taskpool.Task = new taskpool.Task(createTask, 1)

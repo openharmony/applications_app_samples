@@ -32,7 +32,7 @@ struct GetRecentList {
   @State message: string = '书架';
   @State books: string[] = [];
 
-  async aboutToAppear () {
+  async aboutToAppear() {
     // 自动获取最近访问的图书列表
     this.books = await lruCache.keys();
   }

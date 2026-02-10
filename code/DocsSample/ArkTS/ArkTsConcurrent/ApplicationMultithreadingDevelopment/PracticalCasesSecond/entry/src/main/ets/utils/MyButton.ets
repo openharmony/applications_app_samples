@@ -100,6 +100,8 @@ export struct MyButton {
               case 'noFun':
                 this.fileName = this.fileName;
                 break;
+              default:
+                break;
             }
             this.logger.log((this.fun.toString()) + '\n end:->>>>>>>>>>>>>>>>>>>>>>');
             this.returnMessage = 'Yes';

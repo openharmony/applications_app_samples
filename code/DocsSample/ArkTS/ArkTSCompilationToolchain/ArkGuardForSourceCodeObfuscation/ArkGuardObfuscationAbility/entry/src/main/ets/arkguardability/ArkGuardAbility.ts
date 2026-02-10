@@ -14,7 +14,7 @@
 */
 
 // [Start optionExample_enableFilenameObfuscation]
-// example.ts
+// ArkGuardAbility.ts
 // 混淆前：
 import * as m from '../FilenameObfuscationTest/FilenameObfuscationTest';
 import { foo } from '../FilenameObfuscationTest/FilenameObfuscationTest';
@@ -30,7 +30,7 @@ import { ValuesBucket } from '@kit.ArkData';
 
 // [Start example_limitation]
 // 混淆前：
-// example.ts
+// ArkGuardAbility.ts
 class A1 {
   prop1: string = '';
 }
@@ -59,7 +59,7 @@ TestA.prop1;
 // [End optionExample_compact]
 
 // [Start optionExample_enablePropertyObfuscation2]
-// example.ts
+// ArkGuardAbility.ts
 export class MyClass01 {
   data1: string;
 }
@@ -72,7 +72,7 @@ let name = person1.exampleName;
 
 // [Start optionExample_enableStringPropertyObfuscation1]
 // 混淆前：
-// example.ts
+// ArkGuardAbility.ts
 let person = {"exampleName": "abc"};
 person["exampleAge"] = 22;
 // [End optionExample_enableStringPropertyObfuscation1]
@@ -137,7 +137,7 @@ function foo1() {
 // [End optionExample_removeLog3]
 
 // [Start optionExample_removeLog4]
-// example.ts
+// ArkGuardAbility.ts
 namespace ns {
   console.info('in ns');
 }
@@ -167,7 +167,7 @@ enum Test1 {
 // [End optionExample_printKeptNames1]
 
 // [Start optionExample_printKeptNames2]
-// example.ts
+// ArkGuardAbility.ts
 let outdoor = 1;
 enum Test2 {
   member1,
@@ -265,7 +265,7 @@ export class MyClass05 {
 // [End optionExample_useKeepInSource7]
 
 // [Start optionExample_useKeepInSource8]
-// example.ts
+// ArkGuardAbility.ts
 const myMethodName = "myMethod";
 
 // 11，aa，myMethod不会被收集到白名单中
@@ -291,7 +291,7 @@ enum MyEnum {
 // -enable-property-obfuscation
 // -enable-string-property-obfuscation
 
-// example.ts
+// ArkGuardAbility.ts
 var obj2 = {t:'1', m:'2'};
 obj2.t = 'a';
 console.info(obj2['t']); // 此时，'t'会被正确混淆，t可以选择性保留
@@ -354,7 +354,7 @@ class A {
 // [End optionExample_keepPropertyName5]
 
 // [Start optionExample_keepGlobalName]
-// example.ts
+// ArkGuardAbility.ts
 export namespace Ns {
   export const myAge = 18 // -keep-global-name myAge 保留变量myAge
   export function myFunc() {} // -keep-global-name myFunc 保留函数myFunc
@@ -379,7 +379,7 @@ export class exportClass {}
 
 // [Start example_openObfuscation1]
 // 静态定义，动态访问：属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
-// example.ts
+// ArkGuardAbility.ts
 const obj001 = {
   staticName: 'value'  // 静态定义属性
 };
@@ -389,10 +389,10 @@ console.info(obj001[fieldName]);  // 使用方括号语法动态访问属性
 
 // [Start example_openObfuscation2]
 // 动态定义，静态访问：属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设开发者知道属性名的结果）
-// example.ts
+// ArkGuardAbility.ts
 const dynamicExpression = 'dynamicPropertyName';
 const obj002 = {
   [dynamicExpression]: 'value'  // 动态定义属性
 };
-console.info(obj002.dynamicPropertyName);//使用点语法静态访问属性，需使用-keep-property-name dynamicPropertyName来保留该属性名
+console.info(obj002.dynamicPropertyName);// 使用点语法静态访问属性，需使用-keep-property-name dynamicPropertyName来保留该属性名
 // [End example_openObfuscation2]

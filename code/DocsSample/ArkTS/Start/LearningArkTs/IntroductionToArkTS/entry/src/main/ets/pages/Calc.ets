@@ -18,7 +18,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 // [End module_import_sdk]
 // [Start module_dynamic_import_ts]
 // Calc.ets
-export function add(a:number, b:number):number {
+export function add(a: number, b: number): number {
   let c = a + b;
   console.info('Dynamic import, %d + %d = %d', a, b, c);
   return c;

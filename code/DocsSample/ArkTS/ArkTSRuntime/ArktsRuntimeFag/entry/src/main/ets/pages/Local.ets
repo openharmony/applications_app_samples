@@ -28,7 +28,7 @@ struct Index {
 
   build() {
     Column() {
-      Text(`${this.d[0]}`); // 预期显示：0; 实际显示：0,1。
+      Text(`${this.d[0]}`); // 预期显示：0; 实际显示：0,1
     }
   }
 }

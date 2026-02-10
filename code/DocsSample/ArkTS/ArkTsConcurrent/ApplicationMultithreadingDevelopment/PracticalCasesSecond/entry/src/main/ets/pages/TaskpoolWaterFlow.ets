@@ -20,7 +20,8 @@ import { getImgFromDB } from '../utils/Mock';
 
 // 模拟图片数组
 let img = new Array<string>(33);
-export function fillImg(imgArr : Array<string>) {
+
+export function fillImg(imgArr: Array<string>) {
   img = imgArr;
 }
 
@@ -35,6 +36,7 @@ struct TaskpoolWaterFlow {
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
+
   // 计算FlowItem宽/高
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize);
@@ -69,7 +71,7 @@ struct TaskpoolWaterFlow {
   build() {
     Column({ space: 2 }) {
       Text('ArkUI WaterFlow Demo')
-        .onAppear(()=>{
+        .onAppear(() => {
           getImgFromDB();
         })
       // [StartExclude data_render]
@@ -82,7 +84,7 @@ struct TaskpoolWaterFlow {
               Text('N' + item)
                 .fontSize(12)
                 .height('16')
-                .onClick(()=>{});
+                .onClick(() => {});
               // 为了模拟图片加载，使用Text组件显示，正常加载jpg文件时，可以直接使用Image组件，
               // 参考Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)
               if (img[item % 33] == null) {

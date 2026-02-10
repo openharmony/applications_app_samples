@@ -15,7 +15,7 @@
 
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
-// Int32Array的map方法在内联缓存优化下的问题。
+// Int32Array的map方法在内联缓存优化下的问题
 function testInt32ArrayMapIssue() {
   // [Start test_int32ArrayMapIssue]
   for(let i = 0; i < 1000; i++) {} // 触发内联缓存优化
@@ -37,7 +37,7 @@ function testInt32ArrayMapIssue() {
   }
 }
 
-// Int32Array转换为普通数组后使用map方法的规避方案。
+// Int32Array转换为普通数组后使用map方法的规避方案
 function testInt32ArrayMapWorkaround() {
   // [Start test_int32ArrayMapWorkaround]
   let arr = new Int32Array([1, 2, 3, 4, 5]);
@@ -58,7 +58,7 @@ function testInt32ArrayMapWorkaround() {
   }
 }
 
-// parseFloat处理极小数的问题。
+// parseFloat处理极小数的问题
 function testParseFloatTinyNumber() {
   // [Start test_parseFloatTinyNumber]
   let result = parseFloat('5e-324');
@@ -73,7 +73,7 @@ function testParseFloatTinyNumber() {
   }
 }
 
-// Set配合Array.from使用时的问题。
+// Set配合Array.from使用时的问题
 function testSetArrayFrom() {
   // [Start test_setArrayFrom]
   const arr1: number[] = [1, 2];
