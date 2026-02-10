@@ -26,6 +26,7 @@ using namespace std::chrono_literals;
 constexpr int64_t MICROSECOND = 1000000;
 constexpr int32_t INPUT_FRAME_BYTES = 2 * 1024;
 constexpr int64_t TIMEOUT_US = 5000000;
+constexpr int32_t UNIT_CONVERSION = 1000;
 }
 
 Recorder::~Recorder() { StartRelease(); }
@@ -137,7 +138,11 @@ void Recorder::VideoEncOutputSyncThread()
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) ||
                 (bufferInfo.attr.flags == AVCODEC_BUFFER_FLAGS_NONE)) {
                     encContext_->outputFrameCount++;
-                    bufferInfo.attr.pts = encContext_->outputFrameCount * MICROSECOND / sampleInfo_.frameRate;
+                    if (isVideoEncFirstSyncFrame_) {
+                        videoFirstSyncFramePts_ = bufferInfo.attr.pts;
+                        isVideoEncFirstSyncFrame_.store(false);
+                    }
+                    bufferInfo.attr.pts = (bufferInfo.attr.pts - videoFirstSyncFramePts_) / UNIT_CONVERSION;
         } else {
             bufferInfo.attr.pts = 0;
         }
@@ -173,7 +178,11 @@ void Recorder::VideoEncOutputAsyncThread()
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) ||
                 (bufferInfo.attr.flags == AVCODEC_BUFFER_FLAGS_NONE)) {
                     encContext_->outputFrameCount++;
-                    bufferInfo.attr.pts = encContext_->outputFrameCount * MICROSECOND / sampleInfo_.frameRate;
+                    if (isVideoEncFirstSyncFrame_) {
+                        videoFirstSyncFramePts_ = bufferInfo.attr.pts;
+                        isVideoEncFirstSyncFrame_.store(false);
+                    }
+                    bufferInfo.attr.pts = (bufferInfo.attr.pts - videoFirstSyncFramePts_) / UNIT_CONVERSION;
         } else {
             bufferInfo.attr.pts = 0;
         }
@@ -207,6 +216,7 @@ void Recorder::Release()
         encOutputThread_->join();
         encOutputThread_.reset();
     }
+    isVideoEncFirstSyncFrame_.store(true);
     if (audioEncInputThread_ && audioEncInputThread_->joinable()) {
         audioEncContext_->inputCond.notify_all();
         audioEncInputThread_->join();
@@ -327,9 +337,9 @@ void Recorder::AudioEncInputThread()
         lock.unlock();
 
         bufferInfo.attr.size = sampleInfo_.audioMaxInputSize;
-        if (isFirstFrame_) {
+        if (isAudioEncFirstFrame_) {
             bufferInfo.attr.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
-            isFirstFrame_ = false;
+            isAudioEncFirstFrame_ = false;
         } else {
             bufferInfo.attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
         }
