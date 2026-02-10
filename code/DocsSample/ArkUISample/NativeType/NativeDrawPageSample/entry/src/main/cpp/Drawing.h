@@ -30,7 +30,7 @@
 #define SIZE_480 480
 #define SIZE_720 720
 #define SIZE_1000 1000
-#define COLOR_YELLOW 0xFFFFFF00
+#define COLOR_GREY 0xFFD5D5D5
 
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
@@ -49,7 +49,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     ArkUI_AttributeItem NODE_WIDTH_Item[] = {NODE_WIDTH_value, 1};
     ArkUI_NumberValue NODE_HEIGHT_value[] = {SIZE_200};
     ArkUI_AttributeItem NODE_HEIGHT_Item[] = {NODE_HEIGHT_value, 1};
-    ArkUI_NumberValue NODE_BACKGROUND_COLOR_item_value[] = {{.u32 = COLOR_YELLOW}};
+    ArkUI_NumberValue NODE_BACKGROUND_COLOR_item_value[] = {{.u32 = COLOR_GREY}};
     ArkUI_AttributeItem NODE_BACKGROUND_COLOR_Item[] = {NODE_BACKGROUND_COLOR_item_value, 1};
     // [Start userdata_start]
     // UserData
@@ -94,13 +94,10 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             auto path = OH_Drawing_PathCreate();
             OH_Drawing_PathMoveTo(path, width / SIZE_4, height / SIZE_4);                   // SIZE_4 = 4
             OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
             OH_Drawing_PathClose(path);
             auto pen = OH_Drawing_PenCreate();
             OH_Drawing_PenSetWidth(pen, SIZE_10); // SIZE_10=10
-            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x4A, 0x4F));
             OH_Drawing_CanvasAttachPen(canvas, pen);
             OH_Drawing_CanvasDrawPath(canvas, path);
             // [End drawCanvas_Start]
