@@ -208,10 +208,8 @@ void Recorder::StartRelease()
     }
 }
 
-void Recorder::Release()
+void Recorder::ReleaseThread()
 {
-    std::lock_guard<std::mutex> lock(mutex_);
-    isStarted_ = false;
     if (encOutputThread_ && encOutputThread_->joinable()) {
         encOutputThread_->join();
         encOutputThread_.reset();
@@ -227,6 +225,13 @@ void Recorder::Release()
         audioEncOutputThread_->join();
         audioEncOutputThread_.reset();
     }
+}
+
+void Recorder::Release()
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    isStarted_ = false;
+    ReleaseThread();
     if (muxer_ != nullptr) {
         muxer_->Release();
         muxer_.reset();
