@@ -53,7 +53,7 @@ struct Index {
             hilog.info(DOMAIN_NUMBER, TAG, `onRouter`)
           })
           .onError((error) => {
-            hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`)
+            hilog.error(DOMAIN_NUMBER, TAG, `onError: code: ${error?.errcode}, message: ${error?.msg}`)
           })
         // [StartExclude FormUpdate_page]
         Text(`formId:${this.formId}`)
