@@ -77,8 +77,10 @@
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
         // [EndExclude module_abilities_skills]
+        // [EndExclude module_abilities_metadata]
         "skills": [
           // [StartExclude module_all]
+          // [StartExclude module_abilities_metadata]
           {
             "actions": [
               "ohos.want.action.home"
