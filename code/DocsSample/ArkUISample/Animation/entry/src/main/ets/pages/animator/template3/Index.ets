@@ -25,7 +25,7 @@ const TAG: string = '[AnimatorTest]';
 struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
-  @State animatorResult: AnimatorResult | undefined = undefined;
+  @State animatorOptions: AnimatorResult | undefined = undefined;
   // 'create'资源文件中的value值为'创建'
   @State animatorStatus: string = 'create';
   begin: number = 0;
@@ -48,29 +48,29 @@ struct Index {
   @State translateY: number = 0;
 
   onPageShow(): void {
-    this.animatorResult = this.getUIContext().createAnimator(this.animatorOption);
-    this.animatorResult.onFrame = (progress: number) => {
+    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption);
+    this.animatorOptions.onFrame = (progress: number) => {
       this.translateX = progress;
       if (progress > this.topWidth && this.translateY < this.bottomHeight) {
         this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
       }
     }
-    this.animatorResult.onCancel = () => {
+    this.animatorOptions.onCancel = () => {
       // 'cancel'资源文件中的value值为'取消'
       this.animatorStatus = 'cancel';
     }
-    this.animatorResult.onFinish = () => {
+    this.animatorOptions.onFinish = () => {
       // 'complete'资源文件中的value值为'完成'
       this.animatorStatus = 'complete';
     }
-    this.animatorResult.onRepeat = () => {
+    this.animatorOptions.onRepeat = () => {
       // 'repeat'资源文件中的value值为'动画重复播放'
       hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
   }
 
   onPageHide(): void {
-    this.animatorResult = undefined;
+    this.animatorOptions = undefined;
   }
 
   build() {
