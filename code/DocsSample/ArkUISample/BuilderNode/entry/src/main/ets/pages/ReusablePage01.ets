@@ -59,7 +59,7 @@ class Params {
 function buildNode(param: Params = new Params('hello')) {
   Row() {
     Text(`C${param.item} -- `)
-    ChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+    ChildComponent2({ item: param.item }) // 该自定义组件在BuilderNode中无法被正确复用
   }
 }
 

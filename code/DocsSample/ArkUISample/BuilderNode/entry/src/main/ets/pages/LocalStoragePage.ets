@@ -52,7 +52,7 @@ interface Params {
 
 @Builder
 function createChild(params: Params) {
-  //构造过程中传递localStorage
+  // 构造过程中传递localStorage
   Child({ count: params.count }, params.localStorage)
 }
 
@@ -68,7 +68,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     let builderNode = new BuilderNode<[Params]>(uiContext);
-    //构造过程中传递localStorage
+    // 构造过程中传递localStorage
     builderNode.build(wrapBuilder(createChild), { count: this.count, localStorage: this.localStorage });
     return builderNode.getFrameNode();
   }

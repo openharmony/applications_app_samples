@@ -118,12 +118,12 @@ struct Index {
     };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
-    //创建自定义节点并添加至map
+    // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
   }
 
   aboutToDisappear(): void {
-    //移除map中的引用，并将自定义节点释放
+    // 移除map中的引用，并将自定义节点释放
     this.textNodeController.deleteNode();
   }
 
