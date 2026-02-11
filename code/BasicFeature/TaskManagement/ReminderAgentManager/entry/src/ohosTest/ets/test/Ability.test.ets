@@ -17,7 +17,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import data_preferences from '@ohos.data.preferences'
-import reminderAgent from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../util/Logger';
 
@@ -29,12 +29,12 @@ interface Reminder {
   reminderName: string,
   reminderId: number,
   vibratorTimeouts: number,
-  reminderRequestAlarm?: reminderAgent.ReminderRequestAlarm,
-  reminderRequestCalendar?: reminderAgent.ReminderRequestCalendar,
+  reminderRequestAlarm?: reminderAgentManager.ReminderRequestAlarm,
+  reminderRequestCalendar?: reminderAgentManager.ReminderRequestCalendar,
 }
 
 interface timerType {
-  reminderType: reminderAgent.ReminderType;
+  reminderType: reminderAgentManager.ReminderType;
   triggerTimeInSeconds: number;
 }
 
@@ -104,10 +104,10 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 校验是否使能成功
       let timer: timerType = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
         triggerTimeInSeconds: 10
       }
-      let reminderId = await reminderAgent.publishReminder(timer);
+      let reminderId = await reminderAgentManager.publishReminder(timer);
       if (!reminderId) {
         Logger.info(TAG, 'RequestEnableNotification failed');
         expect().assertFail();

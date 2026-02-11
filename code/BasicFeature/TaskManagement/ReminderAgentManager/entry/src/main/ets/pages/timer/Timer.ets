@@ -13,14 +13,16 @@
  * limitations under the License.
  */
 
-import notificationManager from '@ohos.notificationManager';
-import reminderAgent from '@ohos.reminderAgentManager';
+// [Start reminder_import]
+import { notificationManager } from '@kit.NotificationKit';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+// [End reminder_import]
 import vibrator from '@ohos.vibrator';
 import AudioPlayer from '../../util/AudioPlayer';
 import Constant from '../../common//Constant';
 import Logger from '../../util/Logger';
 import { SelectTime } from './SelectTime';
-import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 const TAG: string = 'CountDown';
@@ -238,10 +240,11 @@ export struct Timer {
   }
 
   async handleDefaultDevice(context: common.UIAbilityContext) {
-    await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
+    await reminderAgentManager.addNotificationSlot({
+      notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
     // [Start timer_reminder]
-    let timer: reminderAgent.ReminderRequestTimer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,  // 提醒类型为倒计时类型
+    let timer: reminderAgentManager.ReminderRequestTimer = {
+      reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,  // 提醒类型为倒计时类型
       ringDuration: Constant.REMINDER_DURATION,
       title: context.resourceManager.getStringSync($r('app.string.timer').id),  // 指明提醒标题, "app.string.timer"资源文件中的value值为"计时器"
       content: context.resourceManager.getStringSync($r('app.string.countdown_close').id),  // 指明提醒内容, "app.string.countdown_close"资源文件中的value值为"计时器已结束"
@@ -254,7 +257,7 @@ export struct Timer {
       triggerTimeInSeconds: this.countdownTime
     };
     // [End timer_reminder]
-    this.reminderId = await reminderAgent.publishReminder(timer);
+    this.reminderId = await reminderAgentManager.publishReminder(timer);
     Logger.info(TAG, `publish reminder result: id is ${this.reminderId}`);
   }
 
@@ -265,7 +268,7 @@ export struct Timer {
     this.isRunning = true;
     this.isPausing = true;
     this.startImg = $r('app.media.ic_public_start');
-    await reminderAgent.cancelReminder(this.reminderId);
+    await reminderAgentManager.cancelReminder(this.reminderId);
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
 
@@ -287,7 +290,7 @@ export struct Timer {
     this.startImg = $r('app.media.ic_public_start');
     this.resetImg = $r('app.media.ic_countdown_reset');
     if (isCancel) {
-      await reminderAgent.cancelReminder(this.reminderId);
+      await reminderAgentManager.cancelReminder(this.reminderId);
     }
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
