@@ -24,7 +24,7 @@ function createTask(a: number, b:number): number {
 @Entry
 @Component
 struct Index {
-  @State message: string | ResourceStr = $r('app.string.Button_label');
+  @State message: string | ResourceStr = $r('app.string.Button_label'); // 加载资源，可根据项目实际资源自定义
 
   build() {
     Row() {

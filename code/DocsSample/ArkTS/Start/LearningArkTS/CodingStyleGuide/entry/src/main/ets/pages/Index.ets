@@ -14,11 +14,13 @@
 */
 
 // [Start noESObject_app_incorrectExample]
-import { getObject1 } from './lib'
+// Index.ets
+import { getObject1 } from './lib';
 // [StartExclude noESObject_app_incorrectExample]
 
 // [Start noESObject_app_correctExample]
-import { getObject2, I } from './lib'
+// Index.ets
+import { getObject2, I } from './lib';
 // [StartExclude noESObject_app_correctExample]
 
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
