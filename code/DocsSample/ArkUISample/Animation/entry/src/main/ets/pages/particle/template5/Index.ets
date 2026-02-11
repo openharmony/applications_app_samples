@@ -27,16 +27,16 @@ struct ParticleExample5 {
           {
             emitter: {
               particle: {
-                type: ParticleType.POINT, //粒子类型
+                type: ParticleType.POINT, // 粒子类型
                 config: {
-                  radius: 5//圆点半径
+                  radius: 5 // 圆点半径
                 },
-                count: 2000, //粒子总数
-                lifetime: 10000, //粒子生命周期，单位ms
-                lifetimeRange: 100//粒子生命周期取值范围，单位ms
+                count: 2000, // 粒子总数
+                lifetime: 10000, // 粒子生命周期，单位ms
+                lifetimeRange: 100 // 粒子生命周期取值范围，单位ms
               },
-              emitRate: 100, //每秒发射粒子数
-              shape: ParticleEmitterShape.ANNULUS,//环形发射器
+              emitRate: 100, // 每秒发射粒子数
+              shape: ParticleEmitterShape.ANNULUS, // 环形发射器
               annulusRegion:{
                 center:{x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}, // 圆环的圆心坐标
                 innerRadius:LengthMetrics.vp(100), // 圆环的外圆半径
