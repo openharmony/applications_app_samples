@@ -64,7 +64,7 @@ function testFloatType() {
 
 function tesBigIntType() {
   // [Start big_int_type]
-  let bigInt: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+  let bigInt: bigint = 999999999999999999999999999999999999999999999999999999999999n;
   console.info('bigInt:' + bigInt.toString());
   // [End big_int_type]
   let logMsg = 'bigInt: ' + bigInt.toString();
