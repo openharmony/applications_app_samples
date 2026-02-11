@@ -248,7 +248,7 @@ export struct EditImage {
       logger.info(TAG, `imageHeight = ${JSON.stringify(imageHeight)},imageWith = ${JSON.stringify(imageWith)}`);
     }
     try {
-      await this.pixelMap.crop({
+      this.pixelMap.cropSync({
         size: { height: imageHeight / proportion, width: imageWith },
         x: 0,
         y: 0
