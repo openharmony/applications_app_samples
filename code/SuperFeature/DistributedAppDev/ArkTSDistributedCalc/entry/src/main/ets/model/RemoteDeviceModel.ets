@@ -42,7 +42,9 @@ export class RemoteDeviceModel {
   private deviceManager: deviceManager.DeviceManager | undefined = undefined;
 
   registerDeviceListCallback(callback: Callback<void>) {
-    Logger.info(TAG, `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) === '{}'}`);
+    Logger.info(TAG,
+      `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) ===
+        '{}'}`);
     if (typeof (this.deviceManager) !== 'undefined') {
       this.registerDeviceListCallbackImplement(callback);
       return;
@@ -181,10 +183,10 @@ export class RemoteDeviceModel {
   }
 
   deviceFound(data: deviceManager.DeviceBasicInfo) {
-    for (let i = 0;i < this.discoverList.length; i++) {
+    for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === data.deviceId) {
         Logger.info(TAG, 'device founded ignored');
-        return
+        return;
       }
     }
     this.discoverList[this.discoverList.length] = data;
@@ -241,7 +243,7 @@ export class RemoteDeviceModel {
 
   authenticateDevice(device: deviceManager.DeviceBasicInfo, callBack: Callback<void>) {
     Logger.info(TAG, `authenticateDevice ${JSON.stringify(device)}`);
-    for (let i = 0; i < this.discoverList.length; i++) {
+    for (let i: number = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId !== device.deviceId) {
         continue;
       }

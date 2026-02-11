@@ -51,7 +51,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             Logger.info(TAG, `Connect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', MusicConnectEvent.EVENT_CONNECT);
         },
         onDisconnect(elementName): void {
           Logger.info(TAG, `ServiceExtension has onDisconnected,elementName= ${JSON.stringify(elementName)}`)
@@ -62,7 +62,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             Logger.info(TAG, `Disconnect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', MusicConnectEvent.EVENT_DISCONNECT);
         },
         onFailed(code): void {
           Logger.info(TAG, `ServiceExtension has onFailed, code= ${JSON.stringify(code)}`)
@@ -73,7 +73,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
             Logger.info(TAG, `Failed remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', MusicConnectEvent.EVENT_FAILED);
         }
       }
 
@@ -85,7 +85,7 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
           Logger.info(TAG, `Timeout remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
           return;
         }
-        AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
+        AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', MusicConnectEvent.EVENT_TIMEOUT);
       }, CONNECT_REMOTE_TIMEOUT)
     } catch (err) {
       Logger.info(TAG, `ConnectServiceExtensionAbility has failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
@@ -100,10 +100,11 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     })
   }
 
-  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, options: rpc.MessageOption): boolean {
+  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, options: rpc.MessageOption): boolean {
+    Logger.info(TAG, `onRemoteMessageRequest code: ${code}`);
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
-      let deviceId = data.readString()
-      let stringJson: string = data.readString()
+      let deviceId: string = data.readString();
+      let stringJson: string = data.readString();
       try {
         let jsonData = JSON.parse(stringJson);
         Logger.info(TAG, `onRemoteRequest jsonData: ${JSON.stringify(jsonData)}`);
@@ -112,43 +113,45 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
           seekTo: jsonData.seekTo,
           isPlaying: jsonData.isPlaying,
           flag: 'START_REMOTE_DISTRIBUTED_MUSIC_SERVICE'
-        }
+        };
         let want = {
           deviceId: deviceId,
           bundleName: APPLICATION_BUNDLE_NAME,
           abilityName: APPLICATION_SERVICE_NAME,
           parameters: params
-        }
+        };
         this.startServiceAbility(want);
       } catch (error) {
         Logger.error(TAG, `JSON text error`);
       }
     } else if (code === MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE) {
-      let deviceId = data.readString()
-      let want = {
-        deviceId: deviceId,
-        bundleName: APPLICATION_BUNDLE_NAME,
-        abilityName: APPLICATION_SERVICE_NAME
+      if (remoteProxy === null) {
+        let want = {
+          bundleName: APPLICATION_BUNDLE_NAME,
+          abilityName: APPLICATION_SERVICE_NAME
+        };
+        this.stopServiceAbility(want);
+        return false
       }
-      this.stopServiceAbility(want)
+      remoteProxy.sendMessageRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, options);
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE) {
       if (remoteProxy === null) {
-        Logger.info(TAG, 'Play local is null')
+        Logger.info(TAG, 'Play local is null');
         return false
       }
       let option = new rpc.MessageOption()
-      let data = new rpc.MessageParcel()
-      let reply = new rpc.MessageParcel()
-      remoteProxy.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE, data, reply, option);
+      let data = new rpc.MessageSequence()
+      let reply = new rpc.MessageSequence()
+      remoteProxy.sendMessageRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE, data, reply, option);
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE) {
       if (remoteProxy === null) {
-        Logger.info(TAG, 'Pause local is null')
+        Logger.info(TAG, 'Pause local is null');
         return false
       }
       let option = new rpc.MessageOption()
-      let data = new rpc.MessageParcel()
-      let reply = new rpc.MessageParcel()
-      remoteProxy.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE, data, reply, option);
+      let data = new rpc.MessageSequence()
+      let reply = new rpc.MessageSequence()
+      remoteProxy.sendMessageRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE, data, reply, option);
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE) {
       let musicPlay = AppStorage.get('musicPlay');
       if (musicPlay === undefined) {

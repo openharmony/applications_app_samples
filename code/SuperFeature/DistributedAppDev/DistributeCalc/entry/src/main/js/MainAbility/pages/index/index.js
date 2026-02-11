@@ -162,7 +162,7 @@ export default {
     }, 200)
   },
   cancelDialog() {
-    this.$element('showDialog').close()
+    logger.info(TAG, `cancelDialog`)
     if (remoteDeviceModel === undefined) {
       return
     }
@@ -197,14 +197,25 @@ export default {
     logger.info(TAG, `start ability1, needAuth`)
     remoteDeviceModel.authenticateDevice(this.deviceList[index], () => {
       logger.info(TAG, ` auth and online finished`)
-      this.startAbility(this.deviceList[index].networkId)
+      this.authenticateDeviceSuccess()
     })
     this.clearSelectState()
     logger.info(TAG, ` start ability end....`)
   },
+  authenticateDeviceSuccess() {
+    if (this.remoteDeviceModel !== undefined && this.remoteDeviceModel.deviceList !== undefined && this.selectedIndex !== undefined) {
+      for (let i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
+        if (this.remoteDeviceModel.deviceList[i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
+          this.startAbility(this.deviceList[i].networkId);
+        }
+      }
+    }
+  },
   clearSelectState() {
+    logger.info(TAG, `clearSelectState`)
     this.deviceList = []
     this.$element('showDialog').close()
+    this.cancelDialog()
   },
   async startAbility(deviceId) {
     logger.debug(TAG, ` startAbility deviceId: ${deviceId}`)
