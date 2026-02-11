@@ -1,7 +1,7 @@
 # Web组件渲染进程崩溃时获取dmp文件
 ## 介绍
 本工程展示了当Web组件的渲染进程崩溃时，获取dmp文件的场景。由于在Deveco Studio中无法直接看到沙箱路径`/data/storage/el2/log/crashpad/pending/`，
-该路径下的dmp文件需要复制到可直接访问的沙箱路径中，我们在这个沙箱路径中就可以下载dmp文件了。
+所以该路径下的dmp文件需要复制到可直接访问的沙箱路径中，在此路径下，开发者可以通过Deveco Studio的设备文件浏览器（Device File  Browser）查看，进而下载dmp文件。
 ## demo预览
 | 获取dmp文件                                         |
 |-------------------------------------------------|
@@ -46,13 +46,9 @@
 不涉及
 
 ## 约束与限制
-1. 本示例仅支持标准系统上运行, 支持设备：华为手机。
-
-2. HarmonyOS系统：HarmonyOS 5.0.5 Release及以上。
-
-3. DevEco Studio版本：6.0.0 Release及以上。
-
-4. HarmonyOS SDK版本：HarmonyOS 6.0.0 Release SDK及以上。
+1. 本示例仅支持标准系统上运行。
+2. 本示例支持API14版本SDK，SDK版本号(API Version 20 Release)。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0Release)才可编译运行。
 
 ## 下载
 如需单独下载本工程，执行如下命令：
