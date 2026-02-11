@@ -63,7 +63,7 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
         hilog.info(DOMAIN_NUMBER, TAG, `FunBCall param:  ${data.readString()}`);
         return new MyParcelable(CONST_NUMBER_2, 'bbb');
       });
-    } catch (error: BusinessError) {
+    } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. error code: ${error.code}, error message: ${error.message}`);
     }
   }
@@ -73,7 +73,7 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
     try {
       this.callee.off('funA');
       this.callee.off('funB');
-    } catch (error: BusinessError) {
+    } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. error code: ${error.code}, error message: ${error.message}`);
     }
   }
