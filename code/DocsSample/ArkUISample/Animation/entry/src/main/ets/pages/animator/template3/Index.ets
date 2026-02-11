@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start animator_template3_start]
-import { AnimatorOption, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -34,7 +34,7 @@ struct Index {
   bottomHeight: number = 100;
   // 自由落体运动的加速度系数
   g: number = 0.18;
-  animatorOption: AnimatorOption = {
+  animatorOption: AnimatorOptions = {
     duration: 4000,
     delay: 0,
     easing: 'linear',
