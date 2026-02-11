@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start animator_template3_start]
-import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { animatorResult, AnimatorResult } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -25,7 +25,7 @@ const TAG: string = '[AnimatorTest]';
 struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
-  @State animatorOptions: AnimatorResult | undefined = undefined;
+  @State animatorResult: AnimatorResult | undefined = undefined;
   // 'create'资源文件中的value值为'创建'
   @State animatorStatus: string = 'create';
   begin: number = 0;
@@ -34,7 +34,7 @@ struct Index {
   bottomHeight: number = 100;
   // 自由落体运动的加速度系数
   g: number = 0.18;
-  animatorOption: AnimatorOptions = {
+  animatorOption: animatorResult = {
     duration: 4000,
     delay: 0,
     easing: 'linear',
@@ -48,29 +48,29 @@ struct Index {
   @State translateY: number = 0;
 
   onPageShow(): void {
-    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption);
-    this.animatorOptions.onFrame = (progress: number) => {
+    this.animatorResult = this.getUIContext().createAnimator(this.animatorOption);
+    this.animatorResult.onFrame = (progress: number) => {
       this.translateX = progress;
       if (progress > this.topWidth && this.translateY < this.bottomHeight) {
         this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
       }
     }
-    this.animatorOptions.onCancel = () => {
+    this.animatorResult.onCancel = () => {
       // 'cancel'资源文件中的value值为'取消'
       this.animatorStatus = 'cancel';
     }
-    this.animatorOptions.onFinish = () => {
+    this.animatorResult.onFinish = () => {
       // 'complete'资源文件中的value值为'完成'
       this.animatorStatus = 'complete';
     }
-    this.animatorOptions.onRepeat = () => {
+    this.animatorResult.onRepeat = () => {
       // 'repeat'资源文件中的value值为'动画重复播放'
       hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
   }
 
   onPageHide(): void {
-    this.animatorOptions = undefined;
+    this.animatorResult = undefined;
   }
 
   build() {
