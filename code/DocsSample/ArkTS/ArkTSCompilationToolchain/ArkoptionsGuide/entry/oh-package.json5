@@ -19,7 +19,11 @@
   "main": "",
   "author": "",
   "license": "",
+  // [Start dependencies]
   "dependencies": {
+    "@types/pako": "latest",
+    "@types/mime": "latest"
   }
+  // [End dependencies]
 }
 
