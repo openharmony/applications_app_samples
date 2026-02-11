@@ -102,7 +102,7 @@ struct ParticleExample6 {
                   lifetime: -1 // 粒子的生命周期，-1表示粒子生命周期无限大
                 },
                 emitRate: this.emitRate, // 每秒发射粒子数
-                shape: this.shape, //发射器形状
+                shape: this.shape, // 发射器形状
                 annulusRegion: this.region
               },
               color: {
