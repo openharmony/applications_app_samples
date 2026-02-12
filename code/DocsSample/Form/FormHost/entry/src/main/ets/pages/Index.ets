@@ -305,7 +305,7 @@ struct formHostSample {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${form.id}`);
             this.selectFormId = form.id.toString();
             this.formIds.add(this.selectFormId);
           })
@@ -313,7 +313,7 @@ struct formHostSample {
             hilog.info(DOMAIN_NUMBER, TAG, `onRouter`);
           })
           .onError((error) => {
-            hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `onError: code: ${error.errcode}, message: ${error.msg}`);
             this.showForm = false;
           })
           .onUninstall((info: FormCallbackInfo) => {

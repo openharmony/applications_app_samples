@@ -28,7 +28,7 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 获取router事件中传递的targetPage参数
-    hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, Want params: ${(want?.parameters?.params as string)}`);
     if (want?.parameters?.params) {
       // want.parameters.params 对应 postCardAction() 中 params 内容
       let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
@@ -39,7 +39,7 @@ export default class EntryAbility extends UIAbility {
 
   // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant, Want params: ${(want?.parameters?.params as string)}`);
     if (want?.parameters?.params) {
       // want.parameters.params 对应 postCardAction() 中 params 内容
       let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
@@ -68,12 +68,12 @@ export default class EntryAbility extends UIAbility {
     if (this.currentWindowStage === null) {
       this.currentWindowStage = windowStage;
     }
-    windowStage.loadContent(targetPage, (err, data) => {
+    windowStage.loadContent(targetPage, (err) => {
       if (err.code) {
-        hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to load the content. error code: ${err.code}, error message: ${err.message}`);
         return;
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content.');
     });
   }
 }
