@@ -49,14 +49,14 @@ function add(x: number, y: number): number {
   // [StartExclude swift_function_definition]
 
 // [Start function_overload_demo]
-function foo(x: number): void;            /*  第一个函数定义。  */
-function foo(x: string): void;            /*  第二个函数定义。  */
-function foo(x: number | string): void {  /*  函数实现。       */
+function foo(x: number): void;            /* 第一个函数定义。 */
+function foo(x: string): void;            /* 第二个函数定义。 */
+function foo(x: number | string): void {  /* 函数实现。 */
 }
   // [StartExclude function_overload_demo]
 
 // [Start optional_parameter]
-function foo2(name?: string) {}  /*  name为可选参数。  */
+function foo2(name?: string) {}  /* name为可选参数。 */
   // [StartExclude optional_parameter]
 
 // [Start namespace_demo]
@@ -109,7 +109,7 @@ function testFunctionDefinition() {
 
 function testFunctionOverload() {
   // [EndExclude function_overload_demo]
-  foo(123);     //  OK，使用第一个定义
+  foo(123);     // OK，使用第一个定义
   foo('aa'); // OK，使用第二个定义
   // [End function_overload_demo]
 
@@ -121,8 +121,8 @@ function testFunctionOverload() {
 
 function testOptionalParameter() {
   // [EndExclude optional_parameter]
-  foo2('hello');     //  OK，传入name参数
-  foo2();     //  OK，不传name参数
+  foo2('hello');     // OK，传入name参数
+  foo2();     // OK，不传name参数
   // [End optional_parameter]
 
   let logMsg = `foo2('hello') and foo2() executed successfully`;

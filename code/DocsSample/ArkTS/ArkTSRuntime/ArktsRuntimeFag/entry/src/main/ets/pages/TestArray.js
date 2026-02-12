@@ -70,4 +70,4 @@ try {
   console.info(e);
 }
 // 输出：no error throw
-// [Start test_nothrow]
+// [End test_nothrow]

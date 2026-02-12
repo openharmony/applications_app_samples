@@ -36,8 +36,8 @@ struct Index {
         Button(this.message)
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
-          .onClick( async () => {
-            let object : MyObject = new MyObject(0);
+          .onClick(async () => {
+            let object: MyObject = new MyObject(0);
             object.value = 1023;
             let num = object.plusOne();
             console.info('host thread num1 is ' + num); // 日志输出：host thread num1 is 1024

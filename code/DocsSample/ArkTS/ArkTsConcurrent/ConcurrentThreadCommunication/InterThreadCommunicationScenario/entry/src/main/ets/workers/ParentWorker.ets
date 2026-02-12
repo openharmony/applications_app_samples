@@ -32,7 +32,7 @@ const asyncLock = new ArkTSUtils.locks.AsyncLock();
 const copyWorker1 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 const copyWorker2 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
-workerPort.onmessage = (e : MessageEvents) => {
+workerPort.onmessage = (e: MessageEvents) => {
   let array = e.data as collections.Array<CopyEntry>;
   sum = array.length;
   for (let i = 0; i < array.length; i++) {
@@ -49,7 +49,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 }
 
-copyWorker1.onmessage = async (e : MessageEvents) => {
+copyWorker1.onmessage = async (e: MessageEvents) => {
   console.info('copyWorker1 onmessage:' + e.data);
   await asyncLock.lockAsync(() => {
     count1--;
@@ -66,7 +66,7 @@ copyWorker1.onmessage = async (e : MessageEvents) => {
   })
 }
 
-copyWorker2.onmessage = async (e : MessageEvents) => {
+copyWorker2.onmessage = async (e: MessageEvents) => {
   console.info('copyWorker2 onmessage:' + e.data);
   await asyncLock.lockAsync(() => {
     count2--;
@@ -83,11 +83,11 @@ copyWorker2.onmessage = async (e : MessageEvents) => {
   })
 }
 
-workerPort.onmessageerror = (e : MessageEvents) => {
+workerPort.onmessageerror = (e: MessageEvents) => {
   console.error('onmessageerror:' + e.data);
 }
 
-workerPort.onerror = (e : ErrorEvent) => {
+workerPort.onerror = (e: ErrorEvent) => {
   console.error('onerror:' + e.message);
 }
 // [End parent_worker]

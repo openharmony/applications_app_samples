@@ -25,7 +25,7 @@ import { Want } from '@kit.AbilityKit';
     "jsonProperty": "value"
   }
 }
-*/
+ */
 
 // 混淆前
 import jsonData from './ImportJson.json';

@@ -16,7 +16,7 @@
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
-function createTask(a: number, b:number): number {
+function createTask(a: number, b: number): number {
   let sum = a + b;
   return sum;
 }

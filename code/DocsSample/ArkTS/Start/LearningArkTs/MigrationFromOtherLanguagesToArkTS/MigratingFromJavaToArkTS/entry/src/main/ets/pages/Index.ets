@@ -103,7 +103,7 @@ function testFunctionDefinition() {
 
 function testFunctionOverload() {
   // [EndExclude function_overloading]
-  foo(123);     //  OK，使用第一个定义
+  foo(123);     // OK，使用第一个定义
   foo('aa'); // OK，使用第二个定义
   // [End function_overloading]
   let logMsg = `foo success`;

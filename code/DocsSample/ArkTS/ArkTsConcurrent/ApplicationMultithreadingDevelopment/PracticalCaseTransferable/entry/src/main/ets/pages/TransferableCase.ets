@@ -23,8 +23,8 @@ function getAddress() {
 }
 
 @Concurrent
-function store(a:number, b:number, c:number) {
-  let size:number = testNapi.getSetSize();
+function store(a: number, b: number, c: number) {
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before store');
   testNapi.store(a);
   testNapi.store(b);
@@ -34,8 +34,8 @@ function store(a:number, b:number, c:number) {
 }
 
 @Concurrent
-function erase(a:number) {
-  let size:number = testNapi.getSetSize();
+function erase(a: number) {
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before erase');
   testNapi.erase(a);
   size = testNapi.getSetSize();
@@ -44,7 +44,7 @@ function erase(a:number) {
 
 @Concurrent
 function clear() {
-  let size:number = testNapi.getSetSize();
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before clear');
   testNapi.clear();
   size = testNapi.getSetSize();
@@ -55,7 +55,7 @@ function clear() {
 async function test(): Promise<void> {
   // setTransferDetached 设置为true，表示传输方式为转移模式
   testNapi.setTransferDetached(true);
-  let address:number = testNapi.getAddress();
+  let address: number = testNapi.getAddress();
   console.info('host thread address is ' + address);
 
   let task1 = new taskpool.Task(getAddress, testNapi);
@@ -68,7 +68,7 @@ async function test(): Promise<void> {
   await taskpool.execute(task3);
 
   // 由于已经设置了转移模式，且testNapi已跨线程传递，所以主线程无法继续访问到Native对象的值
-  let size:number = testNapi.getSetSize();
+  let size: number = testNapi.getSetSize();
   // 输出的日志为“host thread size is undefined”
   console.info('host thread size is ' + size);
 

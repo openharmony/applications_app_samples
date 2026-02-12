@@ -119,13 +119,24 @@ class Person4 {
   }
 }
   // [StartExclude getter_setter_methods]
-function testClassSetterAge() {
+try {
   // [EndExclude getter_setter_methods]
   let p = new Person4();
   p.age; // 输出0
-  // [StartExclude getter_setter_methods]
-  console.info(`p.age: ${p.age}`);
+  p.age = -42; // 设置无效age值会抛出错误
+  // [End getter_setter_methods]
+} catch (e) {
+  console.info('Invalid age argument');
+  let logMsg = 'Invalid age argument (捕获到错误)';
+  if (globalLogUpdate) {
+    globalLogUpdate(logMsg, true);
+  }
+}
 
+function testClassSetterAge() {
+  let p = new Person4();
+  p.age; // 输出0
+  console.info(`p.age: ${p.age}`);
   let logMsg = `p.age: ${p.age}`;
   if (globalLogUpdate) {
     globalLogUpdate(logMsg, false);
@@ -135,9 +146,7 @@ function testClassSetterAge() {
 function testClassSetterAgeError() {
   try {
     let p = new Person4();
-    // [EndExclude getter_setter_methods]
     p.age = -42; // 设置无效age值会抛出错误
-    // [End getter_setter_methods]
   } catch (e) {
     console.info('Invalid age argument');
     let logMsg = 'Invalid age argument (捕获到错误)';

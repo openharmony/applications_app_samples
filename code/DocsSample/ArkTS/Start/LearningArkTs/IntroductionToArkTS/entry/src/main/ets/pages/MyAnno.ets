@@ -56,3 +56,13 @@ export @interface ClassAuthor5 {}
 // MyAnno.ets
 export @interface NameAnno{name: string = ""} // ok
 // [End annotation_interface]
+
+// [Start annotation_developerGenerate_dts]
+// MyAnno.ets 开发者对声明文件实现的源代码
+@interface ClassAuthor6 {}
+
+// 实现文件中没有注解
+class C {
+  // ...
+}
+// [End annotation_developerGenerate_dts]

@@ -24,8 +24,8 @@ function getAddress() {
 }
 
 @Concurrent
-function store(a:number, b:number, c:number) {
-  let size:number = testNapi.getSetSize();
+function store(a: number, b: number, c: number) {
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before store');
   testNapi.store(a);
   testNapi.store(b);
@@ -36,7 +36,7 @@ function store(a:number, b:number, c:number) {
 
 @Concurrent
 function erase(a:number) {
-  let size:number = testNapi.getSetSize();
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before erase');
   testNapi.erase(a);
   size = testNapi.getSetSize();
@@ -45,7 +45,7 @@ function erase(a:number) {
 
 @Concurrent
 function clear() {
-  let size:number = testNapi.getSetSize();
+  let size: number = testNapi.getSetSize();
   console.info('set size is ' + size + ' before clear');
   testNapi.clear();
   size = testNapi.getSetSize();
@@ -54,7 +54,7 @@ function clear() {
 
 // 共享模式
 async function test(): Promise<void> {
-  let address:number = testNapi.getAddress();
+  let address: number = testNapi.getAddress();
   console.info('host thread address is ' + address);
 
   let task1 = new taskpool.Task(getAddress, testNapi);
@@ -67,7 +67,7 @@ async function test(): Promise<void> {
   await taskpool.execute(task3);
 
   // 由于默认的传输模式为共享模式，testNapi跨线程传递后，主线程可以继续访问Native对象的值
-  let size:number = testNapi.getSetSize();
+  let size: number = testNapi.getSetSize();
   // 输出的日志为“host thread size is 6”
   console.info('host thread size is ' + size);
 

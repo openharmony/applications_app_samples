@@ -26,7 +26,7 @@ import { foo } from '../test1/test2';
   "jsonProperty": "value",
   "otherProperty": "value2"
 }
-*/
+ */
 import jsonData from './test.json';
 // [StartExclude optionExample_keepPropertyName3]
 
@@ -246,5 +246,5 @@ console.info(obj001[fieldName]);  // 使用方括号语法动态访问属性
 const obj002 = {
   ['dynamic' + 'Name']: 5  // 动态定义属性
 };
-console.info(obj002.dynamicName + '');// 使用点语法静态访问属性
+console.info(obj002.dynamicName + ''); // 使用点语法静态访问属性
 // [End example_openObfuscation2]

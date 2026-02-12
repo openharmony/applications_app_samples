@@ -21,6 +21,7 @@ export class CopyEntry {
   type: string;
   // 文件路径
   filePath: string;
+
   constructor(type: string, filePath: string) {
     this.type = type;
     this.filePath = filePath;

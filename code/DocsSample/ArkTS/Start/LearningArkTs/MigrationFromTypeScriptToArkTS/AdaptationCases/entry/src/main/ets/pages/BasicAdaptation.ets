@@ -53,7 +53,9 @@ function printObj(obj: string) {
   }
   // [EndExclude no_any_unknown]
 }
-  // [StartExclude no_any_unknown]
+
+printObj('abc'); // abc
+// [End no_any_unknown]
 // [Start json_parser]
 class A {
   public v: number = 0
@@ -729,9 +731,7 @@ struct BasicAdaptationPage {
         .justifyContent(FlexAlign.Center)
         .margin({ bottom: 12 })
         .onClick(() => {
-          // [EndExclude no_any_unknown]
           printObj('abc'); // abc
-          // [End no_any_unknown]
           this.currentState = $r('app.string.test_print_obj_complete');
         })
 

@@ -107,12 +107,12 @@ function testLowerCamelCase() {
   findUser(userName);
 }
 // [Start Uppercase_Underline]
+const MAX_USER_SIZE = 10000;
+
 enum UserType1 {
   TEACHER = 0,
   STUDENT = 1
 };
-
-const MAX_USER_SIZE = 10000;
 // [End Uppercase_Underline]
 
 function testAllUpper() {
@@ -320,11 +320,16 @@ function fight(): void {
 }
   // [End highlight_keywords_correctExample]
 
-  // [Start highlight_brace_correctExample]
+// [Start highlight_brace_correctExample]
 function foo() { // 函数声明时，左大括号 { 之前加个空格
   // ...
 }
-  // [StartExclude highlight_brace_correctExample]
+
+bar('attr', { // 左大括号前加个空格
+  age: '1 year',
+  sbreed: 'Bernese Mountain Dog',
+});
+// [End highlight_brace_correctExample]
 
 interface BarOptions {
   age: string;
@@ -345,12 +350,10 @@ function testAll() {
   testDefineVariables(true);
   testSpaceSpecification(true);
   foo();
-  // [EndExclude highlight_brace_correctExample]
   bar('attr', { // 左大括号前加个空格
     age: '1 year',
     sbreed: 'Bernese Mountain Dog',
   });
-  // [End highlight_brace_correctExample]
 
   let bar1 = 'bar1';
   let foo1 = 'foo1';

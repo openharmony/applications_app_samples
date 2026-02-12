@@ -14,23 +14,23 @@
 */
 
 // [Start etsOptionExample_keepPropertyName1]
-// example.ets
+// ArkGuardAbility.ets
 import testNapi from 'libentry.so';
 // [StartExclude etsOptionExample_keepPropertyName1]
 
 // [Start etsOptionExample_keepPropertyName2]
-// example.ets
+// ArkGuardAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { http } from '@kit.NetworkKit';
 // [StartExclude etsOptionExample_keepPropertyName2]
 
 // [Start etsOptionExample_keepGlobalName]
-// example.ets
+// ArkGuardAbility.ets
 import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 testNapi3 应该被保留
 // [StartExclude etsOptionExample_keepGlobalName]
 
 // [Start etsOptionExample_enablePropertyObfuscation1]
-// example.ets
+// ArkGuardAbility.ets
 @Component struct MyExample {
   @State message: string = "hello";
   data: number[] = [];

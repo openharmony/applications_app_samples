@@ -21,3 +21,17 @@ let x: number = initialize();
 
 console.info('x = ' + x);
 // [End no_definiteAssignment]
+
+// [Start no_definiteAssignment_c]
+class C {
+  name: string = ''
+  age!: number      // warning: arkts-no-definite-assignment
+
+  initAge(age: number) {
+    this.age = age;
+  }
+}
+
+let c = new C();
+c.initAge(10);
+// [End no_definiteAssignment_c]

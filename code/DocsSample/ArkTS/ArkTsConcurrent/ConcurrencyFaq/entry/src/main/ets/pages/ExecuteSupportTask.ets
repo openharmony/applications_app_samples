@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 // [Start support_task]
-// index.ets
+// ExecuteSupportTask.ets
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { printArgs} from './utils'
+
 @Concurrent
-function createTask(a: number, b:number) {
+function createTask(a: number, b: number) {
   // 支持的序列化类型
   let sum = a + b;
   return sum;

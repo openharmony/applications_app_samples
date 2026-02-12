@@ -41,7 +41,7 @@ function testParsing1() {
    * */
   let jsonStr = `{"info": {"name": "zhangsan", "age": 18}}`;
   let obj1  = JSON.parse(jsonStr) as TestObj;
-  console.info(JSON.stringify(obj1));    //{"info":{"name":"zhangsan","age":18}}
+  console.info(JSON.stringify(obj1));    // {"info":{"name":"zhangsan","age":18}}
   // 获取JSON字符串中的name信息
   console.info(obj1.info.name); // zhangsan
   // [End json_nesting_method1]

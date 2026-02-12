@@ -14,7 +14,7 @@
 */
 
 // [Start jsOptionExample_keepPropertyName]
-// example.js
+// ArkGuardAbility.js
 var obj = {x0: '0', x1: '1', x2: '2'};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]); // x0, x1, x2应该被保留
@@ -33,6 +33,6 @@ console.info(obj['t' + '1']); // t1应该被保留
 // [End jsOptionExample_keepPropertyName]
 
 // [Start jsOptionExample_keepFileName]
-// example.js
+// ArkGuardAbility.js
 const module1 = require('./RequireFile'); // RequireFile 应该被保留
 // [End jsOptionExample_keepFileName]

@@ -14,7 +14,7 @@
 */
 
 // [Start namespaces_Variables_foo]
-//ModuleFoo.ts
+// ModuleFoo.ts
 export let a: number = 1;
 export let b: number = 2;
 // [End namespaces_Variables_foo]

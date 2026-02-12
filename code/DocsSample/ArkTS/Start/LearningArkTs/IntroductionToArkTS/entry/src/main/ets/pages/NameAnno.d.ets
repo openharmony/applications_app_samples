@@ -12,18 +12,49 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start annotation_export_autoGenerate_dts]
+// NameAnno.d.ets 编译器生成的声明文件
+import { ClassAuthor4 } from './Author';
+
+export declare @interface MethodAnno4 {
+  data: number = 0;
+}
+
+@ClassAuthor4
+export declare class MyClass {
+  @MethodAnno4({data: 123})
+  foo(): void;
+
+  bar; // 私有方法不保留注解
+}
+// [End annotation_export_autoGenerate_dts]
 
 // [Start annotation_export_dts]
-// a.d.ets
+// NameAnno.d.ets
 export declare @interface ClassAuthor3 {}
 // [End annotation_export_dts]
 
+// [Start annotation_autoGenerate_dts]
+// NameAnno.d.ets 编译器生成的声明文件
+export declare @interface ClassAuthor5 {}
+// [End annotation_autoGenerate_dts]
+
 // [Start annotation_name]
-// a.d.ets
+// NameAnno.d.ets
 export declare @interface NameAnno{name: string = ""}
 // [End annotation_name]
 
 // [Start annotation_anno]
-// a.d.ets
+// NameAnno.d.ets
 export declare @interface MyAnno {}
 // [End annotation_anno]
+
+// [Start annotation_developerGenerate_dts]
+// NameAnno.d.ets 开发者生成的声明文件
+@interface ClassAuthor6 {}
+
+@ClassAuthor6 // 声明文件中有注解
+class C {
+  // ...
+}
+// [End annotation_developerGenerate_dts]
