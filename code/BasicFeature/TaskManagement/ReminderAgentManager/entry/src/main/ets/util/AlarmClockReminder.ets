@@ -14,7 +14,7 @@
  */
 
 import notificationManager from '@ohos.notificationManager';
-import reminderAgent from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 import vibrator from '@ohos.vibrator';
 import AudioPlayer from './AudioPlayer';
 import Constant from '../common/Constant';
@@ -49,24 +49,24 @@ class AlarmClockReminder {
         vibratorTimeouts: 0,
         reminderRequestAlarm: undefined
       }
-      await reminderAgent.addNotificationSlot({
+      await reminderAgentManager.addNotificationSlot({
         notificationType: notificationManager.SlotType.CONTENT_INFORMATION
       });
       reminder.reminderName = selectTime
       // [Start alarm_reminder]
-      let alarm: reminderAgent.ReminderRequestAlarm = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,  // 提醒类型为闹钟类型
+      let alarm: reminderAgentManager.ReminderRequestAlarm = {
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM,  // 提醒类型为闹钟类型
         hour: time.hour,  // 指明提醒的目标时刻
         minute: time.minute,  // 指明提醒的目标分钟
         actionButton:  // 设置弹出的提醒通知信息上显示的按钮类型和标题
         [
           {
             title: context.resourceManager.getStringSync($r('app.string.alarm_clock_close').id),  // "app.string.alarm_clock_close"资源文件中的value值为"关闭闹钟"
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
           },
           {
             title: context.resourceManager.getStringSync($r('app.string.alarm_clock_postpone').id),  // "app.string.alarm_clock_postpone"资源文件中的value值为"推迟闹钟"
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
           }
         ],
         slotType: notificationManager.SlotType.CONTENT_INFORMATION,  // 指明提醒的Slot类型
@@ -105,9 +105,10 @@ class AlarmClockReminder {
     let day = this.date.getDate();
     this.alarmClockReminders[index].isStart = isOn
     if (isOn) {
-      await reminderAgent.addNotificationSlot(
+      await reminderAgentManager.addNotificationSlot(
         { notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION });
-      let reminderId = await reminderAgent.publishReminder(this.alarmClockReminders[index].reminderRequestAlarm!);
+      let reminderId = await reminderAgentManager.publishReminder(
+        this.alarmClockReminders[index].reminderRequestAlarm!);
       Logger.info(TAG, `publish reminder result: id is ${reminderId}`);
       this.alarmClockReminders[index].reminderId = reminderId;
       if (this.alarmClockReminders[index].audioSrc) {
@@ -150,7 +151,7 @@ class AlarmClockReminder {
       clearTimeout(this.alarmClockReminders[index].vibratorTimeouts)
       clearTimeout(this.alarmClockReminders[index].audioTimeouts)
       await PreferencesDataManager.putData('alarmClock', this.alarmClockReminders)
-      await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId);
+      await reminderAgentManager.cancelReminder(this.alarmClockReminders[index].reminderId);
       await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
     }
   }
@@ -163,7 +164,7 @@ class AlarmClockReminder {
     try {
       clearTimeout(this.alarmClockReminders[index].vibratorTimeouts)
       clearTimeout(this.alarmClockReminders[index].audioTimeouts)
-      reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId).then(() => {
+      reminderAgentManager.cancelReminder(this.alarmClockReminders[index].reminderId).then(() => {
         Logger.info(TAG, `deleteAlarmReminder cancelReminder is succeed`);
       }).catch((err: BusinessError) => {
         Logger.info(TAG, `deleteAlarmReminder cancelReminder is not exist err is ${JSON.stringify(err)}`);

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import reminderAgent from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 
 export interface Reminder {
   audioSrc: string,
@@ -23,6 +23,6 @@ export interface Reminder {
   reminderName: string,
   reminderId: number,
   vibratorTimeouts: number,
-  reminderRequestAlarm?: reminderAgent.ReminderRequestAlarm,
-  reminderRequestCalendar?: reminderAgent.ReminderRequestCalendar,
+  reminderRequestAlarm?: reminderAgentManager.ReminderRequestAlarm,
+  reminderRequestCalendar?: reminderAgentManager.ReminderRequestCalendar,
 }

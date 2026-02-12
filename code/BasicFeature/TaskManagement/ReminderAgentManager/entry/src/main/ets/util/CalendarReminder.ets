@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import reminderAgent from '@ohos.reminderAgentManager';
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 import vibrator from '@ohos.vibrator';
 import AudioPlayer from './AudioPlayer';
 import Constant from '../common/Constant';
@@ -49,11 +49,12 @@ class CalendarReminder {
         vibratorTimeouts: 0,
         reminderRequestCalendar: undefined
       }
-      await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
+      await reminderAgentManager.addNotificationSlot({
+        notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
       reminder.reminderName = selectCalendar
       // [Start calendar_reminder]
-      let calendar: reminderAgent.ReminderRequestCalendar = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,  // 提醒类型为日历类型
+      let calendar: reminderAgentManager.ReminderRequestCalendar = {
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR,  // 提醒类型为日历类型
         dateTime: {  // 指明提醒的目标时间
           year: date.getFullYear(),
           month: date.getUTCMonth() + 1,
@@ -64,7 +65,7 @@ class CalendarReminder {
         actionButton:  // 设置弹出的提醒通知信息上显示的按钮类型和标题
         [{
           title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),  // "app.string.calendar_close"资源文件中的value值为"关闭日历提醒"
-          type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+          type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         }],
         // 点击提醒通知后跳转的目标UIAbility信息
         wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
@@ -92,9 +93,10 @@ class CalendarReminder {
   async setToggle(isOn: boolean, index: number) {
     this.calendarReminders[index].isStart = isOn
     if (isOn) {
-      await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
+      await reminderAgentManager.addNotificationSlot({
+        notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
       // [Start publish_reminder]
-      let reminderId: number = await reminderAgent.publishReminder(
+      let reminderId: number = await reminderAgentManager.publishReminder(
         this.calendarReminders[index].reminderRequestCalendar!);
       Logger.info(TAG, `publish reminder result: id is ${reminderId}`);
       this.calendarReminders[index].reminderId = reminderId;  // 保存发布的提醒ID
@@ -148,7 +150,7 @@ class CalendarReminder {
       await PreferencesDataManager.putData('Calendar', this.calendarReminders);
       // [Start cancel_reminder]
       Logger.info(TAG, `cancel reminder id is ${this.calendarReminders[index].reminderId}`)
-      await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
+      await reminderAgentManager.cancelReminder(this.calendarReminders[index].reminderId);
       // [End cancel_reminder]
       await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
     }
@@ -156,7 +158,7 @@ class CalendarReminder {
 
   async openDialog(dialog: CustomDialogController, index: number) {
     try {
-      await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
+      await reminderAgentManager.cancelReminder(this.calendarReminders[index].reminderId);
     } catch (err) {
       Logger.error(TAG, `openDialog this cancelReminder is not exist,err is ${JSON.stringify(err)}`)
     }
@@ -167,7 +169,7 @@ class CalendarReminder {
     try {
       clearTimeout(this.calendarReminders[index].vibratorTimeouts)
       clearTimeout(this.calendarReminders[index].audioTimeouts)
-      reminderAgent.cancelReminder(this.calendarReminders[index].reminderId).then(() => {
+      reminderAgentManager.cancelReminder(this.calendarReminders[index].reminderId).then(() => {
         Logger.info(TAG, `deleteCalendar cancelReminder is succeed`);
       })
       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
