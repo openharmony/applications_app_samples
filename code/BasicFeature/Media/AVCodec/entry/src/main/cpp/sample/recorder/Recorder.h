@@ -48,6 +48,7 @@ private:
     void VideoEncOutputSyncThread();
     void AudioEncInputThread();
     void AudioEncOutputThread();
+    void ReleaseThread();
     void Release();
     void StartRelease();
     int32_t WaitForDone();
@@ -61,7 +62,9 @@ private:
 
     std::mutex mutex_;
     std::atomic<bool> isStarted_{false};
-    int32_t isFirstFrame_ = true;
+    int32_t isAudioEncFirstFrame_ = true;
+    std::atomic<bool> isVideoEncFirstSyncFrame_ = true;
+    int64_t videoFirstSyncFramePts_ = 0;
     std::unique_ptr<std::thread> encOutputThread_ = nullptr;
     std::unique_ptr<std::thread> audioEncInputThread_ = nullptr;
     std::unique_ptr<std::thread> audioEncOutputThread_ = nullptr;
