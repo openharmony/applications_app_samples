@@ -72,6 +72,11 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 管理页面跳转及浏览记录导航
+  * 在导航交互逻辑中，调用accessBackward接口查询当前历史记录，判断是否存在可供返回的前序页面，存在则执行backward方法触发页面回退，实现后退导航功能。
+  * 通过onLoadIntercept在页面URL发生变更之前捕获请求。通过判断是否以自定义Scheme开头识别前端发起的“原生跳转”指令。若是则调用pushUrl进行跳转。
+  * 通过onLoadIntercept接口建立导航拦截机制，通过识别URL是否以tel://协议头开头来判断拨号，并对解析URL提取目标号码。调用makeCall接口拉起拨号盘，同时返回true阻止WebView尝试将该非标准链接作为网页加载。
 
 ### 相关权限
 

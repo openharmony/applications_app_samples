@@ -173,6 +173,10 @@
 
 1. 点击按钮通过isIncogntoMode判断当前Web组件是否是隐私模式。
 
+### 具体实现
+* 在创建Web组件时，可以将可选参数incognitoMode设置为true，来开启Web组件的隐私模式。
+* 隐私模式提供了一系列接口，用于操作地理位置、Cookie以及Cache Data。
+
 # 在新窗口中打开页面
 
 ### OpenPageNewWin
@@ -285,6 +289,9 @@ entry/src/main/
 |---|---|---tests
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
+
+## 具体实现
+* 通过darkMode接口配置Web深色模式。参考源码：[DarkMode_one.ets](./entry/src/main/ets/pages/DarkMode_one.ets)
 
 ## 相关权限
 

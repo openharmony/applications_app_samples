@@ -221,6 +221,12 @@ entry4/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 加速Web页面的访问
+  * 调用prepareForPageLoad接口对目标URL进行预处理。参考源码：[Index.ets](./entry/src/main/ets/pages/Index.ets)
+  * 在Web组件的onAppear或onPageEnd生命周期进行预加载，调用prefetchPage对预测的下一个页面URL进行后台预下载，或通过prefetchResource实现请求的预获取。参考源码：[Index.ets](./entry1/src/main/ets/pages/Index.ets)
+  * 使用离线的Web组件用于生成字节码缓存，并在适当的时机加载业务用Web组件使用这些字节码缓存。参考源码：[Index.ets](./entry3/src/main/ets/pages/Index.ets)
+  * 使用离线的Web组件用于将资源注入到内核的内存缓存中，并在适当的时机加载业务用Web组件使用这些资源。参考源码：[Index.ets](./entry4/src/main/ets/pages/Index.ets)
 
 ### 相关权限
 

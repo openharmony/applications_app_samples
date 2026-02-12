@@ -238,6 +238,23 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+
+* 解决Web组件本地资源跨域问题
+  * 构造自定义HTTPS域名与本地rawfile文件的映射关系及MIME类型对照表，调用onInterceptRequest接口拦截页面网络请求，在回调中判断请求URL是否命中预设的映射规则，若规则匹配，通过$rawfile接口读取本地资源流，手动构建WebResourceResponse对象并返回。
+  * 通过UIContext获取应用沙箱内的资源目录与文件目录，构建本地路径列表，并调用setPathAllowingUniversalAccess接口将其设置为跨域访问白名单。允许本地HTML页面访问白名单内的本地资源文件，并通过loadUrl完成页面加载。
+* 使用智能防跟踪功能
+  * 调用enableIntelligentTrackingPrevention接口，传入布尔值true开启智能防跟踪功能。
+  * 调用isIntelligentTrackingPreventionEnabled接口，获取当前WebView实例的智能防跟踪功能启用状态，返回布尔值结果并输出日志。
+  * 定义包含受信任域名的字符串数组hostList，通过调用addIntelligentTrackingPreventionBypassingList方法，将域名列表注册到Web内核的全局配置中。
+  * 调用clearIntelligentTrackingPreventionBypassingList方法，移除所有此前通过addIntelligentTrackingPreventionBypassingList接口配置的受信任域名白名单。
+  * 开启WebView的智能防跟踪功能后，在Web组件初始化时注册onIntelligentTrackingPreventionResult回调，当追踪者cookie被拦截时，触发回调并传递details对象，解析其中的host（网站域名）与trackerHost（追踪者域名）。
+  * 调用removeIntelligentTrackingPreventionBypassingList方法，将指定的域名从智能防跟踪的豁免白名单中剔除。
+* 使用Web组件的广告过滤功能
+  * 开启广告拦截功能后，使用DocumentViewPicker调用系统文件选择器，用户动态导入符合EasyList语法的外部广告拦截规则文件，并通过fileUri.FileUri将选中的虚拟URI解析为可访问的物理文件路径。通过setAdsBlockRules接口，将解析后的规则文件注入到Web内核的全局配置中，建立基于规则的网络请求过滤机制。
+  * 开启广告拦截功能后，构造包含目标域名后缀的字符串数组定义不需要执行广告拦截的集合，调用addAdsBlockDisallowedList接口，将该域名数组注册为广告过滤的“例外名单”，在访问特定站点时跳过拦截规则匹配。
+  * 开启广告拦截功能后，调用addAdsBlockDisallowedList接口，将父级域名配置为广告过滤的“豁免对象”。再调用addAdsBlockAllowedList接口，将该父域名下的特定子域名重新标记为“需拦截对象”。
+  * 开启广告拦截功能后，在Web组件中注册onAdsBlocked事件回调，拦截到广告资源时，通过回调参数AdsBlockedDetails获取被拦截的URL列表。利用的Set数据结构对原始拦截数据进行去重后，将拦截数量累加至totalAdsBlockCounts中。
 
 ### 相关权限
 
