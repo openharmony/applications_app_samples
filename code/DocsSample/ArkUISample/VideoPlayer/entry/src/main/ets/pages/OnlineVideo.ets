@@ -23,7 +23,8 @@ export struct OnlineVideo {
   private controller: VideoController = new VideoController();
   // $r('app.media.preview')需要替换为开发者所需的图像资源文件
   private previewUris: Resource = $r('app.media.preview');
-  private videoSrc: string = 'www.example.com/example.mp4'; // 使用时请替换为实际视频加载网址
+  // 'www.example.com/example.mp4'需要替换为开发者所需的实际视频加载网址
+  private videoSrc: string = 'www.example.com/example.mp4';
 
   build() {
     Column() {
