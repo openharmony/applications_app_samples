@@ -65,6 +65,8 @@ napi_property_descriptor desc[] = {
      nullptr, napi_default, nullptr},
     {"createLinearNativeNode", nullptr, Manager::CreateLinearNativeNode, nullptr, nullptr, nullptr, napi_default,
      nullptr},
+    {"createNativeTextEditorNode", nullptr, Manager::CreateNativeTextEditorNode, nullptr, nullptr, nullptr,
+     napi_default, nullptr},
 };
 
 EXTERN_C_START

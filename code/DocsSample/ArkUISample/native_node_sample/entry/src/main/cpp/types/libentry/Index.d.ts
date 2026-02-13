@@ -37,3 +37,4 @@ export const resetImageSpanAttribute: (nodeId: number, nodeType: number, attribu
 export const createGridNativeNodeOnGetRectByIndex: (content: Object) => void;
 export const createGridNativeNodeIrregularIndexes: (content: Object) => void;
 export const createLinearNativeNode: (content: Object) => void;
+export const createNativeTextEditorNode: (content: Object) =>void;
