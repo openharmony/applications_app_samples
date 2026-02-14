@@ -123,6 +123,34 @@
     {
       "name": "sm2_sign_data_rs_to_der",
       "value": "SM2 Sign Data RS to DER"
+    },
+    {
+      "name": "onlysign_onlyverify_signature_validator",
+      "value": "onlysign_onlyverify_signature_validator"
+    },
+    {
+      "name": "rsa_pkcs1_onlysign_onlyverify_signature_validator_asynchronous",
+      "value": "rsa_pkcs1_onlysign_onlyverify_signature_validator_asynchronous"
+    },
+    {
+      "name": "rsa_pkcs1_onlysign_onlyverify_signature_validator_synchronous",
+      "value": "rsa_pkcs1_onlysign_onlyverify_signature_validator_synchronous"
+    },
+    {
+      "name": "rsa_pss_onlysign_onlyverify_signature_verification_asynchronous",
+      "value": "rsa_pss_onlysign_onlyverify_signature_verification_asynchronous"
+    },
+    {
+      "name": "rsa_pss_onlysign_onlyverify_signature_verification_synchronous",
+      "value": "rsa_pss_onlysign_onlyverify_signature_verification_synchronous"
+    },
+    {
+      "name": "ecc_onlysign_onlyverify_signature_verification_asynchronous",
+      "value": "ecc_onlysign_onlyverify_signature_verification_asynchronous"
+    },
+    {
+      "name": "ecc_onlysign_onlyverify_signature_verification_synchronous",
+      "value": "ecc_onlysign_onlyverify_signature_verification_synchronous"
     }
   ]
 }
