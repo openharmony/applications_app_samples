@@ -21,7 +21,7 @@ struct ChildEight {
 
   build() {
     Column() {
-      ForEach(Array.from(this.set.values()), (item: number) => { // 显示Set
+      ForEach(Array.from(this.set.values()), (item: number) => { // 显示set变量
         Text(`${item}`)
           .fontSize(30)
       })

@@ -34,7 +34,7 @@ struct ChildFour {
 
   build() {
     Column() {
-      Text(`child message:${this.message}`) // 显示string
+      Text(`child message:${this.message}`) // 显示message变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -42,7 +42,7 @@ struct ChildFour {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefinedVal:${this.undefinedVal}`) // 显示undefinedVal
+      Text(`undefinedVal:${this.undefinedVal}`) // 显示undefinedVal变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -50,7 +50,7 @@ struct ChildFour {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info id:${this.info.myId}`) // 显示info:myId
+      Text(`info id:${this.info.myId}`) // 显示info.myId变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -58,7 +58,7 @@ struct ChildFour {
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => { // 显示Set
+      ForEach(Array.from(this.set.values()), (item: number) => { // 显示set变量
         Text(`${item}`)
           .fontSize(30)
       })
@@ -69,7 +69,7 @@ struct ChildFour {
 
 @Entry
 @Component
-struct Index4 {
+struct IndexFour {
   @State message: string = 'Hello World'; // 简单类型数据，支持
   @State undefinedVal: undefined = undefined; // 简单类型数据，undefined，支持
   @State info: InfoFour = new InfoFour(); // Class类型，不支持传递，编译器报错；消除编译错误请去掉@State

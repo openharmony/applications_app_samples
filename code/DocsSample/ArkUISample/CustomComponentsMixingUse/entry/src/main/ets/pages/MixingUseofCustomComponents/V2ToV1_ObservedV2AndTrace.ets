@@ -31,7 +31,7 @@ struct ChildNine {
 
   build() {
     Column() {
-      Text(`info id:${this.info.myId}`) // 显示info:myId
+      Text(`info id:${this.info.myId}`) // 显示info.myId变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {

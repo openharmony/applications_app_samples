@@ -32,7 +32,7 @@ struct ChildTen {
 
   build() {
     Column() {
-      Text(`Child-V2 info id:${this.info.myId}`) // 显示info:myId
+      Text(`Child-V2 info id:${this.info.myId}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -45,12 +45,12 @@ struct ChildTen {
 @Entry
 @Component
 struct IndexTen {
-  // @State info: Info = new Info(); // 错误写法。Class类型，不支持传递，编译器报错；消除编译错误请去掉@State
+  // @State info: InfoTen = new InfoTen(); // 错误写法。Class类型，不支持传递，编译器报错；消除编译错误请去掉@State
   info: InfoTen = new InfoTen(); // 正确写法
 
   build() {
     Column() {
-      Text(`Parent-V1 info id:${this.info.myId}`) // 显示info:myId
+      Text(`Parent-V1 info id:${this.info.myId}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
