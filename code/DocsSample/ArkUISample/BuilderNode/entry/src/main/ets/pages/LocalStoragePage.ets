@@ -85,4 +85,5 @@ struct Child {
       .fontWeight(FontWeight.Bold)
   }
 }
+
 // [End Main_LocalStoragePage]

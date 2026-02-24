@@ -149,8 +149,7 @@ class MyNodeController extends NodeController {
         hilog.info(0x0000, `${TEST_TAG} appendChild success`, 'success');
       }
     } catch (err) {
-      console.error(TEST_TAG + ' appendChild fail : ' + (err as BusinessError).code + ' : ' +
-      (err as BusinessError).message);
+      console.error(`${TEST_TAG} appendChild fail : ${(err as BusinessError).code} : ${(err as BusinessError).message}`);
     }
   }
 }
@@ -167,8 +166,10 @@ struct Index {
       List({ space: 20, initialIndex: 0 }) {
         ListItem() {
           Column({ space: 5 }) {
-            /* 请将$r('app.string.Verify_The_Child_Node_Function_Of_FrameNode')替换为实际资源文件，
-               在本示例中该资源文件的value值为"验证FrameNode子节点的增、删、改功能" */
+            /**
+             * 请将$r('app.string.Verify_The_Child_Node_Function_Of_FrameNode')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"验证FrameNode子节点的增、删、改功能"
+             */
             Text($r('app.string.Verify_The_Child_Node_Function_Of_FrameNode'))
             // 请将$r('app.string.Operate_On_Custom_FrameNode')替换为实际资源文件，在本示例中该资源文件的value值为"对自定义FrameNode进行操作"
             Button($r('app.string.Operate_On_Custom_FrameNode'))
@@ -178,8 +179,10 @@ struct Index {
                 // 对FrameNode节点进行增、删、改操作，正常实现。
                 this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.frameNode);
               })
-            /* 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode')替换为实际资源文件，
-               在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作" */
+            /**
+             * 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作"
+             */
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode'))
               .fontSize(16)
               .width(400)
@@ -188,8 +191,10 @@ struct Index {
                 this.myNodeController.operationFrameNodeWithFrameNode
                 (this.myNodeController?.buttonNode?.getFrameNode());
               })
-            /* 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components')替换为实际资源文件，
-               在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作" */
+            /**
+             * 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作"
+             */
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components'))
               .fontSize(16)
               .width(400)
@@ -202,8 +207,10 @@ struct Index {
 
         ListItem() {
           Column({ space: 5 }) {
-            /* 请将$r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes')替换为实际资源文件，
-               在本示例中该资源文件的value值为"验证FrameNode添加子节点的特殊场景" */
+            /**
+             * 请将$r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"验证FrameNode添加子节点的特殊场景"
+             */
             Text($r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes'))
             // 请将$r('app.string.Add_Proxy_Nodes_Of_BuilderNode')替换为实际资源文件，在本示例中该资源文件的value值为"新增BuilderNode的代理节点"
             Button($r('app.string.Add_Proxy_Nodes_Of_BuilderNode'))
@@ -249,8 +256,10 @@ struct Index {
                   this.result = this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.frameNode);
                 }, 2000)
               })
-            /* 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again')替换为实际资源文件，
-               在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作" */
+            /**
+             * 请将$r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"对BuilderNode中的代理节点进行操作"
+             */
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again'))
               .fontSize(16)
               .width(400)
@@ -259,8 +268,10 @@ struct Index {
                 this.result =
                   this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.buttonNode?.getFrameNode());
               })
-            /* 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again')替换为实际资源文件，
-               在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作" */
+            /**
+             * 请将$r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again')替换为实际资源文件，
+             * 在本示例中该资源文件的value值为"对系统组件中的代理节点进行操作"
+             */
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again'))
               .fontSize(16)
               .width(400)

@@ -16,7 +16,8 @@
 // [Start repeat_example]
 // 在List容器组件中使用Repeat
 @Entry
-@ComponentV2 // 推荐使用V2装饰器
+@ComponentV2
+  // 推荐使用V2装饰器
 struct RepeatExample {
   @Local dataArr: Array<string> = []; // 数据源
 
@@ -43,4 +44,5 @@ struct RepeatExample {
     }
   }
 }
+
 // [End repeat_example]
