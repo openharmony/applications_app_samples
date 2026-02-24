@@ -31,7 +31,7 @@ struct ChildFive {
 
   build() {
     Column() {
-      Text(`info id:${this.info.myId}`) // 显示info:myId
+      Text(`info id:${this.info.myId}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {

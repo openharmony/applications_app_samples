@@ -94,7 +94,7 @@ struct IndexOne {
       Text(`messageInfoNested messageId:${this.messageInfoNested.messageInfo.messageId}`)
         .fontSize(30)
         .onClick(() => {
-          this.messageInfoNested.messageInfo.messageId++; // 当前组件不刷新，子组件Child1的UI刷新
+          this.messageInfoNested.messageInfo.messageId++; // 当前组件不刷新，子组件ChildOne的UI刷新
         })
       Divider()
         .color(Color.Blue)
