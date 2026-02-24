@@ -39,7 +39,7 @@ class A { }
 
 @Sendable
 class B {
-  u: A = new A()
+  u: A = new A();
 }
 // [End shared_Lexical]
 
