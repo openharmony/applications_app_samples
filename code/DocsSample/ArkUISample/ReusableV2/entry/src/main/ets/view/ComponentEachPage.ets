@@ -23,6 +23,7 @@ const DOMAIN = 0xF811;
 struct Index {
   @Local simpleList: number[] = [1, 2, 3, 4, 5];
   @Local condition: boolean = true;
+
   build() {
     Column() {
       Button('Delete/Create Repeat')
@@ -56,25 +57,32 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Require @Param num: number;
+
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear');
   }
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle');
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse');
   }
+
   build() {
     Column() {
       Text(`${this.num}`)
     }
   }
 }
+
 // [End ComponentEachPage]
 const componentEachPage = Index;
+
 export default componentEachPage;

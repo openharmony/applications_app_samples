@@ -22,11 +22,14 @@ const DOMAIN = 0xF811;
 class Info {
   @Trace public age: number = 25;
 }
+
 const info: Info = new Info();
+
 @Entry
 @ComponentV2
 struct Index {
   @Local condition: boolean = true;
+
   build() {
     Column() {
       Button('Reuse/Recycle')
@@ -43,32 +46,40 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Local info: Info = info; // 仅做演示使用，并不建议@Local赋值全局变量
+
   @Monitor('info.age')
   onValChange() {
     hilog.info(DOMAIN, TAG, 'info.age change');
   }
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'aboutToRecycle');
     this.info.age++;
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'aboutToReuse');
     this.info.age++;
   }
+
   onRender(): string {
     hilog.info(DOMAIN, TAG, 'info.age onRender');
     return this.info.age.toString();
   }
+
   build() {
     Column() {
       Text(this.onRender())
     }
   }
 }
+
 //[End ConditionPage]
 const conditionPage = Index;
+
 export default conditionPage;

@@ -27,12 +27,15 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   build() {
   }
 }
+
 //[End ExamplePage]
 const examplePage = Index;
+
 export default examplePage;
