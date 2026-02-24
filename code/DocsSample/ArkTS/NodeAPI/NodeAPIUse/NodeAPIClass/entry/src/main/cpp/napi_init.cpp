@@ -44,7 +44,10 @@ static void DerefItem(napi_env env, void *data, void *hint)
 {
     // 可选的原生回调，用于在ArkTS对象被垃圾回收时释放原生实例
     OH_LOG_INFO(LOG_APP, "Node-API DerefItem");
-    (void)hint;
+    Object *obj = reinterpret_cast<Object *>(data);
+    if (obj != nullptr) {
+        delete obj;
+    }
 }
 
 // napi_wrap
@@ -53,13 +56,22 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "Node-API wrap");
     // 初始化Node-API模块的object
     struct Object *obj = new struct Object();
-    obj->name = "lilei";
+    obj->name = "liLei";
     obj->age = INT_ARG_18;
     size_t argc = 1;
     napi_value toWrap;
     // 调用napi_wrap将Node-API模块的object绑定到ArkTS object上
-    napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
-    napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    napi_status status_cb = napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
+    if (status_cb != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        delete obj;
+        return nullptr;
+    }
+    napi_status status = napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    if (status != napi_ok) {
+        // 主动释放内存
+        delete obj;
+    }
 
     return toWrap;
 }
@@ -73,7 +85,11 @@ static napi_value RemoveWrap(napi_env env, napi_callback_info info)
     void *data = nullptr;
     // 调用napi_remove_wrap从一个被包装的对象中解除包装
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
-    napi_remove_wrap(env, wrapped, &data);
+    napi_status status = napi_remove_wrap(env, wrapped, &data);
+    if (status != napi_ok || data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_remove_wrap failed or data is nullptr");
+        return nullptr;
+    }
 
     return nullptr;
 }
@@ -86,8 +102,12 @@ static napi_value UnWrap(napi_env env, napi_callback_info info)
     napi_value wrapped = nullptr;
     napi_get_cb_info(env, info, &argc, &wrapped, nullptr, nullptr);
     // 调用napi_unwrap取出绑定在ArkTS object中的数据并打印
-    struct Object *data;
-    napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    struct Object *data = nullptr;
+    napi_status status = napi_unwrap(env, wrapped, reinterpret_cast<void **>(&data));
+    if (status != napi_ok || data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_unwrap failed or data is nullptr");
+        return nullptr;
+    }
     OH_LOG_INFO(LOG_APP, "Node-API name: %{public}s", data->name.c_str());
     OH_LOG_INFO(LOG_APP, "Node-API age: %{public}d", data->age);
     return nullptr;

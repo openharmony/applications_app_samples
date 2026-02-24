@@ -14,7 +14,7 @@
  */
 
 // [Start napi_new_instance_api]
-export const newInstance: (obj: Object, param: string) => Object // napi_new_instance
+export const newInstance: (obj: Object, param: string) => Object; // napi_new_instance
 // [End napi_new_instance_api]
 
 // [Start napi_wrap_unwrap_remove_wrap_api]
