@@ -16,7 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
-// [Start ark_napi_new_instance]
+// [Start ark_napi_new_instance_class]
 class Fruit {
   name: string;
 
@@ -24,8 +24,8 @@ class Fruit {
     this.name = name;
   }
 }
+// [End ark_napi_new_instance_class]
 
-// [StartExclude ark_napi_new_instance]
 @Entry
 @Component
 struct Index {
@@ -57,7 +57,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiNewInstance') {
-                  // [EndExclude ark_napi_new_instance]
+                  // [Start ark_napi_new_instance]
                   // napi_new_instance
                   // 调用函数，用变量obj接收函数返回的实例化对象
                   let obj = testNapi.newInstance(Fruit, 'test');
@@ -72,9 +72,9 @@ struct Index {
                     }
 
                     let obj: Obj = {};
-                    testNapi.wrap(obj) // napi_wrap
-                    testNapi.unWrap(obj) // napi_unwrap
-                    testNapi.removeWrap(obj) // napi_remove_wrap
+                    testNapi.wrap(obj); // napi_wrap
+                    testNapi.unWrap(obj); // napi_unwrap
+                    testNapi.removeWrap(obj); // napi_remove_wrap
                     // [StartExclude ark_napi_wrap_unwrap_remove_wrap]
                     this.result = 'napiRemoveWrapSuccess';
                     // [EndExclude ark_napi_wrap_unwrap_remove_wrap]
