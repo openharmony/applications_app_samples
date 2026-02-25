@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import { inputMethodEngine } from '@kit.IMEKit';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
