@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
+import { deviceInfo } from '@kit.BasicServicesKit';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';

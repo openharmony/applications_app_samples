@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage";
+import { AbilityStage } from "@kit.AbilityKit";
 import Log from '../model/Log';
 
 const TAG: string = 'AbilityStage->';
