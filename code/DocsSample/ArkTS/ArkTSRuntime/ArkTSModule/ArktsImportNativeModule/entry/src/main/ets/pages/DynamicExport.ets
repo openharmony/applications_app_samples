@@ -14,6 +14,6 @@
  */
 // [Start dynamic_export]
 // DynamicExport.ets
-import entry from 'libentry.so'
+import entry from 'libentry.so';
 export { entry }
 // [End dynamic_export]

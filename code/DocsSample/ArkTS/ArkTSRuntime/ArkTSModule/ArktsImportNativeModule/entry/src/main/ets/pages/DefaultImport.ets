@@ -14,6 +14,6 @@
  */
 // [Start default_import]
 // DefaultImport.ets
-import entry from 'libentry.so'
+import entry from 'libentry.so';
 entry.add(2, 3);
 // [End default_import]

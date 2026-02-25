@@ -14,6 +14,6 @@
  */
 // [Start name_import]
 // NameImport.ets
-import { add } from 'libentry.so'
+import { add } from 'libentry.so';
 add(2, 3);
 // [End name_import]
