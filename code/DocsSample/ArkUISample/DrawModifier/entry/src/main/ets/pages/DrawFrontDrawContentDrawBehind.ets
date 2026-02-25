@@ -18,7 +18,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 import { AnimatorResult } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const LOG_PRINT_DOMAIN:  number = 0xFF00;
+const LOG_PRINT_DOMAIN: number = 0xFF00;
 const PREFIX: string = '[Sample]'
 
 class MyFullDrawModifier extends DrawModifier {
@@ -212,4 +212,5 @@ struct DrawModifierExample {
     .height('100%')
   }
 }
+
 // [End drawFront_drawContent_drawBehind_start]

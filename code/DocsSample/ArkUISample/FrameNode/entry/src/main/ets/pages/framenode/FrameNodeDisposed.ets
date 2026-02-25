@@ -32,11 +32,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error(TEST_TAG + ' aboutToAppear');
+    console.info(`${TEST_TAG} aboutToAppear`);
   }
 
   aboutToDisappear() {
-    console.error(TEST_TAG + ' aboutToDisappear');
+    console.info(`${TEST_TAG} aboutToDisappear`);
   }
 }
 
@@ -117,4 +117,5 @@ struct Index {
     }
   }
 }
+
 //[End frameNodeDisposed_start]
