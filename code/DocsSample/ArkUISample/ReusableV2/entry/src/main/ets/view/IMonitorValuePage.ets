@@ -21,14 +21,17 @@ const DOMAIN = 0xF811;
 @ObservedV2
 class Info {
   @Trace public age: number;
+
   constructor(age: number) {
     this.age = age;
   }
 }
+
 @Entry
 @ComponentV2
 struct Index {
   @Local condition: boolean = true;
+
   build() {
     Column() {
       Button('Recycle/Reuse')
@@ -41,20 +44,25 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
+
   @Monitor('noDecoInfo.age')
   onAgeChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
+
   aboutToRecycle() {
     this.noDecoInfo.age = 25;
   }
+
   aboutToReuse() {
     this.noDecoInfo.age = 35;
   }
+
   build() {
     Column() {
       Column() {
@@ -66,6 +74,8 @@ struct ReusableV2Component {
     }
   }
 }
+
 //[End IMonitorValuePage]
 const iMonitorValuePage = Index;
+
 export default iMonitorValuePage;

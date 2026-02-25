@@ -22,6 +22,7 @@ const DOMAIN = 0xF811;
 @ComponentV2
 struct Index {
   @Local condition: boolean = true;
+
   build() {
     Column() {
       Button('Recycle/Reuse')
@@ -34,22 +35,28 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Local message: string = 'Hello World';
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle'); // 回收时被调用
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse'); // 复用时被调用
   }
+
   build() {
     Column() {
       Text(this.message)
     }
   }
 }
+
 // [End ComponentIfPage]
 const componentIfPage = Index;
+
 export default componentIfPage;

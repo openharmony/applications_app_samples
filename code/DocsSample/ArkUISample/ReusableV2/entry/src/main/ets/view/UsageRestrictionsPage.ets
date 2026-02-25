@@ -22,16 +22,20 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   build() {
   }
 }
+
 @Builder
 function V2ReusableBuilder() {
   ReusableV2Component()
 }
+
 //[End UsageRestrictionsPage]
 const usageRestrictionsPage = Index;
+
 export default usageRestrictionsPage;

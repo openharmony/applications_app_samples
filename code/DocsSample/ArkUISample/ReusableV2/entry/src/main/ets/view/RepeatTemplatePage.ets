@@ -17,17 +17,19 @@
 @ComponentV2
 struct Index {
   @Local arr: number[] = [1, 2, 3, 4, 5];
+
   build() {
     Column() {
       List() {
         Repeat(this.arr)
-          .each(() => {})
+          .each(() => {
+          })
           .virtualScroll()
           .templateId(() => 'a')
           .template('a', (ri) => {
             ListItem() {
               Column() {
-                NormalV2Component({ val: ri.item}) // 支持普通V2自定义组件下面包含V2复用组件
+                NormalV2Component({ val: ri.item }) // 支持普通V2自定义组件下面包含V2复用组件
               }
             }
           })
@@ -35,27 +37,34 @@ struct Index {
     }
   }
 }
+
 @ComponentV2
 struct NormalV2Component {
   @Require @Param val: number;
+
   build() {
     ReusableV2Component({ val: this.val })
   }
 }
+
 @Builder
 function ReusableV2Builder(param: number) {
   ReusableV2Component({ val: param })
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Require @Param val: number;
+
   build() {
     Column() {
       Text(`val: ${this.val}`)
     }
   }
 }
+
 //[End RepeatTemplatePage]
 const repeatTemplatePage = Index;
+
 export default repeatTemplatePage;

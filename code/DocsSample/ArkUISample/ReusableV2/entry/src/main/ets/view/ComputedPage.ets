@@ -21,16 +21,19 @@ const DOMAIN = 0xF811;
 @ObservedV2
 class Info {
   @Trace public age: number;
+
   constructor(age: number) {
     this.age = age;
   }
 }
+
 @Entry
 @ComponentV2
 struct Index {
   @Local local: number = 0;
   @Provider('inherit') inheritProvider: number = 100;
   @Local condition: boolean = true;
+
   build() {
     Column() {
       Button('Recycle/Reuse')
@@ -61,6 +64,7 @@ struct Index {
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
@@ -76,18 +80,22 @@ struct ReusableV2Component {
   noDecoVariable: number = 0; // 未加装饰器，被视作常量
   noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   readonly readOnlyVariable: number = 0; // readonly常量
+
   @Computed
   get plusParam() {
     return this.paramLocal + this.paramOut + this.paramOnce;
   }
+
   @Monitor('val')
   onValChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
+
   @Monitor('plusParam')
   onPlusParamChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
+
   build() {
     Column() {
       Column() {
@@ -113,6 +121,7 @@ struct ReusableV2Component {
             this.selfConsumer++;
           })
       }.borderWidth(2)
+
       Column() {
         Text('Reset to an external variable')
         Text(`paramOut: ${this.paramOut}`)
@@ -124,6 +133,7 @@ struct ReusableV2Component {
             this.paramOnce++;
           })
       }.borderWidth(2)
+
       Column() {
         Text('Depending on the parent component')
         Text(`inheritConsumer: ${this.inheritConsumer}`)
@@ -132,6 +142,7 @@ struct ReusableV2Component {
           })
         Text(`plusParam: ${this.plusParam}`)
       }.borderWidth(2)
+
       Column() {
         Text('Not reset')
         Text(`noDecoVariable: ${this.noDecoVariable}`)
@@ -144,6 +155,8 @@ struct ReusableV2Component {
     }
   }
 }
+
 //[End ComputedPage]
 const computedPage = Index;
+
 export default computedPage;
