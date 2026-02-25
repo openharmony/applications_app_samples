@@ -15,8 +15,8 @@
 
 // [Start namespaces_Variables_index]
 // ModuleIndex.ts
-import { a, b } from "./ModuleFoo"
-import * as c from "./ModuleBar"
+import { a, b } from "./ModuleFoo";
+import * as c from "./ModuleBar";
 
 export let d: number = 3;
 
