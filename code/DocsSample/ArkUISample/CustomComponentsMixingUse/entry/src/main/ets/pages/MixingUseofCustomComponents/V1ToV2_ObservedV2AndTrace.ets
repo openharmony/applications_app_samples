@@ -27,7 +27,7 @@ class InfoTen {
 
 @ComponentV2
 struct ChildTen {
-  // V2对数据输入有严格的管理，从父组件接受数据时，必须@Param装饰器进行数据接收
+  // V2对数据输入有严格的管理，从父组件传入数据时，必须使用@Param装饰器进行数据接收
   @Param info: InfoTen = new InfoTen();
 
   build() {

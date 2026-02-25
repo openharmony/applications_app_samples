@@ -54,7 +54,7 @@ struct GrandSon1 {
       Text(`ObjectLink info info.myId:${this.info.myId}`) // myId属性被@Trace装饰，可以观测变化
         .fontSize(30)
         .onClick(() => {
-          this.info.myId++; // 当前组件和父组件Child1都刷新
+          this.info.myId++; // 当前组件和父组件ChildOne都刷新
         })
     }
   }
