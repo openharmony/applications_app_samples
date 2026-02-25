@@ -47,9 +47,13 @@ struct Index {
       Column() {
         // [Start segment1]
         Column() {
+          // [StartExclude segment1]
           Text('item 1')
+          // [EndExclude segment1]
           Divider()
+          // [StartExclude segment1]
           Text('item 2')
+          // [EndExclude segment1]
         }
 
         // [End segment1]
