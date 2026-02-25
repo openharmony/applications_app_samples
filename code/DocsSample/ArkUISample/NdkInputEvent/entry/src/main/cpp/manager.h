@@ -16,9 +16,6 @@
 #ifndef NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
 #define NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
 
-#include <arkui/native_gesture.h>
-#include <arkui/native_node.h>
-#include <cstdint>
 #include <string>
 #include <unordered_map>
 

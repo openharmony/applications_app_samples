@@ -18,7 +18,6 @@
 
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
-#include <napi/native_api.h>
 #include <string>
 #include <unordered_map>
 

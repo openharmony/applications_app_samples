@@ -26,6 +26,7 @@
 
 namespace NativeXComponentSample {
 
+// 触摸事件操作处理函数
 void TouchEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* button)
 {
     auto sourceType = OH_ArkUI_UIInputEvent_GetSourceType(inputEvent);
@@ -44,6 +45,7 @@ void TouchEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* button
     }
 }
 
+// 鼠标事件操作处理函数
 void MouseEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle *button)
 {
     if (OH_ArkUI_UIInputEvent_GetToolType(inputEvent) == UI_INPUT_EVENT_TOOL_TYPE_MOUSE) {
@@ -96,6 +98,7 @@ void MouseEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle *button
     }
 }
 
+// 键盘事件操作处理函数
 void KeyEventOperator(ArkUI_UIInputEvent* inputEvent)
 {
     SetText(titleText, "");
@@ -136,6 +139,7 @@ void KeyEventOperator(ArkUI_UIInputEvent* inputEvent)
     }
 }
 
+// 按钮1事件接收器，注册触摸、鼠标、悬停和键盘事件
 void Bt1EventReceiver(ArkUI_NodeHandle& button)
 {
     nodeAPI->registerNodeEvent(button, NODE_TOUCH_EVENT, 1, &button);
@@ -185,6 +189,7 @@ void Bt1EventReceiver(ArkUI_NodeHandle& button)
     });
 }
 
+// 扩展触摸事件操作处理函数
 void ExtraTouchEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* button)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "ARKUI_UIINPUTEVENT_TYPE_TOUCH EventReceiver");
@@ -218,6 +223,7 @@ void ExtraTouchEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* b
     }
 }
 
+// 轴事件操作处理函数
 void AxisEventOperator(ArkUI_UIInputEvent* inputEvent)
 {
     SetText(titleText, "");
@@ -264,6 +270,7 @@ void AxisEventOperator(ArkUI_UIInputEvent* inputEvent)
     }
 }
 
+// 按钮2事件接收器，注册触摸、轴和焦点轴事件
 void Bt2EventReceiver(ArkUI_NodeHandle& button)
 {
     nodeAPI->registerNodeEvent(button, NODE_TOUCH_EVENT, 1, &button);
@@ -292,6 +299,7 @@ void Bt2EventReceiver(ArkUI_NodeHandle& button)
     });
 }
 
+// 触摸拦截测试接收器
 void TitTestReceiver(ArkUI_NodeHandle& node, const char* str, bool test = false)
 {
     if (test) {
@@ -320,6 +328,7 @@ void TitTestReceiver(ArkUI_NodeHandle& node, const char* str, bool test = false)
     });
 }
 
+// 切换按钮接收器，用于切换触摸测试模式
 void SwitchBtReceiver(ArkUI_NodeHandle& button)
 {
     nodeAPI->registerNodeEvent(button, NODE_ON_CLICK_EVENT, 1, &button);
@@ -334,6 +343,7 @@ void SwitchBtReceiver(ArkUI_NodeHandle& button)
     });
 }
 
+// 说明接收器，显示说明文本
 void ExplainReceiver(ArkUI_NodeHandle& button)
 {
     nodeAPI->registerNodeEvent(button, NODE_ON_CLICK_EVENT, 1, nullptr);
@@ -342,6 +352,7 @@ void ExplainReceiver(ArkUI_NodeHandle& button)
     });
 }
 
+// 触摸拦截测试模块，创建测试节点树
 void TitTestModule()
 {
     auto nodeParent = nodeAPI->createNode(ARKUI_NODE_STACK);
@@ -373,6 +384,7 @@ void TitTestModule()
     nodeAPI->addChild(column1, nodeParent);
 }
 
+// 按钮模块，创建测试按钮
 void ButtonModule()
 {
     static auto button1 = nodeAPI->createNode(ARKUI_NODE_BUTTON);
@@ -431,6 +443,7 @@ void ButtonModule()
     nodeAPI->addChild(row, button4);
 }
 
+// 背景事件接收器
 void BgEventReceiver(ArkUI_NodeHandle& node)
 {
     nodeAPI->registerNodeEvent(node, NODE_TOUCH_EVENT, 1, &node);
@@ -442,6 +455,7 @@ void BgEventReceiver(ArkUI_NodeHandle& node)
     });
 }
 
+// 第一个主模块，创建完整的UI界面
 void FirstModule(ArkUI_NodeHandle &root)
 {
     column1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);

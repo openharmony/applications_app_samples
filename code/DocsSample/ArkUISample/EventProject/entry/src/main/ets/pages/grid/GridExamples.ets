@@ -53,7 +53,7 @@ struct GridEts {
   //[End gridExample_onPageShow]
   loadData() {
     this.timeout = setTimeout(() => {
-      //数据准备完成后的状态
+      // 数据准备完成后的状态
       if (this.dragEvent) {
         this.dragEvent.setData(this.unifiedData);
       }

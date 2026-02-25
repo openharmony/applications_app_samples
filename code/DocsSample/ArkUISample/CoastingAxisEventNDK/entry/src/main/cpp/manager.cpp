@@ -14,15 +14,20 @@
  */
 
 #include <arkui/native_interface.h>
+#include <arkui/native_node_napi.h>
 #include <hilog/log.h>
 
 #include "manager.h"
 
 namespace NativeXComponentSample {
+// 日志打印域
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+// ArkUI原生模块API指针
 static ArkUI_NativeNodeAPI_1* nativeModule_ = nullptr;
+// 像素到vp转换比例
 double g_px2vp = 0;
 
+// 静态联系人分组数据，按字母分组
 const std::vector<ContactsGroup> staticContacts = {
     { "A", { Contact("Alice"), Contact("Alan"), Contact("Amy"), Contact("Andy"), Contact("Anna") } },
     { "B",
@@ -57,20 +62,17 @@ const std::vector<ContactsGroup> staticContacts = {
     { "Z", { Contact("Zoe"), Contact("Zack"), Contact("Zara"), Contact("Zane"), Contact("Zelda") } }
 };
 
+// 获取NodeManager单例实例
 NodeManager& NodeManager::GetInstance()
 {
     static NodeManager instance;
     return instance;
 }
 
-void NodeManager::SetXComponent(OH_NativeXComponent* xComponent)
+// 创建原生节点，包含列表和惯性轴事件监听
+void NodeManager::CreateNativeNode(napi_env env, napi_value nodeContent, double px2vp)
 {
-    xComponent_ = xComponent;
-}
-
-void NodeManager::CreateNativeNode(double px2vp)
-{
-    if (!xComponent_ || px2vp == 0) {
+    if (px2vp == 0) {
         return;
     }
     g_px2vp = px2vp;
@@ -79,6 +81,13 @@ void NodeManager::CreateNativeNode(double px2vp)
     if (nativeModule_ == nullptr) {
         return;
     }
+
+    // 将ArkTS侧的NodeContent转换为Native侧的Handle
+    if (OH_ArkUI_GetNodeContentFromNapiValue(env, nodeContent, &nodeContent_) != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "NodeManager", "Failed to get NodeContent from NapiValue");
+        return;
+    }
+
     // 创建一个Column容器组件
     ArkUI_NodeHandle column = nativeModule_->createNode(ARKUI_NODE_COLUMN);
     // 创建List
@@ -86,9 +95,11 @@ void NodeManager::CreateNativeNode(double px2vp)
     nativeModule_->addChild(column, listNode);
     // 为List注册惯性轴事件监听
     RegisterCoastingAxisEvent(listNode);
-    OH_NativeXComponent_AttachNativeRootNode(xComponent_, column);
+    // 将Column添加到NodeContent中
+    OH_ArkUI_NodeContent_AddNode(nodeContent_, column);
 }
 
+// 创建列表节点
 ArkUI_NodeHandle NodeManager::CreateList()
 {
     ArkUI_NodeHandle listNode = nativeModule_->createNode(ARKUI_NODE_LIST);
@@ -109,6 +120,7 @@ ArkUI_NodeHandle NodeManager::CreateList()
     return listNode;
 }
 
+// 创建列表项节点
 ArkUI_NodeHandle NodeManager::CreateListItem(const Contact& contact)
 {
     auto listItem = nativeModule_->createNode(ARKUI_NODE_LIST_ITEM);
@@ -130,6 +142,7 @@ ArkUI_NodeHandle NodeManager::CreateListItem(const Contact& contact)
     return listItem;
 }
 
+// 创建列表图片节点
 ArkUI_NodeHandle NodeManager::CreateListImage(std::string icon)
 {
     auto image = nativeModule_->createNode(ARKUI_NODE_IMAGE);
@@ -149,6 +162,7 @@ ArkUI_NodeHandle NodeManager::CreateListImage(std::string icon)
     return image;
 }
 
+// 创建列表文本节点
 ArkUI_NodeHandle NodeManager::CreateListText(std::string text)
 {
     auto textNode = nativeModule_->createNode(ARKUI_NODE_TEXT);
@@ -160,6 +174,7 @@ ArkUI_NodeHandle NodeManager::CreateListText(std::string text)
     return textNode;
 }
 
+// 创建列表分组标题节点
 ArkUI_NodeHandle NodeManager::CreateHeader(const std::string& text)
 {
     auto textNode = nativeModule_->createNode(ARKUI_NODE_TEXT);
@@ -184,6 +199,7 @@ ArkUI_NodeHandle NodeManager::CreateHeader(const std::string& text)
     return textNode;
 }
 
+// 注册惯性轴事件监听器
 void NodeManager::RegisterCoastingAxisEvent(ArkUI_NodeHandle node)
 {
     nativeModule_->registerNodeEvent(node, NODE_ON_COASTING_AXIS_EVENT, 0, nullptr);

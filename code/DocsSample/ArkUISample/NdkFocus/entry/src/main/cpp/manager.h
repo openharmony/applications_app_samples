@@ -17,7 +17,6 @@
 #define NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
 
 #include <ace/xcomponent/native_interface_xcomponent.h>
-#include <cstdint>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <napi/native_api.h>

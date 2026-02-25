@@ -14,20 +14,21 @@
  */
 
 import nativeNode from 'libentry.so';
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
+  private nodeContent: Content = new NodeContent();
+
+  aboutToAppear() {
+    nativeNode.createNativeNode(this.nodeContent, this.getUIContext().px2vp(1));
+  }
+
   build() {
     Row() {
       Column() {
-        XComponent({
-          id: "coastingAxisEvent",
-          type: XComponentType.NODE,
-          libraryname: "entry"
-        }).onAppear(()=> {
-          nativeNode.createNativeNode(this.getUIContext().px2vp(1))
-        })
+        ContentSlot(this.nodeContent);
       }
       .width('100%')
     }

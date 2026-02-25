@@ -12,5 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { Content } from '@kit.ArkUI';
 
-export const createNativeNode: (px2vp: number) => void;
+export const createNativeNode: (nodeContent: Content, px2vp: number) => void;

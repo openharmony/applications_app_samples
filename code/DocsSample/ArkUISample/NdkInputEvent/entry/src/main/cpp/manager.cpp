@@ -32,16 +32,18 @@
 namespace NativeXComponentSample {
 Manager Manager::manager_;
 
+// Manager析构函数，清理所有资源
 Manager::~Manager()
 {
     OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "~Manager");
+    // 清理nativeXComponentMap_
     for (auto iter = nativeXComponentMap_.begin(); iter != nativeXComponentMap_.end(); ++iter) {
         if (iter->second != nullptr) {
             iter->second = nullptr;
         }
     }
     nativeXComponentMap_.clear();
-
+    // 清理containerMap_
     for (auto iter = containerMap_.begin(); iter != containerMap_.end(); ++iter) {
         if (iter->second != nullptr) {
             delete iter->second;
@@ -51,6 +53,7 @@ Manager::~Manager()
     containerMap_.clear();
 }
 
+// 示例入口函数，创建根节点和初始化UI界面
 void SampleEntry(napi_env env, napi_value arg, OH_NativeXComponent *component)
 {
     // 根节点
@@ -62,9 +65,11 @@ void SampleEntry(napi_env env, napi_value arg, OH_NativeXComponent *component)
     
     FirstModule(column);
     
+    // 将根节点附加到XComponent
     OH_NativeXComponent_AttachNativeRootNode(component, column);
 }
     
+// 创建原生节点N-API接口，根据ID创建NativeXComponent并初始化UI
 napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
 {
     if ((env == nullptr) || (info == nullptr)) {
@@ -111,10 +116,12 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
     if (component == nullptr) {
         return nullptr;
     }
+    // 获取ArkUI模块接口
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
 
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
+            // 调用FirstModule创建UI
             SampleEntry(env, args[1], component);
         }
     }
@@ -122,6 +129,7 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 更新原生节点N-API接口
 napi_value Manager::UpdateNativeNode(napi_env env, napi_callback_info info)
 {
     if ((env == nullptr) || (info == nullptr)) {
@@ -179,6 +187,7 @@ napi_value Manager::UpdateNativeNode(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 获取上下文N-API接口
 napi_value Manager::GetContext(napi_env env, napi_callback_info info)
 {
     if ((env == nullptr) || (info == nullptr)) {
@@ -223,6 +232,7 @@ napi_value Manager::GetContext(napi_env env, napi_callback_info info)
     return exports;
 }
 
+// 导出N-API接口到JavaScript层
 void Manager::Export(napi_env env, napi_value exports)
 {
     if ((env == nullptr) || (exports == nullptr)) {
@@ -244,6 +254,7 @@ void Manager::Export(napi_env env, napi_value exports)
 
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+    // 获取XComponent ID
     if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "Export: OH_NativeXComponent_GetXComponentId fail");
@@ -257,6 +268,7 @@ void Manager::Export(napi_env env, napi_value exports)
     }
 }
 
+// 设置NativeXComponent组件到映射表中
 void Manager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent)
 {
     if (nativeXComponent == nullptr) {
@@ -275,5 +287,6 @@ void Manager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXC
     }
 }
 
+// 从映射表中获取NativeXComponent组件
 OH_NativeXComponent *Manager::GetNativeXComponent(const std::string &id) { return nativeXComponentMap_[id]; }
 } // namespace NativeXComponentSample

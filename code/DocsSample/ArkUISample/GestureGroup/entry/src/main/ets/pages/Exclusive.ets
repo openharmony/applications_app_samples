@@ -28,7 +28,7 @@ struct MutualExclusion {
     }
     .height(200)
     .width('100%')
-    //以下组合手势为互斥识别，单击手势识别成功后，双击手势会识别失败
+    // 以下组合手势为互斥识别，单击手势识别成功后，双击手势会识别失败
     .gesture(
       GestureGroup(GestureMode.Exclusive,
         TapGesture({ count: 1 })
