@@ -31,12 +31,13 @@ export struct ParamUseSceneUnite {
 @Entry
 @ComponentV2
 struct Index {
-  // 点击的数量，用于传给子组件，值可为undefined
+  // 使用@Local装饰联合类型变量，作为数据源传递给子组件的@Param。
   @Local count: number | undefined = 0;
 
   build() {
     Column() {
       MyComponent({ count: this.count })
+      // 修改联合类型值，触发子组件更新。
       Button('change')
         .onClick(() => {
           this.count = undefined;
@@ -47,7 +48,7 @@ struct Index {
 
 @ComponentV2
 struct MyComponent {
-  // 点击的数量，用于接收父组件传入的值，值可为undefined
+  // 使用@Param接收父组件传入的联合类型变量。
   @Param count: number | undefined = 0;
 
   build() {
