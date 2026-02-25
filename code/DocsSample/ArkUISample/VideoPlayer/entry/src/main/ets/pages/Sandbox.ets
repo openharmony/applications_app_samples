@@ -21,6 +21,7 @@
 @Component
 export struct Sandbox {
   private controller: VideoController = new VideoController();
+  // 'file:///data/storage/el2/base/haps/entry/files/show.mp4'需要替换为开发者所需的实际视频沙箱路径
   private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4';
 
   build() {
