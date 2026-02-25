@@ -12,16 +12,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
+// [Start test_party]
+// 在entry/src/main/ets/pages/Index.ets
+let testPako: pako.constants = 0;
+let testMime: mime.TypeMap = {};
+let testGlobal: Global.ObjectType = 'test';
+// [End test_party]
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
 function testTypeInference() {
-  // [Start call_global]
-  // 在entry/src/main/ets/pages/Index.ets
-  let a: Chai.Message;
-  let b: Mocha.HookFunction;
-  let c: Global.ObjectType;
-  // [End call_global]
+  let logMsg = testPako.toString();
+  logMsg += testMime.toString();
+  logMsg += testGlobal.toString();
+  if (globalLogUpdate) {
+    globalLogUpdate(logMsg, false);
+  }
 }
 
 @Entry
@@ -93,7 +98,7 @@ struct IndexArkTs {
         .margin({ bottom: 16 })
 
         Column() {
-          Text($r('app.string.test_specific_field')).fontColor(Color.Black).fontSize(14);
+          Text($r('app.string.test_third_party')).fontSize(14)
         }
         .backgroundColor(Color.White)
         .borderRadius(20)
@@ -103,7 +108,7 @@ struct IndexArkTs {
         .margin({ bottom: 12 })
         .onClick(() => {
           testTypeInference();
-          this.currentState = $r('app.string.test_specific_field_complete');
+          this.currentState = $r('app.string.test_third_party_complete');
         })
 
       }
@@ -114,3 +119,4 @@ struct IndexArkTs {
     }
   }
 }
+

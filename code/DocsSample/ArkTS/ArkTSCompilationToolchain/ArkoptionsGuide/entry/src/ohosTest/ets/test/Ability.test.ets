@@ -72,7 +72,7 @@ export default function ArkoptionsGuideTest() {
     /**
      * @tc.number ArkoptionsGuide_Test_0001
      * @tc.name ArkoptionsGuide_Test_0001
-     * @tc.desc Test field
+     * @tc.desc Test third party
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -80,9 +80,9 @@ export default function ArkoptionsGuideTest() {
     it('ArkoptionsGuide_Test_0001', Level.LEVEL1, async (done: Function) => {
       await runTest(
         'ArkoptionsGuide_Test_0001', // 测试用例名称。
-        '测试特定字段', // 按钮文本。
+        '测试三方库', // 按钮文本。
         2000, // 延时 2000 毫秒。
-        'Test field', // 描述。
+        'Test third party', // 描述。
         done // done 回调。
       );
     })
