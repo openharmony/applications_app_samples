@@ -30,6 +30,7 @@ export struct ParamUseSceneSet {
 // [Start Param_Use_Scene_Set]
 @ComponentV2
 struct Child {
+  // 使用@Param接收父组件传入的Set类型变量。
   @Param message: Set<number> = new Set();
 
   build() {
@@ -46,21 +47,26 @@ struct Child {
 @Entry
 @ComponentV2
 struct Index {
+  // 使用@Local装饰Set类型变量，作为数据源传递给子组件的@Param。
   @Local message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
       Column() {
         Child({ message: this.message })
+        // 对Set整体重新赋值，触发子组件更新。
         Button('init set').onClick(() => {
           this.message = new Set([0, 1, 2, 3, 4]);
         })
+        // 新增元素，触发子组件更新。
         Button('set new one').onClick(() => {
           this.message.add(5);
         })
+        // 清空Set，触发子组件更新。
         Button('clear').onClick(() => {
           this.message.clear();
         })
+        // 删除元素，触发子组件更新。
         Button('delete the first one').onClick(() => {
           this.message.delete(0);
         })

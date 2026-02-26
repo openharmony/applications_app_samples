@@ -55,6 +55,7 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
+  // 使用@Local装饰infoList数组，作为数据源传递给子组件的@Param。
   @Local infoList: Info[] = [new Info('Alice', 8, 0, 0), new Info('Barry', 10, 1, 20), new Info('Cindy', 18, 24, 40)];
 
   build() {
@@ -62,6 +63,7 @@ struct Index {
       ForEach(this.infoList, (info: Info) => {
         MiddleComponent({ info: info })
       })
+      // 修改数组元素及对象属性，触发MiddleComponent和SubComponent更新。
       Button('change')
         .onClick(() => {
           this.infoList[0] = new Info('Atom', 40, 27, 90);
@@ -74,12 +76,14 @@ struct Index {
 
 @ComponentV2
 struct MiddleComponent {
+  // 使用@Param接收父组件传入的Info对象，数据源变化时触发子组件更新。
   @Require @Param info: Info;
 
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
       Text(`age: ${this.info.age}`)
+      // 将Region对象继续传递给子组件的@Param。
       SubComponent({ region: this.info.region })
     }
   }
@@ -87,6 +91,7 @@ struct MiddleComponent {
 
 @ComponentV2
 struct SubComponent {
+  // @Param接收父组件传入的Region对象，数据源变化时触发子组件更新。
   @Require @Param region: Region;
 
   build() {
