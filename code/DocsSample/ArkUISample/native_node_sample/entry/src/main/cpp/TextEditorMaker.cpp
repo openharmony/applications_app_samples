@@ -114,6 +114,7 @@ constexpr int32_t MENU_ITEM_ID_120 = 120;
 #define BTN_DELETE_BACKWARD 21
 #define BTN_CARET_RECT 22
 #define BTN_CLOSE_SELECTION_MENU 23
+#define BTN_LAYOUT_MANAGER_DISPOSE 24
 
 static ArkUI_NodeHandle textContainer;
 
@@ -762,6 +763,14 @@ void GetGlyphPosition(ArkUI_TextLayoutManager* layoutManager)
     }
 }
 
+void DisposeLayoutManager()
+{
+    auto text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    auto result = Manager::nodeAPI_->getAttribute(text, NODE_TEXT_LAYOUT_MANAGER);
+    ArkUI_TextLayoutManager* layoutMananger = (ArkUI_TextLayoutManager*)(result->object);
+    OH_ArkUI_TextLayoutManager_Dispose(layoutMananger);
+}
+
 void GetRectsForRange(ArkUI_TextLayoutManager* layoutManager)
 {
     if (!layoutManager) {
@@ -900,6 +909,9 @@ void DoLayoutManager(ArkUI_NodeEvent* event)
             break;
         case BTN_LAYOUT_MANAGER_LINE_METRICS:
             GetLineMetrics(layoutManager);
+            break;
+        case BTN_LAYOUT_MANAGER_DISPOSE:
+            DisposeLayoutManager();
             break;
         default:
             break;
@@ -1054,6 +1066,7 @@ void SetTextEditorStyledStringController()
     AddButton("LM_RectsForRange", BTN_LAYOUT_MANAGER_RECTS_FOR_RANGE, controller);
     AddButton("LM_LineMetrics", BTN_LAYOUT_MANAGER_LINE_METRICS, controller);
     AddButton("DeleteBackward", BTN_DELETE_BACKWARD, controller);
+    AddButton("DisposeLayoutManager", BTN_LAYOUT_MANAGER_DISPOSE, controller);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
 

@@ -15,24 +15,23 @@
 #ifndef CAPI_MANAGER_H
 #define CAPI_MANAGER_H
 
-#include <functional>
 #include <arkui/native_node.h>
+#include <arkui/native_node_napi.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
-#include <unordered_map>
+#include <js_native_api.h>
+#include <js_native_api_types.h>
+#include <napi/native_api.h>
 
-namespace NativeNode::Manager {
-using EventCallback = std::function<void(ArkUI_NodeEvent*)>;
-
-class NodeManager {
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+class Manager {
 public:
-    ~NodeManager() = default;
-    static NodeManager& GetInstance();
-    void SetXComponent(OH_NativeXComponent* xComponent);
-    void CreateNativeNode();
+    static ArkUI_NativeNodeAPI_1 *nodeAPI_;
+    ~Manager(){};
+
+    static napi_value CreateStyledStringNativeNode(napi_env__* env, napi_callback_info__* info);
+    static ArkUI_NodeHandle CreateNativeStyledStringNode();
+
 private:
-    NodeManager() = default;
-    OH_NativeXComponent* xComponent_;
-    std::unordered_map<int32_t, EventCallback> callbackMap_;
+    static Manager manager_;
 };
-}
 #endif //CAPI_MANAGER_H
