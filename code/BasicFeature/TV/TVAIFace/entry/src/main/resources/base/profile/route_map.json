@@ -1,0 +1,44 @@
+{
+  "routerMap": [
+    {
+      "name": "Index",
+      "pageSourceFile": "src/main/ets/pages/index.ets",
+      "buildFunction": "IndexBuilder",
+      "data": {
+        "description": "主界面"
+      }
+    },
+    {
+      "name": "ImageSelect",
+      "pageSourceFile": "src/main/ets/pages/imageSelect.ets",
+      "buildFunction": "ImageSelectBuilder",
+      "data": {
+        "description": "图片选择页面"
+      }
+    },
+    {
+      "name": "ImagePreview",
+      "pageSourceFile": "src/main/ets/pages/imagePreview.ets",
+      "buildFunction": "ImagePreviewBuilder",
+      "data": {
+        "description": "图片回显识别页面"
+      }
+    },
+    {
+      "name": "CameraPreview",
+      "pageSourceFile": "src/main/ets/pages/cameraPreview.ets",
+      "buildFunction": "CameraPreviewBuilder",
+      "data": {
+        "description": "相机启动页面"
+      }
+    },
+    {
+      "name": "DistributedAttestation",
+      "pageSourceFile": "src/main/ets/pages/distributedAttestation.ets",
+      "buildFunction": "DistributedAttestationBuilder",
+      "data": {
+        "description": "分布式认证页面"
+      }
+    }
+  ]
+}

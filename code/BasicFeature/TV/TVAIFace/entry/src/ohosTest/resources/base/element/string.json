@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "local_image",
+      "value": "本地图片"
+    },
+    {
+      "name": "Trust_Device",
+      "value": "可信设备（已认证设备）"
+    },
+    {
+      "name": "discovering_devices",
+      "value": "正在发现设备"
+    },
+    {
+      "name": "AI_fail_load",
+      "value": "AI模型加载失败，请重试！"
+    }
+  ]
+}

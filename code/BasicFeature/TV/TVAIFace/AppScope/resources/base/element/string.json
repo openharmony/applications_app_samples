@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "applications_ai_face"
+    },
+    {
+      "name": "permission_reason",
+      "value": "implement AI Identification"
+    }
+  ]
+}
