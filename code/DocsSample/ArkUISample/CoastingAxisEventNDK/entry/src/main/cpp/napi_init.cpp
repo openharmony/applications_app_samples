@@ -14,38 +14,31 @@
  */
 
 #include "manager.h"
-#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <napi/native_api.h>
-
-static OH_NativeXComponent* GetXComponent(napi_env env, napi_value exports)
-{
-    if ((env == nullptr) || (exports == nullptr)) {
-        return nullptr;
-    }
-    napi_value exportInstance = nullptr;
-    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
-        return nullptr;
-    }
-    OH_NativeXComponent* xComp = nullptr;
-    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&xComp)) != napi_ok) {
-        return nullptr;
-    }
-    return xComp;
-}
 
 static napi_value createNativeNode(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
-    napi_value argv[1] = { nullptr };
+    size_t argc = 2;
+    napi_value argv[2] = { nullptr };
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    napi_valuetype valueType = napi_undefined;
-    napi_typeof(env, argv[0], &valueType);
-    if (valueType != napi_number) {
+
+    // 第一个参数是NodeContent对象
+    napi_valuetype valueType0 = napi_undefined;
+    napi_typeof(env, argv[0], &valueType0);
+    if (valueType0 != napi_object) {
+        return nullptr;
+    }
+
+    // 第二个参数是px2vp转换比例
+    napi_valuetype valueType1 = napi_undefined;
+    napi_typeof(env, argv[1], &valueType1);
+    if (valueType1 != napi_number) {
         return nullptr;
     }
     double px2vp;
-    napi_get_value_double(env, argv[0], &px2vp);
-    NativeXComponentSample::NodeManager::GetInstance().CreateNativeNode(px2vp);
+    napi_get_value_double(env, argv[1], &px2vp);
+
+    NativeXComponentSample::NodeManager::GetInstance().CreateNativeNode(env, argv[0], px2vp);
     return nullptr;
 }
 
@@ -56,10 +49,6 @@ static napi_value Init(napi_env env, napi_value exports)
         { "createNativeNode", nullptr, createNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    auto xComponent = GetXComponent(env, exports);
-    if (xComponent) {
-        NativeXComponentSample::NodeManager::GetInstance().SetXComponent(xComponent);
-    }
     return exports;
 }
 EXTERN_C_END

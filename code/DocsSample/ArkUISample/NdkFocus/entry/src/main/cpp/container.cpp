@@ -42,6 +42,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
     }
 }
 
+// Surface变化回调函数
 void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChangedCB");
@@ -66,6 +67,7 @@ void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
     }
 }
 
+// Surface销毁回调函数
 void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceDestroyedCB");
@@ -87,6 +89,7 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
     Container::Release(id);
 }
 
+// 触摸事件分发回调函数
 void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchTouchEventCB");
@@ -111,6 +114,7 @@ void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
     }
 }
 
+// 鼠标事件分发回调函数
 void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchMouseEventCB");
@@ -129,6 +133,7 @@ void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
     }
 }
 
+// 悬停事件分发回调函数
 void DispatchHoverEventCB(OH_NativeXComponent* component, bool isHover)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchHoverEventCB");
@@ -148,13 +153,16 @@ void DispatchHoverEventCB(OH_NativeXComponent* component, bool isHover)
 }
 } // namespace
 
+// Container实例映射表，用于管理多个XComponent实例
 std::unordered_map<std::string, Container*> Container::instance_;
 
+// Container构造函数，初始化组件ID
 Container::Container(const std::string& id)
 {
     this->id_ = id;
 }
 
+// 获取Container单例实例，如果不存在则创建新实例
 Container* Container::GetInstance(const std::string& id)
 {
     if (instance_.find(id) == instance_.end()) {
@@ -166,6 +174,7 @@ Container* Container::GetInstance(const std::string& id)
     }
 }
 
+// 释放Container实例
 void Container::Release(const std::string& id)
 {
     if (instance_.find(id) != instance_.end()) {
@@ -173,6 +182,7 @@ void Container::Release(const std::string& id)
     }
 }
 
+// Surface变化处理函数，获取组件偏移量和尺寸信息
 void Container::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
 {
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
@@ -191,6 +201,7 @@ void Container::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
     OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
 }
 
+// 触摸事件处理函数，获取触摸点工具类型和倾斜角度
 void Container::OnTouchEvent(OH_NativeXComponent* component, void* window)
 {
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
@@ -215,6 +226,7 @@ void Container::OnTouchEvent(OH_NativeXComponent* component, void* window)
         "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
 }
 
+// 注册所有回调函数到XComponent
 void Container::RegisterCallback(OH_NativeXComponent* nativeXComponent)
 {
     containerCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
@@ -234,6 +246,7 @@ void Container::RegisterCallback(OH_NativeXComponent* nativeXComponent)
         });
 }
 
+// 鼠标事件处理函数，获取鼠标位置和动作信息
 void Container::OnMouseEvent(OH_NativeXComponent* component, void* window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Container", "OnMouseEvent");
@@ -248,6 +261,7 @@ void Container::OnMouseEvent(OH_NativeXComponent* component, void* window)
     }
 }
 
+// 悬停事件处理函数，记录悬停状态
 void Container::OnHoverEvent(OH_NativeXComponent* component, bool isHover)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Container", "OnHoverEvent isHover_ = %{public}d", isHover);

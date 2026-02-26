@@ -41,7 +41,7 @@ struct sequenceIdentification {
     .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
     .height(250)
     .width(300)
-    //以下组合手势为顺序识别，当长按手势事件未正常触发时不会触发滑动手势事件
+    // 以下组合手势为顺序识别，当长按手势事件未正常触发时不会触发滑动手势事件
     .gesture(
       // 声明该组合手势的类型为Sequence类型
       GestureGroup(GestureMode.Sequence,
