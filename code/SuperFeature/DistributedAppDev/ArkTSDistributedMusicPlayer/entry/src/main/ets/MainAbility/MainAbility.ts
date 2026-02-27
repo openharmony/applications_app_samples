@@ -15,6 +15,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../model/Logger'
 import window from '@ohos.window'
+import { MusicConnectEvent } from '../common/MusicSharedDefinition'
 
 const TAG: string = 'MainAbility'
 
@@ -24,7 +25,7 @@ export default class MainAbility extends UIAbility {
     let status = want.parameters
     AppStorage.setOrCreate('status', status)
     AppStorage.setOrCreate('exitMusicApp', false);
-    AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', false);
+    AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', MusicConnectEvent.EVENT_DISCONNECT);
     AppStorage.setOrCreate('musicPlay', false);
     AppStorage.setOrCreate('musicPause', false);
   }

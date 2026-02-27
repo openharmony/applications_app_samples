@@ -1,0 +1,14 @@
+**/node_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+**/package-lock.json
+/entry/.preview/
+/entry/oh_modules/
+/oh_modules/
+/photomodify/oh-package-lock.json5
+/oh-package-lock.json5
+/photomodify/.cxx/
+/photomodify/.preview/
+/photomodify/oh_modules/
