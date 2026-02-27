@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "videoCast"
+    },
+    {
+      "name": "internet_reason",
+      "value": "View Web video"
+    },
+    {
+      "name": "reason_background",
+      "value": "Background video"
+    },
+    {
+      "name": "title",
+      "value": "Video Cast"
+    },
+    {
+      "name": "subtitle",
+      "value": "Video List"
+    },
+    {
+      "name": "online_video",
+      "value": "Online video"
+    },
+    {
+      "name": "online_video_describe",
+      "value": "MP4 video from the web"
+    },
+    {
+      "name": "local_video",
+      "value": "Local video"
+    },
+    {
+      "name": "local_video_describe",
+      "value": "Local MP4 video"
+    },
+    {
+      "name": "episode_choose",
+      "value": "Episode selection"
+    },
+    {
+      "name": "casting",
+      "value": "Casting: %s"
+    },
+    {
+      "name": "volume",
+      "value": "Volume"
+    },
+    {
+      "name": "speed",
+      "value": "Playback speed"
+    },
+    {
+      "name": "next",
+      "value": "Next episode"
+    },
+    {
+      "name": "episode",
+      "value": "%s episode"
+    }
+  ]
+}
