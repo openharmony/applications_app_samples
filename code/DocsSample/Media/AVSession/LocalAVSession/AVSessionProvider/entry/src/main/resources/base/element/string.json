@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "index_title",
+      "value": "Index"
+    },
+    {
+      "name": "create_avSession",
+      "value": "创建并激活媒体会话"
+    },
+    {
+      "name": "page_destroy",
+      "value": "销毁媒体会话"
+    },
+    {
+      "name": "page_advanced_playback",
+      "value": "注册高级播放控制事件"
+    },
+    {
+      "name": "page_dispatch_event",
+      "value": "分发会话事件"
+    },
+    {
+      "name": "page_set_info",
+      "value": "设置媒体会话信息"
+    },
+    {
+      "name": "page_fixed_playback",
+      "value": "注册固定播放控制命令"
+    },
+    {
+      "name": "page_get_controller",
+      "value": "获取Controller对象"
+    },
+    {
+      "name": "page_off",
+      "value": "取消监听"
+    },
+    {
+      "name": "page_set_extras",
+      "value": "设置自定义媒体数据包"
+    },
+    {
+      "name": "page_want_agent",
+      "value": "设置WantAgent"
+    }
+  ]
+}
