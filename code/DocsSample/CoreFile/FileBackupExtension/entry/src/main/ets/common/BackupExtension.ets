@@ -40,7 +40,7 @@ let filePath: string = '/data/storage/el2/base/.temp/';
 
 class BackupExt extends BackupExtensionAbility {
   // [StartExclude on_release]
-  //onBackupEx
+  // onBackupEx
   async onBackupEx(backupInfo: string): Promise<string> {
     console.info('onBackupEx ok');
     let errorInfo: ErrorInfo = {
