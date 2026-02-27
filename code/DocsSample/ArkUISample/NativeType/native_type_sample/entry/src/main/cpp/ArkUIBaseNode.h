@@ -20,7 +20,6 @@
 #include <list>
 #include <memory>
 
-#include "manager.h"
 #include "NativeModule.h"
 
 namespace NativeModule {
@@ -55,7 +54,13 @@ public:
     {
         return nativeModule_;
     }
-
+    
+    void RemoveAll()
+    {
+        children_.clear();
+        nativeModule_->removeAllChildren(handle_);
+    }
+    
 protected:
     virtual void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) {}
     virtual void OnRemoveChild(const std::shared_ptr<ArkUIBaseNode> &child) {}

@@ -132,7 +132,8 @@ entry/src/main/ets/
     ├── grid
     │    ├── PageGridNormal.ets (普通Grid页面)
     │    ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
-    │    └── PageGridGetRectByIndex.ets (固定行列Grid页面)
+    │    ├── PageGridGetRectByIndex.ets (固定行列Grid页面)
+    │    └── PageGridDragEvent.ets (GridItem拖拽事件及选中页面)
     └── containerPicker
          ├── PageContainerPickerCanLoopIndex.ets (切换循环滚动和开关触控反馈界面)
          ├── PageContainerPickerEventsIndex.ets (设置事件回调界面)
@@ -152,6 +153,7 @@ entry/src/main/
 │   ├── ArkUIBaseNode.h
 │   ├── ArkUIButtonNode.h
 │   ├── ArkUIColumnNode.h
+│   ├── ArkUIGridNode.h
 │   ├── ArkUINode.h
 │   ├── ArkUINumber.h
 │   ├── ArkUITextNode.h
@@ -207,7 +209,9 @@ entry/src/main/
 │   ├── GridMaker.cpp
 │   ├── GridMaker.h
 │   ├── GridRectByIndexMaker.cpp
-│   └── GridRectByIndexMaker.h
+│   ├── GridRectByIndexMaker.h
+│   ├── GridDragEventMaker.cpp
+│   └── GridDragEventMaker.h
 └── resources
     ├── base
     │   ├── element

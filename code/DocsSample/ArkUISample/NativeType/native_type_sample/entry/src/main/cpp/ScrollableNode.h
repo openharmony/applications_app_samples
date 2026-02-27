@@ -89,6 +89,12 @@ public:
         }
     }
 
+    void RemoveAll()
+    {
+        children_.clear();
+        nodeApi_->removeAllChildren(nodeHandle_);
+    }
+    
     // ---------------- 通用属性 ----------------
 
     void SetWidth(float width) { SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH, width); }
@@ -117,6 +123,18 @@ public:
         SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_OPACITY, opacity);
     }
 
+    void SetMargin(float margin)
+    {
+        ArkUI_NumberValue value[] = { { .f32 = margin }, { .f32 = margin }, { .f32 = margin }, { .f32 = margin } };
+        ArkUI_AttributeItem item = { value, 4 };
+        nodeApi_->setAttribute(nodeHandle_, NODE_MARGIN, &item);
+    }
+    
+    void SetId(const char* id)
+    {
+        SetAttributeString(nodeApi_, nodeHandle_, NODE_ID, id);
+    }
+    
     // ---------------- 事件 ----------------
 
     void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *)> &callback) { onClickCallback_ = callback; }

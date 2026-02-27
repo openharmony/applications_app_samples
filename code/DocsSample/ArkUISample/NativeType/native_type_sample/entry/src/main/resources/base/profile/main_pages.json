@@ -37,6 +37,7 @@
     "pages/grid/PageGridIrregularIndexes",
     "pages/grid/PageGridNormal",
     "pages/grid/PageGridGetRectByIndex",
+    "pages/grid/PageGridDragEvent",
     "pages/containerPicker/PageContainerPickerCanLoopIndex",
     "pages/containerPicker/PageContainerPickerEventsIndex",
     "pages/containerPicker/PageContainerPickerIndexIndex",
