@@ -1,0 +1,7 @@
+{
+  "src": ["pages/index"],
+  "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}
