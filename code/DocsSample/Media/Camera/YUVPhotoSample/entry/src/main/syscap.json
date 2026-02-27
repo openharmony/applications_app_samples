@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general": [
+      "default"
+    ]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.PowerManager.BatteryManager.Extension",
+      "SystemCapability.PowerManager.PowerManager.Extension"
+    ]
+  }
+}
