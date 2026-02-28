@@ -353,6 +353,17 @@ class A {
 }
 // [End optionExample_keepPropertyName5]
 
+// [Start optionExample_keepPropertyName6]
+class MyClass09 {
+  123 = 'numeric-prop'; // 数字字面量属性
+  [456] = 'computed'; // 计算属性中的数字
+  method() {
+    console.info(this[123]); // 123和456需要被保留
+    console.info(this[456]);
+  }
+}
+// [End optionExample_keepPropertyName6]
+
 // [Start optionExample_keepGlobalName]
 // ArkGuardAbility.ts
 export namespace Ns {
