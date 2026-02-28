@@ -30,7 +30,8 @@ struct DeleteDeviceDialog {
   private isDelete: string = '';
 
   aboutToAppear() {
-    this.isDelete = getContext(this).resourceManager.getStringSync($r('app.string.isDelete').id);
+    let context = this.getUIContext().getHostContext() as Context;
+    this.isDelete = context.resourceManager.getStringSync($r('app.string.isDelete').id);
   }
 
   build() {
