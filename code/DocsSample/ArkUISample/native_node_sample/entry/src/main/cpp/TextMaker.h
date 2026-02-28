@@ -18,12 +18,25 @@
 
 #include "manager.h"
 
+struct Boundary {
+    size_t leftIndex = 0;  // include leftIndex_
+    size_t rightIndex = 0; // not include rightIndex_
+
+    Boundary(size_t left, size_t right)
+    {
+        leftIndex = left;
+        rightIndex = right;
+    }
+
+    bool operator==(const Boundary &rhs) const { return leftIndex == rhs.leftIndex && rightIndex == rhs.rightIndex; }
+};
 class TextMaker {
 public:
     TextMaker(){};
     ~TextMaker(){};
     static ArkUI_NodeHandle CreateNativeNode();
     static ArkUI_Node* text17;
+    static ArkUI_Node* text22;
 };
 
 #endif // NATIVE_TYPE_SAMPLE_SWIPERMAKER_H
