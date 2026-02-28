@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 import distributedData from '@ohos.data.distributedKVStore';
-import Logger from './Logger'
-import { BUNDLE_NAME } from './RemoteDeviceModel'
-import common from '@ohos.app.ability.common';
+import Logger from './Logger';
+import { BUNDLE_NAME } from './RemoteDeviceModel';
 import { BusinessError, Callback } from '@ohos.base';
 import distributedDeviceManager from '@ohos.distributedDeviceManager';
+import { common } from '@kit.AbilityKit';
 
 const TAG: string = 'KvStoreModel';
 const STORE_ID: string = 'distributedcalc';
@@ -32,8 +32,8 @@ export class KvStoreModel {
   async createKvStore(context: common.BaseContext, callback: Callback<void>) {
     Logger.info(TAG, `createKvStore start, type of kvStore = ` + (typeof (this.kvStore)));
     if ((typeof (this.kvStore) !== 'undefined')) {
-      callback()
-      return
+      callback();
+      return;
     }
     let config: distributedData.KVManagerConfig = {
       bundleName: BUNDLE_NAME,
@@ -72,11 +72,11 @@ export class KvStoreModel {
     }
     try {
       if (this.kvManager !== undefined) {
-        Logger.info(TAG, 'deleteKvStore success')
-        this.kvManager.deleteKVStore(BUNDLE_NAME, STORE_ID)
+        Logger.info(TAG, 'deleteKvStore success');
+        this.kvManager.deleteKVStore(BUNDLE_NAME, STORE_ID);
       }
     } catch (err) {
-      Logger.error(TAG, 'deleteKvStore error error is:' + JSON.stringify(err))
+      Logger.error(TAG, 'deleteKvStore error error is:' + JSON.stringify(err));
     }
   }
 

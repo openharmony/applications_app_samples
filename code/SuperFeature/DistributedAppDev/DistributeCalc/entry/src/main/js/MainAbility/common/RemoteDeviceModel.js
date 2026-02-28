@@ -72,16 +72,20 @@ export default class RemoteDeviceModel {
   }
 
   changeStateOnline(device) {
-    this.deviceList[this.deviceList.length] = device
+    logger.info(TAG, `changeStateOnline`)
+    if (this.deviceList !== null && !this.deviceList.some((existDevice) => existDevice.deviceId === device.deviceId)) {
+      this.deviceList[this.deviceList.length] = device
+    }
     logger.debug(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`)
     this.callback()
-    if (this.authCallback !== null) {
+    if (this.authCallback !== null && this.authCallback !== undefined) {
       this.authCallback()
       this.authCallback = null
     }
   }
 
   changeStateOffline(device) {
+    logger.info(TAG, `changeStateOffline`)
     if (this.deviceList.length > 0) {
       let list = []
       for (let j = 0; j < this.deviceList.length; j++) {
@@ -127,7 +131,7 @@ export default class RemoteDeviceModel {
           case deviceManager.DeviceStateChange.UNKNOWN:
             this.changeStateOnline(data.device)
             break
-          case deviceManager.DeviceStateChange.UNKNOWN:
+          case deviceManager.DeviceStateChange.UNAVAILABLE:
             this.changeStateOffline(data.device)
             break
           default:
@@ -198,6 +202,7 @@ export default class RemoteDeviceModel {
       this.deviceManager.off('discoverFailure')
       this.deviceManager.off('serviceDie')
       this.deviceList = []
+      this.discoverList = []
     } catch (error) {
       logger.error(TAG, `throw error, error.code=${JSON.stringify(error.code)} , errorMessage=${error.message}`)
     }

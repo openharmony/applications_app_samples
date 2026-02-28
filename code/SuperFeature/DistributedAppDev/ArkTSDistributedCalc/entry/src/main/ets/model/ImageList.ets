@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 export class ImageList {
-  image: Resource
-  value: string
+  image: Resource;
+  value: string;
 
   constructor(image: Resource, value: string) {
-    this.image = image
-    this.value = value
+    this.image = image;
+    this.value = value;
   }
 }
 
@@ -37,7 +37,7 @@ export function obtainImgVertical(): Record<string, string | Resource>[] {
       { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
       { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
     ]
-  return list
+  return list;
 }
 
 export function obtainImgV(): Record<string, string | Resource>[] {
@@ -78,8 +78,8 @@ export function obtainImgLevel(): Record<string, string | Resource>[] {
     { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
     { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
     { 'image': $r('app.media.ic_cal_plus'), 'value': '+' }
-  ]
-  return list
+  ];
+  return list;
 }
 
 export function obtainImg(): Record<string, string | Resource>[] {
@@ -96,6 +96,6 @@ export function obtainImgL(): Record<string, string | Resource>[] {
     { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
     { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
     { 'image': $r('app.media.ic_cal_plus'), 'value': '+' }
-  ]
-  return list
+  ];
+  return list;
 }

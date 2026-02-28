@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { obtainImgLevel, obtainImg, obtainImgL } from '../model/ImageList'
+import { obtainImg, obtainImgLevel } from '../model/ImageList';
 
 interface ImageList {
-  image: Resource
-  value: string
+  image: Resource;
+  value: string;
 }
 
 @Component
 export struct ButtonComponentHorizontal {
   private onInputValue: (result: string) => void = () => {
-  }
+  };
 
   build() {
     Column() {
@@ -41,15 +41,16 @@ export struct ButtonComponentHorizontal {
             .borderRadius(20)
             .backgroundColor(index !== undefined && index < 2 ? '#33007DFF' : '#007DFF')
             .onClick(() => {
-              this.onInputValue(item.value)
+              this.onInputValue(item.value);
             })
           }
           .rowStart(index !== undefined ? index : 0)
-          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) : (index !== undefined ? index : 0))
+          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) :
+            (index !== undefined ? index : 0))
           .columnStart(4)
           .columnEnd(4)
         })
-        ForEach(obtainImgLevel(), (item:ImageList, index) => {
+        ForEach(obtainImgLevel(), (item: ImageList, index) => {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
@@ -63,11 +64,12 @@ export struct ButtonComponentHorizontal {
             .borderRadius(20)
             .backgroundColor((index !== undefined && index % 4 >= 3) || item.value === '+' ? '#33007DFF' : '#F0F0F0')
             .onClick(() => {
-              this.onInputValue(item.value)
+              this.onInputValue(item.value);
             })
           }
           .columnStart(index !== undefined ? index % 4 : 0)
-          .columnEnd(item.value === '0' ? (index !== undefined ? index % 4 + 1 : 0) : index !== undefined ? index % 4 : 0)
+          .columnEnd(item.value === '0' ? (index !== undefined ? index % 4 + 1 : 0) :
+            index !== undefined ? index % 4 : 0)
         })
       }
       .width('80%')
