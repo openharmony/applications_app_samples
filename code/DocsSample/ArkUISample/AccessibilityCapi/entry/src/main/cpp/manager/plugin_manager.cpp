@@ -24,7 +24,6 @@
 #include <hilog/log.h>
 // native render
 #include <native_buffer/native_buffer.h>
-#include <native_window/buffer_handle.h>
 #include <native_window/external_window.h>
 
 #include "common/common.h"
