@@ -346,7 +346,6 @@ class CameraService {
   getSurfaceSize(cameraDevice: camera.CameraDevice, configRatio: number): camera.Profile | undefined {
     Logger.info(TAG, `fkr previewProfiles is ${configRatio}`);
     // [Start camera_resolution_cameraoutputcapability]
-    // 
     //获取输出流能力。
     this.cameraOutputCapability =
       this.cameraManager.getSupportedOutputCapability(cameraDevice, this.curSceneMode);
