@@ -21,7 +21,7 @@ import { Logger } from '../utils/Logger';
 
 const VERSION: string = '1.0';
 const HTTP_STATUS_CODE: number = 200;
-const URL: string = 'https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DataMock/' +
+const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/master/code/DataMock/' +
   'WorkScheduler/UpdateWorkScheduler.hap';
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability'];
 
