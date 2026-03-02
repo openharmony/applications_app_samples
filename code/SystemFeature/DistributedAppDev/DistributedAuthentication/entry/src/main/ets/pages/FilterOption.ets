@@ -15,7 +15,6 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import logger from '../common/Logger';
-import router from '@ohos.router';
 import { DISTRIBUTED_FILTER_OPTION_LIST } from '../common/Constant';
 
 @CustomDialog
@@ -174,8 +173,9 @@ export struct FilterOption {
 
   openDialog(itemList: string[], titleResource: Resource) {
     let title = '';
+    let context = this.getUIContext().getHostContext() as Context;
     try {
-      title = getContext(this).resourceManager.getStringSync(titleResource.id);
+      title = context.resourceManager.getStringSync(titleResource.id);
     } catch (error) {
       logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
     }
@@ -205,7 +205,7 @@ export struct FilterOption {
           .width(24)
           .margin({ right: 16 })
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
           .visibility(deviceInfo.deviceType == 'tablet' ? Visibility.None : Visibility.Visible)
 

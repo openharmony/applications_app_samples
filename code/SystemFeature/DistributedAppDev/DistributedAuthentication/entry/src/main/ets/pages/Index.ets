@@ -17,7 +17,6 @@ import deviceInfo from '@ohos.deviceInfo';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
-import router from '@ohos.router';
 import { FilterOption } from '../pages/FilterOption';
 import { ListDeviceView } from '../pages/ListDeviceView';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
@@ -34,9 +33,9 @@ struct Index {
   @State indexWidth: string = '100%';
   @StorageLink('localDevice') localDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
   @StorageLink('trustedDeviceList') trustedDeviceList: Array<distributedDeviceManager.DeviceBasicInfo> =
-  new Array<distributedDeviceManager.DeviceBasicInfo>();
+    new Array<distributedDeviceManager.DeviceBasicInfo>();
   @StorageLink('discoverDeviceList') discoverDeviceList: Array<distributedDeviceManager.DeviceBasicInfo> =
-  new Array<distributedDeviceManager.DeviceBasicInfo>();
+    new Array<distributedDeviceManager.DeviceBasicInfo>();
   @State isSupportRange: boolean = false;
   @State isAllowDiscovered: boolean = true;
   @State isLocalDeviceActive: boolean = false;
@@ -47,7 +46,7 @@ struct Index {
   async routeFilterOptionPage() {
     let options = new optionsType();
     try {
-      await router.pushUrl(options);
+      await this.getUIContext().getRouter().pushUrl(options);
     } catch (err) {
       logger.info(`fail callback, code: ${err.code}, msg: ${err.msg}`);
     }
@@ -67,19 +66,21 @@ struct Index {
   }
 
   async aboutToAppear() {
+    remoteDeviceModel.setUIContext(this.getUIContext());
+    let context = this.getUIContext().getHostContext() as Context;
     // [Start permissions_user_grant]
     let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.DISTRIBUTED_DATASYNC'])
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC'])
       .then(async (data) => {
         logger.info(`data: ${JSON.stringify(data)}`);
         // [StartExclude permissions_user_grant]
         await remoteDeviceModel.createDeviceManager();
         try {
           logger.info(`local deviceType:` + deviceInfo.deviceType);
-          let authFormName: string = getContext(this).resourceManager.getStringSync($r('app.string.auth_form').id);
-          let isOnlineName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_online').id);
-          let isTrustedName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_trusted').id);
-          let rangeName: string = getContext(this).resourceManager.getStringSync($r('app.string.range').id);
+          let authFormName: string = context.resourceManager.getStringSync($r('app.string.auth_form').id);
+          let isOnlineName: string = context.resourceManager.getStringSync($r('app.string.is_online').id);
+          let isTrustedName: string = context.resourceManager.getStringSync($r('app.string.is_trusted').id);
+          let rangeName: string = context.resourceManager.getStringSync($r('app.string.range').id);
 
           AppStorage.setOrCreate('authFormName', authFormName);
           AppStorage.setOrCreate('isOnlineName', isOnlineName);
@@ -100,7 +101,7 @@ struct Index {
       })
       .catch((err: BusinessError) => {
         logger.error(`requestPermissionsFromUser error: ${JSON.stringify(err)}`);
-    });
+      });
     // [End permissions_user_grant]
   }
 
