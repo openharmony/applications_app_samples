@@ -69,7 +69,7 @@ struct Page1 {
 
   build() {
     Column({ space: 5 }) {
-      /**************************** 显示数据 **************************/
+      // 显示数据
       Text('Key connect4: ' + this.p.father.childId.toString())
         .onClick(() => {
           this.p.father.childId += 1;
@@ -77,7 +77,7 @@ struct Page1 {
         .fontSize(25)
         .fontColor(Color.Red)
 
-      /**************************** save接口 **************************/
+      // save接口
       // 未被@Trace装饰的变量需要借助状态变量refresh才能刷新
       Text('save key connect4: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
         .onClick(() => {

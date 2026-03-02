@@ -50,7 +50,7 @@ struct Child {
       this.customBuilder()
       Button('add child size')
         .onClick(() => {
-          this.layoutSize.size += 1; //子组件传入的参数发生变化，由@Link传入父组件@State，刷新父组件声明的@LocalBuilder函数的UI。
+          this.layoutSize.size += 1; // 子组件传入的参数发生变化，由@Link传入父组件@State，刷新父组件声明的@LocalBuilder函数的UI。
         })
     }
   }
