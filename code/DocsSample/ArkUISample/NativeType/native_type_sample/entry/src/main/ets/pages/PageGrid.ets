@@ -28,6 +28,7 @@ struct MenuIndex {
       { title: '普通Grid', url: 'pages/grid/PageGridNormal' },
       { title: '固定行列Grid', url: 'pages/grid/PageGridGetRectByIndex' },
       { title: '可滚动Grid设置跨行跨列节点', url: 'pages/grid/PageGridIrregularIndexes' },
+      { title: 'GridItem拖拽事件及选中', url: 'pages/grid/PageGridDragEvent' },
     ];
 
   build() {

@@ -17,6 +17,7 @@
 #include "GridIrregularIndexesMaker.h"
 #include "GridMaker.h"
 #include "GridRectByIndexMaker.h"
+#include "GridDragEventMaker.h"
 #include "TextMaker.h"
 #include "SwiperMaker.h"
 #include "WaterFlowMaker.h"
@@ -131,6 +132,12 @@ napi_value Manager::CreateGridNativeNodeIrregularIndexes(napi_env env, napi_call
 {
     return CreateNativeNode(env, info, "CreateGridNativeNodeIrregularIndexes",
                             []() -> ArkUI_NodeHandle { return GridIrregularIndexesMaker::CreateNativeNode(); });
+}
+
+napi_value Manager::CreateGridNativeNodeDragEvent(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateGridNativeNodeDragEvent",
+                            []() -> ArkUI_NodeHandle { return GridDragEventMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateScrollNativeNode(napi_env env, napi_callback_info info)

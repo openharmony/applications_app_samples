@@ -23,6 +23,7 @@
 #include <arkui/native_type.h>
 #include <cstdint>
 #include "ArkUINumber.h"
+#include "ScrollableUtils.h"
 
 namespace NativeModule {
 class ArkUINode : public ArkUIBaseNode {
@@ -258,7 +259,37 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, isPercent ? NODE_PADDING_PERCENT : NODE_PADDING, &item);
     }
+    
+    void SetMargin(float margin)
+    {
+        ArkUI_NumberValue value[] = { { .f32 = margin }, { .f32 = margin }, { .f32 = margin }, { .f32 = margin } };
+        ArkUI_AttributeItem item = { value, 4 };
+        nativeModule_->setAttribute(handle_, NODE_MARGIN, &item);
+    }
+    
+    // 保活容器
+    template <typename T> inline std::vector<std::shared_ptr<T>> &GetKeepAliveContainer()
+    {
+        static std::vector<std::shared_ptr<T>> keepAliveContainer;
+        return keepAliveContainer;
+    }
+
 protected:
+    virtual void OnNodeEvent(ArkUI_NodeEvent *event)
+    {
+        if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_CLICK && onClickCallback_) {
+            onClickCallback_(event);
+        }
+    }
+    
+    static void StaticEventReceiver(ArkUI_NodeEvent *event)
+    {
+        auto *self = reinterpret_cast<ArkUINode *>(OH_ArkUI_NodeEvent_GetUserData(event));
+        if (IsNotNull(self)) {
+            self->OnNodeEvent(event);
+        }
+    }
+    
     void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override
     {
         nativeModule_->addChild(handle_, child->GetHandle());
@@ -271,6 +302,8 @@ protected:
     {
         nativeModule_->insertChildAt(handle_, child->GetHandle(), index);
     }
+    
+    std::function<void(ArkUI_NodeEvent *)> onClickCallback_;
 };
 } // namespace NativeModule
 #endif // MYAPPLICATION_ARKUINODE_H
