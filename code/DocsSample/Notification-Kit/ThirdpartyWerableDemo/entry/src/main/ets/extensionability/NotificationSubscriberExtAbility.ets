@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-//[Start quick_start]
-//[Start callback_start]
+// [Start quick_start]
+// [Start callback_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { notificationExtensionSubscription, NotificationSubscriberExtensionAbility } from '@kit.NotificationKit';
-//[StartExclude callback_start]
+// [StartExclude callback_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { socket } from '@kit.ConnectivityKit'
 import { util } from '@kit.ArkTS'; 
-//[EndExclude callback_start]
+// [EndExclude callback_start]
 
 const DOMAIN = 0x0000;
-//[StartExclude callback_start]
+// [StartExclude callback_start]
 class TransferInfo {
   public type: string = ''
   public info: notificationExtensionSubscription.NotificationInfo | undefined
@@ -122,23 +122,23 @@ class SppClientManager {
 }
 
 // export SppClientManager;
-//[EndExclude callback_start]
+// [EndExclude callback_start]
 export class NotificationSubscriberExtAbility extends NotificationSubscriberExtensionAbility {
-  //[StartExclude callback_start]
+  // [StartExclude callback_start]
   private sppClientManager: SppClientManager | undefined;
-  //[EndExclude callback_start]
+  // [EndExclude callback_start]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', 'onDestroy');
-    //[StartExclude callback_start]
+    // [StartExclude callback_start]
     this.sppClientManager!.stopConnect();
-    //[EndExclude callback_start]
+    // [EndExclude callback_start]
   }
-  //[StartExclude callback_start]
+  // [StartExclude callback_start]
   // Called back when a notification is published.
-  //[EndExclude callback_start]
+  // [EndExclude callback_start]
   onReceiveMessage(notificationInfo: notificationExtensionSubscription.NotificationInfo): void {
     hilog.info(DOMAIN, 'testTag', `on receive message ${JSON.stringify(notificationInfo)}`)
-    //[StartExclude callback_start]
+    // [StartExclude callback_start]
     notificationExtensionSubscription.getSubscribeInfo()
       .then(async (info) => {
         if (this.sppClientManager == undefined) {
@@ -162,9 +162,9 @@ export class NotificationSubscriberExtAbility extends NotificationSubscriberExte
       hilog.error(DOMAIN, 'testTag',
         `notificationExtensionSubscription failed, errCode ${err.code}, errorMessage ${err.message}`);
     });
-    //[EndExclude callback_start]
+    // [EndExclude callback_start]
   }
-  //[StartExclude callback_start]
+  // [StartExclude callback_start]
   // Sends a publish notification and retries once upon failure.
   private async sendPublishWithRetry(notificationInfo: notificationExtensionSubscription.NotificationInfo) {
     try {
@@ -185,10 +185,10 @@ export class NotificationSubscriberExtAbility extends NotificationSubscriberExte
   }
 
   // Called back when notifications are cancelled.
-  //[EndExclude callback_start]
+  // [EndExclude callback_start]
   onCancelMessages(hashCodes: Array<string>): void {
     hilog.info(DOMAIN, 'testTag', `on cancel message ${JSON.stringify(hashCodes)}`)
-    //[StartExclude callback_start]
+    // [StartExclude callback_start]
     notificationExtensionSubscription.getSubscribeInfo()
       .then(async (info) => {
         if (this.sppClientManager == undefined) {
@@ -211,9 +211,9 @@ export class NotificationSubscriberExtAbility extends NotificationSubscriberExte
       }).catch((err: BusinessError) => {
       hilog.error(DOMAIN, 'testTag', `notificationExtensionSubscription failed, errCode ${err.code}, errorMessage ${err.message}`);
     });
-    //[EndExclude callback_start]
+    // [EndExclude callback_start]
   }
-  //[StartExclude callback_start]
+  // [StartExclude callback_start]
   // Retries a cancel operation if it fails.
   private async sendCancelWithRetry(hashCodes: string[]) {
     try {
@@ -232,7 +232,7 @@ export class NotificationSubscriberExtAbility extends NotificationSubscriberExte
       }, 3000);
     }
   }
-  //[EndExclude callback_start]
+  // [EndExclude callback_start]
 }
-//[End callback_start]
-//[End quick_start]
+// [End callback_start]
+// [End quick_start]
