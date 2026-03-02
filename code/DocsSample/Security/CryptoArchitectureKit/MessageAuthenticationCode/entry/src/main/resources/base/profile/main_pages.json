@@ -5,6 +5,7 @@
     "pages/HMACSegmentation/Sync",
     "pages/HMACSingleTime/Async",
     "pages/HMACSingleTime/Sync",
+    "pages/HMACSingleTime/Spec",
     "pages/CMACSegmentation/Async",
     "pages/CMACSegmentation/Sync",
     "pages/CMACSingleTime/Async",

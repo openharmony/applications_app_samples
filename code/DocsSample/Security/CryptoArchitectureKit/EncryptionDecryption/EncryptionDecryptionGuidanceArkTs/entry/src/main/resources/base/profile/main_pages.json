@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/rc2_cbc_encryption_decryption/rc2_cbc_encryption_decryption_asynchronous",
+    "pages/rc2_cbc_encryption_decryption/rc2_cbc_encryption_decryption_synchronous",
+    "pages/rc4_encryption_decryption/rc4_encryption_decryption_asynchronous",
+    "pages/rc4_encryption_decryption/rc4_encryption_decryption_synchronous"
+  ]
+}

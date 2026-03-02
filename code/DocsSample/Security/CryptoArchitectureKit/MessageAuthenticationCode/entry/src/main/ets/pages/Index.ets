@@ -57,6 +57,11 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/HMACSingleTime/Sync')
         })
+      Button($r('app.string.call_hmac_spec_async'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/HMACSingleTime/Spec')
+        })
       Button($r('app.string.call_cmac_segmentation_async'))
         .width('70%')
         .onClick(() => {
