@@ -29,7 +29,7 @@ static napi_value SetMetadata(napi_env env, napi_callback_info info)
     OH_AVSession* avsession;
     
     // [Start construct_metadata]
-    //创建OH_AVMetadataBuilder构造器。
+    // 创建OH_AVMetadataBuilder构造器。
     OH_AVMetadataBuilder* builder;
     OH_AVMetadataBuilder_Create(&builder);
     
@@ -40,7 +40,7 @@ static napi_value SetMetadata(napi_env env, napi_callback_info info)
     OH_AVMetadataBuilder_SetAlbum(builder, "Anonymous album");
     OH_AVMetadataBuilder_SetWriter(builder, "Anonymous writer");
     OH_AVMetadataBuilder_SetComposer(builder, "Anonymous composer");
-    OH_AVMetadataBuilder_SetDuration(builder, DURATION_TIME);
+    OH_AVMetadataBuilder_SetDuration(builder, DURATION_TIME); // DURATION_TIME = 3600
     // MediaImageUri只支持网络地址。
     OH_AVMetadataBuilder_SetMediaImageUri(builder, "https://xxx.xxx.xx");
     OH_AVMetadataBuilder_SetSubtitle(builder, "Anonymous subtitle");
@@ -95,8 +95,8 @@ static napi_value SetPlaybackState(napi_env env, napi_callback_info info)
     
     // 设置播放位置。
     AVSession_PlaybackPosition* playbackPosition = new AVSession_PlaybackPosition;
-    playbackPosition->elapsedTime = ELAPSED_TIME;
-    playbackPosition->updateTime = UPDATE_TIME;
+    playbackPosition->elapsedTime = ELAPSED_TIME; // ELAPSED_TIME = 1000
+    playbackPosition->updateTime = UPDATE_TIME; // UPDATE_TIME = 16111150
     ret = OH_AVSession_SetPlaybackPosition(avsession, playbackPosition);
     // [End state_change]
     if (ret != AV_SESSION_ERR_SUCCESS) {
@@ -131,7 +131,7 @@ static napi_value RegisterPlayCallback(napi_env env, napi_callback_info info)
     int userData = 0;
     OH_AVSession_RegisterCommandCallback(avsession, command, commandCallback, (void *)(&userData));
     
-    //设置快进回调。
+    // 设置快进回调。
     OH_AVSessionCallback_OnFastForward fastForwardCallback = [](OH_AVSession* session, uint32_t seekTime,
         void* userData) -> AVSessionCallback_Result {
         return AVSESSION_CALLBACK_RESULT_SUCCESS;

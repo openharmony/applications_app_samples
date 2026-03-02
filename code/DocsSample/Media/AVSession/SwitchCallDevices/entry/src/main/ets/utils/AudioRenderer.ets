@@ -67,7 +67,7 @@ export default class AudioRenderer {
     }
     // 可选监听当前发声设备切换回调。
     this.audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-      console.log(`device change to: ${desc[0].deviceType}`); // 设备类型。
+      console.info(`device change to: ${desc[0].deviceType}`); // 设备类型。
     });
   }
   // [StartExclude device_monitor]
@@ -79,9 +79,9 @@ export default class AudioRenderer {
       this.fileDescriptor = mgr.getRawFdSync(fileName);
       await mgr.getRawFd(fileName).then(value => {
         fileDescriptor = value;
-        console.log('case getRawFileDescriptor success fileName: ' + fileName);
+        console.info('case getRawFileDescriptor success fileName: ' + fileName);
       }).catch((error: BusinessError) => {
-        console.log('case getRawFileDescriptor err: ' + error);
+        console.error('case getRawFileDescriptor err: ' + error);
       });
     }
     return fileDescriptor;
@@ -132,9 +132,9 @@ export default class AudioRenderer {
     if (this.appContext) {
       let mgr = this.appContext.resourceManager;
       await mgr.closeRawFd(fileName).then(() => {
-        console.log('case closeRawFd success fileName: ' + fileName);
+        console.info('case closeRawFd success fileName: ' + fileName);
       }).catch((error: BusinessError) => {
-        console.log('case closeRawFd err: ' + error);
+        console.error('case closeRawFd err: ' + error);
       });
     }
   }
