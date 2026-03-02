@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "create_avSession",
+      "value": "创建并激活媒体会话"
+    },
+    {
+      "name": "setting_metadata",
+      "value": "设置元数据"
+    },
+    {
+      "name": "adapting_bluetooth_method_one",
+      "value": "适配蓝牙方式一：命令监听"
+    },
+    {
+      "name": "adapting_bluetooth_method_two",
+      "value": "适配蓝牙方式二：按键监听"
+    },
+    {
+      "name": "display_tags_media_assets",
+      "value": "显示媒体资源标签"
+    },
+    {
+      "name": "favoriting_media_assets",
+      "value": "收藏媒体资源"
+    },
+    {
+      "name": "handling_unsupported_commands",
+      "value": "处理不支持的命令"
+    },
+    {
+      "name": "performing_progress_control",
+      "value": "执行进度控制"
+    },
+    {
+      "name": "setting_fast_forward",
+      "value": "设置快进快退"
+    },
+    {
+      "name": "setting_general_state_information",
+      "value": "设置通用状态信息"
+    },
+    {
+      "name": "setting_lyrics",
+      "value": "设置歌词"
+    },
+    {
+      "name": "setting_playlist_information",
+      "value": "设置播放列表信息"
+    },
+    {
+      "name": "setting_loop_mode",
+      "value": "设置循环模式"
+    },
+    {
+      "name": "setting_progress_bar",
+      "value": "设置进度条"
+    }
+  ]
+}
