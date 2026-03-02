@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "switch_output",
+      "value": "切换通话输出设备"
+    },
+    {
+      "name": "switch_input",
+      "value": "切换通话输入设备"
+    },
+    {
+      "name": "SwitchCallDevices",
+      "value": "切换通话设备"
+    },
+    {
+      "name": "start",
+      "value": "开始通话"
+    },
+    {
+      "name": "stop",
+      "value": "停止通话"
+    },
+    {
+      "name": "switch_mockOutput",
+      "value": "模拟切换通话输出设备"
+    },
+    {
+      "name": "switch_mockInput",
+      "value": "模拟切换通话输入设备"
+    },
+    {
+      "name": "switch_OutputDevice",
+      "value": "在音频通话场景下，点击下方按钮切换通话输出设备"
+    },
+    {
+      "name": "switch_InputDevice",
+      "value": "在音频通话场景下，点击下方按钮切换通话输入设备"
+    }
+  ]
+}
