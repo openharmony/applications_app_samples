@@ -16,7 +16,7 @@
 // [Start custom_theme]
 import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
-//请将$r('app.color.xxx')替换为实际资源文件
+// 请将$r('app.color.xxx')替换为实际资源文件
 class AppColors implements CustomColors {
   public fontPrimary: ResourceColor = $r('app.color.brand_purple');
   public backgroundEmphasize: ResourceColor = $r('app.color.brand_purple');

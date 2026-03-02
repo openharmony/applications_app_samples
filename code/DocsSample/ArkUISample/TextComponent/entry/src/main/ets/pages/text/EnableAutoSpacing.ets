@@ -45,8 +45,9 @@ export struct EnableAutoSpacing {
         .margin({ bottom: 20 })
 
       // 设置是否应用中西文自动间距
-      /* 请将$r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing')替换为实际资源文件，在本示例中该资源文件的
-        value值为"中西文Auto Spacing自动间距" */
+      /* 请将$r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing')替换为实际资源文件，
+       * 在本示例中该资源文件的value值为"中西文Auto Spacing自动间距"
+       */
       Text($r('app.string.Chinese_and_Western_Auto_Spacing_automatic_spacing'))
         .fontSize(24)
         .padding(15)
