@@ -345,11 +345,12 @@ class CameraService {
 
   getSurfaceSize(cameraDevice: camera.CameraDevice, configRatio: number): camera.Profile | undefined {
     Logger.info(TAG, `fkr previewProfiles is ${configRatio}`);
-    // 查询相机设备在指定模式下支持的输出能力
     // [Start camera_resolution_cameraoutputcapability]
+    // 
+    //获取输出流能力。
     this.cameraOutputCapability =
       this.cameraManager.getSupportedOutputCapability(cameraDevice, this.curSceneMode);
-    // [End camera_resolution_cameraoutputcapability]
+    // [StartExclude camera_resolution_cameraoutputcapability_case]
     return this.getPreviewProfile(this.cameraOutputCapability, configRatio);
   }
 
@@ -406,7 +407,8 @@ class CameraService {
   }
 
   // 该方法从相机支持的预览分辨率中，筛选出与目标宽高比最匹配且尺寸尽可能大的预览配置 第一个参数是相机支持的输出能力 第二个参数是目标预览比例 // 返回筛选出的最佳预览配置，无匹配则返回undefined
-  // [Start camera_resolution_getpreviewprofile]
+  // [EndExclude camera_resolution_cameraoutputcapability_case]
+  // width与height表示用户选择分辨率。
   getPreviewProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
     let previewProfiles = cameraOutputCapability.previewProfiles;
@@ -425,7 +427,7 @@ class CameraService {
     }
     return previewProfiles[index];
   }
-  // [End camera_resolution_getpreviewprofile]
+  // [End camera_resolution_cameraoutputcapability]
 
   getPhotoProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
