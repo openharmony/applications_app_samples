@@ -106,7 +106,7 @@ export class AVPlayerController {
         return;
       }
       hilog.error(CommonConstants.LOG_DOMAIN, TAG,
-        `Invoke avPlayer failed, code is ${err.code}, messasge is ${err.message}`);
+        `Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       this.avPlayer.reset().catch((err: BusinessError) => {
         hilog.error(CommonConstants.LOG_DOMAIN, TAG,
           `Reset failed, code is ${err.code}, message is ${err.message}`);
