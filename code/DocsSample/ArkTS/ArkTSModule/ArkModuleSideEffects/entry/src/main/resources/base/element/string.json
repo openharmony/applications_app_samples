@@ -1,0 +1,188 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "index_title",
+      "value": "Index"
+    },
+    {
+      "name": "page_one",
+      "value": "页面1"
+    },
+    {
+      "name": "page_two",
+      "value": "页面2"
+    },
+    {
+      "name": "page_three",
+      "value": "页面3"
+    },
+    {
+      "name": "page_four",
+      "value": "页面4"
+    },
+    {
+      "name": "page_five",
+      "value": "页面5"
+    },
+    {
+      "name": "page_six",
+      "value": "页面6"
+    },
+    {
+      "name": "page_seven",
+      "value": "页面7"
+    },
+    {
+      "name": "page_eight",
+      "value": "页面8"
+    },
+    {
+      "name": "page_eleven",
+      "value": "页面11"
+    },
+    {
+      "name": "page_twelve",
+      "value": "页面12"
+    },
+    {
+      "name": "page_thirteen",
+      "value": "页面13"
+    },
+    {
+      "name": "page_fourteen",
+      "value": "页面14"
+    },
+    {
+      "name": "test_decorator",
+      "value": "测试装饰器"
+    },
+    {
+      "name": "status_info_title",
+      "value": "实时状态信息"
+    },
+    {
+      "name": "current_status",
+      "value": "当前状态"
+    },
+    {
+      "name": "log_info",
+      "value": "日志信息"
+    },
+    {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
+      "name": "no_log_info",
+      "value": "暂无日志信息"
+    },
+    {
+      "name": "test_page_one",
+      "value": "测试页面1"
+    },
+    {
+      "name": "test_page_one_complete",
+      "value": "测试页面1完成"
+    },
+    {
+      "name": "test_page_two",
+      "value": "测试页面2"
+    },
+    {
+      "name": "test_page_two_complete",
+      "value": "测试页面2完成"
+    },
+    {
+      "name": "test_page_three",
+      "value": "测试页面3"
+    },
+    {
+      "name": "test_page_three_complete",
+      "value": "测试页面3完成"
+    },
+    {
+      "name": "test_page_four",
+      "value": "测试页面4"
+    },
+    {
+      "name": "test_page_four_complete",
+      "value": "测试页面4完成"
+    },
+    {
+      "name": "test_page_five",
+      "value": "测试页面5"
+    },
+    {
+      "name": "test_page_five_complete",
+      "value": "测试页面5完成"
+    },
+    {
+      "name": "test_page_eight",
+      "value": "测试页面8"
+    },
+    {
+      "name": "test_page_eight_complete",
+      "value": "测试页面8完成"
+    },
+    {
+      "name": "test_page_eleven",
+      "value": "测试页面11"
+    },
+    {
+      "name": "test_page_eleven_complete",
+      "value": "测试页面11完成"
+    },
+    {
+      "name": "test_page_twelve",
+      "value": "测试页面12"
+    },
+    {
+      "name": "test_page_twelve_complete",
+      "value": "测试页面12完成"
+    },
+    {
+      "name": "test_page_thirteen",
+      "value": "测试页面13"
+    },
+    {
+      "name": "test_page_thirteen_complete",
+      "value": "测试页面13完成"
+    },
+    {
+      "name": "test_page_forteen",
+      "value": "测试页面14"
+    },
+    {
+      "name": "test_page_forteen_complete",
+      "value": "测试页面14完成"
+    },
+    {
+      "name": "test_import_data0",
+      "value": "测试Data0"
+    },
+    {
+      "name": "test_import_data0_complete",
+      "value": "测试Data0完成"
+    },
+    {
+      "name": "test_import_data1",
+      "value": "测试Data1"
+    },
+    {
+      "name": "test_import_data1_complete",
+      "value": "测试Data1完成"
+    }
+  ]
+}
