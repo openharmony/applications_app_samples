@@ -4,7 +4,7 @@
 
  本示例通过提供[划词服务指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/selectionInput)中ArkTS场景的开发示例，帮助开发者更好地理解划词服务模块代码的使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [实现一个划词应用](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/selectionInput/selection-services-application-guide-sys.md)。
+1. [实现一个划词应用](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/selectionInput/selection-services-application-guide.md)。
 
 ## 效果预览
 
@@ -27,19 +27,19 @@ entry/src/main
  │── ets
  │   ├── entryability
  │   ├── entrybackupability
- │   ├── extensionability
- │       └──SelectionExtensionAbility.ets    // 划词ExtensionAbility
- │   ├── extensionability
- │       └──SelectionModel.ets               // 划词内容管理
+ │   ├── models
+ │   │   └── SelectionModel.ets               // 划词内容管理
  │   ├── pages
- │       ├── Index.ets          // UI页面
- │       ├── MainPanel.ets      // 主面板
- │       ├── MenuPanel.ets      // 菜单面板
+ │   │   ├── Index.ets          // UI页面
+ │   │   ├── MainPanel.ets      // 主面板
+ │   │   └── MenuPanel.ets      // 菜单面板
+ │   ├── selectionextability
+ │       └── SelectionExtAbility.ets    // 划词ExtensionAbility
 ```
 
 ### 具体实现
 
-1. 在[SelectionExtensionAbility.ets](entry/src/main/ets/extensionability/SelectionExtensionAbility.ets)实现了一个划词ExtensionAbility，通过监听划词事件来创建和弹出菜单面板。
+1. 在[SelectionExtAbility.ets](entry/src/main/ets/selectionextability/SelectionExtAbility.ets)实现了一个划词ExtensionAbility，通过监听划词事件来创建和弹出菜单面板。
 2. 在[Ability.test.ets](entry/src/ohosTest/ets/test/Ability.test.ets)文件中，提供了创建和移动面板的自动化测试用例。
 
 ## 相关权限
@@ -54,9 +54,9 @@ entry/src/main
 
 1. 本示例支持标准系统上运行，支持设备：RK3568，2in1;
 
-2. 本示例支持API version 20及以上版本的SDK;
+2. 本示例支持API version 24及以上版本的SDK;
 
-3. 本示例需要使用DevEco Studio 6.0.0 Release（6.0.0.868）及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 6.0.2 Release及以上版本才可编译运行。
 
 ## 下载
 

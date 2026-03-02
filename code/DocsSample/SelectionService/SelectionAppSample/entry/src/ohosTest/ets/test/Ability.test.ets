@@ -60,7 +60,7 @@ export default function abilityTest() {
       let bDestroyed = false;
       try {
         panel = await selectionManager.createPanel(context, panelInfo);
-        await panel.moveTo(20, 20);
+        await panel.moveToGlobalDisplay(20, 20);
         await selectionManager.destroyPanel(panel);
         bDestroyed = true;
       } catch (error) {
