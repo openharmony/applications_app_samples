@@ -27,6 +27,8 @@ import { ProblemUINotRefreshPositive } from './ProblemUINotRefreshPositive';
 import { LocalBuilderReferencePassing } from './ReferencePassing';
 import { LocalBuilderV2LocalBuilderUpdate } from './V2LocalBuilderUpdate';
 import { LocalBuilderValuePassing } from './ValuePassing';
+import { ProblemUIStructureOpposite } from './ProblemUIStructureOpposite';
+import { ProblemUIStructurePositive } from './ProblemUIStructurePositive';
 
 export const LOCAL_BUILDER: string = 'local_builder';
 
@@ -74,6 +76,14 @@ const routes: Route[] = [
   {
     name: `${LOCAL_BUILDER}/ProblemUINotRefreshPositive`,
     title: resource.resourceToString($r('app.string.problem_ui_not_refresh_positive')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/ProblemUIStructureOpposite`,
+    title: resource.resourceToString($r('app.string.problem_ui_structure_opposite')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/ProblemUIStructurePositive`,
+    title: resource.resourceToString($r('app.string.problem_ui_structure_positive')),
   }
 ];
 
@@ -103,6 +113,10 @@ export function localBuilderDestination(name: string) {
     ProblemUINotRefreshOpposite();
   } else if (name === `${LOCAL_BUILDER}/ProblemUINotRefreshPositive`) {
     ProblemUINotRefreshPositive();
+  } else if (name === `${LOCAL_BUILDER}/ProblemUIStructureOpposite`) {
+    ProblemUIStructureOpposite();
+  } else if (name === `${LOCAL_BUILDER}/ProblemUIStructurePositive`) {
+    ProblemUIStructurePositive();
   }
 }
 
