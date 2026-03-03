@@ -55,6 +55,7 @@ entry/src/
  │   │       │   └── Sync.ets
  │   │       ├── HMACSingleTime
  │   │       │   ├── Async.ets
+ │   │       │   ├── Spec.ets
  │   │       │   └── Sync.ets
  │   │       ├── CMACSegmentation
  │   │       │   ├── Async.ets
