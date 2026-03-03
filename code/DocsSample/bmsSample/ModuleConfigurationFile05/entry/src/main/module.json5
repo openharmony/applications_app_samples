@@ -15,10 +15,12 @@
 
 // [Start module_hnpPackages]
 // [Start module_definePermissions]
+// [Start module_executableBinaryPaths]
 {
   "module": {
     // [StartExclude module_hnpPackages]
     // [StartExclude module_definePermissions]
+    // [StartExclude module_executableBinaryPaths]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -39,6 +41,13 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [EndExclude module_executableBinaryPaths]
+    "executableBinaryPaths": [
+      {
+        "path": "framework/test.bin"
+      }
+    ],
+    // [StartExclude module_executableBinaryPaths]
     // [EndExclude module_definePermissions]
     "definePermissions": [
       {
@@ -87,9 +96,11 @@
         ],
       }
     ]
+    // [EndExclude module_executableBinaryPaths]
     // [EndExclude module_definePermissions]
     // [EndExclude module_hnpPackages]
   },
 }
+// [End module_executableBinaryPaths]
 // [End module_definePermissions]
 // [End module_hnpPackages]
