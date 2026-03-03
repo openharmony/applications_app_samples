@@ -13,21 +13,16 @@
  * limitations under the License.
  */
 
-// [Start camera_foldable_display]
 import CameraService from '../model/CameraService';
 import Logger from '../common/utils/Logger';
 import { ModeComponent } from '../views/ModeComponent';
 import { SlideComponent } from '../views/SlideComponent';
 import { GlobalContext } from '../common/utils/GlobalContext';
 import { Constants } from  '../common/Constants';
-// [Start camera_preview_imports]
 import { camera } from '@kit.CameraKit';
-// [StartExclude camera_preview_imports]
 import { display, window } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
-// [EndExclude camera_preview_imports]
 import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
-// [End camera_preview_imports]
 import { common } from '@kit.AbilityKit';
 import { bundleManager } from '@kit.AbilityKit';
 
@@ -39,13 +34,9 @@ interface ResolutionOption {
   height: number;   // 高度像素
 };
 
-// [Start foldable_camera_xcomponent_management]
-// [Start camera_surface_creation]
 @Entry
 @Component
 struct Index {
-  // [StartExclude camera_surface_creation]
-  // [StartExclude foldable_camera_xcomponent_management]
   private isfirst: boolean = false;
   private static readonly DYNAMIC_FULL_ROTATIO: number = 0;
   private static readonly DYNAMIC_1_1_ROTATIO: number = 1;
@@ -69,18 +60,12 @@ struct Index {
   @State mXComponentWidth: number = Constants.X_COMPONENT_SURFACE_WIDTH;
   @State mXComponentHeight: number = Constants.X_COMPONENT_SURFACE_HEIGHT;
   @StorageLink('isOpenEditPage') isOpenEditPage: boolean = false;
-  // [EndExclude foldable_camera_xcomponent_management]
   @StorageLink('foldStatus') @Watch('reloadXComponent') foldStatus: number = 0;
-  // [EndExclude camera_surface_creation]
   private mXComponentController: XComponentController = new XComponentController();
-  // [StartExclude camera_surface_creation] 
   @State mRotate: number = display.getDefaultDisplaySync().rotation * camera.ImageRotation.ROTATION_90;
   @State reloadXComponentFlag: boolean = false;
-  // [StartExclude foldable_camera_xcomponent_management]
   private windowClass = (getContext() as common.UIAbilityContext).windowStage.getMainWindowSync();
-  // [EndExclude camera_surface_creation]
   private surfaceId = '';
-  // [StartExclude camera_surface_creation]
   private static readonly ROTATE_ANGLE_180: number = 180;
   private mCameraManager: camera.CameraManager = camera.getCameraManager(getContext());
   private targetVersion: number = 0;
@@ -185,13 +170,10 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
   offFoldStatusChange(): void {
     this.mCameraManager.off('foldStatusChange', this.foldStatusCallback);
   }
-  // [EndExclude foldable_camera_xcomponent_management]
   // reloadXComponent()：重新加载预览
   reloadXComponent(): void {
     this.reloadXComponentFlag = !this.reloadXComponentFlag;
   }
-  // [StartExclude foldable_camera_xcomponent_management]
-  // [StartExclude camera_foldable_display]
   isIsolateForSpecialType(): boolean {
     return deviceInfo.deviceType == 'tablet' && this.targetVersion <= 50000013;
   }
@@ -331,9 +313,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
       await CameraService.stopVideo();
     }
   }
-  // [EndExclude camera_surface_creation]
-  // [EndExclude camera_foldable_display]
-  // [EndExclude foldable_camera_xcomponent_management]
   // XComponent加载后执行
   async loadXComponent(): Promise<void> {
     Logger.info(TAG, 'onLoad is called');
@@ -352,8 +331,6 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
       this.currentResolution.width, this.currentResolution.height);
   }
 
-  // [StartExclude foldable_camera_xcomponent_management]
-  // [End camera_surface_creation]
   isExpandedOrHalfFolded(): boolean {
     return display.getFoldStatus() === display.FoldStatus.FOLD_STATUS_EXPANDED ||
       display.getFoldStatus() == display.FoldStatus.FOLD_STATUS_HALF_FOLDED
@@ -373,13 +350,12 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
   }
 
   // 新增：分辨率变更处理方法
+  // [Start camera_resolution_resolution_changed]
   async onResolutionChanged() {
-    // 1. 获取选中的分辨率配置
     this.currentResolution = this.resolutionOptions[this.selectedResolutionIndex];
-    // 2. 更新预览配置的尺寸
-    // 3. 重新计算预览容器尺寸
+    // 更新预览配置的尺寸。
     this.updateXcomponentSize();
-    // 4. 重新初始化相机，应用新分辨率
+    // 重新初始化相机，应用新分辨率。
     await CameraService.initCamera2(
       this.surfaceId,
       GlobalContext.get().getT<number>('curCameraPosition'),
@@ -388,8 +364,8 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
     );
     Logger.info(TAG, `分辨率已切换至：${this.currentResolution.width}x${this.currentResolution.height}`);
   }
+  // [End camera_resolution_resolution_changed]
 
-  // [EndExclude foldable_camera_xcomponent_management]
   build() {
     Stack() {
       if (this.isShow) {
@@ -446,14 +422,17 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
             .backgroundColor(Color.White)
             .textAlign(TextAlign.Center)
           // Select组件是用于提供选项选择的交互组件（类似下拉选择框），而onSelect是Select组件的选择事件回调函数—— 当用户从下拉选项中选中某一项时，该回调会被触发，用于处理用户的选择逻辑。
+          // [Start camera_resolution_select]
           Select(this.resolutionOptions)
-            .selected(this.selectedResolutionIndex) // 默认选中当前索引对应的分辨率
+            .selected(this.selectedResolutionIndex)
             .backgroundColor('#fff')
             .font({ size: '10vp' })
             .onSelect(async (index:number, value:string) => {
-              this.selectedResolutionIndex = index; // 更新选中索引 表明用户希望选中的分辨率
-              await this.onResolutionChanged(); // 调用分辨率变更处理方法
+              // 更新选中索引，表明用户希望选中的分辨率。
+              this.selectedResolutionIndex = index;
+              await this.onResolutionChanged();
             });
+          // [End camera_resolution_select]
         }
       }.visibility(!CameraService.is2in1() ?  Visibility.Visible : Visibility.Hidden)
       .margin({ left: Constants.CAPTURE_BUTTON_COLUMN_MARGIN })
@@ -464,6 +443,4 @@ private mDynamicConfigRotatio: Map<number, number> = new Map([
     .size({ width: Constants.FULL_PERCENT, height: Constants.FULL_PERCENT })
     .backgroundColor(Color.Black)
   }
-// [End foldable_camera_xcomponent_management]
 }
-// [End camera_foldable_display]
