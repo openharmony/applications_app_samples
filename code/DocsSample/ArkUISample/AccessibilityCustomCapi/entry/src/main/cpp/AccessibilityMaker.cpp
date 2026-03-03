@@ -409,6 +409,7 @@ bool AccessibilityMaker::IsAccessibilityDisabled()
     return false;
 }
 
+// [Start abilitycap_nine_start]
 int32_t AccessibilityMaker::GetAccessibilityProvider(ArkUI_NodeHandle* customNode, const char* id)
 {
     AccessibilityMaker::accessibilityProviderCallbacksWithInstance_.findAccessibilityNodeInfosById =
@@ -440,6 +441,7 @@ int32_t AccessibilityMaker::GetAccessibilityProvider(ArkUI_NodeHandle* customNod
     }
     return 0;
 }
+// [End abilitycap_nine_start]
 
 void AccessibilityMaker::SetAccessibilityMode(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node,
     ArkUI_AccessibilityMode mode)
