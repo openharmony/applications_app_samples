@@ -61,28 +61,33 @@ class MyNodeController extends NodeController {
 @Component
 export struct OperationNodeTree {
   private myNodeController: MyNodeController = new MyNodeController();
+  @State myLog: string = '';
 
   build() {
     // [StartExclude operation_node_tree]
     NavDestination() {
       // [EndExclude operation_node_tree]
-      Row() {
+      Column() {
         NodeContainer(this.myNodeController)
           .width(200)
           .height(350);
+        Text(this.myLog).width(300).height(40).margin({ top: 20, left: 20, bottom: 20 });
         Button('getNextSibling')
           .onClick(() => {
             const child = renderNode.getChild(1);
             const nextSibling = child!.getNextSibling()
             if (child === null || nextSibling === null) {
               hilog.info(DOMAIN, TEST_TAG, ' the child or nextChild is null');
+              this.myLog = 'the child or nextChild is null';
             } else {
               // 获取子节点的位置信息
               hilog.info(DOMAIN, TEST_TAG, `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
                 `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
+              this.myLog = `the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+                `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`;
             }
           });
-      };
+      }.width(300).margin({ left: 20 });
 
       // [StartExclude operation_node_tree]
     }
