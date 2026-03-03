@@ -34,7 +34,7 @@ struct Index {
   // 通过getUIContext().getHostContext()方法，来获取page所在的UIAbility上下文
   private context: Context | undefined = this.getUIContext().getHostContext();
 
-  // [StartExclude play_music]
+  // [StartExclude continuous_task]
   @State isSwitching: boolean = false;
   // 播放或暂停
   onPlayClick(): void {
@@ -135,7 +135,7 @@ struct Index {
       console.info(`on playlist generated`);
     })
   }
-  // [EndExclude play_music]
+  // [EndExclude continuous_task]
 
   OnContinuousTaskCancel() {
     try {
@@ -191,11 +191,11 @@ struct Index {
             then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info('Operation startBackgroundRunning succeeded');
             // 此处执行具体的长时任务逻辑，如播音等。
-            // [StartExclude apply_play_music]
+            // [StartExclude continuous_task]
             if (!PlayerModel.isPlaying) {
               this.onPlayClick();
             }
-            // [EndExclude apply_play_music]
+            // [EndExclude continuous_task]
           }).catch((error: BusinessError) => {
             console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
           });
@@ -212,11 +212,11 @@ struct Index {
   stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
       console.info(`Succeeded in operationing stopBackgroundRunning.`);
-      // [StartExclude stop_play_music]
+      // [StartExclude continuous_task]
       if (PlayerModel.isPlaying) {
         this.onPlayClick();
       }
-      // [EndExclude stop_play_music]
+      // [EndExclude continuous_task]
     }).catch((err: BusinessError) => {
       console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
     });
@@ -278,13 +278,13 @@ struct Index {
         .type(ButtonType.Capsule)
         .margin({ top: 10 })
         .backgroundColor('#0D9FFB')
-        .width(350)
+        .width(250)
         .height(40)
         .onClick(() => {
           // 通过按钮取消注册长时任务取消回调
           this.OffContinuousTaskCancel();
         })
-        // [StartExclude play_music_ux]
+        // [StartExclude continuous_task]
         Text('播音业务功能')
           .fontSize(40)
           .fontWeight(FontWeight.Bold)
@@ -322,7 +322,7 @@ struct Index {
         .onClick(() => {
           this.onNextClick();
         })
-        // [EndExclude play_music_ux]
+        // [EndExclude continuous_task]
       }
       .width('100%')
     }

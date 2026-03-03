@@ -27,7 +27,7 @@ struct IndexAsyncAndAwait {
   // 通过getUIContext().getHostContext()方法，来获取page所在的UIAbility上下文
   private context: Context | undefined = this.getUIContext().getHostContext();
 
-  // [StartExclude play_music]
+  // [StartExclude continuous_task_await]
   @State isSwitching: boolean = false;
   // 播放或暂停
   onPlayClick(): void {
@@ -128,7 +128,7 @@ struct IndexAsyncAndAwait {
       console.info(`on playlist generated`);
     })
   }
-  // [EndExclude play_music]
+  // [EndExclude continuous_task_await]
 
   // 申请长时任务async/await写法
   async startContinuousTask() {
@@ -166,11 +166,11 @@ struct IndexAsyncAndAwait {
           await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
         console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
         // 此处执行具体的长时任务逻辑，如播音等。
-        // [StartExclude apply_play_music]
+        // [StartExclude continuous_task_await]
         if (!PlayerModel.isPlaying) {
           this.onPlayClick();
         }
-        // [EndExclude apply_play_music]
+        // [EndExclude continuous_task_await]
       } catch (error) {
         console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
       }
@@ -184,11 +184,11 @@ struct IndexAsyncAndAwait {
     try {
       await backgroundTaskManager.stopBackgroundRunning(this.context);
       console.info(`Succeeded in operationing stopBackgroundRunning.`);
-      // [StartExclude stop_play_music]
+      // [StartExclude continuous_task_await]
       if (PlayerModel.isPlaying) {
         this.onPlayClick();
       }
-      // [EndExclude stop_play_music]
+      // [EndExclude continuous_task_await]
     } catch (error) {
       console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
     }
@@ -230,7 +230,7 @@ struct IndexAsyncAndAwait {
           // 通过按钮取消长时任务
           this.stopContinuousTask();
         })
-        // [StartExclude play_music_ux]
+        // [StartExclude continuous_task_await]
         Text('播音业务功能')
           .fontSize(40)
           .fontWeight(FontWeight.Bold)
@@ -268,7 +268,7 @@ struct IndexAsyncAndAwait {
         .onClick(() => {
           this.onNextClick();
         })
-        // [EndExclude play_music_ux]
+        // [EndExclude continuous_task_await]
       }
       .width('100%')
     }
