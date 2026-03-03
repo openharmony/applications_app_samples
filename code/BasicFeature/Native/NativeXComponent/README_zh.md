@@ -18,6 +18,8 @@
 │  ├──cpp                           // C++代码区
 │  │  ├──CMakeLists.txt             // CMake配置文件
 │  │  ├──napi_init.cpp              // Napi模块注册
+│  │  ├──common
+│  │  │  ├──common.h                // 定义了一个公共的namespace
 │  │  ├──manager                    // 生命周期管理模块
 │  │  │  ├──plugin_manager.cpp
 │  │  │  └──plugin_manager.h
@@ -45,6 +47,8 @@
 |  |     ├──SurfaceHolderDeclarative.ets
 |  |     ├──SurfaceHolderNDK.ets
 |  |     ├──SurfaceHolderTypeNode.ets
+│  │  ├──interface
+│  │     ├──XComponentContext.ts
 |  ├──resources         			// 资源文件目录
 ```
 
