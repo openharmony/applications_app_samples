@@ -163,7 +163,7 @@ function testOptionalProperty() {
   // [Start optional_type]
   interface Person {
     name: string;
-    age?: number;  // age 是可选属性
+    age?: number;  // age是可选属性
   }
 
   const person: Person = {
