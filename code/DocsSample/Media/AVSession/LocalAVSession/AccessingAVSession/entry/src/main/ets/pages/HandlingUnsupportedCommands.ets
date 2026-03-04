@@ -36,6 +36,7 @@ struct Index {
           session.off('stop');
           session.off('playNext');
           session.off('playPrevious');
+          // [StartExclude handing_unSupported]
           // 主动销毁已创建的session。
           session.destroy((err) => {
             if (err) {
@@ -44,6 +45,7 @@ struct Index {
               console.info(`Destroy : SUCCESS `);
             }
           });
+          // [EndExclude handing_unSupported]
         })
     }
     .width('100%')
