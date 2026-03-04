@@ -85,6 +85,10 @@
 #define EVENT_TEXT_AREA_WILL_CHANGE 30
 #define EVENT_TEXT_DETECT_RESULT_UPDATE 31
 #define EVENT_TEXT_ON_CLICK 32
+#define EVENT_BUTTON_ON_CLICK 33
+#define EVENT_BUTTON_ON_NEED_SOFTKEYBOARD 34
+#define EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD 35
+#define EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD 36
 #define FLOAT_50 50.0f
 
 ArkUI_NodeHandle TextMaker::text17 = nullptr;
@@ -229,6 +233,39 @@ static void HandleOtherEvent(int32_t eventId)
     }
 }
 
+void EventReceiver(ArkUI_NodeEvent* event)
+{
+    // 从事件中提取关键信息（根据ArkUI_NodeEvent结构体定义）
+    ArkUI_NodeHandle node = OH_ArkUI_NodeEvent_GetNodeHandle(event);        // 事件所属节点
+    ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event); // 事件类型
+    int32_t eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+    // 处理焦点相关事件
+    if (eventType == NODE_ON_CLICK && eventId == EVENT_BUTTON_ON_CLICK) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button on clicked");
+        ArkUI_NodeHandle nodeHandle;
+        OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("button_keyboard", &nodeHandle);
+        // 使用OH_ArkUI_FocusRequest请求焦点
+        ArkUI_ErrorCode result = OH_ArkUI_FocusRequest(nodeHandle);
+    } else if (eventType == NODE_ON_NEED_SOFTKEYBOARD) {
+        if (eventId == EVENT_BUTTON_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {1};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button NODE_ON_NEED_SOFTKEYBOARD");
+        } else if (eventId == EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {1};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "TEXTINPUT1 NODE_ON_NEED_SOFTKEYBOARD");
+        } else if (eventId == EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {0};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "TEXTINPUT2 NODE_ON_NEED_SOFTKEYBOARD");
+        }
+    }
+}
+
 // 主事件处理函数
 static void OnEventReceive(ArkUI_NodeEvent *event)
 {
@@ -260,6 +297,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
     HandleTextAreaEvent1(eventId);
     HandleTextAreaEvent2(eventId);
     HandleOtherEvent(eventId);
+    EventReceiver(event);
 }
 
 void setText1(ArkUI_NodeHandle &text)
@@ -759,40 +797,31 @@ void setTextInput10(ArkUI_NodeHandle &textInput10, ArkUI_NodeHandle &textInput10
     });
 }
 
-void EventReceiver(ArkUI_NodeEvent* event)
-{
-    // 从事件中提取关键信息（根据ArkUI_NodeEvent结构体定义）
-    ArkUI_NodeHandle node = OH_ArkUI_NodeEvent_GetNodeHandle(event);        // 事件所属节点
-    ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event); // 事件类型
-    // 处理焦点相关事件
-    if (eventType == NODE_ON_CLICK) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button on clicked");
-        ArkUI_NodeHandle nodeHandle;
-        OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("button_keyboard", &nodeHandle);
-        // 使用原生接口OH_ArkUI_FocusRequest请求焦点
-        ArkUI_ErrorCode result = OH_ArkUI_FocusRequest(nodeHandle);
-    } else if (eventType == NODE_ON_NEED_SOFTKEYBOARD) {
-        ArkUI_NumberValue need[] = {0};
-        ArkUI_NumberValue *ifNeed = need;
-        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button NODE_ON_NEED_SOFTKEYBOARD");
-    }
-}
-void setTextInputKeyboard(ArkUI_NodeHandle &textInputKeyBoard, ArkUI_NodeHandle &textInputKeyBoardButton)
+void setTextInputKeyboard(ArkUI_NodeHandle &textInputKeyBoard,
+    ArkUI_NodeHandle &textInputKeyBoard2, ArkUI_NodeHandle &textInputKeyBoardButton)
 {
     ArkUI_AttributeItem textItem = {
-        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD"};
+        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD -- true"};
     Manager::nodeAPI_->setAttribute(textInputKeyBoard, NODE_TEXT_INPUT_TEXT, &textItem);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoard, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD, textInputKeyBoard);
+    
+    ArkUI_AttributeItem textItem2 = {
+        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD -- false"};
+    Manager::nodeAPI_->setAttribute(textInputKeyBoard2, NODE_TEXT_INPUT_TEXT, &textItem2);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoard2, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD, textInputKeyBoard2);
 
     ArkUI_AttributeItem labelItem = { .string = "focus_Button" };
     Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_BUTTON_LABEL, &labelItem);
     ArkUI_AttributeItem nodeIdItem = { .string = "button_keyboard" };
     Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_ID, &nodeIdItem);
-    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_CLICK, 0, textInputKeyBoardButton);
-    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_NEED_SOFTKEYBOARD, 1,
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_CLICK, EVENT_BUTTON_ON_CLICK,
                                          textInputKeyBoardButton);
-
-    Manager::nodeAPI_->registerNodeEventReceiver(EventReceiver);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_BUTTON_ON_NEED_SOFTKEYBOARD, textInputKeyBoardButton);
+    
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
 
 void setTextInputDirection(ArkUI_NodeHandle &textInput11)
@@ -2467,12 +2496,14 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoard2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setTextInput13(textInput13, textInput14);
-    setTextInputKeyboard(textInputKeyBoard, textInputKeyBoardButton);
+    setTextInputKeyboard(textInputKeyBoard, textInputKeyBoard2, textInputKeyBoardButton);
     Manager::nodeAPI_->addChild(textContainer, textInput13);
     Manager::nodeAPI_->addChild(textContainer, textInput14);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard2);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoardButton);
 }
 
