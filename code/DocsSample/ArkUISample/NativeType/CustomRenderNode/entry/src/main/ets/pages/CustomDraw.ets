@@ -31,9 +31,9 @@ class MyRenderNode extends RenderNode {
     // 设置笔刷颜色
     brush.setColor({
       alpha: 255,
-      red: 255,
-      green: 0,
-      blue: 0
+      red: 81,
+      green: 157,
+      blue: 180
     });
     canvas.attachBrush(brush);
     // 绘制矩阵
@@ -55,7 +55,7 @@ renderNode.frame = {
   width: 300,
   height: 300
 };
-renderNode.backgroundColor = 0xff0000ff;
+renderNode.backgroundColor = 0xffd5d5d5;
 renderNode.opacity = 0.5;
 
 class MyNodeController extends NodeController {
@@ -90,14 +90,14 @@ export struct CustomDraw {
       // [EndExclude custom_draw]
       Column() {
         NodeContainer(this.myNodeController)
-          .width('100%');
+          .width('100%').height(320);
         Button('Invalidate')
           .onClick(() => {
             // 同步调用多次，仅触发一次重绘，draw回调中的日志仅打印一次
             renderNode.width += 10;
             renderNode.invalidate();
             renderNode.invalidate();
-          });
+          }).margin({left: -80});
       };
 
       // [StartExclude custom_draw]
