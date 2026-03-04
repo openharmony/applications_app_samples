@@ -15,6 +15,7 @@ const int32_t NUMBER_SPAN = 2;
 
 void AccessibleObject::fillAccessibilityElement(ArkUI_AccessibilityElementInfo *element)
 {
+    // Set the properties of the accessibility element based on the properties of the node.
     if (!accessibilityText_.empty()) {
         OH_ArkUI_AccessibilityElementInfoSetAccessibilityText(element, accessibilityText_.data());
     }

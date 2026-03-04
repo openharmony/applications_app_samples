@@ -14,6 +14,7 @@
 namespace NativeXComponentSample {
 class AccessibleObject {
 public:
+    // Constructor to initialize the name of the node.
     explicit AccessibleObject(const std::string &name) : name_(name), originName_(name) {}
 // 设置string和int类型属性
     void SetAccessibilityLevel(const std::string &accessibilityLevel)
@@ -224,6 +225,9 @@ private:
 };
 
 class FakeButton : public AccessibleObject {
+    // The FakeButton class represents a button node in the accessibility tree.
+    // It inherits from AccessibleObject and overrides the Hint, ObjectType,
+    // and OnClick methods to provide specific behavior for button nodes.
 public:
     explicit FakeButton(const std::string &name) : AccessibleObject(name) {}
     char *Hint() const override { return "It's a button"; }
@@ -235,6 +239,9 @@ public:
 };
 
 class FakeText : public AccessibleObject {
+    // The FakeText class represents a text node in the accessibility tree.
+    // It inherits from AccessibleObject and overrides the Hint, ObjectType,
+    // and OnClick methods to provide specific behavior for text nodes.
 public:
     explicit FakeText(const std::string &name) : AccessibleObject(name) {}
 
@@ -247,6 +254,9 @@ public:
 };
 
 class FakeSlider : public AccessibleObject {
+    // The FakeSlider class represents a slider node in the accessibility tree.
+    // It inherits from AccessibleObject and overrides the Hint, ObjectType,
+    // and OnClick methods to provide specific behavior for slider nodes.
 public:
     explicit FakeSlider(const std::string &name) : AccessibleObject(name) {}
 
@@ -259,6 +269,9 @@ public:
 };
 
 class FakeList : public AccessibleObject {
+    // The FakeList class represents a list node in the accessibility tree.
+    // It inherits from AccessibleObject and overrides the Hint, ObjectType,
+    // and OnClick methods to provide specific behavior for list nodes.
 public:
     explicit FakeList(const std::string &name) : AccessibleObject(name) {}
 
@@ -271,6 +284,9 @@ public:
 };
 
 class FakeSwiper : public AccessibleObject {
+    // The FakeSwiper class represents a swiper node in the accessibility tree.
+    // It inherits from AccessibleObject and overrides the Hint, ObjectType,
+    // and OnClick methods to provide specific behavior for swiper nodes.
 public:
     explicit FakeSwiper(const std::string &name) : AccessibleObject(name) {}
 
@@ -283,7 +299,12 @@ public:
 };
 
 class FakeWidget : public AccessibleObject {
+    // The FakeWidget class represents a widget node in the accessibility tree.
+    // It inherits from AccessibleObject and contains a collection of child nodes,
+    // including buttons, text, sliders, lists, and swipers. It provides methods
+    // to add these child nodes and retrieve them based on their element ID.
 public:
+    // Singleton pattern to ensure only one instance of FakeWidget exists.
     static FakeWidget &Instance()
     {
         static FakeWidget w;
