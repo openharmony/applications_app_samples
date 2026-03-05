@@ -16,10 +16,10 @@
 | ----------------------------------------------------------- |
 | <img src="screenshots\AllowGeolocation.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
 1. 将可选参数incognitoMode设置为true，来开启Web组件的隐私模式
-2. 点击按钮通过allowGeolocation设置隐私模式下的Web组件允许指定来源使用地理位置。
+2. 点击按钮通过allowGeolocation设置隐私模式下的Web组件允许指定来源使用地理位置，参考源码：[AllowGeolocation.ets](./entry/src/main/ets/pages/AllowGeolocation.ets)。
 
 ### ClearAllCookiesSync
 
@@ -85,10 +85,10 @@
 | ------------------------------------------------------------ |
 | <img src="screenshots\DeleteGeolocation.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
 1. 将可选参数incognitoMode设置为true，来开启Web组件的隐私模式。
-2. 点击按钮通过deleteGeolocation清除隐私模式下指定来源的地理位置权限状态。
+2. 点击按钮通过deleteGeolocation清除隐私模式下指定来源的地理位置权限状态，参考源码：[DeleteGeolocation.ets](./entry/src/main/ets/pages/DeleteGeolocation.ets)。
 
 ### ExistCookie
 
@@ -136,10 +136,10 @@
 | ------------------------------------------------------------ |
 | <img src="screenshots\GetAccessibleGeolocation.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
 1. 将可选参数incognitoMode设置为true，来开启Web组件的隐私模式。
-2. 点击按钮通过getAccessibleGeolocation以回调方式异步获取隐私模式下指定源的地理位置权限状态。
+2. 点击按钮通过getAccessibleGeolocation以回调方式异步获取隐私模式下指定源的地理位置权限状态，参考源码：[GetAccessibleGeolocation.ets](./entry/src/main/ets/pages/GetAccessibleGeolocation.ets)。
 
 ### IncognitoMode_one
 
@@ -217,10 +217,10 @@
 | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | <img src="screenshots\ManageLocPerms_1.png" width="360;" /> | <img src="screenshots\ManageLocPerms_2.png" width="360;" /> |
 
-使用说明
+#### 具体实现
 
 1. 通过onGeolocationShow()接口对某个网站进行位置权限管理。
-1. 点击按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息。
+1. 点击按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息，参考源码：[ManageLocPerms.ets](./entry/src/main/ets/pages/ManageLocPerms.ets)。
 
 #  设置深色模式
 
