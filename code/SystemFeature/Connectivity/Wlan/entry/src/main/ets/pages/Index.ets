@@ -25,7 +25,7 @@ const TAG = 'Index';
 @Component
 struct Index {
   private wifiModel: WifiModel = new WifiModel();
-  private linkedInfo: wifi.WifiLinkedInfo = null;
+  private linkedInfo: wifi.WifiLinkedInfo | undefined = undefined;
   @State isLinked: boolean = false;
   @State isSwitchOn: boolean = false;
 
@@ -49,7 +49,7 @@ struct Index {
       let wifiLinkedInfo = await wifi.getLinkedInfo();
       if (wifiLinkedInfo === null || wifiLinkedInfo.bssid === '') {
         this.isLinked = false;
-        this.linkedInfo = null;
+        this.linkedInfo = undefined;
         return;
       }
       this.isLinked = true;
@@ -135,7 +135,7 @@ struct Index {
             .fontSize(22)
             .width('100%')
           Row() {
-            Text(this.linkedInfo.ssid)
+            Text(this.linkedInfo?.ssid)
               .fontSize(20)
               .fontColor(Color.Black)
               .layoutWeight(1)

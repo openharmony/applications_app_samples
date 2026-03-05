@@ -30,15 +30,15 @@ export default class control {
   private queueItemsMap: Map<string, Array<AVSessionManager.AVQueueItem>> = new Map();
   private lyricMap: Map<string, string> = new Map();
   private sessionArray: Array<string> = new Array();
-  private isPlayingLink: SubscribedAbstractProperty<undefined | boolean> | undefined = undefined;
-  private isLyricLink: SubscribedAbstractProperty<undefined | boolean> | undefined = undefined;
-  private bundleNameMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
-  private metaDataMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
-  private playStateMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
-  private queueTitleMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
-  private queueItemsMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVQueueItem[]>> | undefined = undefined;
-  private lyricMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
-  private sessionArrayLink: SubscribedAbstractProperty<undefined | string[]> | undefined = undefined;
+  private isPlayingLink: SubscribedAbstractProperty< boolean> | undefined = undefined;
+  private isLyricLink: SubscribedAbstractProperty< boolean> | undefined = undefined;
+  private bundleNameMapLink: SubscribedAbstractProperty< Map<string, string>> | undefined = undefined;
+  private metaDataMapLink: SubscribedAbstractProperty< Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
+  private playStateMapLink: SubscribedAbstractProperty< Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
+  private queueTitleMapLink: SubscribedAbstractProperty< Map<string, string>> | undefined = undefined;
+  private queueItemsMapLink: SubscribedAbstractProperty< Map<string, AVSessionManager.AVQueueItem[]>> | undefined = undefined;
+  private lyricMapLink: SubscribedAbstractProperty< Map<string, string>> | undefined = undefined;
+  private sessionArrayLink: SubscribedAbstractProperty<string[]> | undefined = undefined;
 
   constructor() {
     Log.info(TAG, 'constructor');
@@ -49,15 +49,15 @@ export default class control {
 
   async initLink(): Promise<void> {
     Log.info(TAG, 'initLink');
-    this.isPlayingLink = AppStorage.setAndLink<undefined | boolean>('isPlaying', undefined);
-    this.isLyricLink = AppStorage.setAndLink<undefined | boolean>('isLyric', undefined);
-    this.bundleNameMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('bundleNameMap', undefined);
-    this.metaDataMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVMetadata>>('metaDataMap', undefined);
-    this.playStateMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVMetadata>>('playStateMap', undefined);
-    this.queueItemsMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVQueueItem[]>>('queueItemsMap', undefined);
-    this.queueTitleMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('queueTitleMap', undefined);
-    this.lyricMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('lyricMap', undefined);
-    this.sessionArrayLink = AppStorage.setAndLink<undefined | string[]>('sessionArray', undefined);
+    this.isPlayingLink = AppStorage.setAndLink< boolean>('isPlaying', false);
+    this.isLyricLink = AppStorage.setAndLink<boolean>('isLyric', false);
+    this.bundleNameMapLink = AppStorage.setAndLink< Map<string, string>>('bundleNameMap', new Map());
+    this.metaDataMapLink = AppStorage.setAndLink< Map<string, AVSessionManager.AVMetadata>>('metaDataMap', new Map());
+    this.playStateMapLink = AppStorage.setAndLink< Map<string, AVSessionManager.AVMetadata>>('playStateMap', new Map());
+    this.queueItemsMapLink = AppStorage.setAndLink< Map<string, AVSessionManager.AVQueueItem[]>>('queueItemsMap', new Map());
+    this.queueTitleMapLink = AppStorage.setAndLink< Map<string, string>>('queueTitleMap', new Map());
+    this.lyricMapLink = AppStorage.setAndLink< Map<string, string>>('lyricMap', new Map());
+    this.sessionArrayLink = AppStorage.setAndLink< string[]>('sessionArray', []);
     Log.info(TAG, 'initLink done');
   }
 

@@ -28,7 +28,9 @@ export struct FullScreenImmersive {
   windowClass?: window.Window;
 
   aboutToAppear(): void {
+    console.info(`Immersive about to appear`);
     window.getLastWindow(getContext(), (err, windowClass) => {
+      console.info(`Immersive get last window succeed`);
       this.windowClass = windowClass;
       // 设置窗口强制全屏布局
       windowClass.setWindowLayoutFullScreen(true);
@@ -37,13 +39,14 @@ export struct FullScreenImmersive {
         windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR).bottomRect.height;
       // 获取状态栏高度
       this.topHeight = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM).topRect.height;
+      console.info(`Immersive get avoid height succeed, bottomHeight is ${this.bottomHeight}, topHeight is ${this.topHeight}`);
     })
   }
 
   aboutToDisappear() {
     // 销毁前把布局设回去，防止影响其他页面
     if (this.windowClass) {
-       this.windowClass.setWindowLayoutFullScreen(false);
+      this.windowClass.setWindowLayoutFullScreen(false);
     }
   }
 

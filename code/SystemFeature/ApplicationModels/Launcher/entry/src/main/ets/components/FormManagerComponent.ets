@@ -26,6 +26,7 @@ import {
   FormCardItem
 } from '@ohos/base';
 import { DesktopLayoutModel } from '@ohos/desktop';
+import { commonEventManager } from '@kit.BasicServicesKit';
 
 
 const TAG: string = 'FormManagerComponent'
@@ -89,9 +90,7 @@ export default struct FormManagerComponent {
         .height('100%')
         .loop(false)
         .index(this.mSwiperIndex)
-        .indicatorStyle({
-          selectedColor: Color.White
-        })
+        .indicator(new DotIndicator().selectedColor(Color.White))
         .onChange((index: number) => {
           this.mSwiperIndex = index
         })
@@ -113,17 +112,18 @@ export default struct FormManagerComponent {
         top: 20,
         bottom: 20,
         left: 20,
-        right: 20 })
+        right: 20
+      })
       .onClick(async () => {
         Logger.info(TAG, `add card to desktop`);
         let selectForm = this.getSelectedFormInfo();
         if (!CheckEmptyUtils.isEmpty(selectForm)) {
           await this.desktopLayoutModel?.createCardToDeskTop(this.getSelectedFormInfo());
-          CommonEvent.publish(EventConstants.EVENT_ENTER_HOME, () => {
+          commonEventManager.publish(EventConstants.EVENT_ENTER_HOME, () => {
             Logger.info(TAG, 'publish EVENT_ENTER_HOME');
           })
         }
-        router.back();
+        this.getUIContext().getRouter().back();
       })
     }
   }
@@ -137,8 +137,9 @@ export default struct FormManagerComponent {
    * Get current form information by bundle name.
    */
   private async getCurrentFormInfo() {
-    let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(this.formAppInfo?.bundleName);
-    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo);
+    let currentBundleFormsInfo: Array<CardItemInfo> =
+      await FormModel.getFormsInfoByBundleName(this.formAppInfo?.bundleName);
+    AppStorage.setOrCreate('formMgrItem', currentBundleFormsInfo);
   }
 
   getSelectedFormInfo() {

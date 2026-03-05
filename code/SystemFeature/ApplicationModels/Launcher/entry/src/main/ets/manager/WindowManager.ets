@@ -17,7 +17,7 @@ import display from '@ohos.display'
 import promptAction from '@ohos.promptAction';
 import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
-import { EventConstants,Logger } from '@ohos/base'
+import { EventConstants, Logger } from '@ohos/base'
 import { BusinessError } from '@ohos.base';
 import CommonEventManager from '@ohos.commonEventManager';
 
@@ -63,7 +63,8 @@ export default class WindowManager {
       Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`);
       switch (data.event) {
         case EventConstants.EVENT_CLEAR_RECENTS:
-          let uninstallMessage: string = this.context!.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
+          let uninstallMessage: string =
+            this.context!.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
           promptAction.showToast({
             message: uninstallMessage
           });
@@ -92,14 +93,16 @@ export default class WindowManager {
   }
 
   /**
- * 设置窗口大小
- *
- * @param width 窗口宽度
- * @param width 窗口高度
- */
+   * 设置窗口大小
+   *
+   * @param width 窗口宽度
+   * @param width 窗口高度
+   */
   async setWindowSize(width: number, height: number): Promise<void> {
-    const abilityWindow = await Window.getLastWindow(this.context);
-    void abilityWindow.resetSize(width, height);
+    // const abilityWindow = await Window.getLastWindow(this.context);
+    Window.getLastWindow(this.context).then((window) => {
+      window.resize(width, height);
+    })
   }
 
   async createWindow(windowName: string, page: string, isFullScreen: boolean) {
