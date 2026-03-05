@@ -44,7 +44,7 @@ async function waitFor(conditionVariable: ArkTSUtils.locks.ConditionVariable) {
 @Entry
 @Component
 struct Index {
-  @State message: string | ResourceStr = $r('app.string.AsyncButton');
+  @State message: string | ResourceStr = $r('app.string.AsyncButton'); // 加载资源，可根据项目实际资源自定义
 
   build() {
     Row() {
