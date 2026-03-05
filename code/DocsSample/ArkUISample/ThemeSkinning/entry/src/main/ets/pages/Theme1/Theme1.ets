@@ -18,7 +18,7 @@
 import { Theme, ThemeControl } from '@kit.ArkUI';
 import { gAppTheme } from './AppTheme';
 
-//在页面build前执行ThemeControl
+// 在页面build前执行ThemeControl
 ThemeControl.setDefaultTheme(gAppTheme);
 
 @Entry
