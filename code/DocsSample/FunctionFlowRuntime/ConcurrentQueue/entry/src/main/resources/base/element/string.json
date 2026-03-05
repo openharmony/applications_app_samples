@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Describe the Function Flow Runtime(FFRT) Concurrent Queue framework paradigm."
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "FFRT Concurrent Queue Demo"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FFRT Concurrent Queue"
+    },
+    {
+      "name": "title",
+      "value": "FFRT并发队列"
+    },
+    {
+      "name": "FFRT_ConcurrentQueue_lable",
+      "value": "并发队列C接口"
+    },
+    {
+      "name": "FFRT_ConcurrentQueue_des",
+      "value": "银行服务系统，每个客户向系统提交一个服务请求，可以区分普通用户和VIP用户，VIP用户的服务请求可以优先得到执行。银行系统中有2个窗口，可以并行取出用户提交的服务请求办理。"
+    },
+    {
+      "name": "FFRT_ConcurrentQueue_Cpp_lable",
+      "value": "并发队列Cpp接口"
+    },
+    {
+      "name": "Print_des",
+      "value": "任务提交成功后查看Hilog日志打印"
+    }
+  ]
+}
