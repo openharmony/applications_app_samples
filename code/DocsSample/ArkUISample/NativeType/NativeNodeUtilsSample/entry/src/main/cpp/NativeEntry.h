@@ -34,6 +34,7 @@ namespace NativeModule {
     napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info);
     napi_value CreateDrawNode(napi_env env, napi_callback_info info);
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
+    napi_value CreateNativeMessageRoot(napi_env env, napi_callback_info info);
 
     // 管理Native组件的生命周期和内存。
     class NativeEntry {

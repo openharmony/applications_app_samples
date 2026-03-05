@@ -26,6 +26,7 @@
 #include <map>
 #include <thread>
 // [Start arkUICustomNodeCpp_start]
+// [Start messageMaskCpp_start]
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 #include <js_native_api.h>
@@ -33,10 +34,12 @@
 #include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
+#include "ArkUIMessageMaskNode.h"
 
 // 全局环境变量声明
 static napi_env g_env = nullptr;
 // [StartExclude arkUICustomNodeCpp_start]
+// [StartExclude messageMaskCpp_start]
 // [Start Interface_entrance_mounting_file]
 #include "NativeEntry.h"
 #include "LazyTextListExample.h"
@@ -46,10 +49,12 @@ static napi_env g_env = nullptr;
 #include <uv.h>
 // [Start normalTextListExample_start]
 // [EndExclude arkUICustomNodeCpp_start]
+// [EndExclude messageMaskCpp_start]
 namespace NativeModule {
 // [StartExclude Interface_entrance_mounting_file]
 // [StartExclude normalTextListExample_start]
 // [StartExclude arkUICustomNodeCpp_start]
+// [StartExclude messageMaskCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
 // [EndExclude arkUICustomNodeCpp_start]
@@ -653,6 +658,81 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     g_env = env;
     return nullptr;
 }
+// [EndExclude messageMaskCpp_start]
+napi_value CreateNativeMessageRoot(napi_env env, napi_callback_info info)
+{
+    constexpr int32_t messageMaskWidth = 400;
+    constexpr int32_t messageMaskHeight = 200;
+
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 避免重复创建导致的重复挂载。
+    NativeEntry::GetInstance()->DisposeRootNode();
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    auto nodeAPI = NativeModuleInstance::GetInstance()->GetNativeNodeAPI();
+    auto rootColumn = std::make_shared<ArkUIColumnNode>();
+    auto rootColumnHandle = rootColumn->GetHandle();
+    
+    // 设置根容器样式
+    ArkUI_NumberValue paddingValue[] = {{.f32 = 20.0f}};
+    ArkUI_AttributeItem paddingItem = {paddingValue, 1};
+    nodeAPI->setAttribute(rootColumnHandle, NODE_PADDING, &paddingItem);
+
+    ArkUI_NumberValue bgColorValue[] = {{.u32 = 0xFFFFFFFF}};
+    ArkUI_AttributeItem bgColorItem = {bgColorValue, 1};
+    nodeAPI->setAttribute(rootColumnHandle, NODE_BACKGROUND_COLOR, &bgColorItem);
+    
+    // 创建消息气泡组件
+    auto maskNode = std::make_shared<ArkUIMessageMaskNode>();
+    maskNode->SetWidth(messageMaskWidth);
+    maskNode->SetHeight(messageMaskHeight);
+    maskNode->SetMessage("您有一条新消息");
+    maskNode->SetMaskVisible(false);  // 初始不显示蒙层
+    
+    // 创建按钮用于切换蒙层效果
+    auto buttonNode = std::make_shared<ArkUINode>(nodeAPI->createNode(ARKUI_NODE_BUTTON));
+    auto buttonHandle = buttonNode->GetHandle();
+    
+    // 设置按钮文本
+    ArkUI_AttributeItem labelItem;
+    const char* buttonLabel = "切换蒙层效果";
+    labelItem.string = buttonLabel;
+    nodeAPI->setAttribute(buttonHandle, NODE_BUTTON_LABEL, &labelItem);
+    
+    // 设置按钮样式
+    ArkUI_NumberValue marginValue[] = {{.f32 = 20.0f}};
+    ArkUI_AttributeItem marginItem = {marginValue, 1};
+    nodeAPI->setAttribute(buttonHandle, NODE_MARGIN, &marginItem);
+    
+    ArkUI_NumberValue btnBgColorValue[] = {{.u32 = 0xFF2787D9}};
+    ArkUI_AttributeItem btnBgColorItem = {btnBgColorValue, 1};
+    nodeAPI->setAttribute(buttonHandle, NODE_BACKGROUND_COLOR, &btnBgColorItem);
+
+    // 设置按钮点击事件
+    auto onClick = [](ArkUI_NodeEvent *event) {
+        auto maskNode = (ArkUIMessageMaskNode *)OH_ArkUI_NodeEvent_GetUserData(event);
+        static bool highlighted = false;
+        highlighted = !highlighted;
+        maskNode->SetMaskVisible(highlighted);
+    };
+    buttonNode->RegisterOnClick(onClick, maskNode.get());
+    
+    // 将组件添加到根容器
+    rootColumn->AddChild(buttonNode);
+    rootColumn->AddChild(maskNode);
+
+    // 保持Native侧对象到管理类中，维护生命周期
+    NativeEntry::GetInstance()->SetRootNode(rootColumn);
+    return nullptr;
+}
 
 napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
 {
@@ -664,4 +744,5 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
 } // namespace NativeModule
 // [End normalTextListExample_start]
 // [End arkUICustomNodeCpp_start]
+// [End messageMaskCpp_start]
 // [End Interface_entrance_mounting_file]
