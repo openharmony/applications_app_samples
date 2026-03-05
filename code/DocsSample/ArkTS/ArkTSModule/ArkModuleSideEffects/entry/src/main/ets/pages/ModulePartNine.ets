@@ -15,6 +15,6 @@
 
 // [Start export_modulePartNine]
 // ModulePartNine.ets
-export let data = 'data from module'
+export let data = 'data from module';
 globalThis.someGlobalVar = 100;
 // [End export_modulePartNine]

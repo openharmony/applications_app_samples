@@ -15,6 +15,6 @@
 
 // [Start export_modulePartSix]
 // ModulePartSix.ets
-export let data = 'data from module'
+export let data = 'data from module';
 AppStorage.setOrCreate('SomeAppStorageVar', 200); // 修改应用全局的UI状态
 // [End export_modulePartSix]

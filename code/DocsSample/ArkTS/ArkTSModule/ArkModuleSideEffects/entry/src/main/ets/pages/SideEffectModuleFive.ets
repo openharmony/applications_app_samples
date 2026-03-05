@@ -15,7 +15,7 @@
 
 // [Start export_sideEffectModuleFive]
 // SideEffectModuleFive.ets
-export let data2 = 'data from side effect module'
+export let data2 = 'data from side effect module';
 export function changeGlobalVar() {
   globalThis.someGlobalVar = 200;
 }

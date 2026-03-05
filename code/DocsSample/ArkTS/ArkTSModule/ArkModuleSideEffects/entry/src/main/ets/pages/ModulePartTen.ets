@@ -15,7 +15,7 @@
 
 // [Start export_modulePartTen]
 // ModulePartTen.ets
-export let data = 'data from module'
+export let data = 'data from module';
 export function initialize() {
   globalThis.someGlobalVar = 100; // 延迟到函数调用时执行
 }

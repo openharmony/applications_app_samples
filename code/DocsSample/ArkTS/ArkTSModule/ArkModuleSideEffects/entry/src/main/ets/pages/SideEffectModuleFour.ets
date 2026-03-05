@@ -15,6 +15,6 @@
 
 // [Start export_sideEffectModuleFour]
 // SideEffectModuleFour.ets
-export let data2 = 'data from side effect module'
+export let data2 = 'data from side effect module';
 globalThis.someGlobalVar = 200; // 也改变了全局状态
 // [End export_sideEffectModuleFour]
