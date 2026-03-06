@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "build_layout",
+      "value": "动态布局"
+    },
+    {
+      "name": "custom_layout",
+      "value": "自定义布局"
+    },
+    {
+      "name": "responsive_layout",
+      "value": "布局切换能力"
+    }
+  ]
+}
