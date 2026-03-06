@@ -58,7 +58,7 @@ struct Page1 {
 
   build() {
     Column() {
-      /**************************** 显示数据 **************************/
+      // 显示数据
       Text('Key globalConnect1: ' + this.p1.father.childId.toString())
         .onClick(() => {
           this.p1.father.childId += 1;
@@ -72,7 +72,7 @@ struct Page1 {
         .fontSize(25)
         .fontColor(Color.Red)
 
-      /**************************** 跳转 **************************/
+      // 跳转
       Button('Jump to newModule')
         .onClick(() => { // 不同module之间使用，建议使用globalConnect
           let want: Want = {

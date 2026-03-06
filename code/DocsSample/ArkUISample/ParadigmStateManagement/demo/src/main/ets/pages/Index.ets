@@ -50,7 +50,7 @@ struct Page1 {
 
   build() {
     Column() {
-      /**************************** 显示数据 **************************/
+      // 显示数据
       Text('Key globalConnect1: ' + this.p1.father.childId.toString())
         .onClick(() => {
           this.p1.father.childId += 1;

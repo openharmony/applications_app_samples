@@ -64,7 +64,7 @@ struct Page1 {
 
   build() {
     Column() {
-      /**************************** 显示数据 **************************/
+      // 显示数据
       // 被@Trace修饰的数据可以自动持久化进磁盘
       Text('Key SampleGlobalConnect: ' + this.p.father.childId.toString())
         .onClick(() => {
@@ -90,15 +90,15 @@ struct Page1 {
         })
         .fontSize(25)
         .fontColor(Color.Red)
-      /**************************** keys接口 **************************/
-      // keys 本身不会刷新，需要借助状态变量刷新
+      // keys接口
+      // keys本身不会刷新，需要借助状态变量刷新
       Text('Persist keys: ' + PersistenceV2.keys().toString() + ' refresh: ' + this.refresh)
         .onClick(() => {
           this.refresh += 1;
         })
         .fontSize(25)
 
-      /**************************** remove接口 **************************/
+      // remove接口
       Text('Remove key SampleGlobalConnect: ' + 'refresh: ' + this.refresh)
         .onClick(() => {
           // 删除这个key，会导致和p失去联系，之后p无法存储，即使reconnect
@@ -127,7 +127,7 @@ struct Page1 {
           this.refresh += 1;
         })
         .fontSize(25)
-      /**************************** reConnect **************************/
+      // reConnect
       // 重新连接也无法和之前的状态变量建立联系，因此无法保存数据
       Text('ReConnect key global2: ' + 'refresh: ' + this.refresh)
         .onClick(() => {
@@ -137,7 +137,7 @@ struct Page1 {
         })
         .fontSize(25)
 
-      /**************************** save接口 **************************/
+      // save接口
       Text('not save key SampleGlobalConnect: ' + this.p.father.groupId.toString() + ' refresh: ' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储

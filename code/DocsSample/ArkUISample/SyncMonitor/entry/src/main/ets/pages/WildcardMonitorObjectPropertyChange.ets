@@ -31,7 +31,7 @@ class ClassA {
   @Local cls : ClassA = new ClassA(100, 100);
 
   @SyncMonitor('cls.*')
-  onClsChanged(m :IMonitor) {
+  onClsChanged(m: IMonitor) {
     hilog.info(0xFF00, 'testTag', '%{public}s', `### onClsChanged, dirty: ${m.dirty.toString()}`);
   }
 

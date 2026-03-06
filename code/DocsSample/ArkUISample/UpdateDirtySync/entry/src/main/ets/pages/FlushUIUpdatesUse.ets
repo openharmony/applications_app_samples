@@ -35,9 +35,7 @@ struct Index {
         .margin(20)
         .onClick(() => {
           // test1：调用applySync接口，日志打印两次
-          // UIUtils.applySync(() => {
-          //   this.message = 'Hello World';
-          // })
+          // UIUtils.applySync(() => { this.message = 'Hello World'; })
 
           // test2：调用flushUpdates接口，日志打印两次
           // this.message = 'Hello World';

@@ -19,6 +19,9 @@
     "pages/ObservedAndObjectLinkFAQs/DelayedChange",
     "pages/ObservedAndObjectLinkFAQs/ObjectLinkDataSourceUpdate",
     "pages/ObservedAndObjectLinkFAQs/ClickEventJack",
-    "pages/ObservedAndObjectLinkFAQs/NotTriggerUIRefresh"
+    "pages/ObservedAndObjectLinkFAQs/NotTriggerUIRefresh",
+    "pages/objectLinkusagescenarios/StateToObjectlink",
+    "pages/ObservedAndObjectLinkFAQs/ChangePropertyInConstructor",
+    "pages/ObservedAndObjectLinkFAQs/UseWithLazyForEach"
   ]
 }
