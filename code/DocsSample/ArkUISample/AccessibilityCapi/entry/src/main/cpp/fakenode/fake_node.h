@@ -8,7 +8,6 @@
 #define ACCESSIBILITY_CAPI_FAKE_NODE_H
 #include <arkui/native_interface_accessibility.h>
 #include <hilog/log.h>
-#include <cassert>
 #include "common/common.h"
 #include <string>
 namespace NativeXComponentSample {
