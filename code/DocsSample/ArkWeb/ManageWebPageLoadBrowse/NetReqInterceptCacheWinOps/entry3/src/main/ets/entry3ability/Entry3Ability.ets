@@ -17,7 +17,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // [Start create_main_window]
-// 主窗Ability
+// 主窗口Ability
 import { createNWeb, defaultUrl } from '../pages/common';
 
 // [StartExclude create_main_window]

@@ -14,7 +14,7 @@
  */
 
 // [Start soft_keyboard_index]
-//Index.ets
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

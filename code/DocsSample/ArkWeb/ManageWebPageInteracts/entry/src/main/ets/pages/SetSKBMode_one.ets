@@ -25,7 +25,7 @@ struct KeyboardAvoidExample {
     Column() {
       Row().height('50%').width('100%').backgroundColor(Color.Gray)
       Web({ src: $rawfile('index.html'),controller: this.controller})
-        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小。
+        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) // 此时ArkWeb组件不会调整任何视口的大小。
       Text('I can see the bottom of the page')	
         .width('100%')
         .textAlign(TextAlign.Center)
