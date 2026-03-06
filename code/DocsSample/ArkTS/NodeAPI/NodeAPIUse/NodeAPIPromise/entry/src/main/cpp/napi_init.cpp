@@ -46,7 +46,7 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
 // napi_resolve_deferred & napi_reject_deferred
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
-    // deferred是一个延迟对象，作用是将函数延迟一定时间再执行
+    // deferred是与Promise对象关联的对象，用于控制Promise的状态 (resolve或reject)
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
     // 调用接口创建Promise对象
