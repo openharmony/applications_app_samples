@@ -15,7 +15,7 @@
 
 // [Start export_modulePartFive]
 // ModulePartFive.ets
-export let data1 = 'data from module'
+export let data1 = 'data from module';
 export function changeGlobalVar() {
   globalThis.someGlobalVar = 100;
 }

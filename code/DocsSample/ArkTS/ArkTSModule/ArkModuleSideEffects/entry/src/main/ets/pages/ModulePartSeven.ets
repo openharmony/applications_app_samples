@@ -15,7 +15,7 @@
 
 // [Start export_modulePartSeven]
 // ModulePartSeven.ets
-export let data = 'data from module'
+export let data = 'data from module';
 export function initialize() {
   AppStorage.setOrCreate('SomeAppStorageVar', 200);
 }

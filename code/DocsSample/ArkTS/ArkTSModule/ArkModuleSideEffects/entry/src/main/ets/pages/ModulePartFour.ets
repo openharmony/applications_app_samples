@@ -15,6 +15,6 @@
 
 // [Start export_modulePartFour]
 // ModulePartFour.ets
-export let data1 = 'data from module'
+export let data1 = 'data from module';
 globalThis.someGlobalVar = 100; // 改变了全局状态
 // [End export_modulePartFour]
