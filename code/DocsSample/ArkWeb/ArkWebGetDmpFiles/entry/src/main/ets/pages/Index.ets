@@ -14,20 +14,20 @@
  */
 // [Start web_get_dmp_files]
 import { fileIo as fs } from '@kit.CoreFileKit'
-import { BusinessError} from '@kit.BasicServicesKit'
-import { common } from '@kit.AbilityKit'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { webview } from '@kit.ArkWeb'
 
 @Entry
 @Component
 struct Index {
-  controller:WebController=new WebController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
   build() {
     RelativeContainer() {
       Web({src:'chrome://memory-exhaust/', controller:this.controller})
       Button('file')
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
-          let pathDir: string = context.filesDir;
+          let pathDir = this.uiContext.getHostContext()?.filesDir;
           console.info("pathdir=" + pathDir);
           fs.copyDir("/data/storage/el2/log/crashpad/pending/", pathDir, 0)
             .then(()=>{
