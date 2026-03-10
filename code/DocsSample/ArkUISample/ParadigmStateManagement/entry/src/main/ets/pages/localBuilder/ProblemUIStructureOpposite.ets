@@ -15,11 +15,12 @@
 // [Start problem_ui_structure_opposite]
 @Entry
 @Component
-struct Pant {
+struct Page {
   @State message: string[] = ['1', '2', '3'];
 
   build() {
     List() {
+      // 错误写法，直接传递itemFoot的执行结果。
       ListItemGroup({ space: 10, footer: this.itemFoot() }) {
         ForEach(this.message, (item: string, index: number) => {
           ListItem() {
@@ -50,7 +51,7 @@ export struct ProblemUIStructureOpposite {
 
   build() {
     NavDestination() {
-      Pant()
+      Page()
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.problem_ui_not_refresh_opposite'))
