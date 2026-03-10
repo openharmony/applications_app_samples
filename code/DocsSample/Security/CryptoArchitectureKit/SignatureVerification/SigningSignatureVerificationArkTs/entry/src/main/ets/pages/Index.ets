@@ -105,6 +105,11 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/sm2_data_format_convertion/sm2_sign_data_rs_to_der')
         })
+      Button($r('app.string.onlysign_onlyverify_signature_validator'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/onlysign_onlyverify_signature_validator/onlysign_onlyverify_signature_validator')
+        })
     }
     .height('100%')
     .width('100%')

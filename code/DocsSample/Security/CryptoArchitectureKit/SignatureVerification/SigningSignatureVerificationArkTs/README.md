@@ -4,7 +4,7 @@
 
 当需要判断接收的数据是否被篡改、数据是否为指定对象发送的数据时，可以使用签名验签操作。接下来将说明系统目前支持的算法及其对应的规格。
 
-本示例主要展示了签名验签(ArkTS)的多种场景，包括RSA（PKCS1和PSS模式）、ECDSA、SM2等算法的签名验签功能，以及SM2签名数据格式转换功能。该示例提供了异步和同步两种调用方式。该工程中展示的代码详细描述可查如下链接。
+本示例主要展示了签名验签(ArkTS)的多种场景，包括RSA（PKCS1和PSS模式）、ECDSA、SM2等算法的签名验签功能，以及RSA/ECC onlySign-onlyVerify签名验签功能、SM2签名数据格式转换功能。该示例提供了异步和同步两种调用方式。该工程中展示的代码详细描述可查如下链接。
 
 - [使用RSA密钥对（PKCS1模式）签名验签(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)
 - [使用RSA密钥对（PKCS1模式）签名及签名恢复(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-recover-pkcs1.md)
@@ -13,6 +13,9 @@
 - [使用ECDSA密钥对签名验签(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify.md)
 - [使用SM2密钥对签名验签(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
 - [SM2签名数据格式转换(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md)
+- [使用RSA密钥对（PKCS1模式）签名验签（OnlySign和OnlyVerify模式）(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-pkcs1-sig-verify-onlySign-onlyVerify.md)
+- [使用RSA密钥对签名验签（PSS模式）（OnlySign和OnlyVerify模式）(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-rsa-pss-sig-verify-onlySign-onlyVerify.md)
+- [使用ECC密钥对签名验签（OnlySign和OnlyVerify模式）(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-ecc-sig-verify-onlySign-onlyVerify.md)
 
 ### 效果预览
 
@@ -30,6 +33,9 @@
    - **RSA PSS模式签名验签**：异步、同步
    - **ECDSA签名验签**：异步、同步
    - **SM2签名验签**：异步、同步
+   - **RSA PKCS1 onlySign-onlyVerify签名验签**：异步、同步
+   - **RSA PSS onlySign-onlyVerify签名验签**：异步、同步
+   - **ECC onlySign-onlyVerify签名验签**：异步、同步
    - **SM2签名数据格式转换**：DER转RS、RS转DER
 3. 点击不同按钮可以跳转到对应功能页面，点击跳转页面中按钮可以执行对应操作，并更新文本内容。
 4. 运行测试用例SigningSignatureVerificationArkTs.test.ets文件对页面代码进行测试可以全部通过。
@@ -62,6 +68,14 @@ entry/src/
  │   │       ├── sm2_data_format_convertion
  │   │       │   ├── sm2_sign_data_der_to_rs.ets
  │   │       │   └── sm2_sign_data_rs_to_der.ets
+ │   │       ├── onlysign_onlyverify_signature_validator
+ │   │       │   ├── onlysign_onlyverify_signature_validator_test.ets
+ │   │       │   ├── rsa_pkcs1_onlysign_onlyverify_signature_validator_asynchronous.ets
+ │   │       │   ├── rsa_pkcs1_onlysign_onlyverify_signature_validator_synchronous.ets
+ │   │       │   ├── rsa_pss_onlysign_onlyverify_signature_verification_asynchronous.ets
+ │   │       │   ├── rsa_pss_onlysign_onlyverify_signature_verification_synchronous.ets
+ │   │       │   ├── ecc_onlysign_onlyverify_signature_verification_asynchronous.ets
+ │   │       │   └── ecc_onlysign_onlyverify_signature_verification_synchronous.ets
  │   │       └── sm2_signature_verification
  │   │           ├── sm2_signature_verification_asynchronous.ets
  │   │           └── sm2_signature_verification_synchronous.ets
