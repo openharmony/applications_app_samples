@@ -14,7 +14,7 @@
  */
 
 // [Start camera_resolution_head]
-// 相机业务封装层（初始化相机、释放资源、切换摄像头等核心操作）
+// 相机业务封装层（初始化相机、释放资源、切换摄像头等核心操作）。
 import { GlobalContext } from '../common/utils/GlobalContext';
 import Logger from '../common/utils/Logger';
 import { Constants } from '../common/Constants';
@@ -349,7 +349,7 @@ class CameraService {
     //获取输出流能力。
     this.cameraOutputCapability =
       this.cameraManager.getSupportedOutputCapability(cameraDevice, this.curSceneMode);
-    // [StartExclude camera_resolution_cameraoutputcapability_case]
+    // [StartExclude camera_resolution_cameraoutputcapability]
     return this.getPreviewProfile(this.cameraOutputCapability, configRatio);
   }
 
@@ -406,7 +406,7 @@ class CameraService {
   }
 
   // 该方法从相机支持的预览分辨率中，筛选出与目标宽高比最匹配且尺寸尽可能大的预览配置 第一个参数是相机支持的输出能力 第二个参数是目标预览比例 // 返回筛选出的最佳预览配置，无匹配则返回undefined
-  // [EndExclude camera_resolution_cameraoutputcapability_case]
+  // [EndExclude camera_resolution_cameraoutputcapability]
   // width与height表示用户选择分辨率。
   getPreviewProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
