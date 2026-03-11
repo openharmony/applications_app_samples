@@ -1716,6 +1716,113 @@ void setText22(ArkUI_NodeHandle &text22, ArkUI_NodeHandle &button)
     setText22More(text22, button);
 }
 
+void setText23(ArkUI_NodeHandle &text)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    if (text != nullptr) {
+        // span仅作为text的子组件形式展示
+        ArkUI_NodeHandle span = Manager::nodeAPI_->createNode(ARKUI_NODE_SPAN);
+        const char *spanContent = "This is a span fontWeight configs test";
+        ArkUI_AttributeItem spanContentItem = {.string = spanContent};
+        Manager::nodeAPI_->setAttribute(span, NODE_SPAN_CONTENT, &spanContentItem);
+        if (span != nullptr) {
+            // 设置Span背景样式
+            ArkUI_NumberValue spanBackground[] = {
+                {.u32 = 0xFF00FF00}, // 背景颜色
+                {.f32 = 5.0f},       // 左上角半径
+                {.f32 = 5.0f},       // 右上角半径
+                {.f32 = 5.0f},       // 左下角半径
+                {.f32 = 5.0f}        // 右下角半径
+            };
+            ArkUI_AttributeItem spanBackgroundItem = {.value = spanBackground, .size = VALUE_5};
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_TEXT_BACKGROUND_STYLE, &spanBackgroundItem);
+
+            // 文本基线的偏移量属性
+            ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
+            ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
+            Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+
+            // 设置enableVariableFontWeight为true
+            OH_ArkUI_FontWeightConfigs* configs = OH_ArkUI_FontWeightConfigs_Create();
+            OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(configs, true);
+            OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(configs, true);
+
+            //设置字体粗细
+            ArkUI_NumberValue spanFontWeight = {.i32 = 350};
+            ArkUI_AttributeItem fontWeightItem = {&spanFontWeight, VALUE_1};
+            fontWeightItem.object = configs;
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT_WEIGHT, &fontWeightItem);
+            // 长按span组件，触发回调
+            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
+            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+
+            OH_ArkUI_FontWeightConfigs_Destroy(configs);
+        }
+        Manager::nodeAPI_->addChild(text, span);
+    }
+}
+
+void setText24(ArkUI_NodeHandle &text)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    if (text != nullptr) {
+        // span仅作为text的子组件形式展示
+        ArkUI_NodeHandle span = Manager::nodeAPI_->createNode(ARKUI_NODE_SPAN);
+        const char *spanContent = "This is a span configs test";
+        ArkUI_AttributeItem spanContentItem = {.string = spanContent};
+        Manager::nodeAPI_->setAttribute(span, NODE_SPAN_CONTENT, &spanContentItem);
+        if (span != nullptr) {
+            // 设置Span背景样式
+            ArkUI_NumberValue spanBackground[] = {
+                {.u32 = 0xFFFF0000}, // 背景颜色
+                {.f32 = 5.0f},       // 左上角半径
+                {.f32 = 5.0f},       // 右上角半径
+                {.f32 = 5.0f},       // 左下角半径
+                {.f32 = 5.0f}        // 右下角半径
+            };
+            ArkUI_AttributeItem spanBackgroundItem = {.value = spanBackground, .size = VALUE_5};
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_TEXT_BACKGROUND_STYLE, &spanBackgroundItem);
+
+            // 文本基线的偏移量属性
+            ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
+            ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
+            Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+
+            // 设置fontConfigs enableVariableFontWeight 为false，默认也为false
+            OH_ArkUI_FontWeightConfigs* fontWeightConfigs = OH_ArkUI_FontWeightConfigs_Create();
+            OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(fontWeightConfigs, false);
+            // 设置enableDeviceFontWeightCategory 为false，默认为true
+            OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(fontWeightConfigs, false);
+            OH_ArkUI_FontConfigs* fontConfigs = OH_ArkUI_FontConfigs_Create();
+            OH_ArkUI_FontConfigs_SetFontWeightConfigs(fontConfigs, fontWeightConfigs);
+
+            // 设置span font 样式
+            ArkUI_NumberValue textFont[] = {
+                {.f32 = VALUE_20}, {.i32 = 700}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
+            ArkUI_AttributeItem spanFontItem = {textFont, VALUE_3};
+            spanFontItem.object = fontConfigs;
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT, &spanFontItem);
+
+            // 长按span组件，触发回调
+            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
+            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+
+            OH_ArkUI_FontConfigs_Destroy(fontConfigs);
+        }
+        Manager::nodeAPI_->addChild(text, span);
+    }
+}
+
 void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14)
 {
     ArkUI_AttributeItem content_item1 = {};
@@ -2304,6 +2411,29 @@ void measuredInfo(ArkUI_NodeHandle &component)
     ArkUI_IntSize getMeasured = Manager::nodeAPI_->getMeasuredSize(component);
 }
 
+// 创建 setTextSelection 按钮
+static ArkUI_NodeHandle createTextSelectionButton()
+{
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    std::string labelStr = "setTextSelection";
+    ArkUI_AttributeItem LABEL_Item = {.string = labelStr.c_str()};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
+        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
+        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
+
+        ArkUI_NumberValue valueArray[] = { {.i32 = 1 }, {.i32 = 3 } };
+        ArkUI_AttributeItem selectionItem = {.value = valueArray, .size = 2, .object = options};
+        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
+
+        OH_ArkUI_SelectionOptions_Dispose(options);
+    });
+    return button;
+}
+
 void setTextMore(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -2317,6 +2447,8 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text18 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text23 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text24 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12, text12_2);
@@ -2326,28 +2458,10 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     setText16(text16);
     setText17(TextMaker::text17);
     setText18(text18);
+    setText23(text23);
+    setText24(text24);
 
-    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-    std::string labelStr = "setTextSelection";
-    ArkUI_AttributeItem LABEL_Item1 = {.string = labelStr.c_str()};
-    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item1);
-    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
-    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
-        // 创建选择选项
-        static ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
-        // 设置选择选项的菜单弹出策略为不弹出菜单
-        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
-        // 获取选择选项的菜单弹出策略
-        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
-        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
-        // 设置文本选择区域为[1, 3]，该区域将被高亮显示
-        ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
-        ArkUI_NumberValue* values = valueArray;
-        ArkUI_AttributeItem selectionItem = {.value = values, .size = 2, .object = options};
-        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
-        // 释放选择选项对象
-        OH_ArkUI_SelectionOptions_Dispose(options);
-    });
+    ArkUI_NodeHandle button = createTextSelectionButton();
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
@@ -2359,6 +2473,8 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text16);
     Manager::nodeAPI_->addChild(textContainer, TextMaker::text17);
     Manager::nodeAPI_->addChild(textContainer, text18);
+    Manager::nodeAPI_->addChild(textContainer, text23);
+    Manager::nodeAPI_->addChild(textContainer, text24);
     Manager::nodeAPI_->addChild(textContainer, button);
 }
 
