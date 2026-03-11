@@ -22,7 +22,7 @@ import { UserCardInfoComponent } from './UserCardInfoComponent';
 const TAG = 'MineContentComponent';
 
 /**
- * 我的Tab页签下的PageContent
+ * 我的Tab页签下的PageContent。
  */
 @Component
 export struct MineContentComponent {
@@ -138,12 +138,12 @@ export struct MineContentComponent {
           left: '32vp',
           right: '32vp',
           top: '8vp',
-          // 全屏底部间距24; 分屏24 + 48(minibar高度)
+          // 全屏底部间距24; 分屏24 + 48(minibar高度)。
           bottom: '72vp'
         })
         .width('100%')
       }
-      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向。
       .scrollBarWidth(0)
       .edgeEffect(EdgeEffect.None)
     }

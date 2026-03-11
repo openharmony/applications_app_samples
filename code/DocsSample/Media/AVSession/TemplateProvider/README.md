@@ -97,7 +97,7 @@ entry/src/main/ets/
 
       onLogin：注册登录事件监听。
 
-      onRequestDialogInfo：注册请求弹框信息监听。
+      onRequestDialogInfo：注册请求对话框信息监听。
 
       onHandleMemberPurchase：注册处理购买会员事件监听。
 
@@ -121,7 +121,7 @@ entry/src/main/ets/
 
     setUserInfo：向媒体中心同步用户信息。
 
-    setDialogCommand：向媒体中心同步弹框命令。
+    setDialogCommand：向媒体中心同步对话框命令。
 
     setCurrentSingle：向媒体中心同步当前单曲。
 
