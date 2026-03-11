@@ -116,7 +116,7 @@ struct Index {
   /*
    * start-authentication.md
    * 示例1：
-   * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证，获取认证结果
+   * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码认证，获取认证结果
    * */
   // [Start authentication_example1]
   initiatingUserAuthentication1() {
@@ -128,7 +128,7 @@ struct Index {
       // 设置认证参数
       const authParam: userAuth.AuthParam = {
         challenge: randData,
-        authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
+        authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
         authTrustLevel: userAuth.AuthTrustLevel.ATL3,
       };
       // 配置认证界面
