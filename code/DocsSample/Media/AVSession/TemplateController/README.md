@@ -166,7 +166,7 @@ entry/src/main/ets/
 
         onUserInfoChange：用户信息变化事件。
 
-        onDialogCommandChange：弹框命令变化事件。
+        onDialogCommandChange：对话框命令变化事件。
 
         onCurrentSingleChange：当前单曲变化事件。
 
@@ -196,7 +196,7 @@ entry/src/main/ets/
 
         login：登录。
 
-        requestDialogInfo：请求弹框信息。
+        requestDialogInfo：请求对话框信息。
 
         handleMemberPurchase：处理购买会员情况。
 

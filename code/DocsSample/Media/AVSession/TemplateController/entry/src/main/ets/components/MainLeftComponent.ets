@@ -27,7 +27,7 @@ export struct MainLeftComponent {
 
   build() {
     Column() {
-      // 搜索
+      // 搜索。
       Search({ placeholder: '搜索' })
         .enabled(true)
         .height('24vp')
