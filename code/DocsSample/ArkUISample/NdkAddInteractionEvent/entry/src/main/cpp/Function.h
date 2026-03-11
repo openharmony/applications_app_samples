@@ -207,15 +207,15 @@ void ThirdModule(ArkUI_NodeHandle &root)
     SetHeight(button, HEIGHT_70);
     SetButtonLabel(button, "test_unregister");
     
-    // [Start unregister_node_event_receicer]
+    // [Start unregister_node_event_receiver]
     nodeAPI->unregisterNodeEventReceiver();
-    // [End unregister_node_event_receicer]
+    // [End unregister_node_event_receiver]
     // [Start unregister_node_event]
     nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK_EVENT);
     // [End unregister_node_event]
-    // [Start remove_node_evect_receiver]
+    // [Start remove_node_event_receiver]
     nodeAPI->removeNodeEventReceiver(button, NodeEventReceiver);
-    // [End remove_node_evect_receiver]
+    // [End remove_node_event_receiver]
     nodeAPI->addChild(column, button);
     nodeAPI->addChild(root, column);
 }

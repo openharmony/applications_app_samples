@@ -17,8 +17,6 @@
 
 #include <cstdint>
 #include <hilog/log.h>
-#include <js_native_api.h>
-#include <js_native_api_types.h>
 #include <string>
 
 
