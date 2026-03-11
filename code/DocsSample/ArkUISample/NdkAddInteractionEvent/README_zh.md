@@ -52,10 +52,13 @@ entry/
 └── src
     ├── main
     │   ├── cpp
-    │   │   ├── ArkUIBaseNode.h              
+    │   │   ├── ArkUIBaseNode.h
+    │   │   ├── ArkUIButtonNode.h
+    │   │   ├── ArkUIColumnNode.h
     │   │   ├── ArkUIListItemNode.h
     │   │   ├── ArkUIListNode.h
     │   │   ├── ArkUINode.h
+    │   │   ├── ArkUITextInputNode.h
     │   │   ├── ArkUITextNode.h
     │   │   ├── CMakeLists.txt
     │   │   ├── Common.h
@@ -65,7 +68,8 @@ entry/
     │   │   ├── NativeEntry.cpp
     │   │   ├── NativeEntry.h
     │   │   ├── NativeModule.h
-    │   │   ├── NormalTextListExample.h             
+    │   │   ├── NormalTextListExample.h
+    │   │   ├── NormalNodeExample.h
     │   │   ├── SwipeAndPinchExclusiveGesture.h   
     │   │   ├── napi_init.cpp
     │   │   └── types
@@ -89,7 +93,7 @@ entry/
 
 ### 具体实现
 
-1. 事件注册和事件解注册，通过addNodeEventReceiver对节点绑定事件处理函数，接着通过调用registerNodeEvent注册对应的事件。源码参考：[NormalTextListExample.h](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/NormalTextListExample.h)
+1. 事件注册和事件解注册，通过addNodeEventReceiver对节点绑定事件处理函数，接着通过调用registerNodeEvent注册对应的事件。源码参考：[NormalNodeExample.h](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NdkAddInteractionEvent/entry/src/main/cpp/NormalNodeExample.h)
 
     * 事件监听函数的入参ArkUI_NodeEvent* event的生命周期只在函数回调周期内生效，不推荐对该指针进行缓存或者进行异步处理
 

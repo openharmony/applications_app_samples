@@ -61,6 +61,48 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_BACKGROUND_COLOR, &item);
     }
+    void SetMargin(float top, float right, float bottom, float left)
+    {
+        ArkUI_NumberValue value[] = {{top}, {right}, {bottom}, {left}};
+        ArkUI_AttributeItem item = {value, 4};
+        nativeModule_->setAttribute(handle_, NODE_MARGIN, &item);
+    }
+    void SetPadding(float top, float right, float bottom, float left)
+    {
+        ArkUI_NumberValue value[] = {{top}, {right}, {bottom}, {left}};
+        ArkUI_AttributeItem item = {value, 4};
+        nativeModule_->setAttribute(handle_, NODE_PADDING, &item);
+    }
+    void SetBorderWidth(float width)
+    {
+        ArkUI_NumberValue value[] = {{.f32 = width}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_BORDER_WIDTH, &item);
+    }
+    void SetBorderColor(uint32_t color)
+    {
+        ArkUI_NumberValue value[] = {{.u32 = color}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_BORDER_COLOR, &item);
+    }
+    void SetBorderRadius(float radius)
+    {
+        ArkUI_NumberValue value[] = {{.f32 = radius}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_BORDER_RADIUS, &item);
+    }
+    void SetOpacity(float opacity)
+    {
+        ArkUI_NumberValue value[] = {{.f32 = opacity}};
+        ArkUI_AttributeItem item = {value, 1};
+        nativeModule_->setAttribute(handle_, NODE_OPACITY, &item);
+    }
+    void SetScale(float x, float y)
+    {
+        ArkUI_NumberValue value[] = {{x}, {y}};
+        ArkUI_AttributeItem item = {value, 2};
+        nativeModule_->setAttribute(handle_, NODE_SCALE, &item);
+    }
 
 protected:
     // 组件树操作的实现类对接。

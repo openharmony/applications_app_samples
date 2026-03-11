@@ -31,7 +31,7 @@ entry/src/main/cpp/
 |---NativeEntry.cpp                           //桥接方法的Native侧实现。
 |---NativeEntry.h                         //桥接方法的Native侧定义。
 |---NativeModule.h                          
-|---NormalTextListExample.h                    //示例代码文件。
+|---NormalNodeExample.h                    //示例代码文件。
 
 entry/src/main/ets/
 |---entryability

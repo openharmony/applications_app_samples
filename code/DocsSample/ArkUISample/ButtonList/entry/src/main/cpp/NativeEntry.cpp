@@ -18,7 +18,7 @@
 #include <arkui/native_node_napi.h>
 #include <js_native_api.h>
 #include "NativeEntry.h"
-#include "NormalTextListExample.h"
+#include "NormalNodeExample.h"
 
 namespace NativeModule {
 
@@ -34,11 +34,11 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
-    // 创建文本列表
-    auto list = CreateTextListExample();
+    // 创建组件节点
+    auto node = CreateExample();
 
     // 保持Native侧对象到管理类中，维护生命周期。
-    NativeEntry::GetInstance()->SetRootNode(list);
+    NativeEntry::GetInstance()->SetRootNode(node);
     return nullptr;
 }
 
