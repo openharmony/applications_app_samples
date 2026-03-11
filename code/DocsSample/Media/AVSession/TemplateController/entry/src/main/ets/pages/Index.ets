@@ -34,13 +34,13 @@ struct Index {
 
   build() {
     Row() {
-      // 左侧
+      // 左侧。
       MainLeftComponent({
         currentIndex: $currentIndex,
         tabs: this.tabs
       });
 
-      // 右侧
+      // 右侧。
       Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         ForEach(this.tabs, (item: avMusicTemplate.MediaTab) => {
           TabContent() {
@@ -75,7 +75,7 @@ struct Index {
     try {
       let tabs: avMusicTemplate.MediaTab[] | undefined = await ControllerManager.getInstance().queryMainTabs();
 
-      // 模拟tab数据
+      // 模拟tab数据。
       tabs = this.createMainTabs();
       if (!tabs) {
         console.warn(TAG, 'loadData tabs is undefined')
