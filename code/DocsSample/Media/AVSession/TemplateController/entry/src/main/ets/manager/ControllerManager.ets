@@ -373,7 +373,7 @@ export class ControllerManager {
     }
     this.currentBundleName = bundleName;
     try {
-      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES
+      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES。
       let descriptors: avMusicTemplate.AVMusicTemplateDescriptor[] = avMusicTemplate.getAllAVMusicTemplateDescriptors();
       // [StartExclude get_all_descriptors]
       if (this.isEmptyArray(descriptors)) {
