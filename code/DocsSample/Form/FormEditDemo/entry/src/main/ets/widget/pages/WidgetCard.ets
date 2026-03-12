@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start FormEditDemo_WidgetCard]
 // entry/src/main/ets/widget/pages/WidgetCard.ets
 let storage: LocalStorage = new LocalStorage();
 
@@ -49,3 +49,5 @@ struct WidgetCard {
     })
   }
 }
+
+// [End FormEditDemo_WidgetCard]
