@@ -20,6 +20,8 @@
 
 7. 点击"展示自定义绘制容器页面"，查看容器效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
+8. 点击ShowNativeUIMessagePage，查看前景绘制实现消息蒙层效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
+
 ## 效果预览
 
 | 首页 | 应用页面                                           |
@@ -27,6 +29,7 @@
 |      | <img src="./screenshots/NativeNodePage.png" width="300;" />       |
 |      | <img src="./screenshots/DrawPage.png" width="300;" /> |
 |      | <img src="./screenshots/NativeUI.png" width="300;" /> |
+|      | <img src="./screenshots/messageMask.jpg" width="300;" /> |
 
 ### 具体实现
 
@@ -55,6 +58,7 @@ entry/src/main/ets/
         ---DrawPage.ets                // 自定义绘制页面
 |   |   |nativeUI
         ---NativeUI.ets                // 自定义绘制容器页面
+        ---NativeUIMessagePage.ets     // 通过前景绘制实现消息蒙层
 |   |---customproperty.ets             // 自定义属性用例demo
 |   |---customproperty.ets             // 自定义属性用例demo
 |   |---entry.ets                      // 多线程创建组件demo
