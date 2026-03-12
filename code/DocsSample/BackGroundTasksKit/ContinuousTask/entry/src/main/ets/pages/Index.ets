@@ -191,6 +191,7 @@ struct Index {
             then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info('Operation startBackgroundRunning succeeded');
             // 此处执行具体的长时任务逻辑，如播音等。
+            // 系统会对业务场景的真实性进行检测，如果没有实际执行对应的业务，系统可能会取消对应的长时任务并挂起应用。
             // [StartExclude continuous_task]
             if (!PlayerModel.isPlaying) {
               this.onPlayClick();
@@ -328,5 +329,5 @@ struct Index {
     }
     .height('100%')
   }
-  // [End continuous_task]
 }
+// [End continuous_task]
