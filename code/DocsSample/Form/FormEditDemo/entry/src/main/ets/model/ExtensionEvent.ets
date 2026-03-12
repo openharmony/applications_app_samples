@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,8 @@
  */
 // [Start FormEditDemo_ExtensionEvent]
 // entry/src/main/ets/model/ExtensionEvent.ets
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 const LOCAL: Record<string, string> = { 'formId': '', 'previewFormId': '', 'message': '' };
-const DOMAIN = 0xFF00;
 
 export class ExtensionEvent {
   private static storage = new LocalStorage(LOCAL);
@@ -28,17 +25,17 @@ export class ExtensionEvent {
   }
 
   public setStartSecondPage(startSecondPage: () => void) {
-    hilog.info(DOMAIN, TAG, `${TAG} setStartSecondPage`);
+    console.info(`${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
 
   public async startFormEditSecondPage() {
-    hilog.info(DOMAIN, TAG, `${TAG} startFormEditSecondPage call`);
+    console.info(`${TAG} startFormEditSecondPage call`);
     this.startSecondPage();
   }
 
   private startSecondPage: () => void = (): void => {
-    hilog.info(DOMAIN, TAG, `${TAG} startSecondPage is empty!`);
+    console.info(`${TAG} startSecondPage is empty!`);
   };
 }
 

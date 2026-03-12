@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,28 +18,25 @@ import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PreferencesUtil } from '../common/PreferencesUtil';
 import { preferences } from '@kit.ArkData';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0xF811;
 const TAG: string = 'FormEdit -->';
 
 @Entry
 @Component
 struct FormEditIndex {
   @State message: string = 'Hello World';
-  context1 = this.getUIContext().getHostContext();
-  @State message1: string = this.context1!.resourceManager.getStringSync($r('app.string.button_one').id);
-  @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
+  @State message1: string = '北京';
+  @State message2: string = '上海';
 
   updateForm(message: string) {
+    // 通过数据库获取当前需要编辑的卡片ID
     let util = PreferencesUtil.getInstance();
     let preferences = util.getPreferences(this.getUIContext().getHostContext() as Context) as preferences.Preferences;
     let formId: string = util.getValue(preferences) as string;
     if (!formId) {
-      hilog.info(DOMAIN, TAG, `1111111111`);
       return;
     }
-    hilog.info(DOMAIN, TAG, `doy: formId: ${formId}, message: ${message}`)
+    console.info(TAG, `doy: formId: ${formId}, message: ${message}`)
     let param: Record<string, string> = {
       'message': message
     }
@@ -47,13 +44,13 @@ struct FormEditIndex {
     try {
       formProvider.updateForm(formId, obj, (error: BusinessError) => {
         if (error) {
-          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
+        console.info(TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
+      console.error(TAG, `catch error, Code:${error.code}, message:${error.message}`);
     }
   }
 

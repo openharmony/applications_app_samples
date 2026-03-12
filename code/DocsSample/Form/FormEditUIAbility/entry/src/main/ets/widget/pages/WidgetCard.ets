@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-let storage: LocalStorage = new LocalStorage();
-
-@Entry(storage)
+// [Start FormEditUIAbility_WidgetCard]
+// entry/src/main/ets/widget/pages/WidgetCard.ets
+@Entry
 @Component
 struct WidgetCard {
   @LocalStorageProp('message') title: string = 'Hello World';
@@ -48,3 +47,5 @@ struct WidgetCard {
     })
   }
 }
+
+// [End FormEditUIAbility_WidgetCard]
