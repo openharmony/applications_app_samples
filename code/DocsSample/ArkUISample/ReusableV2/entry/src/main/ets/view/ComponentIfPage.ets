@@ -24,8 +24,9 @@ struct Index {
   @Local condition: boolean = true;
 
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('Recycle/Reuse')
+        .width('60%')
         .onClick(() => {
           this.condition = !this.condition;
         }) // 点击切换回收/复用状态
@@ -33,6 +34,7 @@ struct Index {
         ReusableV2Component()
       }
     }
+    .width('100%')
   }
 }
 

@@ -25,20 +25,24 @@ struct Index {
   @Local condition2: boolean = true;
 
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('step1. appear')
+        .width('60%')
         .onClick(() => {
           this.condition1 = true;
         })
       Button('step2. recycle')
+        .width('60%')
         .onClick(() => {
           this.condition2 = false;
         })
       Button('step3. reuse')
+        .width('60%')
         .onClick(() => {
           this.condition2 = true;
         })
       Button('step4. disappear')
+        .width('60%')
         .onClick(() => {
           this.condition1 = false;
         })
@@ -46,6 +50,7 @@ struct Index {
         NormalV2Component({ condition: this.condition2 })
       }
     }
+    .width('100%')
   }
 }
 
