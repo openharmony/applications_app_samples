@@ -14,7 +14,6 @@
  */
 // [Start FormEditDemo_PreferencesUtil]
 // entry/src/main/ets/common/PreferencesUtil.ets
-// entry/src/main/ets/common/PreferencesUtil.ets
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { FormData } from './CommonData';
