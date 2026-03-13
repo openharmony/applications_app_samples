@@ -158,7 +158,7 @@ static void OnCallback(OH_ImageReceiverNative* receiver)
     } else {
         std::lock_guard<std::mutex> lock(g_mutex);
         g_imageInfoResult = image;
-        g_imageReady = true; 
+        g_imageReady = true;
     }
     g_condVar.notify_one();
 }
