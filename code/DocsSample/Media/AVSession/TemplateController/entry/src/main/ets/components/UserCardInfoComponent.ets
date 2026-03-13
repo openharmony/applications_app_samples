@@ -19,7 +19,7 @@
 import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
 
 /**
- * 我的页签下的用户信息卡片
+ * 我的页签下的用户信息卡片。
  */
 const GRADIENT_ANGLE = 180;
 const FACTOR_0 = 0.0;
@@ -35,7 +35,7 @@ export struct UserCardInfoComponent {
   }
 
   build() {
-    // 用户信息
+    // 用户信息。
     Column() {
       Row() {
         Image(this.isLogin ? this.userInfo.profilePicUrl :

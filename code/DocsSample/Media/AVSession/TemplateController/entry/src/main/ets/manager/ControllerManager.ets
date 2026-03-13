@@ -350,9 +350,9 @@ export class ControllerManager {
   }
 
   /**
-   * 获取模板控制器实例
+   * 获取模板控制器实例。
    *
-   * @returns 模板控制器实例
+   * @returns 模板控制器实例。
    */
   public static getInstance(): ControllerManager {
     if (!ControllerManager.sInstance) {
@@ -364,7 +364,7 @@ export class ControllerManager {
   // [EndExclude get_all_descriptors]
 
   /**
-   * 通过getAllAVMusicTemplateDescriptors创建模板
+   * 通过getAllAVMusicTemplateDescriptors创建模板。
    */
   public createAvMusicTemplateController(bundleName: string) {
     if (this.isStringEmpty(bundleName)) {
@@ -373,7 +373,7 @@ export class ControllerManager {
     }
     this.currentBundleName = bundleName;
     try {
-      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES
+      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES。
       let descriptors: avMusicTemplate.AVMusicTemplateDescriptor[] = avMusicTemplate.getAllAVMusicTemplateDescriptors();
       // [StartExclude get_all_descriptors]
       if (this.isEmptyArray(descriptors)) {
@@ -416,16 +416,16 @@ export class ControllerManager {
   // [EndExclude register_template_create]
   // [EndExclude register_template_destroy]
   /**
-   * 注册模板监听
+   * 注册模板监听。
    */
   public registerAVMusicTemplateListener() {
     try {
       // [StartExclude register_template_destroy]
-      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES
+      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES。
       avMusicTemplate.onAVMusicTemplateCreate(this.templateCreateCallback);
       // [EndExclude register_template_destroy]
       // [StartExclude register_template_create]
-      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES
+      // 该方法需要权限ohos.permission.MANAGE_MEDIA_RESOURCES。
       avMusicTemplate.onAVMusicTemplateDestroy(this.templateDestroyCallback);
       // [EndExclude register_template_create]
     } catch (e) {
@@ -495,7 +495,7 @@ export class ControllerManager {
     // [StartExclude register_user_info_change]
 
     // [EndExclude register_dialog_command_change]
-    // 注册弹框命令改变的监听。
+    // 注册对话框命令改变的监听。
     this.controller?.onDialogCommandChange(this.reportDialogCommandEvent);
     // [StartExclude register_dialog_command_change]
 
@@ -579,7 +579,7 @@ export class ControllerManager {
   // [EndExclude create_controller]
   // [EndExclude release]
   /**
-   * 注销监听
+   * 注销监听。
    */
   public unregisterListener() {
     // [StartExclude unregister_dialog_command_change]
@@ -597,7 +597,7 @@ export class ControllerManager {
     // [StartExclude unregister_user_info_change]
 
     // [EndExclude unregister_dialog_command_change]
-    // 注销弹框命令改变的监听。
+    // 注销对话框命令改变的监听。
     this.controller?.offDialogCommandChange();
     // [StartExclude unregister_dialog_command_change]
 
@@ -669,7 +669,7 @@ export class ControllerManager {
   // [EndExclude destroy]
 
   /**
-   * 销毁控制器
+   * 销毁控制器。
    */
   public destroyController() {
     console.info(TAG, 'destroyController')
@@ -682,7 +682,7 @@ export class ControllerManager {
   // [EndExclude unregister_template_create]
   // [EndExclude unregister_template_destroy]
   /**
-   * 反注册模板监听
+   * 反注册模板监听。
    */
   public unregisterAVMusicTemplateListener() {
     try {
@@ -724,9 +724,9 @@ export class ControllerManager {
   // [EndExclude query_media_tab_content]
 
   /**
-   * 模拟查询媒体标签页内容
+   * 模拟查询媒体标签页内容。
    *
-   * @param tabId 标签页ID
+   * @param tabId 标签页ID。
    */
   public async queryMediaTabContent(tabId: string): Promise<avMusicTemplate.MediaTabContent | undefined> {
     try {
@@ -747,9 +747,9 @@ export class ControllerManager {
   // [EndExclude query_media_entity]
 
   /**
-   * 模拟查询媒体实体
+   * 模拟查询媒体实体。
    *
-   * @returns 页面媒体实体
+   * @returns 页面媒体实体。
    */
   public async queryMediaEntity(): Promise<avMusicTemplate.PageMediaEntity | undefined> {
     // 查询媒体实体。
@@ -776,9 +776,9 @@ export class ControllerManager {
   // [EndExclude query_compilation]
 
   /**
-   * 模拟查询合集
+   * 模拟查询合集。
    *
-   * @returns 页面媒体实体
+   * @returns 页面媒体实体。
    */
   public async queryCompilation(): Promise<avMusicTemplate.PageMediaEntity | undefined> {
     let compilationId: string = 'compilationId';
@@ -801,9 +801,9 @@ export class ControllerManager {
   // [EndExclude query_play_list]
 
   /**
-   * 模拟查询播放列表
+   * 模拟查询播放列表。
    *
-   * @returns 页面媒体实体
+   * @returns 页面媒体实体。
    */
   public async queryPlaylist(): Promise<avMusicTemplate.PageMediaEntity | undefined> {
     let pageIndex: number = 0;
@@ -826,9 +826,9 @@ export class ControllerManager {
   // [EndExclude query_current_single]
 
   /**
-   * 模拟查询当前单曲
+   * 模拟查询当前单曲。
    *
-   * @returns 单曲
+   * @returns 单曲。
    */
   public async queryCurrentSingle(): Promise<avMusicTemplate.Single | undefined> {
     try {
@@ -848,9 +848,9 @@ export class ControllerManager {
   // [EndExclude query_compilation_by_keyword]
 
   /**
-   * 模拟按关键字查询合集
+   * 模拟按关键字查询合集。
    *
-   * @returns 合集数组
+   * @returns 合集数组。
    */
   public async queryCompilationByKeyword(): Promise<avMusicTemplate.Compilation[]> {
     let compilations: avMusicTemplate.Compilation[] = [];
@@ -871,9 +871,9 @@ export class ControllerManager {
   // [EndExclude query_media_entity_by_keyword]
 
   /**
-   * 模拟按关键字查询媒体实体
+   * 模拟按关键字查询媒体实体。
    *
-   * @returns 合集数组
+   * @returns 合集数组。
    */
   public async queryMediaEntityByKeyword(): Promise<avMusicTemplate.PageMediaEntity | undefined> {
     let keyword: string = 'keyword';
@@ -897,9 +897,9 @@ export class ControllerManager {
   // [EndExclude query_recommend_media_entity_list]
 
   /**
-   * 模拟查询推荐的媒体实体列表
+   * 模拟查询推荐的媒体实体列表。
    *
-   * @returns 媒体实体数组
+   * @returns 媒体实体数组。
    */
   public async queryRecommendMediaEntityList(): Promise<avMusicTemplate.MediaEntity[]> {
     let mediaEntities: avMusicTemplate.MediaEntity[] = [];
@@ -919,9 +919,9 @@ export class ControllerManager {
   // [EndExclude query_hot_words]
 
   /**
-   * 模拟查询热词
+   * 模拟查询热词。
    *
-   * @returns 热词数组
+   * @returns 热词数组。
    */
   public async queryHotWords(): Promise<string[]> {
     let hotWords: string[] = [];
@@ -941,9 +941,9 @@ export class ControllerManager {
   // [EndExclude query_search_history]
 
   /**
-   * 模拟查询搜索历史
+   * 模拟查询搜索历史。
    *
-   * @returns 搜索历史数组
+   * @returns 搜索历史数组。
    */
   public async querySearchHistory(): Promise<string[]> {
     let searchHistory: string[] = [];
@@ -963,9 +963,9 @@ export class ControllerManager {
   // [EndExclude query_member_purchase]
 
   /**
-   * 模拟查询购买会员的情况
+   * 模拟查询购买会员的情况。
    *
-   * @returns 会员购买信息列表
+   * @returns 会员购买信息列表。
    */
   public async queryMemberPurchase(): Promise<avMusicTemplate.MemberPurchaseInfo[]> {
     let memberPurchaseInfo: avMusicTemplate.MemberPurchaseInfo[] = [];
@@ -986,9 +986,9 @@ export class ControllerManager {
   // [EndExclude query_custom_content]
 
   /**
-   * 模拟查询自定义内容
+   * 模拟查询自定义内容。
    *
-   * @returns 自定义元素
+   * @returns 自定义元素。
    */
   public async queryCustomContent(): Promise<avMusicTemplate.CustomElement | undefined> {
     let queryType: avMusicTemplate.CustomType[] = ['USER_INFO', 'TAB', 'COMPILATION', 'SETTINGS'];
@@ -1010,9 +1010,9 @@ export class ControllerManager {
   // [StartExclude query_custom_content]
 
   /**
-   * 模拟清除搜索历史
+   * 模拟清除搜索历史。
    *
-   * @returns Promise类型的boolean，清除成功或者失败
+   * @returns Promise类型的boolean，清除成功或者失败。
    */
   public async clearSearchHistory(): Promise<boolean> {
     try {
@@ -1034,7 +1034,7 @@ export class ControllerManager {
   /**
    * 模拟更新设置信息。
    *
-   * @returns Promise类型更新后的设置项
+   * @returns Promise类型更新后的设置项。
    */
   public async updateSettings(): Promise<avMusicTemplate.SettingItem | undefined> {
     let settingItem: avMusicTemplate.SettingItem = {
@@ -1108,9 +1108,9 @@ export class ControllerManager {
   // [EndExclude request_dialog_info]
 
   /**
-   * 模拟请求弹框信息。
+   * 模拟请求对话框信息。
    *
-   * @returns Promise类型的弹框信息。
+   * @returns Promise类型的对话框信息。
    */
   public async requestDialogInfo(): Promise<avMusicTemplate.DialogInfo | undefined> {
     let actionType: avMusicTemplate.DialogActionType = 'open';
@@ -1138,9 +1138,9 @@ export class ControllerManager {
   // [EndExclude handle_member_purchase]
 
   /**
-   * 模拟请求弹框信息。
+   * 模拟请求对话框信息。
    *
-   * @returns Promise类型的弹框信息。
+   * @returns Promise类型的对话框信息。
    */
   public async handleMemberPurchase(): Promise<avMusicTemplate.DialogInfo | undefined> {
     let memberPurchaseInfo: avMusicTemplate.MemberPurchaseInfo = {

@@ -510,9 +510,9 @@ export class TemplateManager {
   }
 
   /**
-   * 获取模板控制器实例
+   * 获取模板控制器实例。
    *
-   * @returns 模板控制器实例
+   * @returns 模板控制器实例。
    */
   public static getInstance(): TemplateManager {
     if (!TemplateManager.sInstance) {
@@ -522,7 +522,7 @@ export class TemplateManager {
   };
 
   /**
-   * 创建音频模板
+   * 创建音频模板。
    */
   public createTemplate() {
     if (this.template) {
@@ -849,7 +849,7 @@ export class TemplateManager {
   // [StartExclude register_play_for_search]
   // [StartExclude register_favorite_media_entity]
   /**
-   * 模拟开启模板
+   * 模拟开启模板。
    */
   public startTemplate() {
     this.template?.startTemplate();
@@ -858,9 +858,9 @@ export class TemplateManager {
   // [EndExclude set_user_info]
 
   /**
-   * 模拟登录状态改变
+   * 模拟登录状态改变。
    *
-   * @param isLogin 是否登录
+   * @param isLogin 是否登录。
    */
   public setLoginState(isLogin: boolean) {
     this.isLogin = isLogin;
@@ -868,7 +868,7 @@ export class TemplateManager {
   }
 
   /**
-   * 用户信息发生变化后通知界面刷新用户信息，如登陆账号后
+   * 用户信息发生变化后通知界面刷新用户信息，如登陆账号后。
    */
   public setUserInfo() {
     let userInfo: avMusicTemplate.UserInfo = {
@@ -885,7 +885,7 @@ export class TemplateManager {
   // [EndExclude set_dialog_command]
 
   /**
-   * 弹框相关的操作，如：打开，关闭
+   * 对话框相关的操作，如：打开，关闭。
    */
   public setDialogCommand() {
     let type: avMusicTemplate.DialogControlType = 'open';
@@ -916,7 +916,7 @@ export class TemplateManager {
 
   // [StartExclude set_current_single]
   /**
-   * 媒体播放后信息后，如：歌单的播放状态
+   * 媒体播放后信息后，如：歌单的播放状态。
    */
   public setMediaEntities() {
     let mediaEntities: avMusicTemplate.MediaEntity[] = [{
@@ -934,7 +934,7 @@ export class TemplateManager {
   // [EndExclude set_tab_content]
 
   /**
-   * 某个tab页签下的内容发生变化后通知界面刷新
+   * 某个tab页签下的内容发生变化后通知界面刷新。
    */
   public setTabContent() {
     let mediaEntity: avMusicTemplate.MediaEntity[] = [{
@@ -968,7 +968,7 @@ export class TemplateManager {
   // [EndExclude set_play_list]
 
   /**
-   * 播放列表发送变化后通知界面刷新
+   * 播放列表发送变化后通知界面刷新。
    */
   public setPlaylist() {
     let mediaEntity: avMusicTemplate.MediaEntity = {
@@ -996,7 +996,7 @@ export class TemplateManager {
 
   // [EndExclude register_download_media_entity]
   /**
-   * 下载状态，进度刷新
+   * 下载状态，进度刷新。
    */
   public setDownloadMediaEntityStatus(mediaEntity: avMusicTemplate.MediaEntity) {
     this.template?.setDownloadMediaEntityStatus(mediaEntity);
@@ -1005,7 +1005,7 @@ export class TemplateManager {
 
   // [StartExclude register_download_media_entity]
   /**
-   * 自定义数据发生变化后通知
+   * 自定义数据发生变化后通知。
    */
   public setCustomElements() {
     let mediaEntity: avMusicTemplate.MediaEntity = {
@@ -1038,7 +1038,7 @@ export class TemplateManager {
   // [EndExclude set_settings]
 
   /**
-   * 设置项变化后通知
+   * 设置项变化后通知。
    */
   public setSettings() {
     let settingItems: avMusicTemplate.SettingItem[] = [{
@@ -1055,7 +1055,7 @@ export class TemplateManager {
   // [EndExclude report_execute_action]
 
   /**
-   * 模拟向媒体中心同步执行操作信息
+   * 模拟向媒体中心同步执行操作信息。
    */
   public reportExecuteAction() {
     let actionType: string = 'actionType';
@@ -1066,7 +1066,7 @@ export class TemplateManager {
   // [EndExclude set_extension_ability]
 
   /**
-   * 媒体应用需要拉起应用的自定义界面时调用
+   * 媒体应用需要拉起应用的自定义界面时调用。
    */
   public setExtensionAbility() {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -1096,7 +1096,7 @@ export class TemplateManager {
   /**
    * 模拟获取主界面的所有TAB。
    *
-   * @returns Promise类型MediaTab数组
+   * @returns Promise类型MediaTab数组。
    */
   private async getMainTabs(): Promise<avMusicTemplate.MediaTab[]> {
     let homeTab: avMusicTemplate.MediaTab = {
@@ -1132,7 +1132,7 @@ export class TemplateManager {
   /**
    * 模拟获取合集数据。
    *
-   * @returns 合集
+   * @returns 合集。
    */
   private async createCompilation(): Promise<avMusicTemplate.Compilation> {
     let mediaEntity: avMusicTemplate.MediaEntity = await this.createMediaEntity();
@@ -1154,9 +1154,9 @@ export class TemplateManager {
   // [EndExclude register_query_media_entity_by_keyword]
   // [EndExclude register_query_recommend_media_entity_list]
   /**
-   * 模拟获取媒体数据
+   * 模拟获取媒体数据。
    *
-   * @returns 媒体数据
+   * @returns 媒体数据。
    */
   private async createMediaEntity(): Promise<avMusicTemplate.MediaEntity> {
     let mediaEntity: avMusicTemplate.MediaEntity = {
@@ -1178,7 +1178,7 @@ export class TemplateManager {
   /**
    * 模拟获取PageMediaEntity。
    *
-   * @returns PageMediaEntity
+   * @returns PageMediaEntity实例。
    */
   private async createPageMediaEntity(): Promise<avMusicTemplate.PageMediaEntity> {
     let mediaEntity: avMusicTemplate.MediaEntity = await this.createMediaEntity();
@@ -1201,9 +1201,9 @@ export class TemplateManager {
   // [EndExclude register_query_current_single]
   // [EndExclude set_current_single]
   /**
-   * 模拟获取当前单曲
+   * 模拟获取当前单曲。
    *
-   * @returns 当前单曲
+   * @returns 当前单曲。
    */
   private async createCurrentSingle(): Promise<avMusicTemplate.Single> {
     let playInfo: avMusicTemplate.PlayInfo = {
@@ -1257,9 +1257,9 @@ export class TemplateManager {
   // [EndExclude register_play_for_search]
   // [EndExclude register_favorite_media_entity]
   /**
-   * 模拟操作结果
+   * 模拟操作结果。
    *
-   * @returns 操作结果
+   * @returns 操作结果。
    */
   private async createOperResult(): Promise<avMusicTemplate.OperResult> {
     let operResult: avMusicTemplate.OperResult = {
@@ -1275,9 +1275,9 @@ export class TemplateManager {
   // [StartExclude register_download_media_entity]
   // [EndExclude register_on_login]
   /**
-   * 模拟创建二维码信息数组
+   * 模拟创建二维码信息数组。
    *
-   * @returns Promise类型的二维码信息数组
+   * @returns Promise类型的二维码信息数组。
    */
   private async createQrCodeInfo(): Promise<avMusicTemplate.QrCodeInfo> {
     let qrCodeInfo: avMusicTemplate.QrCodeInfo = {
@@ -1296,9 +1296,9 @@ export class TemplateManager {
   // [EndExclude register_request_dialog_info]
   // [EndExclude register_handle_member_purchase]
   /**
-   * 模拟弹框信息
+   * 模拟对话框信息。
    *
-   * @returns 弹框信息
+   * @returns 对话框信息。
    */
   private async createDialogInfo(): Promise<avMusicTemplate.DialogInfo> {
     let qrCodeInfo: avMusicTemplate.QrCodeInfo[] = [{
@@ -1323,9 +1323,9 @@ export class TemplateManager {
 
   // [EndExclude register_query_member_purchase]
   /**
-   * 模拟查询会员购买信息
+   * 模拟查询会员购买信息。
    *
-   * @returns Promise类型的购买会员信息数组
+   * @returns Promise类型的购买会员信息数组。
    */
   private async createQueryMemberPurchase(): Promise<avMusicTemplate.MemberPurchaseInfo> {
     let memberPurchaseInfo: avMusicTemplate.MemberPurchaseInfo = {
@@ -1340,9 +1340,9 @@ export class TemplateManager {
 
   // [EndExclude register_query_custom_content]
   /**
-   * 模拟获取自定义内容
+   * 模拟获取自定义内容。
    *
-   * @returns 自定义元素
+   * @returns 自定义元素。
    */
   private async createCustomContent(): Promise<avMusicTemplate.CustomElement> {
     let mediaEntity: avMusicTemplate.MediaEntity = {
@@ -1374,9 +1374,9 @@ export class TemplateManager {
 
   // [EndExclude register_download_media_entity]
   /**
-   * 模拟下载过程
+   * 模拟下载过程。
    *
-   * @param mediaEntity 媒体实体
+   * @param mediaEntity 媒体实体。
    */
   private async downloadMediaEntity(mediaEntity: avMusicTemplate.MediaEntity) {
     // 下载完成之后。
@@ -1386,9 +1386,9 @@ export class TemplateManager {
 
   // [EndExclude register_settings_change]
   /**
-   * 模拟设置改变
+   * 模拟设置改变。
    *
-   * @returns Promise类型的设置条目
+   * @returns Promise类型的设置条目。
    */
   private async settingsChange(): Promise<avMusicTemplate.SettingItem> {
     let setting: avMusicTemplate.SettingItem = {

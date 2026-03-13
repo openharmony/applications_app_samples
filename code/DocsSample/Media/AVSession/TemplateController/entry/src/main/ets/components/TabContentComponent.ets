@@ -126,7 +126,7 @@ export struct TabContentComponent {
       console.error(TAG, `getMediaTabContent fail: errCode: ${tabId}`);
     }
 
-    // 模拟home页数据
+    // 模拟home页数据。
     if (tabId !== TAB_ID_MINE) {
       mediaTabContent = this.createHomeTabData(tabId);
     }
@@ -138,9 +138,9 @@ export struct TabContentComponent {
   }
 
   /**
-   * 模拟首页内容
+   * 模拟首页内容。
    *
-   * @param tabId 首页ID
+   * @param tabId 首页ID。
    */
   private createHomeTabData(tabId: string): avMusicTemplate.MediaTabContent {
     let compilations: avMusicTemplate.Compilation[] = [];
@@ -160,9 +160,9 @@ export struct TabContentComponent {
   }
 
   /**
-   * 模拟合集数据
+   * 模拟合集数据。
    *
-   * @param mediaType 媒体类型
+   * @param mediaType 媒体类型。
    */
   private createCompilation(mediaType: avMusicTemplate.EntityType): avMusicTemplate.Compilation {
     let mediaEntities: avMusicTemplate.MediaEntity[] = [];
@@ -182,9 +182,9 @@ export struct TabContentComponent {
   }
 
   /**
-   * 模拟媒体实体数据
+   * 模拟媒体实体数据。
    *
-   * @returns 媒体实体
+   * @returns 媒体实体。
    */
   private createMediaEntity(): avMusicTemplate.MediaEntity {
     let mediaEntity: avMusicTemplate.MediaEntity = {
@@ -200,10 +200,10 @@ export struct TabContentComponent {
   };
 
   /**
-   * 模拟类型名称
+   * 模拟类型名称。
    *
-   * @param mediaType 媒体类型
-   * @returns 类型名称
+   * @param mediaType 媒体类型。
+   * @returns 类型名称。
    */
   private getMediaTypeStr(mediaType: avMusicTemplate.EntityType): string {
     switch (mediaType) {
