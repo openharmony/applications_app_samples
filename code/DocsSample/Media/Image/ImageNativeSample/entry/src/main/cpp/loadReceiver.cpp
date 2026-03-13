@@ -28,6 +28,7 @@
 #include "ohcamera/camera_manager.h"
 
 #include <mutex>
+#include <shared_mutex>
 #include <condition_variable>
 // [End receiver_import]
 
@@ -47,6 +48,7 @@
 static OH_ImageReceiverNative* g_receiver = nullptr;
 
 static std::mutex g_mutex;
+static std::shared_mutex shared_receiver_mutex;
 static std::condition_variable g_condVar;
 static bool g_imageReady = false;
 static OH_ImageNative* g_imageInfoResult = nullptr;
@@ -144,6 +146,8 @@ static void OnCallback(OH_ImageReceiverNative* receiver)
 {
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
 
+    // 共享锁（读）
+    std:shared_lock<std::shared_mutex> lock(shared_receiver_mutex);
     OH_ImageNative* image = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
     if (errCode != IMAGE_SUCCESS) {
@@ -589,6 +593,8 @@ static napi_value ReleaseImageReceiver(napi_env env, napi_callback_info info)
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest image receiver off failed, errCode: %{public}d.", errCode);
     }
+    // 独占锁（写）
+    std:unique_lock<std::shared_mutex> lock(shared_receiver_mutex);
     errCode = OH_ImageReceiverNative_Release(g_receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "Release image receiver failed, errCode: %{public}d.", errCode);
