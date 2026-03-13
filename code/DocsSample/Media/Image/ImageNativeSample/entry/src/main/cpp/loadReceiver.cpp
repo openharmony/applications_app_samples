@@ -28,6 +28,7 @@
 #include "ohcamera/camera_manager.h"
 
 #include <mutex>
+#include <shared_mutex> // C++17以上使用
 #include <condition_variable>
 // [End receiver_import]
 
@@ -47,7 +48,7 @@
 static OH_ImageReceiverNative* g_receiver = nullptr;
 
 static std::mutex g_mutex;
-static bool g_isCallbackRunning = false;
+static std::shared_mutex shared_receiver_mutex;
 static std::condition_variable g_condVar;
 static bool g_imageReady = false;
 static OH_ImageNative* g_imageInfoResult = nullptr;
@@ -145,29 +146,20 @@ static void OnCallback(OH_ImageReceiverNative* receiver)
 {
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
 
-    std::lock_guard<std::mutex> lock(g_mutex);
-    if (g_isCallbackRunning || receiver == nullptr) {
-        OH_LOG_WARN(LOG_APP, "Callback is running or receiver is null, skip.");
-        return;
-    }
-    g_isCallbackRunning = true;
-
+    // 共享锁（读）
+    std::shared_lock<std::shared_mutex> lock(shared_receiver_mutex);
     OH_ImageNative* image = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed,"
                      "errCode: %{public}d.", errCode);
-        if (image != nullptr) {
-            OH_ImageNative_Release(image);
-            image = nullptr;
-        }
-        g_isCallbackRunning = false;
+        OH_ImageNative_Release(image);
         return;
+    } else {
+        std::lock_guard<std::mutex> lock(g_mutex);
+        g_imageInfoResult = image;
+        g_imageReady = true;
     }
-
-    g_imageInfoResult = image;
-    g_imageReady = true;
-    g_isCallbackRunning = false;
     g_condVar.notify_one();
 }
 // [End define_callback]
@@ -209,14 +201,10 @@ static Image_ErrorCode RegisterCallbackAndQuery(OH_ImageReceiverNative* receiver
 // [Start init_receiver]
 static napi_value ImageReceiverNativeCTest(napi_env env, napi_callback_info info)
 {
-    std::lock_guard<std::mutex> lock(g_mutex);
     if (g_receiver != nullptr) {
         OH_ImageReceiverNative_Off(g_receiver);
         OH_ImageReceiverNative_Release(g_receiver);
         g_receiver = nullptr;
-        g_isCallbackRunning = false;
-        g_imageReady = false;
-        g_imageInfoResult = nullptr;
     }
 
     OH_ImageReceiverOptions* options = nullptr;
@@ -408,7 +396,6 @@ Camera_ErrorCode StartTakePhoto(char* str)
 // [Start load_cameraSession]
 static napi_value TakePhoto(napi_env env, napi_callback_info info)
 {
-    std::lock_guard<std::mutex> lock(g_mutex);
     if (g_receiver == nullptr) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiver not initialized.");
         return GetJsResultDemo(env, IMAGE_BAD_PARAMETER);
@@ -598,32 +585,24 @@ static napi_value GetReceiverImageInfo(napi_env env, napi_callback_info info)
 // [Start release_receiver]
 static napi_value ReleaseImageReceiver(napi_env env, napi_callback_info info)
 {
-    std::lock_guard<std::mutex> lock(g_mutex);
     if (g_receiver == nullptr) {
         OH_LOG_INFO(LOG_APP, "No image receiver to release.");
-        return GetJsResultDemo(env, IMAGE_SUCCESS);
+        return nullptr;
     }
 
-    Image_ErrorCode errCode = IMAGE_SUCCESS;
-    errCode = OH_ImageReceiverNative_Off(g_receiver);
+    Image_ErrorCode errCode = OH_ImageReceiverNative_Off(g_receiver);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeTest image receiver off failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest image receiver off failed, errCode: %{public}d.", errCode);
     }
 
+    // 独占锁（写）
+    std::unique_lock<std::shared_mutex> lock(shared_receiver_mutex);
     errCode = OH_ImageReceiverNative_Release(g_receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "Release image receiver failed, errCode: %{public}d.", errCode);
     }
     
     g_receiver = nullptr;
-    g_isCallbackRunning = false;
-    g_imageReady = false;
-    if (g_imageInfoResult != nullptr) {
-        OH_ImageNative_Release(g_imageInfoResult);
-        g_imageInfoResult = nullptr;
-    }
-   
-    OH_LOG_INFO(LOG_APP, "Release image receiver success, reset all global states");
     return GetJsResultDemo(env, errCode);
 }
 // [End release_receiver]
