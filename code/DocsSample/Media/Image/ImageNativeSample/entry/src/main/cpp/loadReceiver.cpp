@@ -28,7 +28,7 @@
 #include "ohcamera/camera_manager.h"
 
 #include <mutex>
-#include <shared_mutex>
+#include <shared_mutex> // C++17以上使用
 #include <condition_variable>
 // [End receiver_import]
 
