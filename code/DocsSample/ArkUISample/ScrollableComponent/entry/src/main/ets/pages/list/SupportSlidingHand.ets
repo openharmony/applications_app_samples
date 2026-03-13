@@ -62,9 +62,9 @@ export struct SupportSlidingHand {
   build() {
     NavDestination() {
       Column({ space: 10 }) {
-        //   顶部导航栏
+        // 顶部导航栏
         this.topBar()
-        //   新闻列表
+        // 新闻列表
         List({ scroller: this.scrollerForList, space: 10 }) {
           ForEach(this.newsData, (item: News, index) => {
             ListItem() {
@@ -125,7 +125,7 @@ export struct SupportSlidingHand {
             if (rect) {
               // 当前节点在页面内的剩余显示范围
               let leftRect = rect.y + rect.height;
-              //   终点位置
+              // 终点位置
               let mainPosition = -velocity * DEFAULT_FRICTION / FRICTION_SCALE;
               if (leftRect + mainPosition > 0.75 * this.listHeight) {
                 this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
