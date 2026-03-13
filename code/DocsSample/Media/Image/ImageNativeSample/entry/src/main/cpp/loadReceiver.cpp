@@ -202,9 +202,9 @@ static Image_ErrorCode RegisterCallbackAndQuery(OH_ImageReceiverNative* receiver
 static napi_value ImageReceiverNativeCTest(napi_env env, napi_callback_info info)
 {
     if (g_receiver != nullptr) {
+        OH_ImageReceiverNative_Off(g_receiver);
+        OH_ImageReceiverNative_Release(g_receiver);
         g_receiver = nullptr;
-        g_imageReady = false;
-        g_imageInfoResult = nullptr;
     }
 
     OH_ImageReceiverOptions* options = nullptr;
@@ -587,12 +587,12 @@ static napi_value ReleaseImageReceiver(napi_env env, napi_callback_info info)
 {
     if (g_receiver == nullptr) {
         OH_LOG_INFO(LOG_APP, "No image receiver to release.");
-        return GetJsResultDemo(env, IMAGE_SUCCESS);
+        return nullptr;
     }
 
     Image_ErrorCode errCode = OH_ImageReceiverNative_Off(g_receiver);
     if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeTest image receiver off failed, errCode: %{public}d.", errCode);
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest image receiver off failed, errCode: %{public}d.", errCode);
     }
 
     // 独占锁（写）
