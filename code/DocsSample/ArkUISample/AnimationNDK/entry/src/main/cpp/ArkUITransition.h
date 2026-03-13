@@ -23,9 +23,14 @@
 namespace NativeModule {
 // [Start main_view_method]
 constexpr int32_t BUTTON_CLICK_ID = 1;
+constexpr int32_t STACK_CLICK_ID = 2;
 bool g_flag = false;
+bool t_flag = false;
 ArkUI_NodeHandle parentNode;
 ArkUI_NodeHandle childNode;
+ArkUI_NodeHandle ContainerNode;
+ArkUI_NodeHandle firstImageNode;
+ArkUI_NodeHandle secondImageNode;
 ArkUI_NodeHandle buttonNode;
 // [StartExclude main_view_method]
 // [Start create_child_node]
@@ -66,6 +71,44 @@ ArkUI_NodeHandle CreateChildNode()
     return image;
 }
 // [End create_child_node]
+// [Start create_Image_node]
+ArkUI_NodeHandle CreateImageNode()
+{
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle secondImage = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+    ArkUI_AttributeItem imageSrcItem = {.string = "/pages/common/sky.jpg"};
+    nodeAPI->setAttribute(secondImage, NODE_IMAGE_SRC, &imageSrcItem);
+    ArkUI_NumberValue textWidthValue[] = {{.f32 = 200}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidthValue,
+                                         .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(secondImage, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeightValue[] = {{.f32 = 200}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
+                                          .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(secondImage, NODE_HEIGHT, &textHeightItem);
+    ArkUI_NumberValue borderRadiusValue[] = {{.f32 = 50}};
+    ArkUI_AttributeItem borderRadiusItem = {.value = borderRadiusValue,
+                                            .size = sizeof(borderRadiusValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(secondImage, NODE_BORDER_RADIUS, &borderRadiusItem);
+    ArkUI_NumberValue clipValue1[] = {{.i32 = true}};
+    ArkUI_AttributeItem clipValue = {clipValue1, 1};
+    nodeAPI->setAttribute(secondImage, NODE_CLIP, &clipValue);
+    ArkUI_AttributeItem item2 = {.string = "secondImage"};
+    nodeAPI->setAttribute(secondImage, NODE_ID, &item2);
+
+    ArkUI_AnimateOption *option = OH_ArkUI_AnimateOption_Create();
+    auto opacityTransitionEffect = OH_ArkUI_CreateOpacityTransitionEffect(0.8);
+    OH_ArkUI_TransitionEffect_SetAnimation(opacityTransitionEffect, option);
+    ArkUI_AttributeItem transitionItem = {.object = opacityTransitionEffect};
+    nodeAPI->setAttribute(secondImage, NODE_TRANSITION, &transitionItem);
+
+    ArkUI_NumberValue positionValue1[] = {{.f32 = 225}, {.f32 = 0}};
+    ArkUI_AttributeItem positionValue_item1 = {positionValue1, 2};
+    nodeAPI->setAttribute(secondImage, NODE_POSITION, &positionValue_item1);
+    return secondImage;
+}
+// [End create_Image_node]
 // [Start button_show]
 void OnButtonShowClicked(ArkUI_NodeEvent *event)
 {
@@ -90,16 +133,123 @@ void OnButtonShowClicked(ArkUI_NodeEvent *event)
     }
 }
 // [End button_show]
+// [Start imageTransition_show]
+void OnImageTransitionClicked(ArkUI_NodeEvent *event)
+{
+    if (!event) {
+        return;
+    }
+    if (!secondImageNode) {
+        secondImageNode = CreateImageNode();
+    }
+    static ArkUI_ContextHandle context = nullptr;
+    context = OH_ArkUI_GetContextByNode(ContainerNode);
+
+    ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
+    static ArkUI_AnimateOption *option = OH_ArkUI_AnimateOption_Create();
+    OH_ArkUI_AnimateOption_SetDuration(option, NUM_300);
+    OH_ArkUI_AnimateOption_SetCurve(option, ARKUI_CURVE_EASE_IN_OUT);
+    ArkUI_AnimateCompleteCallback *completeCallback = new ArkUI_AnimateCompleteCallback;
+    completeCallback->type = ARKUI_FINISH_CALLBACK_REMOVED;
+    completeCallback->callback = [](void *userData) {
+    };
+    ArkUI_ContextCallback *update = new ArkUI_ContextCallback;
+
+    update->callback = [](void *user) {
+        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+        if (t_flag) {
+            t_flag = false;
+            nodeAPI->resetAttribute(firstImageNode, NODE_GEOMETRY_TRANSITION);
+            ArkUI_AttributeItem geometryTransitionItem = {.string = "TransitionPicture"};
+            nodeAPI->setAttribute(firstImageNode, NODE_GEOMETRY_TRANSITION, &geometryTransitionItem);
+            nodeAPI->addChild(ContainerNode, firstImageNode);
+            nodeAPI->removeChild(ContainerNode, secondImageNode);
+        } else {
+            t_flag = true;
+            nodeAPI->resetAttribute(secondImageNode, NODE_GEOMETRY_TRANSITION);
+            ArkUI_AttributeItem geometryTransitionItem = {.string = "TransitionPicture"};
+            nodeAPI->setAttribute(secondImageNode, NODE_GEOMETRY_TRANSITION, &geometryTransitionItem);
+            nodeAPI->addChild(ContainerNode, secondImageNode);
+            nodeAPI->removeChild(ContainerNode, firstImageNode);
+        }
+    };
+    animateApi->animateTo(context, option, update, completeCallback);
+    delete completeCallback;
+    delete update;
+}
+// [End imageTransition_show]
+// [Start imageTransition_view_method]
+void imageTransitionViewMethod()
+{
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle stack = nodeAPI->createNode(ARKUI_NODE_STACK);
+    ArkUI_NumberValue stackWidthValue[] = {{.f32 = NUM_500}};
+    ArkUI_AttributeItem stackWidthItem = {.value = stackWidthValue,
+                                          .size = sizeof(stackWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(stack, NODE_WIDTH, &stackWidthItem);
+    ArkUI_NumberValue stackHeightValue[] = {{.f32 = NUM_500}};
+    ArkUI_AttributeItem stackHeightItem = {.value = stackHeightValue,
+                                           .size = sizeof(stackHeightValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(stack, NODE_HEIGHT, &stackHeightItem);
+    nodeAPI->registerNodeEvent(stack, NODE_ON_CLICK, STACK_CLICK_ID, nullptr);
+    nodeAPI->addNodeEventReceiver(stack, OnImageTransitionClicked);
+    ArkUI_NodeHandle firstImage = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+    ArkUI_AttributeItem imageSrcItem = {.string = "/pages/common/scenery.jpg"};
+    nodeAPI->setAttribute(firstImage, NODE_IMAGE_SRC, &imageSrcItem);
+    ArkUI_NumberValue textWidthValue[] = {{.f32 = 50}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidthValue,
+                                         .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(firstImage, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeightValue[] = {{.f32 = 50}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
+                                          .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(firstImage, NODE_HEIGHT, &textHeightItem);
+    ArkUI_NumberValue borderRadiusValue[] = {{.f32 = 25}};
+    ArkUI_AttributeItem borderRadiusItem = {.value = borderRadiusValue,
+                                            .size = sizeof(borderRadiusValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(firstImage, NODE_BORDER_RADIUS, &borderRadiusItem);
+    ArkUI_NumberValue clipValue1[] = {{.i32 = true}};
+    ArkUI_AttributeItem clipValue = {clipValue1, 1};
+    nodeAPI->setAttribute(firstImage, NODE_CLIP, &clipValue);
+    ArkUI_AnimateOption *option = OH_ArkUI_AnimateOption_Create();
+    auto opacityTransitionEffect = OH_ArkUI_CreateOpacityTransitionEffect(0.8);
+    OH_ArkUI_TransitionEffect_SetAnimation(opacityTransitionEffect, option);
+    ArkUI_AttributeItem transitionItem = {.object = opacityTransitionEffect};
+    nodeAPI->setAttribute(firstImage, NODE_TRANSITION, &transitionItem);
+    ArkUI_AttributeItem geometryTransitionItem = {.string = "TransitionPicture"};
+    nodeAPI->setAttribute(firstImage, NODE_GEOMETRY_TRANSITION, &geometryTransitionItem);
+    ArkUI_NumberValue positionValue1[] = {{.f32 = 70}, {.f32 = 50}};
+    ArkUI_AttributeItem positionValue_item1 = {positionValue1, 2};
+    nodeAPI->setAttribute(firstImage, NODE_POSITION, &positionValue_item1);
+    ArkUI_AttributeItem item1 = {.string = "firstImage"};
+    nodeAPI->setAttribute(firstImage, NODE_ID, &item1);
+    ContainerNode = stack;
+    firstImageNode = firstImage;
+}
+// [End imageTransition_view_method]
 // [EndExclude main_view_method]
 void mainViewMethod(ArkUI_NodeContentHandle handle)
 {
     ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle columnMain = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue columnMainWidthValue[] = {{.f32 = 500}};
+    ArkUI_AttributeItem columnMainWidthItem = {.value = columnMainWidthValue,
+                                               .size = sizeof(columnMainWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(columnMain, NODE_WIDTH, &columnMainWidthItem);
+    ArkUI_NumberValue columnMainHeightValue[] = {{.f32 = 800}};
+    ArkUI_AttributeItem columnMainHeightItem = {.value = columnMainHeightValue,
+                                                .size = sizeof(columnMainHeightValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(columnMain, NODE_HEIGHT, &columnMainHeightItem);
+
     ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     ArkUI_NumberValue widthValue[] = {{.f32 = 500}};
     ArkUI_AttributeItem widthItem = {.value = widthValue, .size = sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(column, NODE_WIDTH, &widthItem);
-    ArkUI_NumberValue heightValue[] = {{.f32 = 500}};
+    ArkUI_NumberValue heightValue[] = {{.f32 = 400}};
     ArkUI_AttributeItem heightItem = {.value = heightValue, .size = sizeof(heightValue) / sizeof(ArkUI_NumberValue)};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &heightItem);
     ArkUI_NodeHandle buttonShow = nodeAPI->createNode(ARKUI_NODE_BUTTON);
@@ -123,10 +273,18 @@ void mainViewMethod(ArkUI_NodeContentHandle handle)
     nodeAPI->setAttribute(buttonShow, NODE_MARGIN, &buttonShowMarginItem);
     nodeAPI->registerNodeEvent(buttonShow, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
     nodeAPI->addNodeEventReceiver(buttonShow, OnButtonShowClicked);
+    // [StartExclude main_view_method]
+    imageTransitionViewMethod();
+    // [EndExclude main_view_method]
     parentNode = column;
     buttonNode = buttonShow;
+    nodeAPI->addChild(columnMain, column);
     nodeAPI->addChild(column, buttonShow);
-    OH_ArkUI_NodeContent_AddNode(handle, column);
+    // [StartExclude main_view_method]
+    nodeAPI->addChild(columnMain, ContainerNode);
+    nodeAPI->addChild(ContainerNode, firstImageNode);
+    // [StartExclude main_view_method]
+    OH_ArkUI_NodeContent_AddNode(handle, columnMain);
 }
 // [End main_view_method]
 } // namespace NativeModule

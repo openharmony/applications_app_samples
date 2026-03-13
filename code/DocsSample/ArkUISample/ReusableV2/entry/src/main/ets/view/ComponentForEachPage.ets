@@ -28,11 +28,13 @@ struct Index {
       ForEach(this.simpleList, (num: number, index) => {
         Row() {
           Button('Click to change')
+            .margin({ right: 10 })
             .onClick(() => {
               this.simpleList[index]++;
             })
           ReusableV2Component({ num: num })
         }
+        .margin({ bottom: 10 })
       }) // 每次修改完key发生变化
     }
   }

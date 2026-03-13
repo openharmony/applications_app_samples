@@ -28,7 +28,7 @@ export default class EntryAbility extends UIAbility {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `setColorMode err, code: ${error.code}, mesage: ${error.message}`);
+      Logger.error(TAG, `setColorMode err, code: ${error.code}, message: ${error.message}`);
     }
   }
 
@@ -52,7 +52,7 @@ export default class EntryAbility extends UIAbility {
         this.initWindow(windowStage);
       } catch (err) {
         let error = err as BusinessError;
-        Logger.error(TAG, `loadContent err, code: ${error.code}, mesage: ${error.message}`);
+        Logger.error(TAG, `loadContent err, code: ${error.code}, message: ${error.message}`);
       }
     });
   }
@@ -61,7 +61,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let windowClass: window.Window = windowStage.getMainWindowSync();
       windowClass.setWindowLayoutFullScreen(true).catch((error: BusinessError) => {
-        Logger.error(TAG, `setWindowLayoutFullScreen err, code: ${error.code}, mesage: ${error.message}`);
+        Logger.error(TAG, `setWindowLayoutFullScreen err, code: ${error.code}, message: ${error.message}`);
       });
       let naviBarArea: window.AvoidArea = windowClass.getWindowAvoidArea(
 	window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
@@ -80,7 +80,7 @@ export default class EntryAbility extends UIAbility {
       });
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `initWindow err, code: ${error.code}, mesage: ${error.message}`);
+      Logger.error(TAG, `initWindow err, code: ${error.code}, message: ${error.message}`);
     }
   }
 

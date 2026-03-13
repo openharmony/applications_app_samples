@@ -274,5 +274,5 @@ struct IndexAsyncAndAwait {
     }
     .height('100%')
   }
-  // [End continuous_task_await]
 }
+// [End continuous_task_await]

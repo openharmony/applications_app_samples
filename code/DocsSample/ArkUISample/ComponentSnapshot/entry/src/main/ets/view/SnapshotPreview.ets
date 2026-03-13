@@ -107,7 +107,7 @@ export struct SnapshotPreview {
       // [EndExclude save_snapshot1]
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `saveSnapshot err, errCode: ${error.code}, error mesage: ${error.message}`);
+      Logger.error(TAG, `saveSnapshot err, errCode: ${error.code}, error message: ${error.message}`);
     }
   }
   // [End save_snapshot1]

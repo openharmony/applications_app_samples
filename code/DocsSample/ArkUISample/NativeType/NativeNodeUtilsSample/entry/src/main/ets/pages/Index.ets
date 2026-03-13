@@ -63,6 +63,14 @@ struct Index {
               url: 'pages/nativeUI/NativeUIPage'
             })
           })
+        Button('ShowNativeUIMessagePage')
+          .onClick(() => {
+            const uiContext: UIContext = this.getUIContext();
+            const router = uiContext.getRouter();
+            router.pushUrl({
+              url: 'pages/nativeUI/NativeUIMessagePage'
+            })
+          })
         // 请将$r('app.string.Create_Component')替换为实际资源文件，在本示例中该资源文件的value值为"多实例创建组件"
         Button($r('app.string.Create_Component')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();

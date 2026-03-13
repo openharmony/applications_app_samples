@@ -92,7 +92,7 @@ export class ImageUtils {
       pixelMap.readPixelsSync(area);
     } catch (err) {
       let error = err as BusinessError;
-      Logger.error(TAG, `getSnapshotArea err, code: ${error.code}, mesage: ${error.message}`);
+      Logger.error(TAG, `getSnapshotArea err, code: ${error.code}, message: ${error.message}`);
     }
     return area;
   }
@@ -133,7 +133,7 @@ export class ImageUtils {
         longPixelMap.writePixelsSync(area);
       } catch (err) {
         let error = err as BusinessError;
-        Logger.error(TAG, `writePixelsSync err, code: ${error.code}, mesage: ${error.message}`);
+        Logger.error(TAG, `writePixelsSync err, code: ${error.code}, message: ${error.message}`);
       }
     }
     return longPixelMap;

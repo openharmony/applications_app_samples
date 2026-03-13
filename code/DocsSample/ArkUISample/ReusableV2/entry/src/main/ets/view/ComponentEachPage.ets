@@ -25,20 +25,24 @@ struct Index {
   @Local condition: boolean = true;
 
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('Delete/Create Repeat')
+        .width('60%')
         .onClick(() => {
           this.condition = !this.condition;
         })
       Button('Add element')
+        .width('60%')
         .onClick(() => {
           this.simpleList.push(this.simpleList.length + 1);
         })
       Button('Delete element')
+        .width('60%')
         .onClick(() => {
           this.simpleList.pop();
         })
       Button('Change element')
+        .width('60%')
         .onClick(() => {
           this.simpleList[0]++;
         })
@@ -50,11 +54,13 @@ struct Index {
                 Column() {
                   ReusableV2Component({ num: obj.item })
                 }
+                .width('100%')
               }
             })
         }
       }
     }
+    .width('100%')
   }
 }
 

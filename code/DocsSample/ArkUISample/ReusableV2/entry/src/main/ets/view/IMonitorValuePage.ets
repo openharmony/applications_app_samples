@@ -33,8 +33,9 @@ struct Index {
   @Local condition: boolean = true;
 
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('Recycle/Reuse')
+        .width('60%')
         .onClick(() => {
           this.condition = !this.condition;
         })
@@ -42,6 +43,7 @@ struct Index {
         ReusableV2Component()
       }
     }
+    .width('100%')
   }
 }
 
