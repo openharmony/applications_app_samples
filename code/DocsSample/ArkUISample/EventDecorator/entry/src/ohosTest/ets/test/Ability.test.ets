@@ -18,14 +18,13 @@ import { Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = '[Sample_EventDecorator]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'EventDecorator_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, 'uitest: ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -33,7 +32,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
+      hilog.info(DOMAIN, TAG, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -63,7 +62,7 @@ export default function abilityTest() {
      * @tc.level: Level 1
      */
     it('processweb_EventDecoratorTest1_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest1_001 begin');
+      hilog.info(DOMAIN, TAG, 'uitest: processweb_EventDecoratorTest1_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('EventDecoratorTest1Button'));
@@ -85,7 +84,7 @@ export default function abilityTest() {
       const text2 = await driver.findComponent(ON.type('Text'));
       const res2 = await text2.getText();
       expect(res2).assertEqual('Title One');
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest1_001 end');
+      hilog.info(DOMAIN, TAG, 'uitest: processweb_EventDecoratorTest1_001 end');
       done();
     })
 
@@ -96,8 +95,8 @@ export default function abilityTest() {
      * @tc.level: Level 1
      */
     it('processweb_EventDecoratorTest2_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest2_001 begin');
+      hilog.info(DOMAIN, TAG, 'uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, 'uitest: processweb_EventDecoratorTest2_001 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
       const button = await driver.findComponent(ON.text('EventDecoratorTest2Button'));
@@ -109,7 +108,7 @@ export default function abilityTest() {
       await driver.delayMs(300)
       const res = await text.getText();
       expect(res).assertEqual('Child index: 20');
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest2_001 end');
+      hilog.info(DOMAIN, TAG, 'uitest: processweb_EventDecoratorTest2_001 end');
 
       done();
     })
