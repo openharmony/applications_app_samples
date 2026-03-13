@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hvigorw assembleHap:*)",
+      "mcp__web-search-prime__web_search_prime",
+      "WebSearch",
+      "mcp__web-reader__webReader",
+      "Bash(grep:*)",
+      "mcp__zread__search_doc",
+      "Bash(xxd:*)",
+      "Bash(sed:*)"
+    ]
+  }
+}
