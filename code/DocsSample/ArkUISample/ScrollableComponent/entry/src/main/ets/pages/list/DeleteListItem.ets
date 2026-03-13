@@ -72,7 +72,7 @@ export struct ToDoListItem {
         LongPressGesture()
           .onAction(() => {
             if (!this.isEditMode) {
-              this.isEditMode = true; //进入编辑模式
+              this.isEditMode = true; // 进入编辑模式
             }
           })
       )
