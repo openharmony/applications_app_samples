@@ -81,7 +81,7 @@ struct MyNavigationTestStack {
 
   build() {
     Column() {
-      Button('update builderNode') // 点击更新BuildrNode
+      Button('update builderNode') // 点击更新BuilderNode
         .onClick(() => {
           textNodeController.update();
         })

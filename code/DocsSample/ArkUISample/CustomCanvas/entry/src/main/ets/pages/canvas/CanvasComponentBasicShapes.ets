@@ -26,15 +26,15 @@ struct CanvasComponentBasicShapes {
         .height('100%')
         .backgroundColor('#F5DC62')
         .onReady(() => {
-          //绘制矩形
+          // 绘制矩形
           this.context.beginPath();
           this.context.rect(100, 50, 100, 100);
           this.context.stroke();
-          //绘制圆形
+          // 绘制圆形
           this.context.beginPath();
           this.context.arc(150, 250, 50, 0, 6.28);
           this.context.stroke();
-          //绘制椭圆
+          // 绘制椭圆
           this.context.beginPath();
           this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
           this.context.stroke();

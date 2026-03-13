@@ -28,7 +28,7 @@ struct CustomFont {
         .height('100%')
         .backgroundColor('#F5DC62')
         .onReady(() => {
-          //加载自定义字体
+          // 加载自定义字体
           let fontCollection = text.FontCollection.getGlobalInstance();
           fontCollection.loadFontSync('customFont', $rawfile('customFont.ttf'));
           this.context.font = '30vp customFont';
