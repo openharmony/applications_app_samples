@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -25,7 +26,9 @@ struct Index1 {
     Column() {
       //已经预启动Render进程
       Button($r('app.string.Jump_to_Web_Page')).onClick(()=>{
-        router.pushUrl({url: 'pages/index2'})
+        this.getUIContext().getRouter().pushUrl({url: 'pages/index2'}).catch((error: BusinessError) => {
+          hilog.info(0x0000, 'testTag', 'pushUrl error, %{public}s', error);
+        });
       })
         .width('100%')
         .height('100%')
