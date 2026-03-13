@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +17,9 @@
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { FormData } from './CommonData';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'PreferencesUtil';
 const MY_STORE: string = 'myStore';
-const DOMAIN = 0xFF00;
 
 export class PreferencesUtil {
   private static preferencesUtil: PreferencesUtil;
@@ -39,7 +37,7 @@ export class PreferencesUtil {
       return preferences.getPreferencesSync(context, { name: MY_STORE });
     } catch (error) {
       let err = error as BusinessError;
-      hilog.error(DOMAIN, TAG, `getPreferences failed, error code=${err.code}, message=${err.message}`);
+      console.error(TAG, `getPreferences failed, error code=${err.code}, message=${err.message}`);
       return undefined;
     }
   }
@@ -47,7 +45,7 @@ export class PreferencesUtil {
   preferencesFlush(preferences: preferences.Preferences) {
     preferences.flush((err) => {
       if (err) {
-        hilog.error(DOMAIN, TAG, `Failed to flush. Code:${err.code}, message:${err.message}`);
+        console.error(TAG, `Failed to flush. Code:${err.code}, message:${err.message}`);
       }
     })
   }
@@ -58,26 +56,26 @@ export class PreferencesUtil {
       this.preferencesFlush(preferences);
     } catch (error) {
       let err = error as BusinessError;
-      hilog.error(DOMAIN, TAG, `preferencesPut failed, error code=${err.code}, message=${err.message}`);
+      console.error(TAG, `preferencesPut failed, error code=${err.code}, message=${err.message}`);
     }
   }
 
   removePreferencesFromCache(context: Context): void {
     preferences.removePreferencesFromCache(context, MY_STORE).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, TAG, `removePreferencesFromCache failed, error code=${err.code}, message=${err.message}`);
+      console.error(TAG, `removePreferencesFromCache failed, error code=${err.code}, message=${err.message}`);
     });
   }
 
   getValue(preferences: preferences.Preferences, formID: string): FormData | undefined {
     if (preferences === null) {
-      hilog.error(DOMAIN, TAG, `preferences is null`);
+      console.error(TAG, `preferences is null`);
       return undefined;
     }
     try {
       return preferences.getSync(formID, new FormData('')) as FormData;
     } catch (error) {
       let err = error as BusinessError;
-      hilog.error(DOMAIN, TAG, `getSync failed, error code=${err.code}, message=${err.message}`);
+      console.error(TAG, `getSync failed, error code=${err.code}, message=${err.message}`);
       return undefined;
     }
   }
@@ -86,7 +84,7 @@ export class PreferencesUtil {
     try {
       let preferences = this.getPreferences(context);
       if (!preferences) {
-        hilog.error(DOMAIN, TAG, `preferences is null`);
+        console.error(TAG, `preferences is null`);
         return;
       }
       if (preferences.hasSync(formId)) {
@@ -94,7 +92,7 @@ export class PreferencesUtil {
         this.preferencesFlush(preferences);
       }
     } catch (error) {
-      hilog.error(DOMAIN, TAG, `Failed to get preferences. Code:${error.code}, message:${error.message}`);
+      console.error(TAG, `Failed to get preferences. Code:${error.code}, message:${error.message}`);
     }
   }
 }

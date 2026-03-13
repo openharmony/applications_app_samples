@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,6 +27,7 @@ export default class EntryEditAbility extends UIAbility {
     const formId: string = want.parameters?.formId as string;
     hilog.info(DOMAIN, 'testTag', 'onCreate form id is' + formId)
     if (formId) {
+      // 存储被编辑的卡片ID，后续编辑卡片会用
       let util = PreferencesUtil.getInstance();
       let preferences = util.getPreferences(this.context) as preferences.Preferences;
       util.preferencesPut(preferences, formId);
@@ -34,14 +35,15 @@ export default class EntryEditAbility extends UIAbility {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     } catch (err) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+      hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Code:${err.code}, message:${err.message}');
     }
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 热启动编辑页时刷新被编辑的卡片ID
     const formId: string = want.parameters?.formId as string;
-    hilog.info(DOMAIN, 'testTag', 'onNewWant form id is' + formId);
+    hilog.info(DOMAIN, 'testTag', 'onNewWant form id is' + formId)
     if (formId) {
       // 初始化首选项数据库
       let util = PreferencesUtil.getInstance();
@@ -60,7 +62,7 @@ export default class EntryEditAbility extends UIAbility {
 
     windowStage.loadContent('pages/FormEditIndex', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Code:${err.code}, message:${err.message}');
         return;
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
