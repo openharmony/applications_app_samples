@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "NativeUIPageSample module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "NativeUIPageSample description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NativeUIPageSample"
+    }
+  ]
+}

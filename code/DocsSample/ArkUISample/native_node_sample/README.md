@@ -93,12 +93,21 @@
 native_node_sample
 entry/src/main/cpp/
 ├── ArkUINode.h
+├── ArkUIButtonNode.h
+├── ArkUIColumnNode.h
+├── ArkUIGridItemNode.h
+├── ArkUIGridNode.h
 ├── ArkUINodeAdapter.h
+├── ArkUINodeExpandAdapter.h
+├── ArkUIRowNode.h
+├── ArkUITextNode.h
 ├── baseUtils.cpp
 ├── baseUtils.h
 ├── CMakeLists.txt (CMake脚本)
 ├── form_manager.cpp
 ├── form_manager.h
+├── GridDragEventMaker.cpp
+├── GridDragEventMaker.h
 ├── GridIrregularIndexesMaker.cpp
 ├── GridIrregularIndexesMaker.h
 ├── GridMaker.cpp
@@ -160,7 +169,8 @@ entry/src/main/ets/
     └── grid
          ├── PageGridNormal.ets (普通Grid页面)
          ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
-         └── PageGridGetRectByIndex.ets (固定行列Grid页面)
+         ├── PageGridGetRectByIndex.ets (固定行列Grid页面)
+         └── PageGridDragEvent.ets (GridItem拖拽事件及选中页面)
 
 entry/src/main/resources/
 ├── base

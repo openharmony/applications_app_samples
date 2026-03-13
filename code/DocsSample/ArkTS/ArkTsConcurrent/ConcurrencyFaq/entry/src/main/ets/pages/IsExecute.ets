@@ -16,7 +16,7 @@
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
-function createTask(a: number, b:number): number {
+function createTask(a: number, b: number): number {
   let sum = a + b;
   return sum;
 }
@@ -34,7 +34,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             console.info('test start');
-            // 其他业务逻辑。
+            // 其他业务逻辑
             // ...
             let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
             taskpool.execute(task);
@@ -47,5 +47,5 @@ struct Index {
   }
 }
 
-// 如果test start在控制台打印，但是并未出现Task Allocation: taskId:的日志，则taskpool.execute没有执行，应用需要排查其他业务逻辑。
+// 如果test start在控制台打印，但是并未出现Task Allocation: taskId:的日志，则taskpool.execute没有执行，应用需要排查其他业务逻辑
 // [End is_execute]

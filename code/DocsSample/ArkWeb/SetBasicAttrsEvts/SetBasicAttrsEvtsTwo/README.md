@@ -68,6 +68,9 @@
 
 1. 通过Web组件的属性接口domStorageAccess()配置Dom Storage。
 
+### 具体实现
+* Web组件提供WebCookieManager类来管理Cookie信息。参考源码：[CookieManagement.ets](./entry/src/main/ets/pages/CookieManagement.ets)
+
 #  UserAgent开发指导
 
 ### 介绍
@@ -123,6 +126,11 @@
 使用说明
 
 1. 点击按钮，通过getCustomUserAgent()接口获取自定义用户代理。
+
+### 具体实现
+* 通过getUserAgent()接口获取当前默认的用户代理。参考源码：[UserAgent_one.ets](./entry/src/main/ets/pages/UserAgent_one.ets)
+* 通过setCustomUserAgent()接口设置自定义用户代理。参考源码：[UserAgent_two.ets](./entry/src/main/ets/pages/UserAgent_two.ets)
+* 通过getCustomUserAgent()接口获取自定义用户代理。参考源码：[UserAgent_three.ets](./entry/src/main/ets/pages/UserAgent_three.ets)
 
 # 使用运动和方向传感器监测设备状态
 

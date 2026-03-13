@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
+import { deviceInfo } from '@kit.BasicServicesKit';
 
 export interface KeyStyle {
   deviceType?: string,

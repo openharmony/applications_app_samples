@@ -102,21 +102,22 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Stack().width(300).height(300).drawModifier(this.myDrawModifier).position({x:10,y:10})
+        Stack().width(300).height(300).drawModifier(this.myDrawModifier).position({ x: 10, y: 10 })
       }
       .borderWidth(1)
       .height(200)
       .width('45%')
 
       Column() {
-        Stack().width(300).height(300).drawModifier(this.myDrawModifier1).position({x:10,y:10})
+        Stack().width(300).height(300).drawModifier(this.myDrawModifier1).position({ x: 10, y: 10 })
       }
       .borderWidth(1)
       .height(200)
       .width('45%')
     }.height('100%')
-    .width('100%').position({x:10,y:10})
+    .width('100%').position({ x: 10, y: 10 })
 
   }
 }
+
 // [End Canvas_start]

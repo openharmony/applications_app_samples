@@ -33,12 +33,12 @@
       "value": "暂无日志信息"
     },
     {
-      "name": "test_specific_field",
-      "value": "测试特定字段"
+      "name": "test_third_party",
+      "value": "测试三方库"
     },
     {
-      "name": "test_specific_field_complete",
-      "value": "测试特定字段完成"
+      "name": "test_third_party_complete",
+      "value": "测试三方库完成"
     }
   ]
 }

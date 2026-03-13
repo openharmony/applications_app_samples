@@ -31,6 +31,14 @@
     {
       "name": "localhost",
       "value": "localhost"
+    },
+    {
+      "name": "percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "percent_80",
+      "value": "80%"
     }
   ]
 }

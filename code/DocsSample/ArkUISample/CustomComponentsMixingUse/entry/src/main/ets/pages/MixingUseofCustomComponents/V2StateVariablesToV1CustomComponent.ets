@@ -14,7 +14,7 @@
  */
 
 // [Start v2_to_v1_state_variables]
-class Info7 {
+class InfoSeven {
   public myId: number;
   public name: string;
 
@@ -25,15 +25,15 @@ class Info7 {
 }
 
 @Component
-struct Child7 {
+struct ChildSeven {
   // V1从V2接收的状态变量，仅可使用@State、@Prop、@Provide接收
-  @State  message: string = 'hello';            // 可以观测到变化
-  @State info: Info7 = new Info7();                // 可以观测一层类属性变化
+  @State  message: string = 'hello'; // 可以观测到变化
+  @State info: InfoSeven = new InfoSeven(); // 可以观测一层类属性变化
   @Prop undefinedVal: undefined | string = undefined;
   @Provide set: Set<number> = new Set();
   build() {
     Column() {
-      Text(`child message:${this.message}`)     // 显示 string
+      Text(`child message:${this.message}`) // 显示message变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -41,7 +41,7 @@ struct Child7 {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefinedVal:${this.undefinedVal}`)     // 显示 undefinedVal
+      Text(`undefinedVal:${this.undefinedVal}`) // 显示undefinedVal变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -49,7 +49,7 @@ struct Child7 {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info id:${this.info.myId}`)     // 显示 info:myId
+      Text(`info id:${this.info.myId}`) // 显示info.myId变量
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -58,7 +58,7 @@ struct Child7 {
 
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => {  // 显示 Set
+      ForEach(Array.from(this.set.values()), (item: number) => { // 显示set变量
         Text(`${item}`)
           .fontSize(30)
       })
@@ -70,10 +70,10 @@ struct Child7 {
 @Entry
 @ComponentV2
 struct Index7 {
-  @Local message: string = 'Hello World';           // 简单数据类型，支持传递
-  @Provider() undefinedVal: undefined = undefined;   // 简单数据类型，undefined，支持传递
-  @Consumer() info: Info7 = new Info7();              // Class类型，支持传递
-  @Param set: Set<number> = new Set([10, 20]);      // 内置类型，不支持传递；消除编译错误请去掉@Param
+  @Local message: string = 'Hello World'; // 简单数据类型，支持传递
+  @Provider() undefinedVal: undefined = undefined; // 简单数据类型，undefined，支持传递
+  @Consumer() info: InfoSeven = new InfoSeven(); // Class类型，支持传递
+  @Param set: Set<number> = new Set([10, 20]); // 内置类型，不支持传递；消除编译错误请去掉@Param
 
   build() {
     Column() {
@@ -86,7 +86,7 @@ struct Index7 {
 
       Divider()
         .color(Color.Blue)
-      Child7({
+      ChildSeven({
         message: this.message,
         undefinedVal: this.undefinedVal,
         info: this.info,

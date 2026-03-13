@@ -17,6 +17,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 import { RoutableCard } from '../common/Card';
 import { Route } from '../common/Route';
 import { TEXT_ROUTE_PREFIX, TextDestination } from './text';
+import { KEYBOARD_ROUTE_PREFIX, ManageKeyBoardDestination } from './manageKeyBoard';
 import { INPUT_ROUTE_PREFIX, TextInputDestination } from './textInput';
 import { RICH_EDITOR_ROUTE_PREFIX, RichEditorDestination } from './richEditor';
 import { SYMBOL_GLYPH_SPAN, SymbolGlyphSpanDestination } from './symbol';
@@ -62,6 +63,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_TextFAQ')),
     name: TEXT_FAQ
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_KeyBoard')),
+    name: KEYBOARD_ROUTE_PREFIX
   }
 ];
 
@@ -83,6 +88,8 @@ function Destination(name: string) {
     TextImageMixedLayoutDestination(name);
   } else if (name.startsWith(TEXT_FAQ)) {
     TextFAQDestination(name);
+  } else if (name.startsWith(KEYBOARD_ROUTE_PREFIX)) {
+    ManageKeyBoardDestination(name);
   }
 }
 

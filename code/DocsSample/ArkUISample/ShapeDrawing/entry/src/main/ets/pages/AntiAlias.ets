@@ -20,7 +20,7 @@ struct AntiAlias {
     Column() {
       Text('Turn on anti-aliasing').margin({bottom:10})
       // [Start antialias_open]
-      //开启抗锯齿
+      // 开启抗锯齿
       Circle()
         .width(150)
         .height(200)
@@ -30,7 +30,7 @@ struct AntiAlias {
       // [End antialias_open]
       Text('Turn off anti-aliasing').margin({bottom:10})
       // [Start antialias_close]
-      //关闭抗锯齿
+      // 关闭抗锯齿
       Circle()
         .width(150)
         .height(200)

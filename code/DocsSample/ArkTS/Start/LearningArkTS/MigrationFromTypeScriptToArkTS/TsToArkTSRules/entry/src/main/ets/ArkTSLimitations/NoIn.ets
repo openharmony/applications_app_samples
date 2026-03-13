@@ -18,5 +18,5 @@ class Person {
 }
 let p = new Person();
 
-let b = p instanceof Person; // true，且属性name一定存在。
+let b = p instanceof Person; // true，且属性name一定存在
 // [End no_in]

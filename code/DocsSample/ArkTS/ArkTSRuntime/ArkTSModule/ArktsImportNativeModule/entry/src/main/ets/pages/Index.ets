@@ -14,6 +14,9 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+// [Start import_json]
+import data from './ImportJson.json';
+// [End import_json]
 
 const DOMAIN = 0x0000;
 

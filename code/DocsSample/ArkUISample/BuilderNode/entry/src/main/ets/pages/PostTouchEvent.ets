@@ -31,7 +31,7 @@ function buttonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            hilog.info(0xF811,'testTag','%{public}s','TapGesture');
+            hilog.info(0xF811, 'testTag', '%{public}s', 'TapGesture');
           })
       )
   }
@@ -57,7 +57,7 @@ class MyNodeController extends NodeController {
       return;
     }
     let result = this.rootNode.postTouchEvent(touchEvent);
-    hilog.info(0xF811,'testTag','%{public}s','result' + result);
+    hilog.info(0xF811, 'testTag', '%{public}s', 'result' + result);
   }
 }
 
@@ -87,4 +87,5 @@ struct postTouchEventPage {
     }
   }
 }
+
 // [End Main_PostTouchEvent]

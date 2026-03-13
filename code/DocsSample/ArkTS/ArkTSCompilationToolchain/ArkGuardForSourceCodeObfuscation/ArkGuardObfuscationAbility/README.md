@@ -20,11 +20,11 @@ entry/src/main/ets/
     └── ArkGuardAbility.ets
     └── ArkGuardAbility.js
     └── ArkGuardAbility.ts
-    └── file1.ts
-    └── file2.ts
-    └── test.json
-└── test1
-    └── test2.ts
+    └── RequireFile.ts
+    └── DynamicImportFile.ts
+    └── ImportJson.json
+└── FilenameObfuscationTest
+    └── FilenameObfuscationTest.ts
 entry/
 └── obfuscation-rules.txt
 └── consumer-rules.txt

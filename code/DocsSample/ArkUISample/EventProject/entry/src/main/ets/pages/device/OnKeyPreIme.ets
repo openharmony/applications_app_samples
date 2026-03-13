@@ -31,8 +31,8 @@ struct PreImeEventExample {
       })
         .width('80%')
         .height('40vp')
-        .border({ radius:'20vp' })
-        .onKeyPreIme((event:KeyEvent) => {
+        .border({ radius: '20vp' })
+        .onKeyPreIme((event: KeyEvent) => {
           if (event.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
             return true;
           }

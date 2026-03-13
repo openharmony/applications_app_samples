@@ -40,17 +40,21 @@ static napi_value Add(napi_env env, napi_callback_info info)
 }
 
 static napi_value NAPI_Global_testNapi2(napi_env env, napi_callback_info info) {
-    // 实现代码。
+    // 实现代码
 }
 static napi_value NAPI_Global_testNapi3(napi_env env, napi_callback_info info) {
-    // 实现代码。
+    // 实现代码
+}
+static napi_value NAPI_Global_addNum(napi_env env, napi_callback_info info) {
+    // 实现代码
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testNapi2", nullptr, NAPI_Global_testNapi2, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"testNapi3", nullptr, NAPI_Global_testNapi3, nullptr, nullptr, nullptr, napi_default, nullptr }
+        {"testNapi3", nullptr, NAPI_Global_testNapi3, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"addNum", nullptr, NAPI_Global_addNum, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

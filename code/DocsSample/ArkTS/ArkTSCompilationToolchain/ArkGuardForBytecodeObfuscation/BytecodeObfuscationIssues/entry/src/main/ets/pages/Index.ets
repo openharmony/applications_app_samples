@@ -24,7 +24,7 @@ struct Index {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
         this.textComponent($r('app.string.index_title'));
         this.buttonComponent($r('app.string.main_page'), 'pages/MainPage');
-        this.buttonComponent($r('app.string.test_decorator'), 'pages/a');
+        this.buttonComponent($r('app.string.test_decorator'), 'pages/CallDecorator');
       }
       .width('100%')
       .padding(20)

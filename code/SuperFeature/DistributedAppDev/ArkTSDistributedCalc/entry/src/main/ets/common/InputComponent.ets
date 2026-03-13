@@ -14,9 +14,9 @@
  */
 @Component
 export struct InputComponent {
-  @Link result: string
-  @Link expression: string
-  private isLand: boolean = false
+  @Link result: string;
+  @Link expression: string;
+  private isLand: boolean = false;
 
   build() {
     Stack({ alignContent: this.isLand ? Alignment.BottomStart : Alignment.TopEnd }) {
@@ -24,8 +24,8 @@ export struct InputComponent {
         Row() {
           Text(this.expression)
             .margin({ top: '3%' })
-            .height('100%')
-            .width('100%')
+            .height($r('app.string.percent_100'))
+            .width($r('app.string.percent_100'))
             .id('expression')
             .opacity(0.9)
             .fontWeight(400)
@@ -35,11 +35,12 @@ export struct InputComponent {
         .height('48%')
         .width('90%')
         .align(this.isLand ? Alignment.End : Alignment.Start)
+
         Row() {
           Text(this.result)
             .margin({ top: '1%' })
-            .height('100%')
-            .width('100%')
+            .height($r('app.string.percent_100'))
+            .width($r('app.string.percent_100'))
             .id('result')
             .opacity(0.38)
             .textAlign(TextAlign.Start)
@@ -50,10 +51,10 @@ export struct InputComponent {
         .width('90%')
         .align(this.isLand ? Alignment.End : Alignment.Start)
       }
-      .width('100%')
+      .width($r('app.string.percent_100'))
       .align(Alignment.Center)
     }
-    .width(this.isLand ? '34%' : '100%')
-    .height(this.isLand ? '100%' : '34%')
+    .width(this.isLand ? '34%' : $r('app.string.percent_100'))
+    .height(this.isLand ? $r('app.string.percent_100') : '34%')
   }
 }

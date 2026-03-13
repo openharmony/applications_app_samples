@@ -16,8 +16,8 @@
 #ifndef COASTING_AXIS_EVENT_MANAGER_H
 #define COASTING_AXIS_EVENT_MANAGER_H
 
-#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <arkui/native_node.h>
+#include <arkui/native_node_napi.h>
 #include <string>
 
 namespace NativeXComponentSample {
@@ -36,8 +36,7 @@ class NodeManager {
 public:
     ~NodeManager() = default;
     static NodeManager &GetInstance();
-    void SetXComponent(OH_NativeXComponent *xComponent);
-    void CreateNativeNode(double density);
+    void CreateNativeNode(napi_env env, napi_value nodeContent, double density);
 
 private:
     NodeManager() = default;
@@ -47,7 +46,7 @@ private:
     ArkUI_NodeHandle CreateListText(std::string text);
     ArkUI_NodeHandle CreateListImage(std::string icon);
     void RegisterCoastingAxisEvent(ArkUI_NodeHandle node);
-    OH_NativeXComponent *xComponent_;
+    ArkUI_NodeContentHandle nodeContent_;
 };
 } // namespace NativeXComponentSample
 

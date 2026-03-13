@@ -22,33 +22,41 @@ const DOMAIN = 0xF811;
 @ComponentV2
 struct Index {
   @Local simpleList: number[] = [0, 1, 2, 3, 4, 5];
+
   build() {
     Column() {
       ForEach(this.simpleList, (num: number, index) => {
         Row() {
           Button('Click to change')
+            .margin({ right: 10 })
             .onClick(() => {
               this.simpleList[index]++;
             })
           ReusableV2Component({ num: num })
         }
+        .margin({ bottom: 10 })
       }) // 每次修改完key发生变化
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Require @Param num: number;
+
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear', this.num); // 创建时触发
   }
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle', this.num); // 回收时触发
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse', this.num); // 复用时触发
   }
+
   build() {
     Column() {
       Text(`child: ${this.num}`)
@@ -58,4 +66,5 @@ struct ReusableV2Component {
 
 // [End ComponentForEachPage]
 const componentForEachPage = Index;
+
 export default componentForEachPage;

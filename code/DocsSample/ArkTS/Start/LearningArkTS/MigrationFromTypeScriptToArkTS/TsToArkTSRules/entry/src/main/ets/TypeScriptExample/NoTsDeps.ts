@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 // [Start no_tsDeps_ts]
-// lib.ts
+// NoTsDeps.ts
 import { C } from './ExportMod'
 // [End no_tsDeps_ts]

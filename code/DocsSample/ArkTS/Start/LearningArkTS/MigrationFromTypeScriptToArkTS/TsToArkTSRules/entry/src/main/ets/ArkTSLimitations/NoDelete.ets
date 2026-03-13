@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_delete]
-// 可以声明一个可空类型并使用null作为缺省值。
+// 可以声明一个可空类型并使用null作为缺省值
 class Point {
   public x: number | null = 0;
   public y: number | null = 0;

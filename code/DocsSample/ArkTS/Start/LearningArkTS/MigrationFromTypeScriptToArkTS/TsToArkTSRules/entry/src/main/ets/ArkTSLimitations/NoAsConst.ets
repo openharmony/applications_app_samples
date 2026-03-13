@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 // [Start no_asConst]
-// 'string'类型。
+// 'string'类型
 let x: string = 'hello';
 
-// 'number[]'类型。
+// 'number[]'类型
 let y: number[] = [10, 20];
 
 class Label {
   public text: string = '';
 }
 
-// 'Label'类型。
+// 'Label'类型
 let z: Label = {
   public text: 'hello',
 }

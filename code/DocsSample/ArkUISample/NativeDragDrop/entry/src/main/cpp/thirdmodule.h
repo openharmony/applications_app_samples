@@ -35,8 +35,8 @@ void SetImageData(ArkUI_DragEvent* dragEvent)
     int returnValue;
     OH_UdmfRecord *record = OH_UdmfRecord_Create();
     OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
-    // 图片src/main/ets/resources/seagull.png需要替换为开发者所需的资源文件
-    returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
+    // 图片src/main/resources/base/media/seagull.png需要替换为开发者所需的资源文件
+    returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/base/media/seagull.png");
     returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
     OH_UdmfData *data = OH_UdmfData_Create();
     returnValue = OH_UdmfData_AddRecord(data, record);
@@ -59,6 +59,8 @@ void ExecuteDragPending(ArkUI_DragEvent* dragEvent)
         sleep(1);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC 2");
         OH_ArkUI_NotifyDragResult(requestId, ARKUI_DRAG_RESULT_SUCCESSFUL);
+        OH_ArkUI_NotifySuggestedDropOperation(requestId, ARKUI_DROP_OPERATION_MOVE);
+        OH_ArkUI_NotifyDisableDefaultDropAnimation(requestId, false);
         OH_ArkUI_NotifyDragEndPendingDone(requestId);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC");
     });
@@ -73,9 +75,20 @@ void GetThirdDragResult(ArkUI_DragEvent* dragEvent)
     if (result == ARKUI_DRAG_RESULT_SUCCESSFUL) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Successful!");
         nodeAPI->resetAttribute(dragImage2, NODE_IMAGE_SRC);
-        SetImageSrc(dropImage2, "/resources/seagull.png");
+        SetImageSrc(dropImage2, "/resources/base/media/seagull.png");
     } else if (result == ARKUI_DRAG_RESULT_FAILED) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
+    }
+}
+
+void GetThirdDragOperation(ArkUI_DragEvent* dragEvent)
+{
+    ArkUI_DropOperation operation;
+    OH_ArkUI_DragEvent_GetDropOperation(dragEvent, &operation);
+    if (operation == ARKUI_DROP_OPERATION_COPY) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag operation is ARKUI_DROP_OPERATION_COPY!");
+    } else if (operation == ARKUI_DROP_OPERATION_MOVE) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag operation is ARKUI_DROP_OPERATION_MOVE!");
     }
 }
 
@@ -103,6 +116,7 @@ void RegisterNodeEventThirdReceiver1(ArkUI_NodeHandle &dragNode)
             case NODE_ON_DRAG_END: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
                 GetThirdDragResult(dragEvent);
+                GetThirdDragOperation(dragEvent);
                 break;
             }
             default: {
@@ -148,7 +162,7 @@ void ResetButton(ArkUI_NodeHandle &column)
     nodeAPI->registerNodeEvent(resetButton, NODE_ON_CLICK_EVENT, 1, nullptr);
     nodeAPI->addNodeEventReceiver(resetButton, [](ArkUI_NodeEvent *event) {
         nodeAPI->resetAttribute(dropImage2, NODE_IMAGE_SRC);
-        SetImageSrc(dragImage2, "/resources/seagull.png");
+        SetImageSrc(dragImage2, "/resources/base/media/seagull.png");
     });
     nodeAPI->addChild(column, resetButton);
 }
@@ -180,8 +194,8 @@ void ThirdModule(ArkUI_NodeHandle &root)
     dragImage2 = nodeAPI->createNode(ARKUI_NODE_IMAGE);
     SetId(dragImage2, "dragImage");
     SetCommonAttribute(dragImage2, 140.0f, 140.0f, 0xFFFFFFFF, 5.0f);
-    // 图片src/main/ets/resources/seagull.png需要替换为开发者所需的资源文件
-    SetImageSrc(dragImage2, "/resources/seagull.png");
+    // 图片src/main/resources/base/media/seagull.png需要替换为开发者所需的资源文件
+    SetImageSrc(dragImage2, "/resources/base/media/seagull.png");
     OH_ArkUI_SetNodeDraggable(dragImage2, true);
     nodeAPI->registerNodeEvent(dragImage2, NODE_ON_DRAG_START, 1, nullptr);
     // [End create_imageNode]

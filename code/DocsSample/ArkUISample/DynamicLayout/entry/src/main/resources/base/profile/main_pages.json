@@ -1,0 +1,21 @@
+{
+  "src": [
+    "pages/MainPage",
+    "pages/customlayout/CustomLayoutIndex",
+    "pages/basic/CreateDynamicLayout",
+    "pages/customlayout/GridLayout",
+    "pages/customlayout/WaterFlowLayout",
+    "pages/customlayout/TagCloudLayout",
+    "pages/linearlayout/RowLayoutAlgorithm",
+    "pages/linearlayout/ColumnLayoutAlgorithm",
+    "pages/responsivelayout/ChangeAlgorithmProperties",
+    "pages/responsivelayout/ChangeLayoutAlgorithm",
+    "pages/responsivelayout/ChangeLayoutWithConditionVariable",
+    "pages/responsivelayout/ChangeLayoutWithMediaQuery",
+    "pages/responsivelayout/ReserveChildState",
+    "pages/gridlayout/GridLayoutAlgorithm",
+    "pages/stacklayout/StackLayoutAlgorithm",
+    "pages/responsivelayout/ResponsiveLayoutIndex",
+    "pages/customlayout/CustomLayoutBasic"
+  ]
+}

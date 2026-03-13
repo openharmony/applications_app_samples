@@ -33,15 +33,17 @@ struct CombinedGestureDemo {
         .borderRadius(12)
         // 通过自定义手势判定回调，判断在长按手势未成功时，拒绝子组件的滑动手势，从而让父组件Swiper的滑动手势成功
         .onGestureRecognizerJudgeBegin(
-          (event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>)=>{
-          if (current.getType() !== GestureControl.GestureType.PAN_GESTURE) {
-            return GestureJudgeResult.CONTINUE;
-          };
-          if (this.isLongPress) {
-            return GestureJudgeResult.CONTINUE;
-          };
-          return GestureJudgeResult.REJECT;
-        })
+          (event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => {
+            if (current.getType() !== GestureControl.GestureType.PAN_GESTURE) {
+              return GestureJudgeResult.CONTINUE;
+            }
+            ;
+            if (this.isLongPress) {
+              return GestureJudgeResult.CONTINUE;
+            }
+            ;
+            return GestureJudgeResult.REJECT;
+          })
         .gesture(
           // 绑定并行手势组，实现长按手势和滑动手势可以同时触发
           GestureGroup(GestureMode.Parallel,

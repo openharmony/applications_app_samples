@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { logger } from '../../../ohosTest/ets/util/Logger'
-import { obtainImgVertical, obtainImgV, obtainImgVs } from '../model/ImageList'
+import { logger } from '../../../ohosTest/ets/util/Logger';
+import { obtainImgVertical, obtainImgV, obtainImgVs } from '../model/ImageList';
 
 interface ImageList {
-  image: Resource
-  value: string
+  image: Resource;
+  value: string;
 }
 
 @Component
 export struct ButtonComponent {
   private onInputValue: (result: string) => void = () => {
-  }
+  };
 
   build() {
     Row() {
@@ -37,17 +37,18 @@ export struct ButtonComponent {
                 .objectFit(ImageFit.Cover)
             }
             .id(item.value)
-            .width('100%')
-            .height('100%')
+            .width($r('app.string.percent_100'))
+            .height($r('app.string.percent_100'))
             .borderRadius('16px')
             .backgroundColor(index !== undefined && index < 2 ? '#33007DFF' : '#FF006CDE')
             .onClick(() => {
-              logger.info('ButtonComponent', 'onClick: ' + item.value)
-              this.onInputValue(item.value)
+              logger.info('ButtonComponent', 'onClick: ' + item.value);
+              this.onInputValue(item.value);
             })
           }
           .rowStart(index !== undefined ? index : 0)
-          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) : (index !== undefined ? index : 0))
+          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) :
+            (index !== undefined ? index : 0))
           .columnStart(4)
           .columnEnd(4)
         })
@@ -65,8 +66,8 @@ export struct ButtonComponent {
             .borderRadius('16px')
             .backgroundColor('#33007DFF')
             .onClick(() => {
-              logger.info('ButtonComponent', 'onClick: ' + item.value)
-              this.onInputValue(item.value)
+              logger.info('ButtonComponent', 'onClick: ' + item.value);
+              this.onInputValue(item.value);
             })
           }
           .rowStart(index !== undefined ? index : 0)
@@ -88,8 +89,8 @@ export struct ButtonComponent {
             .borderRadius('16px')
             .backgroundColor('#F0F0F0')
             .onClick(() => {
-              logger.info('ButtonComponent', 'onClick: ' + item.value)
-              this.onInputValue(item.value)
+              logger.info('ButtonComponent', 'onClick: ' + item.value);
+              this.onInputValue(item.value);
             })
           }
           .columnStart(index === undefined ? 0 : index % 3)
@@ -102,6 +103,6 @@ export struct ButtonComponent {
       .rowsTemplate('1fr 1fr 1fr 1fr ')
     }
     .padding(10)
-    .size({ width: '100%', height: '56%' })
+    .size({ width: $r('app.string.percent_80'), height: '56%' })
   }
 }

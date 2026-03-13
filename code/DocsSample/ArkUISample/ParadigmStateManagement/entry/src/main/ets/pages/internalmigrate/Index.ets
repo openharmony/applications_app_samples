@@ -24,6 +24,7 @@ import { InternalTracesetOrCreateV1pag1 } from './Internal@TracesetOrCreateV1/Pa
 import { InternalTracesetOrCreateV1pag2 } from './Internal@TracesetOrCreateV1/Page2';
 import { InternalTraceCustomizeParam } from './InternalTraceCustomize/storage';
 import { InternalTraceCustomizeV1 } from './InternalTraceCustomize/InternalTraceCustomizeV1';
+import { LocalStorageMultiInstance } from './LocalStorageMultiInstance/Index';
 import { InternalAppStorageV1one } from './InternalAppStorageV1one';
 import { InternalAppStorageV1two } from './InternalAppStorageV1two';
 import { InternalAppStorageV2one } from './InternalAppStorageV2one';
@@ -78,12 +79,12 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Internal_Trace_setOrCreate_V1_pag2')),
   },
   {
-    name: `${INTERNAL_MIGRATE}/InternalTraceCustomize/InternalTraceCustomizeV1`,
-    title: resource.resourceToString($r('app.string.Internal_Trace_customize_V1')),
-  },
-  {
     name: `${INTERNAL_MIGRATE}/InternalTraceCustomize/storage`,
     title: resource.resourceToString($r('app.string.Internal_Trace_customize_Param')),
+  },
+  {
+    name: `${INTERNAL_MIGRATE}/LocalStorageMultiInstance/Index`,
+    title: resource.resourceToString($r('app.string.Internal_Trace_multiInstance_V2')),
   },
   {
     name: `${INTERNAL_MIGRATE}/InternalAppStorageV1one`,
@@ -205,6 +206,8 @@ export function internalTraceDestination(name: string) {
     InternalTracesetOrCreateV1pag2()
   } else if (name === `${INTERNAL_MIGRATE}/InternalTraceCustomize/InternalTraceCustomizeV1`) {
     InternalTraceCustomizeV1()
+  } else if (name === `${INTERNAL_MIGRATE}/LocalStorageMultiInstance/Index`) {
+    LocalStorageMultiInstance()
   } else if (name === `${INTERNAL_MIGRATE}/InternalTraceCustomize/storage`) {
     InternalTraceCustomizeParam()
   } else if (name === `${INTERNAL_MIGRATE}/InternalAppStorageV1one`) {

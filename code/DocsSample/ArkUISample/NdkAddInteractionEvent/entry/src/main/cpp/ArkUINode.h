@@ -55,7 +55,7 @@ public:
         }
         nativeModule_->removeNodeEventReceiver(handle_, ArkUINode::NodeEventReceiver);
     }
-
+    // 设置节点宽度
     void SetWidth(float width)
     {
         if (!handle_) {
@@ -65,6 +65,7 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_WIDTH, &item);
     }
+    // 设置节点宽度（百分比形式）
     void SetPercentWidth(float percent)
     {
         if (!handle_) {
@@ -74,6 +75,7 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_WIDTH_PERCENT, &item);
     }
+    // 设置节点高度
     void SetHeight(float height)
     {
         if (!handle_) {
@@ -83,6 +85,7 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_HEIGHT, &item);
     }
+    // 设置节点高度（百分比形式）
     void SetPercentHeight(float percent)
     {
         if (!handle_) {
@@ -92,6 +95,7 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_HEIGHT_PERCENT, &item);
     }
+    // 设置节点背景颜色
     void SetBackgroundColor(uint32_t color)
     {
         if (!handle_) {

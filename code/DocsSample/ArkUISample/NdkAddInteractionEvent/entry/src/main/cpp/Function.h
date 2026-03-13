@@ -30,6 +30,7 @@ namespace NativeModule {
 
 const unsigned int WIDTH_SIZE = 200;
 const unsigned int GINGERS_NUM_1 = 1;
+const unsigned int NUMBER_2 = 2;
 const unsigned int NUMBER_10 = 10;
 const unsigned int DURATION_NUM_100 = 100;
 const unsigned int DURATION_NUM_1000 = 1000;
@@ -60,7 +61,7 @@ struct ColorModeInfo {
     const char* darkMsg;
 };
 
-//注册回调函数
+// 注册回调函数
 void onColorModeChange(ArkUI_SystemColorMode colorMode, void *userData)
 {
     ColorModeInfo* info = static_cast<ColorModeInfo*>(userData);
@@ -206,15 +207,15 @@ void ThirdModule(ArkUI_NodeHandle &root)
     SetHeight(button, HEIGHT_70);
     SetButtonLabel(button, "test_unregister");
     
-    // [Start unregister_node_event_receicer]
+    // [Start unregister_node_event_receiver]
     nodeAPI->unregisterNodeEventReceiver();
-    // [End unregister_node_event_receicer]
+    // [End unregister_node_event_receiver]
     // [Start unregister_node_event]
     nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK_EVENT);
     // [End unregister_node_event]
-    // [Start remove_node_evect_receiver]
+    // [Start remove_node_event_receiver]
     nodeAPI->removeNodeEventReceiver(button, NodeEventReceiver);
-    // [End remove_node_evect_receiver]
+    // [End remove_node_event_receiver]
     nodeAPI->addChild(column, button);
     nodeAPI->addChild(root, column);
 }
@@ -263,8 +264,8 @@ ArkUI_GestureRecognizer* CreatePinchGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建捏合手势
-    // NUMBER_10 = 10
-    auto pinchGesture = gestureApi->createPinchGesture(1, NUMBER_10);
+    // NUMBER_2 = 2，NUMBER_10 = 10
+    auto pinchGesture = gestureApi->createPinchGesture(NUMBER_2, NUMBER_10);
     // [End create_pinch_gesture]
     return pinchGesture;
 }
@@ -276,8 +277,8 @@ ArkUI_GestureRecognizer* CreateRotationGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建旋转手势
-    // NUMBER_10 = 10
-    auto rotationGesture = gestureApi->createRotationGesture(1, NUMBER_10);
+    // NUMBER_2 = 2，NUMBER_10 = 10
+    auto rotationGesture = gestureApi->createRotationGesture(NUMBER_2, NUMBER_10);
     // [End create_rotation_gesture]
     return rotationGesture;
 }

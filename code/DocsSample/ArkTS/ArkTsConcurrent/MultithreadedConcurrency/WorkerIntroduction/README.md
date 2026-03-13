@@ -27,35 +27,45 @@ entry/src/
  │   ├── ets
  │   │   ├── entryability
  │   │   ├── entrybackupability
+ │   │   ├── MainAbility
+ │   │       ├── workers
+ │   │           ├── worker.ets            // 编译使用
  │   │   ├── managers
  │   │       ├── basicusage.ets            // Worker基本用法示例
+ │   │       ├── CreateWorker.ets          // 文件路径注意事项
  │   │       ├── crosshar.ets              // 跨har包加载Worker
+ │   │       ├── Index.ets                 // Worker基本用法示例
  │   │       ├── notrecommendedone.ets     // 不推荐使用示例1
  │   │       ├── notrecommendedtwo.ets     // 不推荐使用示例2
- │   │       ├── recommend.ets		       // 推荐使用示例
- │   │       ├── stageRules.ets		       // Stage模型下的文件路径规则
+ │   │       ├── recommend.ets             // 推荐使用示例
+ │   │       ├── stageRules.ets            // Stage模型下的文件路径规则
+ │   │       ├── StageRulesFa.ets          // Stage模型下的文件路径规则1
+ │   │       ├── StageRulesHar.ets         // Stage模型下的文件路径规则2
+ │   │       ├── StageRulesThreadFile.ets  // Stage模型下的文件路径规则3
  │   │   ├── notrecommendedoneworker
- │   │       ├── childworker.ets		   // 不推荐使用示例1
- │   │       ├── parentworker.ets		   // 不推荐使用示例1
+ │   │       ├── childworker.ets           // 不推荐使用示例1
+ │   │       ├── parentworker.ets          // 不推荐使用示例1
  │   │   ├── notrecommendedtwoworker
- │   │       ├── childworker.ets		   // 不推荐使用示例2
- │   │       ├── parentworker.ets		   // 不推荐使用示例2
+ │   │       ├── childworker.ets           // 不推荐使用示例2
+ │   │       ├── parentworker.ets          // 不推荐使用示例2
  │   │   ├── pages
  │   │       ├── Index.ets                 // 首页
  │   │   ├── recommendworkers
- │   │       ├── childworker.ets		   // 推荐使用示例
- │   │       ├── parentworker.ets		   // 推荐使用示例
+ │   │       ├── childworker.ets           // 推荐使用示例
+ │   │       ├── parentworker.ets          // 推荐使用示例
  │   │   ├── util
- │   │       ├── CommonButton.ets 		   // 首页跳转UI
- │   │       ├── resource.ets 		       // 资源引用转换
+ │   │       ├── CommonButton.ets          // 首页跳转UI
+ │   │       ├── resource.ets              // 资源引用转换
  │   │   ├── workers
- │   │       ├── worker.ets				   // Worker基本用法示例
+ │   │       ├── worker.ets                // Worker基本用法示例
+ │   │       ├── ChildWorker.ets           // 不推荐使用示例
+ │   │       ├── ParentWorker.ets          // 不推荐使用示例 
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
  │   ├── ets
  │   │   ├── test
- │   │       ├── Ability.test.ets           // 自动化测试代码
+ │   │       ├── Ability.test.ets          // 自动化测试代码
 ```
 
 ### 相关权限

@@ -15,7 +15,7 @@
 import deviceManager from '@ohos.distributedDeviceManager';
 import Logger from '../model/Logger'
 
-const TAG: string = 'DeviceDialog'
+const TAG: string = 'DeviceDialog';
 
 @CustomDialog
 export struct DeviceDialog {
@@ -23,14 +23,14 @@ export struct DeviceDialog {
   @StorageLink('deviceList') deviceList: Array<deviceManager.DeviceBasicInfo> = AppStorage.get('deviceList')!;
   private selectedIndex: number | undefined = 0;
   private onSelectedIndexChange: (selectedIndex: number | undefined) => void = () => {
-  }
-  @State deviceDialogWidth: number = 0
+  };
+  @State deviceDialogWidth: number = 0;
 
   build() {
     Column() {
       Text($r('app.string.choiceDevice'))
-        .fontSize(px2vp(30))
-        .width('100%')
+        .fontSize(this.getUIContext().px2vp(30))
+        .width($r('app.string.percent_100'))
         .height('20%')
         .fontColor(Color.Black)
         .textAlign(TextAlign.Start)
@@ -39,7 +39,7 @@ export struct DeviceDialog {
           ListItem() {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
               Text(item.deviceName)
-                .fontSize(px2vp(30))
+                .fontSize(this.getUIContext().px2vp(30))
                 .width('80%')
                 .fontColor(Color.Black)
               Radio({ value: '', group: 'radioGroup' })
@@ -52,23 +52,24 @@ export struct DeviceDialog {
             }
             .margin({ top: 17 })
             .onClick(() => {
-              Logger.debug(TAG, `select device: ${item.deviceId}`)
-              Logger.debug(TAG, `deviceList: ${JSON.stringify(this.deviceList)}`)
+              Logger.debug(TAG, `select device: ${item.deviceId}`);
+              Logger.debug(TAG, `deviceList: ${JSON.stringify(this.deviceList)}`);
               if (this.selectedIndex !== undefined && index === this.selectedIndex) {
-                Logger.info(TAG, `index:${JSON.stringify(index)} ty:${JSON.stringify(typeof (index))} this.selectedIndex:${JSON.stringify(this.selectedIndex)} ${JSON.stringify(typeof (this.selectedIndex))}`)
-                return
+                Logger.info(TAG,
+                  `index:${JSON.stringify(index)} ty:${JSON.stringify(typeof (index))} this.selectedIndex:${JSON.stringify(this.selectedIndex)} ${JSON.stringify(typeof (this.selectedIndex))}`);
+                return;
               } else if (this.selectedIndex !== undefined) {
-                this.selectedIndex = index
-                this.onSelectedIndexChange(this.selectedIndex)
+                this.selectedIndex = index;
+                this.onSelectedIndexChange(this.selectedIndex);
               }
             })
           }
-          .width('100%')
+          .width($r('app.string.percent_100'))
           .height('50%')
         }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .height('60%')
-      .width('100%')
+      .width($r('app.string.percent_100'))
       .layoutWeight(1)
 
       Button() {
@@ -82,16 +83,17 @@ export struct DeviceDialog {
       .backgroundColor(Color.White)
       .onClick(() => {
         if (this.controller !== undefined) {
-          this.controller.close()
+          this.controller.close();
         }
       })
     }
     .margin({ bottom: 15 })
-    .onAreaChange((oldArea: Area, newArea: Area) => {
-      this.deviceDialogWidth = (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1 //percentage
+    .onAreaChange((newArea: Area) => {
+      this.deviceDialogWidth =
+        (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1; //percentage
     })
-    .width('80%')
-    .height(px2vp(240))
+    .width($r('app.string.percent_80'))
+    .height(this.getUIContext().px2vp(240))
     .padding({ left: 18, right: 32 })
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })

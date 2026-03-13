@@ -21,7 +21,7 @@ import { taskpool } from '@kit.ArkTS';
 async function sum(object: MyObject) {
   object.value = 2000;
   let num = object.plusOne();
-  console.info('taskpool thread num is ' + num); // 日志输出：taskpool thread num is 2001。
+  console.info('taskpool thread num is ' + num); // 日志输出：taskpool thread num is 2001
   return num;
 }
 
@@ -36,15 +36,15 @@ struct Index {
         Button(this.message)
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
-          .onClick( async () => {
-            let object : MyObject = new MyObject(0);
+          .onClick(async () => {
+            let object: MyObject = new MyObject(0);
             object.value = 1023;
             let num = object.plusOne();
-            console.info('host thread num1 is ' + num); // 日志输出：host thread num1 is 1024。
+            console.info('host thread num1 is ' + num); // 日志输出：host thread num1 is 1024
             let task = new taskpool.Task(sum, object);
             let result = await taskpool.execute(task);
-            console.info('host thread result is ' + result); // 日志输出：host thread result is 2001。
-            console.info('host thread num2 is ' + object.value); // 日志输出：host thread num2 is 2001。
+            console.info('host thread result is ' + result); // 日志输出：host thread result is 2001
+            console.info('host thread num2 is ' + object.value); // 日志输出：host thread num2 is 2001
             this.message = 'host thread num2 is ' + object.value;
           })
       }

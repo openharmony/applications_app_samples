@@ -10,7 +10,7 @@
 
 | 预览                                      | 
 | -------------------------------------------- | 
-<img src="./screenshots/styledString.jpeg" width="300" />
+<img src="./screenshots/styledString.jpg" width="300" />
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；

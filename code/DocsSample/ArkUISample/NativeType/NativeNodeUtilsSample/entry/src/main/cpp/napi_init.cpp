@@ -45,6 +45,8 @@ static napi_value Init(napi_env env, napi_value exports) {
         {"DestroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"createNativeRoot", nullptr, NAPI_Global_createNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr },
+        {"CreateNativeMessageRoot", nullptr, NativeModule::CreateNativeMessageRoot, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

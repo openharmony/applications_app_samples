@@ -17,6 +17,7 @@
 #include "GridIrregularIndexesMaker.h"
 #include "GridMaker.h"
 #include "GridRectByIndexMaker.h"
+#include "GridDragEventMaker.h"
 #include "TextMaker.h"
 #include "SwiperMaker.h"
 #include "WaterFlowMaker.h"
@@ -24,6 +25,7 @@
 #include "RefreshMaker.h"
 #include "LinearMaker.h"
 #include "ListMaker.h"
+#include "TextEditorMaker.h"
 #include "PublicEvent.h"
 #include "baseUtils.h"
 #include "napi/native_api.h"
@@ -132,6 +134,12 @@ napi_value Manager::CreateGridNativeNodeIrregularIndexes(napi_env env, napi_call
                             []() -> ArkUI_NodeHandle { return GridIrregularIndexesMaker::CreateNativeNode(); });
 }
 
+napi_value Manager::CreateGridNativeNodeDragEvent(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateGridNativeNodeDragEvent",
+                            []() -> ArkUI_NodeHandle { return GridDragEventMaker::CreateNativeNode(); });
+}
+
 napi_value Manager::CreateScrollNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateScrollNativeNode",
@@ -155,6 +163,13 @@ napi_value Manager::CreatePublicNativeNode(napi_env env, napi_callback_info info
         return CreateNativeNode(
             env, info, "CreatePublicNativeNode",
             []() -> ArkUI_NodeHandle { return PublicMaker::CreateNativeNode(); });
+}
+
+napi_value Manager::CreateNativeTextEditorNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeTextEditorNode");
+    return CreateNativeNode(env, info, "CreateNativeTextNode",
+                            []() -> ArkUI_NodeHandle { return TextEditorMaker::CreateNativeNode(); });
 }
 
 ArkUI_NativeNodeAPI_1 *Manager::XnodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(

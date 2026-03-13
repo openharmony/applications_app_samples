@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 // [Start define_resolveThree]
-// Index.ets
+// SoluteMismatchTypeThree.ets
 import { collections } from '@kit.ArkTS'
 
 @Sendable
 export class CollectionsArray extends collections.Array<string> {
   public ans: string = 'test';
+
   constructor() {
     super();
   }
@@ -27,7 +28,8 @@ export class CollectionsArray extends collections.Array<string> {
     this.ans = str;
   }
 }
+
 let arr = new CollectionsArray();
-arr.slice(1)
-arr.set('success')
+arr.slice(1);
+arr.set('success');
 // [End define_resolveThree]

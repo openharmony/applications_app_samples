@@ -2,7 +2,6 @@
   "src": [
     "pages/Index",
     "pages/AppStorageV2",
-    "pages/PageOne",
-    "pages/PageTwo"
+    "pages/PageOne"
   ]
 }

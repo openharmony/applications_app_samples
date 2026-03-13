@@ -95,14 +95,14 @@ struct DocSampleArrayOfArrays {
           this.topArray.shift();
         })
 
-      // 不会触发路径为'topArray.1.*的@SyncMonitor的回调
+      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
       // 因为脏的路径中包含'topArray.*'，会触发路径为'topArray.*'的@SyncMonitor的回调
       Button('topArray[0] = new ArrayOfPerson')
         .onClick(() => {
           this.topArray[0] = new ArrayOfPerson(new Person(), new Person());
         })
 
-      // 不会触发路径为'topArray.1.*的@SyncMonitor的回调
+      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
       // 不会触发路径为'topArray.*'的@SyncMonitor的回调
       Button('topArray[1][0].last update')
         .onClick(() => {

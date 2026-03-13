@@ -33,6 +33,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
       handler.syncGet();
       workerPort.postMessage('success get');
       break;
+    default:
+      break;
   }
 }
 // [End worker_handle_associated_sync_task]

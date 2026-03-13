@@ -20,17 +20,20 @@
 // [EndExclude attribute_video]
 @Component
 export struct AttributeVideo {
+  // $rawfile('videoTest.mp4')需要替换为开发者所需的影像资源文件
+  private videoSrc: Resource = $rawfile('videoTest.mp4');
   private controller: VideoController = new VideoController();
 
   build() {
     Column() {
       Video({
+        src: this.videoSrc,
         controller: this.controller
       })
         .muted(false) // 设置是否静音
         .controls(false) // 设置是否显示默认控制条
-        .autoPlay(false) // 设置是否自动播放
-        .loop(false) // 设置是否循环播放
+        .autoPlay(true) // 设置是否自动播放
+        .loop(true) // 设置是否循环播放
         .objectFit(ImageFit.Contain) // 设置视频填充模式
     }
   }

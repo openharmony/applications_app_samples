@@ -16,6 +16,7 @@
 #ifndef CAMERA_NDK_CAMERA_H
 #define CAMERA_NDK_CAMERA_H
 
+// [Start import_header]
 #include <cstdint>
 #include <cstdlib>
 #include "hilog/log.h"
@@ -36,7 +37,7 @@
 #include <multimedia/media_library/media_asset_change_request_capi.h>
 #include <multimedia/media_library/media_access_helper_capi.h>
 #include <multimedia/image_framework/image/image_packer_native.h>
-
+// [End import_header]
 #include <cmath>
 #include <sensors/oh_sensor.h>
 #include <thread>
@@ -44,6 +45,9 @@
 #include <native_image/native_image.h>
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
+
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
 
 namespace OHOS_CAMERA_NDK_SAMPLE {
 
@@ -83,6 +87,8 @@ public:
     Camera_ErrorCode VideoOutputStop(void);
     Camera_ImageRotation GetDeviceRotation();
     Camera_ImageRotation GetPreviewRotation(int32_t rotation);
+    int32_t GetDefaultDisplayRotation();
+    void InitPreviewRotation();
 
 private:
     enum CurRatio {

@@ -36,19 +36,19 @@ public:
         if (thisVar == nullptr) {
             return nullptr;
         }
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        
+
         uint64_t addressVal = reinterpret_cast<uint64_t>(object);
         napi_value address = nullptr;
         napi_create_bigint_uint64(env, addressVal, &address);
         return address;
     }
 
-    // 获取数组大小。
+    // 获取数组大小
     static napi_value GetSetSize(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -56,20 +56,20 @@ public:
         if (thisVar == nullptr) {
             return nullptr;
         }
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        CustomNativeObject* obj = static_cast<CustomNativeObject*>(object);
+        CustomNativeObject *obj = static_cast<CustomNativeObject*>(object);
         std::lock_guard<std::mutex> lock(obj->numberSetMutex_);
-        uint32_t setSize = reinterpret_cast<CustomNativeObject*>(object)->numberSet_.size();
+        uint32_t setSize = reinterpret_cast<CustomNativeObject *>(object)->numberSet_.size();
         napi_value napiSize = nullptr;
         napi_create_uint32(env, setSize, &napiSize);
         return napiSize;
     }
 
-    // 往数组里插入元素。
+    // 往数组里插入元素
     static napi_value Store(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -90,21 +90,21 @@ public:
             return nullptr;
         }
         
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        
+
         uint32_t value = 0;
         napi_get_value_uint32(env, args[0], &value);
-        CustomNativeObject* obj = static_cast<CustomNativeObject*>(object);
+        CustomNativeObject *obj = static_cast<CustomNativeObject *>(object);
         std::lock_guard<std::mutex> lock(obj->numberSetMutex_);
         reinterpret_cast<CustomNativeObject *>(object)->numberSet_.insert(value);
         return nullptr;
     }
 
-    // 删除数组元素。
+    // 删除数组元素
     static napi_value Erase(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -125,22 +125,22 @@ public:
             return nullptr;
         }
         
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        
+
         uint32_t value = 0;
         napi_get_value_uint32(env, args[0], &value);
         
-        CustomNativeObject* obj = static_cast<CustomNativeObject*>(object);
+        CustomNativeObject *obj = static_cast<CustomNativeObject *>(object);
         std::lock_guard<std::mutex> lock(obj->numberSetMutex_);
         reinterpret_cast<CustomNativeObject *>(object)->numberSet_.erase(value);
         return nullptr;
     }
 
-    // 清空数组。
+    // 清空数组
     static napi_value Clear(napi_env env, napi_callback_info info)
     {
         napi_value thisVar = nullptr;
@@ -148,18 +148,18 @@ public:
         if (thisVar == nullptr) {
             return nullptr;
         }
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        CustomNativeObject* obj = static_cast<CustomNativeObject*>(object);
+        CustomNativeObject *obj = static_cast<CustomNativeObject *>(object);
         std::lock_guard<std::mutex> lock(obj->numberSetMutex_);
         reinterpret_cast<CustomNativeObject *>(object)->numberSet_.clear();
         return nullptr;
     }
     
-    // 设置传输模式。
+    // 设置传输模式
     static napi_value SetTransferDetached(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -170,32 +170,32 @@ public:
             napi_throw_error(env, nullptr, "SetTransferDetached args number must be one.");
             return nullptr;
         }
-        
+
         if (thisVar == nullptr) {
             return nullptr;
         }
-        
+
         napi_valuetype type = napi_undefined;
         napi_typeof(env, args[0], &type);
         if (type != napi_boolean) {
             napi_throw_error(env, nullptr, "SetTransferDetached args is not boolean.");
             return nullptr;
         }
-        
+
         bool isDetached;
         napi_get_value_bool(env, args[0], &isDetached);
         
-        void* object = nullptr;
+        void *object = nullptr;
         napi_unwrap(env, thisVar, &object);
         if (object == nullptr) {
             return nullptr;
         }
-        CustomNativeObject* obj = static_cast<CustomNativeObject*>(object);
+        CustomNativeObject *obj = static_cast<CustomNativeObject *>(object);
         std::lock_guard<std::mutex> lock(obj->numberSetMutex_);
         obj->isDetached_ = isDetached;
         return nullptr;
     }
-    
+
     bool isDetached_ = false;
 
 private:
@@ -211,7 +211,7 @@ void FinalizeCallback(napi_env env, void *data, void *hint)
     return;
 }
 
-// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作。
+// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
 void* DetachCallback(napi_env env, void *value, void *hint)
 {
     if (hint == nullptr) {
@@ -219,14 +219,14 @@ void* DetachCallback(napi_env env, void *value, void *hint)
     }
     napi_value jsObject = nullptr;
     napi_get_reference_value(env, reinterpret_cast<napi_ref>(hint), &jsObject);
-    void* object = nullptr;
-    if (static_cast<CustomNativeObject*>(value)->isDetached_) {
+    void *object = nullptr;
+    if (static_cast<CustomNativeObject *>(value)->isDetached_) {
         napi_remove_wrap(env, jsObject, &object);
     }
     return value;
 }
 
-// 绑定回调，在反序列化时调用。
+// 绑定回调，在反序列化时调用
 napi_value AttachCallback(napi_env env, void* value, void* hint)
 {
     napi_value object = nullptr;
@@ -238,9 +238,9 @@ napi_value AttachCallback(napi_env env, void* value, void* hint)
         {"erase", nullptr, CustomNativeObject::Erase, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"clear", nullptr, CustomNativeObject::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
-    // 将JS对象object和native对象value生命周期进行绑定。
+    // 将JS对象object和native对象value生命周期进行绑定
     napi_wrap(env, object, value, FinalizeCallback, nullptr, nullptr);
-    // JS对象携带native信息。
+    // JS对象携带native信息
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, nullptr);
     return object;
 }
@@ -258,11 +258,11 @@ static napi_value Init(napi_env env, napi_value exports)
             nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     auto &object = CustomNativeObject::GetInstance();
-    napi_wrap(env, exports, reinterpret_cast<void*>(&object), FinalizeCallback, nullptr, nullptr);
+    napi_wrap(env, exports, reinterpret_cast<void *>(&object), FinalizeCallback, nullptr, nullptr);
     napi_ref exportsRef;
     napi_create_reference(env, exports, 1, &exportsRef);
     napi_coerce_to_native_binding_object(env, exports, DetachCallback,
-        AttachCallback, reinterpret_cast<void*>(&object), exportsRef);
+        AttachCallback, reinterpret_cast<void *>(&object), exportsRef);
     return exports;
 }
 EXTERN_C_END
@@ -273,8 +273,8 @@ static napi_module demoModule = {
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
+    .nm_priv = ((void *)0),
+    .reserved = {0},
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void)

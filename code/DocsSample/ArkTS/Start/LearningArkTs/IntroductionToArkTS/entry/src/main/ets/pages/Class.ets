@@ -58,7 +58,7 @@ class Person1 {
     return this.name;
   }
 }
-// [StartExclude instance_field_declaration]
+  // [StartExclude instance_field_declaration]
 function testInstanceField() {
   // [EndExclude instance_field_declaration]
   let p1 = new Person1('Alice', 25);
@@ -104,7 +104,7 @@ class Person3 {
 
 let jack = new Person3();
 // 假设代码中没有对name赋值，即没有调用"jack.setName('Jack')"
-jack.getName().length; // 0, 没有运行时异常
+jack.getName().length; // 0，没有运行时异常
 // [End non_nullable_field]
 // [Start getter_setter_methods]
 class Person4 {
@@ -118,14 +118,25 @@ class Person4 {
     this._age = x;
   }
 }
-// [StartExclude getter_setter_methods]
-function testClassSetterAge() {
+  // [StartExclude getter_setter_methods]
+try {
   // [EndExclude getter_setter_methods]
   let p = new Person4();
   p.age; // 输出0
-  // [StartExclude getter_setter_methods]
-  console.info(`p.age: ${p.age}`);
+  p.age = -42; // 设置无效age值会抛出错误
+  // [End getter_setter_methods]
+} catch (e) {
+  console.info('Invalid age argument');
+  let logMsg = 'Invalid age argument (捕获到错误)';
+  if (globalLogUpdate) {
+    globalLogUpdate(logMsg, true);
+  }
+}
 
+function testClassSetterAge() {
+  let p = new Person4();
+  p.age; // 输出0
+  console.info(`p.age: ${p.age}`);
   let logMsg = `p.age: ${p.age}`;
   if (globalLogUpdate) {
     globalLogUpdate(logMsg, false);
@@ -135,9 +146,7 @@ function testClassSetterAge() {
 function testClassSetterAgeError() {
   try {
     let p = new Person4();
-    // [EndExclude getter_setter_methods]
     p.age = -42; // 设置无效age值会抛出错误
-    // [End getter_setter_methods]
   } catch (e) {
     console.info('Invalid age argument');
     let logMsg = 'Invalid age argument (捕获到错误)';
@@ -177,7 +186,7 @@ class C2 {
     return 'this is a static method.';
   }
 }
-// [StartExclude static_method_declaration]
+  // [StartExclude static_method_declaration]
 function testStaticMethod() {
   // [EndExclude static_method_declaration]
   console.info(C2.staticMethod());
@@ -352,7 +361,7 @@ let map: Record<string, number> = {
   'John': 25,
   'Mary': 21
 };
-// [StartExclude record_type_basic]
+  // [StartExclude record_type_basic]
 function testRecord() {
   // [EndExclude record_type_basic]
   map['John']; // 25

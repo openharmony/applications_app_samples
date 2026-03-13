@@ -54,7 +54,7 @@ interface Params {
 
 @Entry
 @Component
- struct Index {
+struct Index {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
   @State isLand: boolean = false;
   @State currentTimeText: string = '';
@@ -71,10 +71,12 @@ interface Params {
   @StorageLink('totalTimeText') totalTimeText: string = '00:00';
   @State albumSrc: Resource = $r('app.media.album');
   @State selectedIndex: number = 0;
-  @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')];
+  @State imageArrays: Array<Resource> =
+    [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')];
   private dialogController: CustomDialogController | null = null;
   @StorageLink('exitMusicApp') @Watch('exitMusicApp') isExitMusicApp: boolean = false;
-  @StorageLink('remoteServiceExtensionConnectEvent') @Watch('remoteServiceExtensionConnectEvent') isRemoteServiceExtensionConnectEvent: boolean = false;
+  @StorageLink('remoteServiceExtensionConnectEvent') @Watch('remoteServiceExtensionConnectEvent') remoteServiceExtensionConnectEventState: string =
+    MusicConnectEvent.EVENT_DISCONNECT;
   @StorageLink('musicPlay') @Watch('musicPlay') isMusicPlay: boolean = false;
   @StorageLink('musicPause') @Watch('musicPause') isMusicPause: boolean = false;
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel();
@@ -88,7 +90,7 @@ interface Params {
       this.isLand = true;
     } else {
       this.isLand = false;
-    };
+    }
   };
 
   showDialog() {
@@ -101,14 +103,15 @@ interface Params {
         deviceType: '0',
         networkId: ''
       });
-      let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists : this.remoteDeviceModel.deviceLists;
+      let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists :
+        this.remoteDeviceModel.deviceLists;
       for (let i = 0; i < deviceTempList.length; i++) {
         Logger.info(TAG, `device ${i}/${deviceTempList.length} deviceId= ${deviceTempList[i].deviceId},
          deviceName= ${deviceTempList[i].deviceName}, deviceType= ${deviceTempList[i].deviceType}`);
         this.deviceLists.push(deviceTempList[i]);
         Logger.info(TAG, `deviceLists:${JSON.stringify(this.deviceLists)}`);
         Logger.info(TAG, 'deviceLists push end');
-      };
+      }
       Logger.info(TAG, 'CustomDialogController start');
       if (this.dialogController !== null) {
         this.dialogController.close();
@@ -126,7 +129,7 @@ interface Params {
       this.dialogController.open();
       Logger.info(TAG, 'CustomDialogController end');
     })
-  };
+  }
 
   showPromptDialog(title: ResourceStr, str: ResourceStr) {
     AlertDialog.show({
@@ -141,10 +144,12 @@ interface Params {
       cancel: () => {
         Logger.info(TAG, `Closed callbacks`);
       }
-    });
-  };
+    })
+  }
 
-  remoteServiceExtensionConnectEvent(event: string) {
+  remoteServiceExtensionConnectEvent(paramName: string) {
+    let event: string = this.remoteServiceExtensionConnectEventState;
+    Logger.info(TAG, 'remoteServiceExtensionConnectEvent:' + event);
     if (typeof (event) === 'string') {
       let viewThis = AppStorage.get<Index>('viewThis');
       if (viewThis !== undefined) {
@@ -168,38 +173,39 @@ interface Params {
       }
     } else {
       Logger.info(TAG, 'event is not a string');
-    };
-  };
+    }
+  }
 
   musicPause() {
     Logger.info(TAG, 'music pause recv');
     PlayerModel.pause();
     let viewThis = AppStorage.get<Index>('viewThis');
     viewThis!.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play');
-  };
+  }
 
   musicPlay() {
     Logger.info(TAG, 'music play recv');
     PlayerModel.play(DEFAULT_NUM, true);
     let viewThis = AppStorage.get<Index>('viewThis');
     viewThis!.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
-  };
+  }
 
   exitMusicApp() {
     Logger.info(TAG, `exit music app called`);
     if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object') {
       let option = new rpc.MessageOption();
-      let data = new rpc.MessageParcel();
-      let reply = new rpc.MessageParcel();
-      this.localExtensionRemote.sendRequest(
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
+      this.localExtensionRemote.sendMessageRequest(
         MusicSharedEventCode.STOP_LOCAL_SERIVCE,
         data,
         reply,
         option);
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
-    };
-  };
+      Logger.info(TAG,
+        `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
+    }
+  }
 
   connectLocalExtension() {
     let localServiceWant: Want = {
@@ -215,7 +221,7 @@ interface Params {
         if (this.context !== null) {
           this.context.terminateSelf();
           Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`);
-        };
+        }
       },
       onFailed: (code) => {
         if (this.context !== null) {
@@ -226,60 +232,75 @@ interface Params {
     };
     if (this.context !== null) {
       this.context.connectServiceExtensionAbility(localServiceWant, connectOptions);
-    };
+    }
   };
 
   startRemoteExtension(deviceId: string, params: object) {
-    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' && typeof (deviceId) === 'string' && deviceId !== '') {
+    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' &&
+      typeof (deviceId) === 'string' && deviceId !== '') {
       let option = new rpc.MessageOption();
-      let data = new rpc.MessageParcel();
-      let reply = new rpc.MessageParcel();
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
       data.writeString(deviceId);
       data.writeString(JSON.stringify(params));
-      this.localExtensionRemote.sendRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply, option);
+      this.localExtensionRemote.sendMessageRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply,
+        option).then((result) => {
+          Logger.info(TAG, 'startRemoteExtension success ' + JSON.stringify( result));
+      }).catch((error:BusinessError) => {
+          Logger.info(TAG, 'startRemoteExtension error ' + JSON.stringify( error));
+      });
       this.deviceId = deviceId;
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop');
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
-    };
-  };
+      Logger.info(TAG,
+        `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
+    }
+  }
 
   stopRemoteExtension() {
-    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' && typeof (this.deviceId) === 'string' && this.deviceId !== '') {
+    Logger.info('stopRemoteExtension' + this.deviceId);
+    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' &&
+      typeof (this.deviceId) === 'string' && this.deviceId !== '') {
       let option = new rpc.MessageOption();
-      let data = new rpc.MessageParcel();
-      let reply = new rpc.MessageParcel();
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
       data.writeString(this.deviceId);
-      this.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply, option);
+      this.localExtensionRemote.sendMessageRequest(MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE, data, reply,
+        option).then((result) => {
+        Logger.info('TAG, stopRemoteExtension success ' + JSON.stringify( result));
+      }).catch((error:BusinessError) => {
+        Logger.info('TAG, stopRemoteExtension error ' + JSON.stringify( error));
+      });
       this.deviceId = '';
     } else {
-      Logger.info(TAG, `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
-    };
-  };
+      Logger.info(TAG,
+        `Remote stopped type is wrong or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
+    }
+  }
 
   sendMessagePlay() {
     if (this.localExtensionRemote !== null) {
       let option = new rpc.MessageOption();
-      let data = new rpc.MessageParcel();
-      let reply = new rpc.MessageParcel();
-      this.localExtensionRemote.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option);
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
+      this.localExtensionRemote.sendMessageRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option);
       Logger.info(TAG, `onPlayClick send mssage success`);
     } else {
       Logger.info(TAG, `can not get proxy`);
       return;
-    };
-  };
+    }
+  }
 
   sendMessagePause() {
     if (this.localExtensionRemote === null) {
       Logger.info(TAG, `can not get proxy`);
       return;
-    };
+    }
     let option = new rpc.MessageOption();
-    let data = new rpc.MessageParcel();
-    let reply = new rpc.MessageParcel();
+    let data = new rpc.MessageSequence();
+    let reply = new rpc.MessageSequence();
 
-    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE, data, reply, option);
+    this.localExtensionRemote.sendMessageRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE, data, reply, option);
     Logger.info(TAG, `onPauseClick send mssage success`);
   };
 
@@ -287,17 +308,17 @@ interface Params {
     if (this.isDialogShowing === true) {
       this.dismissDialog();
       return true;
-    };
+    }
     return false;
-  };
+  }
 
   onPageHide() {
     if (this.isDialogShowing === true) {
       this.dismissDialog();
       return true;
-    };
+    }
     return false;
-  };
+  }
 
   dismissDialog() {
     if (this.dialogController !== null) {
@@ -305,34 +326,35 @@ interface Params {
     }
     this.remoteDeviceModel.unregisterDeviceListCallback();
     this.isDialogShowing = false;
-  };
+  }
 
   startAbilityContinuation(deviceId: string) {
     let params: Params = {
       uri: '',
       seekTo: 0,
       isPlaying: false
-    };
-    Logger.info(TAG, `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`);
+    }
+    Logger.info(TAG,
+      `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`);
     if (PlayerModel.index >= 0 && PlayerModel.index <= PlayerModel.playlist.audioFiles.length) {
       params = {
         uri: PlayerModel.playlist.audioFiles[PlayerModel.index].fileUri,
         seekTo: PlayerModel.getCurrentMs(),
         isPlaying: PlayerModel.isPlaying
       };
-    };
+    }
     Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`);
     if (this.context !== null) {
       KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
         Logger.info(TAG, 'OnMessageReceived, terminateSelf');
       });
-    };
+    }
     Logger.info(TAG, `context.startAbility start`);
     this.clickFlag = MusicSharedStatus.MUSIC_REMOTING;
     this.startRemoteExtension(deviceId, params);
     this.clearSelectState();
     Logger.info(TAG, 'context.startAbility end');
-  };
+  }
 
   selectedIndexChange = (selectedIndex: number) => {
     Logger.info(TAG, `selectedIndexChanged selectedIndex: ${selectedIndex}`);
@@ -343,7 +365,8 @@ interface Params {
     Logger.info(TAG, `this.deviceLists[selectedIndex]:${JSON.stringify(this.deviceLists[selectedIndex])}`);
     Logger.info(TAG, `deviceId:${JSON.stringify(this.deviceLists[selectedIndex].deviceId)}`);
     if (this.context !== null && selectedIndex === 0) {
-      this.context.startAbility({ bundleName: 'ohos.samples.distributedmusicplayer',
+      this.context.startAbility({
+        bundleName: 'ohos.samples.distributedmusicplayer',
         abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
         deviceId: this.deviceLists[selectedIndex]!.deviceId,
         parameters: {
@@ -361,37 +384,39 @@ interface Params {
       }
       this.deviceLists = [];
       return;
-    };
+    }
     this.selectedIndex = selectedIndex;
     this.selectDevice();
-  };
+  }
 
   selectDevice() {
     Logger.info(TAG, 'start ability ......');
-    if (this.selectedIndex !== undefined && (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length <= 0)) {
+    if (this.selectedIndex !== undefined &&
+      (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length <= 0)) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.deviceLists)}`);
       this.startAbilityContinuation(this.deviceLists[this.selectedIndex].networkId as string);
       this.clearSelectState();
       return;
-    };
+    }
     Logger.info(TAG, 'start ability, needAuth');
-    if (this.selectedIndex !== undefined){
-      this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
-        Logger.info(TAG, 'auth and online finished');
-        this.startAbilityContinuation(device.networkId!);
-      });
+    if (this.selectedIndex !== undefined) {
+      this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex],
+        (device: deviceManager.DeviceBasicInfo) => {
+          Logger.info(TAG, 'auth and online finished');
+          this.startAbilityContinuation(device.networkId!);
+        });
     }
     Logger.info(TAG, 'start ability2 ......');
     this.clearSelectState();
-  };
+  }
 
   clearSelectState() {
     this.deviceLists = [];
     if (this.dialogController) {
       this.dialogController.close();
       this.dialogController = null;
-    };
-  };
+    }
+  }
 
   getShownTimer(ms: number) {
     let minStr: string;
@@ -405,22 +430,22 @@ interface Params {
       secStr = '0' + sec;
     } else {
       secStr = sec.toString(10);
-    };
+    }
     if (min < 10) {
       minStr = '0' + min;
     } else {
       minStr = min.toString(10);
-    };
+    }
     Logger.warn(TAG, `getShownTimer = ${minStr}:${secStr}`);
     return minStr + ':' + secStr;
-  };
+  }
 
   refreshSongInfo(index: number) {
     Logger.info(TAG, `refreshSongInfo ${index}/${PlayerModel.playlist.audioFiles.length}`);
     if (index >= PlayerModel.playlist.audioFiles.length) {
       Logger.warn(TAG, 'refreshSongInfo ignored');
       return;
-    };
+    }
     // update song title
     this.title = PlayerModel.playlist.audioFiles[index].name;
     this.albumSrc = (index % 2 === 0) ? $r('app.media.album') : $r('app.media.album2');
@@ -429,8 +454,9 @@ interface Params {
     this.totalMs = PlayerModel.getDuration();
     this.totalTimeText = this.getShownTimer(this.totalMs);
     this.currentTimeText = this.getShownTimer(PlayerModel.getCurrentMs());
-    Logger.info(TAG, `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`);
-  };
+    Logger.info(TAG,
+      `refreshSongInfo this.title= ${this.title}, this.totalMs= ${this.totalMs}, this.totalTimeText= ${this.totalTimeText},this.currentTimeText= ${this.currentTimeText}`);
+  }
 
   onAppSharedClick() {
     if (this.clickFlag === MusicSharedStatus.MUSIC_SHARED) {
@@ -440,19 +466,19 @@ interface Params {
       Logger.info(TAG, `2start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`);
       this.stopRemoteExtension();
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop');
-    };
-  };
+    }
+  }
 
   onPreviousClick() {
     if (this.isSwitching) {
       Logger.info(TAG, 'onPreviousClick ignored, isSwitching');
       return;
-    };
+    }
     Logger.info(TAG, 'onPreviousClick');
     PlayerModel.index--;
     if (PlayerModel.index < 0 && PlayerModel.playlist.audioFiles.length >= 1) {
       PlayerModel.index = PlayerModel.playlist.audioFiles.length - 1;
-    };
+    }
     this.currentProgress = 0;
     this.isSwitching = true;
 
@@ -461,21 +487,22 @@ interface Params {
       PlayerModel.play(0, true);
       if (PlayerModel.isPlaying) {
         this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
-      };
+      }
+      ;
       this.isSwitching = false;
-    });
-  };
+    })
+  }
 
   onNextClick() {
     if (this.isSwitching) {
       Logger.info(TAG, 'onNextClick ignored, isSwitching');
       return;
-    };
+    }
     Logger.info(TAG, 'onNextClick');
     PlayerModel.index++;
     if (PlayerModel.index >= PlayerModel.playlist.audioFiles.length) {
       PlayerModel.index = 0;
-    };
+    }
     this.currentProgress = 0;
     this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.index, () => {
@@ -483,16 +510,16 @@ interface Params {
       PlayerModel.play(0, true);
       if (PlayerModel.isPlaying) {
         this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
-      };
+      }
       this.isSwitching = false;
     });
-  };
+  }
 
   onPlayClick() {
     if (this.isSwitching) {
       Logger.info(TAG, 'onPlayClick ignored, isSwitching');
       return;
-    };
+    }
     Logger.info(TAG, `onPlayClick isPlaying= ${PlayerModel.isPlaying}`);
     if (PlayerModel.isPlaying) {
       PlayerModel.pause();
@@ -504,8 +531,8 @@ interface Params {
         this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
         this.sendMessagePlay();
       })
-    };
-  };
+    }
+  }
 
   restoreFromWant() {
     Logger.info(TAG, 'restoreFromWant');
@@ -523,7 +550,8 @@ interface Params {
           })
         }
         if (status !== undefined) {
-          Logger.info(TAG, `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`);
+          Logger.info(TAG,
+            `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`);
           this.currentProgress = Math.floor(Number(status.seekTo) / this.totalMs * ONE_HUNDRED);
         }
       })
@@ -532,7 +560,7 @@ interface Params {
         this.refreshSongInfo(0);
       });
     }
-  };
+  }
 
   aboutToAppear() {
     Logger.info(TAG, `begin`);
@@ -590,7 +618,7 @@ interface Params {
     AppStorage.setOrCreate('viewThis', this);
 
     this.connectLocalExtension();
-  };
+  }
 
   aboutToDisappear() {
     Logger.info(TAG, `aboutToDisappear begin`)
@@ -602,7 +630,7 @@ interface Params {
     this.dialogController = null
     KvStoreModel.deleteKvStore()
     Logger.info(TAG, `aboutToDisappear end`)
-  };
+  }
 
   build() {
     Column() {
@@ -641,13 +669,14 @@ interface Params {
             this.currentProgress = 0;
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`);
             return;
-          };
+          }
+          ;
           let currentMs = this.currentProgress / ONE_HUNDRED * this.totalMs;
           this.currentTimeText = this.getShownTimer(currentMs);
           if (mode === SliderChangeMode.End || mode === 3) {
             Logger.info(TAG, `player.seek= ${currentMs}`);
             PlayerModel.seek(currentMs);
-          };
+          }
         })
 
       Row() {

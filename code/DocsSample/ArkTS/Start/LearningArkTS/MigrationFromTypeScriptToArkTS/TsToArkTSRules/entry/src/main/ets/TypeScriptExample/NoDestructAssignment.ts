@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_destructAssignment_ts]
-let [one, two] = [1, 2]; // 此处需要分号。
+let [one, two] = [1, 2]; // 此处需要分号
 [one, two] = [two, one];
 
 let head, tail;

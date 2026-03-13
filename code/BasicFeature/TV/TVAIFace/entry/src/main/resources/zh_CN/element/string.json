@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AI人脸识别"
+    },
+    {
+      "name": "gallery_entry_tips",
+      "value": "请选择一张图片"
+    },
+    {
+      "name": "no_image_tips",
+      "value": "暂无图片"
+    },
+    {
+      "name": "dialog_select_camera",
+      "value": "请选择摄像头"
+    },
+    {
+      "name": "camera",
+      "value": "相机"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "sure",
+      "value": "确认"
+    },
+    {
+      "name": "AI_fail_load",
+      "value": "AI模型加载失败，请重试！"
+    },
+    {
+      "name": "Multi_camera",
+      "value": "多机位切换"
+    },
+    {
+      "name": "no_camera",
+      "value": "无可用摄像头"
+    },
+    {
+      "name": "discover_devices",
+      "value": "点击开始发现设备"
+    },
+    {
+      "name": "Trust_Device",
+      "value": "可信设备（已认证设备）"
+    },
+    {
+      "name": "Connect_Device",
+      "value": "连接设备"
+    },
+    {
+      "name": "start_connect",
+      "value": "开始连接"
+    },
+    {
+      "name": "Delete_Device",
+      "value": "删除设备"
+    },
+    {
+      "name": "start_unbinding",
+      "value": "开始解绑"
+    },
+    {
+      "name": "discovering_devices",
+      "value": "正在发现设备"
+    },
+    {
+      "name": "online_device",
+      "value": "在线设备"
+    },
+    {
+      "name": "trust_device",
+      "value": "可信设备"
+    },
+    {
+      "name": "device_verified",
+      "value": "已认证，请勿重复认证"
+    },
+    {
+      "name": "sure_to_connect",
+      "value": "确定要连接"
+    },
+    {
+      "name": "sure_to_delete",
+      "value": "确定要删除"
+    },
+    {
+      "name": "image_fail_load",
+      "value": "图片加载失败，请重新选择图片。"
+    },
+    {
+      "name": "no_face_detected",
+      "value": "未识别到人脸，请重试。"
+    },
+    {
+      "name": "local_image",
+      "value": "本地图片"
+    },
+    {
+      "name": "image_facial_recognition",
+      "value": "图片人脸识别"
+    },
+    {
+      "name": "camera_facial_recognition",
+      "value": "摄像头人脸识别"
+    },
+    {
+      "name": "device_authentication",
+      "value": "设备连接认证"
+    },
+    {
+      "name": "connect_to_camera",
+      "value": "请接入摄像头"
+    }
+  ]
+}

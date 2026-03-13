@@ -15,7 +15,7 @@
 
 // [Start screen_flickering_in_list]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: String类型数组的BasicDataSource代码。**/
+// BasicDataSource代码见文档末尾BasicDataSource示例代码: String类型数组的BasicDataSource代码。
 import { BasicDataSource } from './BasicDataSource';
 const TAG = '[Sample_RenderingControl]';
 const DOMAIN = 0xF811;
@@ -43,7 +43,7 @@ class ScreenFliceringDataSource extends BasicDataSource {
       this.dataArray.push(`Hello ${i}`);
     }
     // 替换 notifyDataReload
-    this.notifyDatasetChange([{ type: DataOperationType.ADD, index: totalCount - 1, count: batch }]);
+    this.notifyDatasetChange([{ type: DataOperationType.ADD, index: totalCount, count: batch }]);
   }
 }
 

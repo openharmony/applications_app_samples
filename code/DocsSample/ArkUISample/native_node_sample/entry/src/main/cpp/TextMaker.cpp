@@ -27,6 +27,7 @@
 #include <native_drawing/drawing_round_rect.h>
 #include <native_drawing/drawing_text_blob.h>
 #include <native_drawing/drawing_text_declaration.h>
+#include <arkui/native_interface_focus.h>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -48,6 +49,7 @@
 #define VALUE_30 30
 #define VALUE_50 50
 #define VALUE_100 100
+#define VALUE_150 150
 #define VALUE_300 300
 #define VALUE_380 380
 #define VALUE_400 400
@@ -83,9 +85,14 @@
 #define EVENT_TEXT_AREA_WILL_CHANGE 30
 #define EVENT_TEXT_DETECT_RESULT_UPDATE 31
 #define EVENT_TEXT_ON_CLICK 32
+#define EVENT_BUTTON_ON_CLICK 33
+#define EVENT_BUTTON_ON_NEED_SOFTKEYBOARD 34
+#define EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD 35
+#define EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD 36
 #define FLOAT_50 50.0f
 
 ArkUI_NodeHandle TextMaker::text17 = nullptr;
+ArkUI_NodeHandle TextMaker::text22 = nullptr;
 
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
@@ -226,6 +233,39 @@ static void HandleOtherEvent(int32_t eventId)
     }
 }
 
+void EventReceiver(ArkUI_NodeEvent* event)
+{
+    // 从事件中提取关键信息（根据ArkUI_NodeEvent结构体定义）
+    ArkUI_NodeHandle node = OH_ArkUI_NodeEvent_GetNodeHandle(event);        // 事件所属节点
+    ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event); // 事件类型
+    int32_t eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+    // 处理焦点相关事件
+    if (eventType == NODE_ON_CLICK && eventId == EVENT_BUTTON_ON_CLICK) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button on clicked");
+        ArkUI_NodeHandle nodeHandle;
+        OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("button_keyboard", &nodeHandle);
+        // 使用OH_ArkUI_FocusRequest请求焦点
+        ArkUI_ErrorCode result = OH_ArkUI_FocusRequest(nodeHandle);
+    } else if (eventType == NODE_ON_NEED_SOFTKEYBOARD) {
+        if (eventId == EVENT_BUTTON_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {1};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "Button NODE_ON_NEED_SOFTKEYBOARD");
+        } else if (eventId == EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {1};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "TEXTINPUT1 NODE_ON_NEED_SOFTKEYBOARD");
+        } else if (eventId == EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD) {
+            ArkUI_NumberValue need[] = {0};
+            ArkUI_NumberValue *ifNeed = need;
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, ifNeed, 1);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "TEXTINPUT2 NODE_ON_NEED_SOFTKEYBOARD");
+        }
+    }
+}
+
 // 主事件处理函数
 static void OnEventReceive(ArkUI_NodeEvent *event)
 {
@@ -257,6 +297,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
     HandleTextAreaEvent1(eventId);
     HandleTextAreaEvent2(eventId);
     HandleOtherEvent(eventId);
+    EventReceiver(event);
 }
 
 void setText1(ArkUI_NodeHandle &text)
@@ -754,6 +795,33 @@ void setTextInput10(ArkUI_NodeHandle &textInput10, ArkUI_NodeHandle &textInput10
             reinterpret_cast<ArkUI_TextContentBaseController *>(controller),
             start, end);
     });
+}
+
+void setTextInputKeyboard(ArkUI_NodeHandle &textInputKeyBoard,
+    ArkUI_NodeHandle &textInputKeyBoard2, ArkUI_NodeHandle &textInputKeyBoardButton)
+{
+    ArkUI_AttributeItem textItem = {
+        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD -- true"};
+    Manager::nodeAPI_->setAttribute(textInputKeyBoard, NODE_TEXT_INPUT_TEXT, &textItem);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoard, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_TEXTINPUT1_ON_NEED_SOFTKEYBOARD, textInputKeyBoard);
+    
+    ArkUI_AttributeItem textItem2 = {
+        .string = "TextInput组件测试NODE_ON_NEED_SOFTKEYBOARD -- false"};
+    Manager::nodeAPI_->setAttribute(textInputKeyBoard2, NODE_TEXT_INPUT_TEXT, &textItem2);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoard2, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_TEXTINPUT2_ON_NEED_SOFTKEYBOARD, textInputKeyBoard2);
+
+    ArkUI_AttributeItem labelItem = { .string = "focus_Button" };
+    Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_BUTTON_LABEL, &labelItem);
+    ArkUI_AttributeItem nodeIdItem = { .string = "button_keyboard" };
+    Manager::nodeAPI_->setAttribute(textInputKeyBoardButton, NODE_ID, &nodeIdItem);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_CLICK, EVENT_BUTTON_ON_CLICK,
+                                         textInputKeyBoardButton);
+    Manager::nodeAPI_->registerNodeEvent(textInputKeyBoardButton, NODE_ON_NEED_SOFTKEYBOARD,
+                                         EVENT_BUTTON_ON_NEED_SOFTKEYBOARD, textInputKeyBoardButton);
+    
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
 
 void setTextInputDirection(ArkUI_NodeHandle &textInput11)
@@ -1558,6 +1626,261 @@ void setTextDirection(ArkUI_NodeHandle &text19)
     Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_DIRECTION, &direction_item);
 }
 
+void setText20(ArkUI_NodeHandle &text20, ArkUI_NodeHandle &text21)
+{
+    ArkUI_AttributeItem content_item = {};
+    content_item.string = "这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_CONTENT, &content_item);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 100.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text20, NODE_WIDTH, &width_item);
+    ArkUI_NumberValue maxLinesValue[] = {{.i32 = VALUE_3} };
+    ArkUI_AttributeItem maxLinesItem = {maxLinesValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_MAX_LINES, &maxLinesItem);
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_OVERFLOW, &textOverFlowItem);
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_CONTENT, &content_item);
+    Manager::nodeAPI_->setAttribute(text21, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_MAX_LINES, &maxLinesItem);
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_OVERFLOW, &textOverFlowItem);
+    ArkUI_NumberValue ellipsisModeValue2[] = {{.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER}};
+    ArkUI_AttributeItem ellipsisModeItem2 = {ellipsisModeValue2, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem2);
+}
+
+void setText22More(ArkUI_NodeHandle &text22, ArkUI_NodeHandle &button)
+{
+    if (Manager::nodeAPI_ != nullptr) {
+        Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        auto *layoutManager = Manager::nodeAPI_->getAttribute(TextMaker::text22, NODE_TEXT_LAYOUT_MANAGER);
+        ArkUI_TextLayoutManager *manager = (ArkUI_TextLayoutManager *)layoutManager->object;
+        OH_Drawing_PositionAndAffinity *outPos1;
+        OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate(manager, VALUE_150, VALUE_50, &outPos1);
+        size_t position1 = OH_Drawing_GetPositionFromPositionAndAffinity(outPos1);
+        size_t affinity1 = OH_Drawing_GetAffinityFromPositionAndAffinity(outPos1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate positon = %{public}d affinity = %{public}d",
+            (int)position1, (int)affinity1);
+        OH_Drawing_PositionAndAffinity *outPos2;
+        OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(manager, VALUE_150, VALUE_50, &outPos2);
+        size_t position2 = OH_Drawing_GetPositionFromPositionAndAffinity(outPos2);
+        size_t affinity2 = OH_Drawing_GetAffinityFromPositionAndAffinity(outPos2);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate positon = %{public}d affinity = %{public}d",
+            (int)position2, (int)affinity2);
+        auto *charRange = new (std::nothrow) Boundary(VALUE_20, VALUE_50);
+        OH_Drawing_Range *charRanges = (OH_Drawing_Range *)(charRange);
+        OH_Drawing_Range *outGlyphRange;
+        OH_Drawing_Range *outActualCharRange;
+        OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(manager, charRanges,
+            &outGlyphRange, &outActualCharRange);
+        size_t glyphStart = OH_Drawing_GetStartFromRange(outGlyphRange);
+        size_t glyphEnd = OH_Drawing_GetEndFromRange(outGlyphRange);
+        size_t actualCharStart = OH_Drawing_GetStartFromRange(outActualCharRange);
+        size_t actualCharEnd = OH_Drawing_GetEndFromRange(outActualCharRange);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange glyphStart = "
+            "%{public}d glyphEnd = %{public}d actualCharStart = %{public}d actualCharEnd = %{public}d",
+            (int)glyphStart, (int)glyphEnd, (int)actualCharStart, (int)actualCharEnd);
+        auto *glyphRange = new (std::nothrow) Boundary(VALUE_10, VALUE_30);
+        OH_Drawing_Range *glyphRanges = (OH_Drawing_Range *)(glyphRange);
+        OH_Drawing_Range *outCharRange;
+        OH_Drawing_Range *outActualGlyphRange;
+        OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(manager, glyphRanges,
+            &outCharRange, &outActualGlyphRange);
+        size_t charStart = OH_Drawing_GetStartFromRange(outCharRange);
+        size_t charEnd = OH_Drawing_GetEndFromRange(outCharRange);
+        size_t actualGlyphStart = OH_Drawing_GetStartFromRange(outActualGlyphRange);
+        size_t actualGlyphEnd = OH_Drawing_GetEndFromRange(outActualGlyphRange);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "range",
+            "OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange charStart = "
+            "%{public}d charEnd = %{public}d actualGlyphStart = %{public}d actualGlyphEnd = %{public}d",
+            (int)charStart, (int)charEnd, (int)actualGlyphStart, (int)actualGlyphEnd);
+        });
+    }
+}
+
+void setText22(ArkUI_NodeHandle &text22, ArkUI_NodeHandle &button)
+{
+    ArkUI_AttributeItem button_Item = {.string = "点击获取文本信息"};
+    ArkUI_AttributeItem text_Item = {
+        .string = "HelloWorld  您好，世界! \n HelloWorld  您好，世界! \n HelloWorld  您好，世界! \n"};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &button_Item);
+    Manager::nodeAPI_->setAttribute(TextMaker::text22, NODE_TEXT_CONTENT, &text_Item);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    setText22More(text22, button);
+}
+
+void setText23(ArkUI_NodeHandle &text)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    if (text != nullptr) {
+        // span仅作为text的子组件形式展示
+        ArkUI_NodeHandle span = Manager::nodeAPI_->createNode(ARKUI_NODE_SPAN);
+        const char *spanContent = "This is a span fontWeight configs test";
+        ArkUI_AttributeItem spanContentItem = {.string = spanContent};
+        Manager::nodeAPI_->setAttribute(span, NODE_SPAN_CONTENT, &spanContentItem);
+        if (span != nullptr) {
+            // 设置Span背景样式
+            ArkUI_NumberValue spanBackground[] = {
+                {.u32 = 0xFF00FF00}, // 背景颜色
+                {.f32 = 5.0f},       // 左上角半径
+                {.f32 = 5.0f},       // 右上角半径
+                {.f32 = 5.0f},       // 左下角半径
+                {.f32 = 5.0f}        // 右下角半径
+            };
+            ArkUI_AttributeItem spanBackgroundItem = {.value = spanBackground, .size = VALUE_5};
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_TEXT_BACKGROUND_STYLE, &spanBackgroundItem);
+
+            // 文本基线的偏移量属性
+            ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
+            ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
+            Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+
+            // 设置enableVariableFontWeight为true
+            OH_ArkUI_FontWeightConfigs* configs = OH_ArkUI_FontWeightConfigs_Create();
+            OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(configs, true);
+            OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(configs, true);
+
+            //设置字体粗细
+            ArkUI_NumberValue spanFontWeight = {.i32 = 350};
+            ArkUI_AttributeItem fontWeightItem = {&spanFontWeight, VALUE_1};
+            fontWeightItem.object = configs;
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT_WEIGHT, &fontWeightItem);
+            // 长按span组件，触发回调
+            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
+            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+
+            OH_ArkUI_FontWeightConfigs_Destroy(configs);
+        }
+        Manager::nodeAPI_->addChild(text, span);
+    }
+}
+
+void setText24(ArkUI_NodeHandle &text)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    if (text != nullptr) {
+        // span仅作为text的子组件形式展示
+        ArkUI_NodeHandle span = Manager::nodeAPI_->createNode(ARKUI_NODE_SPAN);
+        const char *spanContent = "This is a span configs test";
+        ArkUI_AttributeItem spanContentItem = {.string = spanContent};
+        Manager::nodeAPI_->setAttribute(span, NODE_SPAN_CONTENT, &spanContentItem);
+        if (span != nullptr) {
+            // 设置Span背景样式
+            ArkUI_NumberValue spanBackground[] = {
+                {.u32 = 0xFFFF0000}, // 背景颜色
+                {.f32 = 5.0f},       // 左上角半径
+                {.f32 = 5.0f},       // 右上角半径
+                {.f32 = 5.0f},       // 左下角半径
+                {.f32 = 5.0f}        // 右下角半径
+            };
+            ArkUI_AttributeItem spanBackgroundItem = {.value = spanBackground, .size = VALUE_5};
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_TEXT_BACKGROUND_STYLE, &spanBackgroundItem);
+
+            // 文本基线的偏移量属性
+            ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
+            ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
+            Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+
+            // 设置fontConfigs enableVariableFontWeight 为false，默认也为false
+            OH_ArkUI_FontWeightConfigs* fontWeightConfigs = OH_ArkUI_FontWeightConfigs_Create();
+            OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(fontWeightConfigs, false);
+            // 设置enableDeviceFontWeightCategory 为false，默认为true
+            OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(fontWeightConfigs, false);
+            OH_ArkUI_FontConfigs* fontConfigs = OH_ArkUI_FontConfigs_Create();
+            OH_ArkUI_FontConfigs_SetFontWeightConfigs(fontConfigs, fontWeightConfigs);
+
+            // 设置span font 样式
+            ArkUI_NumberValue textFont[] = {
+                {.f32 = VALUE_20}, {.i32 = 700}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
+            ArkUI_AttributeItem spanFontItem = {textFont, VALUE_3};
+            spanFontItem.object = fontConfigs;
+            Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT, &spanFontItem);
+
+            // 长按span组件，触发回调
+            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
+            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+
+            OH_ArkUI_FontConfigs_Destroy(fontConfigs);
+        }
+        Manager::nodeAPI_->addChild(text, span);
+    }
+}
+
+void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string = "这是一段超长文本，用来测试省略号位置ellipsisMode 这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_WIDTH, &width_item);
+    
+    ArkUI_NumberValue styleValue[] = {{.i32 = ARKUI_TEXTINPUT_STYLE_INLINE}};
+    ArkUI_AttributeItem styleItem = {styleValue, 1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_STYLE, &styleItem);
+    
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput13, NODE_TEXT_INPUT_TEXT_OVERFLOW, &textOverFlowItem);
+    
+    ArkUI_AttributeItem content_item2 = {};
+    content_item2.string = "这是一段超长文本，用来测试文本超长时的显示方式textOverflow 这是一段超长文本，用来测试文本超长时的显示方式textOverflow";
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT, &content_item2);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_STYLE, &styleItem);
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT_OVERFLOW, &textOverFlowItem);
+}
+
+void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string = "这是一段超长文本，用来测试省略号位置ellipsisMode 这是一段超长文本，用来测试省略号位置ellipsisMode";
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_WIDTH, &width_item);
+    
+    ArkUI_NumberValue maxLinesValue[] = {{.i32 = VALUE_3} };
+    ArkUI_AttributeItem maxLinesItem = {maxLinesValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_MAX_LINES, &maxLinesItem);
+    
+    ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
+    ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_ELLIPSIS_MODE, &ellipsisModeItem1);
+    
+    ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
+    ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea14, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
+    
+    ArkUI_AttributeItem content_item2 = {};
+    content_item2.string = "这是一段超长文本，用来测试文本超长时的显示方式textOverflow 这是一段超长文本，用来测试文本超长时的显示方式textOverflow";
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT, &content_item2);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_WIDTH, &width_item);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_MAX_LINES, &maxLinesItem);
+    Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
+}
+
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
     auto basicText2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -2088,6 +2411,29 @@ void measuredInfo(ArkUI_NodeHandle &component)
     ArkUI_IntSize getMeasured = Manager::nodeAPI_->getMeasuredSize(component);
 }
 
+// 创建 setTextSelection 按钮
+static ArkUI_NodeHandle createTextSelectionButton()
+{
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    std::string labelStr = "setTextSelection";
+    ArkUI_AttributeItem LABEL_Item = {.string = labelStr.c_str()};
+    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item);
+    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
+        ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
+        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
+        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
+
+        ArkUI_NumberValue valueArray[] = { {.i32 = 1 }, {.i32 = 3 } };
+        ArkUI_AttributeItem selectionItem = {.value = valueArray, .size = 2, .object = options};
+        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
+
+        OH_ArkUI_SelectionOptions_Dispose(options);
+    });
+    return button;
+}
+
 void setTextMore(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -2101,6 +2447,8 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     TextMaker::text17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text18 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text23 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text24 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12, text12_2);
@@ -2110,28 +2458,10 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     setText16(text16);
     setText17(TextMaker::text17);
     setText18(text18);
+    setText23(text23);
+    setText24(text24);
 
-    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-    std::string labelStr = "setTextSelection";
-    ArkUI_AttributeItem LABEL_Item1 = {.string = labelStr.c_str()};
-    Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item1);
-    Manager::nodeAPI_->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
-    Manager::nodeAPI_->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
-        // 创建选择选项
-        static ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
-        // 设置选择选项的菜单弹出策略为不弹出菜单
-        OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
-        // 获取选择选项的菜单弹出策略
-        ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
-        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
-        // 设置文本选择区域为[1, 3]，该区域将被高亮显示
-        ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
-        ArkUI_NumberValue* values = valueArray;
-        ArkUI_AttributeItem selectionItem = {.value = values, .size = 2, .object = options};
-        Manager::nodeAPI_->setAttribute(TextMaker::text17, NODE_TEXT_TEXT_SELECTION, &selectionItem);
-        // 释放选择选项对象
-        OH_ArkUI_SelectionOptions_Dispose(options);
-    });
+    ArkUI_NodeHandle button = createTextSelectionButton();
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, text12);
@@ -2143,6 +2473,8 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text16);
     Manager::nodeAPI_->addChild(textContainer, TextMaker::text17);
     Manager::nodeAPI_->addChild(textContainer, text18);
+    Manager::nodeAPI_->addChild(textContainer, text23);
+    Manager::nodeAPI_->addChild(textContainer, text24);
     Manager::nodeAPI_->addChild(textContainer, button);
 }
 
@@ -2192,15 +2524,25 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text11_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text19 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text20 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text21 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    TextMaker::text22 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setText9(text9);
     setText10(text10);
     setText11(text11, text11_2);
     setTextDirection(text19);
+    setText20(text20, text21);
+    setText22(TextMaker::text22, button);
     Manager::nodeAPI_->addChild(textContainer, text9);
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
     Manager::nodeAPI_->addChild(textContainer, text11_2);
     Manager::nodeAPI_->addChild(textContainer, text19);
+    Manager::nodeAPI_->addChild(textContainer, text20);
+    Manager::nodeAPI_->addChild(textContainer, text21);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::text22);
+    Manager::nodeAPI_->addChild(textContainer, button);
     setTextMore(textContainer);
     setBasicText2(textContainer);
     setCustomSpanText(textContainer);
@@ -2215,7 +2557,7 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, column);
 }
 
-void setAllTextInput(ArkUI_NodeHandle &textContainer)
+void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textInput1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
@@ -2265,6 +2607,28 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
 }
 
+void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
+{
+    ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoard2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    setTextInput13(textInput13, textInput14);
+    setTextInputKeyboard(textInputKeyBoard, textInputKeyBoard2, textInputKeyBoardButton);
+    Manager::nodeAPI_->addChild(textContainer, textInput13);
+    Manager::nodeAPI_->addChild(textContainer, textInput14);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard2);
+    Manager::nodeAPI_->addChild(textContainer, textInputKeyBoardButton);
+}
+
+void setAllTextInput(ArkUI_NodeHandle &textContainer)
+{
+    setAllTextInputPart1(textContainer);
+    setAllTextInputPart2(textContainer);
+}
+
 void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -2300,6 +2664,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea11Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textArea12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
@@ -2309,6 +2675,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea10(textArea10, textArea10Button1);
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
+    setTextArea14(textArea14, textArea15);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
@@ -2323,6 +2690,8 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea11);
     Manager::nodeAPI_->addChild(textContainer, textArea11Button);
     Manager::nodeAPI_->addChild(textContainer, textArea12);
+    Manager::nodeAPI_->addChild(textContainer, textArea14);
+    Manager::nodeAPI_->addChild(textContainer, textArea15);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)

@@ -10,4 +10,5 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 add_library(entry SHARED main.cpp camera_manager.cpp)
 target_link_libraries(entry PUBLIC libohcamera.so libace_napi.z.so libnative_buffer.so
                                    libhilog_ndk.z.so librawfile.z.so libmedia_asset_manager.so
-                                   libimage_source.so libpixelmap.so libimage_packer.so)
+                                   libimage_source.so libpixelmap.so libimage_packer.so
+                                   libnative_display_manager.so)

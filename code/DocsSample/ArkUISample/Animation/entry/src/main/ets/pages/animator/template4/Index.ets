@@ -26,7 +26,7 @@ const TAG: string = '[AnimatorTest]';
 struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
-  @State animatorOptions: AnimatorResult | undefined = undefined;
+  @State animatorResult: AnimatorResult | undefined = undefined;
   // 请将$r('app.string.create')替换为实际资源文件，在本示例中该资源文件的value值为"创建"
   @State animatorStatus: Resource = $r('app.string.create');
   begin: number = 0;
@@ -49,26 +49,26 @@ struct Index {
 
   // [Start animator_template4_show_start]
   onPageShow(): void {
-    //创建animatorResult对象
-    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption);
-    this.animatorOptions.onFrame = (progress: number) => {
+    // 创建animatorResult对象
+    this.animatorResult = this.getUIContext().createAnimator(this.animatorOption);
+    this.animatorResult.onFrame = (progress: number) => {
       this.translateX = progress;
       if (progress > this.topWidth && this.translateY < this.bottomHeight) {
         this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
       }
     }
-    //动画取消时执行方法
-    this.animatorOptions.onCancel = () => {
+    // 动画取消时执行方法
+    this.animatorResult.onCancel = () => {
       // 请将$r('app.string.cancel')替换为实际资源文件，在本示例中该资源文件的value值为"取消"
       this.animatorStatus = $r('app.string.cancel');
     }
-    //动画完成时执行方法
-    this.animatorOptions.onFinish = () => {
+    // 动画完成时执行方法
+    this.animatorResult.onFinish = () => {
       // 请将$r('app.string.complete')替换为实际资源文件，在本示例中该资源文件的value值为"完成"
       this.animatorStatus = $r('app.string.complete');
     }
-    //动画重复播放时执行方法
-    this.animatorOptions.onRepeat = () => {
+    // 动画重复播放时执行方法
+    this.animatorResult.onRepeat = () => {
       // 'repeat'资源文件中的value值为'动画重复播放'
       hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
@@ -77,7 +77,7 @@ struct Index {
 
   // [Start animator_template4_hide_start]
   onPageHide(): void {
-    this.animatorOptions = undefined;
+    this.animatorResult = undefined;
   }
   // [End animator_template4_hide_start]
 
@@ -87,7 +87,7 @@ struct Index {
         // [Start animator_template4_buttons_start]
         // 请将$r('app.string.play')替换为实际资源文件，在本示例中该资源文件的value值为"播放"
         Button($r('app.string.play')).onClick(() => {
-          this.animatorOptions?.play();
+          this.animatorResult?.play();
           // 请将$r('app.string.playing')替换为实际资源文件，在本示例中该资源文件的value值为"播放中"
           this.animatorStatus = $r('app.string.playing');
         }).width(80).height(35)
@@ -98,7 +98,7 @@ struct Index {
         }).width(80).height(35)
         // 请将$r('app.string.pause')替换为实际资源文件，在本示例中该资源文件的value值为"暂停"
         Button($r('app.string.pause')).onClick(() => {
-          this.animatorOptions?.pause();
+          this.animatorResult?.pause();
           // 请将$r('app.string.pause')替换为实际资源文件，在本示例中该资源文件的value值为"暂停"
           this.animatorStatus = $r('app.string.pause');
         }).width(80).height(35)

@@ -20,7 +20,6 @@
 #include <js_native_api_types.h>
 #include <napi/native_api.h>
 #include <string>
-#include <unordered_map>
 
 #include "xcomponent_manager.h"
 namespace NativeXComponentSample {

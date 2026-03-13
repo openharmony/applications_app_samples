@@ -1,5 +1,3 @@
-# Entry:
-
 ## 应用侧调用前端页面函数
 
 ### 介绍
@@ -36,11 +34,12 @@ entry/src/main/
 ```
 
 
+### 具体实现
+* 通过runJavaScript方法调用前端页面的JavaScript相关函数或向Web页面注入JavaScript代码
+
 ### 相关权限
 
 无。
-
-# Entry2:
 
 ## 前端页面调用应用侧函数
 
@@ -278,12 +277,14 @@ entry2/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 通过registerJavaScriptProxy接口注册JavaScript对象，通过refresh使页面下次（重新）加载后生效。
+* 点击Click Me!按钮，触发callArkTS函数。
+* 通过deleteJavaScriptRegister接口反注册JavaScript对象，通过refresh使页面下次（重新）加载后生效。
 
 ### 相关权限
 
 [ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
-
-# Entry3:
 
 ## 建立应用侧与前端页面数据通道
 
@@ -319,12 +320,13 @@ entry3/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 应用侧页面中通过createWebMessagePorts方法创建两个消息端口，再把其中一个端口通过postMessage()接口发送到前端页面，实现在前端页面和应用侧之间互相发送消息。端口使用完毕后或Webview对象销毁前通过close接口关闭端口。
+
 
 ### 相关权限
 
 无。
-
-# Entry4:
 
 ## 应用侧与前端页面的相互调用(C/C++)
 
@@ -362,11 +364,17 @@ entry4/src/main/
 ```
 
 
+### 具体实现
+* 应用侧与前端页面的相互调用(C/C++)。参考源码：[Index.ets](./entry4/src/main/ets/pages/Index.ets)、[hello.cpp](./entry4/src/main/cpp/hello.cpp)
+  * 在ArkTS侧自定义一个标识webTag，并将webTag通过Node-API传至应用Native侧。
+  * 在Native侧，通过函数OH_ArkWeb_GetNativeAPI先获取API结构体，调用结构体里的Native API。
+  * Native侧，通过ArkWeb_ComponentAPI注册组件生命周期回调。
+  * 前端页面通过registerJavaScriptProxyEx将应用侧函数注册至前端页面，注册后在下次加载或者重新加载后生效。
+  * 应用侧使用runJavaScript调用前端页面函数。
+
 ### 相关权限
 
 无。
-
-# Entry5:
 
 ## 建立应用侧与前端页面数据通道(C/C++)
 
@@ -406,11 +414,14 @@ entry5/src/main/
 ```
 
 
+### 具体实现
+* 调用ArkWeb在Native侧接口实现环境初始化、创建端口、发送接收消息等功能，并暴露给arkts侧。源码参考[hello.cpp](./entry5/src/main/cpp/hello.cpp)
+* 在arkts侧通过import引入testNapi模块调用Native接口。源码参考[Index.ets](./entry5/src/main/ets/pages/Index.ets)
+* H5侧消息端口交互与数据编解码功能封装在前端页面。源码参考[index.html](./entry5/src/main/resources/rawfile/index.html)
+
 ### 相关权限
 
 无。
-
-# Entry6:
 
 ## 应用侧与前端页面的相互调用(C/C++)
 
@@ -447,6 +458,14 @@ entry6/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+
+### 具体实现
+* 应用侧与前端页面的相互调用(C/C++)。参考源码：[Index.ets](./entry6/src/main/ets/pages/Index.ets)、[hello.cpp](./entry6/src/main/cpp/hello.cpp)
+  * 在ArkTS侧自定义一个标识webTag，并将webTag通过Node-API传至应用Native侧。
+  * 在Native侧，通过函数OH_ArkWeb_GetNativeAPI先获取API结构体，调用结构体里的Native API。
+  * Native侧，通过ArkWeb_ComponentAPI注册组件生命周期回调。
+  * 前端页面通过registerJavaScriptProxyEx将应用侧函数注册至前端页面，注册后在下次加载或者重新加载后生效。
+  * 应用侧使用runJavaScript调用前端页面函数。
 
 ### 相关权限
 

@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 
+// [Start import_header]
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Logger } from 'commons';
 import OutputManager, { CreateOutputConfig, OutputType } from './OutputManager';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
+// [End import_header]
 
 const TAG = 'CameraManager';
 
@@ -81,6 +83,7 @@ export class CameraManager {
       }
     });
 
+    // [Start get_profile]
     // find target ratio best profile
     let profile: camera.Profile | undefined = undefined;
     let format: camera.CameraFormat;
@@ -111,6 +114,7 @@ export class CameraManager {
       `getProfile profileType:${outputType} format:${profile?.format} width:${profile?.size.width} height:${profile?.size.height}`);
     return profile;
   }
+  // [End get_profile]
 
   async start(
     xComponentSurfaceId: string,
@@ -348,6 +352,7 @@ export class CameraManager {
     this.isHdr = isHdr;
   }
 
+  // [Start get_supported_color_spaces]
   getSupportedColorSpaces(): Array<colorSpaceManager.ColorSpace> {
     let colorSpaces: colorSpaceManager.ColorSpace[] = [];
     const session = this.session as (camera.PhotoSession | camera.VideoSession);
@@ -360,6 +365,7 @@ export class CameraManager {
     }
     return colorSpaces;
   }
+  // [End get_supported_color_spaces]
 
   setColorSpaceBeforeCommitConfig(isHdr: boolean): void {
     let colorSpace: colorSpaceManager.ColorSpace =

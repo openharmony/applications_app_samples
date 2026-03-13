@@ -33,7 +33,7 @@ function func(name: string, value: string): boolean {
   if (name == 'title' || name == 'lens') {
     console.info('  ' + name);
   }
-  return true; //true:继续解析 false:停止解析
+  return true; // true:继续解析 false:停止解析
 }
 // [End parsingXML_callback]
 function testParsingTagsAndValues() {

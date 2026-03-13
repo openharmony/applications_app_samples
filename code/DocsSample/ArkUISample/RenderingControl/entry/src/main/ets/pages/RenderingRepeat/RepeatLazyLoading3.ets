@@ -18,20 +18,26 @@
 @ComponentV2
 struct RepeatLazyLoadingInfinite {
   @Local arr: Array<string> = [];
+
   // 提供首屏显示所需的初始数据。
   aboutToAppear(): void {
     for (let i = 0; i < 15; i++) {
       this.arr.push(i.toString());
     }
   }
+
   build() {
     Column({ space: 5 }) {
       List({ space: 5 }) {
         Repeat(this.arr)
           .virtualScroll({
             // 数据无限懒加载。
-            onTotalCount: () => { return this.arr.length + 1; },
-            onLazyLoading: (index: number) => { this.arr[index] = index.toString(); }
+            onTotalCount: () => {
+              return this.arr.length + 1;
+            },
+            onLazyLoading: (index: number) => {
+              this.arr[index] = index.toString();
+            }
           })
           .each((obj: RepeatItem<string>) => {
             ListItem() {
@@ -43,10 +49,11 @@ struct RepeatLazyLoadingInfinite {
           })
       }
       .height('100%')
-      .border({ width: 1})
+      .border({ width: 1 })
       // 建议设置cachedCount > 0。
       .cachedCount(1)
     }
   }
 }
+
 // [End repeat_lazy_loading_three]

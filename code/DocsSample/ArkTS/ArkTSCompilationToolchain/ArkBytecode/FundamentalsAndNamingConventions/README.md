@@ -10,13 +10,13 @@
 entry/src/main/ets/
 └── pages
     └── Index.ets // 首页。
-    └── index.ts // 词法环境和词法变量文件。
-    └── module_bar.ts // 导出模块命名空间。
-    └── module_foo.ts // 导出模块变量。
-    └── module_index.ts // 导入模块命名空间与模块变量。
-    └── test1.ts // 作用域名称。
-    └── test2.ts // 重名序号。
-    └── test3.ts // 原函数名。
+    └── Index.ts // 词法环境和词法变量文件。
+    └── ModuleBar.ts // 导出模块命名空间。
+    └── ModuleFoo.ts // 导出模块变量。
+    └── ModuleIndex.ts // 导入模块命名空间与模块变量。
+    └── ScopeName.ts // 作用域名称。
+    └── DuplicateName.ts // 重名序号。
+    └── OriginalFuncName.ts // 原函数名。
 ```
 
 ## 具体实现

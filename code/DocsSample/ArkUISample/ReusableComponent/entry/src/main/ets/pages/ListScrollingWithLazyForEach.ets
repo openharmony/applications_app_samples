@@ -54,7 +54,6 @@ struct ReuseDemo {
     }
   }
 
-  // ...
   build() {
     Column() {
       List() {

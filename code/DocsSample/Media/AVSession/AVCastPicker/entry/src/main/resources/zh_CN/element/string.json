@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "视频投播"
+    },
+    {
+      "name": "internet_reason",
+      "value": "观看网络视频"
+    },
+    {
+      "name": "reason_background",
+      "value": "后台播放视频"
+    },
+    {
+      "name": "title",
+      "value": "视频投播"
+    },
+    {
+      "name": "subtitle",
+      "value": "视频列表"
+    },
+    {
+      "name": "online_video",
+      "value": "网络视频"
+    },
+    {
+      "name": "online_video_describe",
+      "value": "来源于网络的mp4格式视频"
+    },
+    {
+      "name": "local_video",
+      "value": "本地视频"
+    },
+    {
+      "name": "local_video_describe",
+      "value": "来源于本地的mp4格式视频"
+    },
+    {
+      "name": "episode_choose",
+      "value": "选集"
+    },
+    {
+      "name": "casting",
+      "value": "投播中： %s"
+    },
+    {
+      "name": "volume",
+      "value": "音量"
+    },
+    {
+      "name": "speed",
+      "value": "倍速"
+    },
+    {
+      "name": "next",
+      "value": "下一集"
+    },
+    {
+      "name": "episode",
+      "value": "%s 集"
+    }
+  ]
+}

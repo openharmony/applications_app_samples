@@ -18,7 +18,7 @@ export const add: (a: number, b: number) => number;
 // [End dtsOptionExample_keepPropertyName]
 
 // [Start dtsOptionExample_keepGlobalName]
-// src/main/cpp/types/libentry/Index.d.ts。
+// src/main/cpp/types/libentry/Index.d.ts
 declare function testNapi2(): void;
 declare function testNapi3(): void;
 // [End dtsOptionExample_keepGlobalName]

@@ -30,6 +30,7 @@ export struct ParamUseSceneDate {
 // [Start Param_Use_Scene_Date]
 @ComponentV2
 struct DateComponent {
+  // 使用@Param接收父组件传入的Date类型变量。
   @Param selectedDate: Date = new Date('2024-01-01');
 
   build() {
@@ -46,25 +47,30 @@ struct DateComponent {
 @Entry
 @ComponentV2
 struct Index {
+  // 使用@Local装饰Date类型变量，作为数据源传递给子组件的@Param。
   @Local parentSelectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
+      // 对Date类型变量整体重新赋值，触发子组件更新。
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate = new Date('2023-07-07');
         })
+      // 调用Date的setFullYear方法修改年份，触发子组件更新。
       Button('increase the year by 1')
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setFullYear(this.parentSelectedDate.getFullYear() + 1);
         })
+      // 调用Date的setMonth方法修改月份，触发子组件更新。
       Button('increase the month by 1')
         .margin(10)
         .onClick(() => {
           this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
+      // 调用Date的setDate方法修改日期，触发子组件更新。
       Button('parent increase the day by 1')
         .margin(10)
         .onClick(() => {

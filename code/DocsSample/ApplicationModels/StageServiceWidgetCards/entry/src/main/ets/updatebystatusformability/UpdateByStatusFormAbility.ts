@@ -35,8 +35,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
         await storeDB.put('A' + formId, 'false');
         await storeDB.put('B' + formId, 'false');
         await storeDB.flush();
-      }).catch((err: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+      }).catch((error: BusinessError) => {
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. error code: ${error.code}, error message: ${error.message}`);
       });
     }
     let formData: Record<string, Object | string> = {};
@@ -50,8 +50,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
       await storeDB.delete('A' + formId);
       await storeDB.delete('B' + formId);
-    }).catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. error code: ${error.code}, error message: ${error.message}`);
     });
   }
 
@@ -82,8 +82,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
         await formProvider.updateForm(formId, formInfo);
       }
       hilog.info(DOMAIN_NUMBER, TAG, `Update form success stateA:${stateA} stateB:${stateB}.`);
-    }).catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. error code: ${error.code}, error message: ${error.message}`);
     });
   }
 
@@ -103,8 +103,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
         await storeDB.put('B' + formId, msg.selectB);
       }
       await storeDB.flush();
-    }).catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((error: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. error code: ${error.code}, error message: ${error.message}`);
     });
   }
 }

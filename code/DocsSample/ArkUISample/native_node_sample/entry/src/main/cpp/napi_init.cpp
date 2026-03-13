@@ -29,6 +29,8 @@ napi_property_descriptor desc[] = {
     nullptr, nullptr, napi_default, nullptr },
     {"createGridNativeNodeIrregularIndexes", nullptr, Manager::CreateGridNativeNodeIrregularIndexes, nullptr,
     nullptr, nullptr, napi_default, nullptr },
+    {"createGridNativeNodeDragEvent", nullptr, Manager::CreateGridNativeNodeDragEvent, nullptr,
+    nullptr, nullptr, napi_default, nullptr },
     {"createScrollNativeNode", nullptr, Manager::CreateScrollNativeNode, nullptr, nullptr, nullptr, napi_default,
      nullptr},
     {"createRefreshNativeNode", nullptr, Manager::CreateRefreshNativeNode, nullptr, nullptr, nullptr, napi_default,
@@ -65,6 +67,8 @@ napi_property_descriptor desc[] = {
      nullptr, napi_default, nullptr},
     {"createLinearNativeNode", nullptr, Manager::CreateLinearNativeNode, nullptr, nullptr, nullptr, napi_default,
      nullptr},
+    {"createNativeTextEditorNode", nullptr, Manager::CreateNativeTextEditorNode, nullptr, nullptr, nullptr,
+     napi_default, nullptr},
 };
 
 EXTERN_C_START

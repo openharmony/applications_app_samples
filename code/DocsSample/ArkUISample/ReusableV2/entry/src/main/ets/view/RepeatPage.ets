@@ -23,11 +23,13 @@ const DOMAIN = 0xF811;
 struct Index {
   @Local condition: boolean = true;
   @Local simpleList: number[] = [];
+
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
       this.simpleList.push(i);
     }
   }
+
   build() {
     Column() {
       Button('Change condition')
@@ -49,31 +51,39 @@ struct Index {
                 ReusableV2Component({ num: obj.item })
               }
             }
+            .width('100%')
           })
       }.height('50%')
       .cachedCount(2)
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   @Require @Param num: number;
+
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear');
   }
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle');
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse');
   }
+
   build() {
     Column() {
       Text(`${this.num}`).fontSize(50)
     }
   }
 }
+
 // [End RepeatPage]
 const repeatPage = Index;
+
 export default repeatPage;

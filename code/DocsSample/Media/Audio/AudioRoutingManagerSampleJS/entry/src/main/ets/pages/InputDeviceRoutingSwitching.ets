@@ -125,10 +125,24 @@ async function getAndSelectInputDevice() {
 
     // [StartExclude select_MediaInputDevice]
     let deviceInfo = `Succeeded in getting available devices, AudioDeviceDescriptors: ${data}.\n`;
+    deviceInfo += 'Device count: ' + data.length + '\n';
+    for (let i = 0; i < data.length; i++) {
+      console.info(`Device ${i} - id: ${data[i].id}`);
+      console.info(`Device ${i} - name: ${data[i].name}`);
+      console.info(`Device ${i} - type: ${data[i].deviceType}`);
+      console.info(`Device ${i} - role: ${data[i].deviceRole}`);
+      console.info(`Device ${i} - address: ${data[i].address}`);
+
+      deviceInfo += `Device ${i} - id: ${data[i].id}\n`;
+      deviceInfo += `Device ${i} - name: ${data[i].name}\n`;
+      deviceInfo += `Device ${i} - type: ${data[i].deviceType}\n`;
+      deviceInfo += `Device ${i} - role: ${data[i].deviceRole}\n`;
+      deviceInfo += `Device ${i} - address: ${data[i].address}\n`;
+    }
     // [EndExclude select_MediaInputDevice]
 
     // 当前可选音频输入设备列表不为空时,可进行选择。
-    if (data[0]) {
+    if (data.length > 0) {
       // 选择输入设备。
       await audioSessionManager.selectMediaInputDevice(data[0]).then(() => {
         console.info('Succeeded in selecting media input device.');
@@ -174,6 +188,17 @@ async function getSelectedInputDevice() {
 
     // [StartExclude select_MediaInputDevice]
     let deviceInfo = 'Succeeded in getting selected media input device\n';
+    console.info(`Device - id: ${device.id}`);
+    console.info(`Device - name: ${device.name}`);
+    console.info(`Device - type: ${device.deviceType}`);
+    console.info(`Device - role: ${device.deviceRole}`);
+    console.info(`Device - address: ${device.address}`);
+
+    deviceInfo += `Device - id: ${device.id}\n`;
+    deviceInfo += `Device - name: ${device.name}\n`;
+    deviceInfo += `Device - type: ${device.deviceType}\n`;
+    deviceInfo += `Device - role: ${device.deviceRole}\n`;
+    deviceInfo += `Device - address: ${device.address}\n`;
     if (globalLogUpdate) {
       globalLogUpdate(deviceInfo, false);
     }

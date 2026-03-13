@@ -15,7 +15,7 @@
 
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
 
-// [Start def_person]
+  // [Start def_person]
 class Person {
   name: string = ''; // undefined
 
@@ -23,32 +23,32 @@ class Person {
     this.name = n;
   }
 
-  // 类型为"string"，不可能为"null"或者"undefined"。
+  // 类型为"string"，不可能为"null"或者"undefined"
   getName(): string {
     return this.name;
   }
 }
-// [StartExclude def_person]
+  // [StartExclude def_person]
 
-// [Start def_personFix]
+  // [Start def_personFix]
 class Person1 {
-  name?: string; // 可能为undefined。
+  name?: string; // 可能为undefined
 
   setName(n: string): void {
     this.name = n;
   }
 
-  getName(): string | undefined { // 返回类型匹配name的类型。
+  getName(): string | undefined { // 返回类型匹配name的类型
     return this.name;
   }
 }
-// [StartExclude def_personFix]
+  // [StartExclude def_personFix]
 
 function testClassPersonWithName() {
   // [EndExclude def_person]
   let buddy = new Person()
-  // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"。
-  let len = buddy.getName().length; // 0, 没有运行时异常。
+  // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
+  let len = buddy.getName().length; // 0, 没有运行时异常
   // [End def_person]
 
   console.info(`len: ${len}`);
@@ -61,9 +61,9 @@ function testClassPersonWithName() {
 function testClassPersonWithName1() {
   // [EndExclude def_personFix]
   let buddy = new Person1()
-  // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"。
+  // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 
-  let len = buddy.getName()?.length; // 编译成功，没有运行时错误。
+  let len = buddy.getName()?.length; // 编译成功，没有运行时错误
   // [End def_personFix]
 
   console.info(`len: ${len}`);
@@ -73,12 +73,12 @@ function testClassPersonWithName1() {
   }
 }
 
-// [Start def_func]
+  // [Start def_func]
 function notify(who: string, what: string) {
   console.info(`Dear ${who}, a message for you: ${what}`);
 }
 
-// [StartExclude def_func]
+  // [StartExclude def_func]
 function testNotify() {
   // [EndExclude def_func]
   notify('Jack', 'You look great today');

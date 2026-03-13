@@ -23,21 +23,26 @@ const DOMAIN = 0xF811;
 struct Index {
   @Local condition1: boolean = false;
   @Local condition2: boolean = true;
+
   build() {
-    Column(){
+    Column({ space: 10 }) {
       Button('step1. appear')
+        .width('60%')
         .onClick(() => {
           this.condition1 = true;
         })
       Button('step2. recycle')
+        .width('60%')
         .onClick(() => {
           this.condition2 = false;
         })
       Button('step3. reuse')
+        .width('60%')
         .onClick(() => {
           this.condition2 = true;
         })
       Button('step4. disappear')
+        .width('60%')
         .onClick(() => {
           this.condition1 = false;
         })
@@ -45,38 +50,48 @@ struct Index {
         NormalV2Component({ condition: this.condition2 })
       }
     }
+    .width('100%')
   }
 }
+
 @ComponentV2
 struct NormalV2Component {
   @Require @Param condition: boolean;
+
   build() {
     if (this.condition) {
       ReusableV2Component()
     }
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear called'); // 组件创建时调用
   }
+
   aboutToDisappear() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
   }
+
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle called'); // 组件回收时调用
   }
+
   aboutToReuse() {
     hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse called'); // 组件复用时调用
   }
+
   build() {
     Column() {
       Text('ReusableV2Component')
     }
   }
 }
+
 //[End AboutToRecyclePage]
 const aboutToRecyclePage = Index;
+
 export default aboutToRecyclePage;

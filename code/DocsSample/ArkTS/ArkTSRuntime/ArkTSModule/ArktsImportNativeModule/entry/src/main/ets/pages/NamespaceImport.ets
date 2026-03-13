@@ -14,6 +14,6 @@
  */
 // [Start namespace_import]
 // NamespaceImport.ets
-import * as entry from 'libentry.so'
+import * as entry from 'libentry.so';
 entry.add(2, 3);
 // [End namespace_import]

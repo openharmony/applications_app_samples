@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 // [Start no_conditionalTypes]
-// 在类型别名中提供显式约束。
+// 在类型别名中提供显式约束
 type X1<T extends number> = T;
 
-// 用Object重写，类型控制较少，需要更多的类型检查以确保安全。
+// 用Object重写，类型控制较少，需要更多的类型检查以确保安全
 type X2<T> = Object;
 
-// Item必须作为泛型参数使用，并能正确实例化。
+// Item必须作为泛型参数使用，并能正确实例化
 type YI<Item, T extends Array<Item>> = Item;
 // [End no_conditionalTypes]

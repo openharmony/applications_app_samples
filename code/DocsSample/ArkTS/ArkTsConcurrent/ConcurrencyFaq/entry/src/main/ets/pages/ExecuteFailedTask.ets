@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 // [Start unsupport_task]
-// index.ets
+// ExecuteFailedTask.ets
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { printArgs} from './utils'
+
 @Concurrent
-function createTask(a: number, b:number) {
+function createTask(a: number, b: number) {
   let sum = a + b;
-  // task1: 不支持的序列化类型。
+  // task1: 不支持的序列化类型
   let task1: taskpool.Task = new taskpool.Task(printArgs, sum);
   return task1;
 }
@@ -30,7 +31,7 @@ function executeTask() {
   let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
   taskpool.execute(task).then((res) => {
   }).catch((e: BusinessError) => {
-    // 打印“返回结果序列化失败”异常信息。
+    // 打印“返回结果序列化失败”异常信息
     console.error('execute task failed ' + e.message);
   })
 }

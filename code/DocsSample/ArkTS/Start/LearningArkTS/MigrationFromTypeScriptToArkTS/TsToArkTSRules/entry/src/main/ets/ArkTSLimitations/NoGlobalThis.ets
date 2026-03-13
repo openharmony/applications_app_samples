@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start no_globalThisImport]
-// file2。
+// NoGlobalThis.ets
 import * as M from './ExportMod'
 
 let x = M.abc;

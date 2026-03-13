@@ -14,5 +14,5 @@
  */
 // [Start namespace_export]
 // NamespaceExport.ets
-export * from 'libentry.so'
+export * from 'libentry.so';
 // [End namespace_export]

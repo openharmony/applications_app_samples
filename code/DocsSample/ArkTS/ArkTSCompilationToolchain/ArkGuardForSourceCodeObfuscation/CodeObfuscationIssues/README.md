@@ -29,11 +29,11 @@
 ```
 entry/src/main/ets/
 └── pages
-    └── export.ts // 导出命名空间示例页面。
-    └── file1.ts // 导出接口示例页面。
-    └── file2.ts // 导出复合接口示例页面。
+    └── ExportNs.ts // 导出命名空间示例页面。
+    └── FileInside.ts // 导出接口示例页面。
+    └── FileOutside.ts // 导出复合接口示例页面。
     └── Index.ets // 直接导入命名空间及接口使用实例。
-    └── utils.ts // 导出函数示例页面。
+    └── ExportUtils.ts // 导出函数示例页面。
 entry/src/ohosTest/
 └── ets
     └── test
@@ -44,9 +44,9 @@ entry/src/ohosTest/
 
 * 函数调用
     * 调用SDK中Want对象，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
-    * 调用从./utils.ts动态导入的add函数，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
-    * 调用从./export.ts导入的命名空间方法，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
-    * 调用从./file1.ts导入的自定义类型接口，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
+    * 调用从./ExportUtils.ts动态导入的add函数，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
+    * 调用从./ExportNs.ts导入的命名空间方法，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
+    * 调用从./FileInside.ts导入的自定义类型接口，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
     * 调用从libentry.so导入的C++实现的加法函数，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
     * 调用从sharedlibrary共享库导入的加法函数，源码参考：[Index.ets](./entry/src/main/ets/pages/Index.ets)
 

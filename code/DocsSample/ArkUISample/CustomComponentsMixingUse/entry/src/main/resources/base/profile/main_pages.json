@@ -8,6 +8,11 @@
     "pages/MixingUseofCustomComponents/V2CommonVariablesToV1CustomComponent",
     "pages/MixingUseofCustomComponents/V2InV1",
     "pages/MixingUseofCustomComponents/V2StateVariablesToV1CustomComponent",
+    "pages/MixingUseofCustomComponents/V2ToV1_SimpleData",
+    "pages/MixingUseofCustomComponents/V2ToV1_ObservedV2AndTrace",
+    "pages/MixingUseofCustomComponents/V2ToV1_CommonBuildInClass",
+    "pages/MixingUseofCustomComponents/V1ToV2_ObservedClass",
+    "pages/MixingUseofCustomComponents/V1ToV2_ObservedV2AndTrace",
     "pages/Index"
   ]
 }

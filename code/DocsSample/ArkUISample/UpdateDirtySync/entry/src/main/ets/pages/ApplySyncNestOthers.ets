@@ -34,7 +34,7 @@ struct Index {
             UIUtils.flushUIUpdates(); // 在applySync中，flushUIUpdates被忽略
           });
           this.h = 100;
-          UIUtils.flushUpdates(); //会生效
+          UIUtils.flushUpdates(); // 会生效
 
           this.getUIContext().animateTo({
             duration: 1000

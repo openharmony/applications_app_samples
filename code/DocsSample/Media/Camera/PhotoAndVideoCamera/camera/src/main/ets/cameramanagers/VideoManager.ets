@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start camera_recording_case]
+// [Start import_header]
 import { media } from '@kit.MediaKit';
 import { camera } from '@kit.CameraKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -21,6 +23,7 @@ import { sensor } from '@kit.SensorServiceKit';
 import { Decimal } from '@kit.ArkTS';
 import { image } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
+// [End import_header]
 import { Logger } from 'commons';
 import OutputManager, { CreateOutputConfig, OutputType } from './OutputManager';
 import CameraConstant from '../constants/CameraConstants';
@@ -187,6 +190,7 @@ export class VideoManager implements OutputManager {
     this.callback = callback;
   }
 
+  // [Start hdr_recording_case]
   // [Start create_video_output]
   async createVideoOutput(cameraManager: camera.CameraManager) {
     if (!this.avRecorder || this.avRecorder.state !== AVRecorderState.PREPARED) {
@@ -278,6 +282,8 @@ export class VideoManager implements OutputManager {
     // [End av_config]
   }
 
+  // [StartExclude camera_recording_case]
+  // [StartExclude hdr_recording_case]
   getRealData(data: sensor.GravityResponse): number {
     let getDeviceDegree: number = 0;
     let x = data.x;
@@ -368,7 +374,7 @@ export class VideoManager implements OutputManager {
   isRecording() {
     return this.state === AVRecorderState.STARTED || this.state === AVRecorderState.PAUSED;
   }
-
+  // [EndExclude hdr_recording_case]
 
   // [Start set_video_stabilization]
   setVideoStabilizationMode(session: camera.VideoSession): boolean {
@@ -388,7 +394,7 @@ export class VideoManager implements OutputManager {
   }
   // [End set_video_stabilization]
 
-  // [Start set_video_color_space]
+  // [Start get_supported_color_spaces]
   getSupportedColorSpaces(session: camera.VideoSession): Array<colorSpaceManager.ColorSpace> {
     let colorSpaces: colorSpaceManager.ColorSpace[] = [];
     try {
@@ -398,7 +404,9 @@ export class VideoManager implements OutputManager {
     }
     return colorSpaces;
   }
+  // [End get_supported_color_spaces]
 
+  // [Start set_color_space_after_commit_config]
   setColorSpaceAfterCommitConfig(session: camera.VideoSession, isHdr: boolean): void {
     let colorSpace: colorSpaceManager.ColorSpace =
       isHdr ? colorSpaceManager.ColorSpace.BT2020_HLG_LIMIT : colorSpaceManager.ColorSpace.BT709_LIMIT;
@@ -416,5 +424,8 @@ export class VideoManager implements OutputManager {
       Logger.error(TAG_LOG, `getActiveColorSpace Faild: ${error.message}`);
     }
   }
-  // [Start set_video_color_space]
+  // [End set_color_space_after_commit_config]
+  // [End hdr_recording_case]
+  // [EndExclude camera_recording_case]
 }
+// [End camera_recording_case]

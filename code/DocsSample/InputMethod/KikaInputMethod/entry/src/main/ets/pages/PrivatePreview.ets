@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import inputMethod from '@ohos.inputMethod';
+import { inputMethod } from '@kit.IMEKit';
 import Log from '../model/Log';
 import { BusinessError } from '@ohos.base';
 import { CustomInput } from '../components/CustomInput';

@@ -58,7 +58,7 @@ class MyFrameNode extends FrameNode {
   // 重写布局测量方法
   onMeasure(constraint: LayoutConstraint): void {
     let sizeRes: Size = { width: this.uiContext.vp2px(100), height: this.uiContext.vp2px(100) };
-    
+
     // 遍历所有子节点，计算总尺寸
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
@@ -148,7 +148,7 @@ struct Index {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
           })
-        
+
         // 触发布局更新
         Button('UpdateLayout')
           .onClick(() => {
@@ -163,4 +163,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeDraw_start]

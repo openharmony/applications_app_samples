@@ -17,10 +17,10 @@
 import * as module from '@kit.AbilityKit';
 // [End module_import_all]
 // [Start module_import_as]
-import * as Utils from './utils';
+import * as Utils from './Utils';
 // [StartExclude module_import_as]
 // [Start module_import_ident]
-import { X, Y } from './utils';
+import { X, Y } from './Utils';
 // [StartExclude module_import_ident]
 export {};
 // [Start module_dynamic_import_ets]
@@ -36,8 +36,8 @@ Utils.X // 表示来自Utils的X
 Utils.Y // 表示来自Utils的Y
 // [End module_import_as]
 // [EndExclude module_import_ident]
-X // 表示来自utils的X
-Y // 表示来自utils的Y
+X // 表示来自Utils的X
+Y // 表示来自Utils的Y
 // [End module_import_ident]
 // [Start module_export]
 export class Point {
@@ -62,7 +62,7 @@ export default new Demo();
 // [End module_default_export]
 // [Start module_default_import_async]
 async function test() {
-  let ns = await import('./say');
+  let ns = await import('./Say');
   let hi = ns.hi;
   let bye = ns.bye;
   hi();

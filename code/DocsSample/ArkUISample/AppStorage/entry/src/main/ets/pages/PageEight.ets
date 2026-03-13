@@ -105,7 +105,7 @@ export struct TapImage {
   }
 
   aboutToAppear() {
-    //定义事件ID
+    // 定义事件ID
     let innerEvent: emitter.InnerEvent = { eventId: this.index };
     emitter.on(innerEvent, data => {
       this.onTapIndexChange(data);

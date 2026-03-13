@@ -39,12 +39,14 @@ public:
     static napi_value CreateGridNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateGridNativeNodeOnGetRectByIndex(napi_env env, napi_callback_info info);
     static napi_value CreateGridNativeNodeIrregularIndexes(napi_env env, napi_callback_info info);
+    static napi_value CreateGridNativeNodeDragEvent(napi_env env, napi_callback_info info);
     static napi_value CreateScrollNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateRefreshNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateListNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreatePublicNativeNode(napi_env env, napi_callback_info info);
     static napi_value createNativeXComponentNode(napi_env env, napi_callback_info info);
     static napi_value CreateLinearNativeNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeTextEditorNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;

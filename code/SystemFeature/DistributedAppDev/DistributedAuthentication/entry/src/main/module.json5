@@ -54,7 +54,7 @@
         ]
       }
     ],
-	"requestPermissions": [
+    "requestPermissions": [
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
         "reason": "$string:distributed_permission",

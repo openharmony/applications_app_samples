@@ -28,7 +28,7 @@ struct KeyEventExample {
         .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
-          if(event){
+          if (event) {
             if (event.type === KeyType.Down) {
               this.buttonType = 'Down';
             }
@@ -36,9 +36,9 @@ struct KeyEventExample {
               this.buttonType = 'Up';
             }
             this.buttonText = 'Button: \n' +
-            'KeyType:' + this.buttonType + '\n' +
-            'KeyCode:' + event.keyCode + '\n' +
-            'KeyText:' + event.keyText;
+              'KeyType:' + this.buttonType + '\n' +
+              'KeyCode:' + event.keyCode + '\n' +
+              'KeyText:' + event.keyText;
           }
         })
 
@@ -49,7 +49,7 @@ struct KeyEventExample {
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
     .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
-      if(event){
+      if (event) {
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';
         }
@@ -57,9 +57,9 @@ struct KeyEventExample {
           this.columnType = 'Up';
         }
         this.columnText = 'Column: \n' +
-        'KeyType:' + this.columnType + '\n' +
-        'KeyCode:' + event.keyCode + '\n' +
-        'KeyText:' + event.keyText;
+          'KeyType:' + this.columnType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
       }
     })
   }

@@ -15,7 +15,7 @@
 
 #ifndef CAMERA_NDK_CAMERA_H
 #define CAMERA_NDK_CAMERA_H
-
+// [Start import_header]
 #include <cstdint>
 #include <native_buffer/buffer_common.h>
 #include <unistd.h>
@@ -39,6 +39,8 @@
 #include "ohcamera/video_output.h"
 #include "napi/native_api.h"
 #include "ohcamera/camera_manager.h"
+#include <window_manager/oh_display_info.h>
+#include <window_manager/oh_display_manager.h>
 
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
@@ -53,7 +55,7 @@ class NDKCamera {
     };
     ~NDKCamera();
     explicit NDKCamera(CameraBuildingConfig config);
-
+    // [StartExclude import_header]
     static void Destroy()
     {
         if (ndkCamera_ != nullptr) {
@@ -109,13 +111,15 @@ class NDKCamera {
     void EnableMacro(bool isMacro);
     bool IsControlCenterSupported(void);
     void EnableControlCenter(bool isControlCenter);
-    void SetIsControl(bool isControl);
+    void SetIsControl(bool isControlCenter);
     Camera_ErrorCode PreviewOutputGetSupportedFrameRates(Camera_PreviewOutput* previewOutput,
     Camera_FrameRateRange** frameRateRange, uint32_t* size);
     Camera_ErrorCode PreviewOutputSetFrameRate(uint32_t minFps, uint32_t maxFps);
     Camera_ErrorCode VideoOutputStop(void);
     Camera_ErrorCode VideoOutputRelease(void);
     Camera_ErrorCode TakePicture(int32_t degree);
+    int32_t GetDefaultDisplayRotation();
+    void InitPreviewRotation();
     // callback
     Camera_ErrorCode CameraManagerRegisterCallback(void);
     Camera_ErrorCode CameraInputRegisterCallback(void);
@@ -186,6 +190,8 @@ class NDKCamera {
     static NDKCamera *ndkCamera_;
     static std::mutex mtx_;
     volatile bool valid_;
+// [EndExclude import_header]
 };
 } // namespace OHOS_CAMERA_SAMPLE
+// [End import_header]
 #endif // CAMERA_NDK_CAMERA_H

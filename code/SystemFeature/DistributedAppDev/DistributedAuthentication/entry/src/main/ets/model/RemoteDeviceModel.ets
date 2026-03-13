@@ -15,7 +15,7 @@
 
 import { BusinessError } from '@kit.BasicServicesKit';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import promptAction from '@ohos.promptAction';
+import { PromptAction, UIContext } from '@kit.ArkUI';
 import logger from '../common/Logger';
 
 interface dataType {
@@ -31,6 +31,8 @@ class RemoteDeviceModel {
   localDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
   deviceManager: distributedDeviceManager.DeviceManager | undefined = undefined;
   isSupportRange: boolean = false;
+  private uiContext: UIContext | undefined;
+  private promptAction: PromptAction | undefined;
 
   static getInstance(): RemoteDeviceModel {
     if (RemoteDeviceModel.dmInstance === undefined) {
@@ -40,6 +42,25 @@ class RemoteDeviceModel {
   }
 
   constructor() {
+  }
+
+  setUIContext(uiContext: UIContext): void {
+    if (typeof (this.uiContext) == 'undefined') {
+      this.uiContext = uiContext;
+    }
+    if (typeof (this.promptAction) == 'undefined') {
+      this.promptAction = uiContext.getPromptAction();
+    }
+  }
+
+  showErrMsg(msg: string): void {
+    if (this.promptAction) {
+      this.promptAction.showToast({
+        message: msg
+      });
+    } else {
+      logger.error(`[DeviceManager.RemoteDeviceModel] PromptAction not available, errMsg: ${msg}`);
+    }
   }
 
   // [Start create_device_manager]
@@ -95,9 +116,7 @@ class RemoteDeviceModel {
   getTrustedDeviceList(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
 
@@ -107,12 +126,9 @@ class RemoteDeviceModel {
       // [StartExclude get_available_device_list]
       AppStorage.setOrCreate('trustedDeviceList', this.trustedDeviceList);
       // [EndExclude get_available_device_list]
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
+    } catch (error) {
       logger.error('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList error: ${error}' + error.toString());
-      promptAction.showToast({
-        message: 'getTrustedDeviceList failed'
-      });
+      this.showErrMsg('getTrustedDeviceList failed');
     }
   }
   // [End get_available_device_list]
@@ -155,9 +171,7 @@ class RemoteDeviceModel {
     logger.info('[DeviceManager.RemoteDeviceModel] registerDeviceStateListener');
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
 
@@ -217,7 +231,7 @@ class RemoteDeviceModel {
     let isOnline = filterOptionsMap.get(isOnlineName);
     let isTrusted = filterOptionsMap.get(isTrustedName);
     let range = filterOptionsMap.get(rangeName);
-    
+
     if(authForm == 1){
       filterOptions['authorizationType'] = 1;
     }else if(authForm == 2) {
@@ -253,9 +267,7 @@ class RemoteDeviceModel {
   startDeviceDiscovery(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
     let self = this;
@@ -298,9 +310,7 @@ class RemoteDeviceModel {
   stopDeviceDiscovery(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
     logger.info('[DeviceManager.RemoteDeviceModel] stopDeviceDiscovery');
@@ -316,9 +326,7 @@ class RemoteDeviceModel {
   unregisterDeviceListCallback(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
     try {
@@ -337,9 +345,7 @@ class RemoteDeviceModel {
     logger.info('[DeviceManager.RemoteDeviceModel] authenticateDevice ' + JSON.stringify(device));
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
 
@@ -374,9 +380,7 @@ class RemoteDeviceModel {
     logger.info('[DeviceManager.RemoteDeviceModel] unAuthenticateDevice ' + JSON.stringify(device));
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      promptAction.showToast({
-        message: 'deviceManager has not initialized'
-      });
+      this.showErrMsg('deviceManager has not initialized');
       return;
     }
 

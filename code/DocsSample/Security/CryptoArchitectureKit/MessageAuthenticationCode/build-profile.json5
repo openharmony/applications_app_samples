@@ -26,7 +26,10 @@
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "externalNativeOptions": {
-            "abiFilters": ["arm64-v8a", "x86_64"]
+            "abiFilters": [
+              "arm64-v8a",
+              "x86_64"
+            ]
           },
           "strictMode": {
             "caseSensitiveCheck": true,

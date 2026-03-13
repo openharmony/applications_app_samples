@@ -16,6 +16,7 @@
 #define SWIPE_AND_PINCH_EXCLUSIVE_GESTURE_H
 
 // [Start swipe_and_pinch_exclusive_gesture]
+// SwipeAndPinchExclusiveGesture.h
 #include <arkui/native_animate.h>
 #include <arkui/native_gesture.h>
 #include <arkui/native_interface.h>

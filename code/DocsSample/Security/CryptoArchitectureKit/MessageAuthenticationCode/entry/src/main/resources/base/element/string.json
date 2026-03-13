@@ -45,6 +45,10 @@
       "value": "Call SingleTime Sync"
     },
     {
+      "name": "call_hmac_spec_async",
+      "value": "Call HMAC Spec Async"
+    },
+    {
       "name": "call_cmac_segmentation_async",
       "value": "Call CMAC Segmentation Async"
     },

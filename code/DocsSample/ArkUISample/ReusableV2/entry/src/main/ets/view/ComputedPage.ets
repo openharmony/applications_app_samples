@@ -21,23 +21,26 @@ const DOMAIN = 0xF811;
 @ObservedV2
 class Info {
   @Trace public age: number;
+
   constructor(age: number) {
     this.age = age;
   }
 }
+
 @Entry
 @ComponentV2
 struct Index {
   @Local local: number = 0;
   @Provider('inherit') inheritProvider: number = 100;
   @Local condition: boolean = true;
+
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('Recycle/Reuse')
         .onClick(() => {
           this.condition = !this.condition;
         })
-      Column() {
+      Column({ space: 10 }) {
         Text('Variables of parent component')
         Text(`local: ${this.local}`)
           .onClick(() => {
@@ -47,7 +50,9 @@ struct Index {
           .onClick(() => {
             this.inheritProvider++;
           })
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
 
       if (this.condition) {
         ReusableV2Component({
@@ -59,8 +64,10 @@ struct Index {
         })
       }
     }
+    .width('100%')
   }
 }
+
 @ReusableV2
 @ComponentV2
 struct ReusableV2Component {
@@ -76,21 +83,25 @@ struct ReusableV2Component {
   noDecoVariable: number = 0; // 未加装饰器，被视作常量
   noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   readonly readOnlyVariable: number = 0; // readonly常量
+
   @Computed
   get plusParam() {
     return this.paramLocal + this.paramOut + this.paramOnce;
   }
+
   @Monitor('val')
   onValChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
+
   @Monitor('plusParam')
   onPlusParamChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, `plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
+
   build() {
-    Column() {
-      Column() {
+    Column({ space: 10 }) {
+      Column({ space: 10 }) {
         Text('Variables reset to local initial values')
         Text(`val: ${this.val}`)
           .onClick(() => {
@@ -112,8 +123,11 @@ struct ReusableV2Component {
           .onClick(() => {
             this.selfConsumer++;
           })
-      }.borderWidth(2)
-      Column() {
+      }
+      .width('80%')
+      .borderWidth(2)
+
+      Column({ space: 10 }) {
         Text('Reset to an external variable')
         Text(`paramOut: ${this.paramOut}`)
           .onClick(() => {
@@ -123,16 +137,22 @@ struct ReusableV2Component {
           .onClick(() => {
             this.paramOnce++;
           })
-      }.borderWidth(2)
-      Column() {
+      }
+      .width('80%')
+      .borderWidth(2)
+
+      Column({ space: 10 }) {
         Text('Depending on the parent component')
         Text(`inheritConsumer: ${this.inheritConsumer}`)
           .onClick(() => {
             this.inheritConsumer++;
           })
         Text(`plusParam: ${this.plusParam}`)
-      }.borderWidth(2)
-      Column() {
+      }
+      .width('80%')
+      .borderWidth(2)
+
+      Column({ space: 10 }) {
         Text('Not reset')
         Text(`noDecoVariable: ${this.noDecoVariable}`)
         Text(`noDecoInfo.age: ${this.noDecoInfo.age}`)
@@ -140,10 +160,15 @@ struct ReusableV2Component {
             this.noDecoInfo.age++;
           }) // 能够触发刷新但是复用时不会被重置
         Text(`readOnlyVariable: ${this.readOnlyVariable}`)
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
     }
+    .width('100%')
   }
 }
+
 //[End ComputedPage]
 const computedPage = Index;
+
 export default computedPage;

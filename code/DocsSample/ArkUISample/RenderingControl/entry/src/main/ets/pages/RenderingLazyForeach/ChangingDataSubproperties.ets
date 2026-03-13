@@ -14,7 +14,7 @@
  */
 
 // [Start changing_data_sub_properties]
-/** GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码 **/
+// GenericBasicDataSource代码见文档末尾BasicDataSource示例代码: 泛型数组的BasicDataSource代码。
 import { GenericBasicDataSource } from './GenericBasicDataSource';
 
 class MySubDataSource extends GenericBasicDataSource<StringData> {

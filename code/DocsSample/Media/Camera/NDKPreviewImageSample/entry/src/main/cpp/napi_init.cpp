@@ -70,6 +70,7 @@ static napi_value ReleaseCamera(napi_env env, napi_callback_info info)
     return result;
 }
 
+// [Start image_receiver_callback_show]
 void copyBuffer(OH_NativeBuffer *srcBuffer, size_t srcSize, OHNativeWindowBuffer *dstBuffer)
 {
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest %{public}s IN", __func__);
@@ -99,16 +100,16 @@ void ShowImage(OH_ImageNative *image)
         xComponentSurfaceId);
     OHNativeWindow *nativeWindow = nullptr;
     int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(xComponentSurfaceId, &nativeWindow);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP,
             "ShowImage CreateNativeWindowFromSurfaceId failed, errCode: %{public}d.", res);
         return;
     }
 
-    // 关键：调整nativeWindow大小及format，需要与image的大小、format保持一致
+    // 关键：调整nativeWindow大小及format，需要与image的大小、format保持一致。
     res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_BUFFER_GEOMETRY, g_imageWidth, g_imageHeight);
     res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_FORMAT, NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP); // NV21
-    // 设置旋转角度，后置默认旋转90，则需要将nativeWindow旋转270度，前置默认270，则需要将nativeWindow旋转90度
+    // 设置旋转角度，后置默认旋转90，则需要将nativeWindow旋转270度，前置默认270，则需要将nativeWindow旋转90度。
     if (g_isFront) {
         res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_FLIP_V_ROT90);
     } else {
@@ -131,17 +132,17 @@ void ShowImage(OH_ImageNative *image)
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
     int fenceFd = -1;
     res = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage RequestBuffer failed, errCode: %{public}d.", res);
         return;
     }
 
-    // 将image数据拷贝到nativeWindowBuffer上
+    // 将image数据拷贝到nativeWindowBuffer上。
     copyBuffer(imageBuffer, bufSize, nativeWindowBuffer);
 
     Region region1{};
     res = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, region1);
-    if (res) {
+    if (res != 0) {
         OH_LOG_ERROR(LOG_APP, "ShowImage FlushBuffer failed, errCode: %{public}d.", res);
         return;
     }
@@ -151,7 +152,7 @@ void ShowImage(OH_ImageNative *image)
 static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
 {
     OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s IN", __func__);
-    // 读取 OH_ImageReceiverNative 下一张图片对象
+    // 读取OH_ImageReceiverNative下一张图片对象。
     OH_ImageNative *image = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
     if (errCode != IMAGE_SUCCESS) {
@@ -163,7 +164,7 @@ static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
 
     ShowImage(image);
 
-    // 释放 OH_ImageNative 实例
+    // 释放OH_ImageNative实例。
     errCode = OH_ImageNative_Release(image);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "CallbackReadNextImage %{public}s release image native failed, errCode: %{public}d.",
@@ -171,7 +172,9 @@ static void CallbackReadNextImage(OH_ImageReceiverNative *receiver)
     }
     OH_LOG_INFO(LOG_APP, "CallbackReadNextImage %{public}s SUCCESS", __func__);
 }
+// [End image_receiver_callback_show]
 
+// [Start init_image_receiver]
 void InitImageReceiver(uint64_t &receiverSurfaceID)
 {
     OH_ImageReceiverOptions *options = nullptr;
@@ -183,9 +186,9 @@ void InitImageReceiver(uint64_t &receiverSurfaceID)
         return;
     }
     Image_Size imgSize;
-    imgSize.width = PREVIEW_WIDTH;  // 创建预览流的宽。
+    imgSize.width = PREVIEW_WIDTH; // 创建预览流的宽。
     imgSize.height = PREVIEW_HEIGHT; // 创建预览流的高。
-    int32_t capacity = 8;  // BufferQueue里最大Image数量，推荐填写8。
+    int32_t capacity = 8; // BufferQueue里最大Image数量，推荐填写8。
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "OH_ImageReceiverOptions_SetSize call failed");
@@ -217,6 +220,7 @@ void InitImageReceiver(uint64_t &receiverSurfaceID)
         OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
     }
 }
+// [End init_image_receiver]
 
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {

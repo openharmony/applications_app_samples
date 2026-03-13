@@ -1,0 +1,20 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CreateAVSession",
+    "pages/SetAVMetadata",
+    "pages/AdaptingToBluetoothMethodOne",
+    "pages/AdaptingToBluetoothMethodTwo",
+    "pages/DisplayTagsOfMediaAssets",
+    "pages/FavoritingMediaAssets",
+    "pages/HandlingUnsupportedCommands",
+    "pages/ImplementingIntentBasedPlayback",
+    "pages/PerformingProgressControl",
+    "pages/SettingFastForward",
+    "pages/SettingGeneralStateInformation",
+    "pages/SettingLyrics",
+    "pages/SettingPlaylistInformation",
+    "pages/SettingTheLoopMode",
+    "pages/SettingTheProgressBar"
+  ]
+}

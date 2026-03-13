@@ -13,15 +13,15 @@
 * limitations under the License.
 */
 
-// b.ets
-import { Anno } from './a';
+// Annotation.ets
+import { Anno } from './MyAnno';
 // [Start annotation_export_example_import]
 // [Start annotation_import_example]
-// b.ets
-import { MyAnno2 } from './a';
-import * as ns from './a';
+// Annotation.ets
+import { MyAnno2 } from './MyAnno';
+import * as ns from './MyAnno';
 // [StartExclude annotation_export_example_import]
-// 仅引用了Anno注解，不会导致a.ets的console.info执行
+// 仅引用了Anno注解，不会导致MyAnno.ets的console.info执行
 class X {
   // ...
 }

@@ -20,11 +20,11 @@ import { InputComponent } from '../common/InputComponent';
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
 import { TitleBarComponent } from '../common/TitleBarComponent';
 import { isOperator, calc } from '../model/Calculator';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import mediaquery from '@ohos.mediaquery';
+
 import { KvStoreModel } from '../model/KvStoreModel';
 import { emitter } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+import { mediaquery } from '@kit.ArkUI';
 
 const TAG: string = 'Index';
 const EXIT: string = 'exit';
@@ -47,9 +47,9 @@ struct Index {
   onLand = (mediaQueryResult: mediaquery.MediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`);
     if (mediaQueryResult.matches) {
-      this.isLand = true
+      this.isLand = true;
     } else {
-      this.isLand = false
+      this.isLand = false;
     }
   };
 
@@ -61,7 +61,7 @@ struct Index {
     } else {
       // 如果是第一次同步数据，会通过startAbilityCallBack调用，所以此处不需要调用put
       if (!this.kvStoreModel?.isFirstSync) {
-        Logger.info(TAG, `dataChange, put start`)
+        Logger.info(TAG, `dataChange, put start`);
         this.kvStoreModel?.put(DATA_CHANGE, this.expression, false);
       }
     }
@@ -119,7 +119,7 @@ struct Index {
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
     let context: common.UIAbilityContext = AppStorage.get('UIAbilityContext') as common.UIAbilityContext;
-    let atManager = abilityAccessCtrl.createAtManager();
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
       atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `grantPermission,requestPermissionsFromUser`);
@@ -192,17 +192,17 @@ struct Index {
           InputComponent({ isLand: this.isLand, result: $result, expression: $expression })
           ButtonComponentHorizontal({ onInputValue: this.onInputValue })
         }
-        .width('100%')
+        .width($r('app.string.percent_100'))
         .layoutWeight(1)
       } else {
         Column() {
           InputComponent({ isLand: this.isLand, result: $result, expression: $expression })
           ButtonComponent({ onInputValue: this.onInputValue })
         }
-        .width('100%')
+        .width($r('app.string.percent_100'))
       }
     }
-    .width('100%')
-    .height('100%')
+    .width($r('app.string.percent_100'))
+    .height($r('app.string.percent_100'))
   }
 }

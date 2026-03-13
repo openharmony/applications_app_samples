@@ -107,6 +107,7 @@ class MyDataSource extends BasicDataSource {
 @ObservedV2
 class StringData {
   @Trace message: string;
+
   constructor(message: string) {
     this.message = message;
   }
@@ -122,6 +123,7 @@ struct Index {
       this.data.pushData(new StringData('Hello' + i));
     }
   }
+
   build() {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
@@ -143,22 +145,28 @@ struct Index {
 @ComponentV2
 struct ChildComponent {
   @Param @Require data: string;
+
   aboutToAppear(): void {
     hilog.info(DOMAIN, TAG, 'ChildComponent aboutToAppear', this.data);
   }
+
   aboutToDisappear(): void {
     hilog.info(DOMAIN, TAG, 'ChildComponent aboutToDisappear', this.data);
   }
+
   aboutToReuse(): void {
     hilog.info(DOMAIN, TAG, 'ChildComponent aboutToReuse', this.data); // 复用时触发
   }
+
   aboutToRecycle(): void {
     hilog.info(DOMAIN, TAG, 'ChildComponent aboutToRecycle', this.data); // 回收时触发
   }
+
   build() {
     Row() {
       Text(this.data).fontSize(50)
     }
   }
 }
+
 // [End LazyForEachPage]

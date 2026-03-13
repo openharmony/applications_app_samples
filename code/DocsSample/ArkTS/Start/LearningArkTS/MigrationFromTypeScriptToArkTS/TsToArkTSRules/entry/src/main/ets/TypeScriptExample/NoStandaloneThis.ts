@@ -14,7 +14,7 @@
  */
 // [Start no_standaloneThis_ts]
 function foo(i: string) {
-  this.count = i; // 只有在开启noImplicitThis选项时会产生编译时错误。
+  this.count = i; // 只有在开启noImplicitThis选项时会产生编译时错误
 }
 
 class A {
@@ -23,7 +23,7 @@ class A {
 }
 
 let a = new A();
-console.info(a.count); // 打印a。
+console.info(a.count); // 打印a
 a.m('b');
-console.info(a.count); // 打印b。
+console.info(a.count); // 打印b
 // [End no_standaloneThis_ts]

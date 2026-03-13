@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AI FaceAuth"
+    },
+    {
+      "name": "gallery_entry_tips",
+      "value": "Please select an image"
+    },
+    {
+      "name": "no_image_tips",
+      "value": "No image at the moment"
+    },
+    {
+      "name": "dialog_select_camera",
+      "value": "Please select camera"
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "sure",
+      "value": "sure"
+    },
+    {
+      "name": "AI_fail_load",
+      "value": "AI model failed to load, please try again!"
+    },
+    {
+      "name": "Multi_camera",
+      "value": "Multi-camera switching"
+    },
+    {
+      "name": "no_camera",
+      "value": "no_camera_use"
+    },
+    {
+      "name": "discover_devices",
+      "value": "Click to start discovering devices"
+    },
+    {
+      "name": "Trust_Device",
+      "value": "Trusted Device (Authenticated Device)"
+    },
+    {
+      "name": "Connect_Device",
+      "value": "Connect Device"
+    },
+    {
+      "name": "start_connect",
+      "value": "start_connect"
+    },
+    {
+      "name": "Delete_Device",
+      "value": "Delete Device"
+    },
+    {
+      "name": "start_unbinding",
+      "value": "start unbinding"
+    },
+    {
+      "name": "discovering_devices",
+      "value": "discovering devices"
+    },
+    {
+      "name": "online_device",
+      "value": "online devices"
+    },
+    {
+      "name": "trust_device",
+      "value": "Trusted Device"
+    },
+    {
+      "name": "device_verified",
+      "value": "Verified, please do not verify again"
+    },
+    {
+      "name": "sure_to_connect",
+      "value": "Are you sure you want to connect"
+    },
+    {
+      "name": "sure_to_delete",
+      "value": "Are you sure you want to delete"
+    },
+    {
+      "name": "image_fail_load",
+      "value": "Failed to load image, please select the image again."
+    },
+    {
+      "name": "no_face_detected",
+      "value": "No face detected, please try again."
+    },
+    {
+      "name": "local_image",
+      "value": "local image"
+    },
+    {
+      "name": "image_facial_recognition",
+      "value": "Image facial recognition"
+    },
+    {
+      "name": "camera_facial_recognition",
+      "value": "Camera facial recognition"
+    },
+    {
+      "name": "device_authentication",
+      "value": "Device Connection Authentication"
+    },
+    {
+      "name": "connect_to_camera",
+      "value": "Please connect the camera"
+    }
+  ]
+}

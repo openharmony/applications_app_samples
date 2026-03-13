@@ -36,7 +36,8 @@ struct RepeatBuilderPage {
       Row({ space: 20 }) {
         List({ initialIndex: 5, space: 20 }) {
           Repeat<number>(this.simpleList1)
-            .each((ri) => {})
+            .each((ri) => {
+            })
             .virtualScroll({ totalCount: this.simpleList1.length })
             .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
@@ -58,7 +59,8 @@ struct RepeatBuilderPage {
 
         List({ initialIndex: 5, space: 20 }) {
           Repeat<number>(this.simpleList2)
-            .each((ri) => {})
+            .each((ri) => {
+            })
             .virtualScroll({ totalCount: this.simpleList2.length })
             .templateId((item: number, index: number) => 'default')
             .template('default', (ri) => {
@@ -100,4 +102,5 @@ struct RepeatBuilderPage {
       .margin({ top: 2 })
   }
 }
+
 // [End repeat_builder]

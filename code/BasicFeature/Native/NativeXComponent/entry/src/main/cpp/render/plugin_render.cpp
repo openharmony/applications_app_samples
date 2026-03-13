@@ -28,6 +28,7 @@ namespace {
 // [Start native_xcomponent_declarative_get_native_window]
 void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 {
+    // Surface创建回调函数，用于初始化EGL环境并绘制背景
     // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceCreatedCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -59,6 +60,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 
 void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 {
+    // Surface变化回调函数，用于处理Surface尺寸、位置等属性变化
     // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChangedCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -86,6 +88,7 @@ void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 {
+    // Surface销毁回调函数，用于释放EGL资源和清理渲染实例
     // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceDestroyedCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -109,6 +112,7 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 
 void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
 {
+    // 触摸事件分发回调函数，用于处理屏幕触摸事件
     // [StartExclude native_xcomponent_declarative_get_native_window]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchTouchEventCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -136,6 +140,7 @@ void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
 
 void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
 {
+    // 鼠标事件分发回调函数，用于处理鼠标点击、移动等事件
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchMouseEventCB");
     int32_t ret;
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
@@ -154,6 +159,7 @@ void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
 
 void DispatchHoverEventCB(OH_NativeXComponent* component, bool isHover)
 {
+    // 悬停事件分发回调函数，用于处理鼠标悬停状态变化
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchHoverEventCB");
     int32_t ret;
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
@@ -172,6 +178,7 @@ void DispatchHoverEventCB(OH_NativeXComponent* component, bool isHover)
 
 void OnFocusEventCB(OH_NativeXComponent* component, void* window)
 {
+    // 获得焦点事件回调函数，用于处理组件获得焦点的状态
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnFocusEventCB");
     int32_t ret;
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
@@ -190,6 +197,7 @@ void OnFocusEventCB(OH_NativeXComponent* component, void* window)
 
 void OnBlurEventCB(OH_NativeXComponent* component, void* window)
 {
+    // 失去焦点事件回调函数，用于处理组件失去焦点的状态
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnBlurEventCB");
     int32_t ret;
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
@@ -208,6 +216,7 @@ void OnBlurEventCB(OH_NativeXComponent* component, void* window)
 
 void OnKeyEventCB(OH_NativeXComponent* component, void* window)
 {
+    // 按键事件回调函数，用于处理键盘按键事件
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnKeyEventCB");
     int32_t ret;
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
@@ -230,12 +239,14 @@ int32_t PluginRender::hasChangeColor_ = 0;
 
 PluginRender::PluginRender(std::string& id)
 {
+    // 构造函数，初始化PluginRender实例，创建EGLCore对象
     this->id_ = id;
     this->eglCore_ = new EGLCore();
 }
 
 PluginRender* PluginRender::GetInstance(std::string& id)
 {
+    // 获取指定ID的PluginRender单例实例，如果不存在则创建新实例
     if (instance_.find(id) == instance_.end()) {
         PluginRender* instance = new PluginRender(id);
         instance_[id] = instance;
@@ -247,6 +258,7 @@ PluginRender* PluginRender::GetInstance(std::string& id)
 
 void PluginRender::Export(napi_env env, napi_value exports)
 {
+    // 导出NAPI接口，注册JavaScript可调用的Native方法
     if ((env == nullptr) || (exports == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "Export: env or exports is null");
         return;
@@ -265,6 +277,7 @@ void PluginRender::Export(napi_env env, napi_value exports)
 // NAPI registration method type napi_callback. If no value is returned, nullptr is returned.
 napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info)
 {
+    // NAPI绘图方法，从JavaScript层调用来触发Native绘制操作
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "NapiDrawPattern");
     if ((env == nullptr) || (info == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "NapiDrawPattern: env or info is null");
@@ -309,6 +322,7 @@ napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info)
 
 void PluginRender::Release(std::string& id)
 {
+    // 释放指定ID的PluginRender实例资源，包括EGL资源和实例本身
     PluginRender* render = PluginRender::GetInstance(id);
     if (render != nullptr) {
         render->eglCore_->Release();
@@ -320,6 +334,7 @@ void PluginRender::Release(std::string& id)
 
 void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
 {
+    // 处理Surface变化事件，更新组件尺寸和偏移量信息
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -344,6 +359,7 @@ void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window
 
 void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
 {
+    // 处理触摸事件，包括点击、触摸工具类型、倾斜角度等信息
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -372,6 +388,7 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
 // [Start native_xcomponent_declarative_surface_callback]
 void PluginRender::RegisterCallback(OH_NativeXComponent* nativeXComponent)
 {
+    // 注册XComponent的各种回调函数，包括Surface回调和各类事件回调
     renderCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
     renderCallback_.OnSurfaceChanged = OnSurfaceChangedCB;
     renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
@@ -395,6 +412,7 @@ void PluginRender::RegisterCallback(OH_NativeXComponent* nativeXComponent)
 
 void PluginRender::OnMouseEvent(OH_NativeXComponent* component, void* window)
 {
+    // 处理鼠标事件，记录鼠标坐标、动作类型和按键信息
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
     OH_NativeXComponent_MouseEvent mouseEvent;
     int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
@@ -409,21 +427,25 @@ void PluginRender::OnMouseEvent(OH_NativeXComponent* component, void* window)
 
 void PluginRender::OnHoverEvent(OH_NativeXComponent* component, bool isHover)
 {
+    // 处理鼠标悬停事件，记录悬停状态
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnHoverEvent isHover_ = %{public}d", isHover);
 }
 
 void PluginRender::OnFocusEvent(OH_NativeXComponent* component, void* window)
 {
+    // 处理获得焦点事件
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnFocusEvent");
 }
 
 void PluginRender::OnBlurEvent(OH_NativeXComponent* component, void* window)
 {
+    // 处理失去焦点事件
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnBlurEvent");
 }
 
 void PluginRender::OnKeyEvent(OH_NativeXComponent* component, void* window)
 {
+    // 处理按键事件，记录按键动作、键码、设备ID和时间戳等信息
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
 
     OH_NativeXComponent_KeyEvent* keyEvent = nullptr;
@@ -449,6 +471,7 @@ void PluginRender::OnKeyEvent(OH_NativeXComponent* component, void* window)
 
 napi_value PluginRender::TestGetXComponentStatus(napi_env env, napi_callback_info info)
 {
+    // 获取XComponent状态信息，返回包含绘图状态和颜色变化状态的对象
     napi_value hasDraw;
     napi_value hasChangeColor;
 

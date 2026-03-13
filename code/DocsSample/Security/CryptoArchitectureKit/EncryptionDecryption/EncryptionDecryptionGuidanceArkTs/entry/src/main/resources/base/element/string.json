@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceArkTs"
+    },
+    {
+      "name": "rc2_cbc_encryption_decryption_asynchronous",
+      "value": "rc2_cbc_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "rc2_cbc_encryption_decryption_synchronous",
+      "value": "rc2_cbc_encryption_decryption_synchronous"
+    },
+    {
+      "name": "rc4_encryption_decryption_asynchronous",
+      "value": "rc4_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "rc4_encryption_decryption_synchronous",
+      "value": "rc4_encryption_decryption_synchronous"
+    },
+    {
+      "name": "call_rc2_cbc_asynchronous",
+      "value": "Call RC2_CBC Asynchronous"
+    },
+    {
+      "name": "call_rc2_cbc_synchronous",
+      "value": "Call RC2_CBC Synchronous"
+    },
+    {
+      "name": "call_rc4_encryption_decryption_asynchronous",
+      "value": "Call RC4_EncryptionDecryption Asynchronous"
+    },
+    {
+      "name": "call_rc4_encryption_decryption_synchronous",
+      "value": "Call RC4_EncryptionDecryption Synchronous"
+    }
+  ]
+}

@@ -14,3 +14,4 @@ export const destroyNativeRoot: () => void;
 export const CreateDrawNode: (content: NodeContent) => void;
 export const CreateNativeRoot: (content: NodeContent) => void;
 export const DestroyNativeRoot: () => void;
+export const CreateNativeMessageRoot: (content: NodeContent) => void;

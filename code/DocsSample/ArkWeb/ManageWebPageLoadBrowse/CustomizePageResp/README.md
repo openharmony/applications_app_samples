@@ -54,6 +54,10 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+* 自定义页面请求响应，源码参考[OnInterceptRequest_one.ets](./entry/src/main/ets/pages/OnInterceptRequest_one.ets)
+  * 通过onInterceptRequest接口拦截网络请求，通过检测getRequestUrl实现对特定目标URL的匹配。在拦截命中后，实例化WebResourceResponse对象构造自定义HTTP响应。
+  * 利用onInterceptRequest拦截特定JavaScript资源的请求，并手动构造WebResourceResponse返回自定义的脚本内容。在响应头中添加“ResponseDataID”字段，开启生成CodeCache的功能。
 
 ### 相关权限
 

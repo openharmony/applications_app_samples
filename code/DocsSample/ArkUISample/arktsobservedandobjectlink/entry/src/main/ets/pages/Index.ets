@@ -39,7 +39,10 @@ const createRouterList: CreateRouter[] = [
   new CreateRouter('DelayedChangePage', 'pages/ObservedAndObjectLinkFAQs/DelayedChange'),
   new CreateRouter('ObjectLinkDataSourceUpdatePage', 'pages/ObservedAndObjectLinkFAQs/ObjectLinkDataSourceUpdate'),
   new CreateRouter('ClickEventJackPage', 'pages/ObservedAndObjectLinkFAQs/ClickEventJack'),
-  new CreateRouter('NotTriggerUIRefreshPage', 'pages/ObservedAndObjectLinkFAQs/NotTriggerUIRefresh')
+  new CreateRouter('NotTriggerUIRefreshPage', 'pages/ObservedAndObjectLinkFAQs/NotTriggerUIRefresh'),
+  new CreateRouter('StateToObjectlinkPage', 'pages/objectLinkusagescenarios/StateToObjectlink'),
+  new CreateRouter('ChangePropertyInConstructorPage', 'pages/ObservedAndObjectLinkFAQs/ChangePropertyInConstructor'),
+  new CreateRouter('UseWithLazyForEachPage', 'pages/ObservedAndObjectLinkFAQs/UseWithLazyForEach')
 ];
 @Entry
 @Component

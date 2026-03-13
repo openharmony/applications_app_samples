@@ -17,6 +17,10 @@
       "value": "文本显示(Text/Span)"
     },
     {
+      "name": "pageIndex_KeyBoard",
+      "value": "管理软键盘"
+    },
+    {
       "name": "pageIndex_TextInput",
       "value": "文本输入(TextInput/TextArea/Search)"
     },
@@ -407,6 +411,22 @@
     {
       "name": "CreatTextInput_title",
       "value": "创建输入框"
+    },
+    {
+      "name": "TextInputControllerCloseKeyboard_title",
+      "value": "通过TextInputController收起软键盘"
+    },
+    {
+      "name": "RequestFocusCloseKeyBoard_title",
+      "value": "通过RequestFocus切换焦点收起软键盘"
+    },
+    {
+      "name": "close_keyboard",
+      "value": "close keyboard"
+    },
+    {
+      "name": "button_get_focus",
+      "value": "按钮获得焦点"
     },
     {
       "name": "ProhibitSelectMenu_title_1",

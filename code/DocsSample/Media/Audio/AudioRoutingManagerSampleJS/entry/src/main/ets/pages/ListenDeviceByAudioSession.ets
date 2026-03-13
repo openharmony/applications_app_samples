@@ -89,6 +89,10 @@ async function cancelAllListenCurrentOutputDeviceChanged() {
 async function setDefaultOutputDeviceSpeaker() {
   // [EndExclude set_DefaultOutputDevice]
   // [EndExclude setting_DefaultOutputDevice]
+  let strategy: audio.AudioSessionStrategy = {
+    concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_DEFAULT
+  };
+  await audioSessionManager.activateAudioSession(strategy);
   // 设置默认输出设备为本机扬声器。
   audioSessionManager.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
     // [StartExclude setting_DefaultOutputDevice]
@@ -125,6 +129,10 @@ async function setDefaultOutputDeviceSpeaker() {
 async function setDefaultOutputDeviceDefault() {
   // [EndExclude set_DefaultOutputDevice]
   // [EndExclude setting_DefaultOutputDevice]
+  let strategy: audio.AudioSessionStrategy = {
+    concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_DEFAULT
+  };
+  await audioSessionManager.activateAudioSession(strategy);
   // 设置默认输出设备为默认设备,即取消应用设置的默认设备,交由系统选择设备。
   audioSessionManager.setDefaultOutputDevice(audio.DeviceType.DEFAULT).then(() => {
     // [StartExclude setting_DefaultOutputDevice]

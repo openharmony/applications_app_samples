@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 // [Start test_instanceof]
-// pages/index.ets
+// pages/TestInstancof.ets
 import { worker, ErrorEvent } from '@kit.ArkTS'
 import { A } from './Sendable'
+
 const workerInstance = new worker.ThreadWorker('../workers/Worker.ets');
+
 function testInstanceof() {
   let a = new A();
   if (a instanceof A) {
@@ -27,7 +29,7 @@ function testInstanceof() {
   }
   workerInstance.postMessageWithSharedSendable(a);
   workerInstance.onerror = (err: ErrorEvent) => {
-    console.error('worker err :' + err.message)
+    console.error('worker err :' + err.message);
   }
 }
 

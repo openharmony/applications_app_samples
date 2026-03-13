@@ -1,0 +1,6 @@
+oh_modules/.default/
+node_modules/
+.local/
+.ohpm/
+build/
+out/

@@ -16,6 +16,8 @@ export function add(a: number, b: number) {
   return a + b;
 }
 
+// [Start export_addNum]
 export function addNum(a: number, b: number) {
   return a + b;
 }
+// [End export_addNum]

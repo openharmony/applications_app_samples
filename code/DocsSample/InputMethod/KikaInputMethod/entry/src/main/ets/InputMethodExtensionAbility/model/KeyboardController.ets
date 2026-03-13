@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
+import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
 import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
 import { display } from '@kit.ArkUI';
-import windowManager from '@ohos.window';
 import Log from '../../model/Log';
-import { BusinessError } from '@ohos.base';
 import { getHardKeyValue } from '../../model/HardKeyUtils';
-import { KeyCode } from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 import { StyleConfiguration } from '../../common/StyleConfiguration';
 
 

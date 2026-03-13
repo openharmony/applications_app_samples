@@ -39,6 +39,7 @@ import { StateProblemNotUpdateInBuildError01 } from './StateProblemNotUpdateInBu
 import { StateProblemABCallUiRefreshOpposite } from './StateProblemABCallUiRefreshOpposite';
 import { StateProblemABCallUiRefreshPositive } from './StateProblemABCallUiRefreshPositive';
 import { StateProblemUnregisterStateCallback } from './StateProblemUnregisterStateCallback';
+import { StateInputUndefined } from './StateInputUndefined';
 
 export const STATE: string = 'state_text';
 
@@ -54,6 +55,10 @@ const routes: Route[] = [
   {
     name: `${STATE}/StateChangeObservationArray`,
     title: resource.resourceToString($r('app.string.state_change_observation_array')),
+  },
+  {
+    name: `${STATE}/StateInputUndefined`,
+    title: resource.resourceToString($r('app.string.state_input_undefined')),
   },
   {
     name: `${STATE}/StateSceneTypeClass`,
@@ -187,6 +192,8 @@ export function stateDestination(name: string) {
     StateProblemABCallUiRefreshPositive()
   } else if (name === `${STATE}/StateProblemUnregisterStateCallback`) {
     StateProblemUnregisterStateCallback()
+  } else if (name === `${STATE}/StateInputUndefined`) {
+    StateInputUndefined()
   }
 }
 

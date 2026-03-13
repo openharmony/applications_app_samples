@@ -15,7 +15,7 @@
 export class normalize { }
 
 // [Start export_class]
-// app.ets
+// ExportMod.ts
 export class C {
   // ...
 }

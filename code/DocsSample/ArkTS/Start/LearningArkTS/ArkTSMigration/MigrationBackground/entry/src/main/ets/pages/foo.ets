@@ -18,5 +18,5 @@ import {u} from './bar'; // foo.ets同时又依赖bar.ets
 export let v = 0;
 console.info(`u: ${u}`);
 
-//应用加载失败
+// 应用加载失败
 // [End import_u]

@@ -109,21 +109,21 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        hilog.info(0xF811,'testTag','%{public}s','onMemoryLevel');
+        hilog.info(0xF811, 'testTag', '%{public}s', 'onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        hilog.info(0xF811,'testTag','%{public}s','onConfigurationUpdated ' + JSON.stringify(config));
+        hilog.info(0xF811, 'testTag', '%{public}s', 'onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
     };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
-    //创建自定义节点并添加至map
+    // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
   }
 
   aboutToDisappear(): void {
-    //移除map中的引用，并将自定义节点释放
+    // 移除map中的引用，并将自定义节点释放
     this.textNodeController.deleteNode();
   }
 
@@ -147,4 +147,5 @@ struct Index {
     .height('100%')
   }
 }
+
 // [End Main_EnvironmentCallbackPage]

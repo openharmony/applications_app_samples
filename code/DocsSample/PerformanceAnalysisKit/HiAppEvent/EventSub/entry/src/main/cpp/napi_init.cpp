@@ -348,7 +348,7 @@ static HiAppEvent_Watcher *eventWatcherR1;
 
 static void OnReceive1(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 {
-    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onReceive callback form C API \n");
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onReceive callback from C API \n");
     for (int i = 0; i < groupLen; ++i) {
         for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
             OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.domain=%{public}s",
@@ -387,7 +387,7 @@ static napi_value RegisterWatcherCrash(napi_env env, napi_callback_info info)
     const char *names[] = {EVENT_APP_CRASH};
     // 开发者订阅感兴趣的事件，此处订阅了系统事件。
     OH_HiAppEvent_SetAppEventFilter(eventWatcherR1, DOMAIN_OS, 0, names, 1);
-    // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive1回调。
+    // 开发者设置已实现的回调函数，观察者接收到事件后会立即触发OnReceive1回调。
     OH_HiAppEvent_SetWatcherOnReceive(eventWatcherR1, OnReceive1);
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(eventWatcherR1);
@@ -401,7 +401,7 @@ static HiAppEvent_Watcher *eventWatcherT1;
 static void OnTake1(const char *const *events, uint32_t eventLen)
 {
     Json::Reader reader(Json::Features::strictMode());
-    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onTrigger callback form C API \n");
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onTrigger callback from C API \n");
     for (int i = 0; i < eventLen; ++i) {
         OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo=%{public}s", events[i]);
         Json::Value eventInfo;

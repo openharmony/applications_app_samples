@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// 相机业务封装层（初始化相机、释放资源、切换摄像头等核心操作）
+
+// [Start camera_resolution_head]
+// 相机业务封装层（初始化相机、释放资源、切换摄像头等核心操作）。
 import { GlobalContext } from '../common/utils/GlobalContext';
 import Logger from '../common/utils/Logger';
 import { Constants } from '../common/Constants';
@@ -30,7 +32,7 @@ import { util } from '@kit.ArkTS';
 import { window } from '@kit.ArkUI';
 import { sensor } from '@kit.SensorServiceKit';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
+// [End camera_resolution_head]
 const TAG = 'CameraService';
 
 export class SliderValue {
@@ -343,9 +345,11 @@ class CameraService {
 
   getSurfaceSize(cameraDevice: camera.CameraDevice, configRatio: number): camera.Profile | undefined {
     Logger.info(TAG, `fkr previewProfiles is ${configRatio}`);
-    // 查询相机设备在指定模式下支持的输出能力
+    // [Start camera_resolution_cameraoutputcapability]
+    // 获取输出流能力。
     this.cameraOutputCapability =
       this.cameraManager.getSupportedOutputCapability(cameraDevice, this.curSceneMode);
+    // [StartExclude camera_resolution_cameraoutputcapability]
     return this.getPreviewProfile(this.cameraOutputCapability, configRatio);
   }
 
@@ -402,6 +406,8 @@ class CameraService {
   }
 
   // 该方法从相机支持的预览分辨率中，筛选出与目标宽高比最匹配且尺寸尽可能大的预览配置 第一个参数是相机支持的输出能力 第二个参数是目标预览比例 // 返回筛选出的最佳预览配置，无匹配则返回undefined
+  // [EndExclude camera_resolution_cameraoutputcapability]
+  // width与height表示用户选择分辨率。
   getPreviewProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
     let previewProfiles = cameraOutputCapability.previewProfiles;
@@ -420,6 +426,7 @@ class CameraService {
     }
     return previewProfiles[index];
   }
+  // [End camera_resolution_cameraoutputcapability]
 
   getPhotoProfile2(cameraOutputCapability: camera.CameraOutputCapability, 
     width: number, height:number): camera.Profile | undefined {
@@ -518,7 +525,6 @@ class CameraService {
     }
     return cameras[deviceIndex];
   }
-
   /**
    * Initializing the Camera Function 选定分辨率版本
    * @param surfaceId - the Surface ID
@@ -854,6 +860,7 @@ class CameraService {
   /**
    * Creates a previewOutput output object. 创建预览输出流函数
    */
+  // [Start camera_resolution_createpreviewoutput]
   createPreviewOutputFn(cameraManager: camera.CameraManager, surfaceId: string,
     previewProfileObj?: camera.Profile): camera.PreviewOutput | undefined {
     let previewOutput: camera.PreviewOutput | undefined = undefined;
@@ -872,6 +879,7 @@ class CameraService {
     }
     return previewOutput;
   }
+  // [End camera_resolution_createpreviewoutput]
 
   /**
    * Creating a photoOutput Object 创建拍照输出流函数
@@ -1156,7 +1164,6 @@ class CameraService {
         this.frameStartCallback();
         Logger.debug(TAG, 'Preview frame started');
       });
-
       previewOutput.on('frameEnd', (err: BusinessError): void => {
         if (err !== undefined && err.code !== 0) {
           return;
@@ -1211,7 +1218,6 @@ class CameraService {
     }
     AppStorage.setOrCreate<number>(';', foldStatusInfo.foldStatus);
   }
-
   onDisplayFoldStatusChange(foldStatus: display.FoldStatus): void {
     Logger.error(TAG, `onDisplayFoldStatusChange foldStatus: ${foldStatus}`);
     if ((this.preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
@@ -1250,7 +1256,6 @@ class CameraService {
     Logger.info(TAG, 'onCameraStatusChange is called');
     cameraManager.on('cameraStatus', this.registerCameraStatusChange);
   }
-
   /**
    * Monitor fold status changes.
    * @param cameraManager
@@ -1278,7 +1283,6 @@ class CameraService {
     Logger.info(TAG, 'offFoldStatusChange is called');
     this.cameraManager?.off('foldStatusChange', this.foldStatusCallback);
   }
-
   /**
    * Listen for camera input changes
    * @param cameraInput

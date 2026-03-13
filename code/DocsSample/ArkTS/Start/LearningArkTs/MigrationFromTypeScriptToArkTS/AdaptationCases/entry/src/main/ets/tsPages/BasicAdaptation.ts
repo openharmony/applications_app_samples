@@ -16,9 +16,10 @@
 // [Start ts_import_module]
 import 'module'
 // [End ts_import_module]
+// [Start try_businessError]
 // [Start ts_limited_throw]
 import { BusinessError } from '@kit.BasicServicesKit'
-
+// [StartExclude try_businessError]
 function ThrowError(error: BusinessError) {
   throw error;
 }
@@ -92,7 +93,7 @@ function testFoo() {
   })
 }
 
-// [Start try_businessError]
+// [EndExclude try_businessError]
 try {
   // ...
 } catch (error) {
@@ -254,8 +255,8 @@ function foo2(params: Object) {
     }
   }
 
-  let s: C = new C(-2);   //抛出异常
-  let t: C = { value: -2 }; //ArkTS不支持
+  let s: C = new C(-2);   // 抛出异常
+  let t: C = { value: -2 }; // ArkTS不支持
   // [End ts_no_structural_typing_two]
 }
 

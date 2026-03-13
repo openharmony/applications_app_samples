@@ -36,14 +36,14 @@ struct ParticleExample4 {
               particle: {
                 type: ParticleType.POINT, // 粒子类型
                 config: {
-                  radius: 5// 圆点半径
+                  radius: 5 // 圆点半径
                 },
                 count: 400, // 粒子总数
-                lifetime: -1// 粒子的生命周期，-1表示粒子生命周期无限大
+                lifetime: -1 // 粒子的生命周期，-1表示粒子生命周期无限大
               },
               emitRate: 10, // 每秒发射粒子数
               position: [0, 0], // 粒子发射位置
-              shape: ParticleEmitterShape.CIRCLE// 发射器形状
+              shape: ParticleEmitterShape.CIRCLE // 发射器形状
             },
             color: {
               range: [Color.Red, Color.Yellow], // 初始颜色范围

@@ -34,7 +34,9 @@ static ChildProcess g_childProcess;
 static IpcProxy *g_ipcProxyPnt = nullptr;
 static std::vector<IpcProxy *> g_ipcProxyPntObjects;
 static std::promise<int> *g_promiseStartProcess = nullptr;
+// [EndExclude main_processIpc_launch_native_child]
 int32_t g_result = -1;
+// [StartExclude main_processIpc_launch_native_child]
 
 extern "C" {
 OHIPCRemoteStub *NativeChildProcess_OnConnect()

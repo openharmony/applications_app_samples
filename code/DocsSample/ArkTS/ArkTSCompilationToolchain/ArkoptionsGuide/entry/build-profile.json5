@@ -21,12 +21,10 @@
       }
     },
     // [Start add_types]
-    // 在/entry/build-profile.json5。
+    // 在/entry/build-profile.json5
     "arkOptions": {
-      "types": [
-        "../node_modules/@types/chai/index", "../node_modules/@types/mocha/index", "./src/main/ets/pages/global"
-      ]
-    },
+      "types": ["pako", "./oh_modules/@types/mime", "./src/main/ets/pages/global"]
+    }
     // [End add_types]
   },
   "buildOptionSet": [

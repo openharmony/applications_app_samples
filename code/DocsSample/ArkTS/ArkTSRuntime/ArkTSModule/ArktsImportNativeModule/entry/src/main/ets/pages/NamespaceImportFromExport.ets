@@ -14,6 +14,6 @@
  */
 // [Start namespaceImport_fromExport]
 // NamespaceImportFromExport.ets
-import { add } from './NamespaceExport'
+import { add } from './NamespaceExport';
 add(2, 3);
 // [End namespaceImport_fromExport]

@@ -30,6 +30,7 @@ export struct ParamUseSceneMap {
 // [Start Param_Use_Scene_Map]
 @ComponentV2
 struct Child {
+  // 使用@Param接收父组件传入的Map类型变量。
   @Param value: Map<number, string> = new Map();
 
   build() {
@@ -46,24 +47,30 @@ struct Child {
 @Entry
 @ComponentV2
 struct Index {
+  // 使用@Local装饰Map类型变量，作为数据源传递给子组件的@Param。
   @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
       Column() {
         Child({ value: this.message })
+        // 对Map整体重新赋值，触发子组件更新。
         Button('init map').onClick(() => {
           this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
+        // 新增键值对，触发子组件更新。
         Button('set new one').onClick(() => {
           this.message.set(4, 'd');
         })
+        // 清空Map，触发子组件更新。
         Button('clear').onClick(() => {
           this.message.clear();
         })
+        // 更新键值对，触发子组件更新。
         Button('replace the first one').onClick(() => {
           this.message.set(0, 'aa');
         })
+        // 删除键值对，触发子组件更新。
         Button('delete the first one').onClick(() => {
           this.message.delete(0);
         })

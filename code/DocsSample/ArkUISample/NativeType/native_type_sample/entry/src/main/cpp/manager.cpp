@@ -24,6 +24,7 @@
 #include "EmbeddedComponentMaker.h"
 #include "ListMaker.h"
 #include "WaterFlowMaker.h"
+#include "GridDragEventMaker.h"
 #include "GridIrregularIndexesMaker.h"
 #include "GridMaker.h"
 #include "GridRectByIndexMaker.h"
@@ -412,6 +413,22 @@ napi_value Manager::CreateGridNativeNodeIrregularIndexes(napi_env env, napi_call
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
         }
     }
+    return nullptr;
+}
+
+napi_value Manager::CreateGridNativeNodeDragEvent(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::GridDragEventMaker::CreateNativeNode();
+    Manager::GetInstance()->SetRootNode(column);
     return nullptr;
 }
 

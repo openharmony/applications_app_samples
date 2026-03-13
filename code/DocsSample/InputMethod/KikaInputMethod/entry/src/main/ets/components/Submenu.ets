@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
-import inputMethod from '@ohos.inputMethod';
 import { util } from '@kit.ArkTS';
-import { inputMethodEngine, InputMethodSubtype } from '@kit.IMEKit';
-import App from '@system.app';
+import { inputMethod, InputMethodSubtype } from '@kit.IMEKit';
 
 const TAG = '[Submenu]';
 

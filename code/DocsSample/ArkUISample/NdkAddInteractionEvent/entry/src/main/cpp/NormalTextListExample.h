@@ -14,7 +14,7 @@
  */
 
 // [Start normal_text_list_example]
-// TextListExample.h
+// NormalTextListExample.h
 // 文本列表示例。
 
 #ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
@@ -25,7 +25,13 @@
 #include "ArkUIListNode.h"
 #include "ArkUITextNode.h"
 #include <hilog/log.h>
-#include "Function.h"
+
+const unsigned int LOG_PRINT_DOMAIN = 0xF811;
+const unsigned int LOOP_SIZE = 30;
+const unsigned int FONT_SIZE = 16;
+const unsigned int HEIGHT_SIZE = 200;
+const float PERCENT_WIDTH_1 = 1;
+const float PERCENT_HEIGHT_1 = 1;
 
 namespace NativeModule {
 

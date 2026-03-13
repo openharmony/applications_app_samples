@@ -30,6 +30,7 @@ export struct ParamUseSceneArray {
 // [Start Param_Use_Scene_Array]
 @ComponentV2
 struct Child {
+  // 使用@Param接收父组件传入的Array类型变量。
   @Require @Param count: number[];
 
   build() {
@@ -46,21 +47,26 @@ struct Child {
 @Entry
 @ComponentV2
 struct Index {
+  // 使用@Local装饰Array类型变量，作为数据源传递给子组件的@Param。
   @Local count: number[] = [1, 2, 3];
 
   build() {
     Row() {
       Column() {
         Child({ count: this.count })
+        // 对数组整体重新赋值，触发子组件更新。
         Button('init array').onClick(() => {
           this.count = [9, 8, 7];
         })
+        // 新增数组元素，触发子组件更新。
         Button('push').onClick(() => {
           this.count.push(0);
         })
+        // 翻转数组元素，触发子组件更新。
         Button('reverse').onClick(() => {
           this.count.reverse();
         })
+        // 使用同一元素填充数组，触发子组件更新。
         Button('fill').onClick(() => {
           this.count.fill(6);
         })

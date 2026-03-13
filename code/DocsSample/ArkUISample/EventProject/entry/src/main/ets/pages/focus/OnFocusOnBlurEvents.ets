@@ -33,17 +33,17 @@ export struct FocusAndBlurExample {
               .height(45)
               .margin(5)
               .onFocus(() => {
-                hilog.info(DOMAIN, TAG, BUNDLE + 'Button1 onFocus');
+                hilog.info(DOMAIN, TAG, `${BUNDLE} Button1 onFocus`);
               })
               .onBlur(() => {
-                hilog.info(DOMAIN, TAG, BUNDLE + 'Button1 onBlur');
+                hilog.info(DOMAIN, TAG, `${BUNDLE} Button1 onBlur`);
               })
           }
           .onFocus(() => {
             hilog.info(DOMAIN, TAG, BUNDLE + 'Row1 onFocus');
           })
           .onBlur(() => {
-            hilog.info(DOMAIN, TAG, BUNDLE + 'Row1 onBlur');
+            hilog.info(DOMAIN, TAG, `${BUNDLE} Row1 onBlur`);
           })
 
           Row() { // 父节点Row2
@@ -52,17 +52,17 @@ export struct FocusAndBlurExample {
               .height(45)
               .margin(5)
               .onFocus(() => {
-                hilog.info(DOMAIN, TAG, BUNDLE + 'Button2 onFocus');
+                hilog.info(DOMAIN, TAG, `${BUNDLE} Button2 onFocus`);
               })
               .onBlur(() => {
-                hilog.info(DOMAIN, TAG, BUNDLE + 'Button2 onBlur');
+                hilog.info(DOMAIN, TAG, `${BUNDLE} Button2 onBlur`);
               })
           }
           .onFocus(() => {
             hilog.info(DOMAIN, TAG, BUNDLE + 'Row2 onFocus');
           })
           .onBlur(() => {
-            hilog.info(DOMAIN, TAG, BUNDLE + 'Row2 onBlur');
+            hilog.info(DOMAIN, TAG, `${BUNDLE} Row2 onBlur`);
           })
         }.width('100%').margin({ top: 5 })
       }.width('100%')
