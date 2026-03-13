@@ -15,8 +15,8 @@
  
 import { webview } from '@kit.ArkWeb';
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
+function resourceToString(resource: Resource, context: UIContext) {
+  return context.getHostContext().resourceManager.getStringSync(resource.id);
 }
 
 @Entry
@@ -36,7 +36,7 @@ struct WebComponent {
         .onAppear(() => {
           // 指定第二个参数为true，代表要进行预连接，如果为false该接口只会对网址进行dns预解析
           // 第三个参数为要预连接socket的个数。最多允许6个。
-          webview.WebviewController.prepareForPageLoad(resourceToString($r('app.string.web_path_one')), true, 2);
+          webview.WebviewController.prepareForPageLoad(resourceToString($r('app.string.web_path_one'), this.getUIContext()), true, 2);
         })
     }
   }

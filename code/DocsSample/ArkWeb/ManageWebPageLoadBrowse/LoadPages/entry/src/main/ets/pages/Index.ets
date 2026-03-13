@@ -22,27 +22,27 @@ struct Index {
     Column({ space: 10 }) {
       Button('LoadingWebPages')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LoadingWebPages' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LoadingWebPages' });
         })
       Button('LoadingLocalPages')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LoadingLocalPages' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LoadingLocalPages' });
         })
       Button('LoadingHTMLRichTextData')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LoadingHTMLRichTextData' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LoadingHTMLRichTextData' });
         })
       Button('LoadLocalPageFileInSandboxPath_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LoadLocalPageFileInSandboxPath_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LoadLocalPageFileInSandboxPath_one' });
         })
       Button('LoadLocalPageFileInSandboxPath_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LoadLocalPageFileInSandboxPath_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LoadLocalPageFileInSandboxPath_two' });
         })
       Button('ResourceLoadPage')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ResourceLoadPage' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ResourceLoadPage' });
         })
     }.height('100%')
     .width('100%')

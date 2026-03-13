@@ -22,11 +22,11 @@ struct Index {
     Column({ space: 10 }) {
       Button('OnInterceptRequest_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/OnInterceptRequest_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnInterceptRequest_one' });
         })
       Button('OnInterceptRequest_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/OnInterceptRequest_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnInterceptRequest_two' });
         })
     }.height('100%')
     .width('100%')
