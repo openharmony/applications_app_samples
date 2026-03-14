@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 @Component
 struct Index {
   toSecondAbilityIndex() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let want: Want = {
       'deviceId': '',
       'bundleName': 'com.samples.requestuserauthorization',
@@ -40,7 +40,7 @@ struct Index {
     Column() {
       Button($r('app.string.req_permission_page'))
         .onClick(() => {
-          router.pushUrl({ url: 'reqpermissioninui/pages/Index' });
+          this.getUIContext().getRouter().pushUrl({ url: 'reqpermissioninui/pages/Index' });
         })
       Button($r('app.string.req_permission_ability'))
         .onClick(() => {
