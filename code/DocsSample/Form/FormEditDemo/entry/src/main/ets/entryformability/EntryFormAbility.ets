@@ -58,4 +58,4 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 }
 
-// [End FormEditDemo_WidgetCard]
+// [End FormEditDemo_EntryFormAbility]
