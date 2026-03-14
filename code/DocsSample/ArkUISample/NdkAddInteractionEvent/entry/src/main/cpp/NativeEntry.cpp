@@ -24,6 +24,7 @@
 #include "LongPressAndFlickGesture.h"
 #include "NativeEntry.h"
 #include "NormalTextListExample.h"
+#include "NormalNodeExample.h"
 #include "SwipeAndPinchExclusiveGesture.h"
 
 
@@ -47,7 +48,9 @@ napi_value CreateNativeNode(napi_env env, napi_callback_info info)
     SetColumnAlignItem(column, ARKUI_HORIZONTAL_ALIGNMENT_START);
     SetPadding(column, BLANK_10);
 
-    FirstModule(column);
+    auto exampleNode = CreateExample();
+    nodeAPI->addChild(column, exampleNode->GetHandle());
+    NativeEntry::GetInstance()->SetRootNode(exampleNode);
 
     auto blank1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     SetHeight(blank1, BLANK_20);
