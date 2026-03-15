@@ -22,6 +22,7 @@ export struct FileBrowse {
   @State files: Array<string> = [];
   @State currentFolder: string = '';
   @Link downloadDir: string;
+  @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     fileUtils.listFolders(this.downloadDir).then((folders: Array<string>) => {
@@ -29,37 +30,41 @@ export struct FileBrowse {
     })
   }
 
+  @Builder
+  NavDestinationBuilder(item: string) {
+    NavDestination() {
+      this.FilesView();
+    }
+    .title(this.CustomTitle(item))
+    .backgroundColor($r('app.color.light_gray'))
+    .onReady(() => {
+      this.currentFolder = item;
+      fileUtils.listFiles(this.downloadDir, item).then((files: Array<string>) => {
+        this.files = files;
+      });
+    })
+  }
+
   build() {
-    Navigation() {
+    Navigation(this.pageStack) {
       List({ space: 12 }) {
         ForEach(this.folders, (item: string) => {
           ListItem() {
-            NavRouter() {
-              Row() {
-                Image($r('app.media.ic_files_folder'))
-                  .size({ width: 32, height: 26 })
-                  .objectFit(ImageFit.Contain)
-                Text(item)
-                  .fontSize(16)
-                  .width('100%')
-                  .margin({ left: 12 })
-              }
-              .height(56)
-              .padding({ left: 16 })
-              .backgroundColor(Color.White)
-              .borderRadius(24)
-
-              NavDestination() {
-                this.FilesView();
-              }
-              .title(this.CustomTitle(item))
-              .backgroundColor($r('app.color.light_gray'))
+            Row() {
+              Image($r('app.media.ic_files_folder'))
+                .size({ width: 32, height: 26 })
+                .objectFit(ImageFit.Contain)
+              Text(item)
+                .fontSize(16)
+                .width('100%')
+                .margin({ left: 12 })
             }
-            .onStateChange(async (isActivated: boolean) => {
-              if (isActivated) {
-                this.currentFolder = item;
-                this.files = await fileUtils.listFiles(this.downloadDir, item);
-              }
+            .height(56)
+            .padding({ left: 16 })
+            .backgroundColor(Color.White)
+            .borderRadius(24)
+            .onClick(() => {
+              this.pageStack.pushPath({ name: item });
             })
           }
         })
@@ -71,6 +76,7 @@ export struct FileBrowse {
     .title($r('app.string.download_files_title'))
     .mode(NavigationMode.Stack)
     .backgroundColor($r('app.color.light_gray'))
+    .navDestination(this.NavDestinationBuilder)
   }
 
   @Builder

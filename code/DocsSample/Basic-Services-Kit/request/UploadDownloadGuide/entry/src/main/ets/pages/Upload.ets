@@ -130,10 +130,15 @@ struct Upload {
     }, context);
   }
 
-  getResourceString(resource: Resource) {
-    let res = this.getUIContext().getHostContext()?.resourceManager.getStringSync(resource.id);
-    logger.debug(TAG + ':****' + res);
-    return res;
+  getResourceString(resource: Resource): string {
+    try {
+      let res = this.getUIContext().getHostContext()?.resourceManager.getStringSync(resource.id);
+      logger.debug(TAG + ':****' + res);
+      return res ?? '';
+    } catch (error) {
+      logger.error(TAG, 'Failed to get resource string: ' + JSON.stringify(error));
+      return '';
+    }
   }
 
   uploadApi9Callback = (progress: number, isSucceed: boolean) => {
