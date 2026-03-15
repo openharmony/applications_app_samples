@@ -129,14 +129,22 @@ export class MyNodeController extends NodeController {
     if (url) {
       this.loadUrl(url);
     }
-    this.webController.onActive();
+    try {
+      this.webController.onActive();
+    } catch (error) {
+      console.info('onActive error, ' + error);
+    }
   }
 
   // 此函数为自定义函数，停止预加载，仅在离线组件没有被绑定时，调用webController的onInactive接口
   stopPreload() {
     if (!this.isBound()) {
       // 在预渲染完成时触发，并且没有被绑定时，停止渲染
-      this.webController.onInactive();
+      try {
+        this.webController.onInactive();
+      } catch (error) {
+        console.info('onInactive error, ' + error);
+      }
     }
   }
 }

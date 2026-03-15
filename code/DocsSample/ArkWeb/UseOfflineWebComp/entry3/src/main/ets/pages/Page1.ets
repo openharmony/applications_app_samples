@@ -17,14 +17,20 @@
 // Page1.ets
 // 使用NodeController的Page页
 import { getNWeb, getFreeWebNode, MyNodeController } from './Common'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Component
 export struct Page1 {
-  private testUrl = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.test_url1'));
+  private testUrl: string | undefined = 'about:blank';
   @State private node1: MyNodeController | undefined = getNWeb(this.testUrl);
   @State private node2: MyNodeController | undefined = getFreeWebNode();
 
   aboutToAppear(): void {
+    try {
+      this.testUrl = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.test_url1').id);
+    } catch (error) {
+      hilog.info(0x0000, 'testTag', 'getString error, %{public}s', error);
+    }
     this.node2?.loadUrl(this.testUrl)
   }
 
