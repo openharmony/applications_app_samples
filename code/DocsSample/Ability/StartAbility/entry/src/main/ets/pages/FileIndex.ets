@@ -29,7 +29,7 @@ const DOMAIN = 0x0000;
 struct FileIndex {
   @State hideAbility: string = 'hideAbility';
   @State message: string = '';
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Row() {
