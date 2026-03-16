@@ -81,7 +81,7 @@ media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
     avPlayer = video;
     console.info('Succeeded in creating AVPlayer');
   } else {
-    console.error(`Failed to create AVPlayer, error message:${error.message}`);
+    console.error(`Failed to create AVPlayer. Code: ${error.code}, message: ${error.message}`);
   }
 });
 // [EndExclude create_streammanager]
@@ -94,7 +94,6 @@ let audioSpatializationManager = audioManager.getSpatializationManager();
 let audioRoutingManager = audioManager.getRoutingManager();
 // [StartExclude check_spacesound]
 // [EndExclude render_process]
-const TAG = 'AudioRendererDemo';
 // [EndExclude init_callback]
 // [EndExclude init_oncallback]
 class Options {
@@ -160,11 +159,11 @@ async function initArguments(context: common.UIAbilityContext) {
       // [EndExclude init_oncallback]
       return audio.AudioDataCallbackResult.VALID;
     } catch (error) {
-      console.error('Error reading file:', error);
+      console.error(`Failed to read file. Code: ${error.code}, message: ${error.message}`);
       // [StartExclude render_process]
       // 系统会判定buffer无效，不播放
       // [StartExclude init_oncallback]
-      globalLogUpdate('Error reading file: ' + error, true);
+      globalLogUpdate(`Failed to read file. Code: ${error.code}, message: ${error.message}`, true);
       // [EndExclude render_process]
       // API version 11不支持返回回调结果，从API version 12开始支持返回回调结果。
       // [EndExclude init_oncallback]
@@ -179,10 +178,10 @@ async function init() {
   // [EndExclude create_audiorender]
   audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例。
     if (!err) {
-      console.info(`${TAG}: creating AudioRenderer success`);
+      console.info('Succeeded in creating audio renderer.');
       // [StartExclude create_audiorender]
       // [StartExclude render_process]
-      globalLogUpdate(`${TAG}: creating AudioRenderer success`, false);
+      globalLogUpdate('Succeeded in creating audio renderer.', false);
       // [EndExclude render_process]
       // [EndExclude create_audiorender]
       audioRenderer = renderer;
@@ -202,9 +201,9 @@ async function init() {
         // [EndExclude create_audiorender]
       }
     } else {
-      console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
+      console.info(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude render_process]
-      globalLogUpdate(`${TAG}: creating AudioRenderer failed, error: ${err.message}`, false);
+      globalLogUpdate(`Failed to create audio renderer. Code: ${err.code}, message: ${err.message}`, false);
       // [EndExclude render_process]
     }
   });
@@ -216,9 +215,9 @@ async function start() {
   if (audioRenderer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
     if (stateGroup.indexOf(audioRenderer.state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染。
-      console.error(TAG + 'start failed');
+      console.error('Audio renderer state is invalid.');
       // [StartExclude render_process]
-      globalLogUpdate(TAG + 'start failed', true);
+      globalLogUpdate('Audio renderer state is invalid.', true);
       // [EndExclude render_process]
       return;
     }
@@ -226,17 +225,17 @@ async function start() {
     // [EndExclude render_start]
     audioRenderer.start((err: BusinessError) => {
       if (err) {
-        console.error('Renderer start failed.');
+        console.error(`Failed to start audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_start]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer start failed.', true);
+        globalLogUpdate(`Failed to start audio renderer. Code: ${err.code}, message: ${err.message}`, true);
         // [EndExclude render_process]
         // [EndExclude render_start]
       } else {
-        console.info('Renderer start success.');
+        console.info('Succeeded in starting audio renderer.');
         // [StartExclude render_start]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer start success.', false);
+        globalLogUpdate('Succeeded in starting audio renderer.', false);
         // [EndExclude render_process]
         // [EndExclude render_start]
       }
@@ -250,23 +249,23 @@ async function pause() {
   if (audioRenderer !== undefined) {
     // 只有渲染器状态为running的时候才能暂停。
     if (audioRenderer.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
-      console.info('Renderer is not running');
+      console.info('Audio renderer state is not running.');
       // [StartExclude render_process]
-      globalLogUpdate('Renderer is not running', false);
+      globalLogUpdate('Audio renderer state is not running.', false);
       // [EndExclude render_process]
       return;
     }
     // 暂停渲染。
     audioRenderer.pause((err: BusinessError) => {
       if (err) {
-        console.error('Renderer pause failed.');
+        console.error(`Failed to pause audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_process]
-        globalLogUpdate('Renderer pause failed.', true);
+        globalLogUpdate(`Failed to pause audio renderer. Code: ${err.code}, message: ${err.message}`, true);
         // [EndExclude render_process]
       } else {
-        console.info('Renderer pause success.');
+        console.info('Succeeded in pausing audio renderer.');
         // [StartExclude render_process]
-        globalLogUpdate('Renderer pause success.', false);
+        globalLogUpdate('Succeeded in pausing audio renderer.', false);
         // [EndExclude render_process]
       }
     });
@@ -279,9 +278,9 @@ async function stop() {
     // 只有渲染器状态为running或paused的时候才可以停止。
     if (audioRenderer.state.valueOf() !== audio.AudioState.STATE_RUNNING &&
       audioRenderer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
-      console.info('Renderer is not running or paused.');
+      console.info('Audio renderer state is not running or paused.');
       // [StartExclude render_process]
-      globalLogUpdate('Renderer is not running or paused.', false);
+      globalLogUpdate('Audio renderer state is not running or paused.', false);
       // [EndExclude render_process]
       return;
     }
@@ -289,17 +288,17 @@ async function stop() {
     // [EndExclude render_stop]
     audioRenderer.stop((err: BusinessError) => {
       if (err) {
-        console.error('Renderer stop failed.');
+        console.error(`Failed to stop audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_stop]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer stop failed.', true);
+        globalLogUpdate(`Failed to stop audio renderer. Code: ${err.code}, message: ${err.message}`, true);
         // [EndExclude render_process]
         // [EndExclude render_stop]
       } else {
-        console.info('Renderer stop success.');
+        console.info('Succeeded in stopping audio renderer.');
         // [StartExclude render_stop]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer stop success.', false);
+        globalLogUpdate('Succeeded in stopping audio renderer.', false);
         // [EndExclude render_process]
         // [EndExclude render_stop]
       }
@@ -313,9 +312,9 @@ async function release() {
   if (audioRenderer !== undefined) {
     // 渲染器状态不是released状态，才能release。
     if (audioRenderer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
-      console.info('Renderer already released');
+      console.info('Audio renderer state is released.');
       // [StartExclude render_process]
-      globalLogUpdate('Renderer already released', false);
+      globalLogUpdate('Audio renderer state is released.', false);
       // [EndExclude render_process]
       return;
     }
@@ -324,26 +323,26 @@ async function release() {
     // 先取消所有监听
     offlistenRenderChange();
     audioVolumeManager.off('streamVolumeChange');
-    console.info('Volume change listener removed');
-    globalLogUpdate('Volume change listener removed', false);
+    console.info('Succeeded in using off streamVolumeChange.');
+    globalLogUpdate('Succeeded in using off streamVolumeChange.', false);
     // [EndExclude render_process]
 
     // 释放资源。
     // [EndExclude render_release]
     audioRenderer.release((err: BusinessError) => {
       if (err) {
-        console.error('Renderer release failed.');
+        console.error(`Failed to release audio renderer. Code: ${err.code}, message: ${err.message}`);
         // [StartExclude render_release]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer release failed.', true);
+        globalLogUpdate(`Failed to release audio renderer. Code: ${err.code}, message: ${err.message}`, true);
         // [EndExclude render_process]
         // [EndExclude render_release]
       } else {
         // 关闭沙箱文件
-        console.info('Renderer release success.');
+        console.info('Succeeded in releasing audio renderer.');
         // [StartExclude render_release]
         // [StartExclude render_process]
-        globalLogUpdate('Renderer release success.', false);
+        globalLogUpdate('Succeeded in releasing audio renderer.', false);
         // [EndExclude render_process]
         // [EndExclude render_release]
       }
@@ -371,12 +370,9 @@ async function listenvolume(){
   // [EndExclude regist_volumechangecallback]
   audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC,
     (streamVolumeEvent: audio.StreamVolumeEvent) => {
-    console.info(`StreamUsagem: ${streamVolumeEvent.streamUsage} `);
-    console.info(`Volume level: ${streamVolumeEvent.volume} `);
-    console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
+    console.info(`Succeeded in using on function. StreamVolumeEvent: ${JSON.stringify(streamVolumeEvent)}`);
     // [StartExclude regist_volumechangecallback]
-    globalCallbackUpdate(`StreamUsagem: ${streamVolumeEvent.streamUsage} Volume level:
-     ${streamVolumeEvent.volume} Whether to updateUI: ${streamVolumeEvent.updateUi}`);
+    globalCallbackUpdate(`Succeeded in using on function. StreamVolumeEvent: ${JSON.stringify(streamVolumeEvent)}`);
     // [EndExclude regist_volumechangecallback]
   });
   // [End regist_volumechangecallback]
@@ -386,28 +382,25 @@ async function setAPPvolume(){
   // [EndExclude set_appvolume]
   // 设置应用的音量（范围为0到100）。
   audioVolumeManager.setAppVolumePercentage(20).then(() => {
-    console.info(`set app volume success.`);
+    console.info('Succeeded in setting app volume percentage.');
     // [StartExclude set_appvolume]
-    globalLogUpdate('set app volume success.', false);
+    globalLogUpdate('Succeeded in setting app volume percentage.', false);
     // [EndExclude set_appvolume]
   });
 
   // 查询应用音量。
   audioVolumeManager.getAppVolumePercentage().then((value: number) => {
-    console.info(`app volume is ${value}.`);
+    console.info(`Succeeded in getting app volume percentage, app volume is ${value}.`);
     // [StartExclude set_appvolume]
-    globalLogUpdate(`app volume is ${value}.`, false);
+    globalLogUpdate(`Succeeded in getting app volume percentage, app volume is ${value}.`, false);
     // [EndExclude set_appvolume]
   });
 
   // 监听应用音量变化，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
   let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
-    console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
-    console.info(`Volume level: ${volumeEvent.volume} `);
-    console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+    console.info(`Succeeded in using on or off function. VolumeEvent: ${JSON.stringify(volumeEvent)}`);
     // [StartExclude set_appvolume]
-    globalCallbackUpdate(`VolumeType of stream: ${volumeEvent.volumeType} Volume level:
-     ${volumeEvent.volume} Whether to updateUI: ${volumeEvent.updateUi}`);
+    globalCallbackUpdate(`Succeeded in using on or off function. VolumeEvent: ${JSON.stringify(volumeEvent)}`);
     // [EndExclude set_appvolume]
   };
   audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
@@ -424,29 +417,29 @@ async function setStreamVolume(){
     // [EndExclude Renderset_streamvolume]
     // 设置音频流音量。
     audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]。
-      console.info('Invoke setVolume succeeded.');
+      console.info('Succeeded in setting volume.'');
       // [StartExclude Renderset_streamvolume]
-      globalLogUpdate('Invoke setVolume succeeded.', false);
+      globalLogUpdate('Succeeded in setting volume.', false);
       // [EndExclude Renderset_streamvolume]
     }).catch((err: BusinessError) => {
-      console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to set volume. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude Renderset_streamvolume]
-      globalLogUpdate(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`, true);
+      globalLogUpdate(`Failed to set volume. Code: ${err.code}, message: ${err.message}`, true);
       // [EndExclude Renderset_streamvolume]
     });
 
     // 获取音频流音量。
     try {
       let value: number = audioRenderer.getVolume();
-      console.info(`Indicate that the volume is obtained ${value}.`);
+      console.info(`Succeeded in getting volume, volume is ${value}.`);
       // [StartExclude Renderset_streamvolume]
-      globalLogUpdate(`Indicate that the volume is obtained ${value}.`, false);
+      globalLogUpdate(`Succeeded in getting volume, volume is ${value}.`, false);
       // [EndExclude Renderset_streamvolume]
     } catch (err) {
       let error = err as BusinessError;
-      console.error(`Failed to obtain the volume, error ${error}.`);
+      console.error(`Failed to get volume. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude Renderset_streamvolume]
-      globalLogUpdate(`Failed to obtain the volume, error ${error}.`, true);
+      globalLogUpdate(`Failed to get volume. Code: ${err.code}, message: ${err.message}`, true);
       // [EndExclude Renderset_streamvolume]
     }
     // [End Renderset_streamvolume]
@@ -500,11 +493,11 @@ async function getRendererState(){
   if (audioRenderer != null) {
     // [EndExclude check_renderstate]
     let audioRendererState: audio.AudioState = audioRenderer.state;
-    console.info(`Current state is: ${audioRendererState }`);
+    console.info(`Current state is: ${audioRendererState}`);
     // [End check_renderstate]
-    globalLogUpdate(`Current state is: ${audioRendererState }`, false);
+    globalLogUpdate(`Current state is: ${audioRendererState}`, false);
   } else {
-    console.info(`audio renderer is null`)
+    console.info('audio renderer is null')
     globalLogUpdate('audio renderer is null', false);
   }
 }
@@ -513,14 +506,14 @@ async function registListeningStateChange() {
   if (audioRenderer != null) {
     // [EndExclude regist_listeningrendererchange]
     audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
-      console.info(`State change to: ${rendererState}`);
+      console.info(`Succeeded in using on function, state change to: ${rendererState}`);
       // [StartExclude regist_listeningrendererchange]
-      globalCallbackUpdate(`State change to: ${rendererState}`);
+      globalCallbackUpdate(`Succeeded in using on function, state change to: ${rendererState}`);
       // [EndExclude regist_listeningrendererchange]
     });
     // [End regist_listeningrendererchange]
   } else {
-    console.info(`audio renderer is null`)
+    console.info('audio renderer is null')
     globalLogUpdate('audio renderer is null', false);
   }
 }
@@ -528,29 +521,8 @@ async function registListeningStateChange() {
 async function listenRenderChange() {
   // [EndExclude regist_renderchangechallback]
   audioStreamManager.on('audioRendererChange',  (audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
-    for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
-      let audioRendererChangeInfo = audioRendererChangeInfoArray[i];
-      console.info(`## RendererChange on is called for ${i} ##`);
-      console.info(`StreamId for ${i} is: ${audioRendererChangeInfo.streamId}`);
-      console.info(`Content ${i} is: ${audioRendererChangeInfo.rendererInfo.content}`);
-      console.info(`Stream ${i} is: ${audioRendererChangeInfo.rendererInfo.usage}`);
-      console.info(`Flag ${i} is: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
-      // [StartExclude regist_renderchangechallback]
-      globalCallbackUpdate(`## RendererChange on is called for ${i} ## StreamId:
-       ${audioRendererChangeInfo.streamId} Content: ${audioRendererChangeInfo.rendererInfo.content} Stream:
-        ${audioRendererChangeInfo.rendererInfo.usage} Flag: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
-      // [EndExclude regist_renderchangechallback]
-      for (let j = 0;j < audioRendererChangeInfo.deviceDescriptors.length; j++) {
-        console.info(`Id: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].id}`);
-        console.info(`Type: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-        console.info(`Role: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-        console.info(`Name: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].name}`);
-        console.info(`Address: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].address}`);
-        console.info(`SampleRates: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-        console.info(`ChannelCount ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-        console.info(`ChannelMask: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
-      }
-    }
+    console.info(`Succeeded in using on function. AudioRendererChangeInfoArray: ${JSON.stringify(audioRendererChangeInfoArray)}`);
+    globalLogUpdate(`Succeeded in using on function. AudioRendererChangeInfoArray: ${JSON.stringify(audioRendererChangeInfoArray)}`, false);
   });
   // [End regist_renderchangechallback]
 }
@@ -558,49 +530,21 @@ async function listenRenderChange() {
 async function offlistenRenderChange(){
   // [Start unregist_renderchangechallback]
   audioStreamManager.off('audioRendererChange');
-  console.info('RendererChange Off is called ');
+  console.info('Succeeded in using off function.');
   // [End unregist_renderchangechallback]
-  globalLogUpdate('RendererChange Off is called ', false);
+  globalLogUpdate('Succeeded in using off function.', false);
 }
 
 // [EndExclude get_allstreaminfo]
 async function getCurrentAudioRendererInfoArray(): Promise<void> {
   await audioStreamManager.getCurrentAudioRendererInfoArray()
     .then((audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
-      console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);
-      // [StartExclude get_allstreaminfo]
-      globalLogUpdate('getCurrentAudioRendererInfoArray  Get Promise is called ', false);
-      // [EndExclude get_allstreaminfo]
-      if (audioRendererChangeInfoArray != null) {
-        for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
-          let audioRendererChangeInfo = audioRendererChangeInfoArray[i];
-          console.info(`StreamId for ${i} is: ${audioRendererChangeInfo.streamId}`);
-          console.info(`Content ${i} is: ${audioRendererChangeInfo.rendererInfo.content}`);
-          console.info(`Stream ${i} is: ${audioRendererChangeInfo.rendererInfo.usage}`);
-          console.info(`Flag ${i} is: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
-          // [StartExclude get_allstreaminfo]
-          globalLogUpdate(`RendererInfo [${i}] - StreamId: ${audioRendererChangeInfo.streamId},
-           Content: ${audioRendererChangeInfo.rendererInfo.content},
-            Usage: ${audioRendererChangeInfo.rendererInfo.usage},
-             Flags: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`, false);
-          // [EndExclude get_allstreaminfo]
-          for (let j = 0;j < audioRendererChangeInfo.deviceDescriptors.length; j++) {
-            console.info(`Id: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].id}`);
-            console.info(`Type: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-            console.info(`Role: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-            console.info(`Name: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].name}`);
-            console.info(`Address: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].address}`);
-            console.info(`SampleRates: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-            console.info(`ChannelCount ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-            console.info(`ChannelMask: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
-          }
-        }
-      }
+      console.info(`Succeeded in getting current audio renderer info array. AudioRendererChangeInfoArray: ${JSON.stringify(audioRendererChangeInfoArray)}`);
+      globalLogUpdate(`Succeeded in getting current audio renderer info array. AudioRendererChangeInfoArray: ${JSON.stringify(audioRendererChangeInfoArray)}`, false);
     }).catch((err: BusinessError ) => {
-      console.error(`Invoke getCurrentAudioRendererInfoArray failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to get current audio renderer info array. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude get_allstreaminfo]
-      globalLogUpdate(`Invoke getCurrentAudioRendererInfoArray failed, code is
-       ${err.code}, message is ${err.message}`, true);
+      globalLogUpdate(`Failed to get current audio renderer info array. Code: ${err.code}, message: ${err.message}`, true);
       // [EndExclude get_allstreaminfo]
     });
 }

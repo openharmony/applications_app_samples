@@ -69,10 +69,10 @@ function init(updateCallback?: (msg: string, isError: boolean) => void): void {
   let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode);
   if (isSupported) {
     audio.createAudioLoopback(mode).then((loopback) => {
-      console.info('Invoke createAudioLoopback succeeded.');
+      console.info('Succeeded in creating audio loopback.');
       // [StartExclude all_audioLoopback]
       // [StartExclude create_AudioLoopback]
-      const successMsg = 'Invoke createAudioLoopback succeeded.';
+      const successMsg = 'Succeeded in creating audio loopback.';
       if (updateCallback) {
         updateCallback(successMsg, false);
       }
@@ -80,10 +80,10 @@ function init(updateCallback?: (msg: string, isError: boolean) => void): void {
       // [EndExclude all_audioLoopback]
       audioLoopback = loopback;
     }).catch((err: BusinessError) => {
-      console.error(`Invoke createAudioLoopback failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to create audio loopback. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude create_AudioLoopback]
-      const errorMsg = `Invoke createAudioLoopback failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to create audio loopback. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -110,20 +110,20 @@ async function setVolume(volume: number, updateCallback?: (msg: string, isError:
     // [EndExclude set_Volume]
     try {
       await audioLoopback.setVolume(volume);
-      console.info(`Invoke setVolume ${volume} succeeded.`);
+      console.info('Succeeded in setting volume.');
       // [StartExclude all_audioLoopback]
       // [StartExclude set_Volume]
-      const successMsg = `Invoke setVolume ${volume} succeeded.`;
+      const successMsg = 'Succeeded in setting volume.';
       if (updateCallback) {
         updateCallback(successMsg, false);
       }
       // [EndExclude set_Volume]
       // [EndExclude all_audioLoopback]
     } catch (err) {
-      console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to set volume. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude set_Volume]
-      const errorMsg = `Invoke setVolume failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to set volume. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -149,10 +149,10 @@ async function setReverbPreset(preset: audio.AudioLoopbackReverbPreset, updateCa
     // [EndExclude set_ReverbPreset]
     try {
       audioLoopback.setReverbPreset(preset);
-      console.info(`setReverbPreset( ${preset} succeeded.`);
+      console.info('Succeeded in setting reverb preset.');
       // [StartExclude all_audioLoopback]
       // [StartExclude set_ReverbPreset]
-      const successMsg = `setReverbPreset ${preset} succeeded.`;
+      const successMsg = 'Succeeded in setting reverb preset.';
       if (updateCallback) {
         updateCallback(successMsg, false);
       }
@@ -160,10 +160,10 @@ async function setReverbPreset(preset: audio.AudioLoopbackReverbPreset, updateCa
       // [EndExclude all_audioLoopback]
       currentReverbPreset = audioLoopback.getReverbPreset(); // 查询当前的混响模式，防止设置失败。
     } catch (err) {
-      console.error(`setReverbPreset( failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to set reverb preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude set_ReverbPreset]
-      const errorMsg = `setReverbPreset failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to set reverb preset. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -189,10 +189,10 @@ async function setEqualizerPreset(preset: audio.AudioLoopbackEqualizerPreset, up
     // [EndExclude set_EqualizerPreset]
     try {
       audioLoopback.setEqualizerPreset(preset);
-      console.info(`setEqualizerPreset ${preset} succeeded.`);
+      console.info('Succeeded in setting equalizer preset.');
       // [StartExclude all_audioLoopback]
       // [StartExclude set_EqualizerPreset]
-      const successMsg = `setEqualizerPreset ${preset} succeeded.`;
+      const successMsg = 'Succeeded in setting equalizer preset.';
       if (updateCallback) {
         updateCallback(successMsg, false);
       }
@@ -200,10 +200,10 @@ async function setEqualizerPreset(preset: audio.AudioLoopbackEqualizerPreset, up
       // [EndExclude all_audioLoopback]
       currentEqualizerPreset = audioLoopback.getEqualizerPreset(); // 查询当前的均衡器类型，防止设置失败。
     } catch (err) {
-      console.error(`setEqualizerPreset failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to set equalizer preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude set_EqualizerPreset]
-      const errorMsg = `setEqualizerPreset failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to set equalizer preset. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -232,12 +232,12 @@ async function enable(updateCallback?: (msg: string, isError: boolean) => void):
         // 注册监听。
         audioLoopback.on('statusChange', statusChangeCallback);
         // 启动返听。
-        let success = await audioLoopback.enable(true);
-        if (success) {
-          console.info('Invoke enable succeeded');
+        let isSuccess = await audioLoopback.enable(true);
+        if (isSuccess) {
+          console.info('Succeeded in using enable function.');
           // [StartExclude all_audioLoopback]
           // [StartExclude enable]
-          const successMsg = `Invoke enable succeeded`;
+          const successMsg = 'Succeeded in using enable function.';
           if (updateCallback) {
             updateCallback(successMsg, false);
           }
@@ -251,10 +251,10 @@ async function enable(updateCallback?: (msg: string, isError: boolean) => void):
         statusChangeCallback(status);
       }
     } catch (err) {
-      console.error(`Invoke enable failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to use enable function. code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude enable]
-      const errorMsg = `Invoke enable failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to use enable function. code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -281,12 +281,12 @@ async function disable(updateCallback?: (msg: string, isError: boolean) => void)
       let status = await audioLoopback.getStatus();
       if (status == audio.AudioLoopbackStatus.AVAILABLE_RUNNING) {
         // 禁用返听。
-        let success = await audioLoopback.enable(false);
-        if (success) {
-          console.info('Invoke disable succeeded');
+        let isSuccess = await audioLoopback.enable(false);
+        if (isSuccess) {
+          console.info('Succeeded in using enable function.');
           // [StartExclude all_audioLoopback]
           // [StartExclude enable]
-          const successMsg = `Invoke disable succeeded`;
+          const successMsg = 'Succeeded in using enable function.';
           if (updateCallback) {
             updateCallback(successMsg, false);
           }
@@ -302,10 +302,10 @@ async function disable(updateCallback?: (msg: string, isError: boolean) => void)
         statusChangeCallback(status);
       }
     } catch (err) {
-      console.error(`Invoke disable failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to use enable function. code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
       // [StartExclude enable]
-      const errorMsg = `Invoke disable failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to use enable function. code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -333,17 +333,17 @@ async function getStatus(updateCallback?: (msg: string, isError: boolean) => voi
   if (audioLoopback !== undefined) {
     // [EndExclude get_Status]
     audioLoopback.getStatus().then((status: audio.AudioLoopbackStatus) => {
-      console.info(`getStatus success, status is ${status}.`);
+      console.info(`Succeeded in getting status, status is ${status}.`);
       // [StartExclude get_Status]
-      const successMsg = `getStatus success, status is ${status}.`;
+      const successMsg = `Succeeded in getting status, status is ${status}.`;
       if (updateCallback) {
         updateCallback(successMsg, false);
       }
       // [EndExclude get_Status]
     }).catch((err: BusinessError) => {
-      console.error(`getStatus failed, code is ${err.code}, message is ${err.message}.`);
+      console.error(`Failed to get status. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude get_Status]
-      const errorMsg = `getStatus failed, code is ${err.code}, message is ${err.message}.`;
+      const errorMsg = `Failed to get status. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -360,9 +360,9 @@ async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) 
     try {
       let reverbPreset = audioLoopback.getReverbPreset();
     } catch (err) {
-      console.error(`getReverbPreset:ERROR: ${err}`);
+      console.error(`Failed to get reverb preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude get_ReverbPreset]
-      const errorMsg = `getReverbPreset:ERROR: ${err}`;
+      const errorMsg = `Failed to get reverb preset. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
@@ -379,9 +379,9 @@ async function getEqualizerPreset(updateCallback?: (msg: string, isError: boolea
     try {
       let equalizerPreset = audioLoopback.getEqualizerPreset();
     } catch (err) {
-      console.error(`getEqualizerPreset:ERROR: ${err}`);
+      console.error(`Failed to get equalizer preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude get_EqualizerPreset]
-      const errorMsg = `getEqualizerPreset:ERROR: ${err}`;
+      const errorMsg = `Failed to get equalizer preset. Code: ${err.code}, message: ${err.message}`;
       if (updateCallback) {
         updateCallback(errorMsg, true);
       }
