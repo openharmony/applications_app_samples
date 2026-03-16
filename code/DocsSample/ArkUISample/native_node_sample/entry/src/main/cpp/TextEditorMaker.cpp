@@ -401,9 +401,9 @@ void SetMenuCallbacks(OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions)
     char* menuDisappearData = "menu disappear data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearCallback(
         menuOptions, reinterpret_cast<void*>(menuDisappearData), [](void* userData) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,"TextEditorMaker",
-                        "MenuDisappear, userData: %{public}s",
-                        reinterpret_cast<char*>(userData));
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                         "MenuDisappear, userData: %{public}s",
+                         reinterpret_cast<char*>(userData));
         });
 }
 
@@ -1178,7 +1178,8 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
             }
             uint32_t start = 0;
             uint32_t end = 0;
-            ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
+            ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent,
+                                                                                      &start, &end);
             if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
                              "RangeBefore start=%{public}u end=%{public}u", start, end);
@@ -1201,7 +1202,8 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
                 char buffer[BUFFER_SIZE];
                 int32_t writeLength = 0;
                 OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
+                             "PreviewString: %{public}s", buffer);
             }
     
             ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
@@ -1530,7 +1532,7 @@ void TextEditorMaker::CreateStyledStringWithUrlStyle()
 
     const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
     ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("HarmonyOS官网", spanStyles, SIZE_1);
+        OH_ArkUI_StyledString_Descriptor_CreateWithString("百度官网", spanStyles, SIZE_1);
 
     ArkUI_NodeHandle textEditor = InitTextEditor();
 
@@ -1759,7 +1761,7 @@ void TextEditorMaker::StyledStringCustomSpan()
 {
     SetTextTitle("CustomSpan示例");
 
-    auto onMeasure = [](float fontSize) -> ArkUI_CustomSpanMetrics * {
+    auto onMeasure = [](float fontSize) -> ArkUI_CustomSpanMetrics* {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "onMeasure fontSize:%{public}f",
                      fontSize);
         ArkUI_CustomSpanMetrics *customSpanMetrics = OH_ArkUI_CustomSpanMetrics_Create();
