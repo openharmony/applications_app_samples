@@ -283,7 +283,7 @@ void mainViewMethod(ArkUI_NodeContentHandle handle)
     // [StartExclude main_view_method]
     nodeAPI->addChild(columnMain, ContainerNode);
     nodeAPI->addChild(ContainerNode, firstImageNode);
-    // [StartExclude main_view_method]
+    // [EndExclude main_view_method]
     OH_ArkUI_NodeContent_AddNode(handle, columnMain);
 }
 // [End main_view_method]
