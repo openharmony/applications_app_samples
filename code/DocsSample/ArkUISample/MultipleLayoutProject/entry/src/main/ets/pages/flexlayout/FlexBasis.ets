@@ -25,7 +25,7 @@ struct FlexBasis {
         .backgroundColor('#F5DEB3')
       Text('flexBasis("auto")'+' width("40%")')
         .width('40%')
-        .flexBasis('auto')//设置width以及flexBasis值auto，使用width的值
+        .flexBasis('auto')// 设置width以及flexBasis值auto，使用width的值
         .height(100)
         .backgroundColor('#D2B48C')
 
