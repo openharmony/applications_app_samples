@@ -149,7 +149,7 @@ constexpr int32_t INDEX_2 = 2;
 constexpr int32_t INDEX_3 = 3;
 
 constexpr float LEADING_MARGIN_CALL_BACK_RETURN_VALUE = 10.0f;
-}  // namespace
+} // namespace
 
 #define EVENT_ON_SELECTION_CHANGE 1
 #define EVENT_ON_READY 2
@@ -183,9 +183,8 @@ static ArkUI_NodeHandle textContainer;
  * @param textEditor 文本编辑器编辑器节点
  * @param value 占位的内容
  */
-void AddPlaceHolder(ArkUI_NodeHandle& textEditor, const char* value)
-{
-    OH_ArkUI_TextEditorPlaceholderOptions* options = OH_ArkUI_TextEditorPlaceholderOptions_Create();
+void AddPlaceHolder(ArkUI_NodeHandle &textEditor, const char *value) {
+    OH_ArkUI_TextEditorPlaceholderOptions *options = OH_ArkUI_TextEditorPlaceholderOptions_Create();
     OH_ArkUI_TextEditorPlaceholderOptions_SetValue(options, value);
     OH_ArkUI_TextEditorPlaceholderOptions_SetFontSize(options, PLACEHOLDER_FONT_SIZE);
     OH_ArkUI_TextEditorPlaceholderOptions_SetFontWeight(options, PLACEHOLDER_FONT_WEIGHT);
@@ -197,8 +196,7 @@ void AddPlaceHolder(ArkUI_NodeHandle& textEditor, const char* value)
  * 初始化文本编辑器编辑器节点
  * @return 返回创建的文本编辑器编辑器节点句柄
  */
-ArkUI_NodeHandle InitTextEditor()
-{
+ArkUI_NodeHandle InitTextEditor() {
     ArkUI_NodeHandle textEditor = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_EDITOR);
     ArkUI_NumberValue borderWidth = {.f32 = TEXT_EDITOR_BORDER_WIDTH};
     ArkUI_AttributeItem borderWidthItem = {&borderWidth, SIZE_1};
@@ -215,8 +213,7 @@ ArkUI_NodeHandle InitTextEditor()
  * @brief 设置文本标题
  * @param title 文本标题内容
  */
-void SetTextTitle(const char* title)
-{
+void SetTextTitle(const char *title) {
     ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue topMargin = {.f32 = TOP_MARGIN};
     ArkUI_NumberValue bottomMargin = {.f32 = BOTTOM_MARGIN};
@@ -239,8 +236,7 @@ void SetTextTitle(const char* title)
 /**
  * @brief 设置文本编辑器颜色相关属性
  */
-void SetTextEditorColor()
-{
+void SetTextEditorColor() {
     SetTextTitle("回车键(搜索)  光标颜色(红)  滚动条颜色(红)  选中背景色(红)  最大行数(4)  拖拽背景色(红)");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 设置EnterKeyType为SEARCH
@@ -264,7 +260,7 @@ void SetTextEditorColor()
     ArkUI_AttributeItem maxLinesItem = {&maxLines, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_MAX_LINES, &maxLinesItem);
     // 设置拖拽背板颜色
-    ArkUI_SelectedDragPreviewStyle* selectedDragPreviewStyle = OH_ArkUI_SelectedDragPreviewStyle_Create();
+    ArkUI_SelectedDragPreviewStyle *selectedDragPreviewStyle = OH_ArkUI_SelectedDragPreviewStyle_Create();
     OH_ArkUI_SelectedDragPreviewStyle_SetColor(selectedDragPreviewStyle, COLOR_RED);
     ArkUI_AttributeItem dragPreviewStyleItem = {.size = SIZE_1, .object = selectedDragPreviewStyle};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE, &dragPreviewStyleItem);
@@ -274,8 +270,7 @@ void SetTextEditorColor()
 /**
  * @brief 设置文本编辑器实体识别相关属性
  */
-void SetTextEditorDetector()
-{
+void SetTextEditorDetector() {
     SetTextTitle("AI实体识别");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 设置实体识别开关
@@ -283,7 +278,7 @@ void SetTextEditorDetector()
     ArkUI_AttributeItem enableDataDetectorItem = {&enableDataDetector, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR, &enableDataDetectorItem);
     // 设置实体识别装饰线样式
-    OH_ArkUI_DecorationStyleOptions* decorationStyle = OH_ArkUI_DecorationStyleOptions_Create();
+    OH_ArkUI_DecorationStyleOptions *decorationStyle = OH_ArkUI_DecorationStyleOptions_Create();
     OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(
         decorationStyle, ArkUI_TextDecorationType::ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH);
     OH_ArkUI_DecorationStyleOptions_SetColor(decorationStyle, COLOR_RED);
@@ -291,8 +286,8 @@ void SetTextEditorDetector()
         decorationStyle, ArkUI_TextDecorationStyle::ARKUI_TEXT_DECORATION_STYLE_DOTTED);
     OH_ArkUI_DecorationStyleOptions_SetThicknessScale(decorationStyle, THICKNESS_SCALE);
     // 设置实体识别内容范围
-    OH_ArkUI_TextDataDetectorConfig* dataDetectorConfig = OH_ArkUI_TextDataDetectorConfig_Create();
-    ArkUI_TextDataDetectorType* types = new ArkUI_TextDataDetectorType[DATA_DETECTOR_TYPE_NUM];
+    OH_ArkUI_TextDataDetectorConfig *dataDetectorConfig = OH_ArkUI_TextDataDetectorConfig_Create();
+    ArkUI_TextDataDetectorType *types = new ArkUI_TextDataDetectorType[DATA_DETECTOR_TYPE_NUM];
     types[0] = ArkUI_TextDataDetectorType::ARKUI_TEXT_DATA_DETECTOR_TYPE_PHONE_NUMBER;
     types[1] = ArkUI_TextDataDetectorType::ARKUI_TEXT_DATA_DETECTOR_TYPE_ADDRESS;
     // 设置实体识别内容样式
@@ -302,7 +297,7 @@ void SetTextEditorDetector()
     OH_ArkUI_TextDataDetectorConfig_SetEnablePreviewMenu(dataDetectorConfig, true);
     // 设置实体识别内容回调
     OH_ArkUI_TextDataDetectorConfig_RegisterOnDetectResultUpdateCallback(
-        dataDetectorConfig, nullptr, [](const char* result, int32_t length, void* userData) {
+        dataDetectorConfig, nullptr, [](const char *result, int32_t length, void *userData) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "OnDetectResultUpdateCallback %{public}s %{public}d", result, length);
         });
@@ -320,8 +315,7 @@ void SetTextEditorDetector()
 /**
  * @brief 设置文本编辑器单行模式
  */
-void SetTextEditorSingleLine()
-{
+void SetTextEditorSingleLine() {
     SetTextTitle("单行模式");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     ArkUI_NumberValue singleLine = {.i32 = true};
@@ -332,8 +326,7 @@ void SetTextEditorSingleLine()
 /**
  * @brief 设置文本编辑器样式相关属性
  */
-void SetTextEditorStyle()
-{
+void SetTextEditorStyle() {
     SetTextTitle("autoSpacing(True)  fontPadding(True)  lineSpacing(True)  符号压缩(True)");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 配置enableAutoSpacing
@@ -358,8 +351,7 @@ void SetTextEditorStyle()
 /**
  * @brief 设置文本编辑器自定义键盘
  */
-void SetTextEditorCustomKeyboard()
-{
+void SetTextEditorCustomKeyboard() {
     SetTextTitle("自定义键盘");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 构造一个Button作为自定义键盘
@@ -373,46 +365,44 @@ void SetTextEditorCustomKeyboard()
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_CUSTOM_KEYBOARD, &customKeyboard);
 }
 
-void SetMenuCallbacks(OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions)
-{
+void SetMenuCallbacks(OH_ArkUI_TextEditorSelectionMenuOptions *menuOptions) {
     // 设置菜单相关回调
-    char* menuShowData = "menu show data";
+    char *menuShowData = "menu show data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuShowCallback(
-        menuOptions, reinterpret_cast<void*>(menuShowData), [](int32_t start, int32_t end, void* userData) {
+        menuOptions, reinterpret_cast<void *>(menuShowData), [](int32_t start, int32_t end, void *userData) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "MenuShow %{public}d, %{public}d, userData: %{public}s", start, end,
-                         reinterpret_cast<char*>(userData));
+                         reinterpret_cast<char *>(userData));
         });
-    char* menuHideData = "menu hide data";
+    char *menuHideData = "menu hide data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuHideCallback(
-        menuOptions, reinterpret_cast<void*>(menuHideData), [](int32_t start, int32_t end, void* userData) {
+        menuOptions, reinterpret_cast<void *>(menuHideData), [](int32_t start, int32_t end, void *userData) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "MenuHide %{public}d, %{public}d, userData: %{public}s", start, end,
-                         reinterpret_cast<char*>(userData));
+                         reinterpret_cast<char *>(userData));
         });
-    char* menuAppearData = "menu appear data";
+    char *menuAppearData = "menu appear data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuAppearCallback(
-        menuOptions, reinterpret_cast<void*>(menuAppearData), [](int32_t start, int32_t end, void* userData) {
+        menuOptions, reinterpret_cast<void *>(menuAppearData), [](int32_t start, int32_t end, void *userData) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "MenuAppear %{public}d, %{public}d, userData: %{public}s", start, end,
-                         reinterpret_cast<char*>(userData));
+                         reinterpret_cast<char *>(userData));
         });
-    char* menuDisappearData = "menu disappear data";
+    char *menuDisappearData = "menu disappear data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearCallback(
-        menuOptions, reinterpret_cast<void*>(menuDisappearData), [](void* userData) {
+        menuOptions, reinterpret_cast<void *>(menuDisappearData), [](void *userData) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker", "MenuDisappear, userData: %{public}s",
-                         reinterpret_cast<char*>(userData));
+                         reinterpret_cast<char *>(userData));
         });
 }
 
 /**
  * @brief 设置文本编辑器自定义菜单
  */
-void SetTextEditorSelectionMenu()
-{
+void SetTextEditorSelectionMenu() {
     SetTextTitle("自定义菜单");
     ArkUI_NodeHandle textEditor = InitTextEditor();
-    OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions = OH_ArkUI_TextEditorSelectionMenuOptions_Create();
+    OH_ArkUI_TextEditorSelectionMenuOptions *menuOptions = OH_ArkUI_TextEditorSelectionMenuOptions_Create();
     // 设置菜单交互属性
     OH_ArkUI_TextEditorSelectionMenuOptions_SetSpanType(
         menuOptions, OH_ArkUI_TextEditorSpanType::OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT);
@@ -455,8 +445,7 @@ void SetTextEditorSelectionMenu()
 /**
  * @brief 设置文本编辑器部分属性
  */
-void SetTextEditorOther()
-{
+void SetTextEditorOther() {
     SetTextTitle(
         "高度(40)  最大字数(40)  滚动条(OFF)  键盘(DARK)  复制(NONE)  振动(开)  禁止返回(开) 提示文本（提示文本）");
     ArkUI_NodeHandle textEditor = InitTextEditor();
@@ -501,8 +490,7 @@ void SetTextEditorOther()
  * @param eventId 按钮点击事件ID
  * @param controller 属性字符串的控制器
  */
-void AddButton(char* btnContent, int32_t eventId, OH_ArkUI_TextEditorStyledStringController* controller)
-{
+void AddButton(char *btnContent, int32_t eventId, OH_ArkUI_TextEditorStyledStringController *controller) {
     ArkUI_NumberValue widthValue[] = {{.f32 = BUTTON_WIDTH}};
     ArkUI_AttributeItem widthItem = {.value = widthValue, .size = SIZE_1};
     ArkUI_NumberValue heightValue[] = {{.f32 = BUTTON_HEIGHT}};
@@ -522,16 +510,15 @@ void AddButton(char* btnContent, int32_t eventId, OH_ArkUI_TextEditorStyledStrin
  * 设置输入样式
  * @param controller 属性字符串的控制器
  */
-void SetTypingStyle(OH_ArkUI_TextEditorStyledStringController* controller)
-{
-    OH_ArkUI_TextEditorTextStyle* textStyle = OH_ArkUI_TextEditorTextStyle_Create();
+void SetTypingStyle(OH_ArkUI_TextEditorStyledStringController *controller) {
+    OH_ArkUI_TextEditorTextStyle *textStyle = OH_ArkUI_TextEditorTextStyle_Create();
     OH_ArkUI_TextEditorTextStyle_SetFontColor(textStyle, COLOR_RED);
     OH_ArkUI_TextEditorTextStyle_SetFontSize(textStyle, FONT_SIZE);
     OH_ArkUI_TextEditorTextStyle_SetFontStyle(textStyle, ArkUI_FontStyle::ARKUI_FONT_STYLE_ITALIC);
     OH_ArkUI_TextEditorTextStyle_SetFontWeight(textStyle, FONT_WEIGHT);
     OH_ArkUI_TextEditorTextStyle_SetFontFamily(textStyle, "aaaaaaaa");
 
-    OH_ArkUI_DecorationStyleOptions* decoration = OH_ArkUI_DecorationStyleOptions_Create();
+    OH_ArkUI_DecorationStyleOptions *decoration = OH_ArkUI_DecorationStyleOptions_Create();
     OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(
         decoration, ArkUI_TextDecorationType::ARKUI_TEXT_DECORATION_TYPE_UNDERLINE);
     OH_ArkUI_DecorationStyleOptions_SetColor(decoration, DECORATION_COLOR);
@@ -547,7 +534,7 @@ void SetTypingStyle(OH_ArkUI_TextEditorStyledStringController* controller)
     OH_ArkUI_ShadowOptions_SetOffsetX(shadow, SHADOW_OFFSET_X);
     OH_ArkUI_ShadowOptions_SetOffsetY(shadow, SHADOW_OFFSET_Y);
     OH_ArkUI_ShadowOptions_SetFill(shadow, true);
-    const OH_ArkUI_ShadowOptions* shadows[] = {shadow, shadow};
+    const OH_ArkUI_ShadowOptions *shadows[] = {shadow, shadow};
     OH_ArkUI_TextEditorTextStyle_SetTextShadows(textStyle, shadows, SHADOW_NUM);
 
     OH_ArkUI_TextEditorTextStyle_SetLineHeight(textStyle, LINE_HEIGHT);
@@ -560,15 +547,14 @@ void SetTypingStyle(OH_ArkUI_TextEditorStyledStringController* controller)
     OH_ArkUI_TextEditorStyledStringController_SetTypingStyle(controller, textStyle);
 }
 
-void GetShadows(OH_ArkUI_TextEditorTextStyle* textStyle)
-{
-    OH_ArkUI_ShadowOptions* shadow = OH_ArkUI_ShadowOptions_Create();
-    OH_ArkUI_ShadowOptions* shadowGet[] = {shadow, shadow};
-    OH_ArkUI_ShadowOptions** shadowsGet = shadowGet;
+void GetShadows(OH_ArkUI_TextEditorTextStyle *textStyle) {
+    OH_ArkUI_ShadowOptions *shadow = OH_ArkUI_ShadowOptions_Create();
+    OH_ArkUI_ShadowOptions *shadowGet[] = {shadow, shadow};
+    OH_ArkUI_ShadowOptions **shadowsGet = shadowGet;
     uint32_t length;
     OH_ArkUI_TextEditorTextStyle_GetTextShadows(textStyle, shadowsGet, SHADOW_NUM, &length);
     for (int32_t i = 0; i < length; i++) {
-        OH_ArkUI_ShadowOptions* tempShadow = shadowsGet[i];
+        OH_ArkUI_ShadowOptions *tempShadow = shadowsGet[i];
         if (!tempShadow) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Shadow is empty");
             continue;
@@ -593,8 +579,7 @@ void GetShadows(OH_ArkUI_TextEditorTextStyle* textStyle)
     }
 }
 
-void GetFontStyle(OH_ArkUI_TextEditorTextStyle* textStyle)
-{
+void GetFontStyle(OH_ArkUI_TextEditorTextStyle *textStyle) {
     uint32_t fontColor;
     OH_ArkUI_TextEditorTextStyle_GetFontColor(textStyle, &fontColor);
     float fontSize;
@@ -603,10 +588,10 @@ void GetFontStyle(OH_ArkUI_TextEditorTextStyle* textStyle)
     OH_ArkUI_TextEditorTextStyle_GetFontStyle(textStyle, &fontStyle);
     uint32_t fontWeight;
     OH_ArkUI_TextEditorTextStyle_GetFontWeight(textStyle, &fontWeight);
-    char* buffer = new char[FONT_FAMILY_LENGTH];
+    char *buffer = new char[FONT_FAMILY_LENGTH];
     int32_t writeLength = 0;
     OH_ArkUI_TextEditorTextStyle_GetFontFamily(textStyle, buffer, FONT_FAMILY_LENGTH, &writeLength);
-    char* fontFeatureBuffer = new char[FONT_FEATURE_LENGTH];
+    char *fontFeatureBuffer = new char[FONT_FEATURE_LENGTH];
     int32_t fontFeatureWriteLength = 0;
     OH_ArkUI_TextEditorTextStyle_GetFontFeature(textStyle, fontFeatureBuffer, FONT_FEATURE_LENGTH,
                                                 &fontFeatureWriteLength);
@@ -622,12 +607,11 @@ void GetFontStyle(OH_ArkUI_TextEditorTextStyle* textStyle)
  * 获取输入样式
  * @param controller 属性字符串的控制器
  */
-void GetTypingStyle(OH_ArkUI_TextEditorStyledStringController* controller)
-{
-    OH_ArkUI_TextEditorTextStyle* textStyle = OH_ArkUI_TextEditorTextStyle_Create();
+void GetTypingStyle(OH_ArkUI_TextEditorStyledStringController *controller) {
+    OH_ArkUI_TextEditorTextStyle *textStyle = OH_ArkUI_TextEditorTextStyle_Create();
     OH_ArkUI_TextEditorStyledStringController_GetTypingStyle(controller, textStyle);
     GetFontStyle(textStyle);
-    OH_ArkUI_DecorationStyleOptions* decorationGet = OH_ArkUI_DecorationStyleOptions_Create();
+    OH_ArkUI_DecorationStyleOptions *decorationGet = OH_ArkUI_DecorationStyleOptions_Create();
     OH_ArkUI_TextEditorTextStyle_GetDecoration(textStyle, decorationGet);
     ArkUI_TextDecorationType decorationType;
     OH_ArkUI_DecorationStyleOptions_GetTextDecorationType(decorationGet, &decorationType);
@@ -658,8 +642,7 @@ void GetTypingStyle(OH_ArkUI_TextEditorStyledStringController* controller)
     GetShadows(textStyle);
 }
 
-void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle* style, uint32_t& width, uint32_t& height)
-{
+void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle *style, uint32_t &width, uint32_t &height) {
     // 创建pixelMap
     uint8_t data[PIXEL_MAP_LENGTH];
     size_t dataSize = PIXEL_MAP_LENGTH;
@@ -670,14 +653,14 @@ void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle* style, uint32_t& width, ui
         data[i + COLOR_INDEX_3] = COLOR_255;
     }
     // 创建参数结构体实例，并设置参数
-    OH_Pixelmap_InitializationOptions* createOpts;
+    OH_Pixelmap_InitializationOptions *createOpts;
     OH_PixelmapInitializationOptions_Create(&createOpts);
     OH_PixelmapInitializationOptions_SetWidth(createOpts, PIXEL_WIDTH);
     OH_PixelmapInitializationOptions_SetHeight(createOpts, PIXEL_HEIGHT);
     OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
     OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
     // 创建pixelMap
-    OH_PixelmapNative* pixelmap;
+    OH_PixelmapNative *pixelmap;
     OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
     OH_PixelmapNative_Opacity(pixelmap, PIXEL_OPACITY);
 
@@ -687,7 +670,7 @@ void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle* style, uint32_t& width, ui
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                  "get OH_ArkUI_TextEditorParagraphStyle_GetTextAlign %{public}d", static_cast<int32_t>(align));
     OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginPixelMap(style, pixelmap);
-    OH_Pixelmap_ImageInfo* imageInfo;
+    OH_Pixelmap_ImageInfo *imageInfo;
     OH_PixelmapImageInfo_Create(&imageInfo);
     OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
     // 获取图片的pixel格式，透明度等信息。
@@ -710,9 +693,8 @@ void BuildPixelMap(OH_ArkUI_TextEditorParagraphStyle* style, uint32_t& width, ui
  * 设置段落样式
  * @param controller 属性字符串的控制器
  */
-void SetTypingParagraphStyle(OH_ArkUI_TextEditorStyledStringController* controller)
-{
-    OH_ArkUI_TextEditorParagraphStyle* style = OH_ArkUI_TextEditorParagraphStyle_Create();
+void SetTypingParagraphStyle(OH_ArkUI_TextEditorStyledStringController *controller) {
+    OH_ArkUI_TextEditorParagraphStyle *style = OH_ArkUI_TextEditorParagraphStyle_Create();
     uint32_t width;
     uint32_t height;
     BuildPixelMap(style, width, height);
@@ -763,10 +745,9 @@ void SetTypingParagraphStyle(OH_ArkUI_TextEditorStyledStringController* controll
  * 获取预上屏内容
  * @param controller 属性字符串的控制器
  */
-void GetPreviewText(OH_ArkUI_TextEditorStyledStringController* controller)
-{
+void GetPreviewText(OH_ArkUI_TextEditorStyledStringController *controller) {
     uint32_t previewTextOffset;
-    char* buffer = new char[PREVIEW_TEXT_BUFFER_LEN];
+    char *buffer = new char[PREVIEW_TEXT_BUFFER_LEN];
     int32_t writeLength = 0;
     OH_ArkUI_TextEditorStyledStringController_GetPreviewText(controller, &previewTextOffset, buffer,
                                                              PREVIEW_TEXT_BUFFER_LEN, &writeLength);
@@ -775,13 +756,12 @@ void GetPreviewText(OH_ArkUI_TextEditorStyledStringController* controller)
                  writeLength);
 }
 
-void GetLineMetrics(ArkUI_TextLayoutManager* layoutManager)
-{
+void GetLineMetrics(ArkUI_TextLayoutManager *layoutManager) {
     if (!layoutManager) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getLineMetrics no layout manager");
         return;
     }
-    OH_Drawing_LineMetrics* lineMetrics = new OH_Drawing_LineMetrics();
+    OH_Drawing_LineMetrics *lineMetrics = new OH_Drawing_LineMetrics();
     auto res = OH_ArkUI_TextLayoutManager_GetLineMetrics(layoutManager, 0, lineMetrics);
     if (res == ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
@@ -806,13 +786,12 @@ void GetLineMetrics(ArkUI_TextLayoutManager* layoutManager)
     }
 }
 
-void GetGlyphPosition(ArkUI_TextLayoutManager* layoutManager)
-{
+void GetGlyphPosition(ArkUI_TextLayoutManager *layoutManager) {
     if (!layoutManager) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getGlyphPosition no layout manager");
         return;
     }
-    OH_Drawing_PositionAndAffinity* pa;
+    OH_Drawing_PositionAndAffinity *pa;
     auto res = OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate(layoutManager, GLYPH_DX, GLYPH_DY, &pa);
     if (res == ARKUI_ERROR_CODE_NO_ERROR) {
         size_t position = OH_Drawing_GetPositionFromPositionAndAffinity(pa);
@@ -823,21 +802,19 @@ void GetGlyphPosition(ArkUI_TextLayoutManager* layoutManager)
     }
 }
 
- void DisposeLayoutManager() 
- { 
-     auto text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT); 
-     auto result = Manager::nodeAPI_->getAttribute(text, NODE_TEXT_LAYOUT_MANAGER); 
-     ArkUI_TextLayoutManager* layoutMananger = (ArkUI_TextLayoutManager*)(result->object); 
-     OH_ArkUI_TextLayoutManager_Dispose(layoutMananger); 
- }
+void DisposeLayoutManager() {
+    auto text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    auto result = Manager::nodeAPI_->getAttribute(text, NODE_TEXT_LAYOUT_MANAGER);
+    ArkUI_TextLayoutManager *layoutMananger = (ArkUI_TextLayoutManager *)(result->object);
+    OH_ArkUI_TextLayoutManager_Dispose(layoutMananger);
+}
 
-void GetRectsForRange(ArkUI_TextLayoutManager* layoutManager)
-{
+void GetRectsForRange(ArkUI_TextLayoutManager *layoutManager) {
     if (!layoutManager) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getRectsForRange no layout manager");
         return;
     }
-    OH_Drawing_TextBox* textBoxes;
+    OH_Drawing_TextBox *textBoxes;
     auto res = OH_ArkUI_TextLayoutManager_GetRectsForRange(layoutManager, 0, RECTS_FOR_RANGE_END,
                                                            RECT_WIDTH_STYLE_TIGHT, RECT_HEIGHT_STYLE_TIGHT, &textBoxes);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getRectsForRange %{public}d", res);
@@ -856,8 +833,7 @@ void GetRectsForRange(ArkUI_TextLayoutManager* layoutManager)
     }
 }
 
-void GetLineCount(ArkUI_TextLayoutManager* layoutManager)
-{
+void GetLineCount(ArkUI_TextLayoutManager *layoutManager) {
     if (!layoutManager) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getLineCount no layout manager");
         return;
@@ -867,26 +843,26 @@ void GetLineCount(ArkUI_TextLayoutManager* layoutManager)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getLineCount  %{public}d", lineCount);
 }
 
-void MenuOptionsOnCreate(ArkUI_TextEditMenuOptions* editMenuOptions)
-{
-    char* onCreateUserData = "onCreateUserData";
+void MenuOptionsOnCreate(ArkUI_TextEditMenuOptions *editMenuOptions) {
+    char *onCreateUserData = "onCreateUserData";
     OH_ArkUI_TextEditMenuOptions_RegisterOnCreateMenuCallback(
-        editMenuOptions, reinterpret_cast<void*>(onCreateUserData), [](ArkUI_TextMenuItemArray* items, void* userData) {
+        editMenuOptions, reinterpret_cast<void *>(onCreateUserData),
+        [](ArkUI_TextMenuItemArray *items, void *userData) {
             int32_t size;
             auto errorCode = OH_ArkUI_TextMenuItemArray_GetSize(items, &size);
-            ArkUI_TextMenuItem* item = nullptr;
+            ArkUI_TextMenuItem *item = nullptr;
             errorCode = OH_ArkUI_TextMenuItemArray_GetItem(items, MENU_ITEM_INDEX, &item);
             if (item && errorCode == 0) {
                 int32_t writeLength;
-                char* iconBuffer = new char[MENU_ITEM_BUFFER];
+                char *iconBuffer = new char[MENU_ITEM_BUFFER];
                 errorCode = OH_ArkUI_TextMenuItem_GetIcon(item, iconBuffer, MENU_ITEM_BUFFER, &writeLength);
                 delete[] iconBuffer;
 
-                char* buffer = new char[MENU_ITEM_BUFFER];
+                char *buffer = new char[MENU_ITEM_BUFFER];
                 errorCode = OH_ArkUI_TextMenuItem_GetContent(item, buffer, MENU_ITEM_BUFFER, &writeLength);
                 delete[] buffer;
 
-                char* labelInfo = new char[MENU_ITEM_BUFFER];
+                char *labelInfo = new char[MENU_ITEM_BUFFER];
                 errorCode = OH_ArkUI_TextMenuItem_GetLabelInfo(item, labelInfo, MENU_ITEM_BUFFER, &writeLength);
                 delete[] labelInfo;
 
@@ -895,7 +871,7 @@ void MenuOptionsOnCreate(ArkUI_TextEditMenuOptions* editMenuOptions)
             }
 
             OH_ArkUI_TextMenuItemArray_GetSize(items, &size);
-            ArkUI_TextMenuItem* newMenuItem = OH_ArkUI_TextMenuItem_Create();
+            ArkUI_TextMenuItem *newMenuItem = OH_ArkUI_TextMenuItem_Create();
             OH_ArkUI_TextMenuItem_SetContent(newMenuItem, "CAPI Create");
             OH_ArkUI_TextMenuItem_SetId(newMenuItem, MENU_ITEM_ID_111);
             OH_ArkUI_TextMenuItemArray_Insert(items, newMenuItem, size);
@@ -903,13 +879,12 @@ void MenuOptionsOnCreate(ArkUI_TextEditMenuOptions* editMenuOptions)
         });
 }
 
-void MenuOptionsOnPrepare(ArkUI_TextEditMenuOptions* editMenuOptions)
-{
-    char* onPrepareUserData = "onPrepareUserData";
+void MenuOptionsOnPrepare(ArkUI_TextEditMenuOptions *editMenuOptions) {
+    char *onPrepareUserData = "onPrepareUserData";
     OH_ArkUI_TextEditMenuOptions_RegisterOnPrepareMenuCallback(
-        editMenuOptions, reinterpret_cast<void*>(onPrepareUserData),
-        [](ArkUI_TextMenuItemArray* items, void* userData) {
-            ArkUI_TextMenuItem* newMenuItem = OH_ArkUI_TextMenuItem_Create();
+        editMenuOptions, reinterpret_cast<void *>(onPrepareUserData),
+        [](ArkUI_TextMenuItemArray *items, void *userData) {
+            ArkUI_TextMenuItem *newMenuItem = OH_ArkUI_TextMenuItem_Create();
             OH_ArkUI_TextMenuItem_SetContent(newMenuItem, "CAPI Prepare1");
             OH_ArkUI_TextMenuItem_SetLabelInfo(newMenuItem, "ctrl+P");
             OH_ArkUI_TextMenuItem_SetId(newMenuItem, MENU_ITEM_ID_120);
@@ -922,12 +897,11 @@ void MenuOptionsOnPrepare(ArkUI_TextEditMenuOptions* editMenuOptions)
         });
 }
 
-void MenuOptionsOnItemClick(ArkUI_TextEditMenuOptions* editMenuOptions)
-{
-    char* onItemClickUserData = "onItemClickUserData";
+void MenuOptionsOnItemClick(ArkUI_TextEditMenuOptions *editMenuOptions) {
+    char *onItemClickUserData = "onItemClickUserData";
     OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
-        editMenuOptions, reinterpret_cast<void*>(onItemClickUserData),
-        [](const ArkUI_TextMenuItem* item, int32_t start, int32_t end, void* userData) {
+        editMenuOptions, reinterpret_cast<void *>(onItemClickUserData),
+        [](const ArkUI_TextMenuItem *item, int32_t start, int32_t end, void *userData) {
             int32_t id;
             OH_ArkUI_TextMenuItem_GetId(item, &id);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnMenuItemClick id=%{public}d", id);
@@ -940,11 +914,10 @@ void MenuOptionsOnItemClick(ArkUI_TextEditMenuOptions* editMenuOptions)
         });
 }
 
-void SetEditMenuOptions()
-{
+void SetEditMenuOptions() {
     SetTextTitle("editMenuOptions");
     ArkUI_NodeHandle textEditor = InitTextEditor();
-    ArkUI_TextEditMenuOptions* editMenuOptions = OH_ArkUI_TextEditMenuOptions_Create();
+    ArkUI_TextEditMenuOptions *editMenuOptions = OH_ArkUI_TextEditMenuOptions_Create();
     MenuOptionsOnCreate(editMenuOptions);
     MenuOptionsOnPrepare(editMenuOptions);
     MenuOptionsOnItemClick(editMenuOptions);
@@ -952,108 +925,105 @@ void SetEditMenuOptions()
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS, &menuOptionItem);
 }
 
-void DoLayoutManager(ArkUI_NodeEvent* event)
-{
+void DoLayoutManager(ArkUI_NodeEvent *event) {
     auto userData = OH_ArkUI_NodeEvent_GetUserData(event);
     int eventIndex = OH_ArkUI_NodeEvent_GetTargetId(event);
-    auto layoutManager = reinterpret_cast<ArkUI_TextLayoutManager*>(userData);
+    auto layoutManager = reinterpret_cast<ArkUI_TextLayoutManager *>(userData);
     switch (eventIndex) {
-        case BTN_LAYOUT_MANAGER_LINE_COUNT:
-            GetLineCount(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_RECTS_FOR_RANGE:
-            GetRectsForRange(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_GLYPH_POS:
-            GetGlyphPosition(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_LINE_METRICS:
-            GetLineMetrics(layoutManager);
-            break;
-        case BTN_LAYOUT_MANAGER_DISPOSE: 
-             DisposeLayoutManager(); 
-             break;
-        default:
-            break;
+    case BTN_LAYOUT_MANAGER_LINE_COUNT:
+        GetLineCount(layoutManager);
+        break;
+    case BTN_LAYOUT_MANAGER_RECTS_FOR_RANGE:
+        GetRectsForRange(layoutManager);
+        break;
+    case BTN_LAYOUT_MANAGER_GLYPH_POS:
+        GetGlyphPosition(layoutManager);
+        break;
+    case BTN_LAYOUT_MANAGER_LINE_METRICS:
+        GetLineMetrics(layoutManager);
+        break;
+    case BTN_LAYOUT_MANAGER_DISPOSE:
+        DisposeLayoutManager();
+        break;
+    default:
+        break;
     }
 }
 
-void DoEditing(OH_ArkUI_TextEditorStyledStringController* controllerGet, int eventIndex)
-{
+void DoEditing(OH_ArkUI_TextEditorStyledStringController *controllerGet, int eventIndex) {
     switch (eventIndex) {
-        case BTN_SET_SELECTION:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setSelection(0, 2)");
-            OH_ArkUI_TextEditorStyledStringController_SetSelection(controllerGet, 0, SELECT_END,
-                                                                   ArkUI_MenuPolicy::ARKUI_MENU_POLICY_HIDE);
-            break;
-        case BTN_IS_EDITING:
-            bool isEditing;
-            OH_ArkUI_TextEditorStyledStringController_IsEditing(controllerGet, &isEditing);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "isEditing=%{public}d", isEditing);
-            break;
-        case BTN_STOP_EDITING:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "stopEditing");
-            OH_ArkUI_TextEditorStyledStringController_StopEditing(controllerGet);
-            break;
-        case BTN_PREVIEW_TEXT:
-            GetPreviewText(controllerGet);
-            break;
-        case BTN_DELETE_BACKWARD:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "deleteBackward");
-            OH_ArkUI_TextEditorStyledStringController_DeleteBackward(controllerGet);
-            break;
-        case BTN_CARET_RECT:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "GetCaretRect");
-            ArkUI_Rect rect;
-            OH_ArkUI_TextEditorStyledStringController_GetCaretRect(controllerGet, &rect);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "GetCaretRect  %{public}f %{public}f %{public}f %{public}f", rect.x, rect.y, rect.width,
-                         rect.height);
-            break;
-        default:
-            break;
+    case BTN_SET_SELECTION:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setSelection(0, 2)");
+        OH_ArkUI_TextEditorStyledStringController_SetSelection(controllerGet, 0, SELECT_END,
+                                                               ArkUI_MenuPolicy::ARKUI_MENU_POLICY_HIDE);
+        break;
+    case BTN_IS_EDITING:
+        bool isEditing;
+        OH_ArkUI_TextEditorStyledStringController_IsEditing(controllerGet, &isEditing);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "isEditing=%{public}d", isEditing);
+        break;
+    case BTN_STOP_EDITING:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "stopEditing");
+        OH_ArkUI_TextEditorStyledStringController_StopEditing(controllerGet);
+        break;
+    case BTN_PREVIEW_TEXT:
+        GetPreviewText(controllerGet);
+        break;
+    case BTN_DELETE_BACKWARD:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "deleteBackward");
+        OH_ArkUI_TextEditorStyledStringController_DeleteBackward(controllerGet);
+        break;
+    case BTN_CARET_RECT:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "GetCaretRect");
+        ArkUI_Rect rect;
+        OH_ArkUI_TextEditorStyledStringController_GetCaretRect(controllerGet, &rect);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                     "GetCaretRect  %{public}f %{public}f %{public}f %{public}f", rect.x, rect.y, rect.width,
+                     rect.height);
+        break;
+    default:
+        break;
     }
 }
 
-static void OnBtnClickReceive(ArkUI_NodeEvent* event)
-{
+static void OnBtnClickReceive(ArkUI_NodeEvent *event) {
     auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     if (eventType != NODE_ON_CLICK_EVENT) {
         return;
     }
     auto userData = OH_ArkUI_NodeEvent_GetUserData(event);
-    auto controllerGet = reinterpret_cast<OH_ArkUI_TextEditorStyledStringController*>(userData);
+    auto controllerGet = reinterpret_cast<OH_ArkUI_TextEditorStyledStringController *>(userData);
     int eventIndex = OH_ArkUI_NodeEvent_GetTargetId(event);
     int32_t caretPos = 0;
     DoLayoutManager(event);
     DoEditing(controllerGet, eventIndex);
     switch (eventIndex) {
-        case BTN_GET_CARET_OFFSET:
-            OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(controllerGet, &caretPos);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "GetCaretOffset %{public}d", caretPos);
-            break;
-        case BTN_SET_CARET_OFFSET:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "SetCaretOffset 1");
-            OH_ArkUI_TextEditorStyledStringController_SetCaretOffset(controllerGet, 1);
-            break;
-        case BTN_SET_TYPING_STYLE:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingStyle");
-            SetTypingStyle(controllerGet);
-            break;
-        case BTN_GET_TYPING_STYLE:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getTypingStyle");
-            GetTypingStyle(controllerGet);
-            break;
-        case BTN_SET_TYPING_PARAGRAPH_STYLE:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingParagraphStyle");
-            SetTypingParagraphStyle(controllerGet);
-            break;
-       case BTN_CLOSE_SELECTION_MENU:
-           OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "closeSelectionMenu");
-           OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(controllerGet);
-           break;
-        default:
-            break;
+    case BTN_GET_CARET_OFFSET:
+        OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(controllerGet, &caretPos);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "GetCaretOffset %{public}d", caretPos);
+        break;
+    case BTN_SET_CARET_OFFSET:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "SetCaretOffset 1");
+        OH_ArkUI_TextEditorStyledStringController_SetCaretOffset(controllerGet, 1);
+        break;
+    case BTN_SET_TYPING_STYLE:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingStyle");
+        SetTypingStyle(controllerGet);
+        break;
+    case BTN_GET_TYPING_STYLE:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getTypingStyle");
+        GetTypingStyle(controllerGet);
+        break;
+    case BTN_SET_TYPING_PARAGRAPH_STYLE:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingParagraphStyle");
+        SetTypingParagraphStyle(controllerGet);
+        break;
+//        case BTN_CLOSE_SELECTION_MENU:
+//            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "closeSelectionMenu");
+//            OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(controllerGet);
+//            break;
+    default:
+        break;
     }
 }
 
@@ -1061,57 +1031,55 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
  * @brief 处理节点事件的回调函数.根据事件类型执行相应的操作。
  * @param event 节点事件
  */
-static void OnEventReceive(ArkUI_NodeEvent* event)
-{
+static void OnEventReceive(ArkUI_NodeEvent *event) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnEventReceive");
     int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-    ArkUI_NodeComponentEvent* nodeComponentEvent;
-    ArkUI_NumberValue preventDefault = { .i32 = true };
-    ArkUI_NumberValue preventReturnValues[] = { preventDefault };
+    ArkUI_NodeComponentEvent *nodeComponentEvent;
+    ArkUI_NumberValue preventDefault = {.i32 = true};
+    ArkUI_NumberValue preventReturnValues[] = {preventDefault};
     switch (eventType) {
-        case NODE_TEXT_EDITOR_ON_READY:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_READY");
-            break;
-        case NODE_TEXT_EDITOR_ON_SELECTION_CHANGE:
-            nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_SELECTION_CHANGE %{public}d %{public}d", nodeComponentEvent->data[0].i32,
-                         nodeComponentEvent->data[1].i32);
-            break;
-        case NODE_TEXT_EDITOR_ON_PASTE:
-            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_PASTE");
-            break;
-        case NODE_TEXT_EDITOR_ON_COPY:
-            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_COPY");
-            break;
-        case NODE_TEXT_EDITOR_ON_EDITING_CHANGE:
-            nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_EDITING_CHANGE %{public}d", nodeComponentEvent->data[0].i32);
-        case NODE_TEXT_EDITOR_ON_SUBMIT:
-            nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_SUBMIT %{public}d", nodeComponentEvent->data[0].i32);
-        case NODE_TEXT_EDITOR_ON_CUT:
-            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_CUT");
-            break;
-        case NODE_ON_CLICK_EVENT:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onClick");
-            OnBtnClickReceive(event);
-            break;
-        default:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
+    case NODE_TEXT_EDITOR_ON_READY:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_READY");
+        break;
+    case NODE_TEXT_EDITOR_ON_SELECTION_CHANGE:
+        nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "TextEditorMaker",
+                     "NODE_TEXT_EDITOR_ON_SELECTION_CHANGE %{public}d %{public}d", nodeComponentEvent->data[0].i32,
+                     nodeComponentEvent->data[1].i32);
+        break;
+    case NODE_TEXT_EDITOR_ON_PASTE:
+        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_PASTE");
+        break;
+    case NODE_TEXT_EDITOR_ON_COPY:
+        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_COPY");
+        break;
+    case NODE_TEXT_EDITOR_ON_EDITING_CHANGE:
+        nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                     "NODE_TEXT_EDITOR_ON_EDITING_CHANGE %{public}d", nodeComponentEvent->data[0].i32);
+    case NODE_TEXT_EDITOR_ON_SUBMIT:
+        nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_SUBMIT %{public}d",
+                     nodeComponentEvent->data[0].i32);
+    case NODE_TEXT_EDITOR_ON_CUT:
+        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_CUT");
+        break;
+    case NODE_ON_CLICK_EVENT:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onClick");
+        OnBtnClickReceive(event);
+        break;
+    default:
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
     };
 }
 
-void SetTextEditorStyledStringController()
-{
+void SetTextEditorStyledStringController() {
     SetTextTitle("controller测试");
     ArkUI_NodeHandle textEditor = InitTextEditor();
-    OH_ArkUI_TextEditorStyledStringController* controller = OH_ArkUI_TextEditorStyledStringController_Create();
+    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
     ArkUI_AttributeItem controllerItem = {.object = controller};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
     AddButton("GetCaretOffset", BTN_GET_CARET_OFFSET, controller);
@@ -1137,8 +1105,7 @@ void SetTextEditorStyledStringController()
 /**
  * @brief 设置文本编辑器事件
  */
-void SetTextEditorEvent()
-{
+void SetTextEditorEvent() {
     SetTextTitle("预上屏（True）");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     ArkUI_NumberValue previewText = {.i32 = true};
@@ -1161,13 +1128,11 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
     int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     switch (eventType) {
     case NODE_TEXT_EDITOR_ON_WILL_CHANGE: {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
         OH_ArkUI_TextEditorChangeEvent *textEditorChangeEvent =
             OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(event);
         if (textEditorChangeEvent == nullptr) {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "textEditorChangeEvent is null");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "textEditorChangeEvent is null");
             break;
         }
         uint32_t start = 0;
@@ -1202,14 +1167,13 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
         break;
     }
     case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "NODE_TEXT_EDITOR_ON_DID_CHANGE");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_DID_CHANGE");
         ArkUI_NodeComponentEvent *nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
                      "NODE_TEXT_EDITOR_ON_DID_CHANGE replacedStart=%{public}d replacedEnd=%{public}d "
                      "addedStart=%{public}d addedEnd=%{public}d",
-                     nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32, nodeComponentEvent->data[INDEX_2].i32,
-                     nodeComponentEvent->data[INDEX_3].i32);
+                     nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32,
+                     nodeComponentEvent->data[INDEX_2].i32, nodeComponentEvent->data[INDEX_3].i32);
         break;
     }
     default:
@@ -1412,7 +1376,8 @@ void TextEditorMaker::CreateStyledStringWithBackgroundColorStyle() {
 
     OH_ArkUI_BackgroundColorStyle *backgroundColorStyle = OH_ArkUI_BackgroundColorStyle_Create();
     OH_ArkUI_BackgroundColorStyle_SetColor(backgroundColorStyle, COLOR_YELLOW);
-    OH_ArkUI_BackgroundColorStyle_SetRadius(backgroundColorStyle, BACKGROUND_RADIUS, BACKGROUND_RADIUS, BACKGROUND_RADIUS, BACKGROUND_RADIUS);
+    OH_ArkUI_BackgroundColorStyle_SetRadius(backgroundColorStyle, BACKGROUND_RADIUS, BACKGROUND_RADIUS,
+                                            BACKGROUND_RADIUS, BACKGROUND_RADIUS);
 
     OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
     OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
@@ -1443,8 +1408,7 @@ void TextEditorMaker::CreateStyledStringWithGestureStyle() {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onClick callback triggered");
     });
     OH_ArkUI_GestureStyle_RegisterOnLongPressCallback(gestureStyle, [](ArkUI_GestureEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "onLongPress callback triggered");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onLongPress callback triggered");
     });
     OH_ArkUI_GestureStyle_RegisterOnTouchCallback(gestureStyle, [](ArkUI_NodeEvent *event) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onTouch callback triggered");
@@ -1598,11 +1562,10 @@ void TextEditorMaker::StyledStringStyleOperations() {
     OH_ArkUI_SpanStyle *spanStylesGet[] = {spanStyleGet, spanStyleGet};
     OH_ArkUI_SpanStyle **spanStylesGetPointer = spanStylesGet;
     uint32_t writeLength = 0;
-    OH_ArkUI_StyledString_Descriptor_GetStyles(styledString, 0, SPAN_LENGTH_10 + 1, OH_ARKUI_STYLEDSTRINGKEY_FONT, spanStylesGetPointer,
-                                               MAX_STYLES_TO_GET, &writeLength);
+    OH_ArkUI_StyledString_Descriptor_GetStyles(styledString, 0, SPAN_LENGTH_10 + 1, OH_ARKUI_STYLEDSTRINGKEY_FONT,
+                                               spanStylesGetPointer, MAX_STYLES_TO_GET, &writeLength);
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Got %{public}d styles",
-                 writeLength);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Got %{public}d styles", writeLength);
 
     for (uint32_t i = 0; i < writeLength; i++) {
         OH_ArkUI_SpanStyle_Destroy(spanStylesGetPointer[i]);
@@ -1705,18 +1668,17 @@ void TextEditorMaker::StyledStringComparisonAndSerialization() {
 
     uint8_t buffer[MARSHAL_BUFFER_SIZE];
     size_t resultSize = 0;
-    int32_t errorCode = OH_ArkUI_MarshallStyledStringDescriptor(buffer, MARSHAL_BUFFER_SIZE, styledString1, &resultSize);
+    int32_t errorCode =
+        OH_ArkUI_MarshallStyledStringDescriptor(buffer, MARSHAL_BUFFER_SIZE, styledString1, &resultSize);
 
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Marshaled size: %{public}zu",
-                     resultSize);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Marshaled size: %{public}zu", resultSize);
 
         ArkUI_StyledString_Descriptor *unmarshaledString = OH_ArkUI_StyledString_Descriptor_Create();
         errorCode = OH_ArkUI_UnmarshallStyledStringDescriptor(buffer, resultSize, unmarshaledString);
 
         if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "Unmarshalled successfully");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Unmarshalled successfully");
 
             ArkUI_NodeHandle textEditor = InitTextEditor();
 
@@ -1737,8 +1699,7 @@ void TextEditorMaker::StyledStringCustomSpan() {
     SetTextTitle("CustomSpan示例");
 
     auto onMeasure = [](float fontSize) -> ArkUI_CustomSpanMetrics * {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "onMeasure fontSize:%{public}f",
-                     fontSize);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "onMeasure fontSize:%{public}f", fontSize);
         ArkUI_CustomSpanMetrics *customSpanMetrics = OH_ArkUI_CustomSpanMetrics_Create();
         OH_ArkUI_CustomSpanMetrics_SetHeight(customSpanMetrics, CUSTOM_SPAN_HEIGHT);
         OH_ArkUI_CustomSpanMetrics_SetWidth(customSpanMetrics, CUSTOM_SPAN_WIDTH);
@@ -1812,8 +1773,27 @@ void TextEditorMaker::StyledStringImageAttachment() {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                  "OH_ArkUI_ImageAttachment_GetSizeHeight %{public}f", size);
     OH_ArkUI_ImageAttachment_SetVerticalAlign(arkUI_ImageAttachment,
-                                               ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
-    float matrix[COLOR_MATRIX_SIZE] = {COLOR_FILTER_RED, 0, 0, 0, 0, 0, COLOR_FILTER_RED, 0, 0, 0, 0, 0, COLOR_FILTER_BLUE, COLOR_FILTER_BLUE, 0, 0, 0, COLOR_FILTER_ALPHA, COLOR_FILTER_ALPHA, 0};
+                                              ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
+    float matrix[COLOR_MATRIX_SIZE] = {COLOR_FILTER_RED,
+                                       0,
+                                       0,
+                                       0,
+                                       0,
+                                       0,
+                                       COLOR_FILTER_RED,
+                                       0,
+                                       0,
+                                       0,
+                                       0,
+                                       0,
+                                       COLOR_FILTER_BLUE,
+                                       COLOR_FILTER_BLUE,
+                                       0,
+                                       0,
+                                       0,
+                                       COLOR_FILTER_ALPHA,
+                                       COLOR_FILTER_ALPHA,
+                                       0};
     float *ptr = matrix;
     OH_ArkUI_ImageAttachment_SetColorFilter(arkUI_ImageAttachment, ptr, static_cast<uint32_t>(COLOR_MATRIX_SIZE));
 
@@ -1821,9 +1801,13 @@ void TextEditorMaker::StyledStringImageAttachment() {
     OH_ArkUI_ImageAttachment_SetDrawingColorFilter(arkUI_ImageAttachment, colorFilter);
 
     OH_ArkUI_ImageAttachment_SetObjectFit(arkUI_ImageAttachment, ArkUI_ObjectFit::ARKUI_OBJECT_FIT_AUTO);
-    OH_ArkUI_ImageAttachment_SetMargin(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN});
-    OH_ArkUI_ImageAttachment_SetPadding(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING});
-    OH_ArkUI_ImageAttachment_SetBorderRadiuses(arkUI_ImageAttachment, IMAGE_ATTACHMENT_BORDER_RADIUS, IMAGE_ATTACHMENT_BORDER_RADIUS, IMAGE_ATTACHMENT_BORDER_RADIUS, IMAGE_ATTACHMENT_BORDER_RADIUS);
+    OH_ArkUI_ImageAttachment_SetMargin(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN,
+                                                               IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN});
+    OH_ArkUI_ImageAttachment_SetPadding(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING,
+                                                                IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING});
+    OH_ArkUI_ImageAttachment_SetBorderRadiuses(arkUI_ImageAttachment, IMAGE_ATTACHMENT_BORDER_RADIUS,
+                                               IMAGE_ATTACHMENT_BORDER_RADIUS, IMAGE_ATTACHMENT_BORDER_RADIUS,
+                                               IMAGE_ATTACHMENT_BORDER_RADIUS);
     OH_ArkUI_ImageAttachment_SetSyncLoad(arkUI_ImageAttachment, true);
     OH_ArkUI_ImageAttachment_SetSupportSvg(arkUI_ImageAttachment, true);
     ArkUI_StyledString_Descriptor *styledString =
@@ -1982,8 +1966,7 @@ void TextEditorMaker::StyledStringReplaceStyledString() {
         OH_ArkUI_StyledString_Descriptor_ReplaceStyledString(styledString1, 6, SPAN_LENGTH_5, styledString2);
 
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "ReplaceStyledString succeeded");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "ReplaceStyledString succeeded");
     }
 
     ArkUI_NodeHandle textEditor = InitTextEditor();
@@ -2027,8 +2010,7 @@ void TextEditorMaker::StyledStringStyledPlaceholder() {
         OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(controller, placeholderStyledString);
 
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "SetStyledPlaceholder succeeded");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "SetStyledPlaceholder succeeded");
     }
 
     OH_ArkUI_SpanStyle_Destroy(spanStyle);
@@ -2105,8 +2087,7 @@ void TextEditorMaker::ParagraphStyleCallback() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-ArkUI_NodeHandle TextEditorMaker::CreateNativeNode()
-{
+ArkUI_NodeHandle TextEditorMaker::CreateNativeNode() {
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     textContainer = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     ArkUI_NumberValue colWidth[] = {{.f32 = COLUMN_WIDTH}};
@@ -2122,7 +2103,7 @@ ArkUI_NodeHandle TextEditorMaker::CreateNativeNode()
     SetTextEditorEvent();
     SetTextEditorStyledStringController();
     SetEditMenuOptions();
-    
+
     // styledString
     CreateStyledStringWithTextStyle();
     CreateStyledStringWithParagraphStyle();
