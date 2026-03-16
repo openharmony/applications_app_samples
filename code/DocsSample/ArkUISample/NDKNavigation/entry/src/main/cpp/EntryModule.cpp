@@ -67,6 +67,7 @@ void NativeModule::NativeEntry::InitNavDestinationState(ArkUI_NodeHandle handle)
         if (OH_ArkUI_NodeEvent_GetTargetId(event) != NUM_10) {
             return;
         }
+        // [Start get_page_state]
         ArkUI_NodeHandle targetNode = nullptr;
         OH_ArkUI_NodeUtils_GetAttachedNodeHandleById("navDestinationState", &targetNode);
         auto entry = NativeEntry::GetInstance();
@@ -78,11 +79,13 @@ void NativeModule::NativeEntry::InitNavDestinationState(ArkUI_NodeHandle handle)
         } else if (state == NUM_9) {
             entry->SetColor(targetNode, 0xFF000000);
         }
+        // [End get_page_state]
     });
 }
 
 void NativeEntry::ReportError(ArkUI_NodeHandle handle, const std::string &info)
 {
+    // [Start get_stack_info]
     char navigationId[NUM_50];
     int32_t bufferLen = 0;
     OH_ArkUI_GetNavigationId(handle, navigationId, NUM_50, &bufferLen);
@@ -95,6 +98,7 @@ void NativeEntry::ReportError(ArkUI_NodeHandle handle, const std::string &info)
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "NAPI",
                  "navigation id: %{public}s, name: %{public}s, index: %{public}d, error: %{public}s",
                  navigationId, name, index, info.c_str());
+    // [End get_stack_info]
 }
 
 void NativeModule::NativeEntry::InitPageIndex(ArkUI_NodeHandle handle)

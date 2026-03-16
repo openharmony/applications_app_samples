@@ -79,10 +79,13 @@ void CreateInitNode(napi_env env, ArkUI_NodeHandle node)
     nativeEntry->SetWidth(column, NUM_300);
     // 设置组件高度，NUM_250 = 250
     nativeEntry->SetHeight(column, NUM_250);
+    // [Start get_page_name]
     // 获取页面名称
     char pageName[NUM_50];
     int32_t bufferLen = 0;
     OH_ArkUI_GetNavDestinationName(node, pageName, NUM_50, &bufferLen);
+    // [End get_page_name]
+    // [Start get_page_param]
     // 获取页面跳转参数
     napi_value param = OH_ArkUI_GetNavDestinationParam(node);
     napi_value nameVal = nullptr;
@@ -99,6 +102,7 @@ void CreateInitNode(napi_env env, ArkUI_NodeHandle node)
         InitRouterNode(column);
     }
     nativeApi->addChild(node, column);
+    // [End get_page_param]
 }
 
 void CreateQueryRootNode(napi_env env, ArkUI_NodeContentHandle handle)
