@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [ "default",
+            "tablet"],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Security.Cert",
+                    "SystemCapability.Base"
+                ]
+            }
+        ]
+    }
+}
