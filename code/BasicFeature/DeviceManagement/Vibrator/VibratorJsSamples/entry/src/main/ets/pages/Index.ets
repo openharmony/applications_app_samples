@@ -450,7 +450,7 @@ struct Index {
               // [End vibrator_js_stop_vibrator_by_type_all_example]
               // [Start vibrator_js_stop_vibrator_by_device_id_example]
               const vibratorInfoParam: vibrator.VibratorInfoParam = {
-                deviceId: -1   // deviceid 需要是查询出来真实存在的设备
+                deviceId: -1   // deviceId 需要是查询出来真实存在的设备
               }
               try {
                 vibrator.stopVibration(vibratorInfoParam).then(() => {
@@ -523,7 +523,7 @@ struct Index {
               // [Start vibrator_js_get_vibrator_info_sync_by_device_id_example]
               try {
                 const vibratorParam: vibrator.VibratorInfoParam = {
-                  deviceId: -1    // deviceid 需要是查询出来真实存在的设备
+                  deviceId: -1    // deviceId 需要是查询出来真实存在的设备
                 }
                 const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
                 console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
