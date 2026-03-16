@@ -66,7 +66,7 @@ struct Index {
             // [EndExclude sensor_capi_index_example]
           } catch (error) {
             let e: BusinessError = error as BusinessError;
-            hilog.error(DOMAIN, 'testTag', `Failed to invoke getSensorInfos. Code: ${e.code}, message: ${e.message}`);
+            hilog.error(DOMAIN, 'testTag', `Failed to invoke subscriber. Code: ${e.code}, message: ${e.message}`);
           }
           // [End sensor_capi_index_example]
         }).id('subscriberId')
