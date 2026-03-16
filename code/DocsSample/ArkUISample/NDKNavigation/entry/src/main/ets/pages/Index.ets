@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_navigation]
 import nativeComponent from 'libentry.so';
 import { NodeContent } from '@kit.ArkUI';
 
@@ -63,7 +64,9 @@ struct NavigationAnimationDemo {
     }
   }
 }
+// [End create_navigation]
 
+// [Start create_navdestination]
 @Component
 struct Page {
   private nativeRoot: NodeContent = new NodeContent()
@@ -96,3 +99,4 @@ struct Page {
     .hitTestBehavior(this.mode == NavDestinationMode.STANDARD ? HitTestMode.Default : HitTestMode.Transparent)
   }
 }
+// [End create_navdestination]
