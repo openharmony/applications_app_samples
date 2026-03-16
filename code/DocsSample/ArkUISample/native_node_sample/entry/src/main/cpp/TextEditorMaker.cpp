@@ -368,7 +368,8 @@ void SetTextEditorCustomKeyboard()
     ArkUI_AttributeItem heightItem = {&buttonHeightValue, SIZE_1};
     Manager::nodeAPI_->setAttribute(button, NODE_HEIGHT, &heightItem);
     ArkUI_NumberValue customKeyboardValue[] = {{.i32 = true}};
-    ArkUI_AttributeItem customKeyboard = {customKeyboardValue, sizeof(customKeyboardValue) / sizeof(ArkUI_NumberValue)};
+    ArkUI_AttributeItem customKeyboard = {customKeyboardValue,
+        sizeof(customKeyboardValue) / sizeof(ArkUI_NumberValue)};
     customKeyboard.object = button;
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_CUSTOM_KEYBOARD, &customKeyboard);
 }
@@ -400,8 +401,9 @@ void SetMenuCallbacks(OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions)
     char* menuDisappearData = "menu disappear data";
     OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearCallback(
         menuOptions, reinterpret_cast<void*>(menuDisappearData), [](void* userData) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TextEditorMaker", "MenuDisappear, userData: %{public}s",
-                         reinterpret_cast<char*>(userData));
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,"TextEditorMaker",
+                        "MenuDisappear, userData: %{public}s",
+                        reinterpret_cast<char*>(userData));
         });
 }
 
@@ -771,8 +773,8 @@ void GetPreviewText(OH_ArkUI_TextEditorStyledStringController* controller)
     OH_ArkUI_TextEditorStyledStringController_GetPreviewText(controller, &previewTextOffset, buffer,
                                                              PREVIEW_TEXT_BUFFER_LEN, &writeLength);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                 "getPreviewText offset=%{public}d buffer=%{public}s writeLength=%{public}d", previewTextOffset, buffer,
-                 writeLength);
+                 "getPreviewText offset=%{public}d buffer=%{public}s writeLength=%{public}d",
+                 previewTextOffset, buffer, writeLength);
 }
 
 void GetLineMetrics(ArkUI_TextLayoutManager* layoutManager)
@@ -823,13 +825,13 @@ void GetGlyphPosition(ArkUI_TextLayoutManager* layoutManager)
     }
 }
 
-void DisposeLayoutManager() 
- { 
-     auto text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT); 
-     auto result = Manager::nodeAPI_->getAttribute(text, NODE_TEXT_LAYOUT_MANAGER); 
-     ArkUI_TextLayoutManager* layoutMananger = (ArkUI_TextLayoutManager*)(result->object); 
-     OH_ArkUI_TextLayoutManager_Dispose(layoutMananger); 
- }
+void DisposeLayoutManager()
+{
+    auto text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    auto result = Manager::nodeAPI_->getAttribute(text, NODE_TEXT_LAYOUT_MANAGER);
+    ArkUI_TextLayoutManager *layoutMananger = (ArkUI_TextLayoutManager *)(result->object);
+    OH_ArkUI_TextLayoutManager_Dispose(layoutMananger);
+}
 
 void GetRectsForRange(ArkUI_TextLayoutManager* layoutManager)
 {
@@ -839,7 +841,8 @@ void GetRectsForRange(ArkUI_TextLayoutManager* layoutManager)
     }
     OH_Drawing_TextBox* textBoxes;
     auto res = OH_ArkUI_TextLayoutManager_GetRectsForRange(layoutManager, 0, RECTS_FOR_RANGE_END,
-                                                           RECT_WIDTH_STYLE_TIGHT, RECT_HEIGHT_STYLE_TIGHT, &textBoxes);
+                                                           RECT_WIDTH_STYLE_TIGHT, RECT_HEIGHT_STYLE_TIGHT,
+                                                           &textBoxes);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "getRectsForRange %{public}d", res);
     if (res == ARKUI_ERROR_CODE_NO_ERROR) {
         size_t size = OH_Drawing_GetSizeOfTextBox(textBoxes);
@@ -871,7 +874,8 @@ void MenuOptionsOnCreate(ArkUI_TextEditMenuOptions* editMenuOptions)
 {
     char* onCreateUserData = "onCreateUserData";
     OH_ArkUI_TextEditMenuOptions_RegisterOnCreateMenuCallback(
-        editMenuOptions, reinterpret_cast<void*>(onCreateUserData), [](ArkUI_TextMenuItemArray* items, void* userData) {
+        editMenuOptions, reinterpret_cast<void*>(onCreateUserData),
+        [](ArkUI_TextMenuItemArray* items, void* userData) {
             int32_t size;
             auto errorCode = OH_ArkUI_TextMenuItemArray_GetSize(items, &size);
             ArkUI_TextMenuItem* item = nullptr;
@@ -970,8 +974,8 @@ void DoLayoutManager(ArkUI_NodeEvent* event)
         case BTN_LAYOUT_MANAGER_LINE_METRICS:
             GetLineMetrics(layoutManager);
             break;
-        case BTN_LAYOUT_MANAGER_DISPOSE: 
-             DisposeLayoutManager(); 
+        case BTN_LAYOUT_MANAGER_DISPOSE:
+             DisposeLayoutManager();
              break;
         default:
             break;
@@ -1030,7 +1034,8 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
     switch (eventIndex) {
         case BTN_GET_CARET_OFFSET:
             OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(controllerGet, &caretPos);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "GetCaretOffset %{public}d", caretPos);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN,
+                         "TextEditorMaker", "GetCaretOffset %{public}d", caretPos);
             break;
         case BTN_SET_CARET_OFFSET:
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "SetCaretOffset 1");
@@ -1048,10 +1053,10 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "setTypingParagraphStyle");
             SetTypingParagraphStyle(controllerGet);
             break;
-//        case BTN_CLOSE_SELECTION_MENU:
-//            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "closeSelectionMenu");
-//            OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(controllerGet);
-//            break;
+        case BTN_CLOSE_SELECTION_MENU:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "closeSelectionMenu");
+            OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(controllerGet);
+            break;
         default:
             break;
     }
@@ -1156,68 +1161,72 @@ void SetTextEditorEvent()
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_CUT, EVENT_ON_CUT, nullptr);
 }
 
-static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
+static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
+{
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnStyledStringEventReceive");
     int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     switch (eventType) {
-    case NODE_TEXT_EDITOR_ON_WILL_CHANGE: {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
-        OH_ArkUI_TextEditorChangeEvent *textEditorChangeEvent =
-            OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(event);
-        if (textEditorChangeEvent == nullptr) {
+        case NODE_TEXT_EDITOR_ON_WILL_CHANGE: {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "textEditorChangeEvent is null");
+                         "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
+            OH_ArkUI_TextEditorChangeEvent *textEditorChangeEvent =
+                OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(event);
+            if (textEditorChangeEvent == nullptr) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                             "textEditorChangeEvent is null");
+                break;
+            }
+            uint32_t start = 0;
+            uint32_t end = 0;
+            ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
+            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
+                             "RangeBefore start=%{public}u end=%{public}u", start, end);
+            }
+    
+            ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
+            errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent,
+                                                                                  replacementString);
+            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+                char buffer[BUFFER_SIZE];
+                int32_t writeLength = 0;
+                OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s",
+                             buffer);
+            }
+    
+            ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
+            errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
+            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+                char buffer[BUFFER_SIZE];
+                int32_t writeLength = 0;
+                OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
+            }
+    
+            ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
+            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
             break;
         }
-        uint32_t start = 0;
-        uint32_t end = 0;
-        ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
-        if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                         "NODE_TEXT_EDITOR_ON_DID_CHANGE");
+            ArkUI_NodeComponentEvent *nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                         "RangeBefore start=%{public}u end=%{public}u", start, end);
+                         "NODE_TEXT_EDITOR_ON_DID_CHANGE replacedStart=%{public}d replacedEnd=%{public}d "
+                         "addedStart=%{public}d addedEnd=%{public}d",
+                         nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32,
+                         nodeComponentEvent->data[INDEX_2].i32,
+                         nodeComponentEvent->data[INDEX_3].i32);
+            break;
         }
-
-        ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
-        errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent, replacementString);
-        if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-            char buffer[BUFFER_SIZE];
-            int32_t writeLength = 0;
-            OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s",
-                         buffer);
-        }
-
-        ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
-        errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
-        if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-            char buffer[BUFFER_SIZE];
-            int32_t writeLength = 0;
-            OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
-        }
-
-        ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
-        OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
-        break;
-    }
-    case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "NODE_TEXT_EDITOR_ON_DID_CHANGE");
-        ArkUI_NodeComponentEvent *nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                     "NODE_TEXT_EDITOR_ON_DID_CHANGE replacedStart=%{public}d replacedEnd=%{public}d "
-                     "addedStart=%{public}d addedEnd=%{public}d",
-                     nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32, nodeComponentEvent->data[INDEX_2].i32,
-                     nodeComponentEvent->data[INDEX_3].i32);
-        break;
-    }
-    default:
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
+        default:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
     }
 }
 
-void TextEditorMaker::CreateStyledStringWithTextStyle() {
+void TextEditorMaker::CreateStyledStringWithTextStyle()
+{
     SetTextTitle("创建带文本样式的StyledString");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -1251,7 +1260,8 @@ void TextEditorMaker::CreateStyledStringWithTextStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithParagraphStyle() {
+void TextEditorMaker::CreateStyledStringWithParagraphStyle()
+{
     SetTextTitle("创建带段落样式的StyledString");
 
     OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
@@ -1285,7 +1295,8 @@ void TextEditorMaker::CreateStyledStringWithParagraphStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithDecorationStyle() {
+void TextEditorMaker::CreateStyledStringWithDecorationStyle()
+{
     SetTextTitle("创建带装饰样式的StyledString");
 
     OH_ArkUI_DecorationStyle *decorationStyle = OH_ArkUI_DecorationStyle_Create();
@@ -1316,7 +1327,8 @@ void TextEditorMaker::CreateStyledStringWithDecorationStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithBaselineOffsetStyle() {
+void TextEditorMaker::CreateStyledStringWithBaselineOffsetStyle()
+{
     SetTextTitle("创建带基线偏移样式的StyledString");
 
     OH_ArkUI_BaselineOffsetStyle *baselineOffsetStyle = OH_ArkUI_BaselineOffsetStyle_Create();
@@ -1343,7 +1355,8 @@ void TextEditorMaker::CreateStyledStringWithBaselineOffsetStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithLetterSpacingStyle() {
+void TextEditorMaker::CreateStyledStringWithLetterSpacingStyle()
+{
     SetTextTitle("创建带字间距样式的StyledString");
 
     OH_ArkUI_LetterSpacingStyle *letterSpacingStyle = OH_ArkUI_LetterSpacingStyle_Create();
@@ -1370,7 +1383,8 @@ void TextEditorMaker::CreateStyledStringWithLetterSpacingStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithTextShadowStyle() {
+void TextEditorMaker::CreateStyledStringWithTextShadowStyle()
+{
     SetTextTitle("创建带文本阴影样式的StyledString");
 
     OH_ArkUI_ShadowOptions *shadowOptions = OH_ArkUI_ShadowOptions_Create();
@@ -1407,12 +1421,14 @@ void TextEditorMaker::CreateStyledStringWithTextShadowStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithBackgroundColorStyle() {
+void TextEditorMaker::CreateStyledStringWithBackgroundColorStyle()
+{
     SetTextTitle("创建带背景色样式的StyledString");
 
     OH_ArkUI_BackgroundColorStyle *backgroundColorStyle = OH_ArkUI_BackgroundColorStyle_Create();
     OH_ArkUI_BackgroundColorStyle_SetColor(backgroundColorStyle, COLOR_YELLOW);
-    OH_ArkUI_BackgroundColorStyle_SetRadius(backgroundColorStyle, BACKGROUND_RADIUS, BACKGROUND_RADIUS, BACKGROUND_RADIUS, BACKGROUND_RADIUS);
+    OH_ArkUI_BackgroundColorStyle_SetRadius(backgroundColorStyle, BACKGROUND_RADIUS, BACKGROUND_RADIUS,
+                                            BACKGROUND_RADIUS, BACKGROUND_RADIUS);
 
     OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
     OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
@@ -1435,7 +1451,8 @@ void TextEditorMaker::CreateStyledStringWithBackgroundColorStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithGestureStyle() {
+void TextEditorMaker::CreateStyledStringWithGestureStyle()
+{
     SetTextTitle("创建带手势样式的StyledString");
 
     OH_ArkUI_GestureStyle *gestureStyle = OH_ArkUI_GestureStyle_Create();
@@ -1471,7 +1488,8 @@ void TextEditorMaker::CreateStyledStringWithGestureStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithLineHeightStyle() {
+void TextEditorMaker::CreateStyledStringWithLineHeightStyle()
+{
     SetTextTitle("创建带行高样式的StyledString");
 
     OH_ArkUI_LineHeightStyle *lineHeightStyle = OH_ArkUI_LineHeightStyle_Create();
@@ -1498,11 +1516,12 @@ void TextEditorMaker::CreateStyledStringWithLineHeightStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::CreateStyledStringWithUrlStyle() {
+void TextEditorMaker::CreateStyledStringWithUrlStyle()
+{
     SetTextTitle("创建带URL样式的StyledString");
 
     OH_ArkUI_UrlStyle *urlStyle = OH_ArkUI_UrlStyle_Create();
-    OH_ArkUI_UrlStyle_SetUrl(urlStyle, "https://www.harmonyos.com");
+    OH_ArkUI_UrlStyle_SetUrl(urlStyle, "https://www.baidu.com");
 
     OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
     OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
@@ -1525,7 +1544,8 @@ void TextEditorMaker::CreateStyledStringWithUrlStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringBasicOperations() {
+void TextEditorMaker::StyledStringBasicOperations()
+{
     SetTextTitle("StyledString基础操作示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -1566,7 +1586,8 @@ void TextEditorMaker::StyledStringBasicOperations() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringStyleOperations() {
+void TextEditorMaker::StyledStringStyleOperations()
+{
     SetTextTitle("StyledString样式操作示例");
 
     OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
@@ -1587,7 +1608,7 @@ void TextEditorMaker::StyledStringStyleOperations() {
     OH_ArkUI_TextStyle_SetFontSize(textStyle2, FONT_SIZE_20);
 
     OH_ArkUI_SpanStyle *spanStyle2 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle2, 6);
+    OH_ArkUI_SpanStyle_SetStart(spanStyle2, SPAN_LENGTH_6);
     OH_ArkUI_SpanStyle_SetLength(spanStyle2, SPAN_LENGTH_5);
     OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
 
@@ -1598,7 +1619,8 @@ void TextEditorMaker::StyledStringStyleOperations() {
     OH_ArkUI_SpanStyle *spanStylesGet[] = {spanStyleGet, spanStyleGet};
     OH_ArkUI_SpanStyle **spanStylesGetPointer = spanStylesGet;
     uint32_t writeLength = 0;
-    OH_ArkUI_StyledString_Descriptor_GetStyles(styledString, 0, SPAN_LENGTH_10 + 1, OH_ARKUI_STYLEDSTRINGKEY_FONT, spanStylesGetPointer,
+    OH_ArkUI_StyledString_Descriptor_GetStyles(styledString, 0, SPAN_LENGTH_10 + 1, OH_ARKUI_STYLEDSTRINGKEY_FONT,
+                                               spanStylesGetPointer,
                                                MAX_STYLES_TO_GET, &writeLength);
 
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Got %{public}d styles",
@@ -1622,7 +1644,8 @@ void TextEditorMaker::StyledStringStyleOperations() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringAdvancedOperations() {
+void TextEditorMaker::StyledStringAdvancedOperations()
+{
     SetTextTitle("StyledString高级操作示例");
 
     OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
@@ -1680,7 +1703,8 @@ void TextEditorMaker::StyledStringAdvancedOperations() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString3);
 }
 
-void TextEditorMaker::StyledStringComparisonAndSerialization() {
+void TextEditorMaker::StyledStringComparisonAndSerialization()
+{
     SetTextTitle("StyledString比较和序列化示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -1705,15 +1729,13 @@ void TextEditorMaker::StyledStringComparisonAndSerialization() {
 
     uint8_t buffer[MARSHAL_BUFFER_SIZE];
     size_t resultSize = 0;
-    int32_t errorCode = OH_ArkUI_MarshallStyledStringDescriptor(buffer, MARSHAL_BUFFER_SIZE, styledString1, &resultSize);
-
+    int32_t errorCode = OH_ArkUI_MarshallStyledStringDescriptor(buffer, MARSHAL_BUFFER_SIZE,
+                                                                styledString1, &resultSize);
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Marshaled size: %{public}zu",
                      resultSize);
-
         ArkUI_StyledString_Descriptor *unmarshaledString = OH_ArkUI_StyledString_Descriptor_Create();
         errorCode = OH_ArkUI_UnmarshallStyledStringDescriptor(buffer, resultSize, unmarshaledString);
-
         if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "Unmarshalled successfully");
@@ -1733,7 +1755,8 @@ void TextEditorMaker::StyledStringComparisonAndSerialization() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
 }
 
-void TextEditorMaker::StyledStringCustomSpan() {
+void TextEditorMaker::StyledStringCustomSpan()
+{
     SetTextTitle("CustomSpan示例");
 
     auto onMeasure = [](float fontSize) -> ArkUI_CustomSpanMetrics * {
@@ -1781,7 +1804,8 @@ void TextEditorMaker::StyledStringCustomSpan() {
     OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
 }
 
-void TextEditorMaker::StyledStringImageAttachment() {
+void TextEditorMaker::StyledStringImageAttachment()
+{
     SetTextTitle("ImageAttachment示例");
 
     uint8_t data[PIXELMAP_DATA_SIZE];
@@ -1812,7 +1836,7 @@ void TextEditorMaker::StyledStringImageAttachment() {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                  "OH_ArkUI_ImageAttachment_GetSizeHeight %{public}f", size);
     OH_ArkUI_ImageAttachment_SetVerticalAlign(arkUI_ImageAttachment,
-                                               ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
+                                              ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
     float matrix[COLOR_MATRIX_SIZE] = {COLOR_FILTER_RED, 0, 0, 0, 0, 0,
         COLOR_FILTER_RED, 0, 0, 0, 0, 0, COLOR_FILTER_BLUE,
         COLOR_FILTER_BLUE, 0, 0, 0, COLOR_FILTER_ALPHA, COLOR_FILTER_ALPHA, 0};
@@ -1843,7 +1867,8 @@ void TextEditorMaker::StyledStringImageAttachment() {
     OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
 }
 
-void TextEditorMaker::StyledStringClearStyles() {
+void TextEditorMaker::StyledStringClearStyles()
+{
     SetTextTitle("StyledString清除样式示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -1873,7 +1898,8 @@ void TextEditorMaker::StyledStringClearStyles() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringUserDataSpan() {
+void TextEditorMaker::StyledStringUserDataSpan()
+{
     SetTextTitle("UserDataSpan示例");
 
     OH_ArkUI_UserDataSpan *userDataSpan = OH_ArkUI_UserDataSpan_Create();
@@ -1910,7 +1936,8 @@ void TextEditorMaker::StyledStringUserDataSpan() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringReplaceStyle() {
+void TextEditorMaker::StyledStringReplaceStyle()
+{
     SetTextTitle("ReplaceStyle示例");
 
     OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
@@ -1936,13 +1963,10 @@ void TextEditorMaker::StyledStringReplaceStyle() {
     OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
 
     ArkUI_ErrorCode errorCode = OH_ArkUI_StyledString_Descriptor_ReplaceStyle(styledString, spanStyle2);
-
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "ReplaceStyle succeeded");
     }
-
     ArkUI_NodeHandle textEditor = InitTextEditor();
-
     OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
     ArkUI_AttributeItem controllerItem = {.object = controller};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
@@ -1955,7 +1979,8 @@ void TextEditorMaker::StyledStringReplaceStyle() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::StyledStringReplaceStyledString() {
+void TextEditorMaker::StyledStringReplaceStyledString()
+{
     SetTextTitle("ReplaceStyledString示例");
 
     OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
@@ -1983,10 +2008,8 @@ void TextEditorMaker::StyledStringReplaceStyledString() {
     const OH_ArkUI_SpanStyle *spanStyles2[] = {spanStyle2};
     ArkUI_StyledString_Descriptor *styledString2 =
         OH_ArkUI_StyledString_Descriptor_CreateWithString("Harmony", spanStyles2, SIZE_1);
-
     ArkUI_ErrorCode errorCode =
         OH_ArkUI_StyledString_Descriptor_ReplaceStyledString(styledString1, 6, SPAN_LENGTH_5, styledString2);
-
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                      "ReplaceStyledString succeeded");
@@ -2007,7 +2030,8 @@ void TextEditorMaker::StyledStringReplaceStyledString() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
 }
 
-void TextEditorMaker::StyledStringStyledPlaceholder() {
+void TextEditorMaker::StyledStringStyledPlaceholder()
+{
     SetTextTitle("SetStyledPlaceholder示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -2028,10 +2052,8 @@ void TextEditorMaker::StyledStringStyledPlaceholder() {
     OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
     ArkUI_AttributeItem controllerItem = {.object = controller};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-
     ArkUI_ErrorCode errorCode =
         OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(controller, placeholderStyledString);
-
     if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                      "SetStyledPlaceholder succeeded");
@@ -2042,7 +2064,8 @@ void TextEditorMaker::StyledStringStyledPlaceholder() {
     OH_ArkUI_StyledString_Descriptor_Destroy(placeholderStyledString);
 }
 
-void TextEditorMaker::StyledStringWithChangeCallbacks() {
+void TextEditorMaker::StyledStringWithChangeCallbacks()
+{
     SetTextTitle("StyledString变更回调示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
@@ -2074,7 +2097,8 @@ void TextEditorMaker::StyledStringWithChangeCallbacks() {
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::ParagraphStyleCallback() {
+void TextEditorMaker::ParagraphStyleCallback()
+{
     SetTextTitle("ParagraphStyle段落样式回调示例");
 
     OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
