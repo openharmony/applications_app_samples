@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general": ["default","tablet"]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Notification.CommonEvent",
+      "SystemCapability.Multimedia.MediaLibrary.Core",
+      "SystemCapability.Multimedia.MediaLibrary.DistributedCore",
+      "SystemCapability.UserIAM.UserAuth.PinAuth"
+    ]
+  }
+}

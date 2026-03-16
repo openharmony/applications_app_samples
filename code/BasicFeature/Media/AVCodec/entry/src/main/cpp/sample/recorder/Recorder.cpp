@@ -27,6 +27,8 @@ constexpr int64_t MICROSECOND = 1000000;
 constexpr int32_t INPUT_FRAME_BYTES = 2 * 1024;
 constexpr int64_t TIMEOUT_US = 5000000;
 constexpr int32_t UNIT_CONVERSION = 1000;
+constexpr int32_t SLEEP_TIME = 310;
+constexpr int32_t WAIT_TIME = 5;
 }
 
 Recorder::~Recorder() { StartRelease(); }
@@ -39,13 +41,12 @@ int32_t Recorder::Init(SampleInfo &sampleInfo)
                              AVCODEC_SAMPLE_ERR_ERROR, "Already started.");
 
     sampleInfo_ = sampleInfo;
-    // Audio Capturer Init
     audioEncoder_ = std::make_unique<AudioEncoder>();
     audioCapturer_ = std::make_unique<AudioCapturer>();
 
     videoEncoder_ = std::make_unique<VideoEncoder>();
     muxer_ = std::make_unique<Muxer>();
-    
+
     int32_t ret = videoEncoder_->Create(sampleInfo_.videoCodecMime);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create video encoder failed");
     ret = muxer_->Create(sampleInfo_.outputFd);
@@ -60,12 +61,11 @@ int32_t Recorder::Init(SampleInfo &sampleInfo)
     ret = CreateAudioEncoder();
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create audio encoder failed");
 
-    // Init AudioCapturer
     audioCapturer_->AudioCapturerInit(sampleInfo_, audioEncContext_);
 
     ret = CreateVideoEncoder();
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create video encoder failed");
-    
+
     sampleInfo.window = sampleInfo_.window;
 
     releaseThread_ = nullptr;
@@ -87,6 +87,7 @@ int32_t Recorder::Start()
     ret = videoEncoder_->Start();
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Encoder start failed");
 
+    isEos_ = false;
     isStarted_ = true;
     if (sampleInfo_.codecSyncMode) {
         encOutputThread_ = std::make_unique<std::thread>(&Recorder::VideoEncOutputSyncThread, this);
@@ -100,7 +101,6 @@ int32_t Recorder::Start()
     }
 
     if (audioEncContext_) {
-        // Start AudioCapturer
         audioCapturer_->AudioCapturerStart();
 
         ret = audioEncoder_->Start();
@@ -114,7 +114,6 @@ int32_t Recorder::Start()
             return AVCODEC_SAMPLE_ERR_ERROR;
         }
 
-        // 清空播放缓存队列
         if (audioEncContext_ != nullptr) {
             audioEncContext_->ClearCache();
         }
@@ -133,8 +132,8 @@ void Recorder::VideoEncOutputSyncThread()
         CHECK_AND_BREAK_LOG(videoEncoder_
                             ->GetOutputBuffer(bufferInfo, TIMEOUT_US), "VD Get out buffer failed, thread out");
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
         lock.unlock();
+
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) ||
                 (bufferInfo.attr.flags == AVCODEC_BUFFER_FLAGS_NONE)) {
                     encContext_->outputFrameCount++;
@@ -155,6 +154,14 @@ void Recorder::VideoEncOutputSyncThread()
                             bufferInfo.attr);
         int32_t ret = videoEncoder_->FreeOutputBuffer(bufferInfo.bufferIndex);
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
+
+        if (bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
+            AVCODEC_SAMPLE_LOGI("Video EOS processed (sync), notifying StopEnd");
+            isVideoEos_.store(true);
+            videoEosCond_.notify_all();
+            AVCODEC_SAMPLE_LOGI("Video EOS complete (sync), exiting thread");
+            break;
+        }
     }
     AVCODEC_SAMPLE_LOGI("Exit, frame count: %{public}u", encContext_->outputFrameCount);
     StartRelease();
@@ -173,8 +180,8 @@ void Recorder::VideoEncOutputAsyncThread()
 
         CodecBufferInfo bufferInfo = encContext_->outputBufferInfoQueue.front();
         encContext_->outputBufferInfoQueue.pop();
-        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
         lock.unlock();
+
         if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_SYNC_FRAME) ||
                 (bufferInfo.attr.flags == AVCODEC_BUFFER_FLAGS_NONE)) {
                     encContext_->outputFrameCount++;
@@ -195,6 +202,14 @@ void Recorder::VideoEncOutputAsyncThread()
                             bufferInfo.attr);
         int32_t ret = videoEncoder_->FreeOutputBuffer(bufferInfo.bufferIndex);
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
+
+        if (bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
+            AVCODEC_SAMPLE_LOGI("Video EOS processed, notifying StopEnd");
+            isVideoEos_.store(true);
+            videoEosCond_.notify_all();
+            AVCODEC_SAMPLE_LOGI("Video EOS complete, exiting thread");
+            break;
+        }
     }
     AVCODEC_SAMPLE_LOGI("Exit, frame count: %{public}u", encContext_->outputFrameCount);
     StartRelease();
@@ -202,42 +217,77 @@ void Recorder::VideoEncOutputAsyncThread()
 
 void Recorder::StartRelease()
 {
+    std::lock_guard<std::mutex> lock(mutex_);
     if (releaseThread_ == nullptr) {
-        AVCODEC_SAMPLE_LOGI("Start release CodecTest");
+        AVCODEC_SAMPLE_LOGI("StartRelease: Creating release thread");
         releaseThread_ = std::make_unique<std::thread>(&Recorder::Release, this);
+    } else {
+        AVCODEC_SAMPLE_LOGI("StartRelease: Release thread already exists");
     }
 }
 
 void Recorder::ReleaseThread()
 {
     if (encOutputThread_ && encOutputThread_->joinable()) {
+        AVCODEC_SAMPLE_LOGI("ReleaseThread: Joining video encoding thread...");
         encOutputThread_->join();
         encOutputThread_.reset();
+        AVCODEC_SAMPLE_LOGI("ReleaseThread: Video encoding thread joined");
     }
     isVideoEncFirstSyncFrame_.store(true);
-    if (audioEncInputThread_ && audioEncInputThread_->joinable()) {
-        audioEncContext_->inputCond.notify_all();
-        audioEncInputThread_->join();
-        audioEncInputThread_.reset();
-    }
-    if (audioEncOutputThread_ && audioEncOutputThread_->joinable()) {
-        audioEncContext_->outputCond.notify_all();
-        audioEncOutputThread_->join();
-        audioEncOutputThread_.reset();
+
+    if (audioEncContext_ != nullptr) {
+        if (audioEncInputThread_ && audioEncInputThread_->joinable()) {
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Joining audio input thread...");
+            audioEncContext_->inputCond.notify_all();
+            audioEncInputThread_->join();
+            audioEncInputThread_.reset();
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Audio input thread joined");
+        }
+        if (audioEncOutputThread_ && audioEncOutputThread_->joinable()) {
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Joining audio output thread...");
+            audioEncContext_->outputCond.notify_all();
+            audioEncOutputThread_->join();
+            audioEncOutputThread_.reset();
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Audio output thread joined");
+        }
+    } else {
+        if (audioEncInputThread_ && audioEncInputThread_->joinable()) {
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Joining audio input thread (no context)...");
+            audioEncInputThread_->join();
+            audioEncInputThread_.reset();
+        }
+        if (audioEncOutputThread_ && audioEncOutputThread_->joinable()) {
+            AVCODEC_SAMPLE_LOGI("ReleaseThread: Joining audio output thread (no context)...");
+            audioEncOutputThread_->join();
+            audioEncOutputThread_.reset();
+        }
     }
 }
 
 void Recorder::Release()
 {
-    std::lock_guard<std::mutex> lock(mutex_);
-    isStarted_ = false;
+    AVCODEC_SAMPLE_LOGI("Release: Starting cleanup");
+
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        isStarted_ = false;
+    }
+
+    AVCODEC_SAMPLE_LOGI("Release: Joining encoding threads...");
     ReleaseThread();
+    AVCODEC_SAMPLE_LOGI("Release: All encoding threads joined");
+
+    std::lock_guard<std::mutex> lock(mutex_);
+    isEos_.store(false);
+    isVideoEos_.store(false);
+    isStopping_.store(false);
+
     if (muxer_ != nullptr) {
         muxer_->Release();
         muxer_.reset();
     }
     if (videoEncoder_ != nullptr) {
-        videoEncoder_->Stop();
         if (sampleInfo_.window != nullptr) {
             OH_NativeWindow_DestroyNativeWindow(sampleInfo_.window);
             sampleInfo_.window = nullptr;
@@ -246,7 +296,6 @@ void Recorder::Release()
         videoEncoder_.reset();
     }
     if (audioEncoder_ != nullptr) {
-        audioEncoder_->Stop();
         audioEncoder_->Release();
         audioEncoder_.reset();
     }
@@ -263,7 +312,7 @@ void Recorder::Release()
         encContext_ = nullptr;
     }
     doneCond_.notify_all();
-    AVCODEC_SAMPLE_LOGI("Succeed");
+    AVCODEC_SAMPLE_LOGI("Release: Cleanup complete, notifying doneCond");
 }
 
 int32_t Recorder::WaitForDone()
@@ -279,11 +328,38 @@ int32_t Recorder::WaitForDone()
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
-int32_t Recorder::Stop()
+int32_t Recorder::StopStart()
 {
     if (isStarted_) {
+        isStopping_.store(true);
+        AVCODEC_SAMPLE_LOGI("StopStart: isStopping set to true, audio continues");
+        return AVCODEC_SAMPLE_ERR_OK;
+    } else {
+        return AVCODEC_SAMPLE_ERR_ERROR;
+    }
+}
+
+int32_t Recorder::StopEnd()
+{
+    if (isStarted_) {
+        AVCODEC_SAMPLE_LOGI("StopEnd: Waiting for camera pipeline to flush...");
+        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME));
+        AVCODEC_SAMPLE_LOGI("StopEnd: Camera pipeline flush complete, signaling video EOS");
         int32_t ret = videoEncoder_->NotifyEndOfStream();
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Encoder notifyEndOfStream failed");
+        std::unique_lock<std::mutex> lock(videoEosMutex_);
+        bool eosReceived = videoEosCond_.wait_for(lock, std::chrono::seconds(WAIT_TIME),
+            [this]() { return isVideoEos_.load(); });
+        if (!eosReceived) {
+            AVCODEC_SAMPLE_LOGW("Timeout waiting for video EOS, proceeding with stop");
+        }
+        lock.unlock();
+        isEos_.store(true);
+        if (audioEncContext_ != nullptr) {
+            audioEncContext_->inputCond.notify_all();
+            audioEncContext_->outputCond.notify_all();
+        }
+        AVCODEC_SAMPLE_LOGI("StopEnd: Video EOS complete, waiting for audio threads to finish");
     } else {
         StartRelease();
     }
@@ -319,7 +395,14 @@ int32_t Recorder::CreateAudioEncoder()
 void Recorder::AudioEncInputThread()
 {
     while (true) {
+        CHECK_AND_BREAK_LOG(!isEos_, "Work done, thread out");
         CHECK_AND_BREAK_LOG(isStarted_, "Encoder input thread out");
+
+        if (isStopping_.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 10ms
+            continue;
+        }
+
         std::unique_lock<std::mutex> lock(audioEncContext_->inputMutex);
         bool condRet = audioEncContext_->inputCond.wait_for(lock, 5s, [this]() {
             return !isStarted_ || (!audioEncContext_->inputBufferInfoQueue.empty() &&
@@ -336,7 +419,7 @@ void Recorder::AudioEncInputThread()
         CodecBufferInfo bufferInfo = audioEncContext_->inputBufferInfoQueue.front();
         audioEncContext_->inputBufferInfoQueue.pop();
         audioEncContext_->inputFrameCount++;
-        
+
         uint8_t *inputBufferAddr = OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
         audioEncContext_->ReadCache(inputBufferAddr, sampleInfo_.audioMaxInputSize);
         lock.unlock();
@@ -356,7 +439,9 @@ void Recorder::AudioEncInputThread()
 void Recorder::AudioEncOutputThread()
 {
     while (true) {
+        CHECK_AND_BREAK_LOG(!isEos_, "Work done, thread out");
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
+
         std::unique_lock<std::mutex> lock(audioEncContext_->outputMutex);
         bool condRet = audioEncContext_->outputCond.wait_for(
             lock, 5s, [this]() { return !isStarted_ || !audioEncContext_->outputBufferInfoQueue.empty(); });
@@ -376,5 +461,4 @@ void Recorder::AudioEncOutputThread()
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
     }
     AVCODEC_SAMPLE_LOGI("Exit, frame count: %{public}u", audioEncContext_->inputFrameCount);
-    StartRelease();
 }

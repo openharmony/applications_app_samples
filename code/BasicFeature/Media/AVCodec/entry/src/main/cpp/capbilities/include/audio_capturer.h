@@ -36,4 +36,4 @@ private:
     OH_AudioStreamBuilder *builder_ = nullptr;
 };
 
-#endif // AUDIOCAPTURER_H
+#endif

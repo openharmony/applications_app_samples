@@ -36,38 +36,21 @@ let encoderVideoOutput: camera.VideoOutput;
 let videoSession: camera.VideoSession;
 
 async function releaseCamera() {
-  // 停止录像输出流
-  encoderVideoOutput.stop((err: BusinessError) => {
-    if (err) {
-      Logger.error(TAG, `Failed to stop the encoder video output. error: ${JSON.stringify(err)}`);
-      return;
-    }
-    Logger.info(TAG, 'Callback invoked to indicate the encoder video output stop success.');
-  })
   // 停止当前会话
-  videoSession.stop();
+  await videoSession.stop();
   // 关闭文件fd
   fileIo.close(params.outputfd);
   // 释放相机输入流
-  cameraInput.close();
-  // 释放预览输出流
-  xComponentPreviewOutput.release();
-  // 释放录像输出流
-  encoderVideoOutput.release();
-  // 释放会话
-  videoSession.release();
-}
+  await cameraInput.close();
 
-function getPreviewProfile(previewProfiles: camera.Profile[] | undefined,
-  size: camera.Size): undefined | camera.Profile {
-  if (previewProfiles) {
-    let previewProfile: undefined | camera.Profile = previewProfiles.find((profile: camera.Profile) => {
-      return profile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010 &&
-        profile.size.width === size.width && profile.size.height == size.height
-    });
-    return previewProfile;
-  }
-  return undefined;
+  unregisterVideoOutputFrameEnd(encoderVideoOutput);
+
+  // 释放预览输出流
+  await xComponentPreviewOutput.release();
+  // 释放录像输出流
+  await encoderVideoOutput.release();
+  // 释放会话
+  await videoSession.release();
 }
 
 // 查询是否支持视频防抖。HDR录像需要支持视频防抖。
@@ -78,7 +61,7 @@ function isVideoStabilizationModeSupported(session: camera.VideoSession, mode: c
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    Logger.error(`The isVideoStabilizationModeSupported call failed. error code: ${err.code}`);
+    Logger.error(TAG, `The isVideoStabilizationModeSupported call failed. error code: ${err.code}`);
   }
   return isSupported;
 }
@@ -128,6 +111,29 @@ function setColorSpaceBeforeCommitConfig(session: camera.VideoSession, isHdr: nu
   }
 }
 
+
+function callback(err?: BusinessError): void {
+  if (err && err.code) {
+    Logger.error(TAG, `Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  recorder.stopEndNative()
+    .then((data) => {
+      if (data.code == 0) {
+        releaseCamera();
+      }
+    })
+  Logger.info(TAG, 'Video frame ended');
+}
+
+function registerVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
+  videoOutput.on('frameEnd', callback);
+}
+
+function unregisterVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
+  videoOutput.off('frameEnd');
+}
+
 @Entry
 @Component
 export struct Recorder {
@@ -166,22 +172,25 @@ export struct Recorder {
     this.buttonEnabled = false;
     setTimeout(async () => {
       this.buttonEnabled = true;
-    }, 1300);
+    }, 1000);
   }
 
-  async release(): Promise<void> {
+  async release() {
     if (!this.isReleased) {
       this.isReleased = true;
       clearInterval(this.timer);
       this.seconds = 0;
       this.videoRecorderTimeText = '00:00';
-      recorder.stopNative()
-        .then(async (data) => {
-          if (data.code == 0) {
-            await releaseCamera();
-            this.buttonText == this.START_RECORDER;
-          }
-        })
+      // 停止录像输出流
+      encoderVideoOutput.stop((err: BusinessError) => {
+        if (err) {
+          Logger.error(TAG, `Failed to stop the encoder video output. error: ${JSON.stringify(err)}`);
+          return;
+        }
+        recorder.stopBeginNative()
+        this.buttonText == this.START_RECORDER;
+        Logger.info(TAG, 'Callback invoked to indicate the encoder video output stop success.');
+      })
     }
   }
 
@@ -192,8 +201,7 @@ export struct Recorder {
     }, 1000);
   }
 
-  async createRecorder(): Promise<void> {
-    releaseCamera();
+  async createRecorder() {
     // Create the CameraManager object.
     let cameraManager = camera.getCameraManager(this.getUIContext().getHostContext());
     if (!cameraManager) {
@@ -308,6 +316,8 @@ export struct Recorder {
       Logger.error(TAG, `Failed to add encoderVideoOutput. error: ${JSON.stringify(err)}`);
     }
 
+    registerVideoOutputFrameEnd(encoderVideoOutput);
+
     // Submit configuration information.
     try {
       await videoSession.commitConfig();
@@ -339,9 +349,9 @@ export struct Recorder {
           type: XComponentType.SURFACE,
           controller: this.xComponentController
         })
-          .onLoad(() => {
+          .onLoad(async () => {
             this.xComponentSurfaceId = this.xComponentController.getXComponentSurfaceId();
-            this.createRecorder();
+            await this.createRecorder();
           })
           .width(Const.FULL_SIZE)
           .height(this.heightPx)
@@ -377,7 +387,7 @@ export struct Recorder {
         }
 
         Button(this.buttonText)
-          .onClick(() => {
+          .onClick(async () => {
             if (this.buttonText == this.START_RECORDER) {
               this.buttonText = this.STOP_RECORDER;
               this.setTimer()
@@ -395,7 +405,7 @@ export struct Recorder {
             } else {
               this.buttonEnabled = false;
               this.isBack = true
-              this.release();
+              await this.release();
               this.getUIContext().getRouter().back();
             }
           })

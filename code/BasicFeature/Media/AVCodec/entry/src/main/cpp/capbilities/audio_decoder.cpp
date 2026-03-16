@@ -47,7 +47,7 @@ int32_t AudioDecoder::Configure(const SampleInfo &sampleInfo)
     OH_AVFormat *format = OH_AVFormat_Create();
     CHECK_AND_RETURN_RET_LOG(format != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "AVFormat create failed");
 
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_S16LE); // SAMPLE_S16LE SAMPLE_F32P
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_S16LE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, sampleInfo.audioChannelCount);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleInfo.audioSampleRate);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, sampleInfo.audioChannelLayout);
@@ -58,10 +58,10 @@ int32_t AudioDecoder::Configure(const SampleInfo &sampleInfo)
                             sampleInfo.codecConfig, sampleInfo.codecConfigLen, sampleInfo.aacAdts,
                             sampleInfo.codecConfig[0], sampleInfo.codecConfig[1]);
         uint8_t tmpCodecConfig[2];
-        tmpCodecConfig[0] = 0x13;                      // 0x11
-        tmpCodecConfig[1] = 0x10;                      // 0x90
-        tmpCodecConfig[0] = sampleInfo.codecConfig[0]; // 0x11
-        tmpCodecConfig[1] = sampleInfo.codecConfig[1]; // 0x90
+        tmpCodecConfig[0] = 0x13;
+        tmpCodecConfig[1] = 0x10;
+        tmpCodecConfig[0] = sampleInfo.codecConfig[0];
+        tmpCodecConfig[1] = sampleInfo.codecConfig[1];
         AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ====== 0:0x%{public}02x, 1:0x%{public}02x", tmpCodecConfig[0],
                             tmpCodecConfig[1]);
         OH_AVFormat_SetBuffer(format, OH_MD_KEY_CODEC_CONFIG, sampleInfo.codecConfig, sampleInfo.codecConfigLen);
@@ -87,16 +87,13 @@ int32_t AudioDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Decoder is null");
     CHECK_AND_RETURN_RET_LOG(codecUserData != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Invalid param: codecUserData");
 
-    // Configure audio decoder
     int32_t ret = Configure(sampleInfo);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Configure failed");
 
-    // SetCallback for audio decoder
     ret = SetCallback(codecUserData);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
                              "Set callback failed, ret: %{public}d", ret);
 
-    // Prepare audio decoder
     {
         int ret = OH_AudioCodec_Prepare(decoder_);
         CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Prepare failed, ret: %{public}d", ret);

@@ -60,8 +60,11 @@ int32_t VideoDecoder::Create(const std::string &videoCodecMime, int32_t videoDec
             } else if (!strcmp(videoCodecMime.data(), "video/vvc")) {
                 decoder_ = GetCodecByCategory(OH_AVCODEC_MIMETYPE_VIDEO_VVC, false, SOFTWARE);
             } else {
-                AVCODEC_SAMPLE_LOGE("INVALID MIMETYPE");
-                return AVCODEC_SAMPLE_ERR_ERROR;
+                decoder_ = GetCodecByCategory(videoCodecMime.data(), false, SOFTWARE);
+                if (decoder_ == nullptr) {
+                    AVCODEC_SAMPLE_LOGE("INVALID MIMETYPE");
+                    return AVCODEC_SAMPLE_ERR_ERROR;
+                }
             }
             break;
         }
@@ -111,25 +114,21 @@ int32_t VideoDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Decoder is null");
     CHECK_AND_RETURN_RET_LOG(codecUserData != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Invalid param: codecUserData");
 
-    // Configure video decoder
     int32_t ret = Configure(sampleInfo);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Configure failed");
 
-    // SetSurface from video decoder
     if (sampleInfo.window != nullptr) {
         int ret = OH_VideoDecoder_SetSurface(decoder_, sampleInfo.window);
         CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK && sampleInfo.window, AVCODEC_SAMPLE_ERR_ERROR,
                                  "Set surface failed, ret: %{public}d", ret);
     }
 
-    // SetCallback for video decoder
     if (!sampleInfo.codecSyncMode) {
         ret = SetCallback(codecUserData);
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
                                  "Set callback failed, ret: %{public}d", ret);
     }
 
-    // Prepare video decoder
     {
         int ret = OH_VideoDecoder_Prepare(decoder_);
         CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Prepare failed, ret: %{public}d", ret);
@@ -207,11 +206,10 @@ bool VideoDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         case AV_ERR_OK: {
             OH_AVBuffer *buffer = OH_VideoDecoder_GetOutputBuffer(decoder_, info.bufferIndex);
             CHECK_AND_RETURN_RET_LOG(buffer != nullptr, false, "Output buffer is null.");
-            // 获取解码后信息。
             OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info.attr);
             CHECK_AND_RETURN_RET_LOG(getBufferRet == AV_ERR_OK, false, "Get buffer attr error.");
             return true;
-            /**
+        /**
             if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
                 outputDone = 1;
             }
@@ -253,7 +251,6 @@ bool VideoDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
             auto format =
                 std::shared_ptr<OH_AVFormat>(OH_VideoDecoder_GetOutputDescription(decoder_), OH_AVFormat_Destroy);
             CHECK_AND_BREAK_LOG(format != nullptr, "Format is nullptr.");
-            // 获取新宽高。
             bool getIntRet = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_WIDTH, &width) &&
                              OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
             CHECK_AND_BREAK_LOG(getIntRet, "Decoder get int value failed.");

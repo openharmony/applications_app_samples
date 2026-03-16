@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -35,7 +35,7 @@ public:
     int32_t GetVideoTrackId();
     int32_t GetAudioTrackId();
     int32_t Seek(int64_t position);
-    
+
 private:
     int32_t GetTrackInfo(std::shared_ptr<OH_AVFormat> sourceFormat, SampleInfo &info);
     std::shared_ptr<OH_AVFormat> GetTrackFormat(int32_t index);
@@ -46,11 +46,11 @@ private:
     void LogVideoConfig(const SampleInfo &info, const char *videoCodecMime);
     void LogAudioConfig(const SampleInfo &info, const char *audioCodecMime);
     void LogCodecConfigDetails(const SampleInfo &info);
-    
+
     OH_AVSource *source_;
     OH_AVDemuxer *demuxer_;
     int32_t videoTrackId_;
     int32_t audioTrackId_;
 };
 
-#endif // DEMUXER_H
+#endif
