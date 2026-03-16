@@ -41,7 +41,7 @@ struct Index {
 
       Button($r('app.string.return_entryability'))
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let want: Want = {
             'deviceId': '',
             'bundleName': 'com.samples.requestuserauthorization',

@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { promptAction } from '@kit.ArkUI';
 // [Start check_permission_func]
 import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -52,17 +51,17 @@ async function checkPermissions(): Promise<void> {
   if (grantStatus2 && !grantStatus1) {
     // 申请精确定位权限。
     // [StartExclude check_permission_func]
-    promptAction.showToast({ message: $r('app.string.location_not_apply') });
+    console.info('The permission of ohos.permission.LOCATION is not permitted.');
     // [EndExclude check_permission_func]
   } else if (!grantStatus1 && !grantStatus2) {
     // 申请模糊定位权限与精确定位权限或单独申请模糊定位权限。
     // [StartExclude check_permission_func]
-    promptAction.showToast({ message: $r('app.string.permission_not_apply') });
+    console.info('Both permissions are not permitted.');
     // [EndExclude check_permission_func]
   } else {
     // 已经授权，可以继续访问目标操作。
     // [StartExclude check_permission_func]
-    promptAction.showToast({ message: $r('app.string.permission_apply') });
+    console.info('Both permissions are permitted.');
     // [EndExclude check_permission_func]
   }
 }
