@@ -1161,7 +1161,8 @@ void SetTextEditorEvent()
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_CUT, EVENT_ON_CUT, nullptr);
 }
 
-void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEvent *&textEditorChangeEvent) {
+void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEvent *&textEditorChangeEvent)
+{
     uint32_t start = 0;
     uint32_t end = 0;
     ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
@@ -1191,7 +1192,8 @@ void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEv
     ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
     OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
 }
-static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
+static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
+{
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnStyledStringEventReceive");
     int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     switch (eventType) {
@@ -1205,8 +1207,8 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
                              "textEditorChangeEvent is null");
                 break;
             }
-        ParseOnWillChangeEvent(event, textEditorChangeEvent);
-        break;
+            ParseOnWillChangeEvent(event, textEditorChangeEvent);
+            break;
         }
         case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
