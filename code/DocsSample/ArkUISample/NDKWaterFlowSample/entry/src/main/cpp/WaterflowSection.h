@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start worterflow_section]
-//WaterflowSection.h
+// WaterflowSection.h
 
 #ifndef MYAPPLICATION_WATERFLOWSECTION_H
 #define MYAPPLICATION_WATERFLOWSECTION_H
