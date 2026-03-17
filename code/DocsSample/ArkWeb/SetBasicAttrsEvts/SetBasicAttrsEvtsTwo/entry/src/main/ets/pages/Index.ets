@@ -22,39 +22,39 @@ struct Index {
     Column({ space: 10 }) {
       Button('UserAgent_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UserAgent_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UserAgent_one' });
         })
       Button('UserAgent_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UserAgent_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UserAgent_two' });
         })
       Button('UserAgent_three')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UserAgent_three' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UserAgent_three' });
         })
       Button('CookieManagement')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CookieManagement' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CookieManagement' });
         })
       Button('Cache_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Cache_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Cache_one' });
         })
       Button('Cache_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Cache_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Cache_two' });
         })
       Button('DomStorage')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DomStorage' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DomStorage' });
         })
       Button('UseMotionDirSensor')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UseMotionDirSensor' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UseMotionDirSensor' });
         })
       Button('UserAgent_four')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UserAgent_four' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UserAgent_four' });
         })
     }.height('100%')
     .width('100%')

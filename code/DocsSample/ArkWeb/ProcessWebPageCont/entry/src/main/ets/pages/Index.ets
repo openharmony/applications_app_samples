@@ -22,19 +22,19 @@ struct Index {
     Column({ space: 10 }) {
       Button('InitiatePrintW3CAPI')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/InitiatePrintW3CAPI' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/InitiatePrintW3CAPI' });
         })
       Button('InitiatePrintAppAPI')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/InitiatePrintAppAPI' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/InitiatePrintAppAPI' });
         })
       Button('PreviewPDF')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PreviewPDF' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PreviewPDF' });
         })
       Button('CalcAdjustSafeArea')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CalcAdjustSafeArea' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CalcAdjustSafeArea' });
         })
     }.height('100%')
     .width('100%')

@@ -22,63 +22,63 @@ struct Index {
     Column({ space: 10 }) {
       Button('DarkMode_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DarkMode_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DarkMode_one' });
         })
       Button('DarkMode_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DarkMode_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DarkMode_two' });
         })
       Button('DarkMode_three')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DarkMode_three' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DarkMode_three' });
         })
       Button('AllowGeolocation')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/AllowGeolocation' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/AllowGeolocation' });
         })
       Button('ClearAllCookiesSync')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ClearAllCookiesSync' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ClearAllCookiesSync' });
         })
       Button('ConfigCookieSync')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ConfigCookieSync' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ConfigCookieSync' });
         })
       Button('DeleteAllData')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DeleteAllData' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DeleteAllData' });
         })
       Button('DeleteGeolocation')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DeleteGeolocation' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DeleteGeolocation' });
         })
       Button('ExistCookie')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ExistCookie' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ExistCookie' });
         })
       Button('FetchCookieSync')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/FetchCookieSync' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/FetchCookieSync' });
         })
       Button('GetAccessibleGeolocation')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/GetAccessibleGeolocation' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/GetAccessibleGeolocation' });
         })
       Button('IncognitoMode_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/IncognitoMode_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/IncognitoMode_one' });
         })
       Button('IncognitoMode_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/IncognitoMode_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/IncognitoMode_two' });
         })
       Button('OpenPageNewWin')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/OpenPageNewWin' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OpenPageNewWin' });
         })
       Button('ManageLocPerms')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ManageLocPerms' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ManageLocPerms' });
         })
     }.height('100%')
     .width('100%')
