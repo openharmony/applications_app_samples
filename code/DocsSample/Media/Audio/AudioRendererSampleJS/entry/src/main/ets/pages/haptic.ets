@@ -38,18 +38,18 @@ async function registSource(){
   let idForUri = 0;
 
   audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-    console.info(`Promise returned to indicate that the source id of the registered source ${value}.`);
+    console.info(`Succeeded in registering source, sourceId is ${value}.`);
     idForUri = value;
     // [StartExclude get_haptic]
     if (globalLogUpdate) {
-      globalLogUpdate(`Promise returned to indicate that the source id of the registered source ${value}.`, false);
+      globalLogUpdate(`Succeeded in registering source, sourceId is ${value}.`, false);
     }
     // [EndExclude get_haptic]
   }).catch((err: BusinessError) => {
-    console.error(`Failed to register source ${err}`);
+    console.error(`Failed to register source. Code: ${err.code}, message: ${err.message}`);
     // [StartExclude get_haptic]
     if (globalLogUpdate) {
-      globalLogUpdate(`Failed to register source ${err}`, true);
+      globalLogUpdate(`Failed to register source. Code: ${err.code}, message: ${err.message}`, true);
     }
     // [EndExclude get_haptic]
   });
@@ -74,11 +74,11 @@ async function registWithFD(context: common.UIAbilityContext) {
     length: hapticFile.length,
   };
   audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-    console.info('Succeeded in doing registerSourceFromFd.');
+    console.info(`Succeeded in registering source from fd, sourceId is ${value}.`);
     idForFd = value;
     // [StartExclude get_haptic]
     if (globalLogUpdate) {
-      globalLogUpdate('Succeeded in doing registerSourceFromFd.', false);
+      globalLogUpdate(`Succeeded in registering source from fd, sourceId is ${value}.`, false);
     }
     // [Start set_hapticparam]
     let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_NORMAL;
@@ -89,28 +89,28 @@ async function registWithFD(context: common.UIAbilityContext) {
     // [End set_hapticparam]
     // [EndExclude create_haptic]
     audioHapticManagerInstance.createPlayer(idForFd, options).then((value: audioHaptic.AudioHapticPlayer) => {
-      console.info(`Create the audio haptic player successfully.`);
+      console.info('Succeeded in creating player.');
       audioHapticPlayer = value;
       // [StartExclude create_haptic]
       if (globalLogUpdate) {
-        globalLogUpdate(`Create the audio haptic player successfully.`, false);
+        globalLogUpdate('Succeeded in creating player.', false);
       }
       // [EndExclude create_haptic]
     }).catch((err: BusinessError) => {
-      console.error(`Failed to create player ${err}`);
+      console.error(`Failed to create player. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude create_haptic]
       if (globalLogUpdate) {
-        globalLogUpdate(`Failed to create player ${err}`, true);
+        globalLogUpdate(`Failed to create player. Code: ${err.code}, message: ${err.message}`, true);
       }
       // [EndExclude create_haptic]
     });
     // [End create_haptic]
     // [EndExclude get_haptic]
   }).catch((err: BusinessError) => {
-    console.error(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to register source from fd. Code: ${err.code}, message: ${err.message}`);
     // [StartExclude get_haptic]
     if (globalLogUpdate) {
-      globalLogUpdate(`Failed to registerSourceFromFd. Code: ${err.code}, message: ${err.message}`, true);
+      globalLogUpdate(`Failed to register source from fd. Code: ${err.code}, message: ${err.message}`, true);
     }
     // [EndExclude get_haptic]
   });
@@ -118,25 +118,25 @@ async function registWithFD(context: common.UIAbilityContext) {
 }
 async function start(){
   if (audioHapticPlayer == null){
-    console.info(`haptic player hasn't been defined.`);
+    console.info('haptic player hasn't been defined.');
 
     if (globalLogUpdate) {
-      globalLogUpdate(`haptic player hasn't been defined.`, false);
+      globalLogUpdate('haptic player hasn't been defined.', false);
     }
   } else {
     // [Start haptic_start]
     audioHapticPlayer.start().then(() => {
-      console.info(`Promise returned to indicate that start playing successfully.`);
+      console.info('Succeeded in starting audio haptic player.');
       // [StartExclude haptic_start]
       if (globalLogUpdate) {
-        globalLogUpdate(`Promise returned to indicate that start playing successfully.`, false);
+        globalLogUpdate('Succeeded in starting audio haptic player.', false);
       }
       // [EndExclude haptic_start]
     }).catch((err: BusinessError) => {
-      console.error(`Failed to start playing. ${err}`);
+      console.error(`Failed to start audio haptic player. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude haptic_start]
       if (globalLogUpdate) {
-        globalLogUpdate(`Failed to start playing. ${err}`, true);
+        globalLogUpdate(`Failed to start audio haptic player. Code: ${err.code}, message: ${err.message}`, true);
       }
       // [EndExclude haptic_start]
     });
@@ -145,25 +145,25 @@ async function start(){
 }
 async function stop(){
   if (audioHapticPlayer == null){
-    console.info(`haptic player hasn't been defined.`);
+    console.info('haptic player hasn't been defined.');
 
     if (globalLogUpdate) {
-      globalLogUpdate(`haptic player hasn't been defined.`, false);
+      globalLogUpdate('haptic player hasn't been defined.', false);
     }
   } else {
     // [Start haptic_stop]
     audioHapticPlayer.stop().then(() => {
-      console.info(`Promise returned to indicate that stop playing successfully.`);
+      console.info('Succeeded in stopping audio haptic player.');
       // [StartExclude haptic_stop]
       if (globalLogUpdate) {
-        globalLogUpdate(`Promise returned to indicate that stop playing successfully.`, false);
+        globalLogUpdate('Succeeded in stopping audio haptic player.', false);
       }
       // [EndExclude haptic_stop]
     }).catch((err: BusinessError) => {
-      console.error(`Failed to stop playing. ${err}`);
+      console.error(`Failed to stop audio haptic player. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude haptic_stop]
       if (globalLogUpdate) {
-        globalLogUpdate(`Failed to stop playing. ${err}`, true);
+        globalLogUpdate(`Failed to stop audio haptic player. Code: ${err.code}, message: ${err.message}`, true);
       }
       // [EndExclude haptic_stop]
     });
@@ -172,42 +172,42 @@ async function stop(){
 }
 async function release(){
   if(audioHapticPlayer == null){
-    console.info(`haptic player hasn't been defined.`);
+    console.info('haptic player hasn't been defined.');
 
     if (globalLogUpdate) {
-      globalLogUpdate(`haptic player hasn't been defined.`, false);
+      globalLogUpdate('haptic player hasn't been defined.', false);
     }
   } else {
     // [Start haptic_release]
     audioHapticPlayer.release().then(() => {
-      console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
+      console.info('Succeeded in releasing audio haptic player.');
       // [StartExclude haptic_release]
       if (globalLogUpdate) {
-        globalLogUpdate(`Promise returned to indicate that release the audio haptic player successfully.`, false);
+        globalLogUpdate('Succeeded in releasing audio haptic player.', false);
       }
       // [EndExclude haptic_release]
     }).catch((err: BusinessError) => {
-      console.error(`Failed to release the audio haptic player. ${err}`);
+      console.error(`Failed to release audio haptic player. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude haptic_release]
       if (globalLogUpdate) {
-        globalLogUpdate(`Failed to release the audio haptic player. ${err}`, true);
+        globalLogUpdate(`Failed to release audio haptic player. Code: ${err.code}, message: ${err.message}`, true);
       }
       // [EndExclude haptic_release]
     });
     // [End haptic_release]
     // [Start haptic_unregist]
     audioHapticManagerInstance.unregisterSource(idForFd).then(() => {
-      console.info(`Promise returned to indicate that unregister source successfully`);
+      console.info('Succeeded in unregistering source.');
       // [StartExclude haptic_unregist]
       if (globalLogUpdate) {
-        globalLogUpdate(`Promise returned to indicate that unregister source successfully`, false);
+        globalLogUpdate('Succeeded in unregistering source.', false);
       }
       // [EndExclude haptic_unregist]
     }).catch((err: BusinessError) => {
-      console.error(`Failed to unregister source ${err}`);
+      console.error(`Failed to unregister source. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude haptic_unregist]
       if (globalLogUpdate) {
-        globalLogUpdate(`Failed to unregister source ${err}`, true);
+        globalLogUpdate(`Failed to unregister source. Code: ${err.code}, message: ${err.message}`, true);
       }
       // [EndExclude haptic_unregist]
     });
