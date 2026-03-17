@@ -19,7 +19,8 @@ import {
   ArcListAttribute,
   ArcListItemAttribute,
   LengthMetrics,
-  ComponentContent
+  ComponentContent,
+  SubHeaderV2,
 } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
 
@@ -41,6 +42,20 @@ export struct ArcListStyles {
   context: UIContext = this.getUIContext();
   arcListHeader: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(customHeader));
   //[End componentContent_start]
+
+  @Builder
+  TitleBuilderDisplay() {
+    Text($r('app.string.ArcListStyles_Display'))
+      .fontSize('35px')
+      .fontColor('#FFFFFFFF')
+  }
+
+  @Builder
+  TitleBuilderInternet() {
+    Text($r('app.string.internet'))
+      .fontSize('35px')
+      .fontColor('#FFFFFFFF')
+  }
 
   build() {
     NavDestination() {
@@ -261,6 +276,21 @@ export struct ArcListStyles {
               ArcList({ initialIndex: 2 }) {
                 ArcListItem() {
                   Row() {
+                    Column() {
+                      SubHeaderV2({
+                        titleBuilder: () => {
+                          this.TitleBuilderInternet();
+                        },
+                      })
+                    }
+                  }
+                  .padding({ left: '125px', right: '120px' })
+                }
+                .autoScale(false)
+                .width('414px')
+
+                ArcListItem() {
+                  Row() {
                     Image($r('app.media.wlan')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
                     Column() {
@@ -274,7 +304,78 @@ export struct ArcListStyles {
                 }
                 .borderRadius('65px')
                 .width('414px')
-                .height('129px')
+                .height('100px')
+                .backgroundColor('#26FFFFFF')
+
+                // [Start arcListScale_start]
+                ArcListItem() {
+                  // [StartExclude arcListScale_start]
+                  Row() {
+                    Image($r('app.media.mobileData')).width('99px').height('99px')
+                      .borderRadius('50px').margin({ left: 7 })
+                    Column() {
+                      Text($r('app.string.ArcListStyles_net')).fontSize('38px').fontColor('#FFFFFFFF')
+                    }.width('190px')
+
+                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
+                      .borderRadius('50px')
+                  }
+                  // [EndExclude arcListScale_start]
+                }
+                // .autoScale(false)
+                // [End arcListScale_start]
+                .borderRadius('65px')
+                .width('414px')
+                .height('100px')
+                .backgroundColor('#26FFFFFF')
+
+                ArcListItem() {
+                    Column() {
+                      SubHeaderV2({
+                        titleBuilder: () => {
+                          this.TitleBuilderDisplay();
+                        }
+                      })
+                    }
+                  .padding({ left: '125px', right: '120px' })
+                }
+                .autoScale(false)
+                .width('414px')
+                .height('40px')
+
+                ArcListItem() {
+                  Row() {
+                    Image($r('app.media.displayAndBrightness')).width('99px').height('99px')
+                      .borderRadius('50px').margin({ left: 7 })
+                    Column() {
+                      Text($r('app.string.ArcListStyles_light')).fontSize('38px').fontColor('#FFFFFFFF')
+                    }.width('190px')
+
+                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
+                      .borderRadius('50px')
+                  }
+                }
+                .borderRadius('65px')
+                .width('414px')
+                .height('100px')
+                .backgroundColor('#26FFFFFF')
+                //.autoScale(false)
+
+                ArcListItem() {
+                  Row() {
+                    Image($r('app.media.ic_settings_more_connections')).width('99px').height('99px')
+                      .borderRadius('50px').margin({ left: 7 })
+                    Column() {
+                      Text($r('app.string.ArcListStyles_connect')).fontSize('38px').fontColor('#FFFFFFFF')
+                    }.width('190px')
+
+                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
+                      .borderRadius('50px')
+                  }
+                }
+                .borderRadius('65px')
+                .width('414px')
+                .height('100px')
                 .backgroundColor('#26FFFFFF')
 
                 ArcListItem() {
@@ -292,68 +393,12 @@ export struct ArcListStyles {
                 }
                 .borderRadius('65px')
                 .width('414px')
-                .height('129px')
+                .height('100px')
                 .backgroundColor('#26FFFFFF')
-                // [Start arcListScale_start]
-                ArcListItem() {
-                  // [StartExclude arcListScale_start]
-                  Row() {
-                    Image($r('app.media.mobileData')).width('99px').height('99px')
-                      .borderRadius('50px').margin({ left: 7 })
-                    Column() {
-                      Text($r('app.string.ArcListStyles_net')).fontSize('38px').fontColor('#FFFFFFFF')
-                    }.width('190px')
-
-                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
-                      .borderRadius('50px')
-                  }
-                  // [EndExclude arcListScale_start]
-                }
-                .autoScale(false)
-                // [End arcListScale_start]
-                .borderRadius('65px')
-                .width('414px')
-                .height('129px')
-                .backgroundColor('#26FFFFFF')
-
-                ArcListItem() {
-                  Row() {
-                    Image($r('app.media.ic_settings_more_connections')).width('99px').height('99px')
-                      .borderRadius('50px').margin({ left: 7 })
-                    Column() {
-                      Text($r('app.string.ArcListStyles_connect')).fontSize('38px').fontColor('#FFFFFFFF')
-                    }.width('190px')
-
-                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
-                      .borderRadius('50px')
-                  }
-                }
-                .borderRadius('65px')
-                .width('414px')
-                .height('129px')
-                .backgroundColor('#26FFFFFF')
-
-                ArcListItem() {
-                  Row() {
-                    Image($r('app.media.displayAndBrightness')).width('99px').height('99px')
-                      .borderRadius('50px').margin({ left: 7 })
-                    Column() {
-                      Text($r('app.string.ArcListStyles_light')).fontSize('38px').fontColor('#FFFFFFFF')
-                    }.width('190px')
-
-                    Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
-                      .borderRadius('50px')
-                  }
-                }
-                .borderRadius('65px')
-                .width('414px')
-                .height('129px')
-                .backgroundColor('#26FFFFFF')
-                .autoScale(false)
               }
               .width('466px')
               .height('466px')
-              .space(LengthMetrics.px(30))
+              .space(LengthMetrics.px(16))
               .borderRadius('233px')
               .backgroundColor(Color.Black)
             }
