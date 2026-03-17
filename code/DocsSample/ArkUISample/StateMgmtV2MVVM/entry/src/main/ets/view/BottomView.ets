@@ -20,10 +20,16 @@ import { common, Want } from '@kit.AbilityKit';
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 
-@Builder export function ActionButton(text: string|Resource, onClick:() => void) {
+@Builder
+export function ActionButton(text: string | Resource, onClick: () => void) {
   Button(text, { buttonStyle: ButtonStyleMode.NORMAL })
     .onClick(onClick)
-    .margin({ left: 10, right: 10, top: 5, bottom: 5 })
+    .margin({
+      left: 10,
+      right: 10,
+      top: 5,
+      bottom: 5
+    })
 }
 
 @ComponentV2
@@ -39,7 +45,8 @@ export default struct BottomView {
         ActionButton('All Not Completed', (): void => this.taskList.finishAll(false))
       }
       .margin({ top: 10 })
-      Row(){
+
+      Row() {
         ActionButton('Setting', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备。
@@ -50,6 +57,7 @@ export default struct BottomView {
         })
       }
       .margin({ bottom: 5 })
+
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)

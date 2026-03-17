@@ -18,7 +18,7 @@
 // [Start Model_TaskListModel]
 import { common } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
-import TaskModel from'./TaskModel';
+import TaskModel from './TaskModel';
 
 export default class TaskListModel {
   public tasks: TaskModel[] = [];
@@ -27,12 +27,12 @@ export default class TaskListModel {
     this.tasks = tasks;
   }
 
-  async loadTasks(context: common.UIAbilityContext){
+  async loadTasks(context: common.UIAbilityContext) {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
-    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
-    let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
+    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+    let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
     let result = textDecoder.decodeToString(getJson);
-    this.tasks =JSON.parse(result).map((task: TaskModel)=>{
+    this.tasks = JSON.parse(result).map((task: TaskModel) => {
       let newTask = new TaskModel();
       newTask.taskName = task.taskName;
       newTask.isFinish = task.isFinish;

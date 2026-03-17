@@ -19,7 +19,7 @@
 import { common } from '@kit.AbilityKit';
 import { Type } from '@kit.ArkUI';
 import TaskListModel from '../model/TaskListModel';
-import TaskViewModel from'./TaskViewModel';
+import TaskViewModel from './TaskViewModel';
 
 @ObservedV2
 export default class TaskListViewModel {
@@ -29,7 +29,7 @@ export default class TaskListViewModel {
   async loadTasks(context: common.UIAbilityContext) {
     let taskList = new TaskListModel([]);
     await taskList.loadTasks(context);
-    for(let task of taskList.tasks){
+    for (let task of taskList.tasks) {
       let taskViewModel = new TaskViewModel();
       taskViewModel.updateTask(task);
       this.tasks.push(taskViewModel);
@@ -37,7 +37,7 @@ export default class TaskListViewModel {
   }
 
   finishAll(ifFinish: boolean): void {
-    for(let task of this.tasks){
+    for (let task of this.tasks) {
       task.isFinish = ifFinish;
     }
   }
