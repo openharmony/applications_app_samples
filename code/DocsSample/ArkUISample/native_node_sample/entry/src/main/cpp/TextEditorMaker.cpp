@@ -1161,8 +1161,37 @@ void SetTextEditorEvent()
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_CUT, EVENT_ON_CUT, nullptr);
 }
 
-static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
-{
+void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEvent *&textEditorChangeEvent) {
+    uint32_t start = 0;
+    uint32_t end = 0;
+    ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
+                     "RangeBefore start=%{public}u end=%{public}u", start, end);
+    }
+
+    ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
+    errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent, replacementString);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        char buffer[BUFFER_SIZE];
+        int32_t writeLength = 0;
+        OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s", buffer);
+    }
+
+    ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
+    errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        char buffer[BUFFER_SIZE];
+        int32_t writeLength = 0;
+        OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
+    }
+
+    ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
+    OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
+}
+static void OnStyledStringEventReceive(ArkUI_NodeEvent *event) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnStyledStringEventReceive");
     int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     switch (eventType) {
@@ -1176,39 +1205,8 @@ static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
                              "textEditorChangeEvent is null");
                 break;
             }
-            uint32_t start = 0;
-            uint32_t end = 0;
-            ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent,
-                                                                                      &start, &end);
-            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                             "RangeBefore start=%{public}u end=%{public}u", start, end);
-            }
-    
-            ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
-            errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent,
-                                                                                  replacementString);
-            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-                char buffer[BUFFER_SIZE];
-                int32_t writeLength = 0;
-                OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s",
-                             buffer);
-            }
-    
-            ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
-            errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
-            if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-                char buffer[BUFFER_SIZE];
-                int32_t writeLength = 0;
-                OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                             "PreviewString: %{public}s", buffer);
-            }
-    
-            ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
-            OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
-            break;
+        ParseOnWillChangeEvent(event, textEditorChangeEvent);
+        break;
         }
         case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
@@ -1826,17 +1824,8 @@ void TextEditorMaker::StyledStringImageAttachment()
     OH_PixelmapNative_Opacity(pixelmap, IMAGE_ATTACHMENT_OPACITY);
     OH_ArkUI_ImageAttachment *arkUI_ImageAttachment = OH_ArkUI_ImageAttachment_Create();
     OH_ArkUI_ImageAttachment_SetPixelMap(arkUI_ImageAttachment, pixelmap);
-
-    float size;
     OH_ArkUI_ImageAttachment_SetSizeWidth(arkUI_ImageAttachment, static_cast<int32_t>(IMAGE_ATTACHMENT_SIZE));
-    OH_ArkUI_ImageAttachment_GetSizeWidth(arkUI_ImageAttachment, &size);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                 "OH_ArkUI_ImageAttachment_GetSizeWidth %{public}f", size);
     OH_ArkUI_ImageAttachment_SetSizeHeight(arkUI_ImageAttachment, static_cast<int32_t>(IMAGE_ATTACHMENT_SIZE));
-    OH_ArkUI_ImageAttachment_GetSizeHeight(arkUI_ImageAttachment, &size);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                 "OH_ArkUI_ImageAttachment_GetSizeHeight %{public}f", size);
     OH_ArkUI_ImageAttachment_SetVerticalAlign(arkUI_ImageAttachment,
                                               ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
     float matrix[COLOR_MATRIX_SIZE] = {COLOR_FILTER_RED, 0, 0, 0, 0, 0,
