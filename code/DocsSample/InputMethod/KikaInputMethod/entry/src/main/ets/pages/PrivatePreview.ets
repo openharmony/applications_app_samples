@@ -76,12 +76,6 @@ struct PrivatePreview {
       }
     }, 50)
 
-    inputMethod.getSetting().showOptionalInputMethods().then((data: boolean) => {
-      console.info('onPageShow Succeeded in showing optionalInputMethods.');
-    }).catch((err: BusinessError) => {
-      console.error(`onPageShow Failed to showOptionalInputMethods: ${err.code} ${err.message}`);
-    })
-
     this.uiContext = this.getUIContext();
   }
 
