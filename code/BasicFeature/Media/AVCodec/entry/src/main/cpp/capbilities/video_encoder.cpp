@@ -32,7 +32,7 @@ int32_t ToGraphicPixelFormat(int32_t avPixelFormat, bool isHDRVivid)
             return NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P;
         case AV_PIXEL_FORMAT_NV21:
             return NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP;
-        default: // NV12 and others
+        default:
             return NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP;
     }
 }
@@ -55,22 +55,18 @@ int32_t VideoEncoder::Config(SampleInfo &sampleInfo, CodecUserData *codecUserDat
     CHECK_AND_RETURN_RET_LOG(encoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Encoder is null");
     CHECK_AND_RETURN_RET_LOG(codecUserData != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Invalid param: codecUserData");
 
-    // Configure video encoder
     int32_t ret = Configure(sampleInfo);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Configure failed");
 
-    // GetSurface from video encoder
     ret = GetSurface(sampleInfo);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Get surface failed");
-    
-    // SetCallback for video encoder
+
     if (!sampleInfo.codecSyncMode) {
         ret = SetCallback(codecUserData);
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
                                  "Set callback failed, ret: %{public}d", ret);
     }
 
-    // Prepare video encoder
     ret = OH_VideoEncoder_Prepare(encoder_);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Prepare failed, ret: %{public}d", ret);
 
@@ -87,33 +83,10 @@ bool VideoEncoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         case AV_ERR_OK: {
             OH_AVBuffer *buffer = OH_VideoEncoder_GetOutputBuffer(encoder_, info.bufferIndex);
             CHECK_AND_RETURN_RET_LOG(buffer != nullptr, false, "Output buffer is null.");
-            // 获取编码后信息。
             OH_AVErrCode getBufferRet = OH_AVBuffer_GetBufferAttr(buffer, &info.attr);
             CHECK_AND_RETURN_RET_LOG(getBufferRet == AV_ERR_OK, false, "Get buffer attr error.");
             info.buffer = reinterpret_cast<uintptr_t *>(buffer);
             return true;
-            /**
-            if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
-                outputDone = 1;
-            }
-
-            // 将编码完成帧数据buffer写入到对应输出文件中。
-            uint8_t *addr = OH_AVBuffer_GetAddr(buffer);
-            if (addr == nullptr) {
-               // 异常处理
-               return false;
-            }
-            if (outputFile != nullptr && outputFile->is_open()) {
-                outputFile->write(reinterpret_cast<char *>(addr), info.size);
-            }
-            // 释放已完成写入的数据，index为对应输出队列下标。
-            OH_AVErrCode freeOutputRet = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
-            if (freeOutputRet != AV_ERR_OK) {
-                // 异常处理。
-                return false;
-            }
-            break;
-            **/
         }
         case AV_ERR_TRY_AGAIN_LATER: {
             AVCODEC_SAMPLE_LOGE("Get output buffer timeout.");
@@ -125,7 +98,6 @@ bool VideoEncoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
             auto format =
                 std::shared_ptr<OH_AVFormat>(OH_VideoEncoder_GetOutputDescription(encoder_), OH_AVFormat_Destroy);
             CHECK_AND_BREAK_LOG(format != nullptr, "Format is nullptr.");
-            // 获取新宽高。
             bool getIntRet = OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_WIDTH, &width) &&
                              OH_AVFormat_GetIntValue(format.get(), OH_MD_KEY_HEIGHT, &height);
             CHECK_AND_BREAK_LOG(getIntRet, "Encoder get int value failed.");
@@ -133,7 +105,6 @@ bool VideoEncoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
             return GetOutputBuffer(info, timeoutUs);
         }
         default: {
-            // 异常处理。
             return false;
         }
     }
@@ -237,7 +208,6 @@ int32_t VideoEncoder::Configure(const SampleInfo &sampleInfo)
     AVCODEC_SAMPLE_LOGI("====== VideoEncoder config ======");
     AVCODEC_SAMPLE_LOGI("%{public}d*%{public}d, %{public}.1ffps",
         sampleInfo.videoWidth, sampleInfo.videoHeight, sampleInfo.frameRate);
-    // 1024: ratio of kbps to bps
     AVCODEC_SAMPLE_LOGI("BitRate Mode: %{public}d, BitRate: %{public}" PRId64 "kbps",
         sampleInfo.bitrateMode, sampleInfo.bitrate / 1024);
     AVCODEC_SAMPLE_LOGI("====== VideoEncoder config ======");

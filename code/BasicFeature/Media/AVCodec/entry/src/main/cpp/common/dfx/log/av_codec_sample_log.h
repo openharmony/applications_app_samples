@@ -53,7 +53,7 @@
             return ret;                                        \
         }                                                      \
     } while (0)
-       
+
 #define CHECK_AND_RETURN_LOG(cond, fmt, ...)                   \
     do {                                                       \
         if (!(cond)) {                                         \
@@ -78,4 +78,4 @@
         }                                                      \
     } else void (0)
 
-#endif // AVCODEC_SAMPLE_LOG_H
+#endif

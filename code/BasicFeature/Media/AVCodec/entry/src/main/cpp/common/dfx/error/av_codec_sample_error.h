@@ -21,4 +21,4 @@ enum AVCodecSampleError : int {
     AVCODEC_SAMPLE_ERR_ERROR = -1,
 };
 
-#endif // AVCODEC_SAMPLE_ERROE_H
+#endif

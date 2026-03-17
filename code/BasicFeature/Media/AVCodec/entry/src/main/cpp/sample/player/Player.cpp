@@ -310,7 +310,7 @@ void Player::StartRelease()
     AVCODEC_SAMPLE_LOGI("StartRelease");
     std::unique_lock<std::mutex> lock(doneMutex);
     doneCond_.wait(lock, [this]() { return isAudioDone.load() && isVideoDone.load(); });
-    if (audioRenderer_) {
+    if (audioRenderer_ && (!audioDecOutputThread_ || !audioDecOutputThread_->joinable())) {
         OH_AudioRenderer_Stop(audioRenderer_);
     }
     if (!isReleased_) {
@@ -865,6 +865,9 @@ void Player::AudioDecOutputThread()
     audioDecContext_->renderCond.wait_for(lockRender, 500ms,
         [this]() { return audioDecContext_->renderQueue.size() < 1; });
     AVCODEC_SAMPLE_LOGI("Out buffer end");
+    if (audioRenderer_) {
+        OH_AudioRenderer_Stop(audioRenderer_);
+    }
     std::unique_lock<std::mutex> lock(doneMutex);
     isAudioDone = true;
     lock.unlock();

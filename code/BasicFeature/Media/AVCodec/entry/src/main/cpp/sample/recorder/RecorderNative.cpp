@@ -136,15 +136,14 @@ napi_value RecorderNative::Init(napi_env env, napi_callback_info info)
     
     SampleInfo sampleInfo = ParseSampleInfo(env, args);
 
-    //音频
     sampleInfo.audioCodecMime = OH_AVCODEC_MIMETYPE_AUDIO_AAC;
     sampleInfo.audioSampleForamt = OH_BitsPerSample::SAMPLE_S16LE;
-    sampleInfo.audioSampleRate = 48000; // sample rate 48000
-    sampleInfo.audioChannelCount = 2; // channel count 2
-    sampleInfo.audioBitRate = 32000; // bit rate 32000
+    sampleInfo.audioSampleRate = 48000;                      // sample rate 48000
+    sampleInfo.audioChannelCount = 2;                        // channel count 2
+    sampleInfo.audioBitRate = 32000;                         // bit rate 32000
     sampleInfo.audioChannelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     sampleInfo.audioMaxInputSize = sampleInfo.audioSampleRate * sampleInfo.audioChannelCount *
-                                   sizeof(short) * 0.02; // 0.02 is 20ms
+                                   sizeof(short) * 0.02;     // 0.02 is 20ms
 
     napi_value promise;
     napi_deferred deferred;
@@ -161,17 +160,27 @@ napi_value RecorderNative::Start(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-void NativeStop(napi_env env, void *data)
+void NativeStopStart(napi_env env, void *data)
 {
     AsyncCallbackInfo *asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
-    int32_t ret = Recorder::GetInstance().Stop();
+    int32_t ret = Recorder::GetInstance().StopStart();
     if (ret != AVCODEC_SAMPLE_ERR_OK) {
         SetCallBackResult(asyncCallbackInfo, -1);
     }
     SetCallBackResult(asyncCallbackInfo, 0);
 }
 
-napi_value RecorderNative::Stop(napi_env env, napi_callback_info info)
+void NativeStopEnd(napi_env env, void *data)
+{
+    AsyncCallbackInfo *asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
+    int32_t ret = Recorder::GetInstance().StopEnd();
+    if (ret != AVCODEC_SAMPLE_ERR_OK) {
+        SetCallBackResult(asyncCallbackInfo, -1);
+    }
+    SetCallBackResult(asyncCallbackInfo, 0);
+}
+
+napi_value RecorderNative::StopStart(napi_env env, napi_callback_info info)
 {
     napi_value promise;
     napi_deferred deferred;
@@ -186,7 +195,29 @@ napi_value RecorderNative::Stop(napi_env env, napi_callback_info info)
     napi_value resourceName;
     napi_create_string_latin1(env, "recorder", NAPI_AUTO_LENGTH, &resourceName);
     napi_create_async_work(
-        env, nullptr, resourceName, [](napi_env env, void *data) { NativeStop(env, data); },
+        env, nullptr, resourceName, [](napi_env env, void *data) { NativeStopStart(env, data); },
+        [](napi_env env, napi_status status, void *data) { DealCallBack(env, data); }, (void *)asyncCallbackInfo,
+        &asyncCallbackInfo->asyncWork);
+    napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+    return promise;
+}
+
+napi_value RecorderNative::StopEnd(napi_env env, napi_callback_info info)
+{
+    napi_value promise;
+    napi_deferred deferred;
+    napi_create_promise(env, &deferred, &promise);
+
+    AsyncCallbackInfo *asyncCallbackInfo = new AsyncCallbackInfo();
+
+    asyncCallbackInfo->env = env;
+    asyncCallbackInfo->asyncWork = nullptr;
+    asyncCallbackInfo->deferred = deferred;
+
+    napi_value resourceName;
+    napi_create_string_latin1(env, "recorder", NAPI_AUTO_LENGTH, &resourceName);
+    napi_create_async_work(
+        env, nullptr, resourceName, [](napi_env env, void *data) { NativeStopEnd(env, data); },
         [](napi_env env, napi_status status, void *data) { DealCallBack(env, data); }, (void *)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork);
     napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
@@ -199,7 +230,8 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor classProp[] = {
         {"initNative", nullptr, RecorderNative::Init, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startNative", nullptr, RecorderNative::Start, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"stopNative", nullptr, RecorderNative::Stop, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopBeginNative", nullptr, RecorderNative::StopStart, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopEndNative", nullptr, RecorderNative::StopEnd, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
 
     napi_value RecorderNative = nullptr;
