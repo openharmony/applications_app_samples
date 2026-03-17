@@ -15,7 +15,11 @@
 
 // [Start input_case_input_CustomInput]
 // [Start input_case_input_CustomInputText]
+import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethod } from '@kit.IMEKit';
+import Log from '../model/Log';
+
+const TAG = '[Submenu]';
 
 @Component
 export struct CustomInput {
@@ -42,20 +46,25 @@ export struct CustomInput {
   // [End input_case_input_CustomInputText]
   async attachAndListener() { // 绑定和设置监听
     focusControl.requestFocus('customInput');
-    await this.inputController.attach(true, {
-      inputAttribute: {
-        textInputType: inputMethod.TextInputType.TEXT,
-        enterKeyType: inputMethod.EnterKeyType.SEARCH
+    try {
+      await this.inputController.attach(true, {
+        inputAttribute: {
+          textInputType: inputMethod.TextInputType.TEXT,
+          enterKeyType: inputMethod.EnterKeyType.SEARCH
+        }
+      });
+      if (!this.isAttach) {
+        this.inputController.on('insertText', (text) => {
+          this.inputText += text;
+        })
+        this.inputController.on('deleteLeft', (length) => {
+          this.inputText = this.inputText.substring(0, this.inputText.length - length);
+        })
+        this.isAttach = true;
       }
-    });
-    if (!this.isAttach) {
-      this.inputController.on('insertText', (text) => {
-        this.inputText += text;
-      })
-      this.inputController.on('deleteLeft', (length) => {
-        this.inputText = this.inputText.substring(0, this.inputText.length - length);
-      })
-      this.isAttach = true;
+    } catch (err) {
+      let error = err as BusinessError;
+      Log.showError(TAG, `attach catch error: ${error.code} ${error.message}`);
     }
   }
 
