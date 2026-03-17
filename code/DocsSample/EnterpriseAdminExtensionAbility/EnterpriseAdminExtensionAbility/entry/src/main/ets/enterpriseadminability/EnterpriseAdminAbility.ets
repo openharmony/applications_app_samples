@@ -98,16 +98,16 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
       console.info(isDisallow ? 'disable wifi success.' : 'enable wifi success.');
       // [StartExclude set_disallowed_policy_wifi]
       this.sendResult(CommonEventValue.STATUS_RESULT, isDisallow ?
-        this.getStringByResource($r('app.string.disable_wifi_suc')) :
-        this.getStringByResource($r('app.string.enable_wifi_suc')));
+        this.getStringByResource($r('app.string.disable_wifi_suc').id) :
+        this.getStringByResource($r('app.string.enable_wifi_suc').id));
       this.getWifiStatus();
       // [EndExclude set_disallowed_policy_wifi]
     } catch (err) {
       console.error('setDisallowedPolicy fail.');
       // [StartExclude set_disallowed_policy_wifi]
       this.sendResult(CommonEventValue.STATUS_RESULT, isDisallow ?
-        this.getStringByResource($r('app.string.disable_wifi_fail')) :
-        this.getStringByResource($r('app.string.enable_wifi_fail')));
+        this.getStringByResource($r('app.string.disable_wifi_fail').id) :
+        this.getStringByResource($r('app.string.enable_wifi_fail').id));
       // [EndExclude set_disallowed_policy_wifi]
     }
     // [End set_disallowed_policy_wifi]
@@ -117,10 +117,10 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     try {
       let ret = restrictions.getDisallowedPolicy(this.wantTemp, 'wifi');
       this.sendResult(CommonEventValue.STATUS_WIFI, ret ?
-        this.getStringByResource($r('app.string.disabled')) :
-        this.getStringByResource($r('app.string.enabled')));
+        this.getStringByResource($r('app.string.disabled').id) :
+        this.getStringByResource($r('app.string.enabled').id));
     } catch (err) {
-      this.sendResult(CommonEventValue.STATUS_WIFI, this.getStringByResource($r('app.string.get_wifi_status_failed')));
+      this.sendResult(CommonEventValue.STATUS_WIFI, this.getStringByResource($r('app.string.get_wifi_status_failed').id));
     }
   }
 
@@ -128,15 +128,15 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     try {
       deviceControl.operateDevice(this.wantTemp, 'reboot');
     } catch (err) {
-      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.reboot_fail')));
+      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.reboot_fail').id));
     }
   }
 
   private async disableAdmin() {
     await adminManager.disableAdmin(this.wantTemp).then(() => {
-      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.deactivate_suc')));
+      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.deactivate_suc').id));
     }).catch(() => {
-      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.deactivate_fail')));
+      this.sendResult(CommonEventValue.STATUS_RESULT, this.getStringByResource($r('app.string.deactivate_fail').id));
     })
   }
 
@@ -144,8 +144,8 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     Logger.info(`onAppStart bundleName:` + bundleName);
   }
 
-  private getStringByResource(res: Resource): string {
-    return this.context.resourceManager.getStringSync(res);
+  private getStringByResource(resId: number): string {
+    return this.context.resourceManager.getStringSync(resId);
   }
 
   private async sendResult(code: number, result: string) {
@@ -166,9 +166,9 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   onAdminEnabled() {
     console.info('onAdminEnabled');
     // [StartExclude enterprise_admin_extension_ability]
-    this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.activated')));
+    this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.activated').id));
     this.dataPreferenceHelper?.save(DataPreferencesHelper.EXTRA_ACTIVE_STATUS,
-      this.getStringByResource($r('app.string.activated')));
+      this.getStringByResource($r('app.string.activated').id));
     // [EndExclude enterprise_admin_extension_ability]
   }
 
@@ -176,9 +176,9 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   onAdminDisabled() {
     console.info('onAdminDisabled');
     // [StartExclude enterprise_admin_extension_ability]
-    this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.no_active')));
+    this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.no_active').id));
     this.dataPreferenceHelper?.save(DataPreferencesHelper.EXTRA_ACTIVE_STATUS,
-      this.getStringByResource($r('app.string.no_active')));
+      this.getStringByResource($r('app.string.no_active').id));
     // [EndExclude enterprise_admin_extension_ability]
   }
 
