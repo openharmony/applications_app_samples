@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -21,15 +21,13 @@ struct Index {
   @State message: string = 'Hello World';
 
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
-    }, router.RouterMode.Single, (err) => {
-      if (err) {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
+    }).then(() => {
       console.info('pushUrl success');
-    })
+    }).catch((err: BusinessError) => {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 
   build() {
