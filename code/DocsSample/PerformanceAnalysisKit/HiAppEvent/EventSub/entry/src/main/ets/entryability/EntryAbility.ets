@@ -133,13 +133,13 @@ export default class EntryAbility extends UIAbility {
 
     if (deviceInfo.sdkApiVersion >= 24) {  // API Version 24及以后版本，支持设置页面切换日志
       // 配置页面切换日志
-      let policy = {
+      let switchLogPolicy : hiAppEvent.EventPolicy = {
         "appCrashPolicy": {
           "pageSwitchLogEnable": true
         }
       };
       // 开发者可以设置崩溃日志配置参数
-      hiAppEvent.setEventPolicy(policy).then(() => {
+      hiAppEvent.setEventPolicy(switchLogPolicy).then(() => {
         hilog.info(0x0000, 'testTag', `HiAppEvent success to config event policy.`);
       }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
@@ -207,7 +207,6 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
             // 开发者可以获取到崩溃事件的页面切换日志
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.page_switch_log=${JSON.stringify(eventInfo.params['page_switch_log'])}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.page_switch_log_over_limit=${eventInfo.params['log_over_limit']}`);
             // 开发者可以获取到崩溃事件的自定义数据test_data
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.test_data=${eventInfo.params['test_data']}`);
           }
