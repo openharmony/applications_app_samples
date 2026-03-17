@@ -92,27 +92,27 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     textNode->SetWidth(NUM_120);
     // 设置高度为120，NUM_120 = 120
     textNode->SetHeight(NUM_50);
-    // 创建button，后续创建的关键帧动画作用在button组件上
+    // 创建Button，后续创建的关键帧动画作用在Button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高，NUM_100 = 100
+    // 设置Button初始宽高，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
-    // 存储button全局变量，在onTouch注册时需要使用
+    // 存储Button全局变量，在onTouch注册时需要使用
     g_keyframe_button = button;
-    // 注册点击事件到button上，NUM_1 = 1
+    // 注册点击事件到Button上，NUM_1 = 1
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_1, nullptr);
     g_keyframe_text = std::make_shared<ArkUITextNode>();
-    // 该函数为封装功能为在text组件中打印Animateto中参数值，使用者根据需要自行封装
+    // 此函数用于封装Text组件中打印Animateto参数值的功能，使用者根据需要自行封装
     g_keyframe_text->KeyframeAnimatetoToString();
     auto onTouch = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_1 = 1
+        // 点击Button按钮时触发该逻辑，NUM_1 = 1
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_1) {
             // 获取context对象
             ArkUI_ContextHandle context = nullptr;
-            // std::shared_ptr<ArkUIButtonNode> g_keyframe_button存储button的全局变量，在onTouch注册时需要使用
+            // std::shared_ptr<ArkUIButtonNode> g_keyframe_button存储Button的全局变量，在onTouch注册时需要使用
             context = OH_ArkUI_GetContextByNode(g_keyframe_button->GetHandle());
             // [Start get_Api]
-            // 获取ArkUI_NativeAnimateAPI接口
+            // 获取ArkUI_NativeAnimateAPI_1接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             // [End get_Api]
@@ -183,7 +183,7 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     };
     // 注册点击事件的回调函数
     button->RegisterNodeEventReceiver(onTouch);
-    // 将button挂载在column上，返回column节点
+    // 将Button挂载在column上，返回column节点
     column->AddChild(g_keyframe_text);
     column->AddChild(textNode);
     column->AddChild(button);
@@ -205,15 +205,15 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
     textNode->SetWidth(NUM_150);
     // 设置组件高度，NUM_50 = 50
     textNode->SetHeight(NUM_50);
-    // 创建button，后续创建的动画作用在button组件上
+    // 创建Button，后续创建的动画作用在Button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高及颜色，NUM_100 = 100
+    // 设置Button初始宽高及颜色，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
     button->SetBackgroundColor(0xFFA280FF);
-    // 存储button全局变量，在onTouch注册时需要使用
+    // 存储Button全局变量，在onTouch注册时需要使用
     g_animateto_button = button;
-    // 注册点击事件到button上，NUM_2 = 2
+    // 注册点击事件到Button上，NUM_2 = 2
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_2, nullptr);
     g_animateto_text = std::make_shared<ArkUITextNode>();
     g_animateto_text->AnimatetoToString();
@@ -221,9 +221,9 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
         // 获取context对象
         static ArkUI_ContextHandle context = nullptr;
         context = OH_ArkUI_GetContextByNode(g_animateto_button->GetHandle());
-        // 点击button按钮时触发该逻辑，NUM_2 = 2
+        // 点击Button按钮时触发该逻辑，NUM_2 = 2
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_2) {
-            // 获取ArkUI_NativeAnimateAPI接口
+            // 获取ArkUI_NativeAnimateAPI_1接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
@@ -325,29 +325,29 @@ std::shared_ptr<ArkUIBaseNode> CreateTransitionEffect()
     textNode->SetHeight(NUM_50);
     // 创建transitionButton，后续创建的动画作用在transitionButton组件上
     auto transitionButton = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高及颜色
+    // 设置Button初始宽高及颜色
     transitionButton->SetWidth(NUM_100);
     transitionButton->SetHeight(NUM_100);
     transitionButton->SetBackgroundColor(0xFFA280FF);
-    // 存储button全局变量
+    // 存储Button全局变量
     g_transition_button = transitionButton;
     g_transition_button->SetVisibility(ARKUI_VISIBILITY_VISIBLE);
-    // 创建button，后续动画逻辑在button的点击事件中实现
+    // 创建Button，后续动画逻辑在Button的点击事件中实现
     auto button = std::make_shared<ArkUIButtonNode>();
     button->SetButtonLabel("transition");
-    // 创建buttonColumn容器，用于调整button的布局效果
+    // 创建buttonColumn容器，用于调整Button的布局效果
     auto buttonColumn = std::make_shared<ArkUIColumnNode>();
     buttonColumn->SetWidth(NUM_300);
     buttonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距
-    // 注册点击事件到button上
+    // 注册点击事件到Button上
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_10, nullptr);
     auto onTouch = [](ArkUI_NodeEvent *event) {
         // 获取context对象
         static ArkUI_ContextHandle context = nullptr;
         context = OH_ArkUI_GetContextByNode(g_transition_button->GetHandle());
-        // 点击button按钮时触发该逻辑
+        // 点击Button按钮时触发该逻辑
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_10) {
-            // 获取ArkUI_NativeAnimateAPI接口
+            // 获取ArkUI_NativeAnimateAPI_1接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
@@ -452,29 +452,29 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     // 创建文本节点，内容区介绍“这是animator动画”
     auto textNode = std::make_shared<ArkUITextNode>();
     textNode->SetTextContent("这是animator动画");
-    textNode->SetWidth(NUM_120); // NUM_120 = 120
+    textNode->SetWidth(NUM_150); // NUM_150 = 150
     textNode->SetHeight(NUM_50); // NUM_50 = 50
     // 创建createButton，用于初始化animator参数
     auto createButton = std::make_shared<ArkUIButtonNode>();
-    // 创建button，后续创建的animator动画作用在button组件上
+    // 创建Button，后续创建的animator动画作用在Button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高，NUM_100 = 100
+    // 设置Button初始宽高，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
-    // 存储button全局变量，在onTouch注册时需要使用
+    // 存储Button全局变量，在onTouch注册时需要使用
     g_animator_button = button;
-    // 注册点击事件到button上，NUM_3 = 3
+    // 注册点击事件到Button上，NUM_3 = 3
     createButton->RegisterNodeEvent(createButton->GetHandle(), NODE_ON_CLICK, NUM_3, nullptr);
     g_animator_text = std::make_shared<ArkUITextNode>();
     g_animator_text->AnimatorToString();
     auto onTouch = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_3 = 3
+        // 点击Button按钮时触发该逻辑，NUM_3 = 3
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_3) {
             // 获取context对象
             static ArkUI_ContextHandle context = nullptr;
             context = OH_ArkUI_GetContextByNode(g_animator_button->GetHandle());
 
-            // 获取ArkUI_NativeAnimateAPI接口
+            // 获取ArkUI_NativeAnimateAPI_1接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
@@ -538,7 +538,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     // 注册点击事件的回调函数
     createButton->RegisterNodeEventReceiver(onTouch);
     createButton->SetButtonLabel("create");
-    // 创建容器，用于存放button按键
+    // 创建容器，用于存放Button按键
     auto buttoColumn = std::make_shared<ArkUIColumnNode>();
     buttoColumn->SetPadding(NUM_30, false); // 设置布局格式，调整组件内间距，NUM_30 = 30
     buttoColumn->SetWidth(NUM_300); // NUM_300 = 300
@@ -551,7 +551,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     playButton->SetButtonLabel("play");
     playButton->RegisterNodeEvent(playButton->GetHandle(), NODE_ON_CLICK, NUM_4, nullptr);
     auto onTouchPlay = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_4 = 4
+        // 点击Button按钮时触发该逻辑，NUM_4 = 4
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_4) {
             OH_ArkUI_Animator_Play(animatorHandle);
         }
@@ -562,7 +562,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     finishButton->SetButtonLabel("finish");
     finishButton->RegisterNodeEvent(finishButton->GetHandle(), NODE_ON_CLICK, NUM_5, nullptr); // NUM_5 = 5
     auto onTouchFinish = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_5 = 5
+        // 点击Button按钮时触发该逻辑，NUM_5 = 5
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_5) {
             OH_ArkUI_Animator_Finish(animatorHandle);
         }
@@ -577,7 +577,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     resetButton->SetButtonLabel("reset");
     resetButton->RegisterNodeEvent(resetButton->GetHandle(), NODE_ON_CLICK, NUM_6, nullptr); // NUM_6 = 6
     auto onTouchReset = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_6 = 6
+        // 点击Button按钮时触发该逻辑，NUM_6 = 6
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_6) {
             static ArkUI_AnimatorOption *option =  OH_ArkUI_AnimatorOption_Create(NUM_0); // Animator动画状态数
             OH_ArkUI_AnimatorOption_SetDuration(option, NUM_1000); // NUM_1000 = 1000
@@ -604,7 +604,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     pauseButton->SetButtonLabel("pause");
     pauseButton->RegisterNodeEvent(pauseButton->GetHandle(), NODE_ON_CLICK, NUM_7, nullptr); // NUM_7 = 7
     auto onTouchPause = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_7 = 7
+        // 点击Button按钮时触发该逻辑，NUM_7 = 7
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_7) {
             OH_ArkUI_Animator_Pause(animatorHandle);
         }
@@ -619,7 +619,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     cancelButton->SetButtonLabel("cancel");
     cancelButton->RegisterNodeEvent(cancelButton->GetHandle(), NODE_ON_CLICK, NUM_8, nullptr); // NUM_8 = 8
     auto onTouchCancel = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_8 = 8
+        // 点击Button按钮时触发该逻辑，NUM_8 = 8
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_8) {
             OH_ArkUI_Animator_Cancel(animatorHandle);
         }
@@ -630,13 +630,13 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     reverseButton->SetButtonLabel("reverse");
     reverseButton->RegisterNodeEvent(reverseButton->GetHandle(), NODE_ON_CLICK, NUM_9, nullptr);
     auto onTouchReverse = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑，NUM_9 = 9
+        // 点击Button按钮时触发该逻辑，NUM_9 = 9
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_9) {
             OH_ArkUI_Animator_Reverse(animatorHandle);
         }
     };
     reverseButton->RegisterNodeEventReceiver(onTouchReverse);
-    // 将button挂载在column上，返回column节点
+    // 将Button挂载在column上，返回column节点
     column->AddChild(g_animator_text);
     column->AddChild(textNode);
     column->AddChild(button);
