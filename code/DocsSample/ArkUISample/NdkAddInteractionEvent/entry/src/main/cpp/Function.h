@@ -29,7 +29,7 @@
 namespace NativeModule {
 
 const unsigned int WIDTH_SIZE = 200;
-const unsigned int GINGERS_NUM_1 = 1;
+const unsigned int FINGERS_NUM_1 = 1;
 const unsigned int NUMBER_2 = 2;
 const unsigned int NUMBER_10 = 10;
 const unsigned int DURATION_NUM_100 = 100;
@@ -46,7 +46,7 @@ const unsigned int LOG_PRINT_DOMAIN = 0xF811;
 const unsigned int ITEM_SIZE_ONE = 1;
 const unsigned int ITEM_SIZE_TWO = 2;
 const unsigned int HEIGHT_SIZE = 200;
-const unsigned int GINGERS_NUM = 1;
+const unsigned int FINGERS_NUM = 1;
 const unsigned int DURATION_NUM = 5;
 const unsigned int ITEM_SIZE_FIVE = 5;
 const unsigned int DURATION_NUM_500 = 500;
@@ -357,7 +357,7 @@ void GetEventsForGesture(ArkUI_NodeHandle &columnNode)
                      "NdkAddInteractionEvent_eventInfoOfCommonEvent eventInfo = %{public}s", eventInfo.c_str());
     };
     // 创建一个单指点击手势
-    auto TapGesture = gestureApi->createTapGesture(COUNT_NUM_1, GINGERS_NUM_1);
+    auto TapGesture = gestureApi->createTapGesture(COUNT_NUM_1, FINGERS_NUM_1);
     // 将事件回调绑定到TapGesture上，触发手势后，通过回调函数处理手势事件
     gestureApi->setGestureEventTarget(TapGesture,
                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
@@ -374,8 +374,8 @@ void FirstModuleForGesture(ArkUI_NodeHandle &root)
 {
     auto columnNode = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     SetId(columnNode, "bg");
-    SetWidthPercent(columnNode, GINGERS_NUM_1);
-    SetHeightPercent(columnNode, GINGERS_NUM_1);
+    SetWidthPercent(columnNode, FINGERS_NUM_1);
+    SetHeightPercent(columnNode, FINGERS_NUM_1);
     
     // [Start create_column]
     // 创建Column节点

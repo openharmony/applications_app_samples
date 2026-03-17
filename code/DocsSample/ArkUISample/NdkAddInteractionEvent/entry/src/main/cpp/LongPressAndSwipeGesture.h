@@ -57,14 +57,14 @@ ArkUI_NodeHandle LongPressAndSwipeGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::SEQUENTIAL_GROUP);
 
     // 创建长按手势
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM, true, DURATION_NUM);
+    auto longPressGesture = gestureApi->createLongPressGesture(FINGERS_NUM, true, DURATION_NUM);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
                      "NdkAddInteractionEvent_GestureSampleLog longPressGesture,"
                      "ArkUI_GestureRecognizerType%{public}d", type);
     }
-    // 给长按手势定回调
+    // 给长按手势绑定回调
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
