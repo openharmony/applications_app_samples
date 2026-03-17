@@ -322,7 +322,7 @@ export struct ArcListStyles {
                   }
                   // [EndExclude arcListScale_start]
                 }
-                // .autoScale(false)
+                .autoScale(false)
                 // [End arcListScale_start]
                 .borderRadius('65px')
                 .width('414px')
