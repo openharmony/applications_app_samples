@@ -136,7 +136,7 @@ export struct ScrollSnapshot {
 
   // [Start scroll_snapand_merge]
   /**
-   * 归滚动截图，直到滚动到底，最后合并所有截图
+   * 递归滚动截图，直到滚动到底，最后合并所有截图
    */
   async scrollSnapAndMerge() {
     try {
