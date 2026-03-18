@@ -845,15 +845,15 @@ bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
     AVCODEC_SAMPLE_LOGI("writtenSampleCnt_: %{public}ld, bufferInfo.attr.size: %{public}d, "
                         "sampleInfo_.audioChannelCount: %{public}d",
                         writtenSampleCnt, bufferInfo.attr.size, sampleInfo_.audioChannelCount);
-                        
+
     audioBufferPts = bufferInfo.attr.pts;
     audioDecContext_->endPosAudioBufferPts = audioBufferPts;
 
     std::unique_lock<std::mutex> lockRender(audioDecContext_->renderMutex);
     audioDecContext_->renderCond.wait_for(lockRender, 20ms, [this, bufferInfo]() {
         return audioDecContext_->renderQueue.size() < BALANCE_VALUE * bufferInfo.attr.size;
-    }); 
-    
+    });
+
     return true;
 }
 
@@ -921,15 +921,14 @@ void Player::AudioDecOutputSyncThread()
             AVCODEC_SAMPLE_LOGW("AVCODEC_SAMPLE_ERR_END || AVCODEC_SAMPLE_ERR_ERROR");
             break;
         } else if (errCode == AVCODEC_SAMPLE_ERR_OK) {
-            AVCODEC_SAMPLE_LOGI("return AVCODEC_SAMPLE_ERR_OK ");
+            AVCODEC_SAMPLE_LOGI("return AVCODEC_SAMPLE_ERR_OK");
         } else {
             AVCODEC_SAMPLE_LOGI("return continue");
             continue;
         }
         audioDecContext_->outputFrameCount++;
-        AVCODEC_SAMPLE_LOGW("Audio Sync outBuffer count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
-                           audioDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags,
-                           bufferInfo.attr.pts);
+        AVCODEC_SAMPLE_LOGW("Audio Sync count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
+            audioDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags, bufferInfo.attr.pts);
         if (bufferInfo.buffer == nullptr) {
             AVCODEC_SAMPLE_LOGE("bufferInfo.buffer == nullptr, skip");
             continue;
@@ -941,8 +940,7 @@ void Player::AudioDecOutputSyncThread()
         }
         {
             std::unique_lock<std::mutex> lock(audioDecContext_->outputMutex);
-            AVCODEC_SAMPLE_LOGW("audioDecContext_->renderQueue: %{public}zu,",
-                               audioDecContext_->renderQueue.size());
+            AVCODEC_SAMPLE_LOGW("audioDecContext_->renderQueue: %{public}zu,", audioDecContext_->renderQueue.size());
             // 将解码后的PCM数据放入队列中
             for (int i = 0; i < bufferInfo.attr.size; i++) {
                 audioDecContext_->renderQueue.push(*(source + i));

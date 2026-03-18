@@ -140,18 +140,19 @@ int32_t AudioDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         AVCODEC_SAMPLE_LOGE("query output buffer failed, ret: %{public}d", ret);
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
+
     OH_AVBuffer *outputBuf = OH_AudioCodec_GetOutputBuffer(decoder_, info.bufferIndex);
     if (outputBuf == nullptr) {
         AVCODEC_SAMPLE_LOGE("get output buffer failed, ret: %{public}d", ret);
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
-    // OH_AVCodecBufferAttr attr;
+
     ret = OH_AVBuffer_GetBufferAttr(outputBuf, &info.attr);
     if (ret != AV_ERR_OK) {
         AVCODEC_SAMPLE_LOGE("get output buffer attr failed, ret: %{public}d", ret);
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
-    info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);  // memcpy
+    info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);
     if (info.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
         OH_AudioCodec_FreeOutputBuffer(decoder_, info.bufferIndex);
         AVCODEC_SAMPLE_LOGI("Out buffer end");

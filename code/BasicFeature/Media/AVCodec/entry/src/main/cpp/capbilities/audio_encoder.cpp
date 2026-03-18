@@ -142,9 +142,9 @@ int32_t AudioEncoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
         AVCODEC_SAMPLE_LOGE("get output buffer attr failed, ret: %{public}d", ret);
         return AVCODEC_SAMPLE_ERR_ERROR; // break;
     }
+
     info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);
     if (info.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
-        // 不要在这里释放 buffer，让调用者处理 EOS 数据后再释放
         AVCODEC_SAMPLE_LOGI("Out buffer EOS flag detected");
         return AVCODEC_SAMPLE_ERR_OK;
     }

@@ -532,7 +532,6 @@ void Recorder::AudioEncInputSyncThread()
         }
         int32_t ret = audioEncoder_->PushInputData(bufferInfo);
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Push data failed, thread out");
-
     }
 }
 
