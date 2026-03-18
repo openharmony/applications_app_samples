@@ -1,0 +1,44 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "page_title_font_size",
+      "value": "30fp"
+    },
+    {
+      "name": "page_title_margin",
+      "value": "150fp"
+    },
+    {
+      "name": "main_button_text_font_size",
+      "value": "15fp"
+    },
+    {
+      "name": "sub_button_text_font_size",
+      "value": "10fp"
+    },
+    {
+      "name": "button_margin",
+      "value": "300fp"
+    },
+    {
+      "name": "main_button_size",
+      "value": "72fp"
+    },
+    {
+      "name": "sub_button_size",
+      "value": "50fp"
+    },
+    {
+      "name": "main_button_space",
+      "value": "80fp"
+    },
+    {
+      "name": "sub_button_space",
+      "value": "40fp"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CallIn",
+    "pages/CallOut",
+    "pages/InCalling"
+  ]
+}

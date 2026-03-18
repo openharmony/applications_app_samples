@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AudioVoIPCallSample"
+    },
+    {
+      "name": "SAMPLE_NAME",
+      "value": "VoIPCall Sample"
+    },
+    {
+      "name": "CALL_OUT",
+      "value": "主叫"
+    },
+    {
+      "name": "CALL_IN",
+      "value": "被叫"
+    },
+    {
+      "name": "OUTGOING_CALL",
+      "value": "等待对方接听"
+    },
+    {
+      "name": "ANSWERED_BY_OTHER",
+      "value": "对方接听"
+    },
+    {
+      "name": "REFUSED_BY_OTHER",
+      "value": "对方拒接"
+    },
+    {
+      "name": "IN_CALL",
+      "value": "通话中"
+    },
+    {
+      "name": "END_CALL",
+      "value": "结束通话"
+    },
+    {
+      "name": "CHANGE_DEVICE",
+      "value": "设备切换"
+    },
+    {
+      "name": "MUTE_RECORD",
+      "value": "麦克风静音"
+    },
+    {
+      "name": "UNMUTE_RECORD",
+      "value": "麦克风解静音"
+    },
+    {
+      "name": "MUTE_PLAY",
+      "value": "播放静音"
+    },
+    {
+      "name": "UNMUTE_PLAY",
+      "value": "播放解静音"
+    },
+    {
+      "name": "INCOMING_CALL",
+      "value": "来电提示"
+    },
+    {
+      "name": "ANSWER_THE_CALL",
+      "value": "接听"
+    },
+    {
+      "name": "REFUSE_THE_CALL",
+      "value": "挂断"
+    }
+  ]
+}
