@@ -23,7 +23,7 @@ struct ScrollVerticalExample {
     Scroll(this.scroller) {
       Column() {
         ForEach(this.arr, (item?:number|undefined) => {
-          if(item){
+          if(item != undefined){
             Text(item.toString())
               .width('90%')
               .height(150)
