@@ -31,7 +31,7 @@ import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 export struct KeyItemNumber {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume keyState: number;
-  private keyValue: keySourceListType | undefined = undefined;
+  keyValue: keySourceListType | undefined = undefined;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

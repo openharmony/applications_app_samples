@@ -27,7 +27,7 @@ import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 // 空格组件
 @Component
 export struct SpaceItem {
-  private spaceWith: Resource | undefined = undefined;
+  spaceWith: Resource | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
