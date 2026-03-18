@@ -16,7 +16,7 @@
 import { webview } from '@kit.ArkWeb';
 // [StartExclude on_page_end_triggers_preload_of_next_page]
 function resourceToString(resource: Resource, context: UIContext) {
-  return context.getHostContext().resourceManager.getStringSync(resource.id);
+  return context.getHostContext()?.resourceManager.getStringSync(resource.id);
 }
 // [EndExclude on_page_end_triggers_preload_of_next_page]
 @Entry
