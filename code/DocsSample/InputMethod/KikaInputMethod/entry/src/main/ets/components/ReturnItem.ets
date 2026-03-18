@@ -35,7 +35,7 @@ enum EntryKey {
 export struct ReturnItem {
   @StorageLink('enterKeyType') enterKeyType: EnterKeyType = EnterKeyType.Done
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-  private returnWidth: Resource | undefined = undefined;
+  returnWidth: Resource | undefined = undefined;
 
   build() {
     if (this.returnWidth) {
