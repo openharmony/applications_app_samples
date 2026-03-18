@@ -56,7 +56,7 @@ public:
     {
         return footer_;
     }
-    //引入懒加载模块。
+    // 引入懒加载模块。
     void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter)
     {
         ArkUI_AttributeItem item{nullptr, 0, nullptr, adapter->GetHandle()};
@@ -69,5 +69,5 @@ private:
     std::shared_ptr<ArkUIListItemAdapter> adapter_;
 };
 }
-#endif //MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+#endif // MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
  // [End Use_grouped_lists]
