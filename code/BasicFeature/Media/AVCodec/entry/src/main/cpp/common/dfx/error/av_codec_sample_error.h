@@ -19,6 +19,9 @@
 enum AVCodecSampleError : int {
     AVCODEC_SAMPLE_ERR_OK = 0,
     AVCODEC_SAMPLE_ERR_ERROR = -1,
+    AVCODEC_SAMPLE_ERR_AGAIN = -2,
+    AVCODEC_SAMPLE_ERR_CHANGED = -3,
+    AVCODEC_SAMPLE_ERR_END = -4,
 };
 
 #endif
