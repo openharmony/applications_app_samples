@@ -52,7 +52,7 @@ const operationUrls: string[] = [
 @Component
 struct Index {
   ResourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+    return getContext(this).resourceManager.getStringSync(resource);1111
   }
 
   @State listItem: Item[] = [
