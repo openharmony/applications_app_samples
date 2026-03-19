@@ -22,18 +22,52 @@
 
 // [Start EventSub_napi_nohiappevent_Header]
 // [Start EventSub_napi_Header]
+// [Start Event_Cpp_Crash_Config]
 #include "napi/native_api.h"
 // [StartExclude EventSub_napi_nohiappevent_Header]
+// [StartExclude Event_Cpp_Crash_Config]
 // 根据工程中三方库jsoncpp的位置适配引用json.h的路径
 #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
+// [EndExclude Event_Cpp_Crash_Config]
 #include "hiappevent/hiappevent.h"
 // [EndExclude EventSub_napi_nohiappevent_Header]
 #include "hilog/log.h"
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
+// [End Event_Cpp_Crash_Config]
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
+
+// [Start Event_Cpp_Crash_Config]
+/**
+ * @brief Print additional memory information near the PC and LR registers
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
+ 
+/**
+ * @brief Automatically truncate the cppcrash log size
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES "log_file_cutoff_sz_bytes"
+ 
+/**
+ * @brief Only print VMA within the stacktrace of the cppcrash log
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING "simplify_vma_printing"
+ 
+/**
+ * @brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event
+ *
+ * @since 24
+ */
+#define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
+// [End Event_Cpp_Crash_Config]
 
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>
@@ -522,6 +556,31 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcherR, OnReceiveCrashEvent);
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(systemEventWatcherR);
+
+    // [Start Event_Cpp_Crash_Config]
+    // 1. 创建配置对象
+    HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
+
+    // 2. 设置各项配置参数
+    // 开启寄存器扩展内存打印
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING, "true");
+    // 设置日志截断大小为 2MB
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES, "2097152");
+    // 开启简化 VMA 映射信息打印
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING, "true");
+    // 开启拼接应用日志
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
+
+    // 3. 应用配置到 EVENT_APP_CRASH 事件
+    int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
+
+    if (ret == HIAPPEVENT_SUCCESS) {
+        OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
+    }
+
+    // 4. 销毁配置对象
+    OH_HiAppEvent_DestroyConfig(config);
+    // [End Event_Cpp_Crash_Config]
     return {};
 }
 // [End Sys_Crash_Crash_OnReceive]
