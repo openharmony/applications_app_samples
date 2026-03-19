@@ -384,4 +384,29 @@ export class ImageInterfaceCalled {
     }
     return undefined;
   }
+
+  async  createImageRawData(imageSource : image.ImageSource | undefined) : Promise< image.ImageRawData | undefined> {
+    if (!imageSource) {
+      console.error('imageSource is undefined.');
+      return undefined;
+    }
+    await imageSource.createImageRawData().then((data: image.ImageRawData) => {
+      let array: Uint16Array = new Uint16Array();
+      if (data.bitsPerPixel == 16 && data.buffer) {
+        array = new Uint16Array(data.buffer);
+      }
+      let length = array.byteLength.valueOf();
+      console.info(`uint16Array length: ${length}`);
+      let value :string = '';
+      for (let i = 0; i < array.length && i < 10; i++) {
+        value += array[i] + ', ';
+      }
+      console.info(`get dng rawdata is:${value}.`);
+      return data
+    }).catch((err: BusinessError) => {
+      console.error(`get dng rawdata failed.err: ${JSON.stringify(err)}`);
+      return undefined;
+    })
+    return undefined;
+  }
 }

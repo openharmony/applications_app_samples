@@ -12,53 +12,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-   
+
 // [Start Use_grouped_lists]
 // ArkUIListItemGroupNode.h
 
 #ifndef MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
 #define MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+
 #include "ArkUINode.h"
 #include "ArkUIListItemAdapter.h"
+
 namespace NativeModule {
+
 class ArkUIListItemGroupNode : public ArkUINode {
 public:
     ArkUIListItemGroupNode()
-        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())
-    ->createNode(ARKUI_NODE_LIST_ITEM_GROUP)) {}
-    void SetHeader(std::shared_ptr<ArkUINode> node)
+        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP))
+    {
+    }
+
+    void SetHeader(const std::shared_ptr<ArkUINode> &node)
     {
         if (node) {
             // 创建一个属性项，把节点的句柄放进去，并设置头部
-            ArkUI_AttributeItem Item = { .object = node->GetHandle() };
-            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item);
+            ArkUI_AttributeItem item = {.object = node->GetHandle()};
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &item);
+            header_ = node;
         } else {
             // 如果传入的是空指针（nullptr），说明要移除已有的头部
             nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER);
+            header_.reset();
         }
     }
-    void SetFooter(std::shared_ptr<ArkUINode> node)
+
+    void SetFooter(const std::shared_ptr<ArkUINode> &node)
     {
         if (node) {
             // 创建一个属性项，把节点的句柄放进去，并设置尾部
-            ArkUI_AttributeItem Item = { .object= node->GetHandle() };
-            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item);
+            ArkUI_AttributeItem item = {.object = node->GetHandle()};
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &item);
+            footer_ = node;
         } else {
             // 如果传入的是空指针（nullptr），说明要移除已有的尾部
             nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER);
+            footer_.reset();
         }
     }
+
     std::shared_ptr<ArkUINode> GetHeader() const
     {
         return header_;
     }
+
     std::shared_ptr<ArkUINode> GetFooter() const
     {
         return footer_;
     }
+
     // 引入懒加载模块。
-    void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter)
+    void SetLazyAdapter(const std::shared_ptr<IArkUIListItemAdapter> &adapter)
     {
+        if (!adapter) {
+            nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER);
+            adapter_.reset();
+            return;
+        }
         ArkUI_AttributeItem item{nullptr, 0, nullptr, adapter->GetHandle()};
         nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER, &item);
         adapter_ = adapter;
@@ -66,8 +84,8 @@ public:
 private:
     std::shared_ptr<ArkUINode> header_;
     std::shared_ptr<ArkUINode> footer_;
-    std::shared_ptr<ArkUIListItemAdapter> adapter_;
+    std::shared_ptr<IArkUIListItemAdapter> adapter_;
 };
 }
 #endif // MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
- // [End Use_grouped_lists]
+// [End Use_grouped_lists]

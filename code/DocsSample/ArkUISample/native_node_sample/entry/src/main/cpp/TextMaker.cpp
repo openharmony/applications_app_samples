@@ -1881,6 +1881,31 @@ void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
     Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
 }
 
+void setTextAreaHorizontalScrolling(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string =
+        "这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一"
+        "段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长"
+        "文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，"
+        "用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测"
+        "试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测试横向"
+        "滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测试横向滚动这"
+        "是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n";
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &width_item);
+
+    ArkUI_NumberValue heightValue[] = {{.f32 = 120.0f}};
+    ArkUI_AttributeItem height_item = {heightValue, sizeof(heightValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_HEIGHT, &height_item);
+
+    ArkUI_NumberValue horizontalScrolling[] = {{.i32 = true } };
+    ArkUI_AttributeItem horizontalScrollingItem = { .value = horizontalScrolling, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_HORIZONTAL_SCROLLING, &horizontalScrollingItem);
+}
+
 void setBasicText2(ArkUI_NodeHandle &textContainer)
 {
     auto basicText2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -2666,6 +2691,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle horizontalTextArea = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
@@ -2676,6 +2702,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
     setTextArea14(textArea14, textArea15);
+    setTextAreaHorizontalScrolling(horizontalTextArea);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
@@ -2692,6 +2719,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea12);
     Manager::nodeAPI_->addChild(textContainer, textArea14);
     Manager::nodeAPI_->addChild(textContainer, textArea15);
+    Manager::nodeAPI_->addChild(textContainer, horizontalTextArea);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)
