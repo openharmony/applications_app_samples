@@ -34,6 +34,7 @@ struct Index {
           this.buttonComponent($r('app.string.page_off'), 'pages/Off');
           this.buttonComponent($r('app.string.page_set_extras'), 'pages/SetExtras');
           this.buttonComponent($r('app.string.page_want_agent'), 'pages/WantAgent');
+          this.buttonComponent($r('app.string.page_desktop_lyric'), 'pages/DesktopLyric');
         }
         .width('100%')
         .padding(20)
