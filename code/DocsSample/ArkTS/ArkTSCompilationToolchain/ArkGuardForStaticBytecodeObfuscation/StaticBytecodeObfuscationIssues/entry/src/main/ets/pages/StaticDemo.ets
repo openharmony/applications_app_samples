@@ -81,7 +81,7 @@ class A {
     f1:number;
 }
 
-// [Start staticArkGuardExample_class]
+// [Start staticArkGuardExample_classTest]
 class ClassTest{
     // public static age: number = 10;
     age: int = 5;
@@ -95,7 +95,7 @@ class ClassTest{
     //     return this._name;
     // }
 }
-// [End staticArkGuardExample_class]
+// [End staticArkGuardExample_classTest]
 
 // [Start staticArkGuardExample_classExtendsBaseClass_2]
 class ClassName02 extends BaseClass {
