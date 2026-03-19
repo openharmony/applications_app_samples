@@ -571,13 +571,13 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
     // 3. 应用配置到 EVENT_APP_CRASH 事件
     int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
-
     if (ret == HIAPPEVENT_SUCCESS) {
         OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
     }
     // 4. 销毁配置对象
     OH_HiAppEvent_DestroyConfig(config);
     // [End Event_Cpp_Crash_Config]
+
     return {};
 }
 // [End Sys_Crash_Crash_OnReceive]
