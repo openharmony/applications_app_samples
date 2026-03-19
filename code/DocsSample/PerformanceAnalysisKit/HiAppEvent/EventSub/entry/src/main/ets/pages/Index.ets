@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+// [Start Native_CrashEvent_Log]
+import { fileIo } from '@kit.CoreFileKit';
+// [StartExclude Native_CrashEvent_Log]
 // [Start EventSub_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [Start PssLeakEvent_Header]
@@ -104,6 +107,17 @@ struct Index {
           .onClick(() => {
             // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
             testNapi.testNullptr();
+            // [EndExclude Native_CrashEvent_Log]
+
+            // 模拟创建 applog，假设应用包名为 com.samples.eventsub
+            let filePath : string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
+            let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+            let str: string = "only test for merge app log!";
+
+            let writeLen = fileIo.writeSync(file.fd, str);
+            console.info("hiappevent write data to file succeed and size is:" + writeLen);
+            fileIo.closeSync(file);
+            // [End Native_CrashEvent_Log]
           })
         // [End Native_CrashEvent_Button]
         // [Start PssLeakEventTS_Button]
