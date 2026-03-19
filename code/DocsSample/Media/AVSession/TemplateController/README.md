@@ -48,7 +48,7 @@ entry/src/main/ets/
     * 获取音频模板描述，关键代码段：
 
       ```ts
-      import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
+      import { avMusicTemplate } from '@kit.AVSessionKit';
       
       public createAvMusicTemplateController(bundleName: string) {
         if (this.isStringEmpty(bundleName)) {
@@ -116,7 +116,7 @@ entry/src/main/ets/
     * 创建音频模板控制器对象，关键代码段：
 
       ```js
-      import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
+      import { avMusicTemplate } from '@kit.AVSessionKit';
       
       private createController(sessionId: string) {
         if (sessionId === null || sessionId === undefined) {

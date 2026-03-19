@@ -35,7 +35,7 @@ entry/src/main/ets/
   * 创建音频模板对象，关键代码段：
 
     ```js
-    import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
+    import { avMusicTemplate } from '@kit.AVSessionKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
     export default class EntryAbility extends UIAbility {
