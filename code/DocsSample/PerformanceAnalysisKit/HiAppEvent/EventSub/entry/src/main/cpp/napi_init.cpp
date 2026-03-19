@@ -560,7 +560,6 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     // [Start Event_Cpp_Crash_Config]
     // 1. 创建配置对象
     HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
-
     // 2. 设置各项配置参数
     // 开启寄存器扩展内存打印
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING, "true");
@@ -570,14 +569,12 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING, "true");
     // 开启拼接应用日志
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
-
     // 3. 应用配置到 EVENT_APP_CRASH 事件
     int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
 
     if (ret == HIAPPEVENT_SUCCESS) {
         OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
     }
-
     // 4. 销毁配置对象
     OH_HiAppEvent_DestroyConfig(config);
     // [End Event_Cpp_Crash_Config]
