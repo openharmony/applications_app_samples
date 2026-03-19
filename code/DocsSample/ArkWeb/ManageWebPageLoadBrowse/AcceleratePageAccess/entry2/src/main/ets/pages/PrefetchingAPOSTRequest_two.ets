@@ -17,7 +17,7 @@
 import { webview } from '@kit.ArkWeb';
 
 function resourceToString(resource: Resource, context: UIContext) {
-  return context.getHostContext().resourceManager.getStringSync(resource.id);
+  return context.getHostContext()?.resourceManager.getStringSync(resource.id);
 }
 
 @Entry

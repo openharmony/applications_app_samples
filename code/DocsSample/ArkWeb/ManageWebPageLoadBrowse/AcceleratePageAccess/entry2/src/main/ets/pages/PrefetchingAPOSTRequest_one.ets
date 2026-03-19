@@ -16,7 +16,7 @@
 import { webview } from '@kit.ArkWeb';
 // [StartExclude prefetch_post_request_on_page_end_clear_cache]
 function resourceToString(resource: Resource, context: UIContext) {
-  return context.getHostContext().resourceManager.getStringSync(resource.id);
+  return context.getHostContext()?.resourceManager.getStringSync(resource.id);
 }
 // [EndExclude prefetch_post_request_on_page_end_clear_cache]
 @Entry
