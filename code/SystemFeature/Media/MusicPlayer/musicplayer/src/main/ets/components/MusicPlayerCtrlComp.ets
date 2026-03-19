@@ -29,7 +29,8 @@ interface CtrlBtnBuilderParam {
   imgSrc: Resource,
   btnSize: number,
   callback: Function,
-  needBackground?: boolean
+  needBackground?: boolean,
+  id: string
 }
 
 @Component
@@ -70,6 +71,7 @@ export struct MusicPlayerCtrlComp {
     })
     .backgroundColor($$.needBackground ? Color.Gray : '#00000000')
     .padding($$.needBackground ? $r('app.integer.foldable_screen_cases_btn_ctrl_padding') : 0)
+    .id($$.id)
   }
 
   aboutToAppear(): void {
@@ -85,6 +87,7 @@ export struct MusicPlayerCtrlComp {
           max: CommonConstants.MUSIC_SLIDER_MAX,
           style: SliderStyle.InSet
         })
+          .id('id_music_slider')
           .selectedColor(Color.Gray)
           .trackThickness($r('app.integer.foldable_screen_cases_music_progress_slider_trackthickness'))
           .onChange((value: number, mode: SliderChangeMode) => {
@@ -134,7 +137,8 @@ export struct MusicPlayerCtrlComp {
           btnSize: CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_COMMON,
           callback: () => {
             this.viewModel.updateLoopMode();
-          }
+          },
+          id: 'id_music_loop_mode'
         });
         // 切换到前一首歌曲按钮
         this.ctrlBtnBuilder({
@@ -142,12 +146,13 @@ export struct MusicPlayerCtrlComp {
           btnSize: CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_COMMON,
           callback: () => {
             this.viewModel.playPrevious();
-          }
+          },
+          id: 'id_music_play_previous'
         });
         // 播放、暂停按钮
         this.ctrlBtnBuilder({
           imgSrc: this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_PLAYING ?
-          $r('app.media.foldable_screen_cases_pause') : $r('app.media.foldable_screen_cases_play'),
+            $r('app.media.foldable_screen_cases_pause') : $r('app.media.foldable_screen_cases_play'),
           btnSize: CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_BIG,
           callback: () => {
             if (this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_IDLE ||
@@ -159,7 +164,8 @@ export struct MusicPlayerCtrlComp {
               this.viewModel.resume();
             }
           },
-          needBackground: true
+          needBackground: true,
+          id: 'id_music_play_pause'
         });
         // 切换到后一首歌曲按钮
         this.ctrlBtnBuilder({
@@ -167,7 +173,8 @@ export struct MusicPlayerCtrlComp {
           btnSize: CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_COMMON,
           callback: () => {
             this.viewModel.playNext();
-          }
+          },
+          id: 'id_music_play_next'
         });
         // 其他功能菜单按钮
         this.ctrlBtnBuilder({
@@ -176,7 +183,8 @@ export struct MusicPlayerCtrlComp {
           callback: () => {
             this.viewModel.showTodoToast();
             // TODO：需求：其他功能菜单逻辑
-          }
+          },
+          id: 'id_music_other_menu'
         });
       }
       .margin({

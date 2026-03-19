@@ -209,6 +209,7 @@ export class AVPlayerModel {
     }
 
     this.avPlayer.play();
+    console.info(`Music player play`);
   }
 
   /**
@@ -222,6 +223,7 @@ export class AVPlayerModel {
     }
 
     this.avPlayer.pause();
+    console.info(`Music player pause`);
   }
 
   /**
@@ -248,6 +250,7 @@ export class AVPlayerModel {
     }
 
     this.avPlayer.stop();
+    console.info(`Music player stop`);
   }
 
   /**

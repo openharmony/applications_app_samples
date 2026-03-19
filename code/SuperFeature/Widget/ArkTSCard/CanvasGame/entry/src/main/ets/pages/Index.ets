@@ -40,8 +40,8 @@ struct Index {
   private chessboardLineWidth: number = 1.5;
   private chessboardDotRadius: number = this.chessboardLineWidth * 3;
   private chessPiecesCount: number = 0;
-  private chessPiecesArray: Array<string | number | boolean | object> = [];
-  private processRecord: Array<string | number | boolean | object> = [];
+  private chessPiecesArray: Array<Array<string | number | boolean | object>> = [];
+  private processRecord: Array<Array<string | number | boolean | object>> = [];
 
   chessPiecesInit(areaWidth: number, areaHeight: number): void {
     this.canvasWidth = areaWidth;
@@ -273,7 +273,7 @@ struct Index {
     for (let i = 0; i <= this.chessboardLines; ++i) {
       for (let j = 0; j <= this.chessboardLines; ++j) {
         if (this.chessPiecesArray[i][j] >= 10) {
-          this.chessPiecesArray[i][j] -= 100;
+          (this.chessPiecesArray[i][j] as number) -= 100;
         }
       }
     }
@@ -281,16 +281,16 @@ struct Index {
 
   dfsCheckCount(type: number, count: number, indexX: number, indexY: number): number {
     let curCount: number = count;
-    this.chessPiecesArray[indexX][indexY] += 100; // Avoid dead cycle
+    (this.chessPiecesArray[indexX][indexY] as number) += 100; // Avoid dead cycle
     curCount = Math.max(curCount, this.dfsCheckCountLW(type, count, indexX, indexY));
     this.restoreChessPiecesArray();
-    this.chessPiecesArray[indexX][indexY] += 100; // Avoid dead cycle
+    (this.chessPiecesArray[indexX][indexY] as number) += 100; // Avoid dead cycle
     curCount = Math.max(curCount, this.dfsCheckCountUD(type, count, indexX, indexY));
     this.restoreChessPiecesArray();
-    this.chessPiecesArray[indexX][indexY] += 100; // Avoid dead cycle
+    (this.chessPiecesArray[indexX][indexY] as number) += 100; // Avoid dead cycle
     curCount = Math.max(curCount, this.dfsCheckCountLU(type, count, indexX, indexY));
     this.restoreChessPiecesArray();
-    this.chessPiecesArray[indexX][indexY] += 100; // Avoid dead cycle
+    (this.chessPiecesArray[indexX][indexY] as number) += 100; // Avoid dead cycle
     curCount = Math.max(curCount, this.dfsCheckCountWU(type, count, indexX, indexY));
     this.restoreChessPiecesArray();
     return curCount;
@@ -321,7 +321,7 @@ struct Index {
     for (let i = 0; i <= this.chessboardLines; ++i) {
       for (let j = 0; j <= this.chessboardLines; ++j) {
         if (this.chessPiecesArray[i][j] >= 10) {
-          this.chessPiecesArray[i][j] -= 100;
+          (this.chessPiecesArray[i][j] as number) -= 100;
         }
       }
     }
@@ -436,7 +436,12 @@ struct Index {
         }.height('100%').width('100%')
       }.backgroundColor('#ffb0cfcf')
       .height('70%').width('90%')
-      .border({ width: 5, color: 0xe3d37c, radius: 10, style: BorderStyle.Solid })
+      .border({
+        width: 5,
+        color: 0xe3d37c,
+        radius: 10,
+        style: BorderStyle.Solid
+      })
     }
     .borderRadius('3%')
     .width('100%')

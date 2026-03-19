@@ -57,7 +57,7 @@ struct PresentPage {
 
   onMetaDataChangeCallback() {
     Log.info(TAG, 'metadatachange check metadatamap: ' + JSON.stringify(this.metaDataMap));
-    Log.info(TAG, 'metadatachange check sessionarray: ' + JSON.stringify(this.sessionArray![0]));
+    Log.info(TAG, 'metadatachange check sessionarray: ' + JSON.stringify(this.sessionArray[0]));
   }
 
   build() {
@@ -190,7 +190,7 @@ struct PresentPage {
               .color('#182431')
               .width('100%')
               .margin({ top: '12.5vp' })
-              .visibility(this.sessionArray.length > 1 ? Visibility.Visible : Visibility.None)
+              .visibility(this.sessionArray?.length > 1 ? Visibility.Visible : Visibility.None)
             Row() {
               Image(this.sessionArray[1] && this.metaDataMap[this.sessionArray[1]]
                 && this.metaDataMap[this.sessionArray[1]].mediaImage
@@ -222,14 +222,14 @@ struct PresentPage {
               .justifyContent(FlexAlign.Center)
             }
             .justifyContent(FlexAlign.Start).width('100%').margin({ top: '12vp', bottom: '12.5vp' })
-            .visibility(this.sessionArray.length > 1 ? Visibility.Visible : Visibility.None)
+            .visibility(this.sessionArray?.length > 1 ? Visibility.Visible : Visibility.None)
 
             Divider()
               .height('0.5vp')
               .opacity(0.05)
               .color('#182431')
               .width('100%')
-              .visibility(this.sessionArray.length > 2 ? Visibility.Visible : Visibility.None)
+              .visibility(this.sessionArray?.length > 2 ? Visibility.Visible : Visibility.None)
 
             Row() {
               Image(this.sessionArray[2] && this.metaDataMap?.get(this.sessionArray[2])
@@ -261,7 +261,7 @@ struct PresentPage {
             .justifyContent(FlexAlign.Start)
             .width('100%')
             .margin({ top: 10 })
-            .visibility(this.sessionArray.length > 2 ? Visibility.Visible : Visibility.None)
+            .visibility(this.sessionArray?.length > 2 ? Visibility.Visible : Visibility.None)
           }
           .width('288vp')
           .height('100%')
@@ -390,8 +390,8 @@ struct PresentPage {
   }
 
   getMediaCardHeight(): string {
-    let mediaNum: number = this.sessionArray.length > 0 ?
-      (this.sessionArray.length > 3 ? 3 : this.sessionArray.length) : 1; // If has 3 or more history, get 3 of them.
+    let mediaNum: number = this.sessionArray?.length > 0 ?
+      (this.sessionArray?.length > 3 ? 3 : this.sessionArray?.length) : 1; // If has 3 or more history, get 3 of them.
     let mediaExtraHeight: number = ((mediaNum - 1) > 0 ? 12 : 0) + (mediaNum - 1) * 73; // 73 is the length given from UX designer
     let height: number = 124 + (this.isLyric ? 44 : 0) + mediaExtraHeight; // 124 and 44 is the size given from UX designer
     Log.info(TAG, 'get height : ' + height);
@@ -399,13 +399,13 @@ struct PresentPage {
   }
 
   getTotalHeight(): string {
-    let mediaNum: number = this.sessionArray.length > 0 ?
-      (this.sessionArray.length > 3 ? 3 : this.sessionArray.length) : 1; // If has 3 or more history, get 3 of them.
+    let mediaNum: number = this.sessionArray?.length > 0 ?
+      (this.sessionArray?.length > 3 ? 3 : this.sessionArray?.length) : 1; // If has 3 or more history, get 3 of them.
     let mediaExtraHeight: number = ((mediaNum - 1) > 0 ? 12 : 0) + (mediaNum - 1) * 73; // 73 is the length given from UX designer
     let height: number = 124 + (this.isLyric ? 44 : 0) + mediaExtraHeight; // 124 and 44 is the length given from UX designer
     Log.info(TAG, 'get media height : ' + height);
     height += (this.isShowQueue ? 165 : 0); // 165 is the length given from UX designer
     Log.info(TAG, 'get total height : ' + height);
-    return String(height + 40) + 'vp';
+    return (height + 40) + 'vp';
   }
 }

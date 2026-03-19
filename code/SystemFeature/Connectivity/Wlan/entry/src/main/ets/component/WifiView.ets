@@ -20,7 +20,7 @@ const TAG: string = 'WifiView'
 
 @Component
 export struct WifiView {
-  private wifi: wifi.WifiScanInfo = null
+  private wifi: wifi.WifiScanInfo | undefined = undefined
   private securityString: Resource = $r('app.string.encryption')
   @State isLock: boolean = true
 
@@ -28,7 +28,7 @@ export struct WifiView {
     Logger.debug(TAG, `aboutToAppear ${JSON.stringify(this.wifi)}`)
     if (this.wifi) {
       if (this.wifi.securityType) {
-        if (this.wifi.securityType === 0 || this.wifi.securityType === 1) {
+        if (this.wifi.securityType.valueOf() === 0 || this.wifi.securityType.valueOf() === 1) {
           this.securityString = $r('app.string.open')
           this.isLock = false
         }

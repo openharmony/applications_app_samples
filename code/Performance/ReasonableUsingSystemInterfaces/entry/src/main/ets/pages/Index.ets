@@ -47,18 +47,6 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/UsingZeroWidthSpace' })
         })
-      Text('GetAnonymousIdSync')
-        .fontSize(32)
-        .fontColor(Color.Blue)
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/GetAnonymousIdSync' })
-        })
-      Text('GetAnonymousId')
-        .fontSize(32)
-        .fontColor(Color.Blue)
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/GetAnonymousId' })
-        })
       Text('RuntimeInterface')
         .fontSize(32)
         .fontColor(Color.Blue)

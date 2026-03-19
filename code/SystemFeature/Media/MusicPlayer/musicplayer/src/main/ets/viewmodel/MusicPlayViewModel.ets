@@ -28,6 +28,7 @@ import { Decimal } from '@kit.ArkTS';
 export class MusicPlayerViewModel {
   constructor() {
   }
+
   // avplayer模块实例
   private avplayerModel: AVPlayerModel = new AVPlayerModel();
   // avsession模块实例
@@ -36,8 +37,8 @@ export class MusicPlayerViewModel {
   private musicModelArr: Array<MusicModel> = [];
   // 当前播放的歌曲索引
   private curMusicModelIndex: number = 0;
-
   private curMusicModelRaw: MusicModel | undefined;
+
   public get curMusicModel(): MusicModel | undefined {
     return this.curMusicModelRaw;
   }
@@ -249,6 +250,7 @@ export class MusicPlayerViewModel {
       playerState: this.curPlayerStateRaw,
       curTime: timeMs
     } as AVSessionUpdateState);
+    console.info(`Music player seek to ${timeMs}`);
   }
 
   /**
@@ -348,6 +350,7 @@ export class MusicPlayerViewModel {
     this.avsessionModel?.updateCurState({
       loopMode: this.curLoopMode
     } as AVSessionUpdateState)
+    console.info(`Music player loop mode is ${this.curLoopMode}`);
   }
 
   /**
@@ -391,6 +394,7 @@ export class MusicPlayerViewModel {
         break;
       }
     }
+    console.info(`Music player next`);
   }
 
   /**
@@ -434,6 +438,7 @@ export class MusicPlayerViewModel {
         break;
       }
     }
+    console.info(`Music player previous`);
   }
 
   /**
