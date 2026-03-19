@@ -21,7 +21,7 @@ export struct GridCalculator {
   private buttonArray: string[] =
     ['CE', 'C', '/', 'X', '7', '8', '9', '-', '4', '5', '6', '+', '1', '2', '3', '=', '0', '.'];
   @State res: string = '0';
-  //[Start Set_numberrows_columns]
+  // [Start Set_numberrows_columns]
   layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
