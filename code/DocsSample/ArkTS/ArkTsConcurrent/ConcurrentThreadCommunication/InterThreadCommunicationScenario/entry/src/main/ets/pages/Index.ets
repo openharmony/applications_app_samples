@@ -13,44 +13,47 @@
  * limitations under the License.
  */
 import { CommonButton } from '../util/CommonButton';
-import resource from '../util/resource';
 
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-  }
 
   build() {
     Scroll() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        Text(resource.resourceToString($r('app.string.Communication_scenario')))
+        Text($r('app.string.Communication_scenario'))
           .padding('15vp')
           .width('100%')
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.MultiTime_consumingTasks')),
+          buttonName: $r('app.string.MultiTime_consumingTasks'),
+          buttonId: 'app.string.MultiTime_consumingTasks',
           buttonUrl: 'managers/MultiTimeConsumingTasks'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.TaskSend_dataUsage')),
+          buttonName: $r('app.string.TaskSend_dataUsage'),
+          buttonId: 'app.string.TaskSend_dataUsage',
           buttonUrl: 'managers/TaskSendDataUsage'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.WorkerCall_globalUsage')),
+          buttonName: $r('app.string.WorkerCall_globalUsage'),
+          buttonId: 'app.string.WorkerCall_globalUsage',
           buttonUrl: 'managers/WorkerCallGlobalUsage'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.WorkerCommunicates_with_mainthread')),
+          buttonName: $r('app.string.WorkerCommunicates_with_mainthread'),
+          buttonId: 'app.string.WorkerCommunicates_with_mainthread',
           buttonUrl: 'managers/WorkerCommunicatesWithMainthread'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.IndependentTime_consuming_task')),
+          buttonName: $r('app.string.IndependentTime_consuming_task'),
+          buttonId: 'app.string.IndependentTime_consuming_task',
           buttonUrl: 'managers/IndependentTimeConsumingTask'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Worker_postMessage_sendable')),
+          buttonName: $r('app.string.Worker_postMessage_sendable'),
+          buttonId: 'app.string.Worker_postMessage_sendable',
           buttonUrl: 'managers/WorkerPostMessageSendable'
         });
       }

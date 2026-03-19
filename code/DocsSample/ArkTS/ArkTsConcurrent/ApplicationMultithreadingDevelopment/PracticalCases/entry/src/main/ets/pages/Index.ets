@@ -14,7 +14,6 @@
  */
 
 import { CommonButton } from '../util/CommonButton';
-import resource from '../util/resource';
 
 @Entry
 @Component
@@ -25,37 +24,44 @@ struct Index {
   build() {
     Scroll() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        Text(resource.resourceToString($r('app.string.Practical_cases')))
+        Text($r('app.string.Practical_cases'))
           .padding('15vp')
           .width('100%')
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Using_taskpool')),
+          buttonName: $r('app.string.Using_taskpool'),
+          buttonId: 'app.string.Using_taskpool',
           buttonUrl: 'managers/UsingTaskPool'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Using_sendable')),
+          buttonName: $r('app.string.Using_sendable'),
+          buttonId: 'app.string.Using_sendable',
           buttonUrl: 'managers/UsingSendable'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Complex_class_instance_object_using_sendable')),
+          buttonName: $r('app.string.Complex_class_instance_object_using_sendable'),
+          buttonId: 'app.string.Complex_class_instance_object_using_sendable',
           buttonUrl: 'managers/ComplexClassInstanceObjectUsingSendable'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Concurrent_loading_modules_guide')),
+          buttonName: $r('app.string.Concurrent_loading_modules_guide'),
+          buttonId: 'app.string.Concurrent_loading_modules_guide',
           buttonUrl: 'managers/ConcurrentLoadingModulesGuide'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Global_configuration_guide')),
+          buttonName: $r('app.string.Global_configuration_guide'),
+          buttonId: 'app.string.Global_configuration_guide',
           buttonUrl: 'managers/GlobalConfigurationGuide'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Makeobserved_sendable')),
+          buttonName: $r('app.string.Makeobserved_sendable'),
+          buttonId: 'app.string.Makeobserved_sendable',
           buttonUrl: 'managers/MakeobservedSendable'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Waterfall_rendering')),
+          buttonName: $r('app.string.Waterfall_rendering'),
+          buttonId: 'app.string.Waterfall_rendering',
           buttonUrl: 'managers/WaterfallRendering'
         });
       }
