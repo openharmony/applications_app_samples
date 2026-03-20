@@ -145,7 +145,7 @@ async function initArguments(context: common.UIAbilityContext) {
     try {
       let bufferLength = fs.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-      // 系统会判定buffer有效，正常播放
+      // 系统会判定buffer有效，正常播放。
       // [StartExclude init_oncallback]
       if (bufferSize > file.length) {
         let view = new DataView(buffer);
@@ -161,7 +161,7 @@ async function initArguments(context: common.UIAbilityContext) {
     } catch (error) {
       console.error(`Failed to read file. Code: ${error.code}, message: ${error.message}`);
       // [StartExclude render_process]
-      // 系统会判定buffer无效，不播放
+      // 系统会判定buffer无效，不播放。
       // [StartExclude init_oncallback]
       globalLogUpdate(`Failed to read file. Code: ${error.code}, message: ${error.message}`, true);
       // [EndExclude render_process]
@@ -193,7 +193,7 @@ async function init() {
         // [End init_callback]
         // [StartExclude render_process]
         // [StartExclude create_audiorender]
-        // 自动启动监听
+        // 自动启动监听。
         registListeningStateChange();
         listenvolume();
         listenRenderChange();
@@ -320,7 +320,7 @@ async function release() {
     }
 
     // [StartExclude render_process]
-    // 先取消所有监听
+    // 先取消所有监听。
     offlistenRenderChange();
     audioVolumeManager.off('streamVolumeChange');
     console.info('Succeeded in using off streamVolumeChange.');
@@ -338,7 +338,7 @@ async function release() {
         // [EndExclude render_process]
         // [EndExclude render_release]
       } else {
-        // 关闭沙箱文件
+        // 关闭沙箱文件。
         console.info('Succeeded in releasing audio renderer.');
         // [StartExclude render_release]
         // [StartExclude render_process]
@@ -417,7 +417,7 @@ async function setStreamVolume(){
     // [EndExclude Renderset_streamvolume]
     // 设置音频流音量。
     audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]。
-      console.info('Succeeded in setting volume.'');
+      console.info('Succeeded in setting volume.');
       // [StartExclude Renderset_streamvolume]
       globalLogUpdate('Succeeded in setting volume.', false);
       // [EndExclude Renderset_streamvolume]
@@ -461,10 +461,10 @@ async function getStatus(){
   // [EndExclude check_isspacesoundon]
   let isSpatializationEnabledForCurrentDevice = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
   console.info(`Succeeded in using isSpatializationEnabledForCurrentDevice function,
-   IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
+    IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
   // [End check_isspacesoundon]
   globalLogUpdate(`Succeeded in using isSpatializationEnabledForCurrentDevice function,
-   IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`, false);
+    IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`, false);
 }
 
 async function on(){
@@ -472,10 +472,10 @@ async function on(){
   audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice',
     (isSpatializationEnabledForCurrentDevice: boolean) => {
     console.info(`Succeeded in using on function, IsSpatializationEnabledForCurrentDevice:
-     ${isSpatializationEnabledForCurrentDevice}.`);
+      ${isSpatializationEnabledForCurrentDevice}.`);
     // [StartExclude regist_spacesoundcallback]
     globalCallbackUpdate(`Succeeded in using on function, IsSpatializationEnabledForCurrentDevice:
-     ${isSpatializationEnabledForCurrentDevice}.`);
+      ${isSpatializationEnabledForCurrentDevice}.`);
     // [EndExclude regist_spacesoundcallback]
   });
   // [End regist_spacesoundcallback]

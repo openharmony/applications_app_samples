@@ -8,12 +8,12 @@
 
 **图1**：主界面
 
-<img src='./screenshots/focus_js.png' width=320>
+<img src='./screenshots/audioSession.jpg' width=320>
 
-- 依次点击'设置场景'、'激活焦点+注册监听'按钮，即可激活音频焦点，焦点策略为混合播放。
-- 依次点击'设置场景'、'启用静音建议'、'激活焦点+注册监听'按钮，即可启用混音播放下静音建议通知。
-- 点击'判断焦点是否激活'按钮，即可查询焦点状态，查询信息在运行结果栏显示。
-- 点击'注销焦点+注销监听'按钮，即可注销音频焦点。
+- 依次点击'初始化audioRenderer'、'监听audioRenderer焦点变化'、'开始播放'按钮，即可使用默认焦点策略播放音频。
+- 依次点击'初始化audioRenderer'、'监听audioRenderer焦点变化'、'使用音频会话修改焦点策略'、'开始播放'按钮，即可使用音频会话修改焦点策略并播放音频。
+- 依次点击'初始化audioRenderer'、'使用音频会话申请焦点策略'、'开始播放'按钮，即可使用音频会话申请焦点策略并播放音频。
+- 播放时依次点击'停止播放'、'停用音频会话'按钮，即可结束本次会话。
 
 ## 工程结构&模块类型
 
@@ -32,11 +32,13 @@
 ### 使用 AudioSession 管理应用音频焦点
 - 源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)  
 - 使用流程：
-  - 点击'设置场景'按钮，调用`audioSessionManager.setAudioSessionScene`设置当前音频场景为`MEDIA`。
-  - 点击'启用静音建议'按钮，调用`audioSessionManager.enableMuteSuggestionWhenMixWithOthers`启用混音播放下静音建议通知。
-  - 点击'激活焦点+注册监听'按钮，首先配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on`监听焦点变化事件与焦点注销事件，监听事件触发后回调内容在回调信息栏打印。
-  - 点击'判断焦点是否激活'按钮，调用`audioSessionManager.isAudioSessionActivated`来查询当前音频焦点激活状态，查询结果在运行结果栏打印。
-  - 点击'注销焦点+注销监听'按钮，首先调用`audioSessionManager.deactivateAudioSession`停用当前应用的音频会话，再调用`audioSessionManager.off`来注销对焦点变化事件与焦点注销事件的监听。
+  - 点击'初始化audioRenderer'按钮，调用`audio.createAudioRenderer`创建audioRenderer对象。
+  - 点击'监听audioRenderer焦点变化'按钮，调用`audioRenderer.on('audioInterrupt')`注册监听焦点变化。
+  - 点击'使用音频会话修改焦点策略'按钮，首先配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionDeactivated')`监听音频会话停用事件。
+  - 点击'使用音频会话申请焦点策略'按钮，首先设置音频会话场景为`AUDIO_SESSION_SCENE_MEDIA`并配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.enableMuteSuggestionWhenMixWithOthers`接口后调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionStateChanged')`监听AudioSession焦点和状态变化事件。
+  - 点击'开始播放'按钮，调用`audioRenderer.start`开始播放音频。
+  - 点击'停止播放'按钮，调用`audioRenderer.stop`停止播放音频。
+  - 点击'停用音频会话'按钮，首先调用`audioSessionManager.off`来取消所有监听事件，再调用`audioSessionManager.deactivateAudioSession`结束当前应用的音频会话。
 
 
 ## 相关权限

@@ -353,7 +353,7 @@ async function getStatus(updateCallback?: (msg: string, isError: boolean) => voi
   }
 }
 
-// 查询当前的音频返听的混响模式
+// 查询当前的音频返听的混响模式。
 async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioLoopback !== undefined) {
     // [EndExclude get_ReverbPreset]
@@ -372,7 +372,7 @@ async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) 
   }
 }
 
-// 查询当前的音频返听的均衡器类型
+// 查询当前的音频返听的均衡器类型。
 async function getEqualizerPreset(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioLoopback !== undefined) {
     // [EndExclude get_EqualizerPreset]
@@ -400,14 +400,14 @@ struct Index {
   @State logMessages: string = '暂无日志信息';
   @State callbackMessages: string = '暂无回调信息';
 
-  // 更新日志信息
+  // 更新日志信息。
   updateLogInfo(msg: string, isError: boolean): void {
     const timestamp = new Date().toLocaleTimeString();
     const prefix = isError ? '[ERROR]' : '[INFO]';
     this.logMessages = `[${timestamp}] ${prefix} ${msg}`;
   }
 
-  // 更新回调信息
+  // 更新回调信息。
   updateCallbackInfo(msg: string): void {
     const timestamp = new Date().toLocaleTimeString();
     this.callbackMessages = `[${timestamp}] ${msg}`;
@@ -416,14 +416,14 @@ struct Index {
   build(): void {
     Scroll() {
       Column() {
-        // 信息显示区域
+        // 信息显示区域。
         Column() {
           Text('实时状态信息')
             .fontSize(18)
             .fontWeight(600)
             .margin({ bottom: 12 })
 
-          // 当前状态
+          // 当前状态。
           Column() {
             Text('当前状态')
               .fontSize(14)
@@ -441,7 +441,7 @@ struct Index {
           .alignItems(HorizontalAlign.Start)
           .margin({ bottom: 12 })
 
-          // 日志信息
+          // 日志信息。
           Column() {
             Text('日志信息')
               .fontSize(14)
@@ -461,7 +461,7 @@ struct Index {
           .alignItems(HorizontalAlign.Start)
           .margin({ bottom: 12 })
 
-          // 回调信息
+          // 回调信息。
           Column() {
             Text('回调信息')
               .fontSize(14)
@@ -487,7 +487,7 @@ struct Index {
         .borderRadius(12)
         .margin({ bottom: 16 })
 
-        // 功能按钮
+        // 功能按钮。
         Row() {
           Column() {
             Text('创建音频低时延耳返实例')
