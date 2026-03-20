@@ -51,8 +51,15 @@ let value: int|number|float = 3
 // [Start staticArkGuardExample_tuple]
 type UserTuple1 = [string, number, boolean];
 let uType1: UserTuple1 = ["Tom", 18, true];
+
+//std.core.Function
+let math1 = (a: number, b: number): number => {
+    return a + b;
+};
+math1(1,2)
 // [End staticArkGuardExample_tuple]
 // [End staticArkGuardExample_keepType]
+
 
 // [Start staticArkGuardExample_function]
 function getDemoName() {
@@ -81,7 +88,7 @@ class A {
     f1:number;
 }
 
-// [Start staticArkGuardExample_class]
+// [Start staticArkGuardExample_classTest]
 class ClassTest{
     // public static age: number = 10;
     age: int = 5;
@@ -95,7 +102,7 @@ class ClassTest{
     //     return this._name;
     // }
 }
-// [End staticArkGuardExample_class]
+// [End staticArkGuardExample_classTest]
 
 // [Start staticArkGuardExample_classExtendsBaseClass_2]
 class ClassName02 extends BaseClass {
@@ -174,6 +181,43 @@ class A2{
 
 }
 
+// [Start staticArkGuardExample_removelog]
+if (flag) {
+    console.info("hello");
+    hilog.info(0x0000, 'testTag', 'hello');
+}
+// [End staticArkGuardExample_removelog]
+
+// [Start staticArkGuardExample_removelog1]
+console.info("in tolevel");
+hilog.info(0x0000, 'testTag', 'in tolevel');
+// [End staticArkGuardExample_removelog1]
+
+// [Start staticArkGuardExample_removelog2]
+function foo1() {
+    console.info('in block');
+    hilog.info(0x0000, 'testTag', 'in block');
+}
+// [End staticArkGuardExample_removelog2]
+
+// [Start staticArkGuardExample_removelog3]
+namespace ns {
+    console.info('in ns');
+    hilog.info(0x0000, 'testTag', 'in ns');
+}
+// [End staticArkGuardExample_removelog3]
+
+// [Start staticArkGuardExample_removelog4]
+switch (value) {
+    case 1:
+      console.info("in switch case");
+      hilog.info(0x0000, 'testTag', 'in switch case');
+      break;
+    default:
+      console.info("default");
+      hilog.info(0x0000, 'testTag', 'default');
+}
+// [End staticArkGuardExample_removelog4]
 // class A11 {
 //
 //     foo(a: String, b: A1, c: A2): void {
