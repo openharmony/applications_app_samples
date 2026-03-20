@@ -672,4 +672,19 @@ void NDKCamera::InitPreviewRotation()
         OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_SetPreviewRotation failed.");
     }
 }
+
+OH_NativeBuffer_TransformType NDKCamera::GetNativeBufferTransformType(int32_t previewRotation, bool isFront)
+{
+    // NATIVEBUFFER_ROTATE的处理方式为先做镜像，再逆时针旋转
+    static const std::map<std::pair<int32_t, bool>, OH_NativeBuffer_TransformType> table = {
+        {{0, false}, NATIVEBUFFER_ROTATE_NONE}, {{90, false}, NATIVEBUFFER_ROTATE_270},
+        {{180, false}, NATIVEBUFFER_ROTATE_180}, {{270, false}, NATIVEBUFFER_ROTATE_90},
+        
+        {{0, true}, NATIVEBUFFER_FLIP_H}, {{90, true}, NATIVEBUFFER_FLIP_H_ROT90},
+        {{180, true}, NATIVEBUFFER_FLIP_H_ROT180}, {{270, true}, NATIVEBUFFER_FLIP_H_ROT270},
+    };
+    
+    auto it = table.find({previewRotation, isFront});
+    return it != table.end() ? it->second : NATIVEBUFFER_ROTATE_NONE;
+}
 } // namespace OHOS_CAMERA_NDK_SAMPLE
