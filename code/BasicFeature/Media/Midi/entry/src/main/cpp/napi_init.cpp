@@ -928,6 +928,61 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
     return result;
 }
 
+// Helper: Cleanup input port contexts for a specific device
+static void CleanupInputPortContextsForDevice(int64_t deviceId)
+{
+    OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld", (long long)deviceId);
+    for (auto ctxIt = g_inputPortContexts.begin(); ctxIt != g_inputPortContexts.end();) {
+        if (ctxIt->first.first == deviceId) {
+            if (ctxIt->second != nullptr) {
+                ctxIt->second->Stop();
+            }
+            ctxIt = g_inputPortContexts.erase(ctxIt);
+        } else {
+            ++ctxIt;
+        }
+    }
+}
+
+// Helper: Parse MIDI events from JS array
+static bool ParseMIDIEventsFromArray(napi_env env, napi_value jsArray,
+    std::vector<OH_MIDIEvent>& events, std::vector<std::vector<uint32_t>>& eventDataBuffers)
+{
+    uint32_t eventCount = 0;
+    napi_get_array_length(env, jsArray, &eventCount);
+    OH_LOG_DEBUG(LOG_APP, "[ParseMIDIEventsFromArray] eventCount=%{public}u", eventCount);
+
+    events.resize(eventCount);
+    eventDataBuffers.resize(eventCount);
+
+    for (uint32_t i = 0; i < eventCount; i++) {
+        napi_value eventObj;
+        napi_get_element(env, jsArray, i, &eventObj);
+
+        napi_value timestampValue;
+        napi_get_named_property(env, eventObj, "timestamp", &timestampValue);
+        bool lossless = false;
+        napi_get_value_bigint_uint64(env, timestampValue, &events[i].timestamp, &lossless);
+
+        napi_value dataValue;
+        napi_get_named_property(env, eventObj, "data", &dataValue);
+
+        uint32_t dataLength = 0;
+        napi_get_array_length(env, dataValue, &dataLength);
+
+        events[i].length = dataLength;
+        eventDataBuffers[i].resize(dataLength);
+
+        for (uint32_t j = 0; j < dataLength; j++) {
+            napi_value elem;
+            napi_get_element(env, dataValue, j, &elem);
+            napi_get_value_uint32(env, elem, &eventDataBuffers[i][j]);
+        }
+        events[i].data = eventDataBuffers[i].data();
+    }
+    return true;
+}
+
 // Close a MIDI device
 static napi_value CloseDevice(napi_env env, napi_callback_info info)
 {
@@ -952,17 +1007,7 @@ static napi_value CloseDevice(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(deviceId);
     if (it != g_openedDevices.end()) {
         // 清理该设备的所有InputPortContext（共享缓存模式）
-        OH_LOG_DEBUG(LOG_APP, "[CloseDevice] cleaning up input port contexts for device");
-        for (auto ctxIt = g_inputPortContexts.begin(); ctxIt != g_inputPortContexts.end();) {
-            if (ctxIt->first.first == deviceId) {
-                if (ctxIt->second != nullptr) {
-                    ctxIt->second->Stop();
-                }
-                ctxIt = g_inputPortContexts.erase(ctxIt);
-            } else {
-                ++ctxIt;
-            }
-        }
+        CleanupInputPortContextsForDevice(deviceId);
 
         OH_LOG_DEBUG(LOG_APP, "[CloseDevice] calling OH_MIDIClient_CloseDevice");
         OH_MIDIStatusCode status = OH_MIDIClient_CloseDevice(g_midiClient, it->second);
@@ -1250,40 +1295,11 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
         return result;
     }
 
-    uint32_t eventCount = 0;
-    napi_get_array_length(env, args[MIDI_ARG_INDEX_2], &eventCount);
-    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] eventCount=%{public}u", eventCount);
-
-    std::vector<OH_MIDIEvent> events(eventCount);
-    std::vector<std::vector<uint32_t>> eventDataBuffers(eventCount);
-
-    for (uint32_t i = 0; i < eventCount; i++) {
-        napi_value eventObj;
-        napi_get_element(env, args[MIDI_ARG_INDEX_2], i, &eventObj);
-
-        // Get timestamp
-        napi_value timestampValue;
-        napi_get_named_property(env, eventObj, "timestamp", &timestampValue);
-        bool lossless = false;
-        napi_get_value_bigint_uint64(env, timestampValue, &events[i].timestamp, &lossless);
-
-        // Get data array
-        napi_value dataValue;
-        napi_get_named_property(env, eventObj, "data", &dataValue);
-
-        uint32_t dataLength = 0;
-        napi_get_array_length(env, dataValue, &dataLength);
-
-        events[i].length = dataLength;
-        eventDataBuffers[i].resize(dataLength);
-
-        for (uint32_t j = 0; j < dataLength; j++) {
-            napi_value elem;
-            napi_get_element(env, dataValue, j, &elem);
-            napi_get_value_uint32(env, elem, &eventDataBuffers[i][j]);
-        }
-        events[i].data = eventDataBuffers[i].data();
-    }
+    // Parse events from JS array using helper function
+    std::vector<OH_MIDIEvent> events;
+    std::vector<std::vector<uint32_t>> eventDataBuffers;
+    ParseMIDIEventsFromArray(env, args[MIDI_ARG_INDEX_2], events, eventDataBuffers);
+    uint32_t eventCount = static_cast<uint32_t>(events.size());
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
@@ -1550,6 +1566,121 @@ static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
     return result;
 }
 
+// BLE raw data structure for async processing
+struct BleRawData {
+    std::string deviceAddress;
+    bool opened;
+    OH_MIDIDevice* device;
+    int64_t deviceId;
+    int32_t deviceType;
+    int32_t nativeProtocol;
+    std::string deviceName;
+    uint64_t vendorId;
+    uint64_t productId;
+};
+
+// Helper: Create threadsafe function for BLE device callback
+static napi_threadsafe_function CreateBLEThreadsafeFunction(napi_env env, napi_value callbackValue,
+    const std::string& deviceAddr)
+{
+    napi_valuetype valueType;
+    napi_typeof(env, callbackValue, &valueType);
+    if (valueType != napi_function) {
+        return nullptr;
+    }
+
+    // Delete old callback if exists
+    auto oldCallback = g_bleOpenCallbacks.find(deviceAddr);
+    if (oldCallback != g_bleOpenCallbacks.end() && oldCallback->second.tsfn != nullptr) {
+        OH_LOG_DEBUG(LOG_APP, "[CreateBLEThreadsafeFunction] releasing old threadsafe function");
+        napi_release_threadsafe_function(oldCallback->second.tsfn, napi_tsfn_release);
+    }
+
+    // Create threadsafe function for this BLE device
+    napi_value resourceName;
+    std::string resourceNameStr = "BleOpenedCallback_" + deviceAddr;
+    napi_create_string_utf8(env, resourceNameStr.c_str(), NAPI_AUTO_LENGTH, &resourceName);
+
+    napi_threadsafe_function tsfn = nullptr;
+    napi_status tsfnStatus = napi_create_threadsafe_function(env, callbackValue, nullptr, resourceName, 0,
+        1, nullptr, nullptr, nullptr, CallJsBleOpened, &tsfn);
+
+    if (tsfn != nullptr) {
+        BLEOpenCallbackInfo callbackInfo;
+        callbackInfo.deviceAddress = deviceAddr;
+        callbackInfo.tsfn = tsfn;
+        g_bleOpenCallbacks[deviceAddr] = callbackInfo;
+        OH_LOG_INFO(LOG_APP, "[CreateBLEThreadsafeFunction] threadsafe function stored, total=%{public}zu",
+                    g_bleOpenCallbacks.size());
+    } else {
+        OH_LOG_ERROR(LOG_APP, "[CreateBLEThreadsafeFunction] failed: %{public}d", (int)tsfnStatus);
+    }
+    return tsfn;
+}
+
+// Helper: Process BLE device opened in worker thread
+static void BleWorkerThreadFunc(BleRawData* rawData)
+{
+    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] ++enter, addr=%{public}s, opened=%{public}d",
+                 rawData->deviceAddress.c_str(), rawData->opened ? 1 : 0);
+
+    // Get threadsafe function and store device (with lock)
+    napi_threadsafe_function tsfn = nullptr;
+    {
+        std::lock_guard<std::mutex> lock(g_midiMutex);
+
+        // Store opened device if successful
+        if (rawData->opened && rawData->device != nullptr) {
+            g_openedDevices[rawData->deviceId] = rawData->device;
+            OH_LOG_INFO(LOG_APP, "[BleWorkerThread] device stored, deviceId=%{public}lld",
+                (long long)rawData->deviceId);
+        }
+
+        // Get the threadsafe function
+        auto it = g_bleOpenCallbacks.find(rawData->deviceAddress);
+        if (it != g_bleOpenCallbacks.end()) {
+            tsfn = it->second.tsfn;
+            g_bleOpenCallbacks.erase(it);
+            OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] found and removed callback from map");
+        }
+    }
+
+    if (tsfn == nullptr) {
+        OH_LOG_WARN(LOG_APP, "[BleWorkerThread] no callback found for BLE device: %{public}s",
+                    rawData->deviceAddress.c_str());
+        delete rawData;
+        return;
+    }
+
+    // Create callback data for JS
+    BleOpenedCallbackData* callbackData = new BleOpenedCallbackData();
+    callbackData->opened = rawData->opened;
+    callbackData->deviceId = rawData->deviceId;
+    callbackData->deviceType = rawData->deviceType;
+    callbackData->nativeProtocol = rawData->nativeProtocol;
+    callbackData->deviceName = rawData->deviceName;
+    callbackData->deviceAddress = rawData->deviceAddress;
+    callbackData->vendorId = rawData->vendorId;
+    callbackData->productId = rawData->productId;
+
+    // Free raw data
+    delete rawData;
+
+    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] calling napi_call_threadsafe_function");
+
+    // Send to JS thread
+    napi_status status = napi_call_threadsafe_function(tsfn, callbackData, napi_tsfn_nonblocking);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "[BleWorkerThread] napi_call_threadsafe_function failed: %{public}d", (int)status);
+        delete callbackData;
+    }
+
+    // Release the threadsafe function
+    napi_release_threadsafe_function(tsfn, napi_tsfn_release);
+
+    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] --exit");
+}
+
 // BLE device open callback - spawn async thread for processing
 // All heavy work (locking, data copy, JS callback) happens in worker thread
 static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device, OH_MIDIDeviceInformation info)
@@ -1558,19 +1689,7 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     OH_LOG_INFO(LOG_APP, "[OnBLEDeviceOpened] ++enter (callback thread), addr=%{public}s, opened=%{public}d",
                 deviceAddr.c_str(), opened ? 1 : 0);
 
-    // STEP 1: Copy necessary data in callback thread (quick operation)
-    struct BleRawData {
-        std::string deviceAddress;
-        bool opened;
-        OH_MIDIDevice* device;
-        int64_t deviceId;
-        int32_t deviceType;
-        int32_t nativeProtocol;
-        std::string deviceName;
-        uint64_t vendorId;
-        uint64_t productId;
-    };
-
+    // Copy necessary data in callback thread (quick operation)
     BleRawData* rawData = new BleRawData();
     rawData->deviceAddress = deviceAddr;
     rawData->opened = opened;
@@ -1582,70 +1701,8 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     rawData->vendorId = info.vendorId;
     rawData->productId = info.productId;
 
-    // STEP 2: Spawn worker thread for all heavy operations
-    std::thread workerThread([rawData]() {
-        OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] ++enter, addr=%{public}s, opened=%{public}d",
-                     rawData->deviceAddress.c_str(), rawData->opened ? 1 : 0);
-
-        // Get threadsafe function and store device (with lock)
-        napi_threadsafe_function tsfn = nullptr;
-        {
-            std::lock_guard<std::mutex> lock(g_midiMutex);
-
-            // Store opened device if successful
-            if (rawData->opened && rawData->device != nullptr) {
-                g_openedDevices[rawData->deviceId] = rawData->device;
-                OH_LOG_INFO(LOG_APP, "[BleWorkerThread] device stored, deviceId=%{public}lld",
-                    (long long)rawData->deviceId);
-            }
-
-            // Get the threadsafe function
-            auto it = g_bleOpenCallbacks.find(rawData->deviceAddress);
-            if (it != g_bleOpenCallbacks.end()) {
-                tsfn = it->second.tsfn;
-                g_bleOpenCallbacks.erase(it);
-                OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] found and removed callback from map");
-            }
-        }
-        // Lock released
-
-        if (tsfn == nullptr) {
-            OH_LOG_WARN(LOG_APP, "[BleWorkerThread] no callback found for BLE device: %{public}s",
-                        rawData->deviceAddress.c_str());
-            delete rawData;
-            return;
-        }
-
-        // Create callback data for JS
-        BleOpenedCallbackData* callbackData = new BleOpenedCallbackData();
-        callbackData->opened = rawData->opened;
-        callbackData->deviceId = rawData->deviceId;
-        callbackData->deviceType = rawData->deviceType;
-        callbackData->nativeProtocol = rawData->nativeProtocol;
-        callbackData->deviceName = rawData->deviceName;
-        callbackData->deviceAddress = rawData->deviceAddress;
-        callbackData->vendorId = rawData->vendorId;
-        callbackData->productId = rawData->productId;
-
-        // Free raw data
-        delete rawData;
-
-        OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] calling napi_call_threadsafe_function");
-
-        // Send to JS thread
-        napi_status status = napi_call_threadsafe_function(tsfn, callbackData, napi_tsfn_nonblocking);
-        if (status != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "[BleWorkerThread] napi_call_threadsafe_function failed: %{public}d", (int)status);
-            delete callbackData;
-        }
-
-        // Release the threadsafe function
-        napi_release_threadsafe_function(tsfn, napi_tsfn_release);
-
-        OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] --exit");
-    });
-
-    // Detach thread so it runs independently
+    // Spawn worker thread for all heavy operations
+    std::thread workerThread(BleWorkerThreadFunc, rawData);
     workerThread.detach();
 
     OH_LOG_INFO(LOG_APP, "[OnBLEDeviceOpened] --exit (callback thread, worker spawned)");
@@ -1683,38 +1740,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
 
     // Create threadsafe function if callback provided
     if (callbackValue != nullptr) {
-        napi_valuetype valueType;
-        napi_typeof(env, callbackValue, &valueType);
-        if (valueType == napi_function) {
-            // Delete old callback if exists
-            auto oldCallback = g_bleOpenCallbacks.find(deviceAddr);
-            if (oldCallback != g_bleOpenCallbacks.end() && oldCallback->second.tsfn != nullptr) {
-                OH_LOG_DEBUG(LOG_APP, "[OpenBLEDevice] releasing old threadsafe function");
-                napi_release_threadsafe_function(oldCallback->second.tsfn, napi_tsfn_release);
-            }
-
-            // Create threadsafe function for this BLE device
-            napi_value resourceName;
-            std::string resourceNameStr = "BleOpenedCallback_" + deviceAddr;
-            napi_create_string_utf8(env, resourceNameStr.c_str(), NAPI_AUTO_LENGTH, &resourceName);
-
-            napi_threadsafe_function tsfn = nullptr;
-            napi_status tsfnStatus = napi_create_threadsafe_function(env, callbackValue, nullptr, resourceName, 0,
-                1, nullptr, nullptr, nullptr, CallJsBleOpened, &tsfn);
-
-            if (tsfn != nullptr) {
-                BLEOpenCallbackInfo callbackInfo;
-                callbackInfo.deviceAddress = deviceAddr;
-                callbackInfo.tsfn = tsfn;
-                g_bleOpenCallbacks[deviceAddr] = callbackInfo;
-                OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] threadsafe function stored, total BLE callbacks=%{public}zu",
-                            g_bleOpenCallbacks.size());
-            } else {
-                OH_LOG_ERROR(LOG_APP,
-                    "[OpenBLEDevice] failed to create threadsafe function: %{public}d",
-                    (int)tsfnStatus);
-            }
-        }
+        CreateBLEThreadsafeFunction(env, callbackValue, deviceAddr);
     }
 
     OH_LOG_DEBUG(LOG_APP, "[OpenBLEDevice] calling OH_MIDIClient_OpenBLEDevice");
