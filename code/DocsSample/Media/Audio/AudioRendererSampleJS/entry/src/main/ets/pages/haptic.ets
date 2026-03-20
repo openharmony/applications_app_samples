@@ -118,10 +118,10 @@ async function registWithFD(context: common.UIAbilityContext) {
 }
 async function start(){
   if (audioHapticPlayer == null){
-    console.info('haptic player hasn't been defined.');
+    console.info('audioHapticPlayer is null.');
 
     if (globalLogUpdate) {
-      globalLogUpdate('haptic player hasn't been defined.', false);
+      globalLogUpdate('audioHapticPlayer is null.', false);
     }
   } else {
     // [Start haptic_start]
@@ -145,10 +145,10 @@ async function start(){
 }
 async function stop(){
   if (audioHapticPlayer == null){
-    console.info('haptic player hasn't been defined.');
+    console.info('audioHapticPlayer is null.');
 
     if (globalLogUpdate) {
-      globalLogUpdate('haptic player hasn't been defined.', false);
+      globalLogUpdate('audioHapticPlayer is null.', false);
     }
   } else {
     // [Start haptic_stop]
@@ -172,10 +172,10 @@ async function stop(){
 }
 async function release(){
   if(audioHapticPlayer == null){
-    console.info('haptic player hasn't been defined.');
+    console.info('audioHapticPlayer is null.');
 
     if (globalLogUpdate) {
-      globalLogUpdate('haptic player hasn't been defined.', false);
+      globalLogUpdate('audioHapticPlayer is null.', false);
     }
   } else {
     // [Start haptic_release]
@@ -221,11 +221,11 @@ struct Index {
   @State logMessages: string = '暂无日志信息';
 
   aboutToAppear(): void {
-    // 设置全局回调
+    // 设置全局回调。
     globalLogUpdate = (msg, isError) => this.updateLogInfo(msg, isError);
   }
 
-  // 更新日志信息
+  // 更新日志信息。
   updateLogInfo(msg: string, isError: boolean): void {
     const timestamp = new Date().toLocaleTimeString();
     const prefix = isError ? '[ERROR]' : '[INFO]';
@@ -235,7 +235,7 @@ struct Index {
   build(): void {
     Scroll() {
       Column() {
-        // 信息显示区域
+        // 信息显示区域。
         Column() {
           Text('日志信息')
             .fontSize(18)
@@ -260,7 +260,7 @@ struct Index {
         .borderRadius(12)
         .margin({ bottom: 16 })
 
-        // 功能按钮
+        // 功能按钮。
         Row() {
           Column() {
             Text('使用注册源注册').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
