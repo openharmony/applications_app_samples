@@ -1049,26 +1049,21 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
 
     int64_t deviceId = 0;
     napi_get_value_int64(env, args[0], &deviceId);
-
     uint32_t portIndex = 0;
     napi_get_value_uint32(env, args[1], &portIndex);
-
     int32_t protocol = 1; // Default to MIDI 1.0
     if (argc > MIDI_ARG_INDEX_2 && args[MIDI_ARG_INDEX_2] != nullptr) {
         napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
     }
-
-    // Get callback function (4th parameter)
     napi_value callbackValue = nullptr;
     if (argc > MIDI_ARG_INDEX_3 && args[MIDI_ARG_INDEX_3] != nullptr) {
         callbackValue = args[MIDI_ARG_INDEX_3];
     }
 
-    OH_LOG_INFO(LOG_APP, "[OpenInputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
+    OH_LOG_INFO(LOG_APP, "[OpenInputPort] deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
                 (long long)deviceId, portIndex, protocol);
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
     napi_value result;
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
@@ -1077,50 +1072,30 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
         return result;
     }
 
-    OH_MIDIPortDescriptor descriptor;
-    descriptor.portIndex = portIndex;
-    descriptor.protocol = (OH_MIDIProtocol)protocol;
-
+    OH_MIDIPortDescriptor descriptor = {portIndex, (OH_MIDIProtocol)protocol};
     auto key = std::make_pair(deviceId, portIndex);
-
-    // 清理已存在的context
     auto existingIt = g_inputPortContexts.find(key);
     if (existingIt != g_inputPortContexts.end()) {
-        OH_LOG_DEBUG(LOG_APP, "[OpenInputPort] stopping existing context");
         existingIt->second->Stop();
         g_inputPortContexts.erase(existingIt);
     }
 
-    // 创建新的InputPortContext
     auto context = std::make_shared<InputPortContext>(deviceId, portIndex);
-
-    // 打开底层端口，userData指向InputPortContext
-    OH_LOG_DEBUG(LOG_APP, "[OpenInputPort] calling OH_MIDIDevice_OpenInputPort");
-    OH_MIDIStatusCode status = OH_MIDIDevice_OpenInputPort(it->second, descriptor, OnMIDIReceived,
-                                                           context.get());
-    OH_LOG_INFO(LOG_APP, "[OpenInputPort] OH_MIDIDevice_OpenInputPort returned status=%{public}d", (int)status);
+    OH_MIDIStatusCode status = OH_MIDIDevice_OpenInputPort(it->second, descriptor, OnMIDIReceived, context.get());
+    OH_LOG_INFO(LOG_APP, "[OpenInputPort] OpenInputPort returned status=%{public}d", (int)status);
 
     if (status == OH_MIDI_STATUS_OK && callbackValue != nullptr) {
         napi_valuetype valueType;
         napi_typeof(env, callbackValue, &valueType);
-        if (valueType == napi_function) {
-            // 启动常驻线程
-            if (!context->Start(env, callbackValue)) {
-                OH_LOG_ERROR(LOG_APP, "[OpenInputPort] failed to start context");
-                // 启动失败时需要关闭已打开的底层端口，避免裸指针悬空
-                OH_MIDIDevice_CloseInputPort(it->second, portIndex);
-                status = OH_MIDI_STATUS_INVALID_DEVICE_HANDLE;
-            } else {
-                g_inputPortContexts[key] = context;
-                OH_LOG_INFO(LOG_APP, "[OpenInputPort] context started, total contexts=%{public}zu",
-                            g_inputPortContexts.size());
-            }
+        if (valueType == napi_function && !context->Start(env, callbackValue)) {
+            OH_MIDIDevice_CloseInputPort(it->second, portIndex);
+            status = OH_MIDI_STATUS_INVALID_DEVICE_HANDLE;
+        } else if (valueType == napi_function) {
+            g_inputPortContexts[key] = context;
         }
     }
 
     napi_create_int32(env, (int32_t)status, &result);
-
-    OH_LOG_INFO(LOG_APP, "[OpenInputPort] --exit, status=%{public}d", (int)status);
     return result;
 }
 
@@ -1278,57 +1253,42 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 
     int64_t deviceId = 0;
     napi_get_value_int64(env, args[0], &deviceId);
-
     uint32_t portIndex = 0;
     napi_get_value_uint32(env, args[1], &portIndex);
 
-    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] ++enter, deviceId=%{public}lld, portIndex=%{public}u",
-                 (long long)deviceId, portIndex);
+    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] deviceId=%{public}lld, portIndex=%{public}u", (long long)deviceId, portIndex);
 
-    // Expect an array of event objects
     bool isArray = false;
     napi_is_array(env, args[MIDI_ARG_INDEX_2], &isArray);
     if (!isArray) {
-        OH_LOG_ERROR(LOG_APP, "[SendMIDI] third argument is not an array");
         napi_value result;
         napi_create_int32(env, (int32_t)OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT, &result);
         return result;
     }
 
-    // Parse events from JS array using helper function
     std::vector<OH_MIDIEvent> events;
     std::vector<std::vector<uint32_t>> eventDataBuffers;
     ParseMIDIEventsFromArray(env, args[MIDI_ARG_INDEX_2], events, eventDataBuffers);
     uint32_t eventCount = static_cast<uint32_t>(events.size());
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
     napi_value result;
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
-        OH_LOG_ERROR(LOG_APP, "[SendMIDI] client is null or device not opened");
         napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
         return result;
     }
 
     uint32_t eventsWritten = 0;
-    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] calling OH_MIDIDevice_Send with %{public}u events", eventCount);
-    OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, events.data(),
-        static_cast<uint32_t>(eventCount), &eventsWritten);
-    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] OH_MIDIDevice_Send returned status=%{public}d, eventsWritten=%{public}u",
-                 (int)status, eventsWritten);
+    OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, events.data(), eventCount, &eventsWritten);
 
-    // Return result with eventsWritten
     napi_create_object(env, &result);
     napi_value statusValue;
     napi_create_int32(env, (int32_t)status, &statusValue);
     napi_set_named_property(env, result, "status", statusValue);
-
     napi_value writtenValue;
     napi_create_uint32(env, eventsWritten, &writtenValue);
     napi_set_named_property(env, result, "eventsWritten", writtenValue);
-
-    OH_LOG_DEBUG(LOG_APP, "[SendMIDI] --exit, status=%{public}d", (int)status);
     return result;
 }
 
@@ -1621,38 +1581,28 @@ static napi_threadsafe_function CreateBLEThreadsafeFunction(napi_env env, napi_v
 // Helper: Process BLE device opened in worker thread
 static void BleWorkerThreadFunc(BleRawData* rawData)
 {
-    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] ++enter, addr=%{public}s, opened=%{public}d",
+    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] addr=%{public}s, opened=%{public}d",
                  rawData->deviceAddress.c_str(), rawData->opened ? 1 : 0);
 
-    // Get threadsafe function and store device (with lock)
     napi_threadsafe_function tsfn = nullptr;
     {
         std::lock_guard<std::mutex> lock(g_midiMutex);
-
-        // Store opened device if successful
         if (rawData->opened && rawData->device != nullptr) {
             g_openedDevices[rawData->deviceId] = rawData->device;
-            OH_LOG_INFO(LOG_APP, "[BleWorkerThread] device stored, deviceId=%{public}lld",
-                (long long)rawData->deviceId);
         }
-
-        // Get the threadsafe function
         auto it = g_bleOpenCallbacks.find(rawData->deviceAddress);
         if (it != g_bleOpenCallbacks.end()) {
             tsfn = it->second.tsfn;
             g_bleOpenCallbacks.erase(it);
-            OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] found and removed callback from map");
         }
     }
 
     if (tsfn == nullptr) {
-        OH_LOG_WARN(LOG_APP, "[BleWorkerThread] no callback found for BLE device: %{public}s",
-                    rawData->deviceAddress.c_str());
+        OH_LOG_WARN(LOG_APP, "[BleWorkerThread] no callback for %{public}s", rawData->deviceAddress.c_str());
         delete rawData;
         return;
     }
 
-    // Create callback data for JS
     BleOpenedCallbackData* callbackData = new BleOpenedCallbackData();
     callbackData->opened = rawData->opened;
     callbackData->deviceId = rawData->deviceId;
@@ -1662,23 +1612,13 @@ static void BleWorkerThreadFunc(BleRawData* rawData)
     callbackData->deviceAddress = rawData->deviceAddress;
     callbackData->vendorId = rawData->vendorId;
     callbackData->productId = rawData->productId;
-
-    // Free raw data
     delete rawData;
 
-    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] calling napi_call_threadsafe_function");
-
-    // Send to JS thread
     napi_status status = napi_call_threadsafe_function(tsfn, callbackData, napi_tsfn_nonblocking);
     if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "[BleWorkerThread] napi_call_threadsafe_function failed: %{public}d", (int)status);
         delete callbackData;
     }
-
-    // Release the threadsafe function
     napi_release_threadsafe_function(tsfn, napi_tsfn_release);
-
-    OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] --exit");
 }
 
 // BLE device open callback - spawn async thread for processing
