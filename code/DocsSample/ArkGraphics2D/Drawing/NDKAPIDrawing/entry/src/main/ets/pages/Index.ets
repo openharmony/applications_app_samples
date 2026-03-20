@@ -35,20 +35,35 @@ const operationUrls: string[] = [
 @Entry
 @Component
 struct Index {
-  ResourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+  ResourceToString(resId: number): string {
+    return this.getUIContext().getHostContext()!.resourceManager.getStringSync(resId);
+  }
+
+  async routePage(index: number) {
+    let options: router.RouterOptions = {
+      url: operationUrls[index]
+    }
+    this.getUIContext()
+      .getRouter()
+      .pushUrl(options)
+      .then(() => {
+        console.error(`pushUrl finish`);
+      })
+      .catch((err: ESObject) => {
+        console.error(`pushUrl failed`);
+      })
   }
 
   @State listItem: Item[] = [
-    { text: this.ResourceToString($r('app.string.DrawingBrushAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingPenAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingRectAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingPathAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingMatrixAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingCanvasAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingPixelmapAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingBitmapAccess')) },
-    { text: this.ResourceToString($r('app.string.DrawingImageAccess')) }
+    { text: this.ResourceToString($r('app.string.DrawingBrushAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingPenAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingRectAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingPathAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingMatrixAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingCanvasAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingPixelmapAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingBitmapAccess').id) },
+    { text: this.ResourceToString($r('app.string.DrawingImageAccess').id) }
   ]
 
   build() {
@@ -67,9 +82,7 @@ struct Index {
                 .width(12)
             }
             .onClick(() => {
-              router.pushUrl({
-                url: operationUrls[index]
-              });
+              this.routePage(index);
             })
             .border({ radius: 20 })
             .width('90%')
