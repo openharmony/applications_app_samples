@@ -42,7 +42,7 @@
 #### 蓝牙MIDI
 
 16. 客户端创建后，蓝牙MIDI区域将显示
-17. 在蓝牙MIDI区域输入BLE设备的MAC地址（格式：AA:BB:CC:DD:EE:FF）
+17. 在蓝牙MIDI区域输入BLE设备的MAC地址（格式：xx:xx:xx:xx:xx:xx）
 18. 点击"Connect"按钮开始连接蓝牙MIDI设备
 19. 连接成功后，设备将自动添加到设备列表中
 20. 已连接的BLE设备显示在"Connected BLE Devices"列表中

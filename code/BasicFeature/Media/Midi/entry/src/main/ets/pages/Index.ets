@@ -1474,7 +1474,11 @@ struct Index {
         .alignItems(HorizontalAlign.Center)
         .backgroundColor(this.activeKeys.has(key.note) ? '#E84026' : '#333333')
         .borderRadius({ bottomLeft: 4, bottomRight: 4 })
-        .margin({ left: index === 0 ? this.keyDimensions.whiteKeyWidth * 0.65 : this.keyDimensions.whiteKeyWidth * 0.3 })
+        .margin({
+          left: index === 0
+            ? this.keyDimensions.whiteKeyWidth * 0.65
+            : this.keyDimensions.whiteKeyWidth * 0.3
+        })
         .zIndex(1)
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {

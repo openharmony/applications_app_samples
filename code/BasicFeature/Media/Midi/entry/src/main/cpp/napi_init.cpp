@@ -53,12 +53,20 @@ constexpr uint32_t MIDI_CHANNEL_MASK = 0x0F;
 constexpr uint32_t MIDI_NOTE_MASK = 0x7F;
 // Additional constants for codecheck compliance
 constexpr uint32_t MIDI_DATA_WORDS_2 = 2;
+constexpr uint32_t MIDI_DATA_WORDS_3 = 3;
 constexpr uint32_t MIDI_DATA_WORDS_4 = 4;
 constexpr uint32_t MIDI_UMP_WORDS_16 = 16;
 constexpr uint32_t MIDI_UMP_WORDS_28 = 28;
 constexpr size_t MIDI_MAX_PORT_INDEX = 2;
 constexpr size_t MIDI_PROTOCOL_1_0 = 1;
 constexpr size_t MIDI_PROTOCOL_2_0 = 2;
+// Event length constants
+constexpr uint32_t MIDI_EVENT_LENGTH_1 = 1;
+constexpr uint32_t MIDI_EVENT_LENGTH_2 = 2;
+// Argument index constants
+constexpr size_t MIDI_ARG_INDEX_2 = 2;
+constexpr size_t MIDI_ARG_INDEX_3 = 3;
+constexpr size_t MIDI_ARG_INDEX_4 = 4;
 
 // 单个MIDI事件槽位（缓存行对齐）
 struct alignas(MIDI_CACHE_LINE_SIZE) MidiEventSlot {
@@ -88,7 +96,6 @@ public:
             size_t head = head_.load(std::memory_order_relaxed);
             size_t nextHead = (head + 1) % MIDI_RING_BUFFER_SIZE;
             size_t currentTail = tail_.load(std::memory_order_acquire);
-
             if (nextHead == currentTail) {
                 overflowFlag_.store(true, std::memory_order_relaxed);
                 continue; // 缓冲区满，跳过此事件
@@ -274,7 +281,6 @@ private:
 
         while (running_.load(std::memory_order_acquire)) {
             size_t eventCount = ringBuffer_.PopBatch(batchBuffer, MIDI_BATCH_SIZE);
-
             if (eventCount > 0) {
                 ProcessBatch(batchBuffer, eventCount);
                 continue;
@@ -453,10 +459,10 @@ static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* conte
 
     napi_value args[2];
     napi_create_int32(env, callbackData->action, &args[0]);
-    args[1] = CreateDeviceInfoObjectFromData(env, callbackData->deviceId, callbackData->deviceType,
-                                              callbackData->nativeProtocol, callbackData->deviceName,
-                                              callbackData->deviceAddress, callbackData->vendorId,
-                                              callbackData->productId);
+    args[1] = CreateDeviceInfoObjectFromData(env,
+        callbackData->deviceId, callbackData->deviceType, callbackData->nativeProtocol,
+        callbackData->deviceName, callbackData->deviceAddress, callbackData->vendorId,
+        callbackData->productId);
 
     napi_value undefined;
     napi_get_undefined(env, &undefined);
@@ -539,10 +545,10 @@ static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context,
 
     napi_value args[2];
     napi_get_boolean(env, callbackData->opened, &args[0]);
-    args[1] = CreateDeviceInfoObjectFromData(env, callbackData->deviceId, callbackData->deviceType,
-                                              callbackData->nativeProtocol, callbackData->deviceName,
-                                              callbackData->deviceAddress, callbackData->vendorId,
-                                              callbackData->productId);
+    args[1] = CreateDeviceInfoObjectFromData(env,
+        callbackData->deviceId, callbackData->deviceType, callbackData->nativeProtocol,
+        callbackData->deviceName, callbackData->deviceAddress, callbackData->vendorId,
+        callbackData->productId);
 
     napi_value undefined;
     napi_get_undefined(env, &undefined);
@@ -645,9 +651,8 @@ static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
             napi_value resourceName;
             napi_create_string_utf8(env, "DeviceChangeCallback", NAPI_AUTO_LENGTH, &resourceName);
 
-            napi_status tsfnStatus = napi_create_threadsafe_function(env, args[0], nullptr, resourceName, 0, 1,
-                                            nullptr, nullptr, nullptr, CallJsDeviceChange,
-                                            &g_deviceChangeTsfn);
+            napi_status tsfnStatus = napi_create_threadsafe_function(env, args[0], nullptr, resourceName, 0,
+                1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
             if (tsfnStatus == napi_ok) {
                 OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] threadsafe function created successfully");
             } else {
@@ -746,7 +751,6 @@ static napi_value GetDeviceCount(napi_env env, napi_callback_info info)
 
     size_t count = 0;
     OH_MIDIStatusCode status = OH_MIDIClient_GetDeviceCount(g_midiClient, &count);
-
     if (status != OH_MIDI_STATUS_OK) {
         OH_LOG_ERROR(LOG_APP, "[GetDeviceCount] failed: %{public}d", (int)status);
         napi_create_int32(env, -1, &result);
@@ -786,7 +790,6 @@ static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
     std::vector<OH_MIDIDeviceInformation> devices(count);
     size_t actualCount = 0;
     status = OH_MIDIClient_GetDeviceInfos(g_midiClient, devices.data(), count, &actualCount);
-
     if (status == OH_MIDI_STATUS_OK) {
         OH_LOG_DEBUG(LOG_APP, "[GetDeviceInfos] got %{public}zu devices", actualCount);
         for (size_t i = 0; i < actualCount; i++) {
@@ -827,7 +830,6 @@ static napi_value GetPortCount(napi_env env, napi_callback_info info)
 
     size_t count = 0;
     OH_MIDIStatusCode status = OH_MIDIClient_GetPortCount(g_midiClient, deviceId, &count);
-
     if (status != OH_MIDI_STATUS_OK) {
         OH_LOG_ERROR(LOG_APP, "[GetPortCount] failed: %{public}d", (int)status);
         napi_create_int32(env, -1, &result);
@@ -872,7 +874,6 @@ static napi_value GetPortInfos(napi_env env, napi_callback_info info)
     std::vector<OH_MIDIPortInformation> ports(count);
     size_t actualCount = 0;
     status = OH_MIDIClient_GetPortInfos(g_midiClient, deviceId, ports.data(), count, &actualCount);
-
     if (status == OH_MIDI_STATUS_OK) {
         OH_LOG_DEBUG(LOG_APP, "[GetPortInfos] got %{public}zu ports", actualCount);
         for (size_t i = 0; i < actualCount; i++) {
@@ -1005,14 +1006,14 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
     napi_get_value_uint32(env, args[1], &portIndex);
 
     int32_t protocol = 1; // Default to MIDI 1.0
-    if (argc > 2 && args[2] != nullptr) {
-        napi_get_value_int32(env, args[2], &protocol);
+    if (argc > MIDI_ARG_INDEX_2 && args[MIDI_ARG_INDEX_2] != nullptr) {
+        napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
     }
 
     // Get callback function (4th parameter)
     napi_value callbackValue = nullptr;
-    if (argc > 3 && args[3] != nullptr) {
-        callbackValue = args[3];
+    if (argc > MIDI_ARG_INDEX_3 && args[MIDI_ARG_INDEX_3] != nullptr) {
+        callbackValue = args[MIDI_ARG_INDEX_3];
     }
 
     OH_LOG_INFO(LOG_APP, "[OpenInputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
@@ -1238,7 +1239,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 
     // Expect an array of event objects
     bool isArray = false;
-    napi_is_array(env, args[2], &isArray);
+    napi_is_array(env, args[MIDI_ARG_INDEX_2], &isArray);
     if (!isArray) {
         OH_LOG_ERROR(LOG_APP, "[SendMIDI] third argument is not an array");
         napi_value result;
@@ -1247,7 +1248,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
     }
 
     uint32_t eventCount = 0;
-    napi_get_array_length(env, args[2], &eventCount);
+    napi_get_array_length(env, args[MIDI_ARG_INDEX_2], &eventCount);
     OH_LOG_DEBUG(LOG_APP, "[SendMIDI] eventCount=%{public}u", eventCount);
 
     std::vector<OH_MIDIEvent> events(eventCount);
@@ -1255,7 +1256,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 
     for (uint32_t i = 0; i < eventCount; i++) {
         napi_value eventObj;
-        napi_get_element(env, args[2], i, &eventObj);
+        napi_get_element(env, args[MIDI_ARG_INDEX_2], i, &eventObj);
 
         // Get timestamp
         napi_value timestampValue;
@@ -1294,7 +1295,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
     uint32_t eventsWritten = 0;
     OH_LOG_DEBUG(LOG_APP, "[SendMIDI] calling OH_MIDIDevice_Send with %{public}u events", eventCount);
     OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, events.data(),
-                                                   static_cast<uint32_t>(eventCount), &eventsWritten);
+        static_cast<uint32_t>(eventCount), &eventsWritten);
     OH_LOG_DEBUG(LOG_APP, "[SendMIDI] OH_MIDIDevice_Send returned status=%{public}d, eventsWritten=%{public}u",
                  (int)status, eventsWritten);
 
@@ -1323,9 +1324,9 @@ static void BuildMIDI2NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
     // Word 0: (0x4 << 28) | (0x0 << 24) | (status << 20) | (channel << 16) | (note << 8) | 0x00
     // Word 1: (velocity16 << 16) | 0x0000
     uint16_t velocity16 = static_cast<uint16_t>((velocity * MIDI_VELOCITY_SCALE) / MIDI_MAX_VELOCITY);
-    umpData[0] = (MIDI_UMP_MT_2_0 << 28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << 16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
-    umpData[1] = (static_cast<uint32_t>(velocity16) << 16) | 0x0000;
+    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
+    umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
 // Build MIDI 2.0 Note Off UMP (64-bit, 2 words)
@@ -1335,9 +1336,9 @@ static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
     // Word 0: (0x4 << 28) | (0x0 << 24) | (status << 20) | (channel << 16) | (note << 8) | 0x00
     // Word 1: (velocity16 << 16) | 0x0000
     uint16_t velocity16 = static_cast<uint16_t>((velocity * MIDI_VELOCITY_SCALE) / MIDI_MAX_VELOCITY);
-    umpData[0] = (MIDI_UMP_MT_2_0 << 28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << 16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
-    umpData[1] = (static_cast<uint32_t>(velocity16) << 16) | 0x0000;
+    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
+    umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
 // Build MIDI 1.0 Note On UMP (32-bit, 1 word)
@@ -1345,8 +1346,8 @@ static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
 {
     // UMP format: MT[31-28]=0x2, Group[27-24]=0x0, Status[23-20]=0x9
     // Channel[19-16], Data1[15-8]=note, Data2[7-0]=velocity
-    umpData[0] = (MIDI_UMP_MT_1_0 << 28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << 16) | ((note & MIDI_NOTE_MASK) << 8) |
+    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) |
                  (velocity & MIDI_NOTE_MASK);
 }
 
@@ -1355,8 +1356,8 @@ static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
 {
     // UMP format: MT[31-28]=0x2, Group[27-24]=0x0, Status[23-20]=0x8
     // Channel[19-16], Data1[15-8]=note, Data2[7-0]=velocity
-    umpData[0] = (MIDI_UMP_MT_1_0 << 28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << 16) | ((note & MIDI_NOTE_MASK) << 8) |
+    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) |
                  (velocity & MIDI_NOTE_MASK);
 }
 
@@ -1385,13 +1386,13 @@ static napi_value SendNoteOn(napi_env env, napi_callback_info info)
     napi_get_value_uint32(env, args[1], &portIndex);
 
     uint32_t channel = 0;
-    napi_get_value_uint32(env, args[2], &channel);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_2], &channel);
 
     uint32_t note = 0;
-    napi_get_value_uint32(env, args[3], &note);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_3], &note);
 
     uint32_t velocity = 0;
-    napi_get_value_uint32(env, args[4], &velocity);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_4], &velocity);
 
     OH_LOG_DEBUG(LOG_APP,
         "[SendNoteOn] ++enter, deviceId=%{public}lld, portIndex=%{public}u, "
@@ -1412,7 +1413,7 @@ static napi_value SendNoteOn(napi_env env, napi_callback_info info)
     OH_MIDIProtocol protocol = GetOutputPortProtocol(deviceId, portIndex);
     OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] port protocol=%{public}d", (int)protocol);
 
-    uint32_t umpData[2];
+    uint32_t umpData[MIDI_DATA_WORDS_2];
     OH_MIDIEvent event;
     event.timestamp = 0;
     event.data = umpData;
@@ -1420,12 +1421,12 @@ static napi_value SendNoteOn(napi_env env, napi_callback_info info)
     if (protocol == OH_MIDI_PROTOCOL_2_0) {
         // MIDI 2.0 Note On: 64-bit (2 words)
         BuildMIDI2NoteOn(channel, note, velocity, umpData);
-        event.length = 2;
+        event.length = MIDI_EVENT_LENGTH_2;
         OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] MIDI 2.0 UMP: 0x%{public}08X 0x%{public}08X", umpData[0], umpData[1]);
     } else {
         // MIDI 1.0 Note On: 32-bit (1 word)
         BuildMIDI1NoteOn(channel, note, velocity, umpData);
-        event.length = 1;
+        event.length = MIDI_EVENT_LENGTH_1;
         OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] MIDI 1.0 UMP: 0x%{public}08X", umpData[0]);
     }
 
@@ -1452,13 +1453,13 @@ static napi_value SendNoteOff(napi_env env, napi_callback_info info)
     napi_get_value_uint32(env, args[1], &portIndex);
 
     uint32_t channel = 0;
-    napi_get_value_uint32(env, args[2], &channel);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_2], &channel);
 
     uint32_t note = 0;
-    napi_get_value_uint32(env, args[3], &note);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_3], &note);
 
     uint32_t velocity = 0;
-    napi_get_value_uint32(env, args[4], &velocity);
+    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_4], &velocity);
 
     OH_LOG_DEBUG(LOG_APP,
         "[SendNoteOff] ++enter, deviceId=%{public}lld, portIndex=%{public}u, "
@@ -1479,7 +1480,7 @@ static napi_value SendNoteOff(napi_env env, napi_callback_info info)
     OH_MIDIProtocol protocol = GetOutputPortProtocol(deviceId, portIndex);
     OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] port protocol=%{public}d", (int)protocol);
 
-    uint32_t umpData[2];
+    uint32_t umpData[MIDI_DATA_WORDS_2];
     OH_MIDIEvent event;
     event.timestamp = 0;
     event.data = umpData;
@@ -1487,12 +1488,12 @@ static napi_value SendNoteOff(napi_env env, napi_callback_info info)
     if (protocol == OH_MIDI_PROTOCOL_2_0) {
         // MIDI 2.0 Note Off: 64-bit (2 words)
         BuildMIDI2NoteOff(channel, note, velocity, umpData);
-        event.length = 2;
+        event.length = MIDI_EVENT_LENGTH_2;
         OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] MIDI 2.0 UMP: 0x%{public}08X 0x%{public}08X", umpData[0], umpData[1]);
     } else {
         // MIDI 1.0 Note Off: 32-bit (1 word)
         BuildMIDI1NoteOff(channel, note, velocity, umpData);
-        event.length = 1;
+        event.length = MIDI_EVENT_LENGTH_1;
         OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] MIDI 1.0 UMP: 0x%{public}08X", umpData[0]);
     }
 
@@ -1586,7 +1587,7 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
             if (rawData->opened && rawData->device != nullptr) {
                 g_openedDevices[rawData->deviceId] = rawData->device;
                 OH_LOG_INFO(LOG_APP, "[BleWorkerThread] device stored, deviceId=%{public}lld",
-                           (long long)rawData->deviceId);
+                    (long long)rawData->deviceId);
             }
 
             // Get the threadsafe function
@@ -1689,8 +1690,8 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
             napi_create_string_utf8(env, resourceNameStr.c_str(), NAPI_AUTO_LENGTH, &resourceName);
 
             napi_threadsafe_function tsfn = nullptr;
-            napi_status tsfnStatus = napi_create_threadsafe_function(env, callbackValue, nullptr, resourceName, 0, 1,
-                                            nullptr, nullptr, nullptr, CallJsBleOpened, &tsfn);
+            napi_status tsfnStatus = napi_create_threadsafe_function(env, callbackValue, nullptr, resourceName, 0,
+                1, nullptr, nullptr, nullptr, CallJsBleOpened, &tsfn);
 
             if (tsfn != nullptr) {
                 BLEOpenCallbackInfo callbackInfo;
