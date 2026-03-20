@@ -174,6 +174,12 @@ class A2{
 
 }
 
+// [Start staticArkGuardExample_removelog]
+if (flag) {
+    console.info("hello");
+    hilog.info(0x0000, 'testTag', 'hello');
+}
+// [End staticArkGuardExample_removelog]
 // class A11 {
 //
 //     foo(a: String, b: A1, c: A2): void {
