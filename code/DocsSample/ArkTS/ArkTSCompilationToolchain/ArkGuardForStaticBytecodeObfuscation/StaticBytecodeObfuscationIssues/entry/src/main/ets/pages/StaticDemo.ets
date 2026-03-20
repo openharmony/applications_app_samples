@@ -51,8 +51,15 @@ let value: int|number|float = 3
 // [Start staticArkGuardExample_tuple]
 type UserTuple1 = [string, number, boolean];
 let uType1: UserTuple1 = ["Tom", 18, true];
+
+//std.core.Function
+let math1 = (a: number, b: number): number => {
+    return a + b;
+};
+math1(1,2)
 // [End staticArkGuardExample_tuple]
 // [End staticArkGuardExample_keepType]
+
 
 // [Start staticArkGuardExample_function]
 function getDemoName() {
