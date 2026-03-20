@@ -57,6 +57,9 @@ constexpr uint32_t MIDI_DATA_WORDS_3 = 3;
 constexpr uint32_t MIDI_DATA_WORDS_4 = 4;
 constexpr uint32_t MIDI_UMP_WORDS_16 = 16;
 constexpr uint32_t MIDI_UMP_WORDS_28 = 28;
+constexpr uint32_t MIDI_UMP_SHIFT_8 = 8;
+constexpr uint32_t MIDI_UMP_SHIFT_20 = 20;
+constexpr uint32_t MIDI_UMP_SHIFT_24 = 24;
 constexpr size_t MIDI_MAX_PORT_INDEX = 2;
 constexpr size_t MIDI_PROTOCOL_1_0 = 1;
 constexpr size_t MIDI_PROTOCOL_2_0 = 2;
@@ -1139,7 +1142,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     napi_get_value_uint32(env, args[1], &portIndex);
 
     int32_t protocol = 1; // Default to MIDI 1.0
-    napi_get_value_int32(env, args[2], &protocol);
+    napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
 
     OH_LOG_INFO(LOG_APP, "[OpenOutputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
                 (long long)deviceId, portIndex, protocol);
@@ -1324,8 +1327,10 @@ static void BuildMIDI2NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
     // Word 0: (0x4 << 28) | (0x0 << 24) | (status << 20) | (channel << 16) | (note << 8) | 0x00
     // Word 1: (velocity16 << 16) | 0x0000
     uint16_t velocity16 = static_cast<uint16_t>((velocity * MIDI_VELOCITY_SCALE) / MIDI_MAX_VELOCITY);
-    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
+    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
+                 (MIDI_UMP_STATUS_NOTE_ON << MIDI_UMP_SHIFT_20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
+                 ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | 0x00;
     umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
@@ -1336,8 +1341,10 @@ static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
     // Word 0: (0x4 << 28) | (0x0 << 24) | (status << 20) | (channel << 16) | (note << 8) | 0x00
     // Word 1: (velocity16 << 16) | 0x0000
     uint16_t velocity16 = static_cast<uint16_t>((velocity * MIDI_VELOCITY_SCALE) / MIDI_MAX_VELOCITY);
-    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) | 0x00;
+    umpData[0] = (MIDI_UMP_MT_2_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
+                 (MIDI_UMP_STATUS_NOTE_OFF << MIDI_UMP_SHIFT_20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
+                 ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | 0x00;
     umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
@@ -1346,9 +1353,10 @@ static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
 {
     // UMP format: MT[31-28]=0x2, Group[27-24]=0x0, Status[23-20]=0x9
     // Channel[19-16], Data1[15-8]=note, Data2[7-0]=velocity
-    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_ON << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) |
-                 (velocity & MIDI_NOTE_MASK);
+    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
+                 (MIDI_UMP_STATUS_NOTE_ON << MIDI_UMP_SHIFT_20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
+                 ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | (velocity & MIDI_NOTE_MASK);
 }
 
 // Build MIDI 1.0 Note Off UMP (32-bit, 1 word)
@@ -1356,9 +1364,10 @@ static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
 {
     // UMP format: MT[31-28]=0x2, Group[27-24]=0x0, Status[23-20]=0x8
     // Channel[19-16], Data1[15-8]=note, Data2[7-0]=velocity
-    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << 24) | (MIDI_UMP_STATUS_NOTE_OFF << 20) |
-                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) | ((note & MIDI_NOTE_MASK) << 8) |
-                 (velocity & MIDI_NOTE_MASK);
+    umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
+                 (MIDI_UMP_STATUS_NOTE_OFF << MIDI_UMP_SHIFT_20) |
+                 ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
+                 ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | (velocity & MIDI_NOTE_MASK);
 }
 
 // Get output port protocol (returns MIDI_PROTOCOL_1_0 by default if not found)
