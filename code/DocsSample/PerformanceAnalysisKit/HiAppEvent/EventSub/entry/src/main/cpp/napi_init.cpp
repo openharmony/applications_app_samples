@@ -35,11 +35,9 @@
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
-// [End Event_Cpp_Crash_Config]
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
 
-// [Start Event_Cpp_Crash_Config]
 /**
  * @brief Print additional memory information near the PC and LR registers
  *
@@ -67,7 +65,7 @@
  * @since 24
  */
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
-// [End Event_Cpp_Crash_Config]
+// [StartExclude Event_Cpp_Crash_Config]
 
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>
@@ -557,7 +555,7 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(systemEventWatcherR);
 
-    // [Start Event_Cpp_Crash_Config]
+    // [EndExclude Event_Cpp_Crash_Config]
     // 1. 创建配置对象
     HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
     // 2. 设置各项配置参数
