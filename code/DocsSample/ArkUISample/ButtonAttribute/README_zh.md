@@ -38,6 +38,7 @@ entry/src/main/ets/
 |   |---Button3.ets                         // 按钮主题切换与多态样式
 |   |---Button4.ets                         // 按钮主题切换与多态样式
 |   |---ButtonModifierFAQ.ets               // AttributeModifier字体属性FAQ
+|   |---ButtonTypeFAQ.ets                   // ButtonType枚举与数字值对应关系FAQ
 entry/src/ohosTest/ets
 |---test
 |   |---Button1.test.ets                       // 对应页面测试代码
