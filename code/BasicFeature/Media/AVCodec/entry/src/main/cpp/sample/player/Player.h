@@ -57,6 +57,8 @@ private:
     void VideoDecOutputSyncThread();
     void AudioDecInputThread();
     void AudioDecOutputThread();
+    void AudioDecInputSyncThread();
+    void AudioDecOutputSyncThread();
     void Release();
     void StartRelease();
     void ReleaseThread();

@@ -49,6 +49,8 @@ private:
     void VideoEncOutputSyncThread();
     void AudioEncInputThread();
     void AudioEncOutputThread();
+    void AudioEncInputSyncThread();
+    void AudioEncOutputSyncThread();
     void ReleaseThread();
     void Release();
     void StartRelease();

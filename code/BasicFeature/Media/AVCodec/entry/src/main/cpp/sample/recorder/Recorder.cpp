@@ -40,6 +40,20 @@ int32_t Recorder::Init(SampleInfo &sampleInfo)
     CHECK_AND_RETURN_RET_LOG(videoEncoder_ == nullptr && muxer_ == nullptr,
                              AVCODEC_SAMPLE_ERR_ERROR, "Already started.");
 
+    // 确保之前的 audio 线程都已正确清理，避免 joinable 状态导致 crash
+    if (audioEncInputThread_ && audioEncInputThread_->joinable()) {
+        audioEncInputThread_->join();
+    }
+    audioEncInputThread_.reset();
+    if (audioEncOutputThread_ && audioEncOutputThread_->joinable()) {
+        audioEncOutputThread_->join();
+    }
+    audioEncOutputThread_.reset();
+    if (releaseThread_ && releaseThread_->joinable()) {
+        releaseThread_->join();
+    }
+    releaseThread_.reset();
+
     sampleInfo_ = sampleInfo;
     audioEncoder_ = std::make_unique<AudioEncoder>();
     audioCapturer_ = std::make_unique<AudioCapturer>();
@@ -106,8 +120,14 @@ int32_t Recorder::Start()
         ret = audioEncoder_->Start();
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Audio Encoder start failed");
         isStarted_ = true;
-        audioEncInputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncInputThread, this);
-        audioEncOutputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncOutputThread, this);
+        if (sampleInfo_.codecSyncMode) {
+            audioEncInputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncInputSyncThread, this);
+            audioEncOutputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncOutputSyncThread, this);
+        } else {
+            audioEncInputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncInputThread, this);
+            audioEncOutputThread_ = std::make_unique<std::thread>(&Recorder::AudioEncOutputThread, this);
+        }
+
         if (audioEncInputThread_ == nullptr || audioEncOutputThread_ == nullptr) {
             AVCODEC_SAMPLE_LOGE("Create thread failed");
             StartRelease();
@@ -347,6 +367,10 @@ int32_t Recorder::StopEnd()
         AVCODEC_SAMPLE_LOGI("StopEnd: Camera pipeline flush complete, signaling video EOS");
         int32_t ret = videoEncoder_->NotifyEndOfStream();
         CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Encoder notifyEndOfStream failed");
+        if (audioEncoder_ != nullptr) {
+            ret = audioEncoder_->NotifyEndOfStream();
+            CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Audio encoder notifyEndOfStream failed");
+        }
         std::unique_lock<std::mutex> lock(videoEosMutex_);
         bool eosReceived = videoEosCond_.wait_for(lock, std::chrono::seconds(WAIT_TIME),
             [this]() { return isVideoEos_.load(); });
@@ -461,4 +485,82 @@ void Recorder::AudioEncOutputThread()
         CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
     }
     AVCODEC_SAMPLE_LOGI("Exit, frame count: %{public}u", audioEncContext_->inputFrameCount);
+}
+
+void Recorder::AudioEncInputSyncThread()
+{
+    while (true) {
+        CHECK_AND_BREAK_LOG(isStarted_, "Audio encoder sync thread out");
+
+        // 收到 EOS 信号后停止输入新数据
+        if (isEos_.load()) {
+            AVCODEC_SAMPLE_LOGI("Audio input thread received EOS signal, stopping input");
+            break;
+        }
+
+        // 先等待缓存中有足够的音频数据
+        {
+            std::unique_lock<std::mutex> lock(audioEncContext_->inputMutex);
+            audioEncContext_->inputCond.wait_for(lock, 100ms, [this]() {
+                return !isStarted_ || isEos_.load() || (audioEncContext_->remainlen >= sampleInfo_.audioMaxInputSize);
+            });
+        }
+
+        if (!isStarted_ || isEos_.load()) {
+            break;
+        }
+
+        // 数据足够后再获取编码器输入 buffer
+        CodecBufferInfo bufferInfo(nullptr);
+        auto buffer = audioEncoder_->GetInputBuffer(bufferInfo, TIMEOUT_US);
+        CHECK_AND_CONTINUE_LOG(buffer != nullptr, "Get input buffer timeout, retry");
+
+        uint8_t *inputBufferAddr = OH_AVBuffer_GetAddr(buffer);
+        {
+            std::unique_lock<std::mutex> lock(audioEncContext_->inputMutex);
+            bool readSuccess = audioEncContext_->ReadCache(inputBufferAddr, sampleInfo_.audioMaxInputSize);
+            CHECK_AND_CONTINUE_LOG(readSuccess, "Read cache failed, insufficient data");
+        }
+
+        bufferInfo.buffer = reinterpret_cast<uintptr_t *>(buffer);
+        bufferInfo.attr.size = sampleInfo_.audioMaxInputSize;
+        if (isAudioEncFirstFrame_) {
+            bufferInfo.attr.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
+            isAudioEncFirstFrame_ = false;
+        } else {
+            bufferInfo.attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
+        }
+        int32_t ret = audioEncoder_->PushInputData(bufferInfo);
+        CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Push data failed, thread out");
+    }
+}
+
+void Recorder::AudioEncOutputSyncThread()
+{
+    while (true) {
+        CHECK_AND_BREAK_LOG(isStarted_, "Audio encoder output thread out");
+        CodecBufferInfo bufferInfo(nullptr);
+        int32_t errCode = audioEncoder_->GetOutputBuffer(bufferInfo, TIMEOUT_US);
+        if (errCode == AVCODEC_SAMPLE_ERR_OK) {
+            AVCODEC_SAMPLE_LOGI("AVCODEC_SAMPLE_ERR_OK");
+        } else if (errCode == AVCODEC_SAMPLE_ERR_END || errCode == AVCODEC_SAMPLE_ERR_ERROR) {
+            AVCODEC_SAMPLE_LOGW("Audio output thread received END or ERROR");
+            break;
+        } else {
+            AVCODEC_SAMPLE_LOGW("Get output buffer timeout, retry");
+            continue;
+        }
+
+        audioEncContext_->outputFrameCount++;
+        AVCODEC_SAMPLE_LOGW(
+            "Audio Out buffer sync count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
+            audioEncContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags, bufferInfo.attr.pts);
+        muxer_->WriteSample(muxer_->GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer),
+                            bufferInfo.attr);
+        int32_t ret = audioEncoder_->FreeOutputData(bufferInfo.bufferIndex);
+        CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Encoder output thread out");
+        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+    }
+    // 同步模式下不在这里调用 StartRelease()，由视频线程触发释放
+    AVCODEC_SAMPLE_LOGI("Audio output thread exited, waiting for video thread to trigger release");
 }

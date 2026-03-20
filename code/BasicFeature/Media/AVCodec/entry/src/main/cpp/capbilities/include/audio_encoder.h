@@ -33,7 +33,10 @@ public:
     int32_t Config(const SampleInfo &sampleInfo, CodecUserData *codecUserData);
     int32_t Start();
     int32_t PushInputData(CodecBufferInfo &info);
+    OH_AVBuffer *GetInputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
+    int32_t GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
     int32_t FreeOutputData(uint32_t bufferIndex);
+    int32_t NotifyEndOfStream();
     int32_t Stop();
     int32_t Release();
 

@@ -212,9 +212,14 @@ int32_t Player::StartAudioDecoder()
         return ret;
     }
 
-    audioDecInputThread_ = std::make_unique<std::thread>(&Player::AudioDecInputThread, this);
-    audioDecOutputThread_ = std::make_unique<std::thread>(&Player::AudioDecOutputThread, this);
-    
+    if (sampleInfo_.codecSyncMode) {
+        audioDecInputThread_ = std::make_unique<std::thread>(&Player::AudioDecInputSyncThread, this);
+        audioDecOutputThread_ = std::make_unique<std::thread>(&Player::AudioDecOutputSyncThread, this);
+    } else {
+        audioDecInputThread_ = std::make_unique<std::thread>(&Player::AudioDecInputThread, this);
+        audioDecOutputThread_ = std::make_unique<std::thread>(&Player::AudioDecOutputThread, this);
+    }
+
     if (!audioDecInputThread_ || !audioDecOutputThread_) {
         AVCODEC_SAMPLE_LOGE("Create audio threads failed");
         return AVCODEC_SAMPLE_ERR_ERROR;
@@ -797,6 +802,36 @@ void Player::AudioDecInputThread()
     isAudioDone = true;
 }
 
+void Player::AudioDecInputSyncThread()
+{
+    isAudioDone = false;
+    while (true) {
+        CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
+        std::unique_lock<std::mutex> lock(audioDecContext_->inputMutex);
+        CodecBufferInfo bufferInfo(nullptr);
+        auto buffer = audioDecoder_->GetInputBuffer(bufferInfo, TIMEOUT_US);
+        CHECK_AND_CONTINUE_LOG(buffer != nullptr, "Get input buffer timeout, retry");
+        bufferInfo.buffer = reinterpret_cast<uintptr_t *>(buffer);
+        AVCODEC_SAMPLE_LOGW("bufferInfo.attr.size:%{public}d", bufferInfo.attr.size);
+        audioDecContext_->inputFrameCount++;
+        lock.unlock();
+
+        demuxer_->ReadSample(demuxer_->GetAudioTrackId(), buffer, bufferInfo.attr);
+        if ((bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) && isLoop_) {
+            int32_t ret = demuxer_->Seek(0);
+            CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Loop failed, thread out");
+            ret = demuxer_->ReadSample(demuxer_->
+                    GetAudioTrackId(), reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer), bufferInfo.attr);
+            CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Read Sample failed, thread out");
+        }
+
+        int32_t ret = audioDecoder_->PushInputBuffer(bufferInfo);
+        CHECK_AND_BREAK_LOG(ret == AVCODEC_SAMPLE_ERR_OK, "Push data failed, thread out");
+        CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+    }
+    isAudioDone = true;
+}
+
 bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
 {
     int32_t ret = audioDecoder_->FreeOutputBuffer(bufferInfo.bufferIndex, true);
@@ -810,7 +845,7 @@ bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
     AVCODEC_SAMPLE_LOGI("writtenSampleCnt_: %{public}ld, bufferInfo.attr.size: %{public}d, "
                         "sampleInfo_.audioChannelCount: %{public}d",
                         writtenSampleCnt, bufferInfo.attr.size, sampleInfo_.audioChannelCount);
-                        
+
     audioBufferPts = bufferInfo.attr.pts;
     audioDecContext_->endPosAudioBufferPts = audioBufferPts;
 
@@ -818,7 +853,7 @@ bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
     audioDecContext_->renderCond.wait_for(lockRender, 20ms, [this, bufferInfo]() {
         return audioDecContext_->renderQueue.size() < BALANCE_VALUE * bufferInfo.attr.size;
     });
-    
+
     return true;
 }
 
@@ -868,6 +903,57 @@ void Player::AudioDecOutputThread()
     if (audioRenderer_) {
         OH_AudioRenderer_Stop(audioRenderer_);
     }
+    std::unique_lock<std::mutex> lock(doneMutex);
+    isAudioDone = true;
+    lock.unlock();
+    doneCond_.notify_all();
+    StartRelease();
+}
+
+void Player::AudioDecOutputSyncThread()
+{
+    isAudioDone = false;
+    while (true) {
+        CHECK_AND_BREAK_LOG(isStarted_, "Audio decoder output sync thread out");
+        CodecBufferInfo bufferInfo(nullptr);
+        int32_t errCode = audioDecoder_->GetOutputBuffer(bufferInfo, TIMEOUT_US);
+        if (errCode == AVCODEC_SAMPLE_ERR_END || errCode == AVCODEC_SAMPLE_ERR_ERROR) {
+            AVCODEC_SAMPLE_LOGW("AVCODEC_SAMPLE_ERR_END || AVCODEC_SAMPLE_ERR_ERROR");
+            break;
+        } else if (errCode == AVCODEC_SAMPLE_ERR_OK) {
+            AVCODEC_SAMPLE_LOGI("return AVCODEC_SAMPLE_ERR_OK");
+        } else {
+            AVCODEC_SAMPLE_LOGI("return continue");
+            continue;
+        }
+        audioDecContext_->outputFrameCount++;
+        AVCODEC_SAMPLE_LOGW("Audio Sync count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
+            audioDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags, bufferInfo.attr.pts);
+        if (bufferInfo.buffer == nullptr) {
+            AVCODEC_SAMPLE_LOGE("bufferInfo.buffer == nullptr, skip");
+            continue;
+        }
+        uint8_t *source = OH_AVBuffer_GetAddr(reinterpret_cast<OH_AVBuffer *>(bufferInfo.buffer));
+        if (source == nullptr) {
+            AVCODEC_SAMPLE_LOGE("source == nullptr, skip");
+            continue;
+        }
+        {
+            std::unique_lock<std::mutex> lock(audioDecContext_->outputMutex);
+            AVCODEC_SAMPLE_LOGW("audioDecContext_->renderQueue: %{public}zu,", audioDecContext_->renderQueue.size());
+            // 将解码后的PCM数据放入队列中
+            for (int i = 0; i < bufferInfo.attr.size; i++) {
+                audioDecContext_->renderQueue.push(*(source + i));
+            }
+        }
+        if (!ProcessAudioOutput(bufferInfo)) {
+            break;
+        }
+    }
+    std::unique_lock<std::mutex> lockRender(audioDecContext_->renderMutex);
+    audioDecContext_->renderCond.wait_for(lockRender, 500ms,
+        [this]() { return audioDecContext_->renderQueue.size() < 1; });
+    AVCODEC_SAMPLE_LOGI("Out buffer end");
     std::unique_lock<std::mutex> lock(doneMutex);
     isAudioDone = true;
     lock.unlock();
