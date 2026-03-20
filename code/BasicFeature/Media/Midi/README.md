@@ -6,17 +6,9 @@
 
 ### 效果预览
 
-| 主页                                   | 蓝牙MIDI连接页面                               |
-|--------------------------------------|---------------------------------------------|
-| ![Index](screenshots/device/index.png)| ![BLE](screenshots/device/ble.png) |
-
-| 设备管理页面                               | 端口管理页面                                    |
-|-----------------------------------------|--------------------------------------------|
-| ![Device](screenshots/device/device.png)| ![Port](screenshots/device/port.png) |
-
-| 虚拟钢琴键盘                               | MIDI输入监控页面                                 |
-|-----------------------------------------|--------------------------------------------|
-| ![Piano](screenshots/device/piano.png)  | ![Input](screenshots/device/input.png)    |
+| 主页                                   |
+|--------------------------------------|
+| ![Index](screenshots/device/index.png)|
 
 ### 使用说明
 
@@ -29,34 +21,37 @@
 #### 设备管理
 
 4. 在设备列表中选择一个MIDI设备（USB或BLE）
-5. 点击"Open Device"按钮打开选中的设备
-6. 设备打开成功后，将显示该设备的输入/输出端口列表
+5. 选择设备后，"Device Control"区域将显示
+6. 点击"Open Device"按钮打开选中的设备
+7. 设备打开成功后，将显示该设备的输入/输出端口列表
 
 #### 端口操作
 
-7. 对于输入端口：点击"Open"按钮打开端口，开始接收MIDI数据
-8. 对于输出端口：点击"Open"按钮打开端口，准备发送MIDI数据
-9. 打开的端口可通过"Close"按钮关闭
+8. 对于输入端口：点击"Open"按钮打开端口，开始接收MIDI数据
+9. 对于输出端口：点击"Open"按钮打开端口，准备发送MIDI数据
+10. 打开的端口可通过"Close"按钮关闭
 
 #### 虚拟钢琴键盘
 
-10. 打开输出端口后，虚拟钢琴键盘将激活
-11. 按下白键或黑键发送Note On消息
-12. 释放按键发送Note Off消息
-13. 可通过"Channel"输入框设置MIDI通道（0-15）
+11. 设备打开后，虚拟钢琴键盘区域将显示
+12. 打开输出端口后，虚拟钢琴键盘将激活（否则显示提示"Open an output port to play"）
+13. 挌下白键或黑键发送Note On消息
+14. 释放按键发送Note Off消息
+15. 可通过"Channel"输入框设置MIDI通道（0-15）
 
 #### 蓝牙MIDI
 
-14. 在蓝牙MIDI区域输入BLE设备的MAC地址（格式：AA:BB:CC:DD:EE:FF）
-15. 点击"Connect"按钮开始连接蓝牙MIDI设备
-16. 连接成功后，设备将自动添加到设备列表中
-17. 已连接的BLE设备显示在"Connected BLE Devices"列表中
+16. 客户端创建后，蓝牙MIDI区域将显示
+17. 在蓝牙MIDI区域输入BLE设备的MAC地址（格式：AA:BB:CC:DD:EE:FF）
+18. 点击"Connect"按钮开始连接蓝牙MIDI设备
+19. 连接成功后，设备将自动添加到设备列表中
+20. 已连接的BLE设备显示在"Connected BLE Devices"列表中
 
 #### MIDI输入监控
 
-18. 打开输入端口后，"MIDI Input Monitor"区域将显示
-19. 收到的MIDI消息将实时显示在该区域
-20. 支持显示Note On、Note Off、Control Change等消息类型
+21. 打开输入端口后，"MIDI Input Monitor"区域将显示
+22. 收到的MIDI消息将实时显示在该区域
+23. 支持显示Note On、Note Off、Control Change等消息类型
 
 ### 工程目录
 
@@ -124,11 +119,11 @@ entry/src/main/
 
 ### 相关权限
 
-蓝牙MIDI涉及的权限包括：
+本示例涉及以下权限：
 
-1. 允许应用使用蓝牙：[ohos.permission.ACCESS_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
+1. 允许应用使用蓝牙：[ohos.permission.ACCESS_BLUETOOTH](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 
-2. 允许应用获取 approximate 位置信息：[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
+2. 允许应用发现蓝牙设备：[ohos.permission.DISCOVER_BLUETOOTH](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 
 ### 依赖
 
@@ -137,8 +132,8 @@ entry/src/main/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568、手机、平板、2in1设备；
-2. 本示例仅支持API 24版本SDK，SDK版本号(API Version 24 Release)，镜像版本号(6.0 Release)；
-3. 本示例需要使用DevEco Studio 版本号(6.0 Release)才可编译运行；
+2. 本示例仅支持API 24版本SDK，SDK版本号(API Version 24 Release)，镜像版本号(6.1 Release)；
+3. 本示例需要使用DevEco Studio 版本号(6.1 Release)才可编译运行；
 4. 使用蓝牙MIDI功能需要设备支持蓝牙BLE；
 5. MIDI消息使用UMP（Universal MIDI Packet）格式；
 
@@ -160,7 +155,6 @@ entry/src/main/
 | 客户端管理测试 | 2 | 重复创建测试、未创建时操作测试 |
 | UI组件测试 | 4 | 通道输入、Event Log滚动、Clear Log功能、钢琴键盘渲染 |
 | 触摸交互测试 | 2 | 钢琴键盘触摸响应、无输出端口时触摸测试 |
-| 稳定性测试 | 2 | 长时间运行稳定性、连续操作压力测试 |
 
 #### 运行测试
 

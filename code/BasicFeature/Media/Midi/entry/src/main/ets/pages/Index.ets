@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { mediaquery } from '@kit.ArkUI';
 import { emitter, BusinessError } from '@kit.BasicServicesKit';
 import { ble, connection } from '@kit.ConnectivityKit';
 import common from '@ohos.app.ability.common';
@@ -94,6 +95,16 @@ interface PianoKeyDimensions {
 // Breakpoint type for responsive design
 type BreakpointType = 'xs' | 'sm' | 'md' | 'lg';
 
+// Responsive font sizes configuration
+const FONT_SIZES = {
+  title: { xs: 18, sm: 20, md: 24, lg: 28 },
+  subtitle: { xs: 14, sm: 16, md: 16, lg: 18 },
+  body: { xs: 12, sm: 14, md: 14, lg: 14 },
+  caption: { xs: 12, sm: 12, md: 12, lg: 12 },
+  small: { xs: 10, sm: 10, md: 10, lg: 10 },
+  pianoKey: { xs: 6, sm: 7, md: 8, lg: 8 }
+};
+
 // Piano keys configuration (C4 to C5, one octave)
 const WHITE_KEYS: PianoKey[] = [
   { note: 60, name: 'C4', isBlack: false },
@@ -131,7 +142,9 @@ struct Index {
   @State receivedMessages: string[] = []; // Changed to array for better performance
   @State channelValue: number = 0;
   @State activeKeys: Set<number> = new Set<number>();
-  @State keyDimensions: PianoKeyDimensions = { whiteKeyWidth: 40, whiteKeyHeight: 140, blackKeyWidth: 28, blackKeyHeight: 90 };
+  @State keyDimensions: PianoKeyDimensions = {
+    whiteKeyWidth: 40, whiteKeyHeight: 140, blackKeyWidth: 28, blackKeyHeight: 90
+  };
 
   // BLE related states
   @State bleDeviceAddress: string = '';
@@ -144,6 +157,14 @@ struct Index {
 
   // Responsive design states
   @State currentBreakpoint: BreakpointType = 'md';
+
+  // Media query listeners
+  private xsMediaQueryListener: mediaquery.MediaQueryListener | null = null;
+  private smMediaQueryListener: mediaquery.MediaQueryListener | null = null;
+  private mdMediaQueryListener: mediaquery.MediaQueryListener | null = null;
+  private lgMediaQueryListener: mediaquery.MediaQueryListener | null = null;
+  private breakpointDebounceTimer: number = -1;
+
   private logScroller: Scroller = new Scroller();
   private midiInputScroller: Scroller = new Scroller();
   private pianoScroller: Scroller = new Scroller();
@@ -155,6 +176,8 @@ struct Index {
 
   aboutToAppear(): void {
     hilog.info(DOMAIN, TAG, '[aboutToAppear] ++enter');
+    // Setup responsive design media query listeners
+    this.setupMediaQueryListeners();
     // Register event listeners for async callback handling
     this.registerEventListeners();
     // Initialize preferences for recent devices
@@ -167,6 +190,8 @@ struct Index {
 
   aboutToDisappear(): void {
     hilog.info(DOMAIN, TAG, '[aboutToDisappear] ++enter');
+    // Teardown responsive design media query listeners
+    this.teardownMediaQueryListeners();
     // Stop BLE scan if active
     if (this.bleScanning) {
       this.stopBleScan();
@@ -183,21 +208,24 @@ struct Index {
     // Device change event
     emitter.on({ eventId: EVENT_DEVICE_CHANGE }, (eventData: emitter.EventData) => {
       const data: DeviceChangeEventData = eventData.data as DeviceChangeEventData;
-      hilog.info(DOMAIN, TAG, '[registerEventListeners] received EVENT_DEVICE_CHANGE, deviceId=%{public}d', data.deviceId);
+      hilog.info(DOMAIN, TAG,
+        '[registerEventListeners] received EVENT_DEVICE_CHANGE, deviceId=%{public}d', data.deviceId);
       this.handleDeviceChange(data);
     });
 
     // MIDI received event
     emitter.on({ eventId: EVENT_MIDI_RECEIVED }, (eventData: emitter.EventData) => {
       const data: MidiReceivedEventData = eventData.data as MidiReceivedEventData;
-      hilog.info(DOMAIN, TAG, '[registerEventListeners] received EVENT_MIDI_RECEIVED, dataCount=%{public}d', data.umpData.length);
+      hilog.info(DOMAIN, TAG,
+        '[registerEventListeners] received EVENT_MIDI_RECEIVED, dataCount=%{public}d', data.umpData.length);
       this.handleMidiReceived(data.umpData);
     });
 
     // BLE opened event
     emitter.on({ eventId: EVENT_BLE_OPENED }, (eventData: emitter.EventData) => {
       const data: BleOpenedEventData = eventData.data as BleOpenedEventData;
-      hilog.info(DOMAIN, TAG, '[registerEventListeners] received EVENT_BLE_OPENED, opened=%{public}s', data.opened.toString());
+      hilog.info(DOMAIN, TAG,
+        '[registerEventListeners] received EVENT_BLE_OPENED, opened=%{public}s', data.opened.toString());
       this.handleBleOpened(data);
     });
 
@@ -228,7 +256,9 @@ struct Index {
 
   // Load recent BLE devices from preferences
   async loadRecentBleDevices(): Promise<void> {
-    if (!this.preferencesStore) return;
+    if (!this.preferencesStore) {
+      return;
+    }
     try {
       const devicesJson = await this.preferencesStore.get('recent_ble_devices', '[]') as string;
       this.recentBleDevices = JSON.parse(devicesJson);
@@ -240,7 +270,9 @@ struct Index {
 
   // Save recent BLE devices to preferences
   async saveRecentBleDevices(): Promise<void> {
-    if (!this.preferencesStore) return;
+    if (!this.preferencesStore) {
+      return;
+    }
     try {
       await this.preferencesStore.put('recent_ble_devices', JSON.stringify(this.recentBleDevices));
       await this.preferencesStore.flush();
@@ -465,7 +497,8 @@ struct Index {
   }
 
   cleanup(): void {
-    hilog.info(DOMAIN, TAG, '[cleanup] ++enter, isDeviceOpen=%{public}s, selectedDeviceId=%{public}d, clientCreated=%{public}s',
+    hilog.info(DOMAIN, TAG,
+      '[cleanup] ++enter, isDeviceOpen=%{public}s, selectedDeviceId=%{public}d, clientCreated=%{public}s',
       this.isDeviceOpen.toString(), this.selectedDeviceId, this.clientCreated.toString());
     try {
       if (this.isDeviceOpen && this.selectedDeviceId >= 0) {
@@ -554,7 +587,9 @@ struct Index {
 
   // Handle device change on main thread (called from event listener)
   handleDeviceChange(data: DeviceChangeEventData): void {
-    hilog.info(DOMAIN, TAG, '[handleDeviceChange] ++enter, action=%{public}d, deviceId=%{public}d, deviceName=%{public}s, deviceType=%{public}d, deviceAddress=%{public}s',
+    hilog.info(DOMAIN, TAG,
+      '[handleDeviceChange] ++enter, action=%{public}d, deviceId=%{public}d, ' +
+      'deviceName=%{public}s, deviceType=%{public}d, deviceAddress=%{public}s',
       data.action, data.deviceId, data.deviceName, data.deviceType, data.deviceAddress);
 
     if (data.action === 0) { // CONNECTED
@@ -574,7 +609,8 @@ struct Index {
             productId: BigInt(0)
           };
           this.bleDeviceList = [...this.bleDeviceList, deviceInfo];
-          hilog.info(DOMAIN, TAG, '[handleDeviceChange] added to BLE device list, count=%{public}d', this.bleDeviceList.length);
+          hilog.info(DOMAIN, TAG,
+            '[handleDeviceChange] added to BLE device list, count=%{public}d', this.bleDeviceList.length);
         }
       }
     } else { // DISCONNECTED
@@ -611,7 +647,8 @@ struct Index {
         hilog.info(DOMAIN, TAG, '[refreshDevices] got %{public}d devices', this.deviceList.length);
         // Log each device info
         this.deviceList.forEach((device, index) => {
-          hilog.info(DOMAIN, TAG, '[refreshDevices] device[%{public}d]: id=%{public}d, name=%{public}s, type=%{public}d',
+          hilog.info(DOMAIN, TAG,
+            '[refreshDevices] device[%{public}d]: id=%{public}d, name=%{public}s, type=%{public}d',
             index, device.deviceId, device.deviceName, device.deviceType);
         });
       } else {
@@ -626,7 +663,8 @@ struct Index {
   }
 
   selectDevice(deviceId: number): void {
-    hilog.info(DOMAIN, TAG, '[selectDevice] ++enter, deviceId=%{public}d, currentSelectedId=%{public}d, isDeviceOpen=%{public}s',
+    hilog.info(DOMAIN, TAG,
+      '[selectDevice] ++enter, deviceId=%{public}d, currentSelectedId=%{public}d, isDeviceOpen=%{public}s',
       deviceId, this.selectedDeviceId, this.isDeviceOpen.toString());
 
     if (this.isDeviceOpen && this.selectedDeviceId !== deviceId) {
@@ -652,7 +690,8 @@ struct Index {
           this.portList.length, this.inputPorts.length, this.outputPorts.length);
         // Log each port info
         this.portList.forEach((port, index) => {
-          hilog.info(DOMAIN, TAG, '[loadPorts] port[%{public}d]: index=%{public}d, name=%{public}s, direction=%{public}d',
+          hilog.info(DOMAIN, TAG,
+            '[loadPorts] port[%{public}d]: index=%{public}d, name=%{public}s, direction=%{public}d',
             index, port.portIndex, port.name, port.direction);
         });
       } else {
@@ -750,7 +789,8 @@ struct Index {
       const status = (ump >> 20) & 0x0F;
       const channel = (ump >> 16) & 0x0F;
 
-      hilog.debug(DOMAIN, TAG, '[handleMidiReceived] UMP=0x%{public}X, type=%{public}d, status=%{public}d, ch=%{public}d',
+      hilog.debug(DOMAIN, TAG,
+        '[handleMidiReceived] UMP=0x%{public}X, type=%{public}d, status=%{public}d, ch=%{public}d',
         ump, messageType, status, channel);
 
       if (messageType === 0x2) { // MIDI 1.0 Channel Voice
@@ -1230,6 +1270,91 @@ struct Index {
     }
   }
 
+  // Setup media query listeners for responsive design
+  setupMediaQueryListeners(): void {
+    const xsQuery = mediaquery.matchMediaSync('(width < 320vp)');
+    const smQuery = mediaquery.matchMediaSync('(320vp <= width < 600vp)');
+    const mdQuery = mediaquery.matchMediaSync('(600vp <= width < 840vp)');
+    const lgQuery = mediaquery.matchMediaSync('(width >= 840vp)');
+
+    this.xsMediaQueryListener = xsQuery;
+    xsQuery.on('change', (result: mediaquery.MediaQueryResult) => {
+      if (result.matches) {
+        this.handleBreakpointChange('xs');
+      }
+    });
+
+    this.smMediaQueryListener = smQuery;
+    smQuery.on('change', (result: mediaquery.MediaQueryResult) => {
+      if (result.matches) {
+        this.handleBreakpointChange('sm');
+      }
+    });
+
+    this.mdMediaQueryListener = mdQuery;
+    mdQuery.on('change', (result: mediaquery.MediaQueryResult) => {
+      if (result.matches) {
+        this.handleBreakpointChange('md');
+      }
+    });
+
+    this.lgMediaQueryListener = lgQuery;
+    lgQuery.on('change', (result: mediaquery.MediaQueryResult) => {
+      if (result.matches) {
+        this.handleBreakpointChange('lg');
+      }
+    });
+
+    // Set initial breakpoint
+    if (xsQuery.matches) {
+      this.currentBreakpoint = 'xs';
+    } else if (smQuery.matches) {
+      this.currentBreakpoint = 'sm';
+    } else if (mdQuery.matches) {
+      this.currentBreakpoint = 'md';
+    } else {
+      this.currentBreakpoint = 'lg';
+    }
+    this.updateKeyDimensions();
+  }
+
+  // Handle breakpoint change with debounce
+  handleBreakpointChange(breakpoint: BreakpointType): void {
+    if (this.breakpointDebounceTimer !== -1) {
+      clearTimeout(this.breakpointDebounceTimer);
+    }
+    this.breakpointDebounceTimer = setTimeout(() => {
+      if (this.currentBreakpoint !== breakpoint) {
+        this.currentBreakpoint = breakpoint;
+        this.updateKeyDimensions();
+      }
+    }, 100);
+  }
+
+  // Teardown media query listeners
+  teardownMediaQueryListeners(): void {
+    if (this.xsMediaQueryListener) {
+      this.xsMediaQueryListener.off('change');
+      this.xsMediaQueryListener = null;
+    }
+    if (this.smMediaQueryListener) {
+      this.smMediaQueryListener.off('change');
+      this.smMediaQueryListener = null;
+    }
+    if (this.mdMediaQueryListener) {
+      this.mdMediaQueryListener.off('change');
+      this.mdMediaQueryListener = null;
+    }
+    if (this.lgMediaQueryListener) {
+      this.lgMediaQueryListener.off('change');
+      this.lgMediaQueryListener = null;
+    }
+    if (this.breakpointDebounceTimer !== -1) {
+      clearTimeout(this.breakpointDebounceTimer);
+      this.breakpointDebounceTimer = -1;
+    }
+  }
+
   // Format timestamp for recent devices
   formatTimestamp(timestamp: number): string {
     const now = Date.now();
@@ -1249,13 +1374,13 @@ struct Index {
   pianoKeyboard() {
     Column() {
       Text('Virtual Piano Keyboard')
-        .fontSize(16)
+        .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: 12 })
 
       if (this.openOutputPorts.size === 0) {
         Text('Open an output port to play')
-          .fontSize(14)
+          .fontSize(FONT_SIZES.body[this.currentBreakpoint])
           .fontColor('#999999')
           .margin({ bottom: 8 })
       }
@@ -1284,7 +1409,7 @@ struct Index {
       // Channel selector
       Row() {
         Text('Channel:')
-          .fontSize(14)
+          .fontSize(FONT_SIZES.body[this.currentBreakpoint])
         TextInput({ text: this.channelValue.toString() })
           .type(InputType.Number)
           .width(50)
@@ -1312,7 +1437,7 @@ struct Index {
       ForEach(WHITE_KEYS, (key: PianoKey) => {
         Column() {
           Text(key.name)
-            .fontSize(this.currentBreakpoint === 'xs' ? 8 : 10)
+            .fontSize(FONT_SIZES.small[this.currentBreakpoint])
             .fontColor(this.activeKeys.has(key.note) ? '#FFFFFF' : '#333333')
         }
         .width(this.keyDimensions.whiteKeyWidth)
@@ -1340,7 +1465,7 @@ struct Index {
       ForEach(BLACK_KEYS, (key: PianoKey, index: number) => {
         Column() {
           Text(key.name.replace('#', ''))
-            .fontSize(this.currentBreakpoint === 'xs' ? 6 : 8)
+            .fontSize(FONT_SIZES.pianoKey[this.currentBreakpoint])
             .fontColor('#FFFFFF')
         }
         .width(this.keyDimensions.blackKeyWidth)
@@ -1368,12 +1493,14 @@ struct Index {
       // Header
       Row() {
         Text(this.message)
-          .fontSize(24)
+          .fontSize(FONT_SIZES.title[this.currentBreakpoint])
           .fontWeight(FontWeight.Bold)
           .fontColor('#182431')
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .width('100%')
-      .height(56)
+      .height(this.currentBreakpoint === 'xs' ? 48 : 56)
       .padding({ left: 16, right: 16 })
       .backgroundColor(Color.White)
 
@@ -1382,13 +1509,13 @@ struct Index {
           // Client Controls
           Column() {
             Text('Client Management')
-              .fontSize(16)
+              .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
               .fontWeight(FontWeight.Medium)
               .margin({ bottom: 12 })
 
             Row({ space: 12 }) {
               Button(this.clientCreated ? 'Destroy Client' : 'Create Client')
-                .fontSize(14)
+                .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                 .width('45%')
                 .backgroundColor(this.clientCreated ? '#E84026' : '#007DFF')
                 .onClick(() => {
@@ -1400,7 +1527,7 @@ struct Index {
                 })
 
               Button('Refresh Devices')
-                .fontSize(14)
+                .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                 .width('45%')
                 .enabled(this.clientCreated)
                 .backgroundColor(this.clientCreated ? '#007DFF' : '#CCCCCC')
@@ -1420,19 +1547,19 @@ struct Index {
           if (this.clientCreated) {
             Column() {
               Text('Bluetooth MIDI')
-                .fontSize(16)
+                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               Text('Connect to BLE MIDI devices by entering their MAC address or select from recent devices')
-                .fontSize(12)
+                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                 .fontColor('#666666')
                 .margin({ bottom: 8 })
 
               // BLE Scan Section
               Row({ space: 8 }) {
                 Button(this.bleScanning ? 'Scanning...' : 'Scan for MIDI Devices')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .layoutWeight(1)
                   .height(40)
                   .backgroundColor(this.bleScanning ? '#CCCCCC' : '#4CAF50')
@@ -1446,7 +1573,7 @@ struct Index {
                   })
                 if (this.bleScanning) {
                   Button('Stop')
-                    .fontSize(14)
+                    .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                     .width(70)
                     .height(40)
                     .backgroundColor('#E84026')
@@ -1461,7 +1588,7 @@ struct Index {
               // BLE Scan Error
               if (this.bleScanError.length > 0) {
                 Text(this.bleScanError)
-                  .fontSize(12)
+                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                   .fontColor('#E84026')
                   .margin({ bottom: 8 })
               }
@@ -1469,7 +1596,7 @@ struct Index {
               // Scanned BLE MIDI Devices
               if (this.scannedBleDevices.length > 0) {
                 Text('Found MIDI Devices:')
-                  .fontSize(12)
+                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                   .fontColor('#888888')
                   .margin({ bottom: 4 })
 
@@ -1477,16 +1604,20 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.name || 'MIDI Device')
-                        .fontSize(12)
+                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`RSSI: ${device.rssi} dBm | ${device.deviceId}`)
-                        .fontSize(10)
+                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
                         .fontColor('#666666')
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     }
                     .alignItems(HorizontalAlign.Start)
                     .layoutWeight(1)
                     Button('Connect')
-                      .fontSize(10)
+                      .fontSize(FONT_SIZES.small[this.currentBreakpoint])
                       .height(28)
                       .backgroundColor('#4CAF50')
                       .enabled(!this.bleConnecting)
@@ -1509,7 +1640,7 @@ struct Index {
               // Recent BLE devices for quick access
               if (this.recentBleDevices.length > 0) {
                 Text('Recent Devices:')
-                  .fontSize(12)
+                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                   .fontColor('#888888')
                   .margin({ bottom: 4 })
 
@@ -1517,17 +1648,21 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.name || 'BLE MIDI Device')
-                        .fontSize(12)
+                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`${device.address} - ${this.formatTimestamp(device.timestamp)}`)
-                        .fontSize(10)
+                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
                         .fontColor('#666666')
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     }
                     .alignItems(HorizontalAlign.Start)
                     .layoutWeight(1)
                     Row({ space: 4 }) {
                       Button('Connect')
-                        .fontSize(10)
+                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
                         .height(28)
                         .backgroundColor('#4CAF50')
                         .enabled(!this.bleConnecting)
@@ -1536,7 +1671,7 @@ struct Index {
                           this.openBLEDevice(device.address);
                         })
                       Button('X')
-                        .fontSize(10)
+                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
                         .width(28)
                         .height(28)
                         .backgroundColor('#E84026')
@@ -1575,7 +1710,7 @@ struct Index {
               // Discovered BLE devices
               if (this.bleDeviceList.length > 0) {
                 Text('Connected BLE Devices:')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .fontColor('#666666')
                   .margin({ top: 12, bottom: 8 })
 
@@ -1583,17 +1718,21 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.deviceName || 'BLE MIDI Device')
-                        .fontSize(14)
+                        .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`Address: ${device.deviceAddress}`)
-                        .fontSize(12)
+                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                         .fontColor('#666666')
                         .margin({ top: 2 })
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                     }
                     .alignItems(HorizontalAlign.Start)
                     .layoutWeight(1)
                     Button(this.selectedDeviceId === device.deviceId ? 'Selected' : 'Select')
-                      .fontSize(12)
+                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                       .width(60)
                       .backgroundColor(this.selectedDeviceId === device.deviceId ? '#4CAF50' : '#007DFF')
                       .onClick(() => {
@@ -1619,10 +1758,10 @@ struct Index {
             Column() {
               Row() {
                 Text('Connected Devices')
-                  .fontSize(16)
+                  .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                   .fontWeight(FontWeight.Medium)
                 Text(`(${this.deviceList.length})`)
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .fontColor('#666666')
                   .margin({ left: 4 })
               }
@@ -1631,7 +1770,7 @@ struct Index {
 
               if (this.deviceList.length === 0) {
                 Text('No MIDI devices found. Connect a USB/BLE MIDI device.')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .fontColor('#999999')
                   .width('100%')
                   .textAlign(TextAlign.Center)
@@ -1641,10 +1780,12 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.deviceName || 'Unknown Device')
-                        .fontSize(14)
+                        .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                         .fontWeight(FontWeight.Medium)
+                        .maxLines(1)
+                        .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`ID: ${device.deviceId} | Type: ${this.getDeviceTypeName(device.deviceType)}`)
-                        .fontSize(12)
+                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                         .fontColor('#666666')
                         .margin({ top: 4 })
                     }
@@ -1677,13 +1818,13 @@ struct Index {
           if (this.selectedDeviceId >= 0) {
             Column() {
               Text('Device Control')
-                .fontSize(16)
+                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               Row({ space: 12 }) {
                 Button(this.isDeviceOpen ? 'Close Device' : 'Open Device')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .width('45%')
                   .backgroundColor(this.isDeviceOpen ? '#E84026' : '#007DFF')
                   .onClick(() => {
@@ -1707,24 +1848,26 @@ struct Index {
           if (this.isDeviceOpen) {
             Column() {
               Text('Port Management')
-                .fontSize(16)
+                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               // Input Ports
               if (this.inputPorts.length > 0) {
                 Text('Input Ports (Receive MIDI)')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .fontColor('#666666')
                   .margin({ bottom: 8 })
 
                 ForEach(this.inputPorts, (port: MidiPortInfo) => {
                   Row() {
                     Text(`Port ${port.portIndex}: ${port.name || 'Unnamed'}`)
-                      .fontSize(14)
+                      .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                       .layoutWeight(1)
+                      .maxLines(1)
+                      .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openInputPorts.has(port.portIndex) ? 'Close' : 'Open')
-                      .fontSize(12)
+                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                       .width(60)
                       .backgroundColor(this.openInputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
@@ -1746,17 +1889,19 @@ struct Index {
               // Output Ports
               if (this.outputPorts.length > 0) {
                 Text('Output Ports (Send MIDI)')
-                  .fontSize(14)
+                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                   .fontColor('#666666')
                   .margin({ top: 12, bottom: 8 })
 
                 ForEach(this.outputPorts, (port: MidiPortInfo) => {
                   Row() {
                     Text(`Port ${port.portIndex}: ${port.name || 'Unnamed'}`)
-                      .fontSize(14)
+                      .fontSize(FONT_SIZES.body[this.currentBreakpoint])
                       .layoutWeight(1)
+                      .maxLines(1)
+                      .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openOutputPorts.has(port.portIndex) ? 'Close' : 'Open')
-                      .fontSize(12)
+                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                       .width(60)
                       .backgroundColor(this.openOutputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
@@ -1791,11 +1936,11 @@ struct Index {
             Column() {
               Row() {
                 Text('MIDI Input Monitor')
-                  .fontSize(16)
+                  .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                   .fontWeight(FontWeight.Medium)
                   .layoutWeight(1)
                 Button('Clear')
-                  .fontSize(12)
+                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                   .height(28)
                   .width(60)
                   .backgroundColor('#E84026')
@@ -1810,7 +1955,7 @@ struct Index {
 
               Scroll(this.midiInputScroller) {
                 Text(this.receivedMessages.length > 0 ? this.receivedMessages.join('\n') : 'Waiting for MIDI input...')
-                  .fontSize(12)
+                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                   .fontColor(this.receivedMessages.length > 0 ? '#333333' : '#999999')
                   .width('100%')
               }
@@ -1834,11 +1979,11 @@ struct Index {
           Column() {
             Row() {
               Text('Event Log')
-                .fontSize(16)
+                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
                 .fontWeight(FontWeight.Medium)
                 .layoutWeight(1)
               Button('Clear')
-                .fontSize(12)
+                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                 .height(28)
                 .width(60)
                 .backgroundColor('#E84026')
@@ -1853,7 +1998,7 @@ struct Index {
 
             Scroll(this.logScroller) {
               Text(this.logMessages.length > 0 ? this.logMessages.join('\n') : 'No events logged')
-                .fontSize(12)
+                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
                 .fontColor(this.logMessages.length > 0 ? '#333333' : '#999999')
                 .width('100%')
             }

@@ -19,10 +19,6 @@
     {
       "name": "permission_bluetooth_reason",
       "value": "Used to connect and communicate with Bluetooth MIDI devices"
-    },
-    {
-      "name": "permission_location_reason",
-      "value": "Required for Bluetooth device discovery and connection"
     }
   ]
 }

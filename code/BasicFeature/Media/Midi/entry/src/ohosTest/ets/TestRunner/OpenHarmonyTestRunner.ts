@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,8 +23,6 @@ let abilityDelegatorArguments: any = undefined;
 async function onAbilityCreateCallback(data: any) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'onAbilityCreateCallback');
 }
-
-let abilityDelegatorArguments: any;
 
 async function addAbilityMonitorCallback(err: any) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'addAbilityMonitorCallback : ' + JSON.stringify(err) ?? '');
