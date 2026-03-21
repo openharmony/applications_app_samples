@@ -27,7 +27,7 @@ let connectId: number | undefined;
 // 死亡通知
 class MyDeathRecipient implements rpc.DeathRecipient {
   onRemoteDied() {
-    hilog.info(0x0000, 'testTag', 'IPCClient: server is died');
+    hilog.info(0x0000, 'testTag', 'server is died');
   }
 }
 let deathRecipient = new MyDeathRecipient();
@@ -71,8 +71,7 @@ struct ButtonCase1 {
         ListItem() {
           Button('disconnectAbility').onClick(async () => {
             disconnectAbility(this.context);
-            await sleep(3000)
-            hilog.error(0x0000, 'testTag', 'showToast  isConnectId is ' + isDisconnect );
+            await sleep(3000);
             if (!isDisconnect) {
               try {
                 this.promptAction.showToast({
@@ -102,23 +101,23 @@ struct ButtonCase1 {
 // [Start connect_ability]
 // 连接服务
 function connectAbility(context:common.UIAbilityContext, promptAction: PromptAction) {
-  hilog.info(0x00000, 'testTag', 'IPCClient: begin to connect Ability');
+  hilog.info(0x00000, 'testTag', 'begin to connect Ability');
   let want: Want = {
     bundleName: 'com.example.ipc_stub',
     abilityName: 'ServiceAbility',
   };
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x00000, 'testTag', 'IPCClient: onConnect. elementName is :' + JSON.stringify(elementName));
+      hilog.info(0x00000, 'testTag', 'onConnect. elementName is :' + JSON.stringify(elementName));
       proxy = remoteProxy;
       // 客户端注册死亡监听
       try {
         proxy.registerDeathRecipient(deathRecipient, 0);
-        hilog.info(0x00000, 'testTag', 'IPCClient: registerDeathRecipient success');
+        hilog.info(0x00000, 'testTag', 'registerDeathRecipient success');
       } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'IPCClient: register failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'register failed, code is ' + code + ', message is ' + message);
       }
       // [StartExclude function_implement]
       // [StartExclude connect_ability]
@@ -129,8 +128,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
           duration: 2000
         });
       } catch (error) {
-        let message = (error as BusinessError).message;
         let code = (error as BusinessError).code;
+        let message = (error as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
       // [EndExclude connect_ability]
@@ -138,15 +137,15 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
     },
 
     onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'IPCClient: onDisconnect. elementName is ' + JSON.stringify(elementName));
+      hilog.info(0x0000, 'testTag', 'onDisconnect. elementName is ' + JSON.stringify(elementName));
       // 客户端移除死亡监听
       try {
         proxy?.unregisterDeathRecipient(deathRecipient, 0);
-        hilog.info(0x00000, 'testTag', 'IPCClient: unregisterDeathRecipient success');
+        hilog.info(0x00000, 'testTag', 'unregisterDeathRecipient success');
       } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'IPCClient: unregister failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'unregister failed, code is ' + code + ', message is ' + message);
       }
       proxy = undefined;
       // [StartExclude function_implement]
@@ -159,8 +158,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
           duration: 2000
         });
       } catch (error) {
-        let message = (error as BusinessError).message;
         let code = (error as BusinessError).code;
+        let message = (error as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
       // [EndExclude connect_ability]
@@ -168,7 +167,7 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
     },
 
     onFailed: (code: number) => {
-      hilog.info(0x0000, 'testTag', 'IPCClient: onFailed. code is ' + code);
+      hilog.info(0x0000, 'testTag', 'onFailed. code is ' + code);
       // [StartExclude function_implement]
       // [StartExclude connect_ability]
       // 弹窗显示连接服务失败
@@ -178,8 +177,8 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
           duration: 2000
         });
       } catch (error) {
-        let message = (error as BusinessError).message;
         let code = (error as BusinessError).code;
+        let message = (error as BusinessError).message;
         hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
       };
       // [EndExclude connect_ability]
@@ -189,25 +188,24 @@ function connectAbility(context:common.UIAbilityContext, promptAction: PromptAct
 
   try {
     connectId = context.connectServiceExtensionAbility(want, connect);
-    hilog.info(0x00000, 'testTag', 'IPCClient: begin to connect Ability end');
+    hilog.info(0x00000, 'testTag', 'begin to connect Ability end');
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'IPCClient: connectAbility failed, code is ' + code + ', message is ' + message);
+    hilog.error(0x0000, 'testTag', 'connectAbility failed, code is ' + code + ', message is ' + message);
   }
 }
 
 // 断开连接
 function disconnectAbility(context: common.UIAbilityContext) {
-  hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability. connectId is ' + connectId);
+  hilog.info(0x00000, 'testTag', 'begin to disconnect Ability. connectId is ' + connectId);
   if (connectId != undefined) {
     try {
       context.disconnectServiceExtensionAbility(connectId);
-      hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability end');
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      hilog.error(0x0000, 'testTag', 'IPCClient: disconnect failed, code is ' + code + ', message is ' + message);
+      hilog.error(0x0000, 'testTag', 'disconnect failed, code is ' + code + ', message is ' + message);
     }
   }
 }
@@ -215,7 +213,7 @@ function disconnectAbility(context: common.UIAbilityContext) {
 
 // 发送消息
 async function sendString(promptAction: PromptAction) : Promise <void> {
-  hilog.info(0x00000, 'testTag', 'IPCClient: begin to send String');
+  hilog.info(0x00000, 'testTag', 'begin to send String');
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -225,11 +223,11 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
     await proxy.sendMessageRequest(1, data, reply, option)
       .then((result: rpc.RequestResult) => {
         if (result.errCode != 0) {
-          hilog.error(0x0000, 'testTag', 'IPCClient: sendMessageRequest failed, errCode: ' + result.errCode);
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode is ' + result.errCode);
         }
         // 从result.reply里读取结果
         let str = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'IPCClient: sendMessageRequest receive str is  ' + str);
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest receive str is ' + str);
         // [StartExclude function_implement]
         try {
           promptAction.showToast({
@@ -237,14 +235,14 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
             duration: 2000
           });
         } catch (error) {
-          let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
+          let message = (error as BusinessError).message;
           hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
         };
         // [EndExclude function_implement]
       })
       .catch((e: Error) => {
-        hilog.error(0x0000, 'testTag', 'IPCClient: sendMessageRequest failed, error is ' + JSON.stringify(e));
+        hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error is ' + JSON.stringify(e));
         // [StartExclude function_implement]
         try {
           promptAction.showToast({
@@ -252,8 +250,8 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
             duration: 2000
           });
         } catch (error) {
-          let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
+          let message = (error as BusinessError).message;
           hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
         };
         // [EndExclude function_implement]
@@ -263,7 +261,7 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
         reply.reclaim();
       })
   } else {
-    hilog.error(0x0000, 'testTag', 'IPCClient: proxy is invalid');
+    hilog.error(0x0000, 'testTag', 'proxy is invalid');
     // [StartExclude function_implement]
     try {
       promptAction.showToast({
@@ -271,13 +269,13 @@ async function sendString(promptAction: PromptAction) : Promise <void> {
         duration: 2000
       });
     } catch (error) {
-      let message = (error as BusinessError).message;
       let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
     };
     // [EndExclude function_implement]
   }
-  hilog.info(0x0000, 'testTag', 'IPCClient: sendString end');
+  hilog.info(0x0000, 'testTag', 'sendString end');
 }
 // [End function_implement]
 
