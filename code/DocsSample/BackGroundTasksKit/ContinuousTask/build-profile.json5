@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,20 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B9D30C16750704AA78981993BEF1072D356C0F14123D17487453A96FB01A053DD9A6B5957B97A1F",
+          "profile": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p12",
+          "storePassword": "0000001B6872130684EF4A459F499B9898D9947B95D3C4FA25C63FE0119D1378F2FCF96EFDAA9D14E30192"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
@@ -23,8 +36,21 @@
         "compileSdkVersion": 20,
         "compatibleSdkVersion": 20,
         "targetSdkVersion": 20,
-        "runtimeOS": "OpenHarmony"
-
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
       }
     ]
   },
