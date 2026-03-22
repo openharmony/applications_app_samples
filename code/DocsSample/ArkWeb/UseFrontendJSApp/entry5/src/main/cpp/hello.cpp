@@ -14,10 +14,10 @@
  */
 
 // [Start the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page]
-#include "napi/native_api.h"
-#include <string>
 #include "hilog/log.h"
+#include "napi/native_api.h"
 #include "web/arkweb_interface.h"
+#include <string>
 #include <thread>
 
 constexpr unsigned int LOG_PRINT_DOMAIN = 0xFF00;
@@ -202,7 +202,7 @@ static napi_value postMessageThread(napi_env env, napi_callback_info info)
 
     // 等待所有线程完成
     for (int i = 0; i < numThreads; ++i) {
-        threads[i].detach();
+        threads[i].join();
     }
     delete[] webTagValue;
     return nullptr;
