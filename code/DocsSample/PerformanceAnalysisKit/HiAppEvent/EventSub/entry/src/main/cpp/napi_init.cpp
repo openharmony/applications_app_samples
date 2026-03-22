@@ -38,32 +38,16 @@
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
 
-/**
- * @brief Print additional memory information near the PC and LR registers
- *
- * @since 24
- */
+//Print additional memory information near the PC and LR registers
 #define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
- 
-/**
- * @brief Automatically truncate the cppcrash log size
- *
- * @since 24
- */
+
+//@brief Automatically truncate the cppcrash log size
 #define OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES "log_file_cutoff_sz_bytes"
- 
-/**
- * @brief Only print VMA within the stacktrace of the cppcrash log
- *
- * @since 24
- */
+
+//@brief Only print VMA within the stacktrace of the cppcrash log
 #define OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING "simplify_vma_printing"
- 
-/**
- * @brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event
- *
- * @since 24
- */
+
+//@brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 // [StartExclude Event_Cpp_Crash_Config]
 
@@ -558,20 +542,26 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     // [EndExclude Event_Cpp_Crash_Config]
     // 1. 创建配置对象
     HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
+
     // 2. 设置各项配置参数
     // 开启寄存器扩展内存打印
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING, "true");
+
     // 设置日志截断大小为 2MB
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES, "2097152");
+
     // 开启简化 VMA 映射信息打印
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING, "true");
+
     // 开启拼接应用日志
     OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
+
     // 3. 应用配置到 EVENT_APP_CRASH 事件
     int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
     if (ret == HIAPPEVENT_SUCCESS) {
         OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
     }
+
     // 4. 销毁配置对象
     OH_HiAppEvent_DestroyConfig(config);
     // [End Event_Cpp_Crash_Config]
