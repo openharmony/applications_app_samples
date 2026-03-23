@@ -385,7 +385,7 @@ export class ImageInterfaceCalled {
     return undefined;
   }
 
-  async  createImageRawData(imageSource : image.ImageSource | undefined) : Promise< image.ImageRawData | undefined> {
+  async createImageRawData(imageSource: image.ImageSource | undefined) : Promise<image.ImageRawData | undefined> {
     if (!imageSource) {
       console.error('imageSource is undefined.');
       return undefined;
@@ -397,7 +397,7 @@ export class ImageInterfaceCalled {
       }
       let length = array.byteLength.valueOf();
       console.info(`uint16Array length: ${length}`);
-      let value :string = '';
+      let value: string = '';
       for (let i = 0; i < array.length && i < 10; i++) {
         value += array[i] + ', ';
       }
