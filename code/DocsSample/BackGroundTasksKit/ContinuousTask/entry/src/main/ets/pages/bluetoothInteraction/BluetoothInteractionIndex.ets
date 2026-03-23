@@ -20,12 +20,12 @@ import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { ble } from '@kit.ConnectivityKit';
 import { constant } from '@kit.ConnectivityKit';
 
-let TAG = "bt_js "
-let serverDeviceId: string = ""
+let TAG = 'bt_js '
+let serverDeviceId: string = ''
 let gattClient: ble.GattClientDevice
 let gattServer: ble.GattServer
-let descValue2901 = string2ArrayBuffer("hello desc2901");
-let characterValue = string2ArrayBuffer("hello characterValue")
+let descValue2901 = string2ArrayBuffer('hello desc2901');
+let characterValue = string2ArrayBuffer('hello characterValue')
 
 function callback(info: backgroundTaskManager.ContinuousTaskSuspendInfo) {
   // 长时任务id
@@ -70,15 +70,15 @@ struct BluetoothInteractionIndex {
     console.info(TAG + 'StartBLEScan')
     // 根据实际业务情况定义过滤器
     let filter1: ble.ScanFilter = {
-      "name":"Mate 80 Pro",
-      // "deviceId": "B2:47:9A:87:40:09",
+      'name':'Mate 80 Pro',
+      // 'deviceId': 'B2:47:9A:87:40:09',
     }
-    let filterArray: Array<ble.ScanFilter> = new Array();
+    let filterArray: ble.ScanFilter[] = new Array();
     filterArray.push(filter1);
     let scanOption: ble.ScanOptions = {
-      "dutyMode": 0,
-      "interval": 0,
-      "matchMode":1
+      'dutyMode': 0,
+      'interval': 0,
+      'matchMode':1
     };
     try {
       ble.startBLEScan(filterArray, scanOption);
@@ -212,62 +212,62 @@ struct BluetoothInteractionIndex {
     let descriptors: Array<ble.BLEDescriptor> = [];
     let buf = new ArrayBuffer(1);
     let descrptor1: ble.BLEDescriptor = {
-      "serviceUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "characteristicUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "descriptorUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "descriptorValue": buf,
-      "permissions": {
-        "read": true,
-        // "readEncrypted": true,
-        // "readEncryptedMitm": true,
-        "write":true,
-        // "writeEncrypted": true,
-        // "writeEncryptedMitm": true,
-        // "writeSigned": true,
-        // "writeSignedMitm": true,
+      'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'characteristicUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'descriptorUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'descriptorValue': buf,
+      'permissions': {
+        'read': true,
+        // 'readEncrypted': true,
+        // 'readEncryptedMitm': true,
+        'write':true,
+        // 'writeEncrypted': true,
+        // 'writeEncryptedMitm': true,
+        // 'writeSigned': true,
+        // 'writeSignedMitm': true,
       },
     };
     let descrptor2: ble.BLEDescriptor = {
-      "serviceUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "characteristicUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "descriptorUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "descriptorValue": string2ArrayBuffer('desc2901'),
+      'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'characteristicUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'descriptorUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'descriptorValue': string2ArrayBuffer('desc2901'),
     };
     descriptors.push(descrptor1);
     descriptors.push(descrptor2);
 
-    let charateristatics: Array<ble.BLECharacteristic> = [];
+    let charateristatics: ble.BLECharacteristic[] = new Array();
     let charateristatic: ble.BLECharacteristic = {
-      "serviceUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "characteristicUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "characteristicValue": string2ArrayBuffer("hello gatt character"),
-      "descriptors": descriptors,
-      "properties": {
-        "write": true,
-        // "writeNoResponse": true,
-        "read": true,
-        // "notify": true,
-        // "broadcast": true,
-        // "authenticatedSignedWrite": true,
-        // "extendedProperties": true,
+      'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'characteristicUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'characteristicValue': string2ArrayBuffer('hello gatt character'),
+      'descriptors': descriptors,
+      'properties': {
+        'write': true,
+        // 'writeNoResponse': true,
+        'read': true,
+        // 'notify': true,
+        // 'broadcast': true,
+        // 'authenticatedSignedWrite': true,
+        // 'extendedProperties': true,
       },
-      "permissions": {
-        "read": true,
-        // "readEncrypted": true,
-        // "readEncryptedMitm": true,
-        "write":true,
-        // "writeEncrypted": true,
-        // "writeEncryptedMitm": true,
-        // "writeSigned": true,
-        // "writeSignedMitm": true,
+      'permissions': {
+        'read': true,
+        // 'readEncrypted': true,
+        // 'readEncryptedMitm': true,
+        'write':true,
+        // 'writeEncrypted': true,
+        // 'writeEncryptedMitm': true,
+        // 'writeSigned': true,
+        // 'writeSignedMitm': true,
       },
     };
     charateristatics.push(charateristatic);
     let curGattService: ble.GattService = {
-      "serviceUuid": "0000bbbb-0000-1000-8000-00805f9b34fb",
-      "characteristics": charateristatics,
-      "isPrimary":true,
-      "includeServices": [],
+      'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
+      'characteristics': charateristatics,
+      'isPrimary':true,
+      'includeServices': [],
     };
 
     try {
@@ -280,17 +280,17 @@ struct BluetoothInteractionIndex {
 
   StartAdvertising() {
     let advSettings: ble.AdvertiseSetting = {
-      "interval": 200,
-      "txPower": 0,
-      "connectable": true,
+      'interval': 200,
+      'txPower': 0,
+      'connectable': true,
     };
-    let serviceUuidsArray: Array<string> = new Array();
-    serviceUuidsArray.push("00001111-0000-1000-8000-00805f9b34fb");
+    let serviceUuidsArray: string[] = new Array();
+    serviceUuidsArray.push('00001111-0000-1000-8000-00805f9b34fb');
     let advdata: ble.AdvertiseData = {
-      "serviceUuids": serviceUuidsArray,
-      "manufactureData": new Array(),
-      "serviceData": new Array(),
-      "includeDeviceName": true,
+      'serviceUuids': serviceUuidsArray,
+      'manufactureData': [],
+      'serviceData': [],
+      'includeDeviceName': true,
     };
 
     try {
@@ -301,40 +301,40 @@ struct BluetoothInteractionIndex {
   }
 
   OnRegisterStateChangeServer() {
-    gattServer.on("connectionStateChange", (data) => {
+    gattServer.on('connectionStateChange', (data) => {
       console.info(TAG + `Succeeded in operationing stopBackgroundRunning.`);
     });
-    gattServer.on("BLEMtuChange", (mtu) => {
+    gattServer.on('BLEMtuChange', (mtu) => {
       console.info(TAG + `BLEMtuChange mtu:` + mtu);
     });
-    gattServer.on("descriptorWrite", (descriptorWriteRequest) => {
+    gattServer.on('descriptorWrite', (descriptorWriteRequest) => {
       console.info(TAG + `descriptorWrite`);
-      if (descriptorWriteRequest.descriptorUuid == "00002901-0000-1000-8000-00805f9b34fb") {
+      if (descriptorWriteRequest.descriptorUuid == '00002901-0000-1000-8000-00805f9b34fb') {
         descValue2901 = descriptorWriteRequest.value;
         console.info(TAG + `onDescriptorWrite` + descValue2901);
       }
 
       gattServer.sendResponse({
-        "status": 0,
-        "offset": descriptorWriteRequest.offset,
-        "value": descriptorWriteRequest.value,
-        "deviceId": descriptorWriteRequest.deviceId,
-        "transId": descriptorWriteRequest.transId,
+        'status': 0,
+        'offset': descriptorWriteRequest.offset,
+        'value': descriptorWriteRequest.value,
+        'deviceId': descriptorWriteRequest.deviceId,
+        'transId': descriptorWriteRequest.transId,
       });
     });
-    gattServer.on("characteristicWrite", (characterWriteRequest) => {
+    gattServer.on('characteristicWrite', (characterWriteRequest) => {
       console.info(TAG + `onCharacterWriteRequest`);
-      if (characterWriteRequest.characteristicUuid == "0000BBBC-0000-1000-8000-00805F9B34FB") {
+      if (characterWriteRequest.characteristicUuid == '0000BBBC-0000-1000-8000-00805F9B34FB') {
         characterValue = characterWriteRequest.value;
         console.info(TAG + `onCharacterWriteRequest` + characterValue);
       }
 
       gattServer.sendResponse({
-        "status": 0,
-        "offset": characterWriteRequest.offset,
-        "value": characterWriteRequest.value,
-        "deviceId": characterWriteRequest.deviceId,
-        "transId": characterWriteRequest.transId,
+        'status': 0,
+        'offset': characterWriteRequest.offset,
+        'value': characterWriteRequest.value,
+        'deviceId': characterWriteRequest.deviceId,
+        'transId': characterWriteRequest.transId,
       });
     });
 
@@ -348,21 +348,21 @@ struct BluetoothInteractionIndex {
           .fontWeight(FontWeight.Bold)
 
         Row() {
-          Button("注册蓝牙设备监听").fontSize(10).height(40).onClick(() => {
+          Button('注册蓝牙设备监听').fontSize(10).height(40).onClick(() => {
             this.BLEDeviceFind();
           })
 
-          Button("开始蓝牙扫描").fontSize(10).height(50).onClick(() => {
+          Button('开始蓝牙扫描').fontSize(10).height(50).onClick(() => {
             this.StartBLEScan();
           })
         }
 
         Row() {
-          Button("注册蓝牙连接状态监听").fontSize(10).height(40).onClick(() => {
+          Button('注册蓝牙连接状态监听').fontSize(10).height(40).onClick(() => {
             this.OnRegisterStateChangeClient();
           })
 
-          Button("停止蓝牙扫描").fontSize(10).height(50).onClick(() => {
+          Button('停止蓝牙扫描').fontSize(10).height(50).onClick(() => {
             this.StopBleScan();
           })
         }
@@ -428,7 +428,7 @@ struct BluetoothInteractionIndex {
           .fontWeight(FontWeight.Bold)
 
         Row() {
-          Button("gattServerTest").fontSize(15).height(60).onClick(() => {
+          Button('gattServerTest').fontSize(15).height(60).onClick(() => {
             console.info(TAG + 'gattServerTest');
             gattServer = ble.createGattServer();
             this.AddGattServer();
