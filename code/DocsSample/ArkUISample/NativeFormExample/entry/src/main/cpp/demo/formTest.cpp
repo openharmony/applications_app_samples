@@ -65,7 +65,7 @@ std::shared_ptr<NativeModule::ArkUIBaseNode> CreateButtonExample()
     column->SetBackgroundColor(0x33ff0000);
     column->SetPadding(PARAM_20, false);
     auto button = std::make_shared<NativeModule::ArkUIButtonNode>();
-    button->SetButtonLabel("This is a Normal Button");
+    button->SetButtonLabel("This is a Button");
     button->SetMaxFontScale(1.0);
     // [Start button_type]
     auto circleBtn = std::make_shared<NativeModule::ArkUIButtonNode>();
