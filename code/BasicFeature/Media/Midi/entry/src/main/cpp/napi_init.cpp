@@ -370,6 +370,38 @@ struct BleOpenedCallbackData {
     uint64_t productId;
 };
 
+// Helper: Set int64 property on object
+static inline void SetInt64Prop(napi_env env, napi_value obj, const char* name, int64_t value)
+{
+    napi_value val;
+    napi_create_int64(env, value, &val);
+    napi_set_named_property(env, obj, name, val);
+}
+
+// Helper: Set int32 property on object
+static inline void SetInt32Prop(napi_env env, napi_value obj, const char* name, int32_t value)
+{
+    napi_value val;
+    napi_create_int32(env, value, &val);
+    napi_set_named_property(env, obj, name, val);
+}
+
+// Helper: Set string property on object
+static inline void SetStringProp(napi_env env, napi_value obj, const char* name, const std::string& value)
+{
+    napi_value val;
+    napi_create_string_utf8(env, value.c_str(), NAPI_AUTO_LENGTH, &val);
+    napi_set_named_property(env, obj, name, val);
+}
+
+// Helper: Set bigint uint64 property on object
+static inline void SetBigintUint64Prop(napi_env env, napi_value obj, const char* name, uint64_t value)
+{
+    napi_value val;
+    napi_create_bigint_uint64(env, value, &val);
+    napi_set_named_property(env, obj, name, val);
+}
+
 // Helper function to create JavaScript object from device info data
 static napi_value CreateDeviceInfoObjectFromData(napi_env env, int64_t deviceId,
     int32_t deviceType, int32_t nativeProtocol, const std::string& deviceName,
@@ -381,33 +413,13 @@ static napi_value CreateDeviceInfoObjectFromData(napi_env env, int64_t deviceId,
     napi_value deviceObj;
     napi_create_object(env, &deviceObj);
 
-    napi_value deviceIdValue;
-    napi_create_int64(env, deviceId, &deviceIdValue);
-    napi_set_named_property(env, deviceObj, "deviceId", deviceIdValue);
-
-    napi_value deviceTypeValue;
-    napi_create_int32(env, deviceType, &deviceTypeValue);
-    napi_set_named_property(env, deviceObj, "deviceType", deviceTypeValue);
-
-    napi_value protocolValue;
-    napi_create_int32(env, nativeProtocol, &protocolValue);
-    napi_set_named_property(env, deviceObj, "nativeProtocol", protocolValue);
-
-    napi_value deviceNameValue;
-    napi_create_string_utf8(env, deviceName.c_str(), NAPI_AUTO_LENGTH, &deviceNameValue);
-    napi_set_named_property(env, deviceObj, "deviceName", deviceNameValue);
-
-    napi_value vendorIdValue;
-    napi_create_bigint_uint64(env, vendorId, &vendorIdValue);
-    napi_set_named_property(env, deviceObj, "vendorId", vendorIdValue);
-
-    napi_value productIdValue;
-    napi_create_bigint_uint64(env, productId, &productIdValue);
-    napi_set_named_property(env, deviceObj, "productId", productIdValue);
-
-    napi_value deviceAddressValue;
-    napi_create_string_utf8(env, deviceAddress.c_str(), NAPI_AUTO_LENGTH, &deviceAddressValue);
-    napi_set_named_property(env, deviceObj, "deviceAddress", deviceAddressValue);
+    SetInt64Prop(env, deviceObj, "deviceId", deviceId);
+    SetInt32Prop(env, deviceObj, "deviceType", deviceType);
+    SetInt32Prop(env, deviceObj, "nativeProtocol", nativeProtocol);
+    SetStringProp(env, deviceObj, "deviceName", deviceName);
+    SetBigintUint64Prop(env, deviceObj, "vendorId", vendorId);
+    SetBigintUint64Prop(env, deviceObj, "productId", productId);
+    SetStringProp(env, deviceObj, "deviceAddress", deviceAddress);
 
     OH_LOG_DEBUG(LOG_APP, "[CreateDeviceInfoObjectFromData] --exit");
     return deviceObj;
@@ -931,7 +943,8 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
 // Helper: Cleanup input port contexts for a specific device
 static void CleanupInputPortContextsForDevice(int64_t deviceId)
 {
-    OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld", (long long)deviceId);
+    OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld",
+                 (long long)deviceId);
     for (auto ctxIt = g_inputPortContexts.begin(); ctxIt != g_inputPortContexts.end();) {
         if (ctxIt->first.first == deviceId) {
             if (ctxIt->second != nullptr) {
