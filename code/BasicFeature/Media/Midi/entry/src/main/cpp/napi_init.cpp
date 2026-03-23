@@ -1053,55 +1053,66 @@ static void OnMIDIReceived(void *userData, const OH_MIDIEvent *events, size_t ev
     context->PushEventBatch(events, eventCount);
 }
 
+// Helper struct for input port arguments
+struct InputPortArgs {
+    int64_t deviceId;
+    uint32_t portIndex;
+    int32_t protocol;
+    napi_value callbackValue;
+};
+
+// Helper: Parse input port arguments
+static InputPortArgs ParseInputPortArgs(napi_env env, napi_callback_info info)
+{
+    InputPortArgs args = {0, 0, static_cast<int32_t>(MIDI_PROTOCOL_1_0), nullptr};
+    size_t argc = 4;
+    napi_value argv[4] = {nullptr};
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+    napi_get_value_int64(env, argv[0], &args.deviceId);
+    napi_get_value_uint32(env, argv[1], &args.portIndex);
+    if (argc > MIDI_ARG_INDEX_2 && argv[MIDI_ARG_INDEX_2] != nullptr) {
+        napi_get_value_int32(env, argv[MIDI_ARG_INDEX_2], &args.protocol);
+    }
+    if (argc > MIDI_ARG_INDEX_3 && argv[MIDI_ARG_INDEX_3] != nullptr) {
+        args.callbackValue = argv[MIDI_ARG_INDEX_3];
+    }
+    return args;
+}
+
 // Open input port with callback
 static napi_value OpenInputPort(napi_env env, napi_callback_info info)
 {
-    size_t argc = 4;
-    napi_value args[4] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int64_t deviceId = 0;
-    napi_get_value_int64(env, args[0], &deviceId);
-    uint32_t portIndex = 0;
-    napi_get_value_uint32(env, args[1], &portIndex);
-    int32_t protocol = 1; // Default to MIDI 1.0
-    if (argc > MIDI_ARG_INDEX_2 && args[MIDI_ARG_INDEX_2] != nullptr) {
-        napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
-    }
-    napi_value callbackValue = nullptr;
-    if (argc > MIDI_ARG_INDEX_3 && args[MIDI_ARG_INDEX_3] != nullptr) {
-        callbackValue = args[MIDI_ARG_INDEX_3];
-    }
-
+    InputPortArgs args = ParseInputPortArgs(env, info);
     OH_LOG_INFO(LOG_APP, "[OpenInputPort] deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
-                (long long)deviceId, portIndex, protocol);
+                (long long)args.deviceId, args.portIndex, args.protocol);
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
     napi_value result;
-    auto it = g_openedDevices.find(deviceId);
+    auto it = g_openedDevices.find(args.deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[OpenInputPort] client is null or device not opened");
         napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
         return result;
     }
 
-    OH_MIDIPortDescriptor descriptor = {portIndex, (OH_MIDIProtocol)protocol};
-    auto key = std::make_pair(deviceId, portIndex);
+    OH_MIDIPortDescriptor descriptor = {args.portIndex, static_cast<OH_MIDIProtocol>(args.protocol)};
+    auto key = std::make_pair(args.deviceId, args.portIndex);
     auto existingIt = g_inputPortContexts.find(key);
     if (existingIt != g_inputPortContexts.end()) {
         existingIt->second->Stop();
         g_inputPortContexts.erase(existingIt);
     }
 
-    auto context = std::make_shared<InputPortContext>(deviceId, portIndex);
+    auto context = std::make_shared<InputPortContext>(args.deviceId, args.portIndex);
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenInputPort(it->second, descriptor, OnMIDIReceived, context.get());
     OH_LOG_INFO(LOG_APP, "[OpenInputPort] OpenInputPort returned status=%{public}d", (int)status);
 
-    if (status == OH_MIDI_STATUS_OK && callbackValue != nullptr) {
+    if (status == OH_MIDI_STATUS_OK && args.callbackValue != nullptr) {
         napi_valuetype valueType;
-        napi_typeof(env, callbackValue, &valueType);
-        if (valueType == napi_function && !context->Start(env, callbackValue)) {
-            OH_MIDIDevice_CloseInputPort(it->second, portIndex);
+        napi_typeof(env, args.callbackValue, &valueType);
+        if (valueType == napi_function && !context->Start(env, args.callbackValue)) {
+            OH_MIDIDevice_CloseInputPort(it->second, args.portIndex);
             status = OH_MIDI_STATUS_INVALID_DEVICE_HANDLE;
         } else if (valueType == napi_function) {
             g_inputPortContexts[key] = context;
@@ -1174,7 +1185,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     uint32_t portIndex = 0;
     napi_get_value_uint32(env, args[1], &portIndex);
 
-    int32_t protocol = 1; // Default to MIDI 1.0
+    int32_t protocol = static_cast<int32_t>(MIDI_PROTOCOL_1_0); // Default to MIDI 1.0
     napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
 
     OH_LOG_INFO(LOG_APP, "[OpenOutputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
@@ -1192,7 +1203,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
 
     OH_MIDIPortDescriptor descriptor;
     descriptor.portIndex = portIndex;
-    descriptor.protocol = (OH_MIDIProtocol)protocol;
+    descriptor.protocol = static_cast<OH_MIDIProtocol>(protocol);
 
     OH_LOG_DEBUG(LOG_APP, "[OpenOutputPort] calling OH_MIDIDevice_OpenOutputPort");
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenOutputPort(it->second, descriptor);
@@ -1201,7 +1212,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     // Store protocol info for this output port
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
-        g_outputPortProtocols[key] = (OH_MIDIProtocol)protocol;
+        g_outputPortProtocols[key] = static_cast<OH_MIDIProtocol>(protocol);
         OH_LOG_INFO(LOG_APP,
             "[OpenOutputPort] stored protocol=%{public}d for deviceId=%{public}lld, portIndex=%{public}u",
             protocol, (long long)deviceId, portIndex);
