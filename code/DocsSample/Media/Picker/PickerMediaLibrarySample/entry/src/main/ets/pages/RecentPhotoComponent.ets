@@ -1,7 +1,12 @@
 // [Start RecentPickerComponent_import]
 import {
-  RecentPhotoComponent, RecentPhotoOptions, RecentPhotoCheckResultCallback, RecentPhotoInfo, RecentPhotoCheckInfoCallback,
-  RecentPhotoClickCallback, PhotoSource
+  RecentPhotoComponent, 
+  RecentPhotoOptions, 
+  RecentPhotoCheckResultCallback, 
+  RecentPhotoInfo, 
+  RecentPhotoCheckInfoCallback,
+  RecentPhotoClickCallback, 
+  PhotoSource
 } from '@kit.MediaLibraryKit';
 // [End RecentPickerComponent_import]
 
