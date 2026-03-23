@@ -428,8 +428,8 @@ static napi_value CreateDeviceInfoObjectFromData(napi_env env, int64_t deviceId,
 // Helper function to create JavaScript object from device information
 static napi_value CreateDeviceInfoObject(napi_env env, const OH_MIDIDeviceInformation& info)
 {
-    return CreateDeviceInfoObjectFromData(env, info.midiDeviceId, (int32_t)info.deviceType,
-                                          (int32_t)info.nativeProtocol, info.deviceName,
+    return CreateDeviceInfoObjectFromData(env, info.midiDeviceId, static_cast<int32_t>(info.deviceType),
+                                          static_cast<int32_t>(info.nativeProtocol), info.deviceName,
                                           info.deviceAddress, info.vendorId, info.productId);
 }
 
@@ -452,7 +452,7 @@ static napi_value CreatePortInfoObject(napi_env env, const OH_MIDIPortInformatio
     napi_set_named_property(env, portObj, "deviceId", deviceId);
 
     napi_value direction;
-    napi_create_int32(env, (int32_t)info.direction, &direction);
+    napi_create_int32(env, static_cast<int32_t>(info.direction), &direction);
     napi_set_named_property(env, portObj, "direction", direction);
 
     napi_value name;
@@ -493,60 +493,55 @@ static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* conte
     OH_LOG_INFO(LOG_APP, "[CallJsDeviceChange] --exit (JS thread)");
 }
 
+// Helper: Create MIDI event JS object
+static napi_value CreateMidiEventObject(napi_env env, uint64_t timestamp, uint32_t length,
+    const std::vector<uint32_t>& umpData, size_t& dataIndex)
+{
+    napi_value eventObj;
+    napi_create_object(env, &eventObj);
+
+    napi_value tsValue;
+    napi_create_bigint_uint64(env, timestamp, &tsValue);
+    napi_set_named_property(env, eventObj, "timestamp", tsValue);
+
+    napi_value lenValue;
+    napi_create_uint32(env, length, &lenValue);
+    napi_set_named_property(env, eventObj, "length", lenValue);
+
+    napi_value dataArray;
+    napi_create_array(env, &dataArray);
+    for (uint32_t j = 0; j < length && dataIndex < umpData.size(); j++) {
+        napi_value dataValue;
+        napi_create_uint32(env, umpData[dataIndex], &dataValue);
+        napi_set_element(env, dataArray, j, dataValue);
+        dataIndex++;
+    }
+    napi_set_named_property(env, eventObj, "data", dataArray);
+    return eventObj;
+}
+
 // Thread-safe function call JS callback for MIDI received
 static void CallJsMidiReceived(napi_env env, napi_value js_callback, void* context, void* data)
 {
-    OH_LOG_DEBUG(LOG_APP, "[CallJsMidiReceived] ++enter (JS thread)");
+    MidiReceivedCallbackData* callbackData = static_cast<MidiReceivedCallbackData*>(data);
 
-    MidiReceivedCallbackData* callbackData = (MidiReceivedCallbackData*)data;
-    OH_LOG_DEBUG(LOG_APP, "[CallJsMidiReceived] deviceId=%{public}lld, portIndex=%{public}u, eventCount=%{public}zu",
-                 (long long)callbackData->deviceId, callbackData->portIndex, callbackData->lengths.size());
-
-    // Create events array
     napi_value eventsArray;
     napi_create_array(env, &eventsArray);
 
     size_t eventIndex = 0;
     size_t dataIndex = 0;
     for (size_t i = 0; i < callbackData->lengths.size(); i++) {
-        napi_value eventObj;
-        napi_create_object(env, &eventObj);
-
-        // timestamp
-        napi_value timestamp;
-        napi_create_bigint_uint64(env, callbackData->timestamps[i], &timestamp);
-        napi_set_named_property(env, eventObj, "timestamp", timestamp);
-
-        // length
-        napi_value length;
-        napi_create_uint32(env, callbackData->lengths[i], &length);
-        napi_set_named_property(env, eventObj, "length", length);
-
-        // data (as array of uint32)
-        napi_value dataArray;
-        napi_create_array(env, &dataArray);
-        for (uint32_t j = 0; j < callbackData->lengths[i] && dataIndex < callbackData->umpData.size(); j++) {
-            napi_value dataValue;
-            napi_create_uint32(env, callbackData->umpData[dataIndex], &dataValue);
-            napi_set_element(env, dataArray, j, dataValue);
-            dataIndex++;
-        }
-        napi_set_named_property(env, eventObj, "data", dataArray);
-
+        napi_value eventObj = CreateMidiEventObject(env, callbackData->timestamps[i],
+            callbackData->lengths[i], callbackData->umpData, dataIndex);
         napi_set_element(env, eventsArray, static_cast<uint32_t>(eventIndex), eventObj);
         eventIndex++;
     }
 
     napi_value undefined;
     napi_get_undefined(env, &undefined);
-
-    napi_status callStatus = napi_call_function(env, undefined, js_callback, 1, &eventsArray, nullptr);
-    if (callStatus != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "[CallJsMidiReceived] napi_call_function failed: %{public}d", (int)callStatus);
-    }
+    napi_call_function(env, undefined, js_callback, 1, &eventsArray, nullptr);
 
     delete callbackData;
-    OH_LOG_DEBUG(LOG_APP, "[CallJsMidiReceived] --exit (JS thread)");
 }
 
 // Thread-safe function call JS callback for BLE opened
@@ -591,10 +586,10 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
     // Do NOT hold lock in callback! Just copy data and send to JS thread
     if (g_deviceChangeTsfn != nullptr) {
         DeviceChangeCallbackData* callbackData = new DeviceChangeCallbackData();
-        callbackData->action = (int32_t)action;
+        callbackData->action = static_cast<int32_t>(action);
         callbackData->deviceId = info.midiDeviceId;
-        callbackData->deviceType = (int32_t)info.deviceType;
-        callbackData->nativeProtocol = (int32_t)info.nativeProtocol;
+        callbackData->deviceType = static_cast<int32_t>(info.deviceType);
+        callbackData->nativeProtocol = static_cast<int32_t>(info.nativeProtocol);
         callbackData->deviceName = info.deviceName;
         callbackData->deviceAddress = info.deviceAddress;
         callbackData->vendorId = info.vendorId;
@@ -629,99 +624,81 @@ static OH_MIDICallbacks g_midiCallbacks = {
     .onError = OnError
 };
 
+// Helper: Cleanup existing MIDI client resources
+static void CleanupExistingClient()
+{
+    if (g_midiClient != nullptr) {
+        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] destroying existing client");
+        OH_MIDIClient_Destroy(g_midiClient);
+        g_midiClient = nullptr;
+    }
+    if (g_deviceChangeTsfn != nullptr) {
+        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] releasing old threadsafe function");
+        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
+        g_deviceChangeTsfn = nullptr;
+    }
+}
+
+// Helper: Setup device change callback
+static void SetupDeviceChangeCallback(napi_env env, napi_value callback)
+{
+    if (callback == nullptr) {
+        return;
+    }
+    napi_valuetype valueType;
+    napi_typeof(env, callback, &valueType);
+    if (valueType != napi_function) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "[SetupDeviceChangeCallback] creating threadsafe function");
+    napi_value resourceName;
+    napi_create_string_utf8(env, "DeviceChangeCallback", NAPI_AUTO_LENGTH, &resourceName);
+    napi_status tsfnStatus = napi_create_threadsafe_function(env, callback, nullptr, resourceName,
+        0, 1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
+    if (tsfnStatus != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "[SetupDeviceChangeCallback] failed: %{public}d", static_cast<int>(tsfnStatus));
+    }
+}
+
 // Create MIDI client
 static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] ++enter");
-
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    OH_LOG_DEBUG(LOG_APP, "[CreateMIDIClient] argc=%{public}zu", argc);
-
     std::lock_guard<std::mutex> lock(g_midiMutex);
-    OH_LOG_DEBUG(LOG_APP, "[CreateMIDIClient] mutex locked");
-
-    // Destroy existing client if any
-    if (g_midiClient != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] destroying existing client");
-        OH_MIDIClient_Destroy(g_midiClient);
-        g_midiClient = nullptr;
-    }
-
-    // Release old threadsafe function
-    if (g_deviceChangeTsfn != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] releasing old threadsafe function");
-        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
-        g_deviceChangeTsfn = nullptr;
-    }
-
-    // Create threadsafe function if callback provided
+    CleanupExistingClient();
     if (argc > 0 && args[0] != nullptr) {
-        napi_valuetype valueType;
-        napi_typeof(env, args[0], &valueType);
-        if (valueType == napi_function) {
-            OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] creating threadsafe function for device change callback");
-            napi_value resourceName;
-            napi_create_string_utf8(env, "DeviceChangeCallback", NAPI_AUTO_LENGTH, &resourceName);
-
-            napi_status tsfnStatus = napi_create_threadsafe_function(env, args[0], nullptr, resourceName, 0,
-                1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
-            if (tsfnStatus == napi_ok) {
-                OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] threadsafe function created successfully");
-            } else {
-                OH_LOG_ERROR(LOG_APP,
-                    "[CreateMIDIClient] failed to create threadsafe function: %{public}d",
-                    (int)tsfnStatus);
-            }
-        }
+        SetupDeviceChangeCallback(env, args[0]);
     }
 
-    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] calling OH_MIDIClient_Create");
     OH_MIDIStatusCode status = OH_MIDIClient_Create(&g_midiClient, g_midiCallbacks, nullptr);
-    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] OH_MIDIClient_Create returned status=%{public}d", (int)status);
+    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] status=%{public}d", static_cast<int>(status));
 
     napi_value result;
-    napi_create_int32(env, (int32_t)status, &result);
-
-    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] --exit, status=%{public}d", (int)status);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
 }
 
-// Destroy MIDI client
-static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
+// Helper: Close all opened MIDI devices
+static void CloseAllOpenedDevices()
 {
-    OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] ++enter");
-
-    std::lock_guard<std::mutex> lock(g_midiMutex);
-    OH_LOG_DEBUG(LOG_APP, "[DestroyMIDIClient] mutex locked");
-
-    if (g_midiClient != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] closing %{public}zu opened devices", g_openedDevices.size());
-        // Close all opened devices
-        for (auto& pair : g_openedDevices) {
-            OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] closing device %{public}lld", (long long)pair.first);
-            OH_MIDIClient_CloseDevice(g_midiClient, pair.second);
-        }
-        g_openedDevices.clear();
-
-        OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] destroying MIDI client");
-        OH_MIDIClient_Destroy(g_midiClient);
-        g_midiClient = nullptr;
-    } else {
-        OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] no client to destroy");
+    if (g_midiClient == nullptr) {
+        return;
     }
-
-    // Release device change threadsafe function
-    if (g_deviceChangeTsfn != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] releasing device change threadsafe function");
-        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
-        g_deviceChangeTsfn = nullptr;
+    OH_LOG_INFO(LOG_APP, "[CloseAllOpenedDevices] closing %{public}zu devices", g_openedDevices.size());
+    for (auto& pair : g_openedDevices) {
+        OH_MIDIClient_CloseDevice(g_midiClient, pair.second);
     }
+    g_openedDevices.clear();
+}
 
-    // Clean up all input port contexts (共享缓存模式)
-    OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] cleaning up %{public}zu input port contexts", g_inputPortContexts.size());
+// Helper: Cleanup all port contexts and callbacks
+static void CleanupAllPortContexts()
+{
+    // Cleanup input port contexts
     for (auto& pair : g_inputPortContexts) {
         if (pair.second != nullptr) {
             pair.second->Stop();
@@ -729,13 +706,10 @@ static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
     }
     g_inputPortContexts.clear();
 
-    // Clean up all output port protocols
-    OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] cleaning up %{public}zu output port protocols",
-        g_outputPortProtocols.size());
+    // Cleanup output port protocols
     g_outputPortProtocols.clear();
 
-    // Clean up all BLE open callbacks
-    OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] cleaning up %{public}zu BLE callbacks", g_bleOpenCallbacks.size());
+    // Cleanup BLE callbacks
     for (auto& pair : g_bleOpenCallbacks) {
         if (pair.second.tsfn != nullptr) {
             napi_release_threadsafe_function(pair.second.tsfn, napi_tsfn_release);
@@ -743,9 +717,29 @@ static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
     }
     g_bleOpenCallbacks.clear();
 
+    // Release device change threadsafe function
+    if (g_deviceChangeTsfn != nullptr) {
+        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
+        g_deviceChangeTsfn = nullptr;
+    }
+}
+
+// Destroy MIDI client
+static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
+{
+    OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] ++enter");
+    std::lock_guard<std::mutex> lock(g_midiMutex);
+
+    if (g_midiClient != nullptr) {
+        CloseAllOpenedDevices();
+        OH_MIDIClient_Destroy(g_midiClient);
+        g_midiClient = nullptr;
+    }
+
+    CleanupAllPortContexts();
+
     napi_value result;
     napi_get_undefined(env, &result);
-
     OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] --exit");
     return result;
 }
@@ -920,7 +914,7 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[OpenDevice] client is null");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_CLIENT, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_CLIENT), &result);
         return result;
     }
 
@@ -934,7 +928,7 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "[OpenDevice] device stored, total opened devices=%{public}zu", g_openedDevices.size());
     }
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[OpenDevice] --exit, status=%{public}d", (int)status);
     return result;
@@ -1013,7 +1007,7 @@ static napi_value CloseDevice(napi_env env, napi_callback_info info)
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[CloseDevice] client is null");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_CLIENT, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_CLIENT), &result);
         return result;
     }
 
@@ -1028,10 +1022,10 @@ static napi_value CloseDevice(napi_env env, napi_callback_info info)
         g_openedDevices.erase(it);
         OH_LOG_INFO(LOG_APP, "[CloseDevice] device removed, remaining opened devices=%{public}zu",
             g_openedDevices.size());
-        napi_create_int32(env, (int32_t)status, &result);
+        napi_create_int32(env, static_cast<int32_t>(status), &result);
     } else {
         OH_LOG_WARN(LOG_APP, "[CloseDevice] device not found in opened devices");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
     }
 
     OH_LOG_INFO(LOG_APP, "[CloseDevice] --exit");
@@ -1092,7 +1086,7 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(args.deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[OpenInputPort] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
@@ -1119,7 +1113,7 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
         }
     }
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
 }
 
@@ -1145,7 +1139,7 @@ static napi_value CloseInputPort(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[CloseInputPort] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
@@ -1166,7 +1160,7 @@ static napi_value CloseInputPort(napi_env env, napi_callback_info info)
                     g_inputPortContexts.size());
     }
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[CloseInputPort] --exit, status=%{public}d", (int)status);
     return result;
@@ -1197,7 +1191,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[OpenOutputPort] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
@@ -1218,7 +1212,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
             protocol, (long long)deviceId, portIndex);
     }
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[OpenOutputPort] --exit, status=%{public}d", (int)status);
     return result;
@@ -1246,7 +1240,7 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[CloseOutputPort] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
@@ -1262,7 +1256,7 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
                     (long long)deviceId, portIndex);
     }
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[CloseOutputPort] --exit, status=%{public}d", (int)status);
     return result;
@@ -1286,7 +1280,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
     napi_is_array(env, args[MIDI_ARG_INDEX_2], &isArray);
     if (!isArray) {
         napi_value result;
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT), &result);
         return result;
     }
 
@@ -1299,7 +1293,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
     napi_value result;
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
@@ -1308,7 +1302,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 
     napi_create_object(env, &result);
     napi_value statusValue;
-    napi_create_int32(env, (int32_t)status, &statusValue);
+    napi_create_int32(env, static_cast<int32_t>(status), &statusValue);
     napi_set_named_property(env, result, "status", statusValue);
     napi_value writtenValue;
     napi_create_uint32(env, eventsWritten, &writtenValue);
@@ -1381,138 +1375,88 @@ static OH_MIDIProtocol GetOutputPortProtocol(int64_t deviceId, uint32_t portInde
     return OH_MIDI_PROTOCOL_1_0; // Default to MIDI 1.0
 }
 
-// Send Note On message (helper function for testing)
-static napi_value SendNoteOn(napi_env env, napi_callback_info info)
+// Helper: Parse note message args (deviceId, portIndex, channel, note, velocity)
+struct NoteMessageArgs {
+    int64_t deviceId;
+    uint32_t portIndex;
+    uint32_t channel;
+    uint32_t note;
+    uint32_t velocity;
+};
+
+static NoteMessageArgs ParseNoteMessageArgs(napi_env env, napi_callback_info info)
 {
+    NoteMessageArgs args = {0, 0, 0, 0, 0};
     size_t argc = 5;
-    napi_value args[5] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    napi_value argv[5] = {nullptr};
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 
-    int64_t deviceId = 0;
-    napi_get_value_int64(env, args[0], &deviceId);
+    napi_get_value_int64(env, argv[0], &args.deviceId);
+    napi_get_value_uint32(env, argv[1], &args.portIndex);
+    napi_get_value_uint32(env, argv[MIDI_ARG_INDEX_2], &args.channel);
+    napi_get_value_uint32(env, argv[MIDI_ARG_INDEX_3], &args.note);
+    napi_get_value_uint32(env, argv[MIDI_ARG_INDEX_4], &args.velocity);
+    return args;
+}
 
-    uint32_t portIndex = 0;
-    napi_get_value_uint32(env, args[1], &portIndex);
-
-    uint32_t channel = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_2], &channel);
-
-    uint32_t note = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_3], &note);
-
-    uint32_t velocity = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_4], &velocity);
-
+// Helper: Send note message (internal implementation)
+static napi_value SendNoteMessage(napi_env env, int64_t deviceId, uint32_t portIndex,
+    uint32_t channel, uint32_t note, uint32_t velocity, bool isNoteOn)
+{
+    const char* funcName = isNoteOn ? "SendNoteOn" : "SendNoteOff";
     OH_LOG_DEBUG(LOG_APP,
-        "[SendNoteOn] ++enter, deviceId=%{public}lld, portIndex=%{public}u, "
-        "channel=%{public}u, note=%{public}u, velocity=%{public}u",
-        (long long)deviceId, portIndex, channel, note, velocity);
+        "[%{public}s] dev=%{public}lld, port=%{public}u, ch=%{public}u, note=%{public}u, vel=%{public}u",
+        funcName, (long long)deviceId, portIndex, channel, note, velocity);
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
     napi_value result;
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
-        OH_LOG_ERROR(LOG_APP, "[SendNoteOn] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        OH_LOG_ERROR(LOG_APP, "[%{public}s] client is null or device not opened", funcName);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
-    // Get port protocol and build appropriate UMP format
     OH_MIDIProtocol protocol = GetOutputPortProtocol(deviceId, portIndex);
-    OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] port protocol=%{public}d", (int)protocol);
-
     uint32_t umpData[MIDI_DATA_WORDS_2];
     OH_MIDIEvent event;
     event.timestamp = 0;
     event.data = umpData;
 
     if (protocol == OH_MIDI_PROTOCOL_2_0) {
-        // MIDI 2.0 Note On: 64-bit (2 words)
-        BuildMIDI2NoteOn(channel, note, velocity, umpData);
+        if (isNoteOn) {
+            BuildMIDI2NoteOn(channel, note, velocity, umpData);
+        } else {
+            BuildMIDI2NoteOff(channel, note, velocity, umpData);
+        }
         event.length = MIDI_EVENT_LENGTH_2;
-        OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] MIDI 2.0 UMP: 0x%{public}08X 0x%{public}08X", umpData[0], umpData[1]);
     } else {
-        // MIDI 1.0 Note On: 32-bit (1 word)
-        BuildMIDI1NoteOn(channel, note, velocity, umpData);
+        if (isNoteOn) {
+            BuildMIDI1NoteOn(channel, note, velocity, umpData);
+        } else {
+            BuildMIDI1NoteOff(channel, note, velocity, umpData);
+        }
         event.length = MIDI_EVENT_LENGTH_1;
-        OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] MIDI 1.0 UMP: 0x%{public}08X", umpData[0]);
     }
 
     uint32_t eventsWritten = 0;
     OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, &event, 1, &eventsWritten);
-
-    napi_create_int32(env, (int32_t)status, &result);
-
-    OH_LOG_DEBUG(LOG_APP, "[SendNoteOn] --exit, status=%{public}d", (int)status);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
+}
+
+// Send Note On message (helper function for testing)
+static napi_value SendNoteOn(napi_env env, napi_callback_info info)
+{
+    NoteMessageArgs args = ParseNoteMessageArgs(env, info);
+    return SendNoteMessage(env, args.deviceId, args.portIndex, args.channel, args.note, args.velocity, true);
 }
 
 // Send Note Off message (helper function for testing)
 static napi_value SendNoteOff(napi_env env, napi_callback_info info)
 {
-    size_t argc = 5;
-    napi_value args[5] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int64_t deviceId = 0;
-    napi_get_value_int64(env, args[0], &deviceId);
-
-    uint32_t portIndex = 0;
-    napi_get_value_uint32(env, args[1], &portIndex);
-
-    uint32_t channel = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_2], &channel);
-
-    uint32_t note = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_3], &note);
-
-    uint32_t velocity = 0;
-    napi_get_value_uint32(env, args[MIDI_ARG_INDEX_4], &velocity);
-
-    OH_LOG_DEBUG(LOG_APP,
-        "[SendNoteOff] ++enter, deviceId=%{public}lld, portIndex=%{public}u, "
-        "channel=%{public}u, note=%{public}u, velocity=%{public}u",
-        (long long)deviceId, portIndex, channel, note, velocity);
-
-    std::lock_guard<std::mutex> lock(g_midiMutex);
-
-    napi_value result;
-    auto it = g_openedDevices.find(deviceId);
-    if (g_midiClient == nullptr || it == g_openedDevices.end()) {
-        OH_LOG_ERROR(LOG_APP, "[SendNoteOff] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
-        return result;
-    }
-
-    // Get port protocol and build appropriate UMP format
-    OH_MIDIProtocol protocol = GetOutputPortProtocol(deviceId, portIndex);
-    OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] port protocol=%{public}d", (int)protocol);
-
-    uint32_t umpData[MIDI_DATA_WORDS_2];
-    OH_MIDIEvent event;
-    event.timestamp = 0;
-    event.data = umpData;
-
-    if (protocol == OH_MIDI_PROTOCOL_2_0) {
-        // MIDI 2.0 Note Off: 64-bit (2 words)
-        BuildMIDI2NoteOff(channel, note, velocity, umpData);
-        event.length = MIDI_EVENT_LENGTH_2;
-        OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] MIDI 2.0 UMP: 0x%{public}08X 0x%{public}08X", umpData[0], umpData[1]);
-    } else {
-        // MIDI 1.0 Note Off: 32-bit (1 word)
-        BuildMIDI1NoteOff(channel, note, velocity, umpData);
-        event.length = MIDI_EVENT_LENGTH_1;
-        OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] MIDI 1.0 UMP: 0x%{public}08X", umpData[0]);
-    }
-
-    uint32_t eventsWritten = 0;
-    OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, &event, 1, &eventsWritten);
-
-    napi_create_int32(env, (int32_t)status, &result);
-
-    OH_LOG_DEBUG(LOG_APP, "[SendNoteOff] --exit, status=%{public}d", (int)status);
-    return result;
+    NoteMessageArgs args = ParseNoteMessageArgs(env, info);
+    return SendNoteMessage(env, args.deviceId, args.portIndex, args.channel, args.note, args.velocity, false);
 }
 
 // Flush output port
@@ -1537,14 +1481,14 @@ static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
     auto it = g_openedDevices.find(deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[FlushOutputPort] client is null or device not opened");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_DEVICE_HANDLE, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
     OH_MIDIStatusCode status = OH_MIDIDevice_FlushOutputPort(it->second, portIndex);
     OH_LOG_DEBUG(LOG_APP, "[FlushOutputPort] OH_MIDIDevice_FlushOutputPort returned status=%{public}d", (int)status);
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_DEBUG(LOG_APP, "[FlushOutputPort] --exit, status=%{public}d", (int)status);
     return result;
@@ -1659,8 +1603,8 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     rawData->opened = opened;
     rawData->device = device;
     rawData->deviceId = info.midiDeviceId;
-    rawData->deviceType = (int32_t)info.deviceType;
-    rawData->nativeProtocol = (int32_t)info.nativeProtocol;
+    rawData->deviceType = static_cast<int32_t>(info.deviceType);
+    rawData->nativeProtocol = static_cast<int32_t>(info.nativeProtocol);
     rawData->deviceName = info.deviceName;
     rawData->vendorId = info.vendorId;
     rawData->productId = info.productId;
@@ -1698,7 +1642,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[OpenBLEDevice] client is null");
-        napi_create_int32(env, (int32_t)OH_MIDI_STATUS_INVALID_CLIENT, &result);
+        napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_CLIENT), &result);
         return result;
     }
 
@@ -1713,7 +1657,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
 
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] OH_MIDIClient_OpenBLEDevice returned status=%{public}d", (int)status);
 
-    napi_create_int32(env, (int32_t)status, &result);
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] --exit, status=%{public}d", (int)status);
     return result;

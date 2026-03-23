@@ -994,7 +994,8 @@ struct Index {
           if (umpData.length > 0) {
             const eventData: MidiReceivedEventData = { umpData: umpData };
             emitter.emit({ eventId: EVENT_MIDI_RECEIVED }, { data: eventData });
-            hilog.debug(DOMAIN, TAG, '[openInputPort/callback] emitted EVENT_MIDI_RECEIVED with %{public}d UMPs', umpData.length);
+            hilog.debug(DOMAIN, TAG,
+              '[openInputPort/callback] emitted EVENT_MIDI_RECEIVED with %{public}d UMPs', umpData.length);
           }
         }
       );
@@ -1003,7 +1004,8 @@ struct Index {
       if (status === MidiStatusCode.OK) {
         this.openInputPorts.add(portIndex);
         this.log(`Input port ${portIndex} opened with callback`);
-        hilog.info(DOMAIN, TAG, '[openInputPort] port opened, openInputPorts.size=%{public}d', this.openInputPorts.size);
+        hilog.info(DOMAIN, TAG, '[openInputPort] port opened, openInputPorts.size=%{public}d',
+          this.openInputPorts.size);
       } else {
         this.log(`Failed to open input port: ${status}`);
         hilog.error(DOMAIN, TAG, '[openInputPort] failed with status=%{public}d', status);
@@ -1026,7 +1028,8 @@ struct Index {
       if (status === MidiStatusCode.OK) {
         this.openInputPorts.delete(portIndex);
         this.log(`Input port ${portIndex} closed`);
-        hilog.info(DOMAIN, TAG, '[closeInputPort] port closed, openInputPorts.size=%{public}d', this.openInputPorts.size);
+        hilog.info(DOMAIN, TAG, '[closeInputPort] port closed, openInputPorts.size=%{public}d',
+          this.openInputPorts.size);
       } else {
         this.log(`Failed to close input port: ${status}`);
         hilog.error(DOMAIN, TAG, '[closeInputPort] failed with status=%{public}d', status);
@@ -1049,7 +1052,8 @@ struct Index {
       if (status === MidiStatusCode.OK) {
         this.openOutputPorts.add(portIndex);
         this.log(`Output port ${portIndex} opened`);
-        hilog.info(DOMAIN, TAG, '[openOutputPort] port opened, openOutputPorts.size=%{public}d', this.openOutputPorts.size);
+        hilog.info(DOMAIN, TAG, '[openOutputPort] port opened, openOutputPorts.size=%{public}d',
+          this.openOutputPorts.size);
       } else {
         this.log(`Failed to open output port: ${status}`);
         hilog.error(DOMAIN, TAG, '[openOutputPort] failed with status=%{public}d', status);
@@ -1072,7 +1076,8 @@ struct Index {
       if (status === MidiStatusCode.OK) {
         this.openOutputPorts.delete(portIndex);
         this.log(`Output port ${portIndex} closed`);
-        hilog.info(DOMAIN, TAG, '[closeOutputPort] port closed, openOutputPorts.size=%{public}d', this.openOutputPorts.size);
+        hilog.info(DOMAIN, TAG, '[closeOutputPort] port closed, openOutputPorts.size=%{public}d',
+          this.openOutputPorts.size);
       } else {
         this.log(`Failed to close output port: ${status}`);
         hilog.error(DOMAIN, TAG, '[closeOutputPort] failed with status=%{public}d', status);
@@ -1099,7 +1104,8 @@ struct Index {
     this.activeKeys.add(note);
 
     try {
-      hilog.debug(DOMAIN, TAG, '[onKeyPress] sending NoteOn, deviceId=%{public}d, portIndex=%{public}d, channel=%{public}d, note=%{public}d',
+      hilog.debug(DOMAIN, TAG,
+        '[onKeyPress] sending NoteOn, deviceId=%{public}d, portIndex=%{public}d, channel=%{public}d, note=%{public}d',
         this.selectedDeviceId, portIndex, this.channelValue, note);
       const status = midi.sendNoteOn(this.selectedDeviceId, portIndex, this.channelValue, note, 100);
       if (status !== MidiStatusCode.OK) {
@@ -1129,7 +1135,8 @@ struct Index {
     this.activeKeys.delete(note);
 
     try {
-      hilog.debug(DOMAIN, TAG, '[onKeyRelease] sending NoteOff, deviceId=%{public}d, portIndex=%{public}d, channel=%{public}d, note=%{public}d',
+      hilog.debug(DOMAIN, TAG,
+        '[onKeyRelease] NoteOff: dev=%{public}d, port=%{public}d, ch=%{public}d, note=%{public}d',
         this.selectedDeviceId, portIndex, this.channelValue, note);
       const status = midi.sendNoteOff(this.selectedDeviceId, portIndex, this.channelValue, note, 64);
       if (status !== MidiStatusCode.OK) {
@@ -1147,7 +1154,7 @@ struct Index {
 
   // Handle BLE opened on main thread (called from event listener)
   handleBleOpened(data: BleOpenedEventData): void {
-    hilog.info(DOMAIN, TAG, '[handleBleOpened] ++enter, opened=%{public}s, deviceId=%{public}d, deviceName=%{public}s, deviceType=%{public}d',
+    hilog.info(DOMAIN, TAG, '[handleBleOpened] opened=%{public}s, devId=%{public}d, name=%{public}s, type=%{public}d',
       data.opened.toString(), data.deviceId, data.deviceName, data.deviceType);
 
     this.bleConnecting = false;
@@ -1169,7 +1176,8 @@ struct Index {
           productId: BigInt(0)
         };
         this.bleDeviceList = [...this.bleDeviceList, deviceInfo];
-        hilog.info(DOMAIN, TAG, '[handleBleOpened] added to BLE device list, count=%{public}d', this.bleDeviceList.length);
+        hilog.info(DOMAIN, TAG, '[handleBleOpened] added to BLE device list, count=%{public}d',
+          this.bleDeviceList.length);
       }
 
       // Auto-select and open the device
@@ -1211,7 +1219,7 @@ struct Index {
       hilog.info(DOMAIN, TAG, '[openBLEDevice] calling midi.openBLEDevice(%{public}s)', deviceAddress);
       const status = midi.openBLEDevice(deviceAddress, (opened: boolean, deviceInfo: MidiDeviceInfo) => {
         // In callback: only copy data and emit event, do not hold locks or execute heavy operations
-        hilog.info(DOMAIN, TAG, '[openBLEDevice/callback] opened=%{public}s, deviceId=%{public}d, deviceName=%{public}s',
+        hilog.info(DOMAIN, TAG, '[openBLEDevice/cb] opened=%{public}s, devId=%{public}d, name=%{public}s',
           opened.toString(), deviceInfo.deviceId, deviceInfo.deviceName);
         const eventData: BleOpenedEventData = {
           opened: opened,
