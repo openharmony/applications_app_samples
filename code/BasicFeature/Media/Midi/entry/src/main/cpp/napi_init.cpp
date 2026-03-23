@@ -402,35 +402,53 @@ static inline void SetBigintUint64Prop(napi_env env, napi_value obj, const char*
     napi_set_named_property(env, obj, name, val);
 }
 
-// Helper function to create JavaScript object from device info data
-static napi_value CreateDeviceInfoObjectFromData(napi_env env, int64_t deviceId,
-    int32_t deviceType, int32_t nativeProtocol, const std::string& deviceName,
-    const std::string& deviceAddress, uint64_t vendorId, uint64_t productId)
+// Device info data structure for simplified parameter passing
+struct DeviceInfoData {
+    int64_t deviceId;
+    int32_t deviceType;
+    int32_t nativeProtocol;
+    std::string deviceName;
+    std::string deviceAddress;
+    uint64_t vendorId;
+    uint64_t productId;
+};
+
+// Helper: Set all device properties on JS object
+static void SetDeviceProperties(napi_env env, napi_value obj, const DeviceInfoData& data)
 {
-    OH_LOG_DEBUG(LOG_APP, "[CreateDeviceInfoObjectFromData] ++enter, deviceId=%{public}lld, deviceName=%{public}s",
-                 (long long)deviceId, deviceName.c_str());
+    SetInt64Prop(env, obj, "deviceId", data.deviceId);
+    SetInt32Prop(env, obj, "deviceType", data.deviceType);
+    SetInt32Prop(env, obj, "nativeProtocol", data.nativeProtocol);
+    SetStringProp(env, obj, "deviceName", data.deviceName);
+    SetBigintUint64Prop(env, obj, "vendorId", data.vendorId);
+    SetBigintUint64Prop(env, obj, "productId", data.productId);
+    SetStringProp(env, obj, "deviceAddress", data.deviceAddress);
+}
+
+// Helper function to create JavaScript object from device info data
+static napi_value CreateDeviceInfoObjectFromData(napi_env env, const DeviceInfoData& data)
+{
+    OH_LOG_DEBUG(LOG_APP, "[CreateDeviceInfoObjectFromData] deviceId=%{public}lld",
+                 (long long)data.deviceId);
 
     napi_value deviceObj;
     napi_create_object(env, &deviceObj);
-
-    SetInt64Prop(env, deviceObj, "deviceId", deviceId);
-    SetInt32Prop(env, deviceObj, "deviceType", deviceType);
-    SetInt32Prop(env, deviceObj, "nativeProtocol", nativeProtocol);
-    SetStringProp(env, deviceObj, "deviceName", deviceName);
-    SetBigintUint64Prop(env, deviceObj, "vendorId", vendorId);
-    SetBigintUint64Prop(env, deviceObj, "productId", productId);
-    SetStringProp(env, deviceObj, "deviceAddress", deviceAddress);
-
-    OH_LOG_DEBUG(LOG_APP, "[CreateDeviceInfoObjectFromData] --exit");
+    SetDeviceProperties(env, deviceObj, data);
     return deviceObj;
 }
 
 // Helper function to create JavaScript object from device information
 static napi_value CreateDeviceInfoObject(napi_env env, const OH_MIDIDeviceInformation& info)
 {
-    return CreateDeviceInfoObjectFromData(env, info.midiDeviceId, static_cast<int32_t>(info.deviceType),
-                                          static_cast<int32_t>(info.nativeProtocol), info.deviceName,
-                                          info.deviceAddress, info.vendorId, info.productId);
+    DeviceInfoData data;
+    data.deviceId = info.midiDeviceId;
+    data.deviceType = static_cast<int32_t>(info.deviceType);
+    data.nativeProtocol = static_cast<int32_t>(info.nativeProtocol);
+    data.deviceName = info.deviceName;
+    data.deviceAddress = info.deviceAddress;
+    data.vendorId = info.vendorId;
+    data.productId = info.productId;
+    return CreateDeviceInfoObjectFromData(env, data);
 }
 
 // Helper function to create JavaScript object from port information
@@ -474,10 +492,16 @@ static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* conte
 
     napi_value args[2];
     napi_create_int32(env, callbackData->action, &args[0]);
-    args[1] = CreateDeviceInfoObjectFromData(env,
-        callbackData->deviceId, callbackData->deviceType, callbackData->nativeProtocol,
-        callbackData->deviceName, callbackData->deviceAddress, callbackData->vendorId,
-        callbackData->productId);
+
+    DeviceInfoData deviceData;
+    deviceData.deviceId = callbackData->deviceId;
+    deviceData.deviceType = callbackData->deviceType;
+    deviceData.nativeProtocol = callbackData->nativeProtocol;
+    deviceData.deviceName = callbackData->deviceName;
+    deviceData.deviceAddress = callbackData->deviceAddress;
+    deviceData.vendorId = callbackData->vendorId;
+    deviceData.productId = callbackData->productId;
+    args[1] = CreateDeviceInfoObjectFromData(env, deviceData);
 
     napi_value undefined;
     napi_get_undefined(env, &undefined);
@@ -555,10 +579,15 @@ static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context,
 
     napi_value args[2];
     napi_get_boolean(env, callbackData->opened, &args[0]);
-    args[1] = CreateDeviceInfoObjectFromData(env,
-        callbackData->deviceId, callbackData->deviceType, callbackData->nativeProtocol,
-        callbackData->deviceName, callbackData->deviceAddress, callbackData->vendorId,
-        callbackData->productId);
+    DeviceInfoData deviceData;
+    deviceData.deviceId = callbackData->deviceId;
+    deviceData.deviceType = callbackData->deviceType;
+    deviceData.nativeProtocol = callbackData->nativeProtocol;
+    deviceData.deviceName = callbackData->deviceName;
+    deviceData.deviceAddress = callbackData->deviceAddress;
+    deviceData.vendorId = callbackData->vendorId;
+    deviceData.productId = callbackData->productId;
+    args[1] = CreateDeviceInfoObjectFromData(env, deviceData);
 
     napi_value undefined;
     napi_get_undefined(env, &undefined);
