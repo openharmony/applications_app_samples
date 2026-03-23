@@ -29,6 +29,22 @@
       "value": "aes_ccm_encryption_decryption_synchronous"
     },
     {
+      "name": "aes_new_ccm_encryption_decryption_asynchronous",
+      "value": "aes_new_ccm_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "aes_new_ccm_encryption_decryption_synchronous",
+      "value": "aes_new_ccm_encryption_decryption_synchronous"
+    },
+    {
+      "name": "aes_xts_encryption_decryption_asynchronous",
+      "value": "aes_xts_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "aes_xts_encryption_decryption_synchronous",
+      "value": "aes_xts_encryption_decryption_synchronous"
+    },
+    {
       "name": "aes_cbc_encryption_decryption_asynchronous",
       "value": "aes_cbc_encryption_decryption_asynchronous"
     },
@@ -67,6 +83,22 @@
     {
       "name": "call_aes_ccm_synchronous",
       "value": "Call AES_CCM Synchronous"
+    },
+    {
+      "name": "call_aes_new_ccm_asynchronous",
+      "value": "Call AES_NewCCM Asynchronous"
+    },
+    {
+      "name": "call_aes_new_ccm_synchronous",
+      "value": "Call AES_NewCCM Synchronous"
+    },
+    {
+      "name": "call_aes_xts_asynchronous",
+      "value": "Call AES_XTS Asynchronous"
+    },
+    {
+      "name": "call_aes_xts_synchronous",
+      "value": "Call AES_XTS Synchronous"
     },
     {
       "name": "call_aes_ecb_asynchronous",

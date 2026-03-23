@@ -220,5 +220,73 @@ export default function encryptionDecryptionGuidanceAesArkTsTest() {
       console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs010 end');
       await driver.pressBack();
     })
+    /**
+     * 点击按钮，使用AES对称密钥（NewCCM模式）加解密(ArkTS)，异步方法
+     */
+    it('testEncryptionDecryptionGuidanceAesArkTs011', 0, async () => {
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs011 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('aes_new_ccm_encryption_decryption_asynchronous'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call AES_NewCCM Asynchronous'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('AES_NewCCMAsynchronousSuccess'));
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs011 end');
+      await driver.pressBack();
+    })
+    /**
+     * 点击按钮，使用AES对称密钥（NewCCM模式）加解密(ArkTS)，同步方法
+     */
+    it('testEncryptionDecryptionGuidanceAesArkTs012', 0, async () => {
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs012 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('aes_new_ccm_encryption_decryption_synchronous'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call AES_NewCCM Synchronous'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('AES_NewCCMSynchronousSuccess'));
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs012 end');
+      await driver.pressBack();
+    })
+    /**
+     * 点击按钮，使用AES对称密钥（XTS模式）加解密(ArkTS)，异步方法
+     */
+    it('testEncryptionDecryptionGuidanceAesArkTs013', 0, async () => {
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs013 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('aes_xts_encryption_decryption_asynchronous'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call AES_XTS Asynchronous'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('AES_XTSSuccess'));
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs013 end');
+      await driver.pressBack();
+    })
+    /**
+     * 点击按钮，使用AES对称密钥（XTS模式）加解密(ArkTS)，同步方法
+     */
+    it('testEncryptionDecryptionGuidanceAesArkTs014', 0, async () => {
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs014 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('aes_xts_encryption_decryption_synchronous'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call AES_XTS Synchronous'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('AES_XTSSynchronousSuccess'));
+      console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs014 end');
+      await driver.pressBack();
+    })
   })
 }
