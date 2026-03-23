@@ -1,31 +1,17 @@
-/*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 {
   "app": {
     "signingConfigs": [
       {
         "name": "default",
+        "type": "HarmonyOS",
         "material": {
-          "certpath": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.cer",
+          "certpath": "C:\\Users\\shichangcheng\\.ohos\\config\\default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B9D30C16750704AA78981993BEF1072D356C0F14123D17487453A96FB01A053DD9A6B5957B97A1F",
-          "profile": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p7b",
+          "keyPassword": "0000001BC171BD4BF72E20316A8F1FE2FFBE5A7E37301975679395A6A8FBB4FCDB6FD4B1ECE255F8A9D146",
+          "profile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/shichangcheng/.ohos/config/openharmony/default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p12",
-          "storePassword": "0000001B6872130684EF4A459F499B9898D9947B95D3C4FA25C63FE0119D1378F2FCF96EFDAA9D14E30192"
+          "storeFile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_ContinuousTask_bVSFGeBt3Sa-_Jo0AWNTVkM8mGk9T2zc_-kKP-DOCx8=.p12",
+          "storePassword": "0000001B9661614B8E51CC2AA68434309FDCD1BB31B116CA59E6BEB3697B944308609BA410E2A0560B83C3"
         }
       }
     ],
@@ -33,10 +19,9 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 20,
-        "compatibleSdkVersion": 20,
-        "targetSdkVersion": 20,
-        "runtimeOS": "OpenHarmony",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,
