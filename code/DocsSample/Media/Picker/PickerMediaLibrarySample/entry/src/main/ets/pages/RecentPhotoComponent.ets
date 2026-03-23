@@ -42,9 +42,12 @@ import {
 @Component
 struct PickerDemo {
   private recentPhotoOptions: RecentPhotoOptions = new RecentPhotoOptions();
-  private recentPhotoCheckResultCallback: RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => this.onRecentPhotoCheckResult(recentPhotoExists);
-  private recentPhotoClickCallback: RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo): boolean => this.onRecentPhotoClick(recentPhotoInfo);
-  private recentPhotoCheckInfoCallback: RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPhotoInfo) => this.onRecentPhotoCheckInfo(recentPhotoExists, info);
+  private recentPhotoCheckResultCallback: RecentPhotoCheckResultCallback =
+    (recentPhotoExists: boolean) => this.onRecentPhotoCheckResult(recentPhotoExists);
+  private recentPhotoClickCallback: RecentPhotoClickCallback =
+    (recentPhotoInfo: BaseItemInfo): boolean => this.onRecentPhotoClick(recentPhotoInfo);
+  private recentPhotoCheckInfoCallback: RecentPhotoCheckInfoCallback =
+    (recentPhotoExists: boolean, info: RecentPhotoInfo) => this.onRecentPhotoCheckInfo(recentPhotoExists, info);
 
   aboutToAppear() {
     this.recentPhotoOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;

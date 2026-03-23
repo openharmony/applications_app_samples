@@ -419,7 +419,7 @@ struct PickerDemo {
         if (this.isBrowserShow) {
           // 这里模拟应用自己的大图返回按钮。
           Row() {
-            Button("退出大图").width('33%').height('8%').onClick(() => {
+            Button('退出大图').width('33%').height('8%').onClick(() => {
               this.pickerController.exitPhotoBrowser();
             })
           }.margin({ bottom: 20 })
@@ -429,12 +429,16 @@ struct PickerDemo {
           pickerOptions: this.pickerOptions,
           onSelect: (uri: string): void => this.onSelect(uri),
           onDeselect: (uri: string): void => this.onDeselect(uri),
-          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo,
+          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean =>
+            this.onItemClicked(itemInfo,
             clickType), // 该接口可替代上面两个接口。
-          onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
-          onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
+          onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean =>
+            this.onEnterPhotoBrowser(photoBrowserInfo),
+          onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean =>
+            this.onExitPhotoBrowser(photoBrowserInfo),
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
-          onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
+          onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean =>
+            this.onPhotoBrowserChanged(browserItemInfo),
           onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
           onExceedMaxSelected: this.exceedMaxSelectedCallback,
           onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
