@@ -38,6 +38,9 @@
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
 
+#include "hiappevent/hiappevent_param.h"
+// [End Event_Cpp_Crash_Config_Header]
+
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>
 #include "hicollie/hicollie.h"
