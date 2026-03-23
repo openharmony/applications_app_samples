@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Cpp_NormalNodeExample]
-// NormalNodeExample.h
+// [Start Cpp_NormalTextListExample]
+// NormalTextListExample.h
 
-#ifndef MYAPPLICATION_NORMALNODEEXAMPLE_H
-#define MYAPPLICATION_NORMALNODEEXAMPLE_H
+#ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
+#define MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 
 #include "ArkUIBaseNode.h"
 #include "ArkUIListItemNode.h"
@@ -25,7 +25,7 @@
 
 namespace NativeModule {
 
-std::shared_ptr<ArkUIBaseNode> CreateExample()
+std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
 {
     // 创建组件并挂载
     // 1：使用智能指针创建List组件。
@@ -36,12 +36,7 @@ std::shared_ptr<ArkUIBaseNode> CreateExample()
     const int itemCount = 30;
     const int fontSizes = 16;
     const float screenWidth = 1;
-    const float borderWidth = 2;
     const int defaultHeight = 100;
-    const int defaultRadius = 8;
-    const float defaultOpacity = 0.8;
-    const float defaultScale = 0.8;
-    const float blank = 5;
     // 2：创建ListItem子组件并挂载到List上。
     for (int32_t i = 0; i < itemCount; ++i) {
         auto listItem = std::make_shared<ArkUIListItemNode>();
@@ -54,13 +49,6 @@ std::shared_ptr<ArkUIBaseNode> CreateExample()
         textNode->SetHeight(defaultHeight);
         textNode->SetBackgroundColor(0xFFfffacd);
         textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
-        textNode->SetBorderWidth(borderWidth);
-        textNode->SetBorderColor(0xFF0000ff);
-        textNode->SetBorderRadius(defaultRadius);
-        textNode->SetMargin(blank, 0, blank, 0);
-        textNode->SetPadding(0, blank, 0, blank);
-        textNode->SetOpacity(defaultOpacity);
-        textNode->SetScale(defaultScale, 1);
         listItem->InsertChild(textNode, i);
         list->AddChild(listItem);
     }
@@ -68,5 +56,5 @@ std::shared_ptr<ArkUIBaseNode> CreateExample()
 }
 } // namespace NativeModule
 
-#endif // MYAPPLICATION_NORMALNODEEXAMPLE_H
-// [End Cpp_NormalNodeExample]
+#endif // MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
+// [End Cpp_NormalTextListExample]
