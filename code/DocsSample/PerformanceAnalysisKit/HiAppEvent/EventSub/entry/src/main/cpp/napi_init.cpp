@@ -22,13 +22,13 @@
 
 // [Start EventSub_napi_nohiappevent_Header]
 // [Start EventSub_napi_Header]
-// [Start Event_Cpp_Crash_Config]
+// [Start Event_Cpp_Crash_Config_Header]
 #include "napi/native_api.h"
 // [StartExclude EventSub_napi_nohiappevent_Header]
-// [StartExclude Event_Cpp_Crash_Config]
+// [StartExclude Event_Cpp_Crash_Config_Header]
 // 根据工程中三方库jsoncpp的位置适配引用json.h的路径
 #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
-// [EndExclude Event_Cpp_Crash_Config]
+// [EndExclude Event_Cpp_Crash_Config_Header]
 #include "hiappevent/hiappevent.h"
 // [EndExclude EventSub_napi_nohiappevent_Header]
 #include "hilog/log.h"
@@ -37,31 +37,6 @@
 #define LOG_TAG "testTag"
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
-
-/**
- * @brief Print additional memory information near the PC and LR registers.
- * @since 24
- */
-#define OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING "extend_pc_lr_printing"
-
-/**
- * @brief Automatically truncate the cppcrash log size.
- * @since 24
- */
-#define OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES "log_file_cutoff_sz_bytes"
-
-/**
- * @brief Only print VMA within the stacktrace of the cppcrash log.
- * @since 24
- */
-#define OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING "simplify_vma_printing"
-
-/**
- * @brief Merge the app log into the system cppcrash log and return it via external_log in the APP_CRASH event.
- * @since 24
- */
-#define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
-// [StartExclude Event_Cpp_Crash_Config]
 
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>
@@ -551,7 +526,7 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(systemEventWatcherR);
 
-    // [EndExclude Event_Cpp_Crash_Config]
+    // [Start Event_Cpp_Crash_Config]
     // 1. 创建配置对象
     HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
 
