@@ -60,7 +60,7 @@ struct Index {
           // 假设已经创建了一个session，如何创建session可以参考之前的案例。
           let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
 
-          // 系统是否支持桌面歌词
+          // 系统是否支持桌面歌词。
           let isDesktopLyricSupported: boolean = false;
           try {
             isDesktopLyricSupported = await AVSessionManager.isDesktopLyricSupported();
@@ -72,7 +72,7 @@ struct Index {
           }
 
           try {
-            // 监听桌面歌词是否开启
+            // 监听桌面歌词是否开启。
             session.onDesktopLyricVisibilityChanged((isVisible: boolean) => {
               console.log(`onDesktopLyricVisibilityChanged changed: ${isVisible}`)
             });
@@ -81,7 +81,7 @@ struct Index {
           }
 
           try {
-            // 监听桌面歌词锁定状态
+            // 监听桌面歌词锁定状态。
             session.onDesktopLyricStateChanged((state) => {
               console.log(`onDesktopLyricStateChanged changed: ${state.isLocked}`)
             });
@@ -90,21 +90,21 @@ struct Index {
           }
 
           try {
-            // 使能桌面歌词
+            // 使能桌面歌词。
             session.enableDesktopLyric(true);
           } catch (e) {
             console.error(`enableDesktopLyric err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
-            // 开启或关闭桌面歌词
+            // 开启或关闭桌面歌词。
             await session.setDesktopLyricVisible(true);
           } catch (e) {
             console.error(`setDesktopLyricVisible err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
-            // 桌面歌词锁定状态
+            // 桌面歌词锁定状态。
             await session.setDesktopLyricState({isLocked: true});
           } catch (e) {
             console.error(`setDesktopLyricState err. Code: ${err.code}, message: ${err.message}`);
