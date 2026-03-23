@@ -1139,6 +1139,7 @@ static void OnEventReceive(ArkUI_NodeEvent* event)
     ArkUI_NodeComponentEvent* nodeComponentEvent;
     ArkUI_NumberValue preventDefault = { .i32 = true };
     ArkUI_NumberValue preventReturnValues[] = { preventDefault };
+    OnStyledStringEventReceive(event);
     switch (eventType) {
         case NODE_TEXT_EDITOR_ON_READY:
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_READY");
