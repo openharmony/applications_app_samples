@@ -16,7 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { mediaquery } from '@kit.ArkUI';
 import { emitter, BusinessError } from '@kit.BasicServicesKit';
-import { ble, connection } from '@kit.ConnectivityKit';
+import { ble } from '@kit.ConnectivityKit';
 import common from '@ohos.app.ability.common';
 import preferences from '@ohos.data.preferences';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
@@ -24,14 +24,9 @@ import midi, {
   MidiStatusCode,
   MidiPortDirection,
   MidiDeviceType,
-  MidiProtocol,
-  MidiDeviceChangeAction,
   MidiDeviceInfo,
   MidiPortInfo,
-  MidiEvent,
-  DeviceChangeCallback,
-  MidiReceivedCallback,
-  BLEDeviceOpenedCallback
+  MidiEvent
 } from 'libentry.so';
 
 const DOMAIN = 0xFF00;
@@ -95,8 +90,26 @@ interface PianoKeyDimensions {
 // Breakpoint type for responsive design
 type BreakpointType = 'xs' | 'sm' | 'md' | 'lg';
 
+// Breakpoint sizes interface - defines values for each breakpoint
+interface BreakpointSizes {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+}
+
+// Font sizes configuration interface
+interface FontSizesConfig {
+  title: BreakpointSizes;
+  subtitle: BreakpointSizes;
+  body: BreakpointSizes;
+  caption: BreakpointSizes;
+  small: BreakpointSizes;
+  pianoKey: BreakpointSizes;
+}
+
 // Responsive font sizes configuration
-const FONT_SIZES = {
+const FONT_SIZES: FontSizesConfig = {
   title: { xs: 18, sm: 20, md: 24, lg: 28 },
   subtitle: { xs: 14, sm: 16, md: 16, lg: 18 },
   body: { xs: 12, sm: 14, md: 14, lg: 14 },
@@ -104,6 +117,46 @@ const FONT_SIZES = {
   small: { xs: 10, sm: 10, md: 10, lg: 10 },
   pianoKey: { xs: 6, sm: 7, md: 8, lg: 8 }
 };
+
+// Helper function to get font size (avoids dynamic index access)
+function getFontSize(config: FontSizesConfig, category: keyof FontSizesConfig, breakpoint: BreakpointType): number {
+  let sizes: BreakpointSizes;
+  switch (category) {
+    case 'title':
+      sizes = config.title;
+      break;
+    case 'subtitle':
+      sizes = config.subtitle;
+      break;
+    case 'body':
+      sizes = config.body;
+      break;
+    case 'caption':
+      sizes = config.caption;
+      break;
+    case 'small':
+      sizes = config.small;
+      break;
+    case 'pianoKey':
+      sizes = config.pianoKey;
+      break;
+    default:
+      sizes = config.body;
+      break;
+  }
+  switch (breakpoint) {
+    case 'xs':
+      return sizes.xs;
+    case 'sm':
+      return sizes.sm;
+    case 'md':
+      return sizes.md;
+    case 'lg':
+      return sizes.lg;
+    default:
+      return sizes.md;
+  }
+}
 
 // Piano keys configuration (C4 to C5, one octave)
 const WHITE_KEYS: PianoKey[] = [
@@ -261,7 +314,8 @@ struct Index {
     }
     try {
       const devicesJson = await this.preferencesStore.get('recent_ble_devices', '[]') as string;
-      this.recentBleDevices = JSON.parse(devicesJson);
+      const parsed: RecentBleDevice[] = JSON.parse(devicesJson) as RecentBleDevice[];
+      this.recentBleDevices = parsed;
       hilog.info(DOMAIN, TAG, '[loadRecentBleDevices] loaded %{public}d devices', this.recentBleDevices.length);
     } catch (e) {
       hilog.error(DOMAIN, TAG, '[loadRecentBleDevices] failed: %{public}s', JSON.stringify(e));
@@ -309,14 +363,6 @@ struct Index {
   private bleScanner: ble.BleScanner = ble.createBleScanner();
   private bleScanTimer: number = -1; // Timer for BLE scan timeout
 
-  // Helper method to read bytes in reversed order and convert to hex string
-  private readBytesReversed(view: DataView, start: number, count: number): string {
-    let hex = '';
-    for (let i = start + count - 1; i >= start; i--) {
-      hex += view.getUint8(i).toString(16).padStart(2, '0');
-    }
-    return hex;
-  }
 
   // BLE device found callback
   onBleDeviceFound = (scanReport: ble.ScanReport): void => {
@@ -332,7 +378,7 @@ struct Index {
       const rssi: number = result.rssi;
       // ScanResult may not have localName, use 'Unknown' as default
       // Device name can be parsed from advertisement data if needed
-      const name: string = 'BLE Device';
+      const name: string = result.deviceName;
 
       // Check if already in list
       const exists = this.scannedBleDevices.some(d => d.deviceId === deviceId);
@@ -912,62 +958,104 @@ struct Index {
 
   // Convert MIDI note number to name
   noteToName(note: number): string {
-    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
     const octave = Math.floor(note / 12) - 1;
-    const noteName = noteNames[note % 12];
+    const noteIndex = note % 12;
+    let noteName: string;
+    switch (noteIndex) {
+      case 0:
+        noteName = 'C';
+        break;
+      case 1:
+        noteName = 'C#';
+        break;
+      case 2:
+        noteName = 'D';
+        break;
+      case 3:
+        noteName = 'D#';
+        break;
+      case 4:
+        noteName = 'E';
+        break;
+      case 5:
+        noteName = 'F';
+        break;
+      case 6:
+        noteName = 'F#';
+        break;
+      case 7:
+        noteName = 'G';
+        break;
+      case 8:
+        noteName = 'G#';
+        break;
+      case 9:
+        noteName = 'A';
+        break;
+      case 10:
+        noteName = 'A#';
+        break;
+      case 11:
+        noteName = 'B';
+        break;
+      default:
+        noteName = 'C';
+        break;
+    }
     return `${noteName}${octave}`;
   }
 
   // Get common controller name
   getControllerName(controller: number): string {
-    const controllerNames: Record<number, string> = {
-      0: 'Bank Select MSB',
-      1: 'Modulation',
-      2: 'Breath',
-      4: 'Foot',
-      5: 'Portamento Time',
-      6: 'Data Entry MSB',
-      7: 'Volume',
-      8: 'Balance',
-      10: 'Pan',
-      11: 'Expression',
-      32: 'Bank Select LSB',
-      38: 'Data Entry LSB',
-      64: 'Sustain',
-      65: 'Portamento',
-      66: 'Sostenuto',
-      67: 'Soft',
-      68: 'Legato',
-      71: 'Resonance',
-      72: 'Release',
-      73: 'Attack',
-      74: 'Cutoff',
-      75: 'Decay',
-      76: 'Vibrato Rate',
-      77: 'Vibrato Depth',
-      78: 'Vibrato Delay',
-      84: 'Portamento Control',
-      91: 'Reverb',
-      92: 'Tremolo',
-      93: 'Chorus',
-      94: 'Detune',
-      95: 'Phaser',
-      96: 'Data Increment',
-      97: 'Data Decrement',
-      98: 'NRPN LSB',
-      99: 'NRPN MSB',
-      100: 'RPN LSB',
-      101: 'RPN MSB',
-      120: 'All Sound Off',
-      121: 'Reset Controllers',
-      122: 'Local Control',
-      123: 'All Notes Off',
-      124: 'Omni Off',
-      125: 'Omni On',
-      126: 'Mono',
-      127: 'Poly'
-    };
-    return controllerNames[controller] || `CC${controller}`;
+    const controllerNames = new Map<number, string>([
+      [0, 'Bank Select MSB'],
+      [1, 'Modulation'],
+      [2, 'Breath'],
+      [4, 'Foot'],
+      [5, 'Portamento Time'],
+      [6, 'Data Entry MSB'],
+      [7, 'Volume'],
+      [8, 'Balance'],
+      [10, 'Pan'],
+      [11, 'Expression'],
+      [32, 'Bank Select LSB'],
+      [38, 'Data Entry LSB'],
+      [64, 'Sustain'],
+      [65, 'Portamento'],
+      [66, 'Sostenuto'],
+      [67, 'Soft'],
+      [68, 'Legato'],
+      [71, 'Resonance'],
+      [72, 'Release'],
+      [73, 'Attack'],
+      [74, 'Cutoff'],
+      [75, 'Decay'],
+      [76, 'Vibrato Rate'],
+      [77, 'Vibrato Depth'],
+      [78, 'Vibrato Delay'],
+      [84, 'Portamento Control'],
+      [91, 'Reverb'],
+      [92, 'Tremolo'],
+      [93, 'Chorus'],
+      [94, 'Detune'],
+      [95, 'Phaser'],
+      [96, 'Data Increment'],
+      [97, 'Data Decrement'],
+      [98, 'NRPN LSB'],
+      [99, 'NRPN MSB'],
+      [100, 'RPN LSB'],
+      [101, 'RPN MSB'],
+      [120, 'All Sound Off'],
+      [121, 'Reset Controllers'],
+      [122, 'Local Control'],
+      [123, 'All Notes Off'],
+      [124, 'Omni Off'],
+      [125, 'Omni On'],
+      [126, 'Mono'],
+      [127, 'Poly']
+    ]);
+    const name = controllerNames.get(controller);
+    return name !== undefined ? name : `CC${controller}`;
   }
 
   openInputPort(portIndex: number): void {
@@ -1382,13 +1470,13 @@ struct Index {
   pianoKeyboard() {
     Column() {
       Text('Virtual Piano Keyboard')
-        .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+        .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: 12 })
 
       if (this.openOutputPorts.size === 0) {
         Text('Open an output port to play')
-          .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+          .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
           .fontColor('#999999')
           .margin({ bottom: 8 })
       }
@@ -1417,7 +1505,7 @@ struct Index {
       // Channel selector
       Row() {
         Text('Channel:')
-          .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+          .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
         TextInput({ text: this.channelValue.toString() })
           .type(InputType.Number)
           .width(50)
@@ -1445,7 +1533,7 @@ struct Index {
       ForEach(WHITE_KEYS, (key: PianoKey) => {
         Column() {
           Text(key.name)
-            .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+            .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
             .fontColor(this.activeKeys.has(key.note) ? '#FFFFFF' : '#333333')
         }
         .width(this.keyDimensions.whiteKeyWidth)
@@ -1473,7 +1561,7 @@ struct Index {
       ForEach(BLACK_KEYS, (key: PianoKey, index: number) => {
         Column() {
           Text(key.name.replace('#', ''))
-            .fontSize(FONT_SIZES.pianoKey[this.currentBreakpoint])
+            .fontSize(getFontSize(FONT_SIZES, 'pianoKey', this.currentBreakpoint))
             .fontColor('#FFFFFF')
         }
         .width(this.keyDimensions.blackKeyWidth)
@@ -1505,7 +1593,7 @@ struct Index {
       // Header
       Row() {
         Text(this.message)
-          .fontSize(FONT_SIZES.title[this.currentBreakpoint])
+          .fontSize(getFontSize(FONT_SIZES, 'title', this.currentBreakpoint))
           .fontWeight(FontWeight.Bold)
           .fontColor('#182431')
           .maxLines(1)
@@ -1521,13 +1609,13 @@ struct Index {
           // Client Controls
           Column() {
             Text('Client Management')
-              .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+              .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
               .fontWeight(FontWeight.Medium)
               .margin({ bottom: 12 })
 
             Row({ space: 12 }) {
               Button(this.clientCreated ? 'Destroy Client' : 'Create Client')
-                .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                 .width('45%')
                 .backgroundColor(this.clientCreated ? '#E84026' : '#007DFF')
                 .onClick(() => {
@@ -1539,7 +1627,7 @@ struct Index {
                 })
 
               Button('Refresh Devices')
-                .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                 .width('45%')
                 .enabled(this.clientCreated)
                 .backgroundColor(this.clientCreated ? '#007DFF' : '#CCCCCC')
@@ -1559,19 +1647,19 @@ struct Index {
           if (this.clientCreated) {
             Column() {
               Text('Bluetooth MIDI')
-                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               Text('Connect to BLE MIDI devices by entering their MAC address or select from recent devices')
-                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                 .fontColor('#666666')
                 .margin({ bottom: 8 })
 
               // BLE Scan Section
               Row({ space: 8 }) {
                 Button(this.bleScanning ? 'Scanning...' : 'Scan for MIDI Devices')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .layoutWeight(1)
                   .height(40)
                   .backgroundColor(this.bleScanning ? '#CCCCCC' : '#4CAF50')
@@ -1585,7 +1673,7 @@ struct Index {
                   })
                 if (this.bleScanning) {
                   Button('Stop')
-                    .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                    .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                     .width(70)
                     .height(40)
                     .backgroundColor('#E84026')
@@ -1600,7 +1688,7 @@ struct Index {
               // BLE Scan Error
               if (this.bleScanError.length > 0) {
                 Text(this.bleScanError)
-                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .fontColor('#E84026')
                   .margin({ bottom: 8 })
               }
@@ -1608,7 +1696,7 @@ struct Index {
               // Scanned BLE MIDI Devices
               if (this.scannedBleDevices.length > 0) {
                 Text('Found MIDI Devices:')
-                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .fontColor('#888888')
                   .margin({ bottom: 4 })
 
@@ -1616,12 +1704,12 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.name || 'MIDI Device')
-                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                         .fontWeight(FontWeight.Medium)
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`RSSI: ${device.rssi} dBm | ${device.deviceId}`)
-                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
                         .fontColor('#666666')
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -1629,7 +1717,7 @@ struct Index {
                     .alignItems(HorizontalAlign.Start)
                     .layoutWeight(1)
                     Button('Connect')
-                      .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
                       .height(28)
                       .backgroundColor('#4CAF50')
                       .enabled(!this.bleConnecting)
@@ -1652,7 +1740,7 @@ struct Index {
               // Recent BLE devices for quick access
               if (this.recentBleDevices.length > 0) {
                 Text('Recent Devices:')
-                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .fontColor('#888888')
                   .margin({ bottom: 4 })
 
@@ -1660,12 +1748,12 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.name || 'BLE MIDI Device')
-                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                         .fontWeight(FontWeight.Medium)
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`${device.address} - ${this.formatTimestamp(device.timestamp)}`)
-                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
                         .fontColor('#666666')
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -1674,7 +1762,7 @@ struct Index {
                     .layoutWeight(1)
                     Row({ space: 4 }) {
                       Button('Connect')
-                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
                         .height(28)
                         .backgroundColor('#4CAF50')
                         .enabled(!this.bleConnecting)
@@ -1683,7 +1771,7 @@ struct Index {
                           this.openBLEDevice(device.address);
                         })
                       Button('X')
-                        .fontSize(FONT_SIZES.small[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
                         .width(28)
                         .height(28)
                         .backgroundColor('#E84026')
@@ -1722,7 +1810,7 @@ struct Index {
               // Discovered BLE devices
               if (this.bleDeviceList.length > 0) {
                 Text('Connected BLE Devices:')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .fontColor('#666666')
                   .margin({ top: 12, bottom: 8 })
 
@@ -1730,12 +1818,12 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.deviceName || 'BLE MIDI Device')
-                        .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                         .fontWeight(FontWeight.Medium)
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`Address: ${device.deviceAddress}`)
-                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                         .fontColor('#666666')
                         .margin({ top: 2 })
                         .maxLines(1)
@@ -1744,7 +1832,7 @@ struct Index {
                     .alignItems(HorizontalAlign.Start)
                     .layoutWeight(1)
                     Button(this.selectedDeviceId === device.deviceId ? 'Selected' : 'Select')
-                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                       .width(60)
                       .backgroundColor(this.selectedDeviceId === device.deviceId ? '#4CAF50' : '#007DFF')
                       .onClick(() => {
@@ -1770,10 +1858,10 @@ struct Index {
             Column() {
               Row() {
                 Text('Connected Devices')
-                  .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                   .fontWeight(FontWeight.Medium)
                 Text(`(${this.deviceList.length})`)
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .fontColor('#666666')
                   .margin({ left: 4 })
               }
@@ -1782,7 +1870,7 @@ struct Index {
 
               if (this.deviceList.length === 0) {
                 Text('No MIDI devices found. Connect a USB/BLE MIDI device.')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .fontColor('#999999')
                   .width('100%')
                   .textAlign(TextAlign.Center)
@@ -1792,12 +1880,12 @@ struct Index {
                   Row() {
                     Column() {
                       Text(device.deviceName || 'Unknown Device')
-                        .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                         .fontWeight(FontWeight.Medium)
                         .maxLines(1)
                         .textOverflow({ overflow: TextOverflow.Ellipsis })
                       Text(`ID: ${device.deviceId} | Type: ${this.getDeviceTypeName(device.deviceType)}`)
-                        .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                        .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                         .fontColor('#666666')
                         .margin({ top: 4 })
                     }
@@ -1830,13 +1918,13 @@ struct Index {
           if (this.selectedDeviceId >= 0) {
             Column() {
               Text('Device Control')
-                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               Row({ space: 12 }) {
                 Button(this.isDeviceOpen ? 'Close Device' : 'Open Device')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .width('45%')
                   .backgroundColor(this.isDeviceOpen ? '#E84026' : '#007DFF')
                   .onClick(() => {
@@ -1860,26 +1948,26 @@ struct Index {
           if (this.isDeviceOpen) {
             Column() {
               Text('Port Management')
-                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
               // Input Ports
               if (this.inputPorts.length > 0) {
                 Text('Input Ports (Receive MIDI)')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .fontColor('#666666')
                   .margin({ bottom: 8 })
 
                 ForEach(this.inputPorts, (port: MidiPortInfo) => {
                   Row() {
                     Text(`Port ${port.portIndex}: ${port.name || 'Unnamed'}`)
-                      .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                       .layoutWeight(1)
                       .maxLines(1)
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openInputPorts.has(port.portIndex) ? 'Close' : 'Open')
-                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                       .width(60)
                       .backgroundColor(this.openInputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
@@ -1901,19 +1989,19 @@ struct Index {
               // Output Ports
               if (this.outputPorts.length > 0) {
                 Text('Output Ports (Send MIDI)')
-                  .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                   .fontColor('#666666')
                   .margin({ top: 12, bottom: 8 })
 
                 ForEach(this.outputPorts, (port: MidiPortInfo) => {
                   Row() {
                     Text(`Port ${port.portIndex}: ${port.name || 'Unnamed'}`)
-                      .fontSize(FONT_SIZES.body[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
                       .layoutWeight(1)
                       .maxLines(1)
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openOutputPorts.has(port.portIndex) ? 'Close' : 'Open')
-                      .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                      .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                       .width(60)
                       .backgroundColor(this.openOutputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
@@ -1948,11 +2036,11 @@ struct Index {
             Column() {
               Row() {
                 Text('MIDI Input Monitor')
-                  .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                   .fontWeight(FontWeight.Medium)
                   .layoutWeight(1)
                 Button('Clear')
-                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .height(28)
                   .width(60)
                   .backgroundColor('#E84026')
@@ -1967,7 +2055,7 @@ struct Index {
 
               Scroll(this.midiInputScroller) {
                 Text(this.receivedMessages.length > 0 ? this.receivedMessages.join('\n') : 'Waiting for MIDI input...')
-                  .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                  .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .fontColor(this.receivedMessages.length > 0 ? '#333333' : '#999999')
                   .width('100%')
               }
@@ -1991,11 +2079,11 @@ struct Index {
           Column() {
             Row() {
               Text('Event Log')
-                .fontSize(FONT_SIZES.subtitle[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
                 .fontWeight(FontWeight.Medium)
                 .layoutWeight(1)
               Button('Clear')
-                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                 .height(28)
                 .width(60)
                 .backgroundColor('#E84026')
@@ -2010,7 +2098,7 @@ struct Index {
 
             Scroll(this.logScroller) {
               Text(this.logMessages.length > 0 ? this.logMessages.join('\n') : 'No events logged')
-                .fontSize(FONT_SIZES.caption[this.currentBreakpoint])
+                .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                 .fontColor(this.logMessages.length > 0 ? '#333333' : '#999999')
                 .width('100%')
             }

@@ -1429,24 +1429,23 @@ static NoteMessageArgs ParseNoteMessageArgs(napi_env env, napi_callback_info inf
 }
 
 // Helper: Send note message (internal implementation)
-static napi_value SendNoteMessage(napi_env env, int64_t deviceId, uint32_t portIndex,
-    uint32_t channel, uint32_t note, uint32_t velocity, bool isNoteOn)
+static napi_value SendNoteMessage(napi_env env,NoteMessageArgs args, bool isNoteOn)
 {
     const char* funcName = isNoteOn ? "SendNoteOn" : "SendNoteOff";
     OH_LOG_DEBUG(LOG_APP,
         "[%{public}s] dev=%{public}lld, port=%{public}u, ch=%{public}u, note=%{public}u, vel=%{public}u",
-        funcName, (long long)deviceId, portIndex, channel, note, velocity);
+        funcName, (long long)args.deviceId, args.portIndex, args.channel, args.note, args.velocity);
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
     napi_value result;
-    auto it = g_openedDevices.find(deviceId);
+    auto it = g_openedDevices.find(args.deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
         OH_LOG_ERROR(LOG_APP, "[%{public}s] client is null or device not opened", funcName);
         napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
 
-    OH_MIDIProtocol protocol = GetOutputPortProtocol(deviceId, portIndex);
+    OH_MIDIProtocol protocol = GetOutputPortProtocol(args.deviceId, args.portIndex);
     uint32_t umpData[MIDI_DATA_WORDS_2];
     OH_MIDIEvent event;
     event.timestamp = 0;
@@ -1454,22 +1453,22 @@ static napi_value SendNoteMessage(napi_env env, int64_t deviceId, uint32_t portI
 
     if (protocol == OH_MIDI_PROTOCOL_2_0) {
         if (isNoteOn) {
-            BuildMIDI2NoteOn(channel, note, velocity, umpData);
+            BuildMIDI2NoteOn(args.channel, args.note, args.velocity, umpData);
         } else {
-            BuildMIDI2NoteOff(channel, note, velocity, umpData);
+            BuildMIDI2NoteOff(args.channel, args.note, args.velocity, umpData);
         }
         event.length = MIDI_EVENT_LENGTH_2;
     } else {
         if (isNoteOn) {
-            BuildMIDI1NoteOn(channel, note, velocity, umpData);
+            BuildMIDI1NoteOn(args.channel, args.note, args.velocity, umpData);
         } else {
-            BuildMIDI1NoteOff(channel, note, velocity, umpData);
+            BuildMIDI1NoteOff(args.channel, args.note, args.velocity, umpData);
         }
         event.length = MIDI_EVENT_LENGTH_1;
     }
 
     uint32_t eventsWritten = 0;
-    OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, &event, 1, &eventsWritten);
+    OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, args.portIndex, &event, 1, &eventsWritten);
     napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
 }
@@ -1478,14 +1477,14 @@ static napi_value SendNoteMessage(napi_env env, int64_t deviceId, uint32_t portI
 static napi_value SendNoteOn(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
-    return SendNoteMessage(env, args.deviceId, args.portIndex, args.channel, args.note, args.velocity, true);
+    return SendNoteMessage(env, args, true);
 }
 
 // Send Note Off message (helper function for testing)
 static napi_value SendNoteOff(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
-    return SendNoteMessage(env, args.deviceId, args.portIndex, args.channel, args.note, args.velocity, false);
+    return SendNoteMessage(env, args, false);
 }
 
 // Flush output port
