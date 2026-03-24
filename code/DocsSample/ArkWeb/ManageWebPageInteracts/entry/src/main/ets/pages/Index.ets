@@ -22,19 +22,19 @@ struct Index {
     Column({ space: 10 }) {
       Button('WebNestedScroll1')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ImpNestedScroll' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ImpNestedScroll' });
         })
       Button('WebNestedScroll2')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/WebNestedScroll' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/WebNestedScroll' });
         })
       Button('OnIntKbdAttachSysCustIn')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/OnIntKbdAttachSysCustIn' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnIntKbdAttachSysCustIn' });
         })
       Button('SetSKBMode_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/SetSKBMode_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/SetSKBMode_one' });
         })
     }.height('100%')
     .width('100%')
