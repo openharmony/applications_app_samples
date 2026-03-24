@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-[Start EnableCustomComponentCrossAbility_Index]
-// Index.ets
+// [Start EnableCustomComponentCrossAbility_Index]
 import { MyNodeController } from './MyNodeController';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common, Want } from '@kit.AbilityKit';
@@ -68,4 +67,4 @@ struct Index {
     .height('100%')
   }
 }
-[End EnableCustomComponentCrossAbility_Index]
+// [End EnableCustomComponentCrossAbility_Index]

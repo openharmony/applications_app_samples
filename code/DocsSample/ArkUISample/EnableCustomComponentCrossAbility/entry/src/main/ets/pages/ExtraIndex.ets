@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-[Start EnableCustomComponentCrossAbility_ExtraIndex]
-// ExtraIndex.ets
+// [Start EnableCustomComponentCrossAbility_ExtraIndex]
 import { MyNodeController } from './MyNodeController';
 
 @Entry
@@ -42,4 +41,4 @@ struct ExtraIndex {
     .height('100%')
   }
 }
-[End EnableCustomComponentCrossAbility_ExtraIndex]
+// [End EnableCustomComponentCrossAbility_ExtraIndex]

@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-[Start EnableCustomComponentCrossAbility_MyNodeController]
-// MyNodeController.ets
+// [Start EnableCustomComponentCrossAbility_MyNodeController]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -80,4 +79,4 @@ struct ComponentUnderBuilderNode {
     }
   }
 }
-[End EnableCustomComponentCrossAbility_MyNodeController]
+// [End EnableCustomComponentCrossAbility_MyNodeController]
