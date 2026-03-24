@@ -22,14 +22,12 @@
 
 // [Start EventSub_napi_nohiappevent_Header]
 // [Start EventSub_napi_Header]
-// [Start Event_Cpp_Crash_Config_Header]
 #include "napi/native_api.h"
 // [StartExclude EventSub_napi_nohiappevent_Header]
-// [StartExclude Event_Cpp_Crash_Config_Header]
 // 根据工程中三方库jsoncpp的位置适配引用json.h的路径
 #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
-// [EndExclude Event_Cpp_Crash_Config_Header]
 #include "hiappevent/hiappevent.h"
+#include "hiappevent/hiappevent_param.h"
 // [EndExclude EventSub_napi_nohiappevent_Header]
 #include "hilog/log.h"
 
@@ -37,9 +35,6 @@
 #define LOG_TAG "testTag"
 // [End EventSub_napi_Header]
 // [End EventSub_napi_nohiappevent_Header]
-
-#include "hiappevent/hiappevent_param.h"
-// [End Event_Cpp_Crash_Config_Header]
 
 // [Start Hicollie_Set_Timer_h]
 #include <unistd.h>
@@ -529,7 +524,6 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(systemEventWatcherR);
 
-    // [Start Event_Cpp_Crash_Config]
     // 1. 创建配置对象
     HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
 
@@ -554,7 +548,6 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
 
     // 4. 销毁配置对象
     OH_HiAppEvent_DestroyConfig(config);
-    // [End Event_Cpp_Crash_Config]
 
     return {};
 }
