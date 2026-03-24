@@ -403,8 +403,7 @@ struct Index {
       // Request runtime permissions for Bluetooth scanning
       const permissions: Permissions[] = [
         'ohos.permission.ACCESS_BLUETOOTH',
-        'ohos.permission.DISCOVER_BLUETOOTH',
-        'ohos.permission.APPROXIMATELY_LOCATION'
+        'ohos.permission.DISCOVER_BLUETOOTH'
       ];
 
       try {
@@ -1772,7 +1771,7 @@ struct Index {
                         })
                       Button('X')
                         .fontSize(getFontSize(FONT_SIZES, 'small', this.currentBreakpoint))
-                        .width(28)
+                        .width(45)
                         .height(28)
                         .backgroundColor('#E84026')
                         .onClick(() => {
@@ -1833,7 +1832,7 @@ struct Index {
                     .layoutWeight(1)
                     Button(this.selectedDeviceId === device.deviceId ? 'Selected' : 'Select')
                       .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
-                      .width(60)
+                      .width(100)
                       .backgroundColor(this.selectedDeviceId === device.deviceId ? '#4CAF50' : '#007DFF')
                       .onClick(() => {
                         this.selectDevice(device.deviceId);
@@ -1968,7 +1967,7 @@ struct Index {
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openInputPorts.has(port.portIndex) ? 'Close' : 'Open')
                       .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
-                      .width(60)
+                      .width(80)
                       .backgroundColor(this.openInputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
                         if (this.openInputPorts.has(port.portIndex)) {
@@ -2002,7 +2001,7 @@ struct Index {
                       .textOverflow({ overflow: TextOverflow.Ellipsis })
                     Button(this.openOutputPorts.has(port.portIndex) ? 'Close' : 'Open')
                       .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
-                      .width(60)
+                      .width(80)
                       .backgroundColor(this.openOutputPorts.has(port.portIndex) ? '#E84026' : '#4CAF50')
                       .onClick(() => {
                         if (this.openOutputPorts.has(port.portIndex)) {
@@ -2042,7 +2041,7 @@ struct Index {
                 Button('Clear')
                   .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                   .height(28)
-                  .width(60)
+                  .width(100)
                   .backgroundColor('#E84026')
                   .enabled(this.receivedMessages.length > 0)
                   .opacity(this.receivedMessages.length > 0 ? 1 : 0.5)
@@ -2085,7 +2084,7 @@ struct Index {
               Button('Clear')
                 .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
                 .height(28)
-                .width(60)
+                .width(100)
                 .backgroundColor('#E84026')
                 .enabled(this.logMessages.length > 0)
                 .opacity(this.logMessages.length > 0 ? 1 : 0.5)

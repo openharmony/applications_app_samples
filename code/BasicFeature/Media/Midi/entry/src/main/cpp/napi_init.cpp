@@ -1429,7 +1429,7 @@ static NoteMessageArgs ParseNoteMessageArgs(napi_env env, napi_callback_info inf
 }
 
 // Helper: Send note message (internal implementation)
-static napi_value SendNoteMessage(napi_env env,NoteMessageArgs args, bool isNoteOn)
+static napi_value SendNoteMessage(napi_env env, NoteMessageArgs args, bool isNoteOn)
 {
     const char* funcName = isNoteOn ? "SendNoteOn" : "SendNoteOff";
     OH_LOG_DEBUG(LOG_APP,

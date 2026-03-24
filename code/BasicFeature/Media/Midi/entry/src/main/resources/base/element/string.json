@@ -13,10 +13,6 @@
       "value": "MIDI Sample"
     },
     {
-      "name": "app_name",
-      "value": "MIDI Sample"
-    },
-    {
       "name": "permission_bluetooth_reason",
       "value": "Used to connect and communicate with Bluetooth MIDI devices"
     }
