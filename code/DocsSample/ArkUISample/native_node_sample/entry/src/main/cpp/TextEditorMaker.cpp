@@ -1062,6 +1062,72 @@ static void OnBtnClickReceive(ArkUI_NodeEvent* event)
     }
 }
 
+void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEvent *&textEditorChangeEvent)
+{
+    uint32_t start = 0;
+    uint32_t end = 0;
+    ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
+                     "RangeBefore start=%{public}u end=%{public}u", start, end);
+    }
+
+    ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
+    errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent, replacementString);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        char buffer[BUFFER_SIZE];
+        int32_t writeLength = 0;
+        OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s", buffer);
+    }
+
+    ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
+    errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
+    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
+        char buffer[BUFFER_SIZE];
+        int32_t writeLength = 0;
+        OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
+    }
+
+    ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
+    OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
+}
+static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnStyledStringEventReceive");
+    int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+    switch (eventType) {
+        case NODE_TEXT_EDITOR_ON_WILL_CHANGE: {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                         "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
+            OH_ArkUI_TextEditorChangeEvent *textEditorChangeEvent =
+                OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(event);
+            if (textEditorChangeEvent == nullptr) {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                             "textEditorChangeEvent is null");
+                break;
+            }
+            ParseOnWillChangeEvent(event, textEditorChangeEvent);
+            break;
+        }
+        case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
+                         "NODE_TEXT_EDITOR_ON_DID_CHANGE");
+            ArkUI_NodeComponentEvent *nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
+                         "NODE_TEXT_EDITOR_ON_DID_CHANGE replacedStart=%{public}d replacedEnd=%{public}d "
+                         "addedStart=%{public}d addedEnd=%{public}d",
+                         nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32,
+                         nodeComponentEvent->data[INDEX_2].i32,
+                         nodeComponentEvent->data[INDEX_3].i32);
+            break;
+        }
+        default:
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
+    }
+}
+
 /**
  * @brief 处理节点事件的回调函数.根据事件类型执行相应的操作。
  * @param event 节点事件
@@ -1073,6 +1139,7 @@ static void OnEventReceive(ArkUI_NodeEvent* event)
     ArkUI_NodeComponentEvent* nodeComponentEvent;
     ArkUI_NumberValue preventDefault = { .i32 = true };
     ArkUI_NumberValue preventReturnValues[] = { preventDefault };
+    OnStyledStringEventReceive(event);
     switch (eventType) {
         case NODE_TEXT_EDITOR_ON_READY:
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_READY");
@@ -1159,72 +1226,6 @@ void SetTextEditorEvent()
                                          nullptr);
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_SUBMIT, EVENT_ON_SUBMIT, nullptr);
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_CUT, EVENT_ON_CUT, nullptr);
-}
-
-void ParseOnWillChangeEvent(ArkUI_NodeEvent *&event, OH_ArkUI_TextEditorChangeEvent *&textEditorChangeEvent)
-{
-    uint32_t start = 0;
-    uint32_t end = 0;
-    ArkUI_ErrorCode errorCode = OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(textEditorChangeEvent, &start, &end);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                     "RangeBefore start=%{public}u end=%{public}u", start, end);
-    }
-
-    ArkUI_StyledString_Descriptor *replacementString = OH_ArkUI_StyledString_Descriptor_Create();
-    errorCode = OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(textEditorChangeEvent, replacementString);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        char buffer[BUFFER_SIZE];
-        int32_t writeLength = 0;
-        OH_ArkUI_StyledString_Descriptor_GetString(replacementString, buffer, BUFFER_SIZE, &writeLength);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "ReplacementString: %{public}s", buffer);
-    }
-
-    ArkUI_StyledString_Descriptor *previewString = OH_ArkUI_StyledString_Descriptor_Create();
-    errorCode = OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(textEditorChangeEvent, previewString);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        char buffer[BUFFER_SIZE];
-        int32_t writeLength = 0;
-        OH_ArkUI_StyledString_Descriptor_GetString(previewString, buffer, BUFFER_SIZE, &writeLength);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "PreviewString: %{public}s", buffer);
-    }
-
-    ArkUI_NumberValue returnValue[] = {{.i32 = 1}};
-    OH_ArkUI_NodeEvent_SetReturnNumberValue(event, returnValue, 1);
-}
-static void OnStyledStringEventReceive(ArkUI_NodeEvent *event)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "OnStyledStringEventReceive");
-    int eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-    switch (eventType) {
-        case NODE_TEXT_EDITOR_ON_WILL_CHANGE: {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_WILL_CHANGE");
-            OH_ArkUI_TextEditorChangeEvent *textEditorChangeEvent =
-                OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(event);
-            if (textEditorChangeEvent == nullptr) {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                             "textEditorChangeEvent is null");
-                break;
-            }
-            ParseOnWillChangeEvent(event, textEditorChangeEvent);
-            break;
-        }
-        case NODE_TEXT_EDITOR_ON_DID_CHANGE: {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_DID_CHANGE");
-            ArkUI_NodeComponentEvent *nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                         "NODE_TEXT_EDITOR_ON_DID_CHANGE replacedStart=%{public}d replacedEnd=%{public}d "
-                         "addedStart=%{public}d addedEnd=%{public}d",
-                         nodeComponentEvent->data[INDEX_0].i32, nodeComponentEvent->data[INDEX_1].i32,
-                         nodeComponentEvent->data[INDEX_2].i32,
-                         nodeComponentEvent->data[INDEX_3].i32);
-            break;
-        }
-        default:
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "no callback match");
-    }
 }
 
 void TextEditorMaker::CreateStyledStringWithTextStyle()
@@ -2083,7 +2084,6 @@ void TextEditorMaker::StyledStringWithChangeCallbacks()
 
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_WILL_CHANGE, EVENT_ON_WILL_CHANGE, nullptr);
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_DID_CHANGE, EVENT_ON_DID_CHANGE, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnStyledStringEventReceive);
 
     OH_ArkUI_SpanStyle_Destroy(spanStyle);
     OH_ArkUI_TextStyle_Destroy(textStyle);
