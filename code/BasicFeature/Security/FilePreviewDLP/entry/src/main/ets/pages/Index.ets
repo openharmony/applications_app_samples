@@ -29,6 +29,7 @@ struct Index {
     Column() {
       Row() {
         Image($r("app.media.file_preview_dlp_add"))
+          .id('addButton')
           .width($r('app.integer.file_preview_dlp_integer_28'))
           .height($r('app.integer.file_preview_dlp_integer_28'))
           .onClick(() => {
@@ -37,11 +38,13 @@ struct Index {
           })
         Blank()
         Text($r('app.string.file_preview_dlp_text'))
+          .id('titleText')
           .fontSize($r('app.integer.file_preview_dlp_integer_20'))
           .fontWeight(FONT_WEIGHT)
           .fontColor(Color.Black)
         Blank()
         Image($r("app.media.file_preview_dlp_sift"))
+          .id('filterButton')
           .width($r('app.integer.file_preview_dlp_integer_28'))
           .height($r('app.integer.file_preview_dlp_integer_28'))
           .onClick(() => {
@@ -68,6 +71,7 @@ struct Index {
             })
         })
       }
+      .id('fileList')
       .layoutWeight(1)
       .backgroundColor('#F5F7FA')
       .padding({
@@ -80,6 +84,7 @@ struct Index {
     .width($r('app.string.file_preview_dlp_hundred_percent'))
     .height($r('app.string.file_preview_dlp_hundred_percent'))
     .backgroundColor($r('sys.color.comp_background_list_card'))
+    .id('pageRoot')
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP])
   }
 
