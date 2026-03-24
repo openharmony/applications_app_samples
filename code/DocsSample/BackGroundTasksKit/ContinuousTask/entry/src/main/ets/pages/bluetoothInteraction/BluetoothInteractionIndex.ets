@@ -73,7 +73,7 @@ struct BluetoothInteractionIndex {
       'name':'Mate 80 Pro',
       // 'deviceId': 'B2:47:9A:87:40:09',
     }
-    let filterArray: ble.ScanFilter[] = new Array();
+    let filterArray: ble.ScanFilter[] = [];
     filterArray.push(filter1);
     let scanOption: ble.ScanOptions = {
       'dutyMode': 0,
@@ -209,7 +209,7 @@ struct BluetoothInteractionIndex {
   }
 
   AddGattServer() {
-    let descriptors: Array<ble.BLEDescriptor> = [];
+    let descriptors: ble.BLEDescriptor[] = [];
     let buf = new ArrayBuffer(1);
     let descrptor1: ble.BLEDescriptor = {
       'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
@@ -236,7 +236,7 @@ struct BluetoothInteractionIndex {
     descriptors.push(descrptor1);
     descriptors.push(descrptor2);
 
-    let charateristatics: ble.BLECharacteristic[] = new Array();
+    let charateristatics: ble.BLECharacteristic[] = [];
     let charateristatic: ble.BLECharacteristic = {
       'serviceUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
       'characteristicUuid': '0000bbbb-0000-1000-8000-00805f9b34fb',
@@ -284,7 +284,7 @@ struct BluetoothInteractionIndex {
       'txPower': 0,
       'connectable': true,
     };
-    let serviceUuidsArray: string[] = new Array();
+    let serviceUuidsArray: string[] = [];
     serviceUuidsArray.push('00001111-0000-1000-8000-00805f9b34fb');
     let advdata: ble.AdvertiseData = {
       'serviceUuids': serviceUuidsArray,
