@@ -44,8 +44,8 @@ struct Index {
             atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC'],
               (err: BusinessError, data: PermissionRequestResult) => {
                 if (err) {
-                  hilog.error(0x0000, 'testTag', 'RPC_Stub: requestPermissions failed, code is ' + err.code);
-                  hilog.error(0x0000, 'testTag', 'RPC_Stub: requestPermissions failed, message is ' + err.message);
+                  hilog.error(0x0000, 'testTag', 'requestPermissions failed, code is ' + err.code);
+                  hilog.error(0x0000, 'testTag', 'requestPermissions failed, message is ' + err.message);
                 } else {
                   hilog.info(0x0000, 'testTag','RPC_Stub:: data permissions is ' + data.permissions);
                   hilog.info(0x0000, 'testTag','RPC_Stub:: data authResults is ' + data.authResults);
@@ -55,8 +55,8 @@ struct Index {
           } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            hilog.error(0x0000, 'testTag', 'RPC_Stub: getPermission failed, code is  ' + code);
-            hilog.error(0x0000, 'testTag', 'RPC_Stub: getPermission failed, message is ' + message);
+            hilog.error(0x0000, 'testTag', 'getPermission failed, code is  ' + code);
+            hilog.error(0x0000, 'testTag', 'getPermission failed, message is ' + message);
           }
       })
         .width('100%')
