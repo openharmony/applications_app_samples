@@ -6,10 +6,12 @@
 
 ### 效果预览
 
-| 主页                                   |
-|--------------------------------------|
-| ![Index](screenshots/device/index.png)|
-
+| 主页                                      | 蓝牙                                     |
+|-----------------------------------------|----------------------------------------|
+| ![Index](screenshots/device/index.jpg)  | ![Index](screenshots/device/piano.jpg)   |
+| 设备管理                                    | 端口及虚拟钢琴键盘                              |
+| --------------------------------------  | -------------------------------------- |
+| ![Index](screenshots/device/device.jpg) | ![Index](screenshots/device/piano.jpg) |
 ### 使用说明
 
 #### 基本操作
