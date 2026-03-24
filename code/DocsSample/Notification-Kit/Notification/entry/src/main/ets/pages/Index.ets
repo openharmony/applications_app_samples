@@ -20,8 +20,12 @@ import { ManageNotificationBadges } from '../filemanager/ManageNotificationBadge
 import { ManageNotificationWays } from '../filemanager/ManageNotificationWays';
 import { PublishNotification } from '../filemanager/PublishNotification';
 import { RequestEnableNotification } from '../filemanager/RequestEnableNotification';
+import { SpecifiedCustomizedRingtone } from '../filemanager/SpecifiedCustomizedRingtone';
 import { UpdateNotification } from '../filemanager/UpdateNotification';
 
+const MARGIN_TOP: number = 5;
+const MARGIN_BOTTOM: number = 5;
+const BUTTON_WIDTH: string = "75%";
 @Entry
 @Component
 struct Index {
@@ -32,61 +36,77 @@ struct Index {
     RelativeContainer() {
       Navigation(this.pageInfos) {
         Button($r('app.string.request_notify_auth'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'RequestEnableNotification'
             });
           })
+          .width(BUTTON_WIDTH)
+        Button($r('app.string.specified_customized_ringtone'))
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
+          .onClick(() => {
+            this.pageInfos.pushPath({
+              name: 'SpecifiedCustomizedRingtone'
+            });
+          })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.manage_notify_badge'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'ManageNotificationBadges'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.manage_notify_channel'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'ManageNotificationWays'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.publish_notify'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'PublishNotification'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.add_notify_action'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'AddWantAgent'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.update_notify'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'UpdateNotification'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.cancel_notify'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'CancelNotification'
             });
           })
+          .width(BUTTON_WIDTH)
         Button($r('app.string.cross_device_clear_dup_notify'))
-          .margin({ top: 20, bottom: 20 })
+          .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
           .onClick(() => {
             this.pageInfos.pushPath({
               name: 'ClearDuplicateNotifications'
             });
           })
+          .width(BUTTON_WIDTH)
       }
       .navDestination(this.pageMap)
     }
@@ -99,6 +119,8 @@ struct Index {
   pageMap(name: string) {
     if (name === 'RequestEnableNotification') {
       RequestEnableNotification();
+    } else if (name === 'SpecifiedCustomizedRingtone') {
+      SpecifiedCustomizedRingtone();
     } else if (name === 'ManageNotificationBadges') {
       ManageNotificationBadges();
     } else if (name === 'ManageNotificationWays') {
