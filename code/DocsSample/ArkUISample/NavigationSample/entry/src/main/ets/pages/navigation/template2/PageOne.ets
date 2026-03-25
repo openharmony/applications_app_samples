@@ -253,7 +253,7 @@ export struct PageOne {
         console.info('TestTag', 'get NavParam, its desc: ' + (param as NavParam).desc);
         return;
       }
-      console.info('TestTag', 'param not instance of NavParam');;
+      console.info('TestTag', 'param not instance of NavParam');
     })
   }
 }
