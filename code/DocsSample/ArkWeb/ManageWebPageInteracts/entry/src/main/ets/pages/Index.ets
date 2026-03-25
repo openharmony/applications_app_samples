@@ -22,19 +22,27 @@ struct Index {
     Column({ space: 10 }) {
       Button('WebNestedScroll1')
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'pages/ImpNestedScroll' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ImpNestedScroll' }).catch(() => {
+            console.error('Routing failed!');
+          });
         })
       Button('WebNestedScroll2')
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'pages/WebNestedScroll' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/WebNestedScroll' }).catch(() => {
+            console.error('Routing failed!');
+          });
         })
       Button('OnIntKbdAttachSysCustIn')
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnIntKbdAttachSysCustIn' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnIntKbdAttachSysCustIn' }).catch(() => {
+            console.error('Routing failed!');
+          });
         })
       Button('SetSKBMode_one')
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'pages/SetSKBMode_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/SetSKBMode_one' }).catch(() => {
+            console.error('Routing failed!');
+          });
         })
     }.height('100%')
     .width('100%')
