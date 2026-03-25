@@ -74,7 +74,7 @@ struct Index {
           try {
             // 监听桌面歌词是否开启。
             session.onDesktopLyricVisibilityChanged((isVisible: boolean) => {
-              console.log(`onDesktopLyricVisibilityChanged changed: ${isVisible}`)
+              console.info(`onDesktopLyricVisibilityChanged changed: ${isVisible}`)
             });
           } catch (e) {
             console.error(`onDesktopLyricVisibilityChanged err. Code: ${err.code}, message: ${err.message}`);
@@ -83,7 +83,7 @@ struct Index {
           try {
             // 监听桌面歌词锁定状态。
             session.onDesktopLyricStateChanged((state) => {
-              console.log(`onDesktopLyricStateChanged changed: ${state.isLocked}`)
+              console.info(`onDesktopLyricStateChanged changed: ${state.isLocked}`)
             });
           } catch (e) {
             console.error(`onDesktopLyricStateChanged err. Code: ${err.code}, message: ${err.message}`);
