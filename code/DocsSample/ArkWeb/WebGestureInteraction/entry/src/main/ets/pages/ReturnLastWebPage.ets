@@ -27,15 +27,18 @@ struct Index {
   }
 
   onBackPress() {
-    // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
-    if (this.controller.accessStep(-1)) {
-      this.controller.backward(); // 返回上一个web页
-      // 执行用户自定义返回逻辑
-      return true;
-    } else {
-      // 执行系统默认返回逻辑，返回上一个page页
-      return false;
+    try {
+      // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
+      if (this.controller.accessStep(-1)) {
+        this.controller.backward(); // 返回上一个web页
+        // 执行用户自定义返回逻辑
+        return true;
+      }
+    } catch (error) {
+      console.error("onBackPress error:" + error);
     }
+    // 执行系统默认返回逻辑，返回上一个page页
+    return false;
   }
 }
 // [End ReturnLastWebPage]
