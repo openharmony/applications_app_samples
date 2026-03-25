@@ -12,31 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Cpp_ArkUIButtonNode]
-// ArkUIButtonNode.h
-#ifndef MYAPPLICATION_ARKUIBUTTONNODE_H
-#define MYAPPLICATION_ARKUIBUTTONNODE_H
+// [Start Cpp_ArkUIListItemNode]
+// ArkUIListItemNode.h
+// 提供列表项的封装类。
+#ifndef MYAPPLICATION_ARKUISTACKNODE_H
+#define MYAPPLICATION_ARKUISTACKNODE_H
 
 #include "ArkUINode.h"
-#include <string>
 
 namespace NativeModule {
-
-class ArkUIButtonNode : public ArkUINode {
+class ArkUIListItemNode : public ArkUINode {
 public:
-    ArkUIButtonNode()
-        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_BUTTON)) {}
-
-    ~ArkUIButtonNode() override {}
-
-    void SetLabel(const std::string &label)
-    {
-        ArkUI_AttributeItem item = {nullptr, 0, label.c_str()};
-        nativeModule_->setAttribute(handle_, NODE_BUTTON_LABEL, &item);
-    }
+    ArkUIListItemNode()
+        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
 };
-
 } // namespace NativeModule
 
-#endif // MYAPPLICATION_ARKUIBUTTONNODE_H
-// [End Cpp_ArkUIButtonNode]
+#endif // MYAPPLICATION_ARKUISTACKNODE_H
+// [End Cpp_ArkUIListItemNode]

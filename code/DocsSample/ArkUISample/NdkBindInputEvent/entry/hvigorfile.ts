@@ -12,24 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Cpp_ArkUIColumnNode]
-// ArkUIColumnNode.h
-#ifndef MYAPPLICATION_ARKUICOLUMNNODE_H
-#define MYAPPLICATION_ARKUICOLUMNNODE_H
 
-#include "ArkUINode.h"
+import { hapTasks } from '@ohos/hvigor-ohos-plugin';
 
-namespace NativeModule {
-
-class ArkUIColumnNode : public ArkUINode {
-public:
-    ArkUIColumnNode()
-        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_COLUMN)) {}
-
-    ~ArkUIColumnNode() override {}
-};
-
-} // namespace NativeModule
-
-#endif // MYAPPLICATION_ARKUICOLUMNNODE_H
-// [End Cpp_ArkUIColumnNode]
+export default {
+  system: hapTasks, /* Built-in plugin of Hvigor. It cannot be modified. */
+  plugins: []       /* Custom plugin to extend the functionality of Hvigor. */
+}
