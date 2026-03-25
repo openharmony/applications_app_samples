@@ -35,7 +35,7 @@ struct Index {
         return true;
       }
     } catch (error) {
-      console.error("onBackPress error:" + error);
+      console.error('onBackPress error: ' + error);
     }
     // 执行系统默认返回逻辑，返回上一个page页
     return false;
