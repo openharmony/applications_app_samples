@@ -53,9 +53,7 @@ struct Index {
       if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
         this.isWebAtEnd = true;
       }
-    } catch (err) {
-      console.error(`checkScrollBottom failed! Code: ${err.code}, Message: ${err.message}`);
-    }
+    } catch (err) {}
   }
 
   build() {
