@@ -107,19 +107,31 @@ struct Index {
           .onClick(() => {
             // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
             testNapi.testNullptr();
-            // [Start Native_CrashEvent_Log]
-
-            // 模拟创建 applog，假设应用包名为 com.samples.eventsub
-            let filePath : string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
-            let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
-            let str: string = "only test for merge app log!";
-
-            let writeLen = fileIo.writeSync(file.fd, str);
-            console.info("hiappevent write data to file succeed and size is:" + writeLen);
-            fileIo.closeSync(file);
-            // [End Native_CrashEvent_Log]
           })
         // [End Native_CrashEvent_Button]
+        // [Start Native_CrashEvent_Log]
+        Button('MergeLogNativeCrash')
+        .type(ButtonType.Capsule)
+        .margin({
+          top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('80%')
+        .height('5%')
+        .onClick(() => {
+          // 模拟创建 applog，假设应用包名为 com.samples.eventsub
+          let filePath : string = "/data/storage/el2/log/com.samples.eventsub_CppCrash_AppMerge.log";
+          let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+          let str: string = "only test for merge app log!";
+          
+          let writeLen = fileIo.writeSync(file.fd, str);
+          console.info("hiappevent write data to file succeed and size is:" + writeLen);
+          fileIo.closeSync(file);
+
+          // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+          testNapi.testNullptr();
+        })
+        // [End Native_CrashEvent_Log]
         // [Start PssLeakEventTS_Button]
         // [Start PssLeakEvent_Button]
         Button('pss leak')
