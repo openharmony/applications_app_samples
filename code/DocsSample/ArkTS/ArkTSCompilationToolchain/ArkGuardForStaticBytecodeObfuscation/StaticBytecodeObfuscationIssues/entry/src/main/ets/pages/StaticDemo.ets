@@ -92,15 +92,15 @@ class A {
 class ClassTest{
     // public static age: number = 10;
     age: int = 5;
-    name: string = "test";
+    _name: string = "test";
     sex: number = 0;
 
-    // set name(stringVar:string){
-    //     this._name = stringVar;
-    // }
-    // get name(){
-    //     return this._name;
-    // }
+    set name(stringVar:string){
+        this._name = stringVar;
+    }
+    get name(){
+        return this._name;
+    }
 }
 // [End staticArkGuardExample_classTest]
 
