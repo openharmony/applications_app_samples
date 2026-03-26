@@ -49,11 +49,13 @@ struct Index {
 
   checkScrollBottom() {
     this.isWebAtEnd = false;
-    try{
+    try {
       if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
         this.isWebAtEnd = true;
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error(`copyUrlPicToDir failed with error: ${err.code}, ${err.message}`);
+    }
   }
 
   build() {

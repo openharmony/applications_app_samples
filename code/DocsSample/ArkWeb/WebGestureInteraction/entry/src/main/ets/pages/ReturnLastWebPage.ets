@@ -22,7 +22,7 @@ struct Index {
 
   build() {
     Column() {
-      Web({ src: 'https://www.example.com', controller: this.controller })//需要手动替换为真实网站
+      Web({ src: 'https://www.example.com', controller: this.controller }) //需要手动替换为真实网站
     }
   }
 
@@ -34,9 +34,12 @@ struct Index {
         // 执行用户自定义返回逻辑
         return true;
       }
-    } catch (error) {}
+    } catch (err) {
+      console.error(`copyUrlPicToDir failed with error: ${err.code}, ${err.message}`);
+    }
     // 执行系统默认返回逻辑，返回上一个page页
     return false;
   }
 }
+
 // [End ReturnLastWebPage]
