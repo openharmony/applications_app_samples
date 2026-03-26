@@ -89,12 +89,22 @@ export type DeviceChangeCallback = (action: MidiDeviceChangeAction, deviceInfo: 
 // MIDI received callback - called when MIDI data is received on an input port
 export type MidiReceivedCallback = (events: MidiEvent[]) => void;
 
+// Error information interface
+export interface MidiError {
+  code: MidiStatusCode;
+  message: string;
+}
+
+// Error callback - called when MIDI service encounters critical errors
+export type ErrorCallback = (error: MidiError) => void;
+
 /**
  * Create MIDI client
- * @param callback - Optional device change callback
+ * @param deviceChangeCallback - Optional device change callback
+ * @param errorCallback - Optional error callback for service errors
  * @returns Status code
  */
-export const createMIDIClient: (callback?: DeviceChangeCallback) => MidiStatusCode;
+export const createMIDIClient: (deviceChangeCallback?: DeviceChangeCallback, errorCallback?: ErrorCallback) => MidiStatusCode;
 
 /**
  * Destroy MIDI client

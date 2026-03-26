@@ -14,8 +14,10 @@
  */
 
 #include "napi/native_api.h"
+// [Start ohmidi_include]
 #include "ohmidi/native_midi.h"
 #include "ohmidi/native_midi_base.h"
+// [End ohmidi_include]
 #include <hilog/log.h>
 #include <string>
 #include <vector>
@@ -345,6 +347,13 @@ static OH_MIDIClient *g_midiClient = nullptr;
 static std::mutex g_midiMutex;
 static std::map<int64_t, OH_MIDIDevice*> g_openedDevices;
 static napi_threadsafe_function g_deviceChangeTsfn = nullptr;
+static napi_threadsafe_function g_errorTsfn = nullptr;
+
+// Error callback data structure
+struct ErrorCallbackData {
+    int32_t errorCode;
+    std::string errorMessage;
+};
 
 // 输入端口上下文存储（使用shared_ptr管理生命周期）
 static std::map<std::pair<int64_t, uint32_t>, std::shared_ptr<InputPortContext>> g_inputPortContexts;
@@ -517,6 +526,41 @@ static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* conte
     OH_LOG_INFO(LOG_APP, "[CallJsDeviceChange] --exit (JS thread)");
 }
 
+// Thread-safe function call JS callback for error
+static void CallJsError(napi_env env, napi_value js_callback, void* context, void* data)
+{
+    OH_LOG_INFO(LOG_APP, "[CallJsError] ++enter (JS thread)");
+
+    ErrorCallbackData* callbackData = (ErrorCallbackData*)data;
+    OH_LOG_INFO(LOG_APP, "[CallJsError] errorCode=%{public}d, message=%{public}s",
+                callbackData->errorCode, callbackData->errorMessage.c_str());
+
+    napi_value errorObj;
+    napi_create_object(env, &errorObj);
+
+    napi_value codeValue;
+    napi_create_int32(env, callbackData->errorCode, &codeValue);
+    napi_set_named_property(env, errorObj, "code", codeValue);
+
+    napi_value msgValue;
+    napi_create_string_utf8(env, callbackData->errorMessage.c_str(), NAPI_AUTO_LENGTH, &msgValue);
+    napi_set_named_property(env, errorObj, "message", msgValue);
+
+    napi_value undefined;
+    napi_get_undefined(env, &undefined);
+
+    napi_value args[1] = { errorObj };
+    napi_status callStatus = napi_call_function(env, undefined, js_callback, 1, args, nullptr);
+    if (callStatus != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "[CallJsError] napi_call_function failed: %{public}d", (int)callStatus);
+    } else {
+        OH_LOG_INFO(LOG_APP, "[CallJsError] JS callback executed successfully");
+    }
+
+    delete callbackData;
+    OH_LOG_INFO(LOG_APP, "[CallJsError] --exit (JS thread)");
+}
+
 // Helper: Create MIDI event JS object
 static napi_value CreateMidiEventObject(napi_env env, uint64_t timestamp, uint32_t length,
     const std::vector<uint32_t>& umpData, size_t& dataIndex)
@@ -603,16 +647,22 @@ static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context,
     OH_LOG_INFO(LOG_APP, "[CallJsBleOpened] --exit (JS thread)");
 }
 
+// [Start quick_start]
+// [Start device_change_callback]
 // Device change callback - called by MIDI service (DO NOT hold lock here)
 static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_MIDIDeviceInformation info)
 {
+    // [StartExclude quick_start]
+    // [StartExclude device_change_callback]
     OH_LOG_INFO(LOG_APP,
         "[OnDeviceChange] ++enter (callback thread), action=%{public}d, deviceId=%{public}lld, "
         "deviceName=%{public}s, deviceType=%{public}d, deviceAddress=%{public}s",
         (int)action, (long long)info.midiDeviceId, info.deviceName,
         (int)info.deviceType, info.deviceAddress);
+    // [EndExclude device_change_callback]
 
     // Do NOT hold lock in callback! Just copy data and send to JS thread
+
     if (g_deviceChangeTsfn != nullptr) {
         DeviceChangeCallbackData* callbackData = new DeviceChangeCallbackData();
         callbackData->action = static_cast<int32_t>(action);
@@ -624,8 +674,11 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
         callbackData->vendorId = info.vendorId;
         callbackData->productId = info.productId;
 
+        // [StartExclude device_change_callback]
         OH_LOG_DEBUG(LOG_APP, "[OnDeviceChange] calling napi_call_threadsafe_function");
+        // [EndExclude device_change_callback]
         napi_status status = napi_call_threadsafe_function(g_deviceChangeTsfn, callbackData, napi_tsfn_nonblocking);
+        // [StartExclude device_change_callback]
         if (status != napi_ok) {
             OH_LOG_ERROR(LOG_APP, "[OnDeviceChange] napi_call_threadsafe_function failed: %{public}d", (int)status);
             delete callbackData;
@@ -637,92 +690,10 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
     }
 
     OH_LOG_INFO(LOG_APP, "[OnDeviceChange] --exit (callback thread)");
+    // [EndExclude device_change_callback]
+    // [EndExclude quick_start]
 }
-
-// Error callback - called when MIDI service encounters critical errors
-static void OnError(void *userData, OH_MIDIStatusCode code)
-{
-    OH_LOG_ERROR(LOG_APP, "[OnError] ++enter, errorCode=%{public}d", (int)code);
-    // Error handling logic here
-    OH_LOG_ERROR(LOG_APP, "[OnError] --exit");
-}
-
-// MIDI client callbacks
-static OH_MIDICallbacks g_midiCallbacks = {
-    .onDeviceChange = OnDeviceChange,
-    .onError = OnError
-};
-
-// Helper: Cleanup existing MIDI client resources
-static void CleanupExistingClient()
-{
-    if (g_midiClient != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] destroying existing client");
-        OH_MIDIClient_Destroy(g_midiClient);
-        g_midiClient = nullptr;
-    }
-    if (g_deviceChangeTsfn != nullptr) {
-        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] releasing old threadsafe function");
-        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
-        g_deviceChangeTsfn = nullptr;
-    }
-}
-
-// Helper: Setup device change callback
-static void SetupDeviceChangeCallback(napi_env env, napi_value callback)
-{
-    if (callback == nullptr) {
-        return;
-    }
-    napi_valuetype valueType;
-    napi_typeof(env, callback, &valueType);
-    if (valueType != napi_function) {
-        return;
-    }
-    OH_LOG_INFO(LOG_APP, "[SetupDeviceChangeCallback] creating threadsafe function");
-    napi_value resourceName;
-    napi_create_string_utf8(env, "DeviceChangeCallback", NAPI_AUTO_LENGTH, &resourceName);
-    napi_status tsfnStatus = napi_create_threadsafe_function(env, callback, nullptr, resourceName,
-        0, 1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
-    if (tsfnStatus != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "[SetupDeviceChangeCallback] failed: %{public}d", static_cast<int>(tsfnStatus));
-    }
-}
-
-// Create MIDI client
-static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
-{
-    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] ++enter");
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    std::lock_guard<std::mutex> lock(g_midiMutex);
-    CleanupExistingClient();
-    if (argc > 0 && args[0] != nullptr) {
-        SetupDeviceChangeCallback(env, args[0]);
-    }
-
-    OH_MIDIStatusCode status = OH_MIDIClient_Create(&g_midiClient, g_midiCallbacks, nullptr);
-    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] status=%{public}d", static_cast<int>(status));
-
-    napi_value result;
-    napi_create_int32(env, static_cast<int32_t>(status), &result);
-    return result;
-}
-
-// Helper: Close all opened MIDI devices
-static void CloseAllOpenedDevices()
-{
-    if (g_midiClient == nullptr) {
-        return;
-    }
-    OH_LOG_INFO(LOG_APP, "[CloseAllOpenedDevices] closing %{public}zu devices", g_openedDevices.size());
-    for (auto& pair : g_openedDevices) {
-        OH_MIDIClient_CloseDevice(g_midiClient, pair.second);
-    }
-    g_openedDevices.clear();
-}
+// [End device_change_callback]
 
 // Helper: Cleanup all port contexts and callbacks
 static void CleanupAllPortContexts()
@@ -753,42 +724,220 @@ static void CleanupAllPortContexts()
     }
 }
 
+// [Start error_callback]
+// Error callback - called when MIDI service encounters critical errors
+static void OnError(void *userData, OH_MIDIStatusCode code)
+{
+    // [StartExclude error_callback]
+    OH_LOG_ERROR(LOG_APP, "[OnError] ++enter, errorCode=%{public}d", (int)code);
+
+    // Notify frontend through threadsafe function
+    if (g_errorTsfn != nullptr) {
+        ErrorCallbackData* callbackData = new ErrorCallbackData();
+        callbackData->errorCode = static_cast<int32_t>(code);
+
+        // Generate error message based on error code
+        switch (code) {
+            case OH_MIDI_STATUS_SERVICE_DIED:
+                callbackData->errorMessage = "MIDI service died";
+                break;
+        }
+
+        OH_LOG_INFO(LOG_APP, "[OnError] notifying frontend: %{public}s", callbackData->errorMessage.c_str());
+        napi_status status = napi_call_threadsafe_function(g_errorTsfn, callbackData, napi_tsfn_nonblocking);
+        if (status != napi_ok) {
+            OH_LOG_ERROR(LOG_APP, "[OnError] napi_call_threadsafe_function failed: %{public}d", (int)status);
+            delete callbackData;
+        }
+    } else {
+        OH_LOG_WARN(LOG_APP, "[OnError] g_errorTsfn is nullptr, cannot notify frontend");
+    }
+
+    // [EndExclude error_callback]
+    if (code == OH_MIDI_STATUS_SERVICE_DIED) {
+        if (g_midiClient != nullptr) {
+            OH_LOG_INFO(LOG_APP, "[OnError] destroying client due to service died");
+            OH_MIDIClient_Destroy(g_midiClient);
+            g_midiClient = nullptr;
+        }
+        CleanupAllPortContexts();
+        g_openedDevices.clear();
+    }
+    // Error handling logic here
+    // [StartExclude error_callback]
+    OH_LOG_ERROR(LOG_APP, "[OnError] --exit");
+    // [EndExclude error_callback]
+}
+// [End error_callback]
+
+// [Start midi_callbacks_struct]
+// MIDI client callbacks
+static OH_MIDICallbacks g_midiCallbacks = {
+    .onDeviceChange = OnDeviceChange,
+    .onError = OnError
+};
+// [End midi_callbacks_struct]
+
+// Helper: Cleanup existing MIDI client resources
+static void CleanupExistingClient()
+{
+    if (g_midiClient != nullptr) {
+        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] destroying existing client");
+        OH_MIDIClient_Destroy(g_midiClient);
+        g_midiClient = nullptr;
+    }
+    if (g_deviceChangeTsfn != nullptr) {
+        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] releasing old device change threadsafe function");
+        napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
+        g_deviceChangeTsfn = nullptr;
+    }
+    if (g_errorTsfn != nullptr) {
+        OH_LOG_INFO(LOG_APP, "[CleanupExistingClient] releasing old error threadsafe function");
+        napi_release_threadsafe_function(g_errorTsfn, napi_tsfn_release);
+        g_errorTsfn = nullptr;
+    }
+}
+
+// Helper: Setup callbacks for device change and error
+static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_value errorCallback)
+{
+    // Setup device change callback
+    if (deviceChangeCallback != nullptr) {
+        napi_valuetype valueType;
+        napi_typeof(env, deviceChangeCallback, &valueType);
+        if (valueType == napi_function) {
+            OH_LOG_INFO(LOG_APP, "[SetupCallbacks] creating device change threadsafe function");
+            napi_value resourceName;
+            napi_create_string_utf8(env, "DeviceChangeCallback", NAPI_AUTO_LENGTH, &resourceName);
+            napi_status tsfnStatus = napi_create_threadsafe_function(env, deviceChangeCallback, nullptr, resourceName,
+                0, 1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
+            if (tsfnStatus != napi_ok) {
+                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] device change failed: %{public}d", static_cast<int>(tsfnStatus));
+            }
+        }
+    }
+
+    // Setup error callback
+    if (errorCallback != nullptr) {
+        napi_valuetype valueType;
+        napi_typeof(env, errorCallback, &valueType);
+        if (valueType == napi_function) {
+            OH_LOG_INFO(LOG_APP, "[SetupCallbacks] creating error threadsafe function");
+            napi_value resourceName;
+            napi_create_string_utf8(env, "ErrorCallback", NAPI_AUTO_LENGTH, &resourceName);
+            napi_status tsfnStatus = napi_create_threadsafe_function(env, errorCallback, nullptr, resourceName,
+                0, 1, nullptr, nullptr, nullptr, CallJsError, &g_errorTsfn);
+            if (tsfnStatus != napi_ok) {
+                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] error callback failed: %{public}d", static_cast<int>(tsfnStatus));
+            }
+        }
+    }
+}
+
+// [Start create_midi_client]
+// Create MIDI client
+static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
+{
+    // [StartExclude create_midi_client]
+    // [StartExclude quick_start]
+    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] ++enter");
+    size_t argc = 2;
+    napi_value args[2] = {nullptr, nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // [EndExclude create_midi_client]
+    std::lock_guard<std::mutex> lock(g_midiMutex);
+    // [EndExclude quick_start]
+    // [StartExclude create_midi_client]
+    CleanupExistingClient();
+    // args[0] = deviceChangeCallback, args[1] = errorCallback
+    SetupCallbacks(env, args[0], args[1]);
+    // [EndExclude create_midi_client]
+    OH_MIDIStatusCode status = OH_MIDIClient_Create(&g_midiClient, g_midiCallbacks, nullptr);
+    // [StartExclude create_midi_client]
+    // [StartExclude quick_start]
+    OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] status=%{public}d", static_cast<int>(status));
+    
+
+    napi_value result;
+    napi_create_int32(env, static_cast<int32_t>(status), &result);
+    return result;
+    // [EndExclude create_midi_client]
+    // [EndExclude quick_start]
+}
+// [End create_midi_client]
+
+// Helper: Close all opened MIDI devices
+static void CloseAllOpenedDevices()
+{
+    if (g_midiClient == nullptr) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "[CloseAllOpenedDevices] closing %{public}zu devices", g_openedDevices.size());
+    for (auto& pair : g_openedDevices) {
+        OH_MIDIClient_CloseDevice(g_midiClient, pair.second);
+    }
+    g_openedDevices.clear();
+}
+
 // Destroy MIDI client
+// [Start destroy_midi_client]
+// [Start cleanup_destroy_client]
 static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
 {
+    // [StartExclude destroy_midi_client]
+    // [StartExclude cleanup_destroy_client]
+    // [StartExclude quick_start]
     OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] ++enter");
+    // [EndExclude destroy_midi_client]
+    // [EndExclude cleanup_destroy_client]
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
     if (g_midiClient != nullptr) {
         CloseAllOpenedDevices();
+        // [EndExclude quick_start]
         OH_MIDIClient_Destroy(g_midiClient);
+        // [StartExclude quick_start]
         g_midiClient = nullptr;
     }
-
     CleanupAllPortContexts();
+
+    // [StartExclude destroy_midi_client]
+    // [StartExclude cleanup_destroy_client]
 
     napi_value result;
     napi_get_undefined(env, &result);
     OH_LOG_INFO(LOG_APP, "[DestroyMIDIClient] --exit");
     return result;
+    // [EndExclude cleanup_destroy_client]
+    // [EndExclude destroy_midi_client]
+    // [EndExclude quick_start]
 }
+// [End cleanup_destroy_client]
+// [End destroy_midi_client]
+// [End quick_start]
 
+// [Start get_device_count]
 // Get device count
 static napi_value GetDeviceCount(napi_env env, napi_callback_info info)
 {
+    // [StartExclude get_device_count]
     OH_LOG_DEBUG(LOG_APP, "[GetDeviceCount] ++enter");
+    // [EndExclude get_device_count]
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
     napi_value result;
+    // [StartExclude get_device_count]
     if (g_midiClient == nullptr) {
         OH_LOG_WARN(LOG_APP, "[GetDeviceCount] client is null, returning -1");
         napi_create_int32(env, -1, &result);
         return result;
     }
+    // [EndExclude get_device_count]
 
     size_t count = 0;
     OH_MIDIStatusCode status = OH_MIDIClient_GetDeviceCount(g_midiClient, &count);
+    // [StartExclude get_device_count]
     if (status != OH_MIDI_STATUS_OK) {
         OH_LOG_ERROR(LOG_APP, "[GetDeviceCount] failed: %{public}d", (int)status);
         napi_create_int32(env, -1, &result);
@@ -796,19 +945,22 @@ static napi_value GetDeviceCount(napi_env env, napi_callback_info info)
     }
 
     OH_LOG_DEBUG(LOG_APP, "[GetDeviceCount] count=%{public}zu", count);
+    // [EndExclude get_device_count]
     napi_create_uint32(env, static_cast<uint32_t>(count), &result);
 
+    // [StartExclude get_device_count]
     OH_LOG_DEBUG(LOG_APP, "[GetDeviceCount] --exit, count=%{public}zu", count);
+    // [EndExclude get_device_count]
     return result;
 }
+// [End get_device_count]
 
 // Get device list
+// [Start get_device_infos]
 static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
 {
-    OH_LOG_DEBUG(LOG_APP, "[GetDeviceInfos] ++enter");
-
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
+    // [StartExclude get_device_infos]
     napi_value result;
     napi_create_array(env, &result);
 
@@ -816,18 +968,21 @@ static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
         OH_LOG_WARN(LOG_APP, "[GetDeviceInfos] client is null");
         return result;
     }
+    // [EndExclude get_device_infos]
 
     size_t count = 0;
     OH_MIDIStatusCode status = OH_MIDIClient_GetDeviceCount(g_midiClient, &count);
+    // [StartExclude get_device_infos]
     if (status != OH_MIDI_STATUS_OK || count == 0) {
         OH_LOG_DEBUG(LOG_APP, "[GetDeviceInfos] no devices or error: status=%{public}d, count=%{public}zu",
                      (int)status, count);
         return result;
     }
-
+    // [EndExclude get_device_infos]
     std::vector<OH_MIDIDeviceInformation> devices(count);
     size_t actualCount = 0;
     status = OH_MIDIClient_GetDeviceInfos(g_midiClient, devices.data(), count, &actualCount);
+    // [StartExclude get_device_infos]
     if (status == OH_MIDI_STATUS_OK) {
         OH_LOG_DEBUG(LOG_APP, "[GetDeviceInfos] got %{public}zu devices", actualCount);
         for (size_t i = 0; i < actualCount; i++) {
@@ -843,7 +998,9 @@ static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
 
     OH_LOG_DEBUG(LOG_APP, "[GetDeviceInfos] --exit, actualCount=%{public}zu", actualCount);
     return result;
+    // [EndExclude get_device_infos]
 }
+// [End get_device_infos]
 
 // Get port count for a device
 static napi_value GetPortCount(napi_env env, napi_callback_info info)
@@ -880,6 +1037,7 @@ static napi_value GetPortCount(napi_env env, napi_callback_info info)
 }
 
 // Get port information for a device
+// [Start get_port_infos]
 static napi_value GetPortInfos(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -888,11 +1046,13 @@ static napi_value GetPortInfos(napi_env env, napi_callback_info info)
 
     int64_t deviceId = 0;
     napi_get_value_int64(env, args[0], &deviceId);
-
+    // [StartExclude get_port_infos]
     OH_LOG_DEBUG(LOG_APP, "[GetPortInfos] ++enter, deviceId=%{public}lld", (long long)deviceId);
+    // [EndExclude get_port_infos]
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
+    // [StartExclude get_port_infos]
     napi_value result;
     napi_create_array(env, &result);
 
@@ -900,18 +1060,22 @@ static napi_value GetPortInfos(napi_env env, napi_callback_info info)
         OH_LOG_WARN(LOG_APP, "[GetPortInfos] client is null");
         return result;
     }
+    // [EndExclude get_port_infos]
 
     size_t count = 0;
     OH_MIDIStatusCode status = OH_MIDIClient_GetPortCount(g_midiClient, deviceId, &count);
+    // [StartExclude get_port_infos]
     if (status != OH_MIDI_STATUS_OK || count == 0) {
         OH_LOG_DEBUG(LOG_APP, "[GetPortInfos] no ports or error: status=%{public}d, count=%{public}zu",
                      (int)status, count);
         return result;
     }
+    // [EndExclude get_port_infos]
 
     std::vector<OH_MIDIPortInformation> ports(count);
     size_t actualCount = 0;
     status = OH_MIDIClient_GetPortInfos(g_midiClient, deviceId, ports.data(), count, &actualCount);
+    // [StartExclude get_port_infos]
     if (status == OH_MIDI_STATUS_OK) {
         OH_LOG_DEBUG(LOG_APP, "[GetPortInfos] got %{public}zu ports", actualCount);
         for (size_t i = 0; i < actualCount; i++) {
@@ -924,9 +1088,12 @@ static napi_value GetPortInfos(napi_env env, napi_callback_info info)
 
     OH_LOG_DEBUG(LOG_APP, "[GetPortInfos] --exit, actualCount=%{public}zu", actualCount);
     return result;
+    // [EndExclude get_port_infos]
 }
+// [End get_port_infos]
 
 // Open a MIDI device
+// [Start open_device]
 static napi_value OpenDevice(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -935,33 +1102,29 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
 
     int64_t deviceId = 0;
     napi_get_value_int64(env, args[0], &deviceId);
-
-    OH_LOG_INFO(LOG_APP, "[OpenDevice] ++enter, deviceId=%{public}lld", (long long)deviceId);
-
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
+    // [StartExclude open_device]
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[OpenDevice] client is null");
         napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_CLIENT), &result);
         return result;
     }
-
+    // [EndExclude open_device]
     OH_MIDIDevice *device = nullptr;
-    OH_LOG_DEBUG(LOG_APP, "[OpenDevice] calling OH_MIDIClient_OpenDevice");
     OH_MIDIStatusCode status = OH_MIDIClient_OpenDevice(g_midiClient, deviceId, &device);
-    OH_LOG_INFO(LOG_APP, "[OpenDevice] OH_MIDIClient_OpenDevice returned status=%{public}d", (int)status);
-
     if (status == OH_MIDI_STATUS_OK && device != nullptr) {
         g_openedDevices[deviceId] = device;
         OH_LOG_INFO(LOG_APP, "[OpenDevice] device stored, total opened devices=%{public}zu", g_openedDevices.size());
     }
-
+    // [StartExclude open_device]
     napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[OpenDevice] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude open_device]
 }
+// [End open_device]
 
 // Helper: Cleanup input port contexts for a specific device
 static void CleanupInputPortContextsForDevice(int64_t deviceId)
@@ -1020,8 +1183,12 @@ static bool ParseMIDIEventsFromArray(napi_env env, napi_value jsArray,
 }
 
 // Close a MIDI device
+// [Start close_device]
+// [Start cleanup_close_device]
 static napi_value CloseDevice(napi_env env, napi_callback_info info)
 {
+    // [StartExclude close_device]
+    // [StartExclude cleanup_close_device]
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -1030,51 +1197,63 @@ static napi_value CloseDevice(napi_env env, napi_callback_info info)
     napi_get_value_int64(env, args[0], &deviceId);
 
     OH_LOG_INFO(LOG_APP, "[CloseDevice] ++enter, deviceId=%{public}lld", (long long)deviceId);
-
+    
+    // [EndExclude close_device]
     std::lock_guard<std::mutex> lock(g_midiMutex);
-
+    // [StartExclude close_device]
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[CloseDevice] client is null");
         napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_CLIENT), &result);
         return result;
     }
-
+    // [EndExclude close_device]
+    // [EndExclude cleanup_close_device]
     auto it = g_openedDevices.find(deviceId);
     if (it != g_openedDevices.end()) {
-        // 清理该设备的所有InputPortContext（共享缓存模式）
+        // 清理该设备的所有InputPortContext
         CleanupInputPortContextsForDevice(deviceId);
-
-        OH_LOG_DEBUG(LOG_APP, "[CloseDevice] calling OH_MIDIClient_CloseDevice");
         OH_MIDIStatusCode status = OH_MIDIClient_CloseDevice(g_midiClient, it->second);
-        OH_LOG_INFO(LOG_APP, "[CloseDevice] OH_MIDIClient_CloseDevice returned status=%{public}d", (int)status);
         g_openedDevices.erase(it);
-        OH_LOG_INFO(LOG_APP, "[CloseDevice] device removed, remaining opened devices=%{public}zu",
-            g_openedDevices.size());
+        // [StartExclude close_device]
+        // [StartExclude cleanup_close_device]
+        OH_LOG_INFO(LOG_APP, "[CloseDevice] OH_MIDIClient_CloseDevice returned status=%{public}d", (int)status);
         napi_create_int32(env, static_cast<int32_t>(status), &result);
+        // [EndExclude cleanup_close_device]
+        // [EndExclude close_device]
     } else {
+        // [StartExclude close_device]
+        // [StartExclude cleanup_close_device]
         OH_LOG_WARN(LOG_APP, "[CloseDevice] device not found in opened devices");
         napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
+        // [EndExclude cleanup_close_device]
+        // [EndExclude close_device]
     }
 
+    // [StartExclude close_device]
+    // [StartExclude cleanup_close_device]
     OH_LOG_INFO(LOG_APP, "[CloseDevice] --exit");
+    // [EndExclude cleanup_close_device]
+    // [EndExclude close_device]
     return result;
 }
+// [End cleanup_close_device]
+// [End close_device]
 
-// MIDI data received callback - 优化版本：使用共享缓存，不再每次创建新线程
-// 回调直接将数据写入环形缓冲区，由常驻线程处理
+// MIDI data received callback
+// [Start midi_received_callback]
 static void OnMIDIReceived(void *userData, const OH_MIDIEvent *events, size_t eventCount)
 {
-    // userData现在指向InputPortContext
+    // userData指向InputPortContext
     InputPortContext* context = static_cast<InputPortContext*>(userData);
-
+    // [StartExclude midi_received_callback]
     if (context == nullptr || events == nullptr || eventCount == 0) {
         return;
     }
-
-    // 快速写入环形缓冲区（无锁操作），回调立即返回
     context->PushEventBatch(events, eventCount);
+    // [EndExclude midi_received_callback]
 }
+// [End midi_received_callback]
 
 // Helper struct for input port arguments
 struct InputPortArgs {
@@ -1103,14 +1282,14 @@ static InputPortArgs ParseInputPortArgs(napi_env env, napi_callback_info info)
     return args;
 }
 
-// Open input port with callback
+// Open input port
+// [Start open_input_port]
 static napi_value OpenInputPort(napi_env env, napi_callback_info info)
 {
     InputPortArgs args = ParseInputPortArgs(env, info);
-    OH_LOG_INFO(LOG_APP, "[OpenInputPort] deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
-                (long long)args.deviceId, args.portIndex, args.protocol);
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
+
     napi_value result;
     auto it = g_openedDevices.find(args.deviceId);
     if (g_midiClient == nullptr || it == g_openedDevices.end()) {
@@ -1119,33 +1298,45 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
         return result;
     }
 
-    OH_MIDIPortDescriptor descriptor = {args.portIndex, static_cast<OH_MIDIProtocol>(args.protocol)};
-    auto key = std::make_pair(args.deviceId, args.portIndex);
-    auto existingIt = g_inputPortContexts.find(key);
-    if (existingIt != g_inputPortContexts.end()) {
-        existingIt->second->Stop();
-        g_inputPortContexts.erase(existingIt);
-    }
+    // Construct port descriptor
+    OH_MIDIPortDescriptor descriptor;
+    descriptor.portIndex = args.portIndex;
+    descriptor.protocol = static_cast<OH_MIDIProtocol>(args.protocol);
 
+    // Create input port context for thread-safe callback handling
     auto context = std::make_shared<InputPortContext>(args.deviceId, args.portIndex);
+
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenInputPort(it->second, descriptor, OnMIDIReceived, context.get());
-    OH_LOG_INFO(LOG_APP, "[OpenInputPort] OpenInputPort returned status=%{public}d", (int)status);
+    // [StartExclude open_input_port]
+    OH_LOG_INFO(LOG_APP, "[OpenInputPort] OH_MIDIDevice_OpenInputPort returned status=%{public}d", (int)status);
 
     if (status == OH_MIDI_STATUS_OK && args.callbackValue != nullptr) {
         napi_valuetype valueType;
         napi_typeof(env, args.callbackValue, &valueType);
-        if (valueType == napi_function && !context->Start(env, args.callbackValue)) {
-            OH_MIDIDevice_CloseInputPort(it->second, args.portIndex);
-            status = OH_MIDI_STATUS_INVALID_DEVICE_HANDLE;
-        } else if (valueType == napi_function) {
-            g_inputPortContexts[key] = context;
+        if (valueType == napi_function) {
+            // Start the context for thread-safe callback handling
+            if (!context->Start(env, args.callbackValue)) {
+                OH_LOG_ERROR(LOG_APP, "[OpenInputPort] failed to start context");
+                OH_MIDIDevice_CloseInputPort(it->second, args.portIndex);
+                status = OH_MIDI_STATUS_INVALID_DEVICE_HANDLE;
+            } else {
+                auto key = std::make_pair(args.deviceId, args.portIndex);
+                g_inputPortContexts[key] = context;
+                OH_LOG_INFO(LOG_APP, "[OpenInputPort] context started, total contexts=%{public}zu",
+                            g_inputPortContexts.size());
+            }
         }
     }
 
+    OH_LOG_INFO(LOG_APP, "[OpenInputPort] --exit, status=%{public}d", (int)status);
     napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
+    // [EndExclude open_input_port]
 }
+// [End open_input_port]
 
+// [Start close_input_port]
+// [Start cleanup_close_input_port]
 // Close input port
 static napi_value CloseInputPort(napi_env env, napi_callback_info info)
 {
@@ -1172,30 +1363,32 @@ static napi_value CloseInputPort(napi_env env, napi_callback_info info)
         return result;
     }
 
-    OH_LOG_DEBUG(LOG_APP, "[CloseInputPort] calling OH_MIDIDevice_CloseInputPort");
     OH_MIDIStatusCode status = OH_MIDIDevice_CloseInputPort(it->second, portIndex);
-    OH_LOG_INFO(LOG_APP, "[CloseInputPort] OH_MIDIDevice_CloseInputPort returned status=%{public}d", (int)status);
 
-    // Clean up input port context (共享缓存模式)
+    // Clean up input port context
     auto key = std::make_pair(deviceId, portIndex);
     auto contextIt = g_inputPortContexts.find(key);
     if (contextIt != g_inputPortContexts.end()) {
-        OH_LOG_DEBUG(LOG_APP, "[CloseInputPort] stopping context");
         if (contextIt->second != nullptr) {
             contextIt->second->Stop();
         }
         g_inputPortContexts.erase(contextIt);
-        OH_LOG_INFO(LOG_APP, "[CloseInputPort] context removed, remaining contexts=%{public}zu",
-                    g_inputPortContexts.size());
     }
+    // [StartExclude close_input_port]
+    // [StartExclude cleanup_close_input_port]
 
     napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[CloseInputPort] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude cleanup_close_input_port]
+    // [EndExclude close_input_port]
 }
+// [End cleanup_close_input_port]
+// [End close_input_port]
 
 // Open output port
+// [Start open_output_port]
 static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
 {
     size_t argc = 3;
@@ -1227,11 +1420,9 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     OH_MIDIPortDescriptor descriptor;
     descriptor.portIndex = portIndex;
     descriptor.protocol = static_cast<OH_MIDIProtocol>(protocol);
-
-    OH_LOG_DEBUG(LOG_APP, "[OpenOutputPort] calling OH_MIDIDevice_OpenOutputPort");
+    
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenOutputPort(it->second, descriptor);
-    OH_LOG_INFO(LOG_APP, "[OpenOutputPort] OH_MIDIDevice_OpenOutputPort returned status=%{public}d", (int)status);
-
+    // [StartExclude open_output_port]
     // Store protocol info for this output port
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
@@ -1245,8 +1436,12 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
 
     OH_LOG_INFO(LOG_APP, "[OpenOutputPort] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude open_output_port]
 }
+// [End open_output_port]
 
+// [Start close_output_port]
+// [Start cleanup_close_output_port]
 // Close output port
 static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
 {
@@ -1273,25 +1468,28 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
         return result;
     }
 
-    OH_LOG_DEBUG(LOG_APP, "[CloseOutputPort] calling OH_MIDIDevice_CloseOutputPort");
     OH_MIDIStatusCode status = OH_MIDIDevice_CloseOutputPort(it->second, portIndex);
-    OH_LOG_INFO(LOG_APP, "[CloseOutputPort] OH_MIDIDevice_CloseOutputPort returned status=%{public}d", (int)status);
 
     // Remove protocol info for this output port
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
         g_outputPortProtocols.erase(key);
-        OH_LOG_INFO(LOG_APP, "[CloseOutputPort] removed protocol info for deviceId=%{public}lld, portIndex=%{public}u",
-                    (long long)deviceId, portIndex);
     }
+    // [StartExclude close_output_port]
+    // [StartExclude cleanup_close_output_port]
 
     napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[CloseOutputPort] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude cleanup_close_output_port]
+    // [EndExclude close_output_port]
 }
+// [End cleanup_close_output_port]
+// [End close_output_port]
 
 // Send MIDI data
+// [Start send_midi]
 static napi_value SendMIDI(napi_env env, napi_callback_info info)
 {
     size_t argc = 3;
@@ -1328,7 +1526,7 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 
     uint32_t eventsWritten = 0;
     OH_MIDIStatusCode status = OH_MIDIDevice_Send(it->second, portIndex, events.data(), eventCount, &eventsWritten);
-
+    // [Start send_midi]
     napi_create_object(env, &result);
     napi_value statusValue;
     napi_create_int32(env, static_cast<int32_t>(status), &statusValue);
@@ -1337,7 +1535,9 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
     napi_create_uint32(env, eventsWritten, &writtenValue);
     napi_set_named_property(env, result, "eventsWritten", writtenValue);
     return result;
+    // [End send_midi]
 }
+// [End send_midi]
 
 // ============================================================================
 // UMP Helper functions for MIDI 1.0 and MIDI 2.0 protocol support
@@ -1371,6 +1571,7 @@ static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
     umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
+// [Start ump_helper_functions]
 // Build MIDI 1.0 Note On UMP (32-bit, 1 word)
 static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
@@ -1392,6 +1593,7 @@ static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
                  ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
                  ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | (velocity & MIDI_NOTE_MASK);
 }
+// [End ump_helper_functions]
 
 // Get output port protocol (returns MIDI_PROTOCOL_1_0 by default if not found)
 static OH_MIDIProtocol GetOutputPortProtocol(int64_t deviceId, uint32_t portIndex)
@@ -1473,21 +1675,26 @@ static napi_value SendNoteMessage(napi_env env, NoteMessageArgs args, bool isNot
     return result;
 }
 
+// [Start send_note_on]
 // Send Note On message (helper function for testing)
 static napi_value SendNoteOn(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
     return SendNoteMessage(env, args, true);
 }
+// [End send_note_on]
 
+// [Start send_note_off]
 // Send Note Off message (helper function for testing)
 static napi_value SendNoteOff(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
     return SendNoteMessage(env, args, false);
 }
+// [End send_note_off]
 
 // Flush output port
+// [Start flush_output_port]
 static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -1500,9 +1707,6 @@ static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
     uint32_t portIndex = 0;
     napi_get_value_uint32(env, args[1], &portIndex);
 
-    OH_LOG_DEBUG(LOG_APP, "[FlushOutputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u",
-                 (long long)deviceId, portIndex);
-
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
     napi_value result;
@@ -1514,13 +1718,16 @@ static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
     }
 
     OH_MIDIStatusCode status = OH_MIDIDevice_FlushOutputPort(it->second, portIndex);
+    // [StartExclude flush_output_port]
     OH_LOG_DEBUG(LOG_APP, "[FlushOutputPort] OH_MIDIDevice_FlushOutputPort returned status=%{public}d", (int)status);
 
     napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_DEBUG(LOG_APP, "[FlushOutputPort] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude flush_output_port]
 }
+// [End flush_output_port]
 
 // BLE raw data structure for async processing
 struct BleRawData {
@@ -1619,9 +1826,11 @@ static void BleWorkerThreadFunc(BleRawData* rawData)
 
 // BLE device open callback - spawn async thread for processing
 // All heavy work (locking, data copy, JS callback) happens in worker thread
+// [Start ble_device_opened_callback]
 static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device, OH_MIDIDeviceInformation info)
 {
     std::string deviceAddr = info.deviceAddress;
+    // [StartExclude ble_device_opened_callback]
     OH_LOG_INFO(LOG_APP, "[OnBLEDeviceOpened] ++enter (callback thread), addr=%{public}s, opened=%{public}d",
                 deviceAddr.c_str(), opened ? 1 : 0);
 
@@ -1642,8 +1851,11 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     workerThread.detach();
 
     OH_LOG_INFO(LOG_APP, "[OnBLEDeviceOpened] --exit (callback thread, worker spawned)");
+    // [EndExclude ble_device_opened_callback]
 }
+// [End ble_device_opened_callback]
 
+// [Start open_ble_device]
 // Open BLE device asynchronously
 static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
 {
@@ -1657,6 +1869,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
     std::string deviceAddr(addrLen, '\0');
     napi_get_value_string_utf8(env, args[0], &deviceAddr[0], addrLen + 1, &addrLen);
 
+    // [StartExclude open_ble_device]
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] ++enter, address=%{public}s", deviceAddr.c_str());
 
     // Get callback function
@@ -1664,9 +1877,11 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
     if (argc > 1 && args[1] != nullptr) {
         callbackValue = args[1];
     }
+    // [EndExclude open_ble_device]
 
     std::lock_guard<std::mutex> lock(g_midiMutex);
 
+    // [StartExclude open_ble_device]
     napi_value result;
     if (g_midiClient == nullptr) {
         OH_LOG_ERROR(LOG_APP, "[OpenBLEDevice] client is null");
@@ -1680,16 +1895,19 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
     }
 
     OH_LOG_DEBUG(LOG_APP, "[OpenBLEDevice] calling OH_MIDIClient_OpenBLEDevice");
+    // [EndExclude open_ble_device]
     OH_MIDIStatusCode status = OH_MIDIClient_OpenBLEDevice(g_midiClient, deviceAddr.c_str(),
                                                            OnBLEDeviceOpened, nullptr);
-
+    // [StartExclude open_ble_device]
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] OH_MIDIClient_OpenBLEDevice returned status=%{public}d", (int)status);
 
     napi_create_int32(env, static_cast<int32_t>(status), &result);
 
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] --exit, status=%{public}d", (int)status);
     return result;
+    // [EndExclude open_ble_device]
 }
+// [End open_ble_device]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

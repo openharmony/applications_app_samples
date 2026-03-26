@@ -36,6 +36,7 @@ const TAG = 'MidiSample';
 const EVENT_DEVICE_CHANGE = 1001;
 const EVENT_MIDI_RECEIVED = 1002;
 const EVENT_BLE_OPENED = 1003;
+const EVENT_ERROR = 1004;
 
 // Event data interfaces
 interface DeviceChangeEventData {
@@ -56,6 +57,11 @@ interface BleOpenedEventData {
   deviceName: string;
   deviceType: number;
   deviceAddress: string;
+}
+
+interface ErrorEventData {
+  code: number;
+  message: string;
 }
 
 // Piano key interface
@@ -282,8 +288,17 @@ struct Index {
       this.handleBleOpened(data);
     });
 
-    hilog.info(DOMAIN, TAG, '[registerEventListeners] --exit, events registered: %{public}d, %{public}d, %{public}d',
-      EVENT_DEVICE_CHANGE, EVENT_MIDI_RECEIVED, EVENT_BLE_OPENED);
+    // Error event
+    emitter.on({ eventId: EVENT_ERROR }, (eventData: emitter.EventData) => {
+      const data: ErrorEventData = eventData.data as ErrorEventData;
+      hilog.error(DOMAIN, TAG,
+        '[registerEventListeners] received EVENT_ERROR, code=%{public}d, message=%{public}s',
+        data.code, data.message);
+      this.handleMidiError(data);
+    });
+
+    hilog.info(DOMAIN, TAG, '[registerEventListeners] --exit, events registered: %{public}d, %{public}d, %{public}d, %{public}d',
+      EVENT_DEVICE_CHANGE, EVENT_MIDI_RECEIVED, EVENT_BLE_OPENED, EVENT_ERROR);
   }
 
   unregisterEventListeners(): void {
@@ -291,6 +306,7 @@ struct Index {
     emitter.off(EVENT_DEVICE_CHANGE);
     emitter.off(EVENT_MIDI_RECEIVED);
     emitter.off(EVENT_BLE_OPENED);
+    emitter.off(EVENT_ERROR);
     hilog.info(DOMAIN, TAG, '[unregisterEventListeners] --exit, all events unregistered');
   }
 
@@ -572,13 +588,16 @@ struct Index {
     }
   }
 
+  // [Start arkts_create_client]
   createClient(): void {
-    hilog.info(DOMAIN, TAG, '[createClient] ++enter');
     try {
-      const status = midi.createMIDIClient((action: number, deviceInfo: MidiDeviceInfo) => {
+      // Device change callback
+      const deviceChangeCallback = (action: number, deviceInfo: MidiDeviceInfo) => {
         // In callback: only copy data and emit event, do not hold locks or execute heavy operations
+        // [StartExclude arkts_create_client]
         hilog.info(DOMAIN, TAG, '[createClient/callback] action=%{public}d, deviceId=%{public}d, deviceName=%{public}s',
           action, deviceInfo.deviceId, deviceInfo.deviceName);
+        // [EndExclude arkts_create_client]
         const eventData: DeviceChangeEventData = {
           action: action,
           deviceId: deviceInfo.deviceId,
@@ -587,28 +606,50 @@ struct Index {
           deviceAddress: deviceInfo.deviceAddress
         };
         emitter.emit({ eventId: EVENT_DEVICE_CHANGE }, { data: eventData });
+        // [StartExclude arkts_create_client]
         hilog.info(DOMAIN, TAG, '[createClient/callback] event emitted, eventId=%{public}d', EVENT_DEVICE_CHANGE);
-      });
+        // [EndExclude arkts_create_client]
+      };
 
+      // Error callback
+      const errorCallback = (error: ErrorEventData) => {
+        // [StartExclude arkts_create_client]
+        hilog.error(DOMAIN, TAG, '[createClient/errorCallback] code=%{public}d, message=%{public}s',
+          error.code, error.message);
+        // [EndExclude arkts_create_client]
+        emitter.emit({ eventId: EVENT_ERROR }, { data: error });
+      };
+
+      const status = midi.createMIDIClient(deviceChangeCallback, errorCallback);
+
+      // [StartExclude arkts_create_client]
       hilog.info(DOMAIN, TAG, '[createClient] createMIDIClient returned status=%{public}d', status);
+      // [EndExclude arkts_create_client]
       if (status === MidiStatusCode.OK) {
         this.clientCreated = true;
         this.log('MIDI client created successfully');
+        // [StartExclude arkts_create_client]
         hilog.info(DOMAIN, TAG, '[createClient] clientCreated set to true');
+        // [EndExclude arkts_create_client]
         this.refreshDevices();
       } else {
+        // [StartExclude arkts_create_client]
         this.log(`Failed to create client: ${status}`);
         hilog.error(DOMAIN, TAG, '[createClient] failed with status=%{public}d', status);
+        // [EndExclude arkts_create_client]
       }
+      // [StartExclude arkts_create_client]
       hilog.info(DOMAIN, TAG, '[createClient] --exit, status=%{public}d', status);
     } catch (e) {
       hilog.error(DOMAIN, TAG, '[createClient] exception: %{public}s', JSON.stringify(e));
       this.log(`Error creating client: ${JSON.stringify(e)}`);
     }
+    // [EndExclude arkts_create_client]
   }
+  // [End arkts_create_client]
 
+  // [Start arkts_destroy_client]
   destroyClient(): void {
-    hilog.info(DOMAIN, TAG, '[destroyClient] ++enter, clientCreated=%{public}s', this.clientCreated.toString());
     try {
       this.cleanup();
       this.clientCreated = false;
@@ -623,12 +664,12 @@ struct Index {
       this.activeKeys.clear();
       this.bleDeviceList = [];
       this.log('MIDI client destroyed');
-      hilog.info(DOMAIN, TAG, '[destroyClient] --exit, all states reset');
     } catch (e) {
       hilog.error(DOMAIN, TAG, '[destroyClient] exception: %{public}s', JSON.stringify(e));
       this.log(`Error destroying client: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_destroy_client]
 
   // Handle device change on main thread (called from event listener)
   handleDeviceChange(data: DeviceChangeEventData): void {
@@ -682,13 +723,13 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleDeviceChange] --exit');
   }
 
+  // [Start arkts_enum_devices]
   refreshDevices(): void {
-    hilog.info(DOMAIN, TAG, '[refreshDevices] ++enter');
     try {
       const count = midi.getDeviceCount();
-      hilog.info(DOMAIN, TAG, '[refreshDevices] deviceCount=%{public}d', count);
       if (count > 0) {
         this.deviceList = midi.getDeviceInfos();
+        // [StartExclude arkts_enum_devices]
         hilog.info(DOMAIN, TAG, '[refreshDevices] got %{public}d devices', this.deviceList.length);
         // Log each device info
         this.deviceList.forEach((device, index) => {
@@ -696,16 +737,22 @@ struct Index {
             '[refreshDevices] device[%{public}d]: id=%{public}d, name=%{public}s, type=%{public}d',
             index, device.deviceId, device.deviceName, device.deviceType);
         });
+        // [EndExclude arkts_enum_devices]
       } else {
         this.deviceList = [];
         hilog.info(DOMAIN, TAG, '[refreshDevices] no devices found');
       }
+      // [StartExclude arkts_enum_devices]
       hilog.info(DOMAIN, TAG, '[refreshDevices] --exit, deviceList.length=%{public}d', this.deviceList.length);
+      // [EndExclude arkts_enum_devices]
     } catch (e) {
+      // [StartExclude arkts_enum_devices]
       hilog.error(DOMAIN, TAG, '[refreshDevices] exception: %{public}s', JSON.stringify(e));
       this.log(`Error refreshing devices: ${JSON.stringify(e)}`);
+      // [EndExclude arkts_enum_devices]
     }
   }
+  // [End arkts_enum_devices]
 
   selectDevice(deviceId: number): void {
     hilog.info(DOMAIN, TAG,
@@ -722,11 +769,14 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[selectDevice] --exit');
   }
 
+  // [Start arkts_load_ports]
   loadPorts(deviceId: number): void {
     hilog.info(DOMAIN, TAG, '[loadPorts] ++enter, deviceId=%{public}d', deviceId);
     try {
+      // [StartExclude arkts_load_ports]
       const count = midi.getPortCount(deviceId);
       hilog.info(DOMAIN, TAG, '[loadPorts] portCount=%{public}d', count);
+      // [EndExclude arkts_load_ports]
       if (count > 0) {
         this.portList = midi.getPortInfos(deviceId);
         this.inputPorts = this.portList.filter(p => p.direction === MidiPortDirection.INPUT);
@@ -751,10 +801,13 @@ struct Index {
       this.log(`Error loading ports: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_load_ports]
 
+  // [Start arkts_open_device]
   openDevice(): void {
+    // [StartExclude arkts_open_device]
     hilog.info(DOMAIN, TAG, '[openDevice] ++enter, selectedDeviceId=%{public}d', this.selectedDeviceId);
-
+    // [EndExclude arkts_open_device]
     if (this.selectedDeviceId < 0) {
       hilog.warn(DOMAIN, TAG, '[openDevice] no device selected');
       this.log('Please select a device first');
@@ -762,10 +815,7 @@ struct Index {
     }
 
     try {
-      hilog.info(DOMAIN, TAG, '[openDevice] calling midi.openDevice(%{public}d)', this.selectedDeviceId);
       const status = midi.openDevice(this.selectedDeviceId);
-      hilog.info(DOMAIN, TAG, '[openDevice] openDevice returned status=%{public}d', status);
-
       if (status === MidiStatusCode.OK) {
         this.isDeviceOpen = true;
         this.log(`Device ${this.selectedDeviceId} opened`);
@@ -780,7 +830,9 @@ struct Index {
       this.log(`Error opening device: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_open_device]
 
+  // [Start arkts_close_device]
   closeDevice(): void {
     hilog.info(DOMAIN, TAG, '[closeDevice] ++enter, selectedDeviceId=%{public}d', this.selectedDeviceId);
 
@@ -790,24 +842,17 @@ struct Index {
     }
 
     try {
-      // Close all ports first
-      hilog.info(DOMAIN, TAG, '[closeDevice] closing all ports, inputCount=%{public}d, outputCount=%{public}d',
-        this.openInputPorts.size, this.openOutputPorts.size);
       this.openInputPorts.forEach((portIndex: number) => {
-        hilog.info(DOMAIN, TAG, '[closeDevice] closing input port %{public}d', portIndex);
         midi.closeInputPort(this.selectedDeviceId, portIndex);
       });
       this.openOutputPorts.forEach((portIndex: number) => {
-        hilog.info(DOMAIN, TAG, '[closeDevice] closing output port %{public}d', portIndex);
         midi.closeOutputPort(this.selectedDeviceId, portIndex);
       });
       this.openInputPorts.clear();
       this.openOutputPorts.clear();
       this.activeKeys.clear();
 
-      hilog.info(DOMAIN, TAG, '[closeDevice] calling midi.closeDevice(%{public}d)', this.selectedDeviceId);
       const status = midi.closeDevice(this.selectedDeviceId);
-      hilog.info(DOMAIN, TAG, '[closeDevice] closeDevice returned status=%{public}d', status);
 
       if (status === MidiStatusCode.OK) {
         this.isDeviceOpen = false;
@@ -823,6 +868,7 @@ struct Index {
       this.log(`Error closing device: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_close_device]
 
   // Handle MIDI received on main thread (called from event listener)
   handleMidiReceived(umpData: number[]): void {
@@ -1057,6 +1103,7 @@ struct Index {
     return name !== undefined ? name : `CC${controller}`;
   }
 
+  // [Start arkts_open_input_port]
   openInputPort(portIndex: number): void {
     hilog.info(DOMAIN, TAG, '[openInputPort] ++enter, deviceId=%{public}d, portIndex=%{public}d',
       this.selectedDeviceId, portIndex);
@@ -1103,14 +1150,12 @@ struct Index {
       this.log(`Error opening input port: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_open_input_port]
 
+  // [Start arkts_close_input_port]
   closeInputPort(portIndex: number): void {
-    hilog.info(DOMAIN, TAG, '[closeInputPort] ++enter, deviceId=%{public}d, portIndex=%{public}d',
-      this.selectedDeviceId, portIndex);
-
     try {
       const status = midi.closeInputPort(this.selectedDeviceId, portIndex);
-      hilog.info(DOMAIN, TAG, '[closeInputPort] closeInputPort returned status=%{public}d', status);
 
       if (status === MidiStatusCode.OK) {
         this.openInputPorts.delete(portIndex);
@@ -1127,14 +1172,13 @@ struct Index {
       this.log(`Error closing input port: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_close_input_port]
 
+  // [Start arkts_open_output_port]
   openOutputPort(portIndex: number): void {
-    hilog.info(DOMAIN, TAG, '[openOutputPort] ++enter, deviceId=%{public}d, portIndex=%{public}d',
-      this.selectedDeviceId, portIndex);
 
     try {
       const status = midi.openOutputPort(this.selectedDeviceId, portIndex, 1);
-      hilog.info(DOMAIN, TAG, '[openOutputPort] openOutputPort returned status=%{public}d', status);
 
       if (status === MidiStatusCode.OK) {
         this.openOutputPorts.add(portIndex);
@@ -1151,15 +1195,12 @@ struct Index {
       this.log(`Error opening output port: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_open_output_port]
 
+  // [Start arkts_close_output_port]
   closeOutputPort(portIndex: number): void {
-    hilog.info(DOMAIN, TAG, '[closeOutputPort] ++enter, deviceId=%{public}d, portIndex=%{public}d',
-      this.selectedDeviceId, portIndex);
-
     try {
       const status = midi.closeOutputPort(this.selectedDeviceId, portIndex);
-      hilog.info(DOMAIN, TAG, '[closeOutputPort] closeOutputPort returned status=%{public}d', status);
-
       if (status === MidiStatusCode.OK) {
         this.openOutputPorts.delete(portIndex);
         this.log(`Output port ${portIndex} closed`);
@@ -1175,12 +1216,11 @@ struct Index {
       this.log(`Error closing output port: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_close_output_port]
 
   // Piano key handlers
+  // [Start arkts_on_key_press]
   onKeyPress(note: number): void {
-    hilog.debug(DOMAIN, TAG, '[onKeyPress] ++enter, note=%{public}d, openOutputPorts.size=%{public}d',
-      note, this.openOutputPorts.size);
-
     if (this.openOutputPorts.size === 0) {
       hilog.warn(DOMAIN, TAG, '[onKeyPress] no output port open');
       this.log('Please open an output port first');
@@ -1191,9 +1231,6 @@ struct Index {
     this.activeKeys.add(note);
 
     try {
-      hilog.debug(DOMAIN, TAG,
-        '[onKeyPress] sending NoteOn, deviceId=%{public}d, portIndex=%{public}d, channel=%{public}d, note=%{public}d',
-        this.selectedDeviceId, portIndex, this.channelValue, note);
       const status = midi.sendNoteOn(this.selectedDeviceId, portIndex, this.channelValue, note, 100);
       if (status !== MidiStatusCode.OK) {
         this.log(`Failed to send Note On: ${status}`);
@@ -1205,13 +1242,11 @@ struct Index {
       hilog.error(DOMAIN, TAG, '[onKeyPress] exception: %{public}s', JSON.stringify(e));
       this.log(`Error sending Note On: ${JSON.stringify(e)}`);
     }
-    hilog.debug(DOMAIN, TAG, '[onKeyPress] --exit');
   }
+  // [End arkts_on_key_press]
 
+  // [Start arkts_on_key_release]
   onKeyRelease(note: number): void {
-    hilog.debug(DOMAIN, TAG, '[onKeyRelease] ++enter, note=%{public}d, openOutputPorts.size=%{public}d',
-      note, this.openOutputPorts.size);
-
     if (this.openOutputPorts.size === 0) {
       this.activeKeys.delete(note);
       hilog.debug(DOMAIN, TAG, '[onKeyRelease] no output port, just removing from activeKeys');
@@ -1238,6 +1273,7 @@ struct Index {
     }
     hilog.debug(DOMAIN, TAG, '[onKeyRelease] --exit');
   }
+  // [End arkts_on_key_release]
 
   // Handle BLE opened on main thread (called from event listener)
   handleBleOpened(data: BleOpenedEventData): void {
@@ -1267,16 +1303,12 @@ struct Index {
           this.bleDeviceList.length);
       }
 
-      // Auto-select and open the device
-      this.selectedDeviceId = data.deviceId;
+      this.selectDevice(data.deviceId);
 
       // The device is already opened in C++ (stored in g_openedDevices)
       // So we need to update our state to reflect this
       this.isDeviceOpen = true;
       hilog.info(DOMAIN, TAG, '[handleBleOpened] device is already opened, isDeviceOpen set to true');
-
-      // Load port information
-      this.loadPorts(data.deviceId);
 
       // Refresh main device list
       this.refreshDevices();
@@ -1289,21 +1321,46 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleBleOpened] --exit');
   }
 
+  // Handle MIDI error on main thread (called from event listener)
+  handleMidiError(data: ErrorEventData): void {
+    hilog.error(DOMAIN, TAG, '[handleMidiError] ++enter, code=%{public}d, message=%{public}s',
+      data.code, data.message);
+
+    this.log(`MIDI Error: ${data.message} (code: ${data.code})`);
+
+    // Handle service died error - reset client state
+    if (data.code === MidiStatusCode.SERVICE_DIED) {
+      hilog.info(DOMAIN, TAG, '[handleMidiError] service died, resetting state');
+      this.clientCreated = false;
+      this.selectedDeviceId = -1;
+      this.isDeviceOpen = false;
+      this.deviceList = [];
+      this.bleDeviceList = [];
+      this.portList = [];
+      this.inputPorts = [];
+      this.outputPorts = [];
+      this.openInputPorts.clear();
+      this.openOutputPorts.clear();
+      this.activeKeys.clear();
+      this.log('MIDI service died. Please recreate the client.');
+    }
+
+    hilog.error(DOMAIN, TAG, '[handleMidiError] --exit');
+  }
+
   // BLE Device functions
+  // [Start arkts_open_ble_device]
   openBLEDevice(deviceAddress: string): void {
     hilog.info(DOMAIN, TAG, '[openBLEDevice] ++enter, address=%{public}s', deviceAddress);
-
     if (!deviceAddress || deviceAddress.length === 0) {
       hilog.warn(DOMAIN, TAG, '[openBLEDevice] empty device address');
       this.log('Please enter a BLE device address');
       return;
     }
-
     this.bleConnecting = true;
     this.log(`Connecting to BLE device: ${deviceAddress}`);
 
     try {
-      hilog.info(DOMAIN, TAG, '[openBLEDevice] calling midi.openBLEDevice(%{public}s)', deviceAddress);
       const status = midi.openBLEDevice(deviceAddress, (opened: boolean, deviceInfo: MidiDeviceInfo) => {
         // In callback: only copy data and emit event, do not hold locks or execute heavy operations
         hilog.info(DOMAIN, TAG, '[openBLEDevice/cb] opened=%{public}s, devId=%{public}d, name=%{public}s',
@@ -1318,7 +1375,6 @@ struct Index {
         emitter.emit({ eventId: EVENT_BLE_OPENED }, { data: eventData });
         hilog.info(DOMAIN, TAG, '[openBLEDevice/callback] emitted EVENT_BLE_OPENED');
       });
-
       hilog.info(DOMAIN, TAG, '[openBLEDevice] openBLEDevice returned status=%{public}d', status);
       if (status !== MidiStatusCode.OK) {
         this.bleConnecting = false;
@@ -1337,6 +1393,7 @@ struct Index {
       this.log(`Error opening BLE device: ${JSON.stringify(e)}`);
     }
   }
+  // [End arkts_open_ble_device]
 
   getDeviceTypeName(type: MidiDeviceType): string {
     return type === MidiDeviceType.USB ? 'USB' : 'BLE';
@@ -1982,7 +2039,7 @@ struct Index {
                   .backgroundColor('#F5F5F5')
                   .borderRadius(8)
                   .margin({ bottom: 4 })
-                }, (port: MidiPortInfo) => `in-${port.portIndex}`)
+                }, (port: MidiPortInfo) => `in-${this.selectedDeviceId}-${port.portIndex}`)
               }
 
               // Output Ports
@@ -2016,7 +2073,7 @@ struct Index {
                   .backgroundColor('#F5F5F5')
                   .borderRadius(8)
                   .margin({ bottom: 4 })
-                }, (port: MidiPortInfo) => `out-${port.portIndex}`)
+                }, (port: MidiPortInfo) => `out-${this.selectedDeviceId}-${port.portIndex}`)
               }
             }
             .width('100%')
