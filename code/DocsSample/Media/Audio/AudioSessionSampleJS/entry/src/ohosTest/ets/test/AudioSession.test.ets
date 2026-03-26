@@ -60,16 +60,16 @@ export default function AudioSessionTest() {
     afterAll(() => {})
 
     /**
-     * @tc.number AudioSession_Test_0001
-     * @tc.name AudioSession_Test_0001
+     * @tc.number AudioSession_Test_001
+     * @tc.name AudioSession_Test_001
      * @tc.desc Init audioRenderer
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0001', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_001', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0001',
+        'AudioSession_Test_001',
         '初始化audioRenderer',
         3000,
         'Init audioRenderer success',
@@ -78,16 +78,16 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0002
-     * @tc.name AudioSession_Test_0002
+     * @tc.number AudioSession_Test_002
+     * @tc.name AudioSession_Test_002
      * @tc.desc Register audioInterruptCallback
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0002', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_002', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0002',
+        'AudioSession_Test_002',
         '监听audioRenderer焦点变化',
         3000,
         'Register audioInterruptCallback success',
@@ -96,16 +96,16 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0003
-     * @tc.name AudioSession_Test_0003
+     * @tc.number AudioSession_Test_003
+     * @tc.name AudioSession_Test_003
      * @tc.desc Activate audioSession V1
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0003', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_003', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0003',
+        'AudioSession_Test_003',
         '使用音频会话修改焦点策略',
         4000,
         'Activate audioSession V1 success',
@@ -114,16 +114,16 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0004
-     * @tc.name AudioSession_Test_0004
+     * @tc.number AudioSession_Test_004
+     * @tc.name AudioSession_Test_004
      * @tc.desc Activate audioSession V2
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0004', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_004', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0004',
+        'AudioSession_Test_004',
         '使用音频会话申请焦点策略',
         2000,
         'Activate audioSession V2 success',
@@ -132,16 +132,16 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0005
-     * @tc.name AudioSession_Test_0005
+     * @tc.number AudioSession_Test_005
+     * @tc.name AudioSession_Test_005
      * @tc.desc Start audioRenderer
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0005', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_005', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0005',
+        'AudioSession_Test_005',
         '开始播放',
         3000,
         'Start audioRenderer success',
@@ -150,16 +150,34 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0006
-     * @tc.name AudioSession_Test_0006
+     * @tc.number AudioSession_Test_006
+     * @tc.name AudioSession_Test_006
+     * @tc.desc Start audioRenderer
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('AudioSession_Test_006', Level.LEVEL1, async (done: Function) => {
+      await runTest(
+        'AudioSession_Test_006',
+        '切换到听筒播放',
+        3000,
+        'Succeeded in setting default output device',
+        done
+      );
+    });
+
+    /**
+     * @tc.number AudioSession_Test_007
+     * @tc.name AudioSession_Test_007
      * @tc.desc Stop audioRenderer
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0006', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_007', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0006',
+        'AudioSession_Test_007',
         '停止播放',
         3000,
         'Stop audioRenderer success',
@@ -168,16 +186,16 @@ export default function AudioSessionTest() {
     });
 
     /**
-     * @tc.number AudioSession_Test_0007
-     * @tc.name AudioSession_Test_0007
+     * @tc.number AudioSession_Test_008
+     * @tc.name AudioSession_Test_008
      * @tc.desc Deactivate audioSession
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('AudioSession_Test_0007', Level.LEVEL1, async (done: Function) => {
+    it('AudioSession_Test_008', Level.LEVEL1, async (done: Function) => {
       await runTest(
-        'AudioSession_Test_0007',
+        'AudioSession_Test_008',
         '停用音频会话',
         3000,
         'Deactivate audioSession success',

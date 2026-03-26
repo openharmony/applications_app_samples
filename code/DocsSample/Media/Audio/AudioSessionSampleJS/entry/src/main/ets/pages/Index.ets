@@ -22,6 +22,7 @@
 // [Start on_audio_session_state_changed]
 // [Start audio_session_v2]
 // [Start enable_mute_suggestion]
+// [Start set_default_output_device]
 import { audio } from '@kit.AudioKit';
 // [StartExclude get_session_manager]
 // [StartExclude on_audio_session_deactivated]
@@ -37,6 +38,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude deactivate_audio_session_v2]
 // [StartExclude audio_session_v2]
 // [StartExclude enable_mute_suggestion]
+// [StartExclude set_default_output_device]
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -67,7 +69,7 @@ let writeDataCallback: audio.AudioRendererWriteDataCallback;
 // [EndExclude renderer_interrupt]
 
 let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块。
-let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块。
+let isDucked: boolean; // 是否降低音量，实际开发中，对应与音频音量相关的模块。
 let started: boolean; // 标识符，记录“开始播放（start）”操作是否成功。
 
 async function onAudioInterrupt(): Promise<void> {
@@ -241,15 +243,18 @@ async function stop() {
 }
 // [EndExclude get_session_manager]
 // [EndExclude audio_session_v1]
+// [EndExclude set_default_output_device]
 
 let audioManager = audio.getAudioManager();
 // 创建音频会话管理器。
 let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
 // [End get_session_manager]
 // [StartExclude audio_session_v1]
+// [StartExclude set_default_output_device]
 
 async function useAudioSessionV1(){
   // [EndExclude activate_audio_session_v1]
+  // [EndExclude set_default_output_device]
 
   // [EndExclude audio_session_v1]
   // 设置音频并发模式。
@@ -262,23 +267,28 @@ async function useAudioSessionV1(){
     console.info('Succeeded in activating audio session.');
     // [StartExclude activate_audio_session_v1]
     // [StartExclude audio_session_v1]
+    // [StartExclude set_default_output_device]
     if (globalLogUpdate) {
       globalLogUpdate('Succeeded in activating audio session.', false);
     }
     // [EndExclude activate_audio_session_v1]
     // [EndExclude audio_session_v1]
+    // [EndExclude set_default_output_device]
   }).catch((err: BusinessError) => {
     console.error(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`);
     // [StartExclude activate_audio_session_v1]
     // [StartExclude audio_session_v1]
+    // [StartExclude set_default_output_device]
     if (globalLogUpdate) {
       globalLogUpdate(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`, true);
     }
     // [EndExclude activate_audio_session_v1]
     // [EndExclude audio_session_v1]
+    // [EndExclude set_default_output_device]
   });
   // [End activate_audio_session_v1]
 
+  // [StartExclude set_default_output_device]
   // [Start is_audio_session_activated]
   // 查询音频会话是否已激活。
   let isActivated = audioSessionManager.isAudioSessionActivated();
@@ -467,6 +477,39 @@ async function deactivateAudioSession(){
   // [End audio_session_v2]
 }
 
+async function setDefaultOutputDeviceToSpeaker(){
+  // [EndExclude set_default_output_device]
+  // 设置默认输出设备为听筒。
+  audioSessionManager.setDefaultOutputDevice(audio.DeviceType.EARPIECE).then(() => {
+    console.info('Succeeded in setting default output device.');
+    // [StartExclude set_default_output_device]
+    if (globalLogUpdate) {
+      globalLogUpdate('Succeeded in setting default output device.', false);
+    }
+    // [EndExclude set_default_output_device]
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set default output device. Code: ${err.code}, message: ${err.message}`);
+    // [StartExclude set_default_output_device]
+    if (globalLogUpdate) {
+      globalLogUpdate(`Failed to set default output device. Code: ${err.code}, message: ${err.message}`, true);
+    }
+    // [EndExclude set_default_output_device]
+  });
+  // [StartExclude set_default_output_device]
+}
+
+async function setDefaultOutputDeviceToDefault(){
+  // [EndExclude set_default_output_device]
+
+  // 设置默认输出设备为默认设备,即取消应用设置的默认设备,交由系统选择设备。
+  audioSessionManager.setDefaultOutputDevice(audio.DeviceType.DEFAULT).then(() => {
+    console.info('Succeeded in setting default output device.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set default output device. Code: ${err.code}, message: ${err.message}`);
+  });
+  // [End set_default_output_device]
+}
+
 @Entry
 @Component
 struct Index {
@@ -639,9 +682,23 @@ struct Index {
           .width('80%')
           .height(40)
           .onClick(async (): Promise<void> => {
-
             await start();
             this.runningResult = 'Start audioRenderer success.';
+          })
+        }
+        .width('80%')
+        .height(50)
+        .justifyContent(FlexAlign.Center)
+
+        Row() {
+          Button() {
+            Text('切换到听筒播放').fontSize(15).fontColor(Color.White)
+          }
+          .width('80%')
+          .height(40)
+          .onClick(async (): Promise<void> => {
+            await setDefaultOutputDeviceToSpeaker();
+            this.runningResult = 'Succeeded in setting default output device.';
           })
         }
         .width('80%')

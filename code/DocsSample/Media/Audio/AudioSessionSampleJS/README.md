@@ -13,6 +13,7 @@
 - 依次点击'初始化audioRenderer'、'监听audioRenderer焦点变化'、'开始播放'按钮，即可使用默认焦点策略播放音频。
 - 依次点击'初始化audioRenderer'、'监听audioRenderer焦点变化'、'使用音频会话修改焦点策略'、'开始播放'按钮，即可使用音频会话修改焦点策略并播放音频。
 - 依次点击'初始化audioRenderer'、'使用音频会话申请焦点策略'、'开始播放'按钮，即可使用音频会话申请焦点策略并播放音频。
+- 依次点击'初始化audioRenderer'、'使用音频会话修改焦点策略'、'开始播放'、'切换到听筒播放'按钮，即可切换到听筒播放音频。
 - 播放时依次点击'停止播放'、'停用音频会话'按钮，即可结束本次会话。
 
 ## 工程结构&模块类型
@@ -37,6 +38,7 @@
   - 点击'使用音频会话修改焦点策略'按钮，首先配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionDeactivated')`监听音频会话停用事件。
   - 点击'使用音频会话申请焦点策略'按钮，首先设置音频会话场景为`AUDIO_SESSION_SCENE_MEDIA`并配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.enableMuteSuggestionWhenMixWithOthers`接口后调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionStateChanged')`监听AudioSession焦点和状态变化事件。
   - 点击'开始播放'按钮，调用`audioRenderer.start`开始播放音频。
+  - 点击'切换到听筒播放'按钮，调用`audioSessionManager.setDefaultOutputDevice`切换到听筒播放音频。
   - 点击'停止播放'按钮，调用`audioRenderer.stop`停止播放音频。
   - 点击'停用音频会话'按钮，首先调用`audioSessionManager.off`来取消所有监听事件，再调用`audioSessionManager.deactivateAudioSession`结束当前应用的音频会话。
 
