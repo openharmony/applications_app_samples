@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, abilityAccessCtrl, PermissionRequestResult, Permissions,
+  AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import Logger from '../util/Logger'
+import { BusinessError } from '@kit.BasicServicesKit';
 
+const permission: Array<Permissions> = ['ohos.permission.ACCESS_BLUETOOTH'];
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
@@ -31,6 +34,23 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, `onWindowStageCreate`)
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(this.context, permission).then((data: PermissionRequestResult) => {
+      let grantStatus: Array<number> = data.authResults;
+      let length: number = grantStatus.length;
+      for (let i = 0; i < length; i++) {
+        if (grantStatus[i] === 0) {
+          // 用户授权，可以继续访问
+        } else {
+          // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
+          return;
+        }
+      }
+      // 授权成功
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+    })
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)

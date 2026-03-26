@@ -17,7 +17,7 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
-import PlayerModel from '../feature/BackgroundPlayerFeature';
+import PlayerModel from '../../feature/BackgroundPlayerFeature';
 
 // [Start continuous_task_await]
 @Entry
