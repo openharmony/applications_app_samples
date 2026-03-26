@@ -23,8 +23,8 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-const NativeMock: Record<string, Object> = {
-  'add': (a: number, b: number) => {
+const NativeMock: Record<string, (a: number, b: number) => number> = {
+  'add': (a: number, b: number): number => {
     return a + b;
   },
 };

@@ -34,7 +34,7 @@ const TAG = '[ImageCAPIGuide_Test]';
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let driver = Driver.create();
 
-export default function abilityTest() {
+export default function abilityTest(): void {
   describe('ActsAbilityTest', () => {
     
     beforeAll(async () => {
