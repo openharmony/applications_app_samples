@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-[Start EnableCustomComponentCrossAbility_ExtraAbility]
+// [Start EnableCustomComponentCrossAbility_ExtraAbility]
 import { UIAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -31,4 +31,4 @@ export default class ExtraAbility extends UIAbility {
     });
   }
 }
-[End EnableCustomComponentCrossAbility_ExtraAbility]
+// [End EnableCustomComponentCrossAbility_ExtraAbility]
