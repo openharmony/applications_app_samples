@@ -12,11 +12,11 @@ ArkUI开发框架提供了列表组件，使用列表可以轻松高效地显示
 
 | 分组列表测试                      |
 |-----------------------------|
-| ![](screenshots/result.jpg) |
+| ![](screenshots/LazyTextListExample.gif) |
 
 | 懒加载列表测试                      |
 |-----------------------------|
-| ![](screenshots/result1.jpg) |
+| ![](screenshots/LazyLoadingExample.gif) |
 
 ### 使用说明
 
@@ -79,6 +79,14 @@ entry/
     * List组件设置吸顶
 
     * List组件下使用ListItemGroup实现分组列表界面
+
+4. 在懒加载场景中创建/复用子组件并创建SwipeAction。源码参考：[LazyTextListExample1.h](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeType/NdkCreateList/entry/src/main/cpp/LazyTextListExample1.h)
+
+    * createChildCallback回调在创建ListItem时调用BuildListItemNode，完成主文本子组件与右滑删除子组件的构建
+
+    * reuseListItemCallback回调在复用ListItem时调用ReuseListItemNode，刷新文本内容并更新删除点击回调绑定
+
+    * 通过listItem->SetSwiperAction(swipeNode)创建SwipeAction，将删除操作区域挂载到ListItem右滑手势区域
 
 
 ### 相关权限
