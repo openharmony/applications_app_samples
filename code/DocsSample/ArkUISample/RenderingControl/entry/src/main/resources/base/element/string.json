@@ -157,6 +157,10 @@
       "value": "RenderingRepeat17"
     },
     {
+      "name": "RenderingRepeat_label18",
+      "value": "RenderingRepeat18"
+    },
+    {
       "name": "RenderingLazyForeach",
       "value": "RenderingLazyForeach"
     },
