@@ -735,14 +735,10 @@ static void OnError(void *userData, OH_MIDIStatusCode code)
     if (g_errorTsfn != nullptr) {
         ErrorCallbackData* callbackData = new ErrorCallbackData();
         callbackData->errorCode = static_cast<int32_t>(code);
-
         // Generate error message based on error code
-        switch (code) {
-            case OH_MIDI_STATUS_SERVICE_DIED:
-                callbackData->errorMessage = "MIDI service died";
-                break;
+        if (code == OH_MIDI_STATUS_SERVICE_DIED) {
+            callbackData->errorMessage = "MIDI service died";
         }
-
         OH_LOG_INFO(LOG_APP, "[OnError] notifying frontend: %{public}s", callbackData->errorMessage.c_str());
         napi_status status = napi_call_threadsafe_function(g_errorTsfn, callbackData, napi_tsfn_nonblocking);
         if (status != napi_ok) {
@@ -812,7 +808,8 @@ static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_v
             napi_status tsfnStatus = napi_create_threadsafe_function(env, deviceChangeCallback, nullptr, resourceName,
                 0, 1, nullptr, nullptr, nullptr, CallJsDeviceChange, &g_deviceChangeTsfn);
             if (tsfnStatus != napi_ok) {
-                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] device change failed: %{public}d", static_cast<int>(tsfnStatus));
+                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] device change failed: %{public}d",
+                             static_cast<int>(tsfnStatus));
             }
         }
     }
@@ -828,7 +825,8 @@ static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_v
             napi_status tsfnStatus = napi_create_threadsafe_function(env, errorCallback, nullptr, resourceName,
                 0, 1, nullptr, nullptr, nullptr, CallJsError, &g_errorTsfn);
             if (tsfnStatus != napi_ok) {
-                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] error callback failed: %{public}d", static_cast<int>(tsfnStatus));
+                OH_LOG_ERROR(LOG_APP, "[SetupCallbacks] error callback failed: %{public}d",
+                             static_cast<int>(tsfnStatus));
             }
         }
     }
@@ -856,8 +854,6 @@ static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
     // [StartExclude create_midi_client]
     // [StartExclude quick_start]
     OH_LOG_INFO(LOG_APP, "[CreateMIDIClient] status=%{public}d", static_cast<int>(status));
-    
-
     napi_value result;
     napi_create_int32(env, static_cast<int32_t>(status), &result);
     return result;
@@ -1467,9 +1463,7 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
         napi_create_int32(env, static_cast<int32_t>(OH_MIDI_STATUS_INVALID_DEVICE_HANDLE), &result);
         return result;
     }
-
     OH_MIDIStatusCode status = OH_MIDIDevice_CloseOutputPort(it->second, portIndex);
-
     // Remove protocol info for this output port
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
