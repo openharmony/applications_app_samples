@@ -61,8 +61,8 @@
 ### 约束与限制
 
 1.  本示例仅支持标准系统上运行。
-2.  本示例支持API版本 **API Version 12 Beta5**，SDK版本号：**OpenHarmony SDK Ohos_sdk_public 5.0.0.60**。
-3.  本示例需要使用DevEco Studio **5.0.3.700 Beta5** 及以上版本才可编译运行。
+2.  本示例支持API版本 **API Version 23 Beta5**，SDK版本号：**OpenHarmony SDK Ohos_sdk_public 6.1.1.35**。
+3.  本示例需要使用DevEco Studio **DevEco Studio 6.0.2 Release** 及以上版本才可编译运行。
    
 ### 下载
 
