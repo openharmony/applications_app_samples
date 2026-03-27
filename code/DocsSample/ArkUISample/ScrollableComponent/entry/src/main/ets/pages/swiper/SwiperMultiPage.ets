@@ -54,8 +54,8 @@ export struct SwiperMultiPage {
           // [EndExclude each_page_displays_multiple_subpages]
           .indicator(true)
           .displayCount(2)
+          // [End each_page_displays_multiple_subpages]
         }
-        // [End each_page_displays_multiple_subpages]
       }
       .width('100%')
       .height('100%')
