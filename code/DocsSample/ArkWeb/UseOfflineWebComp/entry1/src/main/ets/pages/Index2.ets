@@ -17,13 +17,13 @@ import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
-struct index2 {
+struct Index2 {
   webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Row() {
       Column() {
-        Web({src: 'https://www.example.com', controller: this.webviewController})
+        Web({src: $r('app.string.ExampleUrl'), controller: this.webviewController})
           .width('100%')
           .height('100%')
       }

@@ -15,6 +15,10 @@
     {
       "name": "Jump_to_Web_Page",
       "value": "跳转到Web页面"
+    },
+    {
+      "name": "ExampleUrl",
+      "value": "www.example.com"
     }
   ]
 }

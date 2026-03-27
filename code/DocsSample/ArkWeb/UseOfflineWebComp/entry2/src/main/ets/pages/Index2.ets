@@ -17,13 +17,13 @@ import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component
-struct index2 {
+struct Index2 {
   webviewController: web_webview.WebviewController = new web_webview.WebviewController();
 
   build() {
     Row() {
       Column() {
-        Web({src: 'www.example.com', controller: this.webviewController})
+        Web({src: $r('app.string.ExampleUrl'), controller: this.webviewController})
           .width('100%')
           .height('100%')
       }
