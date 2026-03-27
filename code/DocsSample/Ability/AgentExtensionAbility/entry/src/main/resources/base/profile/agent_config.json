@@ -1,0 +1,59 @@
+{
+  "agentCards": [
+    {
+      "agentId": "weather_assistant_001",
+      "name": "WeatherAssistant",
+      "description": "提供天气查询和天气预报服务的智能助手",
+      "provider": {
+        "organization": "Example Weather Inc.",
+        "url": "https://example.com"
+      },
+      "version": "1.0.0",
+      "documentationUrl": "https://example.com/docs/weather-agent",
+      "capabilities": {
+        "streaming": true,
+        "pushNotifications": true,
+        "stateTransitionHistory": true,
+        "extendedAgentCard": false,
+        "extension": "custom_protocol_v1"
+      },
+      "defaultInputModes": ["text/plain", "audio/wav"],
+      "defaultOutputModes": ["text/plain", "application/json"],
+      "skills": [
+        {
+          "id": "get_weather",
+          "name": "获取天气",
+          "description": "查询指定城市的实时天气信息",
+          "tags": ["天气", "查询", "实时"],
+          "examples": [
+            "今天北京天气怎么样",
+            "查询上海当前的天气",
+            "帮我看看深圳今天天气如何"
+          ],
+          "inputModes": ["text/plain"],
+          "outputModes": ["text/plain", "application/json"],
+          "extension": ""
+        },
+        {
+          "id": "weather_forecast",
+          "name": "天气预报",
+          "description": "获取指定城市未来几天的天气预报",
+          "tags": ["天气", "预报", "未来"],
+          "examples": [
+            "我需要广州未来三天的天气预报",
+            "告诉我杭州明天的天气"
+          ],
+          "inputModes": ["text/plain"],
+          "outputModes": ["text/plain", "application/json"]
+        }
+      ],
+      "iconUrl": "common/weather_icon.png",
+      "category": "生活服务",
+      "extension": "",
+      "appInfo": {
+        "deviceTypes": ["phone", "tablet"],
+        "minAppVersion": "1.0.0"
+      }
+    }
+  ]
+}
