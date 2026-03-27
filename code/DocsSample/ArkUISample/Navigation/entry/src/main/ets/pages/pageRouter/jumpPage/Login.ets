@@ -31,7 +31,7 @@ struct Login {
         hilog.error(DOMAIN, TAG,`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
-      hilog.error(DOMAIN, TAG,'Invoke replaceUrl succeeded.');
+      hilog.info(DOMAIN, TAG,'Invoke replaceUrl succeeded.');
     });
   }
 
