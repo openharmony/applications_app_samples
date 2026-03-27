@@ -34,6 +34,7 @@
     "pages/RenderingRepeat/RepeatTemplateSingle1",
     "pages/RenderingRepeat/RepeatVirtualScroll2T",
     "pages/RenderingRepeat/RepeatVirtualScrollOnMove",
+    "pages/RenderingRepeat/RepeatAnimation",
     "pages/RenderingLazyForeach/AddingData",
     "pages/RenderingLazyForeach/ChangingDataSubproperties",
     "pages/RenderingLazyForeach/ComponentRerenderingFailure",
