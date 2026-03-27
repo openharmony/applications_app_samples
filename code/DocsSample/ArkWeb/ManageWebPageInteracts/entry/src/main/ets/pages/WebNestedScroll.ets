@@ -85,7 +85,7 @@ struct Index {
                 Text('Scroll Area')
                   .width('100%')
                   .height('40%')
-                  .backgroundColor(0X330000FF)
+                  .backgroundColor(0x330000FF)
                   .fontSize(16)
                   .textAlign(TextAlign.Center)
               }
