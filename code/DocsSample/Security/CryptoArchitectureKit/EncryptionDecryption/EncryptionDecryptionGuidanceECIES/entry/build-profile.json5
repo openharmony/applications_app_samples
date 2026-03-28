@@ -5,6 +5,16 @@
       "copyCodeResource": {
         "enable": false
       }
+    },
+    "externalNativeOptions": {
+      "path": "./src/main/cpp/CMakeLists.txt",
+      "arguments": "",
+      "cppFlags": "",
+      "abiFilters": [
+        "arm64-v8a",
+        "x86_64",
+        "armeabi-v7a"
+      ]
     }
   },
   "buildOptionSet": [
