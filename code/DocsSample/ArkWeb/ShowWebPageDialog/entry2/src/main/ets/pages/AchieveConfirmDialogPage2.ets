@@ -68,7 +68,7 @@ struct DialogConfirmDialog {
             } else {
               console.info('event.url:' + event.url);
               console.info('event.message:' + event.message);
-              this.title = 'from' + event.url + 'news';
+              this.title = 'from' + event.url;
               this.message = event.message;
               this.result = event.result;
               this.dialogControllerCheckBox.open();
