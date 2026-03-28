@@ -32,18 +32,21 @@ struct RepeatAnimationDemo {
       Row({ space: 5 }) {
         Button('Add')
           .onClick(() => {
+            // 为插入子组件设置动画
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
               this.dataArray.splice(0, 0, new ItemInfo(`New item ${this.count++}`, `#FFFFFF`))
             })
           })
         Button('Delete')
           .onClick(() => {
+            // 为删除子组件设置动画
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
               this.dataArray.splice(0, 1)
             })
           })
         Button('Exchange')
           .onClick(() => {
+            // 为交换子组件设置动画
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
               let temp = this.dataArray[1];
               this.dataArray[1] = this.dataArray[0]
@@ -52,6 +55,7 @@ struct RepeatAnimationDemo {
           })
         Button('Update')
           .onClick(() => {
+            // 为更新子组件设置动画
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
               this.dataArray[0].info = 'Item updated';
               this.dataArray[0].color = '#86C5E3';
@@ -68,6 +72,7 @@ struct RepeatAnimationDemo {
             .width(150)
             .height(50)
             .border({ width: 1 })
+            // 设置子组件插入和删除时的过渡效果
             .transition(TransitionEffect.translate({ x: 300 }))
           })
           .key((item: ItemInfo, index: number) => item.key)
