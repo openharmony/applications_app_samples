@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "MIDI Sample Application"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "MIDI Sample demonstrates MIDI device management and data transfer"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MIDI Sample"
+    },
+    {
+      "name": "permission_bluetooth_reason",
+      "value": "Used to connect and communicate with Bluetooth MIDI devices"
+    }
+  ]
+}
