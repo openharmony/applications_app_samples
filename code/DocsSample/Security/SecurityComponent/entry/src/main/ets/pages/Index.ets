@@ -20,9 +20,13 @@ struct Index {
   @State text: string = '';
 
   openPage(pageName: string) {
-    this.getUIContext().getRouter().pushUrl({
-      url: 'securitycomponent/pages/' + pageName,
-    });
+    try {
+      this.getUIContext().getRouter().pushUrl({
+        url: 'securitycomponent/pages/' + pageName,
+      });
+    } catch (err) {
+      console.error(`PushUrl failed. error code is ${err.code}, error message is ${err.message}`);
+    }
   }
 
   build() {
