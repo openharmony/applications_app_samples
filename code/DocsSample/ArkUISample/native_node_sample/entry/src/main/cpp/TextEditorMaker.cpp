@@ -1162,10 +1162,12 @@ static void OnEventReceive(ArkUI_NodeEvent* event)
             nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "NODE_TEXT_EDITOR_ON_EDITING_CHANGE %{public}d", nodeComponentEvent->data[0].i32);
+            break;
         case NODE_TEXT_EDITOR_ON_SUBMIT:
             nodeComponentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
                          "NODE_TEXT_EDITOR_ON_SUBMIT %{public}d", nodeComponentEvent->data[0].i32);
+            break;
         case NODE_TEXT_EDITOR_ON_CUT:
             OH_ArkUI_NodeEvent_SetReturnNumberValue(event, preventReturnValues, 1);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "NODE_TEXT_EDITOR_ON_CUT");
