@@ -31,7 +31,7 @@ export struct LocalVideo {
       Video({
         src: this.innerResource,  // 设置视频源
         previewUri: this.previewUris, // 设置预览图
-        controller: this.controller //设置视频控制器，可以控制视频的播放状态
+        controller: this.controller // 设置视频控制器，可以控制视频的播放状态
       })
     }
   }
