@@ -1,0 +1,18 @@
+{
+  "devices": {
+    "general": ["default"]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Communication.FusionConnectivity.Core",
+      "SystemCapability.Multimedia.MediaLibrary.Core",
+      "SystemCapability.Multimedia.MediaLibrary.DistributedCore",
+      "SystemCapability.Security.DataTransitManager",
+      "SystemCapability.PowerManager.BatteryManager.Extension",
+      "SystemCapability.PowerManager.PowerManager.Extension",
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.Window.SessionManager"
+    ]
+  }
+}
