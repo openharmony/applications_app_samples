@@ -41,7 +41,7 @@ Image($r('app.media.example'))
   .borderRadius('48px')
 // // 错误用例
 Image("../../resources/base/media/example.png")
-  .id('example')
+  .id('example1')
   .borderRadius('48px')
 // [End in_app_hsp_007]
       }

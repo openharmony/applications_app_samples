@@ -43,6 +43,18 @@
   },
   "modules": [
     {
+      "name": "application",
+      "srcPath": "./application",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
       "name": "har",
       "srcPath": "./entry",
     }
