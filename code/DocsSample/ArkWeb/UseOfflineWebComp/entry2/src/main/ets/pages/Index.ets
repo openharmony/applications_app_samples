@@ -24,7 +24,7 @@ struct Index1 {
 
   build() {
     Column() {
-      //已经预启动Render进程
+      // 已经预启动Render进程
       Button($r('app.string.Jump_to_Web_Page')).onClick(()=>{
         this.getUIContext().getRouter().pushUrl({url: 'pages/Index2'}).catch((error: BusinessError) => {
           hilog.info(0x0000, 'testTag', 'pushUrl error, %{public}s', error);

@@ -23,10 +23,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index1 {
   webviewController: webview.WebviewController = new webview.WebviewController();
-  	
+
   build() {
     Column() {
-      //已经预启动Render进程
+      // 已经预启动Render进程
       Button('Jump to web page').onClick(()=> {
         this.getUIContext().getRouter().pushUrl({ url: 'pages/Index2' }).catch((error: BusinessError) => {
           hilog.info(0x0000, 'testTag', 'pushUrl error, %{public}s', error);
