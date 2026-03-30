@@ -29,7 +29,8 @@ class RecorderNative {
 public:
     static napi_value Init(napi_env env, napi_callback_info info);
     static napi_value Start(napi_env env, napi_callback_info info);
-    static napi_value Stop(napi_env env, napi_callback_info info);
+    static napi_value StopStart(napi_env env, napi_callback_info info);
+    static napi_value StopEnd(napi_env env, napi_callback_info info);
 };
 
-#endif // VIDEO_CODEC_SAMPLE_RECODER_NATIVE_H
+#endif

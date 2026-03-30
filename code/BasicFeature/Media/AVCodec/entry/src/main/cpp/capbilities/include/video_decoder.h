@@ -40,14 +40,14 @@ public:
     int32_t FreeOutputBuffer(uint32_t bufferIndex, bool render, int64_t timeStamp);
     int32_t Start();
     int32_t Release();
-    
+
 private:
     int32_t SetCallback(CodecUserData *codecUserData);
     int32_t Configure(const SampleInfo &sampleInfo);
     OH_AVCodec *GetCodecByCategory(const char *mime, bool isEncoder, OH_AVCodecCategory category);
-    
+
     bool isAVBufferMode_ = false;
     std::shared_mutex codecMutex;
     OH_AVCodec *decoder_;
 };
-#endif // VIDEODECODER_H
+#endif

@@ -60,13 +60,13 @@ ArkUI_NodeHandle LongPressAndFlickGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::PARALLEL_GROUP);
 
     // 创建长按手势
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM, true, DURATION_NUM_500);
+    auto longPressGesture = gestureApi->createLongPressGesture(FINGERS_NUM, true, DURATION_NUM_500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",
                      "NdkAddInteractionEvent_GestureSampleLog,ArkUI_GestureRecognizerType%{public}d", type);
     }
-    // 给长按手势定回调
+    // 给长按手势绑定回调
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -105,7 +105,7 @@ ArkUI_NodeHandle LongPressAndFlickGesture()
                      "NdkAddInteractionEvent_GestureSampleLog, addChildGesture longPressGesture");
     }
     // 创建快滑手势 swipe
-    auto swipeGesture = gestureApi->createSwipeGesture(GINGERS_NUM, GESTURE_DIRECTION_ALL, DURATION_NUM_100);
+    auto swipeGesture = gestureApi->createSwipeGesture(FINGERS_NUM, GESTURE_DIRECTION_ALL, DURATION_NUM_100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",

@@ -14,7 +14,7 @@
  */
 
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Environment, fileIo as fs } from '@kit.CoreFileKit';
+import { Environment, fileIo } from '@kit.CoreFileKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 
 
@@ -44,15 +44,15 @@ function readUserDownloadDirExample(context: common.UIAbilityContext) {
     const dirPath = context.filesDir;
     console.info(`success to get filesDir: ${dirPath}`);
     // 查看 Download 目录下的文件并拷贝到沙箱目录中
-    let fileList: string[] = fs.listFileSync(downloadPath);
+    let fileList: string[] = fileIo.listFileSync(downloadPath);
     fileList.forEach((file, index) => {
       console.info(`${downloadPath} ${index}: ${file}`);
-      if (fs.statSync(`${downloadPath}/${file}`).isFile()) {
-        fs.copyFileSync(`${downloadPath}/${file}`, `${dirPath}/${file}`);
+      if (fileIo.statSync(`${downloadPath}/${file}`).isFile()) {
+        fileIo.copyFileSync(`${downloadPath}/${file}`, `${dirPath}/${file}`);
       }
     });
     // 查看沙箱目录下对应的文件
-    fileList = fs.listFileSync(dirPath);
+    fileList = fileIo.listFileSync(dirPath);
     fileList.forEach((file, index) => {
       console.info(`${dirPath} ${index}: ${file}`);
     });
@@ -71,9 +71,9 @@ function writeUserDownloadDirExample() {
     const downloadPath = Environment.getUserDownloadDir();
     console.info(`success to getUserDownloadDir: ${downloadPath}`);
     // 保存 temp.txt 到 Download 目录下
-    const file = fs.openSync(`${downloadPath}/temp.txt`, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    fs.writeSync(file.fd, 'write a message');
-    fs.closeSync(file);
+    const file = fileIo.openSync(`${downloadPath}/temp.txt`, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+    fileIo.writeSync(file.fd, 'write a message');
+    fileIo.closeSync(file);
   } catch (error) {
     const err: BusinessError = error as BusinessError;
     console.error(`Error code: ${err.code}, message: ${err.message}`);

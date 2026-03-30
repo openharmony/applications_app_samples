@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction';
-import router from '@ohos.router';
 import { CustomDataSource } from '../components/CustomDataSource';
 import {
   FileModel,
@@ -196,9 +194,9 @@ struct Download {
               logger.info(TAG, `documentSelectResult: ${documentSelectResult}`)
             })
           } else {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             AppStorage.setOrCreate('downloadDir', context.cacheDir);
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/DownloadFiles'
             })
           }
@@ -212,7 +210,7 @@ struct Download {
     this.isRunning = false;
     this.isPause = false;
     this.isGetData = true;
-    const params = router.getParams();
+    const params = this.getUIContext().getRouter().getParams();
     logger.info(`router.params: ${params}`);
     if (params) {
       this.isUserFolder = true;
@@ -245,7 +243,7 @@ struct Download {
       })
       this.isGetData = false;
       this.fileData.notifyDataReload();
-      let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
       fileUtils.listFolders(context.cacheDir).then((folders: Array<string>) => {
         logger.debug(TAG, `folders:${JSON.stringify(folders)}`);
         this.downloadFolder = folders;
@@ -287,7 +285,11 @@ struct Download {
     }
     logger.info(TAG, `this.checkFile = ${JSON.stringify(this.checkFile)}`);
     if (this.checkFile.length === 0) {
-      promptAction.showToast({ message: $r('app.string.check_file_tips'), bottom: TOAST_BOTTOM });
+      try {
+        this.getUIContext().getPromptAction().showToast({ message: $r('app.string.check_file_tips'), bottom: TOAST_BOTTOM });
+      } catch (error) {
+        logger.error(TAG, 'Failed to show check file toast in download(): ' + JSON.stringify(error));
+      }
       return;
     }
     this.progress = 0;
@@ -331,7 +333,11 @@ struct Download {
     }
     logger.info(TAG, `this.checkFile = ${JSON.stringify(this.checkFile)}`);
     if (this.checkFile.length === 0) {
-      promptAction.showToast({ message: $r('app.string.check_file_tips'), bottom: TOAST_BOTTOM });
+      try {
+        this.getUIContext().getPromptAction().showToast({ message: $r('app.string.check_file_tips'), bottom: TOAST_BOTTOM });
+      } catch (error) {
+        logger.error(TAG, 'Failed to show check file toast in downloadUser(): ' + JSON.stringify(error));
+      }
       return;
     }
     this.progress = 0;
@@ -366,6 +372,10 @@ struct Download {
     })
     this.fileData.notifyDataReload();
     let message = isSuccess ? $r('app.string.download_finish') : $r('app.string.download_fail');
-    promptAction.showToast({ message: message, bottom: TOAST_BOTTOM });
+    try {
+      this.getUIContext().getPromptAction().showToast({ message: message, bottom: TOAST_BOTTOM });
+    } catch (error) {
+      logger.error(TAG, 'Failed to show download finish toast: ' + JSON.stringify(error));
+    }
   }
 }

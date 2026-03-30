@@ -24,7 +24,7 @@ export struct GridScrollbar {
   private gridScroller: Scroller = new Scroller();
   // [End Add_external_scrollbar_gridScroller]
 
-  @State gridPosition: number = 0; //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  @State gridPosition: number = 0; // 0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   aboutToAppear() {
     let list: string[] = [];

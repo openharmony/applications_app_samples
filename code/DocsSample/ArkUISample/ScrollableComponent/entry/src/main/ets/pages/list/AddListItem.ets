@@ -79,7 +79,7 @@ export struct AddListItem {
                   .margin({ left: 40 })
                 Blank()
                 Text('+')// 提供新增列表项入口，即给新增按钮添加点击事件
-                //  [StartExclude build_list_layouts_and_list_items]
+                // [StartExclude build_list_layouts_and_list_items]
                   .fontSize(36)
                   .margin({ right: 20 })
                   // [EndExclude build_list_layouts_and_list_items]

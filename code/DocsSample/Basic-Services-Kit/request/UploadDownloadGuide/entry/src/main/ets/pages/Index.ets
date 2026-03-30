@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import notificationManager from '@ohos.notificationManager';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
-import { urlUtils } from 'uploadanddownload';
+import { notificationManager } from '@kit.NotificationKit';
+import { common } from '@kit.AbilityKit';
+import { urlUtils, logger } from 'uploadanddownload';
+
+const TAG: string = 'Index';
 
 @Styles
 function itemStyle() {
@@ -45,7 +46,12 @@ function textStyle() {
 @Component
 struct Index {
   aboutToAppear() {
-    notificationManager.requestEnableNotification();
+    try {
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      notificationManager.requestEnableNotification(context);
+    } catch (error) {
+      logger.error(TAG, 'Failed to request notification permission: ' + JSON.stringify(error));
+    }
   }
 
   build() {
@@ -65,25 +71,25 @@ struct Index {
               .width(250)
               .height(40)
               .margin({ left: 20 })
-              .onChange((val) => urlUtils.saveUrl(getContext(this) as common.UIAbilityContext, val))
+              .onChange((val) => urlUtils.saveUrl(this.getUIContext().getHostContext() as common.UIAbilityContext, val))
           }
 
           .itemStyle()
           .margin({ top: 15 })
 
           this.CapabilityView($r('app.media.ic_upload'), $r('app.string.upload'), 'btn_upload', () => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/Upload'
             })
           })
           this.CapabilityView($r('app.media.ic_download'), $r('app.string.download'), 'btn_download', () => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/Download'
             })
           })
           this.CapabilityView($r('app.media.ic_download'), $r('app.string.downloadToUser'), 'btn_downloadToUser',
             () => {
-              router.pushUrl({
+              this.getUIContext().getRouter().pushUrl({
                 url: 'pages/Download',
                 params: {
                   action: 'ToUser'
@@ -125,8 +131,13 @@ struct Index {
     .onClick(onClick)
   }
 
-  getResourceString(resource: Resource) {
-    let context = getContext(this) as common.UIAbilityContext;
-    return context.resourceManager.getStringSync(resource.id);
+  getResourceString(resource: Resource): string {
+    try {
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      return context.resourceManager.getStringSync(resource.id);
+    } catch (error) {
+      logger.error(TAG, 'Failed to get resource string: ' + JSON.stringify(error));
+      return '';
+    }
   }
 }

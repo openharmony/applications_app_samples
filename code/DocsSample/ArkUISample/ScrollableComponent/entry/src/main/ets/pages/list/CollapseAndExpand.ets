@@ -15,7 +15,7 @@
 
 
 import { ComponentCard } from '../../common/Card';
-//[Start data_structures_head]
+// [Start data_structures_head]
 import { curves } from '@kit.ArkUI';
 
 interface ItemInfo {
@@ -28,12 +28,12 @@ interface ItemInfo {
 interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
-//[End data_structures_head]
+// [End data_structures_head]
 
 @Entry
 @Component
 export struct CollapseAndExpand {
-  //[Start list_item_data_structure]
+  // [Start list_item_data_structure]
   @State routes: ItemGroupInfo[] = [
     {
       index: 0,
@@ -117,8 +117,8 @@ export struct CollapseAndExpand {
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
-  //[StartExclude list_item_data_structure]
-  //[Start list_item_data_group_info]
+  // [StartExclude list_item_data_structure]
+  // [Start list_item_data_group_info]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -142,11 +142,11 @@ export struct CollapseAndExpand {
       }
     })
   }
-  //[End list_item_data_group_info]
-  //[EndExclude list_item_data_structure]
+  // [End list_item_data_group_info]
+  // [EndExclude list_item_data_structure]
 
   build() {
-    //[StartExclude list_item_data_structure]
+    // [StartExclude list_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
         // 请将$r('app.string.CollapseAndExpand_title')替换为实际资源文件，在本示例中该资源文件的value值为"折叠与展开"
@@ -192,7 +192,7 @@ export struct CollapseAndExpand {
           .height('100%')
           .justifyContent(FlexAlign.Start)
           .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
-          //[StartExclude list_item_data_structure]
+          // [StartExclude list_item_data_structure]
         }
       }
       .width('100%')
@@ -205,4 +205,4 @@ export struct CollapseAndExpand {
     // [EndExclude list_item_data_structure]
   }
 }
-//[End list_item_data_structure]
+// [End list_item_data_structure]

@@ -27,7 +27,7 @@ import { MenuKey, MenuType } from '../model/KeyboardKeyData';
 // 无大小写的灰色组件
 @Component
 export struct KeyItemGray {
-  private keyValue: string | undefined = undefined;
+  keyValue: string | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
 

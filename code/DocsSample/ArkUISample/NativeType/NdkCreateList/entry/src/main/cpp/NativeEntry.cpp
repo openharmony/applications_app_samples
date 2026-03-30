@@ -18,27 +18,20 @@
 #include "NativeEntry.h"
 
 #include "LazyTextListExample.h"
+#include "LazyTextListExample1.h"
 
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 #include <js_native_api.h>
+#include <algorithm>
+#include <memory>
+#include <string>
 #include <uv.h>
+#include <vector>
 
 namespace NativeModule {
 
 // [StartExclude Interface_entrance_mounting_file]
-std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env)
-{
-    // 创建组件并挂载。
-    // 1：创建List组件。
-    auto list = std::make_shared<ArkUIListNode>();
-    list->SetPercentWidth(1);
-    list->SetPercentHeight(1);
-    // 2：创建ListItem懒加载组件并挂载到List上。
-    auto adapter = std::make_shared<ArkUIListItemAdapter>();
-    list->SetLazyAdapter(adapter);
-    return list;
-}
 
 napi_value CreateNativeNode(napi_env env, napi_callback_info info)
 {
@@ -53,9 +46,9 @@ napi_value CreateNativeNode(napi_env env, napi_callback_info info)
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
     // 创建懒加载文本列表。
-    auto node = CreateLazyTextListExample(env);
+    auto node = CreateLazyTextListExample1();
 
-    // 保持Native侧对象到管理类中，维护生命周期。
+    // 保存Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetRootNode(node);
     return nullptr;
 }
@@ -76,7 +69,7 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     // 创建懒加载文本列表。
     auto node = CreateLazyTextListExample();
 
-    // 保持Native侧对象到管理类中，维护生命周期。
+    // 保存Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetRootNode(node);
     return nullptr;
 }

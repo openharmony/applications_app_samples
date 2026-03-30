@@ -72,7 +72,7 @@ export struct GridLayout {
           // [End set_rows_and_columns_occupied]
 
           .height(150)
-          //设置行列数量与占比
+          // 设置行列数量与占比
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
         }

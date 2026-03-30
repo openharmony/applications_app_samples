@@ -47,10 +47,13 @@ int32_t AudioDecoder::Configure(const SampleInfo &sampleInfo)
     OH_AVFormat *format = OH_AVFormat_Create();
     CHECK_AND_RETURN_RET_LOG(format != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "AVFormat create failed");
 
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_S16LE); // SAMPLE_S16LE SAMPLE_F32P
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_S16LE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, sampleInfo.audioChannelCount);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleInfo.audioSampleRate);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, sampleInfo.audioChannelLayout);
+    if (sampleInfo.codecSyncMode) {
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, sampleInfo.codecSyncMode);
+    }
 
     if (sampleInfo.codecConfigLen > 0) {
         AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ====== codecConfig:%{public}p, len:%{public}i, "
@@ -58,10 +61,10 @@ int32_t AudioDecoder::Configure(const SampleInfo &sampleInfo)
                             sampleInfo.codecConfig, sampleInfo.codecConfigLen, sampleInfo.aacAdts,
                             sampleInfo.codecConfig[0], sampleInfo.codecConfig[1]);
         uint8_t tmpCodecConfig[2];
-        tmpCodecConfig[0] = 0x13;                      // 0x11
-        tmpCodecConfig[1] = 0x10;                      // 0x90
-        tmpCodecConfig[0] = sampleInfo.codecConfig[0]; // 0x11
-        tmpCodecConfig[1] = sampleInfo.codecConfig[1]; // 0x90
+        tmpCodecConfig[0] = 0x13;
+        tmpCodecConfig[1] = 0x10;
+        tmpCodecConfig[0] = sampleInfo.codecConfig[0];
+        tmpCodecConfig[1] = sampleInfo.codecConfig[1];
         AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ====== 0:0x%{public}02x, 1:0x%{public}02x", tmpCodecConfig[0],
                             tmpCodecConfig[1]);
         OH_AVFormat_SetBuffer(format, OH_MD_KEY_CODEC_CONFIG, sampleInfo.codecConfig, sampleInfo.codecConfigLen);
@@ -87,21 +90,75 @@ int32_t AudioDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecU
     CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Decoder is null");
     CHECK_AND_RETURN_RET_LOG(codecUserData != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Invalid param: codecUserData");
 
-    // Configure audio decoder
     int32_t ret = Configure(sampleInfo);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Configure failed");
 
-    // SetCallback for audio decoder
-    ret = SetCallback(codecUserData);
-    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
-                             "Set callback failed, ret: %{public}d", ret);
+    if (!sampleInfo.codecSyncMode) {
+        ret = SetCallback(codecUserData);
+        CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
+                                 "Set callback failed, ret: %{public}d", ret);
+    }
 
-    // Prepare audio decoder
     {
         int ret = OH_AudioCodec_Prepare(decoder_);
         CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Prepare failed, ret: %{public}d", ret);
     }
 
+    return AVCODEC_SAMPLE_ERR_OK;
+}
+
+OH_AVBuffer *AudioDecoder::GetInputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
+{
+    CHECK_AND_RETURN_RET_LOG(decoder_ != nullptr, nullptr, "Decoder is null");
+    int32_t ret = OH_AudioCodec_QueryInputBuffer(decoder_, &info.bufferIndex, timeoutUs);
+    switch (ret) {
+        case AV_ERR_OK: {
+            OH_AVBuffer *buffer = OH_AudioCodec_GetInputBuffer(decoder_, info.bufferIndex);
+            CHECK_AND_RETURN_RET_LOG(buffer != nullptr, nullptr, "Input buffer is null");
+            return buffer;
+        }
+        case AV_ERR_TRY_AGAIN_LATER: {
+            AVCODEC_SAMPLE_LOGE("Get input buffer timeout.");
+            return nullptr;
+        }
+        default: {
+            return nullptr;
+        }
+    }
+    return nullptr;
+}
+
+int32_t AudioDecoder::GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs)
+{
+    OH_AVErrCode ret = OH_AudioCodec_QueryOutputBuffer(decoder_, &info.bufferIndex, timeoutUs);
+    if (ret == AV_ERR_TRY_AGAIN_LATER) {
+        // 超时，异常处理，设置的超时时间过短或输入输出buffer没有消耗/释放导致解码阻塞。
+        AVCODEC_SAMPLE_LOGW("Get output buffer timeout.");
+        return AVCODEC_SAMPLE_ERR_AGAIN; // continue;
+    }
+    if (ret != AV_ERR_OK) {
+        AVCODEC_SAMPLE_LOGE("query output buffer failed, ret: %{public}d", ret);
+        return AVCODEC_SAMPLE_ERR_ERROR; // break;
+    }
+
+    OH_AVBuffer *outputBuf = OH_AudioCodec_GetOutputBuffer(decoder_, info.bufferIndex);
+    if (outputBuf == nullptr) {
+        AVCODEC_SAMPLE_LOGE("get output buffer failed, ret: %{public}d", ret);
+        return AVCODEC_SAMPLE_ERR_ERROR; // break;
+    }
+
+    ret = OH_AVBuffer_GetBufferAttr(outputBuf, &info.attr);
+    if (ret != AV_ERR_OK) {
+        AVCODEC_SAMPLE_LOGE("get output buffer attr failed, ret: %{public}d", ret);
+        return AVCODEC_SAMPLE_ERR_ERROR; // break;
+    }
+    info.buffer = reinterpret_cast<uintptr_t *>(outputBuf);
+    if (info.attr.flags & AVCODEC_BUFFER_FLAGS_EOS) {
+        OH_AudioCodec_FreeOutputBuffer(decoder_, info.bufferIndex);
+        AVCODEC_SAMPLE_LOGI("Out buffer end");
+        // 解码输出结束。
+        return AVCODEC_SAMPLE_ERR_END; // break;
+    }
     return AVCODEC_SAMPLE_ERR_OK;
 }
 

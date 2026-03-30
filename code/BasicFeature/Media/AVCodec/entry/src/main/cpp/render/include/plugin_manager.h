@@ -49,5 +49,5 @@ private:
     std::unordered_map<std::string, OH_NativeXComponent*> nativeXComponentMap_;
     std::unordered_map<std::string, PluginRender*> pluginRenderMap_;
 };
-} // namespace NativeXComponentSample
-#endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
+}
+#endif

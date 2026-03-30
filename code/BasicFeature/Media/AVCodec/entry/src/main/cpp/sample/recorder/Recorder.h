@@ -41,13 +41,16 @@ public:
 
     int32_t Init(SampleInfo &sampleInfo);
     int32_t Start();
-    int32_t Stop();
+    int32_t StopStart();
+    int32_t StopEnd();
 
 private:
     void VideoEncOutputAsyncThread();
     void VideoEncOutputSyncThread();
     void AudioEncInputThread();
     void AudioEncOutputThread();
+    void AudioEncInputSyncThread();
+    void AudioEncOutputSyncThread();
     void ReleaseThread();
     void Release();
     void StartRelease();
@@ -61,6 +64,11 @@ private:
     std::unique_ptr<Muxer> muxer_ = nullptr;
 
     std::mutex mutex_;
+    std::atomic<bool> isEos_{false};
+    std::atomic<bool> isVideoEos_{false};
+    std::atomic<bool> isStopping_{false};
+    std::condition_variable videoEosCond_;
+    std::mutex videoEosMutex_;
     std::atomic<bool> isStarted_{false};
     int32_t isAudioEncFirstFrame_ = true;
     std::atomic<bool> isVideoEncFirstSyncFrame_ = true;
@@ -77,4 +85,4 @@ private:
     std::unique_ptr<AudioCapturer> audioCapturer_ = nullptr;
 };
 
-#endif // VIDEO_CODEC_SAMPLE_RECODER_H
+#endif

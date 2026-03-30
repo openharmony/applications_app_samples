@@ -31,8 +31,7 @@
     {
       "name": "copy_url",
       "value": "复制链接"
-    }
-  ,
+    },
     {
       "name": "all",
       "value": "全选"
@@ -40,7 +39,14 @@
     {
       "name": "open_url",
       "value": "打开链接"
+    },
+    {
+      "name": "permission_reason_internet",
+      "value": "需要网络权限加载网页"
+    },
+    {
+      "name": "permission_reason_write_imagevideo",
+      "value": "用于保存图片/视频到相册"
     }
-
   ]
 }

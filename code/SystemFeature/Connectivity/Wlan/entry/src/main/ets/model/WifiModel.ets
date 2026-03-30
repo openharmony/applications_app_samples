@@ -19,14 +19,19 @@ import Logger from '../model/Logger'
 
 const TAG: string = 'WiFiModel'
 
-export type WifiType = {
-  ssid: string,
-  bssid: string,
-  securityType: wifi.WifiSecurityType,
-  rssi: number,
-  band: number,
-  frequency: number,
-  timestamp: number
+export interface WifiType {
+  ssid: string;
+  bssid: string;
+  securityType: wifi.WifiSecurityType;
+  rssi: number;
+  band: number;
+  frequency: number;
+  timestamp: number;
+}
+
+export interface Info {
+  key: ResourceStr;
+  value: string;
 }
 
 export class WifiModel {
@@ -41,7 +46,7 @@ export class WifiModel {
       return wifiList
     }
     Logger.log(TAG, `scan info call back: ${result.length}`)
-    for (var i = 0; i < result.length; ++i) {
+    for (let i = 0; i < result.length; ++i) {
       wifiList.push({
         ssid: result[i].ssid,
         bssid: result[i].bssid,
@@ -55,11 +60,11 @@ export class WifiModel {
     return wifiList
   }
 
-  connectNetwork(scanInfo: wifi.WifiScanInfo, psw) {
+  connectNetwork(scanInfo: wifi.WifiScanInfo, psw: string) {
     prompt.showToast({ message: 'connecting', duration: 5000 })
     Logger.debug(TAG, `connectNetwork bssid=${scanInfo.bssid}`)
     // 这里因为api问题，需要声明为any，已提单
-    let deviceConfig: any = {
+    let deviceConfig: wifi.WifiDeviceConfig = {
       ssid: scanInfo.ssid,
       bssid: scanInfo.bssid,
       preSharedKey: psw,
@@ -79,17 +84,18 @@ export class WifiModel {
     }
   }
 
-  resolveIP(ip) {
+  resolveIP(ip: number):string {
     let address: string = ip.toString()
     if (address === '0') {
       return '00:00:000:000'
     }
     address.substring(0, 2)
-    return `${address.substring(0, 2)}:${address.substring(2, 4)}:${address.substring(4, 7)}:${address.substring(7, 10)}`
+    return `${address.substring(0, 2)}:${address.substring(2, 4)}:${address.substring(4, 7)}:${address.substring(7,
+      10)}`
   }
 
   getIpInfo() {
-    let ipInfoList = []
+    let ipInfoList :Info[]= []
     let ipInfo = wifi.getIpInfo()
     Logger.info(`${TAG} getIpInfo=${JSON.stringify(ipInfo)}`)
     ipInfoList.push({ key: $r('app.string.ip_address'), value: this.resolveIP(ipInfo.ipAddress) })
@@ -103,14 +109,14 @@ export class WifiModel {
   }
 
   getCountryCode() {
-    let countryCodeList = []
+    let countryCodeList:Info[] = []
     let countryCode = wifi.getCountryCode()
     countryCodeList.push({ key: $r('app.string.country_code'), value: countryCode })
     return countryCodeList
   }
 
   getFeatureSupport() {
-    let featureSupportedList = []
+    let featureSupportedList:Info[] = []
     featureSupportedList.push({
       key: $r('app.string.infrastructure_feature'),
       value: wifi.isFeatureSupported(0x0001).toString()

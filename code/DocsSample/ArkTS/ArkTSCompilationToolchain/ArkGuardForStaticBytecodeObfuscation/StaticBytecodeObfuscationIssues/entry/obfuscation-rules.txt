@@ -1,0 +1,104 @@
+# Define project specific obfuscation rules here.
+# You can include the obfuscation configuration files in the current module's build-profile.json5.
+#
+# For more details, see
+#   https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/source-obfuscation-V5
+
+# Obfuscation options:
+# -disable-obfuscation: disable all obfuscations
+# -enable-property-obfuscation: obfuscate the property names
+# -enable-toplevel-obfuscation: obfuscate the names in the global scope
+# -compact: remove unnecessary blank spaces and all line feeds
+# -remove-log: remove all console.* statements
+# -print-namecache: print the name cache that contains the mapping from the old names to new names
+# -apply-namecache: reuse the given cache file
+
+# Keep options:
+# -keep-property-name: specifies property names that you want to keep
+# -keep-global-name: specifies names that you want to keep in the global scope
+
+# -enable-property-obfuscation
+# -enable-toplevel-obfuscation
+# -enable-filename-obfuscation
+# -enable-export-obfuscation
+
+-enable-bytecode-obfuscation
+-enable-bytecode-obfuscation-debugging
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { message01: f64;}
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { getDemoName():void;}
+
+#-keep @testAnnoClass class entry.src.main.ets.entryability.StaticDemo.* {*;}
+
+#-keep class entry.src.main.ets.entryability.StaticDemo.* extends entry.src.main.ets.BaseClass.BaseClass {*;}
+
+#-keep-class-members class entry.src.main.ets.entryability.StaticDemo.ClassTest {name: std.core.String;}
+-keep-class-members class entry.src.main.ets.entryability.StaticDemo.ClassTest { age; }
+
+#-keep-class-with-members class entry.src.main.ets.entryability.StaticDemo.ClassTest {name: std.core.String;}
+
+-print-seeds ./seedFile.log
+
+#-print-configuration D:\\Code\\Demo\\MyApplication2\\entry\\printConfiguration.txt
+
+-print-namecache
+./build/nameCache.json
+
+#-apply-namecache
+#./nameCache1.json
+
+#-remove-log
+
+#-keep class entry.src.main.ets.entryability.StaticDemo.ClassName {*;}
+#-keep enum entry.src.main.ets.entryability.StaticDemo.Color {*;}
+#-keep-file-name
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { uType: std.core.Tuple3;}
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { fooTest1(std.core.FunctionR1): std.core.Function1;},
+#-keep package entry.src.main.ets.entryability.StaticDemo { fooTest2(std.core.FunctionR2): std.core.Function1;},
+#-keep package entry.src.main.ets.entryability.StaticDemo { fooTest3(std.core.FunctionR1): std.core.FunctionR1;}
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { number1: f64;}
+#-keep package entry.src.main.ets.entryability.StaticDemo { str: std.core.String;}
+#-keep package entry.src.main.ets.entryability.StaticDemo { value: {Ustd.core.Double,std.core.Float,std.core.Int};}
+#-keep package entry.src.main.ets.entryability.StaticDemo { uType1: std.core.Tuple3;}
+#-keep package entry.src.main.ets.entryability.StaticDemo {*;}
+
+#-keep package entry.src.main.ets.entryability.StaticDemo { number1:%;}
+#-keep package entry.src.main.ets.entryability.StaticDemo { str;}
+#-keep package entry.src.main.ets.entryability.StaticDemo { value;}
+#-keep package entry.src.main.ets.entryability.StaticDemo { uType1;}
+
+#-keep class entry.src.main.ets.entryability.StaticDemo.ClassTest { %%get-name():std.core.String; }
+# -keep interface entry.src.main.ets.entryability.StaticDemo.interfaceTest{ name05;}
+#-keep class entry.src.main.ets.entryability.StaticDemo.A { *; }
+
+#-keep interface entry.src.main.ets.Annotations.testAnnoClass
+
+#-keepclasswithmembers class entry.src.main.ets.entryability.StaticDemo.ClassTestConfig { alias: std.core.String; foo(std.core.String): void;}
+#-keep class entry.src.main.ets.entryability.StaticDemo.ClassTestConfig { foo(std.core.String): void;}
+
+#-keep package entry.src.main.ets.entryability.testAll { *1; *1(): void; *1*;}
+
+#-keep-class-members class entry.src.main.ets.entryability.StaticDemo.ClassMethod {public final method1(...):i32;}
+
+-keep-file-name entry.src.main.ets.**2
+-keep-file-name entry.src.main.ets.entryability.?b*d<2>b<1>
+
+#-keep */src/main/ets/*/
+-keep */src/main/**
+#-keep @Anno2 class entry.src.main.ets.entryability.StaticDemo.ClassTest2 extends @Anno1 entry.src.main.ets.entryability.StaticDemo.ClassTest1 { *; }
+
+-keep class entry.src.main.ets.entryability.StaticDemo.AbstractClass {PROTECTED_ABSTRACT_METHOD():void;}
+
+#-keep namespace entry.src.main.ets.entryability.TestFile2.TestFile {*;}
+
+-keep namespace entry.src.main.ets.entryability.TestFile2.TestFile {A1;}
+-keep namespace entry.src.main.ets.entryability.TestFile2.TestFile {getDemoName():void;}
+
+#-keep class entry.src.main.ets.entryability.StaticDemo.A11 { foo(...):void; }
+
+#-keep class entry.src.main.ets.entryability.StaticDemo.ClassTestConfig {;}
+-keep !class entry.src.main.ets.entryability.StaticDemo {*;}

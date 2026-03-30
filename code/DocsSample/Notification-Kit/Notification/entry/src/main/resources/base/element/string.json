@@ -135,6 +135,22 @@
     {
       "name": "reapply_notify_auth",
       "value": "再次申请通知授权"
+    },
+    {
+      "name": "specified_customized_ringtone",
+      "value": "指定自定义铃声"
+    },
+    {
+      "name": "specified_resources_rawfile",
+      "value": "指定资源铃声"
+    },
+    {
+      "name": "copy_ringtone_file_to_sandbox",
+      "value": "拷贝铃声到沙箱路径"
+    },
+    {
+      "name": "specified_sandbox_file",
+      "value": "指定沙箱铃声"
     }
   ]
 }

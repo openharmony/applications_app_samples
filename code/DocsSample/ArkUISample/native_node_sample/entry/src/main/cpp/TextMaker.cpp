@@ -1823,6 +1823,22 @@ void setText24(ArkUI_NodeHandle &text)
     }
 }
 
+void setText25(ArkUI_NodeHandle &text12, int32_t value)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "国家根据当月综合评估给您授予29000储备金，请您来银行柜台办理";
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xFFFF0000}};
+    ArkUI_AttributeItem item6 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_BACKGROUND_COLOR, &item6);
+
+    ArkUI_NumberValue value0[] = {{.i32 = value}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION, &item3);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION is %{public}d",
+                 Manager::nodeAPI_->getAttribute(text12, NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION)->value[0].i32);
+}
+
 void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14)
 {
     ArkUI_AttributeItem content_item1 = {};
@@ -1852,6 +1868,27 @@ void setTextInput13(ArkUI_NodeHandle &textInput13, ArkUI_NodeHandle &textInput14
     Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT_OVERFLOW, &textOverFlowItem);
 }
 
+void setTextInput14(ArkUI_NodeHandle &textInput14, int32_t offset)
+{
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_COPY_OPTIONS_LOCAL_DEVICE };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    ArkUI_AttributeItem contentItem = { .string = "国家根据当月综合评估给您授29储备金，请您来银行柜台办理"};
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_TEXT, &contentItem);
+    ArkUI_NumberValue styleVal = { .i32 = ARKUI_TEXTINPUT_STYLE_INLINE };
+    ArkUI_AttributeItem styleItem = { &styleVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_STYLE, &styleItem);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
+    ArkUI_NumberValue value0[] = {{.i32 = offset}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textInput14, NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION, &item3);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION is %{public}d",
+                 Manager::nodeAPI_->getAttribute(textInput14, NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION)->value[0].i32);
+}
+
 void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
 {
     ArkUI_AttributeItem content_item1 = {};
@@ -1879,6 +1916,57 @@ void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
     Manager::nodeAPI_->setAttribute(textArea15, NODE_WIDTH, &width_item);
     Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_MAX_LINES, &maxLinesItem);
     Manager::nodeAPI_->setAttribute(textArea15, NODE_TEXT_AREA_TEXT_OVERFLOW, &textOverFlowItem);
+}
+
+void setTextArea15(ArkUI_NodeHandle &textArea4, int32_t offset)
+{
+    const char *textAreaText = "国家根据当月综合评估给您授予29储备金，请您来银行柜台办理";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_50 };
+    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_TEXT, &textAreaTextItem);
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_HEIGHT, &textAreaHeightItem);
+    
+    // 滚动条状态
+    ArkUI_NumberValue textAreaScrollBarState = { .i32 = VALUE_2 };
+    ArkUI_AttributeItem textAreaScrollBarStateItem = {&textAreaScrollBarState, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_BAR_STATE, &textAreaScrollBarStateItem);
+    
+    // 滚动条颜色属性
+    ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
+    ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+    
+    ArkUI_NumberValue value0[] = {{.i32 = offset}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION, &item3);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION is %{public}d",
+                 Manager::nodeAPI_->getAttribute(textArea4, NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION)->value[0].i32);
+}
+
+void setTextAreaHorizontalScrolling(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_AttributeItem content_item1 = {};
+    content_item1.string =
+        "这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一"
+        "段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长"
+        "文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，"
+        "用来测试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测"
+        "试横向滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测试横向"
+        "滚动这是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n这是一段超长文本，用来测试横向滚动这"
+        "是一段超长文本，用来测试横向滚动这是一段超长文本，用来测试横向滚动\n";
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_TEXT, &content_item1);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 200.0f}};
+    ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &width_item);
+
+    ArkUI_NumberValue heightValue[] = {{.f32 = 120.0f}};
+    ArkUI_AttributeItem height_item = {heightValue, sizeof(heightValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_HEIGHT, &height_item);
+
+    ArkUI_NumberValue horizontalScrolling[] = {{.i32 = true } };
+    ArkUI_AttributeItem horizontalScrollingItem = { .value = horizontalScrolling, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_HORIZONTAL_SCROLLING, &horizontalScrollingItem);
 }
 
 void setBasicText2(ArkUI_NodeHandle &textContainer)
@@ -2449,6 +2537,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text18 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text23 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text24 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text25 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     setTextSelectAI(textAISelect);
     setAccessibility(accessibilityLabel);
     setText12(text12, text12_2);
@@ -2460,6 +2549,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     setText18(text18);
     setText23(text23);
     setText24(text24);
+    setText25(text25, true);
 
     ArkUI_NodeHandle button = createTextSelectionButton();
     Manager::nodeAPI_->addChild(textContainer, textAISelect);
@@ -2475,6 +2565,7 @@ void setTextMore(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text18);
     Manager::nodeAPI_->addChild(textContainer, text23);
     Manager::nodeAPI_->addChild(textContainer, text24);
+    Manager::nodeAPI_->addChild(textContainer, text25);
     Manager::nodeAPI_->addChild(textContainer, button);
 }
 
@@ -2611,13 +2702,16 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoard2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setTextInput13(textInput13, textInput14);
+    setTextInput14(textInput15, true);
     setTextInputKeyboard(textInputKeyBoard, textInputKeyBoard2, textInputKeyBoardButton);
     Manager::nodeAPI_->addChild(textContainer, textInput13);
     Manager::nodeAPI_->addChild(textContainer, textInput14);
+    Manager::nodeAPI_->addChild(textContainer, textInput15);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard2);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoardButton);
@@ -2635,16 +2729,19 @@ void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea16 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setTextArea1(textArea1);
     setTextArea2(textArea2);
     setTextArea3(textArea3);
     setTextArea4(textArea4);
+    setTextArea15(textArea16, true);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
                  Manager::nodeAPI_->getAttribute(textArea2, NODE_TEXT_AREA_LINE_SPACING)->value[VALUE_0].i32);
     Manager::nodeAPI_->addChild(textContainer, textArea3);
     Manager::nodeAPI_->addChild(textContainer, textArea4);
+    Manager::nodeAPI_->addChild(textContainer, textArea16);
 }
 
 void setAllTextArea(ArkUI_NodeHandle &textContainer)
@@ -2666,6 +2763,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle horizontalTextArea = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
     setTextAreaSelectAI(textAreaAISelect);
@@ -2676,6 +2774,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
     setTextArea14(textArea14, textArea15);
+    setTextAreaHorizontalScrolling(horizontalTextArea);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
@@ -2692,6 +2791,7 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea12);
     Manager::nodeAPI_->addChild(textContainer, textArea14);
     Manager::nodeAPI_->addChild(textContainer, textArea15);
+    Manager::nodeAPI_->addChild(textContainer, horizontalTextArea);
 }
 
 void setUIVal(ArkUI_NodeHandle &textContainer)

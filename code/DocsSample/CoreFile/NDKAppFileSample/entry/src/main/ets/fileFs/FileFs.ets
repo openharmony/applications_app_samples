@@ -14,34 +14,49 @@
  */
 
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { fileIo, ReadOptions } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
 import Logger from '../common/Logger';
 
 const BUFFER: number = 1024; // 读取文件缓冲区大小
 
 // 获取应用文件沙箱路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
 
-export function createFile(): string {
-  // 新建并打开文件
-  let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  // 写入一段内容至文件
-  let writeLen = fs.writeSync(file.fd, 'Try to write str : hello world');
-  Logger.info('The length of str is: ' + writeLen);
-  // 从文件读取一段内容
-  let arrayBuffer = new ArrayBuffer(BUFFER);
-  let readOptions: ReadOptions = {
-    offset: 0, // 从文件的开头开始读取
-    length: arrayBuffer.byteLength
-  };
-  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
-  // 这个 buf 对象是 arrayBuffer 中从位置 0 开始的前 readLen 字节
-  let buf = buffer.from(arrayBuffer, 0, readLen);
-  Logger.info('the content of file: ' + buf.toString());
-  let str = 'the content of file: ' + buf.toString();
-  // 关闭文件
-  fs.closeSync(file);
-  return str;
+export function createFile(context: common.UIAbilityContext): string {
+
+  let file: fileIo.File | undefined;
+  let filesDir = context.filesDir;
+  const filePath = `${filesDir}/test.txt`;
+  try {
+    // 新建并打开文件
+    file = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+    // 写入一段内容至文件
+    let writeLen = fileIo.writeSync(file.fd, 'Try to write str : hello world');
+    Logger.info('The length of str is: ' + writeLen);
+    // 从文件读取一段内容
+    let arrayBuffer = new ArrayBuffer(BUFFER);
+    let readOptions: ReadOptions = {
+      offset: 0, // 从文件的开头开始读取
+      length: arrayBuffer.byteLength
+    };
+    let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    Logger.info('the content of file: ' + buf.toString());
+    let str = 'the content of file: ' + buf.toString();
+    fileIo.closeSync(file);
+    return str;
+  } catch (error) {
+    Logger.error('Failed to create file');
+    return '';
+  } finally {
+    // 关闭文件
+    if (file) {
+      try {
+        fileIo.closeSync(file);
+        Logger.info(`成功关闭文件: ${filePath}`);
+      } catch (closeError) {
+        Logger.error(`关闭文件失败（路径：${filePath}）: ${(closeError as Error).message}`);
+      }
+    }
+  }
 }

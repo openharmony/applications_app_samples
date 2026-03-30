@@ -116,7 +116,8 @@ entry/src/main/ets/
     │   ├── RepeatTemplateSingle.ets
     │   ├── RepeatTemplateSingle1.ets
     │   ├── RepeatVirtualScroll2T.ets
-    │   └── RepeatVirtualScrollOnMove.ets
+    │   ├── RepeatVirtualScrollOnMove.ets
+    │   └── RepeatAnimation.ets
     └── common
         └── Index.ets
 entry/src/ohosTest/

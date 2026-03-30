@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Describe the Function Flow Runtime(FFRT) Serial Queue framework paradigm."
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "FFRT Serial Queue Demo"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FFRT Serial Queue"
+    },
+    {
+      "name": "title",
+      "value": "FFRT串行队列"
+    },
+    {
+      "name": "FFRT_SerialQueue_lable",
+      "value": "串行队列C接口"
+    },
+    {
+      "name": "FFRT_SerialQueue_des",
+      "value": "异步日志系统，主线程将日志任务提交到队列，后台线程从队列中取出任务并写入文件。这种方式既能保证日志的顺序性，又能避免文件写入操作阻塞主线程。"
+    },
+    {
+      "name": "FFRT_SerialQueue_Cpp_lable",
+      "value": "串行队列Cpp接口"
+    },
+    {
+      "name": "Print_des",
+      "value": "任务提交成功后查看Hilog日志打印"
+    }
+  ]
+}

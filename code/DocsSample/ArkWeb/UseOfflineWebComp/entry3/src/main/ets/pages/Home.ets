@@ -16,6 +16,7 @@
 // [Start use_offline_web_component_home_page]
 // Home.ets
 import { createNWeb, getNWeb } from './Common'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Component
 export struct Home {
@@ -24,7 +25,12 @@ export struct Home {
   aboutToAppear(): void {
     // 创建3个离线Web组件（需传入UIContext），loadContent之后的任意时机均可创建
     // 1个离线组件直接加载测试Url1，并执行预加载。另外2个为空白离线组件。
-    let testUrl1 = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.test_url1'))
+    let testUrl1: string | undefined;
+    try {
+      testUrl1 = this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.test_url1').id);
+    } catch (error) {
+      hilog.info(0x0000, 'testTag', 'getString error, %{public}s', error);
+    }
     createNWeb(testUrl1 ? testUrl1 : "about:blank", this.getUIContext());
     createNWeb('about:blank?tab=1', this.getUIContext())
     createNWeb('about:blank?tab=2', this.getUIContext())

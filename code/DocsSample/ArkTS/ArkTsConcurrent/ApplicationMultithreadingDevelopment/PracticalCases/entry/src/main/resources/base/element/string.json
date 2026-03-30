@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "uninitialized",
+      "value": "未初始化"
+    },
+    {
       "name": "module_desc",
       "value": "module description"
     },

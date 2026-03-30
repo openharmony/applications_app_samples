@@ -170,12 +170,15 @@ struct SelectionMenuLongPress {
   }
   // 侧滑返回
   onBackPress(): boolean | void {
-    if (this.controller.accessStep(-1)) {
-      this.controller.backward();
-      return true;
-    } else {
-      return false;
+    try {
+      if (this.controller.accessStep(-1)) {
+        this.controller.backward();
+        return true;
+      }
+    } catch (err) {
+      console.error(`onBackPress failed with error: ${err.code}, ${err.message}`);
     }
+    return false;
   }
 }
 // [End web_PreviewBuilder]

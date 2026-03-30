@@ -78,7 +78,7 @@ struct WebComponent {
         .width(100)
         .height(50)
         .onClick(() => {
-          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkUrl);
           pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
             if (error) {
               return;

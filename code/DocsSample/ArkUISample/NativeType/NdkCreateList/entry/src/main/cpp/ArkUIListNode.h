@@ -46,11 +46,11 @@ public:
     {
         if (nativeModule_) {
             nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
-        }
-        if (adapter_) {
+            if (adapter_) {
             // 析构的时候卸载adapter下的UI组件。
-            nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
-            adapter_.reset();
+                nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
+                adapter_.reset();
+            }
         }
     }
     // List组件的属性接口封装。
@@ -69,8 +69,13 @@ public:
         nativeModule_->registerNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX, 0, nullptr);
     }
     // 引入懒加载模块。
-    void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter)
+    void SetLazyAdapter(const std::shared_ptr<IArkUIListItemAdapter> &adapter)
     {
+        if (!adapter) {
+            nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
+            adapter_.reset();
+            return;
+        }
         ArkUI_AttributeItem item{nullptr, 0, nullptr, adapter->GetHandle()};
         nativeModule_->setAttribute(handle_, NODE_LIST_NODE_ADAPTER, &item);
         adapter_ = adapter;
@@ -130,7 +135,7 @@ protected:
 private:
     std::function<void(int32_t index)> onScrollIndex_;
 
-    std::shared_ptr<ArkUIListItemAdapter> adapter_;
+    std::shared_ptr<IArkUIListItemAdapter> adapter_;
     // [EndExclude ScrollTo]
     // [EndExclude ScrollToIndex]
     // [EndExclude ScrollBy]

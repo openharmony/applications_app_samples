@@ -94,7 +94,12 @@ RawfileRequest::RawfileRequest(const ArkWeb_ResourceRequest *resourceRequest,
           resourceManager_(resourceManager) {}
 
 
-RawfileRequest::~RawfileRequest() {}
+RawfileRequest::~RawfileRequest()
+{
+    if (stream_) {
+        OH_ArkWebResourceRequest_DestroyHttpBodyStream(stream_);
+    }
+}
 
 
 void RawfileRequest::Start()

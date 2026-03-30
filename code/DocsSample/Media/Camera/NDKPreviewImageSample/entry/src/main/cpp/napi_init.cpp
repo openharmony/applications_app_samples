@@ -46,6 +46,11 @@ const int32_t ARGS_THREE = 3;
 const int32_t ARGS_FOUR = 4;
 const int32_t PREVIEW_HEIGHT = 1080;
 const int32_t PREVIEW_WIDTH = 1920;
+const int32_t ROTATION_0 = 0;
+const int32_t ROTATION_90 = 90;
+const int32_t ROTATION_180 = 180;
+const int32_t ROTATION_270 = 270;
+const int32_t ROTATION_360 = 360;
 int32_t g_displayRotation = 0;
 Camera_ImageRotation previewRotation = IAMGE_ROTATION_0;
 bool g_isFront = false;
@@ -109,12 +114,14 @@ void ShowImage(OH_ImageNative *image)
     // 关键：调整nativeWindow大小及format，需要与image的大小、format保持一致。
     res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_BUFFER_GEOMETRY, g_imageWidth, g_imageHeight);
     res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_FORMAT, NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP); // NV21
-    // 设置旋转角度，后置默认旋转90，则需要将nativeWindow旋转270度，前置默认270，则需要将nativeWindow旋转90度。
-    if (g_isFront) {
-        res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_FLIP_V_ROT90);
-    } else {
-        res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_ROTATE_270);
+    
+    int32_t displayRotation = g_ndkCamera->GetDefaultDisplayRotation();
+    int32_t previewRotation = static_cast<int32_t>(g_ndkCamera->GetPreviewRotation(displayRotation));
+    if (g_isFront && (displayRotation == ROTATION_90 || displayRotation == ROTATION_270)) {
+        previewRotation = (previewRotation + ROTATION_180) % ROTATION_360;
     }
+    OH_NativeBuffer_TransformType transformType = g_ndkCamera->GetNativeBufferTransformType(previewRotation, g_isFront);
+    res = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, transformType);
 
     OH_NativeBuffer *imageBuffer = nullptr;
     Image_ErrorCode errCode = OH_ImageNative_GetByteBuffer(image, g_jpegComponent, &imageBuffer);

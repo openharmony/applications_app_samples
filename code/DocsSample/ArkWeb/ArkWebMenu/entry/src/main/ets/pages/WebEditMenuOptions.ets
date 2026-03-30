@@ -20,7 +20,7 @@ class SelectClass {
   constructor() {
   }
 
-  setSelectText(param: String) {
+  setSelectText(param: string) {
     selectText = param.toString();
   }
 }

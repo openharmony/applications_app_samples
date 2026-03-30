@@ -18,9 +18,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
+import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info('Ability onCreate')
     const PERMISSIONS: Array<Permissions> = ['ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'];
     try {

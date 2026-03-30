@@ -25,6 +25,7 @@ import { X, Y } from './Utils';
 export {};
 // [Start module_dynamic_import_ets]
 // Index.ets
+// ESObject是ArkTS跨语言调用场景中用于标注JS/TS对象的类型
 import('./Calc').then((obj: ESObject) => {
   console.info(obj.add(3, 5));
 }).catch((err: Error) => {

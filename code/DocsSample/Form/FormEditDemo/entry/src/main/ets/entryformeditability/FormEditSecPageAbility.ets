@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,46 +17,43 @@
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = 'FormEditSecPageAbility';
-const DOMAIN = 0xFF00;
+const TAG = 'FormEditExtensionAbility';
 
 export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   public storage: LocalStorage = new LocalStorage();
 
   onCreate() {
-    hilog.info(DOMAIN, TAG, `Ability onCreate`);
+    console.info(TAG, `Ability onCreate`);
   }
 
   onForeground(): void {
-    hilog.info(DOMAIN, TAG, `Ability onForeground`);
+    console.info(TAG, `Ability onForeground`);
   }
 
   onBackground(): void {
-    hilog.info(DOMAIN, TAG, `Ability onBackground`);
+    console.info(TAG, `Ability onBackground`);
   }
 
   onDestroy(): void {
-    hilog.info(DOMAIN, TAG, `Ability onDestroy`);
+    console.info(TAG, `Ability onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     this.storage.setOrCreate('extensionEvent', extensionEvent);
     this.storage.setOrCreate('session', session);
-    this.storage.setOrCreate('context', this.context);
 
     try {
       session.loadContent('pages/FormEditSecPage', this.storage);
-      hilog.info(DOMAIN, TAG, `loadContent first edit page success`);
+      console.info(TAG, `loadContent first edit page success`);
     } catch (e) {
-      hilog.error(DOMAIN, TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
+      console.error(TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
     }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    hilog.info(DOMAIN, TAG, `onSessionDestroy`);
+    console.info(TAG, `onSessionDestroy`);
   }
 }
 

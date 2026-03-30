@@ -22,19 +22,19 @@ struct Index {
     Column({ space: 10 }) {
       Button('Prefetching')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Prefetching' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Prefetching' });
         })
       Button('PrefetchingAPOSTRequest_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PrefetchingAPOSTRequest_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PrefetchingAPOSTRequest_one' });
         })
       Button('PrefetchingAPOSTRequest_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PrefetchingAPOSTRequest_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PrefetchingAPOSTRequest_two' });
         })
       Button('PrefetchingAPOSTRequest_three')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PrefetchingAPOSTRequest_three' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PrefetchingAPOSTRequest_three' });
         })
     }.height('100%')
     .width('100%')

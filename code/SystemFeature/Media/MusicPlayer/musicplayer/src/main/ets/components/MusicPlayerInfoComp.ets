@@ -107,6 +107,7 @@ export struct MusicPlayerInfoComp {
         Text(this.getCurSeekTime())
           .fontSize($r('app.integer.foldable_screen_cases_font_size_music_time'))
           .alignSelf(ItemAlign.Start)
+          .id('id_current_seek_time')
       }
       .width('90%')
       .height(1)
@@ -137,6 +138,7 @@ export struct MusicPlayerInfoComp {
       .onScrollIndex((start: number, end: number, center: number) => {
         this.lyricsCurIndex = center;
       })
+      .id('id_lyrics_list')
     }
     .height(this.lyricsHeightPer)
     .margin(this.lyricsMargin)
@@ -149,9 +151,11 @@ export struct MusicPlayerInfoComp {
         Text(this.viewModel.curMusicModel?.title)
           .fontSize($r('app.integer.foldable_screen_cases_font_size_music_title'))
           .fontColor(Color.White)
+          .id('id_current_music_title')
         Text(this.viewModel.curMusicModel?.singer)
           .fontSize($r('app.integer.foldable_screen_cases_font_size_music_singer'))
           .fontColor(Color.White)
+          .id('id_current_music_singer')
         Image(this.viewModel.curMusicModel?.coverRes)
           .width(this.curImgSize)
           .height(this.curImgSize)
@@ -159,6 +163,7 @@ export struct MusicPlayerInfoComp {
           .animation(this.attrAniCfg)
           .interpolation(ImageInterpolation.High)
           .draggable(false)
+          .id('id_current_music_cover')
       }
       .width('100%')
       .margin({ top: $r('app.integer.foldable_screen_cases_music_info_margin_top') })

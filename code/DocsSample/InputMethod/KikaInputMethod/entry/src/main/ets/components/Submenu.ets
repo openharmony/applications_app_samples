@@ -16,8 +16,8 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
-import { util } from '@kit.ArkTS';
 import { inputMethod, InputMethodSubtype } from '@kit.IMEKit';
+import Log from '../model/Log';
 
 const TAG = '[Submenu]';
 
@@ -42,22 +42,37 @@ export struct Submenu {
   @State currentInputMethodSubtype: string = '';
 
   async inputList() {
-    this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
+    try {
+      this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
+    } catch (err) {
+      let error = err as BusinessError;
+      Log.showError(TAG, `getInputMethods catch error: ${error.code} ${error.message}`);
+    }
   }
 
   async typeList() {
-    this.inputMethodSubtypes = await inputMethod.getSetting().listCurrentInputMethodSubtype(); // 获取当前输入法的所有子类型
-    this.currentInputMethodSubtype = inputMethod.getCurrentInputMethodSubtype().id;
+    try {
+      this.inputMethodSubtypes = await inputMethod.getSetting().listCurrentInputMethodSubtype(); // 获取当前输入法的所有子类型
+      this.currentInputMethodSubtype = inputMethod.getCurrentInputMethodSubtype().id;
+    } catch (err) {
+      let error = err as BusinessError;
+      Log.showError(TAG, `typeList catch error: ${error.code} ${error.message}`);
+    }
   }
 
   // [Start input_case_input_switchInputMethod]
   async switchInputMethod(item: string) {
-    this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
-    let currentInputMethod = inputMethod.getCurrentInputMethod(); // 获取当前输入法
-    for (let i = 0; i < this.inputMethods.length; i++) {
-      if (item != currentInputMethod.name) { // 判断不是当前输入法时，切换到该输入法，实际开发中可以切换到固定输入法
-        await inputMethod.switchInputMethod(this.inputMethods[i]);
+    try {
+      this.inputMethods = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
+      let currentInputMethod = inputMethod.getCurrentInputMethod(); // 获取当前输入法
+      for (let i = 0; i < this.inputMethods.length; i++) {
+        if (item != currentInputMethod.name) { // 判断不是当前输入法时，切换到该输入法，实际开发中可以切换到固定输入法
+          await inputMethod.switchInputMethod(this.inputMethods[i]);
+        }
       }
+    } catch (err) {
+      let error = err as BusinessError;
+      Log.showError(TAG, `switchInputMethod catch error: ${error.code} ${error.message}`);
     }
   }
   // [End input_case_input_switchInputMethod]
@@ -160,7 +175,6 @@ export struct Submenu {
         }
         .width('350%')
         .height('100%')
-        .id('btnEdit')
       }
     }
     .width('100%')

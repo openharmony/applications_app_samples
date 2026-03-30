@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,42 +17,38 @@
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'FormEditDemo[EntryFormEditAbility] -->';
 let storage: LocalStorage = ExtensionEvent.getStorage();
-const DOMAIN = 0xFF00;
 
 export default class EntryFormEditAbility extends FormEditExtensionAbility {
   onCreate() {
-    hilog.info(DOMAIN, TAG, `${TAG} onCreate`);
+    console.info(`${TAG} onCreate`);
   }
 
   onForeground(): void {
-    hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onForeground.....`);
+    console.info(`${TAG} EntryFormEditAbility onForeground.....`);
   }
 
   onBackground(): void {
-    hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onBackground......`);
+    console.info(`${TAG} EntryFormEditAbility onBackground......`);
   }
 
   onDestroy(): void {
-    hilog.info(DOMAIN, TAG, `${TAG} EntryFormEditAbility onDestroy......`);
+    console.info(`${TAG} EntryFormEditAbility onDestroy......`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    hilog.info(DOMAIN, TAG, `${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
-    // 获取被编辑卡片的卡片ID
+    // 获取被编辑卡片的卡片ID和预览卡片的卡片ID，通过storage同步到一级编辑页中
     const formId: string | undefined = want.parameters?.cardId as string;
-    // 获取预览卡片的卡片ID
     const previewFormId: string | undefined = want.parameters?.previewCardId as string;
 
     if (formId) {
-      hilog.info(DOMAIN, TAG, `${TAG} form id is ${formId}`);
+      console.info(`${TAG} form id is ${formId}`);
       storage.setOrCreate('formId', formId);
     }
     if (previewFormId) {
-      hilog.info(DOMAIN, TAG, `${TAG} preview form id is ${previewFormId}`);
+      console.info(`${TAG} preview form id is ${previewFormId}`);
       storage.setOrCreate('previewFormId', previewFormId);
     }
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
@@ -60,21 +56,21 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     storage.setOrCreate('extensionEvent', extensionEvent);
     storage.setOrCreate('context', this.context);
     try {
+      // 拉起一级编辑页
       session.loadContent('pages/FormEditExtension', storage);
     } catch (e) {
-      hilog.error(DOMAIN, TAG, `${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
+      console.error(`${TAG} EntryFormEditAbility loadContent err, Code: ${e.code}, Message: ${e.message}`);
     }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    hilog.info(DOMAIN, TAG, `${TAG} onSessionDestroy`);
+    console.info(`${TAG} onSessionDestroy`);
   }
 
   private startSecondPage() {
     const bundleName: string = this.context.extensionAbilityInfo.bundleName;
     const secPageAbilityName: string = 'FormEditSecPageAbility';
-    hilog.info(DOMAIN, TAG,
-      `${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
+    console.info(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
       // 拉起二级编辑页
       this.context.startSecondPage({
@@ -82,10 +78,10 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
         parameters: {
           'secPageAbilityName': secPageAbilityName
         }
-      })
-      hilog.info(DOMAIN, TAG, `${TAG} startSecondPage success!`);
+      });
+      console.info(`${TAG} startSecondPage success!`);
     } catch (err) {
-      hilog.error(DOMAIN, TAG, `${TAG} startSecondPage failed, err: ${JSON.stringify(err)}`);
+      console.error(`${TAG} startSecondPage failed, Code: ${err.code}, Message: ${err.message}`);
     }
   }
 };

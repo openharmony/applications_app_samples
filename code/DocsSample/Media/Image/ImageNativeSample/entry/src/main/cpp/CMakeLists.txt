@@ -4,6 +4,8 @@ project(ImageNativeModuleSample)
 
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(CMAKE_CXX_STANDARD 17)
+
 if(DEFINED PACKAGE_FIND_FILE)
     include(${PACKAGE_FIND_FILE})
 endif()

@@ -207,7 +207,7 @@ export struct ContentWillChange {
               })
               // [EndExclude custom_page_toggle_interception_events]
               .onContentWillChange((currentIndex, comingIndex) => {
-                if (comingIndex == 2) {
+                if (comingIndex === 2) {
                   return false;
                 }
                 return true;

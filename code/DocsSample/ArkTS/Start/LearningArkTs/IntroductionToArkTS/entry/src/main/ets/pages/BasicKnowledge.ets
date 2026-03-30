@@ -37,15 +37,15 @@ function factorial(n: number): number {
   if (n <= 1) {
     return 1;
   }
-  return n * factorial(n - 1);
+  return n * (n - 1);
 }
   // [StartExclude float_type_factorial]
 function testFloatType() {
   // [EndExclude float_type_factorial]
-  factorial(n1) // 7.660344000000002
-  factorial(n2) // 7.680640444893748
+  factorial(n1) // 6.719600000000001
+  factorial(n2) // 6.728008294464001
   factorial(n3) // 1
-  factorial(n4) // 9.33262154439441e+157
+  factorial(n4) // 9900
   // [End float_type_factorial]
 
   console.info('factorial(n1): ' + factorial(n1));

@@ -27,6 +27,7 @@
 // 根据工程中三方库jsoncpp的位置适配引用json.h的路径
 #include "../../../build/jsoncpp-1.9.6/include/json/json.h"
 #include "hiappevent/hiappevent.h"
+#include "hiappevent/hiappevent_param.h"
 // [EndExclude EventSub_napi_nohiappevent_Header]
 #include "hilog/log.h"
 
@@ -522,6 +523,32 @@ static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info inf
     OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcherR, OnReceiveCrashEvent);
     // 使观察者开始监听订阅的事件。
     OH_HiAppEvent_AddWatcher(systemEventWatcherR);
+
+    // 1. 创建配置对象
+    HiAppEvent_Config* config = OH_HiAppEvent_CreateConfig();
+
+    // 2. 设置各项配置参数
+    // 开启寄存器扩展内存打印
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_EXTEND_PC_LR_PRINTING, "true");
+
+    // 设置日志截断大小为 2MB
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_LOG_FILE_CUTOFF_SZ_BYTES, "2097152");
+
+    // 开启简化 VMA 映射信息打印
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_SIMPLIFY_VMA_PRINTING, "true");
+
+    // 开启拼接应用日志
+    OH_HiAppEvent_SetConfigItem(config, OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG, "true");
+
+    // 3. 应用配置到 EVENT_APP_CRASH 事件
+    int ret = OH_HiAppEvent_SetEventConfig(EVENT_APP_CRASH, config);
+    if (ret == HIAPPEVENT_SUCCESS) {
+        OH_LOG_INFO(LogType::LOG_APP, "Successfully set APP_CRASH event configurations.");
+    }
+
+    // 4. 销毁配置对象
+    OH_HiAppEvent_DestroyConfig(config);
+
     return {};
 }
 // [End Sys_Crash_Crash_OnReceive]

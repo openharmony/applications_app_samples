@@ -32,13 +32,15 @@ public:
     int32_t Start();
     int32_t PushInputBuffer(CodecBufferInfo &info);
     int32_t FreeOutputBuffer(uint32_t bufferIndex, bool render);
+    OH_AVBuffer *GetInputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
+    int32_t GetOutputBuffer(CodecBufferInfo &info, int64_t timeoutUs);
     int32_t Release();
-    
+
 private:
     int32_t SetCallback(CodecUserData *codecUserData);
     int32_t Configure(const SampleInfo &sampleInfo);
-    
+
     bool isAVBufferMode_ = false;
     OH_AVCodec *decoder_;
 };
-#endif // AUDIODECODER_H
+#endif

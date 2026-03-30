@@ -22,7 +22,6 @@ AudioCapturer::~AudioCapturer()
     AudioCapturerRelease();
 }
 
-// AudioCapturer Callback
 static int32_t AudioCapturerOnReadData(OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t bufferLen)
 {
     (void)capturer;
@@ -39,10 +38,8 @@ void AudioCapturer::AudioCapturerInit(SampleInfo &sampleInfo, CodecUserData *aud
 {
     AudioCapturerRelease();
 
-    // Create builder
     OH_AudioStream_Type type = AUDIOSTREAM_TYPE_CAPTURER;
     OH_AudioStreamBuilder_Create(&builder_, type);
-    // set params and callbacks
     OH_AudioStreamBuilder_SetSamplingRate(builder_, sampleInfo.audioSampleRate);
     OH_AudioStreamBuilder_SetChannelCount(builder_, sampleInfo.audioChannelCount);
     OH_AudioStreamBuilder_SetSampleFormat(builder_, AUDIOSTREAM_SAMPLE_S16LE);
@@ -51,7 +48,6 @@ void AudioCapturer::AudioCapturerInit(SampleInfo &sampleInfo, CodecUserData *aud
     OH_AudioCapturer_Callbacks callbacks;
     callbacks.OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
     OH_AudioStreamBuilder_SetCapturerCallback(builder_, callbacks, audioEncContext);
-    // create OH_AudioCapturer
     OH_AudioStreamBuilder_GenerateCapturer(builder_, &audioCapturer_);
 }
 

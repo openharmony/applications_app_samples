@@ -53,6 +53,7 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 
@@ -78,6 +79,7 @@ void OnURLRequestStopForSW(const ArkWeb_SchemeHandler *schemeHandler,
     RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebResourceRequest_GetUserData(request);
     if (rawfileRequest) {
         rawfileRequest->Stop();
+        delete rawfileRequest;
     }
 }
 

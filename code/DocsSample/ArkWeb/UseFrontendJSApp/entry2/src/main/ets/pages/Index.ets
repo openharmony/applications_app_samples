@@ -22,47 +22,47 @@ struct Index {
     Column({ space: 10 }) {
       Button('JavaScriptProxy')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/JavaScriptProxy' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/JavaScriptProxy' });
         })
       Button('Promise_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Promise_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Promise_one' });
         })
       Button('Promise_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Promise_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Promise_two' });
         })
       Button('RegisterJavaScriptProxy')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RegisterJavaScriptProxy' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RegisterJavaScriptProxy' });
         })
       Button('RegisterJavaScriptProxyOne')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RegisterJavaScriptProxyOne' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RegisterJavaScriptProxyOne' });
         })
       Button('RegisterJavaScriptProxyTwo')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RegisterJavaScriptProxyTwo' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RegisterJavaScriptProxyTwo' });
         })
       Button('UsageOfComplexTypes_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UsageOfComplexTypes_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UsageOfComplexTypes_one' });
         })
       Button('UsageOfComplexTypes_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UsageOfComplexTypes_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UsageOfComplexTypes_two' });
         })
       Button('UsageOfComplexTypes_three')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UsageOfComplexTypes_three' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UsageOfComplexTypes_three' });
         })
       Button('UsageOfComplexTypes_four')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UsageOfComplexTypes_four' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UsageOfComplexTypes_four' });
         })
       Button('UsageOfComplexTypes_five')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/UsageOfComplexTypes_five' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/UsageOfComplexTypes_five' });
         })
     }.height('100%')
     .width('100%')

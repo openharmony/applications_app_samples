@@ -43,4 +43,4 @@ private:
     std::mutex writeMutex_;
 };
 
-#endif // MUXER_H
+#endif

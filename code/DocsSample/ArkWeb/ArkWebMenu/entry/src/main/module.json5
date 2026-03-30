@@ -59,6 +59,19 @@
           }
         ],
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:permission_reason_internet"
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:permission_reason_write_imagevideo",
+        "usedScene": {
+          "when": "inuse"
+        }
+      }
     ]
   }
 }

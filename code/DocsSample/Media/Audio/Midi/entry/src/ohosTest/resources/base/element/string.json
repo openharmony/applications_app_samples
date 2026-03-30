@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "MIDI Sample Test"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Test ability for MIDI Sample"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "MIDI Test"
+    }
+  ]
+}

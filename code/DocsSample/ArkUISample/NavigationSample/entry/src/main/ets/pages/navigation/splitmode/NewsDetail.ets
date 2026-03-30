@@ -43,7 +43,7 @@ struct NewsDetail {
       }
     }
     .title(this.title)
-    .backgroundColor('# fff6e3c8')
+    .backgroundColor('#fff6e3c8')
     .onReady((ctx: NavDestinationContext) => {
       // 在onReady生命周期拿到传来的页面参数
       let param = ctx.pathInfo.param as NewsItem;

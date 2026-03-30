@@ -448,7 +448,6 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>安全</strong></td>
   <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
-  <td x:str><a href="code/SystemFeature/Security/AuthorizedButton">安全控件类型的UI控件（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td x:str><a href="code/SystemFeature/Security/DLP">DLP</a></td>
  </tr>
@@ -574,13 +573,6 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>电商</strong></td>
   <td x:str><a href="code/Solutions/Shopping/OrangeShopping">购物示例应用</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
-<tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>社交</strong></td>
-  <td x:str><a href="code/Solutions/Social/GrapeSquare">葡萄广场</a></td>
   <td ></td>
   <td ></td>
   <td ></td>

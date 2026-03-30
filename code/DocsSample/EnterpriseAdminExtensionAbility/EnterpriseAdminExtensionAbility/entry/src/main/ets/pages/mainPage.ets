@@ -35,17 +35,20 @@ struct MainPage {
   };
   private isFirstActivated = true;
   private commonEventManagerHelper = new CommonEventManagerHelper();
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext();
   private dataPreferenceHelper: DataPreferencesHelper | null = null;
   private subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
     events: [
       CommonEventValue.EVENT_RESULT,
     ],
   };
-  private promptAction = this.getUIContext().getPromptAction() as PromptAction;
+  private promptAction = this.getUIContext().getPromptAction();
 
   aboutToAppear(): void {
     try {
+      if (this.context === undefined) {
+        return;
+      }
       if (this.dataPreferenceHelper == null) {
         this.dataPreferenceHelper = new DataPreferencesHelper(this.context.getApplicationContext());
       }

@@ -61,12 +61,12 @@ entry/src/main/ets/
         // 服务端Stub根据不同的请求code分别执行对应的处理流程
         if (code == 1) {
           let str = data.readString();
-          hilog.info(0x0000, 'testTag', 'IPCStub: stub receive str : ' + str);
+          hilog.info(0x0000, 'testTag', 'stub receive str is ' + str);
           // 服务端使用reply回传请求处理的结果给客户端
           reply.writeString('hello rpc');
           return true;
         } else {
-          hilog.info(0x0000, 'testTag', 'IPCStub: stub unknown code: ' + code);
+          hilog.info(0x0000, 'testTag', 'stub unknown code is ' + code);
           return false;
         }
       }
@@ -76,11 +76,11 @@ entry/src/main/ets/
     export default class ServiceAbility extends ServiceExtensionAbility {
       // ......
 
-       onConnect(want: Want): rpc.RemoteObject {
-         hilog.info(0x0000, 'testTag', 'IPCStub: onConnect');
-         // 返回Stub对象，客户端获取后便可以与ServiceExtensionAbility进行通信
-         return new Stub('IPCStubTest');
-       }
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(0x0000, 'testTag', 'onConnect');
+        // 返回Stub对象，客户端获取后便可以与ServiceExtensionAbility进行通信
+        return new Stub('IPCStubTest');
+      }
 
       // ......
     }
@@ -90,23 +90,23 @@ entry/src/main/ets/
 
   ```ets
     function connectAbility(context:common.UIAbilityContext, promptAction: PromptAction) {
-      hilog.info(0x00000, 'testTag', 'IPCClient: begin to connect Ability');
+      hilog.info(0x00000, 'testTag', 'begin to connect Ability');
       let want: Want = {
         bundleName: 'com.example.ipc_stub',
         abilityName: 'ServiceAbility',
       };
       let connect: common.ConnectOptions = {
         onConnect: (elementName, remoteProxy) => {
-          hilog.info(0x00000, 'testTag', 'IPCClient: onConnect. elementName is :' + JSON.stringify(elementName));
+          hilog.info(0x00000, 'testTag', 'onConnect. elementName is :' + JSON.stringify(elementName));
           proxy = remoteProxy;
           // 客户端注册死亡监听
           try {
             proxy.registerDeathRecipient(deathRecipient, 0);
-            hilog.info(0x00000, 'testTag', 'IPCClient: registerDeathRecipient success');
+            hilog.info(0x00000, 'testTag', 'registerDeathRecipient success');
           } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            hilog.error(0x0000, 'testTag', 'IPCClient: register failed, code is ' + code + ', message is ' + message);
+            hilog.error(0x0000, 'testTag', 'register failed, code is ' + code + ', message is ' + message);
           }
           // 弹窗显示成功连接服务
           try {
@@ -115,22 +115,22 @@ entry/src/main/ets/
               duration: 2000
             });
           } catch (error) {
-            let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
+            let message = (error as BusinessError).message;
             hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
           };
         },
 
         onDisconnect: (elementName) => {
-          hilog.info(0x0000, 'testTag', 'IPCClient: onDisconnect. elementName is ' + JSON.stringify(elementName));
+          hilog.info(0x0000, 'testTag', 'onDisconnect. elementName is ' + JSON.stringify(elementName));
           // 客户端移除死亡监听
           try {
             proxy?.unregisterDeathRecipient(deathRecipient, 0);
-            hilog.info(0x00000, 'testTag', 'IPCClient: unregisterDeathRecipient success');
+            hilog.info(0x00000, 'testTag', 'unregisterDeathRecipient success');
           } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            hilog.error(0x0000, 'testTag', 'IPCClient: unregister failed, code is ' + code + ', message is ' + message);
+            hilog.error(0x0000, 'testTag', 'unregister failed, code is ' + code + ', message is ' + message);
           }
           proxy = undefined;
           isDisconnect = true;
@@ -141,14 +141,14 @@ entry/src/main/ets/
               duration: 2000
             });
           } catch (error) {
-            let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
+            let message = (error as BusinessError).message;
             hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
           };
         },
 
         onFailed: (code: number) => {
-          hilog.info(0x0000, 'testTag', 'IPCClient: onFailed. code is ' + code);
+          hilog.info(0x0000, 'testTag', 'onFailed. code is ' + code);
           // 弹窗显示连接服务失败
           try {
             promptAction.showToast({
@@ -156,8 +156,8 @@ entry/src/main/ets/
               duration: 2000
             });
           } catch (error) {
-            let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
+            let message = (error as BusinessError).message;
             hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
           };
         },
@@ -165,11 +165,11 @@ entry/src/main/ets/
 
       try {
         connectId = context.connectServiceExtensionAbility(want, connect);
-        hilog.info(0x00000, 'testTag', 'IPCClient: begin to connect Ability end');
+        hilog.info(0x00000, 'testTag', 'begin to connect Ability end');
       } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        hilog.error(0x0000, 'testTag', 'IPCClient: connectAbility failed, code is ' + code + ', message is ' + message);
+        hilog.error(0x0000, 'testTag', 'connectAbility failed, code is ' + code + ', message is ' + message);
       }
     }
   ```
@@ -178,7 +178,7 @@ entry/src/main/ets/
 
   ```ets
     async function sendString(promptAction: PromptAction) : Promise <void> {
-      hilog.info(0x00000, 'testTag', 'IPCClient: begin to send String');
+      hilog.info(0x00000, 'testTag', 'begin to send String');
       let option = new rpc.MessageOption();
       let data = rpc.MessageSequence.create();
       let reply = rpc.MessageSequence.create();
@@ -188,34 +188,32 @@ entry/src/main/ets/
         await proxy.sendMessageRequest(1, data, reply, option)
           .then((result: rpc.RequestResult) => {
             if (result.errCode != 0) {
-              hilog.error(0x0000, 'testTag', 'IPCClient: sendMessageRequest failed, errCode: ' + result.errCode);
+              hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode is ' + result.errCode);
             }
             // 从result.reply里读取结果
             let str = result.reply.readString();
-            hilog.info(0x0000, 'testTag', 'IPCClient: sendMessageRequest receive str is  ' + str);
-            // 弹窗显示发送消息成功
+            hilog.info(0x0000, 'testTag', 'sendMessageRequest receive str is ' + str);
             try {
               promptAction.showToast({
                 message: 'sendRequest success',
                 duration: 2000
               });
             } catch (error) {
-              let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
+              let message = (error as BusinessError).message;
               hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
             };
           })
           .catch((e: Error) => {
-            hilog.error(0x0000, 'testTag', 'IPCClient: sendMessageRequest failed, error is ' + JSON.stringify(e));
-            // 弹窗显示发送消息失败
+            hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, error is ' + JSON.stringify(e));
             try {
               promptAction.showToast({
                 message: 'sendRequest failed, please connect to the server first',
                 duration: 2000
               });
             } catch (error) {
-              let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
+              let message = (error as BusinessError).message;
               hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
             };
           })
@@ -224,20 +222,19 @@ entry/src/main/ets/
             reply.reclaim();
           })
       } else {
-        hilog.error(0x0000, 'testTag', 'IPCClient: proxy is invalid');
-        // 弹窗显示发送消息失败
+        hilog.error(0x0000, 'testTag', 'proxy is invalid');
         try {
           promptAction.showToast({
             message: 'sendRequest failed, please connect to the server first',
             duration: 2000
           });
         } catch (error) {
-          let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
+          let message = (error as BusinessError).message;
           hilog.error(0x0000, 'testTag', 'showToast failed, code is ' + code + ', message is ' + message);
         };
       }
-      hilog.info(0x0000, 'testTag', 'IPCClient: sendString end');
+      hilog.info(0x0000, 'testTag', 'sendString end');
     }
   ```
 
@@ -245,15 +242,14 @@ entry/src/main/ets/
 
   ```ets
     function disconnectAbility(context: common.UIAbilityContext) {
-      hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability. connectId is ' + connectId);
+      hilog.info(0x00000, 'testTag', 'begin to disconnect Ability. connectId is ' + connectId);
       if (connectId != undefined) {
         try {
           context.disconnectServiceExtensionAbility(connectId);
-          hilog.info(0x00000, 'testTag', 'IPCClient: begin to disconnect Ability end');
         } catch (err) {
           let code = (err as BusinessError).code;
           let message = (err as BusinessError).message;
-          hilog.error(0x0000, 'testTag', 'IPCClient: disconnect failed, code is ' + code + ', message is ' + message);
+          hilog.error(0x0000, 'testTag', 'disconnect failed, code is ' + code + ', message is ' + message);
         }
       }
     }

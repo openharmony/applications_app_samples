@@ -48,7 +48,7 @@ struct IndexPara {
         hilog.error(DOMAIN, TAG,`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
-      hilog.error(DOMAIN, TAG,'Invoke pushUrl succeeded.');
+      hilog.info(DOMAIN, TAG,'Invoke pushUrl succeeded.');
     });
   }
   // [End home_param2]

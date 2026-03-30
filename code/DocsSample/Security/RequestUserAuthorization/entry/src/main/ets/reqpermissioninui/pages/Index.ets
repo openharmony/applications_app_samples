@@ -54,7 +54,7 @@ struct Index {
     Column() {
       Button($r('app.string.return_main'))
         .onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         })
     }
     .width('100%')

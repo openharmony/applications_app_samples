@@ -32,7 +32,7 @@ struct CustomGestures {
 
 
           // [Start component_dragging]
-          //  $r('sys.media.ohos_app_icon') 需要替换为开发者所需的资源文件
+          // $r('sys.media.ohos_app_icon') 需要替换为开发者所需的资源文件
           Image($r('sys.media.ohos_app_icon'))
             .draggable(true)
             .onDragStart(()=>{
@@ -58,8 +58,10 @@ struct CustomGestures {
                 // [StartExclude set_gestures]
                 let promptAction: PromptAction = this.getUIContext().getPromptAction();
                 // [EndExclude set_gestures]
-                /* 请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中
-                   该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应" */
+                /*
+                请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中
+                该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应"
+                 */
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })
               .tag('longpress')

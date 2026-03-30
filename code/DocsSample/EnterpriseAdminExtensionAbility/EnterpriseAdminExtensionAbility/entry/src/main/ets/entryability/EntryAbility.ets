@@ -15,9 +15,15 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
+import { GlobalContext } from '../common/GlobalContext';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 
 export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    GlobalContext.initContext(this.context);
+  }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     windowStage.loadContent('pages/mainPage', (err, data) => {

@@ -4,7 +4,7 @@
 
 ArkUI开发框架在NDK接口提供了自定义UI组件的能力，开发者通过注册相关自定义回调事件接入ArkUI开发框架的布局渲染流程。本示例展示了如何创建不规则网格布局容器。示例创建了一个不规则网格布局容器，支持不同大小的网格单元，实现类似瀑布流的布局效果。
 
-本示例为[构建自定义组件-实现不规则网格状自定义布局策略](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-custom-components.md#实现不规则网格状自定义布局策略)的配套示例工程。
+本示例为[构建自定义组件-不规则网格布局示例](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-custom-components.md#不规则网格布局示例)的配套示例工程。
 
 ## 效果预览
 

@@ -17,10 +17,9 @@
 // [Start receive_task_message]
 import { taskpool } from '@kit.ArkTS';
 import { IconItemSource } from './IconItemSource';
-import resource from '../util/resource';
 
 function notice(data: number): void {
-  console.info(resource.resourceToString($r('app.string.Loading_pictures')), data);
+  console.info('子线程任务已执行完，共加载图片: ', data);
 }
 // [End receive_task_message]
 

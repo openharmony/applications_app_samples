@@ -62,6 +62,7 @@ struct renderingControl {
         { name: 'RepeatTemplateSingle1', label: $r('app.string.RenderingRepeat_label15') },
         { name: 'RepeatVirtualScroll2T', label: $r('app.string.RenderingRepeat_label16') },
         { name: 'RepeatVirtualScrollOnMove', label: $r('app.string.RenderingRepeat_label17') },
+        { name: 'RepeatAnimation', label: $r('app.string.RenderingRepeat_label18') },
       ]
     },
     {

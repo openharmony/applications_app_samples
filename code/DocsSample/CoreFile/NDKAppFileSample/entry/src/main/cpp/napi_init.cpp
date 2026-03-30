@@ -17,6 +17,7 @@
 #include <filemanagement/fileio/oh_fileio.h>
 #include "hilog/log.h"
 #include <cstring>
+#include <string>
 
 #undef LOG_TAG
 #define LOG_TAG "Sample_NDKAppFileAccess"
@@ -24,14 +25,14 @@
 #include <cstring>
 
 // [Start get_file_location_example]
-void GetFileLocationExample()
+void GetFileLocationExample(char *uri)
 {
-    char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
     FileIO_FileLocation location;
     FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
     if (ret == 0) {
         if (location == FileIO_FileLocation::LOCAL) {
             printf("This file is on local.");
+            OH_LOG_INFO(LogType::LOG_APP, "This file is on local.");
         } else if (location == FileIO_FileLocation::CLOUD) {
             printf("This file is on cloud.");
         } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
@@ -45,7 +46,19 @@ void GetFileLocationExample()
 
 static napi_value GetFileLocation(napi_env env, napi_callback_info info)
 {
-    GetFileLocationExample();
+    size_t argc = 1;
+    napi_value args[1];
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    size_t len;
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &len);
+
+    std::string uriStr;
+    uriStr.resize(len);
+    napi_get_value_string_utf8(env, args[0], &uriStr[0], len + 1, &len);
+
+    char* uri = const_cast<char*>(uriStr.c_str());
+    GetFileLocationExample(uri);
     return nullptr;
 }
 
@@ -102,7 +115,8 @@ static napi_value GetFileLocationOld(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"getFileLocation", nullptr, GetFileLocation, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
