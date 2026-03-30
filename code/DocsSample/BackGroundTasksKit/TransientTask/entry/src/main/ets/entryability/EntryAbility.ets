@@ -18,19 +18,18 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 import Logger from '../util/Logger';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0x0000;
 const TAG: string = 'MainAbility';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    Logger.info(TAG, `onCreate`);
-    let status = want.parameters;
-    AppStorage.SetOrCreate('status', status);
-    AppStorage.SetOrCreate('filePath', this.context.filesDir);
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+    try {
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    } catch (err) {
+      Logger.error(TAG, 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+    }
+    Logger.info(TAG, '%{public}s', 'Ability onCreate');
   }
 
   onDestroy() {

@@ -13,4 +13,6 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 
 add_library(entry SHARED napi_init.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so)
+# [Start dependent]
 target_link_libraries(entry PUBLIC libace_napi.z.so libtransient_task.so)
+# [End dependent]
