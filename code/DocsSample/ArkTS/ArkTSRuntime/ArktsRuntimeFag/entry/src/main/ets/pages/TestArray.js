@@ -71,3 +71,83 @@ try {
 }
 // 输出：no error throw
 // [End test_nothrow]
+
+// [Start testThree_one]
+// TestArray.js
+{
+  let handler = {
+    get(target, key) {
+      console.info('get', key, typeof key);
+      return Reflect.get(target, key);
+    },
+    set(target, key, value) {
+      console.info('set', key, typeof key);
+      return Reflect.set(target, key, value);
+    },
+    deleteProperty(target, key) {
+      console.info('delete', key, typeof key);
+      return Reflect.deleteProperty(target, key);
+    },
+    has(target, key) {
+      console.info('has', key, typeof key);
+      return Reflect.has(target, key);
+    }
+  }
+  let obj = {};
+  let px = new Proxy(obj, handler);
+  px[1];
+  // 实际输出：get 1 number
+  px[2] = 2;
+  // 实际输出：set 2 number
+  3 in px;
+  // 实际输出：has 3 number
+  delete px[2];
+  // 实际输出：delete 2 number
+}
+// [End testThree_one]
+
+// [Start testThree_two]
+// TestArray.js
+{
+  let handler = {
+    get(target, key) {
+      if (typeof key === 'number') {
+        key = String(key);
+      }
+      console.info('get', key, typeof key);
+      return Reflect.get(target, key);
+    },
+    set(target, key, value) {
+      if (typeof key === 'number') {
+        key = String(key);
+      }
+      console.info('set', key, typeof key);
+      return Reflect.set(target, key, value);
+    },
+    deleteProperty(target, key) {
+      if (typeof key === 'number') {
+        key = String(key);
+      }
+      console.info('delete', key, typeof key);
+      return Reflect.deleteProperty(target, key);
+    },
+    has(target, key) {
+      if (typeof key === 'number') {
+        key = String(key);
+      }
+      console.info('has', key, typeof key);
+      return Reflect.has(target, key);
+    }
+  }
+  let obj = {};
+  let px = new Proxy(obj, handler);
+  px[1];
+  // 实际输出：get 1 string
+  px[2] = 2;
+  // 实际输出：set 2 string
+  3 in px;
+  // 实际输出：has 3 string
+  delete px[2];
+  // 实际输出：delete 2 string
+}
+// [End testThree_two]

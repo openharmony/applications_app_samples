@@ -488,6 +488,7 @@ struct IndexArkTs {
           testArrayFlatMapCompliance();
           this.currentState = $r('app.string.test_array_flatmap_complete');
         })
+
       }
       .height('100%')
       .width('100%')
