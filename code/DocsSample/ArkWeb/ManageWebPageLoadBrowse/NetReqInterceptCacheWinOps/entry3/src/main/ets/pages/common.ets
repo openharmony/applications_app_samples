@@ -57,7 +57,7 @@ export class MyNodeController extends NodeController {
     this.webController = webController;
   }
 
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     // 该节点会被挂载在NodeContainer的父节点下
@@ -95,7 +95,7 @@ let webControllerMap : Map<string, webview.WebviewController | undefined> = new 
 // 初始化需要UIContext对象，UIContext对象可通过窗口或自定义组件的getUIContext方法获取
 export const createNWeb = (url: string, uiContext: UIContext) => {
   // 创建WebviewController
-  let webController = new webview.WebviewController() ;
+  let webController = new webview.WebviewController();
   // 创建BuilderNode
   let builderNode : BuilderNode<[Data]> = new BuilderNode(uiContext);
   // 创建动态Web组件
@@ -108,7 +108,7 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
 }
 
 // 自定义获取BuilderNode的接口
-export const getBuilderNode = (url : string) : BuilderNode<[Data]> | undefined => {
+export const getBuilderNode = (url: string) : BuilderNode<[Data]> | undefined => {
   return builderNodeMap.get(url);
 }
 // 自定义获取WebviewController的接口
