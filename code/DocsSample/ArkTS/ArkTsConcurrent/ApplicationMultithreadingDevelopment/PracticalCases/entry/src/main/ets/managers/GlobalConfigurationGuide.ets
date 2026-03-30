@@ -70,7 +70,11 @@ struct Index {
           .onClick(async () => {
             if (!await config.getIsLogin() && this.input) {
               this.message = 'login: ' + this.input;
-              config.login(this.input);
+              try {
+                config.login(this.input);
+              } catch (e) {
+                console.info('login failed');
+              }
             }
           })
           .backgroundColor(0xcccccc)
@@ -84,7 +88,11 @@ struct Index {
           .onClick(async () => {
             if (await config.getIsLogin()) {
               this.message = 'not login';
-              config.logout();
+              try {
+                config.logout();
+              } catch (e) {
+                console.info('logout failed');
+              }
             }
           })
           .backgroundColor(0xcccccc)
