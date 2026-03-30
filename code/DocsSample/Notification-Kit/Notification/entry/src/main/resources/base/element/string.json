@@ -145,10 +145,6 @@
       "value": "指定资源铃声"
     },
     {
-      "name": "copy_ringtone_file_to_sandbox",
-      "value": "拷贝铃声到沙箱路径"
-    },
-    {
       "name": "specified_sandbox_file",
       "value": "指定沙箱铃声"
     }
