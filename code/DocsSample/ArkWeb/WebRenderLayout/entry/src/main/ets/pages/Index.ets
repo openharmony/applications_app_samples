@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
-import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -23,11 +22,15 @@ struct Index {
     Column({ space: 10 }) {
       Button('RenderMode')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RenderMode' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RenderMode' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
       Button('FitPageContent')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/FitPageContent' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/FitPageContent' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
     }.height('100%')
     .width('100%')

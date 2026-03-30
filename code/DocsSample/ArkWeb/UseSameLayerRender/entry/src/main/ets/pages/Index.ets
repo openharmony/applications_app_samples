@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -22,19 +22,27 @@ struct Index {
     Column({ space: 10 }) {
       Button('RenderTxtBoxSameLayer_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RenderTxtBoxSameLayer_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RenderTxtBoxSameLayer_one' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
       Button('RenderTxtBoxSameLayer_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RenderTxtBoxSameLayer_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RenderTxtBoxSameLayer_two' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
       Button('DrawXCompAVPBtn')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DrawXCompAVPBtn' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DrawXCompAVPBtn' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
       Button('NativeEmbedOverlay')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/NativeEmbedOverlay' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/NativeEmbedOverlay' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
         })
     }.height('100%')
     .width('100%')
