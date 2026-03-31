@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start include]
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End include]
 
 // [Start request_suspend_delay]
 let id: number = -1;         // 申请短时任务ID
