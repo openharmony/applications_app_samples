@@ -62,10 +62,18 @@
       }
     ],
     "requestPermissions": [
-      // To use the installUserTrustedCertificateSync or uninstallUserTrustedCertificateSync interface,
-      // you need to apply for the following permission: ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT.
       {
         "name": "ohos.permission.ACCESS_CERT_MANAGER",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT",
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
