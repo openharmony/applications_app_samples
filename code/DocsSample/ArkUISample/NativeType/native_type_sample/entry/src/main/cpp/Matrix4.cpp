@@ -43,6 +43,8 @@ const int32_t TARGET_ID_12 = 12;
 const int32_t TARGET_ID_13 = 13;
 const int32_t TARGET_ID_14 = 14;
 const int32_t TARGET_ID_15 = 15;
+const int32_t NUM_0 = 0;
+const int32_t NUM_16 = 16;
 static const float A = 0.9;
 char g_src[] = "resources/base/media/startIcon.png";
 float g_x;
@@ -119,6 +121,7 @@ static void MatrixTranslate(ArkUI_NodeHandle &image)
 {
     auto matrix = OH_ArkUI_Matrix4_CreateIdentity();
     auto translate = OH_ArkUI_Matrix4TranslationOptions_Create();
+    ArkUI_NumberValue matrix4Array[NUM_16];
     g_x = 200.0f;
     g_y = 10.0f;
     g_z = 10.0f;
@@ -135,7 +138,17 @@ static void MatrixTranslate(ArkUI_NodeHandle &image)
                  "translate  x = %{public}f  y = %{public}f  z = %{public}f  ",
                  x1, y1, z1);
     OH_ArkUI_Matrix4_Translate(matrix, translate);
-    ArkUI_AttributeItem item = {.size = 0, .object = matrix};
+    float result[NUM_16] = {
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
+    OH_ArkUI_Matrix4_GetElements(matrix, result);
+    for (int i = NUM_0; i < NUM_16; i++) {
+        matrix4Array[i].f32 = result[i];
+    }
+    ArkUI_AttributeItem item = {.value = matrix4Array, .size = NUM_16};
     Manager::nodeAPI_->setAttribute(image, NODE_TRANSFORM, &item);
     OH_ArkUI_Matrix4TranslationOptions_Dispose(translate);
     OH_ArkUI_Matrix4_Dispose(matrix);
@@ -170,6 +183,13 @@ static void MatrixScale(ArkUI_NodeHandle &image)
     float z1;
     float centerX1;
     float centerY1;
+    ArkUI_NumberValue matrix4Array[NUM_16];
+    float result[NUM_16] = {
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
     OH_ArkUI_Matrix4ScaleOptions_SetX(scale, g_x);
     OH_ArkUI_Matrix4ScaleOptions_SetY(scale, g_y);
     OH_ArkUI_Matrix4ScaleOptions_SetZ(scale, g_z);
@@ -184,7 +204,11 @@ static void MatrixScale(ArkUI_NodeHandle &image)
                  "scale  x = %{public}f  y = %{public}f  z = %{public}f  centerX = %{public}f  centerY = %{public}f",
                  x1, y1, z1, centerX1, centerY1);
     OH_ArkUI_Matrix4_Scale(matrix, scale);
-    ArkUI_AttributeItem item = {.size = 0, .object = matrix};
+    OH_ArkUI_Matrix4_GetElements(matrix, result);
+    for (int i = NUM_0; i < NUM_16; i++) {
+        matrix4Array[i].f32 = result[i];
+    }
+    ArkUI_AttributeItem item = {.value = matrix4Array, .size = NUM_16};
     Manager::nodeAPI_->setAttribute(image, NODE_TRANSFORM, &item);
     OH_ArkUI_Matrix4ScaleOptions_Dispose(scale);
     OH_ArkUI_Matrix4_Dispose(matrix);
@@ -221,6 +245,13 @@ static void MatrixRotate(ArkUI_NodeHandle &image)
     float centerX1;
     float centerY1;
     float angle1;
+    ArkUI_NumberValue matrix4Array[NUM_16];
+    float result[NUM_16] = {
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
     OH_ArkUI_Matrix4RotationOptions_SetX(rotate, g_x);
     OH_ArkUI_Matrix4RotationOptions_SetY(rotate, g_y);
     OH_ArkUI_Matrix4RotationOptions_SetZ(rotate, g_z);
@@ -237,7 +268,11 @@ static void MatrixRotate(ArkUI_NodeHandle &image)
                  "rotate  x = %{public}f  y = %{public}f  z = %{public}f  angle = %{public}f  centerX = %{public}f "
                  " centerY = %{public}f", x1, y1, z1, angle1, centerX1, centerY1);
     OH_ArkUI_Matrix4_Rotate(matrix, rotate);
-    ArkUI_AttributeItem item = {.size = 0, .object = matrix};
+    OH_ArkUI_Matrix4_GetElements(matrix, result);
+    for (int i = NUM_0; i < NUM_16; i++) {
+        matrix4Array[i].f32 = result[i];
+    }
+    ArkUI_AttributeItem item = {.value = matrix4Array, .size = NUM_16};
     Manager::nodeAPI_->setAttribute(image, NODE_TRANSFORM, &item);
     OH_ArkUI_Matrix4RotationOptions_Dispose(rotate);
     OH_ArkUI_Matrix4_Dispose(matrix);
@@ -264,6 +299,13 @@ static void MatrixChange(ArkUI_NodeHandle &image)
                              0.0f, 1.0f, 1.0f, 0.0f,
                              0.0f, 0.0f, 8.0f, 9.0f,
                              0.0f, 1.0f, 0.0f, 3.0f};
+    ArkUI_NumberValue matrix4Array[NUM_16];
+    float matrixResult[NUM_16] = {
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
     auto matrix = OH_ArkUI_Matrix4_CreateByElements(matrixValue);
     auto matrixCopy = OH_ArkUI_Matrix4_Copy(matrix);
     OH_ArkUI_Matrix4_Invert(matrixCopy);
@@ -286,7 +328,11 @@ static void MatrixChange(ArkUI_NodeHandle &image)
                  matrixValue[TARGET_ID_8], matrixValue[TARGET_ID_9], matrixValue[TARGET_ID_10],
                  matrixValue[TARGET_ID_11], matrixValue[TARGET_ID_12], matrixValue[TARGET_ID_13],
                  matrixValue[TARGET_ID_14], matrixValue[TARGET_ID_15]);
-    ArkUI_AttributeItem item = {.size = 0, .object = matrix};
+    OH_ArkUI_Matrix4_GetElements(matrix, matrixResult);
+    for (int i = NUM_0; i < NUM_16; i++) {
+        matrix4Array[i].f32 = matrixResult[i];
+    }
+    ArkUI_AttributeItem item = {.value = matrix4Array, .size = NUM_16};
     Manager::nodeAPI_->setAttribute(image, NODE_TRANSFORM, &item);
     OH_ArkUI_Matrix4_Dispose(matrix);
 }
