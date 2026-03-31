@@ -91,13 +91,17 @@ export class AVPlayerDemo {
 
   // 通过url设置网络地址来实现播放直播码流。
   async avPlayerLiveDemo(){
-    // 创建avPlayer实例对象。
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数。
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = false; // 不支持seek操作。
-    // 使用时需要自行替换视频链接。
-    avPlayer.url = 'xxx/demo.mp4';
+    try {
+      // 创建avPlayer实例对象。
+      let avPlayer: media.AVPlayer = await media.createAVPlayer();
+      // 创建状态机变化回调函数。
+      this.setAVPlayerCallback(avPlayer);
+      this.isSeek = false; // 不支持seek操作。
+      // 使用时需要自行替换视频链接。
+      avPlayer.url = 'xxx/demo.mp4';
+    } catch (error) {
+      console.error('Failed to create or play video: ', error);
+    }
   }
 }
 // [End mp4_player_example]
