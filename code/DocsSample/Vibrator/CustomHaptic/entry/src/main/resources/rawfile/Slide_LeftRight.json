@@ -1,0 +1,45 @@
+{
+	"Channels" : 
+	[
+		{
+			"Parameters" : 
+			{
+				"Index" : 1
+			},
+			"Pattern" : 
+			[
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 100,
+							"Intensity" : 100
+						},
+						"StartTime" : 500,
+						"Type" : "transient"
+					}
+				},
+				{
+					"Event" : 
+					{
+						"Parameters" : 
+						{
+							"Frequency" : 100,
+							"Intensity" : 100
+						},
+						"StartTime" : 2000,
+						"Type" : "transient"
+					}
+				}
+			]
+		}
+	],
+	"MetaData" : 
+	{
+		"ChannelNumber" : 1,
+		"Create" : "2023-03-17",
+		"Discription" : "slide left right",
+		"Version" : 1.0
+	}
+}

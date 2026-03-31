@@ -1,0 +1,87 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 32,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 90
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 121,
+						"Parameters": {
+							"Intensity": 40,
+							"Frequency": 36
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 206,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 90
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 297,
+						"Parameters": {
+							"Intensity": 39,
+							"Frequency": 36
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 391,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 90
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 474,
+						"Parameters": {
+							"Intensity": 39,
+							"Frequency": 36
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 566,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 90
+						}
+					}
+				}
+			]
+		}
+	]
+}

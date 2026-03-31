@@ -1,0 +1,27 @@
+{
+    "MetaData": {
+        "Create": "2023-03-03 18:28:51.965244",
+        "Description": "gesture up",
+        "Version": 1.0,
+        "ChannelNumber": 1
+    },
+    "Channels": [
+        {
+            "Parameters": {
+                "Index": 1
+            },
+            "Pattern": [
+                {
+                    "Event": {
+                        "Type": "transient",
+                        "StartTime": 30,
+                        "Parameters": {
+                            "Intensity": 100,
+                            "Frequency": 100
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

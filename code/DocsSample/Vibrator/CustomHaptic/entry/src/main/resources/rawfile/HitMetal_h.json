@@ -1,0 +1,186 @@
+{
+	"MetaData": {
+		"Create": "2022-05-28",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 105,
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 50,
+							"Frequency": 73,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 21,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 43,
+									"Intensity": 0.46,
+									"Frequency": 0
+								},
+								{
+									"Time": 70,
+									"Intensity": 0.3,
+									"Frequency": 0
+								},
+								{
+									"Time": 92,
+									"Intensity": 0.08,
+									"Frequency": 0
+								},
+								{
+									"Time": 105,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 105,
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 50,
+							"Frequency": 88,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 21,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 43,
+									"Intensity": 0.46,
+									"Frequency": 0
+								},
+								{
+									"Time": 70,
+									"Intensity": 0.3,
+									"Frequency": 0
+								},
+								{
+									"Time": 93,
+									"Intensity": 0.18,
+									"Frequency": 0
+								},
+								{
+									"Time": 105,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 105,
+						"Parameters": {
+							"Intensity": 100,
+							"Frequency": 62
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 148,
+						"Parameters": {
+							"Intensity": 71,
+							"Frequency": 100
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 655,
+						"StartTime": 160,
+						"Parameters": {
+							"Intensity": 96,
+							"Frequency": 100,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 1,
+									"Intensity": 0.56,
+									"Frequency": 10
+								},
+								{
+									"Time": 42,
+									"Intensity": 0.66,
+									"Frequency": 10
+								},
+								{
+									"Time": 139,
+									"Intensity": 0.47,
+									"Frequency": 0
+								},
+								{
+									"Time": 231,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 329,
+									"Intensity": 0.44,
+									"Frequency": 10
+								},
+								{
+									"Time": 445,
+									"Intensity": 0.24,
+									"Frequency": -5
+								},
+								{
+									"Time": 526,
+									"Intensity": 0.33,
+									"Frequency": 0
+								},
+								{
+									"Time": 583,
+									"Intensity": 0.14,
+									"Frequency": 0
+								},
+								{
+									"Time": 655,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

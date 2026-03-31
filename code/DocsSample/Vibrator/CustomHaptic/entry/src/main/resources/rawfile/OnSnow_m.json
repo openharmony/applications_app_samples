@@ -1,0 +1,1053 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 653,
+						"StartTime": 175,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 30
+								},
+								{
+									"Time": 20,
+									"Intensity": 0.82,
+									"Frequency": 40
+								},
+								{
+									"Time": 92,
+									"Intensity": 0.96,
+									"Frequency": 30
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.41,
+									"Frequency": 10
+								},
+								{
+									"Time": 181,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 253,
+									"Intensity": 0.38,
+									"Frequency": 10
+								},
+								{
+									"Time": 337,
+									"Intensity": 0.25,
+									"Frequency": 0
+								},
+								{
+									"Time": 439,
+									"Intensity": 0.22,
+									"Frequency": 0
+								},
+								{
+									"Time": 494,
+									"Intensity": 0.28,
+									"Frequency": 10
+								},
+								{
+									"Time": 555,
+									"Intensity": 0.15,
+									"Frequency": 0
+								},
+								{
+									"Time": 621,
+									"Intensity": 0.12,
+									"Frequency": 10
+								},
+								{
+									"Time": 653,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 310,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 66
+								},
+								{
+									"Time": 17,
+									"Intensity": 0.38,
+									"Frequency": 68
+								},
+								{
+									"Time": 33,
+									"Intensity": 0.19,
+									"Frequency": 71
+								},
+								{
+									"Time": 48,
+									"Intensity": 0.57,
+									"Frequency": 70
+								},
+								{
+									"Time": 59,
+									"Intensity": 0.43,
+									"Frequency": 69
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.2,
+									"Frequency": 70
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.4,
+									"Frequency": 69
+								},
+								{
+									"Time": 102,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 125,
+									"Intensity": 0.34,
+									"Frequency": 66
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 167,
+									"Intensity": 0.71,
+									"Frequency": 70
+								},
+								{
+									"Time": 183,
+									"Intensity": 0.45,
+									"Frequency": 64
+								},
+								{
+									"Time": 212,
+									"Intensity": 0.3,
+									"Frequency": 59
+								},
+								{
+									"Time": 233,
+									"Intensity": 0.53,
+									"Frequency": 57
+								},
+								{
+									"Time": 240,
+									"Intensity": 0.2,
+									"Frequency": 60
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 62
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 562,
+						"Parameters": {
+							"Intensity": 52,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 60
+								},
+								{
+									"Time": 10,
+									"Intensity": 0.43,
+									"Frequency": 62
+								},
+								{
+									"Time": 36,
+									"Intensity": 0.74,
+									"Frequency": 64
+								},
+								{
+									"Time": 49,
+									"Intensity": 0.35,
+									"Frequency": 62
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.21,
+									"Frequency": 64
+								},
+								{
+									"Time": 80,
+									"Intensity": 0.66,
+									"Frequency": 61
+								},
+								{
+									"Time": 100,
+									"Intensity": 0.24,
+									"Frequency": 67
+								},
+								{
+									"Time": 117,
+									"Intensity": 0.63,
+									"Frequency": 67
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.07,
+									"Frequency": 72
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.66,
+									"Frequency": 72
+								},
+								{
+									"Time": 164,
+									"Intensity": 0.37,
+									"Frequency": 70
+								},
+								{
+									"Time": 184,
+									"Intensity": 0.07,
+									"Frequency": 70
+								},
+								{
+									"Time": 200,
+									"Intensity": 0.3,
+									"Frequency": 66
+								},
+								{
+									"Time": 213,
+									"Intensity": 0.59,
+									"Frequency": 66
+								},
+								{
+									"Time": 234,
+									"Intensity": 0.33,
+									"Frequency": 61
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 63
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 653,
+						"StartTime": 1332,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 30
+								},
+								{
+									"Time": 20,
+									"Intensity": 0.82,
+									"Frequency": 40
+								},
+								{
+									"Time": 92,
+									"Intensity": 0.96,
+									"Frequency": 30
+								},
+								{
+									"Time": 146,
+									"Intensity": 0.41,
+									"Frequency": 10
+								},
+								{
+									"Time": 181,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 253,
+									"Intensity": 0.38,
+									"Frequency": 10
+								},
+								{
+									"Time": 337,
+									"Intensity": 0.25,
+									"Frequency": 0
+								},
+								{
+									"Time": 439,
+									"Intensity": 0.22,
+									"Frequency": 0
+								},
+								{
+									"Time": 494,
+									"Intensity": 0.28,
+									"Frequency": 10
+								},
+								{
+									"Time": 555,
+									"Intensity": 0.15,
+									"Frequency": 0
+								},
+								{
+									"Time": 621,
+									"Intensity": 0.12,
+									"Frequency": 10
+								},
+								{
+									"Time": 653,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 1467,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 66
+								},
+								{
+									"Time": 17,
+									"Intensity": 0.38,
+									"Frequency": 68
+								},
+								{
+									"Time": 33,
+									"Intensity": 0.19,
+									"Frequency": 71
+								},
+								{
+									"Time": 48,
+									"Intensity": 0.57,
+									"Frequency": 70
+								},
+								{
+									"Time": 59,
+									"Intensity": 0.43,
+									"Frequency": 69
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.2,
+									"Frequency": 70
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.4,
+									"Frequency": 69
+								},
+								{
+									"Time": 102,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 125,
+									"Intensity": 0.34,
+									"Frequency": 66
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 167,
+									"Intensity": 0.71,
+									"Frequency": 70
+								},
+								{
+									"Time": 183,
+									"Intensity": 0.45,
+									"Frequency": 64
+								},
+								{
+									"Time": 212,
+									"Intensity": 0.3,
+									"Frequency": 59
+								},
+								{
+									"Time": 233,
+									"Intensity": 0.53,
+									"Frequency": 57
+								},
+								{
+									"Time": 240,
+									"Intensity": 0.2,
+									"Frequency": 60
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 62
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 1719,
+						"Parameters": {
+							"Intensity": 54,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 60
+								},
+								{
+									"Time": 10,
+									"Intensity": 0.43,
+									"Frequency": 62
+								},
+								{
+									"Time": 36,
+									"Intensity": 0.74,
+									"Frequency": 64
+								},
+								{
+									"Time": 49,
+									"Intensity": 0.35,
+									"Frequency": 62
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.21,
+									"Frequency": 64
+								},
+								{
+									"Time": 80,
+									"Intensity": 0.66,
+									"Frequency": 61
+								},
+								{
+									"Time": 100,
+									"Intensity": 0.24,
+									"Frequency": 67
+								},
+								{
+									"Time": 117,
+									"Intensity": 0.63,
+									"Frequency": 67
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.07,
+									"Frequency": 72
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.66,
+									"Frequency": 72
+								},
+								{
+									"Time": 164,
+									"Intensity": 0.37,
+									"Frequency": 70
+								},
+								{
+									"Time": 184,
+									"Intensity": 0.07,
+									"Frequency": 70
+								},
+								{
+									"Time": 200,
+									"Intensity": 0.3,
+									"Frequency": 66
+								},
+								{
+									"Time": 213,
+									"Intensity": 0.59,
+									"Frequency": 66
+								},
+								{
+									"Time": 234,
+									"Intensity": 0.33,
+									"Frequency": 61
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 63
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 653,
+						"StartTime": 2863,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 30
+								},
+								{
+									"Time": 20,
+									"Intensity": 0.82,
+									"Frequency": 40
+								},
+								{
+									"Time": 92,
+									"Intensity": 0.96,
+									"Frequency": 30
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.41,
+									"Frequency": 10
+								},
+								{
+									"Time": 181,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 253,
+									"Intensity": 0.38,
+									"Frequency": 10
+								},
+								{
+									"Time": 337,
+									"Intensity": 0.25,
+									"Frequency": 0
+								},
+								{
+									"Time": 439,
+									"Intensity": 0.22,
+									"Frequency": 0
+								},
+								{
+									"Time": 494,
+									"Intensity": 0.28,
+									"Frequency": 10
+								},
+								{
+									"Time": 555,
+									"Intensity": 0.15,
+									"Frequency": 0
+								},
+								{
+									"Time": 621,
+									"Intensity": 0.12,
+									"Frequency": 10
+								},
+								{
+									"Time": 653,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 2998,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 66
+								},
+								{
+									"Time": 17,
+									"Intensity": 0.38,
+									"Frequency": 68
+								},
+								{
+									"Time": 33,
+									"Intensity": 0.19,
+									"Frequency": 71
+								},
+								{
+									"Time": 48,
+									"Intensity": 0.57,
+									"Frequency": 70
+								},
+								{
+									"Time": 59,
+									"Intensity": 0.43,
+									"Frequency": 69
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.2,
+									"Frequency": 70
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.4,
+									"Frequency": 69
+								},
+								{
+									"Time": 102,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 125,
+									"Intensity": 0.34,
+									"Frequency": 66
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 167,
+									"Intensity": 0.71,
+									"Frequency": 70
+								},
+								{
+									"Time": 183,
+									"Intensity": 0.45,
+									"Frequency": 64
+								},
+								{
+									"Time": 212,
+									"Intensity": 0.3,
+									"Frequency": 59
+								},
+								{
+									"Time": 233,
+									"Intensity": 0.53,
+									"Frequency": 57
+								},
+								{
+									"Time": 240,
+									"Intensity": 0.2,
+									"Frequency": 60
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 62
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 3250,
+						"Parameters": {
+							"Intensity": 52,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 60
+								},
+								{
+									"Time": 10,
+									"Intensity": 0.43,
+									"Frequency": 62
+								},
+								{
+									"Time": 36,
+									"Intensity": 0.74,
+									"Frequency": 64
+								},
+								{
+									"Time": 49,
+									"Intensity": 0.35,
+									"Frequency": 62
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.21,
+									"Frequency": 64
+								},
+								{
+									"Time": 80,
+									"Intensity": 0.66,
+									"Frequency": 61
+								},
+								{
+									"Time": 100,
+									"Intensity": 0.24,
+									"Frequency": 67
+								},
+								{
+									"Time": 117,
+									"Intensity": 0.63,
+									"Frequency": 67
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.07,
+									"Frequency": 72
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.66,
+									"Frequency": 72
+								},
+								{
+									"Time": 164,
+									"Intensity": 0.37,
+									"Frequency": 70
+								},
+								{
+									"Time": 184,
+									"Intensity": 0.07,
+									"Frequency": 70
+								},
+								{
+									"Time": 200,
+									"Intensity": 0.3,
+									"Frequency": 66
+								},
+								{
+									"Time": 213,
+									"Intensity": 0.59,
+									"Frequency": 66
+								},
+								{
+									"Time": 234,
+									"Intensity": 0.33,
+									"Frequency": 61
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 63
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 653,
+						"StartTime": 4014,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 30
+								},
+								{
+									"Time": 20,
+									"Intensity": 0.82,
+									"Frequency": 40
+								},
+								{
+									"Time": 92,
+									"Intensity": 0.96,
+									"Frequency": 30
+								},
+								{
+									"Time": 120,
+									"Intensity": 0.41,
+									"Frequency": 10
+								},
+								{
+									"Time": 181,
+									"Intensity": 0.32,
+									"Frequency": 0
+								},
+								{
+									"Time": 253,
+									"Intensity": 0.38,
+									"Frequency": 10
+								},
+								{
+									"Time": 337,
+									"Intensity": 0.25,
+									"Frequency": 0
+								},
+								{
+									"Time": 439,
+									"Intensity": 0.22,
+									"Frequency": 0
+								},
+								{
+									"Time": 494,
+									"Intensity": 0.28,
+									"Frequency": 10
+								},
+								{
+									"Time": 555,
+									"Intensity": 0.15,
+									"Frequency": 0
+								},
+								{
+									"Time": 621,
+									"Intensity": 0.12,
+									"Frequency": 10
+								},
+								{
+									"Time": 653,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 4149,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 66
+								},
+								{
+									"Time": 17,
+									"Intensity": 0.38,
+									"Frequency": 68
+								},
+								{
+									"Time": 33,
+									"Intensity": 0.19,
+									"Frequency": 71
+								},
+								{
+									"Time": 48,
+									"Intensity": 0.57,
+									"Frequency": 70
+								},
+								{
+									"Time": 59,
+									"Intensity": 0.43,
+									"Frequency": 69
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.2,
+									"Frequency": 70
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.4,
+									"Frequency": 69
+								},
+								{
+									"Time": 102,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 125,
+									"Intensity": 0.34,
+									"Frequency": 66
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.58,
+									"Frequency": 68
+								},
+								{
+									"Time": 167,
+									"Intensity": 0.71,
+									"Frequency": 70
+								},
+								{
+									"Time": 183,
+									"Intensity": 0.45,
+									"Frequency": 64
+								},
+								{
+									"Time": 212,
+									"Intensity": 0.3,
+									"Frequency": 59
+								},
+								{
+									"Time": 233,
+									"Intensity": 0.53,
+									"Frequency": 57
+								},
+								{
+									"Time": 240,
+									"Intensity": 0.2,
+									"Frequency": 60
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 62
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 4401,
+						"Parameters": {
+							"Intensity": 55,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 60
+								},
+								{
+									"Time": 10,
+									"Intensity": 0.43,
+									"Frequency": 62
+								},
+								{
+									"Time": 36,
+									"Intensity": 0.74,
+									"Frequency": 64
+								},
+								{
+									"Time": 49,
+									"Intensity": 0.35,
+									"Frequency": 62
+								},
+								{
+									"Time": 67,
+									"Intensity": 0.21,
+									"Frequency": 64
+								},
+								{
+									"Time": 80,
+									"Intensity": 0.66,
+									"Frequency": 61
+								},
+								{
+									"Time": 100,
+									"Intensity": 0.24,
+									"Frequency": 67
+								},
+								{
+									"Time": 117,
+									"Intensity": 0.63,
+									"Frequency": 67
+								},
+								{
+									"Time": 134,
+									"Intensity": 0.07,
+									"Frequency": 72
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.66,
+									"Frequency": 72
+								},
+								{
+									"Time": 164,
+									"Intensity": 0.37,
+									"Frequency": 70
+								},
+								{
+									"Time": 184,
+									"Intensity": 0.07,
+									"Frequency": 70
+								},
+								{
+									"Time": 200,
+									"Intensity": 0.3,
+									"Frequency": 66
+								},
+								{
+									"Time": 213,
+									"Intensity": 0.59,
+									"Frequency": 66
+								},
+								{
+									"Time": 234,
+									"Intensity": 0.33,
+									"Frequency": 61
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 63
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

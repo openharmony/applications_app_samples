@@ -1,0 +1,116 @@
+{
+	"MetaData": {
+		"Create": "2021-02-23",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 260,
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": -33
+								},
+								{
+									"Time": 44,
+									"Intensity": 1.0,
+									"Frequency": 63
+								},
+								{
+									"Time": 79,
+									"Intensity": 1.0,
+									"Frequency": -5
+								},
+								{
+									"Time": 260,
+									"Intensity": 0.0,
+									"Frequency": -14
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 597,
+						"StartTime": 265,
+						"Parameters": {
+							"Intensity": 48,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 81,
+									"Intensity": 1.0,
+									"Frequency": -45
+								},
+								{
+									"Time": 534,
+									"Intensity": 0.64,
+									"Frequency": -45
+								},
+								{
+									"Time": 597,
+									"Intensity": 0.0,
+									"Frequency": -14
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 597,
+						"StartTime": 867,
+						"Parameters": {
+							"Intensity": 37,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 81,
+									"Intensity": 1.0,
+									"Frequency": -45
+								},
+								{
+									"Time": 423,
+									"Intensity": 0.31,
+									"Frequency": -45
+								},
+								{
+									"Time": 597,
+									"Intensity": 0.0,
+									"Frequency": -14
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

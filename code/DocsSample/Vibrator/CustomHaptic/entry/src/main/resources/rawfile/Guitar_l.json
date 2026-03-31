@@ -1,0 +1,146 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 11,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 89
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 426,
+						"StartTime": 56,
+						"Parameters": {
+							"Intensity": 28,
+							"Frequency": 94,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 7,
+									"Intensity": 1.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 304,
+									"Intensity": 0.6137255,
+									"Frequency": -26
+								},
+								{
+									"Time": 426,
+									"Intensity": 0.0,
+									"Frequency": -22
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 491,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 56
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 492,
+						"StartTime": 535,
+						"Parameters": {
+							"Intensity": 32,
+							"Frequency": 66,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 16,
+									"Intensity": 0.95490193,
+									"Frequency": 0
+								},
+								{
+									"Time": 221,
+									"Intensity": 0.7921569,
+									"Frequency": -29
+								},
+								{
+									"Time": 492,
+									"Intensity": 0.0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 1039,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 0
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 694,
+						"StartTime": 1090,
+						"Parameters": {
+							"Intensity": 38,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 7,
+									"Intensity": 1.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 487,
+									"Intensity": 0.73333335,
+									"Frequency": 0
+								},
+								{
+									"Time": 694,
+									"Intensity": 0.0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}
