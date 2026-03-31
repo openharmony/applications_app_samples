@@ -1,0 +1,40 @@
+{
+  "layoutData": [
+    {
+      "groupId": 100,
+      "type": "text",
+      "data": [
+        {
+          "item": {
+            "title": {
+              "name": "卡片 1"
+            }
+          },
+          "style": {
+            "width": ":{{env(screen-width}}"
+          }
+        },
+        {
+          "item": {
+            "title": {
+              "name": "卡片 2"
+            }
+          },
+          "style": {
+            "width": ":{{env(screen-width}}"
+          }
+        },
+        {
+          "item": {
+            "title": {
+              "name": "卡片 3"
+            }
+          },
+          "style": {
+            "width": ":{{env(screen-width}}"
+          }
+        }
+      ]
+    }
+  ]
+}
