@@ -53,6 +53,26 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/aes_ccm_encryption_decryption/aes_ccm_encryption_decryption_synchronous')
         })
+      Button($r('app.string.aes_new_ccm_encryption_decryption_asynchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/aes_ccm_encryption_decryption/aes_new_ccm_encryption_decryption_asynchronous')
+        })
+      Button($r('app.string.aes_new_ccm_encryption_decryption_synchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/aes_ccm_encryption_decryption/aes_new_ccm_encryption_decryption_synchronous')
+        })
+      Button($r('app.string.aes_xts_encryption_decryption_asynchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/aes_xts_encryption_decryption/aes_xts_encryption_decryption_asynchronous')
+        })
+      Button($r('app.string.aes_xts_encryption_decryption_synchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/aes_xts_encryption_decryption/aes_xts_encryption_decryption_synchronous')
+        })
       Button($r('app.string.aes_cbc_encryption_decryption_asynchronous'))
         .width('70%')
         .onClick(() => {
