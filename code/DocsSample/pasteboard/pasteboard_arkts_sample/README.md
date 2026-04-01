@@ -14,7 +14,7 @@
 
 | 主页 |
 |-------|
-| ![image](screenshots/UI.PNG) |
+| ![image](screenshots/UI.png) |
 
 ### 使用说明
 
