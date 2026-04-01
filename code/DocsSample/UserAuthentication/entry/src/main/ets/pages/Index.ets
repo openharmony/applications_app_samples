@@ -44,18 +44,24 @@ async function waiting(times: number): Promise<void> {
 }
 
 function getRandData(): Uint8Array | null {
-  const rand = cryptoFramework.createRandom();
-  const len: number = 16;
-  let randData: Uint8Array | null = null;
-  let retryCount = 0;
-  while (retryCount < 3) {
-    randData = rand?.generateRandomSync(len)?.data;
-    if (randData) {
-      break;
+  try {
+    const rand = cryptoFramework.createRandom();
+    const len: number = 16;
+    let randData: Uint8Array | null = null;
+    let retryCount = 0;
+    while (retryCount < 3) {
+      randData = rand?.generateRandomSync(len)?.data;
+      if (randData) {
+        break;
+      }
+      retryCount++;
     }
-    retryCount++;
+    return randData;
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    Logger.error(`getRandData error, code is ${err?.code}, message is ${err?.message}`);
+    return null;
   }
-  return randData;
 }
 
 enum PageIndex {
@@ -116,7 +122,7 @@ struct Index {
   /*
    * start-authentication.md
    * 示例1：
-   * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码认证，获取认证结果
+   * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证，获取认证结果
    * */
   // [Start authentication_example1]
   initiatingUserAuthentication1() {
@@ -128,7 +134,7 @@ struct Index {
       // 设置认证参数
       const authParam: userAuth.AuthParam = {
         challenge: randData,
-        authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+        authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
         authTrustLevel: userAuth.AuthTrustLevel.ATL3,
       };
       // 配置认证界面
