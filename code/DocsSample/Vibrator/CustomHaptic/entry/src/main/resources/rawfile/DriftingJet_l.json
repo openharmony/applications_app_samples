@@ -1,0 +1,55 @@
+{
+	"MetaData": {
+		"Create": "2022-04-15",
+		"Discription": "EA json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 294,
+						"StartTime": 11,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 64,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": -100
+								},
+								{
+									"Time": 63,
+									"Intensity": 0.3,
+									"Frequency": -83
+								},
+								{
+									"Time": 109,
+									"Intensity": 1,
+									"Frequency": -26
+								},
+								{
+									"Time": 165,
+									"Intensity": 0.2,
+									"Frequency": -58
+								},
+								{
+									"Time": 294,
+									"Intensity": 0,
+									"Frequency": -88
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

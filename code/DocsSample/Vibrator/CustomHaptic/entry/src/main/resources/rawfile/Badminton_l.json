@@ -1,0 +1,225 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 50,
+						"StartTime": 27,
+						"Parameters": {
+							"Intensity": 55,
+							"Frequency": 50,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 9,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 49,
+									"Intensity": 1,
+									"Frequency": 10
+								},
+								{
+									"Time": 50,
+									"Intensity": 0,
+									"Frequency": 10
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 140,
+						"StartTime": 78,
+						"Parameters": {
+							"Intensity": 39,
+							"Frequency": 20,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 1,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 99,
+									"Intensity": 0.62,
+									"Frequency": 0
+								},
+								{
+									"Time": 140,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 114,
+						"StartTime": 548,
+						"Parameters": {
+							"Intensity": 36,
+							"Frequency": 50,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 25,
+									"Intensity": 0.12,
+									"Frequency": 0
+								},
+								{
+									"Time": 39,
+									"Intensity": 1,
+									"Frequency": 30
+								},
+								{
+									"Time": 114,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 114,
+						"StartTime": 548,
+						"Parameters": {
+							"Intensity": 17,
+							"Frequency": 65,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 25,
+									"Intensity": 0.12,
+									"Frequency": 0
+								},
+								{
+									"Time": 29,
+									"Intensity": 1,
+									"Frequency": 30
+								},
+								{
+									"Time": 114,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 62,
+						"StartTime": 662,
+						"Parameters": {
+							"Intensity": 51,
+							"Frequency": 75,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 22,
+									"Intensity": 0.06,
+									"Frequency": -30
+								},
+								{
+									"Time": 30,
+									"Intensity": 1,
+									"Frequency": 20
+								},
+								{
+									"Time": 62,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 1179,
+						"Parameters": {
+							"Intensity": 48,
+							"Frequency": 30
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 110,
+						"StartTime": 1217,
+						"Parameters": {
+							"Intensity": 27,
+							"Frequency": 20,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 1,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 77,
+									"Intensity": 0.66,
+									"Frequency": 0
+								},
+								{
+									"Time": 110,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

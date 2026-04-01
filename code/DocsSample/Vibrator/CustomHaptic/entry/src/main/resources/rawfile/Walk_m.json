@@ -1,0 +1,127 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 176,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 73
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 265,
+						"Parameters": {
+							"Intensity": 49,
+							"Frequency": 6
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 833,
+						"Parameters": {
+							"Intensity": 72,
+							"Frequency": 20
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 890,
+						"Parameters": {
+							"Intensity": 40,
+							"Frequency": 6
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 1448,
+						"Parameters": {
+							"Intensity": 61,
+							"Frequency": 20
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 1513,
+						"Parameters": {
+							"Intensity": 37,
+							"Frequency": 1
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 2074,
+						"Parameters": {
+							"Intensity": 54,
+							"Frequency": 24
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 2148,
+						"Parameters": {
+							"Intensity": 32,
+							"Frequency": 7
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 2771,
+						"Parameters": {
+							"Intensity": 41,
+							"Frequency": 0
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"Duration": 0,
+						"StartTime": 2839,
+						"Parameters": {
+							"Intensity": 26,
+							"Frequency": 0
+						}
+					}
+				}
+			]
+		}
+	]
+}

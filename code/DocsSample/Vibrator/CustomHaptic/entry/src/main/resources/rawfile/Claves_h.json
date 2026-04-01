@@ -1,0 +1,27 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 8,
+						"Parameters": {
+							"Intensity": 100,
+							"Frequency": 60
+						}
+					}
+				}
+			]
+		}
+	]
+}

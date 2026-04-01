@@ -1,0 +1,170 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 43,
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 59,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 5,
+									"Intensity": 1,
+									"Frequency": -63
+								},
+								{
+									"Time": 37,
+									"Intensity": 1,
+									"Frequency": 53
+								},
+								{
+									"Time": 43,
+									"Intensity": 0,
+									"Frequency": -77
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 64,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 88
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 130,
+						"Parameters": {
+							"Intensity": 62,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 163,
+						"Parameters": {
+							"Intensity": 36,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 197,
+						"Parameters": {
+							"Intensity": 48,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 256,
+						"Parameters": {
+							"Intensity": 36,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 280,
+						"Parameters": {
+							"Intensity": 18,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 339,
+						"Parameters": {
+							"Intensity": 31,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 397,
+						"Parameters": {
+							"Intensity": 20,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 585,
+						"Parameters": {
+							"Intensity": 39,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 617,
+						"Parameters": {
+							"Intensity": 28,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 652,
+						"Parameters": {
+							"Intensity": 20,
+							"Frequency": 95
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 687,
+						"Parameters": {
+							"Intensity": 14,
+							"Frequency": 95
+						}
+					}
+				}
+			]
+		}
+	]
+}
