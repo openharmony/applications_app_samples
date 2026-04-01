@@ -26,7 +26,7 @@ const promptAction = new PromptAction();
 struct Transcoding {
   @State message: string = 'Transcoding';
   @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @State fd: number = 0;
+  @State fd: number | undefined = 0;
   @State fileName: string = 'test.heic';
 
   build() {

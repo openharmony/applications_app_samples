@@ -82,29 +82,39 @@ export struct UIComponentsBuilder {
         await this.pushSourceToBox(context, fileName);
         break;
       case 'HEIF':
-        let resourceMgr = context.resourceManager;
-        let rawFile = await resourceMgr.getRawFileContent('allAux.heic');
-        let isSupportHEIFDecode: Boolean = image.createImageSource(rawFile.buffer as ArrayBuffer)
-          .supportedFormats
-          .includes('image/heic');
-        if (!isSupportHEIFDecode) {
-          console.log(`device is not support heif decode`);
-          fileName = 'unknown';
-        } else {
-          fileName = 'allAux.heic';
-          await this.pushSourceToBox(context, fileName);
+        try {
+          let resourceMgr = context.resourceManager;
+          let rawFile = await resourceMgr.getRawFileContent('allAux.heic');
+          let isSupportHEIFDecode: Boolean = image.createImageSource(rawFile.buffer as ArrayBuffer)
+            .supportedFormats
+            .includes('image/heic');
+          if (!isSupportHEIFDecode) {
+            console.log(`device is not support heif decode`);
+            fileName = 'unknown';
+          } else {
+            fileName = 'allAux.heic';
+            await this.pushSourceToBox(context, fileName);
+          }
+        } catch (err) {
+          console.error(`switchFileName with HEIF failed: ${err}.`);
         }
+        
         break;
       case 'HDR':
-        let isSupportHdr = !display.getDefaultDisplaySync().hdrFormats.includes(hdrCapability.HDRFormat.NONE) &&
-          display.getDefaultDisplaySync().hdrFormats.length != 0;
-        if (isSupportHdr) {
-          fileName = 'allAux.jpg';
-          await this.pushSourceToBox(context, fileName);
-        } else {
-          console.log(`device is not support hdr decode`);
-          fileName = 'unknown';
+        try {
+          let isSupportHdr = !display.getDefaultDisplaySync().hdrFormats.includes(hdrCapability.HDRFormat.NONE) &&
+            display.getDefaultDisplaySync().hdrFormats.length != 0;
+          if (isSupportHdr) {
+            fileName = 'allAux.jpg';
+            await this.pushSourceToBox(context, fileName);
+          } else {
+            console.log(`device is not support hdr decode`);
+            fileName = 'unknown';
+          }
+        } catch (err) {
+          console.error(`switchFileName with HDR failed: ${err}.`);
         }
+        
         break;
       default:
         fileName = 'unknown';
@@ -115,21 +125,31 @@ export struct UIComponentsBuilder {
 
   // 将rawFile中的文件写到沙箱里。
   async pushSourceToBox(context: common.UIAbilityContext, fileName: string) {
-    let value = await context.resourceManager.getRawFileContent(fileName);
-    let myBuffer: ArrayBufferLike = value.buffer;
-    let filePath = context.cacheDir + '/' + fileName;
-    let file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    let writLen = await fs.write(file.fd, myBuffer);
-    console.log(`Push ${fileName} to box's writLen is ${writLen}.`);
-    fs.closeSync(file);
+    try {
+      let value = await context.resourceManager.getRawFileContent(fileName);
+      let myBuffer: ArrayBufferLike = value.buffer;
+      let filePath = context.cacheDir + '/' + fileName;
+      let file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      let writLen = await fs.write(file.fd, myBuffer);
+      console.log(`Push ${fileName} to box's writLen is ${writLen}.`);
+      fs.closeSync(file);
+    } catch (err) {
+      console.error('Push ${fileName} to box failed: ${err}.');
+    }
+    
   }
 
   // 获取文件fd。
-  getFileFd(context: Context, fileName: string): number {
-    const filePath: string = context.cacheDir + '/' + fileName;
-    const file: fs.File = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    const fd: number = file?.fd;
-    return fd;
+  getFileFd(context: Context, fileName: string): number | undefined {
+    try {
+      const filePath: string = context.cacheDir + '/' + fileName;
+      const file: fs.File = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+      const fd: number = file?.fd;
+      return fd;
+    } catch (err) {
+      console.error('get fileFd of ${fileName} failed: ${err}.');
+      return undefined;
+    }
   }
 
   isFileNameValid(fileName: string): boolean {
