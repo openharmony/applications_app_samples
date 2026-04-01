@@ -60,20 +60,28 @@ async function deflateGzipFile(src: fs.File, dest: fs.File) {
   let outBuf = new ArrayBuffer(BUFLEN); // 初始化一个输出缓冲区
   // 创建一个压缩对象实例
   let zip = zlib.createZipSync();
-  // 初始化流的状态，windowBits > 15时，启用gzip格式
-  let windowBits = 15 + 16;
-  let initStatus = zip.deflateInit2(strm, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED,
-    zlib.CompressMethod.DEFLATED, windowBits, zlib.MemLevel.MEM_LEVEL_DEFAULT,
-    zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY);
-  console.info('deflateInit2 ret: ' + (await initStatus).valueOf());
+  try {
+    // 初始化流的状态，windowBits > 15时，启用gzip格式
+    let windowBits = 15 + 16;
+    let initStatus = zip.deflateInit2(strm, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED,
+      zlib.CompressMethod.DEFLATED, windowBits, zlib.MemLevel.MEM_LEVEL_DEFAULT,
+      zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY);
+    console.info('deflateInit2 ret: ' + (await initStatus).valueOf());
+  } catch (err) {
+    console.info('deflateInit2 err: ' + JSON.stringify(err));
+  }
   do {
-    // 从文件中读取数据到缓冲区
-    let readLen = fs.readSync(src.fd, inBuf);
-    console.info('readSync readLen: ' + readLen);
-    flush = readLen == 0 ? zlib.CompressFlushMode.FINISH : zlib.CompressFlushMode.NO_FLUSH;
-    // 设置输入缓冲区
-    strm.availableIn = readLen;
-    strm.nextIn = inBuf;
+    try {
+      // 从文件中读取数据到缓冲区
+      let readLen = fs.readSync(src.fd, inBuf);
+      console.info('readSync readLen: ' + readLen);
+      flush = readLen == 0 ? zlib.CompressFlushMode.FINISH : zlib.CompressFlushMode.NO_FLUSH;
+      // 设置输入缓冲区
+      strm.availableIn = readLen;
+      strm.nextIn = inBuf;
+    } catch (err) {
+      console.info('readSync err: ' + JSON.stringify(err));
+    }
     do {
       // 设置输出缓冲区
       strm.availableOut = BUFLEN;
@@ -102,8 +110,12 @@ async function deflateGzipFile(src: fs.File, dest: fs.File) {
       }
     } while (strm.availableOut == 0); // 循环压缩输入缓冲区中剩余的数据，直到全部完成压缩
   } while (flush != zlib.CompressFlushMode.FINISH); // 循环从文件中读取数据，直到数据全部读取
-  // 释放资源
-  zip.deflateEnd(strm);
+  try {
+    // 释放资源
+    zip.deflateEnd(strm);
+  } catch (err) {
+    console.info('deflateEnd err: ' + JSON.stringify(err));
+  }
 }
 
 // 从一个文件中，不断的读入已压缩的数据，进行解压，并写入到另一个文件中
@@ -115,20 +127,28 @@ async function inflateGzipFile(src: fs.File, dest: fs.File) {
   let outBuf = new ArrayBuffer(BUFLEN); // 初始化一个输出缓冲区
   // 创建一个压缩对象实例
   let zip = zlib.createZipSync();
-  // 初始化流的状态，windowBits > 15时，启用gzip格式
-  let windowBits = 15 + 16;
-  let initStatus = zip.inflateInit2(strm, windowBits);
-  console.info('inflateInit2 ret: ' + (await initStatus).valueOf());
+  try {
+    // 初始化流的状态，windowBits > 15时，启用gzip格式
+    let windowBits = 15 + 16;
+    let initStatus = zip.inflateInit2(strm, windowBits);
+    console.info('inflateInit2 ret: ' + (await initStatus).valueOf());
+  } catch (err) {
+    console.info('inflateInit2 err: ' + JSON.stringify(err));
+  }
   do {
-    // 从文件中读取已压缩的数据到缓冲区
-    let readLen = fs.readSync(src.fd, inBuf);
-    console.info('readSync readLen: ' + readLen);
-    if (readLen == 0) {
-      break;
+    try {
+      // 从文件中读取已压缩的数据到缓冲区
+      let readLen = fs.readSync(src.fd, inBuf);
+      console.info('readSync readLen: ' + readLen);
+      if (readLen == 0) {
+        break;
+      }
+      // 设置输入缓冲区
+      strm.availableIn = readLen;
+      strm.nextIn = inBuf;
+    } catch (err) {
+      console.info('readSync err: ' + JSON.stringify(err));
     }
-    // 设置输入缓冲区
-    strm.availableIn = readLen;
-    strm.nextIn = inBuf;
     do {
       // 设置输出缓冲区
       strm.availableOut = BUFLEN;
@@ -158,7 +178,11 @@ async function inflateGzipFile(src: fs.File, dest: fs.File) {
       }
     } while (strm.availableOut == 0)  // 循环解压输入缓冲区中剩余的数据，直到全部完成解压
   } while (status != zlib.ReturnStatus.STREAM_END.valueOf())  // 循环从文件中读取数据，直到数据全部读取
-  // 释放资源
-  zip.inflateEnd(strm);
+  try {
+    // 释放资源
+    zip.inflateEnd(strm);
+  } catch (err) {
+    console.info('inflateEnd err: ' + JSON.stringify(err));
+  }
 }
 // [End deflate_and_inflate_005]
