@@ -55,7 +55,7 @@ struct InitialRendering {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                hilog.info(DOMAIN, TAG, 'appear: ${item}');
+                hilog.info(DOMAIN, TAG, `appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }

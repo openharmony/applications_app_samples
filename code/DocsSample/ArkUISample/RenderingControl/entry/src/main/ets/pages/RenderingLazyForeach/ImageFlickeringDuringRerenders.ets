@@ -85,7 +85,7 @@ struct ImageFlickeringChildComponent {
     Column() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
-          hilog.info(DOMAIN, TAG, 'appear: ${this.data.message}');
+          hilog.info(DOMAIN, TAG, `appear: ${this.data.message}`);
         })
       Image(this.data.imgSrc)
         .width(500)

@@ -69,7 +69,7 @@ struct ScreenFlickeringInList {
               .height(80)
               .backgroundColor(Color.Gray)
               .onAppear(() => {
-                hilog.info(DOMAIN, TAG, 'appear: ${item}');
+                hilog.info(DOMAIN, TAG, `appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
