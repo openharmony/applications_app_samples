@@ -45,6 +45,18 @@ void TouchEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* button
     }
 }
 
+// 鼠标事件Move动作处理函数
+void ProcessMouseMove(ArkUI_UIInputEvent* inputEvent)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "UI_MOUSE_EVENT_ACTION_MOVE EventReceiver");
+    g_ss.str("");
+    auto rawDeltaX = OH_ArkUI_MouseEvent_GetRawDeltaX(inputEvent);
+    auto rawDeltaY = OH_ArkUI_MouseEvent_GetRawDeltaY(inputEvent);
+    g_ss << "rawDeltaX: " << rawDeltaX << std::endl << "rawDeltaY: " << rawDeltaY << std::endl;
+    SetText(infoText, g_ss.str().c_str(), TEXT_FONT_SIZE_20);
+    PrintMouseEventHistoryInfos(inputEvent);
+}
+
 // 鼠标事件操作处理函数
 void MouseEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle *button)
 {
@@ -65,13 +77,7 @@ void MouseEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle *button
                 break;
             }
             case UI_MOUSE_EVENT_ACTION_MOVE: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest",
-                    "UI_MOUSE_EVENT_ACTION_MOVE EventReceiver");
-                g_ss.str("");
-                auto rawDeltaX = OH_ArkUI_MouseEvent_GetRawDeltaX(inputEvent);
-                auto rawDeltaY = OH_ArkUI_MouseEvent_GetRawDeltaY(inputEvent);
-                g_ss << "rawDeltaX: " << rawDeltaX << std::endl << "rawDeltaY: " << rawDeltaY << std::endl;
-                SetText(infoText, g_ss.str().c_str(), TEXT_FONT_SIZE_20);
+                ProcessMouseMove(inputEvent);
                 break;
             }
             case UI_MOUSE_EVENT_ACTION_RELEASE: {

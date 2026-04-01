@@ -384,6 +384,32 @@ void TouchScreenEventOperator(ArkUI_UIInputEvent* inputEvent, ArkUI_NodeHandle* 
     }
 }
 
+// 打印鼠标事件的历史点信息
+void PrintMouseEventHistoryInfos(ArkUI_UIInputEvent* inputEvent)
+{
+    auto size = OH_ArkUI_PointerEvent_GetHistorySize(inputEvent);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "MouseEvent historySize = %{public}d", size);
+    for (int historyIndex = 0; historyIndex < size; historyIndex++) {
+        auto time = OH_ArkUI_PointerEvent_GetHistoryEventTime(inputEvent, historyIndex);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "historyEventTime = %{public}ld", time);
+        auto historyX = OH_ArkUI_PointerEvent_GetHistoryX(inputEvent, 0, historyIndex);
+        auto historyY = OH_ArkUI_PointerEvent_GetHistoryY(inputEvent, 0, historyIndex);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "historyX/Y = %{public}f/%{public}f",
+            historyX, historyY);
+        auto historyWindowX = OH_ArkUI_PointerEvent_GetHistoryWindowX(inputEvent, 0, historyIndex);
+        auto historyWindowY = OH_ArkUI_PointerEvent_GetHistoryWindowY(inputEvent, 0, historyIndex);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "historyWindowX/Y = %{public}f/%{public}f",
+            historyWindowX, historyWindowY);
+        auto historyDisplayX = OH_ArkUI_PointerEvent_GetHistoryDisplayX(inputEvent, 0, historyIndex);
+        auto historyDisplayY = OH_ArkUI_PointerEvent_GetHistoryDisplayY(inputEvent, 0, historyIndex);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest", "historyDisplayX/Y = %{public}f/%{public}f",
+            historyDisplayX, historyDisplayY);
+        auto historyGlobalDisplayX = OH_ArkUI_PointerEvent_GetHistoryGlobalDisplayX(inputEvent, 0, historyIndex);
+        auto historyGlobalDisplayY = OH_ArkUI_PointerEvent_GetHistoryGlobalDisplayY(inputEvent, 0, historyIndex);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "inputTest",
+            "historyGlobalDisplayX/Y = %{public}f/%{public}f", historyGlobalDisplayX, historyGlobalDisplayY);
+    }
+}
 } // namespace NativeXComponentSample
 
 #endif //NDKINPUTEVENT_INFOS_H
