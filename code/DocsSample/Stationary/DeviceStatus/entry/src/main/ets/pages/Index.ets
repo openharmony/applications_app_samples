@@ -59,7 +59,7 @@ struct Index {
   private unsubscribe() {
     // [Start device_status_unsubscribe]
     // 定义callback变量
-    let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus. SteadyStandingStatus) => {
+    let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus.SteadyStandingStatus) => {
       console.info('succeed to get status, now status = ' + data);
     };
     // 以callback为回调函数，订阅设备静止姿态感知（支架态）事件

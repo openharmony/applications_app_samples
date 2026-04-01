@@ -25,7 +25,7 @@ struct Index {
 
   private subscribe() {
     // [Start stationary_subscribe]
-    let reportLatencyNs = 1000000000;
+    let reportLatencyNs = 1000000000; // 单位：纳秒
     try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
         console.info('data=' + JSON.stringify(data));
