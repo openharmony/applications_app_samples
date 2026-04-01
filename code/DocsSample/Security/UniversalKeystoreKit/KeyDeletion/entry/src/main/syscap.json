@@ -8,7 +8,15 @@
       "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
       "SystemCapability.Security.DeviceSecurityLevel",
       "SystemCapability.UserIAM.UserAuth.PinAuth",
-      "SystemCapability.Security.DeviceAuth"
+      "SystemCapability.Security.DeviceAuth",
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.Multimedia.MediaLibrary.Core",
+      "SystemCapability.Multimedia.MediaLibrary.DistributedCore",
+      "SystemCapability.PowerManager.BatteryManager.Extension",
+      "SystemCapability.PowerManager.PowerManager.Extension",
+      "SystemCapability.Security.DataTransitManager",
+      "SystemCapability.Window.SessionManager"
     ]
   }
 }
