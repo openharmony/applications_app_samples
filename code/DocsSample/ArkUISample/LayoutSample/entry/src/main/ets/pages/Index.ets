@@ -41,7 +41,7 @@ struct Index {
                 .width('100%')
                 .onClick(() => {
                   // 跳转到指定页面
-                  router.pushUrl({ url: item.page })
+                  this.getUIContext().getRouter().pushUrl({ url: item.page })
                 })
             }
             .width('100%')
