@@ -52,7 +52,6 @@ struct SoundPoolBestPracticeDemo {
   private context: common.UIAbilityContext | null = null;
 
   // 预定义音频文件名（需放在 resources/rawfile 目录下）
-  //SoundPool只会加载播放前1MB的内容
   private readonly AUDIO_NAMES: string[] = [
     'demo.mp3',
     'demo.mp3',

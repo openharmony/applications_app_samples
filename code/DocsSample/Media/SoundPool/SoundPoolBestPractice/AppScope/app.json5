@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.soundpool",
+    "bundleName": "com.example.soundpoolbestpractice",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
