@@ -15,7 +15,7 @@
 
 // [Start import_interface_save]
 import { fileUri, picker } from '@kit.CoreFileKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 // [End import_interface_save]
@@ -158,12 +158,12 @@ struct Index {
       // [Start document_open_mode]
       if (uris.length > 0) {
         let uri: string = uris[0];
-        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+        let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
         console.info('file fd: ' + file.fd);
         // [Start document_writesync]
-        let writeLen: number = fs.writeSync(file.fd, 'hello, world');
+        let writeLen: number = fileIo.writeSync(file.fd, 'hello, world');
         console.info('write data to file succeed and size is:' + writeLen);
-        fs.closeSync(file);
+        fileIo.closeSync(file);
         // [End document_writesync]
       }
       // [End document_open_mode]
@@ -195,13 +195,13 @@ struct Index {
 
   readDocumentFile(uri: string) {
     try {
-      let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+      let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
       console.info('file fd: ' + file.fd);
       let buffer = new ArrayBuffer(4096); // 创建一个 4096 字节的缓冲区
-      let readLen = fs.readSync(file.fd, buffer);
+      let readLen = fileIo.readSync(file.fd, buffer);
       console.info('readSync data to file succeed and buffer size is:' + readLen);
       this.documentResult = 'Successfully read the file';
-      fs.closeSync(file);
+      fileIo.closeSync(file);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
@@ -241,12 +241,12 @@ struct Index {
       if (uris.length > 0) {
         let uri: string = uris[0];
         //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
-        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+        let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
         console.info('file fd: ' + file.fd);
         // [Start audio_write_sync]
-        let writeLen = fs.writeSync(file.fd, 'hello, world');
+        let writeLen = fileIo.writeSync(file.fd, 'hello, world');
         console.info('write data to file succeed and size is:' + writeLen);
-        fs.closeSync(file);
+        fileIo.closeSync(file);
         // [End audio_write_sync]
       }
       // [End audio_open_mode]
@@ -273,9 +273,9 @@ struct Index {
         uri = documentSaveResult[0];
         console.info('documentViewPicker.save succeed and uri is:' + uri);
         const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
-        const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-        fs.writeSync(file.fd, 'Hello World!');
-        fs.closeSync(file.fd);
+        const file = fileIo.openSync(testFilePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+        fileIo.writeSync(file.fd, 'Hello World!');
+        fileIo.closeSync(file.fd);
       }).catch((err: BusinessError) => {
         console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
       })
