@@ -16,7 +16,7 @@
 // [Start import_interface_select]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import { fileAccess, fileIo,  picker } from '@kit.CoreFileKit';
+import { fileIo,  picker } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
 // [End import_interface_select]
 
