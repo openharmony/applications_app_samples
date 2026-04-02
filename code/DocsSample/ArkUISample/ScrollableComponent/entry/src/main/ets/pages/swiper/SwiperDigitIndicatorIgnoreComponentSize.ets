@@ -38,7 +38,6 @@ class MyDataSource implements IDataSource {
   }
 }
 
-@Entry
 @Component
 export struct SwiperDigitIndicatorIgnoreComponentSize {
   private swiperController1: SwiperController = new SwiperController();

@@ -40,7 +40,8 @@ class MyDataSource implements IDataSource {
   }
 }
 
-@Entry
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct SwiperAndTabsLinkage {
   @State fontColor: string = '#182431';

@@ -15,7 +15,6 @@
 
 import { ComponentCard } from '../../common/Card';
 
-@Entry
 @Component
 export struct SideTabBar {
   build() {

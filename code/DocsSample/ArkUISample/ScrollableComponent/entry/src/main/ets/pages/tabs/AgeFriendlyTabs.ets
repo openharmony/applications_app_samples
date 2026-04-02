@@ -21,7 +21,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 const TAG: string = 'AgeFriendlyTabs';
-@Entry
+
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct AgeFriendlyTabs {
   @State fontColor: string = '#182431';

@@ -32,7 +32,9 @@ import {
 // [StartExclude toggle]
 import { ComponentCard } from '../../common/Card';
 // [EndExclude toggle]
-@Entry
+
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct ArcSwiperToggle {
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();

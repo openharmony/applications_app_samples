@@ -15,7 +15,6 @@
 
 import { ComponentCard } from '../../common/Card';
 
-@Entry
 @Component
 export struct SwiperDirection {
   private swiperHorizontalController: SwiperController = new SwiperController();

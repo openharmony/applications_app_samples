@@ -22,7 +22,8 @@ import {
 import { ComponentCard } from '../../common/Card';
 // [EndExclude side_slip]
 
-@Entry
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct ArcSwiperSideSlip {
   @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
