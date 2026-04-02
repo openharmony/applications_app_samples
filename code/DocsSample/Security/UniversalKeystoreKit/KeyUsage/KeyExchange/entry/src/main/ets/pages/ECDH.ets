@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start key_agreement_X25519]
+// [Start prepare_ECDH]
 
 /*
  * 以下以ECDH密钥的Promise操作使用为例
@@ -48,9 +48,34 @@ let exportKey: Uint8Array;
 let exportKeyFirst: Uint8Array;
 let exportKeySecond: Uint8Array;
 /* 集成生成密钥参数集 */
-let properties: huks.HuksParam[] = [{
+let genProperties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_ECC,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_DIGEST,
+  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_PADDING,
+  value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_CBC,
+}
+]
+let genHuksOptions: huks.HuksOptions = {
+  properties: genProperties,
+  inData: new Uint8Array([])
+}
+
+let properties: huks.HuksParam[] = [{
+  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+  value: huks.HuksKeyAlg.HUKS_ALG_ECDH,
 }, {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
   value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
@@ -84,10 +109,10 @@ const finishProperties: huks.HuksParam[] = [{
   value: true
 }, {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_ECDH,
+  value: huks.HuksKeyAlg.HUKS_ALG_AES,
 }, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256,
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
   value:
@@ -121,7 +146,9 @@ let finishOptionsSecond: huks.HuksOptions = {
   }],
   inData: stringToUint8Array(agreeECDHInData)
 }
+// [End prepare_ECDH]
 
+// [Start key_agreement_ECDH]
 /* 生成密钥 */
 async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info('promise: enter generateKeyItem');
@@ -218,13 +245,13 @@ async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
 async function testAgree() {
   /* 1.确定密钥别名并集成要参数集。A设备：srcKeyAliasFirst；B设备：srcKeyAliasSecond */
   /* 2.设备A生成密钥 */
-  await generateKeyItem(srcKeyAliasFirst, huksOptions);
+  await generateKeyItem(srcKeyAliasFirst, genHuksOptions);
   /* 3.设备B生成密钥 */
-  await generateKeyItem(srcKeyAliasSecond, huksOptions);
+  await generateKeyItem(srcKeyAliasSecond, genHuksOptions);
   /* 4.设备A、B导出非对称密钥的公钥 */
-  await exportKeyItem(srcKeyAliasFirst, huksOptions);
+  await exportKeyItem(srcKeyAliasFirst, genHuksOptions);
   exportKeyFirst = exportKey;
-  await exportKeyItem(srcKeyAliasSecond, huksOptions);
+  await exportKeyItem(srcKeyAliasSecond, genHuksOptions);
   exportKeySecond = exportKey;
   /* 5.对第一个密钥进行协商（三段式） */
   await initSession(srcKeyAliasFirst, huksOptions);

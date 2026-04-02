@@ -6,6 +6,8 @@
     "removedSysCaps" : [
       "SystemCapability.Security.DeviceSecurityLevel",
       "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.PowerManager.BatteryManager.Extension",
+      "SystemCapability.PowerManager.PowerManager.Extension",
       "SystemCapability.Security.DataTransitManager",
       "SystemCapability.Window.SessionManager"
     ]
