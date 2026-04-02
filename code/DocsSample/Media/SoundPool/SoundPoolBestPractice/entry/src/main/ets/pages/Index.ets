@@ -406,9 +406,11 @@ struct SoundPoolBestPracticeDemo {
         // 控制按钮组
         Button('1. 创建 SoundPool (最大8流)')
           .width('100%')
+          .id('create soundpool')
           .onClick(() => this.createSoundPool())
         Button('2. 加载所有音频')
           .width('100%')
+          .id('load sound')
           .onClick(() => this.loadAllAudios())
         Button('3. 停止所有音频')
           .width('100%')
