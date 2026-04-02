@@ -134,6 +134,8 @@ static void HandleTextEvent(int32_t eventId)
         case EVENT_TEXT_ON_COPY:
             OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "manager", "textOnCopy回调函数被执行");
             break;
+        default:
+            break;
     }
 }
 
@@ -305,11 +307,9 @@ void HandleTextEvent(ArkUI_NodeEvent* event, const ArkUI_NodeEventType& eventTyp
 {
     int32_t eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
     if (eventType == NODE_TEXT_ON_TEXT_SELECTION_CHANGE) {
-        auto componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+        auto data = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
-                "NODE_TEXT_ON_TEXT_SELECTION_CHANGE data: %{public}d %{public}d %{public}d %{public}d",
-                 componentEvent->data[0].i32, componentEvent->data[1].i32,
-                 componentEvent->data[2].i32, componentEvent->data[3].i32);
+            "NODE_TEXT_ON_TEXT_SELECTION_CHANGE data: %{public}d %{public}d", data->data[0].i32, data->data[1].i32);
     } else if (eventType == NODE_TEXT_ON_WILL_COPY) {
         if (eventId == EVENT_TEXT_ON_WILL_COPY_ALLOW) {
             ArkUI_NumberValue prevent[] = {{.i32 = 1}};
@@ -338,7 +338,8 @@ void HandleTextInputEvent(ArkUI_NodeEvent* event, const ArkUI_NodeEventType& eve
         } else if (eventId == EVENT_TEXT_INPUT_ON_WILL_CUT_FORBIDDEN) {
             ArkUI_NumberValue prevent[] = {{.i32 = 0}};
             OH_ArkUI_NodeEvent_SetReturnNumberValue(event, prevent, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "EVENT_TEXT_INPUT_ON_WILL_CUT_FORBIDDEN");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
+                "EVENT_TEXT_INPUT_ON_WILL_CUT_FORBIDDEN");
         }
     } else if (eventType == NODE_TEXT_INPUT_ON_WILL_COPY) {
         if (eventId == EVENT_TEXT_INPUT_ON_WILL_COPY_ALLOW) {
@@ -348,7 +349,8 @@ void HandleTextInputEvent(ArkUI_NodeEvent* event, const ArkUI_NodeEventType& eve
         } else if (eventId == EVENT_TEXT_INPUT_ON_WILL_COPY_FORBIDDEN) {
             ArkUI_NumberValue prevent[] = {{.i32 = 0}};
             OH_ArkUI_NodeEvent_SetReturnNumberValue(event, prevent, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "EVENT_TEXT_INPUT_ON_WILL_COPY_FORBIDDEN");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
+                "EVENT_TEXT_INPUT_ON_WILL_COPY_FORBIDDEN");
         }
     } else if (eventType == NODE_TEXT_INPUT_ON_PASTE) {
         if (eventId == EVENT_TEXT_INPUT_ON_PASTE_ALLOW) {
@@ -378,7 +380,8 @@ void HandleTextAreaEvent(ArkUI_NodeEvent* event, const ArkUI_NodeEventType& even
         } else if (eventId == EVENT_TEXT_AREA_ON_WILL_CUT_FORBIDDEN) {
             ArkUI_NumberValue prevent[] = {{.i32 = 0}};
             OH_ArkUI_NodeEvent_SetReturnNumberValue(event, prevent, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "EVENT_TEXT_AREA_ON_WILL_CUT_FORBIDDEN");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
+                "EVENT_TEXT_AREA_ON_WILL_CUT_FORBIDDEN");
         }
     } else if (eventType == NODE_TEXT_AREA_ON_WILL_COPY) {
         if (eventId == EVENT_TEXT_AREA_ON_WILL_COPY_ALLOW) {
@@ -388,7 +391,8 @@ void HandleTextAreaEvent(ArkUI_NodeEvent* event, const ArkUI_NodeEventType& even
         } else if (eventId == EVENT_TEXT_AREA_ON_WILL_COPY_FORBIDDEN) {
             ArkUI_NumberValue prevent[] = {{.i32 = 0}};
             OH_ArkUI_NodeEvent_SetReturnNumberValue(event, prevent, 1);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "EVENT_TEXT_AREA_ON_WILL_COPY_FORBIDDEN");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
+                "EVENT_TEXT_AREA_ON_WILL_COPY_FORBIDDEN");
         }
     } else if (eventType == NODE_TEXT_AREA_ON_PASTE) {
         if (eventId == EVENT_TEXT_AREA_ON_PASTE_ALLOW) {
@@ -2032,7 +2036,13 @@ void setText26(ArkUI_NodeHandle &text1, ArkUI_NodeHandle &text2)
     ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text1, NODE_HEIGHT, &textHeightItem);
-    Manager::nodeAPI_->registerNodeEvent(text1, NODE_TEXT_ON_TEXT_SELECTION_CHANGE, EVENT_TEXT_ON_TEXT_SELECTION_CHANGE, nullptr);
+        ArkUI_NumberValue copyOptionValues[] = {{.i32 = ARKUI_COPY_OPTIONS_LOCAL_DEVICE}};
+    ArkUI_AttributeItem copyOptionItem = {.value = copyOptionValues, .size = 1};
+    Manager::nodeAPI_->setAttribute(text1, NODE_TEXT_COPY_OPTION, &copyOptionItem);
+    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_COPY_OPTION, &copyOptionItem);
+
+    Manager::nodeAPI_->registerNodeEvent(text1, NODE_TEXT_ON_TEXT_SELECTION_CHANGE,
+        EVENT_TEXT_ON_TEXT_SELECTION_CHANGE, nullptr);
     Manager::nodeAPI_->registerNodeEvent(text1, NODE_TEXT_ON_WILL_COPY, EVENT_TEXT_ON_WILL_COPY_ALLOW, nullptr);
     Manager::nodeAPI_->registerNodeEvent(text1, NODE_TEXT_ON_COPY, EVENT_TEXT_ON_COPY, nullptr);
     
@@ -2110,14 +2120,21 @@ void setTextInput15(ArkUI_NodeHandle &textInput, ArkUI_NodeHandle &textInput2)
     Manager::nodeAPI_->setAttribute(textInput2, NODE_WIDTH, &width_item);
     Manager::nodeAPI_->setAttribute(textInput2, NODE_TEXT_INPUT_STYLE, &styleItem);
 
-    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_WILL_CUT, EVENT_TEXT_INPUT_ON_WILL_CUT_ALLOW, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_PASTE, EVENT_TEXT_INPUT_ON_PASTE_ALLOW, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_WILL_COPY, EVENT_TEXT_INPUT_ON_WILL_COPY_ALLOW, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_COPY, EVENT_TEXT_INPUT_ON_COPY, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_WILL_CUT,
+        EVENT_TEXT_INPUT_ON_WILL_CUT_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_PASTE,
+        EVENT_TEXT_INPUT_ON_PASTE_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_WILL_COPY,
+        EVENT_TEXT_INPUT_ON_WILL_COPY_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput, NODE_TEXT_INPUT_ON_COPY,
+        EVENT_TEXT_INPUT_ON_COPY, nullptr);
 
-    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_WILL_CUT, EVENT_TEXT_INPUT_ON_WILL_CUT_FORBIDDEN, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_PASTE, EVENT_TEXT_INPUT_ON_PASTE_FORBIDDEN, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_WILL_COPY, EVENT_TEXT_INPUT_ON_WILL_COPY_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_WILL_CUT,
+        EVENT_TEXT_INPUT_ON_WILL_CUT_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_PASTE,
+        EVENT_TEXT_INPUT_ON_PASTE_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_WILL_COPY,
+        EVENT_TEXT_INPUT_ON_WILL_COPY_FORBIDDEN, nullptr);
 
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
@@ -2189,15 +2206,21 @@ void setTextArea16(ArkUI_NodeHandle &textArea, ArkUI_NodeHandle &textArea2)
     Manager::nodeAPI_->setAttribute(textArea2, NODE_TEXT_INPUT_TEXT, &content_item);
     Manager::nodeAPI_->setAttribute(textArea2, NODE_WIDTH, &width_item);
 
-    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_WILL_CUT, EVENT_TEXT_AREA_ON_WILL_CUT_ALLOW, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_PASTE, EVENT_TEXT_AREA_ON_PASTE_ALLOW, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_WILL_COPY, EVENT_TEXT_AREA_ON_WILL_COPY_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_WILL_CUT,
+        EVENT_TEXT_AREA_ON_WILL_CUT_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_PASTE,
+        EVENT_TEXT_AREA_ON_PASTE_ALLOW, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_WILL_COPY,
+        EVENT_TEXT_AREA_ON_WILL_COPY_ALLOW, nullptr);
     Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_COPY, EVENT_TEXT_AREA_ON_COPY, nullptr);
     Manager::nodeAPI_->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_CUT, EVENT_TEXT_AREA_ON_CUT, nullptr);
 
-    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_WILL_CUT, EVENT_TEXT_AREA_ON_WILL_CUT_FORBIDDEN, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_PASTE, EVENT_TEXT_AREA_ON_PASTE_FORBIDDEN, nullptr);
-    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_WILL_COPY, EVENT_TEXT_AREA_ON_WILL_COPY_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_WILL_CUT,
+        EVENT_TEXT_AREA_ON_WILL_CUT_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_PASTE,
+        EVENT_TEXT_AREA_ON_PASTE_FORBIDDEN, nullptr);
+    Manager::nodeAPI_->registerNodeEvent(textArea2, NODE_TEXT_AREA_ON_WILL_COPY,
+        EVENT_TEXT_AREA_ON_WILL_COPY_FORBIDDEN, nullptr);
 
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
@@ -2991,7 +3014,7 @@ void setAllTextInput(ArkUI_NodeHandle &textContainer)
     setAllTextInputPart2(textContainer);
 }
 
-void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
+void SetAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -3012,9 +3035,8 @@ void setAllTextAreaPart1(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea16);
 }
 
-void setAllTextArea(ArkUI_NodeHandle &textContainer)
+void SetAllTextAreaPart2(ArkUI_NodeHandle &textContainer)
 {
-    setAllTextAreaPart1(textContainer);
     ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea6_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -3023,6 +3045,27 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+
+    setCustomKeyboard(textArea5);
+    setTextArea6(textArea6, textArea6_2);
+    setTextAreaSelectAI(textAreaAISelect);
+    setTextArea7(textArea7, textArea7_2);
+    setTextArea8(textArea8, textArea8_2);
+    setTextArea9(textArea9);
+
+    Manager::nodeAPI_->addChild(textContainer, textArea5);
+    Manager::nodeAPI_->addChild(textContainer, textArea6);
+    Manager::nodeAPI_->addChild(textContainer, textArea6_2);
+    Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textArea7);
+    Manager::nodeAPI_->addChild(textContainer, textArea7_2);
+    Manager::nodeAPI_->addChild(textContainer, textArea8);
+    Manager::nodeAPI_->addChild(textContainer, textArea8_2);
+    Manager::nodeAPI_->addChild(textContainer, textArea9);
+}
+
+void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
+{
     ArkUI_NodeHandle textArea10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea10Button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textArea11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
@@ -3034,27 +3077,14 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle horizontalTextArea = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    setCustomKeyboard(textArea5);
-    setTextArea6(textArea6, textArea6_2);
-    setTextAreaSelectAI(textAreaAISelect);
-    setTextArea7(textArea7, textArea7_2);
-    setTextArea8(textArea8, textArea8_2);
-    setTextArea9(textArea9);
+
     setTextArea10(textArea10, textArea10Button1);
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
     setTextArea14(textArea14, textArea14_2);
     setTextArea16(textArea15, textArea15_2);
     setTextAreaHorizontalScrolling(horizontalTextArea);
-    Manager::nodeAPI_->addChild(textContainer, textArea5);
-    Manager::nodeAPI_->addChild(textContainer, textArea6);
-    Manager::nodeAPI_->addChild(textContainer, textArea6_2);
-    Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
-    Manager::nodeAPI_->addChild(textContainer, textArea7);
-    Manager::nodeAPI_->addChild(textContainer, textArea7_2);
-    Manager::nodeAPI_->addChild(textContainer, textArea8);
-    Manager::nodeAPI_->addChild(textContainer, textArea8_2);
-    Manager::nodeAPI_->addChild(textContainer, textArea9);
+
     Manager::nodeAPI_->addChild(textContainer, textArea10);
     Manager::nodeAPI_->addChild(textContainer, textArea10Button1);
     Manager::nodeAPI_->addChild(textContainer, textArea11);
@@ -3067,11 +3097,18 @@ void setAllTextArea(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, horizontalTextArea);
 }
 
+void SetAllTextArea(ArkUI_NodeHandle &textContainer)
+{
+    SetAllTextAreaPart1(textContainer);
+    SetAllTextAreaPart2(textContainer);
+    SetAllTextAreaPart3(textContainer);
+}
+
 void setUIVal(ArkUI_NodeHandle &textContainer)
 {
     setAllText(textContainer);
     setAllTextInput(textContainer);
-    setAllTextArea(textContainer);
+    SetAllTextArea(textContainer);
 }
 
 ArkUI_NodeHandle TextMaker::CreateNativeNode()
