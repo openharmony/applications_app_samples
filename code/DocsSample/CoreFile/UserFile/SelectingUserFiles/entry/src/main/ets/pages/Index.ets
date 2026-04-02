@@ -219,9 +219,9 @@ struct Index {
         const buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
         const readLen = fileIo.readSync(file.fd, buffer); // 读取文件内容
         console.info('readSync data to file succeed and buffer size is:' + readLen);
-        // [StartExclude fileIo_read_sync]
+        // [StartExclude fs_read_sync]
         this.fileContent = `Read ${readLen} bytes from file.`; // 显示读取的字节数
-        // [EndExclude fileIo_read_sync]
+        // [EndExclude fs_read_sync]
         fileIo.closeSync(file);
         // [End fs_read_sync]
       }
