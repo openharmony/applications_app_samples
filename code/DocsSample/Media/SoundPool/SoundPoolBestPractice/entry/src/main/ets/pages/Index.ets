@@ -5,6 +5,7 @@
  * 1. 对象字面量显式声明类型（避免 arkts-no-untyped-obj-literals）
  * 2. Promise 显式指定泛型类型（避免 arkts-no-inferred-generic-params）
  * 3. 箭头函数体使用块语句（避免 arkts-no-implicit-return-types）
+ * 4. 所有 if/else 语句执行体使用大括号（满足 G.FMT.11 规范）
  */
 
 import { media } from '@kit.MediaKit';
@@ -13,7 +14,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import common from '@ohos.app.ability.common';
 
 // ---------- 定义数据结构 ----------
-// 音频文件信息接口（解决 arkts-no-untyped-obj-literals 问题）
+// 音频文件信息接口
 interface AudioFileInfo {
   name: string;
   soundId: number;
@@ -83,7 +84,7 @@ struct SoundPoolBestPracticeDemo {
     this.loadedCount = this.loadedCount;
   }
 
-  // 初始化音频文件列表（显式返回类型解决 arkts-no-untyped-obj-literals）
+  // 初始化音频文件列表
   private initAudioFiles() {
     this.audioFiles = this.AUDIO_NAMES.map(name => {
       const fileInfo: AudioFileInfo = {
@@ -125,7 +126,9 @@ struct SoundPoolBestPracticeDemo {
 
   // ---------- 2. 注册事件监听 ----------
   private registerListeners() {
-    if (!this.soundPool) return;
+    if (!this.soundPool) {
+      return;
+    }
 
     // 音频加载完成事件
     this.soundPool.on('loadComplete', (soundId: number) => {
@@ -193,7 +196,7 @@ struct SoundPoolBestPracticeDemo {
             this.forceRefresh();
           }
         );
-        // 修正：Promise 显式指定 void 类型
+        // Promise 显式指定 void 类型
         await new Promise<void>(resolve => setTimeout(resolve, 200));
       } catch (err) {
         console.error(`获取资源 ${file.name} 失败: ${err}`);
@@ -245,7 +248,9 @@ struct SoundPoolBestPracticeDemo {
     file.settings.loop = loop;
     this.applyToActiveStream(file, streamId => {
       this.soundPool?.setLoop(streamId, loop, (err) => {
-        if (err) console.error(`设置循环失败: ${err.message}`);
+        if (err) {
+          console.error(`设置循环失败: ${err.message}`);
+        }
       });
     });
     this.showMessage(`设置循环 ${loop} 次`);
@@ -257,7 +262,9 @@ struct SoundPoolBestPracticeDemo {
     file.settings.rightVolume = right;
     this.applyToActiveStream(file, streamId => {
       this.soundPool?.setVolume(streamId, left, right, (err) => {
-        if (err) console.error(`设置音量失败: ${err.message}`);
+        if (err) {
+          console.error(`设置音量失败: ${err.message}`);
+        }
       });
     });
     this.showMessage(`设置音量 ${left * 100}%`);
@@ -268,10 +275,13 @@ struct SoundPoolBestPracticeDemo {
     file.settings.priority = priority;
     this.applyToActiveStream(file, streamId => {
       this.soundPool?.setPriority(streamId, priority, (err) => {
-        if (err) console.error(`设置优先级失败: ${err.message}`);
-        else {
+        if (err) {
+          console.error(`设置优先级失败: ${err.message}`);
+        } else {
           const stream = this.activeStreams.find(s => s.streamId === streamId);
-          if (stream) stream.priority = priority;
+          if (stream) {
+            stream.priority = priority;
+          }
           this.forceRefresh();
         }
       });
@@ -284,7 +294,9 @@ struct SoundPoolBestPracticeDemo {
     file.settings.rate = rate;
     this.applyToActiveStream(file, streamId => {
       this.soundPool?.setRate(streamId, rate, (err) => {
-        if (err) console.error(`设置速率失败: ${err.message}`);
+        if (err) {
+          console.error(`设置速率失败: ${err.message}`);
+        }
       });
     });
     this.showMessage(`设置速率 ${rate}`);
@@ -309,22 +321,28 @@ struct SoundPoolBestPracticeDemo {
   }
 
   private stopStream(streamId: number) {
-    if (!this.soundPool) return;
+    if (!this.soundPool) {
+      return;
+    }
     this.soundPool.stop(streamId, (err) => {
       if (err) {
         console.error(`停止流 ${streamId} 失败: ${err.message}`);
       } else {
         console.info(`流 ${streamId} 已停止`);
         const idx = this.activeStreams.findIndex(s => s.streamId === streamId);
-        if (idx !== -1) this.activeStreams.splice(idx, 1);
+        if (idx !== -1) {
+          this.activeStreams.splice(idx, 1);
+        }
         this.forceRefresh();
       }
     });
   }
 
   private stopAll() {
-    if (!this.soundPool) return;
-    // 复制一份避免遍历时修改（使用块语句解决隐式返回类型）
+    if (!this.soundPool) {
+      return;
+    }
+    // 复制一份避免遍历时修改
     const streamsCopy = [...this.activeStreams];
     streamsCopy.forEach(s => {
       this.stopStream(s.streamId);
@@ -334,7 +352,9 @@ struct SoundPoolBestPracticeDemo {
 
   // ---------- 7. 释放资源 ----------
   private async releaseSoundPool() {
-    if (!this.soundPool) return;
+    if (!this.soundPool) {
+      return;
+    }
 
     this.stopAll();
 
