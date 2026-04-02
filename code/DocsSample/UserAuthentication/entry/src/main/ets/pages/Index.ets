@@ -44,18 +44,24 @@ async function waiting(times: number): Promise<void> {
 }
 
 function getRandData(): Uint8Array | null {
-  const rand = cryptoFramework.createRandom();
-  const len: number = 16;
-  let randData: Uint8Array | null = null;
-  let retryCount = 0;
-  while (retryCount < 3) {
-    randData = rand?.generateRandomSync(len)?.data;
-    if (randData) {
-      break;
+  try {
+    const rand = cryptoFramework.createRandom();
+    const len: number = 16;
+    let randData: Uint8Array | null = null;
+    let retryCount = 0;
+    while (retryCount < 3) {
+      randData = rand?.generateRandomSync(len)?.data;
+      if (randData) {
+        break;
+      }
+      retryCount++;
     }
-    retryCount++;
+    return randData;
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    Logger.error(`getRandData error, code is ${err?.code}, message is ${err?.message}`);
+    return null;
   }
-  return randData;
 }
 
 enum PageIndex {
