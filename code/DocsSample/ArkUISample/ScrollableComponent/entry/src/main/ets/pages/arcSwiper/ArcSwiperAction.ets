@@ -23,7 +23,8 @@ import {
 import { ComponentCard } from '../../common/Card';
 // [EndExclude action]
 
-@Entry
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct ArcSwiperAction {
   private MIN_SCALE: number = 0.1;

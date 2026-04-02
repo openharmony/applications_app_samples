@@ -16,7 +16,9 @@
 import { ComponentCard } from '../../common/Card';
 
 // [Start switch_pages]
-@Entry
+
+// 如需作为页面入口，请取消@Entry的注释并删除export关键字
+// @Entry
 @Component
 export struct SwiperPageSwitchMethod {
   private swiperBackgroundColors: Color[] = [Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Orange,
