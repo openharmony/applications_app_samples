@@ -29,3 +29,4 @@ export { queryGroupAssetPlaintext } from './query_group_plaintext';
 export { queryGroupAssetAttribute } from './query_group_attr'
 export { addSyncAsset } from './add_sync';
 export { querySyncResult } from './query_sync_result';
+export { batchAddAssets, batchUpdateAssets, batchRemoveAssets } from './batch_operation';
