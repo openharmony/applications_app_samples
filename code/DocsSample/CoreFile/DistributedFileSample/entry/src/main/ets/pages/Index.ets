@@ -18,7 +18,7 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common, abilityAccessCtrl } from '@kit.AbilityKit';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import { fileIo as fs, ListFileOptions, fileUri, securityLabel } from '@kit.CoreFileKit';
+import { fileIo, ListFileOptions, fileUri, securityLabel } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
 import Logger from '../common/Logger';
 import { showToast } from '../common/ShowToast';
@@ -37,12 +37,12 @@ function createFile(context: common.UIAbilityContext): void {
 
   try {
     // 在分布式目录下创建文件
-    let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     console.info('Succeeded in creating.');
     // 向文件中写入内容
-    fs.writeSync(file.fd, 'content');
+    fileIo.writeSync(file.fd, 'content');
     // 关闭文件
-    fs.closeSync(file.fd);
+    fileIo.closeSync(file.fd);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
@@ -81,20 +81,20 @@ async function mountPublicDir(context: common.UIAbilityContext) {
     console.info(`Success to get available device list`);
     let networkId = deviceInfoList[0].networkId;
     // 定义访问公共文件目录的回调
-    let listeners : fs.DfsListeners = {
+    let listeners : fileIo.DfsListeners = {
       onStatus: (networkId: string, status: number): void => {
         console.info('Failed to access public directory');
       }
     };
     // 开始跨设备文件访问
-    fs.connectDfs(networkId, listeners).then(() => {
+    fileIo.connectDfs(networkId, listeners).then(() => {
       console.info('Success to connect dfs');
       let pathDir: string = context.distributedFilesDir;
       // 获取分布式目录的文件路径
       let filePath: string = pathDir + '/test.txt';
       try {
         // 打开分布式目录下的文件
-        let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+        let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
         // 定义接收读取数据的缓存
         let arrayBuffer = new ArrayBuffer(4096);
         // 读取文件的内容，返回值是读取到的字节个数
@@ -104,11 +104,11 @@ async function mountPublicDir(context: common.UIAbilityContext) {
         };
         let option = new Option();
         option.length = arrayBuffer.byteLength;
-        let num = fs.readSync(file.fd, arrayBuffer, option);
+        let num = fileIo.readSync(file.fd, arrayBuffer, option);
         // 打印读取到的文件数据
         let buf = buffer.from(arrayBuffer, 0, num);
         console.info('read result: ' + buf.toString());
-        fs.closeSync(file);
+        fileIo.closeSync(file);
       } catch (error) {
         let err: BusinessError = error as BusinessError;
         console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
@@ -136,7 +136,7 @@ function disMountPublicDir(): void {
     console.info(`Success to get available device list`);
     let networkId = deviceInfoList[0].networkId;
     // 关闭跨设备文件访问
-    fs.disconnectDfs(networkId).then(() => {
+    fileIo.disconnectDfs(networkId).then(() => {
       console.info(`Success to disconnect dfs`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
@@ -154,9 +154,9 @@ function copySandFile(context: common.UIAbilityContext): void {
   let filePath: string = pathDir + '/src.txt';
   try {
     // 准备待拷贝沙箱文件
-    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    fs.writeSync(file.fd, 'Create file success');
-    fs.closeSync(file);
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+    fileIo.writeSync(file.fd, 'Create file success');
+    fileIo.closeSync(file);
   } catch (error) {
     console.error(`Failed to createFile. Code: ${error.code}, message: ${error.message}`);
   }
@@ -167,7 +167,7 @@ function copySandFile(context: common.UIAbilityContext): void {
   let destUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
   try {
     // 将沙箱路径下的源文件拷贝到目标分布式目录下
-    fs.copy(srcUri, destUri).then(()=>{
+    fileIo.copy(srcUri, destUri).then(()=>{
       console.info(`Succeeded in copying---. `);
       console.info(`src: ${srcUri} dest: ${destUri}`);
     }).catch((error: BusinessError)=>{
@@ -199,10 +199,10 @@ function copyDistributedFile(context: common.UIAbilityContext): void {
   let srcUri: string = fileUri.getUriFromPath(srcPath);
 
   // 定义拷贝回调
-  let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+  let progressListener: fileIo.ProgressListener = (progress: fileIo.Progress) => {
     console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   };
-  let options: fs.CopyOptions = {
+  let options: fileIo.CopyOptions = {
     'progressListener' : progressListener
   };
   // 通过分布式设备管理的接口获取设备A的networkId信息
@@ -212,19 +212,19 @@ function copyDistributedFile(context: common.UIAbilityContext): void {
     console.info(`success to get available device list`);
     let networkId = deviceInfoList[0].networkId; // 这里只是两个设备连接，列表中首个即为A设备的networkId
     // 定义访问分布式目录的回调
-    let listeners : fs.DfsListeners = {
+    let listeners : fileIo.DfsListeners = {
       onStatus: (networkId: string, status: number): void => {
         console.error(`Failed to access public directory，${status}`);
       }
     };
     // 开始跨设备文件拷贝
-    fs.connectDfs(networkId, listeners).then(()=>{
+    fileIo.connectDfs(networkId, listeners).then(()=>{
       try {
         // 将分布式目录下的文件拷贝到其他沙箱路径下
-        fs.copy(srcUri, destUri, options).then(()=>{
+        fileIo.copy(srcUri, destUri, options).then(()=>{
           console.info(`Succeeded in copying from distribted path`);
           console.info(`src: ${srcUri} dest: ${destUri}`);
-          fs.unlinkSync(srcPath); // 拷贝完成后清理分布式目录下的临时文件
+          fileIo.unlinkSync(srcPath); // 拷贝完成后清理分布式目录下的临时文件
         }).catch((error: BusinessError)=>{
           let err: BusinessError = error as BusinessError;
           console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
@@ -252,7 +252,7 @@ function getListFile(pathDir: string): void {
       lastModifiedAfter: new Date(0).getTime()
     }
   };
-  let files = fs.listFileSync(pathDir, listFileOption);
+  let files = fileIo.listFileSync(pathDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     Logger.info(pathDir);
     Logger.info(`The name of file: ${files[i]}`);
