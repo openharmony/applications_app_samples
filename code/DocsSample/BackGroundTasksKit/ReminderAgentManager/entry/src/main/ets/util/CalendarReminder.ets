@@ -14,17 +14,15 @@
  */
 
 import { reminderAgentManager } from '@kit.BackgroundTasksKit';
-import vibrator from '@ohos.vibrator';
+import { vibrator } from '@kit.SensorServiceKit';
 import AudioPlayer from './AudioPlayer';
 import Constant from '../common/Constant';
 import Logger from './Logger';
 import PreferencesDataManager from './PreferencesDataManager';
 import { Reminder } from '../common/Reminder';
 import TimeConversion from './TimeConversion';
-import common from '@ohos.app.ability.common';
-import notificationManager from '@ohos.notificationManager';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
+import { notificationManager } from '@kit.NotificationKit';
+import { UIContext } from '@kit.ArkUI';
 
 const TAG: string = 'CalendarReminder';
 
@@ -35,125 +33,139 @@ class CalendarReminder {
   }
 
   async setCalendar(date: Date) {
-    let context = getContext(this) as common.UIAbilityContext;
-    let selectCalendar: string = `${date.getFullYear()}-${date.getUTCMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
-    let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined;
-    if (!isExistName) {
-      let reminder: Reminder = {
-        audioSrc: '',
-        audioTimeouts: 0,
-        isStart: false,
-        isVibrator: false,
-        reminderId: 0,
-        reminderName: '',
-        vibratorTimeouts: 0,
-        reminderRequestCalendar: undefined
+    try {
+      let context = UIContext.getCallingScopeUIContext()?.getHostContext()
+      if (context == undefined) {
+        return
       }
-      await reminderAgentManager.addNotificationSlot({
-        notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
-      reminder.reminderName = selectCalendar
-      // [Start calendar_reminder]
-      let calendar: reminderAgentManager.ReminderRequestCalendar = {
-        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR,  // 提醒类型为日历类型
-        dateTime: {  // 指明提醒的目标时间
-          year: date.getFullYear(),
-          month: date.getUTCMonth() + 1,
-          day: date.getDate(),
-          hour: date.getHours(),
-          minute: date.getMinutes(),
-        },
-        actionButton:  // 设置弹出的提醒通知信息上显示的按钮类型和标题
-        [{
-          title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),  // "app.string.calendar_close"资源文件中的value值为"关闭日历提醒"
-          type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
-        }],
-        // 点击提醒通知后跳转的目标UIAbility信息
-        wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
-        ringDuration: Constant.REMINDER_DURATION,  // 指明响铃时长（单位：秒）
-        title: context.resourceManager.getStringSync($r('app.string.calendar').id),  // 指明提醒标题, "app.string.calendar"资源文件中的value值为"日历"
-        content: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),  // 指明提醒内容, "app.string.calendar_reach"资源文件中的value值为"日历提醒时间到了"
-        slotType: notificationManager.SlotType.CONTENT_INFORMATION  // 指明提醒的Slot类型
+      let selectCalendar: string =
+        `${date.getFullYear()}-${date.getUTCMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+      let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined;
+      if (!isExistName) {
+        let reminder: Reminder = {
+          audioSrc: '',
+          audioTimeouts: 0,
+          isStart: false,
+          isVibrator: false,
+          reminderId: 0,
+          reminderName: '',
+          vibratorTimeouts: 0,
+          reminderRequestCalendar: undefined
+        }
+        await reminderAgentManager.addNotificationSlot({
+          notificationType: notificationManager.SlotType.SERVICE_INFORMATION
+        });
+        reminder.reminderName = selectCalendar
+        // [Start calendar_reminder]
+        let calendar: reminderAgentManager.ReminderRequestCalendar = {
+          reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR, // 提醒类型为日历类型
+          dateTime: {
+            // 指明提醒的目标时间
+            year: date.getFullYear(),
+            month: date.getUTCMonth() + 1,
+            day: date.getDate(),
+            hour: date.getHours(),
+            minute: date.getMinutes(),
+          },
+          actionButton: // 设置弹出的提醒通知信息上显示的按钮类型和标题
+          [{
+            title: context.resourceManager.getStringSync($r('app.string.calendar_close')
+              .id), // "app.string.calendar_close"资源文件中的value值为"关闭日历提醒"
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+          }],
+          // 点击提醒通知后跳转的目标UIAbility信息
+          wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
+          ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长（单位：秒）
+          title: context.resourceManager.getStringSync($r('app.string.calendar')
+            .id), // 指明提醒标题, "app.string.calendar"资源文件中的value值为"日历"
+          content: context.resourceManager.getStringSync($r('app.string.calendar_reach')
+            .id), // 指明提醒内容, "app.string.calendar_reach"资源文件中的value值为"日历提醒时间到了"
+          slotType: notificationManager.SlotType.CONTENT_INFORMATION  // 指明提醒的Slot类型
+        }
+        // [End calendar_reminder]
+        Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`);
+        reminder.reminderRequestCalendar = calendar
+        reminder.isStart = false
+        this.calendarReminders.push(reminder)
+        Logger.info(TAG, `setCalendar this all calendar is ${JSON.stringify(this.calendarReminders)}`);
+        await PreferencesDataManager.putData('Calendar', this.calendarReminders)
+        this.setCalendarReminder();
+      } else {
+        UIContext.getCallingScopeUIContext()?.getPromptAction().showToast({
+          message: context.resourceManager.getStringSync($r('app.string.calendar_existence').id),
+          duration: Constant.PROMPT_DURATION
+        })
       }
-      // [End calendar_reminder]
-      Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`);
-      reminder.reminderRequestCalendar = calendar
-      reminder.isStart = false
-      this.calendarReminders.push(reminder)
-      Logger.info(TAG, `setCalendar this all calendar is ${JSON.stringify(this.calendarReminders)}`);
-      await PreferencesDataManager.putData('Calendar', this.calendarReminders)
-      this.setCalendarReminder();
-    } else {
-      promptAction.showToast({
-        message: context.resourceManager.getStringSync($r('app.string.calendar_existence').id),
-        duration: Constant.PROMPT_DURATION
-      })
-    }
+    } catch(err) {}
   }
 
   async setToggle(isOn: boolean, index: number) {
-    this.calendarReminders[index].isStart = isOn
-    if (isOn) {
-      await reminderAgentManager.addNotificationSlot({
-        notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
-      // [Start publish_reminder]
-      let reminderId: number = await reminderAgentManager.publishReminder(
-        this.calendarReminders[index].reminderRequestCalendar!);
-      Logger.info(TAG, `publish reminder result: id is ${reminderId}`);
-      this.calendarReminders[index].reminderId = reminderId;  // 保存发布的提醒ID
-      // [End publish_reminder]
-      if (this.calendarReminders[index].audioSrc) {
-        let audioIndex: number = await AudioPlayer.getAudioID(
-          this.calendarReminders[index].audioSrc, TimeConversion.dateToMillisecond(
-          this.calendarReminders[index].reminderRequestCalendar!.dateTime.year,
-          this.calendarReminders[index].reminderRequestCalendar!.dateTime.month,
-          this.calendarReminders[index].reminderRequestCalendar!.dateTime.day,
-          this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour,
-          this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute) * Constant.SECONDS_MILLISECONDS);
-          this.calendarReminders[index].audioTimeouts = audioIndex;
-      }
-      await PreferencesDataManager.putData('Calendar', this.calendarReminders)
-      if (this.calendarReminders[index].isVibrator) {
-        let vibratorId: number = 0;
-        try {
-          vibratorId = setTimeout(() => {
-            vibrator.startVibration({
-              type: 'time',
-              duration: Constant.VIBRATOR_DURATION,
-            }, {
-              id: 0,
-              usage: 'alarm'
-            }, (err) => {
-              if (err) {
-                Logger.error(TAG, `setToggle this vibrator is failed err is ${JSON.stringify(err)}`);
-              } else {
-                Logger.info(TAG, `setToggle this vibrator is successed`);
-              }
-            })
-          }, TimeConversion.dateToMillisecond(this.calendarReminders[index].reminderRequestCalendar!.dateTime.year,
+    try {
+      this.calendarReminders[index].isStart = isOn
+      if (isOn) {
+        await reminderAgentManager.addNotificationSlot({
+          notificationType: notificationManager.SlotType.SERVICE_INFORMATION
+        });
+        // [Start publish_reminder]
+        let reminderId: number = await reminderAgentManager.publishReminder(
+          this.calendarReminders[index].reminderRequestCalendar!);
+        Logger.info(TAG, `publish reminder result: id is ${reminderId}`);
+        this.calendarReminders[index].reminderId = reminderId; // 保存发布的提醒ID
+        // [End publish_reminder]
+        if (this.calendarReminders[index].audioSrc) {
+          let audioIndex: number = await AudioPlayer.getAudioID(
+            this.calendarReminders[index].audioSrc, TimeConversion.dateToMillisecond(
+            this.calendarReminders[index].reminderRequestCalendar!.dateTime.year,
             this.calendarReminders[index].reminderRequestCalendar!.dateTime.month,
             this.calendarReminders[index].reminderRequestCalendar!.dateTime.day,
             this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour,
             this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute) * Constant.SECONDS_MILLISECONDS);
-        } catch (err) {
-          Logger.error(TAG, `setToggle this vibrator occurred.
-            code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+          this.calendarReminders[index].audioTimeouts = audioIndex;
         }
-        this.calendarReminders[index].vibratorTimeouts = vibratorId
         await PreferencesDataManager.putData('Calendar', this.calendarReminders)
+        if (this.calendarReminders[index].isVibrator) {
+          let vibratorId: number = 0;
+          try {
+            vibratorId = setTimeout(() => {
+              vibrator.startVibration({
+                type: 'time',
+                duration: Constant.VIBRATOR_DURATION,
+              }, {
+                id: 0,
+                usage: 'alarm'
+              }, (err) => {
+                if (err) {
+                  Logger.error(TAG, `setToggle this vibrator is failed err is ${JSON.stringify(err)}`);
+                } else {
+                  Logger.info(TAG, `setToggle this vibrator is successed`);
+                }
+              })
+            }, TimeConversion.dateToMillisecond(this.calendarReminders[index].reminderRequestCalendar!.dateTime.year,
+              this.calendarReminders[index].reminderRequestCalendar!.dateTime.month,
+              this.calendarReminders[index].reminderRequestCalendar!.dateTime.day,
+              this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour,
+              this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute) * Constant.SECONDS_MILLISECONDS);
+          } catch (err) {
+            Logger.error(TAG, `setToggle this vibrator occurred.
+            code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+          }
+          this.calendarReminders[index].vibratorTimeouts = vibratorId
+          await PreferencesDataManager.putData('Calendar', this.calendarReminders)
+        } else {
+          clearTimeout(this.calendarReminders[index].vibratorTimeouts)
+          await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
+        }
       } else {
         clearTimeout(this.calendarReminders[index].vibratorTimeouts)
+        clearTimeout(this.calendarReminders[index].audioTimeouts)
+        await PreferencesDataManager.putData('Calendar', this.calendarReminders);
+        // [Start cancel_reminder]
+        Logger.info(TAG, `cancel reminder id is ${this.calendarReminders[index].reminderId}`)
+        await reminderAgentManager.cancelReminder(this.calendarReminders[index].reminderId);
+        // [End cancel_reminder]
         await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
       }
-    } else {
-      clearTimeout(this.calendarReminders[index].vibratorTimeouts)
-      clearTimeout(this.calendarReminders[index].audioTimeouts)
-      await PreferencesDataManager.putData('Calendar', this.calendarReminders);
-      // [Start cancel_reminder]
-      Logger.info(TAG, `cancel reminder id is ${this.calendarReminders[index].reminderId}`)
-      await reminderAgentManager.cancelReminder(this.calendarReminders[index].reminderId);
-      // [End cancel_reminder]
-      await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
-    }
+    } catch(err) {}
   }
 
   async openDialog(dialog: CustomDialogController, index: number) {
