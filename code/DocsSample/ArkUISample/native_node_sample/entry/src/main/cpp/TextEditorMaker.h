@@ -30,30 +30,8 @@ public:
     static ArkUI_NodeHandle CreateNativeNode();
 
 private:
-    static void CreateStyledStringWithTextStyle();
-    static void CreateStyledStringWithParagraphStyle();
-    static void CreateStyledStringWithDecorationStyle();
-    static void CreateStyledStringWithBaselineOffsetStyle();
-    static void CreateStyledStringWithLetterSpacingStyle();
-    static void CreateStyledStringWithTextShadowStyle();
-    static void CreateStyledStringWithBackgroundColorStyle();
-    static void CreateStyledStringWithGestureStyle();
-    static void CreateStyledStringWithLineHeightStyle();
-    static void CreateStyledStringWithUrlStyle();
-    
-    static void StyledStringBasicOperations();
-    static void StyledStringStyleOperations();
-    static void StyledStringAdvancedOperations();
-    static void StyledStringComparisonAndSerialization();
-    static void StyledStringCustomSpan();
-    static void StyledStringImageAttachment();
-    static void StyledStringClearStyles();
-    static void StyledStringUserDataSpan();
-    static void StyledStringReplaceStyle();
-    static void StyledStringReplaceStyledString();
     static void StyledStringStyledPlaceholder();
     static void StyledStringWithChangeCallbacks();
-    static void ParagraphStyleCallback();
 };
 
 #endif //NATIVE_NODE_SAMPLE_TEXTEDITORMAKER_H
