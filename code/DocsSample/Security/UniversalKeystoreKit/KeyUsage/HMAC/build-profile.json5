@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/tuduohui/.ohos/config/openharmony/default_HMAC_AGF6AtcD4Ggt5QxN9S-hbReunpkcUWx1Zmsdc1ZhIEk=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BBB0696B203E156347A09761D44A144E3187B67CEE926BB8E49A4ED48EAB4C97550B43B11CE3A81",
-          "profile": "C:/Users/tuduohui/.ohos/config/openharmony/default_HMAC_AGF6AtcD4Ggt5QxN9S-hbReunpkcUWx1Zmsdc1ZhIEk=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/tuduohui/.ohos/config/openharmony/default_HMAC_AGF6AtcD4Ggt5QxN9S-hbReunpkcUWx1Zmsdc1ZhIEk=.p12",
-          "storePassword": "0000001B554564922DFAF094374870C5B6EC77E6E9E3A7DE6760CFA72294570DF657207E761CA2E8AD8103"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
