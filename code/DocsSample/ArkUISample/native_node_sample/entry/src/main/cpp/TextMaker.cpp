@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include "StyledStringBase.h"
 #include "TextMaker.h"
 #include "baseUtils.h"
 #include <arkui/native_interface.h>
@@ -2925,6 +2926,35 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     setCustomSpanText(textContainer);
 }
 
+/**
+ * 初始化文本组件节点
+ * @return 返回创建的文本组件节点句柄
+ */
+ArkUI_NodeHandle InitText(ArkUI_NodeHandle& textContainer)
+{
+    ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NumberValue borderWidth = {.f32 = STYLED_STRING_COMPONENT_BORDER_WIDTH};
+    ArkUI_AttributeItem borderWidthItem = {&borderWidth, SIZE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
+    ArkUI_NumberValue width = {.f32 = STYLED_STRING_COMPONENT_WIDTH};
+    ArkUI_AttributeItem widthItem = {&width, SIZE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &widthItem);
+    // 将文本组件添加到父容器中
+    Manager::nodeAPI_->addChild(textContainer, text);
+    return text;
+}
+
+BindDescriptorFunc GetBindDescriptorFunc(ArkUI_NodeHandle& textContainer)
+{
+    return [&textContainer](ArkUI_StyledString_Descriptor * descriptor) {
+            auto text = InitText(textContainer);
+            OH_ArkUI_TextController *controller = OH_ArkUI_TextController_Create();
+            ArkUI_AttributeItem controllerItem = {.object = controller};
+            Manager::nodeAPI_->setAttribute(text, NODE_TEXT_CONTROLLER, &controllerItem);
+            OH_ArkUI_TextController_SetStyledString(controller, descriptor);
+    };
+}
+
 void setAllText(ArkUI_NodeHandle &textContainer)
 {
     setAllTextPart1(textContainer);
@@ -2932,6 +2962,8 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, column);
+    // styledString
+    StyledStringBase::SetStyledString(textContainer, GetBindDescriptorFunc(textContainer));
 }
 
 void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)

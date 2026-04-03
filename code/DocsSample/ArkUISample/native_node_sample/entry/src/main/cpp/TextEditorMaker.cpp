@@ -14,6 +14,7 @@
  */
 
 #include "TextEditorMaker.h"
+#include "StyledStringBase.h"
 #include "baseUtils.h"
 #include <arkui/styled_string.h>
 #include <cstdint>
@@ -26,130 +27,6 @@
 
 #define LOG_TAG "TextEditorMaker"
 #define LOG_INFO(...) OH_LOG_Print(LOG_APP, LOG_INFO, 0xD001400, LOG_TAG, __VA_ARGS__)
-
-namespace {
-// ===== 常量定义 =====
-constexpr int32_t SIZE_1 = 1;
-constexpr int32_t SIZE_4 = 4;
-constexpr float COLUMN_WIDTH = 400.0f;
-constexpr float PLACEHOLDER_FONT_SIZE = 10.0f;
-constexpr float TITLE_FONT_SIZE = 14.0f;
-constexpr uint32_t PLACEHOLDER_FONT_WEIGHT = 1;
-constexpr float TEXT_EDITOR_BORDER_WIDTH = 1.0f;
-constexpr float TEXT_EDITOR_WIDTH = 300.0f;
-constexpr uint32_t COLOR_RED = 0xFFFF0000;
-constexpr float TOP_MARGIN = 20.0f;
-constexpr float BOTTOM_MARGIN = 10.0f;
-constexpr int32_t MAX_LINES = 4;
-constexpr float THICKNESS_SCALE = 2.0f;
-constexpr int32_t DATA_DETECTOR_TYPE_NUM = 2;
-constexpr uint32_t DATA_DETECTOR_COLOR = 0xFF0000FF;
-constexpr float CUSTOM_KEYBOARD_HEIGHT = 300.0f;
-constexpr float MENU_ITEM_WIDTH = 100.0f;
-constexpr float MENU_ITEM_HEIGHT = 50.0f;
-constexpr float SINGLE_LINE_EDITOR_HEIGHT = 40.0f;
-constexpr int32_t MAX_LENGTH = 40;
-constexpr float BUTTON_WIDTH = 100.0f;
-constexpr float BUTTON_HEIGHT = 40.0f;
-constexpr float FONT_SIZE = 20.0f;
-constexpr uint32_t FONT_WEIGHT = 1;
-constexpr uint32_t DECORATION_COLOR = 0xFF00FFFF;
-constexpr float SHADOW_RADIUS = 5.0f;
-constexpr uint32_t SHADOW_COLOR = 0xFF0000FF;
-constexpr float SHADOW_OFFSET_X = 1.0f;
-constexpr float SHADOW_OFFSET_Y = 2.0f;
-constexpr int32_t SHADOW_NUM = 2;
-constexpr int32_t LINE_HEIGHT = 10;
-constexpr int32_t LETTER_SPACING = 9;
-constexpr uint32_t TEXT_STYLE_BG_COLOR = 0xFF00FF00;
-constexpr float TEXT_STYLE_BG_RADIUS_TL = 10.0f;
-constexpr float TEXT_STYLE_BG_RADIUS_TR = 15.0f;
-constexpr float TEXT_STYLE_BG_RADIUS_BL = 20.0f;
-constexpr float TEXT_STYLE_BG_RADIUS_BR = 25.0f;
-constexpr int32_t FONT_FAMILY_LENGTH = 9;
-constexpr int32_t FONT_FEATURE_LENGTH = 21;
-constexpr int32_t PIXEL_MAP_LENGTH = 960000;
-constexpr int32_t PIXEL_LENGTH = 4;
-constexpr int32_t COLOR_INDEX_1 = 1;
-constexpr int32_t COLOR_INDEX_2 = 2;
-constexpr int32_t COLOR_INDEX_3 = 3;
-constexpr uint8_t COLOR_255 = uint8_t(255);
-constexpr uint32_t PIXEL_WIDTH = 200.0f;
-constexpr uint32_t PIXEL_HEIGHT = 200.0f;
-constexpr float PIXEL_OPACITY = 0.8f;
-constexpr uint32_t LEADING_MARGIN_WIDTH = 10;
-constexpr uint32_t LEADING_MARGIN_HEIGHT = 10;
-constexpr int32_t PREVIEW_TEXT_BUFFER_LEN = 100;
-constexpr double GLYPH_DX = 30.0;
-constexpr double GLYPH_DY = 20.0;
-constexpr int32_t RECTS_FOR_RANGE_END = 100;
-constexpr uint32_t SELECT_END = 2;
-constexpr uint32_t PARAGRAPH_SPACING = 5;
-constexpr int32_t MENU_ITEM_INDEX = 2;
-constexpr int32_t MENU_ITEM_BUFFER = 20;
-constexpr int32_t MENU_ITEM_ID_111 = 111;
-constexpr int32_t MENU_ITEM_ID_120 = 120;
-constexpr float TEXT_EDITOR_HEIGHT = 100.0f;
-
-constexpr uint32_t COLOR_BLUE = 0xFF0000FF;
-constexpr uint32_t COLOR_GREEN = 0xFF00FF00;
-constexpr uint32_t COLOR_YELLOW = 0xFFFFFF00;
-constexpr uint32_t COLOR_BLACK = 0xFF000000;
-
-constexpr int32_t EVENT_ON_WILL_CHANGE = 1;
-constexpr int32_t EVENT_ON_DID_CHANGE = 2;
-
-constexpr int32_t BUFFER_SIZE = 256;
-constexpr int32_t LOG_DOMAIN_COLOR = 0xFF00;
-constexpr int32_t MARSHAL_BUFFER_SIZE = 1024;
-constexpr int32_t PIXELMAP_DATA_SIZE = 960000;
-
-constexpr float FONT_SIZE_16 = 16.0f;
-constexpr float FONT_SIZE_18 = 18.0f;
-constexpr float FONT_SIZE_20 = 20.0f;
-constexpr float FONT_SIZE_30 = 30.0f;
-
-constexpr float STROKE_WIDTH = 1.0f;
-constexpr float SHADOW_OFFSET = 2.0f;
-constexpr float BACKGROUND_RADIUS = 5.0f;
-constexpr float BASELINE_OFFSET = 20.0f;
-constexpr float CUSTOM_SPAN_HEIGHT = 120.0f;
-constexpr float CUSTOM_SPAN_WIDTH = 80.0f;
-constexpr float PEN_WIDTH = 20.0f;
-constexpr float RECT_START = 100.0f;
-constexpr float RECT_END = 400.0f;
-constexpr float IMAGE_ATTACHMENT_SIZE = 120.0f;
-constexpr float IMAGE_ATTACHMENT_OPACITY = 0.1f;
-constexpr float PIXELMAP_WIDTH = 200.0f;
-constexpr float PIXELMAP_HEIGHT = 200.0f;
-constexpr float COLOR_FILTER_RED = 3.0f;
-
-constexpr float COLOR_FILTER_BLUE = 0.5f;
-constexpr float COLOR_FILTER_ALPHA = 0.5f;
-constexpr int32_t IMAGE_ATTACHMENT_MARGIN = 15;
-constexpr int32_t IMAGE_ATTACHMENT_PADDING = 5;
-constexpr int32_t IMAGE_ATTACHMENT_BORDER_RADIUS = 25;
-constexpr int32_t COLOR_MATRIX_SIZE = 20;
-
-constexpr int32_t SPAN_LENGTH_2 = 2;
-constexpr int32_t SPAN_LENGTH_4 = 4;
-constexpr int32_t SPAN_LENGTH_5 = 5;
-constexpr int32_t SPAN_LENGTH_6 = 6;
-constexpr int32_t SPAN_LENGTH_8 = 8;
-constexpr int32_t SPAN_LENGTH_10 = 10;
-constexpr int32_t SPAN_LENGTH_12 = 12;
-
-constexpr int32_t PARAGRAPH_MAX_LINES = 3;
-
-constexpr int32_t MAX_STYLES_TO_GET = 2;
-
-constexpr int32_t INDEX_0 = 0;
-constexpr int32_t INDEX_1 = 1;
-constexpr int32_t INDEX_2 = 2;
-constexpr int32_t INDEX_3 = 3;
-
-constexpr float LEADING_MARGIN_CALL_BACK_RETURN_VALUE = 10.0f;
-}  // namespace
 
 #define EVENT_ON_SELECTION_CHANGE 1
 #define EVENT_ON_READY 2
@@ -200,10 +77,10 @@ void AddPlaceHolder(ArkUI_NodeHandle& textEditor, const char* value)
 ArkUI_NodeHandle InitTextEditor()
 {
     ArkUI_NodeHandle textEditor = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_EDITOR);
-    ArkUI_NumberValue borderWidth = {.f32 = TEXT_EDITOR_BORDER_WIDTH};
+    ArkUI_NumberValue borderWidth = {.f32 = STYLED_STRING_COMPONENT_BORDER_WIDTH};
     ArkUI_AttributeItem borderWidthItem = {&borderWidth, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_BORDER_WIDTH, &borderWidthItem);
-    ArkUI_NumberValue width = {.f32 = TEXT_EDITOR_WIDTH};
+    ArkUI_NumberValue width = {.f32 = STYLED_STRING_COMPONENT_WIDTH};
     ArkUI_AttributeItem widthItem = {&width, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_WIDTH, &widthItem);
     // 将文本编辑器编辑器添加到父容器中
@@ -211,29 +88,15 @@ ArkUI_NodeHandle InitTextEditor()
     return textEditor;
 }
 
-/**
- * @brief 设置文本标题
- * @param title 文本标题内容
- */
-void SetTextTitle(const char* title)
+BindDescriptorFunc GetBindDescriptorFunc()
 {
-    ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NumberValue topMargin = {.f32 = TOP_MARGIN};
-    ArkUI_NumberValue bottomMargin = {.f32 = BOTTOM_MARGIN};
-    ArkUI_NumberValue noMargin = {.f32 = 0};
-    ArkUI_NumberValue marginValue[] = {topMargin, noMargin, bottomMargin, noMargin};
-    ArkUI_AttributeItem marginItem = {marginValue, SIZE_4};
-    Manager::nodeAPI_->setAttribute(text, NODE_MARGIN, &marginItem);
-    ArkUI_NumberValue width = {.f32 = TEXT_EDITOR_WIDTH};
-    ArkUI_AttributeItem widthItem = {&width, SIZE_1};
-    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &widthItem);
-    ArkUI_NumberValue fontSize = {.f32 = TITLE_FONT_SIZE};
-    ArkUI_AttributeItem fontSizeItem = {&fontSize, SIZE_1};
-    Manager::nodeAPI_->setAttribute(text, NODE_FONT_SIZE, &fontSizeItem);
-    ArkUI_AttributeItem contentItem = {.string = title};
-    Manager::nodeAPI_->setAttribute(text, NODE_TEXT_CONTENT, &contentItem);
-    // 将标题的文本节点添加到父容器中
-    Manager::nodeAPI_->addChild(textContainer, text);
+    return [](ArkUI_StyledString_Descriptor * descriptor) {
+            auto textEditor = InitTextEditor();
+            OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
+            ArkUI_AttributeItem controllerItem = {.object = controller};
+            Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
+            OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, descriptor);
+    };
 }
 
 /**
@@ -241,7 +104,8 @@ void SetTextTitle(const char* title)
  */
 void SetTextEditorColor()
 {
-    SetTextTitle("回车键(搜索)  光标颜色(红)  滚动条颜色(红)  选中背景色(红)  最大行数(4)  拖拽背景色(红)");
+    StyledStringBase::SetTextTitle(textContainer,
+        "回车键(搜索)  光标颜色(红)  滚动条颜色(红)  选中背景色(红)  最大行数(4)  拖拽背景色(红)");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 设置EnterKeyType为SEARCH
     ArkUI_NumberValue enterKeyType = {.i32 = ARKUI_ENTER_KEY_TYPE_SEARCH};
@@ -276,7 +140,7 @@ void SetTextEditorColor()
  */
 void SetTextEditorDetector()
 {
-    SetTextTitle("AI实体识别");
+    StyledStringBase::SetTextTitle(textContainer, "AI实体识别");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 设置实体识别开关
     ArkUI_NumberValue enableDataDetector = {.i32 = true};
@@ -322,7 +186,7 @@ void SetTextEditorDetector()
  */
 void SetTextEditorSingleLine()
 {
-    SetTextTitle("单行模式");
+    StyledStringBase::SetTextTitle(textContainer, "单行模式");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     ArkUI_NumberValue singleLine = {.i32 = true};
     ArkUI_AttributeItem singleLineItem = {&singleLine, SIZE_1};
@@ -334,7 +198,8 @@ void SetTextEditorSingleLine()
  */
 void SetTextEditorStyle()
 {
-    SetTextTitle("autoSpacing(True)  fontPadding(True)  lineSpacing(True)  符号压缩(True)");
+    StyledStringBase::SetTextTitle(textContainer,
+        "autoSpacing(True)  fontPadding(True)  lineSpacing(True)  符号压缩(True)");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 配置enableAutoSpacing
     ArkUI_NumberValue enableAutoSpacing = {.i32 = true};
@@ -360,7 +225,7 @@ void SetTextEditorStyle()
  */
 void SetTextEditorCustomKeyboard()
 {
-    SetTextTitle("自定义键盘");
+    StyledStringBase::SetTextTitle(textContainer, "自定义键盘");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 构造一个Button作为自定义键盘
     auto button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
@@ -412,7 +277,7 @@ void SetMenuCallbacks(OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions)
  */
 void SetTextEditorSelectionMenu()
 {
-    SetTextTitle("自定义菜单");
+    StyledStringBase::SetTextTitle(textContainer, "自定义菜单");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     OH_ArkUI_TextEditorSelectionMenuOptions* menuOptions = OH_ArkUI_TextEditorSelectionMenuOptions_Create();
     // 设置菜单交互属性
@@ -459,7 +324,7 @@ void SetTextEditorSelectionMenu()
  */
 void SetTextEditorOther()
 {
-    SetTextTitle(
+    StyledStringBase::SetTextTitle(textContainer,
         "高度(40)  最大字数(40)  滚动条(OFF)  键盘(DARK)  复制(NONE)  振动(开)  禁止返回(开) 提示文本（提示文本）");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     AddPlaceHolder(textEditor, "提示文本");
@@ -946,7 +811,7 @@ void MenuOptionsOnItemClick(ArkUI_TextEditMenuOptions* editMenuOptions)
 
 void SetEditMenuOptions()
 {
-    SetTextTitle("editMenuOptions");
+    StyledStringBase::SetTextTitle(textContainer, "editMenuOptions");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     ArkUI_TextEditMenuOptions* editMenuOptions = OH_ArkUI_TextEditMenuOptions_Create();
     MenuOptionsOnCreate(editMenuOptions);
@@ -1230,805 +1095,9 @@ void SetTextEditorEvent()
     Manager::nodeAPI_->registerNodeEvent(textEditor, NODE_TEXT_EDITOR_ON_CUT, EVENT_ON_CUT, nullptr);
 }
 
-void TextEditorMaker::CreateStyledStringWithTextStyle()
-{
-    SetTextTitle("创建带文本样式的StyledString");
-
-    OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle, FONT_SIZE);
-    OH_ArkUI_TextStyle_SetFontWeight(textStyle, ARKUI_FONT_WEIGHT_BOLD);
-    OH_ArkUI_TextStyle_SetFontStyle(textStyle, ARKUI_FONT_STYLE_ITALIC);
-    OH_ArkUI_TextStyle_SetFontFamily(textStyle, "sans-serif");
-    OH_ArkUI_TextStyle_SetStrokeWidth(textStyle, STROKE_WIDTH);
-    OH_ArkUI_TextStyle_SetStrokeColor(textStyle, COLOR_BLUE);
-    OH_ArkUI_TextStyle_SetSuperscript(textStyle, OH_ARKUI_SUPERSCRIPTSTYLE_NORMAL);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle, textStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles, 1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_TextStyle_Destroy(textStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithParagraphStyle()
-{
-    SetTextTitle("创建带段落样式的StyledString");
-
-    OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
-    OH_ArkUI_ParagraphStyle_SetTextAlign(paragraphStyle, ARKUI_TEXT_ALIGNMENT_CENTER);
-    OH_ArkUI_ParagraphStyle_SetTextIndent(paragraphStyle, FONT_SIZE_20);
-    OH_ArkUI_ParagraphStyle_SetMaxLines(paragraphStyle, PARAGRAPH_MAX_LINES);
-    OH_ArkUI_ParagraphStyle_SetOverflow(paragraphStyle, ARKUI_TEXT_OVERFLOW_ELLIPSIS);
-    OH_ArkUI_ParagraphStyle_SetWordBreak(paragraphStyle, ARKUI_WORD_BREAK_NORMAL);
-    OH_ArkUI_ParagraphStyle_SetParagraphSpacing(paragraphStyle, PARAGRAPH_SPACING);
-    OH_ArkUI_ParagraphStyle_SetTextVerticalAlign(paragraphStyle, ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER);
-    OH_ArkUI_ParagraphStyle_SetTextDirection(paragraphStyle, ARKUI_TEXT_DIRECTION_LTR);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_12);
-    OH_ArkUI_SpanStyle_SetParagraphStyle(spanStyle, paragraphStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("段落样式示例", spanStyles, 1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_ParagraphStyle_Destroy(paragraphStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithDecorationStyle()
-{
-    SetTextTitle("创建带装饰样式的StyledString");
-
-    OH_ArkUI_DecorationStyle *decorationStyle = OH_ArkUI_DecorationStyle_Create();
-    OH_ArkUI_DecorationStyle_SetTextDecorationType(decorationStyle, ARKUI_TEXT_DECORATION_TYPE_UNDERLINE);
-    OH_ArkUI_DecorationStyle_SetColor(decorationStyle, COLOR_RED);
-    OH_ArkUI_DecorationStyle_SetTextDecorationStyle(decorationStyle, ARKUI_TEXT_DECORATION_STYLE_DOUBLE);
-    OH_ArkUI_DecorationStyle_SetThicknessScale(decorationStyle, THICKNESS_SCALE);
-    OH_ArkUI_DecorationStyle_SetEnableMultiType(decorationStyle, false);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_8);
-    OH_ArkUI_SpanStyle_SetDecorationStyle(spanStyle, decorationStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("下划线示例", spanStyles, 1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_DecorationStyle_Destroy(decorationStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithBaselineOffsetStyle()
-{
-    SetTextTitle("创建带基线偏移样式的StyledString");
-
-    OH_ArkUI_BaselineOffsetStyle *baselineOffsetStyle = OH_ArkUI_BaselineOffsetStyle_Create();
-    OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset(baselineOffsetStyle, BASELINE_OFFSET);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_6);
-    OH_ArkUI_SpanStyle_SetBaselineOffsetStyle(spanStyle, baselineOffsetStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("基线偏移基线偏移", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_BaselineOffsetStyle_Destroy(baselineOffsetStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithLetterSpacingStyle()
-{
-    SetTextTitle("创建带字间距样式的StyledString");
-
-    OH_ArkUI_LetterSpacingStyle *letterSpacingStyle = OH_ArkUI_LetterSpacingStyle_Create();
-    OH_ArkUI_LetterSpacingStyle_SetLetterSpacing(letterSpacingStyle, LETTER_SPACING);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetLetterSpacingStyle(spanStyle, letterSpacingStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("字间距", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_LetterSpacingStyle_Destroy(letterSpacingStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithTextShadowStyle()
-{
-    SetTextTitle("创建带文本阴影样式的StyledString");
-
-    OH_ArkUI_ShadowOptions *shadowOptions = OH_ArkUI_ShadowOptions_Create();
-    OH_ArkUI_ShadowOptions_SetRadius(shadowOptions, SHADOW_RADIUS);
-    OH_ArkUI_ShadowOptions_SetType(shadowOptions, ARKUI_SHADOW_TYPE_COLOR);
-    OH_ArkUI_ShadowOptions_SetColor(shadowOptions, COLOR_BLUE);
-    OH_ArkUI_ShadowOptions_SetOffsetX(shadowOptions, SHADOW_OFFSET);
-    OH_ArkUI_ShadowOptions_SetOffsetY(shadowOptions, SHADOW_OFFSET);
-    OH_ArkUI_ShadowOptions_SetFill(shadowOptions, true);
-
-    OH_ArkUI_TextShadowStyle *textShadow = OH_ArkUI_TextShadowStyle_Create();
-    const OH_ArkUI_ShadowOptions *shadowOptionsArray[] = {shadowOptions};
-    OH_ArkUI_TextShadowStyle_SetTextShadow(textShadow, shadowOptionsArray, SIZE_1);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_4);
-    OH_ArkUI_SpanStyle_SetTextShadowStyle(spanStyle, textShadow);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("阴影", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_TextShadowStyle_Destroy(textShadow);
-    OH_ArkUI_ShadowOptions_Destroy(shadowOptions);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithBackgroundColorStyle()
-{
-    SetTextTitle("创建带背景色样式的StyledString");
-
-    OH_ArkUI_BackgroundColorStyle *backgroundColorStyle = OH_ArkUI_BackgroundColorStyle_Create();
-    OH_ArkUI_BackgroundColorStyle_SetColor(backgroundColorStyle, COLOR_YELLOW);
-    OH_ArkUI_BackgroundColorStyle_SetRadius(backgroundColorStyle, BACKGROUND_RADIUS, BACKGROUND_RADIUS,
-                                            BACKGROUND_RADIUS, BACKGROUND_RADIUS);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_4);
-    OH_ArkUI_SpanStyle_SetBackgroundColorStyle(spanStyle, backgroundColorStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("背景色", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_BackgroundColorStyle_Destroy(backgroundColorStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithGestureStyle()
-{
-    SetTextTitle("创建带手势样式的StyledString");
-
-    OH_ArkUI_GestureStyle *gestureStyle = OH_ArkUI_GestureStyle_Create();
-    OH_ArkUI_GestureStyle_RegisterOnClickCallback(gestureStyle, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onClick callback triggered");
-    });
-    OH_ArkUI_GestureStyle_RegisterOnLongPressCallback(gestureStyle, [](ArkUI_GestureEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "onLongPress callback triggered");
-    });
-    OH_ArkUI_GestureStyle_RegisterOnTouchCallback(gestureStyle, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "onTouch callback triggered");
-    });
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_4);
-    OH_ArkUI_SpanStyle_SetGestureStyle(spanStyle, gestureStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("点击我", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_GestureStyle_Destroy(gestureStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithLineHeightStyle()
-{
-    SetTextTitle("创建带行高样式的StyledString");
-
-    OH_ArkUI_LineHeightStyle *lineHeightStyle = OH_ArkUI_LineHeightStyle_Create();
-    OH_ArkUI_LineHeightStyle_SetLineHeight(lineHeightStyle, LINE_HEIGHT);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_10);
-    OH_ArkUI_SpanStyle_SetLineHeightStyle(spanStyle, lineHeightStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("行高样式示例", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_LineHeightStyle_Destroy(lineHeightStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::CreateStyledStringWithUrlStyle()
-{
-    SetTextTitle("创建带URL样式的StyledString");
-
-    OH_ArkUI_UrlStyle *urlStyle = OH_ArkUI_UrlStyle_Create();
-    OH_ArkUI_UrlStyle_SetUrl(urlStyle, "https://www.baidu.com");
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_12);
-    OH_ArkUI_SpanStyle_SetUrlStyle(spanStyle, urlStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("百度官网", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_UrlStyle_Destroy(urlStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringBasicOperations()
-{
-    SetTextTitle("StyledString基础操作示例");
-
-    OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle, textStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles, SIZE_1);
-
-    int32_t length = 0;
-    OH_ArkUI_StyledString_Descriptor_GetLength(styledString, &length);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Length: %{public}d", length);
-
-    char buffer[BUFFER_SIZE];
-    int32_t writeLength = 0;
-    OH_ArkUI_StyledString_Descriptor_GetString(styledString, buffer, BUFFER_SIZE, &writeLength);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "String: %{public}s", buffer);
-
-    OH_ArkUI_StyledString_Descriptor_ReplaceString(styledString, 0, SPAN_LENGTH_5, "Hi");
-    OH_ArkUI_StyledString_Descriptor_InsertString(styledString, SPAN_LENGTH_2, " There");
-    OH_ArkUI_StyledString_Descriptor_RemoveString(styledString, SPAN_LENGTH_10, SPAN_LENGTH_2);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_TextStyle_Destroy(textStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringStyleOperations()
-{
-    SetTextTitle("StyledString样式操作示例");
-
-    OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle1, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle1, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle1 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle1, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle1, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle1, textStyle1);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle1};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles, SIZE_1);
-
-    OH_ArkUI_TextStyle *textStyle2 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle2, COLOR_BLUE);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle2, FONT_SIZE_20);
-
-    OH_ArkUI_SpanStyle *spanStyle2 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle2, SPAN_LENGTH_6);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle2, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
-
-    OH_ArkUI_StyledString_Descriptor_SetStyle(styledString, spanStyle2);
-    OH_ArkUI_StyledString_Descriptor_RemoveStyle(styledString, 0, SPAN_LENGTH_5, OH_ARKUI_STYLEDSTRINGKEY_FONT);
-
-    auto *spanStyleGet = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle *spanStylesGet[] = {spanStyleGet, spanStyleGet};
-    OH_ArkUI_SpanStyle **spanStylesGetPointer = spanStylesGet;
-    uint32_t writeLength = 0;
-    OH_ArkUI_StyledString_Descriptor_GetStyles(styledString, 0, SPAN_LENGTH_10 + 1, OH_ARKUI_STYLEDSTRINGKEY_FONT,
-                                               spanStylesGetPointer,
-                                               MAX_STYLES_TO_GET, &writeLength);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Got %{public}d styles",
-                 writeLength);
-
-    for (uint32_t i = 0; i < writeLength; i++) {
-        OH_ArkUI_SpanStyle_Destroy(spanStylesGetPointer[i]);
-    }
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle1);
-    OH_ArkUI_TextStyle_Destroy(textStyle1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle2);
-    OH_ArkUI_TextStyle_Destroy(textStyle2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringAdvancedOperations()
-{
-    SetTextTitle("StyledString高级操作示例");
-
-    OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle1, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle1, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle1 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle1, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle1, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle1, textStyle1);
-
-    const OH_ArkUI_SpanStyle *spanStyles1[] = {spanStyle1};
-    ArkUI_StyledString_Descriptor *styledString1 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello", spanStyles1, SIZE_1);
-
-    OH_ArkUI_TextStyle *textStyle2 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle2, COLOR_BLUE);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle2, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle2 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle2, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle2, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
-
-    const OH_ArkUI_SpanStyle *spanStyles2[] = {spanStyle2};
-    ArkUI_StyledString_Descriptor *styledString2 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("World", spanStyles2, SIZE_1);
-
-    OH_ArkUI_StyledString_Descriptor_AppendStyledString(styledString1, styledString2);
-    OH_ArkUI_StyledString_Descriptor_InsertStyledString(styledString1, SPAN_LENGTH_5, styledString2);
-
-    ArkUI_StyledString_Descriptor *subString = OH_ArkUI_StyledString_Descriptor_Create();
-    OH_ArkUI_StyledString_Descriptor_SubStyledString(styledString1, subString, 0, SPAN_LENGTH_5);
-
-    ArkUI_StyledString_Descriptor *styledString3 = OH_ArkUI_StyledString_Descriptor_Create();
-    OH_ArkUI_StyledString_Descriptor_FromHtml(styledString3, "<span style='color: red;'>Hello</span>");
-
-    const char *html = OH_ArkUI_ConvertToHtml(styledString1);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "HTML: %{public}s", html);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString1);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle1);
-    OH_ArkUI_TextStyle_Destroy(textStyle1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle2);
-    OH_ArkUI_TextStyle_Destroy(textStyle2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString1);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(subString);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString3);
-}
-
-void TextEditorMaker::StyledStringComparisonAndSerialization()
-{
-    SetTextTitle("StyledString比较和序列化示例");
-
-    OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle, textStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString1 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello", spanStyles, SIZE_1);
-
-    ArkUI_StyledString_Descriptor *styledString2 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello", spanStyles, SIZE_1);
-
-    bool isEqual = false;
-    OH_ArkUI_StyledString_Descriptor_IsEqual(styledString1, styledString2, &isEqual);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Is equal: %{public}d", isEqual);
-
-    uint8_t buffer[MARSHAL_BUFFER_SIZE];
-    size_t resultSize = 0;
-    int32_t errorCode = OH_ArkUI_MarshallStyledStringDescriptor(buffer, MARSHAL_BUFFER_SIZE,
-                                                                styledString1, &resultSize);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Marshaled size: %{public}zu",
-                     resultSize);
-        ArkUI_StyledString_Descriptor *unmarshaledString = OH_ArkUI_StyledString_Descriptor_Create();
-        errorCode = OH_ArkUI_UnmarshallStyledStringDescriptor(buffer, resultSize, unmarshaledString);
-        if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                         "Unmarshalled successfully");
-
-            ArkUI_NodeHandle textEditor = InitTextEditor();
-
-            OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-            ArkUI_AttributeItem controllerItem = {.object = controller};
-            Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-            OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, unmarshaledString);
-        }
-    }
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_TextStyle_Destroy(textStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString1);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
-}
-
-void TextEditorMaker::StyledStringCustomSpan()
-{
-    SetTextTitle("CustomSpan示例");
-
-    auto onMeasure = [](float fontSize) -> ArkUI_CustomSpanMetrics* {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "onMeasure fontSize:%{public}f",
-                     fontSize);
-        ArkUI_CustomSpanMetrics *customSpanMetrics = OH_ArkUI_CustomSpanMetrics_Create();
-        OH_ArkUI_CustomSpanMetrics_SetHeight(customSpanMetrics, CUSTOM_SPAN_HEIGHT);
-        OH_ArkUI_CustomSpanMetrics_SetWidth(customSpanMetrics, CUSTOM_SPAN_WIDTH);
-        return customSpanMetrics;
-    };
-    auto onDraw = [](ArkUI_DrawContext *context, ArkUI_CustomSpanDrawInfo *drawInfo) -> void {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker", "onDraw");
-        if (context == nullptr || drawInfo == nullptr) {
-            return;
-        }
-        float xOffset = OH_ArkUI_CustomSpanDrawInfo_GetXOffset(drawInfo);
-        float lineTop = OH_ArkUI_CustomSpanDrawInfo_GetLineTop(drawInfo);
-        float lineBottom = OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(drawInfo);
-        float baseline = OH_ArkUI_CustomSpanDrawInfo_GetBaseline(drawInfo);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN_COLOR, "TextEditorMaker",
-                     "onDraw xOffset: %{public}f lineTop: %{public}f lineBottom: %{public}f baseline: %{public}f",
-                     xOffset, lineTop, lineBottom, baseline);
-        auto *canvas = reinterpret_cast<OH_Drawing_Canvas *>(OH_ArkUI_DrawContext_GetCanvas(context));
-        if (canvas == nullptr) {
-            return;
-        }
-        OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
-        OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-        OH_Drawing_PenSetWidth(pen, PEN_WIDTH);
-        OH_Drawing_CanvasAttachPen(canvas, pen);
-        OH_Drawing_Rect *rect = OH_Drawing_RectCreate(RECT_START, RECT_START, RECT_END, RECT_END);
-        OH_Drawing_CanvasDrawRect(canvas, rect);
-        OH_Drawing_CanvasDetachPen(canvas);
-    };
-    OH_ArkUI_CustomSpan *style = OH_ArkUI_CustomSpan_Create();
-    OH_ArkUI_CustomSpan_RegisterOnMeasureCallback(style, onMeasure);
-    void (*onDraw1)(ArkUI_DrawContext *, ArkUI_CustomSpanDrawInfo *) = onDraw;
-    OH_ArkUI_CustomSpan_RegisterOnDrawCallback(style, onDraw1);
-    ArkUI_StyledString_Descriptor *styledString = OH_ArkUI_StyledString_Descriptor_CreateWithCustomSpan(style);
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-}
-
-void TextEditorMaker::StyledStringImageAttachment()
-{
-    SetTextTitle("ImageAttachment示例");
-
-    uint8_t data[PIXELMAP_DATA_SIZE];
-    size_t dataSize = PIXELMAP_DATA_SIZE;
-    for (int i = 0; i < dataSize; i++) {
-        data[i] = i + 1;
-    }
-    OH_Pixelmap_InitializationOptions *createOpts;
-    OH_PixelmapInitializationOptions_Create(&createOpts);
-    OH_PixelmapInitializationOptions_SetWidth(createOpts, static_cast<uint32_t>(PIXELMAP_WIDTH));
-    OH_PixelmapInitializationOptions_SetHeight(createOpts, static_cast<uint32_t>(PIXELMAP_HEIGHT));
-    OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
-    OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
-    OH_PixelmapNative *pixelmap = nullptr;
-    OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
-    OH_PixelmapNative_Opacity(pixelmap, IMAGE_ATTACHMENT_OPACITY);
-    OH_ArkUI_ImageAttachment *arkUI_ImageAttachment = OH_ArkUI_ImageAttachment_Create();
-    OH_ArkUI_ImageAttachment_SetPixelMap(arkUI_ImageAttachment, pixelmap);
-    OH_ArkUI_ImageAttachment_SetSizeWidth(arkUI_ImageAttachment, static_cast<int32_t>(IMAGE_ATTACHMENT_SIZE));
-    OH_ArkUI_ImageAttachment_SetSizeHeight(arkUI_ImageAttachment, static_cast<int32_t>(IMAGE_ATTACHMENT_SIZE));
-    OH_ArkUI_ImageAttachment_SetVerticalAlign(arkUI_ImageAttachment,
-                                              ArkUI_ImageSpanAlignment::ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE);
-    float matrix[COLOR_MATRIX_SIZE] = {COLOR_FILTER_RED, 0, 0, 0, 0, 0,
-        COLOR_FILTER_RED, 0, 0, 0, 0, 0, COLOR_FILTER_BLUE,
-        COLOR_FILTER_BLUE, 0, 0, 0, COLOR_FILTER_ALPHA, COLOR_FILTER_ALPHA, 0};
-    float *ptr = matrix;
-    OH_ArkUI_ImageAttachment_SetColorFilter(arkUI_ImageAttachment, ptr, static_cast<uint32_t>(COLOR_MATRIX_SIZE));
-
-    OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateMatrix(matrix);
-    OH_ArkUI_ImageAttachment_SetDrawingColorFilter(arkUI_ImageAttachment, colorFilter);
-
-    OH_ArkUI_ImageAttachment_SetObjectFit(arkUI_ImageAttachment, ArkUI_ObjectFit::ARKUI_OBJECT_FIT_AUTO);
-    OH_ArkUI_ImageAttachment_SetMargin(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN,
-                                                               IMAGE_ATTACHMENT_MARGIN, IMAGE_ATTACHMENT_MARGIN});
-    OH_ArkUI_ImageAttachment_SetPadding(arkUI_ImageAttachment, {IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING,
-                                                                IMAGE_ATTACHMENT_PADDING, IMAGE_ATTACHMENT_PADDING});
-    OH_ArkUI_ImageAttachment_SetBorderRadiuses(arkUI_ImageAttachment, IMAGE_ATTACHMENT_BORDER_RADIUS,
-                                               IMAGE_ATTACHMENT_BORDER_RADIUS, IMAGE_ATTACHMENT_BORDER_RADIUS,
-                                               IMAGE_ATTACHMENT_BORDER_RADIUS);
-    OH_ArkUI_ImageAttachment_SetSyncLoad(arkUI_ImageAttachment, true);
-    OH_ArkUI_ImageAttachment_SetSupportSvg(arkUI_ImageAttachment, true);
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithImageAttachment(arkUI_ImageAttachment);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-}
-
-void TextEditorMaker::StyledStringClearStyles()
-{
-    SetTextTitle("StyledString清除样式示例");
-
-    OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle, textStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles, SIZE_1);
-
-    OH_ArkUI_StyledString_Descriptor_ClearStyles(styledString);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_TextStyle_Destroy(textStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringUserDataSpan()
-{
-    SetTextTitle("UserDataSpan示例");
-
-    OH_ArkUI_UserDataSpan *userDataSpan = OH_ArkUI_UserDataSpan_Create();
-
-    const char *customData = "Custom User Data";
-    OH_ArkUI_UserDataSpan_SetUserData(userDataSpan, (void *)customData);
-
-    void *retrievedData = nullptr;
-    OH_ArkUI_UserDataSpan_GetUserData(userDataSpan, &retrievedData);
-
-    if (retrievedData != nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "Retrieved data: %{public}s",
-                     (char *)retrievedData);
-    }
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetUserDataSpan(spanStyle, userDataSpan);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello", spanStyles, SIZE_1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_UserDataSpan_Destroy(userDataSpan);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringReplaceStyle()
-{
-    SetTextTitle("ReplaceStyle示例");
-
-    OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle1, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle1, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle1 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle1, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle1, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle1, textStyle1);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle1};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles, SIZE_1);
-
-    OH_ArkUI_TextStyle *textStyle2 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle2, COLOR_BLUE);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle2, FONT_SIZE_20);
-
-    OH_ArkUI_SpanStyle *spanStyle2 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle2, SPAN_LENGTH_6);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle2, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
-
-    ArkUI_ErrorCode errorCode = OH_ArkUI_StyledString_Descriptor_ReplaceStyle(styledString, spanStyle2);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "ReplaceStyle succeeded");
-    }
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle1);
-    OH_ArkUI_TextStyle_Destroy(textStyle1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle2);
-    OH_ArkUI_TextStyle_Destroy(textStyle2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
-void TextEditorMaker::StyledStringReplaceStyledString()
-{
-    SetTextTitle("ReplaceStyledString示例");
-
-    OH_ArkUI_TextStyle *textStyle1 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle1, COLOR_RED);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle1, FONT_SIZE_16);
-
-    OH_ArkUI_SpanStyle *spanStyle1 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle1, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle1, SPAN_LENGTH_5);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle1, textStyle1);
-
-    const OH_ArkUI_SpanStyle *spanStyles1[] = {spanStyle1};
-    ArkUI_StyledString_Descriptor *styledString1 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Hello World", spanStyles1, SIZE_1);
-
-    OH_ArkUI_TextStyle *textStyle2 = OH_ArkUI_TextStyle_Create();
-    OH_ArkUI_TextStyle_SetFontColor(textStyle2, COLOR_BLUE);
-    OH_ArkUI_TextStyle_SetFontSize(textStyle2, FONT_SIZE_18);
-
-    OH_ArkUI_SpanStyle *spanStyle2 = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle2, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle2, SPAN_LENGTH_6);
-    OH_ArkUI_SpanStyle_SetTextStyle(spanStyle2, textStyle2);
-
-    const OH_ArkUI_SpanStyle *spanStyles2[] = {spanStyle2};
-    ArkUI_StyledString_Descriptor *styledString2 =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("Harmony", spanStyles2, SIZE_1);
-    ArkUI_ErrorCode errorCode =
-        OH_ArkUI_StyledString_Descriptor_ReplaceStyledString(styledString1, 6, SPAN_LENGTH_5, styledString2);
-    if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker",
-                     "ReplaceStyledString succeeded");
-    }
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString1);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle1);
-    OH_ArkUI_TextStyle_Destroy(textStyle1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle2);
-    OH_ArkUI_TextStyle_Destroy(textStyle2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString1);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
-}
-
 void TextEditorMaker::StyledStringStyledPlaceholder()
 {
-    SetTextTitle("SetStyledPlaceholder示例");
+    StyledStringBase::SetTextTitle(textContainer, "SetStyledPlaceholder示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
     OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_GREEN);
@@ -2062,7 +1131,7 @@ void TextEditorMaker::StyledStringStyledPlaceholder()
 
 void TextEditorMaker::StyledStringWithChangeCallbacks()
 {
-    SetTextTitle("StyledString变更回调示例");
+    StyledStringBase::SetTextTitle(textContainer, "StyledString变更回调示例");
 
     OH_ArkUI_TextStyle *textStyle = OH_ArkUI_TextStyle_Create();
     OH_ArkUI_TextStyle_SetFontColor(textStyle, COLOR_RED);
@@ -2092,44 +1161,6 @@ void TextEditorMaker::StyledStringWithChangeCallbacks()
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
-void TextEditorMaker::ParagraphStyleCallback()
-{
-    SetTextTitle("ParagraphStyle段落样式回调示例");
-
-    OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
-    OH_ArkUI_ParagraphStyle_SetTextAlign(paragraphStyle, ARKUI_TEXT_ALIGNMENT_CENTER);
-
-    OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback(
-        paragraphStyle, [](ArkUI_DrawContext *context, OH_ArkUI_LeadingMarginSpanDrawInfo *drawInfo) {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "StyledStringMaker", "OnDrawLeadingMarginCallback");
-        });
-
-    OH_ArkUI_ParagraphStyle_RegisterOnGetLeadingMarginCallback(paragraphStyle, []() -> float {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "StyledStringMaker", "OnGetLeadingMarginCallback");
-        return LEADING_MARGIN_CALL_BACK_RETURN_VALUE;
-    });
-
-    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
-    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
-    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_10);
-    OH_ArkUI_SpanStyle_SetParagraphStyle(spanStyle, paragraphStyle);
-
-    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
-    ArkUI_StyledString_Descriptor *styledString =
-        OH_ArkUI_StyledString_Descriptor_CreateWithString("高级段落样式高级段落样式", spanStyles, 1);
-
-    ArkUI_NodeHandle textEditor = InitTextEditor();
-
-    OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
-    ArkUI_AttributeItem controllerItem = {.object = controller};
-    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER, &controllerItem);
-    OH_ArkUI_TextEditorStyledStringController_SetStyledString(controller, styledString);
-
-    OH_ArkUI_SpanStyle_Destroy(spanStyle);
-    OH_ArkUI_ParagraphStyle_Destroy(paragraphStyle);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
-}
-
 ArkUI_NodeHandle TextEditorMaker::CreateNativeNode()
 {
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
@@ -2149,29 +1180,9 @@ ArkUI_NodeHandle TextEditorMaker::CreateNativeNode()
     SetEditMenuOptions();
     
     // styledString
-    CreateStyledStringWithTextStyle();
-    CreateStyledStringWithParagraphStyle();
-    CreateStyledStringWithDecorationStyle();
-    CreateStyledStringWithBaselineOffsetStyle();
-    CreateStyledStringWithLetterSpacingStyle();
-    CreateStyledStringWithTextShadowStyle();
-    CreateStyledStringWithBackgroundColorStyle();
-    CreateStyledStringWithGestureStyle();
-    CreateStyledStringWithLineHeightStyle();
-    CreateStyledStringWithUrlStyle();
-    StyledStringBasicOperations();
-    StyledStringStyleOperations();
-    StyledStringAdvancedOperations();
-    StyledStringComparisonAndSerialization();
-    StyledStringCustomSpan();
-    StyledStringImageAttachment();
-    StyledStringClearStyles();
-    StyledStringUserDataSpan();
-    StyledStringReplaceStyle();
-    StyledStringReplaceStyledString();
+    StyledStringBase::SetStyledString(textContainer, GetBindDescriptorFunc());
     StyledStringStyledPlaceholder();
     StyledStringWithChangeCallbacks();
-    ParagraphStyleCallback();
     Manager::nodeAPI_->addChild(scroll, textContainer);
     return scroll;
 }
