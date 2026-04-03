@@ -1048,7 +1048,7 @@ static void OnEventReceive(ArkUI_NodeEvent* event)
 
 void SetTextEditorStyledStringController()
 {
-    SetTextTitle("controller测试");
+    StyledStringBase::SetTextTitle(textContainer, "controller测试");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     OH_ArkUI_TextEditorStyledStringController* controller = OH_ArkUI_TextEditorStyledStringController_Create();
     ArkUI_AttributeItem controllerItem = {.object = controller};
@@ -1078,7 +1078,7 @@ void SetTextEditorStyledStringController()
  */
 void SetTextEditorEvent()
 {
-    SetTextTitle("预上屏（True）");
+    StyledStringBase::SetTextTitle(textContainer, "预上屏（True）");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     ArkUI_NumberValue previewText = {.i32 = true};
     ArkUI_AttributeItem previewTextItem = {&previewText, SIZE_1};
