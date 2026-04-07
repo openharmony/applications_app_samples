@@ -58,7 +58,7 @@ struct p2pSetting {
       hilog.info(TAG, `createGroup Error: ${JSON.stringify(e)}`);
     }
   }
-// [End createGroup]
+// [End createGroup] 
   build() {
     Column() {
       Row() {
