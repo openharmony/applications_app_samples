@@ -30,14 +30,14 @@ struct Index {
     try {
       // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
       if (this.controller.accessStep(-1)) {
-        this.controller.backward(); // 返回上一个web页
+        this.controller.backward(); // 返回上一个Web页面
         // 执行用户自定义返回逻辑
         return true;
       }
     } catch (err) {
       console.error(`copyUrlPicToDir failed with error: ${err.code}, ${err.message}`);
     }
-    // 执行系统默认返回逻辑，返回上一个page页
+    // 执行系统默认返回逻辑，返回上一个页面
     return false;
   }
 }
