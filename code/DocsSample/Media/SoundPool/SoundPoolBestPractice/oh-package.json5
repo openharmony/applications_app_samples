@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 {
-  "modelVersion": "6.0.2",
+  "modelVersion": "6.0.0",
   "description": "Please describe the basic information.",
   "dependencies": {
   },
