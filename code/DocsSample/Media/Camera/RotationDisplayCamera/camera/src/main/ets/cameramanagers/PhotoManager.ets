@@ -303,17 +303,19 @@ export class PhotoManager implements OutputManager {
     let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
     try {
       photoRotation = photoOutput.getPhotoRotation(deviceDegree);
+      console.info(`Photo rotation is: ${photoRotation}`);
     } catch (error) {
-      Logger.error(TAG_LOG, `The photoOutput.getPhotoRotation call failed. error code: ${error.code}`);
+      // 失败返回错误码error.code并处理
+      let err = error as BusinessError;
+      console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
     }
     return photoRotation;
   }
-
   // [End get_photo_rotation]
 
   // [Start capture_photo]
   public async capture(isFront: boolean) {
-    const degree = await this.getPhotoDegree();
+    const degree = await this.getGravity();
     const rotation = this.getPhotoRotation(this.output!, degree);
     let settings: camera.PhotoCaptureSetting = {
       quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,
@@ -330,33 +332,68 @@ export class PhotoManager implements OutputManager {
   }
   // [End capture_photo]
 
-  private calculateDeviceDegree(x: number, y: number, z: number): number {
-    let deviceDegree: number = 0;
-    // Determine if the device is approaching a vertical position (perpendicular to the ground)
+  // [Start get_data_gravity]
+  getRealData(data: sensor.GravityResponse): number {
+    let getDeviceDegree: number = 0;
+    let x = data.x;
+    let y = data.y;
+    let z = data.z;
     if ((x * x + y * y) * 3 < z * z) {
-      return deviceDegree;
+      return getDeviceDegree;
     } else {
-      // Calculate the inverse tangent value
-      let sd: Decimal = Decimal.atan2(y, -x)
-      // Convert radian values to angle values;
-      let sc: Decimal = Decimal.round(Number(sd) / Math.PI * 180);
-      // Adjust angle to be relative to vertical orientation
-      deviceDegree = 90 - Number(sc);
-      // Normalize angle to 0-360 degrees range
-      deviceDegree = deviceDegree >= 0 ? deviceDegree % 360 : deviceDegree % 360 + 360;
+      try {
+        let sd: Decimal = Decimal.atan2(y, -x);
+        let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180);
+        getDeviceDegree = 90 - Number(sc);
+        getDeviceDegree = getDeviceDegree >= 0 ? getDeviceDegree % 360 : getDeviceDegree % 360 + 360;
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`decimal failed, error: ${err.code}`);
+      }
     }
-    return deviceDegree;
+    return getDeviceDegree;
   }
 
-  private getPhotoDegree() {
-    const promise: Promise<number> = new Promise(resolve => {
-      sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
-        let degree = this.calculateDeviceDegree(data.x, data.y, data.z);
-        resolve(degree);
-      });
-    })
-    return promise;
+  async getGravity() : Promise<number> {
+    let data: sensor.Sensor[];
+    let isSupported: boolean = false;
+    try {
+      data = await sensor.getSensorList();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getSensorList failed, error: ${err.code}`);
+      return -1; // 异常场景下返回默认值
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].sensorId === sensor.SensorId.GRAVITY) {
+        isSupported = true;
+        break;
+      }
+    }
+    try {
+      if (isSupported === true) {
+        const promise: Promise<number> = new Promise((resolve) => {
+          sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+            resolve(this.getRealData(data));
+          });
+        })
+        return promise;
+      } else {
+        const promise: Promise<number> = new Promise((resolve) => {
+          sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+            resolve(this.getRealData(data as sensor.GravityResponse));
+          });
+        })
+        return promise;
+      }
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`gePromise failed, error: ${err.code}`);
+      return -1; // 异常场景下返回默认值
+    }
   }
+  // [End get_data_gravity]
 
   // [Start is_moving_photo]
   public isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {

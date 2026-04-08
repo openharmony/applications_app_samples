@@ -58,6 +58,21 @@ export class PreviewManager implements OutputManager {
     this.addFrameEndEventListener(output);
   }
 
+  initPreviewRotation() {
+    // [Start Init_PreviewRotation]
+    // previewOutput是创建的预览输出
+    try {
+      let initDisplayRotation = display.getDefaultDisplaySync().rotation;
+      let initPreviewRotation = this.output?.getPreviewRotation(initDisplayRotation * camera.ImageRotation.ROTATION_90);
+      this.output?.setPreviewRotation(initPreviewRotation, false);
+    } catch (error) {
+      // 失败返回错误码error.code并处理
+      let err = error as BusinessError;
+      console.error(`initPreviewRotation call failed. error code: ${err.code}`);
+    }
+    // [End Init_PreviewRotation]
+  }
+
   // [Start setRotate]
   setRotate(){
     try {

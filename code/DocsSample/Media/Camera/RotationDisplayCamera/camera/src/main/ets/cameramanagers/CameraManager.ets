@@ -98,6 +98,30 @@ export class CameraManager {
     return this.cameraManager;
   }
 
+  // [Start create_session]
+  createPhotoSession(cameraManager: camera.CameraManager): camera.Session | undefined {
+    let session: camera.Session | undefined = undefined;
+    try {
+      session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`Failed to create the session instance. error: ${err}`);
+    }
+    return session;
+  }
+
+  createVideoSession(cameraManager: camera.CameraManager): camera.Session | undefined {
+    let session: camera.Session | undefined = undefined;
+    try {
+      session = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`Failed to create the session instance. error: ${err}`);
+    }
+    return session;
+  }
+  // [End create_session]
+
   async start(
     xComponentSurfaceId: string,
     cameraPosition: camera.CameraPosition,
@@ -117,7 +141,15 @@ export class CameraManager {
       await this.cameraInput.open();
       // [End cameraInput]
       // [Start session]
-      const session = this.cameraManager.createSession(sceneMode);
+      let session: camera.Session | undefined = undefined;
+      if (sceneMode == camera.SceneMode.NORMAL_PHOTO) {
+        session = this.createPhotoSession(this.cameraManager);
+      } else if (sceneMode == camera.SceneMode.NORMAL_VIDEO) {
+        session = this.createVideoSession(this.cameraManager);
+      }
+      if (!session) {
+        return;
+      }
       session.beginConfig();
       session.addInput(this.cameraInput);
       // [StartExclude session]
@@ -138,7 +170,7 @@ export class CameraManager {
       await session.commitConfig();
       for (const outputManager of this.outputManagers) {
         if (outputManager.isActive && outputManager instanceof PreviewManager) {
-            outputManager.setRotate();
+            outputManager.initPreviewRotation;
             // [Start display_change_listener]
             display.off('change');
             display.on('change', () => {
