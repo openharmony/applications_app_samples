@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 import hilog from '../model/Logger';
 import { wifiManager } from '@kit.ConnectivityKit';
 import { P2pView } from '../component/P2pView';
@@ -76,11 +76,14 @@ struct WifiConnect {
     })
   }
 
-// [Start discover_p2p_device]
+  // [Start discover_p2p_device]
   aboutToAppear() {
     // 如果wifi是开的，就记录下状态，然后扫描p2p设备，并获取连接信息
     if (!wifiManager.isWifiActive()) {
-      promptAction.showToast({ message : 'place active wifiManager' });
+      this.promptAction.showToast({
+        message: 'place active wifiManager',
+        duration: 2000
+      });
       return;
     }
     this.isSwitchOn = true;
@@ -92,11 +95,14 @@ struct WifiConnect {
     wifiManager.off('p2pPeerDeviceChange');
     wifiManager.off('p2pConnectionChange');
   }
-// [End discover_p2p_device]
+  // [End discover_p2p_device]
 
-// [Start connectP2p]
+  // [Start connectP2p]
   connectP2p(p2pScanInfo: wifiManager.WifiP2pDevice) {
-    promptAction.showToast({ message : 'connect to device' });
+    this.promptAction.showToast({
+      message: 'connect to device',
+      duration: 2000
+    });
     hilog.info(TAG , `connect deviceAddress=${ p2pScanInfo.deviceAddress }`);
     hilog.info(TAG , `p2pScanInfo:` + JSON.stringify(p2pScanInfo));
     let config: wifiManager.WifiP2PConfig = {
@@ -109,7 +115,7 @@ struct WifiConnect {
     }
     wifiManager.p2pConnect(config);
   }
-// [End connectP2p]
+  // [End connectP2p]
 
   build() {
     Column() {
@@ -131,7 +137,10 @@ struct WifiConnect {
             hilog.info(TAG , 'p2p click');
             this.selectIndex = index;
             if ( this.p2pLinkedInfo !== null && this.p2pLinkedInfo.connectState == 1 ) {
-              promptAction.showToast({ message : 'this p2p is connected' });
+              this.promptAction.showToast({
+                message: 'this p2p is connected',
+                duration: 2000
+              });
               return;
             }
             this.connectP2p(item);

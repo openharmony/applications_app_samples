@@ -15,7 +15,7 @@
 
 import hilog from '../model/Logger';
 import { TitleBar } from '../component/TitleBar';
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 const TAG = 'Index';
 
@@ -33,7 +33,6 @@ struct Index {
           .padding({ left: 15 })
           .borderRadius(5)
           .width('100%')
-          // .fontColor($r('app.color.text_color'))
           .backgroundColor($r('app.color.button_color2'))
           .onClick(() => {
             router.pushUrl({ url: 'pages/AvailableWifi' })
@@ -47,7 +46,6 @@ struct Index {
           .padding({ left: 15 })
           .borderRadius(5)
           .width('100%')
-            // .fontColor($r('app.color.text_color'))
           .backgroundColor($r('app.color.text_color'))
           .onClick(() => {
             router.pushUrl({ url: 'pages/WifiConnect' })
@@ -61,7 +59,6 @@ struct Index {
           .padding({ left: 15 })
           .borderRadius(5)
           .width('100%')
-            // .fontColor($r('app.color.text_color'))
           .backgroundColor($r('app.color.index_background'))
           .onClick(() => {
             router.pushUrl({ url: 'pages/P2pTest' })

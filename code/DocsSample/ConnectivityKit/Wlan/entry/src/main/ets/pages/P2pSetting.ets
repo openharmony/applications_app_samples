@@ -15,11 +15,11 @@
 
 
 import hilog from '../model/Logger';
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 // [Start wifiManager]
 import { wifiManager } from '@kit.ConnectivityKit';
 // [End wifiManager]
-import promptAction from '@ohos.promptAction';
+import { PromptAction } from '@kit.ArkUI';
 
 const TAG = 'p2pSetting';
 
@@ -29,8 +29,9 @@ struct p2pSetting {
   @State deviceAddress: string = '';
   @State netId: number = - 2;
   @State passphrase: string = '';
-  @State groupName: string = ''
+  @State groupName: string = '';
   @State goBand: number = 0;
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   aboutToAppear() {
     AppStorage.setOrCreate('deviceAddress' , this.deviceAddress);
@@ -40,7 +41,7 @@ struct p2pSetting {
     AppStorage.setOrCreate('goBand' , this.goBand);
   }
 
-// [Start createGroup]
+  // [Start createGroup]
   async createGroup() {
     try {
       let deviceInfo = await wifiManager.getP2pLocalDevice();
@@ -53,12 +54,15 @@ struct p2pSetting {
       }
       hilog.info(`deviceAddress: ${config.deviceAddress}, netId: ${config.netId}, pwd: ${config.passphrase}, gpname: ${config.groupName}, goBand: ${config.goBand}`);
       await wifiManager.createGroup(config);
-      promptAction.showToast({ message : 'createGroup success' });
+      this.promptAction.showToast({
+        message: 'createGroup success',
+        duration: 2000
+      });
     } catch (e) {
       hilog.info(TAG, `createGroup Error: ${JSON.stringify(e)}`);
     }
   }
-// [End createGroup] 
+  // [End createGroup] 
   build() {
     Column() {
       Row() {
@@ -169,7 +173,10 @@ struct p2pSetting {
           .onClick(() => {
             if(this.passphrase === '' || this.groupName === '') {
               hilog.info(TAG, 'ssid || preSharedKey is null');
-              promptAction.showToast({ message : 'passphrase or groupName is null' });
+              this.promptAction.showToast({
+                message: 'passphrase or groupName is null',
+                duration: 2000
+              });
               return;
             }
             this.createGroup();
@@ -180,24 +187,27 @@ struct p2pSetting {
           .width('50%')
           .onClick(() => {
             try {
-            // [Start removeGrop]
+              // [Start removeGroup]
               wifiManager.removeGroup();
-            // [End removeGrop]
+              // [End removeGroup]
               hilog.info(TAG, 'removeGroup success');
-              promptAction.showToast({ message: 'Group removed successfully'
+              this.promptAction.showToast({
+                message: 'Group removed successfully',
+                duration: 2000
               });
-         } catch (error) {
-             hilog.info(TAG, `removeGroup failed: ${JSON.stringify(error)
+            } catch (error) {
+              hilog.info(TAG, `removeGroup failed: ${JSON.stringify(error)
               }`);
-              promptAction.showToast({
-               message: 'Failed to remove group: ' + JSON.stringify(error)
-             });
-         }
-       })
-     }
-     .width('50%')  // Row 的总宽度占父容器的 50%
-     .height('60vp') // Row 的高度
-     .justifyContent(FlexAlign.SpaceBetween) // 两个按钮左右分开
-   }
- }
+              this.promptAction.showToast({
+                message: 'Failed to remove group: ' + JSON.stringify(error),
+                duration: 2000
+              });
+            }
+          })
+      }
+      .width('50%')  // Row 的总宽度占父容器的 50%
+      .height('60vp') // Row 的高度
+      .justifyContent(FlexAlign.SpaceBetween) // 两个按钮左右分开
+    }
+  }
 }
