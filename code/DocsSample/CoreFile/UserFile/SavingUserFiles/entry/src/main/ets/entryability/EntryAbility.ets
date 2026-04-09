@@ -19,8 +19,12 @@ import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    try {
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    } catch (error) {
+      console.error(`Catch err. Code: ${error.code}, message: ${error.message}`);
+    }
   }
 
   onDestroy(): void {
