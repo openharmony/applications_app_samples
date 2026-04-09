@@ -67,7 +67,7 @@ export struct P2pView {
       .layoutWeight(1)
 
       Stack({ alignContent : Alignment.BottomEnd }) {
-        Image($r('app.media.wifiManager'))
+        Image($r('app.media.wifi'))
           .height(30).width(30)
           .objectFit(ImageFit.Contain)
         if ( this.isLock ) {
