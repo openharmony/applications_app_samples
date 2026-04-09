@@ -5990,3 +5990,2000 @@ declare namespace audio {
    * @since 9
    */
   /**
+   * Describes the volume event received by the app when the volume is changed.
+   * @typedef VolumeEvent
+   * @syscap SystemCapability.Multimedia.Audio.Volume
+   * @crossplatform
+   * @since 12
+   */
+  interface VolumeEvent {
+    /**
+     * Volume type of the current stream.
+     * @type { AudioVolumeType }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @since 9
+     */
+    volumeType: AudioVolumeType;
+    /**
+     * Volume level.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @since 9
+     */
+    /**
+     * Volume level.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @crossplatform
+     * @since 12
+     */
+    volume: number;
+    /**
+     * Whether to show the volume change in UI.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @since 9
+     */
+    updateUi: boolean;
+    /**
+     * volumeGroup id
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @systemapi
+     * @since 9
+     */
+    volumeGroupId: number;
+    /**
+     * Device network id
+     * @type { string }
+     * @syscap SystemCapability.Multimedia.Audio.Volume
+     * @systemapi
+     * @since 9
+     */
+    networkId: string;
+  }
+
+  /**
+   * Describes the callback invoked for audio interruption or focus gain events.When the audio of an application
+   * is interrupted by another application, the callback is invoked to notify the former application.
+   * @typedef InterruptAction
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @since 7
+   * @deprecated since 9
+   * @useinstead ohos.multimedia.audio.InterruptEvent
+   */
+  interface InterruptAction {
+
+    /**
+     * Event type.
+     * The value TYPE_ACTIVATED means the focus gain event, and TYPE_INTERRUPT means the audio interruption event.
+     * @type { InterruptActionType }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    actionType: InterruptActionType;
+
+    /**
+     * Type of the audio interruption event.
+     * @type { ?InterruptType }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    type?: InterruptType;
+
+    /**
+     * Hint for the audio interruption event.
+     * @type { ?InterruptHint }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    hint?: InterruptHint;
+
+    /**
+     * Whether the focus is gained or released. The value true means that the focus is gained or released,
+     * and false means that the focus fails to be gained or released.
+     * @type { ?boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    activated?: boolean;
+  }
+
+  /**
+   * Describes input parameters of audio listening events.
+   * @typedef AudioInterrupt
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @since 7
+   * @deprecated since 9
+   */
+  interface AudioInterrupt {
+
+    /**
+     * Audio stream usage type.
+     * @type { StreamUsage }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    streamUsage: StreamUsage;
+
+    /**
+     * Type of the media interrupted.
+     * @type { ContentType }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    contentType: ContentType;
+
+    /**
+     * Whether audio playback can be paused when it is interrupted.
+     * The value true means that audio playback can be paused when it is interrupted, and false means the opposite.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 7
+     * @deprecated since 9
+     */
+    pauseWhenDucked: boolean;
+  }
+
+  /**
+   * Describes the microphone state change event received by the app when the microphone state is changed.
+   * @typedef MicStateChangeEvent
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @since 9
+   */
+  interface MicStateChangeEvent {
+    /**
+     * Mic mute state.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 9
+     */
+    mute: boolean;
+  }
+  /**
+   * Describes the device change type and device information.
+   * @typedef DeviceChangeAction
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @since 7
+   */
+  /**
+   * Describes the device change type and device information.
+   * @typedef DeviceChangeAction
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @crossplatform
+   * @since 12
+   */
+  interface DeviceChangeAction {
+    /**
+     * Device change type.
+     * @type { DeviceChangeType }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 7
+     */
+    /**
+     * Device change type.
+     * @type { DeviceChangeType }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    type: DeviceChangeType;
+
+    /**
+     * Device information.
+     * @type { AudioDeviceDescriptors }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 7
+     */
+    /**
+     * Device information.
+     * @type { AudioDeviceDescriptors }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    deviceDescriptors: AudioDeviceDescriptors;
+  }
+
+  /**
+   * Enumerates channel blend mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @since 11
+   */
+  /**
+   * Enumerates channel blend mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @crossplatform
+   * @since 12
+   */
+  enum ChannelBlendMode {
+    /**
+     * No channel process.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * No channel process.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    MODE_DEFAULT = 0,
+    /**
+     * Blend left and right channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Blend left and right channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    MODE_BLEND_LR = 1,
+    /**
+     * Replicate left to right channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Replicate left to right channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    MODE_ALL_LEFT = 2,
+    /**
+     * Replicate right to left channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Replicate right to left channel.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    MODE_ALL_RIGHT = 3,
+  }
+
+  /**
+   * Enumerates audio stream device change reason.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @since 11
+   */
+  /**
+   * Enumerates audio stream device change reason.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum AudioStreamDeviceChangeReason {
+    /**
+     * Unknown.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Unknown.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    REASON_UNKNOWN = 0,
+    /**
+     * New device available.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * New device available.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    REASON_NEW_DEVICE_AVAILABLE = 1,
+    /**
+     * Old device unavailable. Applications should consider to pause the audio playback when this reason is
+     * reported.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Old device unavailable. Applications should consider to pause the audio playback when this reason is
+     * reported.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    REASON_OLD_DEVICE_UNAVAILABLE = 2,
+    /**
+     * Overrode by user or system.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Overrode by user or system.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    REASON_OVERRODE = 3,
+  }
+  /**
+   * Audio stream device change info.
+   * @typedef AudioStreamDeviceChangeInfo
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @since 11
+   */
+  /**
+   * Audio stream device change info.
+   * @typedef AudioStreamDeviceChangeInfo
+   * @syscap SystemCapability.Multimedia.Audio.Device
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AudioStreamDeviceChangeInfo {
+    /**
+     * Audio device descriptors after change.
+     * @type { AudioDeviceDescriptors }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Audio device descriptors after change.
+     * @type { AudioDeviceDescriptors }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    devices: AudioDeviceDescriptors;
+    /**
+     * Audio stream device change reason.
+     * @type { AudioStreamDeviceChangeReason }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Audio stream device change reason.
+     * @type { AudioStreamDeviceChangeReason }
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    changeReason: AudioStreamDeviceChangeReason;
+  }
+
+  /**
+   * Enumerates callback result.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @crossplatform
+   * @since 12
+   */
+  enum AudioDataCallbackResult {
+    /**
+     * Indicates data of this callback is invalid.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    INVALID = -1,
+
+    /**
+     * Indicates data of this callback is valid.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    VALID = 0,
+  }
+
+  /**
+   * Type definition of callback function for audio renderer write data.
+   *
+   * @typedef { function } AudioRendererWriteDataCallback
+   * @param { ArrayBuffer } data - audio data array buffer.
+   * @returns { AudioDataCallbackResult | void } result of callback or void. If void or AudioDataCallbackResult.VALID is
+   * returned, it indicates the data is valid and will be played. If AudioDataCallbackResult.INVALID is returned, it
+   * indicates the data is will not be played.
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @crossplatform
+   * @since 12
+   */
+  type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void;
+
+  /**
+   * Provides audio playback APIs.
+   * @typedef AudioRenderer
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @since 8
+   */
+  /**
+   * Provides audio playback APIs.
+   * @typedef AudioRenderer
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @crossplatform
+   * @since 12
+   */
+  interface AudioRenderer {
+    /**
+     * Defines the current render state.
+     * @type { AudioState }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Defines the current render state.
+     * @type { AudioState }
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    readonly state: AudioState;
+
+    /**
+     * Obtains the renderer information provided while creating a renderer instance. This method uses an asynchronous
+     * callback to return the result.
+     * @param { AsyncCallback<AudioRendererInfo> } callback - Callback used to return the renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the renderer information provided while creating a renderer instance. This method uses an asynchronous
+     * callback to return the result.
+     * @param { AsyncCallback<AudioRendererInfo> } callback - Callback used to return the renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getRendererInfo(callback: AsyncCallback<AudioRendererInfo>): void;
+    /**
+     * Obtains the renderer information provided while creating a renderer instance. This method uses a promise to
+     * return the result.
+     * @returns { Promise<AudioRendererInfo> } Promise used to return the renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the renderer information provided while creating a renderer instance. This method uses a promise to
+     * return the result.
+     * @returns { Promise<AudioRendererInfo> } Promise used to return the renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getRendererInfo(): Promise<AudioRendererInfo>;
+    /**
+     * Obtains the renderer information provided while creating a renderer instance.
+     * @returns { AudioRendererInfo } The renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Obtains the renderer information provided while creating a renderer instance.
+     * @returns { AudioRendererInfo } The renderer information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getRendererInfoSync(): AudioRendererInfo;
+
+    /**
+     * Obtains the renderer stream information. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioStreamInfo> } callback - Callback used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the renderer stream information. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioStreamInfo> } callback - Callback used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    /**
+     * Obtains the renderer stream information. This method uses a promise to return the result.
+     * @returns { Promise<AudioStreamInfo> } Promise used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the renderer stream information. This method uses a promise to return the result.
+     * @returns { Promise<AudioStreamInfo> } Promise used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfo(): Promise<AudioStreamInfo>;
+    /**
+     * Obtains the renderer stream information.
+     * @returns { AudioStreamInfo } The stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Obtains the renderer stream information.
+     * @returns { AudioStreamInfo } The stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfoSync(): AudioStreamInfo;
+
+    /**
+     * Obtains the renderer stream id. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 9
+     */
+    /**
+     * Obtains the renderer stream id. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamId(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains the renderer stream id. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 9
+     */
+    /**
+     * Obtains the renderer stream id. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamId(): Promise<number>;
+    /**
+     * Obtains the renderer stream id.
+     * @returns { number } The stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Obtains the renderer stream id.
+     * @returns { number } The stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamIdSync(): number;
+
+    /**
+     * Obtains the current audio effect mode. This method uses an asynchronous callback to return the query result.
+     * @param { AsyncCallback<AudioEffectMode> } callback - Callback used to return the current audio effect mode.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    getAudioEffectMode(callback: AsyncCallback<AudioEffectMode>): void;
+    /**
+     * Obtains the current audio effect mode. This method uses a promise to return the query result.
+     * @returns { Promise<AudioEffectMode> } Promise used to return the current audio effect mode.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    getAudioEffectMode(): Promise<AudioEffectMode>;
+
+    /**
+     * Sets the current audio effect mode. This method uses an asynchronous callback to return the result.
+     * @param { AudioEffectMode } mode - Audio effect mode.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed. Return by callback.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback<void>): void;
+    /**
+     * Sets the current audio effect mode. This method uses a promise to return the result.
+     * @param { AudioEffectMode } mode - Audio effect mode.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed. Return by promise.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    setAudioEffectMode(mode: AudioEffectMode): Promise<void>;
+
+    /**
+     * Starts the renderer.
+     * Success: This method uses an asynchronous callback to return the result.
+     * Failure: This method uses an asynchronous callback to return the error instance. Possible causes:
+     *          6800301: Unsupported state, Audio focus request failed, System error.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Starts the renderer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    start(callback: AsyncCallback<void>): void;
+    /**
+     * Starts the renderer.
+     * Success: This method uses a promise to return the result.
+     * Failure: This method uses a promise to return the error instance. Possible causes:
+     *          6800301: Unsupported state, Audio focus request failed, System error.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Starts the renderer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    start(): Promise<void>;
+
+    /**
+     * Writes the buffer. This method uses an asynchronous callback to return the result.
+     * @param { ArrayBuffer } buffer - Buffer to be written.
+     * @param { AsyncCallback<number> } callback - Returns the number of bytes written if the operation is successful.
+     *        Returns an error code otherwise.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#event:writeData
+     */
+    write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;
+    /**
+     * Writes the buffer. This method uses a promise to return the result.
+     * @param { ArrayBuffer } buffer - Buffer to be written.
+     * @returns { Promise<number> } Returns the number of bytes written if the operation is successful.
+     *          Returns an error code otherwise.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#event:writeData
+     */
+    write(buffer: ArrayBuffer): Promise<number>;
+
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an
+     * asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an
+     * asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTime(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a
+     * promise to return the result.
+     * @returns { Promise<number> } Promise used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a
+     * promise to return the result.
+     * @returns { Promise<number> } Promise used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTime(): Promise<number>;
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds.
+     * @returns { number } The audio timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds.
+     * @returns { number } The audio timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTimeSync(): number;
+
+    /**
+     * Drains the playback buffer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Drains the playback buffer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    drain(callback: AsyncCallback<void>): void;
+    /**
+     * Drains the playback buffer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Drains the playback buffer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    drain(): Promise<void>;
+
+    /**
+     * Flushes the playback buffer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @throws { BusinessError } 6800103 - Operation not permit at current state. Return by promise.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Flushes the playback buffer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @throws { BusinessError } 6800103 - Operation not permit at current state. Return by promise.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    flush(): Promise<void>;
+
+    /**
+     * Pauses rendering. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Pauses rendering. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    pause(callback: AsyncCallback<void>): void;
+    /**
+     * Pauses rendering. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Pauses rendering. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    pause(): Promise<void>;
+
+    /**
+     * Stops rendering. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Stops rendering. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    stop(callback: AsyncCallback<void>): void;
+    /**
+     * Stops rendering. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Stops rendering. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    stop(): Promise<void>;
+
+    /**
+     * Releases the renderer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Releases the renderer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    release(callback: AsyncCallback<void>): void;
+    /**
+     * Releases the renderer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Releases the renderer. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    release(): Promise<void>;
+
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering. This method uses an asynchronous callback to
+     * return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering. This method uses an asynchronous callback to
+     * return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSize(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSize(): Promise<number>;
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering.
+     * @returns { number } The audio buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for rendering.
+     * @returns { number } The audio buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSizeSync(): number;
+
+    /**
+     * Sets the render rate. This method uses an asynchronous callback to return the result.
+     * @param { AudioRendererRate } rate - Audio render rate.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#setSpeed
+     */
+    setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;
+
+    /**
+     * Sets the render rate. This method uses a promise to return the result.
+     * @param { AudioRendererRate } rate - Audio render rate.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#setSpeed
+     */
+    setRenderRate(rate: AudioRendererRate): Promise<void>;
+
+    /**
+     * Sets the playback speed.
+     * @param { number } speed -  Audio playback speed. The value type is float, form 0.25 to 4.0.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Sets the playback speed.
+     * @param { number } speed -  Audio playback speed. The value type is float, form 0.25 to 4.0.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    setSpeed(speed: number): void;
+
+    /**
+     * Obtains the current render rate. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioRendererRate> } callback - Callback used to return the audio render rate.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#getSpeed
+     */
+    getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
+
+    /**
+     * Obtains the current render rate. This method uses a promise to return the result.
+     * @returns { Promise<AudioRendererRate> } Promise used to return the audio render rate.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#getSpeed
+     */
+    getRenderRate(): Promise<AudioRendererRate>;
+
+    /**
+     * Obtains the current render rate.
+     * @returns { AudioRendererRate } The audio render rate.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioRenderer#getSpeed
+     */
+    getRenderRateSync(): AudioRendererRate;
+
+    /**
+     * Obtains the current playback speed.
+     * @returns { number } The playback speed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Obtains the current playback speed.
+     * @returns { number } The playback speed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getSpeed(): number;
+
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 9
+     */
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    setInterruptMode(mode: InterruptMode, callback: AsyncCallback<void>): void;
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 9
+     */
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    setInterruptMode(mode: InterruptMode): Promise<void>;
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 10
+     */
+    /**
+     * Set interrupt mode.
+     * @param { InterruptMode } mode - The interrupt mode.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    setInterruptModeSync(mode: InterruptMode): void;
+
+    /**
+     * Sets the volume for this stream. This method uses an asynchronous callback to return the result.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 9
+     */
+    /**
+     * Sets the volume for this stream. This method uses an asynchronous callback to return the result.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    setVolume(volume: number, callback: AsyncCallback<void>): void;
+    /**
+     * Sets the volume for a stream. This method uses a promise to return the result.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 9
+     */
+    /**
+     * Sets the volume for a stream. This method uses a promise to return the result.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    setVolume(volume: number): Promise<void>;
+
+    /**
+     * Gets volume of this stream.
+     * @returns { number } Returns one float value.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 12
+     */
+    getVolume(): number;
+
+    /**
+     * Changes the volume with ramp for a duration.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @param { number } duration -  Duration for volume ramp, in millisecond.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Changes the volume with ramp for a duration.
+     * @param { number } volume - Volume to set. The value type is float, form 0.0 to 1.0.
+     * @param { number } duration -  Duration for volume ramp, in millisecond.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    setVolumeWithRamp(volume: number, duration: number): void;
+
+    /**
+     * Gets the min volume this stream can set. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the min volume this stream can set. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMinStreamVolume(callback: AsyncCallback<number>): void;
+    /**
+     * Gets the min volume this stream can set. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the min volume this stream can set. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMinStreamVolume(): Promise<number>;
+    /**
+     * Gets the min volume this stream can set.
+     * @returns { number } Min stream volume.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the min volume this stream can set.
+     * @returns { number } Min stream volume.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMinStreamVolumeSync(): number;
+
+    /**
+     * Gets the max volume this stream can set. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the max volume this stream can set. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMaxStreamVolume(callback: AsyncCallback<number>): void;
+    /**
+     * Gets the max volume this stream can set. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the max volume this stream can set. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMaxStreamVolume(): Promise<number>;
+    /**
+     * Gets the max volume this stream can set.
+     * @returns { number } Max stream volume.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets the max volume this stream can set.
+     * @returns { number } Max stream volume.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getMaxStreamVolumeSync(): number;
+
+    /**
+     * Gets buffer underflow count. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets buffer underflow count. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getUnderflowCount(callback: AsyncCallback<number>): void;
+    /**
+     * Gets buffer underflow count. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets buffer underflow count. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getUnderflowCount(): Promise<number>;
+    /**
+     * Gets buffer underflow count.
+     * @returns { number } Underflow count number.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Gets buffer underflow count.
+     * @returns { number } Underflow count number.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    getUnderflowCountSync(): number;
+
+    /**
+     * Gets the output device or devices for this stream.
+     * This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioDeviceDescriptors> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 10
+     */
+    /**
+     * Gets the output device or devices for this stream.
+     * This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioDeviceDescriptors> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    getCurrentOutputDevices(callback: AsyncCallback<AudioDeviceDescriptors>): void;
+    /**
+     * Gets the output device or devices for this stream.
+     * This method uses a promise to return the result.
+     * @returns { Promise<AudioDeviceDescriptors> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 10
+     */
+    /**
+     * Gets the output device or devices for this stream.
+     * This method uses a promise to return the result.
+     * @returns { Promise<AudioDeviceDescriptors> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    getCurrentOutputDevices(): Promise<AudioDeviceDescriptors>;
+    /**
+     * Gets the output device or devices for this stream.
+     * @returns { AudioDeviceDescriptors } Output device or devices.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 10
+     */
+    /**
+     * Gets the output device or devices for this stream.
+     * @returns { AudioDeviceDescriptors } Output device or devices.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    getCurrentOutputDevicesSync(): AudioDeviceDescriptors;
+
+    /**
+     * Sets channel blend mode for this stream.
+     * @param { ChannelBlendMode } mode - Target channel blend mode.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800103 - Operation not permit at current state.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Sets channel blend mode for this stream.
+     * @param { ChannelBlendMode } mode - Target channel blend mode.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800103 - Operation not permit at current state.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    setChannelBlendMode(mode: ChannelBlendMode): void;
+
+    /**
+     * Sets silent and mix with other stream for this stream.
+     * @param { boolean } on - Whether play silent and mix with other streams.
+     *     true: set the silent mode and mix with other streams.
+     *     false: unset the silent mode, current stream will trigger the audio focus internally.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 12
+     */
+    setSilentModeAndMixWithOthers(on: boolean): void;
+
+    /**
+     * Gets silent and mix with other stream status for this stream.
+     * @returns { boolean } Returns silent and mix with other stream status.
+     *     true: current stream is in the silent mode and mix with other streams.
+     *     false: current stream in in the normal playback mode
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 12
+     */
+    getSilentModeAndMixWithOthers(): boolean;
+
+    /**
+     * Temporarily changes the current audio device
+     * This function applys on audiorenderers whose StreamUsage are
+     * STREAM_USAGE_VOICE_COMMUNICATIN/STREAM_USAGE_VIDEO_COMMUNICATION/STREAM_USAGE_VOICE_MESSAGE.
+     * Setting the device will only takes effect if no other accessory such as headphones are in use
+     * @param { DeviceType } deviceType - the available deviceTypes are
+     *                                    EARPIECE: Built-in earpiece
+     *                                    SPEAKER: Built-in speaker
+     *                                    DEFAULT: System default output device
+     * @returns { Promise<void> } Promise used to return the result.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800103 - Operation not permit at current state.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 12
+     */
+    setDefaultOutputDevice(deviceType: DeviceType): Promise<void>;
+
+    /**
+     * Listens for audio interrupt events. This method uses a callback to get interrupt events. The interrupt event is
+     * triggered when audio playback is interrupted.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @param { Callback<InterruptEvent> } callback - Callback used to listen for interrupt callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 9
+     */
+    /**
+     * Listens for audio interrupt events. This method uses a callback to get interrupt events. The interrupt event is
+     * triggered when audio playback is interrupted.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @param { Callback<InterruptEvent> } callback - Callback used to listen for interrupt callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'audioInterrupt', callback: Callback<InterruptEvent>): void;
+
+    /**
+     * Subscribes to mark reached events. When the number of frames rendered reaches the value of the frame parameter,
+     * the callback is invoked.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @param { number } frame - Number of frames to trigger the event. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Subscribes to mark reached events. When the number of frames rendered reaches the value of the frame parameter,
+     * the callback is invoked.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @param { number } frame - Number of frames to trigger the event. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'markReach', frame: number, callback: Callback<number>): void;
+    /**
+     * Unsubscribes from mark reached events.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Unsubscribes from mark reached events.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'markReach'): void;
+
+    /**
+     * Subscribes to period reached events. When the period of frame rendering reaches the value of frame parameter,
+     * the callback is invoked.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @param { number } frame - Period during which frame rendering is listened. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Subscribes to period reached events. When the period of frame rendering reaches the value of frame parameter,
+     * the callback is invoked.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @param { number } frame - Period during which frame rendering is listened. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'periodReach', frame: number, callback: Callback<number>): void;
+    /**
+     * Unsubscribes from period reached events.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Unsubscribes from period reached events.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'periodReach'): void;
+
+    /**
+     * Subscribes audio state change event callback.
+     * @param { 'stateChange' } type - Type of the event to listen for. Only the stateChange event is supported.
+     * @param { Callback<AudioState> } callback - Callback invoked when state change.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 8
+     */
+    /**
+     * Subscribes audio state change event callback.
+     * @param { 'stateChange' } type - Type of the event to listen for. Only the stateChange event is supported.
+     * @param { Callback<AudioState> } callback - Callback invoked when state change.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'stateChange', callback: Callback<AudioState>): void;
+
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'outputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 10
+     */
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'outputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors>): void;
+
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'outputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'outputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'outputDeviceChangeWithInfo', callback: Callback<AudioStreamDeviceChangeInfo>): void;
+
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'outputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 10
+     */
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'outputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors>): void;
+
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'outputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<AudioStreamDeviceChangeInfo> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'outputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<AudioStreamDeviceChangeInfo> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'outputDeviceChangeWithInfo', callback?: Callback<AudioStreamDeviceChangeInfo>): void;
+
+    /**
+     * Subscribes audio data callback.
+     * The event is triggered when audio buffer is available for writing more data.
+     * @param { 'writeData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback with buffer to write.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Subscribes audio data callback.
+     * The event is triggered when audio buffer is available for writing more data.
+     * @param { 'writeData' } type - Type of the event to listen for.
+     * @param { AudioRendererWriteDataCallback } callback - Audio renderer write data callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'writeData', callback: AudioRendererWriteDataCallback): void;
+
+    /**
+     * Unsubscribes audio data callback.
+     * @param { 'writeData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 11
+     */
+    /**
+     * Unsubscribes audio data callback.
+     * @param { 'writeData' } type - Type of the event to listen for.
+     * @param { AudioRendererWriteDataCallback } callback - Audio renderer write data callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void;
+  }
+
+  /**
+   * Enumerates source types.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @since 8
+   */
+  /**
+   * Enumerates source types.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @crossplatform
+   * @since 12
+   */
+  enum SourceType {
+    /**
+     * Invalid source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 8
+     */
+    SOURCE_TYPE_INVALID = -1,
+    /**
+     * Mic source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 8
+     */
+    /**
+     * Mic source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    SOURCE_TYPE_MIC = 0,
+    /**
+     * Voice recognition source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 9
+     */
+    /**
+     * Voice recognition source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    SOURCE_TYPE_VOICE_RECOGNITION = 1,
+    /**
+     * Playback capture source type.
+     * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+     * @since 10
+     * @deprecated since 12
+     * @useinstead OH_AVScreenCapture in native interface.
+     */
+    SOURCE_TYPE_PLAYBACK_CAPTURE = 2,
+    /**
+     * Wakeup source type.
+     * Permission ohos.permission.MANAGE_INTELLIGENT_VOICE is needed when calling createAudioCapturer with this type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @systemapi
+     * @since 10
+     */
+    SOURCE_TYPE_WAKEUP = 3,
+
+    /**
+     * Voice call source type.
+     * Permission ohos.permission.RECORD_VOICE_CALL is needed when calling createAudioCapturer with this type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @systemapi
+     * @since 11
+     */
+    SOURCE_TYPE_VOICE_CALL = 4,
+
+    /**
+     * Voice communication source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 8
+     */
+    /**
+     * Voice communication source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    SOURCE_TYPE_VOICE_COMMUNICATION = 7,
+
+    /**
+     * Voice message source type.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 12
+     */
+    SOURCE_TYPE_VOICE_MESSAGE = 10,
+  }
+
+  /**
+   * Describes audio capturer information.
+   * @typedef AudioCapturerInfo
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @since 8
+   */
+  /**
+   * Describes audio capturer information.
+   * @typedef AudioCapturerInfo
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @crossplatform
+   * @since 12
+   */
+  interface AudioCapturerInfo {
+    /**
+     * Audio source type.
+     * @type { SourceType }
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 8
+     */
+    /**
+     * Audio source type.
+     * @type { SourceType }
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    source: SourceType;
+    /**
+     * Audio capturer flags.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 8
+     */
+    /**
+     * Audio capturer flags.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    capturerFlags: number;
+  }
+
+  /**
+   * Describes audio capturer configuration options.
+   * @typedef AudioCapturerOptions
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @since 8
+   */
+  /**
+   * Describes audio capturer configuration options.
+   * @typedef AudioCapturerOptions
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @crossplatform
+   * @since 12
+   */
+  interface AudioCapturerOptions {
+    /**
+     * Stream information.
+     * @type { AudioStreamInfo }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Stream information.
+     * @type { AudioStreamInfo }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    streamInfo: AudioStreamInfo;
+    /**
+     * Capturer information.
+     * @type { AudioCapturerInfo }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Capturer information.
+     * @type { AudioCapturerInfo }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    capturerInfo: AudioCapturerInfo;
+    /**
+     * Playback capture config.
+     * @type { ?AudioPlaybackCaptureConfig }
+     * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+     * @since 10
+     * @deprecated since 12
+     * @useinstead OH_AVScreenCapture in native interface.
+     */
+    playbackCaptureConfig?: AudioPlaybackCaptureConfig;
+  }
+
+  /**
+   * Describe playback capture filtering options
+   * @typedef CaptureFilterOptions
+   * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+   * @since 10
+   * @deprecated since 12
+   * @useinstead OH_AVScreenCapture in native interface.
+   */
+  interface CaptureFilterOptions {
+    /**
+     * Filter by stream usages. If you want to capture voice streams, additional permission is needed.
+     * @type { Array<StreamUsage> }
+     * @permission ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+     * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+     * @since 10
+     */
+    /**
+     * Filter by stream usages. But not allow to capture voice streams.
+     * @type { Array<StreamUsage> }
+     * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+     * @since 11
+     * @deprecated since 12
+     * @useinstead OH_AVScreenCapture in native interface.
+     */
+    usages: Array<StreamUsage>;
+  }
+
+  /**
+   * Describe playback capture config object.
+   * @typedef AudioPlaybackCaptureConfig
+   * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+   * @since 10
+   * @deprecated since 12
+   * @useinstead OH_AVScreenCapture in native interface.
+   */
+  interface AudioPlaybackCaptureConfig {
+    /**
+     * Add filter options to decide which streams to be captured.
+     * @type { CaptureFilterOptions }
+     * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
+     * @since 10
+     * @deprecated since 12
+     * @useinstead OH_AVScreenCapture in native interface.
+     */
+    filterOptions: CaptureFilterOptions;
+  }
+
+  /**
+   * Provides APIs for audio recording.
+   * @typedef AudioCapturer
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @since 8
+   */
+  /**
+   * Provides APIs for audio recording.
+   * @typedef AudioCapturer
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @crossplatform
+   * @since 12
+   */
+  interface AudioCapturer {
+    /**
+     * Defines the current capture state.
+     * @type { AudioState }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Defines the current capture state.
+     * @type { AudioState }
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    readonly state: AudioState;
+
+    /**
+     * Obtains the capturer information provided while creating a capturer instance. This method uses an asynchronous
+     * callback to return the result.
+     * @param { AsyncCallback<AudioCapturerInfo> } callback - Callback used to return the capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the capturer information provided while creating a capturer instance. This method uses an asynchronous
+     * callback to return the result.
+     * @param { AsyncCallback<AudioCapturerInfo> } callback - Callback used to return the capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo>): void;
+    /**
+     * Obtains the capturer information provided while creating a capturer instance. This method uses a promise to
+     * return the result.
+     * @returns { Promise<AudioCapturerInfo> } Promise used to return the capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the capturer information provided while creating a capturer instance. This method uses a promise to
+     * return the result.
+     * @returns { Promise<AudioCapturerInfo> } Promise used to return the capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getCapturerInfo(): Promise<AudioCapturerInfo>;
+    /**
+     * Obtains the capturer information provided while creating a capturer instance.
+     * @returns { AudioCapturerInfo } The capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 10
+     */
+    /**
+     * Obtains the capturer information provided while creating a capturer instance.
+     * @returns { AudioCapturerInfo } The capturer information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getCapturerInfoSync(): AudioCapturerInfo;
+
+    /**
+     * Obtains the capturer stream information. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioStreamInfo> } callback - Callback used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the capturer stream information. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<AudioStreamInfo> } callback - Callback used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;
+    /**
+     * Obtains the capturer stream information. This method uses a promise to return the result.
+     * @returns { Promise<AudioStreamInfo> } Promise used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the capturer stream information. This method uses a promise to return the result.
+     * @returns { Promise<AudioStreamInfo> } Promise used to return the stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfo(): Promise<AudioStreamInfo>;
+    /**
+     * Obtains the capturer stream information.
+     * @returns { AudioStreamInfo } The stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 10
+     */
+    /**
+     * Obtains the capturer stream information.
+     * @returns { AudioStreamInfo } The stream information.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getStreamInfoSync(): AudioStreamInfo;
+
+    /**
+     * Obtains the capturer stream id. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 9
+     */
+    /**
+     * Obtains the capturer stream id. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamId(callback: AsyncCallback<number>): void;
