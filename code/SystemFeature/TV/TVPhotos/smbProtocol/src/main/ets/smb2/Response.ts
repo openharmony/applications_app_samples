@@ -1,0 +1,44 @@
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import Header from './Header';
+import Packet from './Packet';
+import HeaderFlag from './HeaderFlag';
+import ProtocolResponse from '../Response';
+import buffer from '@ohos.buffer';
+
+export default class Response extends ProtocolResponse {
+  declare header: Header;
+  typeName: string;
+  data: any;
+
+  constructor(header?: Header, body?: any) {
+    super(header, body);
+    this.header.flags |= HeaderFlag.Response;
+    this.typeName = Packet.getPacketTypeName(this.header.type);
+    const packet = Packet.getPacketByPacketType(this.header.type);
+    if (buffer.isBuffer(this.body.buffer) && packet.parseResponseBuffer) {
+      this.data = packet.parseResponseBuffer(this.body.buffer);
+    }
+  }
+
+  static parse(buf: buffer.Buffer) {
+    const { header, body } = Packet.parse(buf);
+    return new Response(header, body);
+  }
+
+  serialize() {
+    return Packet.serialize(this.header, this.body);
+  }
+}
