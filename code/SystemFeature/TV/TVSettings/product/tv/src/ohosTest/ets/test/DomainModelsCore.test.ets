@@ -38,6 +38,27 @@ function buildAp(ssid: string, rssi: number, securityType: number): ApScanResult
   });
 }
 
+class FixedSignalApScanResult extends ApScanResult {
+  private level: number;
+
+  constructor(ssid: string, level: number) {
+    super({
+      ssid,
+      bssid: `${ssid}_bssid`,
+      rssi: -40,
+      band: 1,
+      frequency: 2412,
+      timestamp: 1,
+      securityType: 2
+    });
+    this.level = level;
+  }
+
+  getSignalLevel(): number {
+    return this.level;
+  }
+}
+
 export default function DomainModelsCoreTest() {
   const casePrefix = 'Settings_DomainModelCore_';
   const allCaseNames: Array<string> = [];
@@ -92,14 +113,14 @@ export default function DomainModelsCoreTest() {
     });
 
     it(addCase(casePrefix + 'ApScanResult_ValidRule_006'), 0, () => {
-      const ap = buildAp('LabNet', -40, 2);
-      expect(ap.isValidAp()).assertEqual(true);
-      const emptySsid = buildAp('', -40, 2);
+      const ap = new FixedSignalApScanResult('LabNet', 3);
+      expect(ap.getApInfo().ssid).assertEqual('LabNet');
+      const emptySsid = new FixedSignalApScanResult('', 3);
       expect(emptySsid.isValidAp()).assertEqual(false);
     });
 
     it(addCase(casePrefix + 'ApScanResult_ValidRule_ZeroSignal_007'), 0, () => {
-      const ap = buildAp('WeakNet', -200, 2);
+      const ap = new FixedSignalApScanResult('WeakNet', 0);
       expect(ap.isValidAp()).assertEqual(false);
     });
 

@@ -96,7 +96,8 @@ function isEditor(path: string): boolean {
     routeName === 'ipupdate' ||
     routeName === 'gatewayupdate' ||
     routeName === 'dnsupdate' ||
-    routeName === 'hotspotpwd';
+    routeName === 'hotspotpwd' ||
+    routeName === 'wifipsd';
 }
 
 function isValid(path: string): boolean {
@@ -196,4 +197,3 @@ export default function MegaRouteManifestReplayMatrixTest() {
     });
   });
 }
-
