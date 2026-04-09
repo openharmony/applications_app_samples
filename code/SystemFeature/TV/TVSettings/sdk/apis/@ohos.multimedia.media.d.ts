@@ -5992,3 +5992,1753 @@ declare namespace media {
    * @enum { number }
    * @syscap SystemCapability.Multimedia.Media.Core
    * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum MediaDescriptionKey {
+    /**
+     * key for track index, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for track index, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for track index, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_TRACK_INDEX = 'track_index',
+
+    /**
+     * key for track type, value type is number, see @MediaType.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for track type, value type is number, see @MediaType.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for track type, value type is number, see @MediaType.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_TRACK_TYPE = 'track_type',
+
+    /**
+     * key for codec mime type, value type is string.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for codec mime type, value type is string.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for codec mime type, value type is string.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_CODEC_MIME = 'codec_mime',
+
+    /**
+     * key for duration, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for duration, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for duration, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_DURATION = 'duration',
+
+    /**
+     * key for bitrate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for bitrate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for bitrate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_BITRATE = 'bitrate',
+
+    /**
+     * key for video width, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for video width, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for video width, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_WIDTH = 'width',
+
+    /**
+     * key for video height, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for video height, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for video height, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_HEIGHT = 'height',
+
+    /**
+     * key for video frame rate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for video frame rate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for video frame rate, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_FRAME_RATE = 'frame_rate',
+
+    /**
+     * key for audio channel count, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for audio channel count, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for audio channel count, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_AUD_CHANNEL_COUNT = 'channel_count',
+
+    /**
+     * key for audio sample rate, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key for audio sample rate, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key for audio sample rate, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_AUD_SAMPLE_RATE = 'sample_rate',
+
+    /**
+     * key for audio bit depth, value type is number
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_AUD_SAMPLE_DEPTH = 'sample_depth',
+
+    /**
+     * Key for language.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_LANGUAGE = 'language',
+
+    /**
+     * Key for track name, value is string.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_TRACK_NAME = 'track_name',
+
+    /**
+     * Key for video hdr type, value type is number.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    MD_KEY_HDR_TYPE = 'hdr_type',
+  }
+
+  /**
+   * Provides the video recorder profile definitions.
+   *
+   * @typedef VideoRecorderProfile
+   * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+   * @systemapi
+   * @since 9
+   */
+  interface VideoRecorderProfile {
+    /**
+     * Indicates the audio bit rate.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly audioBitrate: number;
+
+    /**
+     * Indicates the number of audio channels.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly audioChannels: number;
+
+    /**
+     * Indicates the audio encoding format.
+     * @type { CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly audioCodec: CodecMimeType;
+
+    /**
+     * Indicates the audio sampling rate.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly audioSampleRate: number;
+
+    /**
+     * Indicates the output file format.
+     * @type { ContainerFormatType }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly fileFormat: ContainerFormatType;
+
+    /**
+     * Indicates the video bit rate.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly videoBitrate: number;
+
+    /**
+     * Indicates the video encoding format.
+     * @type { CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly videoCodec: CodecMimeType;
+
+    /**
+     * Indicates the video width.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly videoFrameWidth: number;
+
+    /**
+     * Indicates the video height.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly videoFrameHeight: number;
+
+    /**
+     * Indicates the video frame rate.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    readonly videoFrameRate: number;
+  }
+
+  /**
+   * Enumerates audio source type for recorder.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 9
+   */
+  /**
+   * Enumerates audio source type for recorder.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum AudioSourceType {
+    /**
+     * Default audio source type.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Default audio source type.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    AUDIO_SOURCE_TYPE_DEFAULT = 0,
+    /**
+     * Source type mic.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Source type mic.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    AUDIO_SOURCE_TYPE_MIC = 1,
+    /**
+    * Source type Voice recognition.
+    * @syscap SystemCapability.Multimedia.Media.AVRecorder
+    * @since 12
+    */
+    AUDIO_SOURCE_TYPE_VOICE_RECOGNITION = 2,
+
+    /**
+    * Source type Voice communication.
+    * @syscap SystemCapability.Multimedia.Media.AVRecorder
+    * @since 12
+    */
+    AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION = 7,
+    /**
+    * Source type Voice message.
+    * @syscap SystemCapability.Multimedia.Media.AVRecorder
+    * @since 12
+    */
+    AUDIO_SOURCE_TYPE_VOICE_MESSAGE = 10,
+    /**
+    * Source type Camcorder.
+    * @syscap SystemCapability.Multimedia.Media.AVRecorder
+    * @since 12
+    */
+    AUDIO_SOURCE_TYPE_CAMCORDER = 13,
+  }
+
+  /**
+   * Enumerates video source type for recorder.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 9
+   */
+  /**
+   * Enumerates video source type for recorder.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @crossplatform
+   * @since 12
+   */
+  enum VideoSourceType {
+    /**
+     * Surface raw data.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Surface raw data.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_SOURCE_TYPE_SURFACE_YUV = 0,
+    /**
+     * Surface ES data.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Surface ES data.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_SOURCE_TYPE_SURFACE_ES = 1,
+  }
+
+  /**
+   * Enumerates meta source type for recorder.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @systemapi
+   * @since 12
+   */
+  enum MetaSourceType {
+    /**
+     * Maker info for video.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @systemapi
+     * @since 12
+     */
+    VIDEO_MAKER_INFO = 0,
+  }
+
+  /**
+   * Enumerates mode of creating recorder file
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 12
+   */
+  enum FileGenerationMode {
+    /**
+     * file created by app
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 12
+     */
+    APP_CREATE = 0,
+    /**
+     * file created by system, valid only in camera scene.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 12
+     */
+    AUTO_CREATE_CAMERA_SCENE = 1,
+  }
+
+  /**
+   * Provides the video recorder configuration definitions.
+   *
+   * @typedef VideoRecorderConfig
+   * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+   * @systemapi
+   * @since 9
+   */
+  interface VideoRecorderConfig {
+    /**
+     * audio source type, details see @AudioSourceType .
+     * @type { ?AudioSourceType }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    audioSourceType?: AudioSourceType;
+    /**
+     * video source type, details see @VideoSourceType .
+     * @type { VideoSourceType }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    videoSourceType: VideoSourceType;
+    /**
+     * video recorder profile, can get by "getVideoRecorderProfile", details see @VideoRecorderProfile .=
+     * @type { VideoRecorderProfile }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    profile: VideoRecorderProfile;
+    /**
+     * video output uri.support two kind of uri now.
+     * format like: scheme + "://" + "context".
+     * fd:    fd://fd
+     * @type { string }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    url: string;
+    /**
+     * Sets the video rotation angle in output file, and for the file to playback. mp4 support.
+     * the range of rotation angle should be {0, 90, 180, 270}, default is 0.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    rotation?: number;
+    /**
+     * geographical location information.
+     * @type { ?Location }
+     * @syscap SystemCapability.Multimedia.Media.VideoRecorder
+     * @systemapi
+     * @since 9
+     */
+    location?: Location;
+  }
+
+  /**
+   * Provides encoder info.
+   *
+   * @typedef EncoderInfo
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 11
+   */
+  interface EncoderInfo {
+    /**
+     * encoder format MIME
+     * @type { CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    mimeType: CodecMimeType;
+
+    /**
+     * encoder type, audio or video
+     * @type { string }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    type: string;
+
+    /**
+     * audio or video encoder bitRate range
+     * @type { ?Range }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    bitRate?: Range;
+
+    /**
+     * video encoder frame rate range
+     * @type { ?Range }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    frameRate?: Range;
+
+    /**
+     * video encoder width range
+     * @type { ?Range }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    width?: Range;
+
+    /**
+     * video encoder height range
+     * @type { ?Range }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    height?: Range;
+
+    /**
+     * audio encoder channel range
+     * @type { ?Range }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    channels?: Range;
+
+    /**
+     * audio encoder sample rate collection
+     * @type { ?Array<number> }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    sampleRate?: Array<number>;
+  }
+  
+  /**
+   * Provides Range with lower and upper limit.
+   *
+   * @typedef Range
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 11
+   */
+  interface Range {
+    /**
+     * lower limit of the range
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    min: number;
+  
+    /**
+     * upper limit of the range
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    max: number;
+  }
+
+  /**
+   * Provides the media recorder profile definitions.
+   *
+   * @typedef AVRecorderProfile
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 9
+   */
+  /**
+   * Provides the media recorder profile definitions.
+   *
+   * @typedef AVRecorderProfile
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AVRecorderProfile {
+    /**
+     * Indicates the audio bitrate.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the audio bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    audioBitrate?: number;
+
+    /**
+     * Indicates the number of audio channels.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the number of audio channels.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    audioChannels?: number;
+
+    /**
+     * Indicates the audio encoding format.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the audio encoding format.
+     * @type { ?CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    audioCodec?: CodecMimeType;
+
+    /**
+     * Indicates the audio sampling rate.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the audio sampling rate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    audioSampleRate?: number;
+
+    /**
+     * Indicates the output file format.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the output file format.
+     * @type { ContainerFormatType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    fileFormat: ContainerFormatType;
+
+    /**
+     * Indicates the video bitrate.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the video bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoBitrate?: number;
+
+    /**
+     * Indicates the video encoding format.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the video encoding format.
+     * @type { ?CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoCodec?: CodecMimeType;
+
+    /**
+     * Indicates the video width.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the video width.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoFrameWidth?: number;
+
+    /**
+     * Indicates the video height.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the video height.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoFrameHeight?: number;
+
+    /**
+     * Indicates the video frame rate.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Indicates the video frame rate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoFrameRate?: number;
+
+    /**
+     * Whether to record HDR video.
+     * @type { ?boolean }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    /**
+     * Whether to record HDR video.
+     * @type { ?boolean }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    isHdr?: boolean;
+
+    /**
+     * Whether to encode the video in temporal scale mode.
+     * @type { ?boolean }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    enableTemporalScale?: boolean;
+  }
+
+  /**
+   * Provides the media recorder configuration definitions.
+   *
+   * @typedef AVRecorderConfig
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 9
+   */
+  /**
+   * Provides the media recorder configuration definitions.
+   *
+   * @typedef AVRecorderConfig
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AVRecorderConfig {
+    /**
+     * Audio source type, details see @AudioSourceType .
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Audio source type, details see @AudioSourceType .
+     * @type { ?AudioSourceType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    audioSourceType?: AudioSourceType;
+    /**
+     * Video source type, details see @VideoSourceType .
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Video source type, details see @VideoSourceType .
+     * @type { ?VideoSourceType }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    videoSourceType?: VideoSourceType;
+    /**
+     * Meta source types, details see @MetaSourceType .
+     * @type { ?Array<MetaSourceType> }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @systemapi
+     * @since 12
+     */
+    metaSourceTypes?: Array<MetaSourceType>;
+    /**
+     * Video recorder profile, details see @AVRecorderProfile .
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Video recorder profile, details see @AVRecorderProfile .
+     * @type { AVRecorderProfile }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    profile: AVRecorderProfile;
+    /**
+     * File output uri, support a kind of uri now.
+     * format like: "fd://" + "context".
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * File output uri, support a kind of uri now.
+     * format like: "fd://" + "context".
+     * @type { string }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    url: string;
+    /**
+     * Mode of creating recorder file, details see @FileGenerationMode.
+     * @type { ?FileGenerationMode }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 12
+     */
+    fileGenerationMode?: FileGenerationMode;
+    /**
+     * Sets the video rotation angle in output file, and for the file to playback, mp4 support
+     * the range of rotation angle should be {0, 90, 180, 270}, default is 0.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     * @deprecated since 12
+     * @useinstead ohos.multimedia.media/media.AVMetadata#videoOrientation
+     */
+    rotation?: number;
+    /**
+     * Geographical location information.
+     * @type { ?Location }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     * @deprecated since 12
+     * @useinstead ohos.multimedia.media/media.AVMetadata#location
+     */
+    location?: Location;
+    /**
+     * Set global metadata info. Details see @AVMetadata
+     * @type { ?AVMetadata }
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 12
+     */
+    metadata?: AVMetadata;
+  }
+
+  /**
+   * Provides the container definition for media description key-value pairs.
+   *
+   * @typedef MediaDescription
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 8
+   */
+  /**
+   * Provides the container definition for media description key-value pairs.
+   *
+   * @typedef MediaDescription
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 11
+   */
+  /**
+   * Provides the container definition for media description key-value pairs.
+   *
+   * @typedef MediaDescription
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface MediaDescription {
+    /**
+     * key:value pair, key see @MediaDescriptionKey .
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * key:value pair, key see @MediaDescriptionKey .
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * key:value pair, key see @MediaDescriptionKey .
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    [key: string]: Object;
+  }
+
+  /**
+   * Enumerates seek mode.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 8
+   */
+  /**
+   * Enumerates seek mode.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 11
+   */
+  /**
+   * Enumerates seek mode.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum SeekMode {
+    /**
+     * seek to the next sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * seek to the next sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * seek to the next sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    SEEK_NEXT_SYNC = 0,
+    /**
+     * seek to the previous sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * seek to the previous sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * seek to the previous sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    SEEK_PREV_SYNC = 1,
+    /**
+     * Seek to the closest frame of the given timestamp.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    SEEK_CLOSEST = 2,
+  }
+
+  /**
+   * Enumerates switch mode.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum SwitchMode {
+    /**
+     * switch to the next sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    SMOOTH = 0,
+    /**
+     * switch to the previous sync frame of the given timestamp
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    SEGMENT = 1,
+    /**
+     * switch to the closest frame of the given timestamp.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    CLOSEST = 2,
+  }
+
+  /**
+   * Enumerates Codec MIME types.
+   *
+   * @enum { string }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 8
+   */
+  /**
+   * Enumerates Codec MIME types.
+   *
+   * @enum { string }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum CodecMimeType {
+    /**
+     * H.263 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * H.263 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_H263 = 'video/h263',
+    /**
+     * H.264 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * H.264 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_AVC = 'video/avc',
+    /**
+     * MPEG2 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * MPEG2 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_MPEG2 = 'video/mpeg2',
+    /**
+     * MPEG4 codec MIME type
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * MPEG4 codec MIME type
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_MPEG4 = 'video/mp4v-es',
+
+    /**
+     * VP8 codec MIME type
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * VP8 codec MIME type
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_VP8 = 'video/x-vnd.on2.vp8',
+
+    /**
+     * AAC codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * AAC codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    AUDIO_AAC = 'audio/mp4a-latm',
+
+    /**
+     * vorbis codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * vorbis codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    AUDIO_VORBIS = 'audio/vorbis',
+
+    /**
+     * flac codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * flac codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    AUDIO_FLAC = 'audio/flac',
+
+    /**
+     * H.265 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 11
+     */
+    /**
+     * H.265 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @since 12
+     */
+    VIDEO_HEVC = 'video/hevc',
+    /**
+     * mp3 codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    AUDIO_MP3 = 'audio/mpeg',
+    /**
+     * G711-mulaw codec MIME type.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    AUDIO_G711MU = 'audio/g711mu',
+  }
+
+  /**
+   *  Enumerates AVScreenCaptureRecord preset types.
+   * 
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+   * @since 12
+   */
+  enum AVScreenCaptureRecordPreset {
+    /**
+     * Screen record normal type, h264/aac mp4
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREEN_RECORD_PRESET_H264_AAC_MP4 = 0,
+    /**
+     * Screen record high efficient type, h265/aac mp4
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREEN_RECORD_PRESET_H265_AAC_MP4 = 1,
+  }
+
+  /**
+   *  Enumerates AVScreenCapture callback state type.
+   * 
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+   * @since 12
+   */
+  enum AVScreenCaptureStateCode {
+    /**
+     * Screen capture started
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_STARTED = 0,
+    /**
+     * Screen capture canceled
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_CANCELED = 1,
+    /**
+     * Screen capture stopped by user
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_STOPPED_BY_USER = 2,
+    /**
+     * Screen capture stopped by interrupt
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_INTERRUPTED_BY_OTHER = 3,
+    /**
+     * Screen capture stopped by phone call
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_STOPPED_BY_CALL = 4,
+    /**
+     * Screen capture microphone not available
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_MIC_UNAVAILABLE = 5,
+    /**
+     * Screen capture microphone is muted by user
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_MIC_MUTED_BY_USER = 6,
+    /**
+     * Screen capture microphone is unmuted by user
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER = 7,
+    /**
+     * Screen capture enter private scene
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE = 8,
+    /**
+     * Screen capture exit private scene
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE = 9,
+    /**
+     * Screen capture stopped by user switches
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10,
+  }
+
+  /**
+   * Provides the media AVScreenCaptureRecord config definition.
+   *
+   * @typedef AVScreenCaptureRecordConfig
+   * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+   * @since 12
+   */
+  interface AVScreenCaptureRecordConfig {
+    /**
+     * Indicates record file descriptor.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    fd: number;
+    /**
+     * Indicates video frame width.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    frameWidth?: number;
+    /**
+     * Indicates video frame height.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    frameHeight?: number;
+    /**
+     * Indicates video bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    videoBitrate?: number;
+    /**
+     * Indicates audio sample rate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    audioSampleRate?: number;
+    /**
+     * Indicates audio channel count.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    audioChannelCount?: number;
+    /**
+     * Indicates audio bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    audioBitrate?: number;
+    /**
+     * Indicates AVScreenCaptureRecordPreset, details see @AVScreenCaptureRecordPreset
+     * @type { ?AVScreenCaptureRecordPreset }
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    preset?: AVScreenCaptureRecordPreset;
+  }
+
+  /**
+   * Provides screen capture record. Before calling an AVScreenCaptureRecorder method, you must use createAVScreenCaptureRecorder()
+   * to create an AVScreenCaptureRecorder instance.
+   *
+   * @typedef AVScreenCaptureRecorder
+   * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+   * @since 12
+   */
+  interface AVScreenCaptureRecorder {
+    /**
+     * Init AVScreenCaptureRecorder.
+     * @param { AVScreenCaptureRecordConfig } config - AVScreenCaptureRecorder config.
+     * @returns { Promise<void> } A Promise instance used to return when init completed.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 
+     * <br>2. Incorrect parameter types. 3. Parameter verification failed. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    init(config: AVScreenCaptureRecordConfig): Promise<void>;
+
+    /**
+     * Start screen capture recording.
+     * @returns { Promise<void> } A Promise instance used to return when startRecording completed.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    startRecording(): Promise<void>;
+
+    /**
+     * Stop screen capture recording.
+     * @returns { Promise<void> } A Promise instance used to return when stopRecording completed.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    stopRecording(): Promise<void>;
+
+    /**
+     * Skip some windows' privacy mode of current app during the screen recording.
+     * @param { Array<number> } windowIDs - windowID list to be skipped privacy mode .
+     * @returns { Promise<void> } A Promise instance used to return when skipPrivacyMode completed.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    skipPrivacyMode(windowIDs: Array<number>): Promise<void>;
+
+    /**
+     * Set microphone enable or disable.
+     * @param { boolean } enable - Set microphone enable or disable during recording.
+     * @returns { Promise<void> } A Promise instance used to return when setMicEnabled completed.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    setMicEnabled(enable: boolean): Promise<void>;
+
+    /**
+     * Release screen capture recording.
+     * @returns { Promise<void> } A Promise instance used to return when release completed.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    release(): Promise<void>;
+
+    /**
+     * Listens for AVScreenCaptureRecord info callback.
+     * @param { 'stateChange' } type - Type of the AVScreenCaptureRecord event to listen for.
+     * @param { Callback<AVScreenCaptureStateCode> } callback - Callback used to listen for the AVScreenCaptureRecord info return.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    on(type: 'stateChange', callback: Callback<AVScreenCaptureStateCode>): void;
+
+    /**
+     * Listens for AVScreenCaptureRecord info callback.
+     * @param { 'error' } type - Type of the AVScreenCaptureRecord event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the AVScreenCaptureRecord error return.
+     * @throws { BusinessError } 201 - permission denied.
+     * @throws { BusinessError } 5400103 - IO error. Return by ErrorCallback.
+     * @throws { BusinessError } 5400105 - Service died. Return by ErrorCallback.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    on(type: 'error', callback: ErrorCallback): void;
+
+    /**
+     * Unregister listens for AVScreenCaptureRecord info callback.
+     * @param { 'stateChange' } type - Type of the AVScreenCaptureRecord event to listen for.
+     * @param { Callback<AVScreenCaptureStateCode> } callback - Callback used to listen for the AVScreenCaptureRecord info return.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    off(type: 'stateChange', callback?: Callback<AVScreenCaptureStateCode>): void;
+
+    /**
+     * Unregister listens for AVScreenCaptureRecord error callback.
+     * @param { 'error' } type - Type of the AVScreenCaptureRecord event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the AVScreenCaptureRecord error return.
+     * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+     * @since 12
+     */
+    off(type: 'error', callback?: ErrorCallback): void;
+  }
+  
+  /**
+   * Provides the video transcode configuration definitions
+   * 
+   * @typedef AVTranscoderConfig
+   * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+   * @since 12
+   */
+  interface AVTranscoderConfig {
+    /**
+     * Indicates the audio bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    audioBitrate?: number;
+
+    /**
+     * Indicates the audio encoding format.
+     * @type { ?CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    audioCodec?: CodecMimeType;
+
+    /**
+     * Indicates the output file format.
+     * @type { ContainerFormatType }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    fileFormat: ContainerFormatType;
+
+    /**
+     * Indicates the video bitrate.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    videoBitrate?: number;
+
+    /**
+     * Indicates the video encoding foramt.
+     * @type { ?CodecMimeType }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    videoCodec?: CodecMimeType;
+
+    /**
+     * Indicates the video width.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    videoFrameWidth?: number;
+
+    /**
+     * Indicates the video height.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    videoFrameHeight?: number;
+  }
+
+  /**
+   * Transcode a source video file to a destination video file.
+   * Before calling an AVTranscoder method, you must use @createAVTranscoder
+   * to create an AVTranscoder instance.
+   * 
+   * @typedef AVTranscoder
+   * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+   * @since 12
+   */ 
+  interface AVTranscoder {
+    /**
+     * Source media file descriptor. Mainstream media formats are supported.
+     * @type { AVFileDescriptor }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    fdSrc: AVFileDescriptor;
+
+    /**
+     * Destination media file descriptor. Mainstream media formats are supported.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    fdDst: number;
+
+    /**
+     * Prepares for transcoding.
+     * @param { AVTranscoderConfig } config : Recording parameters.
+     * @returns { Promise<void> } A promise instance used to return when prepare completes.
+     * @throws { BusinessError } 401 - The parameter check failed. Return by promise.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @throws { BusinessError } 5400106 - Unsupported format. Returned by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    prepare(config: AVTranscoderConfig): Promise<void>;
+
+    /**
+     * Start AVTranscoder.
+     * @returns { Promise<void> } A promise instance used to return when start completes.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    start(): Promise<void>;
+
+    /**
+     * Pause AVTranscoder.
+     * @returns { Promise<void> } A promise instance used to return when pause completes.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    pause(): Promise<void>;  
+
+    /**
+     * Resume AVTranscoder.
+     * @returns { Promise<void> } A promise instance used to return when resume completes.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    resume(): Promise<void>;
+
+    /**
+     * Cancel AVTranscoder.
+     * @returns { Promise<void> } A promise instance used to return when cancel completes.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    cancel(): Promise<void>;
+
+    /**
+     * Release resources used for AVTranscoder.
+     * @returns { Promise<void> } A promise instance used to return when cancel completes.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    release(): Promise<void>;
+
+    /**
+     * Register listener for trancoding complete event.
+     * @param { 'complete' } type - Type of the event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the complete event.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    on(type:'complete', callback: Callback<void>):void;
+
+    /**
+     * Register listener for trancoding error event.
+     * @param { 'error' } type - Type of the event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the error event.
+     * @throws { BusinessError } 401 - The parameter check failed.
+     * @throws { BusinessError } 801 - Capability not supported.
+     * @throws { BusinessError } 5400101 - No memory.
+     * @throws { BusinessError } 5400102 - Operation not allowed.
+     * @throws { BusinessError } 5400103 - I/O error.
+     * @throws { BusinessError } 5400104 - Time out.
+     * @throws { BusinessError } 5400105 - Service died.
+     * @throws { BusinessError } 5400106 - Unsupport format.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    on(type:'error', callback: ErrorCallback):void;
+
+    /**
+     * Register listener for trancoding progressUpdate event.
+     * @param { 'progressUpdate' } type - Type of the event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the progressUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    on(type:'progressUpdate', callback: Callback<number>):void;
+
+    /**
+     * Unregister listener for trancoding complete event.
+     * @param { 'complete' } type - Type of the event to listen for.
+     * @param { Callback<void> } [callback] - Callback used to listen for the complete event.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    off(type:'complete', callback?: Callback<void>):void;
+
+    /**
+     * Unregister listener for trancoding error event.
+     * @param { 'error' } type - Type of the event to listen for.
+     * @param { ErrorCallback } [callback] - Callback used to listen for the error event.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    off(type:'error', callback?: ErrorCallback):void;
+
+    /**
+     * Unregister listener for trancoding progressUpdate event.
+     * @param { 'progressUpdate' } type - Type of the event to listen for.
+     * @param { Callback<number> } [callback] - Callback used to listen for the progressUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVTranscoder
+     * @since 12
+     */
+    off(type:'progressUpdate', callback?: Callback<number>):void;  
+  }
+}
+export default media;
