@@ -29,7 +29,7 @@ export interface SearchRawItem {
 
 export interface SearchRawData {
   title: SearchTextResource;
-  data: Array<SearchRawItem>;
+  data: SearchRawItem[];
 }
 
 export interface SearchResourceReader {
@@ -46,7 +46,7 @@ export class SearchUtil {
    */
   @Log
   convertJsonToInstance<T extends Object>(json: Object, instance: T): T {
-    let keys: Array<string> = Object.keys(json as Object);
+    let keys: string[] = Object.keys(json as Object);
     for (let i = 0; i < keys.length; i++) {
       let key: string = keys[i];
       if (Reflect.has(instance as Object, key)) {
@@ -61,8 +61,11 @@ export class SearchUtil {
    * Convert json to SearchData instance
    */
   @Log
-  async convertToSearchData(rawData: SearchRawData, resourceReader: SearchResourceReader = ResourceUtil): Promise<SearchData[]> {
-    let result: Array<SearchData> = [];
+  async convertToSearchData(
+    rawData: SearchRawData,
+    resourceReader: SearchResourceReader = ResourceUtil
+  ): Promise<SearchData[]> {
+    let result: SearchData[] = [];
 
     for (let jsonData of rawData.data) {
       let searchData: SearchData = new SearchData();
@@ -83,8 +86,8 @@ export class SearchUtil {
    * @param text
    */
   stripKeyword(text: string): string  {
-    let pattern = new RegExp("[`~!@#$%^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
-    let rs = "";
+    let pattern = new RegExp('[`~!@#$%^&*()=|{}\':;\',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“\'。，、？]')
+    let rs = '';
     for (let i = 0; i < text.length; i++) {
       rs = rs + text.substr(i, 1).replace(pattern, '');
     }

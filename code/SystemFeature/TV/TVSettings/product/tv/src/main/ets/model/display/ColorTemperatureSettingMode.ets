@@ -37,15 +37,20 @@ export class ColorTemperatureSettingModel extends BaseModel {
       try {
         let mode = await displaySetting.getColorTempParamStep();
         LogUtil.log(TAG + 'getColorTempParamStepSuccess=' + JSON.stringify(mode));
-        return mode+"K"
+        return mode + 'K'
       } catch (error) {
         LogUtil.log(TAG + 'getColorTempParamStepSuccess=' + JSON.stringify(error));
-        return "5000K"
+        return '5000K'
       }
   }
 
   setColorTemperatureSetting(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_COLORTEMPERATURE_SEETING, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_COLORTEMPERATURE_SEETING,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

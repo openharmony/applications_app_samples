@@ -18,21 +18,20 @@
  */
 export default {
   tableName: {
-    Secure: " Secure"
+    Secure: ' Secure'
   },
   table: {
-    Secure: "CREATE TABLE IF NOT EXISTS Secure (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "key TEXT," +
-    "value TEXT" +
-    ");"
+    Secure: 'CREATE TABLE IF NOT EXISTS Secure (' +
+    'id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+    'key TEXT,' +
+    'value TEXT' +
+    ');'
   },
   Secure: {
-    id: "id",
-    key: "key",
-    value: "value"
+    id: 'id',
+    key: 'key',
+    value: 'value'
   }
 }
-
 
 

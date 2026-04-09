@@ -20,7 +20,7 @@ import settings from '@ohos.settings';
 import displaySetting from '@ohos.tvservice.displaySetting';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 const TAG = 'ColorTemperatureModelIndex'
-const PictureModeMap: Record<number, string> = {
+const pictureModeMap: Record<number, string> = {
   6000: '正白',
   3000: '暖黄',
   4500: '暖白',
@@ -42,16 +42,21 @@ export class ColorTemperatureModel extends BaseModel {
       try {
         let mode = await displaySetting.getEyeProtectType();
         LogUtil.log(TAG + 'getEyeProtectTypeSuccess=' + JSON.stringify(mode));
-        LogUtil.log(TAG + 'getEyeProtectTypeSuccess11=' + JSON.stringify(PictureModeMap[mode]));
-        return PictureModeMap[mode]
+        LogUtil.log(TAG + 'getEyeProtectTypeSuccess11=' + JSON.stringify(pictureModeMap[mode]));
+        return pictureModeMap[mode]
       } catch (error) {
         LogUtil.log(TAG + 'getEyeProtectTypeSuccess=' + JSON.stringify(error));
-        return "正白"
+        return '正白'
       }
   }
 
   setColorTemperature(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_COLORTEMPERATURE, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_COLORTEMPERATURE,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

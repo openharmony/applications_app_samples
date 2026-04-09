@@ -40,7 +40,12 @@ export class GatewayModel extends BaseModel {
   }
 
   setGateway(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_GATEWAY, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_GATEWAY,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

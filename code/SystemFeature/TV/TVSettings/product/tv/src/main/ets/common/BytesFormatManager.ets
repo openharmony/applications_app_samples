@@ -16,13 +16,13 @@
 export default (val: number):string => {
   let result = '';
   if (val < 1024) {
-    result = `${new Number(val).valueOf()} B`;
+    result = `${val} B`;
   } else if (val < 1024 * 1024) {
-    result = `${(new Number(val / 1024).valueOf()).toFixed(2)} KB`;
+    result = `${(val / 1024).toFixed(2)} KB`;
   } else if (val < 1024 * 1024 * 1024) {
-    result = `${(new Number((val / (1024 * 1024))).valueOf()).toFixed(2)} MB`;
+    result = `${(val / (1024 * 1024)).toFixed(2)} MB`;
   } else if (val < 1024 * 1024 * 1024 * 1024) {
-    result = `${(new Number((val / (1024 * 1024 * 1024))).valueOf()).toFixed(2)} GB`;
+    result = `${(val / (1024 * 1024 * 1024)).toFixed(2)} GB`;
   }
   return result;
 }

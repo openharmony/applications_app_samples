@@ -44,7 +44,12 @@ export class InputSourceModel extends BaseModel {
 
   setInputSource(value: string): void {
     LogUtil.log(`${TAG}  setInputSource: ` + value);
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_HDMISELECT, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_HDMISELECT,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

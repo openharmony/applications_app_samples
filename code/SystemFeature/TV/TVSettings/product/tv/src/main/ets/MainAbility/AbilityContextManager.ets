@@ -22,10 +22,10 @@ Ability Context管理类
 2023-12-11
 */
 export class AbilityContextManager {
-  private contexts: Array<Object> = new Array();
+  private contexts: Object[] = [];
 
   static getInstance(): AbilityContextManager {
-    if (!Boolean(AppStorage.get<AbilityContextManager>('abilityContextManager')).valueOf()) {
+    if (!AppStorage.get<AbilityContextManager>('abilityContextManager')) {
       AppStorage.setOrCreate('abilityContextManager', new AbilityContextManager());
     }
     return AppStorage.get<AbilityContextManager>('abilityContextManager') as AbilityContextManager

@@ -94,13 +94,13 @@ enum BluetoothState {
 }
 
 export class PinRequiredData {
-  deviceId: string = '';
-  pinCode: string = '';
+  public deviceId: string = '';
+  public pinCode: string = '';
 }
 
 export class BondStateChangedData {
-  deviceId: string = '';
-  bondState: number = BondState.BOND_STATE_INVALID;
+  public deviceId: string = '';
+  public bondState: number = BondState.BOND_STATE_INVALID;
 }
 
 export class DeviceProfileState extends Profile {
@@ -111,13 +111,13 @@ export class DeviceProfileState extends Profile {
 }
 
 export class DeviceConnectResult {
-  profileId: number = -1;
-  connectRet: boolean = false;
+  public profileId: number = -1;
+  public connectRet: boolean = false;
 }
 
 export class DeviceDisconnectResult {
-  profileId: number = -1;
-  disconnectRet: boolean = false;
+  public profileId: number = -1;
+  public disconnectRet: boolean = false;
 }
 
 /**
@@ -126,7 +126,7 @@ export class DeviceDisconnectResult {
 export class BluetoothModel extends BaseModel {
   public canUse: boolean = false;
   private TAG = ConfigData.TAG + 'BluetoothModel ';
-  private profiles: Array<a2dp.A2dpSourceProfile | hid.HidHostProfile | undefined> = new Array(10);
+  private profiles: (a2dp.A2dpSourceProfile | hid.HidHostProfile | undefined)[] = new Array(10);
 
   /**
    * constructor
@@ -135,14 +135,12 @@ export class BluetoothModel extends BaseModel {
     super();
     try {
       LogUtil.info('bluetooth.getProfile start')
-      let ProfileId = constant.ProfileId;
+      let profileId = constant.ProfileId;
       let a2dpSrc = a2dp.createA2dpSrcProfile();
-      this.profiles[ProfileId.PROFILE_A2DP_SOURCE]
-        = a2dpSrc;
+      this.profiles[profileId.PROFILE_A2DP_SOURCE] = a2dpSrc;
 
       let hidHostProfile = hid.createHidHostProfile();
-      this.profiles[ProfileId.PROFILE_HID_HOST]
-        = hidHostProfile;
+      this.profiles[profileId.PROFILE_HID_HOST] = hidHostProfile;
 
 
       LogUtil.info('bluetooth.getProfile end')
@@ -297,7 +295,7 @@ export class BluetoothModel extends BaseModel {
   /**
    * Get paired device ids
    */
-  getPairedDeviceIds(): Array<string> {
+  getPairedDeviceIds(): string[] {
     try {
       const pairedDevices = connection.getPairedDevices();
       return pairedDevices;
@@ -337,10 +335,10 @@ export class BluetoothModel extends BaseModel {
   /**
    * Subscribe Bluetooth status Change
    */
-  subscribeBluetoothDeviceFind(callback: (data: Array<connection.DiscoveryResult>) => void): void {
+  subscribeBluetoothDeviceFind(callback: (data: connection.DiscoveryResult[]) => void): void {
     LogUtil.info('bluetooth.subscribeBluetoothDeviceFind start');
-    let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void =
-      (data: Array<connection.DiscoveryResult>) => {
+    let onReceiveEvent: (data: connection.DiscoveryResult[]) => void =
+      (data: connection.DiscoveryResult[]) => {
         // data为蓝牙设备扫描结果集合
         LogUtil.debug('bluetoothdiscoveryResult device find = ' + JSON.stringify(data));
         if (callback) {
@@ -466,7 +464,7 @@ export class BluetoothModel extends BaseModel {
     } catch (err) {
       LogUtil.debug(this.TAG + 'getRemoteDeviceNameErrCode: ' + (err as BusinessError).code + ', errMessage: ' +
       (err as BusinessError).message);
-      return ""
+      return ''
     }
   }
 
@@ -591,7 +589,7 @@ export class BluetoothModel extends BaseModel {
    */
   cancelPairingDevice(deviceId: string, callback?: () => void) {
     connection.cancelPairingDevice(deviceId, () => {
-      if(callback){
+      if (callback) {
         callback()
       }
     });

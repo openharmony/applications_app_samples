@@ -15,7 +15,7 @@
 
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
-const TAG = "Ratio";
+const TAG = 'Ratio';
 
 export class Ratio {
     static resName(res: string): string {

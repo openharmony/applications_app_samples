@@ -39,7 +39,7 @@ export class HueModel extends BaseModel {
     if (hueInfo !== '') {
       return hueInfo;
     } else {
-      return "";
+      return '';
     }
   }
 

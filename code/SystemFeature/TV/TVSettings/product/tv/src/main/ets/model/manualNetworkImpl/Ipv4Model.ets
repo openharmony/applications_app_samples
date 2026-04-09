@@ -40,7 +40,12 @@ export class Ipv4Model extends BaseModel {
   }
 
   setIpv4(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_IPV4, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_IPV4,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

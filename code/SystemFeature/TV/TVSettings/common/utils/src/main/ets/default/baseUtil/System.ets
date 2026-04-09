@@ -18,21 +18,20 @@
  */
 export default {
   tableName: {
-    System: "System"
+    System: 'System'
   },
   table: {
-    System: "CREATE TABLE IF NOT EXISTS System (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "key TEXT," +
-    "value TEXT" +
-    ");"
+    System: 'CREATE TABLE IF NOT EXISTS System (' +
+    'id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+    'key TEXT,' +
+    'value TEXT' +
+    ');'
   },
   System: {
-    id: "id",
-    key: "key",
-    value: "value"
+    id: 'id',
+    key: 'key',
+    value: 'value'
   }
 }
-
 
 

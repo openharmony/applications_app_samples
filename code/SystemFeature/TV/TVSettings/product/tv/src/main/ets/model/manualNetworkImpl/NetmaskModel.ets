@@ -40,7 +40,12 @@ export class NetMaskModel extends BaseModel {
   }
 
   setNetmask(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_NETMASK, value, settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_NETMASK,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

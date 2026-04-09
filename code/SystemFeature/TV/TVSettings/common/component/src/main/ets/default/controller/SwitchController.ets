@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@ import BaseSettingsController from './BaseSettingsController';
  * Switch controller
  */
 export default abstract class SwitchController extends BaseSettingsController {
-  isOn: boolean = false;
+  public isOn: boolean = false;
   protected isEnabled: boolean = true;
 
   /**
    * Set toggle value
    */
   toggleValue(isOn: boolean) {
-    this.isOn = new Boolean(isOn).valueOf()
+    this.isOn = !!isOn
     this.afterCurrentValueChanged();
   }
 

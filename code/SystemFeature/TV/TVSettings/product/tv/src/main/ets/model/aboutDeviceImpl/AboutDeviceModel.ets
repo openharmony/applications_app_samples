@@ -29,7 +29,7 @@ import ethKit from '@ohos.net.ethernet';
 import { JSON } from '@kit.ArkTS';
 import { systemParameterEnhance } from '@kit.BasicServicesKit';
 
-const CATCHMAC = "catchMacAddress"
+const CATCHMAC = 'catchMacAddress'
 
 interface DeviceInfoItem {
   settingAlias: string;
@@ -45,24 +45,24 @@ export class AboutDeviceModel extends BaseModel {
 
   private deviceInfo: DeviceInfoItem[] = [
     {
-      settingAlias: "model",
-      settingTitle: "",
-      settingValue: ""
+      settingAlias: 'model',
+      settingTitle: '',
+      settingValue: ''
     },
     {
-      settingAlias: "companyInfo",
-      settingTitle: "",
-      settingValue: ""
+      settingAlias: 'companyInfo',
+      settingTitle: '',
+      settingValue: ''
     },
     {
-      settingAlias: "deviceId",
-      settingTitle: "",
-      settingValue: "00000000000000"
+      settingAlias: 'deviceId',
+      settingTitle: '',
+      settingValue: '00000000000000'
     },
     {
-      settingAlias: "softwareVersion",
-      settingTitle: "",
-      settingValue: ""
+      settingAlias: 'softwareVersion',
+      settingTitle: '',
+      settingValue: ''
     }
   ]
   private deviceUsedBytes: string = '';
@@ -100,7 +100,6 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError(ConfigData.DEVICE_NAME)
   getDeviceName(): string {
-    //let deviceName = settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
     let deviceName = deviceInfo.productModel
     return deviceName;
   }
@@ -111,7 +110,6 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError('')
   setDeviceName(name: string): string {
-    //settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
     let deviceName = name
     return deviceName
   }
@@ -147,41 +145,41 @@ export class AboutDeviceModel extends BaseModel {
 
   getDeviceUsedBytes(): string {
     const path: string = (globalThis.settingsAbilityContext.filesDir) as string
-    let deviceUsedBytes = BytesFormatManager((statfs.getTotalSizeSync(path) - statfs.getFreeSizeSync(path)))
+    const totalSize = statfs.getTotalSizeSync(path)
+    const freeSize = statfs.getFreeSizeSync(path)
+    let deviceUsedBytes = BytesFormatManager(totalSize - freeSize)
     return deviceUsedBytes
   }
 
   getRuntimeMemory(): string {
-    let runtimeMemory: string = "";
+    let runtimeMemory: string = '';
     try {
       runtimeMemory = BytesFormatManager(Number(hidebug.getSystemMemInfo().totalMem) * 1024)
     } catch (error) {
-      console.error("AboutDeviceModel getRuntimeMemory failed, error: " + error);
+      console.error('AboutDeviceModel getRuntimeMemory failed, error: ' + error);
     }
     return runtimeMemory;
   }
 
   getDeviceSerial(): string {
     let deviceSerial = deviceInfo.serial
-    console.log("hmlog-->", "序列号：" + deviceSerial)
+    console.log('hmlog-->', '序列号：' + deviceSerial)
     return deviceSerial
   }
 
   async getWifiMac() {
     try {
       let wifiMac = await wifiManager.getLinkedInfo()
-      // return wifiMac.macAddress
-
       AppStorage.setOrCreate('wifiMac', wifiMac.macAddress)
 
     } catch (err) {
     }
   }
 
-  getdeviceMacAddress(): string {
+  getDeviceMacAddress(): string {
     try {
       let wifiMac = wifiManager.getDeviceMacAddress()
-      console.log("hmlog-->", "wifimac:" + wifiMac)
+      console.log('hmlog-->', 'wifimac:' + wifiMac)
       let wifiMacadress = JSON.stringify(wifiMac).replace(/"/g, '')
       return wifiMacadress.toUpperCase();
 
@@ -189,7 +187,6 @@ export class AboutDeviceModel extends BaseModel {
       return '';
     }
   }
-
 
   getBluetoothMac(): string {
     try {

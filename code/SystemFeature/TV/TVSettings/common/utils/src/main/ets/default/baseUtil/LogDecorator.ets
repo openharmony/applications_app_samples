@@ -19,14 +19,19 @@ import ConfigData from './ConfigData';
 /**
  * Method log decorator
  */
-const LogMethod = (_target: Object, _methodName: string, propertyDescriptor: PropertyDescriptor): PropertyDescriptor => {
+const logMethod = (
+  _target: Object,
+  _methodName: string,
+  propertyDescriptor: PropertyDescriptor
+): PropertyDescriptor => {
   return propertyDescriptor;
 };
 
 /**
  * Class decorator to log all methods
  */
-export const LogAll = (_target: Object): void => {
+const logAll = (_target: Object): void => {
 }
 
-export default LogMethod;
+export { logAll as LogAll };
+export default logMethod;

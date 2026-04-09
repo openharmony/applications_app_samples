@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,24 +18,24 @@ import { preferences } from '@kit.ArkData';
 import { systemDateTime } from '@kit.BasicServicesKit';
 
 export class UserStorageManger {
-  static context: common.UIAbilityContext
-  static preferenceTheme: preferences.Preferences | null = null
+  public static context: common.UIAbilityContext
+  public static preferenceTheme: preferences.Preferences | null = null
 
-  static async putPreference(Key: string, data: Object) {
+  static async putPreference(key: string, data: Object) {
     if (UserStorageManger.preferenceTheme !== null) {
-      await UserStorageManger.preferenceTheme.put(Key, data)
+      await UserStorageManger.preferenceTheme.put(key, data)
       await UserStorageManger.preferenceTheme.flush()
     }
   }
 
-  static async getPreferencesFromStorage(Key: string) {
-    UserStorageManger.preferenceTheme = await preferences.getPreferences(UserStorageManger.context, Key)
+  static async getPreferencesFromStorage(key: string) {
+    UserStorageManger.preferenceTheme = await preferences.getPreferences(UserStorageManger.context, key)
   }
 
-  static async getPreference(Key: string, defaultValue: object | string): Promise<Object> {
-    let theme: Object = ''
+  static async getPreference(key: string, defaultValue: object | string): Promise<object | string> {
+    let theme: object | string = ''
     if (UserStorageManger.preferenceTheme !== null) {
-      theme = await UserStorageManger.preferenceTheme.get(Key, defaultValue) as Object;
+      theme = await UserStorageManger.preferenceTheme.get(key, defaultValue) as object | string;
       return theme;
     }
     return theme;
@@ -109,8 +109,8 @@ export function getSystemStartTime():number {
 const PREFERENCE_TOKEN = 'my_prefs'
 
 export default class PreferenceUtils<T extends preferences.ValueType> {
-  context: Context
-  initValue: T
+  public context: Context
+  public initValue: T
 
   constructor(context: Context, initValue: T) {
     this.context = context;
@@ -131,8 +131,8 @@ export default class PreferenceUtils<T extends preferences.ValueType> {
   }
 
   getPreValue(key: string): T {
-    const PreInstance = this.getPres()
-    let value = PreInstance.getSync(key, this.initValue)
+    const preInstance = this.getPres()
+    let value = preInstance.getSync(key, this.initValue)
     console.log('getPreValue', value)
     console.log('getinitValue', this.initValue)
     return value as T

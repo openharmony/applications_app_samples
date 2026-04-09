@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,9 +50,9 @@ function translateParamsToString(parameters: Object | null | undefined): string 
     '-s atlasBatch', '-s coreBatch', '-s uiCaseBatch',
     '-s dryRun'
   ]);
-  const targetParams: Array<string> = [];
+  const targetParams: string[] = [];
   let hasTimeout = false;
-  const keys: Array<string> = Object.keys(parameters);
+  const keys: string[] = Object.keys(parameters);
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
     const value: string = readStringParam(parameters, key);

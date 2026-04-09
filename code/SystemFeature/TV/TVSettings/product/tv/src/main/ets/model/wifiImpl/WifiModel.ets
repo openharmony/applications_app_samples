@@ -22,7 +22,7 @@ import data_dataShare from '@ohos.data.dataShare';
 import { promptAction } from '@kit.ArkUI';
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel -> ';
-const Undefined_TaskId = -1;
+const undefinedTaskId = -1;
 
 export interface WifiScanInfo {
   ssid: string,
@@ -121,8 +121,8 @@ export class ApScanResult {
 
   static fromDeviceConfig(config: wifiManager.WifiDeviceConfig): ApScanResult {
     const mockScanInfo: WifiScanInfo = {
-      ssid: config.ssid || "",
-      bssid: config.bssid || "",
+      ssid: config.ssid || '',
+      bssid: config.bssid || '',
       rssi: -100,
       band: 0,
       frequency: 2412,
@@ -263,7 +263,7 @@ export class ApScanResult {
 export class WifiModel extends BaseModel {
   private userSelectedAp: ApScanResult = new ApScanResult();
   private linkedApInfo: wifiManager.WifiLinkedInfo | null = null;
-  private scanTaskId: number = Undefined_TaskId;
+  private scanTaskId: number = undefinedTaskId;
   private isScanning: boolean = false;
   private isRefreshing: boolean = false;
   private dataShareHelper: data_dataShare.DataShareHelper | null = null;
@@ -278,11 +278,11 @@ export class WifiModel extends BaseModel {
     data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
-        LogUtil.info("createDataShareHelper success");
-        LogUtil.debug("createDataShareHelper state: " + !!this.dataShareHelper);
+        LogUtil.info('createDataShareHelper success');
+        LogUtil.debug('createDataShareHelper state: ' + !!this.dataShareHelper);
       })
       .catch((error: Error) => {
-        LogUtil.error("createDataShareHelper failed:" + JSON.stringify(error));
+        LogUtil.error('createDataShareHelper failed:' + JSON.stringify(error));
       });
   }
 
@@ -298,7 +298,7 @@ export class WifiModel extends BaseModel {
         );
       }
     } catch (error) {
-      LogUtil.error("setSettingsData failed:" + JSON.stringify(error));
+      LogUtil.error('setSettingsData failed:' + JSON.stringify(error));
     }
   }
 
@@ -311,11 +311,11 @@ export class WifiModel extends BaseModel {
         settings.domainName.DEVICE_SHARED
       );
       if (scanWifiList) {
-        LogUtil.debug("slWiFiLists: " + scanWifiList);
+        LogUtil.debug('slWiFiLists: ' + scanWifiList);
       }
       return scanWifiList;
     } catch (error) {
-      LogUtil.error("getSettingData failed:" + JSON.stringify(error));
+      LogUtil.error('getSettingData failed:' + JSON.stringify(error));
       return '';
     }
   }
@@ -359,7 +359,7 @@ export class WifiModel extends BaseModel {
     try {
       wifiManager.off('wifiConnectionChange');
     } catch (error) {
-      LogUtil.error("wifiConnectionChange failed:" + JSON.stringify(error));
+      LogUtil.error('wifiConnectionChange failed:' + JSON.stringify(error));
     }
   }
 
@@ -376,7 +376,7 @@ export class WifiModel extends BaseModel {
       const deviceConfigs = wifiManager.getDeviceConfigs();
       return deviceConfigs.some(config => config.ssid === ssid);
     } catch (error) {
-      LogUtil.error("isSavedAp failed:" + JSON.stringify(error));
+      LogUtil.error('isSavedAp failed:' + JSON.stringify(error));
       return false;
     }
   }
@@ -387,7 +387,7 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'check WiFi isActive : ' + isActive);
       return isActive;
     } catch (error) {
-      LogUtil.error("isWiFiActive failed:" + JSON.stringify(error));
+      LogUtil.error('isWiFiActive failed:' + JSON.stringify(error));
       return false;
     }
   }
@@ -398,7 +398,7 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'check WiFi connected status is : ' + ret);
       return ret;
     } catch (error) {
-      LogUtil.error("isWiFiConnected failed:" + JSON.stringify(error));
+      LogUtil.error('isWiFiConnected failed:' + JSON.stringify(error));
       return false;
     }
   }
@@ -419,7 +419,7 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'enable WiFi result is 1 ' + wifiManager.isWifiActive());
       return true;
     } catch (error) {
-      LogUtil.error("enable WiFi result is failed:" + JSON.stringify(error));
+      LogUtil.error('enable WiFi result is failed:' + JSON.stringify(error));
       return false;
     }
   }
@@ -454,11 +454,11 @@ export class WifiModel extends BaseModel {
     let apInfo = this.userSelectedAp.getApInfo();
     let targetSsid = tobeConnectedSSID || apInfo.ssid;
     let connectParam: wifiManager.WifiDeviceConfig = {
-      "ssid": targetSsid,
-      "bssid": apInfo.bssid,
-      "preSharedKey": password,
-      "isHiddenSsid": false, // we don't support connect to hidden ap yet
-      "securityType": apInfo.securityType
+      'ssid': targetSsid,
+      'bssid': apInfo.bssid,
+      'preSharedKey': password,
+      'isHiddenSsid': false, // we don't support connect to hidden ap yet
+      'securityType': apInfo.securityType
     };
 
     try {
@@ -570,7 +570,7 @@ export class WifiModel extends BaseModel {
           if (count >= maxAttempts) {
             LogUtil.error(MODULE_TAG + 'Connection timed out after ' + maxAttempts + ' attempts.');
             promptAction.openToast({
-              message: $r("app.string.wifiTipsConnectAuthFailed"),
+              message: $r('app.string.wifiTipsConnectAuthFailed'),
               duration: 2000,
               bottom: globalThis.screenHeight / 4
             });
@@ -712,9 +712,9 @@ export class WifiModel extends BaseModel {
 
   startScanTask(): void {
     LogUtil.debug(MODULE_TAG + 'start the wifi scan task');
-    if (this.scanTaskId !== Undefined_TaskId) {
+    if (this.scanTaskId !== undefinedTaskId) {
       clearInterval(this.scanTaskId);
-      this.scanTaskId = Undefined_TaskId;
+      this.scanTaskId = undefinedTaskId;
     }
 
     this.scanTaskId = setInterval(() => {
@@ -731,9 +731,9 @@ export class WifiModel extends BaseModel {
 
   stopScanTask(): void {
     LogUtil.debug(MODULE_TAG + 'stop the wifi scan task');
-    if (this.scanTaskId !== Undefined_TaskId) {
+    if (this.scanTaskId !== undefinedTaskId) {
       clearInterval(this.scanTaskId);
-      this.scanTaskId = Undefined_TaskId;
+      this.scanTaskId = undefinedTaskId;
     }
     this.isScanning = false;
   }
@@ -753,7 +753,7 @@ export class WifiModel extends BaseModel {
     try {
       return wifiManager.getIpInfo();
     } catch (error) {
-      LogUtil.error("getWifiIpInfo failed:" + JSON.stringify(error));
+      LogUtil.error('getWifiIpInfo failed:' + JSON.stringify(error));
       return {} as wifiManager.IpInfo;
     }
   }
@@ -784,7 +784,7 @@ export class WifiModel extends BaseModel {
         }
       }
     } catch (error) {
-      LogUtil.error("getLinkedWifiConfig failed:" + JSON.stringify(error));
+      LogUtil.error('getLinkedWifiConfig failed:' + JSON.stringify(error));
     }
     
     return result;
@@ -795,13 +795,13 @@ export class WifiModel extends BaseModel {
       const result = wifiManager.updateNetwork(config);
       return result !== -1;
     } catch (error) {
-      LogUtil.error("updateWifiConfig failed:" + JSON.stringify(error));
+      LogUtil.error('updateWifiConfig failed:' + JSON.stringify(error));
       return false;
     }
   }
 
 
-  debounce = (func: DelayCallback, wait: number, immediate: boolean = false): DelayCallback => {
+  public debounce = (func: DelayCallback, wait: number, immediate: boolean = false): DelayCallback => {
     let timeout: number = 0;
     return (...args: CallbackArg[]) => {
       if (timeout !== 0) {
@@ -823,7 +823,7 @@ export class WifiModel extends BaseModel {
     };
   };
 
-  throttle = (func: DelayCallback, wait: number, options: ThrottleOptions = {
+  public throttle = (func: DelayCallback, wait: number, options: ThrottleOptions = {
     leading: true,
     trailing: true
   }): DelayCallback => {
@@ -831,12 +831,16 @@ export class WifiModel extends BaseModel {
     let lastExecTime = 0;
 
     const shouldHandle = (now: number): boolean => {
-      if (!lastExecTime) return true; // 如果从未执行过，则立即执行
+      if (!lastExecTime) {
+        return true;
+      }
       if (options.leading === false) {
         lastExecTime = now;
         return false;
       }
-      if (now - lastExecTime >= wait) return true;
+      if (now - lastExecTime >= wait) {
+        return true;
+      }
       return false;
     };
 
@@ -866,10 +870,10 @@ let wifiModel = new WifiModel();
 export default wifiModel as WifiModel;
 
 export class IPConvertor {
-  public static ipToNumber(ipStr: String): number {
-    let ipArray: string[] = ipStr.split(".");
+  public static ipToNumber(ipStr: string): number {
+    let ipArray: string[] = ipStr.split('.');
     if (ipArray.length != 4) {
-      throw new Error("the input ip is not normal")
+      throw new Error('the input ip is not normal')
     }
     let result: number = 0;
     for (let i = 0; i < ipArray.length; i++) {
@@ -888,9 +892,9 @@ export class IPConvertor {
 
     // 检查是否超出32位无符号整数范围
     if (ipNum > 0xFFFFFFFF) {
-      throw new Error("The number is not normal!");
+      throw new Error('The number is not normal!');
     }
 
-    return (ipNum >>> 24) + "." + (ipNum >> 16 & 0xFF) + "." + (ipNum >> 8 & 0xFF) + "." + (ipNum & 0xFF);
+    return (ipNum >>> 24) + '.' + (ipNum >> 16 & 0xFF) + '.' + (ipNum >> 8 & 0xFF) + '.' + (ipNum & 0xFF);
   }
 }

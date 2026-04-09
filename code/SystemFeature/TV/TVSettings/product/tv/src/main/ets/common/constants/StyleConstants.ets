@@ -42,12 +42,12 @@ export enum CustomDialogContentStyle {
 }
 
 export class StyleConstants {
-  static readonly DEFAULT_BG_COLOR = '#ff262e3c';
-  static readonly DEFAULT_DIALOG_COLOR = '#323232';
-  static readonly DEFAULT_SETTING = '#404040';
-  static readonly DEFAULT_BACKGROUND_IMAGE="/res/image/default_background.png"
+  public static readonly DEFAULT_BG_COLOR = '#ff262e3c';
+  public static readonly DEFAULT_DIALOG_COLOR = '#323232';
+  public static readonly DEFAULT_SETTING = '#404040';
+  public static readonly DEFAULT_BACKGROUND_IMAGE = '/res/image/default_background.png'
 }
 
 export class SourcetoolConstants {
-  static readonly SOURCE_TOOL_MOUSE_CLICK: number = 7;
+  public static readonly SOURCE_TOOL_MOUSE_CLICK: number = 7;
 }

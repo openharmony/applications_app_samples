@@ -16,8 +16,9 @@
 import settings from '@ohos.settings';
 
 export class ConfigData {
-  FILE_URI = '/data/accounts/account_0/applications/com.ohos.settings'
-  + '/com.ohos.settings/assets/phone/resources/rawfile/';
+  FILE_URI =
+    '/data/accounts/account_0/applications/com.ohos.settings' +
+    '/com.ohos.settings/assets/phone/resources/rawfile/';
   PREFERENCES_PATH = '/data/accounts/account_0/appdata/com.ohos.settings/sharedPreference/SettingPreferences';
   BRIGHTNESS_SAVE_VALUE_KEY = 'BrightnessSaveValue';
 
@@ -75,8 +76,8 @@ export class ConfigData {
   DURATION_TIME = 200;
   FUNCTION_TYPE_HDC = 4;
 
-  TIME_FORMAT_24 = "24";
-  TIME_FORMAT_12 = "12";
+  TIME_FORMAT_24 = '24';
+  TIME_FORMAT_12 = '12';
   TIME_FORMAT_KEY = settings.date.TIME_FORMAT;
   SETTINGSDATA_DEVICE_NAME = settings.general.DEVICE_NAME;
   SETTINGSDATA_WIFI = settings.wireless.WIFI_STATUS;

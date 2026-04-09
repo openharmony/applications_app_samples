@@ -17,12 +17,12 @@
  * Search data dto class
  */
 export default class SearchData {
-  uri: string = '';
-  icon: string = '';
-  title: string = '';
-  keyword: string = '';
-  summary: string = '';
-  synonym: string = '';
+  public uri: string = '';
+  public icon: string = '';
+  public title: string = '';
+  public keyword: string = '';
+  public summary: string = '';
+  public synonym: string = '';
 
   constructor() {
   }

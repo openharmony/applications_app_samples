@@ -29,11 +29,11 @@ import { inputConsumer, KeyCode } from '@kit.InputKit';
 import { JSON } from '@kit.ArkTS';
 
 class PageRouteMap {
-  ETH: string = "pages/network/WiredNetwork";
-  BLUETOOTH: string = "pages/bluetooth/BluetoothDeviceEntry";
-  WIFI: string = "pages/network/Wifi";
-  MIRACAST: string = "pages/links/Links";
-  NET: string = "pages/network/Network";
+  ETH: string = 'pages/network/WiredNetwork';
+  BLUETOOTH: string = 'pages/bluetooth/BluetoothDeviceEntry';
+  WIFI: string = 'pages/network/Wifi';
+  MIRACAST: string = 'pages/links/Links';
+  NET: string = 'pages/network/Network';
 }
 
 class MainAbilityParams {
@@ -51,8 +51,8 @@ class ServiceAbilityWant {
 }
 
 class AbilityError {
-  code: number = 0;
-  message: string = '';
+  public code: number = 0;
+  public message: string = '';
 }
 
 AppStorage.setOrCreate('defaultInputSource', false)
@@ -84,15 +84,15 @@ export function commonEventFloatBallDataFunc(defaultFloatBall: boolean) {
   });
 }
 
-export function commonEvents(InputSourceType: string) {
+export function commonEvents(inputSourceType: string) {
   let commonEvents: commonEventManager.CommonEventPublishData = {
     parameters: {
-      InputSourceType: InputSourceType,
+      InputSourceType: inputSourceType,
     }
   };
   try {
     commonEventManager.publish('InputSourceType', commonEvents, (err) => {
-      console.log("=-= commonEventFunc: " + JSON.stringify(err));
+      console.log('=-= commonEventFunc: ' + JSON.stringify(err));
     });
   } catch (err) {
     LogUtil.error(ConfigData.TAG + 'commonEventFunc: ' + JSON.stringify(err));
@@ -107,7 +107,7 @@ export function commonEventScreenOffTimeDataFunc(screenOffTimeBoolean: boolean) 
   };
   try {
     commonEventManager.publish('screenOffTimeBoolean', commonEventData, (err) => {
-      console.log("onSystemEvent screenOffTimeBoolean Err:" + JSON.stringify(err));
+      console.log('onSystemEvent screenOffTimeBoolean Err:' + JSON.stringify(err));
     });
   } catch (err) {
     LogUtil.error(ConfigData.TAG + 'onSystemEvent screenOffTimeBoolean Catch Err:' + JSON.stringify(err));
@@ -122,7 +122,7 @@ export function commonScreenOffTimeEvents(screenOffTime: string) {
   };
   try {
     commonEventManager.publish('screenOffTime', commonEvents, (err) => {
-      console.log("onSystemEvent commonScreenOffTime Err:" + JSON.stringify(err));
+      console.log('onSystemEvent commonScreenOffTime Err:' + JSON.stringify(err));
     });
   } catch (err) {
     LogUtil.error(ConfigData.TAG + 'commonScreenOffTime Catch Err:' + JSON.stringify(err));
@@ -130,7 +130,7 @@ export function commonScreenOffTimeEvents(screenOffTime: string) {
 }
 
 //HDMI
-const SETTINGS_RESOLUTION = "settings.resolution";
+const SETTINGS_RESOLUTION = 'settings.resolution';
 const TARGET_BUNDLE_NAME = 'com.ohos.applicationmanager';
 const PAGE_ROUTE_MAP = new PageRouteMap();
 
@@ -163,7 +163,7 @@ function getCallerBundleName(want: Want): string {
 }
 
 export default class MainAbility extends UIAbility {
-  private PreDataFlush: BooleanPreferences | null = null;
+  private preDataFlush: BooleanPreferences | null = null;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     LogUtil.info(ConfigData.TAG + 'Application onCreate ===> want: ' + JSON.stringify(want))
@@ -179,14 +179,14 @@ export default class MainAbility extends UIAbility {
     let inputSourceItem: string = (inputSourceInfo !== '') ? inputSourceInfo : 'HDMI1'
     AppStorage.setOrCreate('inputSourceItem', inputSourceItem)
     commonEvents(inputSourceItem)
-    this.PreDataFlush = new BooleanPreferences(this.context);
-    this.PreDataFlush.initialize().catch((error: Error) => {
-      LogUtil.error(ConfigData.TAG + 'PreDataFlush initialize error: ' + JSON.stringify(error));
+    this.preDataFlush = new BooleanPreferences(this.context);
+    this.preDataFlush.initialize().catch((error: Error) => {
+      LogUtil.error(ConfigData.TAG + 'preDataFlush initialize error: ' + JSON.stringify(error));
     });
 
     globalThis.resolution =
-      settings.getValueSync(globalThis.settingsAbilityContext as common.UIAbilityContext, SETTINGS_RESOLUTION, "err");
-    console.log("=-= get curResolution: " + JSON.stringify(globalThis.curResolution));
+      settings.getValueSync(globalThis.settingsAbilityContext as common.UIAbilityContext, SETTINGS_RESOLUTION, 'err');
+    console.log('=-= get curResolution: ' + JSON.stringify(globalThis.curResolution));
   }
 
   onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void {
@@ -234,7 +234,7 @@ export default class MainAbility extends UIAbility {
       LogUtil.info(ConfigData.TAG + 'getKeyToneEnableFailed=' + JSON.stringify(error));
       AppStorage.setOrCreate('isVolumeOn', false)
     }
-    LogUtil.log("[Main] MainAbility onWindowStageCreate")
+    LogUtil.log('[Main] MainAbility onWindowStageCreate')
     globalThis.windowStage = windowStage
     globalThis.screenWidth = (await this.getWindowDisplayData()).width
     globalThis.screenHeight = (await this.getWindowDisplayData()).height
@@ -246,19 +246,19 @@ export default class MainAbility extends UIAbility {
    }
     LogUtil.info(ConfigData.TAG + 'onWindowStageCreate ===> param: ' + JSON.stringify(param))
     let window = windowStage.getMainWindowSync()
-    AppStorage.setOrCreate("windowId", window.getWindowProperties().id)
+    AppStorage.setOrCreate('windowId', window.getWindowProperties().id)
     if (param.pageUrl == 'ETH') {
-      window.setUIContent("pages/network/WiredNetwork")
+      window.setUIContent('pages/network/WiredNetwork')
     } else if (param.pageUrl == 'BLUETOOTH') {
-      window.setUIContent("pages/bluetooth/BluetoothDeviceEntry")
+      window.setUIContent('pages/bluetooth/BluetoothDeviceEntry')
     } else if (param.pageUrl == 'WIFI') {
-      window.setUIContent("pages/network/Wifi")
+      window.setUIContent('pages/network/Wifi')
     } else if (param.pageUrl == 'MIRACAST') {
-      window.setUIContent("pages/links/Links")
+      window.setUIContent('pages/links/Links')
     } else if (param.pageUrl == 'NET') {
-      globalThis.windowStage.setUIContent(this.context, "pages/network/Network")
+      globalThis.windowStage.setUIContent(this.context, 'pages/network/Network')
     } else {
-      window.setUIContent("pages/SettingList", () => {
+      window.setUIContent('pages/SettingList', () => {
         windowStage.getMainWindow().then((win) => {
           try {
             win.setWindowBackgroundColor('#18181A')
@@ -271,25 +271,25 @@ export default class MainAbility extends UIAbility {
     }
 
     //监听横竖屏切换
-    screen.on("change", async (code) => {
+    screen.on('change', async (code) => {
       globalThis.screenWidth = (await this.getWindowDisplayData()).width
       globalThis.screenHeight = (await this.getWindowDisplayData()).height
       console.info(`SettingScreen:width=>${globalThis.screenWidth},height==>${globalThis.screenHeight}`)
-      AppStorage.setOrCreate("IsVertical", globalThis.screenWidth < globalThis.screenHeight)
+      AppStorage.setOrCreate('IsVertical', globalThis.screenWidth < globalThis.screenHeight)
 
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    LogUtil.log("[Main] MainAbility onWindowStageDestroy")
+    LogUtil.log('[Main] MainAbility onWindowStageDestroy')
   }
 
   async onForeground() {
     // Ability has brought to foreground
-    LogUtil.log("[Main] MainAbility onForeground")
+    LogUtil.log('[Main] MainAbility onForeground')
 
-    CommonEvent.publish("SETTINGS_FOREGROUND", (err) => {
+    CommonEvent.publish('SETTINGS_FOREGROUND', (err) => {
       if (err.code) {
         LogUtil.info(ConfigData.TAG + 'onForeground publish SETTINGS_FOREGROUND err: ' + JSON.stringify(err));
       } else {
@@ -306,8 +306,8 @@ export default class MainAbility extends UIAbility {
     }, 400)
     // 当Settings在前台时，销毁Settings_Menu
     let want = new ServiceAbilityWant();
-    want.bundleName = "com.ohos.settings";
-    want.abilityName = "com.ohos.settings.menu.ServiceAbility";
+    want.bundleName = 'com.ohos.settings';
+    want.abilityName = 'com.ohos.settings.menu.ServiceAbility';
     globalThis.settingsAbilityContext.stopServiceExtensionAbility(want, (error: AbilityError) => {
       if (error.code) {
         // 处理业务逻辑错误
@@ -320,11 +320,11 @@ export default class MainAbility extends UIAbility {
 
     // 获取默认输入源开关Status
     // 读取值
-    const defaultInputSource = await this.PreDataFlush?.getBoolean('defaultInputSource') ?? false
+    const defaultInputSource = await this.preDataFlush?.getBoolean('defaultInputSource') ?? false
     console.log('MainAbility defaultInputSource', defaultInputSource); // 输出: true
     AppStorage.setOrCreate('defaultInputSource', defaultInputSource)
 
-    const defaultFloatBall = await this.PreDataFlush?.getBoolean('defaultFloatBall') ?? false
+    const defaultFloatBall = await this.preDataFlush?.getBoolean('defaultFloatBall') ?? false
     console.log('MainAbility defaultFloatBall', defaultFloatBall); // 输出: true
     AppStorage.setOrCreate('defaultFloatBall', defaultFloatBall)
   }
@@ -362,7 +362,7 @@ export default class MainAbility extends UIAbility {
       console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
     }
     try {
-      inputConsumer.on("key", keyOptions, callback);
+      inputConsumer.on('key', keyOptions, callback);
     } catch (error) {
       console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
@@ -379,8 +379,8 @@ export default class MainAbility extends UIAbility {
       finalKeyDownDuration: 500
     };
     try {
-      inputConsumer.on("key", keyOption, callback);
-      inputConsumer.off("key", keyOption, callback);
+      inputConsumer.on('key', keyOption, callback);
+      inputConsumer.off('key', keyOption, callback);
       console.log(`Unsubscribe`);
     } catch (error) {
       console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -394,9 +394,9 @@ export default class MainAbility extends UIAbility {
       }
     }
     // Ability has back to background
-    LogUtil.log("[Main] MainAbility onBackground")
+    LogUtil.log('[Main] MainAbility onBackground')
 
-    CommonEvent.publish("SETTINGS_BACKGROUND", (err) => {
+    CommonEvent.publish('SETTINGS_BACKGROUND', (err) => {
       if (err?.code) {
         LogUtil.info(ConfigData.TAG + 'onForeground publish SETTINGS_BACKGROUND err: ' + JSON.stringify(err));
       } else {

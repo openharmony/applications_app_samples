@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
  */
 
 import BaseModel from '../model/BaseModel';
-import HiLog from "@ohos.hilog";
+import HiLog from '@ohos.hilog';
 
 const DOMAIN = 0x0500;
-const TAG = "[Settings]"
+const TAG = '[Settings]'
 
 /**
  *  log package tool class

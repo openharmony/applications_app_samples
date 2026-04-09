@@ -19,13 +19,13 @@ import { systemParameterEnhance } from '@kit.BasicServicesKit';
 
 const TAG: string = 'DisplayHelper: '
 const MAIN_WINDOW_PREFIX = 'customMainWindow_'
-const DEFAULT_MAIN_WINDOW_PAGE = "pages/links/screenExpansion/DefaultMainWindowPage"
+const DEFAULT_MAIN_WINDOW_PAGE = 'pages/links/screenExpansion/DefaultMainWindowPage'
 
 class DisplayPage {
-  public pagePaths: Array<string> = [] //显示屏上创建的子窗口内容界面路径
+  public pagePaths: string[] = [] //显示屏上创建的子窗口内容界面路径
   public display: display.Display | null = null //已连接的显示屏
 
-  constructor(display: display.Display, pagePaths: Array<string> = []) {
+  constructor(display: display.Display, pagePaths: string[] = []) {
     this.display = display
     this.pagePaths = pagePaths
   }
@@ -33,7 +33,7 @@ class DisplayPage {
 
 export default class DisplayHelper {
   public defaultDisplay: display.Display | null = null
-  private displayDevices: Array<DisplayPage> = []
+  private displayDevices: DisplayPage[] = []
 
   private constructor() {
     console.warn(TAG + 'constructor called.')
@@ -68,7 +68,7 @@ export default class DisplayHelper {
   }
 
   private async loadAllDisplays() {
-    let displays: Array<display.Display> = await display.getAllDisplays()
+    let displays: display.Display[] = await display.getAllDisplays()
     console.log(TAG, 'getAllDisplays size = ' + displays.length)
     for (let display of displays) {
       if (this.displayDevices.findIndex(item => item.display?.id === display.id) < 0) {

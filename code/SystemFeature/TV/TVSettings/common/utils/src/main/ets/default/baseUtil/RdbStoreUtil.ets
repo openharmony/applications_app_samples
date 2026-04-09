@@ -17,10 +17,10 @@ import BaseModel from '../model/BaseModel';
 import LogUtil  from './LogUtil';
 import ohosDataRdb from '@ohos.data.rdb';
 
-const TAG = "RdbStoreUtil.js->";
+const TAG = 'RdbStoreUtil.js->';
 // Database name
 const STORE_CONFIG = {
-  name: "settings.db",
+  name: 'settings.db',
 }
 // Database instance object
 var rdbStore = undefined;
@@ -108,5 +108,4 @@ export default {
     return rdbStore;
   },
 }
-
 

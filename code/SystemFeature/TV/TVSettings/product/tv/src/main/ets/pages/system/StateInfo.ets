@@ -60,7 +60,7 @@ struct StateInfo {
 
     let item2 = new SettingItemTvModel()
     item2.name = '设备无线MAC地址'
-    item2.chooseDes = aboutDeviceModel.getdeviceMacAddress().toUpperCase();
+    item2.chooseDes = aboutDeviceModel.getDeviceMacAddress().toUpperCase();
     item2.style = SettingItemStyle.info
 
     let item3 = new SettingItemTvModel()
