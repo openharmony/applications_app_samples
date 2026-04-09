@@ -22,7 +22,7 @@ struct Index {
 
   build() {
     Column() {
-      Web({ src: 'https://www.example.com', controller: this.controller }) //需要手动替换为真实网站
+      Web({ src: 'https://www.example.com', controller: this.controller }) // 需要手动替换为真实网站
     }
   }
 
