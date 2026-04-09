@@ -26,12 +26,8 @@ struct Index {
       Button($r('app.string.call_native'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.doNativeTest();
-          if (ret == 0) {
-            this.message = 'Call Native Success';
-          } else {
-            this.message = 'Call Native Fail';
-          }
+          let result: number = testNapi.doNativeTest();
+          this.message = 'Call Native ' + (result == 0 ? 'Success' : 'Failed');
         })
     }
     .height('100%')

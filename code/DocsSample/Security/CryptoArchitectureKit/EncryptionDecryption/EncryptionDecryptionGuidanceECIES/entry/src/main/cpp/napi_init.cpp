@@ -14,7 +14,7 @@
  */
 
 #include "napi/native_api.h"
-#include "types/project/native_test.hpp"
+#include "project/native_test.h"
 
 static napi_value NAPI_Global_doNativeTest(napi_env env, napi_callback_info info)
 {
