@@ -12,12 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { application } from '@kit.AbilityKit'
 
-export function resourceToString(resource: Resource): string {
-  const context = getContext();
-  if (!context || !context.resourceManager) {
-    console.error('Context or resourceManager is undefined');
-    return '';
+export  function resourceToString(resource: Resource, context?: Context): string {
+  let result: string = '';
+  try {
+    if (context === undefined) {
+      context = application.getApplicationContext();
+    }
+    if (!context || !context.resourceManager) {
+      console.error('Context or resourceManager is undefined');
+      return result;
+    }
+    result = context.resourceManager.getStringSync(resource.id);
+  } catch (e) {
+    console.error(`call resourceToString failed, code: ${e.code}, message: ${e.message}`);
   }
-  return context.resourceManager.getStringSync(resource);
+  return result;
 }
