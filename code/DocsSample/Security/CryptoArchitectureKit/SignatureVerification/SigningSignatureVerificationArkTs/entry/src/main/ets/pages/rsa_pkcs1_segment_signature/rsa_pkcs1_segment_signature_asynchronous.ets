@@ -52,14 +52,14 @@ async function verifyMessagBySegment(pubKey: cryptoFramework.PubKey, plainText: 
 }
 
 async function rsaSignatureBySegment() {
-  let message = 'This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!' +
-    'This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!';
+  let message = 'This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!' +
+    'This is a long plainText! This is a long plainText! This is a long plainText! This is a long plainText!';
   let keyGenAlg = 'RSA1024';
   let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
   let keyPair = await generator.generateKeyPair();

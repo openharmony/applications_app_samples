@@ -31,7 +31,7 @@ async function doHmac() {
   let keyData = new Uint8Array(buffer.from('12345678abcdefgh', 'utf-8').buffer);
   let key = await genSymKeyByData(keyData);
   let macAlgName = 'SHA256'; // 摘要算法名
-  let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+  let message = 'hmacTestMessage'; // 待进行HMAC的数据
   let mac = cryptoFramework.createMac(macAlgName);
   await mac.init(key);
   // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
