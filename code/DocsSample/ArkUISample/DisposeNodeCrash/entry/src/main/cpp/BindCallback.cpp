@@ -54,6 +54,8 @@ napi_value UnbindNode(napi_env env, napi_callback_info info)
     }
     OH_ArkUI_SurfaceHolder_Dispose(g_holder); // 销毁SurfaceHolder
     g_holder = nullptr;
+    // 将nodeAPI->disposeNode(g_node1);移至此处即可修复crash
+    
     return nullptr;
 }
 
@@ -62,11 +64,11 @@ napi_value BindNode(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[1], &g_node1); // 获取 nodeHandle
-    g_holder = OH_ArkUI_SurfaceHolder_Create(g_node1);           // 获取 SurfaceHolder
-    g_callback = OH_ArkUI_SurfaceCallback_Create();              // 创建 SurfaceCallback
+    OH_ArkUI_GetNodeHandleFromNapiValue(env, args[1], &g_node1); // 获取nodeHandle
+    g_holder = OH_ArkUI_SurfaceHolder_Create(g_node1);           // 获取SurfaceHolder
+    g_callback = OH_ArkUI_SurfaceCallback_Create();              // 创建SurfaceCallback
     auto hello = new std::string("helloWorld");
-    OH_ArkUI_SurfaceHolder_SetUserData(g_holder, hello); // 设置std::string至 SurfaceHolder
+    OH_ArkUI_SurfaceHolder_SetUserData(g_holder, hello); // 设置std::string至SurfaceHolder
     OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(g_callback,
                                                       OnSurfaceDestroyedNative); // 注册OnSurfaceDestroyed回调
     OH_ArkUI_SurfaceHolder_AddSurfaceCallback(g_holder, g_callback);             // 注册SurfaceCallback回调
