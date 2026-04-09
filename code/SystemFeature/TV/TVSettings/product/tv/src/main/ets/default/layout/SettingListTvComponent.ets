@@ -1,10 +1,25 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { KeyCode } from '../../common/constants/KeyCode';
 import { SettingItemStyle, SourcetoolConstants } from '../../common/constants/StyleConstants';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import { SettingItemTvComponent } from '../layout/SettingItemTvComponent';
 import { SettingItemTvModel } from '../model/SettingItemTvModel';
-import lpx from '../../common/lpx';
+import lpx from '../../common/Lpx';
 import { sound } from '../../model/keyVolumeImpl/KeyControl';
 import PreferenceUtils, { BooleanPreferences } from '../../common/UserStorageManager';
 import { Content } from '@kit.ArkUI';
@@ -22,10 +37,10 @@ function settingListItemTvDefaultFancy() {
   .borderRadius(lpx(4))
 }
 
-let PreDataFlush = new BooleanPreferences(getContext(Content))
-PreDataFlush.initialize();
+let preDataFlush = new BooleanPreferences(getContext(Content))
+preDataFlush.initialize();
 
-const TAG = "SettingListTvComponent";
+const TAG = 'SettingListTvComponent';
 
 @Component
 export struct SettingListTvComponent {
@@ -40,7 +55,7 @@ export struct SettingListTvComponent {
   @StorageLink('isVolumeOn') isVolumeOn: boolean = false
   @State focusIndex: number = -1
   private scroller: Scroller = new Scroller()
-  @State listKey: string = "listKey"
+  @State listKey: string = 'listKey'
   @Prop isWifiNetwork: boolean = false;
   @State isLeft: boolean = false;
   @State isTouchImg: boolean = false;
@@ -102,12 +117,12 @@ export struct SettingListTvComponent {
   }
 
   onPageShow(): void {
-    this.getUIContext().getFocusController().requestFocus(this.title +"-0")
+    focusControl.requestFocus(this.title + '-0')
   }
 
   focusTo(id:string){
     try {
-      this.getUIContext().getFocusController().requestFocus(id)
+      focusControl.requestFocus(id)
     } catch (error) {
       console.log('SettingListTvComponent','定焦失败')
     }
@@ -131,7 +146,7 @@ export struct SettingListTvComponent {
 
       Text(this.subTitle)
         .height(lpx(35))
-        .fontColor("#99ffffff")
+        .fontColor('#99ffffff')
         .fontSize(lpx(30))
         .align(Alignment.Center)
         .margin({
@@ -169,9 +184,8 @@ export struct SettingListTvComponent {
             radius: lpx(24),
             style: BorderStyle.Solid
           } : { width: 0 })
-          .id(this.title+"-"+index)
+          .id(this.title + '-' + index)
           .focusable(!item.isDisableFocus)
-          // .key(this.listKey + index.toString())
           .defaultFocus(this.getEnable(item, index))
           .onFocus(() => {
             if (this.onFocusHandle) {
@@ -187,6 +201,9 @@ export struct SettingListTvComponent {
             this.focusIndex = -1;
           })
           .onKeyEvent(async (event) => {
+            if (event === undefined) {
+              return;
+            }
             if (event?.type == KeyType.Up && this.isFirstTouchEvent) {
               this.isFirstTouchEvent = false;
               return;
@@ -197,7 +214,7 @@ export struct SettingListTvComponent {
               sound.playAudio()
             }
             if(event.keyCode === KeyCode.KEY_ENTER && globalThis.inSwitchForegrounding){
-              LogUtil.warn("inSwitchForegrounding with KEY_ENTER");
+              LogUtil.warn('inSwitchForegrounding with KEY_ENTER');
               globalThis.inSwitchForegrounding = false
               return
             }
@@ -215,7 +232,7 @@ export struct SettingListTvComponent {
                 this.onFocusHandle(item);
               }
               this.focusIndex = index;
-              this.focusTo(this.title+"-"+this.focusIndex.toString())
+              this.focusTo(this.title + '-' + this.focusIndex.toString())
               console.log('===setting-onHover')
             }
             if (this.isAutoScreeOff) {
@@ -223,6 +240,9 @@ export struct SettingListTvComponent {
             }
           })
           .onTouch(async (event) => {
+            if (event === undefined) {
+              return;
+            }
             if (item.isDisableFocus) {
               return;
             }else {
@@ -231,14 +251,13 @@ export struct SettingListTvComponent {
                   this.onFocusHandle(item);
                 }
                 this.focusIndex = index;
-                this.focusTo(this.title+"-"+ this.focusIndex.toString())
+                this.focusTo(this.title + '-' + this.focusIndex.toString())
               }
             }
             if (!EventUtil.isTouchEvent(event)) {
               return;
             }
-            if (event.sourceTool !== SourceTool.Pen &&
-              event.sourceTool !== SourcetoolConstants.SOURCE_TOOL_MOUSE_CLICK) {
+            if (!EventUtil.isPenOrMouseClick(event, SourcetoolConstants.SOURCE_TOOL_MOUSE_CLICK)) {
               return;
             }
 
@@ -250,47 +269,6 @@ export struct SettingListTvComponent {
 
             let keyCode = KeyCode.KEY_ENTER;
             let keyType = KeyType.Up;
-
-            // if (item.style == SettingItemStyle.switch) {
-            //
-            //   if(item.name === "蓝光过滤"||item.name === "护眼模式"){
-            //
-            //   }else {
-            //     item.setIsOn(!item.isOn)
-            //   }
-            //   if (item.name == '开机默认进入输入源') {
-            //     commonEventDataFunc(item.isOn)
-            //     // 保存值
-            //     await PreDataFlush.saveBoolean('defaultInputSource',item.isOn);
-            //     AppStorage.setOrCreate('defaultInputSource', item.isOn)
-            //   }
-            //   /**
-            //    * float settings start
-            //    */
-            //   if (item.name == '悬浮球开关') {
-            //     // 保存值
-            //     LogUtil.debug("float ball touch " + item.isOn);
-            //     await PreDataFlush.saveBoolean('defaultFloatBall',item.isOn);
-            //     AppStorage.setOrCreate('defaultFloatBall', item.isOn)
-            //   }
-            //   /**
-            //    * --- float settings end ---
-            //    */
-            //   this.onToggleChangedHandle(item, item.isOn)
-            //   return;
-            // } else if (item.style == SettingItemStyle.valueChange && this.isTouchImg) {
-            //   keyCode = this.isLeft ? KeyCode.KEY_DPAD_LEFT : KeyCode.KEY_DPAD_RIGHT
-            //   keyType = KeyType.Down;
-            // }
-            // else if (item.style == SettingItemStyle.singleChoose) {
-            //   for (let index = 0; index < this.settingList.length; index++) {
-            //     if (this.settingList[index].name == item.name) {
-            //       item.setIsSelect(true)
-            //     } else {
-            //       this.settingList[index].setIsSelect(false)
-            //     }
-            //   }
-            // }
           })
           .onClick(async ()=>{
             if (!item.isDisableFocus) {
@@ -300,37 +278,14 @@ export struct SettingListTvComponent {
               this.focusIndex = index;
             }
             // 由于需要监听触控事件，移植到onclick
-            if (item.style == SettingItemStyle.switch) {            // enter
-
-                if (item.name === "蓝光过滤" || item.name === "护眼模式") {
-
+            if (item.style == SettingItemStyle.switch) {
+                if (item.name === '蓝光过滤' || item.name === '护眼模式') {
                 } else {
-                  //在这里改变了开关状态
                   item.setIsOn(!item.isOn)
                 }
-                if (item.name == '开机默认进入输入源') {
-                  // commonEventDataFunc(item.isOn)
-                  // // 保存值
-                  // await PreDataFlush.saveBoolean('defaultInputSource',item.isOn);
-                  // AppStorage.setOrCreate('defaultInputSource', item.isOn)
-                }
-                /**
-                 * float settings start
-                 */
-                if (item.name == '悬浮球开关') {
-                  // LogUtil.debug("float ball key " + item.isOn);
-                  // await PreDataFlush.saveBoolean('defaultFloatBall',item.isOn);
-                  // AppStorage.setOrCreate('defaultFloatBall', item.isOn)
-                }
-                /**
-                 * float settings end
-                 */
                 this.onToggleChangedHandle(item, item.isOn)
-                // this.onClickHandle(item)
                 return;
-            }
-            else if (item.style == SettingItemStyle.singleChoose) {
-             // enter
+            } else if (item.style == SettingItemStyle.singleChoose) {
                 for (let index = 0; index < this.settingList.length; index++) {
                   if (this.settingList[index].name == item.name) {
                     item.setIsSelect(true)
@@ -351,19 +306,11 @@ export struct SettingListTvComponent {
         })
       }
       .scrollBar(BarState.Off)
-      .onWillScroll((index) => {
-        // this.scroller.scrollToIndex(index);
-      })
-      .width(ConfigData.WH_100_100)
-      .layoutWeight(1)
-      .margin({
-        bottom: lpx(48),
-      })
       .alignListItem(this.isAlignCenter ? ListItemAlign.Center : ListItemAlign.Start)
     }
     .alignItems(this.isAlignCenter ? HorizontalAlign.Center : HorizontalAlign.Start)
     .justifyContent(FlexAlign.Start)
     .height('100%')
-    .padding(this.isAlignCenter ? { left: lpx(0) } : {})
+    .padding(this.isAlignCenter ? { left: lpx(0), bottom: lpx(48) } : { bottom: lpx(48) })
   }
 }

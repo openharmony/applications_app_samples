@@ -1,6 +1,21 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import ethernet from '@ohos.net.ethernet';
 import { SettingItemStyle } from '../../common/constants/StyleConstants';
-import { Ratio } from '../../common/ratio';
+import { Ratio } from '../../common/Ratio';
 import WifiModel, { WifiScanInfo } from '../../model/wifiImpl/WifiModel';
 import { SettingItemTvModel } from '../model/SettingItemTvModel';
 import { SettingBackground } from './SettingBackground';
@@ -10,18 +25,18 @@ import { KeyCode } from '../../common/constants/KeyCode';
 import router from '@ohos.router';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import { SettingItemTvComponent } from '../../default/layout/SettingItemTvComponent'
-import lpx from '../../common/lpx'
+import { SettingItemTvComponent } from '../../default/layout/SettingItemTvComponent';
+import lpx from '../../common/Lpx';
 import wifiManager from '@ohos.wifiManager';
 import { connection } from '@kit.NetworkKit';
 
 const NETWORK_MONITOR_TITLE: string = '网络检测';
-const NETWORK_MONITOR_URL: string = 'pages/network/netMonitor';
+const NETWORK_MONITOR_URL: string = 'pages/network/NetMonitor';
 const NETWORK_SPEED_TITLE: string = '网络测速';
-const NETWORK_SPEED_URL: string = 'pages/network/netSpeed';
-const wirelessNetwork: string = getContext(this).resourceManager.getStringByNameSync("wirelessNetwork")
-const NETWORK_PERSONAL_HOTSPOT_TITLE:string = "个人热点";
-const NETWORK_PERSONAL_HOTSPOT_URL:string = "pages/hotspot/hotspot";
+const NETWORK_SPEED_URL: string = 'pages/network/NetSpeed';
+const wirelessNetwork: string = getContext(this).resourceManager.getStringByNameSync('wirelessNetwork')
+const NETWORK_PERSONAL_HOTSPOT_TITLE:string = '个人热点';
+const NETWORK_PERSONAL_HOTSPOT_URL:string = 'pages/hotspot/Hotspot';
 interface SlConnectedWifi {
   settingTitle: string
   settingArrow: string
@@ -35,7 +50,7 @@ export struct NetWorkComponent {
   @State isEnable: boolean = true;
   @State des: string | Resource = '';
   @State settingList: SettingItemTvModel[] = []
-  @StorageLink('slConnectedWifi') @Watch("onConnectedWifiChange") slConnectedWifi: SlConnectedWifi = {
+  @StorageLink('slConnectedWifi') @Watch('onConnectedWifiChange') slConnectedWifi: SlConnectedWifi = {
     settingTitle: '',
     settingArrow: '',
     apInfo: {
@@ -54,6 +69,28 @@ export struct NetWorkComponent {
   isWifiEnable: boolean = false;
   @Link pageTranState: boolean; //判断是进场动效还是出场动效
 
+  private applyNetworkEntryState(hasEthernet: boolean) {
+    if (this.settingList.length < 2) {
+      return;
+    }
+    this.isEnable = hasEthernet
+    if (!hasEthernet) {
+      this.settingList[0].setIsEnable(true)
+      this.settingList[0].setIsDisableFocus(false)
+      this.settingList[1].setIsEnable(false)
+      this.settingList[1].setIsDisableFocus(true)
+      this.getssid();
+      AppStorage.setOrCreate('linkWifiOff', true);
+    } else {
+      this.settingList[1].setIsEnable(true)
+      this.settingList[1].setIsDisableFocus(false)
+      this.settingList[0].setIsEnable(false)
+      this.settingList[0].setIsDisableFocus(true)
+      AppStorage.setOrCreate('linkWifiOff', false);
+    }
+    this.enableEthernet = hasEthernet;
+  }
+
   build() {
     Stack() {
       SettingBackground()
@@ -65,10 +102,10 @@ export struct NetWorkComponent {
         SettingListTvComponent({
           isEnable: this.isEnable,
           settingList: this.settingList,
-          title: "网络",
+          title: '网络',
           onKeyEventHandle: async (item: SettingItemTvModel, event: KeyEvent) => {
             if (event.keyCode == KeyCode.KEY_ENTER && event.type == KeyType.Down) {
-              if (item.name === "有线网络") {
+              if (item.name === '有线网络') {
                 if (!this.enableEthernet) {
                   return;
                 }
@@ -86,8 +123,8 @@ export struct NetWorkComponent {
                 if (this.enableEthernet) {
                   return;
                 }
-              }else if(item.name === NETWORK_PERSONAL_HOTSPOT_TITLE){
-                console.log("打开个人热点页面" + item.pageUrl)
+              } else if(item.name === NETWORK_PERSONAL_HOTSPOT_TITLE){
+                console.log('打开个人热点页面' + item.pageUrl)
                 router.pushUrl({
                   url: item.pageUrl,
                 }, router.RouterMode.Single)
@@ -101,7 +138,7 @@ export struct NetWorkComponent {
             }
           },
           onMouseClickHandle:async (item:SettingItemTvModel)=>{
-            if (item.name === "有线网络") {
+            if (item.name === '有线网络') {
               if (!this.enableEthernet) {
                 return;
               }
@@ -169,8 +206,8 @@ export struct NetWorkComponent {
           return item.ssid == this.ssid
         })
         if (!resArrItem) {
-          this.slConnectedWifi.settingArrow = "";
-          this.slConnectedWifi.apInfo = this.getSlConnectedWifi("", "", 0, 0, 0, 0, 0);
+          this.slConnectedWifi.settingArrow = '';
+          this.slConnectedWifi.apInfo = this.getSlConnectedWifi('', '', 0, 0, 0, 0, 0);
         } else {
           if (resArrItem.securityType == 1) {
             lockPrefix = '';
@@ -182,78 +219,55 @@ export struct NetWorkComponent {
               resArrItem.frequency, resArrItem.timestamp, resArrItem.securityType);
         }
       } catch (error) {
-        this.slConnectedWifi.settingArrow = "";
-        this.slConnectedWifi.apInfo = this.getSlConnectedWifi("", "", 0, 0, 0, 0, 0);
+        this.slConnectedWifi.settingArrow = '';
+        this.slConnectedWifi.apInfo = this.getSlConnectedWifi('', '', 0, 0, 0, 0, 0);
         LogUtil.info('error msg is' + error)
       }
     })
   }
 
   getActiveIface() {
-    ethernet.getAllActiveIfaces().then((activity: string[]) => {
-      this.activities = activity;
-      if (this.activities.length === 0) {
-        //第一项亮，第二项暗
-        this.isEnable = false
-        this.settingList[0].setIsEnable(true)
-        this.settingList[0].setIsDisableFocus(false)
-        this.settingList[1].setIsEnable(false)
-        this.settingList[1].setIsDisableFocus(true)
-        this.getssid();
-        AppStorage.setOrCreate('linkWifiOff', true);
-      } else {
-        //第一项暗，第二项亮
-        this.isEnable = true
-        this.settingList[1].setIsEnable(true)
-        this.settingList[1].setIsDisableFocus(false)
-        setTimeout(() => {
-          this.settingList[0].setIsEnable(false)
-          this.settingList[0].setIsDisableFocus(true)
-        }, 50)
-        AppStorage.setOrCreate('linkWifiOff', false);
-      }
-      this.enableEthernet = this.isEnable;
-    })
+    try {
+      ethernet.getAllActiveIfaces().then((activity: string[]) => {
+        this.activities = activity;
+        this.applyNetworkEntryState(this.activities.length > 0);
+      }).catch((error: Error) => {
+        LogUtil.error('NetWorkComponent getAllActiveIfaces failed: ' + JSON.stringify(error))
+      })
+    } catch (error) {
+      LogUtil.error('NetWorkComponent getAllActiveIfaces failed: ' + JSON.stringify(error))
+    }
   }
 
   async aboutToAppear() {
-    this.getActiveIface();
     let item = new SettingItemTvModel();
     item.name = wirelessNetwork;
-    item.pageUrl = "pages/network/wifi"
+    item.pageUrl = 'pages/network/Wifi'
     item.imageUrl = Ratio.resName('icon_wifi')
-    item.description = "连接无线网络"
+    item.description = '连接无线网络'
     item.chooseDes = this.ssid;
     item.style = SettingItemStyle.default
-    item.isEnable = this.enableEthernet
+    item.isEnable = true
 
     let item1 = new SettingItemTvModel();
     item1.name = '有线网络';
-    item1.pageUrl = "pages/network/wiredNetwork";
+    item1.pageUrl = 'pages/network/WiredNetwork';
     item1.imageUrl = Ratio.resName('manualNetwork')
-    item1.description = "连接有线网络"
+    item1.description = '连接有线网络'
     item1.style = SettingItemStyle.default
-    item1.isEnable = !this.enableEthernet
+    item1.isEnable = false
 
     let item2 = new SettingItemTvModel();
     item2.name = NETWORK_MONITOR_TITLE;
     item2.pageUrl = NETWORK_MONITOR_URL
-    if(this.enableEthernet){
-      item2.imageUrl = Ratio.resName('icon_wifi')
-    }else{
-      item1.imageUrl = Ratio.resName('manualNetwork')
-    }
+    item2.imageUrl = Ratio.resName('icon_wifi')
     item2.description = NETWORK_MONITOR_TITLE
     item2.style = SettingItemStyle.default
 
     let item3 = new SettingItemTvModel();
     item3.name = NETWORK_SPEED_TITLE;
     item3.pageUrl = NETWORK_SPEED_URL
-    if(this.enableEthernet){
-      item2.imageUrl = Ratio.resName('icon_wifi')
-    }else{
-      item1.imageUrl = Ratio.resName('manualNetwork')
-    }
+    item3.imageUrl = Ratio.resName('icon_wifi')
     item3.description = NETWORK_SPEED_TITLE
     item3.style = SettingItemStyle.default
 
@@ -264,6 +278,8 @@ export struct NetWorkComponent {
     item4.description = NETWORK_PERSONAL_HOTSPOT_TITLE
     item4.style = SettingItemStyle.default
     this.settingList.push(item, item1, item2, item3, item4);
+    this.applyNetworkEntryState(this.activities.length > 0);
+    this.getActiveIface();
 
     this.scanTaskId = setInterval(() => {
       this.getActiveIface();
@@ -275,14 +291,19 @@ export struct NetWorkComponent {
   }
 
   async isEnableEthernet() {
-    console.log("NetWorkComponent isEnableEthernet is begin!")
-    let iFaces: string[] = await ethernet.getAllActiveIfaces();
-    let enable = iFaces.length > 0;
-    return enable;
+    console.log('NetWorkComponent isEnableEthernet is begin!')
+    try {
+      let iFaces: string[] = await ethernet.getAllActiveIfaces();
+      let enable = iFaces.length > 0;
+      return enable;
+    } catch (error) {
+      LogUtil.error('NetWorkComponent isEnableEthernet failed: ' + JSON.stringify(error))
+      return false;
+    }
   }
 
   onConnectedWifiChange() {
-    for (let i = 0; this.settingList.length; i++) {
+    for (let i = 0; i < this.settingList.length; i++) {
       if (this.settingList[i].name == wirelessNetwork) {
         this.settingList[i].setChooseDes(this.slConnectedWifi.settingTitle)
         break;
@@ -293,18 +314,22 @@ export struct NetWorkComponent {
   // 获取当前网络是否是WIFI类型, 1：wifi 3：Ethernet
   async isWifiNetworkEnable() {
     console.debug('NetWorkComponent isWifiNetworkEnable.');
-    let netHandle = await connection.getDefaultNet();
-    if (netHandle.netId == 0) {
-      console.error('NetWorkComponent netId is 0!');
-      return;
-    }
+    try {
+      let netHandle = await connection.getDefaultNet();
+      if (netHandle.netId == 0) {
+        console.error('NetWorkComponent netId is 0!');
+        return;
+      }
 
-    let netCapabilities = await connection.getNetCapabilities(netHandle);
-    if (!netCapabilities) {
-      console.error("NetWorkComponent netCapabilities error! ");
-      return;
+      let netCapabilities = await connection.getNetCapabilities(netHandle);
+      if (!netCapabilities) {
+        console.error('NetWorkComponent netCapabilities error! ');
+        return;
+      }
+      this.isWifiEnable = netCapabilities.bearerTypes.includes(connection.NetBearType.BEARER_WIFI);
+      console.debug('NetWorkComponent isWifiNetworkEnable = ' + this.isWifiEnable);
+    } catch (error) {
+      LogUtil.error('NetWorkComponent isWifiNetworkEnable failed: ' + JSON.stringify(error))
     }
-    this.isWifiEnable = netCapabilities.bearerTypes.includes(connection.NetBearType.BEARER_WIFI);
-    console.debug('NetWorkComponent isWifiNetworkEnable = ' + this.isWifiEnable);
   }
 }

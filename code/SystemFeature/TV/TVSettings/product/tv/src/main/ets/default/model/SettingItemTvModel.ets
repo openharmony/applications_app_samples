@@ -1,85 +1,100 @@
+﻿/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import { SettingItemStyle } from '../../common/constants/StyleConstants'
+import { SettingItemStyle } from '../../common/constants/StyleConstants';
 
 const TAG = `SettingItemTvModel`;
 
 
 @Observed
 export class SettingItemTvModel extends BaseModel {
-  name: string = '' // 设置名
+  public name: string = '' // 设置名
 
-  chooseDes: ResourceStr = '' // 设置选项选择后的描述
+  public chooseDes: ResourceStr = '' // 设置选项选择后的描述
 
-  value: string = '' // 设置值
+  public value: string = '' // 设置值
 
-  isOn: boolean = false // 开关状态
+  public isOn: boolean = false // 开关状态
 
-  isSelect: boolean = false // 选中状态
+  public isSelect: boolean = false // 选中状态
 
-  focusIndex: number = -1
+  public focusIndex: number = -1
 
-  style: SettingItemStyle = SettingItemStyle.default // item类型
+  public style: SettingItemStyle = SettingItemStyle.default // item类型
 
-  pageUrl: string = '' // 跳转路径
+  public pageUrl: string = '' // 跳转路径
 
-  imageUrl: string = '' // 描述图片路径
+  public imageUrl: string = '' // 描述图片路径
 
-  description: string | Resource = '' // 描述
+  public description: string | Resource = '' // 描述
 
-  ips: string[] = [] //ip地址（包含dns、网关、子网掩码等）
+  public ips: string[] = [] //ip地址（包含dns、网关、子网掩码等）
 
-  focusKeys: string[] = [] //当前组件绑定的焦点键
+  public focusKeys: string[] = [] //当前组件绑定的焦点键
 
-  isSetFocusKey: boolean = false // 是否为当前组件设置focusKey，紧针对SettingItemTvComponent组件的title，值取focusKeys的第一个
+  public isSetFocusKey: boolean = false // 是否为当前组件设置focusKey，紧针对SettingItemTvComponent组件的title，值取focusKeys的第一个
 
-  isEnable: boolean = true //设置当前item是否可用
+  public isEnable: boolean = true //设置当前item是否可用
 
-  isNeedBg: boolean = true // 是否需要背景色
+  public isNeedBg: boolean = true // 是否需要背景色
 
-  isDisableFocus: boolean = false // 是否禁用当前组件获焦
+  public isDisableFocus: boolean = false // 是否禁用当前组件获焦
 
-  isShow: boolean = true
+  public isShow: boolean = true
 
-  nameId: string = ''
+  public nameId: string = ''
 
-  itemParam: string = '1';
+  public itemParam: string = '1';
 
-  arrowVisible: Visibility = Visibility.Visible
+  public arrowVisible: Visibility = Visibility.Visible
 
-  textColor: string = ""
+  public textColor: string = ''
 
   constructor() {
     super();
     LogUtil.info(`${TAG} init`);
   }
 
-  setIsOn = (isOn: boolean): void => {
+  public setIsOn = (isOn: boolean): void => {
     this.isOn = isOn
   }
-  setIsSelect = (isSelect: boolean): void => {
+  public setIsSelect = (isSelect: boolean): void => {
     this.isSelect = isSelect
   }
-  setValue = (value: string): void => {
+  public setValue = (value: string): void => {
     this.value = value;
   }
-  setChooseDes = (value: string | Resource): void => {
+  public setChooseDes = (value: string | Resource): void => {
     this.chooseDes = value
   }
 
-  setStyle = (value: SettingItemStyle): void => {
+  public setStyle = (value: SettingItemStyle): void => {
     this.style = value;
   }
 
-  setIsDisableFocus = (value: boolean): void => {
+  public setIsDisableFocus = (value: boolean): void => {
     this.isDisableFocus = value;
   }
 
-  setIsEnable = (flag: boolean): void => {
+  public setIsEnable = (flag: boolean): void => {
     this.isEnable = flag;
   }
 
-  setIsShow = (flag: boolean): void => {
+  public setIsShow = (flag: boolean): void => {
     this.isShow = flag;
   }
 }
