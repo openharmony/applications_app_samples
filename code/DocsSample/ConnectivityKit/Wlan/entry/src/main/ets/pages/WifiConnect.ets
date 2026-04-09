@@ -16,7 +16,6 @@
 import hilog from '../model/Logger';
 import { PromptAction } from '@kit.ArkUI';
 import { wifiManager } from '@kit.ConnectivityKit';
-import { router } from '@kit.ArkUI';
 
 const TAG = 'WifiConnect'
 @Entry
