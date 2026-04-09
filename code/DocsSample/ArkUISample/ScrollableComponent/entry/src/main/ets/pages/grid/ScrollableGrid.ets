@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 import common from '@ohos.app.ability.common';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start build_scrollable_horizontally_grid_layouts]
 @Entry
 @Component
@@ -32,22 +33,54 @@ export struct ScrollableGrid {
   private bgColors: string[] = ['#3079fe', '#fea500', '#f45a43']
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const categories = context.resourceManager.getStringByNameSync('Categories')
-    this.services.push(categories)
-    const recharge = context.resourceManager.getStringByNameSync('Recharge')
-    this.services.push(recharge)
-    const membership = context.resourceManager.getStringByNameSync('Membership')
-    this.services.push(membership)
-    const claim = context.resourceManager.getStringByNameSync('Claim_Coupon')
-    this.services.push(claim)
-    const lottery = context.resourceManager.getStringByNameSync('Lottery')
-    this.services.push(lottery)
-    const favorites = context.resourceManager.getStringByNameSync('Favorites')
-    this.services.push(favorites)
-    const points = context.resourceManager.getStringByNameSync('Points')
-    this.services.push(points)
-    const more = context.resourceManager.getStringByNameSync('More')
-    this.services.push(more)
+    try {
+      const categories = context.resourceManager.getStringByNameSync('Categories')
+      this.services.push(categories)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Categories: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const recharge = context.resourceManager.getStringByNameSync('Recharge')
+      this.services.push(recharge)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Recharge: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const membership = context.resourceManager.getStringByNameSync('Membership')
+      this.services.push(membership)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Membership: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const claim = context.resourceManager.getStringByNameSync('Claim_Coupon')
+      this.services.push(claim)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Claim_Coupon: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const lottery = context.resourceManager.getStringByNameSync('Lottery')
+      this.services.push(lottery)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Lottery: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const favorites = context.resourceManager.getStringByNameSync('Favorites')
+      this.services.push(favorites)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Favorites: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const points = context.resourceManager.getStringByNameSync('Points')
+      this.services.push(points)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Points: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const more = context.resourceManager.getStringByNameSync('More')
+      this.services.push(more)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get More: %{public}s', JSON.stringify(e) ?? '');
+    }
   }
   // [EndExclude build_scrollable_horizontally_grid_layouts]
   build() {

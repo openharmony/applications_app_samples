@@ -130,7 +130,7 @@ export struct ArcListCrown {
             // [End arcListCrownDigitalCrownSensitivity_start]
             .space(LengthMetrics.px(10))
             .scrollBarWidth(LengthMetrics.px(10))
-            .scrollBarColor(ColorMetrics.resourceColor(Color.White))
+            .scrollBarColor(ColorMetrics.numeric(Color.White))
             .borderRadius(this.watchSize)
           }
           .align(Alignment.Center)

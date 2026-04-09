@@ -137,7 +137,7 @@ export struct arcListBuiltInScrollerBar {
           }
           .scrollBar(BarState.Auto)
           .scrollBarWidth(LengthMetrics.px(10))
-          .scrollBarColor(ColorMetrics.resourceColor(Color.White))
+          .scrollBarColor(ColorMetrics.numeric(Color.White))
           // [End arcListBuiltInScrollBar_start]
           .width('466px')
           .height('466px')

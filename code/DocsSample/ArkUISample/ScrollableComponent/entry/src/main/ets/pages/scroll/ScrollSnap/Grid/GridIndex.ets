@@ -84,7 +84,7 @@ export struct ScrollSnapGrid {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollSnap/Grid/GridIndex2',
             params: {
               data1: 'message'

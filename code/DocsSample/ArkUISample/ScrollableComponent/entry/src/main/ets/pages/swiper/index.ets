@@ -33,57 +33,57 @@ export const SWIPER_ROUTE_PREFIX: string = 'swiper';
 const routes: Route[] = [
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperLoop`,
-    title: resource.resourceToString($r('app.string.SwiperLoop_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperLoop_title'))},
     description: $r('app.string.SwiperLoop_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperAutoPlay`,
-    title: resource.resourceToString($r('app.string.SwiperAutoPlay_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperAutoPlay_title'))},
     description: $r('app.string.SwiperAutoPlay_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperIndicatorStyle`,
-    title: resource.resourceToString($r('app.string.SwiperIndicatorStyle_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperIndicatorStyle_title'))},
     description: $r('app.string.SwiperIndicatorStyle_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperPageSwitchMethod`,
-    title: resource.resourceToString($r('app.string.SwiperPageSwitchMethod_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperPageSwitchMethod_title'))},
     description: $r('app.string.SwiperPageSwitchMethod_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperDirection`,
-    title: resource.resourceToString($r('app.string.SwiperDirection_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperDirection_title'))},
     description: $r('app.string.SwiperDirection_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperMultiPage`,
-    title: resource.resourceToString($r('app.string.SwiperMultiPage_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperMultiPage_title'))},
     description: $r('app.string.SwiperMultiPage_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperCustomAnimation`,
-    title: resource.resourceToString($r('app.string.SwiperCustomAnimation_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperCustomAnimation_title'))},
     description: $r('app.string.SwiperCustomAnimation_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperAndTabsLinkage`,
-    title: resource.resourceToString($r('app.string.SwiperAndTabsLinkage_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperAndTabsLinkage_title'))},
     description: $r('app.string.SwiperAndTabsLinkage_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperIgnoreComponentSize`,
-    title: resource.resourceToString($r('app.string.SwiperIgnoreComponentSize_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperIgnoreComponentSize_title'))},
     description: $r('app.string.SwiperIgnoreComponentSize_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperDigitIndicatorIgnoreComponentSize`,
-    title: resource.resourceToString($r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title'))},
     description: $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_description')
   },
   {
     name: `${SWIPER_ROUTE_PREFIX}/SwiperVisibleContentPosition`,
-    title: resource.resourceToString($r('app.string.SwiperVisibleContentPosition_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwiperVisibleContentPosition_title'))},
     description: $r('app.string.SwiperVisibleContentPosition_description')
   }
 ];
@@ -127,7 +127,8 @@ struct SwiperExample {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {

@@ -33,52 +33,52 @@ export const ARCLIST_ROUTE_PREFIX: string = 'arcList';
 const routes: Route[] = [
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListShow`,
-    title: resource.resourceToString($r('app.string.ArcListShow_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListShow_title'))},
     description: $r('app.string.ArcListShow_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListContents`,
-    title: resource.resourceToString($r('app.string.ArcListContents_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListContents_title'))},
     description: $r('app.string.ArcListContents_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListStyles`,
-    title: resource.resourceToString($r('app.string.ArcListStyles_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListStyles_title'))},
     description: $r('app.string.ArcListStyles_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/arcListBuiltInScrollerBar`,
-    title: resource.resourceToString($r('app.string.arcListBuiltInScrollerBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.arcListBuiltInScrollerBar_title'))},
     description: $r('app.string.arcListBuiltInScrollerBar_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListAcrScrollBar`,
-    title: resource.resourceToString($r('app.string.ArcListAcrScrollBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListAcrScrollBar_title'))},
     description: $r('app.string.ArcListAcrScrollBar_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListArcIndexerBar`,
-    title: resource.resourceToString($r('app.string.ArcListArcIndexerBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListArcIndexerBar_title'))},
     description: $r('app.string.ArcListArcIndexerBar_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListSideSlip`,
-    title: resource.resourceToString($r('app.string.ArcListSideSlip_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListSideSlip_title'))},
     description: $r('app.string.ArcListSideSlip_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcLongList`,
-    title: resource.resourceToString($r('app.string.ArcLongList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcLongList_title'))},
     description: $r('app.string.ArcLongList_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListCrown`,
-    title: resource.resourceToString($r('app.string.ArcListCrown_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListCrown_title'))},
     description: $r('app.string.ArcListCrown_description')
   },
   {
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListCreate`,
-    title: resource.resourceToString($r('app.string.ArcListCreate_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcListCreate_title'))},
     description: $r('app.string.ArcListCreate_description')
   }
 ];
@@ -120,7 +120,8 @@ struct ArcListExample {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {
