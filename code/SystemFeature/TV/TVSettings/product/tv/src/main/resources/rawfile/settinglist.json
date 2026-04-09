@@ -6,7 +6,7 @@
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingSummary": "",
-    "settingUri": "pages/wifi"
+    "settingUri": "pages/Wifi"
   },{
   "settingIcon": "/res/image/displayAndBrightness.svg",
   "settingTitle": "",
@@ -14,7 +14,7 @@
   "settingValue": "",
   "settingArrow": "/res/image/ic_settings_arrow.svg",
   "settingSummary": "",
-  "settingUri": "pages/brightnessSettings"
+  "settingUri": "pages/display/BrightnessSettings"
 },
   {
     "settingIcon": "res/image/application.svg",

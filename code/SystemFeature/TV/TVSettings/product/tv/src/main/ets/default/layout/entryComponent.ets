@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+﻿/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import ComponentConfig from '../../../../../../../common/component/src/main/ets/default/ComponentConfig';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import lpx from '../../common/lpx'
+import lpx from '../../common/Lpx';
 
 
 @Component
@@ -30,7 +30,7 @@ export default struct EntryComponent {
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
   private heights ? = $r('app.float.wh_value_70');
-  private image_wh ? = $r('app.float.wh_value_50');
+  private imageWh ? = $r('app.float.wh_value_50');
   private fontSize ? = lpx(34);
   @Prop maxLines: number = ComponentConfig.MAX_LINES_3
 
@@ -38,8 +38,8 @@ export default struct EntryComponent {
     Row() {
       Row() {
         Image(this.settingIcon)
-          .width(this.image_wh)
-          .height(this.image_wh)
+          .width(this.imageWh)
+          .height(this.imageWh)
           .margin({ right: lpx(10) })
           .objectFit(ImageFit.Contain)
           .fillColor(this.isFocus ? 'rgba(0, 0, 0, 0.86)' : '#FFFFFF')
@@ -49,7 +49,9 @@ export default struct EntryComponent {
           .fontColor(this.isFocus ? 'rgba(0, 0, 0, 0.86)' : '#FFFFFF')
           .fontSize(this.fontSize)
           .textAlign(TextAlign.Start)
-          .wordBreak(this.maxLines === ComponentConfig.MAX_LINES_1 ? WordBreak.BREAK_ALL : WordBreak.BREAK_WORD) //当前最大行数为1行时折行规则是所有，否则恢复默认
+          .wordBreak(
+            this.maxLines === ComponentConfig.MAX_LINES_1 ? WordBreak.BREAK_ALL : WordBreak.BREAK_WORD
+          ) //当前最大行数为1行时折行规则是所有，否则恢复默认
           .maxLines(this.maxLines)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .fontWeight(500)
