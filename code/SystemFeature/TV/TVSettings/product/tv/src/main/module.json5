@@ -1,0 +1,263 @@
+{
+  "module": {
+    "name": "tv",
+    "type": "entry",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "description": "$string:mainability_description",
+    "mainElement": "com.ohos.settings.MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "com.ohos.settings.MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:mainability_description",
+        "icon": "$media:app_icon",
+        "label": "$string:entry_MainAbility",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "startWindowIcon": "$media:app_icon",
+        "startWindowBackground": "$color:white"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EnterpriseAdminAbility",
+        "type": "enterpriseAdmin",
+        "exported": true,
+        "srcEntry": "./ets/enterpriseadminability/EnterpriseAdminAbility.ets"
+      },
+      {
+        "name": "BootCompletedSubscriber",
+        "srcEntry": "./ets/staticSubscriber/BootCompletedSubscriber.ets",
+        "type": "staticSubscriber",
+        "exported": true,
+        "description": "BootCompletedSubscriber",
+        "icon": "$media:app_icon",
+        "metadata": [{
+          "name": "ohos.extension.staticSubscriber",
+          "resource": "$profile:static_subscriber_config"
+        }]
+      },
+      {
+        "name": "BluetoothPairDialog",
+        "srcEntry": "./ets/MainAbility/BluetoothPairDialogAbility.ets",
+        "description": "BluetoothPairDialog",
+        "exported": true,
+        "visible": true,
+        "type": "sysDialog/common"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.MANAGE_WIFI_HOTSPOT" // 管理WiFi热点的核心权限
+      },
+      {
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+        "reason": "$string:MANAGE_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:DISTRIBUTED_DATASYNC",
+        "usedScene": {
+          "when": 'always'
+        }
+      },
+      {
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+        "reason": "$string:INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION"
+      },
+      {
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "reason": "$string:INTERACT_ACROSS_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "$string:CLEAN_BACKGROUND_PROCESSES"
+      },
+      {
+        "name": "ohos.permission.GET_RUNNING_INFO",
+        "reason": "$string:GET_RUNNING_INFO"
+      },
+      {
+        "name": "ohos.permission.CLEAN_APPLICATION_DATA",
+        "reason": "$string:CLEAN_APPLICATION_DATA"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.INSTALL_BUNDLE",
+        "reason": "$string:INSTALL_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.REMOVE_CACHE_FILES",
+        "reason": "$string:REMOVE_CACHE_FILES"
+      },
+      {
+        "name": "ohos.permission.USE_USER_IDM",
+        "reason": "$string:USE_USER_IDM"
+      },
+      {
+        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL",
+        "reason": "$string:ACCESS_USER_AUTH_INTERNAL"
+      },
+      {
+        "name": "ohos.permission.ACCESS_PIN_AUTH",
+        "reason": "$string:ACCESS_PIN_AUTH"
+      },
+      {
+        "name": "ohos.permission.MANAGE_USER_IDM",
+        "reason": "$string:MANAGE_USER_IDM"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO",
+        "reason": "$string:GET_WIFI_INFO"
+      },
+      {
+        "name": "ohos.permission.SET_WIFI_INFO",
+        "reason": "$string:SET_WIFI_INFO"
+      },
+      {
+        "name": "ohos.permission.MANAGE_WIFI_CONNECTION",
+        "reason": "$string:MANAGE_WIFI_CONNECTION"
+      },
+      {
+        "name": "ohos.permission.SET_WIFI_CONFIG",
+        "reason": "$string:SET_WIFI_CONFIG"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_CONFIG",
+        "reason": "$string:GET_WIFI_CONFIG"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO_INTERNAL",
+        "reason": "$string:GET_WIFI_INFO_INTERNAL"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_PEERS_MAC",
+        "reason": "$string:GET_WIFI_PEERS_MAC"
+      },
+      {
+        "name": "ohos.permission.USE_BLUETOOTH",
+        "reason": "$string:USE_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.DISCOVER_BLUETOOTH",
+        "reason": "$string:DISCOVER_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.MANAGE_BLUETOOTH",
+        "reason": "$string:MANAGE_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "reason": "$string:MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.SET_TIME",
+        "reason": "$string:SET_TIME"
+      },
+      {
+        "name": "ohos.permission.SET_TIME_ZONE",
+        "reason": "$string:SET_TIME_ZONE"
+      },
+      {
+        "name": "ohos.permission.UPDATE_CONFIGURATION",
+        "reason": "$string:UPDATE_CONFIGURATION"
+      },
+      {
+        "name": "ohos.permission.FACTORY_RESET",
+        "reason": "$string:FACTORY_RESET"
+      },
+      {
+        "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY",
+        "reason": "$string:ACCESS_NOTIFICATION_POLICY"
+      },
+      {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+        "reason": "$string:MODIFY_AUDIO_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.CONNECTIVITY_INTERNAL"
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.UPDATE_SYSTEM"
+      },
+      {
+        "name": "ohos.permission.FILE_ACCESS_MANAGER"
+      },
+      {
+        "name": "ohos.permission.REBOOT"
+      },
+      {
+        "name": "ohos.permission.sec.ACCESS_UDID"
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_LOCAL_MAC"
+      },
+      {
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
+        "reason": '$string:aboutTab',
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_BLUETOOTH_LOCAL_MAC"
+      },
+      {
+        "name":"ohos.permission.CONNECT_IME_ABILITY"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.GET_ETHERNET_LOCAL_MAC"
+      },
+      {
+        "name": "ohos.permission.STORAGE_MANAGER",
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
+      },
+      {
+        "name": "ohos.permission.POWER_MANAGER"
+      }
+    ],
+    "definePermissions": [
+      {
+        "name": "ohos.permission.GET_ETHERNET_LOCAL_MAC",
+        "grantMode": "system_grant",
+        "availableLevel": "system_basic",
+        "provisionEnable": true,
+        "distributedSceneEnable": false
+      }
+    ]
+  }
+}
