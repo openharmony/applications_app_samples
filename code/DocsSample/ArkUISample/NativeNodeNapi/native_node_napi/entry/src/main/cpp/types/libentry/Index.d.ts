@@ -35,3 +35,4 @@ export const createVisualEffectsAngle: (content: Object) => void;
 export const createVisualEffectsStyle: (content: Object) => void;
 export const createVisualEffectsGroup: (content: Object) => void;
 export const destroyNativeRoot: () => void;
+export const createEventPassthrough: (content: Object) => void;

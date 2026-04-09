@@ -22,6 +22,7 @@
 ```
 "success to get drawable descriptor"
 ```
+7. 点击event passthrough选择框进入事件直通相关的CAPI接口展示界面，通过点击不同的文本等行为来启用或禁用touch事件的事件直通，具体结果在log中查看。
 
 ## 工程目录
 
@@ -32,6 +33,7 @@ entry/src/main/ets/
     ├── page_navigation.ets (获取导航页面)
     ├── page_accessibility.ets (无障碍界面)
     ├── page_embedded_component.ets (嵌入式组件界面)
+    ├── page_passthrough.ets (嵌入式组件界面)
     └── GetDrawableDescriptor.ets (映射DrawableDescriptor页面)
 entry/src/main/
 ├── cpp
@@ -70,9 +72,9 @@ entry/src/main/
 
 1. 本示例支持标准系统上运行，支持设备：RK3568;
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.36;
+2. 本示例支持API26版本SDK，版本号：7.0.0.19;
 
-3. 本示例已支持使DevEco Studio 5.1.1 Release (构建版本：5.1.1.840，构建 2025年9月20日)编译运行
+3. 本示例已支持使DevEco Studio 6.0.2 Release (构建版本：6.0.2.650，构建 2026年3月30日)编译运行
 
 ## 下载
 
