@@ -14,7 +14,7 @@
  */
 
 
-import wifi from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 import hilog from '../model/Logger'
 
 /**
@@ -24,7 +24,7 @@ const TAG = 'wifiTestApp [P2pView]'
 
 @Component
 export struct P2pView {
-  private p2p!: wifi.WifiP2pDevice
+  private p2p!: wifiManager.WifiP2pDevice
   private securityString: Resource = $r('app.string.useful')
   private p2pConnectState: number = 0
   @StorageLink('p2pLinkedDeviceName') p2pLinkedDeviceName: string = ''
@@ -67,7 +67,7 @@ export struct P2pView {
       .layoutWeight(1)
 
       Stack({ alignContent : Alignment.BottomEnd }) {
-        Image($r('app.media.wifi'))
+        Image($r('app.media.wifiManager'))
           .height(30).width(30)
           .objectFit(ImageFit.Contain)
         if ( this.isLock ) {
