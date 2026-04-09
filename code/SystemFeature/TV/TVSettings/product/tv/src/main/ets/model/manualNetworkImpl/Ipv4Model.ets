@@ -20,7 +20,9 @@ import settings from '@ohos.settings';
 
 export class Ipv4Model extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_IPV4;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_IPV4;
 
   constructor() {
     super();
@@ -31,7 +33,12 @@ export class Ipv4Model extends BaseModel {
   }
 
   getIpv4(): string {
-    let adaptiveInfo: string = settings.getValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_IPV4, '', settings.domainName.DEVICE_SHARED);
+    let adaptiveInfo: string = settings.getValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_IPV4,
+      '',
+      settings.domainName.DEVICE_SHARED
+    );
     if (adaptiveInfo !== '') {
       return adaptiveInfo
     } else {

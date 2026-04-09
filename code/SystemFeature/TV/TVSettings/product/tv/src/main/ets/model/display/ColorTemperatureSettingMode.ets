@@ -23,7 +23,9 @@ const TAG = 'ColorTemperatureSettingModelIndex'
 
 export class ColorTemperatureSettingModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_COLORTEMPERATURE_SEETING;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_COLORTEMPERATURE_SEETING;
 
   constructor() {
     super();

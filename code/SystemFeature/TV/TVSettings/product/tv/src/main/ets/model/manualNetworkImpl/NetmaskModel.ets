@@ -20,7 +20,9 @@ import settings from '@ohos.settings';
 
 export class NetMaskModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_NETMASK;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_NETMASK;
 
   constructor() {
     super();
@@ -31,7 +33,12 @@ export class NetMaskModel extends BaseModel {
   }
 
   getNetMask(): string {
-    let adaptiveInfo: string = settings.getValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_NETMASK, '', settings.domainName.DEVICE_SHARED);
+    let adaptiveInfo: string = settings.getValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_NETMASK,
+      '',
+      settings.domainName.DEVICE_SHARED
+    );
     if (adaptiveInfo !== '') {
       return adaptiveInfo
     } else {

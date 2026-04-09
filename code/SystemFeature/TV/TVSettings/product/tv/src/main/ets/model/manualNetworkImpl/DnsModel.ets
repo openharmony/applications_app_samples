@@ -20,7 +20,9 @@ import settings from '@ohos.settings';
 
 export class DnsModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_DNS;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_DNS;
 
   constructor() {
     super();
@@ -31,7 +33,12 @@ export class DnsModel extends BaseModel {
   }
 
   getDns(): string {
-    let adaptiveInfo: string = settings.getValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_DNS, '', settings.domainName.DEVICE_SHARED);
+    let adaptiveInfo: string = settings.getValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_DNS,
+      '',
+      settings.domainName.DEVICE_SHARED
+    );
     if (adaptiveInfo !== '') {
       return adaptiveInfo
     } else {
@@ -40,7 +47,13 @@ export class DnsModel extends BaseModel {
   }
 
   setDns(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_DNS, value, settings.domainName.DEVICE_SHARED)
+    const domain: string = settings.domainName.DEVICE_SHARED
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_DNS,
+      value,
+      domain
+    )
   }
 }
 

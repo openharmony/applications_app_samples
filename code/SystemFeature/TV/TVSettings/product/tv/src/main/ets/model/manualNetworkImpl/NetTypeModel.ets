@@ -20,7 +20,9 @@ import settings from '@ohos.settings';
 
 export class NetTypeModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_NETTYPE;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_NETTYPE;
 
   constructor() {
     super();
@@ -31,7 +33,12 @@ export class NetTypeModel extends BaseModel {
   }
 
   getNetMask(): string {
-    let adaptiveInfo: string = settings.getValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_NETTYPE, '', settings.domainName.DEVICE_SHARED);
+    let adaptiveInfo: string = settings.getValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_NETTYPE,
+      '',
+      settings.domainName.DEVICE_SHARED
+    );
     if (adaptiveInfo !== '') {
       return adaptiveInfo
     } else {

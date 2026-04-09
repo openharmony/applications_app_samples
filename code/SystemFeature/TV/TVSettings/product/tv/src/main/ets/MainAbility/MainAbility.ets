@@ -42,7 +42,7 @@ class MainAbilityParams {
 }
 
 class MainAbilityWant {
-  parameters: MainAbilityParams = new MainAbilityParams();
+  public parameters: MainAbilityParams = new MainAbilityParams();
 }
 
 class ServiceAbilityWant {

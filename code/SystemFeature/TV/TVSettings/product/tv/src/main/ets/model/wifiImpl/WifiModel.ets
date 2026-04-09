@@ -54,8 +54,8 @@ type CallbackArg = string | number | boolean | Object | null | undefined
 type DelayCallback = (...args: CallbackArg[]) => void
 
 class WifiConfigChildren implements WifiConfig {
-  ipType?: number = 0
-  staticIp?: StaticIp = {
+  public ipType?: number = 0
+  public staticIp?: StaticIp = {
     ipAddress: 0,
     gateway: 0,
     dnsServers: []
@@ -267,7 +267,9 @@ export class WifiModel extends BaseModel {
   private isScanning: boolean = false;
   private isRefreshing: boolean = false;
   private dataShareHelper: data_dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_WIFI;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_WIFI;
 
   constructor() {
     super();

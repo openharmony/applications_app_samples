@@ -20,7 +20,9 @@ import settings from '@ohos.settings';
 
 export class InputSourceOnModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_INPUTSOURCEON;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_INPUTSOURCEON;
 
   constructor() {
     super();
@@ -38,8 +40,12 @@ export class InputSourceOnModel extends BaseModel {
   }
 
   setInputStatus(value: string): void {
-    settings.setValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_INPUTSOURCEON, value,
-      settings.domainName.DEVICE_SHARED)
+    settings.setValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_INPUTSOURCEON,
+      value,
+      settings.domainName.DEVICE_SHARED
+    )
   }
 }
 

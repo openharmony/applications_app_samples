@@ -433,7 +433,9 @@ export class BluetoothModel extends BaseModel {
         let result = new BondStateChangedData();
         result.deviceId = data.deviceId;
         result.bondState = data.state;
-        LogUtil.info(`${this.TAG} subscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`);
+        LogUtil.info(
+          `${this.TAG} subscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`
+        );
         callback(result);
       }
     })
@@ -449,7 +451,9 @@ export class BluetoothModel extends BaseModel {
         let result = new BondStateChangedData();
         result.deviceId = data.deviceId;
         result.bondState = data.state;
-        LogUtil.info(`${this.TAG} unsubscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`);
+        LogUtil.info(
+          `${this.TAG} unsubscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`
+        );
         callback(result);
       }
     })

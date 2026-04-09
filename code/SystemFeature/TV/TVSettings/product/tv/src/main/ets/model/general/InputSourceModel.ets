@@ -22,7 +22,9 @@ const TAG = 'InputSourceModel'
 
 export class InputSourceModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_HDMISELECT;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_HDMISELECT;
 
   constructor() {
     super();
@@ -33,7 +35,12 @@ export class InputSourceModel extends BaseModel {
   }
 
   async getInputSource(): Promise<string> {
-    let inputSourceInfo: string = settings.getValueSync(globalThis.settingsAbilityContext as Context, ConfigData.SETTINGSDATA_HDMISELECT, '', settings.domainName.DEVICE_SHARED);
+    let inputSourceInfo: string = settings.getValueSync(
+      globalThis.settingsAbilityContext as Context,
+      ConfigData.SETTINGSDATA_HDMISELECT,
+      '',
+      settings.domainName.DEVICE_SHARED
+    );
     LogUtil.log(`${TAG}  getInputSource: ` + inputSourceInfo);
     if (inputSourceInfo !== '') {
       return inputSourceInfo

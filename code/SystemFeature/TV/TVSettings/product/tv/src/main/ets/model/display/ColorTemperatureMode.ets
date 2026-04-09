@@ -28,7 +28,9 @@ const pictureModeMap: Record<number, string> = {
 
 export class ColorTemperatureModel extends BaseModel {
   private dataShareHelper: dataShare.DataShareHelper | null = null;
-  private readonly listenUri = 'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_COLORTEMPERATURE;
+  private readonly listenUri =
+    'dataShare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' +
+    ConfigData.SETTINGSDATA_COLORTEMPERATURE;
 
   constructor() {
     super();

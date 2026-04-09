@@ -179,7 +179,7 @@ export class ConfigData {
   //默认网关
   SETTINGSDATA_GATEWAY = 'manualGateWay'
   //DNS服务器
-  SETTINGSDATA_DNS = 'manualDns'
+  public SETTINGSDATA_DNS = 'manualDns'
   //配置网络类型
   SETTINGSDATA_NETTYPE = 'netType'
 
