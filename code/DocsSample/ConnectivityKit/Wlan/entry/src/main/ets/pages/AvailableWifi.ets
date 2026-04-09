@@ -30,15 +30,17 @@ export struct AvailableWifi {
 
   // 扫描wifi
   async getScanInfos() {
-    // 不停地扫描wifi
-    let result: wifiManager.WifiScanInfo[] = await wifiManager.getScanInfoList();
-
-    if (this.isSwitchOn) {
-      setTimeout(async () => {
-        this.wifilist = result;
-        await this.getScanInfos();
-      }, 3000);
-    }
+    try {
+     let result: wifiManager.WifiScanInfo[] = await wifiManager.getScanInfoList();
+      if (this.isSwitchOn) {
+        setTimeout(async () => {
+          this.wifilist = result;
+          await this.getScanInfos();
+       }, 3000);
+     }
+   } catch (err) {
+      hilog.info(TAG, `getScanInfos failed: ${JSON.stringify(err)}`);
+   }
   }
 
   addListener() {
@@ -76,21 +78,19 @@ export struct AvailableWifi {
   }
 
   aboutToAppear() {
-    if (wifiManager.isWifiActive()) {
-      hilog.info(TAG, 'wifi is active');
-      this.isSwitchOn = true;
-      this.getScanInfos();
-      this.getLinkedInfo();
-     } else {
- 	      hilog.info(TAG, 'wifi is disabled');
- 	   }
-    // 启动监听
+    try {
+      if (wifiManager.isWifiActive()) {
+        hilog.info(TAG, 'wifi is active');
+        this.isSwitchOn = true;
+        this.getScanInfos();
+        this.getLinkedInfo();
+      } else {
+        hilog.info(TAG, 'wifi is disabled');
+      }
+    } catch (err) {
+      hilog.error(TAG, `aboutToAppear error: ${JSON.stringify(err)}`);
+    }
     this.addListener();
-  }
-
-  aboutToDisappear() {
-    wifiManager.off('wifiConnectionChange');
-    wifiManager.off('wifiStateChange');
   }
 
   build() {

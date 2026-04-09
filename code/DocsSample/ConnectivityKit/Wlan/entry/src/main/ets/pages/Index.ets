@@ -39,7 +39,7 @@ struct Index {
             .then(() => {
               console.info('跳转到 AvailableWifi 页面成功');
             })
-            .catch((error: BusinessError) => {
+            .catch((error: BusinessError<number>) => {
               console.error(`跳转失败，错误码：${error.code}，错误信息：${error.message}`);
             });
         })
@@ -60,7 +60,7 @@ struct Index {
             .then(() => {
               console.info('跳转到 Wi-Fi 连接页面成功');
             })
-            .catch((error: BusinessError) => {
+            .catch((error: BusinessError<number>) => {
               console.error(`跳转失败，错误码：${error.code}，错误信息：${error.message}`);
             });
         })
@@ -81,7 +81,7 @@ struct Index {
             .then(() => {
               console.info('跳转到 P2pTest 页面成功');
             })
-            .catch((error: BusinessError) => {
+            .catch((error: BusinessError<number>) => {
               console.error(`跳转失败，错误码：${error.code}，错误信息：${error.message}`);
             });
         })

@@ -70,23 +70,29 @@ struct WifiConnect {
   }
 
   addListener() {
-    // 连接状态改变时，修改连接信息
-    wifiManager.on('wifiConnectionChange', async state => {
-      hilog.info(TAG, `wifiConnectionChange: ${state}`);
-      await this.getLinkedInfo();
-    })
+    try {
+      wifiManager.on('wifiConnectionChange', async state => {
+        hilog.info(TAG, `wifiConnectionChange: ${state}`);
+        await this.getLinkedInfo();
+     })
+    } catch (err) {
+     hilog.error(TAG, `addListener error: ${JSON.stringify(err)}`);
+   }
   }
 
   aboutToAppear() {
-    // 如果wifi是开的，就记录下状态，然后扫描wifi，并获取连接信息
-    if (wifiManager.isWifiActive()) {
-      hilog.info(TAG, 'wifi is active');
-      this.isSwitchOn = true;
-    }
-    hilog.info(TAG, 'wifi is disabled');
-    // 启动监听
+    try {
+      if (wifiManager.isWifiActive()) {
+        hilog.info(TAG, 'wifi is active');
+        this.isSwitchOn = true;
+      } else {
+        hilog.info(TAG, 'wifi is disabled');
+      }
+    } catch (err) {
+        hilog.error(TAG, `aboutToAppear error: ${JSON.stringify(err)}`);
+      }
     this.addListener();
-  }
+    }
 
   build() {
     Column() {
