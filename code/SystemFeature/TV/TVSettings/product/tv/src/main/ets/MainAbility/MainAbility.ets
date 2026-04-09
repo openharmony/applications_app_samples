@@ -29,11 +29,11 @@ import { inputConsumer, KeyCode } from '@kit.InputKit';
 import { JSON } from '@kit.ArkTS';
 
 class PageRouteMap {
-  ETH: string = 'pages/network/WiredNetwork';
-  BLUETOOTH: string = 'pages/bluetooth/BluetoothDeviceEntry';
-  WIFI: string = 'pages/network/Wifi';
-  MIRACAST: string = 'pages/links/Links';
-  NET: string = 'pages/network/Network';
+  public ETH: string = 'pages/network/WiredNetwork';
+  public BLUETOOTH: string = 'pages/bluetooth/BluetoothDeviceEntry';
+  public WIFI: string = 'pages/network/Wifi';
+  public MIRACAST: string = 'pages/links/Links';
+  public NET: string = 'pages/network/Network';
 }
 
 class MainAbilityParams {
