@@ -1,0 +1,50 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+
+ohos_shared_library("settings") {
+  include_dirs = [
+    "//foundation/arkui/napi/interfaces/kits",
+    "//third_party/node/src",
+    "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
+  ]
+
+  sources = [
+    "./napi_settings.cpp",
+    "./napi_settings_init.cpp",
+    "./native_module.cpp",
+  ]
+
+  deps = [
+    "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
+    "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
+    "//foundation/arkui/napi:ace_napi",
+  ]
+
+  external_deps = [
+    "ability_base:zuri",
+    "ability_runtime:napi_base_context",
+    "c_utils:utils",
+    "data_share:datashare_common",
+    "data_share:datashare_consumer",
+    "hiviewdfx_hilog_native:libhilog",
+    "relational_store:native_dataability",
+    "relational_store:native_rdb",
+  ]
+
+  relative_install_dir = "module"
+
+  subsystem_name = "settingsnapi"
+  part_name = "settings_standard"
+}

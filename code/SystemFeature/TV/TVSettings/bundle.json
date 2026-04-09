@@ -1,0 +1,36 @@
+{
+    "name": "@ohos/settings_standard",
+    "description": "Settings app for standard system.",
+    "version": "3.1",
+    "license": "Apache License 2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "applications/standard/settings"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "settings_standard",
+        "subsystem": "applications",
+        "syscap": [
+            "SystemCapability.Applications.settings.Core"
+        ],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "",
+        "ram": "",
+        "deps": {
+            "components": [],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//applications/standard/settings/napi/settings:settings"
+            ],
+            "inner_kits": [],
+            "test": []
+        }
+    }
+}
