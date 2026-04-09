@@ -1317,8 +1317,24 @@
       "value": "网络一切正常"
     },
     {
+      "name": "network_monitor_test_domain",
+      "value": "www.baidu.com"
+    },
+    {
+      "name": "network_monitor_test_internet",
+      "value": "https://www.baidu.com/"
+    },
+    {
+      "name": "network_monitor_test_resource",
+      "value": "https://www.baidu.com/"
+    },
+    {
       "name": "network_speed_title",
       "value": "网络测速"
+    },
+    {
+      "name": "network_speed_test_resource",
+      "value": "https://openapi-tv.funshion.com/v2/ohos/cdn/test-link"
     },
     {
       "name": "network_speed_progress",

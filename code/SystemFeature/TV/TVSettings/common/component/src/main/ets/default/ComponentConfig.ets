@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,22 +14,22 @@
  */
 
 export class ComponentConfig {
-  WH_100_100 = '100%';
-  WH_30_100 = '30%';
-  WH_33_100 = '33%';
-  WH_35_100 = '35%';
-  WH_40_100 = '40%';
-  WH_45_100 = '45%';
-  WH_50_100 = '50%';
-  WH_55_100 = '55%';
-  WH_83_100 = '83%';
-  WH_90_100 = '90%';
-  value_20 = 20;
-  font_20 = 20;
-  MAX_LINES_1 = 1;
-  MAX_LINES_2 = 2;
-  MAX_LINES_3 = 3;
-  DURATION_TIME = 200;
+  public WH_100_100 = '100%';
+  public WH_30_100 = '30%';
+  public WH_33_100 = '33%';
+  public WH_35_100 = '35%';
+  public WH_40_100 = '40%';
+  public WH_45_100 = '45%';
+  public WH_50_100 = '50%';
+  public WH_55_100 = '55%';
+  public WH_83_100 = '83%';
+  public WH_90_100 = '90%';
+  public value_20 = 20;
+  public font_20 = 20;
+  public MAX_LINES_1 = 1;
+  public MAX_LINES_2 = 2;
+  public MAX_LINES_3 = 3;
+  public DURATION_TIME = 200;
 }
 
 let componentConfig = new ComponentConfig();

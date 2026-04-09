@@ -3,7 +3,7 @@
 	"devDependencies":{},
 	"name":"search",
 	"ohos":{
-		"org":"huawei",
+		"org":"ohos",
 		"directoryLevel":"module",
 		"buildTool":"hvigor"
 	},

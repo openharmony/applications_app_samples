@@ -3,7 +3,7 @@
 	"devDependencies":{},
 	"name":"settingsbase",
 	"ohos":{
-		"org":"huawei",
+		"org":"ohos",
 		"directoryLevel":"module",
 		"buildTool":"hvigor"
 	},
