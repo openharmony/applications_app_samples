@@ -173,18 +173,18 @@ export class ConfigData {
   SETTINGSDATA_WATCH_TV_SOURCE = 'watchTvSource';
 
   //Ipv4
-  SETTINGSDATA_IPV4 = 'manualIpv4';
+  public SETTINGSDATA_IPV4 = 'manualIpv4';
   //子网掩码
-  SETTINGSDATA_NETMASK = 'manualNetMask';
+  public SETTINGSDATA_NETMASK = 'manualNetMask';
   //默认网关
-  SETTINGSDATA_GATEWAY = 'manualGateWay'
+  public SETTINGSDATA_GATEWAY = 'manualGateWay'
   //DNS服务器
   public SETTINGSDATA_DNS = 'manualDns'
   //配置网络类型
-  SETTINGSDATA_NETTYPE = 'netType'
+  public SETTINGSDATA_NETTYPE = 'netType'
 
   //更多连接
-  MIRACAST_QUICK_PLAY_KEY = 'settings.wifi.miracast.quickplay';
+  public MIRACAST_QUICK_PLAY_KEY = 'settings.wifi.miracast.quickplay';
 }
 
 let configData = new ConfigData();

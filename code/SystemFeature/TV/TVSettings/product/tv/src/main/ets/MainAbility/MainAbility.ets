@@ -46,8 +46,8 @@ class MainAbilityWant {
 }
 
 class ServiceAbilityWant {
-  bundleName: string = '';
-  abilityName: string = '';
+  public bundleName: string = '';
+  public abilityName: string = '';
 }
 
 class AbilityError {
