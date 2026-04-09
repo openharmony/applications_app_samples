@@ -221,14 +221,14 @@ export default function MegaRouteAndNavigationMatrixTest() {
     { name: 'route_058', path: 'pages/hotspot/ConnectedDeviceList', moduleName: 'hotspot', depth: 3, valid: true },
     { name: 'route_059', path: 'pages/oneConnectShare/OneConnectShare', moduleName: 'oneConnectShare', depth: 3, valid: true },
     { name: 'route_060', path: 'pages/bluetooth/BluetoothDeviceEntry', moduleName: 'bluetooth', depth: 3, valid: true },
-    { name: 'route_061', path: 'pages/display/Display', moduleName: 'display', depth: 2, valid: false },
-    { name: 'route_062', path: 'pages/general/General', moduleName: 'general', depth: 2, valid: false },
-    { name: 'route_063', path: 'pages/system/System', moduleName: 'system', depth: 2, valid: false },
-    { name: 'route_064', path: 'pages/network/Network', moduleName: 'network', depth: 2, valid: false },
-    { name: 'route_065', path: 'pages/hotspot/Hotspot', moduleName: 'hotspot', depth: 2, valid: false },
-    { name: 'route_066', path: 'pages/links/Links', moduleName: 'links', depth: 2, valid: false },
-    { name: 'route_067', path: 'pages/volume/Volume', moduleName: 'volume', depth: 2, valid: false },
-    { name: 'route_068', path: 'pages/oneConnectShare/OneConnectShare', moduleName: 'oneConnectShare', depth: 2, valid: false },
+    { name: 'route_061', path: 'pages/display', moduleName: 'display', depth: 2, valid: false },
+    { name: 'route_062', path: 'pages/general', moduleName: 'general', depth: 2, valid: false },
+    { name: 'route_063', path: 'pages/system', moduleName: 'system', depth: 2, valid: false },
+    { name: 'route_064', path: 'pages/network', moduleName: 'network', depth: 2, valid: false },
+    { name: 'route_065', path: 'pages/hotspot', moduleName: 'hotspot', depth: 2, valid: false },
+    { name: 'route_066', path: 'pages/links', moduleName: 'links', depth: 2, valid: false },
+    { name: 'route_067', path: 'pages/volume', moduleName: 'volume', depth: 2, valid: false },
+    { name: 'route_068', path: 'pages/oneConnectShare', moduleName: 'oneConnectShare', depth: 2, valid: false },
     { name: 'route_069', path: 'pages/bluetooth', moduleName: 'bluetooth', depth: 2, valid: false }
   ];
   const navigationScenarios: Array<NavigationScenario> = [

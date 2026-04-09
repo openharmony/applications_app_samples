@@ -220,9 +220,9 @@ export default function DomainModelsCoreTest() {
       const device = new BluetoothDevice();
       device.deviceId = 'batch_1';
       device.setProfiles([
-        { profileId: 100, profileConnectionState: ProfileConnectionState.STATE_CONNECTING },
-        { profileId: 101, profileConnectionState: ProfileConnectionState.STATE_CONNECTED },
-        { profileId: 102, profileConnectionState: ProfileConnectionState.STATE_DISCONNECTED }
+        { profileId: 100, deviceId: 'batch_1', profileConnectionState: ProfileConnectionState.STATE_CONNECTING },
+        { profileId: 101, deviceId: 'batch_1', profileConnectionState: ProfileConnectionState.STATE_CONNECTED },
+        { profileId: 102, deviceId: 'batch_1', profileConnectionState: ProfileConnectionState.STATE_DISCONNECTED }
       ]);
       expect(device.profiles.size).assertEqual(3);
       expect(device.connectionState).assertEqual(ProfileConnectionState.STATE_CONNECTED);
@@ -267,4 +267,3 @@ export default function DomainModelsCoreTest() {
     });
   });
 }
-

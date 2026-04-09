@@ -76,10 +76,28 @@ export default function MegaNetworkRouteReplayBatchTest() {
     });
 
     it(addCase(casePrefix + 'Coverage_003'), 0, () => {
-      expect(routeScenarios.some((item) => item.path.endsWith('/wifiPsd'))).assertEqual(true);
-      expect(routeScenarios.some((item) => item.path.endsWith('/dnsUpdate'))).assertEqual(true);
-      expect(routeScenarios.some((item) => item.isEditor)).assertEqual(true);
-      expect(routeScenarios.some((item) => !item.isEditor)).assertEqual(true);
+      let hasWifiPsd = false;
+      let hasDnsUpdate = false;
+      let hasEditor = false;
+      let hasNonEditor = false;
+      for (let i = 0; i < routeScenarios.length; i++) {
+        const item = routeScenarios[i];
+        if (item.path === 'pages/network/WifiPsd') {
+          hasWifiPsd = true;
+        }
+        if (item.path === 'pages/network/DnsUpdate') {
+          hasDnsUpdate = true;
+        }
+        if (item.isEditor) {
+          hasEditor = true;
+        } else {
+          hasNonEditor = true;
+        }
+      }
+      expect(hasWifiPsd).assertEqual(true);
+      expect(hasDnsUpdate).assertEqual(true);
+      expect(hasEditor).assertEqual(true);
+      expect(hasNonEditor).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'CaseNaming_004'), 0, () => {

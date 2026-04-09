@@ -91,12 +91,12 @@ function isNested(path: string): boolean {
 }
 
 function isEditor(path: string): boolean {
-  const routeName = path.substring(path.lastIndexOf('/') + 1);
-  return routeName === 'netMaskUpdate' ||
-    routeName === 'ipUpdate' ||
-    routeName === 'gatewayUpdate' ||
-    routeName === 'dnsUpdate' ||
-    routeName === 'hotspotPWD';
+  const routeName = path.substring(path.lastIndexOf('/') + 1).toLowerCase();
+  return routeName === 'netmaskupdate' ||
+    routeName === 'ipupdate' ||
+    routeName === 'gatewayupdate' ||
+    routeName === 'dnsupdate' ||
+    routeName === 'hotspotpwd';
 }
 
 function isValid(path: string): boolean {
@@ -131,7 +131,7 @@ export default function MegaRouteManifestReplayMatrixTest() {
     { name: 'replay_018', path: 'pages/network/Network', valid: true, nested: false, editor: false },
     { name: 'replay_019', path: 'pages/network/Wifi', valid: true, nested: false, editor: false },
     { name: 'replay_020', path: 'pages/network/WiredNetwork', valid: true, nested: false, editor: false },
-    { name: 'replay_021', path: 'pages/network/WifiPsd', valid: true, nested: false, editor: false },
+    { name: 'replay_021', path: 'pages/network/WifiPsd', valid: true, nested: false, editor: true },
     { name: 'replay_022', path: 'pages/network/WifiInfoDetail', valid: true, nested: false, editor: false },
     { name: 'replay_023', path: 'pages/network/NetMonitor', valid: true, nested: false, editor: false },
     { name: 'replay_024', path: 'pages/network/NetSpeed', valid: true, nested: false, editor: false },

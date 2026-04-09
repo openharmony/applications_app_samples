@@ -25,6 +25,13 @@ export default abstract class BaseSettingsController implements ISettingsControl
    */
   bindComponent(component: Object): ISettingsController{
     this.component = component;
+    const keys = Object.keys(component as Object);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if (Reflect.has(this as Object, key)) {
+        Reflect.set(this as Object, key, Reflect.get(component as Object, key) as Object);
+      }
+    }
     this.notifyComponent();
     return this;
   }
@@ -37,6 +44,7 @@ export default abstract class BaseSettingsController implements ISettingsControl
   bindProperties(componentProperties: string[], controllerProperties?: string[]): ISettingsController {
     this.boundComponentProperties = componentProperties;
     this.boundControllerProperties = controllerProperties ? controllerProperties : componentProperties;
+    this.syncBoundPropertiesToComponent();
     this.notifyComponent();
     return this;
   }
@@ -72,6 +80,27 @@ export default abstract class BaseSettingsController implements ISettingsControl
         syncController(this);
       }
     }
+  }
+
+  protected syncBoundPropertiesToComponent(): void {
+    if (this.component === null) {
+      return;
+    }
+    const boundCount = Math.min(this.boundComponentProperties.length, this.boundControllerProperties.length);
+    for (let i = 0; i < boundCount; i++) {
+      this.syncBoundProperty(this.boundComponentProperties[i], this.boundControllerProperties[i]);
+    }
+  }
+
+  protected syncBoundProperty(componentProperty: string, controllerProperty: string): void {
+    if (this.component === null || !Reflect.has(this as Object, controllerProperty)) {
+      return;
+    }
+    Reflect.set(
+      this.component as Object,
+      componentProperty,
+      Reflect.get(this as Object, controllerProperty) as Object
+    );
   }
 
 }

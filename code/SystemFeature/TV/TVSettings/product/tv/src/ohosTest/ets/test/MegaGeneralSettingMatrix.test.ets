@@ -117,9 +117,24 @@ export default function MegaGeneralSettingMatrixTest() {
     });
 
     it(addCase(casePrefix + 'Coverage_004'), 0, () => {
-      expect(routeScenarios.some((item) => item.path.endsWith('/USB'))).assertEqual(true);
-      expect(routeScenarios.some((item) => item.path.endsWith('/startupMode'))).assertEqual(true);
-      expect(routeScenarios.some((item) => item.path.endsWith('/inputSource'))).assertEqual(true);
+      let hasUsb = false;
+      let hasStartupMode = false;
+      let hasInputSource = false;
+      for (let i = 0; i < routeScenarios.length; i++) {
+        const path = routeScenarios[i].path;
+        if (path === 'pages/general/USB') {
+          hasUsb = true;
+        }
+        if (path === 'pages/general/StartupMode') {
+          hasStartupMode = true;
+        }
+        if (path === 'pages/general/InputSource') {
+          hasInputSource = true;
+        }
+      }
+      expect(hasUsb).assertEqual(true);
+      expect(hasStartupMode).assertEqual(true);
+      expect(hasInputSource).assertEqual(true);
       expect(routeScenarios.length >= 17).assertEqual(true);
     });
 

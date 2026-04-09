@@ -222,47 +222,47 @@ export default function RouteManifestFinalContractsTest() {
 
     it(addCase(casePrefix + 'Manifest_VolumeDistribution_004'), 0, () => {
       expect(countModuleRoutes(routes, 'volume')).assertEqual(5);
-      expect(containsLeaf(routes, 'volume')).assertEqual(true);
-      expect(containsLeaf(routes, 'bluetoothOutput')).assertEqual(true);
-      expect(containsLeaf(routes, 'customEffects')).assertEqual(true);
+      expect(containsLeaf(routes, 'Volume')).assertEqual(true);
+      expect(containsLeaf(routes, 'BluetoothOutput')).assertEqual(true);
+      expect(containsLeaf(routes, 'CustomEffects')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_DisplayDistribution_005'), 0, () => {
       expect(countModuleRoutes(routes, 'display')).assertEqual(10);
-      expect(containsLeaf(routes, 'screenCalibration')).assertEqual(true);
-      expect(containsLeaf(routes, 'brightnessSetting')).assertEqual(true);
+      expect(containsLeaf(routes, 'ScreenCalibration')).assertEqual(true);
+      expect(containsLeaf(routes, 'BrightnessSetting')).assertEqual(true);
       expect(containsLeaf(routes, 'ColorSpace')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_NetworkDistribution_006'), 0, () => {
       expect(countModuleRoutes(routes, 'network')).assertEqual(11);
-      expect(containsLeaf(routes, 'wifi')).assertEqual(true);
-      expect(containsLeaf(routes, 'wiredNetwork')).assertEqual(true);
-      expect(containsLeaf(routes, 'wifiInfoDetail')).assertEqual(true);
-      expect(containsLeaf(routes, 'dnsUpdate')).assertEqual(true);
+      expect(containsLeaf(routes, 'Wifi')).assertEqual(true);
+      expect(containsLeaf(routes, 'WiredNetwork')).assertEqual(true);
+      expect(containsLeaf(routes, 'WifiInfoDetail')).assertEqual(true);
+      expect(containsLeaf(routes, 'DnsUpdate')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_SystemDistribution_007'), 0, () => {
       expect(countModuleRoutes(routes, 'system')).assertEqual(6);
-      expect(containsLeaf(routes, 'softwareUpdate')).assertEqual(true);
-      expect(containsLeaf(routes, 'timeAndDate')).assertEqual(true);
-      expect(containsLeaf(routes, 'deviceInfo')).assertEqual(true);
-      expect(containsLeaf(routes, 'stateInfo')).assertEqual(true);
+      expect(containsLeaf(routes, 'SoftwareUpdate')).assertEqual(true);
+      expect(containsLeaf(routes, 'TimeAndDate')).assertEqual(true);
+      expect(containsLeaf(routes, 'DeviceInfo')).assertEqual(true);
+      expect(containsLeaf(routes, 'StateInfo')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_LinksDistribution_008'), 0, () => {
       expect(countModuleRoutes(routes, 'links')).assertEqual(4);
-      expect(containsLeaf(routes, 'links')).assertEqual(true);
-      expect(containsLeaf(routes, 'screenExpansion')).assertEqual(true);
+      expect(containsLeaf(routes, 'Links')).assertEqual(true);
+      expect(containsLeaf(routes, 'ScreenExpansion')).assertEqual(true);
       expect(containsLeaf(routes, 'DefaultMainWindowPage')).assertEqual(true);
-      expect(containsLeaf(routes, 'application')).assertEqual(true);
+      expect(containsLeaf(routes, 'Application')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_GeneralDistribution_009'), 0, () => {
       expect(countModuleRoutes(routes, 'general')).assertEqual(17);
-      expect(containsLeaf(routes, 'general')).assertEqual(true);
-      expect(containsLeaf(routes, 'startupMode')).assertEqual(true);
-      expect(containsLeaf(routes, 'pairGuidance')).assertEqual(true);
+      expect(containsLeaf(routes, 'General')).assertEqual(true);
+      expect(containsLeaf(routes, 'StartupMode')).assertEqual(true);
+      expect(containsLeaf(routes, 'PairGuidance')).assertEqual(true);
       expect(containsLeaf(routes, 'USB')).assertEqual(true);
       expect(containsLeaf(routes, 'WatchTvKeyPage')).assertEqual(true);
     });
@@ -271,9 +271,9 @@ export default function RouteManifestFinalContractsTest() {
       expect(countModuleRoutes(routes, 'hotspot')).assertEqual(4);
       expect(countModuleRoutes(routes, 'bluetooth')).assertEqual(1);
       expect(countModuleRoutes(routes, 'oneConnectShare')).assertEqual(1);
-      expect(containsLeaf(routes, 'hotspotPWD')).assertEqual(true);
+      expect(containsLeaf(routes, 'HotspotPWD')).assertEqual(true);
       expect(containsLeaf(routes, 'ConnectedDeviceList')).assertEqual(true);
-      expect(containsLeaf(routes, 'bluetoothDeviceEntry')).assertEqual(true);
+      expect(containsLeaf(routes, 'BluetoothDeviceEntry')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_ShapeStats_011'), 0, () => {
@@ -328,11 +328,11 @@ export default function RouteManifestFinalContractsTest() {
     it(addCase(casePrefix + 'Manifest_EditorRouteSet_016'), 0, () => {
       const editors = routes.filter((item) => isEditorRoute(item.path)).map((item) => extractLeaf(item.path));
       expect(editors.length).assertEqual(6);
-      expect(editors.includes('ipUpdate')).assertEqual(true);
-      expect(editors.includes('gatewayUpdate')).assertEqual(true);
-      expect(editors.includes('dnsUpdate')).assertEqual(true);
-      expect(editors.includes('netMaskUpdate')).assertEqual(true);
-      expect(editors.includes('hotspotPWD')).assertEqual(true);
+      expect(editors.includes('IpUpdate')).assertEqual(true);
+      expect(editors.includes('GatewayUpdate')).assertEqual(true);
+      expect(editors.includes('DnsUpdate')).assertEqual(true);
+      expect(editors.includes('NetMaskUpdate')).assertEqual(true);
+      expect(editors.includes('HotspotPWD')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_NestedRouteSet_017'), 0, () => {

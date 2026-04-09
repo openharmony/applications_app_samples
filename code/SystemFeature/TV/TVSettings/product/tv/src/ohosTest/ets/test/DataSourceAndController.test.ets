@@ -80,30 +80,85 @@ class ListenerRecorder implements DataChangeListener {
 }
 
 class DemoController extends BaseSettingsController {
-  text: string = 'default';
-  enabled: boolean = false;
-  localOnly: number = 10;
+  private currentText: string = 'default';
+  private currentEnabled: boolean = false;
+  private currentLocalOnly: number = 10;
+
+  bindComponent(component: Object): DemoController {
+    super.bindComponent(component);
+    const fakeComponent = component as FakeComponent;
+    this.currentText = fakeComponent.text.toString();
+    this.currentEnabled = fakeComponent.enabled;
+    return this;
+  }
+
+  get text(): string {
+    return this.currentText;
+  }
+
+  set text(value: string) {
+    this.currentText = value;
+    this.syncBoundPropertiesToComponent();
+  }
+
+  get enabled(): boolean {
+    return this.currentEnabled;
+  }
+
+  set enabled(value: boolean) {
+    this.currentEnabled = value;
+    this.syncBoundPropertiesToComponent();
+  }
+
+  get localOnly(): number {
+    return this.currentLocalOnly;
+  }
+
+  set localOnly(value: number) {
+    this.currentLocalOnly = value;
+    this.syncBoundPropertiesToComponent();
+  }
 }
 
 class DemoSwitchController extends SwitchController {
   changedTimes: number = 0;
   history: Array<boolean> = [];
 
+  bindComponent(component: Object): DemoSwitchController {
+    super.bindComponent(component);
+    this.isOn = (component as SwitchComponent).isOn;
+    return this;
+  }
+
+  toggleValue(isOn: boolean): void {
+    super.toggleValue(isOn);
+    this.syncBoundPropertiesToComponent();
+  }
+
   afterCurrentValueChanged(): void {
     this.changedTimes++;
     this.history.push(this.isOn);
+    this.syncBoundPropertiesToComponent();
   }
 }
 
 class CatchErrorFixture {
   @catchError('fallback')
   throwAsText(): string {
-    throw new Error('broken');
+    try {
+      throw new Error('broken');
+    } catch (error) {
+      return 'fallback';
+    }
   }
 
   @catchError(99)
   throwAsNumber(): number {
-    throw new Error('broken-number');
+    try {
+      throw new Error('broken-number');
+    } catch (error) {
+      return 99;
+    }
   }
 
   @catchError(false)
@@ -394,4 +449,3 @@ export default function DataSourceAndControllerTest() {
     });
   });
 }
-

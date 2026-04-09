@@ -186,7 +186,7 @@ export default function SearchAndConfigTest() {
       }
       const data: FixtureJson = { a: 7, b: 'x', c: 'ignored' };
       const util = new SearchUtil();
-      const instance = util.convertJsonToInstance(data, Fixture);
+      const instance = util.convertJsonToInstance(data, new Fixture());
       expect(instance.a).assertEqual(7);
       expect(instance.b).assertEqual('x');
       expect(Object.keys(instance).includes('c')).assertEqual(false);
@@ -360,4 +360,3 @@ export default function SearchAndConfigTest() {
     });
   });
 }
-

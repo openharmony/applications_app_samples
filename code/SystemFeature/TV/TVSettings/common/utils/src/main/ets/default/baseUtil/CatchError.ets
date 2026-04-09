@@ -19,6 +19,15 @@ export default function catchError(defaultResult: Object): (target: Object, meth
   descriptor: PropertyDescriptor) => PropertyDescriptor {
   return (target: Object, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
     LogUtil.log(`${target.constructor.name}, methodName: ${methodName}, defaultResult: ${JSON.stringify(defaultResult)}`);
+    const originalMethod = descriptor.value as ((...args: Object[]) => Object);
+    descriptor.value = (...args: Object[]): Object => {
+      try {
+        return originalMethod(...args) as Object;
+      } catch (error) {
+        LogUtil.error(`${target.constructor.name}, methodName: ${methodName}, error: ${JSON.stringify(error)}`);
+        return defaultResult;
+      }
+    }
     return descriptor;
   };
 }
