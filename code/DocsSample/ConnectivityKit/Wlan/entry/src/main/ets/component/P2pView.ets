@@ -52,7 +52,7 @@ export struct P2pView {
               .width('100%')
           }
         }
-        if ( this.p2pConnectState == 1 && this.p2pLinkedDeviceName == this.p2p.deviceName ) {
+        if ( this.p2pConnectState == 1 && this.p2pLinkedDeviceName == this.p2p?.deviceName ) {
           Text($r('app.string.p2pConnected'))
             .fontSize(18)
             .fontColor(Color.Gray)
