@@ -39,12 +39,12 @@ interface ProgressFocusResult {
 
 function buildSystemEntries(currentVersionInfo: string): SystemEntry[] {
   return [
-    { name: '软件更新', pageUrl: 'pages/system/softwareUpdate', description: currentVersionInfo },
-    { name: '时间和日期', pageUrl: 'pages/system/timeAndDate', description: '设置系统时间和日期' },
+    { name: '软件更新', pageUrl: 'pages/system/SoftwareUpdate', description: currentVersionInfo },
+    { name: '时间和日期', pageUrl: 'pages/system/TimeAndDate', description: '设置系统时间和日期' },
     { name: '恢复出厂设置', pageUrl: '', description: '恢复出厂设置并清除数据' },
-    { name: '系统信息', pageUrl: 'pages/system/systemInfo', description: '查看系统信息' },
-    { name: '设备信息', pageUrl: 'pages/system/deviceInfo', description: '查看设备信息' },
-    { name: '状态信息', pageUrl: 'pages/system/stateInfo', description: '查看状态信息' }
+    { name: '系统信息', pageUrl: 'pages/system/SystemInfo', description: '查看系统信息' },
+    { name: '设备信息', pageUrl: 'pages/system/DeviceInfo', description: '查看设备信息' },
+    { name: '状态信息', pageUrl: 'pages/system/StateInfo', description: '查看状态信息' }
   ];
 }
 
@@ -114,20 +114,20 @@ export default function SystemRootAndFinalSweepTest() {
       const entries = buildSystemEntries('当前版本6.0.1');
       expect(entries.length).assertEqual(6);
       expect(entries[0].name).assertEqual('软件更新');
-      expect(entries[0].pageUrl).assertEqual('pages/system/softwareUpdate');
+      expect(entries[0].pageUrl).assertEqual('pages/system/SoftwareUpdate');
       expect(entries[2].name).assertEqual('恢复出厂设置');
       expect(entries[2].pageUrl).assertEqual('');
-      expect(entries[5].pageUrl).assertEqual('pages/system/stateInfo');
+      expect(entries[5].pageUrl).assertEqual('pages/system/StateInfo');
     });
 
     it(addCase(casePrefix + 'System_ClickAction_002'), 0, () => {
       const reset = resolveSystemClickAction('恢复出厂设置', '');
-      const route = resolveSystemClickAction('设备信息', 'pages/system/deviceInfo');
+      const route = resolveSystemClickAction('设备信息', 'pages/system/DeviceInfo');
       expect(reset.action).assertEqual('open_dialog');
       expect(reset.pageTranState).assertEqual(false);
       expect(route.action).assertEqual('route');
       expect(route.pageTranState).assertEqual(true);
-      expect(route.pageUrl).assertEqual('pages/system/deviceInfo');
+      expect(route.pageUrl).assertEqual('pages/system/DeviceInfo');
     });
 
     it(addCase(casePrefix + 'System_PageTransition_003'), 0, () => {

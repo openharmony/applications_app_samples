@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,22 +37,22 @@ export default function MegaNetworkRouteReplayBatchTest() {
     return name;
   };
   const routeScenarios: Array<NetworkRouteScenario> = [
-    { name: 'route_001', path: 'pages/network/network', isEditor: false },
-    { name: 'route_002', path: 'pages/network/wifi', isEditor: false },
-    { name: 'route_003', path: 'pages/network/wiredNetwork', isEditor: false },
-    { name: 'route_004', path: 'pages/network/wifiPsd', isEditor: true },
-    { name: 'route_005', path: 'pages/network/wifiInfoDetail', isEditor: false },
-    { name: 'route_006', path: 'pages/network/netMonitor', isEditor: false },
-    { name: 'route_007', path: 'pages/network/netSpeed', isEditor: false },
-    { name: 'route_008', path: 'pages/network/netMaskUpdate', isEditor: true },
-    { name: 'route_009', path: 'pages/network/ipUpdate', isEditor: true },
-    { name: 'route_010', path: 'pages/network/gatewayUpdate', isEditor: true },
-    { name: 'route_011', path: 'pages/network/dnsUpdate', isEditor: true },
-    { name: 'route_012', path: 'pages/network/network', isEditor: false },
-    { name: 'route_013', path: 'pages/network/wifi', isEditor: false },
-    { name: 'route_014', path: 'pages/network/wiredNetwork', isEditor: false },
-    { name: 'route_015', path: 'pages/network/wifiPsd', isEditor: true },
-    { name: 'route_016', path: 'pages/network/wifiInfoDetail', isEditor: false }
+    { name: 'route_001', path: 'pages/network/Network', isEditor: false },
+    { name: 'route_002', path: 'pages/network/Wifi', isEditor: false },
+    { name: 'route_003', path: 'pages/network/WiredNetwork', isEditor: false },
+    { name: 'route_004', path: 'pages/network/WifiPsd', isEditor: true },
+    { name: 'route_005', path: 'pages/network/WifiInfoDetail', isEditor: false },
+    { name: 'route_006', path: 'pages/network/NetMonitor', isEditor: false },
+    { name: 'route_007', path: 'pages/network/NetSpeed', isEditor: false },
+    { name: 'route_008', path: 'pages/network/NetMaskUpdate', isEditor: true },
+    { name: 'route_009', path: 'pages/network/IpUpdate', isEditor: true },
+    { name: 'route_010', path: 'pages/network/GatewayUpdate', isEditor: true },
+    { name: 'route_011', path: 'pages/network/DnsUpdate', isEditor: true },
+    { name: 'route_012', path: 'pages/network/Network', isEditor: false },
+    { name: 'route_013', path: 'pages/network/Wifi', isEditor: false },
+    { name: 'route_014', path: 'pages/network/WiredNetwork', isEditor: false },
+    { name: 'route_015', path: 'pages/network/WifiPsd', isEditor: true },
+    { name: 'route_016', path: 'pages/network/WifiInfoDetail', isEditor: false }
   ];
 
   describe('MegaNetworkRouteReplayBatchSuite', () => {

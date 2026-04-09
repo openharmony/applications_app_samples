@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,21 +65,21 @@ export default function MegaGeneralSettingMatrixTest() {
     { name: 'toggle_020', currentValue: '1', expectedNext: '0' }
   ];
   const routeScenarios: Array<GeneralRouteScenario> = [
-    { name: 'route_001', title: 'General', path: 'pages/general/general' },
-    { name: 'route_002', title: 'AutoScreenOff', path: 'pages/general/autoScreenOff' },
-    { name: 'route_003', title: 'ControllerCon', path: 'pages/general/controllerCon' },
-    { name: 'route_004', title: 'FloatBall', path: 'pages/general/floatBall' },
+    { name: 'route_001', title: 'General', path: 'pages/general/General' },
+    { name: 'route_002', title: 'AutoScreenOff', path: 'pages/general/AutoScreenOff' },
+    { name: 'route_003', title: 'ControllerCon', path: 'pages/general/ControllerCon' },
+    { name: 'route_004', title: 'FloatBall', path: 'pages/general/FloatBall' },
     { name: 'route_005', title: 'HDMIIN', path: 'pages/general/HDMIIN' },
     { name: 'route_006', title: 'HDMIOUT', path: 'pages/general/HDMIOUT' },
-    { name: 'route_007', title: 'Hdmi', path: 'pages/general/hdmi' },
-    { name: 'route_008', title: 'Ime', path: 'pages/general/ime' },
-    { name: 'route_009', title: 'InputSource', path: 'pages/general/inputSource' },
-    { name: 'route_010', title: 'PairGuidance', path: 'pages/general/pairGuidance' },
-    { name: 'route_011', title: 'RemoteController', path: 'pages/general/remoteController' },
+    { name: 'route_007', title: 'Hdmi', path: 'pages/general/Hdmi' },
+    { name: 'route_008', title: 'Ime', path: 'pages/general/Ime' },
+    { name: 'route_009', title: 'InputSource', path: 'pages/general/InputSource' },
+    { name: 'route_010', title: 'PairGuidance', path: 'pages/general/PairGuidance' },
+    { name: 'route_011', title: 'RemoteController', path: 'pages/general/RemoteController' },
     { name: 'route_012', title: 'ScreenRotation', path: 'pages/general/ScreenRotation' },
-    { name: 'route_013', title: 'Standby', path: 'pages/general/standby' },
-    { name: 'route_014', title: 'StandbyMode', path: 'pages/general/standbyMode' },
-    { name: 'route_015', title: 'StartupMode', path: 'pages/general/startupMode' },
+    { name: 'route_013', title: 'Standby', path: 'pages/general/Standby' },
+    { name: 'route_014', title: 'StandbyMode', path: 'pages/general/StandbyMode' },
+    { name: 'route_015', title: 'StartupMode', path: 'pages/general/StartupMode' },
     { name: 'route_016', title: 'USB', path: 'pages/general/USB' },
     { name: 'route_017', title: 'WatchTvKeyPage', path: 'pages/general/WatchTvKeyPage' }
   ];

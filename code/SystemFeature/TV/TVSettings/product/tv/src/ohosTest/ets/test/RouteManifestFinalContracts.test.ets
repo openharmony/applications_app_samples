@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,66 +126,66 @@ export default function RouteManifestFinalContractsTest() {
     return name;
   };
   const routes: Array<RouteEntry> = [
-    { path: 'pages/settingList', category: 'entry' },
-    { path: 'pages/volume/volume', category: 'entry' },
-    { path: 'pages/volume/outPut', category: 'page' },
-    { path: 'pages/volume/effects', category: 'page' },
-    { path: 'pages/volume/customEffects', category: 'page' },
-    { path: 'pages/volume/bluetoothOutput', category: 'page' },
-    { path: 'pages/display/display', category: 'entry' },
-    { path: 'pages/display/screenCalibration', category: 'page' },
-    { path: 'pages/display/photoSetting', category: 'page' },
-    { path: 'pages/display/nightLight', category: 'page' },
-    { path: 'pages/display/highSetting', category: 'page' },
-    { path: 'pages/display/colorSetting', category: 'page' },
-    { path: 'pages/display/claritySetting', category: 'page' },
-    { path: 'pages/display/brightnessSetting', category: 'page' },
+    { path: 'pages/SettingList', category: 'entry' },
+    { path: 'pages/volume/Volume', category: 'entry' },
+    { path: 'pages/volume/OutPut', category: 'page' },
+    { path: 'pages/volume/Effects', category: 'page' },
+    { path: 'pages/volume/CustomEffects', category: 'page' },
+    { path: 'pages/volume/BluetoothOutput', category: 'page' },
+    { path: 'pages/display/Display', category: 'entry' },
+    { path: 'pages/display/ScreenCalibration', category: 'page' },
+    { path: 'pages/display/PhotoSetting', category: 'page' },
+    { path: 'pages/display/NightLight', category: 'page' },
+    { path: 'pages/display/HighSetting', category: 'page' },
+    { path: 'pages/display/ColorSetting', category: 'page' },
+    { path: 'pages/display/ClaritySetting', category: 'page' },
+    { path: 'pages/display/BrightnessSetting', category: 'page' },
     { path: 'pages/display/SourceIdentification', category: 'page' },
     { path: 'pages/display/ColorSpace', category: 'page' },
-    { path: 'pages/network/network', category: 'entry' },
-    { path: 'pages/network/wifi', category: 'page' },
-    { path: 'pages/network/wiredNetwork', category: 'page' },
-    { path: 'pages/network/wifiPsd', category: 'page' },
-    { path: 'pages/network/wifiInfoDetail', category: 'page' },
-    { path: 'pages/network/netMonitor', category: 'page' },
-    { path: 'pages/network/netSpeed', category: 'page' },
-    { path: 'pages/network/netMaskUpdate', category: 'page' },
-    { path: 'pages/network/ipUpdate', category: 'page' },
-    { path: 'pages/network/gatewayUpdate', category: 'page' },
-    { path: 'pages/network/dnsUpdate', category: 'page' },
-    { path: 'pages/system/system', category: 'entry' },
-    { path: 'pages/system/timeAndDate', category: 'page' },
-    { path: 'pages/system/systemInfo', category: 'page' },
-    { path: 'pages/system/stateInfo', category: 'page' },
-    { path: 'pages/system/softwareUpdate', category: 'page' },
-    { path: 'pages/system/deviceInfo', category: 'page' },
-    { path: 'pages/links/links', category: 'entry' },
-    { path: 'pages/links/screenExpansion/screenExpansion', category: 'page' },
+    { path: 'pages/network/Network', category: 'entry' },
+    { path: 'pages/network/Wifi', category: 'page' },
+    { path: 'pages/network/WiredNetwork', category: 'page' },
+    { path: 'pages/network/WifiPsd', category: 'page' },
+    { path: 'pages/network/WifiInfoDetail', category: 'page' },
+    { path: 'pages/network/NetMonitor', category: 'page' },
+    { path: 'pages/network/NetSpeed', category: 'page' },
+    { path: 'pages/network/NetMaskUpdate', category: 'page' },
+    { path: 'pages/network/IpUpdate', category: 'page' },
+    { path: 'pages/network/GatewayUpdate', category: 'page' },
+    { path: 'pages/network/DnsUpdate', category: 'page' },
+    { path: 'pages/system/System', category: 'entry' },
+    { path: 'pages/system/TimeAndDate', category: 'page' },
+    { path: 'pages/system/SystemInfo', category: 'page' },
+    { path: 'pages/system/StateInfo', category: 'page' },
+    { path: 'pages/system/SoftwareUpdate', category: 'page' },
+    { path: 'pages/system/DeviceInfo', category: 'page' },
+    { path: 'pages/links/Links', category: 'entry' },
+    { path: 'pages/links/screenExpansion/ScreenExpansion', category: 'page' },
     { path: 'pages/links/screenExpansion/DefaultMainWindowPage', category: 'page' },
-    { path: 'pages/links/screenExpansion/application', category: 'page' },
-    { path: 'pages/oneConnectShare/oneConnectShare', category: 'entry' },
-    { path: 'pages/hotspot/hotspot', category: 'entry' },
-    { path: 'pages/hotspot/hotspotPWD', category: 'page' },
-    { path: 'pages/hotspot/deviceName', category: 'page' },
+    { path: 'pages/links/screenExpansion/Application', category: 'page' },
+    { path: 'pages/oneConnectShare/OneConnectShare', category: 'entry' },
+    { path: 'pages/hotspot/Hotspot', category: 'entry' },
+    { path: 'pages/hotspot/HotspotPWD', category: 'page' },
+    { path: 'pages/hotspot/DeviceName', category: 'page' },
     { path: 'pages/hotspot/ConnectedDeviceList', category: 'page' },
-    { path: 'pages/general/general', category: 'entry' },
-    { path: 'pages/general/autoScreenOff', category: 'page' },
-    { path: 'pages/general/controllerCon', category: 'page' },
-    { path: 'pages/general/floatBall', category: 'page' },
+    { path: 'pages/general/General', category: 'entry' },
+    { path: 'pages/general/AutoScreenOff', category: 'page' },
+    { path: 'pages/general/ControllerCon', category: 'page' },
+    { path: 'pages/general/FloatBall', category: 'page' },
     { path: 'pages/general/HDMIIN', category: 'page' },
     { path: 'pages/general/HDMIOUT', category: 'page' },
-    { path: 'pages/general/hdmi', category: 'page' },
-    { path: 'pages/general/ime', category: 'page' },
-    { path: 'pages/general/inputSource', category: 'page' },
-    { path: 'pages/general/pairGuidance', category: 'page' },
-    { path: 'pages/general/remoteController', category: 'page' },
+    { path: 'pages/general/Hdmi', category: 'page' },
+    { path: 'pages/general/Ime', category: 'page' },
+    { path: 'pages/general/InputSource', category: 'page' },
+    { path: 'pages/general/PairGuidance', category: 'page' },
+    { path: 'pages/general/RemoteController', category: 'page' },
     { path: 'pages/general/ScreenRotation', category: 'page' },
-    { path: 'pages/general/standby', category: 'page' },
-    { path: 'pages/general/standbyMode', category: 'page' },
-    { path: 'pages/general/startupMode', category: 'page' },
+    { path: 'pages/general/Standby', category: 'page' },
+    { path: 'pages/general/StandbyMode', category: 'page' },
+    { path: 'pages/general/StartupMode', category: 'page' },
     { path: 'pages/general/USB', category: 'page' },
     { path: 'pages/general/WatchTvKeyPage', category: 'page' },
-    { path: 'pages/bluetooth/bluetoothDeviceEntry', category: 'entry' }
+    { path: 'pages/bluetooth/BluetoothDeviceEntry', category: 'entry' }
   ];
 
   describe('RouteManifestFinalContractsSuite', () => {
@@ -307,11 +307,11 @@ export default function RouteManifestFinalContractsTest() {
 
     it(addCase(casePrefix + 'Manifest_EntryRoutePresence_014'), 0, () => {
       const entries = routes.filter((item) => item.category === 'entry').map((item) => item.path);
-      expect(entries.includes('pages/settingList')).assertEqual(true);
-      expect(entries.includes('pages/general/general')).assertEqual(true);
-      expect(entries.includes('pages/system/system')).assertEqual(true);
-      expect(entries.includes('pages/network/network')).assertEqual(true);
-      expect(entries.includes('pages/hotspot/hotspot')).assertEqual(true);
+      expect(entries.includes('pages/SettingList')).assertEqual(true);
+      expect(entries.includes('pages/general/General')).assertEqual(true);
+      expect(entries.includes('pages/system/System')).assertEqual(true);
+      expect(entries.includes('pages/network/Network')).assertEqual(true);
+      expect(entries.includes('pages/hotspot/Hotspot')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_NoUtilityRoutesMixedIn_015'), 0, () => {
@@ -338,9 +338,9 @@ export default function RouteManifestFinalContractsTest() {
     it(addCase(casePrefix + 'Manifest_NestedRouteSet_017'), 0, () => {
       const nested = routes.filter((item) => isNestedRoute(item.path)).map((item) => item.path);
       expect(nested.length).assertEqual(3);
-      expect(nested.includes('pages/links/screenExpansion/screenExpansion')).assertEqual(true);
+      expect(nested.includes('pages/links/screenExpansion/ScreenExpansion')).assertEqual(true);
       expect(nested.includes('pages/links/screenExpansion/DefaultMainWindowPage')).assertEqual(true);
-      expect(nested.includes('pages/links/screenExpansion/application')).assertEqual(true);
+      expect(nested.includes('pages/links/screenExpansion/Application')).assertEqual(true);
     });
 
     it(addCase(casePrefix + 'Manifest_StressFormatSweep_018'), 0, () => {

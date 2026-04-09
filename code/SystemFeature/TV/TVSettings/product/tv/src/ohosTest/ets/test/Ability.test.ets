@@ -83,35 +83,35 @@ export default function abilityTest() {
   const bundle = 'com.ohos.settings';
   const ability = 'com.ohos.settings.MainAbility';
   const homeItems: Array<HomeItem> = [
-    { name: '声音', route: 'pages/volume/volume', desc: '输出模式、音效模式' },
-    { name: '图像', route: 'pages/display/display', desc: '图像模式、屏幕亮度、护眼模式' },
-    { name: '网络', route: 'pages/network/network', desc: '无线网络、有线网络' },
-    { name: '蓝牙', route: 'pages/bluetooth/bluetoothDeviceEntry', desc: '查看蓝牙设备连接和状态' },
-    { name: '通用', route: 'pages/general/general', desc: '通用、输入法设置' },
-    { name: '系统', route: 'pages/system/system', desc: '软件更新、系统信息、设备信息' },
-    { name: '更多连接', route: 'pages/links/links', desc: '更多连接' },
-    { name: '设备互传', route: 'pages/oneConnectShare/oneConnectShare', desc: '设备互传' }
+    { name: '声音', route: 'pages/volume/Volume', desc: '输出模式、音效模式' },
+    { name: '图像', route: 'pages/display/Display', desc: '图像模式、屏幕亮度、护眼模式' },
+    { name: '网络', route: 'pages/network/Network', desc: '无线网络、有线网络' },
+    { name: '蓝牙', route: 'pages/bluetooth/BluetoothDeviceEntry', desc: '查看蓝牙设备连接和状态' },
+    { name: '通用', route: 'pages/general/General', desc: '通用、输入法设置' },
+    { name: '系统', route: 'pages/system/System', desc: '软件更新、系统信息、设备信息' },
+    { name: '更多连接', route: 'pages/links/Links', desc: '更多连接' },
+    { name: '设备互传', route: 'pages/oneConnectShare/OneConnectShare', desc: '设备互传' }
   ];
   const systemItems: Array<string> = ['软件更新', '时间和日期', '恢复出厂设置'];
   const criticalRoutes: Array<string> = [
-    'pages/links/links',
-    'pages/links/screenExpansion/screenExpansion',
-    'pages/links/screenExpansion/application',
-    'pages/oneConnectShare/oneConnectShare',
-    'pages/hotspot/hotspot',
-    'pages/hotspot/deviceName',
-    'pages/hotspot/hotspotPWD',
+    'pages/links/Links',
+    'pages/links/screenExpansion/ScreenExpansion',
+    'pages/links/screenExpansion/Application',
+    'pages/oneConnectShare/OneConnectShare',
+    'pages/hotspot/Hotspot',
+    'pages/hotspot/DeviceName',
+    'pages/hotspot/HotspotPWD',
     'pages/hotspot/ConnectedDeviceList',
-    'pages/general/remoteController',
+    'pages/general/RemoteController',
     'pages/general/WatchTvKeyPage',
     'pages/general/ScreenRotation',
-    'pages/general/startupMode',
-    'pages/general/standbyMode',
-    'pages/general/standby',
-    'pages/system/deviceInfo',
-    'pages/system/stateInfo',
-    'pages/network/netSpeed',
-    'pages/network/netMonitor'
+    'pages/general/StartupMode',
+    'pages/general/StandbyMode',
+    'pages/general/Standby',
+    'pages/system/DeviceInfo',
+    'pages/system/StateInfo',
+    'pages/network/NetSpeed',
+    'pages/network/NetMonitor'
   ];
   const caseNames: Array<string> = [];
   const dotRule = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)+$/;
@@ -170,9 +170,9 @@ export default function abilityTest() {
       for (let i = 0; i < criticalRoutes.length; i++) {
         expect(deepRouteRule.test(criticalRoutes[i])).assertEqual(true);
       }
-      expect(criticalRoutes.includes('pages/links/links')).assertEqual(true);
-      expect(criticalRoutes.includes('pages/oneConnectShare/oneConnectShare')).assertEqual(true);
-      expect(criticalRoutes.includes('pages/hotspot/hotspot')).assertEqual(true);
+      expect(criticalRoutes.includes('pages/links/Links')).assertEqual(true);
+      expect(criticalRoutes.includes('pages/oneConnectShare/OneConnectShare')).assertEqual(true);
+      expect(criticalRoutes.includes('pages/hotspot/Hotspot')).assertEqual(true);
     });
 
     it(addCase('Settings_DesktopLayout_EditMode_001'), 0, () => {

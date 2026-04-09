@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,14 +72,14 @@ function applySingleChoose(list: Array<SettingItemTvModel>, targetName: string):
 
 function createEntryRouteMap(): EntryRouteMap {
   const routeMap: EntryRouteMap = {
-    声音: 'pages/volume/volume',
-    图像: 'pages/display/display',
-    网络: 'pages/network/network',
-    蓝牙: 'pages/bluetooth/bluetoothDeviceEntry',
-    通用: 'pages/general/general',
-    系统: 'pages/system/system',
-    更多连接: 'pages/links/links',
-    设备互传: 'pages/oneConnectShare/oneConnectShare'
+    声音: 'pages/volume/Volume',
+    图像: 'pages/display/Display',
+    网络: 'pages/network/Network',
+    蓝牙: 'pages/bluetooth/BluetoothDeviceEntry',
+    通用: 'pages/general/General',
+    系统: 'pages/system/System',
+    更多连接: 'pages/links/Links',
+    设备互传: 'pages/oneConnectShare/OneConnectShare'
   };
   return routeMap;
 }
@@ -157,13 +157,13 @@ export default function DefaultLayoutCoreTest() {
       const item = new SettingItemTvModel();
       item.name = '系统';
       item.nameId = 'system_title';
-      item.pageUrl = 'pages/system/system';
+      item.pageUrl = 'pages/system/System';
       item.imageUrl = 'icon_system';
       item.description = '软件更新、系统信息、设备信息';
       item.textColor = '#FFFFFF';
       expect(item.name).assertEqual('系统');
       expect(item.nameId).assertEqual('system_title');
-      expect(item.pageUrl).assertEqual('pages/system/system');
+      expect(item.pageUrl).assertEqual('pages/system/System');
       expect(item.imageUrl).assertEqual('icon_system');
       expect(item.description as string).assertEqual('软件更新、系统信息、设备信息');
       expect(item.textColor).assertEqual('#FFFFFF');
@@ -228,10 +228,10 @@ export default function DefaultLayoutCoreTest() {
     it(addCase(casePrefix + 'EntryRoute_MapIntegrity_013'), 0, () => {
       const map = createEntryRouteMap();
       expect(Object.keys(map).length).assertEqual(8);
-      expect(map.声音).assertEqual('pages/volume/volume');
-      expect(map.图像).assertEqual('pages/display/display');
-      expect(map.系统).assertEqual('pages/system/system');
-      expect(map.设备互传).assertEqual('pages/oneConnectShare/oneConnectShare');
+      expect(map.声音).assertEqual('pages/volume/Volume');
+      expect(map.图像).assertEqual('pages/display/Display');
+      expect(map.系统).assertEqual('pages/system/System');
+      expect(map.设备互传).assertEqual('pages/oneConnectShare/OneConnectShare');
     });
 
     it(addCase(casePrefix + 'EntryRoute_FormatRule_014'), 0, () => {

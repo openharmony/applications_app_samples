@@ -62,17 +62,17 @@ export default function MegaSystemRecoveryFlowMatrixTest() {
     return name;
   };
   const recoveryScenarios: Array<RecoveryScenario> = [
-    { name: 'recovery_001', itemName: '软件更新', pageUrl: 'pages/system/softwareUpdate', action: 'route', pageTranState: true },
-    { name: 'recovery_002', itemName: '时间和日期', pageUrl: 'pages/system/timeAndDate', action: 'route', pageTranState: true },
-    { name: 'recovery_003', itemName: '系统信息', pageUrl: 'pages/system/systemInfo', action: 'route', pageTranState: true },
-    { name: 'recovery_004', itemName: '设备信息', pageUrl: 'pages/system/deviceInfo', action: 'route', pageTranState: true },
-    { name: 'recovery_005', itemName: '状态信息', pageUrl: 'pages/system/stateInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_001', itemName: '软件更新', pageUrl: 'pages/system/SoftwareUpdate', action: 'route', pageTranState: true },
+    { name: 'recovery_002', itemName: '时间和日期', pageUrl: 'pages/system/TimeAndDate', action: 'route', pageTranState: true },
+    { name: 'recovery_003', itemName: '系统信息', pageUrl: 'pages/system/SystemInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_004', itemName: '设备信息', pageUrl: 'pages/system/DeviceInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_005', itemName: '状态信息', pageUrl: 'pages/system/StateInfo', action: 'route', pageTranState: true },
     { name: 'recovery_006', itemName: '恢复出厂设置', pageUrl: '', action: 'open_dialog', pageTranState: false },
-    { name: 'recovery_007', itemName: '软件更新', pageUrl: 'pages/system/softwareUpdate', action: 'route', pageTranState: true },
-    { name: 'recovery_008', itemName: '时间和日期', pageUrl: 'pages/system/timeAndDate', action: 'route', pageTranState: true },
-    { name: 'recovery_009', itemName: '系统信息', pageUrl: 'pages/system/systemInfo', action: 'route', pageTranState: true },
-    { name: 'recovery_010', itemName: '设备信息', pageUrl: 'pages/system/deviceInfo', action: 'route', pageTranState: true },
-    { name: 'recovery_011', itemName: '状态信息', pageUrl: 'pages/system/stateInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_007', itemName: '软件更新', pageUrl: 'pages/system/SoftwareUpdate', action: 'route', pageTranState: true },
+    { name: 'recovery_008', itemName: '时间和日期', pageUrl: 'pages/system/TimeAndDate', action: 'route', pageTranState: true },
+    { name: 'recovery_009', itemName: '系统信息', pageUrl: 'pages/system/SystemInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_010', itemName: '设备信息', pageUrl: 'pages/system/DeviceInfo', action: 'route', pageTranState: true },
+    { name: 'recovery_011', itemName: '状态信息', pageUrl: 'pages/system/StateInfo', action: 'route', pageTranState: true },
     { name: 'recovery_012', itemName: '恢复出厂设置', pageUrl: '', action: 'open_dialog', pageTranState: false }
   ];
   const resetScenarios: Array<ResetScenario> = [
@@ -125,8 +125,8 @@ export default function MegaSystemRecoveryFlowMatrixTest() {
 
     it(addCase(casePrefix + 'Coverage_004'), 0, () => {
       expect(recoveryScenarios.some((item) => item.action === 'open_dialog')).assertEqual(true);
-      expect(recoveryScenarios.some((item) => item.pageUrl === 'pages/system/softwareUpdate')).assertEqual(true);
-      expect(recoveryScenarios.some((item) => item.pageUrl === 'pages/system/timeAndDate')).assertEqual(true);
+      expect(recoveryScenarios.some((item) => item.pageUrl === 'pages/system/SoftwareUpdate')).assertEqual(true);
+      expect(recoveryScenarios.some((item) => item.pageUrl === 'pages/system/TimeAndDate')).assertEqual(true);
       expect(resetScenarios.some((item) => item.shouldToastFail)).assertEqual(true);
     });
 

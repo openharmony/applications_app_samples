@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -284,7 +284,7 @@ export default function SearchAndConfigTest() {
 
     it(addCase(casePrefix + 'SearchData_Assignment_014'), 0, () => {
       const data = new SearchData();
-      data.uri = 'pages/system/system';
+      data.uri = 'pages/system/System';
       data.icon = 'app.media.ic_nfc';
       data.title = '系统';
       data.keyword = '软件更新';
