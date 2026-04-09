@@ -1986,3 +1986,249 @@ interface CommonInterface {
  */
 declare const CommonInstance: CommonAttribute;
 
+/**
+ * Common for ide.
+ * @since 7
+ */
+declare const Common: CommonInterface;
+
+/**
+ * Defines the CustomBuilder Type.
+ * @since 7
+ */
+declare type CustomBuilder = (() => any) | void;
+
+/**
+ * CommonShapeMethod
+ * @since 7
+ */
+declare class CommonShapeMethod<T> extends CommonMethod<T> {
+  /**
+   * constructor.
+   * @since 7
+   * @systemapi
+   */
+  constructor();
+
+  /**
+   * border Color
+   * @since 7
+   */
+  stroke(value: ResourceColor): T;
+
+  /**
+   * Fill color.
+   * @since 7
+   */
+  fill(value: ResourceColor): T;
+
+  /**
+   * Offset from the start point of the border drawing.
+   * @since 7
+   */
+  strokeDashOffset(value: number | string): T;
+
+  /**
+   * Path endpoint drawing style.
+   * @since 7
+   */
+  strokeLineCap(value: LineCapStyle): T;
+
+  /**
+   * Border corner drawing style.
+   * @since 7
+   */
+  strokeLineJoin(value: LineJoinStyle): T;
+
+  /**
+   * Limits for drawing acute angles as bevels
+   * @since 7
+   */
+  strokeMiterLimit(value: number | string): T;
+
+  /**
+   * Sets the opacity of the border.
+   * @since 7
+   */
+  strokeOpacity(value: number | string | Resource): T;
+
+  /**
+   * fill Opacity
+   * @since 7
+   */
+  fillOpacity(value: number | string | Resource): T;
+
+  /**
+   * Sets the width of the dividing line.
+   * @since 7
+   */
+  strokeWidth(value: Length): T;
+
+  /**
+   * Indicates whether to enable anti-aliasing
+   * @since 7
+   */
+  antiAlias(value: boolean): T;
+
+  /**
+   * Sets the gap for the border.
+   * @since 7
+   */
+  strokeDashArray(value: Array<any>): T;
+}
+
+/**
+ * Sub component border info.
+ * @since 9
+ */
+declare interface LayoutBorderInfo {
+  borderWidth: EdgeWidths,
+  margin: Margin,
+  padding: Padding,
+}
+
+/**
+ * Sub component layout info.
+ * @since 9
+ */
+declare interface LayoutInfo {
+  position: Position,
+  constraint: ConstraintSizeOptions,
+}
+
+/**
+ * Sub component info passed from framework when layout and measure happens.
+ * @since 9
+ */
+declare interface LayoutChild {
+  /**
+   * Sub component name.
+   * @since 9
+   */
+  name: string,
+
+  /**
+   * Sub component id.
+   * @since 9
+   */
+  id: string,
+
+  /**
+   * Sub component constraint.
+   * @since 9
+   */
+  constraint: ConstraintSizeOptions,
+
+  /**
+   * Sub component border info.
+   * @since 9
+   */
+  borderInfo: LayoutBorderInfo,
+
+  /**
+   * Sub component position.
+   * @since 9
+   */
+  position: Position,
+
+  /**
+   * Call this measure method in onMeasure callback to supply sub component size.
+   * @since 9
+   */
+  measure(childConstraint: ConstraintSizeOptions),
+
+  /**
+   * Call this layout method in onLayout callback to assign layout info to sub component.
+   * @since 9
+   */
+  layout(childLayoutInfo: LayoutInfo)
+}
+
+/**
+ * Custom Component
+ * @since 7
+ */
+/**
+ * Custom Component
+ * @extends CommonAttribute
+ * @since 9
+ */
+declare class CustomComponent extends CommonAttribute {
+  /**
+   * Customize the pop-up content constructor.
+   * @since 7
+   */
+  build(): void;
+
+  /**
+   * aboutToAppear Method
+   * @since 7
+   */
+  aboutToAppear?(): void;
+
+  /**
+   * aboutToDisappear Method
+   * @since 7
+   */
+  aboutToDisappear?(): void;
+
+  /**
+   * Custom component override this method to layout each of its sub components.
+   * @since 9
+   */
+  onLayout?(children: Array<LayoutChild>, constraint: ConstraintSizeOptions): void;
+
+  /**
+   * Custom component override this method to measure each of its sub components.
+   * @since 9
+   */
+  onMeasure?(children: Array<LayoutChild>, constraint: ConstraintSizeOptions): void;
+
+  /**
+   * onPageShow Method
+   * @since 7
+   */
+  onPageShow?(): void;
+
+  /**
+   * onPageHide Method
+   * @since 7
+   */
+  onPageHide?(): void;
+
+  /**
+   * onBackPress Method
+   * @since 7
+   */
+  onBackPress?(): void;
+
+  /**
+   * PageTransition Method.
+   * Implement Animation when enter this page or move to other pages.
+   * @since 9
+   */
+  pageTransition?(): void;
+}
+
+/**
+ * View
+ * @ignore ide should ignore this class
+ * @systemapi
+ * @since 7
+ */
+declare class View {
+  /**
+   * Just use for generate tsbundle
+   * @ignore ide should ignore this attribute
+   * @systemapi
+   * @since 7
+   */
+  create(value: any): any;
+}
+
+declare module "SpecialEvent" {
+  module "SpecialEvent" {
+    // @ts-ignore
+    export { TouchObject, KeyEvent, MouseEvent };
+  }
+}
