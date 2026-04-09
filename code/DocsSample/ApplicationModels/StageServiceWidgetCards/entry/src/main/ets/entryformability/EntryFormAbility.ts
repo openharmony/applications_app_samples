@@ -53,11 +53,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onUpdateForm(formId: string): void {
-    // [StartExclude update_by_message_form_ability]
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
-    // [StartExclude update_by_message_form_ability]
     let obj: Record<string, string> = {
       'title': 'titleOnUpdateForm',
       'detail': 'detailOnUpdateForm'
@@ -66,7 +63,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
     formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
-    // [EndExclude update_by_message_form_ability]
   }
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
@@ -78,21 +74,14 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
-    // [StartExclude update_by_message_form_ability]
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
-
-    // [StartExclude form_extension_lifecycle_interface]
-    // [StartExclude entry_form_ability]
     class FormDataClass {
       title: string = 'Title Update.'; // 和卡片布局中对应
       detail: string = 'Description update success.'; // 和卡片布局中对应
     }
 
-    // [StartExclude update_by_message_form_ability]
     // 请根据业务替换为实际刷新的卡片数据
-    // [EndExclude update_by_message_form_ability]
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(formId, formInfo).then(() => {
@@ -100,8 +89,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }).catch((error: BusinessError) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
     });
-    // [EndExclude entry_form_ability]
-    // [EndExclude form_extension_lifecycle_interface]
   }
 
   // [StartExclude update_form_interface]
