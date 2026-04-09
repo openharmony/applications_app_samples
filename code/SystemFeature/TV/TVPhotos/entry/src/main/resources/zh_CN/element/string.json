@@ -1,0 +1,300 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "说明"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "标签"
+    },
+    {
+      "name": "read_permission",
+      "value": "读取权限"
+    },
+    {
+      "name": "write_permission",
+      "value": "写入权限"
+    },
+    {
+      "name": "read_image_video_permission",
+      "value": "读取相册视频权限"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "写入相册视频权限"
+    },
+    {
+      "name": "get_log",
+      "value": "获取log"
+    },
+    {
+      "name": "clear_log",
+      "value": "清除log"
+    },
+    {
+      "name": "photo",
+      "value": "图库"
+    },
+    {
+      "name": "picture",
+      "value": "照片"
+    },
+    {
+      "name": "watch_photo",
+      "value": "查看照片"
+    },
+    {
+      "name": "last_photo",
+      "value": "已经到底啦"
+    },
+    {
+      "name": "first_photo",
+      "value": "已经到头啦"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "请选择分享设备"
+    },
+    {
+      "name": "more_operations",
+      "value": "按菜单键进行更多操作"
+    },
+    {
+      "name": "no_data",
+      "value": "暂无数据"
+    },
+    {
+      "name": "distributed_datasync_permission",
+      "value": "设备管理权限"
+    },
+    {
+      "name": "delete_success",
+      "value": "删除成功"
+    },
+    {
+      "name": "delete_error",
+      "value": "删除错误"
+    },
+    {
+      "name": "please_choose_photo",
+      "value": "请先选择照片"
+    },
+    {
+      "name": "jump_successful",
+      "value": "跳转成功"
+    },
+    {
+      "name": "jump_failed",
+      "value": "跳转失败"
+    },
+    {
+      "name": "to_delete_the_file",
+      "value": "是否删除文件？"
+    },
+    {
+      "name": "select_the_sharing_device",
+      "value": "请选择分享设备"
+    },
+    {
+      "name": "album",
+      "value": "相册"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "share",
+      "value": "分享"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "choose",
+      "value": "选择"
+    },
+    {
+      "name": "clear_all",
+      "value": "清空"
+    },
+    {
+      "name": "restore",
+      "value": "恢复"
+    },
+    {
+      "name": "select_all",
+      "value": "全选"
+    },
+    {
+      "name": "cancel_all_select",
+      "value": "取消全选"
+    },
+    {
+      "name": "media_position_permission",
+      "value": "媒体位置权限"
+    },
+    {
+      "name": "search_for_the_device",
+      "value": " 努力搜索设备中..."
+    },
+    {
+      "name": "album_name_all",
+      "value": "所有照片"
+    },
+    {
+      "name": "album_name_favorite",
+      "value": "我的收藏"
+    },
+    {
+      "name": "album_name_screenshot",
+      "value": "截屏录屏"
+    },
+    {
+      "name": "album_name_trash",
+      "value": "最近删除"
+    },
+    {
+      "name": "album_name_more",
+      "value": "更多相册"
+    },
+    {
+      "name": "album_trash_secondary_title",
+      "value": "照片、视频在删除前会显示剩余（最长30天），之后永久删除"
+    },
+    {
+      "name": "unit_day",
+      "value": "天"
+    },
+    {
+      "name": "unit_hour",
+      "value": "小时"
+    },
+    {
+      "name": "unit_minute",
+      "value": "分钟"
+    },
+    {
+      "name": "today",
+      "value": "今天"
+    },
+    {
+      "name": "yesterday",
+      "value": "昨天"
+    },
+    {
+      "name": "rotate",
+      "value": "旋转"
+    },
+    {
+      "name": "menu_distributed_photo",
+      "value": "分布式图库"
+    },
+    {
+      "name": "distributed_device_title",
+      "value": "设备连接"
+    },
+    {
+      "name": "Device_search_in_progress",
+      "value": "设备搜索中.."
+    },
+    {
+      "name": "distributed_device_available",
+      "value": "可信设备"
+    },
+    {
+      "name": "distributed_device_other",
+      "value": "其他设备"
+    },
+    {
+      "name": "distributed_device_go_to",
+      "value": "立即连接"
+    },
+    {
+      "name": "distributed_device_empty_tip",
+      "value": "未连接到可信任设备，请连接"
+    },
+    {
+      "name": "dialog_title_to_distributed_device",
+      "value": "是否前往分布式设备管理？"
+    },
+    {
+      "name": "connect",
+      "value": "连接"
+    },
+    {
+      "name": "unbind",
+      "value": "解除绑定"
+    },
+    {
+      "name": "dfs_connect_success",
+      "value": "连接成功"
+    },
+    {
+      "name": "dfs_connect_failed",
+      "value": "连接失败"
+    },
+    {
+      "name": "nas_servers",
+      "value": "网络邻居"
+    },
+    {
+      "name": "no_nas_servers",
+      "value": "未找到设备"
+    },
+    {
+      "name": "nas_find_failed",
+      "value": "寻找设备失败，请检查网络"
+    },
+    {
+      "name": "add_nas_servers",
+      "value": "添加设备"
+    },
+    {
+      "name": "nas_connecting",
+      "value": "正在确认连接状态，请稍等"
+    },
+    {
+      "name": "nas_disconnect",
+      "value": "是否断开连接？"
+    },
+    {
+      "name": "nas_login_title",
+      "value": "请输入用户名和密码"
+    },
+    {
+      "name": "nas_login_username",
+      "value": "用户名："
+    },
+    {
+      "name": "nas_login_password",
+      "value": "密码："
+    },
+    {
+      "name": "nas_login_password_need",
+      "value": "用户名或密码不能为空"
+    },
+    {
+      "name": "number_of_shared_exceeds_the_limit_size",
+      "value": "超过分享文件大小上限，请重新选择"
+    },
+    {
+      "name": "share_failed",
+      "value": "分享失败！"
+    },
+    {
+      "name": "cannot_open_this_image",
+      "value": "无法打开该图片"
+    }
+  ]
+}
