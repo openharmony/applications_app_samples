@@ -37,8 +37,8 @@ class PageRouteMap {
 }
 
 class MainAbilityParams {
-  pageUrl: string = '';
-  callerBundleName: string = '';
+  public pageUrl: string = '';
+  public callerBundleName: string = '';
 }
 
 class MainAbilityWant {
