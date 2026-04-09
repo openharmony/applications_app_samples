@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,28 +20,40 @@
 #define LOG_TAG
 #endif
 
+#include <cstring>
+
 #include "hilog/log.h"
 
 namespace OHOS::Settings {
-static const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_APP, 0x0500, "Settings" };
+extern const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL;
 
-#define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
+inline const char *GetSettingsFileName(const char *filePath)
+{
+    const char *slashFileName = std::strrchr(filePath, '/');
+    const char *backslashFileName = std::strrchr(filePath, '\\');
+    const char *fileName = slashFileName;
+    if (backslashFileName != nullptr && (fileName == nullptr || backslashFileName > fileName)) {
+        fileName = backslashFileName;
+    }
+    return fileName == nullptr ? filePath : fileName + 1;
+}
+
+#define SETTINGS_FILE_NAME OHOS::Settings::GetSettingsFileName(__FILE__)
 
 #define SETTING_LOG_DEBUG(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Debug(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, SETTINGS_FILE_NAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_INFO(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Info(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, SETTINGS_FILE_NAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_WARN(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Warn(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, SETTINGS_FILE_NAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_ERROR(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Error(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, SETTINGS_FILE_NAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_FATAL(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Fatal(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, SETTINGS_FILE_NAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 } // namespace OHOS::Settings
 #endif
-
