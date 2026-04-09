@@ -1,0 +1,28 @@
+[
+  {
+    "settingIcon": "/res/image/wlan.svg",
+    "settingTitle": "WLAN",
+    "settingAlias": "wifiTab",
+    "settingValue": "",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
+    "settingSummary": "",
+    "settingUri": "pages/wifi"
+  },{
+  "settingIcon": "/res/image/displayAndBrightness.svg",
+  "settingTitle": "",
+  "settingAlias": "brightnessTab",
+  "settingValue": "",
+  "settingArrow": "/res/image/ic_settings_arrow.svg",
+  "settingSummary": "",
+  "settingUri": "pages/brightnessSettings"
+},
+  {
+    "settingIcon": "res/image/application.svg",
+    "settingTitle": "",
+    "settingAlias": "applyTab",
+    "settingValue": "",
+    "settingArrow": "res/image/ic_settings_arrow.svg",
+    "settingSummary": "",
+    "settingUri": "pages/appManagement"
+  }
+]
