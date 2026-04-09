@@ -22,7 +22,6 @@ const TAG: string = '[PublishOperation]';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [End manage_notification_ways_header]
 
-@Entry
 @Component
 export struct ManageNotificationWays {
   build() {

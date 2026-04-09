@@ -26,7 +26,6 @@ const DOMAIN_NUMBER: number = 0xFF00;
 const SOUND_FILE_NAME: string = 'ringtone_demo.mp3'; // 实际项目中请替换为自己的音频文件
 // [End specified_customized_ringtone_header]
 
-@Entry
 @Component
 export struct SpecifiedCustomizedRingtone {
   @Consume('pageInfos') pageInfos: NavPathStack;

@@ -1,13 +1,5 @@
 {
   "src": [
-    "pages/Index",
-    "filemanager/RequestEnableNotification",
-    "filemanager/ManageNotificationBadges",
-    "filemanager/ManageNotificationWays",
-    "filemanager/PublishNotification",
-    "filemanager/AddWantAgent",
-    "filemanager/UpdateNotification",
-    "filemanager/CancelNotification",
-    "filemanager/ClearDuplicateNotifications"
+    "pages/Index"
   ]
 }
