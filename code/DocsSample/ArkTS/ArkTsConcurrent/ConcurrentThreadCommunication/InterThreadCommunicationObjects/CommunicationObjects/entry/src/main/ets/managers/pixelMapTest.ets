@@ -24,7 +24,7 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   const pixelMap = imageSource.createPixelMapSync();
   // 释放imageSource。
   imageSource.release();
-  // 使pixelMap在跨线程传输完成后，断开原线程的引用。
+  // 使pixelMap在跨线程传输完成后，脱离原线程的引用。
   pixelMap.setTransferDetached(true);
   // 返回pixelMap给主线程。
   return pixelMap;
