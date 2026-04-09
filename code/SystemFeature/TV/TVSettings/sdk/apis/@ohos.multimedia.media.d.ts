@@ -1997,3 +1997,2000 @@ declare namespace media {
      * Set playback strategy to AVPlayer.
      * @param { PlaybackStrategy } strategy : specified strategy of the AVPlayer.
      * @returns { Promise<void> }  A Promise instance used to return when setPlaybackStrategy completed.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    setPlaybackStrategy(strategy: PlaybackStrategy): Promise<void>;
+
+    /**
+     * Mute specified media stream.
+     * @param { MediaType } mediaType - specified media Type, see @MediaType..
+     * @param { boolean } muted - true for mute, false for unmute.
+     * @returns { Promise<void> } A Promise instance used to return when setMediaMuted completed.
+     * @throws { BusinessError } 401 - The parameter check failed. Return by promise.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise<void>;
+
+    /**
+     * Set playback start position and end position.
+     * @param { number } startTimeMs - Playback start position, should be in [0, duration),
+     *                                 -1 means that the start position is not set,
+     *                                 and the playback will start from 0.
+     * @param { number } endTimeMs - Playback end position, which should usually be in (startTimeMs, duration],
+     *                               -1 means that the end position is not set,
+     *                               and the playback will be ended at the end of the stream.
+     * @param { SeekMode } [mode] - Use the specified seek mode to jump to the playback start position,
+     *                             currently support SeekMode.SEEK_PREV_SYNC and SeekMode.SEEK_CLOSEST,
+     *                             other values are invalid, the default value is SeekMode.SEEK_PREV_SYNC.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @throws { BusinessError } 202 - Called from Non-System applications. Return by promise.
+     * @throws { BusinessError } 401 - The parameter check failed. Return by promise.
+     * @throws { BusinessError } 5400102 - Operation not allowed. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @systemapi
+     * @since 12
+     */
+    setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise<void>;
+
+    /**
+     * Media URI. Mainstream media formats are supported.
+     * Network:http://xxx
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Media URI. Mainstream media formats are supported.
+     * Network:http://xxx
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Media URI. Mainstream media formats are supported.
+     * Network:http://xxx
+     * @type { ?string }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    url?: string;
+
+    /**
+     * Media file descriptor. Mainstream media formats are supported.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Media file descriptor. Mainstream media formats are supported.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Media file descriptor. Mainstream media formats are supported.
+     * @type { ?AVFileDescriptor }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    fdSrc?: AVFileDescriptor;
+
+    /**
+     * DataSource descriptor. Supports mainstream media formats.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 10
+     */
+    /**
+     * DataSource descriptor. Supports mainstream media formats.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * DataSource descriptor. Supports mainstream media formats.
+     * @type { ?AVDataSrcDescriptor }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    dataSrc?: AVDataSrcDescriptor;
+
+    /**
+     * Whether to loop media playback.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Whether to loop media playback.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    loop: boolean;
+
+    /**
+     * Describes audio interrupt mode, refer to {@link #audio.InterruptMode}. If it is not
+     * set, the default mode will be used. Set it before calling the {@link #play()} in the
+     * first time in order for the interrupt mode to become effective thereafter.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Describes audio interrupt mode, refer to {@link #audio.InterruptMode}. If it is not
+     * set, the default mode will be used. Set it before calling the {@link #play()} in the
+     * first time in order for the interrupt mode to become effective thereafter.
+     * @type { ?audio.InterruptMode }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    audioInterruptMode?: audio.InterruptMode;
+
+    /**
+     * Describes audio renderer info, refer to {@link #audio.AudioRendererInfo}. Set it before
+     * calling the {@link #prepare()} in the first time in order for the audio renderer info to
+     * become effective thereafter.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 10
+     */
+    /**
+     * Describes audio renderer info, refer to {@link #audio.AudioRendererInfo}. Set it before
+     * calling the {@link #prepare()} in the first time in order for the audio renderer info to
+     * become effective thereafter.
+     * @type { ?audio.AudioRendererInfo }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    audioRendererInfo?: audio.AudioRendererInfo;
+
+    /**
+     * Obtains the current audio effect mode, refer to {@link #audio.AudioEffectMode}.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 10
+     */
+    /**
+     * Obtains the current audio effect mode, refer to {@link #audio.AudioEffectMode}.
+     * @type { ?audio.AudioEffectMode }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    audioEffectMode ?: audio.AudioEffectMode;
+
+    /**
+     * Current playback position.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Current playback position.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    readonly currentTime: number;
+
+    /**
+     * Playback duration, When the data source does not support seek, it returns - 1, such as a live broadcast scenario.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Playback duration, When the data source does not support seek, it returns - 1, such as a live broadcast scenario.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Playback duration, When the data source does not support seek, it returns - 1, such as a live broadcast scenario.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    readonly duration: number;
+
+    /**
+     * Playback state.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Playback state.
+     * @type { AVPlayerState }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    readonly state: AVPlayerState;
+
+    /**
+     * Video player will use this id get a surface instance.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Video player will use this id get a surface instance.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Video player will use this id get a surface instance.
+     * @type { ?string }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    surfaceId?: string;
+
+    /**
+     * Video width, valid after prepared.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Video width, valid after prepared.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    readonly width: number;
+
+    /**
+     * Video height, valid after prepared.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Video height, valid after prepared.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    readonly height: number;
+
+    /**
+     * Video scale type. By default, the {@link #VIDEO_SCALE_TYPE_FIT} will be used, for more
+     * information, refer to {@link #VideoScaleType} .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Video scale type. By default, the {@link #VIDEO_SCALE_TYPE_FIT} will be used, for more
+     * information, refer to {@link #VideoScaleType} .
+     * @type { ?VideoScaleType }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    videoScaleType?: VideoScaleType;
+
+    /**
+     * Set payback speed.
+     * @param { PlaybackSpeed } speed - playback speed, see @PlaybackSpeed .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Set payback speed.
+     * @param { PlaybackSpeed } speed - playback speed, see @PlaybackSpeed .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    setSpeed(speed: PlaybackSpeed): void;
+
+    /**
+     * select a specified bitrate to playback, only valid for HLS protocol network stream. By default, the
+     * player will select the appropriate bitrate according to the network connection speed. The
+     * available bitrate list reported by {@link #on('availableBitrates')}. Set it to select
+     * a specified bitrate. If the specified bitrate is not in the list of available bitrate, the player
+     * will select the minimal and closest one from the available bitrate list.
+     * @param { number } bitrate - the playback bitrate must be expressed in bits per second.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * select a specified bitrate to playback, only valid for HLS protocol network stream. By default, the
+     * player will select the appropriate bitrate according to the network connection speed. The
+     * available bitrate list reported by {@link #on('availableBitrates')}. Set it to select
+     * a specified bitrate. If the specified bitrate is not in the list of available bitrate, the player
+     * will select the minimal and closest one from the available bitrate list.
+     * @param { number } bitrate - the playback bitrate must be expressed in bits per second.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    setBitrate(bitrate: number): void;
+
+    /**
+     * Set decryption session to codec module.
+     * @param { drm.MediaKeySession } mediaKeySession - Handle of MediaKeySession to decrypt encrypted media.
+     * @param { boolean } secureVideoPath - Secure video path required or not.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Set decryption session to codec module.
+     * @param { drm.MediaKeySession } mediaKeySession - Handle of MediaKeySession to decrypt encrypted media.
+     * @param { boolean } secureVideoPath - Secure video path required or not.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void;
+
+    /**
+     * Get media key system info from media source.
+     * @returns { Array<drm.MediaKeySystemInfo> } MediaKeySystemInfo with PSSH.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Get media key system info from media source.
+     * @returns { Array<drm.MediaKeySystemInfo> } MediaKeySystemInfo with PSSH.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    getMediaKeySystemInfos(): Array<drm.MediaKeySystemInfo>;
+
+    /**
+     * Register listens for mediaKeySystemInfoUpdate events.
+     * @param { 'mediaKeySystemInfoUpdate' } type - Type of the event to listen for.
+     * @param { function } callback - Callback used to listen for the mediaKeySystemInfoUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Register listens for mediaKeySystemInfoUpdate events.
+     * @param { 'mediaKeySystemInfoUpdate' } type - Type of the event to listen for.
+     * @param { Callback<Array<drm.MediaKeySystemInfo>> } callback - Callback used to listen for the mediaKeySystemInfoUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'mediaKeySystemInfoUpdate', callback: Callback<Array<drm.MediaKeySystemInfo>>): void;
+
+    /**
+     * Unregister listens for mediaKeySystemInfoUpdate events.
+     * @param { 'mediaKeySystemInfoUpdate' } type - Type of the event to listen for.
+     * @param { function } callback - Callback for event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Unregister listens for mediaKeySystemInfoUpdate events.
+     * @param { 'mediaKeySystemInfoUpdate' } type - Type of the event to listen for.
+     * @param { Callback<Array<drm.MediaKeySystemInfo>> } callback - Callback for event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'mediaKeySystemInfoUpdate', callback?: Callback<Array<drm.MediaKeySystemInfo>>): void;
+
+    /**
+     * Register listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback stateChange event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback stateChange event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Register listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @param { OnAVPlayerStateChangeHandle } callback - Callback used to listen for the playback stateChange event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void;
+    /**
+     * Unregister listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Unregister listens for media playback stateChange event.
+     * @param { 'stateChange' } type - Type of the playback event to listen for.
+     * @param { OnAVPlayerStateChangeHandle } callback - Callback used to listen for stateChange event
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void;
+    /**
+     * Register listens for media playback volumeChange event.
+     * @param { 'volumeChange' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback volume event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback volumeChange event.
+     * @param { 'volumeChange' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback volume event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'volumeChange', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback volumeChange event.
+     * @param { 'volumeChange' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback volumeChange event.
+     * @param { 'volumeChange' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback volume event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'volumeChange', callback?: Callback<number>): void;
+    /**
+     * Register listens for media playback endOfStream event.
+     * @param { 'endOfStream' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback end of stream.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback endOfStream event.
+     * @param { 'endOfStream' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback end of stream.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'endOfStream', callback: Callback<void>): void;
+    /**
+     * Unregister listens for media playback endOfStream event.
+     * @param { 'endOfStream' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback endOfStream event.
+     * @param { 'endOfStream' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback end of stream.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'endOfStream', callback?: Callback<void>): void;
+    /**
+     * Register listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback seekDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback seekDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Register listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback seekDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'seekDone', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Unregister listens for media playback seekDone event.
+     * @param { 'seekDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback seekDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'seekDone', callback?: Callback<number>): void;
+    /**
+     * Register listens for media playback speedDone event.
+     * @param { 'speedDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback speedDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback speedDone event.
+     * @param { 'speedDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback speedDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'speedDone', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback speedDone event.
+     * @param { 'speedDone' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback speedDone event.
+     * @param { 'speedDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback speedDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'speedDone', callback?: Callback<number>): void;
+    /**
+     * Register listens for media playback setBitrateDone event.
+     * @param { 'bitrateDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback setBitrateDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback setBitrateDone event.
+     * @param { 'bitrateDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback setBitrateDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'bitrateDone', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback setBitrateDone event.
+     * @param { 'bitrateDone' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback setBitrateDone event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    off(type: 'bitrateDone', callback?: Callback<number>): void;
+    /**
+     * Register listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback timeUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback timeUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Register listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback timeUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'timeUpdate', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Unregister listens for media playback timeUpdate event.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback timeUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'timeUpdate', callback?: Callback<number>): void;
+    /**
+     * Register listens for media playback durationUpdate event.
+     * @param { 'durationUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback durationUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for media playback durationUpdate event.
+     * @param { 'durationUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback durationUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'durationUpdate', callback: Callback<number>): void;
+    /**
+     * Unregister listens for media playback durationUpdate event.
+     * @param { 'durationUpdate' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for media playback durationUpdate event.
+     * @param { 'durationUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback durationUpdate event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'durationUpdate', callback?: Callback<number>): void;
+
+    /**
+     * Register listens for video playback buffering events.
+     * @param { 'bufferingUpdate' } type - Type of the playback buffering update event to listen for.
+     * @param { function } callback - Callback used to listen for the buffering update event,
+	   * return BufferingInfoType and the value.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for video playback buffering events.
+     * @param { 'bufferingUpdate' } type - Type of the playback buffering update event to listen for.
+     * @param { OnBufferingUpdateHandler } callback - Callback used to listen for the buffering update event,
+	   * return BufferingInfoType and the value.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void;
+
+    /**
+     * Unregister listens for video playback buffering events.
+     * @param { 'bufferingUpdate' } type - Type of the playback buffering update event to listen for.
+	   * return BufferingInfoType and the value.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for video playback buffering events.
+     * @param { 'bufferingUpdate' } type - Type of the playback buffering update event to listen for.
+     * @param { OnBufferingUpdateHandler } callback - Callback used to listen for the buffering update event,
+	   * return BufferingInfoType and the value.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void;
+    /**
+     * Register listens for start render video frame events.
+     * @param { 'startRenderFrame' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback event return .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for start render video frame events.
+     * @param { 'startRenderFrame' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback event return .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'startRenderFrame', callback: Callback<void>): void;
+    /**
+     * Unregister listens for start render video frame events.
+     * @param { 'startRenderFrame' } type - Type of the playback event to listen for.
+     * @param { Callback<void> } callback - Callback used to listen for the playback event return .
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    off(type: 'startRenderFrame', callback?: Callback<void>): void;
+
+    /**
+     * Register listens for video size change event.
+     * @param { 'videoSizeChange' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback event return video size.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for video size change event.
+     * @param { 'videoSizeChange' } type - Type of the playback event to listen for.
+     * @param { OnVideoSizeChangeHandler } callback - Callback used to listen for the playback event return video size.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void;
+    /**
+     * Unregister listens for video size change event.
+     * @param { 'videoSizeChange' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for video size change event.
+     * @param { 'videoSizeChange' } type - Type of the playback event to listen for.
+     * @param { OnVideoSizeChangeHandler } callback - Callback used to listen for the playback event return video size.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void;
+    /**
+     * Register listens for audio interrupt event, refer to {@link #audio.InterruptEvent}
+     * @param { 'audioInterrupt' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback event return audio interrupt info.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for audio interrupt event, refer to {@link #audio.InterruptEvent}
+     * @param { 'audioInterrupt' } type - Type of the playback event to listen for.
+     * @param { Callback<audio.InterruptEvent> } callback - Callback used to listen for the playback event return audio interrupt info.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'audioInterrupt', callback: Callback<audio.InterruptEvent>): void;
+    /**
+     * Unregister listens for audio interrupt event, refer to {@link #audio.InterruptEvent}
+     * @param { 'audioInterrupt' } type - Type of the playback event to listen for.
+     * @param { Callback<audio.InterruptEvent> } callback - Callback used to listen for the playback event return audio interrupt info.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 9
+     */
+    off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void;
+    /**
+     * Register listens for available bitrate list collect completed events for HLS protocol stream playback.
+     * This event will be reported after the {@link #prepare} called.
+     * @param { 'availableBitrates' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback event return available bitrate list.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for available bitrate list collect completed events for HLS protocol stream playback.
+     * This event will be reported after the {@link #prepare} called.
+     * @param { 'availableBitrates' } type - Type of the playback event to listen for.
+     * @param { Callback<Array<number>> } callback - Callback used to listen for the playback event return available bitrate list.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'availableBitrates', callback: Callback<Array<number>>): void;
+    /**
+     * Unregister listens for available bitrate list collect completed events for HLS protocol stream playback.
+     * This event will be reported after the {@link #prepare} called.
+     * @param { 'availableBitrates' } type - Type of the playback event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for available bitrate list collect completed events for HLS protocol stream playback.
+     * This event will be reported after the {@link #prepare} called.
+     * @param { 'availableBitrates' } type - Type of the playback event to listen for.
+     * @param { Callback<Array<number>> } callback - Callback used to listen for the playback event return available bitrate list.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'availableBitrates', callback?: Callback<Array<number>>): void;
+    /**
+     * Register listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the playback error event.
+     * @throws { BusinessError } 201 - Permission denied.
+     * @throws { BusinessError } 401 - The parameter check failed.
+     * @throws { BusinessError } 801 - Capability not supported.
+     * @throws { BusinessError } 5400101 - No memory.
+     * @throws { BusinessError } 5400102 - Operation not allowed.
+     * @throws { BusinessError } 5400103 - I/O error.
+     * @throws { BusinessError } 5400104 - Time out.
+     * @throws { BusinessError } 5400105 - Service died.
+     * @throws { BusinessError } 5400106 - Unsupported format.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Register listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the playback error event.
+     * @throws { BusinessError } 201 - Permission denied.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @throws { BusinessError } 801 - Capability not supported.
+     * @throws { BusinessError } 5400101 - No memory.
+     * @throws { BusinessError } 5400102 - Operation not allowed.
+     * @throws { BusinessError } 5400103 - I/O error.
+     * @throws { BusinessError } 5400104 - Time out.
+     * @throws { BusinessError } 5400105 - Service died.
+     * @throws { BusinessError } 5400106 - Unsupported format.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Register listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the playback error event.
+     * @throws { BusinessError } 201 - Permission denied.
+     * @throws { BusinessError } 401 - The parameter check failed.
+     * @throws { BusinessError } 801 - Capability not supported.
+     * @throws { BusinessError } 5400101 - No memory.
+     * @throws { BusinessError } 5400102 - Operation not allowed.
+     * @throws { BusinessError } 5400103 - I/O error.
+     * @throws { BusinessError } 5400104 - Time out.
+     * @throws { BusinessError } 5400105 - Service died.
+     * @throws { BusinessError } 5400106 - Unsupport format.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'error', callback: ErrorCallback): void;
+    /**
+     * Unregister listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 9
+     */
+    /**
+     * Unregister listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Unregister listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the playback error event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'error', callback?: ErrorCallback): void;
+
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'audioOutputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<audio.AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Subscribes output device change event callback.
+     * The event is triggered when output device change for this stream.
+     * @param { 'audioOutputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<audio.AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback<audio.AudioStreamDeviceChangeInfo>): void;
+
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'audioOutputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<audio.AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 11
+     */
+    /**
+     * Unsubscribes output device change event callback.
+     * @param { 'audioOutputDeviceChangeWithInfo' } type - Type of the event to listen for.
+     * @param { Callback<audio.AudioStreamDeviceChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback<audio.AudioStreamDeviceChangeInfo>): void;
+
+    /**
+     * Subscribes listener for subtitle update event.
+     * @param { 'subtitleUpdate' } type - Type of the event to listen for.
+     * @param { Callback<SubtitleInfo> } callback - Callback used to listen subtitle update event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'subtitleUpdate', callback: Callback<SubtitleInfo>): void
+
+    /**
+     * Unsubscribes listener for subtitle update event.
+     * @param { 'subtitleUpdate' } type - Type of the event to listen for.
+     * @param { Callback<SubtitleInfo> } callback - Callback used to listen subtitle update event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'subtitleUpdate', callback?: Callback<SubtitleInfo>): void
+  
+    /**
+     * Subscribes listener for track change event.
+     * @param { 'trackChange' } type - Type of the event to listen for.
+     * @param { OnTrackChangeHandler } callback - Callback used to listen track change event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'trackChange', callback: OnTrackChangeHandler): void
+
+    /**
+     * Unsubscribes listener for track change event.
+     * @param { 'trackChange' } type - Type of the event to listen for.
+     * @param { OnTrackChangeHandler } callback - Callback used to listen track change event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'trackChange', callback?: OnTrackChangeHandler): void
+
+    /**
+     * Subscribes listener for trackinfo update event.
+     * @param { 'trackInfoUpdate' } type - Type of the event to listen for.
+     * @param { Callback<Array<MediaDescription>> } callback - Callback used to listen trackinfo update event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    on(type: 'trackInfoUpdate', callback: Callback<Array<MediaDescription>>): void
+
+    /**
+     * Unsubscribes listener for trackinfo update event.
+     * @param { 'trackInfoUpdate' } type - Type of the event to listen for.
+     * @param { Callback<Array<MediaDescription>> } callback - Callback used to listen trackinfo update event.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 12
+     */
+    off(type: 'trackInfoUpdate', callback?: Callback<Array<MediaDescription>>): void
+  }
+
+  /**
+   * Provides player statistic info.
+   * 
+   * @typedef PlaybackInfo
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 12
+   */
+  interface PlaybackInfo {
+    /**
+     * key:value pair, key see @PlaybackInfoKey.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    [key:string]: Object;
+  }
+
+  /**
+   * Enumerates statistics info keys for player.
+   * 
+   * @enum { string }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 12
+   */
+  enum PlaybackInfoKey {
+    /**
+     * IP address of current network stream.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    SERVER_IP_ADDRESS = 'server_ip_address',
+
+    /**
+     * Average download rate during playing except for suspend downloading.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    AVG_DOWNLOAD_RATE = 'average_download_rate',
+
+    /**
+     * Current download rate of the last second except for suspend downloading.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    DOWNLOAD_RATE = 'download_rate',
+
+    /**
+     * Boolean value, true for current is downloading, false for suspend downloading.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    IS_DOWNLOADING = 'is_downloading',
+
+    /**
+     * Cached duration in milliseconds.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    BUFFER_DURATION = 'buffer_duration',
+  }
+
+  /**
+   * Enumerates ErrorCode types, return in BusinessError::code
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 8
+   * @deprecated since 11
+   * @useinstead ohos.multimedia.media/media.AVErrorCode
+   */
+  enum MediaErrorCode {
+    /**
+     * operation success.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_OK
+     */
+    MSERR_OK = 0,
+
+    /**
+     * malloc or new memory failed. maybe system have no memory.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_NO_MEMORY
+     */
+    MSERR_NO_MEMORY = 1,
+
+    /**
+     * no permission for the operation.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_OPERATE_NOT_PERMIT
+     */
+    MSERR_OPERATION_NOT_PERMIT = 2,
+
+    /**
+     * invalid argument.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_INVALID_PARAMETER
+     */
+    MSERR_INVALID_VAL = 3,
+
+    /**
+     * an I/O error occurred.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_IO
+     */
+    MSERR_IO = 4,
+
+    /**
+     * operation time out.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_TIMEOUT
+     */
+    MSERR_TIMEOUT = 5,
+
+    /**
+     * unknown error.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_INVALID_PARAMETER
+     */
+    MSERR_UNKNOWN = 6,
+
+    /**
+     * media service died.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_SERVICE_DIED
+     */
+    MSERR_SERVICE_DIED = 7,
+
+    /**
+     * operation is not permit in current state.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_INVALID_PARAMETER
+     */
+    MSERR_INVALID_STATE = 8,
+
+    /**
+     * operation is not supported in current version.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.media/media.AVErrorCode#AVERR_UNSUPPORT_CAPABILITY
+     */
+    MSERR_UNSUPPORTED = 9,
+  }
+
+  /**
+   * Enumerates buffering info type, for network playback.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 8
+   */
+  /**
+   * Enumerates buffering info type, for network playback.
+   *
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  enum BufferingInfoType {
+    /**
+     * begin to buffering
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * begin to buffering
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    BUFFERING_START = 1,
+
+    /**
+     * end to buffering
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * end to buffering
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    BUFFERING_END = 2,
+
+    /**
+     * buffering percent
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * buffering percent
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    BUFFERING_PERCENT = 3,
+
+    /**
+     * cached duration in milliseconds
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 8
+     */
+    /**
+     * cached duration in milliseconds
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    CACHED_DURATION = 4,
+  }
+
+  /**
+   * Media source descriptor. User can set media data information
+
+   * @typedef MediaSource
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 12
+   */
+  interface MediaSource {
+    /**
+     * Set Media Mime Type to help player handle extended Media source.
+     * @param { AVMimeTypes } mimeType - for MediaSource define. see @ AVMimeTypes.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    setMimeType(mimeType: AVMimeTypes): void;
+  }
+
+  /**
+   * Enumerates Media Mime types, used for MediaSource define;
+   * @enum { string }
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 12
+   */
+  enum AVMimeTypes {
+    /**
+     * Indicate current file is index file for hls Media.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    APPLICATION_M3U8 = 'application/m3u8',
+  }
+  /**
+   * Provides preferred playback settings for player.
+   *
+   * @typedef PlaybackStrategy
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 12
+   */
+  interface PlaybackStrategy {
+    /**
+     * Choose a stream with width close to it.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    preferredWidth?: number;
+    /**
+     * Choose a stream with height close to it.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    preferredHeight?: number;
+    /**
+     * Choose a preferred buffer duration.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    preferredBufferDuration?: number;
+
+    /**
+     * If true, the player should choose HDR stream if exist.
+     * @type { ?boolean }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    preferredHdr?: boolean;
+
+    /**
+     * mute the specified media stream when playing.
+     * @type { ?MediaType }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 12
+     */
+    mutedMediaType?: MediaType;
+  }
+
+  /**
+   * Media file descriptor. The caller needs to ensure that the fd is valid and
+   * the offset and length are correct.
+   *
+   * @typedef AVFileDescriptor
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @since 9
+   */
+  /**
+   * Media file descriptor. The caller needs to ensure that the fd is valid and
+   * the offset and length are correct.
+   *
+   * @typedef AVFileDescriptor
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 11
+   */
+  /**
+   * Media file descriptor. The caller needs to ensure that the fd is valid and
+   * the offset and length are correct.
+   *
+   * @typedef AVFileDescriptor
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AVFileDescriptor {
+    /**
+     * The file descriptor of audio or video source from file system. The caller
+     * is responsible to close the file descriptor.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 9
+     */
+    /**
+     * The file descriptor of audio or video source from file system. The caller
+     * is responsible to close the file descriptor.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * The file descriptor of audio or video source from file system. The caller
+     * is responsible to close the file descriptor.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    fd: number
+
+    /**
+     * The offset into the file where the data to be read, in bytes. By default,
+     * the offset is zero.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 9
+     */
+    /**
+     * The offset into the file where the data to be read, in bytes. By default,
+     * the offset is zero.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * The offset into the file where the data to be read, in bytes. By default,
+     * the offset is zero.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    offset?: number
+
+    /**
+     * The length in bytes of the data to be read. By default, the length is the
+     * rest of bytes in the file from the offset.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @since 9
+     */
+    /**
+     * The length in bytes of the data to be read. By default, the length is the
+     * rest of bytes in the file from the offset.
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * The length in bytes of the data to be read. By default, the length is the
+     * rest of bytes in the file from the offset.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    length?: number
+  }
+
+  /**
+    * DataSource descriptor. The caller needs to ensure that the fileSize and 
+    * callback is valid.
+    *
+    * @typedef AVDataSrcDescriptor
+    * @syscap SystemCapability.Multimedia.Media.AVPlayer
+    * @since 10
+    */
+  /**
+   * DataSource descriptor. The caller needs to ensure that the fileSize and
+   * callback is valid.
+   *
+   * @typedef AVDataSrcDescriptor
+   * @syscap SystemCapability.Multimedia.Media.AVPlayer
+   * @atomicservice
+   * @since 11
+   */
+  /**
+   * DataSource descriptor. The caller needs to ensure that the fileSize and
+   * callback is valid.
+   *
+   * @typedef AVDataSrcDescriptor
+   * @syscap SystemCapability.Multimedia.Media.AVPlayer
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AVDataSrcDescriptor {
+    /**
+     * Size of the file, -1 means the file size is unknown, in this case,
+     * seek and setSpeed can't be executed, loop can't be set, and can't replay.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 10
+     */
+    /**
+     * Size of the file, -1 means the file size is unknown, in this case,
+     * seek and setSpeed can't be executed, loop can't be set, and can't replay.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Size of the file, -1 means the file size is unknown, in this case,
+     * seek and setSpeed can't be executed, loop can't be set, and can't replay.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    fileSize: number;
+    /**
+     * Callback function implemented by users, which is used to fill data.
+     * buffer - The buffer need to fill.
+     * length - The stream length player want to get.
+     * pos - The stream position player want get start, and is an optional parameter.
+     * When fileSize set to -1, this parameter is not used.
+     * Returns length of the data to be filled.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @since 10
+     */
+    /**
+     * Callback function implemented by users, which is used to fill data.
+     * buffer - The buffer need to fill.
+     * length - The stream length player want to get.
+     * pos - The stream position player want get start, and is an optional parameter.
+     * When fileSize set to -1, this parameter is not used.
+     * Returns length of the data to be filled.
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @atomicservice
+     * @since 11
+     */
+    /**
+     * Callback function implemented by users, which is used to fill data.
+     * buffer - The buffer need to fill.
+     * length - The stream length player want to get.
+     * pos - The stream position player want get start, and is an optional parameter.
+     * When fileSize set to -1, this parameter is not used.
+     * Returns length of the data to be filled.
+     * @type { function }
+     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    callback: (buffer: ArrayBuffer, length: number, pos?: number) => number;
+  }
+
+  /**
+   * Provides subtitle information.
+   * Can be synchronized to the time reported by AVPlayer#timeUpdate event
+   *
+   * @typedef SubtitleInfo
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @atomicservice
+   * @since 12
+   */
+  interface SubtitleInfo {
+    /**
+     * Duration of the text to be displayed, as milliseconds.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    duration?: number;
+    /**
+     * Display start time of the text, as milliseconds.
+     * @type { ?number }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    startTime?: number;
+    /**
+     * Text information of current update event.
+     * @type { ?string }
+     * @syscap SystemCapability.Multimedia.Media.Core
+     * @atomicservice
+     * @since 12
+     */
+    text?: string;
+  }
+
+  /**
+   * Describes audio playback states.
+   * @typedef { 'idle' | 'playing' | 'paused' | 'stopped' | 'error' }
+   * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+   * @since 6
+   * @deprecated since 9
+   * @useinstead ohos.multimedia.media/media.AVPlayerState
+   */
+  type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error';
+
+  /**
+   * Manages and plays audio. Before calling an AudioPlayer method, you must use createAudioPlayer()
+   * to create an AudioPlayer instance.
+   *
+   * @typedef AudioPlayer
+   * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+   * @since 6
+   * @deprecated since 9
+   * @useinstead ohos.multimedia.media/media.AVPlayer
+   */
+  interface AudioPlayer {
+    /**
+     * Starts audio playback.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#play
+     */
+    play(): void;
+
+    /**
+     * Pauses audio playback.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#pause
+     */
+    pause(): void;
+
+    /**
+     * Stops audio playback.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#stop
+     */
+    stop(): void;
+
+    /**
+     * Resets audio playback.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 7
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#reset
+     */
+    reset(): void;
+
+    /**
+     * Jumps to the specified playback position.
+     * @param { number } timeMs - Playback position to jump
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#seek
+     */
+    seek(timeMs: number): void;
+
+    /**
+     * Sets the volume.
+     * @param { number } vol - Relative volume. The value ranges from 0.00 to 1.00. The value 1 indicates the maximum volume (100%).
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#setVolume
+     */
+    setVolume(vol: number): void;
+
+    /**
+     * Releases resources used for audio playback.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#release
+     */
+    release(): void;
+
+    /**
+     * Get all track infos in MediaDescription, should be called after data loaded callback.
+     * @param { AsyncCallback<Array<MediaDescription>> } callback - async callback return track info in MediaDescription.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 8
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#getTrackDescription
+     */
+    getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;
+
+    /**
+     * Get all track infos in MediaDescription, should be called after data loaded callback.
+     * @returns { Promise<Array<MediaDescription>> } A Promise instance used to return the track info in MediaDescription.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 8
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#getTrackDescription
+     */
+    getTrackDescription(): Promise<Array<MediaDescription>>;
+
+    /**
+     * Listens for audio playback buffering events.
+     * @param { 'bufferingUpdate' } type - Type of the playback buffering update event to listen for.
+     * @param { function } callback - Callback used to listen for the buffering update event,
+	 * return BufferingInfoType and the value.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 8
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#event:bufferingUpdate
+     */
+    on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void;
+
+    /**
+     * Audio media URI. Mainstream audio formats are supported.
+     * local:fd://XXX, file://XXX. network:http://xxx
+     * @type { string }
+     * @permission ohos.permission.READ_MEDIA or ohos.permission.INTERNET
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#url
+     */
+    src: string;
+
+    /**
+     * Audio file descriptor. Mainstream audio formats are supported.
+     * @type { AVFileDescriptor }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 9
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#fdSrc
+     */
+    fdSrc: AVFileDescriptor;
+
+    /**
+     * Whether to loop audio playback. The value true means to loop playback.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#loop
+     */
+    loop: boolean;
+
+    /**
+     * Describes audio interrupt mode, refer to {@link #audio.InterruptMode}. If it is not
+     * set, the default mode will be used. Set it before calling the {@link #play()} in the
+     * first time in order for the interrupt mode to become effective thereafter.
+     * @type { ?audio.InterruptMode }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 9
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#audioInterruptMode
+     */
+    audioInterruptMode?: audio.InterruptMode;
+
+    /**
+     * Current playback position.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#currentTime
+     */
+    readonly currentTime: number;
+
+    /**
+     * Playback duration, When the data source does not support seek, it returns - 1, such as a live broadcast scenario.
+     * @type { number }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#duration
+     */
+    readonly duration: number;
+
+    /**
+     * Playback state.
+     * @type { AudioState }
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#state
+     */
+    readonly state: AudioState;
+
+    /**
+     * Listens for audio playback events.
+     * @param { 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback event.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#event:stateChange
+     */
+    on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void;
+
+    /**
+     * Listens for audio playback events.
+     * @param { 'timeUpdate' } type - Type of the playback event to listen for.
+     * @param { Callback<number> } callback - Callback used to listen for the playback event.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#event:timeUpdate
+     */
+    on(type: 'timeUpdate', callback: Callback<number>): void;
+
+    /**
+     * Listens for audio interrupt event, refer to {@link #audio.InterruptEvent}
+     * @param { 'audioInterrupt' } type - Type of the playback event to listen for.
+     * @param { function } callback - Callback used to listen for the playback event return audio interrupt info.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 9
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#event:audioInterrupt
+     */
+    on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void;
+
+    /**
+     * Listens for playback error events.
+     * @param { 'error' } type - Type of the playback error event to listen for.
+     * @param { ErrorCallback } callback - Callback used to listen for the playback error event.
+     * @syscap SystemCapability.Multimedia.Media.AudioPlayer
+     * @since 6
+     * @deprecated since 9
+     * @useinstead ohos.multimedia.media/media.AVPlayer#event:error
+     */
+    on(type: 'error', callback: ErrorCallback): void;
+  }
+
+  /**
+  * Describes media recorder states.
+  * @typedef {'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'}
+  * @syscap SystemCapability.Multimedia.Media.AVRecorder
+  * @since 9
+  */
+  /**
+  * Describes media recorder states.
+  * @typedef {'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'}
+  * @syscap SystemCapability.Multimedia.Media.AVRecorder
+  * @crossplatform
+  * @atomicservice
+  * @since 12
+  */
+  type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error';
+
+  /**
+   * Defines the onMove callback.
+   * 
+   * @typedef { function } OnAVRecorderStateChangeHandler
+   * @param { AVRecorderState } state - state value for AVRecorder.
+   * @param { StateChangeReason } reason - reason for state change.
+   * @syscap SystemCapability.Multimedia.Media.AVPlayer
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChangeReason) => void;
+
+  /**
+   * Manages and record audio/video. Before calling an AVRecorder method, you must use createAVRecorder()
+   * to create an AVRecorder instance.
+   *
+   * @typedef AVRecorder
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @since 9
+   */
+  /**
+   * Manages and record audio/video. Before calling an AVRecorder method, you must use createAVRecorder()
+   * to create an AVRecorder instance.
+   *
+   * @typedef AVRecorder
+   * @syscap SystemCapability.Multimedia.Media.AVRecorder
+   * @crossplatform
+   * @atomicservice
+   * @since 12
+   */
+  interface AVRecorder {
+    /**
+     * Prepares for recording.
+     * @permission ohos.permission.MICROPHONE
+     * @param { AVRecorderConfig } config - Recording parameters.
+     * @param { AsyncCallback<void> } callback - A callback instance used to return when prepare completed.
+     * @throws { BusinessError } 201 - Permission denied. Return by callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by callback.
+     * @throws { BusinessError } 5400105 - Service died. Return by callback.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Prepares for recording.
+     * @permission ohos.permission.MICROPHONE
+     * @param { AVRecorderConfig } config - Recording parameters.
+     * @param { AsyncCallback<void> } callback - A callback instance used to return when prepare completed.
+     * @throws { BusinessError } 201 - Permission denied. Return by callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by callback.
+     * @throws { BusinessError } 5400105 - Service died. Return by callback.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @since 12
+     */
+    prepare(config: AVRecorderConfig, callback: AsyncCallback<void>): void;
+
+    /**
+     * Prepares for recording.
+     * @permission ohos.permission.MICROPHONE
+     * @param { AVRecorderConfig } config - Recording parameters.
+     * @returns { Promise<void> } A Promise instance used to return when prepare completed.
+     * @throws { BusinessError } 201 - Permission denied. Return by promise.
+     * @throws { BusinessError } 401 - The parameter check failed. Return by promise.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    /**
+     * Prepares for recording.
+     * @permission ohos.permission.MICROPHONE
+     * @param { AVRecorderConfig } config - Recording parameters.
+     * @returns { Promise<void> } A Promise instance used to return when prepare completed.
+     * @throws { BusinessError } 201 - Permission denied. Return by promise.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @crossplatform
+     * @atomicservice
+     * @since 12
+     */
+    prepare(config: AVRecorderConfig): Promise<void>;
+
+    /**
+     * Get AVRecorderConfig.it must be called after prepare.
+     * @param { AsyncCallback<AVRecorderConfig> } callback - Callback used to return the input config in AVRecorderConfig.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by callback.
+     * @throws { BusinessError } 5400103 - IO error. Return by callback.
+     * @throws { BusinessError } 5400105 - Service died. Return by callback.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    getAVRecorderConfig(callback: AsyncCallback<AVRecorderConfig>): void;
+
+    /**
+     * Get AVRecorderConfig.it must be called after prepare.
+     * @returns { Promise<AVRecorderConfig> } A Promise instance used to return the input config in AVRecorderConfig.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 11
+     */
+    getAVRecorderConfig(): Promise<AVRecorderConfig>;
+
+    /**
+     * Get input surface.it must be called between prepare completed and start.
+     * @param { AsyncCallback<string> } callback - Callback used to return the input surface id in string.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by callback.
+     * @throws { BusinessError } 5400103 - IO error. Return by callback.
+     * @throws { BusinessError } 5400105 - Service died. Return by callback.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    getInputSurface(callback: AsyncCallback<string>): void;
+
+    /**
+     * Get input surface. it must be called between prepare completed and start.
+     * @returns { Promise<string> } A Promise instance used to return the input surface id in string.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @since 9
+     */
+    getInputSurface(): Promise<string>;
+
+    /**
+     * Get input meta surface for specified meta source type. it must be called between prepare completed and start.
+     * @param { MetaSourceType } type - Meta source type.
+     * @returns { Promise<string> } A Promise instance used to return the input surface id in string.
+     * @throws { BusinessError } 202 - Called from Non-System applications. Return by promise.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
+     * @throws { BusinessError } 5400102 - Operate not permit. Return by promise.
+     * @throws { BusinessError } 5400103 - IO error. Return by promise.
+     * @throws { BusinessError } 5400105 - Service died. Return by promise.
+     * @syscap SystemCapability.Multimedia.Media.AVRecorder
+     * @systemapi
+     * @since 12
+     */
+    getInputMetaSurface(type: MetaSourceType): Promise<string>;
+
+    /**
+     * Update the video orientation before recorder start.
+     * @param { number } rotation - Rotation angle, should be [0, 90, 180, 270].
+     * @returns { Promise<void> } A Promise instance used to return when the function is finished.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.
+     * <br>2. Incorrect parameter types. 3.Parameter verification failed.
