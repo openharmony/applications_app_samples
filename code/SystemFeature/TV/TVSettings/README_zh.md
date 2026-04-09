@@ -13,6 +13,19 @@
 3. 显示页面支持 HDMI、HDR、色温、显示区域、显示制式等图像参数设置。
 4. 系统、蓝牙、音量、输入源、恢复出厂设置等能力均可通过对应页面进行管理。
 
+### 截图预览
+![](./figures/figure1.jpeg)
+![](./figures/figure2.jpeg)
+![](./figures/figure3.jpeg)
+![](./figures/figure4.jpeg)
+![](./figures/figure5.jpeg)
+![](./figures/figure6.jpeg)
+![](./figures/figure7.jpeg)
+![](./figures/figure8.jpeg)
+![](./figures/figure9.jpeg)
+![](./figures/figure10.jpeg)
+![](./figures/figure11.jpeg)
+
 ### 工程目录
 ```text
 product/tv/src/main/ets/

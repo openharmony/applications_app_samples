@@ -13,6 +13,19 @@ Usage:
 3. The display pages support image parameter settings such as HDMI, HDR, color temperature, display area, and display standard.
 4. System, Bluetooth, volume, input source, and factory reset capabilities can all be managed through their corresponding pages.
 
+### Screenshot Preview
+![](./figures/figure1.jpeg)
+![](./figures/figure2.jpeg)
+![](./figures/figure3.jpeg)
+![](./figures/figure4.jpeg)
+![](./figures/figure5.jpeg)
+![](./figures/figure6.jpeg)
+![](./figures/figure7.jpeg)
+![](./figures/figure8.jpeg)
+![](./figures/figure9.jpeg)
+![](./figures/figure10.jpeg)
+![](./figures/figure11.jpeg)
+
 ### Project Structure
 ```text
 product/tv/src/main/ets/
