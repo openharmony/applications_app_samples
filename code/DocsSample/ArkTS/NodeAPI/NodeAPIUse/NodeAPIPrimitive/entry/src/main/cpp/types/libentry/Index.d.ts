@@ -34,7 +34,7 @@ export const getBoolean: <T>(data: T, value: String) => boolean; // napi_get_boo
 // [End napi_get_boolean_api]
 
 // [Start napi_get_value_bool_api]
-export const getValueBool: (value: boolean | string) => boolean | void; // napi_get_value_bool
+export const getValueBool: (value: boolean | string) => boolean | undefined; // napi_get_value_bool
 // [End napi_get_value_bool_api]
 
 // [Start napi_get_global_api]
