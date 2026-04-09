@@ -7987,3 +7987,1927 @@ declare namespace audio {
      * @since 12
      */
     getAudioStreamId(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains the capturer stream id. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 9
+     */
+    /**
+     * Obtains the capturer stream id. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamId(): Promise<number>;
+    /**
+     * Obtains the capturer stream id.
+     * @returns { number } The stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 10
+     */
+    /**
+     * Obtains the capturer stream id.
+     * @returns { number } The stream id.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioStreamIdSync(): number;
+
+    /**
+     * Starts capturing.
+     * Success: This method uses an asynchronous callback to return the result.
+     * Failure: This method uses an asynchronous callback to return the error instance. Possible causes:
+     *          6800301: Unsupported state, Audio focus request failed, System error.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Starts capturing. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    start(callback: AsyncCallback<void>): void;
+    /**
+     * Starts capturing.
+     * Success: This method uses a promise to return the result.
+     * Failure: This method uses a promise to return the error instance. Possible causes:
+     *          6800301: Unsupported state, Audio focus request failed, System error.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Starts capturing. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    start(): Promise<void>;
+
+    /**
+     * Reads the buffer from the audio capturer. This method uses an asynchronous callback to return the result.
+     * @param { number } size - Number of bytes to read.
+     * @param { boolean } isBlockingRead - Whether the read operation should be blocked.
+     * @param { AsyncCallback<ArrayBuffer> } callback - Callback used to return the buffer.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioCapturer#event:readData
+     */
+    read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;
+    /**
+     * Reads the buffer from the audio capturer. This method uses a promise to return the result.
+     * @param { number } size - Number of bytes to read.
+     * @param { boolean } isBlockingRead - Whether the read operation should be blocked.
+     * @returns { Promise<ArrayBuffer> } Returns the buffer data read if the operation is successful.
+     *          Returns an error code otherwise.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     * @deprecated since 11
+     * @useinstead ohos.multimedia.audio.AudioCapturer#event:readData
+     */
+    read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
+
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an
+     * asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an
+     * asynchronous callback to return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTime(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a
+     * promise to return the result.
+     * @returns { Promise<number> } Promise used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a
+     * promise to return the result.
+     * @returns { Promise<number> } Promise used to return the timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTime(): Promise<number>;
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds.
+     * @returns { number } The audio timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 10
+     */
+    /**
+     * Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds.
+     * @returns { number } The audio timestamp.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getAudioTimeSync(): number;
+
+    /**
+     * Stops capturing. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Stops capturing. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    stop(callback: AsyncCallback<void>): void;
+    /**
+     * Stops capturing. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Stops capturing. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    stop(): Promise<void>;
+
+    /**
+     * Releases the capturer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Releases the capturer. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    release(callback: AsyncCallback<void>): void;
+    /**
+     * Releases the capturer. This method uses a promise to return the result.
+     * @returns { Promise<void> } - Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Releases the capturer. This method uses a promise to return the result.
+     * @returns { Promise<void> } - Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    release(): Promise<void>;
+
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing. This method uses an asynchronous callback to
+     * return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing. This method uses an asynchronous callback to
+     * return the result.
+     * @param { AsyncCallback<number> } callback - Callback used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSize(callback: AsyncCallback<number>): void;
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing. This method uses a promise to return the result.
+     * @returns { Promise<number> } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSize(): Promise<number>;
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing.
+     * @returns { number } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 10
+     */
+    /**
+     * Obtains a reasonable minimum buffer size in bytes for capturing.
+     * @returns { number } Promise used to return the buffer size.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    getBufferSizeSync(): number;
+
+    /**
+     * Gets the input device or devices for this stream.
+     * @returns { AudioDeviceDescriptors } Descriptors of input devices.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Gets the input device or devices for this stream.
+     * @returns { AudioDeviceDescriptors } Descriptors of input devices.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    getCurrentInputDevices(): AudioDeviceDescriptors;
+
+    /**
+     * Gets full capturer info for this stream.
+     * @returns { AudioCapturerChangeInfo } Full capture info.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Gets full capturer info for this stream.
+     * @returns { AudioCapturerChangeInfo } Full capture info.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo;
+
+    /**
+     * Gets overflow count.
+     * @returns { Promise<number> } - Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 12
+     */
+    getOverflowCount(): Promise<number>
+
+    /**
+     * Gets overflow count.
+     * @returns { number } Overflow count number.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 12
+     */
+    getOverflowCountSync(): number;
+
+    /**
+     * Subscribes to mark reached events. When the number of frames captured reaches the value of the frame parameter,
+     * the callback is invoked.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @param { number } frame - Number of frames to trigger the event. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Subscribes to mark reached events. When the number of frames captured reaches the value of the frame parameter,
+     * the callback is invoked.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @param { number } frame - Number of frames to trigger the event. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'markReach', frame: number, callback: Callback<number>): void;
+    /**
+     * Unsubscribes from the mark reached events.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Unsubscribes from the mark reached events.
+     * @param { 'markReach' } type - Type of the event to listen for. Only the markReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'markReach'): void;
+
+    /**
+     * Subscribes to period reached events. When the period of frame capturing reaches the value of frame parameter,
+     * the callback is invoked.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @param { number } frame - Period during which frame capturing is listened. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Subscribes to period reached events. When the period of frame capturing reaches the value of frame parameter,
+     * the callback is invoked.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @param { number } frame - Period during which frame capturing is listened. The value must be greater than 0.
+     * @param { Callback<number> } callback - Callback invoked when the event is triggered.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'periodReach', frame: number, callback: Callback<number>): void;
+    /**
+     * Unsubscribes from period reached events.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Unsubscribes from period reached events.
+     * @param { 'periodReach' } type - Type of the event to listen for. Only the periodReach event is supported.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'periodReach'): void;
+
+    /**
+     * Subscribes audio state change event callback.
+     * @param { 'stateChange' } type - Type of the event to listen for. Only the stateChange event is supported.
+     * @param { Callback<AudioState> } callback - Callback used to listen for the audio state change event.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 8
+     */
+    /**
+     * Subscribes audio state change event callback.
+     * @param { 'stateChange' } type - Type of the event to listen for. Only the stateChange event is supported.
+     * @param { Callback<AudioState> } callback - Callback used to listen for the audio state change event.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'stateChange', callback: Callback<AudioState>): void;
+
+    /**
+     * Listens for audio interrupt events. This method uses a callback to get interrupt events. The interrupt event is
+     * triggered when audio recording is interrupted.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @param { Callback<InterruptEvent> } callback - Callback used to listen for interrupt callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 10
+     */
+    /**
+     * Listens for audio interrupt events. This method uses a callback to get interrupt events. The interrupt event is
+     * triggered when audio recording is interrupted.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @param { Callback<InterruptEvent> } callback - Callback used to listen for interrupt callback.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'audioInterrupt', callback: Callback<InterruptEvent>): void;
+
+    /**
+     * UnSubscribes to audio interrupt events.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @since 10
+     */
+    /**
+     * UnSubscribes to audio interrupt events.
+     * @param { 'audioInterrupt' } type - Type of the event to listen for. Only the audioInterrupt event is supported.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Interrupt
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'audioInterrupt'): void;
+
+    /**
+     * Subscribes input device change event callback.
+     * The event is triggered when input device change for this stream.
+     * @param { 'inputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Subscribes input device change event callback.
+     * The event is triggered when input device change for this stream.
+     * @param { 'inputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'inputDeviceChange', callback: Callback<AudioDeviceDescriptors>): void;
+    /**
+     * Unsubscribes input device change event callback.
+     * @param { 'inputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @since 11
+     */
+    /**
+     * Unsubscribes input device change event callback.
+     * @param { 'inputDeviceChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioDeviceDescriptors> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Device
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'inputDeviceChange', callback?: Callback<AudioDeviceDescriptors>): void;
+
+    /**
+     * Subscribes audio capturer info change event callback.
+     * The event is triggered when input device change for this stream.
+     * @param { 'audioCapturerChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioCapturerChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 11
+     */
+    /**
+     * Subscribes audio capturer info change event callback.
+     * The event is triggered when input device change for this stream.
+     * @param { 'audioCapturerChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioCapturerChangeInfo> } callback - Callback used to listen device change event.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfo>): void;
+    /**
+     * Unsubscribes audio capturer info change event callback.
+     * @param { 'audioCapturerChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioCapturerChangeInfo> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 11
+     */
+    /**
+     * Unsubscribes audio capturer info change event callback.
+     * @param { 'audioCapturerChange' } type - Type of the event to listen for.
+     * @param { Callback<AudioCapturerChangeInfo> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'audioCapturerChange', callback?: Callback<AudioCapturerChangeInfo>): void;
+
+    /**
+     * Subscribes audio data callback.
+     * The event is triggered when audio buffer is available for reading more data.
+     * @param { 'readData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback with the buffer to read.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 11
+     */
+    /**
+     * Subscribes audio data callback.
+     * The event is triggered when audio buffer is available for reading more data.
+     * @param { 'readData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback with the buffer to read.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    on(type: 'readData', callback: Callback<ArrayBuffer>): void;
+
+    /**
+     * Unsubscribes audio data callback.
+     * @param { 'readData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @since 11
+     */
+    /**
+     * Unsubscribes audio data callback.
+     * @param { 'readData' } type - Type of the event to listen for.
+     * @param { Callback<ArrayBuffer> } callback - Callback used in subscribe.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @crossplatform
+     * @since 12
+     */
+    off(type: 'readData', callback?: Callback<ArrayBuffer>): void;
+  }
+
+  /**
+   * ASR noise suppression mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  enum AsrNoiseSuppressionMode {
+    /**
+     * Bypass noise suppression.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    BYPASS = 0,
+    /**
+     * Standard noise suppression.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    STANDARD = 1,
+    /**
+     * Near field noise suppression.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    NEAR_FIELD = 2,
+    /**
+     * Far field noise suppression.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    FAR_FIELD = 3,
+  }
+
+  /**
+   * ASR AEC mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  enum AsrAecMode {
+    /**
+     * Bypass AEC.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    BYPASS = 0,
+    /**
+     * Using standard AEC.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    STANDARD = 1,
+  }
+
+  /**
+   * ASR voice control mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  enum AsrVoiceControlMode {
+    /**
+     * Send output stream to TX.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    AUDIO_2_VOICE_TX = 0,
+    /**
+     * Send both output stream and MIC input to TX.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    AUDIO_MIX_2_VOICE_TX = 1,
+    /**
+     * Based on the AUDIO_2_VOICE_TX, Send output stream to voice call record.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    AUDIO_2_VOICE_TX_EX = 2,
+    /**
+     * Based on the AUDIO_MIX_2_VOICE_TX, Send output stream to voice call record.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    AUDIO_MIX_2_VOICE_TX_EX = 3,
+  }
+
+  /**
+   * ASR voice mute mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  enum AsrVoiceMuteMode {
+    /**
+     * Mute the local output stream.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    OUTPUT_MUTE = 0,
+    /**
+     * Mute the local MIC input stream.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    INPUT_MUTE = 1,
+    /**
+     * Send tts output stream to TX and mute the local output stream.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    TTS_MUTE = 2,
+    /**
+     * Mute the voice call stream.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+       * @since 12
+       */
+    CALL_MUTE = 3,
+    /**
+     * Based on the OUTPUT_MUTE, send output stream to voice call record.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    OUTPUT_MUTE_EX = 4,
+  }
+
+  /**
+   * ASR whisper detection mode.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  enum AsrWhisperDetectionMode {
+    /**
+     * No operation.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    BYPASS = 0,
+    /**
+     * Use standard whisper detection model.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    STANDARD = 1,
+  }
+
+  /**
+   * ASR processing controller.
+   * @typedef AsrProcessingController
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  interface AsrProcessingController {
+    /**
+     * Set ASR AEC mode.
+     * @param { AsrAecMode } mode - ASR AEC Mode.
+     * @returns { boolean } Indicates whether the mode has been successfully set.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    setAsrAecMode(mode: AsrAecMode): boolean;
+
+    /**
+     * Get ASR AEC mode.
+     * @returns { AsrAecMode } ASR AEC Mode.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    getAsrAecMode(): AsrAecMode;
+
+    /**
+     * Set ASR noise suppression mode.
+     * @param { AsrNoiseSuppressionMode } mode - ASR noise suppression mode.
+     * @returns { boolean } Indicates whether the mode has been successfully set.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters are left unspecified;
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+
+    /**
+     * Get ASR noise suppression mode.
+     * @returns { AsrNoiseSuppressionMode } ASR noise suppression mode.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+
+    /**
+     * Query whether user is whispering.
+     * @returns { boolean } whether user is whispering.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    isWhispering(): boolean;
+
+    /**
+     * Set ASR voice control mode.
+     * @param { AsrVoiceControlMode } mode - ASR voice control mode.
+     * @param { boolean } enable - Indicates whether to switch on/off this mode.
+     * @returns { boolean } Indicates whether the mode has been successfully set.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters unspecified.
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean;
+
+    /**
+     * Set ASR voice mute mode.
+     * @param { AsrVoiceMuteMode } mode - ASR voice mute mode.
+     * @param { boolean } enable - Indicates whether to switch on/off this mode.
+     * @returns { boolean } Indicates whether the mode has been successfully set.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters unspecified.
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean;
+
+    /**
+     * Set ASR whisper detection mode.
+     * @param { AsrWhisperDetectionMode } mode - ASR whisper detection mode.
+     * @returns { boolean } Indicates whether the mode has been successfully set.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 401 - Parameter error. Possible causes:
+     *                                 1.Mandatory parameters unspecified.
+     *                                 2.Incorrect parameter types.
+     * @throws { BusinessError } 6800101 - Parameter verification failed.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean;
+
+    /**
+     * Get ASR whisper detection mode.
+     * @returns { AsrWhisperDetectionMode } ASR whisper detection mode.
+     * @throws { BusinessError } 202 - Caller is not a system application.
+     * @throws { BusinessError } 6800104 - Operation not allowed.
+     * @syscap SystemCapability.Multimedia.Audio.Capturer
+     * @systemapi
+     * @since 12
+     */
+    getAsrWhisperDetectionMode(): AsrWhisperDetectionMode;
+  }
+
+  /**
+   * Create ASR processing controller on one audio capturer.
+   * @param { AudioCapturer } audioCapturer - The audio capturer whose ASR processing will be controlled. The source
+   * type of this capturer must be {@link SourceType#SOURCE_TYPE_VOICE_RECOGNITION}.
+   * @returns { AsrProcessingController } ASR Processing Controller.
+   * @throws { BusinessError } 202 - Caller is not a system application.
+   * @throws { BusinessError } 401 - Parameter error. Possible causes:
+   *                                 1.Mandatory parameters are left unspecified;
+   *                                 2.Incorrect parameter types.
+   * @throws { BusinessError } 6800101 - Parameter verification failed.
+   * @throws { BusinessError } 6800104 - Operation not allowed. e.g. the source type of the input audio capturer is not
+   * {@link SourceType#SOURCE_TYPE_VOICE_RECOGNITION} or {@link SourceType#SOURCE_TYPE_WAKEUP}, or this audio capturer
+   * is already released.
+   * @syscap SystemCapability.Multimedia.Audio.Capturer
+   * @systemapi
+   * @since 12
+   */
+  function createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+
+  /**
+   * Enumerates tone types for player.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Tone
+   * @systemapi
+   * @since 9
+   */
+  enum ToneType {
+    /**
+     * Dial tone for key 0.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_0 = 0,
+    /**
+     * Dial tone for key 1.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_1 = 1,
+    /**
+     * Dial tone for key 2.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_2 = 2,
+    /**
+     * Dial tone for key 3.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_3 = 3,
+    /**
+     * Dial tone for key 4.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_4 = 4,
+    /**
+     * Dial tone for key 5.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_5 = 5,
+    /**
+     * Dial tone for key 6.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_6 = 6,
+    /**
+     * Dial tone for key 7.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_7 = 7,
+    /**
+     * Dial tone for key 8.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_8 = 8,
+    /**
+     * Dial tone for key 9.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_9 = 9,
+    /**
+     * Dial tone for key *.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_S = 10,
+    /**
+     * Dial tone for key #.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_P = 11,
+    /**
+     * Dial tone for key A.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_A = 12,
+    /**
+     * Dial tone for key B.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_B = 13,
+    /**
+     * Dial tone for key C.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_C = 14,
+    /**
+     * Dial tone for key D.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_DIAL_D = 15,
+    /**
+     * Supervisory tone for dial.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_DIAL = 100,
+    /**
+     * Supervisory tone for busy.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_BUSY = 101,
+    /**
+     * Supervisory tone for dial.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_CONGESTION = 102,
+    /**
+     * Supervisory tone for radio path acknowledgment.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK = 103,
+    /**
+     * Supervisory tone for radio path not available.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE = 104,
+    /**
+     * Supervisory tone for call waiting.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING = 106,
+    /**
+     * Supervisory tone for ringtone.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_SUPERVISORY_RINGTONE = 107,
+    /**
+     * Proprietary tone for beep.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_PROPRIETARY_BEEP = 200,
+    /**
+     * Proprietary tone for positive acknowledgment.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_PROPRIETARY_ACK = 201,
+    /**
+     * Proprietary tone for prompt.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_PROPRIETARY_PROMPT = 203,
+    /**
+     * Proprietary tone for double beep.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP = 204,
+  }
+
+  /**
+   * Provides APIs for tone playing.
+   * @typedef TonePlayer
+   * @syscap SystemCapability.Multimedia.Audio.Tone
+   * @systemapi
+   * @since 9
+   */
+  interface TonePlayer {
+    /**
+     * Loads tone. This method uses an asynchronous callback to return the result.
+     * @param { ToneType } type - Tone type to play.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    load(type: ToneType, callback: AsyncCallback<void>): void;
+    /**
+     * Loads tone. This method uses a promise to return the result.
+     * @param { ToneType } type - Tone type to play.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    load(type: ToneType): Promise<void>;
+
+    /**
+     * Starts player. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    start(callback: AsyncCallback<void>): void;
+    /**
+     * Starts player. This method uses a promise to return the result.
+     * @returns { Promise<void> }Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    start(): Promise<void>;
+
+    /**
+     * Stops player. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    stop(callback: AsyncCallback<void>): void;
+    /**
+     * Stops player. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    stop(): Promise<void>;
+
+    /**
+     * Releases the player. This method uses an asynchronous callback to return the result.
+     * @param { AsyncCallback<void> } callback - Callback used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    release(callback: AsyncCallback<void>): void;
+    /**
+     * Releases the player. This method uses a promise to return the result.
+     * @returns { Promise<void> } Promise used to return the result.
+     * @syscap SystemCapability.Multimedia.Audio.Tone
+     * @systemapi
+     * @since 9
+     */
+    release(): Promise<void>;
+  }
+
+  /**
+   * Array of AudioEffectMode, which is read-only.
+   * @typedef { Array<Readonly<AudioEffectMode>> } AudioEffectInfoArray
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @since 10
+   */
+  type AudioEffectInfoArray = Array<Readonly<AudioEffectMode>>;
+
+  /**
+   * Describes an audio effect mode group.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @since 10
+   */
+  /**
+   * Describes an audio effect mode group.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Renderer
+   * @atomicservice
+   * @since 12
+   */
+  enum AudioEffectMode {
+    /**
+     * Audio Effect Mode effect none.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Audio Effect Mode effect none.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @atomicservice
+     * @since 12
+     */
+    EFFECT_NONE = 0,
+    /**
+     * Audio Effect Mode effect default.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @since 10
+     */
+    /**
+     * Audio Effect Mode effect default.
+     * @syscap SystemCapability.Multimedia.Audio.Renderer
+     * @atomicservice
+     * @since 12
+     */
+    EFFECT_DEFAULT = 1,
+  }
+
+  /**
+   * Describes spatial device state.
+   * @typedef AudioSpatialDeviceState
+   * @syscap SystemCapability.Multimedia.Audio.Spatialization
+   * @systemapi
+   * @since 11
+   */
+  interface AudioSpatialDeviceState {
+    /**
+     * Spatial device address.
+     * @type { string }
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    address: string;
+
+    /**
+     * Whether the spatial device supports spatial rendering.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    isSpatializationSupported: boolean;
+
+    /**
+     * Whether the spatial device supports head tracking.
+     * @type { boolean }
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    isHeadTrackingSupported: boolean;
+
+    /**
+     * Spatial device type.
+     * @type { AudioSpatialDeviceType }
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    spatialDeviceType: AudioSpatialDeviceType;
+  }
+
+  /**
+   * Describes a spatial device type group.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Spatialization
+   * @systemapi
+   * @since 11
+   */
+  enum AudioSpatialDeviceType {
+    /**
+     * Audio Spatial Device Type none.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_NONE = 0,
+    /**
+     * Audio Spatial Device Type in-ear headphone.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE = 1,
+    /**
+     * Audio Spatial Device Type half-in-ear headphone.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_HALF_IN_EAR_HEADPHONE = 2,
+    /**
+     * Audio Spatial Device Type over-ear headphone.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE = 3,
+    /**
+     * Audio Spatial Device Type glasses.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_GLASSES = 4,
+    /**
+     * Audio Spatial Device Type others.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 11
+     */
+    SPATIAL_DEVICE_TYPE_OTHERS = 5,
+  }
+
+  /**
+   * Describes a spatialization scene type group.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Spatialization
+   * @systemapi
+   * @since 12
+   */
+  enum AudioSpatializationSceneType {
+    /**
+     * Audio Spatialization Scene Type Default.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 12
+     */
+    DEFAULT = 0,
+    /**
+     * Audio Spatialization Scene Type Music.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 12
+     */
+    MUSIC = 1,
+    /**
+     * Audio Spatialization Scene Type Movie.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 12
+     */
+    MOVIE = 2,
+    /**
+     * Audio Spatialization Scene Type Audio Book.
+     * @syscap SystemCapability.Multimedia.Audio.Spatialization
+     * @systemapi
+     * @since 12
+     */
+    AUDIOBOOK = 3,
+  }
+
+  /**
+   * Audio AudioChannel Layout
+   * A 64-bit integer indicates that the appearance and order of the speakers for recording or playback.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @since 11
+   */
+  /**
+   * Audio AudioChannel Layout
+   * A 64-bit integer indicates that the appearance and order of the speakers for recording or playback.
+   * @enum { number }
+   * @syscap SystemCapability.Multimedia.Audio.Core
+   * @crossplatform
+   * @since 12
+   */
+  enum AudioChannelLayout {
+    /**
+     * Unknown Channel Layout
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Unknown Channel Layout
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_UNKNOWN = 0x0,
+    /**
+     * Channel Layout For Mono, 1 channel in total
+     * Speaker layout: front center(FC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Mono, 1 channel in total
+     * Speaker layout: front center(FC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_MONO = 0x4,
+    /**
+     * Channel Layout For Stereo, 2 channels in total
+     * Speaker layout: front left(FL), front right(FR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Stereo, 2 channels in total
+     * Speaker layout: front left(FL), front right(FR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_STEREO = 0x3,
+    /**
+     * Channel Layout For Stereo-Downmix, 2 channels in total
+     * Speaker layout: Stereo left, stereo right
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_STEREO_DOWNMIX = 0x60000000,
+    /**
+     * Channel Layout For 2.1, 3 channels in total
+     * Speaker layout: Stereo plus low-frequency effects(LFE)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 2.1, 3 channels in total
+     * Speaker layout: Stereo plus low-frequency effects(LFE)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_2POINT1 = 0xB,
+    /**
+     * Channel Layout For 3.0, 3 channels in total
+     * Speaker layout: Stereo plus back center(BC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 3.0, 3 channels in total
+     * Speaker layout: Stereo plus back center(BC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_3POINT0 = 0x103,
+    /**
+     * Channel Layout For Surround, 3 channels in total
+     * Speaker layout: Stereo plus FC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Surround, 3 channels in total
+     * Speaker layout: Stereo plus FC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_SURROUND = 0x7,
+    /**
+     * Channel Layout For 3.1, 4 channels in total
+     * Speaker layout: Surround plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 3.1, 4 channels in total
+     * Speaker layout: Surround plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_3POINT1 = 0xF,
+    /**
+     * Channel Layout For 4.0, 4 channels in total
+     * Speaker layout: Surround plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 4.0, 4 channels in total
+     * Speaker layout: Surround plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_4POINT0 = 0x107,
+    /**
+     * Channel Layout For Quad, 4 channels in total
+     * Speaker layout: Stereo plus left and right back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Quad, 4 channels in total
+     * Speaker layout: Stereo plus left and right back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_QUAD = 0x33,
+    /**
+     * Channel Layout For Quad-Side, 4 channels in total
+     * Speaker layout: Stereo plus left and right side speakers(SL, SR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_QUAD_SIDE = 0x603,
+    /**
+     * Channel Layout For 2.0.2, 4 channels in total
+     * Speaker layout: Stereo plus left and right top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 2.0.2, 4 channels in total
+     * Speaker layout: Stereo plus left and right top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_2POINT0POINT2 = 0x3000000003,
+    /**
+     * Channel Layout For ORDER1-ACN-N3D First Order Ambisonic(FOA), 4 channels in total
+     * First order, Ambisonic Channel Number(ACN) format, Normalization of three-D(N3D)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER1_ACN_N3D = 0x100000000001,
+    /**
+     * Channel Layout For ORDER1-ACN-SN3D FOA, 4 channels in total
+     * First order, ACN format, Semi-Normalization of three-D(SN3D)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER1_ACN_SN3D = 0x100000001001,
+    /**
+     * Channel Layout For ORDER1-FUMA FOA, 4 channels in total
+     * First order, Furse-Malham(FuMa) format
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER1_FUMA = 0x100000000101,
+    /**
+     * Channel Layout For 4.1, 5 channels in total
+     * Speaker layout: 4.0 plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 4.1, 5 channels in total
+     * Speaker layout: 4.0 plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_4POINT1 = 0x10F,
+    /**
+     * Channel Layout For 5.0, 5 channels in total
+     * Speaker layout: Surround plus two side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 5.0, 5 channels in total
+     * Speaker layout: Surround plus two side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_5POINT0 = 0x607,
+    /**
+     * Channel Layout For 5.0-Back, 5 channels in total
+     * Speaker layout: Surround plus two back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_5POINT0_BACK = 0x37,
+    /**
+     * Channel Layout For 2.1.2, 5 channels in total
+     * Speaker layout: 2.0.2 plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_2POINT1POINT2 = 0x300000000B,
+    /**
+     * Channel Layout For 3.0.2, 5 channels in total
+     * Speaker layout: 2.0.2 plus FC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_3POINT0POINT2 = 0x3000000007,
+    /**
+     * Channel Layout For 5.1, 6 channels in total
+     * Speaker layout: 5.0 plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 5.1, 6 channels in total
+     * Speaker layout: 5.0 plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_5POINT1 = 0x60F,
+    /**
+     * Channel Layout For 5.1-Back, 6 channels in total
+     * Speaker layout: 5.0-Back plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_5POINT1_BACK = 0x3F,
+    /**
+     * Channel Layout For 6.0, 6 channels in total
+     * Speaker layout: 5.0 plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 6.0, 6 channels in total
+     * Speaker layout: 5.0 plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_6POINT0 = 0x707,
+    /**
+     * Channel Layout For Hexagonal, 6 channels in total
+     * Speaker layout: 5.0-Back plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Hexagonal, 6 channels in total
+     * Speaker layout: 5.0-Back plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_HEXAGONAL = 0x137,
+    /**
+     * Channel Layout For 3.1.2, 6 channels in total
+     * Speaker layout: 3.1 plus two top front speakers(TFL, TFR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_3POINT1POINT2 = 0x500F,
+    /**
+     * Channel Layout For 6.0-Front, 6 channels in total
+     * Speaker layout: Quad-Side plus left and right front center speakers(FLC, FRC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_6POINT0_FRONT = 0x6C3,
+    /**
+     * Channel Layout For 6.1, 7 channels in total
+     * Speaker layout: 5.1 plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 6.1, 7 channels in total
+     * Speaker layout: 5.1 plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_6POINT1 = 0x70F,
+    /**
+     * Channel Layout For 6.1-Back, 7 channels in total
+     * Speaker layout: 5.1-Back plus BC
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_6POINT1_BACK = 0x13F,
+    /**
+     * Channel Layout For 6.1-Front, 7 channels in total
+     * Speaker layout: 6.0-Front plus LFE
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_6POINT1_FRONT = 0x6CB,
+    /**
+     * Channel Layout For 7.0, 7 channels in total
+     * Speaker layout: 5.0 plus two back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 7.0, 7 channels in total
+     * Speaker layout: 5.0 plus two back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_7POINT0 = 0x637,
+    /**
+     * Channel Layout For 7.0-Front, 7 channels in total
+     * Speaker layout: 5.0 plus left and right front center speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 7.0-Front, 7 channels in total
+     * Speaker layout: 5.0 plus left and right front center speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_7POINT0_FRONT = 0x6C7,
+    /**
+     * Channel Layout For 7.1, 8 channels in total
+     * Speaker layout: 5.1 plus two back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 7.1, 8 channels in total
+     * Speaker layout: 5.1 plus two back speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_7POINT1 = 0x63F,
+    /**
+     * Channel Layout For Octagonal, 8 channels in total
+     * Speaker layout: 5.0 plus BL, BR and BC.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Octagonal, 8 channels in total
+     * Speaker layout: 5.0 plus BL, BR and BC.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_OCTAGONAL = 0x737,
+    /**
+     * Channel Layout For 5.1.2, 8 channels in total
+     * Speaker layout: 5.1 plus two top side speakers.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 5.1.2, 8 channels in total
+     * Speaker layout: 5.1 plus two top side speakers.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_5POINT1POINT2 = 0x300000060F,
+    /**
+     * Channel Layout For 7.1-Wide, 8 channels in total
+     * Speaker layout: 5.1 plus left and right front center speakers.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_7POINT1_WIDE = 0x6CF,
+    /**
+     * Channel Layout For 7.1-Wide, 8 channels in total
+     * Speaker layout: 5.1-Back plus left and right front center speakers.
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_7POINT1_WIDE_BACK = 0xFF,
+    /**
+     * Channel Layout For ORDER2-ACN-N3D Higher Order Ambisonics(HOA), 9 channels in total
+     * Second order, ACN format, N3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER2_ACN_N3D = 0x100000000002,
+    /**
+     * Channel Layout For ORDER2-ACN-SN3D HOA, 9 channels in total
+     * Second order, ACN format, SN3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER2_ACN_SN3D = 0x100000001002,
+    /**
+     * Channel Layout For ORDER2-FUMA HOA, 9 channels in total
+     * Second order, FuMa format
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER2_FUMA = 0x100000000102,
+    /**
+     * Channel Layout For 5.1.4, 10 channels in total
+     * Speaker layout: 5.1 plus four top speakers(TFL, TFR, TBL, TBR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 5.1.4, 10 channels in total
+     * Speaker layout: 5.1 plus four top speakers(TFL, TFR, TBL, TBR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_5POINT1POINT4 = 0x2D60F,
+    /**
+     * Channel Layout For 7.1.2, 10 channels in total
+     * Speaker layout: 7.1 plus two top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 7.1.2, 10 channels in total
+     * Speaker layout: 7.1 plus two top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_7POINT1POINT2 = 0x300000063F,
+    /**
+     * Channel Layout For 7.1.4, 12 channels in total
+     * Speaker layout: 7.1 plus four top speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 7.1.4, 12 channels in total
+     * Speaker layout: 7.1 plus four top speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_7POINT1POINT4 = 0x2D63F,
+    /**
+     * Channel Layout For 10.2, 12 channels in total
+     * Speaker layout: FL, FR, FC, TFL, TFR, BL, BR, BC, SL, SR, wide left(WL), and wide right(WR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 10.2, 12 channels in total
+     * Speaker layout: FL, FR, FC, TFL, TFR, BL, BR, BC, SL, SR, wide left(WL), and wide right(WR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_10POINT2 = 0x180005737,
+    /**
+     * Channel Layout For 9.1.4, 14 channels in total
+     * Speaker layout: 7.1.4 plus two wide speakers(WL, WR)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_9POINT1POINT4 = 0x18002D63F,
+    /**
+     * Channel Layout For 9.1.6, 16 channels in total
+     * Speaker layout: 9.1.4 plus two top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For 9.1.6, 16 channels in total
+     * Speaker layout: 9.1.4 plus two top side speakers
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_9POINT1POINT6 = 0x318002D63F,
+    /**
+     * Channel Layout For Hexadecagonal, 16 channels in total
+     * Speaker layout: Octagonal plus two wide speakers, six top speakers(TFL, TFR, TFC, TBL, TBR, TBC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For Hexadecagonal, 16 channels in total
+     * Speaker layout: Octagonal plus two wide speakers, six top speakers(TFL, TFR, TFC, TBL, TBR, TBC)
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_HEXADECAGONAL = 0x18003F737,
+    /**
+     * Channel Layout For ORDER3-ACN-N3D HOA, 16 channels in total
+     * Third order, ACN format, N3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For ORDER3-ACN-N3D HOA, 16 channels in total
+     * Third order, ACN format, N3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_AMB_ORDER3_ACN_N3D = 0x100000000003,
+    /**
+     * Channel Layout For ORDER3-ACN-SN3D HOA, 16 channels in total
+     * Third order, ACN format, N3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    /**
+     * Channel Layout For ORDER3-ACN-SN3D HOA, 16 channels in total
+     * Third order, ACN format, N3D
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @crossplatform
+     * @since 12
+     */
+    CH_LAYOUT_AMB_ORDER3_ACN_SN3D = 0x100000001003,
+    /**
+     * Channel Layout For ORDER3-FUMA HOA, 16 channels in total
+     * Third order, FuMa format
+     * @syscap SystemCapability.Multimedia.Audio.Core
+     * @since 11
+     */
+    CH_LAYOUT_AMB_ORDER3_FUMA = 0x100000000103
+  }
+}
+
+export default audio;
