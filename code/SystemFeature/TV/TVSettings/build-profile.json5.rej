@@ -1,9 +1,0 @@
-diff a/build-profile.json5 b/build-profile.json5	(rejected hunks)
-@@ -13,7 +13,6 @@
-       {
-         "name": "default",
-         "material": {
--          "certpath": "signature/OpenHarmony.cer",
-           "certpath": "C:/Users/Administrator/.ohos/config/openharmony/default_applications_settings_tv_rX0EshHoWca4W44-vhksIw0J6T12dPFF5MNHmdVJGxc=.cer",
-           "storePassword": "0000001A0EF6FB10543E59809FC17E3F6F84B9CC818F569BF09F1746EB8D02B6324E17CF8DA1D1AD9F0E",
-           "keyAlias": "debugKey",
