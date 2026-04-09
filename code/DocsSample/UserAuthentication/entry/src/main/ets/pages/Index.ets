@@ -553,7 +553,7 @@ struct Index {
   // [Start obtain_enrolled_capabilities]
   obtainingEnrolledCredentialInformation() {
     try {
-      let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.PIN);
+      let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
       Logger.info(`get current enrolled state success, enrolledState: ${JSON.stringify(enrolledState)}`);
       return enrolledState.credentialDigest;
     } catch (error) {
@@ -581,7 +581,7 @@ struct Index {
       Logger.info(`get auth lock state success, authLockState is: ${authLockStateContent}`);
       return authLockStateContent;
     } catch (error) {
-      const errorMessage : string = `get auth lock state failed， err code is : ${error?.code}, err message is : ${error?.message}`;
+      const errorMessage : string = `get auth lock state failed, err code is : ${error?.code}, err message is : ${error?.message}`;
       Logger.error(errorMessage);
       return errorMessage;
     }

@@ -76,7 +76,7 @@ export class PhotoManager implements OutputManager {
       console.error('cameraManager.getSupportedFullOutputCapability error');
       return undefined;
     }
-    // [StartExlude get_full_outputCapability]
+    // [StartExclude get_full_outputCapability]
     console.info(`outputCapability: ` + JSON.stringify(cameraOutputCapability));
     // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
     // previewProfiles属性为获取当前设备支持的预览输出流。
@@ -100,7 +100,7 @@ export class PhotoManager implements OutputManager {
     if (!isSupportYuv) {
       console.error('cameraManager.getSupportedFullOutputCapability error, yuv is not supported');
     }
-    // [EndExlude get_full_outputCapability]
+    // [EndExclude get_full_outputCapability]
     return cameraOutputCapability;
 }
   // [End get_full_outputCapability]
@@ -109,14 +109,14 @@ export class PhotoManager implements OutputManager {
   public createPhotoOutput(cameraManager: camera.CameraManager, cameraDevice: camera.CameraDevice,
     profile: camera.Profile) {
     let cameraPhotoOutput: camera.PhotoOutput | undefined = undefined;
-    // [StartExlude create_photo_output]
+    // [StartExclude create_photo_output]
     const cameraOutputCapability = this.getFullOutputCapability(cameraManager, cameraDevice,
       camera.SceneMode.NORMAL_PHOTO);
     let photoProfilesArray: camera.Profile[] | undefined = cameraOutputCapability?.photoProfiles;
     if (photoProfilesArray?.length) {
-      // [EndExlude create_photo_output]
+      // [EndExclude create_photo_output]
       try {
-        // [StartExlude create_photo_output]
+        // [StartExclude create_photo_output]
         const displayRatio = profile.size.width / profile.size.height;
         const profileWidth = profile.size.width;
         // 获取当前设备支持的拍照输出流中，支持YUV格式的拍照输出流。
@@ -133,15 +133,15 @@ export class PhotoManager implements OutputManager {
           photoProfile = photoProfilesArray[0];
         }
         // 创建拍照输出流。
-        // [EndExlude create_photo_output]
+        // [EndExclude create_photo_output]
         cameraPhotoOutput = cameraManager.createPhotoOutput(photoProfile);
       } catch (error) {
         Logger.error(TAG_LOG, `Failed to createPhotoOutput. error: ${JSON.stringify(error)}`);
       }
-      // [StartExlude create_photo_output]
+      // [StartExclude create_photo_output]
     }
     this.output = cameraPhotoOutput;
-    // [EndExlude create_photo_output]
+    // [EndExclude create_photo_output]
     return cameraPhotoOutput;
   }
 

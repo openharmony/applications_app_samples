@@ -13,36 +13,42 @@
  * limitations under the License.
  */
 
-import data_preferences from '@ohos.data.preferences'
+import { preferences as data_preferences} from '@kit.ArkData'
 import Logger from './Logger'
 import { Reminder } from '../common/Reminder'
-import common from '@ohos.app.ability.common';
+import { UIContext } from '@kit.ArkUI';
 
 const TAG: string = 'Preferences'
 
 class PreferencesDataManager {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = UIContext.getCallingScopeUIContext()?.getHostContext()
 
   async getData(key: string) {
     let getValue: Reminder[] | undefined = undefined;
-    let preferences = await data_preferences.getPreferences(this.context, 'ReminderAgentManager')
-    if (await preferences.get(key, 'default')) {
-      try {
+    if (this.context == undefined) {
+      return getValue
+    }
+    try {
+      let preferences = await data_preferences.getPreferences(this.context, 'ReminderAgentManager')
+      if (await preferences.get(key, 'default')) {
         let result = await preferences.get(key, 'default') as string;
         getValue = JSON.parse(result)
         Logger.info(TAG, `this is ${JSON.stringify(getValue)}`)
-      } catch (err) {
-        Logger.error(TAG, `this getData err is ${JSON.stringify(err)} name is ${key}`)
+      } else {
+        Logger.info(TAG, `this abouttoappear is unexist`)
       }
-    } else {
-      Logger.info(TAG, `this abouttoappear is unexist`)
+    } catch (err) {
+      Logger.error(TAG, `this getData err is ${JSON.stringify(err)} name is ${key}`)
     }
     return getValue
   }
 
   async putData(key: string, value: Reminder[]) {
-    let preferences = await data_preferences.getPreferences(this.context, 'ReminderAgentManager')
+    if (this.context == undefined) {
+      return
+    }
     try {
+      let preferences = await data_preferences.getPreferences(this.context, 'ReminderAgentManager')
       await preferences.put(key, JSON.stringify(value))
       await preferences.flush()
     } catch (err) {
