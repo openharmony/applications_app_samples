@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "main_color",
+      "value": "#18181A"
+    },
+    {
+      "name": "dialog_background_color",
+      "value": "#404040"
+    },
+    {
+      "name": "decice_search_in_text",
+      "value": "#FFFFFFFF"
+    }
+  ]
+}

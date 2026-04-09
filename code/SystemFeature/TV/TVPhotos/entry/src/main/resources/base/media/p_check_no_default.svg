@@ -1,0 +1,19 @@
+<svg width="80.000000" height="80.000000" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_275_35779_dd" x="0.000000" y="0.000000" width="80.000000" height="80.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="33.3333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_275_35779_dd)">
+		<circle id="椭圆 229" r="40.000000" transform="matrix(0 1 -1 0 40 40)" fill="#FFFFFF" fill-opacity="0.200000"/>
+	</g>
+	<rect id="矩形 313" x="16.666992" y="15.500000" rx="8.000000" width="40.000000" height="40.000000" fill="#FFFFFF" fill-opacity="0.300000"/>
+	<rect id="矩形 313" x="17.666992" y="16.500000" rx="8.000000" width="38.000000" height="38.000000" stroke="#717171" stroke-opacity="0" stroke-width="2.000000"/>
+	<path id="差集" d="M31.667 21.5L55.667 21.5C60.085 21.5 63.667 25.0815 63.667 29.5L63.667 53.5C63.667 57.9185 60.085 61.5 55.667 61.5L31.667 61.5C27.249 61.5 23.667 57.9185 23.667 53.5L23.667 29.5C23.667 25.0815 27.249 21.5 31.667 21.5ZM53.8184 32.9751C54.4688 32.3418 55.5244 32.3418 56.1758 32.9751C56.8271 33.6079 56.8271 34.6348 56.1758 35.2676L42.0293 49.0249C41.3789 49.6582 40.3232 49.6582 39.6719 49.0249C39.6113 48.9663 39.5566 48.9043 39.5078 48.8394L34.1582 43.6367C33.5068 43.0039 33.5068 41.9771 34.1582 41.3438C34.8096 40.7109 35.8652 40.7109 36.5156 41.3438L40.8643 45.5728L53.8184 32.9751Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+</svg>

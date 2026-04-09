@@ -1,0 +1,20 @@
+<svg width="80.000000" height="80.000000" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_144_7797_dd" x="0.000000" y="0.000000" width="80.000000" height="80.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="33.3333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_144_7797_dd)">
+		<circle id="椭圆 148" r="40.000000" transform="matrix(0 1 -1 0 40 40)" fill="#FFFFFF" fill-opacity="0.200000"/>
+	</g>
+	<g opacity="0.000000">
+		<rect id="rect" x="8.000000" y="8.000000" width="64.000000" height="64.000000" fill="#FFFFFF" fill-opacity="0.200000"/>
+	</g>
+	<path id="path" d="M20.03 53.76C19.96 54.21 20 54.62 20.17 55C20.34 55.37 20.63 55.64 21.03 55.79C21.52 55.97 21.95 56.03 22.32 55.97C22.69 55.92 23.03 55.69 23.32 55.29C25.85 51.91 28.85 49 32.31 46.55C35.77 44.12 39.5 42.9 43.53 42.9L44.53 42.9L44.53 48.09C44.53 48.6 44.7 49.01 45.03 49.34C45.37 49.67 45.78 49.85 46.26 49.89C46.74 49.92 47.17 49.78 47.54 49.45L60.71 38.32C61.12 37.91 61.33 37.44 61.33 36.91C61.33 36.39 61.12 35.95 60.71 35.58L47.54 24.43C47.17 24.11 46.74 23.96 46.26 24C45.78 24.04 45.37 24.22 45.03 24.55C44.7 24.87 44.53 25.29 44.53 25.8L44.53 31.26C40.62 31.7 37.02 32.94 33.73 34.98C30.44 37.02 27.61 39.66 25.25 42.9C22.89 46.14 21.15 49.76 20.03 53.76Z" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="nonzero"/>
+</svg>

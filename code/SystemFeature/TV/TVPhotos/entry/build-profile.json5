@@ -1,0 +1,19 @@
+{
+  "apiType": 'stageMode',
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        './src/main/ets/workers/NasSessionWorker.ets'
+      ]
+    }
+  },
+  "targets": [
+    {
+      "name": "default",
+      "runtimeOS": "OpenHarmony"
+    },
+    {
+      "name": "ohosTest",
+    }
+  ]
+}

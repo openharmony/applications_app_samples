@@ -1,0 +1,54 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "signature/default_Photos_n7BoPR1HIq4nR-9U5ImvKvOssnYwtgZ6k8KMMjRsOF8=.cer",
+          "storePassword": "0000001B4DC606F2DDA3044416AD222807E2A04422558D64EAED537EEDF2A4EC3CB5D82DD2867507182645",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B34530110E72A0A9711BA22F8F85D23C4376AFBCC41733F4B7923095DF550D5454D62E1C42F1178",
+          "profile": "signature/default_Photos_n7BoPR1HIq4nR-9U5ImvKvOssnYwtgZ6k8KMMjRsOF8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "signature/default_Photos_n7BoPR1HIq4nR-9U5ImvKvOssnYwtgZ6k8KMMjRsOF8=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 15,
+        "compatibleSdkVersion": 15,
+        "targetSdkVersion": 15,
+        "runtimeOS": "OpenHarmony"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "smbProtocol",
+      "srcPath": "./smbProtocol",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

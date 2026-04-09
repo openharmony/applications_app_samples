@@ -1,0 +1,292 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "read_image_video_permission",
+      "value": "user read image video permission"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "user write image video permission"
+    },
+    {
+      "name": "media_position_permission",
+      "value": "media position permission"
+    },
+    {
+      "name": "get_log",
+      "value": "get log"
+    },
+    {
+      "name": "clear_log",
+      "value": "clear log"
+    },
+    {
+      "name": "photo",
+      "value": "photo"
+    },
+    {
+      "name": "picture",
+      "value": "picture"
+    },
+    {
+      "name": "watch_photo",
+      "value": "watch photo"
+    },
+    {
+      "name": "last_photo",
+      "value": "last photo"
+    },
+    {
+      "name": "first_photo",
+      "value": "first photo"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "Select Device"
+    },
+    {
+      "name": "more_operations",
+      "value": "Press the menu key for more operations"
+    },
+    {
+      "name": "no_data",
+      "value": "no data"
+    },
+    {
+      "name": "distributed_datasync_permission",
+      "value": "distributed_datasync_permission"
+    },
+    {
+      "name": "delete_success",
+      "value": "delete success"
+    },
+    {
+      "name": "delete_error",
+      "value": "delete error"
+    },
+    {
+      "name": "please_choose_photo",
+      "value": "please choose photo"
+    },
+    {
+      "name": "jump_failed",
+      "value": "jump failed"
+    },
+    {
+      "name": "jump_successful",
+      "value": " jump successful"
+    },
+    {
+      "name": "to_delete_the_file",
+      "value": "do you want to delete the file?"
+    },
+    {
+      "name": "select_the_sharing_device",
+      "value": "please select the sharing device"
+    },
+    {
+      "name": "album",
+      "value": "album"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "share",
+      "value": "share"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "choose",
+      "value": "choose"
+    },
+    {
+      "name": "clear_all",
+      "value": "clear all"
+    },
+    {
+      "name": "restore",
+      "value": "restore"
+    },
+    {
+      "name": "cancel_all_select",
+      "value": "cancel all select"
+    },
+    {
+      "name": "select_all",
+      "value": "select all"
+    },
+    {
+      "name": "search_for_the_device",
+      "value": "Trying to search for the device..."
+    },
+    {
+      "name": "album_name_all",
+      "value": "all"
+    },
+    {
+      "name": "album_name_favorite",
+      "value": "favorite"
+    },
+    {
+      "name": "album_name_screenshot",
+      "value": "screenshot"
+    },
+    {
+      "name": "album_name_trash",
+      "value": "trash"
+    },
+    {
+      "name": "album_name_more",
+      "value": "more"
+    },
+    {
+      "name": "album_trash_secondary_title",
+      "value": "Photos and videos will show a remaining period (up to 30 days) before being permanently deleted"
+    },
+    {
+      "name": "unit_day",
+      "value": "day"
+    },
+    {
+      "name": "unit_hour",
+      "value": "hour"
+    },
+    {
+      "name": "unit_minute",
+      "value": "minute"
+    },
+    {
+      "name": "today",
+      "value": "Today"
+    },
+    {
+      "name": "yesterday",
+      "value": "Yesterday"
+    },
+    {
+      "name": "rotate",
+      "value": "Rotate"
+    },
+    {
+      "name": "menu_distributed_photo",
+      "value": "Distributed Photo"
+    },
+    {
+      "name": "distributed_device_title",
+      "value": "Device Connection"
+    },
+    {
+      "name": "distributed_device_available",
+      "value": "Trusted Devices"
+    },
+    {
+      "name": "distributed_device_other",
+      "value": "Other Devices"
+    },
+    {
+      "name": "distributed_device_go_to",
+      "value": "Connect now"
+    },
+    {
+      "name": "distributed_device_empty_tip",
+      "value": "Not connected to a trusted device. Please connect."
+    },
+    {
+      "name": "dialog_title_to_distributed_device",
+      "value": "Whether to go to distributed device management?"
+    },
+    {
+      "name": "connect",
+      "value": "Connect"
+    },
+    {
+      "name": "unbind",
+      "value": "Unbind"
+    },
+    {
+      "name": "dfs_connect_success",
+      "value": "Connect Success"
+    },
+    {
+      "name": "dfs_connect_failed",
+      "value": "Connect Failed"
+    },
+    {
+      "name": "nas_servers",
+      "value": "nearby network"
+    },
+    {
+      "name": "no_nas_servers",
+      "value": "no nas server"
+    },
+    {
+      "name": "nas_find_failed",
+      "value": "failed to find device, please check the network"
+    },
+    {
+      "name": "add_nas_servers",
+      "value": "add nas server"
+    },
+    {
+      "name": "nas_connecting",
+      "value": "nas connecting"
+    },
+    {
+      "name": "nas_disconnect",
+      "value": "disconnect"
+    },
+    {
+      "name": "nas_login_title",
+      "value": "Please input username and password"
+    },
+    {
+      "name": "nas_login_username",
+      "value": "UserName:"
+    },
+    {
+      "name": "nas_login_password",
+      "value": "Password:"
+    },
+    {
+      "name": "nas_login_password_need",
+      "value": "Need input User name and Password"
+    },
+    {
+      "name": "Device_search_in_progress",
+      "value": "Device search in progress..."
+    },
+    {
+      "name": "cannot_open_this_image",
+      "value": "Cannot open this image"
+    }
+  ]
+}
