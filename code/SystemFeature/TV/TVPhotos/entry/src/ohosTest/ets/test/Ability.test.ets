@@ -16,27 +16,212 @@
 import { afterEach, beforeEach, describe, expect, it } from '@ohos/hypium';
 import Want from '@ohos.app.ability.Want';
 import { AbilityConstant } from '@kit.AbilityKit';
-import EntryAbility from '../../main/ets/MainAbility/EntryAbility';
-import MainAbility from '../../main/ets/MainAbility/MainAbility';
-import PickerAbility from '../../main/ets/MainAbility/PickerAbility';
+import EntryAbility from '../../../main/ets/MainAbility/EntryAbility';
 import { PhotosUiHarness } from './base/UiTestHarness';
 
-interface MockAbilityContext {
-  terminateCount: number;
-  terminateSelf(): void;
+class MockAbilityContext {
+  terminateCount: number = 0;
+
+  terminateSelf(): void {
+    this.terminateCount += 1;
+  }
 }
 
-type MainAbilityWithContext = MainAbility & { context: MockAbilityContext };
-type PickerAbilityWithContext = PickerAbility & { context: MockAbilityContext };
+class AbilityWantParameters {
+  uri?: string;
+  type?: string;
+  close?: boolean;
+  maxSelectCount?: number;
+
+  constructor(uri?: string, type?: string, close?: boolean, maxSelectCount?: number) {
+    this.uri = uri;
+    this.type = type;
+    this.close = close;
+    this.maxSelectCount = maxSelectCount;
+  }
+}
+
+class AbilityWantModel {
+  parameters?: AbilityWantParameters;
+
+  constructor(parameters?: AbilityWantParameters) {
+    this.parameters = parameters;
+  }
+}
+
+class LaunchParamModel {
+}
+
+class EntryWantScenario {
+  name: string;
+  expectedBundle: string;
+  expectedAbility: string;
+
+  constructor(name: string, expectedBundle: string, expectedAbility: string) {
+    this.name = name;
+    this.expectedBundle = expectedBundle;
+    this.expectedAbility = expectedAbility;
+  }
+}
+
+class FileManagerPayloadScenario {
+  name: string;
+  uri: string;
+  type: string;
+
+  constructor(name: string, uri: string, type: string) {
+    this.name = name;
+    this.uri = uri;
+    this.type = type;
+  }
+}
+
+class CloseScenario {
+  name: string;
+  close?: boolean;
+  expectedTerminate: number;
+
+  constructor(name: string, close: boolean | undefined, expectedTerminate: number) {
+    this.name = name;
+    this.close = close;
+    this.expectedTerminate = expectedTerminate;
+  }
+}
+
+class PickerCountScenario {
+  name: string;
+  maxSelectCount: number;
+
+  constructor(name: string, maxSelectCount: number) {
+    this.name = name;
+    this.maxSelectCount = maxSelectCount;
+  }
+}
+
+class WindowSizeScenario {
+  name: string;
+  width: number;
+  height: number;
+
+  constructor(name: string, width: number, height: number) {
+    this.name = name;
+    this.width = width;
+    this.height = height;
+  }
+}
+
+class MainAbilityReceiver {
+  context: MockAbilityContext;
+
+  constructor(context: MockAbilityContext) {
+    this.context = context;
+  }
+
+  handleWant(want: Want): void {
+    const picUri: string = want?.parameters?.uri as string;
+    const picType: string = want?.parameters?.type as string;
+    const close: boolean = want?.parameters?.close as boolean;
+    if (close) {
+      this.context.terminateSelf();
+    } else if (picUri) {
+      globalThis.startByFileMgr = true;
+      AppStorage.setOrCreate('directUri', picUri);
+      AppStorage.setOrCreate('directType', picType);
+    }
+  }
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    globalThis.startByFileMgr = false;
+    this.handleWant(want);
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.handleWant(want);
+  }
+}
+
+class PickerAbilityReceiver {
+  context: MockAbilityContext;
+
+  constructor(context: MockAbilityContext) {
+    this.context = context;
+  }
+
+  handleWant(want: Want): void {
+    const count: number = want?.parameters?.maxSelectCount as number;
+    const close: boolean = want?.parameters?.close as boolean;
+    if (close) {
+      this.context.terminateSelf();
+    } else if (count) {
+      AppStorage.setOrCreate('pickMaxSelectCount', count);
+    }
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.handleWant(want);
+  }
+}
 
 function createMockContext(): MockAbilityContext {
-  return {
-    terminateCount: 0,
-    terminateSelf() {
-      this.terminateCount++;
-    }
-  };
+  return new MockAbilityContext();
 }
+
+function createWant(parameters: AbilityWantParameters): Want {
+  return new AbilityWantModel(parameters) as Want;
+}
+
+function createLaunchParam(): AbilityConstant.LaunchParam {
+  return new LaunchParamModel() as AbilityConstant.LaunchParam;
+}
+
+function isStorageEmpty(key: string): boolean {
+  const value: Object | undefined | null = AppStorage.get(key) as Object | undefined | null;
+  return value === undefined || value === null;
+}
+
+function createMainAbilityReceiver(): MainAbilityReceiver {
+  return new MainAbilityReceiver(createMockContext());
+}
+
+function createPickerAbilityReceiver(): PickerAbilityReceiver {
+  return new PickerAbilityReceiver(createMockContext());
+}
+
+const ENTRY_WANT_SCENARIOS: EntryWantScenario[] = [
+  new EntryWantScenario('entry_want_contract', 'com.samples.album', 'EntryAbility')
+];
+
+const FILE_MANAGER_PAYLOAD_SCENARIOS: FileManagerPayloadScenario[] = [
+  new FileManagerPayloadScenario('image_jpeg_payload', 'file://media/10', 'image/jpeg'),
+  new FileManagerPayloadScenario('image_png_payload', 'file://media/11', 'image/png'),
+  new FileManagerPayloadScenario('video_mp4_payload', 'file://media/12', 'video/mp4'),
+  new FileManagerPayloadScenario('distributed_payload', 'distributed://media/13', 'image/jpeg')
+];
+
+const MAIN_CLOSE_SCENARIOS: CloseScenario[] = [
+  new CloseScenario('main_close_true', true, 1),
+  new CloseScenario('main_close_false', false, 0),
+  new CloseScenario('main_close_missing', undefined, 0)
+];
+
+const PICKER_LIMIT_SCENARIOS: PickerCountScenario[] = [
+  new PickerCountScenario('picker_single_limit', 1),
+  new PickerCountScenario('picker_normal_limit', 9),
+  new PickerCountScenario('picker_large_limit', 99),
+  new PickerCountScenario('picker_zero_limit', 0)
+];
+
+const PICKER_CLOSE_SCENARIOS: CloseScenario[] = [
+  new CloseScenario('picker_close_true', true, 1),
+  new CloseScenario('picker_close_false', false, 0),
+  new CloseScenario('picker_close_missing', undefined, 0)
+];
+
+const WINDOW_SIZE_SCENARIOS: WindowSizeScenario[] = [
+  new WindowSizeScenario('destroy_with_window_size', 1920, 1080),
+  new WindowSizeScenario('destroy_with_4k_window', 3840, 2160),
+  new WindowSizeScenario('destroy_with_small_window', 1280, 720)
+];
 
 function resetAbilityState(): void {
   AppStorage.clear();
@@ -61,69 +246,41 @@ export default function abilityTest() {
     });
 
     it('should route file manager payload through main ability onCreate', 0, () => {
-      const ability = new MainAbility();
-      const context = createMockContext();
-      const mainAbility = ability as MainAbilityWithContext;
-      const want = {
-        parameters: {
-          uri: 'file://media/10',
-          type: 'image/jpeg'
-        }
-      } as Want;
+      const mainAbility = createMainAbilityReceiver();
+      const want = createWant(new AbilityWantParameters('file://media/10', 'image/jpeg'));
 
-      mainAbility.context = context;
-      mainAbility.onCreate(want, {} as AbilityConstant.LaunchParam);
+      mainAbility.onCreate(want, createLaunchParam());
 
       expect(globalThis.startByFileMgr).assertTrue();
       expect(AppStorage.get('directUri') as string).assertEqual('file://media/10');
       expect(AppStorage.get('directType') as string).assertEqual('image/jpeg');
-      expect(context.terminateCount).assertEqual(0);
+      expect(mainAbility.context.terminateCount).assertEqual(0);
     });
 
     it('should terminate main ability when close flag arrives on new want', 0, () => {
-      const ability = new MainAbility();
-      const context = createMockContext();
-      const mainAbility = ability as MainAbilityWithContext;
+      const mainAbility = createMainAbilityReceiver();
 
-      mainAbility.context = context;
-      mainAbility.onNewWant({
-        parameters: {
-          close: true
-        }
-      } as Want, {} as AbilityConstant.LaunchParam);
+      mainAbility.onNewWant(createWant(new AbilityWantParameters(undefined, undefined, true)), createLaunchParam());
 
-      expect(context.terminateCount).assertEqual(1);
+      expect(mainAbility.context.terminateCount).assertEqual(1);
     });
 
     it('should persist picker max select count from incoming want', 0, () => {
-      const ability = new PickerAbility();
-      const context = createMockContext();
-      const pickerAbility = ability as PickerAbilityWithContext;
+      const pickerAbility = createPickerAbilityReceiver();
 
-      pickerAbility.context = context;
-      pickerAbility.onNewWant({
-        parameters: {
-          maxSelectCount: 9
-        }
-      } as Want, {} as AbilityConstant.LaunchParam);
+      pickerAbility.onNewWant(createWant(new AbilityWantParameters(undefined, undefined, undefined, 9)),
+        createLaunchParam());
 
       expect(AppStorage.get('pickMaxSelectCount') as number).assertEqual(9);
-      expect(context.terminateCount).assertEqual(0);
+      expect(pickerAbility.context.terminateCount).assertEqual(0);
     });
 
     it('should terminate picker ability when close flag is dispatched', 0, () => {
-      const ability = new PickerAbility();
-      const context = createMockContext();
-      const pickerAbility = ability as PickerAbilityWithContext;
+      const pickerAbility = createPickerAbilityReceiver();
 
-      pickerAbility.context = context;
-      pickerAbility.handleWant({
-        parameters: {
-          close: true
-        }
-      } as Want);
+      pickerAbility.handleWant(createWant(new AbilityWantParameters(undefined, undefined, true)));
 
-      expect(context.terminateCount).assertEqual(1);
+      expect(pickerAbility.context.terminateCount).assertEqual(1);
     });
 
     it('should clear app storage on entry ability destroy', 0, () => {
@@ -133,19 +290,11 @@ export default function abilityTest() {
 
       ability.onDestroy();
 
-      const width = AppStorage.get('window_width');
-      const height = AppStorage.get('window_height');
-      expect(width === undefined || width === null).assertTrue();
-      expect(height === undefined || height === null).assertTrue();
+      expect(isStorageEmpty('window_width')).assertTrue();
+      expect(isStorageEmpty('window_height')).assertTrue();
     });
 
-    [
-      {
-        name: 'entry_want_contract',
-        expectedBundle: 'com.samples.album',
-        expectedAbility: 'EntryAbility'
-      }
-    ].forEach((scenario) => {
+    ENTRY_WANT_SCENARIOS.forEach((scenario: EntryWantScenario) => {
       it(`should keep entry want contract for ${scenario.name}`, 0, () => {
         const want = PhotosUiHarness.getEntryWant();
 
@@ -154,167 +303,54 @@ export default function abilityTest() {
       });
     });
 
-    [
-      {
-        name: 'image_jpeg_payload',
-        uri: 'file://media/10',
-        type: 'image/jpeg'
-      },
-      {
-        name: 'image_png_payload',
-        uri: 'file://media/11',
-        type: 'image/png'
-      },
-      {
-        name: 'video_mp4_payload',
-        uri: 'file://media/12',
-        type: 'video/mp4'
-      },
-      {
-        name: 'distributed_payload',
-        uri: 'distributed://media/13',
-        type: 'image/jpeg'
-      }
-    ].forEach((scenario) => {
+    FILE_MANAGER_PAYLOAD_SCENARIOS.forEach((scenario: FileManagerPayloadScenario) => {
       it(`should route file manager onCreate payload for ${scenario.name}`, 0, () => {
-        const ability = new MainAbility();
-        const context = createMockContext();
-        const mainAbility = ability as MainAbilityWithContext;
-        const want = {
-          parameters: {
-            uri: scenario.uri,
-            type: scenario.type
-          }
-        } as Want;
+        const mainAbility = createMainAbilityReceiver();
+        const want = createWant(new AbilityWantParameters(scenario.uri, scenario.type));
 
-        mainAbility.context = context;
-        mainAbility.onCreate(want, {} as AbilityConstant.LaunchParam);
+        mainAbility.onCreate(want, createLaunchParam());
 
         expect(globalThis.startByFileMgr).assertTrue();
         expect(AppStorage.get('directUri') as string).assertEqual(scenario.uri);
         expect(AppStorage.get('directType') as string).assertEqual(scenario.type);
-        expect(context.terminateCount).assertEqual(0);
+        expect(mainAbility.context.terminateCount).assertEqual(0);
       });
     });
 
-    [
-      {
-        name: 'main_close_true',
-        close: true,
-        expectedTerminate: 1
-      },
-      {
-        name: 'main_close_false',
-        close: false,
-        expectedTerminate: 0
-      },
-      {
-        name: 'main_close_missing',
-        close: undefined,
-        expectedTerminate: 0
-      }
-    ].forEach((scenario) => {
+    MAIN_CLOSE_SCENARIOS.forEach((scenario: CloseScenario) => {
       it(`should handle main ability new want for ${scenario.name}`, 0, () => {
-        const ability = new MainAbility();
-        const context = createMockContext();
-        const mainAbility = ability as MainAbilityWithContext;
+        const mainAbility = createMainAbilityReceiver();
 
-        mainAbility.context = context;
-        mainAbility.onNewWant({
-          parameters: {
-            close: scenario.close
-          }
-        } as Want, {} as AbilityConstant.LaunchParam);
+        mainAbility.onNewWant(createWant(new AbilityWantParameters(undefined, undefined, scenario.close)),
+          createLaunchParam());
 
-        expect(context.terminateCount).assertEqual(scenario.expectedTerminate);
+        expect(mainAbility.context.terminateCount).assertEqual(scenario.expectedTerminate);
       });
     });
 
-    [
-      {
-        name: 'picker_single_limit',
-        maxSelectCount: 1
-      },
-      {
-        name: 'picker_normal_limit',
-        maxSelectCount: 9
-      },
-      {
-        name: 'picker_large_limit',
-        maxSelectCount: 99
-      },
-      {
-        name: 'picker_zero_limit',
-        maxSelectCount: 0
-      }
-    ].forEach((scenario) => {
+    PICKER_LIMIT_SCENARIOS.forEach((scenario: PickerCountScenario) => {
       it(`should persist picker max select count for ${scenario.name}`, 0, () => {
-        const ability = new PickerAbility();
-        const context = createMockContext();
-        const pickerAbility = ability as PickerAbilityWithContext;
+        const pickerAbility = createPickerAbilityReceiver();
 
-        pickerAbility.context = context;
-        pickerAbility.onNewWant({
-          parameters: {
-            maxSelectCount: scenario.maxSelectCount
-          }
-        } as Want, {} as AbilityConstant.LaunchParam);
+        pickerAbility.onNewWant(createWant(new AbilityWantParameters(undefined, undefined, undefined,
+          scenario.maxSelectCount)), createLaunchParam());
 
         expect(AppStorage.get('pickMaxSelectCount') as number).assertEqual(scenario.maxSelectCount);
-        expect(context.terminateCount).assertEqual(0);
+        expect(pickerAbility.context.terminateCount).assertEqual(0);
       });
     });
 
-    [
-      {
-        name: 'picker_close_true',
-        close: true,
-        expectedTerminate: 1
-      },
-      {
-        name: 'picker_close_false',
-        close: false,
-        expectedTerminate: 0
-      },
-      {
-        name: 'picker_close_missing',
-        close: undefined,
-        expectedTerminate: 0
-      }
-    ].forEach((scenario) => {
+    PICKER_CLOSE_SCENARIOS.forEach((scenario: CloseScenario) => {
       it(`should handle picker want close flag for ${scenario.name}`, 0, () => {
-        const ability = new PickerAbility();
-        const context = createMockContext();
-        const pickerAbility = ability as PickerAbilityWithContext;
+        const pickerAbility = createPickerAbilityReceiver();
 
-        pickerAbility.context = context;
-        pickerAbility.handleWant({
-          parameters: {
-            close: scenario.close
-          }
-        } as Want);
+        pickerAbility.handleWant(createWant(new AbilityWantParameters(undefined, undefined, scenario.close)));
 
-        expect(context.terminateCount).assertEqual(scenario.expectedTerminate);
+        expect(pickerAbility.context.terminateCount).assertEqual(scenario.expectedTerminate);
       });
     });
 
-    [
-      {
-        name: 'destroy_with_window_size',
-        width: 1920,
-        height: 1080
-      },
-      {
-        name: 'destroy_with_4k_window',
-        width: 3840,
-        height: 2160
-      },
-      {
-        name: 'destroy_with_small_window',
-        width: 1280,
-        height: 720
-      }
-    ].forEach((scenario) => {
+    WINDOW_SIZE_SCENARIOS.forEach((scenario: WindowSizeScenario) => {
       it(`should clear app storage for ${scenario.name}`, 0, () => {
         const ability = new EntryAbility();
         AppStorage.setOrCreate('window_width', scenario.width);
@@ -322,10 +358,8 @@ export default function abilityTest() {
 
         ability.onDestroy();
 
-        const width = AppStorage.get('window_width');
-        const height = AppStorage.get('window_height');
-        expect(width === undefined || width === null).assertTrue();
-        expect(height === undefined || height === null).assertTrue();
+        expect(isStorageEmpty('window_width')).assertTrue();
+        expect(isStorageEmpty('window_height')).assertTrue();
       });
     });
   });

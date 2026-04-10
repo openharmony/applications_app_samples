@@ -6,6 +6,166 @@ import { PhotosUiHarness } from './base/UiTestHarness';
 
 const TAG: string = '[PhotosTvTest]';
 
+class HomeTabOpenScenario {
+  tab: string;
+  component: FakeUiComponent;
+
+  constructor(tab: string, component: FakeUiComponent) {
+    this.tab = tab;
+    this.component = component;
+  }
+}
+
+class HomeTabFallbackScenario {
+  name: string;
+  tab: string;
+  component: FakeUiComponent;
+
+  constructor(name: string, tab: string, component: FakeUiComponent) {
+    this.name = name;
+    this.tab = tab;
+    this.component = component;
+  }
+}
+
+class DialogActionScenario {
+  key: string;
+  component: FakeUiComponent;
+
+  constructor(key: string, component: FakeUiComponent) {
+    this.key = key;
+    this.component = component;
+  }
+}
+
+class NormalizeTextScenario {
+  value: string;
+  expected: string;
+
+  constructor(value: string, expected: string) {
+    this.value = value;
+    this.expected = expected;
+  }
+}
+
+class LabelSetScenario {
+  name: string;
+  labels: string[];
+  expected: boolean;
+
+  constructor(name: string, labels: string[], expected: boolean) {
+    this.name = name;
+    this.labels = labels;
+    this.expected = expected;
+  }
+}
+
+class CandidateScenario {
+  key: string;
+  expectedText: string;
+  expectedId: string;
+
+  constructor(key: string, expectedText: string, expectedId: string) {
+    this.key = key;
+    this.expectedText = expectedText;
+    this.expectedId = expectedId;
+  }
+}
+
+class RotationScenario {
+  rotation: DisplayRotation;
+  expectedDelayLength: number;
+
+  constructor(rotation: DisplayRotation, expectedDelayLength: number) {
+    this.rotation = rotation;
+    this.expectedDelayLength = expectedDelayLength;
+  }
+}
+
+class WaitHistoryScenario {
+  name: string;
+  delays: number[];
+  expectedFirst: number;
+  expectedMiddle: number;
+  expectedLast: number;
+
+  constructor(name: string, delays: number[], expectedFirst: number, expectedMiddle: number, expectedLast: number) {
+    this.name = name;
+    this.delays = delays;
+    this.expectedFirst = expectedFirst;
+    this.expectedMiddle = expectedMiddle;
+    this.expectedLast = expectedLast;
+  }
+}
+
+class RotationNameScenario {
+  expectedFirst: string;
+  expectedLast: string;
+
+  constructor(expectedFirst: string, expectedLast: string) {
+    this.expectedFirst = expectedFirst;
+    this.expectedLast = expectedLast;
+  }
+}
+
+const HOME_TAB_OPEN_SCENARIOS: HomeTabOpenScenario[] = [
+  new HomeTabOpenScenario('picture', new FakeUiComponent('menu0', 'Pictures')),
+  new HomeTabOpenScenario('album', new FakeUiComponent('menu1', 'Albums')),
+  new HomeTabOpenScenario('distributed', new FakeUiComponent('menu2', 'Distributed Gallery'))
+];
+
+const HOME_TAB_FALLBACK_SCENARIOS: HomeTabFallbackScenario[] = [
+  new HomeTabFallbackScenario('distributed_id_fallback', 'distributed', new FakeUiComponent('menu2', 'placeholder')),
+  new HomeTabFallbackScenario('album_id_fallback', 'album', new FakeUiComponent('menu1', 'placeholder')),
+  new HomeTabFallbackScenario('picture_id_fallback', 'picture', new FakeUiComponent('menu0', 'placeholder'))
+];
+
+const DIALOG_ACTION_SCENARIOS: DialogActionScenario[] = [
+  new DialogActionScenario('choose', new FakeUiComponent('dialog2', 'Choose')),
+  new DialogActionScenario('share', new FakeUiComponent('dialog1', 'Share')),
+  new DialogActionScenario('delete', new FakeUiComponent('dialog0', 'Delete'))
+];
+
+const NORMALIZE_TEXT_SCENARIOS: NormalizeTextScenario[] = [
+  new NormalizeTextScenario('  分布式   图库 ', '分布式 图库'),
+  new NormalizeTextScenario('  Photos   TV ', 'Photos TV'),
+  new NormalizeTextScenario('  相册 ', '相册')
+];
+
+const LABEL_SET_SCENARIOS: LabelSetScenario[] = [
+  new LabelSetScenario('zh_labels', ['照片', '相册', '分布式图库'], true),
+  new LabelSetScenario('en_labels', ['Pictures', 'Albums', 'Distributed Gallery'], true),
+  new LabelSetScenario('invalid_labels', ['Pictures', 'undefined distributed'], false)
+];
+
+const HOME_TAB_CANDIDATE_SCENARIOS: CandidateScenario[] = [
+  new CandidateScenario('picture', '照片', 'menu0'),
+  new CandidateScenario('album', '相册', 'menu1'),
+  new CandidateScenario('distributed', '分布式图库', 'menu2')
+];
+
+const EDIT_DIALOG_CANDIDATE_SCENARIOS: CandidateScenario[] = [
+  new CandidateScenario('choose', '选择', 'dialog2'),
+  new CandidateScenario('share', '分享', 'dialog1'),
+  new CandidateScenario('delete', '删除', 'dialog0')
+];
+
+const ROTATION_SCENARIOS: RotationScenario[] = [
+  new RotationScenario(DisplayRotation.ROTATION_0, 2),
+  new RotationScenario(DisplayRotation.ROTATION_90, 2),
+  new RotationScenario(DisplayRotation.ROTATION_180, 2),
+  new RotationScenario(DisplayRotation.ROTATION_270, 2)
+];
+
+const WAIT_HISTORY_SCENARIOS: WaitHistoryScenario[] = [
+  new WaitHistoryScenario('120_80', [120, 80], 120, 600, 80),
+  new WaitHistoryScenario('60_40', [60, 40], 60, 40, 40)
+];
+
+const ROTATION_NAME_SCENARIOS: RotationNameScenario[] = [
+  new RotationNameScenario('ROTATION_0', 'ROTATION_270')
+];
+
 export default function IndexTest() {
   describe('PhotosTvTest', () => {
     beforeAll(async () => {
@@ -150,20 +310,7 @@ export default function IndexTest() {
       expect(rotations[3]).assertEqual('ROTATION_270');
     });
 
-    [
-      {
-        tab: 'picture',
-        component: new FakeUiComponent('menu0', 'Pictures')
-      },
-      {
-        tab: 'album',
-        component: new FakeUiComponent('menu1', 'Albums')
-      },
-      {
-        tab: 'distributed',
-        component: new FakeUiComponent('menu2', 'Distributed Gallery')
-      }
-    ].forEach((scenario) => {
+    HOME_TAB_OPEN_SCENARIOS.forEach((scenario: HomeTabOpenScenario) => {
       it(`should open home tab from fallback chain for ${scenario.tab}`, 0, async () => {
         const driver = new FakeUiDriver();
         driver.registerComponent(scenario.component);
@@ -175,23 +322,7 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        name: 'distributed_id_fallback',
-        tab: 'distributed',
-        component: new FakeUiComponent('menu2', 'placeholder')
-      },
-      {
-        name: 'album_id_fallback',
-        tab: 'album',
-        component: new FakeUiComponent('menu1', 'placeholder')
-      },
-      {
-        name: 'picture_id_fallback',
-        tab: 'picture',
-        component: new FakeUiComponent('menu0', 'placeholder')
-      }
-    ].forEach((scenario) => {
+    HOME_TAB_FALLBACK_SCENARIOS.forEach((scenario: HomeTabFallbackScenario) => {
       it(`should use menu id fallback for ${scenario.name}`, 0, async () => {
         const driver = new FakeUiDriver();
         driver.registerComponent(scenario.component);
@@ -203,20 +334,7 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        key: 'choose',
-        component: new FakeUiComponent('dialog2', 'Choose')
-      },
-      {
-        key: 'share',
-        component: new FakeUiComponent('dialog1', 'Share')
-      },
-      {
-        key: 'delete',
-        component: new FakeUiComponent('dialog0', 'Delete')
-      }
-    ].forEach((scenario) => {
+    DIALOG_ACTION_SCENARIOS.forEach((scenario: DialogActionScenario) => {
       it(`should open edit dialog fallback candidate for ${scenario.key}`, 0, async () => {
         const driver = new FakeUiDriver();
         driver.registerComponent(scenario.component);
@@ -231,61 +349,19 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        value: '  分布式   图库 ',
-        expected: '分布式 图库'
-      },
-      {
-        value: '  Photos   TV ',
-        expected: 'Photos TV'
-      },
-      {
-        value: '  相册 ',
-        expected: '相册'
-      }
-    ].forEach((scenario) => {
+    NORMALIZE_TEXT_SCENARIOS.forEach((scenario: NormalizeTextScenario) => {
       it(`should normalize visible text for ${scenario.expected}`, 0, () => {
         expect(PhotosUiHarness.normalizeVisibleText(scenario.value)).assertEqual(scenario.expected);
       });
     });
 
-    [
-      {
-        labels: ['照片', '相册', '分布式图库'],
-        expected: true
-      },
-      {
-        labels: ['Pictures', 'Albums', 'Distributed Gallery'],
-        expected: true
-      },
-      {
-        labels: ['Pictures', 'undefined distributed'],
-        expected: false
-      }
-    ].forEach((scenario) => {
-      it(`should validate label set contract for ${scenario.labels.join('_')}`, 0, () => {
+    LABEL_SET_SCENARIOS.forEach((scenario: LabelSetScenario) => {
+      it(`should validate label set contract for ${scenario.name}`, 0, () => {
         expect(PhotosUiHarness.validateLabelSet(scenario.labels)).assertEqual(scenario.expected);
       });
     });
 
-    [
-      {
-        key: 'picture',
-        expectedText: '照片',
-        expectedId: 'menu0'
-      },
-      {
-        key: 'album',
-        expectedText: '相册',
-        expectedId: 'menu1'
-      },
-      {
-        key: 'distributed',
-        expectedText: '分布式图库',
-        expectedId: 'menu2'
-      }
-    ].forEach((scenario) => {
+    HOME_TAB_CANDIDATE_SCENARIOS.forEach((scenario: CandidateScenario) => {
       it(`should expose home tab candidates for ${scenario.key}`, 0, () => {
         const candidates = PhotosUiHarness.buildHomeTabCandidates().get(scenario.key) ?? [];
 
@@ -295,23 +371,7 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        key: 'choose',
-        expectedText: '选择',
-        expectedId: 'dialog2'
-      },
-      {
-        key: 'share',
-        expectedText: '分享',
-        expectedId: 'dialog1'
-      },
-      {
-        key: 'delete',
-        expectedText: '删除',
-        expectedId: 'dialog0'
-      }
-    ].forEach((scenario) => {
+    EDIT_DIALOG_CANDIDATE_SCENARIOS.forEach((scenario: CandidateScenario) => {
       it(`should expose edit dialog candidates for ${scenario.key}`, 0, () => {
         const candidates = PhotosUiHarness.buildEditDialogCandidates().get(scenario.key) ?? [];
 
@@ -321,24 +381,7 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        rotation: DisplayRotation.ROTATION_0,
-        expectedDelayLength: 2
-      },
-      {
-        rotation: DisplayRotation.ROTATION_90,
-        expectedDelayLength: 2
-      },
-      {
-        rotation: DisplayRotation.ROTATION_180,
-        expectedDelayLength: 2
-      },
-      {
-        rotation: DisplayRotation.ROTATION_270,
-        expectedDelayLength: 2
-      }
-    ].forEach((scenario) => {
+    ROTATION_SCENARIOS.forEach((scenario: RotationScenario) => {
       it(`should record rotation helper flow for ${scenario.rotation}`, 0, async () => {
         const driver = new FakeUiDriver();
 
@@ -349,21 +392,8 @@ export default function IndexTest() {
       });
     });
 
-    [
-      {
-        delays: [120, 80],
-        expectedFirst: 120,
-        expectedMiddle: 600,
-        expectedLast: 80
-      },
-      {
-        delays: [60, 40],
-        expectedFirst: 60,
-        expectedMiddle: 40,
-        expectedLast: 40
-      }
-    ].forEach((scenario) => {
-      it(`should record wait history sequence for ${scenario.delays.join('_')}`, 0, async () => {
+    WAIT_HISTORY_SCENARIOS.forEach((scenario: WaitHistoryScenario) => {
+      it(`should record wait history sequence for ${scenario.name}`, 0, async () => {
         const driver = new FakeUiDriver();
 
         for (const delay of scenario.delays) {
@@ -372,16 +402,13 @@ export default function IndexTest() {
 
         const history = driver.getDelayHistory();
         expect(history[0]).assertEqual(scenario.expectedFirst);
+        expect(history.length >= 2).assertTrue();
+        expect(history[1]).assertEqual(scenario.expectedMiddle);
         expect(history[history.length - 1]).assertEqual(scenario.expectedLast);
       });
     });
 
-    [
-      {
-        expectedFirst: 'ROTATION_0',
-        expectedLast: 'ROTATION_270'
-      }
-    ].forEach((scenario) => {
+    ROTATION_NAME_SCENARIOS.forEach((scenario: RotationNameScenario) => {
       it(`should keep complete rotation name matrix for ${scenario.expectedLast}`, 0, () => {
         const rotations = PhotosUiHarness.getRotationNames();
 
