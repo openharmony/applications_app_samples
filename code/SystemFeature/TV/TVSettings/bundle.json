@@ -1,5 +1,5 @@
 {
-    "name": "@ohos/settings_standard",
+    "name": "app_samples_settings_standard",
     "description": "Settings app for standard system.",
     "version": "3.1",
     "license": "Apache License 2.0",
