@@ -185,7 +185,7 @@ function textStyle() {
 
 @Entry
 @Component
-export default struct CharacterProcessing {
+struct CharacterProcessing {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, title: $r('app.string.CharacterProcessing') })

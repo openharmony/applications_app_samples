@@ -12,28 +12,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { application } from '@kit.AbilityKit'
 
 export function assertEqual<T>(actual: T, expected: T, description: Resource): string {
-  if (actual === expected) {
-    return `${getContext().resourceManager.getStringSync(description)}${expected} --passed`;
-  } else {
-    return `${getContext().resourceManager
-      .getStringSync(description)} --failed: expected ${expected}, but got ${actual}`;
+  let result: string = '';
+  try {
+    const context = application.getApplicationContext();
+    if (actual === expected) {
+      result = `${context.resourceManager.getStringSync(description.id)}${expected} --passed`;
+    } else {
+      result = `${context.resourceManager
+        .getStringSync(description.id)} --failed: expected ${expected}, but got ${actual}`;
+    }
+  } catch (e) {
+    console.error(`call assertEqual failed, code: ${e.code}, message: ${e.message}`);
   }
+  return result;
 }
 
 export function assertEqualLong(actual: string, expected: string[], description: Resource): string {
-  if (expected.every(expected => actual.includes(expected))) {
-    return `${getContext().resourceManager.getStringSync(description)}passed`;
-  } else {
-    return `${getContext().resourceManager.getStringSync(description)}failed: expected ${expected}, but got ${actual}`;
+  let result: string = '';
+  try {
+    const context = application.getApplicationContext();
+    if (expected.every(expected => actual.includes(expected))) {
+      result = `${context.resourceManager.getStringSync(description.id)}passed`;
+    } else {
+      result = `${context.resourceManager.getStringSync(description.id)}failed: expected ${expected}, but got ${actual}`;
+    }
+  } catch (e) {
+    console.error(`call assertEqualLong failed, code: ${e.code}, message: ${e.message}`);
   }
+  return result;
 }
 
 export function assertEqualFuzzy(actual: string, expected: string[], description: Resource): string {
-  if (expected.every(expected => actual.includes(expected))) {
-    return `${getContext().resourceManager.getStringSync(description)}${actual} --passed`;
-  } else {
-    return `${getContext().resourceManager.getStringSync(description)}failed: expected ${expected}, but got ${actual}`;
+  let result: string = '';
+  try {
+    const context = application.getApplicationContext();
+    if (expected.every(expected => actual.includes(expected))) {
+      result = `${context.resourceManager.getStringSync(description.id)}${actual} --passed`;
+    } else {
+      result = `${context.resourceManager.getStringSync(description.id)}failed: expected ${expected}, but got ${actual}`;
+    }
+  } catch (e) {
+    console.error(`call assertEqualFuzzy failed, code: ${e.code}, message: ${e.message}`);
   }
+  return result;
 }
