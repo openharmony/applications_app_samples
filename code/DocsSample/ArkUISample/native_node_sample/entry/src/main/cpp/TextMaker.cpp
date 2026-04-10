@@ -1985,19 +1985,26 @@ void setText23(ArkUI_NodeHandle &text)
             ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
             Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
 
-            // 设置enableVariableFontWeight为true
+            //设置字体粗细及配置
             OH_ArkUI_FontWeightConfigs* configs = OH_ArkUI_FontWeightConfigs_Create();
             OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(configs, true);
             OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(configs, true);
-
-            //设置字体粗细
             ArkUI_NumberValue spanFontWeight = {.i32 = 350};
             ArkUI_AttributeItem fontWeightItem = {&spanFontWeight, VALUE_1};
             fontWeightItem.object = configs;
             Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT_WEIGHT, &fontWeightItem);
-            // 长按span组件，触发回调
-            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
-            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+            
+            // 获取fontWeightConfigs相关配置的值
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_SPAN_FONT_WEIGHT weight value :%{public}d",
+                Manager::nodeAPI_->getAttribute(span, NODE_SPAN_FONT_WEIGHT)->value[VALUE_0].i32);
+            OH_ArkUI_FontWeightConfigs *tmpObj =
+                (OH_ArkUI_FontWeightConfigs *)Manager::nodeAPI_->getAttribute(span, NODE_SPAN_FONT_WEIGHT)->object;
+            bool enableVariableFontWeight = OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight(tmpObj);
+            bool enableDeviceFontWeightCategory = OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(tmpObj);
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "enableVariableFontWeight value1 :%{public}d",
+                enableVariableFontWeight);
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "enableDeviceFontWeightCategory value1 :%{public}d",
+                enableDeviceFontWeightCategory);
 
             OH_ArkUI_FontWeightConfigs_Destroy(configs);
         }
@@ -2039,22 +2046,30 @@ void setText24(ArkUI_NodeHandle &text)
             // 设置fontConfigs enableVariableFontWeight 为false，默认也为false
             OH_ArkUI_FontWeightConfigs* fontWeightConfigs = OH_ArkUI_FontWeightConfigs_Create();
             OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(fontWeightConfigs, false);
-            // 设置enableDeviceFontWeightCategory 为false，默认为true
+            // 设置enableDeviceFontWeightCategory 为false， 默认为true
             OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(fontWeightConfigs, false);
             OH_ArkUI_FontConfigs* fontConfigs = OH_ArkUI_FontConfigs_Create();
             OH_ArkUI_FontConfigs_SetFontWeightConfigs(fontConfigs, fontWeightConfigs);
 
-            // 设置span font 样式
-            ArkUI_NumberValue textFont[] = {
-                {.f32 = VALUE_20}, {.i32 = 700}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
+            // 设置span font 样式及配置
+            ArkUI_NumberValue textFont[] = { {.f32 = VALUE_20}, {.i32 = 700}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
             ArkUI_AttributeItem spanFontItem = {textFont, VALUE_3};
             spanFontItem.object = fontConfigs;
             Manager::nodeAPI_->setAttribute(span, NODE_SPAN_FONT, &spanFontItem);
 
-            // 长按span组件，触发回调
-            Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
-            Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-
+            // 获取fontConfigs相关配置的值
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_SPAN_FONT weight value :%{public}d",
+                Manager::nodeAPI_->getAttribute(span, NODE_SPAN_FONT)->value[VALUE_1].i32);
+            OH_ArkUI_FontConfigs *tmpObjConfig =
+                (OH_ArkUI_FontConfigs *)Manager::nodeAPI_->getAttribute(span, NODE_SPAN_FONT)->object;
+            OH_ArkUI_FontWeightConfigs *tmpObj = OH_ArkUI_FontConfigs_GetFontWeightConfigs(tmpObjConfig);
+            bool enableVariableFontWeight = OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight(tmpObj);
+            bool enableDeviceFontWeightCategory = OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(tmpObj);
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "enableVariableFontWeight value2 :%{public}d",
+                enableVariableFontWeight);
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "enableDeviceFontWeightCategory value2 :%{public}d",
+                enableDeviceFontWeightCategory);
+            
             OH_ArkUI_FontConfigs_Destroy(fontConfigs);
         }
         Manager::nodeAPI_->addChild(text, span);
