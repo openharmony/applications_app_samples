@@ -214,12 +214,12 @@ export class PhotoManager implements OutputManager {
     cameraPhotoOutput.on('photoAssetAvailable',
       async (_err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
         try {
-          Logger.info(TAG_LOG, `on photoAssetAvailable callabck uri:${photoAsset.uri}`);
+          Logger.info(TAG_LOG, `on photoAssetAvailable callback uri:${photoAsset.uri}`);
           let accessHelper: photoAccessHelper.PhotoAccessHelper =
             photoAccessHelper.getPhotoAccessHelper(this.context);
           await this.mediaLibSavePhoto(photoAsset, accessHelper);
           await this.mediaLibRequestBuffer(photoAsset, this.context, this.callback);
-        } catch(_err) {
+        } catch (_err) {
           Logger.error(TAG_LOG, `photoAssetAvailable err:${_err.code}`);
         }
       });
@@ -240,7 +240,7 @@ export class PhotoManager implements OutputManager {
       this.mediaLibSavePhotoSingle(context, capturePhoto.main)
     });
   }
-  
+
   async mediaLibSavePhotoSingle(context: Context, imageObj: image.Image | image.Picture) {
     let picture: image.Picture = imageObj as image.Picture;
     Logger.info(TAG_LOG, 'picture GetMainPixelmap E');
