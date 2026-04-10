@@ -1,5 +1,5 @@
 {
-    "name": "@ohos/settings_standard",
+    "name": "settings",
     "description": "Settings app for standard system.",
     "version": "3.1",
     "license": "Apache License 2.0",
@@ -10,7 +10,7 @@
     "dirs": {},
     "scripts": {},
     "component": {
-        "name": "settings_standard",
+        "name": "settings",
         "subsystem": "applications",
         "syscap": [
             "SystemCapability.Applications.settings.Core"
