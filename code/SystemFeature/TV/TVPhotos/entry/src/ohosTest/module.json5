@@ -16,11 +16,12 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "srcEntrance": "./ets/Application/TestAbilityStage.ts",
+    "srcEntrance": "./ets/Application/TestAbilityStage.ets",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
-      "default"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

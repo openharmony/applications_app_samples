@@ -36,7 +36,6 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        "visible": true,
         "skills": [
           {
             "entities": [
@@ -63,7 +62,6 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        "visible": true,
         "skills": [
           {
             "actions": [
@@ -72,7 +70,7 @@
             "uris": [
               {
                 "scheme": "file",
-                "type": "image/*",
+                "type": "image/*"
               }
             ]
           }
@@ -203,7 +201,7 @@
         "name": "ohos.permission.GET_NETWORK_INFO",
         "reason": "$string:app_name",
         "usedScene": {
-          "when": 'always'
+          "when": "always"
         }
       },
       {
