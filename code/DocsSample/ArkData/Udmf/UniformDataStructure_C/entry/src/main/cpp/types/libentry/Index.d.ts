@@ -13,5 +13,5 @@
  * limitations under the License.
  */
 
-export declare function geiPlainText(): void;
+export declare function getPlainText(): void;
 export declare function getFileUri(): void;

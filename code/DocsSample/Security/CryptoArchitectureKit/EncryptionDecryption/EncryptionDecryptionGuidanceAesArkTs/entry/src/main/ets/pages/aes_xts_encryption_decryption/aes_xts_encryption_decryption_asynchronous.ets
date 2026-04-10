@@ -52,8 +52,8 @@ async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText:
 
 export async function aesXTS() : Promise<string> {
   try {
-    let synGenerator = cryptoFramework.createSymKeyGenerator('AES256')
-    let symKey = await synGenerator.generateSymKey()
+    let symGenerator = cryptoFramework.createSymKeyGenerator('AES256')
+    let symKey = await symGenerator.generateSymKey()
     let message = 'This is a xts encrypt decrypt test';
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = await encryptMessagePromise(symKey, plainText);

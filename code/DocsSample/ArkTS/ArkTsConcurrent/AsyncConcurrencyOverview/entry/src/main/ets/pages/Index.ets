@@ -91,7 +91,7 @@ struct PromiseAsyncAwait {
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
             let res = await myAsyncFunction();
-            console.info('res is: ' + res);
+            console.info('Result is: ' + res);
             // [StartExclude update_message_on_success]
             this.message = 'success';
             // [EndExclude update_message_on_success]

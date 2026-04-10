@@ -15,6 +15,7 @@
 
 import { media } from '@kit.MediaKit';
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { sensor } from '@kit.SensorServiceKit';
@@ -113,7 +114,11 @@ export class VideoManager implements OutputManager {
         }
         // [StartExclude start_video]
         // [Start update_rotation]
-        await this.avRecorder.updateRotation(this.getVideoRotation(await this.getGravity()));
+        let videoRotation: number = 0;
+        if (this.output) {
+          videoRotation = this.getVideoRotation(this.output, await this.getGravity());
+        }
+        await this.avRecorder.updateRotation(videoRotation);
         // [End update_rotation]
         // [EndExclude start_video]
         await this.output?.start();
@@ -286,33 +291,41 @@ export class VideoManager implements OutputManager {
     let x = data.x;
     let y = data.y;
     let z = data.z;
-    // Determine if the device is approaching a vertical position (perpendicular to the ground)
     if ((x * x + y * y) * 3 < z * z) {
       return getDeviceDegree;
     } else {
-      // Calculate the inverse tangent value
-      let sd: Decimal = Decimal.atan2(y, -x);
-      // Convert radian values to angle values;
-      let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180);
-      // Adjust angle to be relative to vertical orientation
-      getDeviceDegree = 90 - Number(sc);
-      // Normalize angle to 0-360 degrees range
-      getDeviceDegree = getDeviceDegree >= 0 ? getDeviceDegree % 360 : getDeviceDegree % 360 + 360;
+      try {
+        let sd: Decimal = Decimal.atan2(y, -x);
+        let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180);
+        getDeviceDegree = 90 - Number(sc);
+        getDeviceDegree = getDeviceDegree >= 0 ? getDeviceDegree % 360 : getDeviceDegree % 360 + 360;
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`decimal failed, error: ${err.code}`);
+      }
     }
     return getDeviceDegree;
   }
 
-  async getGravity(): Promise<number> {
+  async getGravity() : Promise<number> {
+    let data: sensor.Sensor[];
+    let isSupported: boolean = false;
     try {
-      let isSupportedGravity: boolean = false;
-      let data = await sensor.getSensorList();
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].sensorId === sensor.SensorId.GRAVITY) {
-          isSupportedGravity = true;
-          break;
-        }
+      data = await sensor.getSensorList();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getSensorList failed, error: ${err.code}`);
+      return -1; // 异常场景下返回默认值
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].sensorId === sensor.SensorId.GRAVITY) {
+        isSupported = true;
+        break;
       }
-      if (isSupportedGravity === true) {
+    }
+    try {
+      if (isSupported === true) {
         const promise: Promise<number> = new Promise((resolve) => {
           sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
             resolve(this.getRealData(data));
@@ -328,24 +341,44 @@ export class VideoManager implements OutputManager {
         return promise;
       }
     } catch (error) {
-      Logger.info(TAG_LOG, `Failed to getGravity and catch error is  ${error.message}`);
-      return 0
+      let err = error as BusinessError;
+      console.error(`gePromise failed, error: ${err.code}`);
+      return -1; // 异常场景下返回默认值
     }
   }
   // [End get_data_gravity]
 
   // [Start get_video_rotation]
-  getVideoRotation(deviceDegree: number): camera.ImageRotation {
-    let videoRotation: camera.ImageRotation = this.getCameraImageRotation();
+  getVideoRotation(videoOutput: camera.VideoOutput, deviceDegree: number): camera.ImageRotation {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
     try {
-        videoRotation = this.output!.getVideoRotation(deviceDegree);
-        Logger.info(TAG_LOG, `Video rotation is: ${videoRotation}`);
+      videoRotation = videoOutput!.getVideoRotation(deviceDegree);
+      console.info(`Video rotation is: ${videoRotation}`);
     } catch (error) {
-      Logger.info(TAG_LOG, `Failed to getVideoRotation and catch error is: ${error.message}`);
+      // 失败返回错误码error.code并处理
+      let err = error as BusinessError;
+      console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
     }
     return videoRotation;
   }
   // [End get_video_rotation]
+
+  // [Start get_video_rotation_and_update]
+  async getVideoRotationAndUpdate(videoOutput: camera.VideoOutput, deviceDegree: number, avRecorder: media.AVRecorder) {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+    try {
+      videoRotation = videoOutput.getVideoRotation(deviceDegree);
+      console.info(`Video rotation is: ${videoRotation}`);
+      if (avRecorder.state === 'prepared') {
+        await avRecorder.updateRotation(videoRotation);
+      }
+    } catch (error) {
+      // 失败返回错误码error.code并处理
+      let err = error as BusinessError;
+      console.error(`getVideoRotationAndUpdate call failed. error code: ${err.code}`);
+    }
+  }
+  // [End get_video_rotation_and_update]
 
   async getVideoThumbnail() {
     let pixelMap: image.PixelMap | undefined = undefined;

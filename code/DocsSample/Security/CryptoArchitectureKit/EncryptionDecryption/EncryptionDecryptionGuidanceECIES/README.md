@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了使用ECIES混合加解密(ArkTS)与C/C++示例代码 。该工程中展示的代码详细描述可查如下链接。
+本示例主要展示了使用ECIES混合加解密ArkTS与C/C++示例代码。该工程中展示的代码详细描述可查如下链接。
 
 - [使用ECIES混合加解密(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-encrypt-decrypt-using-ecies.md)
 - [使用ECIES混合加解密(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/CryptoArchitectureKit/crypto-encrypt-decrypt-using-ecies-native.md)

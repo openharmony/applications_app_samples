@@ -29,7 +29,6 @@
 |	├──ets
 |	|	├──commom
 |	|	|	├──Logger.ts				// 日志工具
-|	|	|	├──ShowToast.ets			// 弹窗提示工具
 |	|	├──entryability
 |	|	|	└──EntryAbility.ets         // 程序入口类
 |	|	├──entrybackupability

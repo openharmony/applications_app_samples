@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import Logger from '../util/Logger'
-import common from '@ohos.app.ability.common';
-import notification from '@ohos.notificationManager'
+import { notificationManager } from '@kit.NotificationKit';
 
 export let mContext: common.UIAbilityContext | null = null;
 const TAG: string = 'MainAbility';
@@ -49,7 +48,7 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
       mContext = this.context;
-      notification.requestEnableNotification(mContext).then(() => {
+      notificationManager.requestEnableNotification(mContext).then(() => {
         Logger.info(TAG, `requestEnableNotification success`);
       }).catch((err: Error) => {
         Logger.error(TAG, `requestEnableNotification fail: ${JSON.stringify(err)}`);

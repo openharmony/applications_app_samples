@@ -18,7 +18,7 @@ import { taskpool } from '@kit.ArkTS';
 import { IconItemSource } from './IconItemSource';
 import { loadPicture } from './IndependentTask';
 
-let iconItemSourceList: IconItemSource[][];
+let iconItemSourceList: IconItemSource[] = [];
 
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup.addTask(new taskpool.Task(loadPicture, 30));
@@ -28,8 +28,12 @@ taskpool.execute(taskGroup).then((ret: object) => {
   let tmpLength = (ret as IconItemSource[][]).length
   for (let i = 0; i < tmpLength; i++) {
     for (let j = 0; j < ret[i].length; j++) {
-      iconItemSourceList.push(ret[i][j]);
+      if (ret[i] && ret[i][j]) {
+        iconItemSourceList.push(ret[i][j]);
+      }
     }
   }
+  // The length of iconItemSourceList is 360
+  console.info('The length of iconItemSourceList is ' + (iconItemSourceList?.length ?? 0));
 })
 // [End execute_task_group]

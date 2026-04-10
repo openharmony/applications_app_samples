@@ -73,12 +73,16 @@ private:
         if (!handle_) {
             return;
         }
+        // [Start add_event_receiver]
         nativeModule_->addNodeEventReceiver(handle_, [](ArkUI_NodeEvent *event) {
+            // [Start add_event_handle_receiver]
             auto *item = static_cast<InputEventListItem*>(OH_ArkUI_NodeEvent_GetUserData(event));
             if (item) {
                 item->HandleEvent(event);
             }
+            // [End add_event_handle_receiver]
         });
+        // [End add_event_receiver]
         RegisterEventByType();
     }
 
@@ -110,38 +114,49 @@ private:
     // 注册点击事件
     void RegisterClickEvent()
     {
+        // [Start register_click_event]
         nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, this);
+        // [End register_click_event]
     }
 
     // 注册触摸事件
     void RegisterTouchEvent()
     {
+        // [Start register_touch_event]
         nativeModule_->registerNodeEvent(handle_, NODE_TOUCH_EVENT, 0, this);
+        // [End register_touch_event]
     }
 
     // 注册鼠标事件
     void RegisterMouseEvent()
     {
         // 鼠标事件（点击、移动、释放等）
+        // [Start register_mouse_event]
         nativeModule_->registerNodeEvent(handle_, NODE_ON_MOUSE, 0, this);
+        // [End register_mouse_event]
     }
 
     // 注册悬浮事件
     void RegisterHoverEvent()
     {
+        // [Start register_hover_event]
         nativeModule_->registerNodeEvent(handle_, NODE_ON_HOVER_EVENT, 0, this);
+        // [End register_hover_event]
     }
 
     // 注册轴事件
     void RegisterAxisEvent()
     {
         // 轴事件：鼠标滚轮滚动时触发
+        // [Start register_axis_event]
         nativeModule_->registerNodeEvent(handle_, NODE_ON_AXIS, 0, this);
+        // [End register_axis_event]
     }
 
     // 注册按键事件
     void RegisterKeyEvent()
     {
+        // [Start register_key_event]
         // 设置为可聚焦，以便接收按键事件
         ArkUI_NumberValue focusable[] = {1};
         ArkUI_AttributeItem focusableItem = {focusable, 1};
@@ -152,6 +167,7 @@ private:
 
         // 注册按键事件
         nativeModule_->registerNodeEvent(handle_, NODE_ON_KEY_EVENT, 0, this);
+        // [End register_key_event]
     }
 
     // 事件分发处理

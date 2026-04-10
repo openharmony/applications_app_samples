@@ -18,12 +18,12 @@ import { notificationManager } from '@kit.NotificationKit';
 import { reminderAgentManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End reminder_import]
-import vibrator from '@ohos.vibrator';
+import { vibrator } from '@kit.SensorServiceKit';
+import { common } from '@kit.AbilityKit';
 import AudioPlayer from '../../util/AudioPlayer';
 import Constant from '../../common//Constant';
 import Logger from '../../util/Logger';
 import { SelectTime } from './SelectTime';
-import common from '@ohos.app.ability.common';
 
 const TAG: string = 'CountDown';
 
@@ -48,7 +48,7 @@ export struct Timer {
   @State isPausing: boolean = false
   @State startImg: Resource = $r('app.media.ic_public_start')
   @State resetImg: Resource = $r('app.media.ic_countdown_reset')
-  private title: Resource | undefined = undefined;
+  public title: Resource | undefined = undefined;
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private selectedTime: Date = new Date();
@@ -205,7 +205,7 @@ export struct Timer {
       this.minuteTime = this.pickerMinute
       this.secondTime = this.pickerSecond
     }
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     this.countInSec = this.pickerHour * Constant.HOUR_SECONDS + this.pickerMinute * Constant.MINUTES_SECONDS + this.pickerSecond
     this.countdownTime = this.hoursTime * Constant.HOUR_SECONDS + this.minuteTime * Constant.MINUTES_SECONDS + this.secondTime
     this.isRunning = true
@@ -240,25 +240,31 @@ export struct Timer {
   }
 
   async handleDefaultDevice(context: common.UIAbilityContext) {
-    await reminderAgentManager.addNotificationSlot({
-      notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
-    // [Start timer_reminder]
-    let timer: reminderAgentManager.ReminderRequestTimer = {
-      reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,  // 提醒类型为倒计时类型
-      ringDuration: Constant.REMINDER_DURATION,
-      title: context.resourceManager.getStringSync($r('app.string.timer').id),  // 指明提醒标题, "app.string.timer"资源文件中的value值为"计时器"
-      content: context.resourceManager.getStringSync($r('app.string.countdown_close').id),  // 指明提醒内容, "app.string.countdown_close"资源文件中的value值为"计时器已结束"
-      wantAgent: {  // // 点击提醒通知后跳转的目标UIAbility信息
-        pkgName: 'com.example.reminderagentmanager',
-        abilityName: 'EntryAbility'
-      },
-      notificationId: 100, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
-      slotType: notificationManager.SlotType.CONTENT_INFORMATION,  // 指明提醒的Slot类型
-      triggerTimeInSeconds: this.countdownTime
-    };
-    // [End timer_reminder]
-    this.reminderId = await reminderAgentManager.publishReminder(timer);
-    Logger.info(TAG, `publish reminder result: id is ${this.reminderId}`);
+    try {
+      await reminderAgentManager.addNotificationSlot({
+        notificationType: notificationManager.SlotType.SERVICE_INFORMATION
+      });
+      // [Start timer_reminder]
+      let timer: reminderAgentManager.ReminderRequestTimer = {
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // 提醒类型为倒计时类型
+        ringDuration: Constant.REMINDER_DURATION,
+        title: context.resourceManager.getStringSync($r('app.string.timer')
+          .id), // 指明提醒标题, "app.string.timer"资源文件中的value值为"计时器"
+        content: context.resourceManager.getStringSync($r('app.string.countdown_close')
+          .id), // 指明提醒内容, "app.string.countdown_close"资源文件中的value值为"计时器已结束"
+        wantAgent: {
+          // // 点击提醒通知后跳转的目标UIAbility信息
+          pkgName: 'com.example.reminderagentmanager',
+          abilityName: 'EntryAbility'
+        },
+        notificationId: 100, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
+        slotType: notificationManager.SlotType.CONTENT_INFORMATION, // 指明提醒的Slot类型
+        triggerTimeInSeconds: this.countdownTime
+      };
+      // [End timer_reminder]
+      this.reminderId = await reminderAgentManager.publishReminder(timer);
+      Logger.info(TAG, `publish reminder result: id is ${this.reminderId}`);
+    } catch(err) {}
   }
 
   async pause() {
@@ -268,8 +274,10 @@ export struct Timer {
     this.isRunning = true;
     this.isPausing = true;
     this.startImg = $r('app.media.ic_public_start');
-    await reminderAgentManager.cancelReminder(this.reminderId);
-    await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
+    try {
+      await reminderAgentManager.cancelReminder(this.reminderId);
+      await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
+    } catch(err) {}
   }
 
   async reset(isCancel?: boolean) {
@@ -289,9 +297,11 @@ export struct Timer {
     this.pickerSecond = 0;
     this.startImg = $r('app.media.ic_public_start');
     this.resetImg = $r('app.media.ic_countdown_reset');
-    if (isCancel) {
-      await reminderAgentManager.cancelReminder(this.reminderId);
-    }
-    await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
+    try {
+      if (isCancel) {
+        await reminderAgentManager.cancelReminder(this.reminderId);
+      }
+      await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
+    } catch(err) {}
   }
 }

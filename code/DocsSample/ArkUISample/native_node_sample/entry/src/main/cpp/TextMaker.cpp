@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include "StyledStringBase.h"
 #include "TextMaker.h"
 #include "baseUtils.h"
 #include <arkui/native_interface.h>
@@ -495,6 +496,7 @@ void setText1(ArkUI_NodeHandle &text)
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     if (text != nullptr) {
+        // [Start text_add_span]
         // span仅作为text的子组件形式展示
         ArkUI_NodeHandle span = Manager::nodeAPI_->createNode(ARKUI_NODE_SPAN);
         const char *spanContent = "This is a span";
@@ -503,7 +505,7 @@ void setText1(ArkUI_NodeHandle &text)
         if (span != nullptr) {
             // 设置Span背景样式
             ArkUI_NumberValue spanBackground[] = {
-                {.u32 = 0xFFFF0000}, // 背景颜色
+                {.u32 = 0xFFE8F4F5}, // 背景颜色
                 {.f32 = 5.0f},       // 左上角半径
                 {.f32 = 5.0f},       // 右上角半径
                 {.f32 = 5.0f},       // 左下角半径
@@ -516,7 +518,7 @@ void setText1(ArkUI_NodeHandle &text)
             ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
             ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
             Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
-            //设置无极字重
+            // 设置字体粗细
             ArkUI_NumberValue fontWeight = {.i32 = ARKUI_FONT_WEIGHT_W500};
             ArkUI_AttributeItem fontWeightItem = {&fontWeight, VALUE_1};
             Manager::nodeAPI_->setAttribute(span, NODE_IMMUTABLE_FONT_WEIGHT, &fontWeightItem);
@@ -528,6 +530,7 @@ void setText1(ArkUI_NodeHandle &text)
             Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
         }
         Manager::nodeAPI_->addChild(text, span);
+        // [End text_add_span]
     }
 }
 
@@ -1235,10 +1238,14 @@ static void onFontStyleChange(ArkUI_SystemFontStyleEvent *event, void *userData)
 
 void setText2(ArkUI_NodeHandle &text2)
 {
+    // [Start text_content]
     const char *textContent = "this is text 2 this is text 2 this is text 2!!!! ";
     ArkUI_AttributeItem contentItem = {.string = textContent};
     Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_CONTENT, &contentItem);
-    // 设置文本样式
+    // [End text_content]
+
+    // [Start text_font_properties]
+    // 设置文字大小：28、文字颜色：0xFFFF0000（红色）
     ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_28}};
     ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text2, NODE_FONT_SIZE, &fontSizeItem);
@@ -1255,6 +1262,7 @@ void setText2(ArkUI_NodeHandle &text2)
     ArkUI_NumberValue fontWeightVal = {.i32 = ARKUI_FONT_WEIGHT_W800};
     ArkUI_AttributeItem textWeightItem = {.value = &fontWeightVal, .size = 1};
     Manager::nodeAPI_->setAttribute(text2, NODE_FONT_WEIGHT, &textWeightItem);
+    // [End text_font_properties]
 
     // 文本字符间距
     ArkUI_NumberValue letterSpaceVal = {.f32 = VALUE_10};
@@ -1303,11 +1311,13 @@ void setText3_1(ArkUI_NodeHandle &text3)
     ArkUI_NumberValue maxFontSize = {.f32 = VALUE_30};
     ArkUI_AttributeItem maxFontSizeItem = {&maxFontSize, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_MAX_FONT_SIZE, &maxFontSizeItem);
-    
-    // 首行缩进
+    // [Start text_indent]
+    // 设置首行缩进
     ArkUI_NumberValue indentVal = {.f32 = VALUE_30};
     ArkUI_AttributeItem indentItem = {&indentVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_INDENT, &indentItem);
+    // [End text_indent]
+
     // 文本最大行数
     ArkUI_NumberValue maxLinesVal = {.i32 = VALUE_1};
     ArkUI_AttributeItem maxLinesItem = {&maxLinesVal, VALUE_1};
@@ -1325,15 +1335,20 @@ void setText3_1(ArkUI_NodeHandle &text3)
 
 void setText3_2(ArkUI_NodeHandle &text3)
 {
-    // 设置断行规则
-    ArkUI_NumberValue wordBreakVal = {.i32 = ARKUI_WORD_BREAK_BREAK_ALL};
-    ArkUI_AttributeItem wordBreakItem = {&wordBreakVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
-    // 设置文本装饰
+    // [Start text_decoration]
+    // 设置文本装饰线类型：下划线装饰（ARKUI_TEXT_DECORATION_TYPE_UNDERLINE）。文本装饰线样式：单实线（ARKUI_TEXT_DECORATION_STYLE_SOLID）。
     ArkUI_NumberValue textDecoration[] = {
         {.i32 = ARKUI_TEXT_DECORATION_TYPE_UNDERLINE}, {.u32 = 0xFFFF0000}, {.i32 = ARKUI_TEXT_DECORATION_STYLE_SOLID}};
     ArkUI_AttributeItem textDecorationItem = {.value = textDecoration, .size = VALUE_3};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_DECORATION, &textDecorationItem);
+    // [End text_decoration]
+
+    // [Start text_word_break]
+    // 设置断行规则：任意字符间断行
+    ArkUI_NumberValue wordBreakVal = {.i32 = ARKUI_WORD_BREAK_BREAK_ALL};
+    ArkUI_AttributeItem wordBreakItem = {&wordBreakVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
+    // [End text_word_break]
 
     // 文本大小写属性
     ArkUI_NumberValue textCase = {.i32 = ARKUI_TEXT_CASE_UPPER};
@@ -1354,11 +1369,13 @@ void setText3_2(ArkUI_NodeHandle &text3)
     ArkUI_NumberValue selctBackgroundColor = {.u32 = 0xFFFF0000};
     ArkUI_AttributeItem textSelctBackgroundColorItem = {&selctBackgroundColor, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_SELECTED_BACKGROUND_COLOR, &textSelctBackgroundColorItem);
-    
-    // 设置垂直对齐
+
+    // [Start text_verticalAlign]
+    // 垂直对齐：基线对齐（ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE）
     ArkUI_NumberValue vAlignVal = {.i32 = ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE};
     ArkUI_AttributeItem vAlignItem = {&vAlignVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_VERTICAL_ALIGN, &vAlignItem);
+    // [End text_verticalAlign]
 }
 
 void setText4(ArkUI_NodeHandle &text4)
@@ -1367,10 +1384,12 @@ void setText4(ArkUI_NodeHandle &text4)
     ArkUI_AttributeItem contentItem = {.string = textContent};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_CONTENT, &contentItem);
 
+    // [Start text_line_height]
     // 设置文本行高
     ArkUI_NumberValue lineHeight = {.f32 = VALUE_50};
     ArkUI_AttributeItem lineHeightItem = {&lineHeight, VALUE_1};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_LINE_HEIGHT, &lineHeightItem);
+    // [End text_line_height]
     
     // 设置文本垂直居中
     ArkUI_NumberValue halfLeading = {.i32 = true};
@@ -1382,11 +1401,13 @@ void setText4(ArkUI_NodeHandle &text4)
     ArkUI_AttributeItem baselineOffsetItem = {&baselineOffset, VALUE_1};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_BASELINE_OFFSET, &baselineOffsetItem);
 
+    // [Start text_shadow]
     // 文字阴影效果属性
     ArkUI_NumberValue textShadow[] = {
-        {.f32 = VALUE_5}, {.i32 = ARKUI_SHADOW_TYPE_BLUR}, {.u32 = 0xFFFF0000}, {.f32 = VALUE_5}, {.f32 = VALUE_5}};
+        {.f32 = VALUE_5}, {.i32 = ARKUI_SHADOW_TYPE_BLUR}, {.u32 = 0xFF0000FF}, {.f32 = VALUE_5}, {.f32 = VALUE_5}};
     ArkUI_AttributeItem textShadowItem = {textShadow, VALUE_5};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_TEXT_SHADOW, &textShadowItem);
+    // [End text_shadow]
     
     // 设置font样式
     ArkUI_NumberValue textFont[] = {
@@ -1419,23 +1440,23 @@ void setText5_1(ArkUI_NodeHandle &text5)
     ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
     ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text5, NODE_FONT_SIZE, &fontSizeItem);
-    // 设置线性渐变
-    float stops[] = { 0.0f, 0.1f, 0.5f };
 
-    uint32_t colors[] = { 0xFFFF0000, 0xFFFFFF00, 0xFF0000FF };
-
-    ArkUI_ColorStop colorStop = { colors, stops, VALUE_3 };
+    // [Start text_linear_gradient]
+    // 设置渐变颜色和位置
+    float stops[] = { 0.0f, 0.5f };
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
     ArkUI_ColorStop *colorStopPtr = &colorStop;
 
+    // 设置线性渐变
     ArkUI_NumberValue linearGradient[] = {
         {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}};
-
     ArkUI_AttributeItem linearGradientItem = {
         linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
     linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
     linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
-
     Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_LINEAR_GRADIENT, &linearGradientItem);
+    // [End text_linear_gradient]
 }
 
 void setText5_2(ArkUI_NodeHandle &text5_2)
@@ -1452,11 +1473,11 @@ void setText5_2(ArkUI_NodeHandle &text5_2)
     ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text5_2, NODE_FONT_SIZE, &fontSizeItem);
     // 设置径向渐变
-    float stops[] = { 0.0f, 0.1f, 0.5f };
+    float stops[] = { 0.0f, 0.5f };
 
-    uint32_t colors[] = { 0xFFFF0000, 0xFFFFFF00, 0xFF0000FF };
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
 
-    ArkUI_ColorStop colorStop = { colors, stops, VALUE_3 };
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
     ArkUI_ColorStop *colorStopPtr = &colorStop;
 
     ArkUI_NumberValue radialGradient[] = {
@@ -1469,6 +1490,7 @@ void setText5_2(ArkUI_NodeHandle &text5_2)
     Manager::nodeAPI_->setAttribute(text5_2, NODE_TEXT_RADIAL_GRADIENT, &radialGradientItem);
 }
 
+// [Start text_add_imagespan]
 void setText6(ArkUI_NodeHandle &text6)
 {
     // ImageSpan
@@ -1496,9 +1518,11 @@ void setText6(ArkUI_NodeHandle &text6)
     Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
     Manager::nodeAPI_->addChild(text6, imageSpan);
 }
+// [End text_add_imagespan]
 
 void setText7(ArkUI_NodeHandle &text7)
 {
+    // [Start text_create]
     ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
     ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
@@ -1506,6 +1530,7 @@ void setText7(ArkUI_NodeHandle &text7)
     ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_30}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    // [End text_create]
     ArkUI_NumberValue borderWidth[] = {{.f32 = VALUE_1}};
     ArkUI_AttributeItem borderWidthItem = {.value = borderWidth, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
@@ -1566,12 +1591,15 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_AttributeItem item0;
     item0.string = "使用倍数模式设置行高，2倍";
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_CONTENT, &item0);
-    ArkUI_NumberValue value3[] = {{.u32 = 0xFFFF0000}};
+    ArkUI_NumberValue value3[] = {{.u32 = 0xFF8090FF}};
     ArkUI_AttributeItem item6 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_BACKGROUND_COLOR, &item6);
+    // [Start text_line_height_multiple]
+    // 设置行高倍数
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
+    // [End text_line_height_multiple]
 }
 
 void setText10(ArkUI_NodeHandle &text10)
@@ -1579,7 +1607,7 @@ void setText10(ArkUI_NodeHandle &text10)
     ArkUI_AttributeItem item0;
     item0.string = "使用最大最小行高限制行高，50fp";
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_CONTENT, &item0);
-    ArkUI_NumberValue value3[] = {{.u32 = 0xFFFF0000}};
+    ArkUI_NumberValue value3[] = {{.u32 = 0xFF8090FF}};
     ArkUI_AttributeItem item6 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text10, NODE_BACKGROUND_COLOR, &item6);
     ArkUI_NumberValue value0[] = {{.f32 = 1.0}};
@@ -1588,6 +1616,9 @@ void setText10(ArkUI_NodeHandle &text10)
     ArkUI_NumberValue value1[] = {{.f32 = 50}};
     ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MIN_LINE_HEIGHT, &item1);
+    ArkUI_NumberValue marginValue[] = {20};
+    ArkUI_AttributeItem marginItem = {marginValue, 1};
+    Manager::nodeAPI_->setAttribute(text10, NODE_MARGIN, &marginItem);
     ArkUI_NumberValue value2[] = {{.f32 = 50}};
     ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
@@ -1601,11 +1632,15 @@ void setText11(ArkUI_NodeHandle &text11, ArkUI_NodeHandle &text11_2)
     text1.string = "\u300C关闭行首标点压缩";
     Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_CONTENT, &text);
     Manager::nodeAPI_->setAttribute(text11_2, NODE_TEXT_CONTENT, &text1);
+    // [Start text_compress_leading_punctuation]
+    // 设置行首标点压缩
     ArkUI_NumberValue value0[] = {{.i32 = true}};
-    ArkUI_NumberValue value1[] = {{.i32 = false}};
     ArkUI_AttributeItem item0 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
-    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text11, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item0);
+    // [End text_compress_leading_punctuation]
+
+    ArkUI_NumberValue value1[] = {{.i32 = false}};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text11_2, NODE_TEXT_COMPRESS_LEADING_PUNCTUATION, &item1);
     ArkUI_NumberValue value3[] = {{.f32 = 1.0}};
     ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
@@ -1690,14 +1725,18 @@ void setText14(ArkUI_NodeHandle &text14)
         .string = "Trimmed space enabled     "};
     Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_CONTENT, &textItem);
     
+    // [Start text_align]
     // 水平对齐：居中对齐（ARKUI_TEXT_ALIGNMENT_CENTER）
     ArkUI_NumberValue intVal_0 = {.i32 = ARKUI_TEXT_ALIGNMENT_CENTER};
     ArkUI_AttributeItem textAlignItem = {&intVal_0, VALUE_1};
     Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_ALIGN, &textAlignItem);
-    
+    // [End text_align]
+
+    // [Start text_optimize_trailing_space]
     ArkUI_NumberValue optimizeValue = {.i32 = true};
     ArkUI_AttributeItem optimizeTrailingSpaceItem = {&optimizeValue, VALUE_1};
     Manager::nodeAPI_->setAttribute(text14, NODE_TEXT_OPTIMIZE_TRAILING_SPACE, &optimizeTrailingSpaceItem);
+    // [End text_optimize_trailing_space]
     
     ArkUI_NumberValue borderWidth[] = {{.f32 = VALUE_1}};
     ArkUI_AttributeItem borderWidthItem = {.value = borderWidth, .size = VALUE_1};
@@ -1766,7 +1805,7 @@ void setText16(ArkUI_NodeHandle &text16)
 void setText17(ArkUI_NodeHandle &text17)
 {
     ArkUI_AttributeItem item0;
-    item0.string = "测试文本选中";
+    item0.string = "设置文本选中";
     Manager::nodeAPI_->setAttribute(text17, NODE_TEXT_CONTENT, &item0);
     ArkUI_NumberValue value3[] = {{.u32 = 0xffff0000}};
     ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
@@ -1780,11 +1819,13 @@ void setText17(ArkUI_NodeHandle &text17)
 void setText18(ArkUI_NodeHandle &text18)
 {
     ArkUI_AttributeItem content_item = {};
-    content_item.string = "测试跑马灯TextMaruqeeOptions";
+    content_item.string = "设置跑马灯TextMaruqeeOptions";
     Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_CONTENT, &content_item);
     ArkUI_NumberValue widthValue[] = {{.f32 = 100.0f}};
     ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text18, NODE_WIDTH, &width_item);
+    // [Start text_marquee_options]
+    // 创建跑马灯选项
     ArkUI_TextMarqueeOptions* marqueeOptions = OH_ArkUI_TextMarqueeOptions_Create();
     OH_ArkUI_TextMarqueeOptions_SetStart(marqueeOptions, true);
     OH_ArkUI_TextMarqueeOptions_SetStep(marqueeOptions, 5.0f);
@@ -1793,10 +1834,12 @@ void setText18(ArkUI_NodeHandle &text18)
     OH_ArkUI_TextMarqueeOptions_SetDelay(marqueeOptions, VALUE_400);
     OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(marqueeOptions,
         ArkUI_MarqueeUpdatePolicy::ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION);
+    // 设置到Text组件
     ArkUI_AttributeItem marqueeOptions_item = {
         .object = marqueeOptions
     };
     Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_MARQUEE_OPTIONS, &marqueeOptions_item);
+    // [End text_marquee_options]
     ArkUI_NumberValue overflowValue[] = {{.i32 = ARKUI_TEXT_OVERFLOW_MARQUEE}};
     ArkUI_AttributeItem overflowItem = {overflowValue, sizeof(overflowValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text18, NODE_TEXT_OVERFLOW, &overflowItem);
@@ -1805,31 +1848,40 @@ void setText18(ArkUI_NodeHandle &text18)
 void setTextDirection(ArkUI_NodeHandle &text19)
 {
     ArkUI_AttributeItem content_item = {};
-    content_item.string = "测试Text NODE_TEXT_DIRECTION";
+    content_item.string = "设置Text NODE_TEXT_DIRECTION";
     Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_CONTENT, &content_item);
+    // [Start text_direction]
+    // 设置文本方向为从右到左
     ArkUI_NumberValue directionValue[] = {{.i32 = ARKUI_TEXT_DIRECTION_RTL}};
     ArkUI_AttributeItem direction_item = {directionValue, sizeof(directionValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text19, NODE_TEXT_DIRECTION, &direction_item);
+    // [End text_direction]
 }
 
 void setText20(ArkUI_NodeHandle &text20, ArkUI_NodeHandle &text21)
 {
     ArkUI_AttributeItem content_item = {};
-    content_item.string = "这是一段超长文本，用来测试省略号位置ellipsisMode";
+    content_item.string = "这是一段超长文本，用来设置省略号位置ellipsisMode";
     Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_CONTENT, &content_item);
     ArkUI_NumberValue widthValue[] = {{.f32 = 100.0f}};
     ArkUI_AttributeItem width_item = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text20, NODE_WIDTH, &width_item);
+    // [Start text_ellipsis_mode]
+    // 设置最大行数
     ArkUI_NumberValue maxLinesValue[] = {{.i32 = VALUE_3} };
     ArkUI_AttributeItem maxLinesItem = {maxLinesValue, VALUE_1};
     Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_MAX_LINES, &maxLinesItem);
+
+    // 设置文本溢出：省略号
     ArkUI_NumberValue textOverFlowValue[] = { {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS} };
     ArkUI_AttributeItem textOverFlowItem = {textOverFlowValue, VALUE_1};
     Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_OVERFLOW, &textOverFlowItem);
+
+    // 设置省略模式：省略行首内容
     ArkUI_NumberValue ellipsisModeValue1[] = { {.i32 = ARKUI_ELLIPSIS_MODE_MULTILINE_START} };
     ArkUI_AttributeItem ellipsisModeItem1 = {ellipsisModeValue1, VALUE_1};
     Manager::nodeAPI_->setAttribute(text20, NODE_TEXT_ELLIPSIS_MODE, &ellipsisModeItem1);
-    
+    // [End text_ellipsis_mode]
     Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_CONTENT, &content_item);
     Manager::nodeAPI_->setAttribute(text21, NODE_WIDTH, &width_item);
     Manager::nodeAPI_->setAttribute(text21, NODE_TEXT_MAX_LINES, &maxLinesItem);
@@ -2264,7 +2316,7 @@ void setBasicText2(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->setAttribute(basicText2, NODE_BORDER_WIDTH, &borderWidthItem2);
 
     auto testText = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    const char *testTextStr = "测试ARKUI_ERROR_CODE_INVALID_STYLED_STRING";
+    const char *testTextStr = "设置ARKUI_ERROR_CODE_INVALID_STYLED_STRING";
     ArkUI_AttributeItem testTextItem = {.string = testTextStr};
     Manager::nodeAPI_->setAttribute(testText, NODE_TEXT_CONTENT, &testTextItem);
     Manager::nodeAPI_->addChild(textContainer, testText);
@@ -2590,7 +2642,7 @@ void setTextSelectAI(ArkUI_NodeHandle &textAISelect)
       "电话：(86) (755) 13612345678\n"
       "链接：www.ABC.com\n"
       "邮箱：ABC@example.com\n"
-      "地址：北京市朝阳街道\n"
+      "地址：XX市XX街道\n"
       "日期：2000年1月1日6:00\n"
     };
     Manager::nodeAPI_->setAttribute(textAISelect, NODE_TEXT_CONTENT, &contentItem);
@@ -2925,6 +2977,35 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     setCustomSpanText(textContainer);
 }
 
+/**
+ * 初始化文本组件节点
+ * @return 返回创建的文本组件节点句柄
+ */
+ArkUI_NodeHandle InitText(ArkUI_NodeHandle& textContainer)
+{
+    ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NumberValue borderWidth = {.f32 = STYLED_STRING_COMPONENT_BORDER_WIDTH};
+    ArkUI_AttributeItem borderWidthItem = {&borderWidth, SIZE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
+    ArkUI_NumberValue width = {.f32 = STYLED_STRING_COMPONENT_WIDTH};
+    ArkUI_AttributeItem widthItem = {&width, SIZE_1};
+    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &widthItem);
+    // 将文本组件添加到父容器中
+    Manager::nodeAPI_->addChild(textContainer, text);
+    return text;
+}
+
+BindDescriptorFunc GetBindDescriptorFunc(ArkUI_NodeHandle& textContainer)
+{
+    return [&textContainer](ArkUI_StyledString_Descriptor * descriptor) {
+            auto text = InitText(textContainer);
+            OH_ArkUI_TextController *controller = OH_ArkUI_TextController_Create();
+            ArkUI_AttributeItem controllerItem = {.object = controller};
+            Manager::nodeAPI_->setAttribute(text, NODE_TEXT_CONTROLLER, &controllerItem);
+            OH_ArkUI_TextController_SetStyledString(controller, descriptor);
+    };
+}
+
 void setAllText(ArkUI_NodeHandle &textContainer)
 {
     setAllTextPart1(textContainer);
@@ -2932,6 +3013,8 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, column);
+    // styledString
+    StyledStringBase::SetStyledString(textContainer, GetBindDescriptorFunc(textContainer));
 }
 
 void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
@@ -3045,6 +3128,7 @@ void SetAllTextAreaPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea8_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
 
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
@@ -3071,7 +3155,6 @@ void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea11Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_NodeHandle textArea12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea14_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);

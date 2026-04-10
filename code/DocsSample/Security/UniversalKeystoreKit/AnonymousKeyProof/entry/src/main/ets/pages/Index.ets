@@ -22,15 +22,17 @@ struct Index {
   @State message: string = 'AnonymousKeyProof';
 
   goToSample(url: string): void {
-    router.pushUrl({
-      url: url,
-    }, router.RouterMode.Single, (err) => {
-      if (err) {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      console.info('pushUrl success');
-    })
+    this.getUIContext()
+      .getRouter()
+      .pushUrl({
+        url: url,
+      }, router.RouterMode.Single, (err) => {
+        if (err) {
+          console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('pushUrl success');
+      })
   }
 
   build() {

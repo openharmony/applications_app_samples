@@ -48,15 +48,17 @@ export default function accessControlTest() {
       const button1 = await driver.findComponent(ON.text('UserIdentityAuthentication'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(3000);
       const button2 = await driver.findComponent(ON.text('Call'));
       await button2.click();
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('PIN'));
       console.info('uitest: 检测到PIN认证弹窗，测试成功');
-      const cancelButton = await driver.findComponent(ON.text('取消'));
-      await cancelButton.click();
-      await driver.delayMs(1000);
+      const buttons = await driver.findComponents(ON.type('Button'));
+      for (let button of buttons) {
+        await button.click();
+        await driver.delayMs(500);
+      }
       await driver.pressBack();
       console.info('uitest: testAccessControl001 end');
     })
@@ -70,15 +72,17 @@ export default function accessControlTest() {
       const button1 = await driver.findComponent(ON.text('FineGrainedUserIdentityAuthentication'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(3000);
       const button2 = await driver.findComponent(ON.text('Call'));
       await button2.click();
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('PIN'));
       console.info('uitest: 检测到PIN认证弹窗，测试成功');
-      const cancelButton = await driver.findComponent(ON.text('取消'));
-      await cancelButton.click();
-      await driver.delayMs(1000);
+      const buttons = await driver.findComponents(ON.type('Button'));
+      for (let button of buttons) {
+        await button.click();
+        await driver.delayMs(500);
+      }
       await driver.pressBack();
       console.info('uitest: testAccessControl002 end');
     })

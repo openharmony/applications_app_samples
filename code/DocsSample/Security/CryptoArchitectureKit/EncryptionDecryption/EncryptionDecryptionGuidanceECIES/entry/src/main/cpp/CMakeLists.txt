@@ -2,7 +2,8 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(NativeTest)
 
-set(CMAKE_OBJECT_PATH_MAX 4096)
+add_definitions(-DLOG_DOMAIN=0x0001)
+add_definitions(-DLOG_TAG="testTag")
 
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 

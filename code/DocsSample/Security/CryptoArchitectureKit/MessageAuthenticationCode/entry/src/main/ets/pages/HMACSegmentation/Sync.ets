@@ -29,7 +29,7 @@ function doHmacBySync() {
   let keyData = new Uint8Array(buffer.from('12345678abcdefgh', 'utf-8').buffer);
   let key = genSymKeyByData(keyData);
   let macAlgName = 'SHA256'; // 摘要算法名
-  let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+  let message = 'hmacTestMessage'; // 待进行HMAC的数据
   let mac = cryptoFramework.createMac(macAlgName);
   mac.initSync(key);
   // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
