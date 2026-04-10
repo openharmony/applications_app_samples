@@ -228,12 +228,12 @@ async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: Uint8Array,
     inData: peerPubKey
   };
   await updateSession(handle, dhAgreeUpdatePubKey);
-  const dhAgreeAliceFinnish: huks.HuksOptions = {
+  const dhAgreeAliceFinish: huks.HuksOptions = {
     properties: [...dhAgreeFinishParams, {
       tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS, value: stringToUint8Array(aliasAgreedKey)
     }], inData: new Uint8Array([])
   };
-  await finishSession(handle, dhAgreeAliceFinnish);
+  await finishSession(handle, dhAgreeAliceFinish);
 }
 
 async function huksDhAgreeInHuksTest(
