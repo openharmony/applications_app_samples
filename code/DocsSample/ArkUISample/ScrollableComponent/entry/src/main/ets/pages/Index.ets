@@ -28,35 +28,35 @@ import { Scroll_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
 
 const routes: Route[] = [
   {
-    title: resource.resourceToString($r('app.string.pageIndex_List')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_List'))},
     name: List_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_ArcList')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_ArcList'))},
     name: ARCLIST_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_Grid')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_Grid'))},
     name: GRID_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_WaterFlow')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_WaterFlow'))},
     name: WATERFLOW_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_Swiper')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_Swiper'))},
     name: SWIPER_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_ArcSwiper')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_ArcSwiper'))},
     name: ARCSWIPER_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_Tabs')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.pageIndex_Tabs'))},
     name: TABS_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.Scroll_Title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Scroll_Title'))},
     name: Scroll_ROUTE_PREFIX
   }
 ];
@@ -93,7 +93,7 @@ struct Index {
       return routes;
     }
     return routes.filter((route: Route) => {
-      return route.title.includes(this.condition);
+      return route.title(this.getUIContext().getHostContext()!).includes(this.condition);
     })
   }
 
@@ -115,7 +115,7 @@ struct Index {
       List({ space: 12 }) {
         ForEach(this.getFilteredRoutes(), (route: Route) => {
           ListItem() {
-            RoutableCard({ title: route.title })
+            RoutableCard({ title: route.title(this.getUIContext().getHostContext()!) })
           }
           .width('100%')
           .onClick(() => {

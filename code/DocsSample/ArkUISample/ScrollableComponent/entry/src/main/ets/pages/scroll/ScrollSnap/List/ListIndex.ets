@@ -84,7 +84,7 @@ export struct ScrollSnapList {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollSnap/List/ListIndex2',
             params: {
               data1: 'message'

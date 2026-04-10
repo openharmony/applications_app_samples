@@ -32,57 +32,57 @@ export const TABS_ROUTE_PREFIX: string = 'tabs';
 const routes: Route[] = [
   {
     name: `${TABS_ROUTE_PREFIX}/TabsLayout`,
-    title: resource.resourceToString($r('app.string.TabsLayout_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.TabsLayout_title'))},
     description: $r('app.string.TabsLayout_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/BottomTabBar`,
-    title: resource.resourceToString($r('app.string.BottomTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.BottomTabBar_title'))},
     description: $r('app.string.BottomTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/TopTabBar`,
-    title: resource.resourceToString($r('app.string.TopTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.TopTabBar_title'))},
     description: $r('app.string.TopTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/SideTabBar`,
-    title: resource.resourceToString($r('app.string.SideTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SideTabBar_title'))},
     description: $r('app.string.SideTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/SwipeLockedTabBar`,
-    title: resource.resourceToString($r('app.string.SwipeLockedTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwipeLockedTabBar_title'))},
     description: $r('app.string.SwipeLockedTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/FixedTabBar`,
-    title: resource.resourceToString($r('app.string.FixedTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.FixedTabBar_title'))},
     description: $r('app.string.FixedTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/ScrollableTabBar`,
-    title: resource.resourceToString($r('app.string.ScrollableTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ScrollableTabBar_title'))},
     description: $r('app.string.ScrollableTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/CustomTabBar`,
-    title: resource.resourceToString($r('app.string.CustomTabBar_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.CustomTabBar_title'))},
     description: $r('app.string.CustomTabBar_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/ContentWillChange`,
-    title: resource.resourceToString($r('app.string.ContentWillChange_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ContentWillChange_title'))},
     description: $r('app.string.ContentWillChange_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/AgeFriendlyTabs`,
-    title: resource.resourceToString($r('app.string.AgeFriendlyTabs_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.AgeFriendlyTabs_title'))},
     description: $r('app.string.AgeFriendlyTabs_description')
   },
   {
     name: `${TABS_ROUTE_PREFIX}/NumberOfCachesTabBar`,
-    title: resource.resourceToString($r('app.string.Cache_count')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Cache_count'))},
     description: $r('app.string.ContentWillChange_description')
   }
 ];
@@ -126,7 +126,8 @@ struct TabsExample {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {

@@ -89,7 +89,7 @@ struct ScrollModifierGrid {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollModifier/Grid/GridIndex2',
             params: {
               data1: 'message'

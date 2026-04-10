@@ -19,7 +19,11 @@ import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    try {
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+    }
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
 

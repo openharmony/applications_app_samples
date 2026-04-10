@@ -89,7 +89,7 @@ export struct ScrollModifierWaterFlow {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollModifier/WaterFlow/WaterFlowIndex2',
             params: {
               data1: 'message'

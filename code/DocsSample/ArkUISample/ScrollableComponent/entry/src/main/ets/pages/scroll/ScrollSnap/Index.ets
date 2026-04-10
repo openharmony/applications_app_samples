@@ -18,7 +18,7 @@ import resource from '../../../common/resource';
 import { router } from '@kit.ArkUI';
 
 class TestList {
-  title: string = ''
+  public title: (context: Context) => string = () => ''
   url: string = ''
   key: string = ''
   description?: ResourceStr;
@@ -29,22 +29,22 @@ export const Scroll_ROUTE_PREFIX: string = 'scroll';
 const routes: TestList[] = [
   {
     url: 'pages/scroll/ScrollSnap/List/ListIndex',
-    title: resource.resourceToString($r('app.string.Support_ScrollSnapList_Hand_Event')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_ScrollSnapList_Hand_Event'))},
     key: 'ListIndex'
   },
   {
     url: 'pages/scroll/ScrollSnap/Grid/GridIndex',
-    title: resource.resourceToString($r('app.string.Support_ScrollSnapGrid_Hand_Event')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_ScrollSnapGrid_Hand_Event'))},
     key: 'GridIndex'
   },
   {
     url: 'pages/scroll/ScrollSnap/WaterFlow/WaterFlowIndex',
-    title: resource.resourceToString($r('app.string.Support_ScrollSnapWaterFlow_Hand_Event')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_ScrollSnapWaterFlow_Hand_Event'))},
     key: 'WaterFlowIndex'
   },
   {
     url: 'pages/scroll/ScrollSnap/Scroll/ScrollIndex',
-    title: resource.resourceToString($r('app.string.Support_ScrollSnapScroll_Hand_Event')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_ScrollSnapScroll_Hand_Event'))},
     key: 'ScrollIndex'
   }
 ];
@@ -64,11 +64,12 @@ export struct ScrollSnapExample {
       List({ space: 12 }) {
         ForEach(routes, (route: TestList) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: route.url,
             }, router.RouterMode.Single);
           })

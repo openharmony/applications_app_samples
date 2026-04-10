@@ -38,82 +38,82 @@ export const List_ROUTE_PREFIX: string = 'list';
 const routes: Route[] = [
   {
     name: `${List_ROUTE_PREFIX}/ListLayout`,
-    title: resource.resourceToString($r('app.string.ListLayout_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ListLayout_title'))},
     description: $r('app.string.ListLayout_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/DataInList`,
-    title: resource.resourceToString($r('app.string.DataInList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.DataInList_title'))},
     description: $r('app.string.DataInList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/ListIteration`,
-    title: resource.resourceToString($r('app.string.ListIteration_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ListIteration_title'))},
     description: $r('app.string.ListIteration_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/CustomListStyle`,
-    title: resource.resourceToString($r('app.string.CustomListStyle_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.CustomListStyle_title'))},
     description: $r('app.string.CustomListStyle_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/GroupedList`,
-    title: resource.resourceToString($r('app.string.GroupedList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.GroupedList_title'))},
     description: $r('app.string.GroupedList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/StickyHeaderList`,
-    title: resource.resourceToString($r('app.string.StickyHeaderList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.StickyHeaderList_title'))},
     description: $r('app.string.StickyHeaderList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/ControlledScrollPositionList`,
-    title: resource.resourceToString($r('app.string.ControlledScrollPositionList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ControlledScrollPositionList_title'))},
     description: $r('app.string.ControlledScrollPositionList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/ResponsiveScrollPositionList`,
-    title: resource.resourceToString($r('app.string.ResponsiveScrollPositionList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ResponsiveScrollPositionList_title'))},
     description: $r('app.string.ResponsiveScrollPositionList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/SwipeListItem`,
-    title: resource.resourceToString($r('app.string.SwipeListItem_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.SwipeListItem_title'))},
     description: $r('app.string.SwipeListItem_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/TaggedListItems`,
-    title: resource.resourceToString($r('app.string.TaggedListItems_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.TaggedListItems_title'))},
     description: $r('app.string.TaggedListItems_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/AddListItem`,
-    title: resource.resourceToString($r('app.string.AddListItem_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.AddListItem_title'))},
     description: $r('app.string.AddListItem_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/DeleteListItem`,
-    title: resource.resourceToString($r('app.string.DeleteListItem_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.DeleteListItem_title'))},
     description: $r('app.string.DeleteListItem_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/LongList`,
-    title: resource.resourceToString($r('app.string.LongList_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.LongList_title'))},
     description: $r('app.string.LongList_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/CollapseAndExpand`,
-    title: resource.resourceToString($r('app.string.CollapseAndExpand_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.CollapseAndExpand_title'))},
     description: $r('app.string.CollapseAndExpand_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/ListChatRoom`,
-    title: resource.resourceToString($r('app.string.ListChatRoom_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ListChatRoom_title'))},
     description: $r('app.string.ListChatRoom_description')
   },
   {
     name: `${List_ROUTE_PREFIX}/SupportSlidingHand`,
-    title: resource.resourceToString($r('app.string.Support_Sliding_Hand_Event')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_Sliding_Hand_Event'))},
     description: $r('app.string.Sliding_Hand_Event')
   }
 ];
@@ -167,7 +167,8 @@ struct ListExample {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {

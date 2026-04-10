@@ -84,7 +84,7 @@ export struct ScrollSnapWaterFlow {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollSnap/WaterFlow/WaterFlowIndex2',
             params: {
               data1: 'message'

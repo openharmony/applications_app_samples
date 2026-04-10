@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 import common from '@ohos.app.ability.common';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start build_a_office_services_grid_of_foreach]
 @Entry
 @Component
@@ -36,14 +37,30 @@ export struct DataInGrid {
   // [StartExclude build_a_office_services_grid_of_foreach]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const meeting = context.resourceManager.getStringByNameSync('Meeting')
-    this.services.push(meeting)
-    const check = context.resourceManager.getStringByNameSync('Check_in')
-    this.services.push(check)
-    const voting = context.resourceManager.getStringByNameSync('Voting')
-    this.services.push(voting)
-    const printing = context.resourceManager.getStringByNameSync('Printing')
-    this.services.push(printing)
+    try {
+      const meeting = context.resourceManager.getStringByNameSync('Meeting')
+      this.services.push(meeting)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Meeting: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const check = context.resourceManager.getStringByNameSync('Check_in')
+      this.services.push(check)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Check_in: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const voting = context.resourceManager.getStringByNameSync('Voting')
+      this.services.push(voting)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Voting: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const printing = context.resourceManager.getStringByNameSync('Printing')
+      this.services.push(printing)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Printing: %{public}s', JSON.stringify(e) ?? '');
+    }
   }
   // [EndExclude build_a_office_services_grid_of_foreach]
 
