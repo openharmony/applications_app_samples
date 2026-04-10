@@ -3395,5 +3395,251 @@ const NAS_EXPANSION_SCENARIOS: BusinessScenario[] = [
       'verify_session_cover'
     ]
   },
+  {
+    id: 'nas_061',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_session_count_sync',
+    expectedState: 'session_ready',
+    expectedFocus: 'session_0',
+    steps: [
+      'load_session_count',
+      'sync_session_count',
+      'verify_session_count'
+    ]
+  },
+  {
+    id: 'nas_062',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_album_route_open',
+    expectedState: 'route_ready',
+    expectedFocus: 'session_0',
+    steps: [
+      'open_nas_album_route',
+      'record_route_state',
+      'verify_route_state'
+    ]
+  },
+  {
+    id: 'nas_063',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_album_route_back',
+    expectedState: 'route_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'open_nas_album_route',
+      'invoke_back_action',
+      'verify_client0_focus'
+    ]
+  },
+  {
+    id: 'nas_064',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_focus_history_first',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'request_client0_focus',
+      'record_focus_history',
+      'verify_history_head'
+    ]
+  },
+  {
+    id: 'nas_065',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_3',
+    action: 'nas_focus_history_middle',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_3',
+    steps: [
+      'request_client3_focus',
+      'record_focus_history',
+      'verify_history_head'
+    ]
+  },
+  {
+    id: 'nas_066',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_6',
+    action: 'nas_focus_history_last',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_6',
+    steps: [
+      'request_client6_focus',
+      'record_focus_history',
+      'verify_history_head'
+    ]
+  },
+  {
+    id: 'nas_067',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_empty_client_state',
+    expectedState: 'client_empty',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_empty_clients',
+      'render_empty_state',
+      'verify_empty_state'
+    ]
+  },
+  {
+    id: 'nas_068',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_1',
+    action: 'nas_multi_client_state',
+    expectedState: 'client_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_multi_clients',
+      'render_client_grid',
+      'verify_client_grid'
+    ]
+  },
+  {
+    id: 'nas_069',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_loading_state_transition',
+    expectedState: 'loading_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_loading_state',
+      'resolve_loading_state',
+      'verify_loading_transition'
+    ]
+  },
+  {
+    id: 'nas_070',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_retry_state_transition',
+    expectedState: 'retry_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_retry_state',
+      'resolve_retry_state',
+      'verify_retry_transition'
+    ]
+  },
+  {
+    id: 'nas_071',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_disconnect_state_transition',
+    expectedState: 'disconnect_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_disconnect_state',
+      'resolve_disconnect_state',
+      'verify_disconnect_transition'
+    ]
+  },
+  {
+    id: 'nas_072',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_2',
+    action: 'nas_error_banner_contract',
+    expectedState: 'banner_ready',
+    expectedFocus: 'client_2',
+    steps: [
+      'open_error_banner',
+      'render_error_banner',
+      'verify_banner_state'
+    ]
+  },
+  {
+    id: 'nas_073',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_2',
+    action: 'nas_success_banner_contract',
+    expectedState: 'banner_ready',
+    expectedFocus: 'client_2',
+    steps: [
+      'open_success_banner',
+      'render_success_banner',
+      'verify_banner_state'
+    ]
+  },
+  {
+    id: 'nas_074',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_2',
+    action: 'nas_focus_after_mount',
+    expectedState: 'mount_ready',
+    expectedFocus: 'client_2',
+    steps: [
+      'mount_nas_client',
+      'restore_client_focus',
+      'verify_client2_focus'
+    ]
+  },
+  {
+    id: 'nas_075',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_complete_client_matrix',
+    expectedState: 'matrix_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'load_nas_client_matrix',
+      'iterate_nas_client_cases',
+      'verify_matrix_size'
+    ]
+  }
+];
 
+const BUSINESS_SCENARIOS: BusinessScenario[] = [
+  ...BASE_BUSINESS_SCENARIOS,
+  ...HOME_EXPANSION_SCENARIOS,
+  ...ALBUM_EXPANSION_SCENARIOS,
+  ...DISTRIBUTED_EXPANSION_SCENARIOS,
+  ...NAS_EXPANSION_SCENARIOS
+];
 
+export class BusinessScenarioCatalog {
+  static getAll(): BusinessScenario[] {
+    return BUSINESS_SCENARIOS.map((item) => {
+      return new BusinessScenarioRecord(
+        item.id,
+        item.domain,
+        item.ability,
+        item.entry,
+        item.action,
+        item.expectedState,
+        item.expectedFocus,
+        [...item.steps]
+      );
+    });
+  }
+
+  static getDomains(): string[] {
+    return ['首页流程', '相册导航', '分布式流程', 'NAS 流程'];
+  }
+
+  static getByDomain(domain: string): BusinessScenario[] {
+    return BusinessScenarioCatalog.getAll().filter((item) => item.domain === domain);
+  }
+
+  static findById(id: string): BusinessScenario | undefined {
+    return BusinessScenarioCatalog.getAll().find((item) => item.id === id);
+  }
+}
