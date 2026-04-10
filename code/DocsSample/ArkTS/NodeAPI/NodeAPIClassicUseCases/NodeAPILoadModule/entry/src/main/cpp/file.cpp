@@ -21,19 +21,31 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     napi_value result;
     // 1. 使用napi_load_module加载Test文件中的模块
     napi_status status = napi_load_module(env, "ets/Test", &result);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value testFn;
     // 2. 使用napi_get_named_property获取test函数
-    napi_get_named_property(env, result, "test", &testFn);
+    status = napi_get_named_property(env, result, "test", &testFn);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     // 3. 使用napi_call_function调用函数test
-    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+    status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value value;
     napi_value key;
     std::string keyStr = "value";
     napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
     // 4. 使用napi_get_property获取变量value
-    napi_get_property(env, result, key, &value);
+    status = napi_get_property(env, result, key, &value);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     return result;
 }
 // [End napi_load_module_napi_file]
