@@ -55,19 +55,19 @@ interface DirectoryCreateResponseBody {
 }
 
 class DirectoryRequestBody {
-  buffer?: buffer.Buffer;
-  desiredAccess?: number;
-  fileAttributes?: number;
-  shareAccess?: number;
-  createDisposition?: number;
-  createOptions?: number;
-  nameOffset?: number;
-  createContextsOffset?: number;
-  flags?: number;
-  fileId?: string;
-  infoType?: number;
-  fileInfoClass?: number;
-  buf?: buffer.Buffer;
+  public buffer?: buffer.Buffer;
+  public desiredAccess?: number;
+  public fileAttributes?: number;
+  public shareAccess?: number;
+  public createDisposition?: number;
+  public createOptions?: number;
+  public nameOffset?: number;
+  public createContextsOffset?: number;
+  public flags?: number;
+  public fileId?: string;
+  public infoType?: number;
+  public fileInfoClass?: number;
+  public buf?: buffer.Buffer;
 }
 
 class DirectoryOpenOptionsModel implements OpenOptions {

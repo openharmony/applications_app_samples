@@ -70,36 +70,36 @@ interface NetShareEnumAllRequestBody {
 }
 
 class TreeHeaderOptions implements Smb2Header {
-  protocolId?: string;
-  structureSize?: number;
-  creditCharge?: number;
-  status?: number;
-  type?: Smb2PacketType;
-  credit?: number;
-  flags?: number;
-  nextCommand?: number;
-  messageId?: bigint;
-  clientId?: string;
-  treeId?: number;
-  sessionId?: string;
-  signature?: number;
+  public protocolId?: string;
+  public structureSize?: number;
+  public creditCharge?: number;
+  public status?: number;
+  public type?: Smb2PacketType;
+  public credit?: number;
+  public flags?: number;
+  public nextCommand?: number;
+  public messageId?: bigint;
+  public clientId?: string;
+  public treeId?: number;
+  public sessionId?: string;
+  public signature?: number;
 }
 
 class TreeRequestBody {
 }
 
 class TreePacketBody extends TreeRequestBody {
-  requestedOplockLevel?: number;
-  desiredAccess?: number;
-  shareAccess?: number;
-  createOptions?: number;
-  createDisposition?: number;
-  fileAttributes?: number;
-  nameOffset?: number;
-  createContextsOffset?: number;
-  fileId?: string;
-  buffer?: buffer.Buffer;
-  contextBuffer?: buffer.Buffer;
+  public requestedOplockLevel?: number;
+  public desiredAccess?: number;
+  public shareAccess?: number;
+  public createOptions?: number;
+  public createDisposition?: number;
+  public fileAttributes?: number;
+  public nameOffset?: number;
+  public createContextsOffset?: number;
+  public fileId?: string;
+  public buffer?: buffer.Buffer;
+  public contextBuffer?: buffer.Buffer;
 }
 
 class Tree extends EventEmitter {

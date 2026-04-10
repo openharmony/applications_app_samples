@@ -38,21 +38,21 @@ const responseStructure = new Structure()
   .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputBufferLength'));
 
 class DirectoryEntryModel implements DirectoryEntry {
-  index: number;
-  type: 'File' | 'Directory';
-  creationTime: Date;
-  lastAccessTime: Date;
-  lastWriteTime: Date;
-  changeTime: Date;
-  fileSize: BigInt;
-  allocationSize: BigInt;
-  shortFilename?: string;
-  eaSize: number;
-  fileId: string;
-  filename: string;
-  fileAttributes: string[];
-  shareEnum: string;
-  absoluteDir: string;
+  public index: number;
+  public type: 'File' | 'Directory';
+  public creationTime: Date;
+  public lastAccessTime: Date;
+  public lastWriteTime: Date;
+  public changeTime: Date;
+  public fileSize: BigInt;
+  public allocationSize: BigInt;
+  public shortFilename?: string;
+  public eaSize: number;
+  public fileId: string;
+  public filename: string;
+  public fileAttributes: string[];
+  public shareEnum: string;
+  public absoluteDir: string;
 
   constructor(index: number, type: 'File' | 'Directory', creationTime: Date, lastAccessTime: Date, lastWriteTime: Date,
     changeTime: Date, fileSize: BigInt, allocationSize: BigInt, shortFilename: string | undefined, eaSize: number,
@@ -101,8 +101,9 @@ const parseDirectoryEntry = (entryBuffer: buffer.Buffer): DirectoryEntry => {
   offset += 1;
   offset += 1;
   let shortFilename: string | undefined = undefined;
-  if (shortNameLength !== 0)
+  if (shortNameLength !== 0) {
     shortFilename = util.toUnixPath(entryBuffer.subarray(offset, offset + shortNameLength).toString('ucs2'));
+  }
   offset += 24;
   offset += 2;
   const data = entryBuffer.subarray(offset, offset + 8).swap64();

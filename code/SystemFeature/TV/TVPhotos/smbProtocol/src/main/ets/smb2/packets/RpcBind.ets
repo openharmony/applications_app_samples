@@ -64,11 +64,11 @@ export interface BindContext {
 }
 
 class BindContextModel implements BindContext {
-  contextId: number;
-  uuid: string;
-  uuidVersion: number;
-  transferUuid: string;
-  transferUuidVersion: number;
+  public contextId: number;
+  public uuid: string;
+  public uuidVersion: number;
+  public transferUuid: string;
+  public transferUuidVersion: number;
 
   constructor(contextId: number, uuid: string, uuidVersion: number, transferUuid: string, transferUuidVersion: number) {
     this.contextId = contextId;

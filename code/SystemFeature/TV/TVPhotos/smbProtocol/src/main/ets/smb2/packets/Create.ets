@@ -86,8 +86,8 @@ const responseStructure = new Structure()
   .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('createContextsLength'));
 
 class FileNameBuffer {
-  size: number;
-  buf: buffer.Buffer;
+  public size: number;
+  public buf: buffer.Buffer;
 
   constructor(size: number, buf: buffer.Buffer) {
     this.size = size;

@@ -19,14 +19,14 @@ import ProtocolResponse from '../Response';
 import buffer from '@ohos.buffer';
 
 export class ResponseBodyData {
-  buffer?: buffer.Buffer;
-  fileId?: string | buffer.Buffer;
-  endOfFile?: bigint;
-  maxReadSize?: number;
+  public buffer?: buffer.Buffer;
+  public fileId?: string | buffer.Buffer;
+  public endOfFile?: bigint;
+  public maxReadSize?: number;
 }
 
 class ResponseBodyBuffer {
-  buffer?: buffer.Buffer;
+  public buffer?: buffer.Buffer;
 }
 
 class EmptyHeader implements Header {

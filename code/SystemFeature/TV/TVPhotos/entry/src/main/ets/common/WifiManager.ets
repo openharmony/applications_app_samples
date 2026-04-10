@@ -31,25 +31,25 @@ import router from '@ohos.router'
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 
 class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(0)
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo
+  public message: ArrayBuffer = new ArrayBuffer(0)
+  public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo
 }
 
 class PhotoModel {
-  uri: string = ''
-  photoType: photoAccessHelper.PhotoType | null = null
-  displayName: string = ''
-  size: photoAccessHelper.MemberType = 0
-  duration: photoAccessHelper.MemberType = 0
-  width: photoAccessHelper.MemberType = 0
-  height: photoAccessHelper.MemberType = 0
-  dateTaken: photoAccessHelper.MemberType = 0
-  pixelMap: image.PixelMap | null = null
+  public uri: string = ''
+  public photoType: photoAccessHelper.PhotoType | null = null
+  public displayName: string = ''
+  public size: photoAccessHelper.MemberType = 0
+  public duration: photoAccessHelper.MemberType = 0
+  public width: photoAccessHelper.MemberType = 0
+  public height: photoAccessHelper.MemberType = 0
+  public dateTaken: photoAccessHelper.MemberType = 0
+  public pixelMap: image.PixelMap | null = null
 }
 
 export class Info {
-  code: number = 0;
-  message: string = ''
+  public code: number = 0;
+  public message: string = ''
 }
 
 interface ParamBrowser {

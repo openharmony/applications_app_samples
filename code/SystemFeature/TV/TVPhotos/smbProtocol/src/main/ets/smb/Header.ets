@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import PacketType from "./PacketType";
-import StructureField from "../StructureField";
-import { protocolIdStructureField } from "../Packet";
+import PacketType from './PacketType';
+import StructureField from '../StructureField';
+import { protocolIdStructureField } from '../Packet';
 
 export const headerSize = 32;
 
@@ -38,22 +38,22 @@ export default interface Header {
 }
 
 export type HeaderName = (
-  "protocolId" |
-  "type" |
-  "status" |
-  "flags" |
-  "flags2" |
-  "processIdHigh" |
-  "securityFeatures" |
-  "securitySignature" |
-  "key" |
-  "connectionId" |
-  "sequenceNumber" |
-  "reserved" |
-  "treeId" |
-  "processIdLow" |
-  "userId" |
-  "multiplexId"
+  'protocolId' |
+  'type' |
+  'status' |
+  'flags' |
+  'flags2' |
+  'processIdHigh' |
+  'securityFeatures' |
+  'securitySignature' |
+  'key' |
+  'connectionId' |
+  'sequenceNumber' |
+  'reserved' |
+  'treeId' |
+  'processIdLow' |
+  'userId' |
+  'multiplexId'
 );
 
 export type HeaderStructure = {

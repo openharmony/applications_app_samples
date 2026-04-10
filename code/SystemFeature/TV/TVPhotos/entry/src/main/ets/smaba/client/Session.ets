@@ -53,43 +53,43 @@ interface SessionSetupResponseBody {
 }
 
 class SessionHeaderOptions implements Smb2Header {
-  protocolId?: string;
-  structureSize?: number;
-  creditCharge?: number;
-  status?: number;
-  type?: Smb2PacketType;
-  credit?: number;
-  flags?: number;
-  nextCommand?: number;
-  messageId?: bigint;
-  clientId?: string;
-  treeId?: number;
-  sessionId?: string;
-  signature?: number;
+  public protocolId?: string;
+  public structureSize?: number;
+  public creditCharge?: number;
+  public status?: number;
+  public type?: Smb2PacketType;
+  public credit?: number;
+  public flags?: number;
+  public nextCommand?: number;
+  public messageId?: bigint;
+  public clientId?: string;
+  public treeId?: number;
+  public sessionId?: string;
+  public signature?: number;
 }
 
 class SessionRequestBody {
 }
 
 class SessionNegotiateRequestBody extends SessionRequestBody {
-  dialects: Smb2Dialect[] = [];
+  public dialects: Smb2Dialect[] = [];
 }
 
 class SessionSetupRequestBody extends SessionRequestBody {
-  buffer: buffer.Buffer = buffer.alloc(0);
+  public buffer: buffer.Buffer = buffer.alloc(0);
 }
 
 class SessionFileOpenRequestBody extends SessionRequestBody {
-  requestedOplockLevel?: number;
-  desiredAccess?: number;
-  shareAccess?: number;
-  createOptions?: number;
-  createDisposition?: number;
-  fileAttributes?: number;
-  nameOffset?: number;
-  createContextsOffset?: number;
-  buffer?: buffer.Buffer;
-  contextBuffer?: buffer.Buffer;
+  public requestedOplockLevel?: number;
+  public desiredAccess?: number;
+  public shareAccess?: number;
+  public createOptions?: number;
+  public createDisposition?: number;
+  public fileAttributes?: number;
+  public nameOffset?: number;
+  public createContextsOffset?: number;
+  public buffer?: buffer.Buffer;
+  public contextBuffer?: buffer.Buffer;
 }
 
 class Session extends EventEmitter {

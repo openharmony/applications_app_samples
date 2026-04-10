@@ -18,11 +18,11 @@ import buffer from '@ohos.buffer';
 import ProtocolRequest from '../Request';
 
 class RequestBodyData {
-  buffer?: buffer.Buffer;
+  public buffer?: buffer.Buffer;
 }
 
 class RequestBodyBuffer {
-  buffer?: buffer.Buffer;
+  public buffer?: buffer.Buffer;
 }
 
 class EmptyHeader implements Header {

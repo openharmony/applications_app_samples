@@ -24,7 +24,6 @@ class Flag {
   /* Requests that the server's authentication realm be included in the Type 2
      message. */
 
-  /* unknown (1<<3) */
   public NTLMFLAG_NEGOTIATE_SIGN = 1 << 4;
   /* Specifies that authenticated communication between the client and server
      should carry a digital signature (message integrity). */
@@ -41,12 +40,9 @@ class Flag {
      sealing authenticated communications. */
 
   public NTLMFLAG_NEGOTIATE_NETWARE = 1 << 8;
-  /* unknown purpose */
 
   public NTLMFLAG_NEGOTIATE_NTLM_KEY = 1 << 9;
   /* Indicates that NTLM authentication is being used. */
-
-  /* unknown (1<<10) */
 
   public NTLMFLAG_NEGOTIATE_ANONYMOUS = 1 << 11;
   /* Sent by the client in the Type 3 message to indicate that an anonymous
@@ -87,13 +83,10 @@ class Flag {
      protecting authenticated communications. */
 
   public NTLMFLAG_REQUEST_INIT_RESPONSE = 1 << 20;
-  /* unknown purpose */
 
   public NTLMFLAG_REQUEST_ACCEPT_RESPONSE = 1 << 21;
-  /* unknown purpose */
 
   public NTLMFLAG_REQUEST_NONNT_SESSION_KEY = 1 << 22;
-  /* unknown purpose */
 
   public NTLMFLAG_NEGOTIATE_TARGET_INFO = 1 << 23;
   /* Sent by the server in the Type 2 message to indicate that it is including a

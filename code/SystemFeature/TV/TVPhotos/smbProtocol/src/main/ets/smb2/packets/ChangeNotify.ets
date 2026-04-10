@@ -68,9 +68,9 @@ const responseStructure = new Structure()
   .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputBufferLength'));
 
 class ChangeEntryModel implements ChangeEntry {
-  action: FileAction;
-  actionName: string;
-  filename: string;
+  public action: FileAction;
+  public actionName: string;
+  public filename: string;
 
   constructor(action: FileAction, actionName: string, filename: string) {
     this.action = action;

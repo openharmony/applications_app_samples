@@ -58,22 +58,21 @@ interface FileReadResponseBody {
 }
 
 class FileRequestBody {
-  buf?: buffer.Buffer;
-  buffer?: buffer.Buffer;
-  desiredAccess?: number;
-  fileAttributes?: number;
-  shareAccess?: number;
-  createDisposition?: number;
-  createOptions?: number;
-  nameOffset?: number;
-  createContextsOffset?: number;
-  infoType?: number;
-  fileId?: buffer.Buffer | string;
-  fileInfoClass?: number;
-  offset?: buffer.Buffer;
-  length?: buffer.Buffer;
-  contextBuffer?: buffer.Buffer;
-  requestedOplockLevel?: number;
+  public buffer?: buffer.Buffer;
+  public desiredAccess?: number;
+  public fileAttributes?: number;
+  public shareAccess?: number;
+  public createDisposition?: number;
+  public createOptions?: number;
+  public nameOffset?: number;
+  public createContextsOffset?: number;
+  public infoType?: number;
+  public fileId?: buffer.Buffer | string;
+  public fileInfoClass?: number;
+  public offset?: buffer.Buffer;
+  public length?: buffer.Buffer;
+  public contextBuffer?: buffer.Buffer;
+  public requestedOplockLevel?: number;
 }
 
 class FileOpenOptionsModel implements OpenOptions {

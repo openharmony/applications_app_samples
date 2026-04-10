@@ -18,11 +18,11 @@ import StructureField from '../../StructureField';
 import { bufferAlign, bufferAppendTerminator } from '../../util';
 
 export class ShareEnum {
-  namePointer: number = 0
-  name: string = ''
-  type: number = 0
-  commentPointer: number = 0
-  comment: string = ''
+  public namePointer: number = 0
+  public name: string = ''
+  public type: number = 0
+  public commentPointer: number = 0
+  public comment: string = ''
 }
 
 const requestStructure = new Structure()
