@@ -30,7 +30,7 @@
     "metadata": [
       {
         "name": "ohos.module.distribution",
-        "resource": "$profile:distributionFilter_config",
+        "resource": "$profile:distributionFilter_config"
       }
     ],
     // [StartExclude module_distributionFilter_metadata]
@@ -75,9 +75,9 @@
         ],
       }
     ]
-  },
-  // [EndExclude module_distributionFilter_metadata]
-  // [EndExclude module_distributionFilter_01]
+    // [EndExclude module_distributionFilter_metadata]
+    // [EndExclude module_distributionFilter_01]
+  }
 }
 // [End module_distributionFilter_metadata]
 // [End module_distributionFilter_01]
