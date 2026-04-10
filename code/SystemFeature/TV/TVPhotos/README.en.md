@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This application uses APIs such as [@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+This application uses APIs such as [@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
 to provide image viewing, album categorization, and deletion capabilities for the system gallery.
 
 Instructions:
@@ -62,7 +62,7 @@ entry/src/main/ets/
 
 - The capabilities for loading the photo list and album categories are encapsulated in [Index.ets](entry/src/main/ets/pages/Index.ets)
   - The home page supports focus switching between the **Photos** and **Albums** menus, and uses `phAccessHelper.getAlbums` to obtain album category data.
-  - It uses `phAccessHelper.getFileAssets` to obtain media assets, and then reads query results through `fetchFileResult.getAllObject`. For API details, see [@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md).
+  - It uses `phAccessHelper.getFileAssets` to obtain media assets, and then reads query results through `fetchFileResult.getAllObject`. For API details, see [@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md).
   - The bottom menu supports select, share, and delete operations. The delete capability is implemented through `MediaAssetChangeRequest.deleteAssets`.
 - The capabilities for the album list page are encapsulated in [PhotoList.ets](entry/src/main/ets/pages/PhotoList.ets)
   - It calls `phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)` to obtain system album category data, and supports focus switching and menu operations.
@@ -89,7 +89,7 @@ None
 1. This sample runs only on standard systems and supports the following devices: RK3568 and V900.
 2. This sample uses the Stage model and supports API 10 SDK, SDK version (API Version 12 Release), and image version (5.0 Release).
 3. This sample must be compiled and run with DevEco Studio 5.0 Release or later.
-4. Some APIs used in this sample require a system application signature. For details, see [How to Configure Special Permissions](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md), and change the `apl` field in the configuration file to `system_core`.
+4. Some APIs used in this sample require a system application signature. For details, see [How to Configure Special Permissions](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md), and change the `apl` field in the configuration file to `system_core`.
 
 ### Download
 
@@ -98,7 +98,7 @@ To download this project separately, run the following commands:
 ```
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/FileManagement/FileShare/Picker > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/BasicFeature/TV/TVPhotos > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

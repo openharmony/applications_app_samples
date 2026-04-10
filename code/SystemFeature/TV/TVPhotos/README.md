@@ -3,7 +3,7 @@
 ### Introduce
 
 The application uses interfaces such
-as[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+as[@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
 to implement functions like viewing pictures in the system album, classifying albums, and deleting them.
 
 Instructions for Use:
@@ -54,7 +54,7 @@ entry/src/main/ets/
     * The default focus is on the photo, and you can take photos left and right. To switch between albums, use
       phAccessHelper.getAlbums to obtain an instance of the album, which is used to access video and image categories;
     * Use phAccessHelper.getFileAssets to retrieve file resources; Use to fetch FileResult.getAllObject to retrieve all
-      file retrieval results. Interface reference:[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+      file retrieval results. Interface reference:[@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
     * Click the menu button to bring up the menu function, select photos, and use MediaAssetChangeRequest.deleteAssets
       to delete file instances.
 - The function of the photo list is encapsulated in PhotoList.ets, source code
@@ -94,7 +94,7 @@ and the mirror version number (5.0 Release).
 3.This example requires DevEco Studio with a version number (5.0 Release) or above to compile and run.
 
 4.This example involves some interfaces that require configuring the system application signature. You can refer to
-the [Special Permission Configuration Method](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
+the [Special Permission Configuration Method](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
 and change the "apl" field information in the configuration file to "system_core".
 
 ### Download
@@ -105,7 +105,7 @@ If you need to download this project separately, execute the following commands:
 git init
 git config core.sparsecheckout true
 echo code/SystemFeature/FileManagement/FileShare/Picker > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
 

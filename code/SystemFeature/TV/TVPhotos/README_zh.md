@@ -2,7 +2,7 @@
 
 ### 介绍
 
-应用使用[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+应用使用[@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
 等接口，实现了系统相册图片查看、相册分类和删除的功能。
 
 使用说明：
@@ -61,7 +61,7 @@ entry/src/main/ets/
 
 - 获取照片列表和相册分类的能力封装在 [Index.ets](entry/src/main/ets/pages/Index.ets)
     * 首页支持在“照片”和“相册”两个菜单之间进行焦点切换，并通过 `phAccessHelper.getAlbums` 获取相册分类数据；
-    * 通过 `phAccessHelper.getFileAssets` 获取媒体资源，再通过 `fetchFileResult.getAllObject` 读取检索结果，接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)；
+    * 通过 `phAccessHelper.getFileAssets` 获取媒体资源，再通过 `fetchFileResult.getAllObject` 读取检索结果，接口参考：[@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)；
     * 底部菜单支持选择、分享和删除操作，其中删除能力通过 `MediaAssetChangeRequest.deleteAssets` 实现。
 - 相册列表页面的能力封装在 [PhotoList.ets](entry/src/main/ets/pages/PhotoList.ets)
     * 通过 `phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)` 获取系统相册分类，并支持焦点切换和菜单操作。
@@ -91,7 +91,7 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 版本号(5.0 Release)及以上版本才可编译运行。
 
-4.本示例涉及部分接口需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
+4.本示例涉及部分接口需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitcode.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
 ，把配置文件中的“apl”字段信息改为“system_core”。
 
 ### 下载
@@ -101,7 +101,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/FileManagement/FileShare/Picker > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/BasicFeature/TV/TVPhotos > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
