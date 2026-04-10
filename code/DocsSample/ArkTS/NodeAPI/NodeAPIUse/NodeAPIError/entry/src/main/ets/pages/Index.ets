@@ -147,7 +147,7 @@ struct Index {
                     // [EndExclude ark_napi_throw_error]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
-                      'Test Node-API napi_throw_error errorCode: %{public}s , errorManager: %{public}s', error.code,
+                      'Test Node-API napi_throw_error errorCode: %{public}s , errorMessage: %{public}s', error.code,
                       error.message);
                     // [StartExclude ark_napi_throw_error]
                     this.result = 'napiThrowErrorFail';
