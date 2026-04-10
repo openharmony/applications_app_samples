@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AlbumModel, AlbumType, PhotoModel } from "../../models/PhotoModel";
-import { SubTypeLoader } from "./SubTypeLoader";
-import { photoAccessHelper } from "@kit.MediaLibraryKit";
+import { AlbumModel, AlbumType, PhotoModel } from '../../models/PhotoModel';
+import { SubTypeLoader } from './SubTypeLoader';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'PHOTOM_TrashPhotoLoader'
 

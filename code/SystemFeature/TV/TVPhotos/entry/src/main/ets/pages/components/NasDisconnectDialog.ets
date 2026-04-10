@@ -29,10 +29,10 @@ export struct NasDisconnectDialog {
   build() {
     Column() {
       Text($r('app.string.nas_disconnect'))
-        .fontFamily("HarmonyOS Sans")
+        .fontFamily('HarmonyOS Sans')
         .fontWeight(FontWeight.Medium)
         .fontColor(Color.White)
-        .fontSize("40lpx")
+        .fontSize('40lpx')
       Blank()
       Row() {
         Stack() {
@@ -41,10 +41,10 @@ export struct NasDisconnectDialog {
             .width('100%')
             .height('72lpx')
             .textAlign(TextAlign.Center)
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontWeight(FontWeight.Medium)
             .fontColor(Color.White)
-            .fontSize("40lpx")
+            .fontSize('40lpx')
             .focusable(true)
             .backgroundColor('#6A6A6A')
             .borderRadius('49lpx')
@@ -53,11 +53,11 @@ export struct NasDisconnectDialog {
               this.onCancel && this.onCancel()
             })
         }
-        .padding("5lpx")
+        .padding('5lpx')
         .border({
-          width: "2lpx",
+          width: '2lpx',
           color: this.focusStr === 'btn_cancel' ? Color.White : Color.Transparent,
-          radius: "54lpx",
+          radius: '54lpx',
           style: BorderStyle.Solid
         })
         .width('240lpx')
@@ -69,10 +69,10 @@ export struct NasDisconnectDialog {
             .width('100%')
             .height('72lpx')
             .textAlign(TextAlign.Center)
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontWeight(FontWeight.Medium)
             .fontColor(Color.White)
-            .fontSize("40lpx")
+            .fontSize('40lpx')
             .focusable(true)
             .backgroundColor('#6A6A6A')
             .borderRadius('49lpx')
@@ -81,11 +81,11 @@ export struct NasDisconnectDialog {
               this.onConfirm && this.onConfirm()
             })
         }
-        .padding("5lpx")
+        .padding('5lpx')
         .border({
-          width: "2lpx",
+          width: '2lpx',
           color: this.focusStr === 'btn_confirm' ? Color.White : Color.Transparent,
-          radius: "54lpx",
+          radius: '54lpx',
           style: BorderStyle.Solid
         })
         .width('240lpx')

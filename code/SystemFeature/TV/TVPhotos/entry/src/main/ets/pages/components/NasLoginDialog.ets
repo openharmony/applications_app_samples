@@ -48,10 +48,10 @@ export struct NasLoginDialog {
   build() {
     Column() {
       Text($r('app.string.nas_login_title'))
-        .fontFamily("HarmonyOS Sans")
+        .fontFamily('HarmonyOS Sans')
         .fontWeight(FontWeight.Medium)
         .fontColor(Color.White)
-        .fontSize("48lpx")
+        .fontSize('48lpx')
       Row() {
         TextInput({
           placeholder: $r('app.string.nas_login_username'),
@@ -70,11 +70,11 @@ export struct NasLoginDialog {
           })
           .onKeyEvent((e) => this.keyEvent(e, 'id_0_0'))
       }
-      .padding("5lpx")
+      .padding('5lpx')
       .border({
-        width: "2lpx",
+        width: '2lpx',
         color: this.focusStr === 'id_0_0' ? Color.White : Color.Transparent,
-        radius: "54lpx",
+        radius: '54lpx',
         style: BorderStyle.Solid
       })
       .alignItems(VerticalAlign.Center)
@@ -99,11 +99,11 @@ export struct NasLoginDialog {
             .borderRadius('49lpx')
             .onKeyEvent((e) => this.keyEvent(e, 'id_1_0'))
         }
-        .padding("5lpx")
+        .padding('5lpx')
         .border({
-          width: "2lpx",
+          width: '2lpx',
           color: this.focusStr === 'id_1_0' ? Color.White : Color.Transparent,
-          radius: "54lpx",
+          radius: '54lpx',
           style: BorderStyle.Solid
         })
         .alignItems(VerticalAlign.Center)
@@ -130,10 +130,10 @@ export struct NasLoginDialog {
             .width('100%')
             .height('98lpx')
             .textAlign(TextAlign.Center)
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontWeight(FontWeight.Medium)
             .fontColor(Color.White)
-            .fontSize("40lpx")
+            .fontSize('40lpx')
             .focusable(true)
             .backgroundColor('#6A6A6A')
             .borderRadius('49lpx')
@@ -142,11 +142,11 @@ export struct NasLoginDialog {
               this.onCancel && this.onCancel()
             })
         }
-        .padding("5lpx")
+        .padding('5lpx')
         .border({
-          width: "2lpx",
+          width: '2lpx',
           color: this.focusStr === 'id_2_0' ? Color.White : Color.Transparent,
-          radius: "54lpx",
+          radius: '54lpx',
           style: BorderStyle.Solid
         })
         .width('264lpx')
@@ -158,10 +158,10 @@ export struct NasLoginDialog {
             .width('100%')
             .height('98lpx')
             .textAlign(TextAlign.Center)
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontWeight(FontWeight.Medium)
             .fontColor(Color.White)
-            .fontSize("40lpx")
+            .fontSize('40lpx')
             .focusable(true)
             .backgroundColor('#6A6A6A')
             .borderRadius('49lpx')
@@ -176,11 +176,11 @@ export struct NasLoginDialog {
               }
             })
         }
-        .padding("5lpx")
+        .padding('5lpx')
         .border({
-          width: "2lpx",
+          width: '2lpx',
           color: this.focusStr === 'id_2_1' ? Color.White : Color.Transparent,
-          radius: "54lpx",
+          radius: '54lpx',
           style: BorderStyle.Solid
         })
         .width('264lpx')

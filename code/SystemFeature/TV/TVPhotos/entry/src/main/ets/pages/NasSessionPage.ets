@@ -111,17 +111,17 @@ struct NasSessionPage {
       Column() {
         Row() {
           Text($r('app.string.album_name_more'))
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontColor(Color.White)
-            .fontSize("64lpx")
+            .fontSize('64lpx')
         }
         .width('100%')
         .justifyContent(FlexAlign.SpaceBetween)
         .padding({
-          left: "33lpx",
-          right: "33lpx",
-          top: "48lpx",
-          bottom: "56lpx"
+          left: '33lpx',
+          right: '33lpx',
+          top: '48lpx',
+          bottom: '56lpx'
         })
 
         Grid(this.scroller) {
@@ -131,7 +131,7 @@ struct NasSessionPage {
                 Stack({ alignContent: Alignment.Bottom }) {
                   if (item.isPlaceHolder) {
                     Image($r('app.media.cover_add'))
-                      .borderRadius("18lpx")
+                      .borderRadius('18lpx')
                       .id(SESSION_PREFIX + index)
                       .focusable(true)
                       .width('100%')
@@ -167,18 +167,18 @@ struct NasSessionPage {
 
                     Column() {
                       Text($r('app.string.add_nas_servers'))
-                        .fontFamily("HarmonyOS Sans")
+                        .fontFamily('HarmonyOS Sans')
                         .width('100%')
-                        .height("32lpx")
+                        .height('32lpx')
                         .fontWeight(500)
-                        .fontColor("#DBFFFFFF")
-                        .fontSize("32lpx")
-                        .margin({ bottom: "12lpx" })
+                        .fontColor('#DBFFFFFF')
+                        .fontSize('32lpx')
+                        .margin({ bottom: '12lpx' })
                     }
                     .backgroundImage($r('app.media.mask'))
                     .width('100%')
                     .align(Alignment.Bottom)
-                    .padding({ top: "46lpx", left: "10%" })
+                    .padding({ top: '46lpx', left: '10%' })
                   } else {
                     NasImage({
                       host: item.host,
@@ -192,35 +192,35 @@ struct NasSessionPage {
 
                     Column() {
                       Text(item.host)
-                        .fontFamily("HarmonyOS Sans")
+                        .fontFamily('HarmonyOS Sans')
                         .width('100%')
-                        .height("32lpx")
+                        .height('32lpx')
                         .fontWeight(500)
-                        .fontColor("#DBFFFFFF")
-                        .fontSize("32lpx")
-                        .margin({ bottom: "12lpx" })
+                        .fontColor('#DBFFFFFF')
+                        .fontSize('32lpx')
+                        .margin({ bottom: '12lpx' })
                       Text(`${item.fileSize}`)
-                        .fontFamily("HarmonyOS Sans")
+                        .fontFamily('HarmonyOS Sans')
                         .width('100%')
-                        .height("32lpx")
+                        .height('32lpx')
                         .fontWeight(500)
-                        .fontColor("#DBFFFFFF")
-                        .fontSize("32lpx")
-                        .margin({ bottom: "10%" })
+                        .fontColor('#DBFFFFFF')
+                        .fontSize('32lpx')
+                        .margin({ bottom: '10%' })
                     }
                     .backgroundImage($r('app.media.mask'))
                     .width('100%')
                     .align(Alignment.Bottom)
-                    .padding({ top: "46lpx", left: "10%" })
+                    .padding({ top: '46lpx', left: '10%' })
                   }
                 }
                 .width('100%')
-                .borderRadius("18lpx")
+                .borderRadius('18lpx')
                 .aspectRatio(1)
               }
-              .borderRadius("22lpx")
-              .margin("24lpx")
-              .padding("6lpx")
+              .borderRadius('22lpx')
+              .margin('24lpx')
+              .padding('6lpx')
               .border({
                 width: 2,
                 color: this.focusStr == (SESSION_PREFIX + index) ? '#fff' : Color.Transparent, // 边框颜色
@@ -231,7 +231,7 @@ struct NasSessionPage {
           }, (item: SessionModel) => item.host + item.fileSize)
         }
         .columnsTemplate('1fr '.repeat(this.albumGridRowCount))
-        .padding({ left: "4lpx", right: "4lpx" })
+        .padding({ left: '4lpx', right: '4lpx' })
         .height('80%')
         .width('100%')
       }

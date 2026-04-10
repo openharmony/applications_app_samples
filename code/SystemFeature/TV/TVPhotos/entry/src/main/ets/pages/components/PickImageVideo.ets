@@ -31,7 +31,7 @@ export struct PickImageVideo {
 
   build() {
     Image(this.album)
-      .borderRadius("18lpx")
+      .borderRadius('18lpx')
       .id(this.focusId)
       .focusable(true)
       .width('100%')
@@ -53,4 +53,3 @@ export struct PickImageVideo {
       .height('100%')
   }
 }
-

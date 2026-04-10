@@ -229,7 +229,6 @@ struct PhotoIndex {
     photoManager.getLoader(AlbumType.FAVORITE)?.registerChangeCallback(this.favoritePhotoObserver)
     photoManager.getLoader(AlbumType.SCREENSHOT)?.registerChangeCallback(this.screenShotPhotoObserver)
     photoManager.getLoader(AlbumType.TRASH)?.registerChangeCallback(this.trashPhotoObserver)
-    // nasManager.getSessionLoader().registerChangeCallback(this.nasSessionObserver)
     nasSessionManager.registerSessionCallback(this.nasSessionObserver)
     // 注册监听相册变化
     setTimeout(() => {

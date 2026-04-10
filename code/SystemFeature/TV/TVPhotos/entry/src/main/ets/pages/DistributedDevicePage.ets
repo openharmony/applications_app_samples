@@ -22,7 +22,7 @@ import { router } from '@kit.ArkUI';
 
 const TAG = 'DistributedDevicePage';
 const FOCUS_CHANGE_DELAY = 100;
-const LOADING_IMG_HEIGHT = "200lpx"
+const LOADING_IMG_HEIGHT = '200lpx'
 const DEVICE_LOADING_TEXT = '38lpx'
 
 @Entry
@@ -140,7 +140,7 @@ export struct DistributedDevicePage {
           .defaultFocus(true)
           .id('default_focus_id')
           .fontWeight(FontWeight.Medium)
-          .fontFamily("HarmonyOS Sans")
+          .fontFamily('HarmonyOS Sans')
           .fontColor('#FFFFFFFF')
           .fontSize('63lpx')
           .margin({
@@ -176,7 +176,7 @@ export struct DistributedDevicePage {
 
             Text($r('app.string.Device_search_in_progress'))
               .fontWeight(FontWeight.Medium)
-              .fontFamily("HarmonyOS Sans")
+              .fontFamily('HarmonyOS Sans')
               .fontColor($r('app.color.decice_search_in_text'))
               .fontSize(DEVICE_LOADING_TEXT)
               .margin({ top: '2.6%',bottom: LOADING_IMG_HEIGHT })
@@ -198,10 +198,10 @@ export struct DistributedDevicePage {
                     // 分布式可信设备列表
                     Column() {
                       Text($r('app.string.distributed_device_available'))
-                        .fontSize("48lpx")
+                        .fontSize('48lpx')
                         .fontColor(Color.White)
                         .textAlign(TextAlign.Center)
-                        .margin({ bottom: "36lpx" })
+                        .margin({ bottom: '36lpx' })
                     }
                   }
 
@@ -209,7 +209,7 @@ export struct DistributedDevicePage {
                     Row() {
                       Row() {
                         Text(item.deviceName)
-                          .fontFamily("HarmonyOS Sans")
+                          .fontFamily('HarmonyOS Sans')
                           .fontSize('36lpx')
                           .fontColor('#FFFFFFFF')
                           .focusable(true)
@@ -235,7 +235,6 @@ export struct DistributedDevicePage {
                             if ((event.keyCode === KeyCode.KEYCODE_DPAD_CENTER ||
                               event.keyCode === KeyCode.KEYCODE_ENTER) &&
                               event.type === KeyType.Down) {
-                              // this.onAvailableDeviceEnterClick(item);
                             }
                           })
                       }.margin({
@@ -243,7 +242,7 @@ export struct DistributedDevicePage {
                       })
 
                       Image($r('app.media.ic_arrow_right'))
-                        .width("16lpx")
+                        .width('16lpx')
                     }
                     .padding({
                       left: '20lpx',
@@ -251,14 +250,14 @@ export struct DistributedDevicePage {
                     })
                     .width('820lpx')
                     .height('100lpx')
-                    .borderRadius("18lpx")
+                    .borderRadius('18lpx')
                     .alignItems(VerticalAlign.Center)
                     .justifyContent(FlexAlign.SpaceBetween)
                     .backgroundColor('#FF464648')
                   }
                   .id('available_device_' + index)
                   .width('840lpx')
-                  .borderRadius("24lpx")
+                  .borderRadius('24lpx')
                   .padding('10lpx')
                   .border({
                     width: '2lpx',
@@ -280,17 +279,17 @@ export struct DistributedDevicePage {
                     // 分布式在线设备列表
                     Column() {
                       Text($r('app.string.distributed_device_other'))
-                        .fontSize("48lpx")
+                        .fontSize('48lpx')
                         .fontColor(Color.White)
                         .textAlign(TextAlign.Center)
-                        .margin({ top: '30lpx', bottom: "36lpx" })
+                        .margin({ top: '30lpx', bottom: '36lpx' })
                     }
                   }
                   Column() {
                     Row() {
                       Row() {
                         Text(item.deviceName)
-                          .fontFamily("HarmonyOS Sans")
+                          .fontFamily('HarmonyOS Sans')
                           .fontSize('36lpx')
                           .fontColor('#FFFFFFFF')
                           .focusable(true)
@@ -323,7 +322,7 @@ export struct DistributedDevicePage {
                       })
 
                       Image($r('app.media.ic_arrow_right'))
-                        .width("16lpx")
+                        .width('16lpx')
                     }
                     .padding({
                       left: '20lpx',
@@ -331,14 +330,14 @@ export struct DistributedDevicePage {
                     })
                     .width('820lpx')
                     .height('100lpx')
-                    .borderRadius("18lpx")
+                    .borderRadius('18lpx')
                     .alignItems(VerticalAlign.Center)
                     .justifyContent(FlexAlign.SpaceBetween)
                     .backgroundColor('#FF464648')
                   }
                   .id('other_device_' + index)
                   .width('840lpx')
-                  .borderRadius("24lpx")
+                  .borderRadius('24lpx')
                   .padding('10lpx')
                   .border({
                     width: '2lpx',
@@ -366,14 +365,14 @@ export struct DistributedDevicePage {
             Row() {
               Column() {
                 Text($r('app.string.connect'))
-                  .width("230lpx")
-                  .height("72lpx")
+                  .width('230lpx')
+                  .height('72lpx')
                   .id('dialog_connect')
                   .focusable(true)
-                  .backgroundColor("#33FFFFFF")
-                  .borderRadius("200lpx")
-                  .fontFamily("HarmonyOS Sans")
-                  .fontSize("36lpx")
+                  .backgroundColor('#33FFFFFF')
+                  .borderRadius('200lpx')
+                  .fontFamily('HarmonyOS Sans')
+                  .fontSize('36lpx')
                   .textAlign(TextAlign.Center)
                   .fontColor('#DBFFFFFF')
                   .fontWeight(FontWeight.Bold)
@@ -394,8 +393,8 @@ export struct DistributedDevicePage {
                     }
                   })
               }
-              .borderRadius("200lpx")
-              .padding("6lpx")
+              .borderRadius('200lpx')
+              .padding('6lpx')
               .border({
                 width: 2,
                 color: this.dialogFocusStr === 'dialog_connect' ? '#fff' : Color.Transparent,
@@ -404,14 +403,14 @@ export struct DistributedDevicePage {
 
               Column() {
                 Text($r('app.string.unbind'))
-                  .width("230lpx")
-                  .height("72lpx")
+                  .width('230lpx')
+                  .height('72lpx')
                   .id('dialog_unbind')
                   .focusable(true)
-                  .backgroundColor("#33FFFFFF")
-                  .borderRadius("200lpx")
-                  .fontFamily("HarmonyOS Sans")
-                  .fontSize("36lpx")
+                  .backgroundColor('#33FFFFFF')
+                  .borderRadius('200lpx')
+                  .fontFamily('HarmonyOS Sans')
+                  .fontSize('36lpx')
                   .textAlign(TextAlign.Center)
                   .fontColor('#DBFFFFFF')
                   .fontWeight(FontWeight.Bold)
@@ -432,8 +431,8 @@ export struct DistributedDevicePage {
                     }
                   })
               }
-              .borderRadius("200lpx")
-              .padding("6lpx")
+              .borderRadius('200lpx')
+              .padding('6lpx')
               .border({
                 width: 2,
                 color: this.dialogFocusStr === 'dialog_unbind' ? '#fff' : Color.Transparent,
@@ -445,10 +444,10 @@ export struct DistributedDevicePage {
           }
           .width('640lpx')
           .height('200lpx')
-          .backgroundColor("rgba(64, 64, 64 , 1)")
+          .backgroundColor('rgba(64, 64, 64 , 1)')
           .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-          .borderRadius("24lpx")
-          .padding("48lpx")
+          .borderRadius('24lpx')
+          .padding('48lpx')
         }
         .position({ x: '0%', y: '39%' })
       }

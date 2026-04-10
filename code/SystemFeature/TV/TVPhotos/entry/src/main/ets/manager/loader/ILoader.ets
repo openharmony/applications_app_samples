@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AlbumModel, PhotoModel } from "../../models/PhotoModel"
-import { common } from "@kit.AbilityKit";
+import { AlbumModel, PhotoModel } from '../../models/PhotoModel'
+import { common } from '@kit.AbilityKit';
 
 export interface ILoader<T> {
   init: (context: common.UIAbilityContext) => void;

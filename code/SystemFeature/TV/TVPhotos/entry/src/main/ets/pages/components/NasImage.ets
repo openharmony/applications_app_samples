@@ -50,7 +50,7 @@ export struct NasImage {
 
   build() {
     Image(this.album)
-      .borderRadius("18lpx")
+      .borderRadius('18lpx')
       .id(this.focusId)
       .focusable(true)
       .width('100%')
@@ -105,4 +105,3 @@ export struct NasImage {
       .height('100%')
   }
 }
-

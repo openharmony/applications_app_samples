@@ -589,7 +589,8 @@ struct PhotoDeleteList {
                       if (!EventUtil.isTouchEvent(event)) {
                         return
                       }
-                      if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== Constants.SOURCE_TOOL_MOUSE_CLICK) {
+                      if (event.sourceTool !== SourceTool.Pen &&
+                        event.sourceTool !== Constants.SOURCE_TOOL_MOUSE_CLICK) {
                         return;
                       }
                       this.menuIndex = index;

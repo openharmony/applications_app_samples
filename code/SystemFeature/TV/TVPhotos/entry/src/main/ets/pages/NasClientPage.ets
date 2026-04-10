@@ -129,33 +129,33 @@ struct NasClientPage {
       Column() {
         Row() {
           Text($r('app.string.nas_servers'))
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontColor(Color.White)
-            .fontSize("64lpx")
+            .fontSize('64lpx')
         }
         .width('100%')
         .justifyContent(FlexAlign.SpaceBetween)
         .padding({
-          left: "33lpx",
-          right: "33lpx",
-          top: "48lpx",
-          bottom: "56lpx"
+          left: '33lpx',
+          right: '33lpx',
+          top: '48lpx',
+          bottom: '56lpx'
         })
 
         if (this.loading) {
           Stack() {
             LoadingProgress()
               .color(Color.White)
-              .width("160lpx")
-              .height("160lpx")
+              .width('160lpx')
+              .height('160lpx')
           }.width('100%')
           .height('80%')
         } else if (this.clients.length === 0) {
           Stack() {
             Text(this.isNasFindFailed?$r('app.string.nas_find_failed'):$r('app.string.no_nas_servers'))
-              .fontFamily("HarmonyOS Sans")
+              .fontFamily('HarmonyOS Sans')
               .fontColor(Color.White)
-              .fontSize("48lpx")
+              .fontSize('48lpx')
           }.width('100%')
           .height('80%')
         } else {
@@ -165,7 +165,7 @@ struct NasClientPage {
                 Column() {
                   Stack({ alignContent: Alignment.Bottom }) {
                     Image($r('app.media.cover_nas_server'))
-                      .borderRadius("18lpx")
+                      .borderRadius('18lpx')
                       .id(CLIENT_PREFIX + index)
                       .focusable(true)
                       .width('100%')
@@ -186,26 +186,26 @@ struct NasClientPage {
 
                     Column() {
                       Text(item.host)
-                        .fontFamily("HarmonyOS Sans")
+                        .fontFamily('HarmonyOS Sans')
                         .width('100%')
-                        .height("32lpx")
+                        .height('32lpx')
                         .fontWeight(500)
-                        .fontColor("#DBFFFFFF")
-                        .fontSize("32lpx")
-                        .margin({ bottom: "12lpx" })
+                        .fontColor('#DBFFFFFF')
+                        .fontSize('32lpx')
+                        .margin({ bottom: '12lpx' })
                     }
                     .backgroundImage($r('app.media.mask'))
                     .width('100%')
                     .align(Alignment.Bottom)
-                    .padding({ top: "46lpx", left: "10%" })
+                    .padding({ top: '46lpx', left: '10%' })
                   }
                   .width('100%')
-                  .borderRadius("18lpx")
+                  .borderRadius('18lpx')
                   .aspectRatio(1)
                 }
-                .borderRadius("22lpx")
-                .margin("24lpx")
-                .padding("6lpx")
+                .borderRadius('22lpx')
+                .margin('24lpx')
+                .padding('6lpx')
                 .border({
                   width: 2,
                   color: this.focusStr === (CLIENT_PREFIX + index) ? Color.White : Color.Transparent, // 边框颜色
@@ -216,7 +216,7 @@ struct NasClientPage {
             }, (item: Client, index: number) => item.host + index)
           }
           .columnsTemplate('1fr '.repeat(this.albumGridRowCount))
-          .padding({ left: "4lpx", right: "4lpx" })
+          .padding({ left: '4lpx', right: '4lpx' })
           .width('100%')
           .height('80%')
         }

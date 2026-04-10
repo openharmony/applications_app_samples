@@ -59,14 +59,14 @@ export async function loadVideoThumb(
     if (videoFile) {
       fileIo.closeSync(videoFile);
     }
-    if (thumbnail) {
-      Logger.info(TAG, `do save`)
-      await fileUtil.savePixelMap(thumbnail, localPath)
-    } else {
-      throw new Error(`thumbnail create fail`)
-    }
-    Logger.warn(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime))
   }
+  if (thumbnail) {
+    Logger.info(TAG, `do save`)
+    await fileUtil.savePixelMap(thumbnail, localPath)
+  } else {
+    throw new Error(`thumbnail create fail`)
+  }
+  Logger.warn(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime))
   return localPath
 }
 

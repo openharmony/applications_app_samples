@@ -24,7 +24,7 @@ export const DEFAULT_ALBUM_WIDTH = 640
 
 export async function getNasThumb(context: Context, session: Session, imageFile: DirectoryEntry,
   tag: string): Promise<string> {
-  Logger.info(TAG, 'getThumb by uri = ' + JSON.stringify(imageFile, smbUtil.bigIntReplacer) + " from " + tag)
+  Logger.info(TAG, 'getThumb by uri = ' + JSON.stringify(imageFile, smbUtil.bigIntReplacer) + ' from ' + tag)
   const thumbPath = await getSavedNasThumbPath(context, session, imageFile)
   Logger.info(TAG, 'getThumb = ' + thumbPath)
   if (thumbPath) {
@@ -97,4 +97,3 @@ export async function loadNasThumb(context: Context, session: Session, imageFile
   Logger.warn(TAG, 'loadImageThumb task end' + (Date.now() - startTime))
   return localPath
 }
-

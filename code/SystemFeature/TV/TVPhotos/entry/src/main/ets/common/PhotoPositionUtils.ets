@@ -70,9 +70,9 @@ export class PhotoPositionUtils {
         return undefined;
       }
     }
-    if ((currentPosition.rowIndex === 0 && currentPosition.columIndex < FIRST_ROW_MAX_INDEX)
-      || (currentPosition.rowIndex === 1 && currentPosition.columIndex < SECOND_ROW_MAX_INDEX)
-      || (currentPosition.rowIndex > 1 && currentPosition.columIndex < OTHER_ROW_MAX_INDEX)) {
+    if ((currentPosition.rowIndex === 0 && currentPosition.columIndex < FIRST_ROW_MAX_INDEX) ||
+      (currentPosition.rowIndex === 1 && currentPosition.columIndex < SECOND_ROW_MAX_INDEX) ||
+      (currentPosition.rowIndex > 1 && currentPosition.columIndex < OTHER_ROW_MAX_INDEX)) {
       return new PhotoPosition(groupIndex, currentPosition.rowIndex, currentPosition.columIndex + 1)
     }
     return undefined;

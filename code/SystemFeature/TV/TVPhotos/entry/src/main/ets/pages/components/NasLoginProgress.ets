@@ -7,15 +7,15 @@ export struct NasLoginProgress {
   build() {
     Row() {
       Text($r('app.string.nas_connecting'))
-        .fontFamily("HarmonyOS Sans")
+        .fontFamily('HarmonyOS Sans')
         .fontWeight(FontWeight.Medium)
         .fontColor(Color.White)
-        .fontSize("48lpx")
+        .fontSize('48lpx')
       Blank()
       LoadingProgress()
         .color(Color.White)
-        .width("80lpx")
-        .height("80lpx")
+        .width('80lpx')
+        .height('80lpx')
     }
     .padding('78lpx')
     .width('100%')

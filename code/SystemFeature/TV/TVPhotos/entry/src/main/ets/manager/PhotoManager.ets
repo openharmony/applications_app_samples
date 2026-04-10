@@ -25,9 +25,9 @@ import { rdbManager } from './RdbManager'
 const TAG = 'PHOTOM_manager'
 
 class PhotoManager {
-  private loadRecord: Map<AlbumType, ILoader<PhotoModel>> = new Map();
-  private inited = false;
-  private context: common.UIAbilityContext | undefined = undefined;
+  public loadRecord: Map<AlbumType, ILoader<PhotoModel>> = new Map();
+  public inited = false;
+  public context: common.UIAbilityContext | undefined = undefined;
 
   public init(context: common.UIAbilityContext) {
     if (this.inited) {
