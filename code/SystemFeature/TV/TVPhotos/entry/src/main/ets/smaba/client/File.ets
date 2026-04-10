@@ -59,6 +59,7 @@ interface FileReadResponseBody {
 
 class FileRequestBody {
   public buffer?: buffer.Buffer;
+  public buf?: buffer.Buffer;
   public desiredAccess?: number;
   public fileAttributes?: number;
   public shareAccess?: number;
