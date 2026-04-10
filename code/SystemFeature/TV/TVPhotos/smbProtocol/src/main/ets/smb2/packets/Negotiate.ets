@@ -19,13 +19,13 @@ import StructureField from '../../StructureField';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(36))
-  .addField('dialectCount', new StructureField(Number).setSignedness("Unsigned").setSize(2))
+  .addField('dialectCount', new StructureField(Number).setSignedness('Unsigned').setSize(2))
   .addField('securityMode', new StructureField(Number).setSize(2).setDefaultValue(1))
   .addField('reserved', new StructureField(Number).setSize(2))
   .addField('capabilities', new StructureField(Number).setSize(4))
   .addField('clientGuid', new StructureField(Number).setSize(16))
   .addField('clientStartTime', new StructureField(Number).setSize(8))
-  .addField('dialects', new StructureField(Number).setCountFieldName("dialectCount").setSize(2));
+  .addField('dialects', new StructureField(Number).setCountFieldName('dialectCount').setSize(2));
 
 export interface RequestBody {
   structureSize?: number;
@@ -52,11 +52,11 @@ const responseStructure = new Structure()
   .addField('securityBufferOffset', new StructureField(Number).setSize(2))
   .addField('securityBufferLength', new StructureField(Number).setSize(2))
   .addField('reserved2', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("securityBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('securityBufferLength'));
 
 class NegotiatePacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new NegotiatePacket();

@@ -71,10 +71,10 @@ class DirectoryRequestBody {
 }
 
 class DirectoryOpenOptionsModel implements OpenOptions {
-  desiredAccess?: Smb2DirectoryAccess;
-  fileAttributes?: Smb2FileAttribute;
-  createDisposition?: Smb2CreateDispositionType;
-  createOptions?: Smb2CreateOptions;
+  public desiredAccess?: Smb2DirectoryAccess;
+  public fileAttributes?: Smb2FileAttribute;
+  public createDisposition?: Smb2CreateDispositionType;
+  public createOptions?: Smb2CreateOptions;
 }
 
 class Directory extends EventEmitter {
@@ -94,16 +94,16 @@ class Directory extends EventEmitter {
     if (this.isOpen) {
       return;
     }
-    const buf = buffer.from(smbUtil.toWindowsFilePath(path), "ucs2");
+    const buf = buffer.from(smbUtil.toWindowsFilePath(path), 'ucs2');
     const createBody = new DirectoryRequestBody()
     createBody.buffer = buf
-    createBody.desiredAccess = typeof options.desiredAccess === "number" ? options.desiredAccess :
+    createBody.desiredAccess = typeof options.desiredAccess === 'number' ? options.desiredAccess :
       (Smb2DirectoryAccess.ListDirectory | Smb2DirectoryAccess.ReadAttributes | Smb2DirectoryAccess.Synchronize)
-    createBody.fileAttributes = typeof options.fileAttributes === "number" ? options.fileAttributes : Smb2FileAttribute.Directory
+    createBody.fileAttributes = typeof options.fileAttributes === 'number' ? options.fileAttributes : Smb2FileAttribute.Directory
     createBody.shareAccess = ShareAccessType.Read | ShareAccessType.Write | ShareAccessType.Delete
-    createBody.createDisposition = typeof options.createDisposition === "number" ? options.createDisposition :
+    createBody.createDisposition = typeof options.createDisposition === 'number' ? options.createDisposition :
       Smb2CreateDispositionType.Open
-    createBody.createOptions = typeof options.createOptions === "number" ? options.createOptions : Smb2CreateOptions.Directory
+    createBody.createOptions = typeof options.createOptions === 'number' ? options.createOptions : Smb2CreateOptions.Directory
     createBody.nameOffset = 0x0078
     createBody.createContextsOffset = 0x007a + buf.length
     const response = await this.tree.request({ type: Smb2PacketType.Create }, createBody);
@@ -113,7 +113,7 @@ class Directory extends EventEmitter {
     }
     this._id = responseBody.fileId;
     this.isOpen = true;
-    this.emit("open", this);
+    this.emit('open', this);
   }
 
   async create(path: string): Promise<void> {
@@ -130,7 +130,7 @@ class Directory extends EventEmitter {
     this.watching = true;
     this.watchRecursive = recursive;
     await this.requestWatch();
-    this.tree.session.client.on("changeNotify", this.onChangeNotify);
+    this.tree.session.client.on('changeNotify', this.onChangeNotify);
   }
 
   async unwatch(): Promise<void> {
@@ -138,7 +138,7 @@ class Directory extends EventEmitter {
       return;
     }
     this.watching = false;
-    this.tree.session.client.off("changeNotify", this.onChangeNotify);
+    this.tree.session.client.off('changeNotify', this.onChangeNotify);
     await this.close();
   }
 
@@ -150,7 +150,7 @@ class Directory extends EventEmitter {
     const messageIdIndex = this.watchingMessageIds.indexOf(messageId);
     if (messageIdIndex !== -1) {
       this.watchingMessageIds.splice(messageIdIndex, 1);
-      this.emit("change", response);
+      this.emit('change', response);
       await this.requestWatch();
     }
   };
@@ -162,13 +162,13 @@ class Directory extends EventEmitter {
     const request = this.tree.createRequest({ type: Smb2PacketType.ChangeNotify }, watchBody);
     const messageId = request.header.messageId
     if (messageId === undefined) {
-      throw new Error("change_notify_message_id_not_found");
+      throw new Error('change_notify_message_id_not_found');
     }
     this.watchingMessageIds.push(messageId);
     const response = await this.tree.session.client.send(request);
     const status = response.header.status
     if (status === undefined) {
-      throw new Error("change_notify_status_not_found");
+      throw new Error('change_notify_status_not_found');
     }
     if (status !== Smb2StatusCode.Success && status !== Smb2StatusCode.Pending) {
       throw new Error(`ChangeNotify: ${structureUtil.parseEnumValue(Smb2StatusCode,
@@ -186,14 +186,14 @@ class Directory extends EventEmitter {
   async read(): Promise<DirectoryEntry[]> {
     const queryDirectoryBody = new DirectoryRequestBody()
     queryDirectoryBody.fileId = this._id
-    queryDirectoryBody.buffer = buffer.from("*", "ucs2")
+    queryDirectoryBody.buffer = buffer.from('*', 'ucs2')
     const response = await this.tree.request({ type: Smb2PacketType.QueryDirectory }, queryDirectoryBody);
     let entries: DirectoryEntry[] = [];
     if (response.data) {
       const directoryEntries = response.data as DirectoryEntry[];
-      entries = directoryEntries.filter((entry: DirectoryEntry): boolean => entry.filename !== "." && entry.filename !== "..")
+      entries = directoryEntries.filter((entry: DirectoryEntry): boolean => entry.filename !== '.' && entry.filename !== '..')
     } else {
-      console.warn("response without data", response);
+      console.warn('response without data', response);
     }
     return entries;
   }
@@ -219,7 +219,7 @@ class Directory extends EventEmitter {
   }
 
   async rename(newPath: string) {
-    const newPathUCS2 = buffer.from(newPath, "ucs2");
+    const newPathUCS2 = buffer.from(newPath, 'ucs2');
     const buf = buffer.alloc(20 + newPathUCS2.length);
     buf.fill(0x00);
     buf.writeUInt8(1, 0);
@@ -248,7 +248,7 @@ class Directory extends EventEmitter {
     const closeBody = new DirectoryRequestBody()
     closeBody.fileId = this._id
     await this.tree.request({ type: Smb2PacketType.Close }, closeBody);
-    this.emit("close", this);
+    this.emit('close', this);
   }
 }
 

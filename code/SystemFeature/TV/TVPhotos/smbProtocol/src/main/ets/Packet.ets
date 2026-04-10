@@ -23,7 +23,7 @@ interface PacketChunkResult {
 }
 
 export const protocolIdStructureField: StructureField = new StructureField(String)
-  .setEncoding("hex")
+  .setEncoding('hex')
   .setSize(4)
   .setDefaultValue(protocolIds.smb2);
 
@@ -37,7 +37,7 @@ export default class Packet {
     while (buf.length > 4) {
       const netBiosType = buf.readUInt8(0);
       if (netBiosType !== 0x00) {
-        throw new Error("no_net_bios_message");
+        throw new Error('no_net_bios_message');
       }
       const packetLength = buf.readUInt32BE(0);
       if (packetLength > buf.length - 4) {

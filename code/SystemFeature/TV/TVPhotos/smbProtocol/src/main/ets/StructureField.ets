@@ -18,15 +18,15 @@ import buffer from '@ohos.buffer';
 export type StructureFieldType = NumberConstructor | StringConstructor | Function;
 
 export default class StructureField {
-  type: StructureFieldType;
-  enum?: Object;
-  signedness?: 'Signed' | 'Unsigned';
-  encoding?: 'hex' | 'utf-8';
-  countFieldName?: string;
-  count?: number;
-  sizeFieldName?: string;
-  size?: number;
-  defaultValue?: Value;
+  public type: StructureFieldType;
+  public enum?: Object;
+  public signedness?: 'Signed' | 'Unsigned';
+  public encoding?: 'hex' | 'utf-8';
+  public countFieldName?: string;
+  public count?: number;
+  public sizeFieldName?: string;
+  public size?: number;
+  public defaultValue?: Value;
 
   constructor(type: StructureFieldType) {
     this.type = type;

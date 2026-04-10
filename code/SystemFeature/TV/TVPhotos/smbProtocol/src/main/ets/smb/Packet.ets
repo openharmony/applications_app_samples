@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import buffer from '@ohos.buffer';
-import * as structureUtil from "../structureUtil";
-import Header, { headerSize, headerStructure } from "./Header";
+import * as structureUtil from '../structureUtil';
+import Header, { headerSize, headerStructure } from './Header';
 
 export default class Packet {
   static parse(buf: buffer.Buffer) {
@@ -52,7 +52,7 @@ export default class Packet {
       }
       if (byte === 0) {
         if (format === 2) {
-          const text = buffer.from(currentBytes).toString("ascii");
+          const text = buffer.from(currentBytes).toString('ascii');
           list.push(text);
         }
         currentBytes = [];

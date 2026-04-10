@@ -37,35 +37,35 @@ export default interface Header {
 }
 
 export type HeaderName = (
-"protocolId" |
-"structureSize" |
-"creditCharge" |
-"status" |
-"type" |
-"credit" |
-"flags" |
-"nextCommand" |
-"messageId" |
-"clientId" |
-"treeId" |
-"sessionId" |
-"signature"
+'protocolId' |
+'structureSize' |
+'creditCharge' |
+'status' |
+'type' |
+'credit' |
+'flags' |
+'nextCommand' |
+'messageId' |
+'clientId' |
+'treeId' |
+'sessionId' |
+'signature'
 );
 
 export class HeaderStructure extends Structure {
-  protocolId = protocolIdStructureField;
-  structureSize = new StructureField(Number).setSize(2).setDefaultValue(headerSize);
-  creditCharge = new StructureField(Number).setSize(2);
-  status = new StructureField(Number).setSignedness("Unsigned").setSize(4);
-  type = new StructureField(Number).setSize(2).setDefaultValue(2);
-  credit = new StructureField(Number).setSize(2).setDefaultValue(126);
-  flags = new StructureField(Number).setSize(4);
-  nextCommand = new StructureField(Number).setSize(4);
-  messageId = new StructureField(Number).setSize(8);
-  clientId = new StructureField(String).setEncoding("hex").setSize(4);
-  treeId = new StructureField(Number).setSize(4);
-  sessionId = new StructureField(String).setEncoding("hex").setSize(8);
-  signature = new StructureField(Number).setSize(16);
+  public protocolId = protocolIdStructureField;
+  public structureSize = new StructureField(Number).setSize(2).setDefaultValue(headerSize);
+  public creditCharge = new StructureField(Number).setSize(2);
+  public status = new StructureField(Number).setSignedness('Unsigned').setSize(4);
+  public type = new StructureField(Number).setSize(2).setDefaultValue(2);
+  public credit = new StructureField(Number).setSize(2).setDefaultValue(126);
+  public flags = new StructureField(Number).setSize(4);
+  public nextCommand = new StructureField(Number).setSize(4);
+  public messageId = new StructureField(Number).setSize(8);
+  public clientId = new StructureField(String).setEncoding('hex').setSize(4);
+  public treeId = new StructureField(Number).setSize(4);
+  public sessionId = new StructureField(String).setEncoding('hex').setSize(8);
+  public signature = new StructureField(Number).setSize(16);
 }
 
 export const headerStructure: Structure = new HeaderStructure();

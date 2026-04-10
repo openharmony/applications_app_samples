@@ -103,12 +103,12 @@ class TreePacketBody extends TreeRequestBody {
 }
 
 class Tree extends EventEmitter {
-  session: Session;
-  _id: number = 0;
-  connected: boolean = false;
-  connecting: boolean = false;
-  openFiles: File[] = [];
-  openDirectories: Directory[] = [];
+  public session: Session;
+  public _id: number = 0;
+  public connected: boolean = false;
+  public connecting: boolean = false;
+  public openFiles: File[] = [];
+  public openDirectories: Directory[] = [];
 
   constructor(session: Session) {
     super()
@@ -228,7 +228,7 @@ class Tree extends EventEmitter {
       let dirEntries: DirectoryEntry[] = [];
       if (queryResponse.data) {
         const queryEntries = queryResponse.data as DirectoryEntry[];
-        entries = queryEntries.filter((entry: DirectoryEntry): boolean => entry.filename !== "." && entry.filename !== "..")
+        entries = queryEntries.filter((entry: DirectoryEntry): boolean => entry.filename !== '.' && entry.filename !== '..')
         imageEntries = entries.filter((entry: DirectoryEntry): boolean => entry.type === 'File' && isImage(entry.filename))
         dirEntries = entries.filter((entry: DirectoryEntry): boolean => entry.type === 'Directory')
       }
@@ -283,14 +283,14 @@ class Tree extends EventEmitter {
       return;
     }
     this.connecting = true;
-    const buf = buffer.from(smbUtil.toWindowsPath(`\\\\${this.session.client.host}\\${path}`), "ucs2");
+    const buf = buffer.from(smbUtil.toWindowsPath(`\\\\${this.session.client.host}\\${path}`), 'ucs2');
     const treeConnectBody = new TreePacketBody()
     treeConnectBody.buffer = buf
     const response = await this.request({ type: Smb2PacketType.TreeConnect }, treeConnectBody);
     this._id = response.header.treeId ?? 0;
     this.connecting = false;
     this.connected = true;
-    this.emit("connect", this);
+    this.emit('connect', this);
   }
 
   async disconnect() {
@@ -307,7 +307,7 @@ class Tree extends EventEmitter {
     });
     await Promise.all(closePromises);
     await this.request({ type: Smb2PacketType.TreeDisconnect });
-    this.emit("disconnect", this);
+    this.emit('disconnect', this);
   }
 
   async createDirectory(path: string) {
@@ -338,22 +338,22 @@ class Tree extends EventEmitter {
       return async (): Promise<void> => {
       };
     }
-    return await this.watchDirectory("", onChange, recursive);
+    return await this.watchDirectory('', onChange, recursive);
   }
 
-  async watchDirectory(path: string = "/", onChange: (response: Smb2Response) => void, recursive?: boolean): Promise<() => Promise<void>> {
+  async watchDirectory(path: string = '/', onChange: (response: Smb2Response) => void, recursive?: boolean): Promise<() => Promise<void>> {
     const directory = new Directory(this);
     this.registerDirectory(directory);
     await directory.open(path);
     await directory.watch(recursive);
-    directory.on("change", onChange);
+    directory.on('change', onChange);
     return async (): Promise<void> => {
-      directory.off("change", onChange);
+      directory.off('change', onChange);
       await directory.unwatch();
     };
   }
 
-  async readDirectory(path: string = "\\", options: OpenOptions = {}) {
+  async readDirectory(path: string = '\\', options: OpenOptions = {}) {
     const directory = new Directory(this);
     this.registerDirectory(directory);
     await directory.open(path);
@@ -374,7 +374,7 @@ class Tree extends EventEmitter {
     const file = new File(this);
     this.registerFile(file);
     await file.create(path);
-    if (typeof content !== "undefined") {
+    if (typeof content !== 'undefined') {
       await file.setSize(BigInt(content.length));
       await file.write(content);
     }
@@ -407,19 +407,19 @@ class Tree extends EventEmitter {
   }
 
   private registerFile(file: File): void {
-    file.once("open", (): void => {
+    file.once('open', (): void => {
       this.openFiles.push(file)
     })
-    file.once("close", (): void => {
+    file.once('close', (): void => {
       this.openFiles.splice(this.openFiles.indexOf(file), 1)
     });
   }
 
   private registerDirectory(directory: Directory): void {
-    directory.once("open", (): void => {
+    directory.once('open', (): void => {
       this.openDirectories.push(directory)
     })
-    directory.once("close", (): void => {
+    directory.once('close', (): void => {
       this.openDirectories.splice(this.openDirectories.indexOf(directory), 1)
     });
   }

@@ -14,6 +14,6 @@
  */
 import buffer from '@ohos.buffer';
 
-export const smb = buffer.from([0xff, "S".charCodeAt(0), "M".charCodeAt(0), "B".charCodeAt(0)]).toString("hex");
+export const smb = buffer.from([0xff, 'S'.charCodeAt(0), 'M'.charCodeAt(0), 'B'.charCodeAt(0)]).toString('hex');
 
-export const smb2 = buffer.from([0xfe, "S".charCodeAt(0), "M".charCodeAt(0), "B".charCodeAt(0)]).toString("hex");
+export const smb2 = buffer.from([0xfe, 'S'.charCodeAt(0), 'M'.charCodeAt(0), 'B'.charCodeAt(0)]).toString('hex');

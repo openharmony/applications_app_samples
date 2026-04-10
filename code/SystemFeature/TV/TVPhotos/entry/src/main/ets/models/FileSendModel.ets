@@ -14,14 +14,14 @@
  */
  
 export class FileSendModel {
-  filePath: string = ''
-  fileName: string = ''
-  size: number = 0
-  type: number = 0
-  deviceName: string = ''
-  thumbnail?: string = ''
-  status?: string = ''
-  data?: ArrayBuffer = new ArrayBuffer(0)
-  offset?: number = 0
-  length?: number = 0
+  public filePath: string = ''
+  public fileName: string = ''
+  public size: number = 0
+  public type: number = 0
+  public deviceName: string = ''
+  public thumbnail?: string = ''
+  public status?: string = ''
+  public data?: ArrayBuffer = new ArrayBuffer(0)
+  public offset?: number = 0
+  public length?: number = 0
 }

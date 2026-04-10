@@ -21,7 +21,7 @@ const requestStructure = new Structure()
   .addField('reserved', new StructureField(Number).setSize(2))
   .addField('pathOffset', new StructureField(Number).setSize(2).setDefaultValue(72))
   .addField('pathLength', new StructureField(Number).setSize(2))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("pathLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('pathLength'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
@@ -32,8 +32,8 @@ const responseStructure = new Structure()
   .addField('maximalAccess', new StructureField(Number).setSize(4));
 
 class TreeConnectPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new TreeConnectPacket();

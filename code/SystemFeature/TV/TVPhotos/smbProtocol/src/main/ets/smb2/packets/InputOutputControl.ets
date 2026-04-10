@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 import buffer from '@ohos.buffer';
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(0x39))
   .addField('reserved', new StructureField(Number).setSize(2).setDefaultValue(0x00))
   .addField('ctlCode', new StructureField(Number).setSize(4).setDefaultValue(0x0011c017))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('inputOffset', new StructureField(Number).setSize(4).setDefaultValue(120))
   .addField('inputCount', new StructureField(Number).setSize(4))
   .addField('maxInputResponse', new StructureField(Number).setSize(4).setDefaultValue(0))
@@ -29,24 +29,24 @@ const requestStructure = new Structure()
   .addField('maxOutputResponse', new StructureField(Number).setSize(4).setDefaultValue(1024))
   .addField('flags', new StructureField(Number).setSize(4).setDefaultValue(0x00000001))
   .addField('reserved2', new StructureField(Number).setSize(4).setDefaultValue(0))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("inputCount"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('inputCount'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('reserved', new StructureField(Number).setSize(2))
   .addField('ctlCode', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('inputOffset', new StructureField(Number).setSize(4).setDefaultValue(120))
   .addField('inputCount', new StructureField(Number).setSize(4))
   .addField('outputOffset', new StructureField(Number).setSize(4))
   .addField('outputCount', new StructureField(Number).setSize(4).setDefaultValue(0))
   .addField('flags', new StructureField(Number).setSize(4))
   .addField('reserved2', new StructureField(Number).setSize(4).setDefaultValue(0))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("outputCount"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputCount'));
 
 class InputOutputControlPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new InputOutputControlPacket();

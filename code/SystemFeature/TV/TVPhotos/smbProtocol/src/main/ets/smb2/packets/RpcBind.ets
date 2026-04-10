@@ -120,11 +120,11 @@ const getContextId = (transferSyntaxBuf: buffer.Buffer): number => {
 }
 
 class RpcBindPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
-  createRpcBindContext = createRpcBindContext;
-  rpcBindContexts = rpcBindContexts;
-  getContextId = getContextId;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
+  public createRpcBindContext = createRpcBindContext;
+  public rpcBindContexts = rpcBindContexts;
+  public getContextId = getContextId;
 }
 
 export default new RpcBindPacket();

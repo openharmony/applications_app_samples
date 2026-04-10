@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(4))
@@ -24,8 +24,8 @@ const responseStructure = new Structure()
   .addField('reserved', new StructureField(Number).setSize(2));
 
 class EchoPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new EchoPacket();

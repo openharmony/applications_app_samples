@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(24))
   .addField('flags', new StructureField(Number).setSize(2))
   .addField('reserved', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16));
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
@@ -30,12 +30,12 @@ const responseStructure = new Structure()
   .addField('lastWriteTime', new StructureField(Number).setSize(8))
   .addField('changeTime', new StructureField(Number).setSize(8))
   .addField('allocationSize', new StructureField(Number).setSize(8))
-  .addField('endOfFile', new StructureField(Number).setSignedness("Signed").setSize(8))
+  .addField('endOfFile', new StructureField(Number).setSignedness('Signed').setSize(8))
   .addField('fileAttributes', new StructureField(Number).setSize(4));
 
 class ClosePacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new ClosePacket();

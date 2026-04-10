@@ -110,7 +110,7 @@ export const parseStructure = (buf: buffer.Buffer, structure: Structure): Object
         throw new Error(`invalid_size_field_name: ${structureField.sizeFieldName}`);
       }
       size = sizeValue;
-    } else if (typeof structureField.size === "number") {
+    } else if (typeof structureField.size === 'number') {
       size = structureField.size;
     } else {
       throw new Error(`unknown_field_size`);
@@ -133,13 +133,13 @@ export const parseStructure = (buf: buffer.Buffer, structure: Structure): Object
 
 export const parseNumber = (buf: buffer.Buffer, structureField: StructureField): number | bigint => {
   if (structureField.size === 2 && buf.length === 2) {
-    return structureField.signedness === "Unsigned" ? buf.readUInt16LE(0) : buf.readInt16LE(0);
+    return structureField.signedness === 'Unsigned' ? buf.readUInt16LE(0) : buf.readInt16LE(0);
   }
   if (structureField.size === 4 && buf.length === 4) {
-    return structureField.signedness === "Unsigned" ? buf.readUInt32LE(0) : buf.readInt32LE(0);
+    return structureField.signedness === 'Unsigned' ? buf.readUInt32LE(0) : buf.readInt32LE(0);
   }
   if (structureField.size === 8 && buf.length === 8) {
-    return structureField.signedness === "Unsigned" ? buf.readBigUInt64LE(0) : buf.readBigInt64LE(0);
+    return structureField.signedness === 'Unsigned' ? buf.readBigUInt64LE(0) : buf.readBigInt64LE(0);
   }
   let result = 0;
   for (let index = 0; index < buf.length; index++) {
@@ -191,7 +191,10 @@ export const parseEnumValues = (enumObject: Object, value: number): string[] => 
   });
 };
 
-export const parseList = <EntryType>(buf: buffer.Buffer, parser: (entryBuffer: buffer.Buffer) => EntryType): EntryType[] => {
+export const parseList = <EntryType>(
+  buf: buffer.Buffer,
+  parser: (entryBuffer: buffer.Buffer) => EntryType
+): EntryType[] => {
   if (buf.length === 0) {
     return [];
   }
@@ -256,7 +259,7 @@ export const serializeValue = (value: Value, structureField: StructureField): bu
   if (buffer.isBuffer(value)) {
     return value as buffer.Buffer;
   }
-  if (typeof value === "string") {
+  if (typeof value === 'string') {
     return serializeString(value, structureField);
   }
   const bignumberValue = typeof value === 'bigint' ? value : BigInt(value as number);

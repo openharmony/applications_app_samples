@@ -49,33 +49,33 @@ class ClientRequestBody {
 }
 
 class Client extends EventEmitter {
-  _id = smbUtil.generateClientId()
-  host: string;
-  options: Options;
-  socket: socket.TCPSocket = socket.constructTCPSocketInstance();
-  nextMessageId: bigint = BigInt(0);
-  responseRestChunk: buffer.Buffer = buffer.alloc(0);
-  responseMap = new Map<bigint, Smb2Response>();
-  responseCallbackMap = new Map<bigint, (response: Smb2Response) => void>();
-  connected: boolean = false;
-  port: number = 445;
-  connectTimeout: number = 2 * 1000;
-  connectTimeoutId: number = 0;
-  requestTimeout: number = 2 * 1000;
-  requestTimeoutIdMap = new Map<bigint, number>();
-  sessions: Session[] = [];
+  public _id = smbUtil.generateClientId()
+  public host: string;
+  public options: Options;
+  public socket: socket.TCPSocket = socket.constructTCPSocketInstance();
+  public nextMessageId: bigint = BigInt(0);
+  public responseRestChunk: buffer.Buffer = buffer.alloc(0);
+  public responseMap = new Map<bigint, Smb2Response>();
+  public responseCallbackMap = new Map<bigint, (response: Smb2Response) => void>();
+  public connected: boolean = false;
+  public port: number = 445;
+  public connectTimeout: number = 2 * 1000;
+  public connectTimeoutId: number = 0;
+  public requestTimeout: number = 2 * 1000;
+  public requestTimeoutIdMap = new Map<bigint, number>();
+  public sessions: Session[] = [];
 
   constructor(host: string, options: Options = {}) {
     super()
     this.host = host
     this.options = options
-    if (typeof this.options.port === "number") {
+    if (typeof this.options.port === 'number') {
       this.port = this.options.port;
     }
-    if (typeof this.options.connectTimeout === "number") {
+    if (typeof this.options.connectTimeout === 'number') {
       this.connectTimeout = this.options.connectTimeout;
     }
-    if (typeof this.options.requestTimeout === "number") {
+    if (typeof this.options.requestTimeout === 'number') {
       this.requestTimeout = this.options.requestTimeout;
     }
   }
@@ -85,20 +85,20 @@ class Client extends EventEmitter {
       return;
     }
     this.socket = socket.constructTCPSocketInstance();
-    this.socket.on("message", this.onData);
+    this.socket.on('message', this.onData);
     this.socket.setExtraOptions({ keepAlive: true });
-    this.socket.on("error", this.onError)
-    this.socket.on("close", this.onClose);
+    this.socket.on('error', this.onError)
+    this.socket.on('close', this.onClose);
     this.socket.setExtraOptions({
       TCPNoDelay: true,
       receiveBufferSize: 8388608,
       sendBufferSize: 8388608
     })
     const connectPromise = withTimeout<void>(new Promise<void>((resolve, reject) => {
-      this.socket.on("connect", () => {
+      this.socket.on('connect', () => {
         resolve();
       });
-      this.socket.on("error", (err) => {
+      this.socket.on('error', (err) => {
         reject(err);
       }); //?
       this.socket.connect({
@@ -132,13 +132,13 @@ class Client extends EventEmitter {
     console.info(TAG,
       `do send request = ${JSON.stringify(request, smbUtil.bigIntReplacer)}  connected = ${this.connected}`)
     if (!this.connected) {
-      throw new Error("not_connected");
+      throw new Error('not_connected');
     }
     const buffer = request.serialize();
     this.socket.send({ data: buffer.buffer });
     const messageId = request.header.messageId;
     if (messageId === undefined) {
-      throw new Error("message_id_not_found");
+      throw new Error('message_id_not_found');
     }
     const sendPromise = withTimeout<Smb2Response>(new Promise<Smb2Response>((resolve, reject) => {
       const finishRequest = (response: Smb2Response) => {
@@ -167,7 +167,7 @@ class Client extends EventEmitter {
     return response;
   }
 
-  onData = (info: socket.SocketMessageInfo) => {
+  public onData = (info: socket.SocketMessageInfo) => {
     let buf: buffer.Buffer;
     if (this.responseRestChunk && this.responseRestChunk.length > 0) {
       const b = buffer.from(info.message);
@@ -192,11 +192,11 @@ class Client extends EventEmitter {
       await sleep(200)
     }
     if (response.header.type === Smb2PacketType.ChangeNotify && response.header.status === Smb2StatusCode.Success) {
-      this.emit("changeNotify", response);
+      this.emit('changeNotify', response);
     }
     const messageId = response.header.messageId;
     if (messageId === undefined) {
-      throw new Error("response_message_id_not_found");
+      throw new Error('response_message_id_not_found');
     }
     if (this.responseCallbackMap.has(messageId)) {
       const callback = this.responseCallbackMap.get(messageId);
@@ -209,13 +209,13 @@ class Client extends EventEmitter {
     }
   }
 
-  onError = (err: Error) => {
-    this.emit("error", err);
+  public onError = (err: Error) => {
+    this.emit('error', err);
   }
 
-  onClose = () => {
+  public onClose = () => {
     this.connected = false;
-    this.emit("error", new Error("client_closed"));
+    this.emit('error', new Error('client_closed'));
   }
 
   async echo() {
@@ -236,18 +236,18 @@ class Client extends EventEmitter {
   }
 
   private destroySocket() {
-    this.socket.off("message", this.onData);
-    this.socket.off("error", this.onError);
-    this.socket.off("close", this.onClose);
+    this.socket.off('message', this.onData);
+    this.socket.off('error', this.onError);
+    this.socket.off('close', this.onClose);
     this.socket.close();
   }
 
   private registerSession(session: Session): void {
     console.info(TAG, `do registerSession`)
-    session.once("authenticate", (): void => {
+    session.once('authenticate', (): void => {
       this.sessions.push(session)
     })
-    session.once("logoff", (): void => {
+    session.once('logoff', (): void => {
       this.sessions.splice(this.sessions.indexOf(session), 1)
     });
   }

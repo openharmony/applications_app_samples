@@ -47,7 +47,7 @@ class PhotoModel {
   pixelMap: image.PixelMap | null = null
 }
 
-export class info {
+export class Info {
   code: number = 0;
   message: string = ''
 }
@@ -64,10 +64,10 @@ interface ParamBrowser {
 let TAG = 'WifiDeviceManager'
 
 export class WifiDeviceManager {
-  deviceList: Array<wifiManager.WifiP2pDevice> = []
+  public deviceList: wifiManager.WifiP2pDevice[] = []
   private tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance()
   private tcpServerPort: number = 9999
-  private goAddr: string = ""
+  private goAddr: string = ''
   private tcp: socket.TCPSocket = socket.constructTCPSocketInstance()
   private connection: socket.TCPSocketConnection = {} as socket.TCPSocketConnection
   private context!: common.Context
@@ -105,31 +105,28 @@ export class WifiDeviceManager {
     this.setDeviceName()
     this.registerP2pEvents()
     this.scanP2PDevices()
-    // this.createGroup()
   }
 
   // 注册监听
   registerP2pEvents() {
-    Logger.info(TAG, "registerP2pEvents.")
-    wifiManager.on("p2pStateChange", this.p2pStateChangeCb);
-    wifiManager.on("p2pConnectionChange", this.p2pConnectionChangeCb.bind(this));
-    wifiManager.on("p2pDeviceChange", this.p2pDeviceChangeCb);
-    wifiManager.on("p2pPeerDeviceChange", this.p2pPeerDeviceChangeCb.bind(this))
-    wifiManager.on("p2pPersistentGroupChange", this.p2pPersistentGroupChangeCb);
-    wifiManager.on("p2pDiscoveryChange", this.p2pDiscoveryChangeCb.bind(this));
-    // this.tcp.on('message', this.onMessageReceived.bind(this))
+    Logger.info(TAG, 'registerP2pEvents.')
+    wifiManager.on('p2pStateChange', this.p2pStateChangeCb);
+    wifiManager.on('p2pConnectionChange', this.p2pConnectionChangeCb.bind(this));
+    wifiManager.on('p2pDeviceChange', this.p2pDeviceChangeCb);
+    wifiManager.on('p2pPeerDeviceChange', this.p2pPeerDeviceChangeCb.bind(this))
+    wifiManager.on('p2pPersistentGroupChange', this.p2pPersistentGroupChangeCb);
+    wifiManager.on('p2pDiscoveryChange', this.p2pDiscoveryChangeCb.bind(this));
   }
 
   // 注销监听
   unregisterP2pEvents() {
-    // Unregister event
-    Logger.info(TAG, "unregisterP2pEvents.")
-    wifiManager.off("p2pStateChange", this.p2pStateChangeCb);
-    wifiManager.off("p2pConnectionChange", this.p2pConnectionChangeCb.bind(this));
-    wifiManager.off("p2pDeviceChange", this.p2pDeviceChangeCb);
-    wifiManager.off("p2pPeerDeviceChange", this.p2pPeerDeviceChangeCb.bind(this))
-    wifiManager.off("p2pPersistentGroupChange", this.p2pPersistentGroupChangeCb);
-    wifiManager.off("p2pDiscoveryChange", this.p2pDiscoveryChangeCb.bind(this));
+    Logger.info(TAG, 'unregisterP2pEvents.')
+    wifiManager.off('p2pStateChange', this.p2pStateChangeCb);
+    wifiManager.off('p2pConnectionChange', this.p2pConnectionChangeCb.bind(this));
+    wifiManager.off('p2pDeviceChange', this.p2pDeviceChangeCb);
+    wifiManager.off('p2pPeerDeviceChange', this.p2pPeerDeviceChangeCb.bind(this))
+    wifiManager.off('p2pPersistentGroupChange', this.p2pPersistentGroupChangeCb);
+    wifiManager.off('p2pDiscoveryChange', this.p2pDiscoveryChangeCb.bind(this));
     if (this.isGroupOwner) {
       this.p2pCancelConnect()
       this.removeGroup()
@@ -150,7 +147,7 @@ export class WifiDeviceManager {
     try {
       wifiManager.enableWifi();
     } catch (error) {
-      Logger.error(TAG, "failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'failed:' + JSON.stringify(error));
     }
   }
 
@@ -160,7 +157,7 @@ export class WifiDeviceManager {
     try {
       wifiManager.disableWifi();
     } catch (error) {
-      Logger.error(TAG, "disableWifi failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'disableWifi failed:' + JSON.stringify(error));
     }
   }
 
@@ -174,8 +171,7 @@ export class WifiDeviceManager {
       try {
         console.log(TAG,'wifiManager.setDeviceName success:' + value)
         wifiManager.setDeviceName(value)
-      }
-      catch (e) {
+      } catch (e) {
         Logger.info(TAG, 'wifiManager.setDeviceName failed:' + JSON.stringify(e))
       }
     })
@@ -183,7 +179,7 @@ export class WifiDeviceManager {
 
   // 监听对端设备状态改变
   p2pPeerDeviceChangeCb(result: wifiManager.WifiP2pDevice[]) {
-    Logger.info(TAG, "p2pPeerDeviceChangeCb: " + JSON.stringify(result))
+    Logger.info(TAG, 'p2pPeerDeviceChangeCb: ' + JSON.stringify(result))
     if (!this.isGroup) {
       this.deviceList = result
       AppStorage.setOrCreate('deviceList', this.deviceList)
@@ -192,12 +188,12 @@ export class WifiDeviceManager {
 
   // 监听p2p开关状态改变
   p2pStateChangeCb(result: number) {
-    Logger.info(TAG, "p2pStateChangeCb: " + result)
+    Logger.info(TAG, 'p2pStateChangeCb: ' + result)
   }
 
   // 监听p2p连接状态改变
   p2pConnectionChangeCb(result: wifiManager.WifiP2pLinkedInfo) {
-    Logger.info(TAG, "p2pConnectionChangeCb: " + JSON.stringify(result))
+    Logger.info(TAG, 'p2pConnectionChangeCb: ' + JSON.stringify(result))
     clearTimeout(this.P2PConnectTimer)
     if (result.connectState == 1 && result.groupOwnerAddr != '') {
       this.P2pConnectStatus = 1
@@ -217,10 +213,10 @@ export class WifiDeviceManager {
 
   // 开启TCP server
   startTcpServer() {
-    Logger.info(TAG, "startTcpServer.")
+    Logger.info(TAG, 'startTcpServer.')
     if (this.goAddr.length === 0) {
       Prompt.showToast({
-        message: "GO Addr is null.",
+        message: 'GO Addr is null.',
         duration: 3000
       })
       return
@@ -232,23 +228,17 @@ export class WifiDeviceManager {
     }
     this.tcpServer.listen(addr, (err) => {
       if (err) {
-        Logger.info(TAG, "startTcpServer listen fail:" + JSON.stringify(err))
+        Logger.info(TAG, 'startTcpServer listen fail:' + JSON.stringify(err))
         this.connectStatus = 0
         return;
       }
-      Logger.info(TAG, "listen success")
+      Logger.info(TAG, 'listen success')
       this.connectStatus = 2
       this.tcpServer.on('connect', this.onTcpServerConnected.bind(this))
     })
     let tcpExtraOptions: socket.TCPExtraOptions = {
       keepAlive: true,
-      // OOBInline: true,
-      // TCPNoDelay: true,
-      socketLinger: { on: false, linger: 10 },
-      /*receiveBufferSize: 1000,
-      sendBufferSize: 1000,
-      reuseAddress: true,
-      socketTimeout: 3000*/
+      socketLinger: { on: false, linger: 10 }
     }
     this.tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
       if (err) {
@@ -261,17 +251,17 @@ export class WifiDeviceManager {
 
   // 监听TCP连接状态
   onTcpServerConnected(data: socket.TCPSocketConnection) {
-    Logger.info(TAG, "onTcpServerConnected: " + JSON.stringify(data))
+    Logger.info(TAG, 'onTcpServerConnected: ' + JSON.stringify(data))
     this.connection = data
     this.connection.on('message', this.onMessageReceived.bind(this))
   }
 
   // 连接Tcp server
   connectTcpServer() {
-    Logger.info(TAG, "connectTcpServer:" + this.goAddr)
+    Logger.info(TAG, 'connectTcpServer:' + this.goAddr)
     if (this.goAddr.length === 0) {
       Prompt.showToast({
-        message: "GO Addr is null.",
+        message: 'GO Addr is null.',
         duration: 3000
       })
       return
@@ -318,18 +308,18 @@ export class WifiDeviceManager {
         console.log('setExtraOptions success');
       })
       this.tcp.on('message', this.onMessageReceived.bind(this))
-      let SelectList: Array<PhotoModel> = AppStorage.get<PhotoModel[]>('SelectList') ?? []
+      let selectList: PhotoModel[] = AppStorage.get<PhotoModel[]>('SelectList') ?? []
       setTimeout(() => {
-        if (SelectList.length == 1) {
+        if (selectList.length == 1) {
           const models: FileSendModel = {
-            filePath: SelectList[0].uri as string,
-            fileName: SelectList[0].displayName as string,
-            size: SelectList[0].size as number,
-            type: SelectList[0].photoType ?? 0,
+            filePath: selectList[0].uri as string,
+            fileName: selectList[0].displayName as string,
+            size: selectList[0].size as number,
+            type: selectList[0].photoType ?? 0,
             deviceName: this.deviceName
           }
           AppStorage.setOrCreate('receivedState', 1)
-          this.readFile(models, SelectList[0])
+          this.readFile(models, selectList[0])
         }
       }, 1000)
     })
@@ -337,17 +327,17 @@ export class WifiDeviceManager {
 
   // 监听P2P状态改变
   p2pDeviceChangeCb(result: wifiManager.WifiP2pDevice) {
-    Logger.info(TAG, "p2pDeviceChangeCb: " + JSON.stringify(result))
+    Logger.info(TAG, 'p2pDeviceChangeCb: ' + JSON.stringify(result))
   }
 
   // 监听P2P永久组状态改变事件
   p2pPersistentGroupChangeCb(result: void) {
-    Logger.info(TAG, "p2pPersistentGroupChangeCb: " + JSON.stringify(result))
+    Logger.info(TAG, 'p2pPersistentGroupChangeCb: ' + JSON.stringify(result))
   }
 
   // 监听设备状态改变事件
   p2pDiscoveryChangeCb(result: number) {
-    Logger.info(TAG, "p2pDiscoveryChangeCb: " + result)
+    Logger.info(TAG, 'p2pDiscoveryChangeCb: ' + result)
     this.p2pDiscoveryStatus = result
   }
 
@@ -387,7 +377,7 @@ export class WifiDeviceManager {
   // 获取当前设备p2p信息
   async IsNeedCreateGroup(): Promise<boolean> {
     return await wifiManager.getCurrentGroup().then((data: wifiManager.WifiP2pGroupInfo): boolean => {
-      console.info(TAG, "getCurrentGroup: " + JSON.stringify(data))
+      console.info(TAG, 'getCurrentGroup: ' + JSON.stringify(data))
       if (data.isP2pGo === true && data.goIpAddress !== '') {
         return true
       }
@@ -409,7 +399,7 @@ export class WifiDeviceManager {
   // 扫描设备
   async scanP2PDevices() {
     if (wifiManager.isWifiActive()) {
-      console.info(TAG, "scanP2PDevices.")
+      console.info(TAG, 'scanP2PDevices.')
       wifiManager.startDiscoverDevices();
     } else {
       await this.enableWifi()
@@ -420,10 +410,9 @@ export class WifiDeviceManager {
   getP2pLinkedInfos() {
     try {
       wifiManager.getP2pLinkedInfo().then((data: wifiManager.WifiP2pLinkedInfo) => {
-        Logger.info(TAG, "get wifi p2p linked info: " + JSON.stringify(data));
+        Logger.info(TAG, 'get wifi p2p linked info: ' + JSON.stringify(data));
       });
-    }
-    catch (e) {
+    } catch (e) {
       console.error('getP2pLinkedInfo failed:' + JSON.stringify(e))
     }
   }
@@ -432,24 +421,24 @@ export class WifiDeviceManager {
   // 停止扫描设备
   stopScanDevices() {
     try {
-      Logger.info(TAG, "stopDiscoverDevices.")
+      Logger.info(TAG, 'stopDiscoverDevices.')
       wifiManager.stopDiscoverDevices();
     } catch (error) {
-      Logger.error(TAG, "failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'failed:' + JSON.stringify(error));
     }
   }
 
   // 连接p2p
   async connectP2pDevice(device: wifiManager.WifiP2pDevice) {
-    Logger.info(TAG, "connectP2pDevice: " + JSON.stringify(device))
-    wifiManager.off("p2pPeerDeviceChange", this.p2pPeerDeviceChangeCb.bind(this))
+    Logger.info(TAG, 'connectP2pDevice: ' + JSON.stringify(device))
+    wifiManager.off('p2pPeerDeviceChange', this.p2pPeerDeviceChangeCb.bind(this))
     try {
       let config: wifiManager.WifiP2PConfig = {
         deviceAddress: device.deviceAddress,
         deviceAddressType: device.deviceAddressType,
         netId: -2,
-        passphrase: "12345678",
-        groupName: "SwanLink_Share",
+        passphrase: '12345678',
+        groupName: 'SwanLink_Share',
         goBand: 1
       }
       wifiManager.p2pConnect(config);
@@ -459,7 +448,7 @@ export class WifiDeviceManager {
           clearTimeout(this.P2PConnectTimer)
         } else {
           Prompt.showToast({
-            message: "设备P2P连接失败，请重新连接",
+            message: '设备P2P连接失败，请重新连接',
             duration: 3000
           })
           this.P2pConnectStatus = 0
@@ -467,23 +456,23 @@ export class WifiDeviceManager {
         }
       }, 30 * 1000)
     } catch (error) {
-      Logger.info(TAG, "failed:" + JSON.stringify(error))
+      Logger.info(TAG, 'failed:' + JSON.stringify(error))
     }
   }
 
   // 创建群组
   async createGroup() {
     if (this.IsSwanLinkOSDev()) {
-      Logger.warn(TAG, "createGroup.")
+      Logger.warn(TAG, 'createGroup.')
       try {
         await this.deletePersistentGroup()
         this.sleep(1000)
         let config: wifiManager.WifiP2PConfig = {
           deviceAddressType: 0,
-          deviceAddress: "00:00:00:00:00:00",
+          deviceAddress: '00:00:00:00:00:00',
           netId: -2,
-          passphrase: "12345678",
-          groupName: "SwanLink_Share",
+          passphrase: '12345678',
+          groupName: 'SwanLink_Share',
           goBand: 1
         }
         wifiManager.createGroup(config);
@@ -491,7 +480,7 @@ export class WifiDeviceManager {
           this.getP2pGroups()
         }, 3000)
       } catch (error) {
-        Logger.error(TAG, "failed:" + JSON.stringify(error))
+        Logger.error(TAG, 'failed:' + JSON.stringify(error))
       }
     }
   }
@@ -499,13 +488,13 @@ export class WifiDeviceManager {
   // 获取p2p本端设备
   getP2pLocalDeviceInfo() {
     wifiManager.getP2pLocalDevice().then(data => {
-      Logger.info(TAG, "getP2pLocalDevice: " + JSON.stringify(data))
+      Logger.info(TAG, 'getP2pLocalDevice: ' + JSON.stringify(data))
     })
   }
 
   // 删除群组
   deletePersistentGroup() {
-    Logger.warn(TAG, "deletePersistentGroup.")
+    Logger.warn(TAG, 'deletePersistentGroup.')
     try {
       wifiManager.getP2pGroups().then((data: wifiManager.WifiP2pGroupInfo[]) => {
         data.forEach((group: wifiManager.WifiP2pGroupInfo) => {
@@ -513,7 +502,7 @@ export class WifiDeviceManager {
         })
       });
     } catch (error) {
-      console.error("deletePersistentGroup failed:" + JSON.stringify(error));
+      console.error('deletePersistentGroup failed:' + JSON.stringify(error));
     }
   }
 
@@ -521,7 +510,7 @@ export class WifiDeviceManager {
   // 获取p2p当前群组信息
   getCurrentGroupInfo() {
     wifiManager.getCurrentGroup().then((data: wifiManager.WifiP2pGroupInfo) => {
-      Logger.info(TAG, "getCurrentGroup: " + JSON.stringify(data))
+      Logger.info(TAG, 'getCurrentGroup: ' + JSON.stringify(data))
       this.goAddr = data.goIpAddress
       this.deviceList = []
       this.deviceList.push(data.ownerInfo)
@@ -539,12 +528,12 @@ export class WifiDeviceManager {
 
   // 获取所有群组
   getP2pGroups() {
-    Logger.warn(TAG, "getP2pGroups.")
+    Logger.warn(TAG, 'getP2pGroups.')
     wifiManager.getP2pGroups().then((data: wifiManager.WifiP2pGroupInfo[]) => {
-      Logger.warn(TAG, "getP2pGroups: " + JSON.stringify(data));
+      Logger.warn(TAG, 'getP2pGroups: ' + JSON.stringify(data));
       if (data.length == 0) {
         Prompt.showToast({
-          message: "服务启动失败，请重试!",
+          message: '服务启动失败，请重试!',
           duration: 3000
         })
       }
@@ -556,7 +545,7 @@ export class WifiDeviceManager {
   // 发送消息到客户端
   sendToClient(data: string | ArrayBuffer) {
     if (this.connection === null) {
-      Logger.error(TAG, "connection is null.")
+      Logger.error(TAG, 'connection is null.')
       return
     }
     let option: socket.TCPSendOptions = {
@@ -578,7 +567,7 @@ export class WifiDeviceManager {
       Logger.error(TAG, 'send fail:' + JSON.stringify(err))
       AppStorage.setOrCreate('receivedState', 6)
       Prompt.showToast({
-        message: "网络异常中断",
+        message: '网络异常中断',
         duration: 3000
       })
     });
@@ -588,7 +577,7 @@ export class WifiDeviceManager {
   TcpClose() {
     try {
       if (this.tcp === null) {
-        Logger.error(TAG, "connection is null.")
+        Logger.error(TAG, 'connection is null.')
         return
       } else {
         this.tcp.close().then(() => {
@@ -596,21 +585,21 @@ export class WifiDeviceManager {
         })
       }
     } catch (error) {
-      Logger.error(TAG, "TcpClose failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'TcpClose failed:' + JSON.stringify(error));
     }
   }
 
   ConnectionClose() {
     try {
       if (this.connection === null) {
-        Logger.error(TAG, "connection is null.")
+        Logger.error(TAG, 'connection is null.')
         return
       }
       this.connection.close().then(() => {
         Logger.info(TAG, '断开TCPSever连接')
       })
     } catch (error) {
-      Logger.error(TAG, "ConnectionClose failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'ConnectionClose failed:' + JSON.stringify(error));
     }
   }
 
@@ -621,7 +610,7 @@ export class WifiDeviceManager {
       this.connectStatus = 0
       wifiManager.p2pCancelConnect();
     } catch (error) {
-      Logger.error(TAG, "p2pCancelConnect failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'p2pCancelConnect failed:' + JSON.stringify(error));
     }
   }
 
@@ -631,7 +620,7 @@ export class WifiDeviceManager {
     try {
       wifiManager.removeGroup();
     } catch (error) {
-      Logger.error(TAG, "removeGroup failed:" + JSON.stringify(error));
+      Logger.error(TAG, 'removeGroup failed:' + JSON.stringify(error));
     }
   }
 
@@ -642,7 +631,7 @@ export class WifiDeviceManager {
       return
     }
     let packer = image.createImagePacker();
-    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 60 }
+    let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 60 }
     packer.packing(thumbnail, packOpts)
       .then((data: ArrayBuffer) => {
         let offset = 0
@@ -662,11 +651,11 @@ export class WifiDeviceManager {
     let uint8Arr = new Uint8Array(array)
     let pixelStr = base64Helper.encodeToStringSync(uint8Arr)
     let base64Str = 'data:image/jpg;base64,' + pixelStr
-    AppStorage.setOrCreate("thumbnail", base64Str)
+    AppStorage.setOrCreate('thumbnail', base64Str)
     try {
       let cache = await this.getCache()
       if (cache < 1024 * 1024 * 1024) {
-        let message: info = {
+        let message: Info = {
           code: 2,
           message: '内存已满'
         }
@@ -674,7 +663,7 @@ export class WifiDeviceManager {
         AppStorage.setOrCreate('receivedState', 0)
       } else {
         AppStorage.setOrCreate('receivedState', 2)
-        let message: info = {
+        let message: Info = {
           code: 1,
           message: 'User agrees to receive and begins receiving'
         }
@@ -718,36 +707,35 @@ export class WifiDeviceManager {
         let messageView: string = (new util.TextDecoder('utf-8', { ignoreBOM: true })).decodeWithStream(uint8Array, {
           stream: false
         })
-        let ReceivedInfo: info = JSON.parse(messageView)
-        Logger.info(TAG, 'ReceivedInfo:' + JSON.stringify(ReceivedInfo))
-        if (ReceivedInfo.code == 1) {
+        let receivedInfoMessage: Info = JSON.parse(messageView)
+        Logger.info(TAG, 'ReceivedInfo:' + JSON.stringify(receivedInfoMessage))
+        if (receivedInfoMessage.code == 1) {
           AppStorage.setOrCreate('receivedState', 3)
-          let SelectList: Array<PhotoModel> = AppStorage.get<PhotoModel[]>('SelectList') ?? []
-          if (SelectList.length == 1) {
+          let selectList: PhotoModel[] = AppStorage.get<PhotoModel[]>('SelectList') ?? []
+          if (selectList.length == 1) {
             const models: FileSendModel = {
-              filePath: SelectList[0].uri as string,
-              fileName: SelectList[0].displayName as string,
-              size: SelectList[0].size as number,
-              type: SelectList[0].photoType ?? 0,
+              filePath: selectList[0].uri as string,
+              fileName: selectList[0].displayName as string,
+              size: selectList[0].size as number,
+              type: selectList[0].photoType ?? 0,
               deviceName: this.deviceName
             }
-            this.readFile(models, SelectList[0])
+            this.readFile(models, selectList[0])
           }
-        } else if (ReceivedInfo.code == 2) {
+        } else if (receivedInfoMessage.code == 2) {
           Prompt.showToast({
-            message: "目标设备内存不足！",
+            message: '目标设备内存不足！',
             duration: 3000
           })
           AppStorage.setOrCreate('receivedState', 6)
-        } else if (ReceivedInfo.code == 3) {
+        } else if (receivedInfoMessage.code == 3) {
           this.fileBuffer = new ArrayBuffer(1024 * 1024 * 100)
           this.bufferThumbnail = new ArrayBuffer(1024 * 1024 * 10)
           AppStorage.setOrCreate('receivedState', 6)
           this.P2pConnectStatus = 0
-        } else if (ReceivedInfo.code == 0) {
-          // AppStorage.setOrCreate('receivedState', 7)
+        } else if (receivedInfoMessage.code == 0) {
           Prompt.showToast({
-            message: "网络异常中断",
+            message: '网络异常中断',
             duration: 3000
           })
           AppStorage.setOrCreate('receivedState', 6)
@@ -762,7 +750,7 @@ export class WifiDeviceManager {
         }
         if (this.offset == this.receivedInfo.size) {
           AppStorage.setOrCreate('progressValue', this.receivedInfo.size)
-          let message: info = {
+          let message: Info = {
             code: 3,
             message: 'User agrees to receive and begins receiving'
           }
@@ -773,13 +761,13 @@ export class WifiDeviceManager {
         }, 3000)
       }
     } catch (err) {
-      Logger.error(TAG, "onMessageReceived failed: " + JSON.stringify(err))
+      Logger.error(TAG, 'onMessageReceived failed: ' + JSON.stringify(err))
       if (AppStorage.get('receivedState') == 6) {
         return
       }
       AppStorage.setOrCreate('receivedState', 6)
       Prompt.showToast({
-        message: "网络异常中断，请重试！",
+        message: '网络异常中断，请重试！',
         duration: 3000
       })
     }
@@ -791,7 +779,7 @@ export class WifiDeviceManager {
     clearTimeout(this.timer)
     this.connectStatus = 0
     if (this.offset < this.receivedInfo.size) {
-      let message: info = {
+      let message: Info = {
         code: 3,
         message: 'User agrees to receive and begins receiving'
       }
@@ -832,19 +820,8 @@ export class WifiDeviceManager {
             params: params
           })
         }, 1000)
-        // setTimeout(()=> {
-        //   let want: Want = {
-        //     parameters: { 'uri': fileAsset.uri, isAuto: this.receivedInfo.type == 1 ? false : true },
-        //     action: 'ohos.want.action.viewData',
-        //     bundleName: 'com.ohos.photos',
-        //     abilityName: 'com.ohos.photos.MainAbility'
-        //   };
-        //   let context: common.UIAbilityContext = AppStorage.get<common.UIAbilityContext>('photosAbilityContext');
-        //   context.startAbility(want);
-        // }, 1000)
       })
-    }
-    catch (err) {
+    } catch (err) {
       Logger.error(TAG, 'writeFile failed：' + JSON.stringify(err))
     }
   }

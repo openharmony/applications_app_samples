@@ -16,10 +16,10 @@ import buffer from '@ohos.buffer';
 import CryptoJS from '@ohos/crypto-js';
 
 export const toWindowsFilePath = (value: string): string => {
-  if (value[0] === ".") {
+  if (value[0] === '.') {
     value = value.substring(1);
   }
-  if (value[0] === "/") {
+  if (value[0] === '/') {
     value = value.substring(1);
   }
   value = toWindowsPath(value);
@@ -28,22 +28,22 @@ export const toWindowsFilePath = (value: string): string => {
 
 export const toUnixFilePath = (value: string): string => {
   value = toUnixPath(value);
-  if (value[0] !== "/" && value[0] !== ".") {
+  if (value[0] !== '/' && value[0] !== '.') {
     value = `./${value}`;
   }
-  if (value[0] === "/") {
+  if (value[0] === '/') {
     value = `.${value}`;
   }
   return value;
 };
 
 export const toWindowsPath = (value: string): string => {
-  value = value.replace(/\//g, "\\");
+  value = value.replace(/\//g, '\\');
   return value;
 };
 
 export const toUnixPath = (value: string): string => {
-  value = value.replace(/\\/g, "/");
+  value = value.replace(/\\/g, '/');
   return value;
 };
 

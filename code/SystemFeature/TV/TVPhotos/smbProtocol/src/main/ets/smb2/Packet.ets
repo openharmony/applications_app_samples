@@ -26,8 +26,8 @@ type PacketBody = Object;
 type JsonReplacerValue = number | string | boolean | Object | null;
 
 class ParsedPacketData {
-  header: Header;
-  body: PacketBody;
+  public header: Header;
+  public body: PacketBody;
 
   constructor(header: Header, body: PacketBody) {
     this.header = header;
@@ -36,8 +36,8 @@ class ParsedPacketData {
 }
 
 class ParsedHeaderData {
-  header: Header;
-  bodyBuffer: buffer.Buffer;
+  public header: Header;
+  public bodyBuffer: buffer.Buffer;
 
   constructor(header: Header, bodyBuffer: buffer.Buffer) {
     this.header = header;

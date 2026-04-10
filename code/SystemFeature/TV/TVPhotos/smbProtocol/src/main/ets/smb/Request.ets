@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Header from "./Header";
-import Packet from "./Packet";
+import Header from './Header';
+import Packet from './Packet';
 import buffer from '@ohos.buffer';
-import ProtocolRequest from "../Request";
+import ProtocolRequest from '../Request';
 
 export default class Request extends ProtocolRequest {
   declare header: Header;

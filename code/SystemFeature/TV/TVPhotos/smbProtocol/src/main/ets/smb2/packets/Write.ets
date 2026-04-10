@@ -21,13 +21,13 @@ const requestStructure = new Structure()
   .addField('dataOffset', new StructureField(Number).setSize(2).setDefaultValue(112))
   .addField('length', new StructureField(Number).setSize(4))
   .addField('offset', new StructureField(Number).setSize(8))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('channel', new StructureField(Number).setSize(4))
   .addField('remainingBytes', new StructureField(Number).setSize(4))
   .addField('writeChannelInfoOffset', new StructureField(Number).setSize(2))
   .addField('writeChannelInfoLength', new StructureField(Number).setSize(2))
   .addField('flags', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("length"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('length'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
@@ -38,8 +38,8 @@ const responseStructure = new Structure()
   .addField('writeChannelInfoLength', new StructureField(Number).setSize(2));
 
 class WritePacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new WritePacket();

@@ -62,8 +62,10 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   async onRun(): Promise<void> {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'OpenHarmonyTestRunner onRun run');
-    const abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
-    const abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    const abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs =
+      AbilityDelegatorRegistry.getArguments();
+    const abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator =
+      AbilityDelegatorRegistry.getAbilityDelegator();
     const testAbilityName: string = abilityDelegatorArguments.bundleName + '.TestAbility';
     let lMonitor: AbilityDelegatorRegistry.AbilityMonitor = {
       abilityName: testAbilityName,

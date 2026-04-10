@@ -77,16 +77,16 @@ class FileRequestBody {
 }
 
 class FileOpenOptionsModel implements OpenOptions {
-  desiredAccess?: Smb2FilePipePrinterAccess;
-  createDisposition?: Smb2CreateDispositionType;
-  createOptions?: Smb2CreateOptions;
+  public desiredAccess?: Smb2FilePipePrinterAccess;
+  public createDisposition?: Smb2CreateDispositionType;
+  public createOptions?: Smb2CreateOptions;
 }
 
 class File extends EventEmitter {
   private tree: Tree;
-  _id: buffer.Buffer = buffer.alloc(0);
-  isOpen: boolean = false;
-  fileSize: bigint = BigInt(0);
+  public _id: buffer.Buffer = buffer.alloc(0);
+  public isOpen: boolean = false;
+  public fileSize: bigint = BigInt(0);
 
   constructor(tree: Tree) {
     super()
@@ -97,16 +97,16 @@ class File extends EventEmitter {
     if (this.isOpen) {
       return;
     }
-    const buf = buffer.from(smbUtil.toWindowsFilePath(path), "ucs2");
+    const buf = buffer.from(smbUtil.toWindowsFilePath(path), 'ucs2');
     const openBody = new FileRequestBody()
     openBody.buf = buf
-    openBody.desiredAccess = typeof options.desiredAccess === "number" ?
+    openBody.desiredAccess = typeof options.desiredAccess === 'number' ?
       options.desiredAccess : Smb2FilePipePrinterAccess.ReadData
     openBody.fileAttributes = Smb2FileAttribute.Normal
     openBody.shareAccess = ShareAccessType.Read | ShareAccessType.Write | ShareAccessType.Delete
-    openBody.createDisposition = typeof options.createDisposition === "number" ?
+    openBody.createDisposition = typeof options.createDisposition === 'number' ?
       options.createDisposition : Smb2CreateDispositionType.Open
-    openBody.createOptions = typeof options.createOptions === "number" ?
+    openBody.createOptions = typeof options.createOptions === 'number' ?
       options.createOptions : Smb2CreateOptions.None
     openBody.nameOffset = 0x0078
     openBody.createContextsOffset = 0x007a + buf.length
@@ -122,7 +122,7 @@ class File extends EventEmitter {
     this._id = responseFileId;
     this.fileSize = responseBody.endOfFile;
     this.isOpen = true;
-    this.emit("open", this);
+    this.emit('open', this);
   }
 
   async openByBody(body: Object = new FileRequestBody()): Promise<void> {
@@ -141,7 +141,7 @@ class File extends EventEmitter {
     this._id = responseFileId;
     this.fileSize = responseBody.endOfFile;
     this.isOpen = true;
-    this.emit("open", this);
+    this.emit('open', this);
   }
 
   async create(path: string): Promise<void> {
@@ -158,7 +158,7 @@ class File extends EventEmitter {
   }
 
   async rename(newPath: string) {
-    const newPathUCS2 = buffer.from(newPath, "ucs2");
+    const newPathUCS2 = buffer.from(newPath, 'ucs2');
     const buf = buffer.alloc(1 + 7 + 8 + 4 + newPathUCS2.length);
     buf.fill(0x00);
     buf.writeUInt8(1, 0);
@@ -183,7 +183,7 @@ class File extends EventEmitter {
   }
 
   async write(content: buffer.Buffer | string): Promise<void> {
-    const buf = buffer.isBuffer(content) ? content as buffer.Buffer : buffer.from(content as string, "utf8");
+    const buf = buffer.isBuffer(content) ? content as buffer.Buffer : buffer.from(content as string, 'utf8');
     const chunkCount = Math.ceil(buf.length / maxWriteChunkLength);
     for (let index = 0; index < chunkCount; index++) {
       const offset = index * maxWriteChunkLength;
@@ -280,7 +280,7 @@ class File extends EventEmitter {
     const closeBody = new FileRequestBody()
     closeBody.fileId = this._id
     await this.tree.request({ type: Smb2PacketType.Close }, closeBody);
-    this.emit("close", this);
+    this.emit('close', this);
   }
 }
 

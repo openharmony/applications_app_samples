@@ -14,7 +14,7 @@
  */
 import buffer from '@ohos.buffer';
 import CryptoJS from '@ohos/crypto-js';
-import { md4 } from '../md4/md4';
+import { Md4 } from '../md4/md4';
 import { Type2Message } from './ntlm';
 
 const TAG = 'NTLM_hash'
@@ -112,8 +112,8 @@ class HashUtil {
   }
 
   createNTLMHash(password: string): buffer.Buffer {
-    const ucs2 = buffer.from(password, "ucs2");
-    const md = new md4();
+    const ucs2 = buffer.from(password, 'ucs2');
+    const md = new Md4();
     md.update(ucs2.buffer);
     return buffer.from(md.hex(), 'hex');
   }

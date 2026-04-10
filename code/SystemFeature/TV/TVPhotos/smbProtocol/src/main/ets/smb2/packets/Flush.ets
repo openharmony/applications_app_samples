@@ -12,22 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(24))
   .addField('reserved', new StructureField(Number).setSize(2))
   .addField('reserved2', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16));
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('reserved', new StructureField(Number).setSize(2));
 
 class FlushPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new FlushPacket();

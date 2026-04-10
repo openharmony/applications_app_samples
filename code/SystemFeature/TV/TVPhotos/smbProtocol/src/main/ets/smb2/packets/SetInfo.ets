@@ -46,15 +46,15 @@ const requestStructure = new Structure()
   .addField('bufferOffset', new StructureField(Number).setSize(2).setDefaultValue(96))
   .addField('reserved', new StructureField(Number).setSize(2))
   .addField('additionalInformation', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("bufferLength"));
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('bufferLength'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2));
 
 class SetInfoPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new SetInfoPacket();

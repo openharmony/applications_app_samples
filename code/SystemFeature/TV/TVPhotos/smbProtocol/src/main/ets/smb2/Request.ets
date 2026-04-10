@@ -29,10 +29,10 @@ class EmptyHeader implements Header {
 }
 
 export default class Request extends ProtocolRequest {
-  declare header: Header;
-  declare body: Object;
-  typeName: string;
-  data?: Object;
+  public declare header: Header;
+  public declare body: Object;
+  public typeName: string;
+  public data?: Object;
 
   constructor(header?: Header, body?: Object) {
     super(header === undefined ? new EmptyHeader() : header, body === undefined ? new RequestBodyData() : body);

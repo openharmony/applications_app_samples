@@ -14,7 +14,7 @@
  */
 export default interface DirectoryEntry {
   index: number;
-  type: "File" | "Directory";
+  type: 'File' | 'Directory';
   creationTime: Date;
   lastAccessTime: Date;
   lastWriteTime: Date;

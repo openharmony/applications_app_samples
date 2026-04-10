@@ -63,9 +63,9 @@ const requestStructure = new Structure()
   .addField('nameLength', new StructureField(Number).setSize(2))
   .addField('createContextsOffset', new StructureField(Number).setSize(4).setDefaultValue(0x80))
   .addField('createContextsLength', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("nameLength"))
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('nameLength'))
   .addField('reserved2', new StructureField(Number).setSize(4))
-  .addField('contextBuffer', new StructureField(buffer.Buffer).setSizeFieldName("createContextsLength"));
+  .addField('contextBuffer', new StructureField(buffer.Buffer).setSizeFieldName('createContextsLength'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
@@ -80,10 +80,10 @@ const responseStructure = new Structure()
   .addField('endOfFile', new StructureField(Number).setSize(8))
   .addField('fileAttributes', new StructureField(Number).setSize(4))
   .addField('reserved2', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('createContextsOffset', new StructureField(Number).setSize(4))
   .addField('createContextsLength', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("createContextsLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('createContextsLength'));
 
 class FileNameBuffer {
   size: number;
@@ -193,12 +193,12 @@ const getFileNameBuffer = (fileName: string): FileNameBuffer => {
 }
 
 class CreatePacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
-  createDH2QContext = createDH2QContext;
-  createQFidContext = createQFidContext;
-  createRqLsContext = createRqLsContext;
-  getFileNameBuffer = getFileNameBuffer;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
+  public createDH2QContext = createDH2QContext;
+  public createQFidContext = createQFidContext;
+  public createRqLsContext = createRqLsContext;
+  public getFileNameBuffer = getFileNameBuffer;
 }
 
 export default new CreatePacket();

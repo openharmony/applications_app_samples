@@ -26,17 +26,17 @@ const requestStructure = new Structure()
   .addField('inputBufferLength', new StructureField(Number).setSize(4))
   .addField('additionalInformation', new StructureField(Number).setSize(4))
   .addField('flags', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16));
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('outputBufferOffset', new StructureField(Number).setSize(2))
   .addField('outputBufferLength', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("outputBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputBufferLength'));
 
 class QueryInfoPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new QueryInfoPacket();

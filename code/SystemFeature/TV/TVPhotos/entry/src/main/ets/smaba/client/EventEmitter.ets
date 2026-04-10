@@ -14,8 +14,8 @@
  */
  
 export default class EventEmitter {
-  actionRecord: Map<string, Function[]> = new Map()
-  onceActionRecord: Map<string, Function[]> = new Map()
+  public actionRecord: Map<string, Function[]> = new Map()
+  public onceActionRecord: Map<string, Function[]> = new Map()
 
   constructor() {
   }

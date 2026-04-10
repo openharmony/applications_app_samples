@@ -22,7 +22,7 @@ const requestStructure = new Structure()
   .addField('flags', new StructureField(Number).setSize(1))
   .addField('length', new StructureField(Number).setSize(4).setDefaultValue(1024))
   .addField('offset', new StructureField(Number).setSize(8))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('minimumCount', new StructureField(Number).setSize(4))
   .addField('channel', new StructureField(Number).setSize(4))
   .addField('remainingBytes', new StructureField(Number).setSize(4))
@@ -37,11 +37,11 @@ const responseStructure = new Structure()
   .addField('dataLength', new StructureField(Number).setSize(4))
   .addField('dataRemaining', new StructureField(Number).setSize(4))
   .addField('reserved2', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("dataLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('dataLength'));
 
 class ReadPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new ReadPacket();

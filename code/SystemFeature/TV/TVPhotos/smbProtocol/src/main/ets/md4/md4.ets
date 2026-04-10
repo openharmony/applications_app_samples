@@ -22,7 +22,7 @@ function bitwiseNot(value: number): number {
   return value ^ 0xffffffff;
 }
 
-export class md4 {
+export class Md4 {
   private blocks: Uint32Array;
   private buffer8: Uint8Array;
   private h0: number;
@@ -47,7 +47,10 @@ export class md4 {
 
   hex(): string {
     this.finalize();
-    const h0 = this.h0, h1 = this.h1, h2 = this.h2, h3 = this.h3;
+    const h0 = this.h0;
+    const h1 = this.h1;
+    const h2 = this.h2;
+    const h3 = this.h3;
     return HEX_CHARS[(h0 >> 4) & 0x0F] + HEX_CHARS[h0 & 0x0F] +
     HEX_CHARS[(h0 >> 12) & 0x0F] + HEX_CHARS[(h0 >> 8) & 0x0F] +
     HEX_CHARS[(h0 >> 20) & 0x0F] + HEX_CHARS[(h0 >> 16) & 0x0F] +
@@ -66,7 +69,7 @@ export class md4 {
     HEX_CHARS[(h3 >> 28) & 0x0F] + HEX_CHARS[(h3 >> 24) & 0x0F];
   }
 
-  update(data: string | ArrayBuffer): md4 | undefined {
+  update(data: string | ArrayBuffer): Md4 | undefined {
     if (this.finalized) {
       return;
     }
@@ -74,7 +77,8 @@ export class md4 {
     let code: number = 0;
     let index: number = 0;
     let i: number = 0;
-    const length = message.length || 0, blocks = this.blocks;
+    const length = message.length || 0;
+    const blocks = this.blocks;
     const buffer8 = this.buffer8;
     while (index < length) {
       if (this.hashed) {
@@ -125,7 +129,10 @@ export class md4 {
 
   digest(): number[] {
     this.finalize();
-    const h0 = this.h0, h1 = this.h1, h2 = this.h2, h3 = this.h3;
+    const h0 = this.h0;
+    const h1 = this.h1;
+    const h2 = this.h2;
+    const h3 = this.h3;
     return [h0 & 0xFF, (h0 >> 8) & 0xFF, (h0 >> 16) & 0xFF, (h0 >> 24) & 0xFF,
       h1 & 0xFF, (h1 >> 8) & 0xFF, (h1 >> 16) & 0xFF, (h1 >> 24) & 0xFF,
       h2 & 0xFF, (h2 >> 8) & 0xFF, (h2 >> 16) & 0xFF, (h2 >> 24) & 0xFF,
@@ -306,7 +313,8 @@ export class md4 {
       return;
     }
     this.finalized = true;
-    const blocks = this.blocks, i = this.lastByteIndex;
+    const blocks = this.blocks;
+    const i = this.lastByteIndex;
     blocks[i >> 2] |= EXTRA[i & 3];
     if (i >= 56) {
       if (!this.hashed) {

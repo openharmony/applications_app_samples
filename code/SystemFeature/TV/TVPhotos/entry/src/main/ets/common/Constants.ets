@@ -13,7 +13,7 @@
  * limitations under the License.
  */
  
-import { photoAccessHelper } from "@kit.MediaLibraryKit";
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 export class Constants {
   // Step size. When the last obtained data index deviates from the center of the current sliding window by more

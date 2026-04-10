@@ -16,7 +16,7 @@ import buffer from '@ohos.buffer';
 import flags from './flags';
 import hash from './hash';
 
-const NTLMSIGNATURE = "NTLMSSP\0";
+const NTLMSIGNATURE = 'NTLMSSP\0';
 const DEFAULT_WORKSTATION_NAME = 'default'
 
 const TAG = 'SMB_NTLM_util'
@@ -44,8 +44,8 @@ export function createType1Message(workstation?: string, target?: string): buffe
 
   workstation = workstation === undefined ? DEFAULT_WORKSTATION_NAME : workstation;
   target = target === undefined ? '' : target;
-  const workstationLength = buffer.byteLength(workstation, "ascii");
-  const targetLength = buffer.byteLength(target, "ascii");
+  const workstationLength = buffer.byteLength(workstation, 'ascii');
+  const targetLength = buffer.byteLength(target, 'ascii');
 
   const buf = buffer.alloc(dataPos + workstationLength + targetLength);
   // Signature

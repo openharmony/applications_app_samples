@@ -25,18 +25,18 @@ const requestStructure = new Structure()
   .addField('securityBufferOffset', new StructureField(Number).setSize(2).setDefaultValue(88))
   .addField('securityBufferLength', new StructureField(Number).setSize(2))
   .addField('previousSessionId', new StructureField(Number).setSize(8))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("securityBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('securityBufferLength'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('sessionFlags', new StructureField(Number).setSize(2))
   .addField('securityBufferOffset', new StructureField(Number).setSize(2))
   .addField('securityBufferLength', new StructureField(Number).setSize(2))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("securityBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('securityBufferLength'));
 
 class SessionSetupPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new SessionSetupPacket();

@@ -93,15 +93,15 @@ class SessionFileOpenRequestBody extends SessionRequestBody {
 }
 
 class Session extends EventEmitter {
-  client: Client;
-  _id: string = '';
-  connectedTrees: Tree[] = [];
-  authenticated: boolean = false;
-  shareEnums: ShareEnum[] = []
-  shareEnumTrees: Map<string, Tree> = new Map();
-  createGuid = util.generateRandomUUID()
-  allImages: DirectoryEntry[] = []
-  maxReadSize: number = 65536
+  public client: Client;
+  public _id: string = '';
+  public connectedTrees: Tree[] = [];
+  public authenticated: boolean = false;
+  public shareEnums: ShareEnum[] = []
+  public shareEnumTrees: Map<string, Tree> = new Map();
+  public createGuid = util.generateRandomUUID()
+  public allImages: DirectoryEntry[] = []
+  public maxReadSize: number = 65536
 
   // rootTree?:Tree
   constructor(client: Client) {
@@ -258,14 +258,14 @@ class Session extends EventEmitter {
     )
     await this.request({ type: Smb2PacketType.SessionSetup }, sessionSetupAuthRequestBody);
     this.authenticated = true;
-    this.emit("authenticate", this);
+    this.emit('authenticate', this);
   }
 
   private registerTree(tree: Tree): void {
-    tree.once("connect", (): void => {
+    tree.once('connect', (): void => {
       this.connectedTrees.push(tree)
     })
-    tree.once("disconnect", (): void => {
+    tree.once('disconnect', (): void => {
       this.connectedTrees.splice(this.connectedTrees.indexOf(tree), 1)
     });
   }
@@ -278,7 +278,7 @@ class Session extends EventEmitter {
     await Promise.all(this.connectedTrees.map((tree: Tree): Promise<void> => tree.disconnect()));
     await this.request({ type: Smb2PacketType.LogOff });
     this._id = '';
-    this.emit("logoff", this);
+    this.emit('logoff', this);
   }
 
   private createHeader(header?: Smb2Header): Smb2Header {

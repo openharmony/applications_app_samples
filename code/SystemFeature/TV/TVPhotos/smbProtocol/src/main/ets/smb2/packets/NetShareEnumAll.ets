@@ -87,7 +87,6 @@ const getShareEnums = (buf: buffer.Buffer): ShareEnum[] => {
     while (true) {
       const charCode = buf.readUInt16LE(offset + tempOffset)
       if (charCode === 0) {
-        // shares[i].name = buf.toString('utf8',offset,offset+tempOffset)
         shares[i].name = utf16LeToString(buf.subarray(offset, offset + tempOffset))
         offset += tempOffset
         offset += 4
@@ -160,11 +159,11 @@ const createInfoCtrlBuffer = (level: number = 1, ctrl: number = 1): buffer.Buffe
 
 
 class NetShareEnumAllPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
-  createServerNameBuffer = createServerNameBuffer;
-  createInfoCtrlBuffer = createInfoCtrlBuffer;
-  getShareEnums = getShareEnums;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
+  public createServerNameBuffer = createServerNameBuffer;
+  public createInfoCtrlBuffer = createInfoCtrlBuffer;
+  public getShareEnums = getShareEnums;
 }
 
 export default new NetShareEnumAllPacket();

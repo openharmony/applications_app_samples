@@ -24,8 +24,8 @@ const responseStructure = new Structure()
   .addField('reserved', new StructureField(Number).setSize(2));
 
 class TreeDisconnectPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
 }
 
 export default new TreeDisconnectPacket();

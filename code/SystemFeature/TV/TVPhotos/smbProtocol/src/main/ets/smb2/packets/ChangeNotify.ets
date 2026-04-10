@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 import buffer from '@ohos.buffer';
-import * as util from "../../util";
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
-import FileAction from "../FileAction";
-import ChangeEntry from "../../models/ChangeEntry";
-import * as structureUtil from "../../structureUtil";
+import * as util from '../../util';
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
+import FileAction from '../FileAction';
+import ChangeEntry from '../../models/ChangeEntry';
+import * as structureUtil from '../../structureUtil';
 
 export enum Flags {
   None,
@@ -44,7 +44,7 @@ const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(32))
   .addField('flags', new StructureField(Number).setSize(2).setDefaultValue(Flags.WatchTreeRecursively))
   .addField('outputBufferLength', new StructureField(Number).setSize(4).setDefaultValue(0x00010000))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('completionFilter', new StructureField(Number).setSize(4).setDefaultValue(
     CompletionFilter.FilenameChange |
     CompletionFilter.DirnameChange |
@@ -65,7 +65,7 @@ const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('outputBufferOffset', new StructureField(Number).setSize(2))
   .addField('outputBufferLength', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("outputBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputBufferLength'));
 
 class ChangeEntryModel implements ChangeEntry {
   action: FileAction;
@@ -82,7 +82,7 @@ class ChangeEntryModel implements ChangeEntry {
 const parseChangeEntry = (entryBuffer: buffer.Buffer): ChangeEntry => {
   const action = entryBuffer.readUInt32LE(0);
   const filenameLength = entryBuffer.readUInt32LE(4);
-  const filename = util.toUnixFilePath(entryBuffer.subarray(8, 8 + filenameLength).toString("ucs2"));
+  const filename = util.toUnixFilePath(entryBuffer.subarray(8, 8 + filenameLength).toString('ucs2'));
   const actionName = structureUtil.parseEnumValue(FileAction, action) ?? '';
   return new ChangeEntryModel(action as FileAction, actionName, filename);
 };
@@ -92,9 +92,9 @@ const parseResponseBuffer = (buf: buffer.Buffer) => {
 };
 
 class ChangeNotifyPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
-  parseResponseBuffer = parseResponseBuffer;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
+  public parseResponseBuffer = parseResponseBuffer;
 }
 
 export default new ChangeNotifyPacket();

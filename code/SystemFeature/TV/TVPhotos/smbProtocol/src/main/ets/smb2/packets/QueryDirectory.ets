@@ -13,33 +13,33 @@
  * limitations under the License.
  */
 import buffer from '@ohos.buffer';
-import * as util from "../../util";
-import Structure from "../../Structure";
-import StructureField from "../../StructureField";
-import FileAttribute from "../FileAttribute";
-import * as structureUtil from "../../structureUtil";
-import DirectoryEntry from "../../models/DirectoryEntry";
+import * as util from '../../util';
+import Structure from '../../Structure';
+import StructureField from '../../StructureField';
+import FileAttribute from '../FileAttribute';
+import * as structureUtil from '../../structureUtil';
+import DirectoryEntry from '../../models/DirectoryEntry';
 
 const requestStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2).setDefaultValue(33))
   .addField('fileInformationClass', new StructureField(Number).setSize(1).setDefaultValue(37))
   .addField('flags', new StructureField(Number).setSize(1))
   .addField('fileIndex', new StructureField(Number).setSize(4))
-  .addField('fileId', new StructureField(String).setEncoding("hex").setSize(16))
+  .addField('fileId', new StructureField(String).setEncoding('hex').setSize(16))
   .addField('fileNameOffset', new StructureField(Number).setSize(2).setDefaultValue(96))
   .addField('fileNameLength', new StructureField(Number).setSize(2))
   .addField('outputBufferLength', new StructureField(Number).setSize(4).setDefaultValue(0x00010000))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("fileNameLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('fileNameLength'));
 
 const responseStructure = new Structure()
   .addField('structureSize', new StructureField(Number).setSize(2))
   .addField('outputBufferOffset', new StructureField(Number).setSize(2))
   .addField('outputBufferLength', new StructureField(Number).setSize(4))
-  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName("outputBufferLength"));
+  .addField('buffer', new StructureField(buffer.Buffer).setSizeFieldName('outputBufferLength'));
 
 class DirectoryEntryModel implements DirectoryEntry {
   index: number;
-  type: "File" | "Directory";
+  type: 'File' | 'Directory';
   creationTime: Date;
   lastAccessTime: Date;
   lastWriteTime: Date;
@@ -54,7 +54,7 @@ class DirectoryEntryModel implements DirectoryEntry {
   shareEnum: string;
   absoluteDir: string;
 
-  constructor(index: number, type: "File" | "Directory", creationTime: Date, lastAccessTime: Date, lastWriteTime: Date,
+  constructor(index: number, type: 'File' | 'Directory', creationTime: Date, lastAccessTime: Date, lastWriteTime: Date,
     changeTime: Date, fileSize: BigInt, allocationSize: BigInt, shortFilename: string | undefined, eaSize: number,
     fileId: string, filename: string, fileAttributes: string[]) {
     this.index = index;
@@ -102,15 +102,15 @@ const parseDirectoryEntry = (entryBuffer: buffer.Buffer): DirectoryEntry => {
   offset += 1;
   let shortFilename: string | undefined = undefined;
   if (shortNameLength !== 0)
-    shortFilename = util.toUnixPath(entryBuffer.subarray(offset, offset + shortNameLength).toString("ucs2"));
+    shortFilename = util.toUnixPath(entryBuffer.subarray(offset, offset + shortNameLength).toString('ucs2'));
   offset += 24;
   offset += 2;
   const data = entryBuffer.subarray(offset, offset + 8).swap64();
-  const fileId = structureUtil.parseString(data, new StructureField(String).setEncoding("hex"));
+  const fileId = structureUtil.parseString(data, new StructureField(String).setEncoding('hex'));
   offset += 8;
-  const filename = util.toUnixPath(entryBuffer.subarray(offset, offset + filenameLength).toString("ucs2"));
+  const filename = util.toUnixPath(entryBuffer.subarray(offset, offset + filenameLength).toString('ucs2'));
   offset += filenameLength;
-  const type: "File" | "Directory" = fileAttributes.includes("Directory") ? "Directory" : "File";
+  const type: 'File' | 'Directory' = fileAttributes.includes('Directory') ? 'Directory' : 'File';
   return new DirectoryEntryModel(index, type, creationTime, lastAccessTime, lastWriteTime, changeTime, fileSize,
     allocationSize, shortFilename, eaSize, fileId, filename, fileAttributes);
 };
@@ -120,9 +120,9 @@ const parseResponseBuffer = (buf: buffer.Buffer) => {
 };
 
 class QueryDirectoryPacket {
-  requestStructure: Structure = requestStructure;
-  responseStructure: Structure = responseStructure;
-  parseResponseBuffer = parseResponseBuffer;
+  public requestStructure: Structure = requestStructure;
+  public responseStructure: Structure = responseStructure;
+  public parseResponseBuffer = parseResponseBuffer;
 }
 
 export default new QueryDirectoryPacket();
