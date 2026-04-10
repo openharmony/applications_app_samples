@@ -16,25 +16,25 @@
 #include "napi/native_api.h"
 #include "types/project/file.h"
 
-static napi_value NAPI_Global_randomGenerateAsymKey(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_generateRSAKey(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, randomGenerateAsymKey(), &ret);
+    napi_create_int32(env, generateRSAKey(), &ret);
     return ret;
 }
-static napi_value NAPI_Global_randomGenerateRSA(napi_env env, napi_callback_info info)
+static napi_value NAPI_Global_generateSM2Key(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, randomGenerateRSA(), &ret);
+    napi_create_int32(env, generateSM2Key(), &ret);
     return ret;
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"randomGenerateAsymKey", nullptr, NAPI_Global_randomGenerateAsymKey, nullptr,
-                                        nullptr, nullptr, napi_default, nullptr},
-                                       {"randomGenerateRSA", nullptr, NAPI_Global_randomGenerateRSA, nullptr, nullptr,
-                                        nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {
+        {"generateRSAKey", nullptr, NAPI_Global_generateRSAKey, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"generateSM2Key", nullptr, NAPI_Global_generateSM2Key, nullptr, nullptr, nullptr, napi_default, nullptr}
+    };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

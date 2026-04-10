@@ -46,7 +46,7 @@ namespace ECIES {
       algName: 'X963KDF',
       key: keyData.data,
       info: infoData,
-      keySize: 32, // 前16字节作为AES128的IV，后16字节作为的密钥
+      keySize: 32, // 前16字节作为AES128的IV，后16字节作为密钥
     };
 
     // 使用X963KDF进行密钥派生
