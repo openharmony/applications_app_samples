@@ -1958,4 +1958,1442 @@ const HOME_EXPANSION_SCENARIOS: BusinessScenario[] = [
       'verify_menu2_focus'
     ]
   },
-  
+  {
+    id: 'home_064',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_to_picture_roundtrip',
+    expectedState: 'picture_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'focus_menu2',
+      'press_left_twice',
+      'verify_menu0_focus'
+    ]
+  },
+  {
+    id: 'home_065',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu0',
+    action: 'picture_tab_driver_delay_contract',
+    expectedState: 'driver_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'load_picture_driver',
+      'record_picture_delay',
+      'verify_delay_sequence'
+    ]
+  },
+  {
+    id: 'home_066',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu1',
+    action: 'album_tab_driver_delay_contract',
+    expectedState: 'driver_ready',
+    expectedFocus: 'menu1',
+    steps: [
+      'load_album_driver',
+      'record_album_delay',
+      'verify_delay_sequence'
+    ]
+  },
+  {
+    id: 'home_067',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_tab_driver_delay_contract',
+    expectedState: 'driver_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_distributed_driver',
+      'record_distributed_delay',
+      'verify_delay_sequence'
+    ]
+  },
+  {
+    id: 'home_068',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu0',
+    action: 'picture_tab_focus_ring_contract',
+    expectedState: 'focus_ring_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'build_picture_focus_ring',
+      'focus_menu0',
+      'verify_focus_ring_head'
+    ]
+  },
+  {
+    id: 'home_069',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu1',
+    action: 'album_tab_focus_ring_contract',
+    expectedState: 'focus_ring_ready',
+    expectedFocus: 'menu1',
+    steps: [
+      'build_album_focus_ring',
+      'focus_menu1',
+      'verify_focus_ring_head'
+    ]
+  },
+  {
+    id: 'home_070',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_tab_focus_ring_contract',
+    expectedState: 'focus_ring_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'build_distributed_focus_ring',
+      'focus_menu2',
+      'verify_focus_ring_head'
+    ]
+  },
+  {
+    id: 'home_071',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu0',
+    action: 'picture_tab_candidate_rebuild',
+    expectedState: 'candidate_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'build_picture_candidates',
+      'rebuild_picture_candidates',
+      'verify_candidate_order'
+    ]
+  },
+  {
+    id: 'home_072',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu1',
+    action: 'album_tab_candidate_rebuild',
+    expectedState: 'candidate_ready',
+    expectedFocus: 'menu1',
+    steps: [
+      'build_album_candidates',
+      'rebuild_album_candidates',
+      'verify_candidate_order'
+    ]
+  },
+  {
+    id: 'home_073',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_tab_candidate_rebuild',
+    expectedState: 'candidate_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'build_distributed_candidates',
+      'rebuild_distributed_candidates',
+      'verify_candidate_order'
+    ]
+  },
+  {
+    id: 'home_074',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu0',
+    action: 'picture_tab_state_snapshot',
+    expectedState: 'snapshot_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'capture_picture_snapshot',
+      'persist_picture_snapshot',
+      'verify_snapshot_state'
+    ]
+  },
+  {
+    id: 'home_075',
+    domain: '首页流程',
+    ability: 'EntryAbility',
+    entry: 'menu0',
+    action: 'home_complete_focus_matrix',
+    expectedState: 'matrix_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'load_home_focus_matrix',
+      'iterate_home_focus_cases',
+      'verify_matrix_size'
+    ]
+  }
+];
+
+const ALBUM_EXPANSION_SCENARIOS: BusinessScenario[] = [
+  {
+    id: 'album_041',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'reopen_all_album_after_back',
+    expectedState: 'photo_list_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'open_all_album',
+      'invoke_back_action',
+      'verify_album0_focus'
+    ]
+  },
+  {
+    id: 'album_042',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'reopen_favorite_album_after_back',
+    expectedState: 'photo_list_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'open_favorite_album',
+      'invoke_back_action',
+      'verify_album1_focus'
+    ]
+  },
+  {
+    id: 'album_043',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album2',
+    action: 'reopen_screenshot_album_after_back',
+    expectedState: 'photo_list_ready',
+    expectedFocus: 'album2',
+    steps: [
+      'open_screenshot_album',
+      'invoke_back_action',
+      'verify_album2_focus'
+    ]
+  },
+  {
+    id: 'album_044',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'reopen_trash_album_after_back',
+    expectedState: 'photo_list_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'open_trash_album',
+      'invoke_back_action',
+      'verify_album3_focus'
+    ]
+  },
+  {
+    id: 'album_045',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'reopen_nas_album_after_back',
+    expectedState: 'photo_list_ready',
+    expectedFocus: 'album4',
+    steps: [
+      'open_nas_album',
+      'invoke_back_action',
+      'verify_album4_focus'
+    ]
+  },
+  {
+    id: 'album_046',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'all_album_focus_boundary_left',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'focus_album0',
+      'press_left',
+      'verify_album0_focus'
+    ]
+  },
+  {
+    id: 'album_047',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'favorite_album_focus_boundary_left',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'focus_album1',
+      'press_left',
+      'verify_left_boundary'
+    ]
+  },
+  {
+    id: 'album_048',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'trash_album_focus_boundary_right',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'focus_album3',
+      'press_right',
+      'verify_right_boundary'
+    ]
+  },
+  {
+    id: 'album_049',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'nas_album_focus_boundary_right',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album4',
+    steps: [
+      'focus_album4',
+      'press_right',
+      'verify_album4_focus'
+    ]
+  },
+  {
+    id: 'album_050',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'all_album_vertical_down',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'focus_album0',
+      'press_down',
+      'verify_album3_focus'
+    ]
+  },
+  {
+    id: 'album_051',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'favorite_album_vertical_down',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album4',
+    steps: [
+      'focus_album1',
+      'press_down',
+      'verify_album4_focus'
+    ]
+  },
+  {
+    id: 'album_052',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'trash_album_vertical_up',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'focus_album3',
+      'press_up',
+      'verify_album0_focus'
+    ]
+  },
+  {
+    id: 'album_053',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'nas_album_vertical_up',
+    expectedState: 'album_grid_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'focus_album4',
+      'press_up',
+      'verify_album1_focus'
+    ]
+  },
+  {
+    id: 'album_054',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'all_album_open_menu',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dialog2',
+    steps: [
+      'focus_album0',
+      'press_shortcut_key',
+      'verify_dialog2_focus'
+    ]
+  },
+  {
+    id: 'album_055',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'favorite_album_open_menu',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dialog2',
+    steps: [
+      'focus_album1',
+      'press_shortcut_key',
+      'verify_dialog2_focus'
+    ]
+  },
+  {
+    id: 'album_056',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'trash_album_open_menu',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dialog2',
+    steps: [
+      'focus_album3',
+      'press_shortcut_key',
+      'verify_dialog2_focus'
+    ]
+  },
+  {
+    id: 'album_057',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'nas_album_open_menu',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dialog2',
+    steps: [
+      'focus_album4',
+      'press_shortcut_key',
+      'verify_dialog2_focus'
+    ]
+  },
+  {
+    id: 'album_058',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'all_album_cover_refresh',
+    expectedState: 'album_cover_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'load_all_album_cover',
+      'refresh_album_cover',
+      'verify_cover_ready'
+    ]
+  },
+  {
+    id: 'album_059',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'favorite_album_cover_refresh',
+    expectedState: 'album_cover_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'load_favorite_cover',
+      'refresh_album_cover',
+      'verify_cover_ready'
+    ]
+  },
+  {
+    id: 'album_060',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album2',
+    action: 'screenshot_album_cover_refresh',
+    expectedState: 'album_cover_ready',
+    expectedFocus: 'album2',
+    steps: [
+      'load_screenshot_cover',
+      'refresh_album_cover',
+      'verify_cover_ready'
+    ]
+  },
+  {
+    id: 'album_061',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'trash_album_cover_refresh',
+    expectedState: 'album_cover_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'load_trash_cover',
+      'refresh_album_cover',
+      'verify_cover_ready'
+    ]
+  },
+  {
+    id: 'album_062',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'nas_album_cover_refresh',
+    expectedState: 'album_cover_ready',
+    expectedFocus: 'album4',
+    steps: [
+      'load_nas_cover',
+      'refresh_album_cover',
+      'verify_cover_ready'
+    ]
+  },
+  {
+    id: 'album_063',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'all_album_photo_count_sync',
+    expectedState: 'album_count_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'load_all_album_count',
+      'sync_album_count',
+      'verify_count_ready'
+    ]
+  },
+  {
+    id: 'album_064',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'favorite_album_photo_count_sync',
+    expectedState: 'album_count_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'load_favorite_count',
+      'sync_album_count',
+      'verify_count_ready'
+    ]
+  },
+  {
+    id: 'album_065',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album2',
+    action: 'screenshot_album_photo_count_sync',
+    expectedState: 'album_count_ready',
+    expectedFocus: 'album2',
+    steps: [
+      'load_screenshot_count',
+      'sync_album_count',
+      'verify_count_ready'
+    ]
+  },
+  {
+    id: 'album_066',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'trash_album_photo_count_sync',
+    expectedState: 'album_count_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'load_trash_count',
+      'sync_album_count',
+      'verify_count_ready'
+    ]
+  },
+  {
+    id: 'album_067',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'nas_album_photo_count_sync',
+    expectedState: 'album_count_ready',
+    expectedFocus: 'album4',
+    steps: [
+      'load_nas_count',
+      'sync_album_count',
+      'verify_count_ready'
+    ]
+  },
+  {
+    id: 'album_068',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'album_grid_focus_restore_all',
+    expectedState: 'focus_restored',
+    expectedFocus: 'album0',
+    steps: [
+      'store_album0_focus',
+      'restore_album_focus',
+      'verify_album0_focus'
+    ]
+  },
+  {
+    id: 'album_069',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'album_grid_focus_restore_favorite',
+    expectedState: 'focus_restored',
+    expectedFocus: 'album1',
+    steps: [
+      'store_album1_focus',
+      'restore_album_focus',
+      'verify_album1_focus'
+    ]
+  },
+  {
+    id: 'album_070',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'album_grid_focus_restore_trash',
+    expectedState: 'focus_restored',
+    expectedFocus: 'album3',
+    steps: [
+      'store_album3_focus',
+      'restore_album_focus',
+      'verify_album3_focus'
+    ]
+  },
+  {
+    id: 'album_071',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album4',
+    action: 'album_grid_focus_restore_nas',
+    expectedState: 'focus_restored',
+    expectedFocus: 'album4',
+    steps: [
+      'store_album4_focus',
+      'restore_album_focus',
+      'verify_album4_focus'
+    ]
+  },
+  {
+    id: 'album_072',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'album_route_history_all',
+    expectedState: 'route_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'open_all_album_route',
+      'record_route_history',
+      'verify_route_history'
+    ]
+  },
+  {
+    id: 'album_073',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album1',
+    action: 'album_route_history_favorite',
+    expectedState: 'route_ready',
+    expectedFocus: 'album1',
+    steps: [
+      'open_favorite_route',
+      'record_route_history',
+      'verify_route_history'
+    ]
+  },
+  {
+    id: 'album_074',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album3',
+    action: 'album_route_history_trash',
+    expectedState: 'route_ready',
+    expectedFocus: 'album3',
+    steps: [
+      'open_trash_route',
+      'record_route_history',
+      'verify_route_history'
+    ]
+  },
+  {
+    id: 'album_075',
+    domain: '相册导航',
+    ability: 'EntryAbility',
+    entry: 'album0',
+    action: 'album_complete_navigation_matrix',
+    expectedState: 'matrix_ready',
+    expectedFocus: 'album0',
+    steps: [
+      'load_album_navigation_matrix',
+      'iterate_album_navigation_cases',
+      'verify_matrix_size'
+    ]
+  }
+];
+
+const DISTRIBUTED_EXPANSION_SCENARIOS: BusinessScenario[] = [
+  {
+    id: 'distributed_041',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_list_refresh',
+    expectedState: 'device_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_device_list',
+      'refresh_device_list',
+      'verify_device_state'
+    ]
+  },
+  {
+    id: 'distributed_042',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_name_empty',
+    expectedState: 'device_empty',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_empty_devices',
+      'clear_device_name',
+      'verify_empty_name'
+    ]
+  },
+  {
+    id: 'distributed_043',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_name_restore',
+    expectedState: 'device_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_named_devices',
+      'restore_device_name',
+      'verify_device_name'
+    ]
+  },
+  {
+    id: 'distributed_044',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_popup_prepare',
+    expectedState: 'receive_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'load_receive_payload',
+      'open_receive_popup',
+      'verify_receive_focus'
+    ]
+  },
+  {
+    id: 'distributed_045',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_popup_summary',
+    expectedState: 'receive_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'build_receive_summary',
+      'show_receive_popup',
+      'verify_receive_summary'
+    ]
+  },
+  {
+    id: 'distributed_046',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_progress_10',
+    expectedState: 'progress_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'load_receive_progress',
+      'set_progress_10',
+      'verify_progress_value'
+    ]
+  },
+  {
+    id: 'distributed_047',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_progress_50',
+    expectedState: 'progress_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'load_receive_progress',
+      'set_progress_50',
+      'verify_progress_value'
+    ]
+  },
+  {
+    id: 'distributed_048',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_progress_100',
+    expectedState: 'progress_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'load_receive_progress',
+      'set_progress_100',
+      'verify_progress_completion'
+    ]
+  },
+  {
+    id: 'distributed_049',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_close_wifi_after_finish',
+    expectedState: 'wifi_closed',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_receive_overlay',
+      'close_wifi_connection',
+      'verify_wifi_closed'
+    ]
+  },
+  {
+    id: 'distributed_050',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_ignore_unknown_state',
+    expectedState: 'state_ignored',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_unknown_state',
+      'ignore_unknown_state',
+      'verify_state_unchanged'
+    ]
+  },
+  {
+    id: 'distributed_051',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_focus_restore_after_dfs_dialog',
+    expectedState: 'focus_restored',
+    expectedFocus: 'menu2',
+    steps: [
+      'open_dfs_dialog',
+      'dismiss_dfs_dialog',
+      'verify_menu2_focus'
+    ]
+  },
+  {
+    id: 'distributed_052',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_route_to_device_manage',
+    expectedState: 'route_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'open_device_manage',
+      'record_route_target',
+      'verify_route_target'
+    ]
+  },
+  {
+    id: 'distributed_053',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_cancel_to_dfs_dialog',
+    expectedState: 'dialog_closed',
+    expectedFocus: 'menu2',
+    steps: [
+      'open_dfs_dialog',
+      'cancel_dfs_dialog',
+      'verify_menu2_focus'
+    ]
+  },
+  {
+    id: 'distributed_054',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_confirm_to_dfs_dialog',
+    expectedState: 'route_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'open_dfs_dialog',
+      'confirm_dfs_dialog',
+      'verify_dfs_route'
+    ]
+  },
+  {
+    id: 'distributed_055',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_select_first_device',
+    expectedState: 'device_selected',
+    expectedFocus: 'device_0',
+    steps: [
+      'load_device_grid',
+      'focus_first_device',
+      'verify_device_0_focus'
+    ]
+  },
+  {
+    id: 'distributed_056',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_select_last_device',
+    expectedState: 'device_selected',
+    expectedFocus: 'device_7',
+    steps: [
+      'load_device_grid',
+      'focus_last_device',
+      'verify_last_device_focus'
+    ]
+  },
+  {
+    id: 'distributed_057',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_grid_left_boundary',
+    expectedState: 'device_grid_ready',
+    expectedFocus: 'device_0',
+    steps: [
+      'focus_device_0',
+      'press_left',
+      'verify_left_boundary'
+    ]
+  },
+  {
+    id: 'distributed_058',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_grid_right_boundary',
+    expectedState: 'device_grid_ready',
+    expectedFocus: 'device_7',
+    steps: [
+      'focus_device_7',
+      'press_right',
+      'verify_right_boundary'
+    ]
+  },
+  {
+    id: 'distributed_059',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_grid_up_boundary',
+    expectedState: 'device_grid_ready',
+    expectedFocus: 'device_1',
+    steps: [
+      'focus_device_1',
+      'press_up',
+      'verify_up_boundary'
+    ]
+  },
+  {
+    id: 'distributed_060',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_grid_down_boundary',
+    expectedState: 'device_grid_ready',
+    expectedFocus: 'device_6',
+    steps: [
+      'focus_device_6',
+      'press_down',
+      'verify_down_boundary'
+    ]
+  },
+  {
+    id: 'distributed_061',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_back_to_menu',
+    expectedState: 'overlay_closed',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_receive_overlay',
+      'press_back',
+      'verify_menu0_focus'
+    ]
+  },
+  {
+    id: 'distributed_062',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_delete_back_to_menu',
+    expectedState: 'overlay_closed',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_delete_overlay',
+      'press_back',
+      'verify_menu0_focus'
+    ]
+  },
+  {
+    id: 'distributed_063',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_overlay_priority_receive',
+    expectedState: 'overlay_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_receive_overlay',
+      'resolve_overlay_priority',
+      'verify_receive_priority'
+    ]
+  },
+  {
+    id: 'distributed_064',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_overlay_priority_device',
+    expectedState: 'overlay_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_device_overlay',
+      'resolve_overlay_priority',
+      'verify_device_priority'
+    ]
+  },
+  {
+    id: 'distributed_065',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_overlay_priority_delete',
+    expectedState: 'overlay_ready',
+    expectedFocus: 'menu0',
+    steps: [
+      'open_delete_overlay',
+      'resolve_overlay_priority',
+      'verify_delete_priority'
+    ]
+  },
+  {
+    id: 'distributed_066',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_shortcut_from_root',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dfs_dialog_confirm',
+    steps: [
+      'focus_distributed_root',
+      'press_shortcut_key',
+      'verify_dfs_dialog_focus'
+    ]
+  },
+  {
+    id: 'distributed_067',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_shortcut_from_grid',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'dialog2',
+    steps: [
+      'focus_distributed_grid',
+      'press_shortcut_key',
+      'verify_dialog2_focus'
+    ]
+  },
+  {
+    id: 'distributed_068',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_shortcut_dialog_locked',
+    expectedState: 'dialog_locked',
+    expectedFocus: 'dialog2',
+    steps: [
+      'open_existing_dialog',
+      'press_shortcut_key',
+      'verify_dialog_unchanged'
+    ]
+  },
+  {
+    id: 'distributed_069',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_session_album_metadata',
+    expectedState: 'metadata_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_session_models',
+      'build_album_metadata',
+      'verify_metadata_ready'
+    ]
+  },
+  {
+    id: 'distributed_070',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_device_count_sync',
+    expectedState: 'device_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_device_count',
+      'sync_device_count',
+      'verify_device_count'
+    ]
+  },
+  {
+    id: 'distributed_071',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_type_picture',
+    expectedState: 'receive_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'load_picture_payload',
+      'render_receive_popup',
+      'verify_picture_label'
+    ]
+  },
+  {
+    id: 'distributed_072',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_receive_type_video',
+    expectedState: 'receive_ready',
+    expectedFocus: 'receive1',
+    steps: [
+      'load_video_payload',
+      'render_receive_popup',
+      'verify_video_label'
+    ]
+  },
+  {
+    id: 'distributed_073',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_size_label_kb',
+    expectedState: 'size_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_small_file_size',
+      'format_receive_size',
+      'verify_kb_label'
+    ]
+  },
+  {
+    id: 'distributed_074',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_size_label_mb',
+    expectedState: 'size_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_large_file_size',
+      'format_receive_size',
+      'verify_mb_label'
+    ]
+  },
+  {
+    id: 'distributed_075',
+    domain: '分布式流程',
+    ability: 'EntryAbility',
+    entry: 'menu2',
+    action: 'distributed_complete_reception_matrix',
+    expectedState: 'matrix_ready',
+    expectedFocus: 'menu2',
+    steps: [
+      'load_receive_matrix',
+      'iterate_receive_cases',
+      'verify_matrix_size'
+    ]
+  }
+];
+
+const NAS_EXPANSION_SCENARIOS: BusinessScenario[] = [
+  {
+    id: 'nas_041',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_client_refresh_after_scan',
+    expectedState: 'client_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'scan_nas_clients',
+      'refresh_client_list',
+      'verify_client_focus'
+    ]
+  },
+  {
+    id: 'nas_042',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_client_refresh_after_retry',
+    expectedState: 'client_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'retry_nas_scan',
+      'refresh_client_list',
+      'verify_client_focus'
+    ]
+  },
+  {
+    id: 'nas_043',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_1',
+    action: 'nas_login_success_restore_focus',
+    expectedState: 'login_ready',
+    expectedFocus: 'client_1',
+    steps: [
+      'open_login_dialog',
+      'submit_valid_credentials',
+      'verify_client1_focus'
+    ]
+  },
+  {
+    id: 'nas_044',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_1',
+    action: 'nas_login_failure_keep_focus',
+    expectedState: 'login_failed',
+    expectedFocus: 'client_1',
+    steps: [
+      'open_login_dialog',
+      'submit_invalid_credentials',
+      'verify_client1_focus'
+    ]
+  },
+  {
+    id: 'nas_045',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_2',
+    action: 'nas_mount_success_route_album',
+    expectedState: 'mount_ready',
+    expectedFocus: 'client_2',
+    steps: [
+      'request_mount_client2',
+      'open_nas_album_route',
+      'verify_mount_success'
+    ]
+  },
+  {
+    id: 'nas_046',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_2',
+    action: 'nas_mount_failure_keep_client',
+    expectedState: 'mount_failed',
+    expectedFocus: 'client_2',
+    steps: [
+      'request_mount_client2',
+      'simulate_mount_failure',
+      'verify_client2_focus'
+    ]
+  },
+  {
+    id: 'nas_047',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_logout_restore_client_list',
+    expectedState: 'client_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'open_client_session',
+      'logout_current_client',
+      'verify_client_list'
+    ]
+  },
+  {
+    id: 'nas_048',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_3',
+    action: 'nas_dialog_cancel_restore_focus',
+    expectedState: 'dialog_closed',
+    expectedFocus: 'client_3',
+    steps: [
+      'open_client_dialog',
+      'cancel_client_dialog',
+      'verify_client3_focus'
+    ]
+  },
+  {
+    id: 'nas_049',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_3',
+    action: 'nas_dialog_confirm_restore_focus',
+    expectedState: 'dialog_closed',
+    expectedFocus: 'client_3',
+    steps: [
+      'open_client_dialog',
+      'confirm_client_dialog',
+      'verify_client3_focus'
+    ]
+  },
+  {
+    id: 'nas_050',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_first_client_boundary_left',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'focus_client0',
+      'press_left',
+      'verify_left_boundary'
+    ]
+  },
+  {
+    id: 'nas_051',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_6',
+    action: 'nas_last_client_boundary_right',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_6',
+    steps: [
+      'focus_client6',
+      'press_right',
+      'verify_right_boundary'
+    ]
+  },
+  {
+    id: 'nas_052',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_0',
+    action: 'nas_grid_move_down',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_3',
+    steps: [
+      'focus_client0',
+      'press_down',
+      'verify_client3_focus'
+    ]
+  },
+  {
+    id: 'nas_053',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_3',
+    action: 'nas_grid_move_up',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_0',
+    steps: [
+      'focus_client3',
+      'press_up',
+      'verify_client0_focus'
+    ]
+  },
+  {
+    id: 'nas_054',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_4',
+    action: 'nas_grid_move_left',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_3',
+    steps: [
+      'focus_client4',
+      'press_left',
+      'verify_client3_focus'
+    ]
+  },
+  {
+    id: 'nas_055',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_4',
+    action: 'nas_grid_move_right',
+    expectedState: 'focus_ready',
+    expectedFocus: 'client_5',
+    steps: [
+      'focus_client4',
+      'press_right',
+      'verify_client5_focus'
+    ]
+  },
+  {
+    id: 'nas_056',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_1',
+    action: 'nas_password_mask_render',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'client_1',
+    steps: [
+      'open_password_dialog',
+      'render_password_mask',
+      'verify_mask_state'
+    ]
+  },
+  {
+    id: 'nas_057',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'client_1',
+    action: 'nas_username_cache_restore',
+    expectedState: 'dialog_ready',
+    expectedFocus: 'client_1',
+    steps: [
+      'cache_username_value',
+      'restore_username_value',
+      'verify_username_value'
+    ]
+  },
+  {
+    id: 'nas_058',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_share_list_refresh',
+    expectedState: 'share_ready',
+    expectedFocus: 'session_0',
+    steps: [
+      'load_share_list',
+      'refresh_share_list',
+      'verify_share_state'
+    ]
+  },
+  {
+    id: 'nas_059',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_session_list_refresh',
+    expectedState: 'session_ready',
+    expectedFocus: 'session_0',
+    steps: [
+      'load_session_list',
+      'refresh_session_list',
+      'verify_session_state'
+    ]
+  },
+  {
+    id: 'nas_060',
+    domain: 'NAS 流程',
+    ability: 'EntryAbility',
+    entry: 'session_0',
+    action: 'nas_session_cover_sync',
+    expectedState: 'session_ready',
+    expectedFocus: 'session_0',
+    steps: [
+      'load_session_cover',
+      'sync_session_cover',
+      'verify_session_cover'
+    ]
+  },
+
+

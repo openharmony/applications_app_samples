@@ -1883,4 +1883,383 @@ const LAUNCH_CHAIN_SCENARIOS: LaunchChainScenario[] = [
     expectedStorageKey: 'pickMaxSelectCount',
     steps: ['create_picker_ability', 'dispatch_case_50', 'verify_picker_limit']
   },
-  
+  {
+    id: 'picker_051',
+    domain: '选择器能力',
+    ability: 'PickerAbility',
+    trigger: 'onNewWant',
+    payload: 'maxSelectCount=23',
+    expectedState: 'picker_ready',
+    expectedStorageKey: 'pickMaxSelectCount',
+    steps: ['create_picker_ability', 'dispatch_case_51', 'verify_picker_limit']
+  },
+  {
+    id: 'picker_052',
+    domain: '选择器能力',
+    ability: 'PickerAbility',
+    trigger: 'onNewWant',
+    payload: 'maxSelectCount=25',
+    expectedState: 'picker_ready',
+    expectedStorageKey: 'pickMaxSelectCount',
+    steps: ['create_picker_ability', 'dispatch_case_52', 'verify_picker_limit']
+  },
+  {
+    id: 'picker_053',
+    domain: '选择器能力',
+    ability: 'PickerAbility',
+    trigger: 'handleWant',
+    payload: 'close=true,case=53',
+    expectedState: 'terminate_called',
+    expectedStorageKey: 'none',
+    steps: ['create_picker_ability', 'dispatch_case_53', 'verify_terminate_count']
+  },
+  {
+    id: 'picker_054',
+    domain: '选择器能力',
+    ability: 'PickerAbility',
+    trigger: 'handleWant',
+    payload: 'close=false,case=54',
+    expectedState: 'alive',
+    expectedStorageKey: 'none',
+    steps: ['create_picker_ability', 'dispatch_case_54', 'verify_alive_state']
+  },
+  {
+    id: 'picker_055',
+    domain: '选择器能力',
+    ability: 'PickerAbility',
+    trigger: 'onNewWant',
+    payload: 'maxSelectCount=2048',
+    expectedState: 'picker_ready',
+    expectedStorageKey: 'pickMaxSelectCount',
+    steps: ['create_picker_ability', 'dispatch_case_55', 'verify_picker_limit']
+  },
+  {
+    id: 'entry_041',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_41',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_width',
+    steps: ['set_cleanup_case_41', 'destroy_entry_ability', 'verify_width_cleared']
+  },
+  {
+    id: 'entry_042',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_42',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_height',
+    steps: ['set_cleanup_case_42', 'destroy_entry_ability', 'verify_height_cleared']
+  },
+  {
+    id: 'entry_043',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_43',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'bundleName',
+    steps: ['load_entry_want', 'read_case_43', 'verify_entry_bundle']
+  },
+  {
+    id: 'entry_044',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_44',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'abilityName',
+    steps: ['load_entry_want', 'read_case_44', 'verify_entry_ability']
+  },
+  {
+    id: 'entry_045',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_45',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_width',
+    steps: ['set_cleanup_case_45', 'destroy_entry_ability', 'verify_width_cleared']
+  },
+  {
+    id: 'entry_046',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_46',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_height',
+    steps: ['set_cleanup_case_46', 'destroy_entry_ability', 'verify_height_cleared']
+  },
+  {
+    id: 'entry_047',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_47',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'bundleName',
+    steps: ['load_entry_want', 'read_case_47', 'verify_entry_bundle']
+  },
+  {
+    id: 'entry_048',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_48',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'abilityName',
+    steps: ['load_entry_want', 'read_case_48', 'verify_entry_ability']
+  },
+  {
+    id: 'entry_049',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_49',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_width',
+    steps: ['set_cleanup_case_49', 'destroy_entry_ability', 'verify_width_cleared']
+  },
+  {
+    id: 'entry_050',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_50',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_height',
+    steps: ['set_cleanup_case_50', 'destroy_entry_ability', 'verify_height_cleared']
+  },
+  {
+    id: 'entry_051',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_51',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'bundleName',
+    steps: ['load_entry_want', 'read_case_51', 'verify_entry_bundle']
+  },
+  {
+    id: 'entry_052',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_52',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'abilityName',
+    steps: ['load_entry_want', 'read_case_52', 'verify_entry_ability']
+  },
+  {
+    id: 'entry_053',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_53',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_width',
+    steps: ['set_cleanup_case_53', 'destroy_entry_ability', 'verify_width_cleared']
+  },
+  {
+    id: 'entry_054',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'onDestroy',
+    payload: 'cleanup_case_54',
+    expectedState: 'storage_cleared',
+    expectedStorageKey: 'window_height',
+    steps: ['set_cleanup_case_54', 'destroy_entry_ability', 'verify_height_cleared']
+  },
+  {
+    id: 'entry_055',
+    domain: '入口清理',
+    ability: 'EntryAbility',
+    trigger: 'want',
+    payload: 'entry_want_case_55',
+    expectedState: 'want_ready',
+    expectedStorageKey: 'bundleName',
+    steps: ['load_entry_want', 'read_case_55', 'verify_entry_bundle']
+  },
+  {
+    id: 'loader_041',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'registerDelayCallback',
+    payload: 'callback_41',
+    expectedState: 'callback_tracked',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'register_case_41', 'verify_timer_tracked']
+  },
+  {
+    id: 'loader_042',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'registerDelayCallback',
+    payload: 'callback_42',
+    expectedState: 'callback_tracked',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'register_case_42', 'verify_timer_tracked']
+  },
+  {
+    id: 'loader_043',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'unregisterDataChangeCallback',
+    payload: 'remove_case_43',
+    expectedState: 'callback_removed',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'remove_case_43', 'verify_timer_removed']
+  },
+  {
+    id: 'loader_044',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'notifyDataReload',
+    payload: 'reload_case_44',
+    expectedState: 'reload_notified',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'reload_case_44', 'verify_reload_count']
+  },
+  {
+    id: 'loader_045',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'notifyDataDelete',
+    payload: 'delete_case_45',
+    expectedState: 'delete_notified',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'delete_case_45', 'verify_delete_count']
+  },
+  {
+    id: 'loader_046',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'notifyDataAdd',
+    payload: 'add_case_46',
+    expectedState: 'add_notified',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'add_case_46', 'verify_add_count']
+  },
+  {
+    id: 'loader_047',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'notifyDataChange',
+    payload: 'change_case_47',
+    expectedState: 'change_notified',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'change_case_47', 'verify_change_count']
+  },
+  {
+    id: 'loader_048',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'scheduleDelay',
+    payload: 'delay_case_48',
+    expectedState: 'delay_scheduled',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'schedule_case_48', 'verify_timer_tracked']
+  },
+  {
+    id: 'loader_049',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'cancelDelay',
+    payload: 'cancel_case_49',
+    expectedState: 'delay_canceled',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'cancel_case_49', 'verify_timer_removed']
+  },
+  {
+    id: 'loader_050',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'dataObserver',
+    payload: 'observer_case_50',
+    expectedState: 'observer_ready',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'observer_case_50', 'verify_observer_ready']
+  },
+  {
+    id: 'loader_051',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'registerDelayCallback',
+    payload: 'callback_51',
+    expectedState: 'callback_tracked',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'register_case_51', 'verify_timer_tracked']
+  },
+  {
+    id: 'loader_052',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'unregisterDataChangeCallback',
+    payload: 'remove_case_52',
+    expectedState: 'callback_removed',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['create_loader', 'remove_case_52', 'verify_timer_removed']
+  },
+  {
+    id: 'loader_053',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'notifyDataReload',
+    payload: 'reload_case_53',
+    expectedState: 'reload_notified',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'reload_case_53', 'verify_reload_count']
+  },
+  {
+    id: 'loader_054',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'dataObserver',
+    payload: 'observer_case_54',
+    expectedState: 'observer_ready',
+    expectedStorageKey: 'photoSource',
+    steps: ['create_loader', 'observer_case_54', 'verify_observer_ready']
+  },
+  {
+    id: 'loader_055',
+    domain: '加载器回调',
+    ability: 'BasePhotoLoader',
+    trigger: 'callbacks',
+    payload: 'loader_matrix_55',
+    expectedState: 'matrix_ready',
+    expectedStorageKey: 'callbackTimers',
+    steps: ['build_loader_matrix', 'iterate_case_55', 'verify_loader_case_count']
+  }
+];
+
+export class LaunchChainCatalog {
+  static getAll(): LaunchChainScenario[] {
+    return LAUNCH_CHAIN_SCENARIOS.map((item) => {
+      return new LaunchChainScenarioRecord(
+        item.id,
+        item.domain,
+        item.ability,
+        item.trigger,
+        item.payload,
+        item.expectedState,
+        item.expectedStorageKey,
+        [...item.steps]
+      );
+    });
+  }
+
+  static getDomains(): string[] {
+    return ['主能力创建', '选择器能力', '入口清理', '加载器回调'];
+  }
+
+  static getByDomain(domain: string): LaunchChainScenario[] {
+    return LaunchChainCatalog.getAll().filter((item) => item.domain === domain);
+  }
+
+  static findById(id: string): LaunchChainScenario | undefined {
+    return LaunchChainCatalog.getAll().find((item) => item.id === id);
+  }
+}
