@@ -16,15 +16,14 @@
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { CACHE_ALBUM_MIN_WIDTH, DEFAULT_ALBUM_WIDTH, PhotoModel } from '../../models/PhotoModel';
 import fileUtil from '../utils/FileUtils';
-import { taskpool } from '@kit.ArkTS';
 import { loadImageThumb, loadVideoThumb } from '../VideoThumbLoader';
 import Logger from '../../common/Logger';
 
 const TAG = 'PHOTOM_loadUtil'
 
-export const PHOTO_FETCH_COLUMNS = [photoAccessHelper.PhotoKeys.URI, photoAccessHelper.PhotoKeys.PHOTO_TYPE,
+export const PHOTO_FETCH_COLUMNS: string[] = [photoAccessHelper.PhotoKeys.URI, photoAccessHelper.PhotoKeys.PHOTO_TYPE,
   photoAccessHelper.PhotoKeys.DISPLAY_NAME, photoAccessHelper.PhotoKeys.DURATION,
-  photoAccessHelper.PhotoKeys.DATE_TRASHED_MS, photoAccessHelper.PhotoKeys.DATE_DAY, photoAccessHelper.PhotoKeys.WIDTH,
+  photoAccessHelper.PhotoKeys.DATE_ADDED_MS, photoAccessHelper.PhotoKeys.DATE_ADDED, photoAccessHelper.PhotoKeys.WIDTH,
   photoAccessHelper.PhotoKeys.HEIGHT];
 
 export function fileModelsEquals(models1: PhotoModel[], models2: PhotoModel[]): boolean {
@@ -101,9 +100,8 @@ async function getImageThumb(context: Context, uri: string, width: number,
   const scale = widthScale < heightScale ? widthScale : heightScale
   const thumbWidth = width / scale
   const thumbHeight = height / scale
-  const task = new taskpool.Task(loadImageThumb, context, uri, thumbWidth, thumbHeight)
-  const result = await taskpool.execute(task);
-  return 'file://' + (result as string)
+  const result = await loadImageThumb(context, uri, thumbWidth, thumbHeight);
+  return 'file://' + result
 }
 
 async function getVideoAlbum(context: Context, uri: string, width: number,
@@ -114,7 +112,6 @@ async function getVideoAlbum(context: Context, uri: string, width: number,
   const thumbWidth = width / scale
   const thumbHeight = height / scale
 
-  const task = new taskpool.Task(loadVideoThumb, context, uri, thumbWidth, thumbHeight)
-  const result = await taskpool.execute(task)
-  return 'file://' + (result as string)
+  const result = await loadVideoThumb(context, uri, thumbWidth, thumbHeight)
+  return 'file://' + result
 }

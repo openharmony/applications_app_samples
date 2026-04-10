@@ -15,7 +15,7 @@
 
 import { Context } from '@kit.AbilityKit';
 import { fileIo as fs, fileUri, securityLabel } from '@kit.CoreFileKit';
-import { BusinessError, Callback, distributedAccount } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import Logger from '../common/Logger';
 import { promptAction } from '@kit.ArkUI';
@@ -75,7 +75,7 @@ class DfsManager {
   }
 
   // 绑定设备
-  bindDevice(device: distributedDeviceManager.DeviceBasicInfo, callback: Callback<boolean>): void {
+  bindDevice(device: distributedDeviceManager.DeviceBasicInfo, callback: (value: boolean) => void): void {
     let bindParam: Record<string, string | number> = {
       'bindType': 1, // 认证类型： 1 - 无账号PIN码认证
       'targetPkgName': BUNDLE_NAME,
@@ -194,13 +194,7 @@ class DfsManager {
    * @returns Promise<boolean>
    */
   async checkAccountLogin(): Promise<boolean> {
-    try {
-      let accountInfo = await distributedAccount.getDistributedAccountAbility().getOsAccountDistributedInfo();
-      Logger.error(TAG, 'getOsAccountDistributedInfo success , accountInfo: ' + JSON.stringify(accountInfo));
-      return true;
-    } catch (err) {
-      Logger.error(TAG, 'getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
-    }
+    Logger.info(TAG, 'distributed account capability is unavailable in current build profile');
     return false;
   }
 
@@ -209,18 +203,7 @@ class DfsManager {
    * @returns Promise<void>
    */
   async accountLogin(): Promise<boolean> {
-    let distributedInfo: distributedAccount.DistributedInfo = {
-      name: 'ZhangSan',
-      id: '12345',
-      event: 'Ohos.account.event.LOGIN',
-    };
-    try {
-      await distributedAccount.getDistributedAccountAbility().setOsAccountDistributedInfo(distributedInfo);
-      Logger.error(TAG, `accountLogin success}`)
-      return true;
-    } catch (err) {
-      Logger.error(TAG, `accountLogin is failed , err = ${JSON.stringify(err)}`)
-    }
+    Logger.info(TAG, 'distributed account capability is unavailable in current build profile');
     return false;
   }
 }

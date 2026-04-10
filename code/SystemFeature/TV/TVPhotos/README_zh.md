@@ -12,30 +12,49 @@
 3. 焦点位于册菜单时，按确定键可进入对应相册并浏览其中的照片和视频；选中视频资源时可进入播放界面。
 4. 首页按钮可打开底部操作菜单。
 
-### 工程目录`
+### 工程目录
+```text
 entry/src/main/ets/
-|---base
-|	|---PhotoFileUri.ts                 //系统接口封装
-|---common  
-|	|---Constants.ts                    //常量定义
-|	|---GlobalContext.ts	            //全局上下文管理
-|	|---Logger.ts                       //日志封装
-|	|---Common.ts                       //权限处理工具
-|	|---TraceControllerUtils.ts         //耗时跟踪工具
-|	|---Utils.ts                        //弹窗与日志工具
-|	|---WifiManager.ts                  //Wi-Fi 管理
-|---entryability
-|	|---MainAbility.ts                  //应用入口能力
-|---model
-|	|---AlbumModel.ts                   //相册数据模型
-|	|---FileSendModel.ts                //文件分享数据模型
-|	|---IDataSource.ets                 //列表数据源模型
-|	|---PhotoModel.ts                   //照片数据模型
+|---MainAbility
+|   |---EntryAbility.ets             // 入口 Ability
+|   |---MainAbility.ets              // 主 Ability
+|   |---PickerAbility.ets            // 选择器 Ability
+|---common
+|   |---Constants.ets                // 常量定义
+|   |---GlobalContext.ets            // 全局上下文
+|   |---Logger.ets                   // 日志封装
+|   |---PhotoPositionUtils.ets       // 媒体位置信息工具
+|   |---TraceControllerUtils.ets     // 耗时跟踪工具
+|   |---Util.ets                     // 通用工具
+|   |---WifiManager.ets              // Wi-Fi 管理
+|---component
+|   |---DistributedPhotoView.ets     // 分布式图片组件
+|---manager
+|   |---loader/                      // 媒体加载器
+|   |---utils/                       // 文件与图片工具
+|   |---DfsManager.ets               // 分布式分享管理
+|   |---PhotoManager.ets             // 媒体数据管理
+|   |---RdbManager.ets               // 数据库管理
+|   |---VideoThumbLoader.ets         // 视频缩略图处理
+|---models
+|   |---FileSendModel.ets            // 分享数据模型
+|   |---IDataSource.ets              // 列表数据源模型
+|   |---PhotoModel.ets               // 媒体数据模型
 |---pages
-|	|---Index.ets                       //首页（照片和相册）
-|	|---PhotoList.ets                   //照片删除列表
-|	|---PhotoList.ets                   //照片列表
-|	|---PhotoWatch.ets                  //查看图片和视频界面
+|   |---DistributedDevicePage.ets    // 分布式设备页
+|   |---Index.ets                    // 首页
+|   |---NasClientPage.ets            // NAS 客户端页
+|   |---NasSessionPage.ets           // NAS 会话页
+|   |---PhotoDeleteList.ets          // 最近删除页
+|   |---PhotoList.ets                // 相册列表页
+|   |---PhotoWatch.ets               // 图片与视频预览页
+|   |---ThirdSelectPhotoGridPage.ets // 三方选择器页面
+|---smaba
+|   |---client/                      // SMB/NAS 客户端实现
+|   |---NasFinder.ets                // NAS 发现
+|   |---NasSessionManager.ets        // NAS 会话管理
+|---workers
+|   |---NasSessionWorker.ets         // NAS 后台任务
 ```
 
 ### 具体实现

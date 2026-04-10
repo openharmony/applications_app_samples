@@ -24,22 +24,22 @@ Instructions for Use:
 ```
 entry/src/main/ets/
 |---base
-|	|---PhotoFileUri.ts                 // System docking encapsulation module
+|	|---PhotoFileUri.ets                // System docking encapsulation module
 |---common  
-|	|---Constants.ts                    // Enumeration string encapsulation
-|	|---GlobalContext.ts                // GlobalContext encapsulation
-|	|---Logger.ts                       // Logging tool encapsulation
-|	|---Common.ts                       // Permission character conversion encapsulation
-|	|---TraceControllerUtils.ts         // Time slice tracking module encapsulation
-|	|---Utils.ts                        // Tip pop-up window, logging encapsulation
-|	|---WifiManager.ts                  // Wi-Fi management module encapsulation
+|	|---Constants.ets                   // Enumeration string encapsulation
+|	|---GlobalContext.ets               // GlobalContext encapsulation
+|	|---Logger.ets                      // Logging tool encapsulation
+|	|---Common.ets                      // Permission character conversion encapsulation
+|	|---TraceControllerUtils.ets        // Time slice tracking module encapsulation
+|	|---Utils.ets                       // Tip pop-up window, logging encapsulation
+|	|---WifiManager.ets                 // Wi-Fi management module encapsulation
 |---entryability
-|	|---MainAbility.ts                  // ability class
+|	|---MainAbility.ets                 // ability class
 |---model
-|	|---AlbumModel.ts                   // Album model encapsulation
-|	|---FileSendModel.ts                // File sharing model encapsulation
+|	|---AlbumModel.ets                  // Album model encapsulation
+|	|---FileSendModel.ets               // File sharing model encapsulation
 |	|---IDataSource.ets                 // LazyForeach model encapsulation
-|	|---PhotoModel.ts                   // Photo model encapsulation
+|	|---PhotoModel.ets                  // Photo model encapsulation
 |---pages
 |	|---Index.ets                       // Home page (photos and albums)
 |	|---PhotoList.ets                   // Photo deletion list
@@ -108,3 +108,7 @@ echo code/SystemFeature/FileManagement/FileShare/Picker > .git/info/sparse-check
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
+
+### Additional Document
+
+- ohosTest.md

@@ -249,7 +249,7 @@ class RdbManager {
     })
   }
 
-  registerRemoteDataChange(observer: Callback<string[]>) {
+  registerRemoteDataChange(observer: (data: string[]) => void) {
     if (!this.store) {
       Logger.error(TAG, `rdb store is error`);
       return;
