@@ -18,7 +18,7 @@ import buffer from '@ohos.buffer';
 import ProtocolRequest from '../Request';
 
 export default class Request extends ProtocolRequest {
-  declare header: Header;
+  public declare header: Header;
 
   static parse(buf: buffer.Buffer) {
     const { header, body } = Packet.parse(buf);
