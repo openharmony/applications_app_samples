@@ -103,8 +103,8 @@ struct PhotoDeleteList {
 
   onPageShow(): void {
     try {
-      inputConsumer.on("key", this.keyOptions, this.keyCallback);
-      inputConsumer.on("key", this.keyOptionsMenu, this.keyCallback);
+      inputConsumer.on('key', this.keyOptions, this.keyCallback);
+      inputConsumer.on('key', this.keyOptionsMenu, this.keyCallback);
     } catch (error) {
       Logger.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
@@ -113,8 +113,8 @@ struct PhotoDeleteList {
   }
 
   onPageHide(): void {
-    inputConsumer.off("key", this.keyOptions, this.keyCallback);
-    inputConsumer.off("key", this.keyOptionsMenu, this.keyCallback);
+    inputConsumer.off('key', this.keyOptions, this.keyCallback);
+    inputConsumer.off('key', this.keyOptionsMenu, this.keyCallback);
     photoManager.getLoader(AlbumType.TRASH)?.unRegisterChangeCallback(this.photoObserver)
   }
 
@@ -239,25 +239,25 @@ struct PhotoDeleteList {
       Row() {
         Row() {
           Text(this.title)
-            .fontFamily("HarmonyOS Sans")
+            .fontFamily('HarmonyOS Sans')
             .fontColor(Color.White)
-            .fontSize("64lpx")
+            .fontSize('64lpx')
         }
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
       .padding({
-        left: "33lpx",
-        right: "33lpx",
-        top: "48lpx",
-        bottom: "36lpx"
+        left: '33lpx',
+        right: '33lpx',
+        top: '48lpx',
+        bottom: '36lpx'
       })
 
       Row() {
         Text($r('app.string.album_trash_secondary_title'))
-          .fontFamily("HarmonyOS Sans")
+          .fontFamily('HarmonyOS Sans')
           .fontColor(Color.White)
-          .fontSize("28lpx")
+          .fontSize('28lpx')
           .margin({
             left: '33lpx',
             bottom: '24lpx'
@@ -267,9 +267,9 @@ struct PhotoDeleteList {
 
       Row() {
         if (this.photoListSize === 0 && this.isPhotoData) {
-          Text($r("app.string.no_data"))
+          Text($r('app.string.no_data'))
             .fontColor(Color.White)
-            .fontSize("34lpx")
+            .fontSize('34lpx')
             .size({ height: `calc(100% - 520lpx)` })
         } else {
           Grid(this.scroller) {
@@ -279,7 +279,7 @@ struct PhotoDeleteList {
                   Stack() {
                     Image(item.photoType === photoAccessHelper.PhotoType.VIDEO ?
                       (item.thumbnail || $r('app.media.p_video')) : item.uri)
-                      .borderRadius("18lpx")
+                      .borderRadius('18lpx')
                       .id('picture' + index)
                       .focusable(true)
                       .defaultFocus(index === 0)
@@ -322,23 +322,21 @@ struct PhotoDeleteList {
                         if ((event.keyCode === KeyCode.KEYCODE_DPAD_CENTER ||
                           event.keyCode === KeyCode.KEYCODE_ENTER) &&
                           event.type === KeyType.Down) {
-                         /* if (this.isPhotoSelecting) {
+                          if (this.isPhotoSelecting) {
                             this.selectPhoto(index)
-                          } else {
-                            if (item && item.photoType === Constants.PHOTO_TYPE_VIDEO) {
-                              if (isAppInstalled()) {
-                                getToVideoApp(item.uri, item.displayName, item.thumbnail);
-                              }
-                            } else {
-                              router.pushUrl({
-                                url: 'pages/PhotoWatch',
-                                params: {
-                                  photoIndex: index,
-                                  photoList: this.photoList.getAllData()
-                                }
-                              })
+                          } else if (item && item.photoType === Constants.PHOTO_TYPE_VIDEO) {
+                            if (isAppInstalled()) {
+                              getToVideoApp(item.uri, item.displayName, item.thumbnail);
                             }
-                          }*/
+                          } else {
+                            router.pushUrl({
+                              url: 'pages/PhotoWatch',
+                              params: {
+                                photoIndex: index,
+                                photoList: this.photoList.getAllData()
+                              }
+                            })
+                          }
                         }
                         // 数字1KEYCODE_NUMPAD_1
                         if ((event.keyCode === KeyCode.KEYCODE_MENU || event.keyCode === KeyCode.KEYCODE_NUMPAD_1) &&
@@ -426,8 +424,8 @@ struct PhotoDeleteList {
                         .margin({ left: '8%', bottom: '4%' })
                       // 照片编辑状态
                       if (this.isPhotoSelecting) {
-                        Image(this.pictureChooseFlags[index] ? $r("app.media.p_yes") : $r("app.media.p_no"))
-                          .width("24lpx")
+                        Image(this.pictureChooseFlags[index] ? $r('app.media.p_yes') : $r('app.media.p_no'))
+                          .width('24lpx')
                           .aspectRatio(1)
                           .margin({ right: '5%', bottom: '5%' })
                       } else {
@@ -446,9 +444,9 @@ struct PhotoDeleteList {
                 }
                 .justifyContent(FlexAlign.Center)
                 .alignItems(HorizontalAlign.Center)
-                .borderRadius("22lpx")
-                .margin("24lpx")
-                .padding("6lpx")
+                .borderRadius('22lpx')
+                .margin('24lpx')
+                .padding('6lpx')
                 .border({
                   width: 2,
                   color: this.focusPhotoStr === ('picture' + index) ? '#fff' : Color.Transparent,
@@ -460,7 +458,7 @@ struct PhotoDeleteList {
           .columnsTemplate('1fr '.repeat(this.gridRowCount))
           .width('100%')
           .scrollBar(BarState.Off)
-          .padding({ left: "4lpx", right: "4lpx" })
+          .padding({ left: '4lpx', right: '4lpx' })
           .size({ height: `calc(100% - 210lpx)` })
         }
       }
@@ -472,14 +470,14 @@ struct PhotoDeleteList {
               ListItem() {
                 Column() {
                   Image($r(item.uri))
-                    .width("80lpx")
+                    .width('80lpx')
                     .aspectRatio(1)
-                    .margin({ bottom: "12lpx" })
+                    .margin({ bottom: '12lpx' })
                     .id('photo_menu' + index)
                     .focusable(true)
                     .defaultFocus(this.isShowMenu && index === 0)
-                    .borderRadius("40lpx")
-                    .padding("6lpx")
+                    .borderRadius('40lpx')
+                    .padding('6lpx')
                     .border({
                       width: 2,
                       color: this.focusDialogStr === ('photo_menu' + index) ? '#fff' : Color.Transparent, // 边框颜色
@@ -595,48 +593,12 @@ struct PhotoDeleteList {
                         return;
                       }
                       this.menuIndex = index;
-                      this.clickFocusBtn('photo_menu' + (this.menuIndex), true);
-                      // if (this.isPhotoSelecting) {
-                      //   if (this.focusDialogStr === 'photo_menu0') {
-                      //     // 恢复
-                      //     this.restorePhotos();
-                      //   } else if (this.focusDialogStr === 'photo_menu1') {
-                      //     // 删除
-                      //     if (this.getSelectedPhotos().length > 0) {
-                      //       this.isShowDeleteDialog = true;
-                      //       setTimeout(() => {
-                      //         this.clickFocusBtn('delete1', true)
-                      //       }, FOCUS_CHANGE_DELAY)
-                      //     } else {
-                      //       promptAction.showToast({
-                      //         message: $r('app.string.please_choose_photo')
-                      //       });
-                      //     }
-                      //   } else {
-                      //     // 全选/取消全选
-                      //     this.pictureChooseFlags =
-                      //       this.isCheckAll ? new Array(this.photoList.totalCount()).fill(false) :
-                      //       new Array(this.photoList.totalCount()).fill(true)
-                      //     this.isCheckAll = !this.isCheckAll;
-                      //     this.menuList = this.isCheckAll ? SECONDARY_MENU_LIST_CANCEL : SECONDARY_MENU_LIST_DEFAULT;
-                      //   }
-                      // } else {
-                      //   if (this.focusDialogStr === 'photo_menu0') {
-                      //     this.isPhotoSelecting = true;
-                      //     this.pictureChooseFlags = new Array(this.photoList.totalCount()).fill(false);
-                      //     this.scroller.scrollToIndex(this.pictureIndex, true, ScrollAlign.AUTO)
-                      //     this.clickFocusBtn(this.focusPhotoStr, false);
-                      //     this.selectPhoto(this.pictureIndex)
-                      //     this.isShowMenu = false;
-                      //   } else if (this.focusDialogStr === 'photo_menu1') {
-                      //     this.clearAllPhotos();
-                      //   }
-                      // }
+                      this.clickFocusBtn('photo_menu' + this.menuIndex, true);
                     })
                   Text(item.name)
-                    .fontSize("24lpx")
-                    .height("35lpx")
-                    .lineHeight("35lpx")
+                    .fontSize('24lpx')
+                    .height('35lpx')
+                    .lineHeight('35lpx')
                     .fontColor(Color.White)
                 }
                 .width('100lpx')
@@ -647,13 +609,13 @@ struct PhotoDeleteList {
               }
             })
           }
-          .backgroundColor("#CC424242")
-          .borderRadius("48lpx")
+          .backgroundColor('#CC424242')
+          .borderRadius('48lpx')
           .padding({
-            top: "20lpx",
-            right: "26lpx",
-            bottom: "20lpx",
-            left: "26lpx"
+            top: '20lpx',
+            right: '26lpx',
+            bottom: '20lpx',
+            left: '26lpx'
           })
           .justifyContent(FlexAlign.Center)
         }
@@ -664,26 +626,26 @@ struct PhotoDeleteList {
         Flex({ justifyContent: FlexAlign.Center }) {
           Column() {
             Column() {
-              Text($r("app.string.to_delete_the_file"))
-                .fontSize("40lpx")
+              Text($r('app.string.to_delete_the_file'))
+                .fontSize('40lpx')
                 .fontColor(Color.White)
                 .width('100%')
                 .fontWeight(FontWeight.Bold)
                 .textAlign(TextAlign.Center)
-            }.margin({ bottom: "40lpx" })
+            }.margin({ bottom: '40lpx' })
 
             Row() {
               ForEach(this.deleteList, (item: string, index: number) => {
                 Column() {
                   Text(item)
-                    .width("230lpx")
-                    .height("72lpx")
+                    .width('230lpx')
+                    .height('72lpx')
                     .id('delete' + index)
                     .focusable(true)
-                    .backgroundColor(index === 1 ? this.deleteIndex === 0 ? "#99E52424" : "#FFE52424" : "#33FFFFFF")
-                    .borderRadius("200lpx")
-                    .fontFamily("HarmonyOS Sans")
-                    .fontSize("36lpx")
+                    .backgroundColor(index === 1 ? this.deleteIndex === 0 ? '#99E52424' : '#FFE52424' : '#33FFFFFF')
+                    .borderRadius('200lpx')
+                    .fontFamily('HarmonyOS Sans')
+                    .fontSize('36lpx')
                     .textAlign(TextAlign.Center)
                     .fontColor('#DBFFFFFF')
                     .fontWeight(FontWeight.Bold)
@@ -703,13 +665,6 @@ struct PhotoDeleteList {
                       // 电脑回车键KEYCODE_ENTER
                       if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                         e.type == KeyType.Down) {
-                        // if (this.deleteIndex === 0) {
-                        //   setTimeout(() => {
-                        //     this.dismissDeleteDialog();
-                        //   }, 100)
-                        // } else {
-                        //   this.deletePhotos();
-                        // }
                       }
                     })
                     .onClick(()=>{
@@ -724,8 +679,8 @@ struct PhotoDeleteList {
                       }
                     })
                 }
-                .borderRadius("200lpx")
-                .padding("6lpx")
+                .borderRadius('200lpx')
+                .padding('6lpx')
                 .border({
                   width: 2,
                   color: this.focusDialogStr == ('delete' + index) ? '#fff' : Color.Transparent,
@@ -738,10 +693,10 @@ struct PhotoDeleteList {
           }
           .width('640lpx')
           .height('260lpx')
-          .backgroundColor("rgba(64, 64, 64, 1.0)")
+          .backgroundColor('rgba(64, 64, 64, 1.0)')
           .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-          .borderRadius("24lpx")
-          .padding("48lpx")
+          .borderRadius('24lpx')
+          .padding('48lpx')
         }
         .position({ x: '0%', y: '39%' })
       }
@@ -749,6 +704,6 @@ struct PhotoDeleteList {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.main_color'))
-    .padding({ left: "63lpx", right: "63lpx" })
+    .padding({ left: '63lpx', right: '63lpx' })
   }
 }

@@ -25,9 +25,9 @@ import { rdbManager } from './RdbManager'
 const TAG = 'PHOTOM_manager'
 
 class PhotoManager {
-  loadRecord: Map<AlbumType, ILoader<PhotoModel>> = new Map();
-  inited = false;
-  context: common.UIAbilityContext | undefined = undefined;
+  private loadRecord: Map<AlbumType, ILoader<PhotoModel>> = new Map();
+  private inited = false;
+  private context: common.UIAbilityContext | undefined = undefined;
 
   public init(context: common.UIAbilityContext) {
     if (this.inited) {
@@ -74,7 +74,7 @@ class PhotoManager {
     }
   }
 
-  async recoverTrash(photos: PhotoModel[]) {
+  public async recoverTrash(photos: PhotoModel[]) {
     await this.getLoader(AlbumType.TRASH)?.recover(photos)
     this.refresh()
   }

@@ -49,7 +49,7 @@ class RdbManager {
   private photoTableColumns: string[] =
     [ID_PHOTO_KEY, URI_PHOTO_KEY, REMOTE_URI_PHOTO_KEY, PHOTO_TYPE_PHOTO_KEY,
       DISPLAY_NAME_PHOTO_KEY, DATE_ADDED_PHOTO_KEY, DATE_TRASHED_PHOTO_KEY, DURATION_PHOTO_KEY];
-  availableDeviceList: distributedDeviceManager.DeviceBasicInfo[] = []
+  public availableDeviceList: distributedDeviceManager.DeviceBasicInfo[] = []
 
   async init(context: Context) {
     try {
@@ -170,7 +170,7 @@ class RdbManager {
       } catch (err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        Logger.error("queryTest errCode:" + code + ",errMessage:" + message);
+        Logger.error('queryTest errCode:' + code + ',errMessage:' + message);
         resolve(false);
       }
     })
@@ -249,7 +249,7 @@ class RdbManager {
     })
   }
 
-  registerRemoteDataChange(observer: Callback<Array<string>>) {
+  registerRemoteDataChange(observer: Callback<string[]>) {
     if (!this.store) {
       Logger.error(TAG, `rdb store is error`);
       return;

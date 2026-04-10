@@ -18,7 +18,12 @@ import Logger from '../common/Logger';
 import fileUtil from './utils/FileUtils';
 import { image } from '@kit.ImageKit';
 
-export async function loadVideoThumb(context: Context, uri: string, thumbWidth: number, thumbHeight: number): Promise<string> {
+export async function loadVideoThumb(
+  context: Context,
+  uri: string,
+  thumbWidth: number,
+  thumbHeight: number
+): Promise<string> {
   const TAG = 'PHOTOM_loadVideoThumb'
   Logger.warn(TAG, 'loadVideoThumb task start')
   const startTime = Date.now()
@@ -61,8 +66,8 @@ export async function loadVideoThumb(context: Context, uri: string, thumbWidth: 
       throw new Error(`thumbnail create fail`)
     }
     Logger.warn(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime))
-    return localPath
   }
+  return localPath
 }
 
 

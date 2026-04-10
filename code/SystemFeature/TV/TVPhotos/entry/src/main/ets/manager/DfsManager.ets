@@ -26,7 +26,7 @@ const BUNDLE_NAME = 'com.samples.album';
 @Observed
 class DfsManager {
   private dmInstance: distributedDeviceManager.DeviceManager | undefined;
-  connectedDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
+  public connectedDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
   private deviceStatusListener: fs.DfsListeners = {
     onStatus: (networkId: string, status: number): void => {
       Logger.info(TAG, `dfs status: ${status}`);
@@ -139,11 +139,11 @@ class DfsManager {
     Logger.error(TAG, `copyFileToDfsDir src: ${srcUri} , destUri:${destUri}`);
     // 将沙箱路径下的文件拷贝到分布式路径下
     fs.copy(srcUri, destUri).then(() => {
-      Logger.error("Succeeded in copying---. ");
+      Logger.error('Succeeded in copying---. ');
       let name = new fileUri.FileUri(destUri).name;
       let path = context.distributedFilesDir + '/' + name;
       // 设置文件的数据等级为s0
-      securityLabel.setSecurityLabel(path, "s0").then(() => {
+      securityLabel.setSecurityLabel(path, 's0').then(() => {
         Logger.error(TAG, ` setSecurityLabel success`);
 
       }).catch((err: BusinessError) => {

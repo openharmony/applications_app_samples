@@ -26,7 +26,6 @@ export default class MainAbility extends Ability {
     Logger.info(TAG, 'onWindowStageCreate')
     GlobalContext.getContext().setObject('photosWindowStage', windowStage);
     globalThis.abilityContext = this.context;
-    // WifiDeviceManager.getInstance().initializationSize(this.context);
     windowStage.getMainWindow().then((win) => {
       globalThis.mainWindow = win;
       AppStorage.setOrCreate('window_width', win.getWindowProperties().windowRect.width);
@@ -48,7 +47,6 @@ export default class MainAbility extends Ability {
     if (close) {
       this.context.terminateSelf()
     } else if (picUri) {
-      // from file manager
       Logger.info(TAG, 'receive from file manager, picUri=' + picUri);
       globalThis.startByFileMgr = true;
       AppStorage.setOrCreate('directUri', picUri);

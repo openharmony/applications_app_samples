@@ -37,19 +37,19 @@ export interface ImageResult {
 
 @Observed
 export class SessionModel {
-  host: string = '';
-  fileSize: number = 0;
-  isPlaceHolder: boolean = false;
-  thumbFile?: DirectoryEntry
+  public host: string = '';
+  public fileSize: number = 0;
+  public isPlaceHolder: boolean = false;
+  public thumbFile?: DirectoryEntry
 }
 
 class NasSessionManager {
-  context?: common.UIAbilityContext
+  private context?: common.UIAbilityContext
   private sessionMap: Map<string, worker.ThreadWorker> = new Map()
   private fileMap: Map<string, DirectoryEntry[]> = new Map()
   private sessionCallbacks: Array<(hosts: SessionModel[]) => void> = []
   private fileChangeCallbacks: Map<string, Array<(files: DirectoryEntry[]) => void>> = new Map()
-  loadImageTask?: taskpool.Task
+  private loadImageTask?: taskpool.Task
 
   init(context: common.UIAbilityContext) {
     Logger.info(TAG, `init`)
@@ -282,4 +282,3 @@ class NasSessionManager {
 let nasSessionManager: NasSessionManager = new NasSessionManager()
 
 export default nasSessionManager
-

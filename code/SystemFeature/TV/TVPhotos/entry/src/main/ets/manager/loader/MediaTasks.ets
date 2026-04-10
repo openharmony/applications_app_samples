@@ -28,7 +28,7 @@ export const USE_TASK = true
 @Concurrent
 export async function getAllMediaItems(tag: string, context: Context): Promise<PhotoModel[]> {
   Logger.info(tag, `getAllMediaItems start`);
-  let fileAssets: Array<PhotoModel> = [];
+  let fileAssets: PhotoModel[] = [];
   let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset>;
   let predicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOption: photoAccessHelper.FetchOptions = {
@@ -87,7 +87,7 @@ export async function getAllMediaItems(tag: string, context: Context): Promise<P
 export async function getSubTypeMediaItems(tag: string, context: Context,
   subType: photoAccessHelper.AlbumSubtype): Promise<PhotoModel[]> {
   Logger.info(tag, `getAlbumsNextPhoto start ` + subType);
-  let fileAssets: Array<PhotoModel> = [];
+  let fileAssets: PhotoModel[] = [];
   let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset>;
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {

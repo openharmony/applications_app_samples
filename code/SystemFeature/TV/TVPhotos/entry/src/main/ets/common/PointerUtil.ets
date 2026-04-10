@@ -8,17 +8,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
  * 指针相关工具类
  */
 export class PointerUtil {
-  static pixelMap: image.PixelMap | null = null
+  public static pixelMap: image.PixelMap | null = null
 
   /**
    * 修改鼠标样式
    * @param isClick 是否点击
    */
-  static changePointStyle(isClick: boolean): void {
+  public static changePointStyle(isClick: boolean): void {
     try {
       getContext()
         .resourceManager
-        .getMediaContent(isClick ? $r("app.media.mouse_click") : $r("app.media.mouse_show"))
+        .getMediaContent(isClick ? $r('app.media.mouse_click') : $r('app.media.mouse_show'))
         .then((svgFileData) => {
           const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
           let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -42,4 +42,3 @@ export class PointerUtil {
     }
   }
 }
-

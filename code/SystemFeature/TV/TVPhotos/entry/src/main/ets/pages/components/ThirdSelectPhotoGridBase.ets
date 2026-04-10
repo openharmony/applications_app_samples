@@ -1,15 +1,15 @@
-import { Constants } from "../../common/Constants";
-import { AlbumModel, AlbumType, PhotoModel } from "../../models/PhotoModel";
-import { inputConsumer, inputEventClient, KeyCode } from "@kit.InputKit";
-import { Util } from "../../common/Util";
-import { PhotoDataModel, PhotoDataSource } from "../../models/IDataSource";
-import photoManager from "../../manager/PhotoManager";
-import Logger from "../../common/Logger";
-import { promptAction } from "@kit.ArkUI";
-import { createRegister } from "../../manager/ChangeRegister";
-import { PickImageVideo } from "./PickImageVideo";
-import { common } from "@kit.AbilityKit";
-import { BusinessError } from "@kit.BasicServicesKit";
+import { Constants } from '../../common/Constants';
+import { AlbumModel, AlbumType, PhotoModel } from '../../models/PhotoModel';
+import { inputConsumer, inputEventClient, KeyCode } from '@kit.InputKit';
+import { Util } from '../../common/Util';
+import { PhotoDataModel, PhotoDataSource } from '../../models/IDataSource';
+import photoManager from '../../manager/PhotoManager';
+import Logger from '../../common/Logger';
+import { promptAction } from '@kit.ArkUI';
+import { createRegister } from '../../manager/ChangeRegister';
+import { PickImageVideo } from './PickImageVideo';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'ThirdSelectPhotoGridBase';
 
@@ -95,17 +95,10 @@ export struct ThirdSelectPhotoGridBase {
       isIntercepted: false
     };
 
-    class KeyEvent {
-      KeyEvent: inputEventClient.KeyEvent | null = null
-    }
-
-    let eventDown: KeyEvent = { KeyEvent: keyDownOpt }
-    let eventUp: KeyEvent = { KeyEvent: keyUpOpt }
-
     try {
       // 触发tab点击，使默认焦点组件多态样式生效
-      inputEventClient.injectEvent(eventDown);
-      inputEventClient.injectEvent(eventUp);
+      inputEventClient.injectKeyEvent({ keyEvent: keyDownOpt });
+      inputEventClient.injectKeyEvent({ keyEvent: keyUpOpt });
       console.log('手动触发tab点击成功');
     } catch (e) {
       console.log('手动触发tab点击失败');
@@ -115,7 +108,7 @@ export struct ThirdSelectPhotoGridBase {
   // 注册菜单监听
   registerMenuKeyListener() {
     // 注册菜单键监听
-    inputConsumer.on("key", keyOptions, (keyOptions: inputConsumer.KeyOptions) => {
+    inputConsumer.on('key', keyOptions, (keyOptions: inputConsumer.KeyOptions) => {
       // 焦点在图片上
       if (this.focusStr.includes('pickerPhoto_')) {
         const index = parseInt(this.focusStr.replace('pickerPhoto_', ''));
@@ -158,7 +151,7 @@ export struct ThirdSelectPhotoGridBase {
     photoManager.getLoader(AlbumType.FAVORITE)?.unRegisterChangeCallback(this.favoritePhotoObserver)
     photoManager.getLoader(AlbumType.SCREENSHOT)?.unRegisterChangeCallback(this.screenShotPhotoObserver)
     // 取消监听菜单键
-    inputConsumer.off("key", keyOptions);
+    inputConsumer.off('key', keyOptions);
   }
 
   // 注册相册图片数据源监听
@@ -297,9 +290,9 @@ export struct ThirdSelectPhotoGridBase {
   buildTopBar() {
     Row() {
       Text('选择图片')
-        .fontFamily("HarmonyOS Sans")
+        .fontFamily('HarmonyOS Sans')
         .fontColor('rgba(255,255,255,0.86)')
-        .fontSize("48lpx")
+        .fontSize('48lpx')
         .fontWeight(FontWeight.Bold)
 
       // 关闭按钮
@@ -354,15 +347,15 @@ export struct ThirdSelectPhotoGridBase {
         Image(item.cover || $r('app.media.p_picture'))
           .width('48lpx')
           .aspectRatio(1)
-          .margin({ right: "32lpx" })
+          .margin({ right: '32lpx' })
 
         Text(item.name)
-          .fontFamily("HarmonyOS Sans")
+          .fontFamily('HarmonyOS Sans')
           .width('180lpx')
-          .height("42lpx")
+          .height('42lpx')
           .fontWeight(FontWeight.Medium)
-          .fontColor(this.focusStr == 'pickerAlbum_' + index ? Color.Black : "#DBFFFFFF")
-          .fontSize("36lpx")
+          .fontColor(this.focusStr == 'pickerAlbum_' + index ? Color.Black : '#DBFFFFFF')
+          .fontSize('36lpx')
           .focusable(true)
           .stateStyles({
             focused: {
@@ -376,11 +369,11 @@ export struct ThirdSelectPhotoGridBase {
 
         Text(item.count.toString())
           .width('76lpx')
-          .fontFamily("HarmonyOS Sans")
-          .height("42lpx")
+          .fontFamily('HarmonyOS Sans')
+          .height('42lpx')
           .fontWeight(FontWeight.Medium)
-          .fontColor(this.focusStr == 'pickerAlbum_' + index ? 'rgba(0,0,0,0.6)' : "#DBFFFFFF")
-          .fontSize("36lpx")
+          .fontColor(this.focusStr == 'pickerAlbum_' + index ? 'rgba(0,0,0,0.6)' : '#DBFFFFFF')
+          .fontSize('36lpx')
           .textAlign(TextAlign.End)
       }
       .width('100%')
@@ -478,7 +471,7 @@ export struct ThirdSelectPhotoGridBase {
                       .margin({ left: '8%', bottom: '4%' })
 
                     // 照片编辑状态
-                    Image(this.pictureChooseFlags[index] ? $r("app.media.p_yes") : $r("app.media.p_no"))
+                    Image(this.pictureChooseFlags[index] ? $r('app.media.p_yes') : $r('app.media.p_no'))
                       .width('24lpx')
                       .aspectRatio(1)
                       .margin({ right: '5%', bottom: '5%' })
@@ -670,8 +663,10 @@ export struct ThirdSelectPhotoGridBase {
                   if (event.type !== KeyType.Down) {
                     return;
                   }
-                  let nextBtn = this.currentPhotoItem?.photoType === Constants.PHOTO_TYPE_VIDEO && !this.isVideoPlaying ?
-                    'video_play_btn' : 'preview_select_btn';
+                  let nextBtn =
+                    this.currentPhotoItem?.photoType === Constants.PHOTO_TYPE_VIDEO && !this.isVideoPlaying
+                      ? 'video_play_btn'
+                      : 'preview_select_btn';
                   if (event.keyCode === KeyCode.KEYCODE_DPAD_DOWN || event.keyCode === KeyCode.KEYCODE_DPAD_RIGHT) {
                     this.clickFocusBtn(nextBtn, false);
                   }
@@ -713,7 +708,7 @@ export struct ThirdSelectPhotoGridBase {
 
           Row() {
             // 选择框
-            Image(this.getCurrentPhotoSelectedState() ? $r("app.media.p_yes") : $r("app.media.p_no"))
+            Image(this.getCurrentPhotoSelectedState() ? $r('app.media.p_yes') : $r('app.media.p_no'))
               .width('100%')
               .aspectRatio(1)
               .id('preview_select_btn')
@@ -1085,7 +1080,7 @@ export struct ThirdSelectPhotoGridBase {
             Text('仅可访问所选图片或视频')
               .fontColor('rgba(255,255,255,0.4)')
               .fontSize('32lpx')
-              .fontFamily("HarmonyOS Sans")
+              .fontFamily('HarmonyOS Sans')
               .fontWeight(FontWeight.Regular)
               .margin({ left: '12lpx' })
           }
@@ -1230,8 +1225,8 @@ export struct ThirdSelectPhotoGridBase {
       colors: [['rgba(0,0,0,0.1)', 0.4], ['rgba(60,60,60,0.9)', 0.4]]
     })
     .padding({
-      left: "48lpx",
-      right: "48lpx",
+      left: '48lpx',
+      right: '48lpx',
       top: '24lpx',
       bottom: '24lpx'
     })

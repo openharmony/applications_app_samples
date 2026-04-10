@@ -8,31 +8,31 @@ export const DEFAULT_ALBUM_WIDTH = 640
 
 @Observed
 export class PhotoModel {
-  uri: string = '';
-  displayName: string = '';
-  dateAdded: number = 0;
-  duration?: number;
-  dateTrashed?: number;
-  photoType?: photoAccessHelper.PhotoType;
-  thumbnail?: image.PixelMap;
-  imageUri?: string;
-  width?: number;
-  height?: number;
-  photoAsset?: photoAccessHelper.PhotoAsset;
-  remoteUri?: string;
-  size?:number
-  photoTag?:string
-  pickVideoPreview?:string;
+  public uri: string = '';
+  public displayName: string = '';
+  public dateAdded: number = 0;
+  public duration?: number;
+  public dateTrashed?: number;
+  public photoType?: photoAccessHelper.PhotoType;
+  public thumbnail?: image.PixelMap;
+  public imageUri?: string;
+  public width?: number;
+  public height?: number;
+  public photoAsset?: photoAccessHelper.PhotoAsset;
+  public remoteUri?: string;
+  public size?: number
+  public photoTag?: string
+  public pickVideoPreview?: string;
   constructor() {
   }
 }
 
 @Observed
 export class AlbumModel {
-  type: AlbumType
-  name: ResourceStr = ''
-  count: number = 0
-  cover?: PixelMap | ResourceStr | DrawableDescriptor
+  public type: AlbumType
+  public name: ResourceStr = ''
+  public count: number = 0
+  public cover?: PixelMap | ResourceStr | DrawableDescriptor
 
   constructor(type: AlbumType, name: ResourceStr) {
     this.type = type;
@@ -42,14 +42,14 @@ export class AlbumModel {
 
 @Observed
 export class PhotoGroupModel {
-  createTime: number = 0
-  photoList: PhotoModel[] = []
+  public createTime: number = 0
+  public photoList: PhotoModel[] = []
 }
 
 export class PhotoPosition {
-  groupIndex: number = 0
-  rowIndex: number = 0
-  columIndex: number = 0
+  public groupIndex: number = 0
+  public rowIndex: number = 0
+  public columIndex: number = 0
 
   constructor(groupIndex: number, rowIndex: number, columIndex: number) {
     this.groupIndex = groupIndex;

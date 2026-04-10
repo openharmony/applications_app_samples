@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import { distributedDeviceManager } from "@kit.DistributedServiceKit";
-import Logger from "../common/Logger";
-import { dfsManager } from "../manager/DfsManager";
-import { PhotoModel } from "../models/PhotoModel";
-import { rdbManager } from "../manager/RdbManager";
-import { router } from "@kit.ArkUI";
-import { KeyCode } from "@kit.InputKit";
-import { VideoImage } from "../pages/components/VideoImage";
-import { Constants } from "../common/Constants";
-import { Util } from "../common/Util";
-import { EventUtil } from "../common/EventUtil";
-import { getToVideoApp, isAppInstalled } from "../pages/Index";
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import Logger from '../common/Logger';
+import { dfsManager } from '../manager/DfsManager';
+import { PhotoModel } from '../models/PhotoModel';
+import { rdbManager } from '../manager/RdbManager';
+import { router } from '@kit.ArkUI';
+import { KeyCode } from '@kit.InputKit';
+import { VideoImage } from '../pages/components/VideoImage';
+import { Constants } from '../common/Constants';
+import { Util } from '../common/Util';
+import { EventUtil } from '../common/EventUtil';
+import { getToVideoApp, isAppInstalled } from '../pages/Index';
 
 const TAG = 'DistributedPhotoView';
 const GRID_ROW_COUNT: number = 6;
@@ -48,7 +48,7 @@ export struct DistributedPhotoView {
 
   async aboutToAppear(): Promise<void> {
     dfsManager.init();
-    rdbManager.registerRemoteDataChange((storeObserver: Array<string>) => {
+    rdbManager.registerRemoteDataChange((_storeObserver: string[]) => {
       Logger.error(TAG, `remote data change`);
       this.loadPhotoList(this.availableDeviceList[0]);
     });
@@ -190,9 +190,9 @@ export struct DistributedPhotoView {
                 .align(Alignment.BottomStart)
               }
               .align(Alignment.BottomEnd)
-              .borderRadius("22lpx")
-              .margin("24lpx")
-              .padding("6lpx")
+              .borderRadius('22lpx')
+              .margin('24lpx')
+              .padding('6lpx')
               .border({
                 width: '2lpx',
                 color: this.isFocus == index ? '#fff' : Color.Transparent, // 边框颜色
@@ -205,7 +205,7 @@ export struct DistributedPhotoView {
           }, (item: PhotoModel) => JSON.stringify(item))
         }
         .columnsTemplate('1fr '.repeat(GRID_ROW_COUNT))
-        .padding({ left: "4lpx", right: "4lpx" })
+        .padding({ left: '4lpx', right: '4lpx' })
         .width('100%')
       } else {
         Column() {
@@ -216,12 +216,12 @@ export struct DistributedPhotoView {
           Column() {
             Text($r('app.string.distributed_device_go_to'))
               .id('to_dfs_manage')
-              .fontFamily("HarmonyOS Sans")
-              .fontSize("36lpx")
+              .fontFamily('HarmonyOS Sans')
+              .fontSize('36lpx')
               .fontWeight(500)
               .textAlign(TextAlign.Center)
               .fontColor('#FF000000')
-              .borderRadius("78lpx")
+              .borderRadius('78lpx')
               .backgroundColor('#FFD8D8D8')
               .focusable(true)
               .width('246lpx')
@@ -229,7 +229,7 @@ export struct DistributedPhotoView {
               .onKeyEvent(event => {
                 if ((event.keyCode === KeyCode.KEYCODE_DPAD_CENTER || event.keyCode === KeyCode.KEYCODE_ENTER) &&
                   event.type === KeyType.Down) {
-                  // this.toDfsDevicePage();
+                  this.toDfsDevicePage();
                 }
                 if (event.keyCode === KeyCode.KEYCODE_DPAD_UP && event.type === KeyType.Down) {
                   this.changeFocusToId('menu2');
@@ -247,8 +247,8 @@ export struct DistributedPhotoView {
           }
           .justifyContent(FlexAlign.Center)
           .alignItems(HorizontalAlign.Center)
-          .borderRadius("78lpx")
-          .padding("8lpx")
+          .borderRadius('78lpx')
+          .padding('8lpx')
           .margin({
             top: '92lpx'
           })

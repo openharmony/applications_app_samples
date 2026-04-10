@@ -22,32 +22,13 @@ import { dfsManager } from '../manager/DfsManager';
 import nasSessionManager, { SessionModel } from '../smaba/NasSessionManager';
 import { EventUtil } from '../common/EventUtil';
 import { BusinessError } from '@kit.BasicServicesKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import utd from '@ohos.data.uniformTypeDescriptor';
 import { createRegister } from '../manager/ChangeRegister';
-
-export enum ShareType {
-  SAVE_TO_MEDIA_ASSET = 1,
-  SAVE_AS_FILE = 2,
-  SAVE_AS_FOLDER = 10,
-}
-
-interface ShareData {
-  utd: string
-  title: string
-  uri: string
-}
-
-interface shareWant {
-  type: ShareType
-  data: ShareData[]
-}
 
 //判断是否安装此软件
 export function isAppInstalled(): boolean {
   try {
-    let data = launcherBundleManager.getShortcutInfoSync("com.ohos.demandplayer");
-    console.log("data is " + JSON.stringify(data));
+    let data = launcherBundleManager.getShortcutInfoSync('com.ohos.demandplayer');
+    console.log('data is ' + JSON.stringify(data));
     return true;
   } catch (errData) {
     let code = (errData as BusinessError).code;
@@ -61,8 +42,8 @@ export function isAppInstalled(): boolean {
 export function getToVideoApp(uri: string, name: string, img: PixelMap | undefined) {
   try {
     globalThis.abilityContext.startAbility({
-      bundleName: "com.ohos.demandplayer",
-      abilityName: "MainAbility",
+      bundleName: 'com.ohos.demandplayer',
+      abilityName: 'MainAbility',
       parameters: {
         startByOther: true,
         videoIndex: 0,
@@ -71,7 +52,7 @@ export function getToVideoApp(uri: string, name: string, img: PixelMap | undefin
           name: name,
           uri: uri,
           img: img,
-          type: "local"
+          type: 'local'
         }]
       }
     }, (error: BusinessError) => {
@@ -82,9 +63,6 @@ export function getToVideoApp(uri: string, name: string, img: PixelMap | undefin
   }
 }
 
-const SHARE_BUNDLE_NAME: string = 'com.ohos.oneconnect.share';
-const SHARE_ABILITY_NAME: string = 'ServiceExtAbility';
-const SHARE_MAX_SIZE: number = 1024 * 1024 * 1024;
 const TAG = 'PhotoIndex';
 const FOCUS_CHANGE_DELAY = 100;
 
@@ -118,7 +96,7 @@ struct PhotoIndex {
   private deleteList: Resource[] = [$r('app.string.cancel'), $r('app.string.delete')];
   @State deleteIndex: number = 1;
   //分享
-  @StorageLink('deviceList') @Watch('changeDevice') deviceList: Array<wifiManager.WifiP2pDevice> = []
+  @StorageLink('deviceList') @Watch('changeDevice') deviceList: wifiManager.WifiP2pDevice[] = []
   @State currentName: string = '';
   private scrollerShareList: Scroller = new Scroller()
   @State deviceFlag: boolean = false;
@@ -240,8 +218,8 @@ struct PhotoIndex {
 
   onPageShow() {
     try {
-      inputConsumer.on("key", this.keyOptions, this.keyCallback);
-      inputConsumer.on("key", this.keyOptionsMenu, this.keyCallback);
+      inputConsumer.on('key', this.keyOptions, this.keyCallback);
+      inputConsumer.on('key', this.keyOptionsMenu, this.keyCallback);
     } catch (error) {
       Logger.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
@@ -266,8 +244,8 @@ struct PhotoIndex {
   }
 
   onPageHide() {
-    inputConsumer.off("key", this.keyOptions, this.keyCallback);
-    inputConsumer.off("key", this.keyOptionsMenu, this.keyCallback);
+    inputConsumer.off('key', this.keyOptions, this.keyCallback);
+    inputConsumer.off('key', this.keyOptionsMenu, this.keyCallback);
     AppStorage.setOrCreate<string>('focusStr', this.focusStr);
 
     photoManager.getLoader(AlbumType.ALL)?.unRegisterChangeCallback(this.allPhotoObserver)
@@ -320,9 +298,10 @@ struct PhotoIndex {
     //数据加载完获取焦点，照片为0，焦点放在菜单上
     setTimeout(() => {
       let computeFocusStr = this.focusStr
-      if (this.focusStr.startsWith("photo") && this.currentPhotoPosition !== undefined ){
+      if (this.focusStr.startsWith('photo') && this.currentPhotoPosition !== undefined ){
         let index = PhotoPositionUtils.getIndexByPhotoPosition(this.currentPhotoPosition);
-        let positionAfterDelete = PhotoPositionUtils.findFocusPositionOnDelete(this.photoGroupList.getAllData(), this.currentPhotoPosition.groupIndex, index);
+        let positionAfterDelete = PhotoPositionUtils.findFocusPositionOnDelete(
+          this.photoGroupList.getAllData(), this.currentPhotoPosition.groupIndex, index);
 
         if (positionAfterDelete) {
           let afterIndex = PhotoPositionUtils.getIndexByPhotoPosition(positionAfterDelete);
@@ -421,52 +400,8 @@ struct PhotoIndex {
   shareAction(items:PhotoModel[]){
     Logger.info(TAG, `share file length is ${items.length}`);
     promptAction.showToast({
-      message:"该功能开发中，敬请期待"
+      message: '该功能开发中，敬请期待'
     })
-    // let shareArr: ShareData[] = []
-    // let totalSize: number = 0
-    // for (let i = 0; i < items.length; i++) {
-    //   let item = items[i];
-    //   Logger.debug(TAG, `share item${i}: ${JSON.stringify(item)}`);
-    //   if (item.photoType == photoAccessHelper.PhotoType.VIDEO) {
-    //     shareArr.push({ utd: utd.UniformDataType.MPEG4, title: item.displayName, uri: item.uri })
-    //     if (item.size != undefined) {
-    //       totalSize += item.size
-    //     }
-    //   } else if (item.photoType == photoAccessHelper.PhotoType.IMAGE) {
-    //     shareArr.push({ utd: utd.UniformDataType.JPEG, title: item.displayName, uri: item.uri })
-    //     if (item.size != undefined) {
-    //       totalSize += item.size
-    //     }
-    //   }
-    // }
-    // if (totalSize >= SHARE_MAX_SIZE) {
-    //   Logger.error(TAG, 'size exceed max size, return');
-    //   promptAction.showToast({
-    //     message:$r('app.string.share_failed')
-    //   })
-    //   promptAction.showToast({
-    //     message:$r('app.string.number_of_shared_exceeds_the_limit_size')
-    //   })
-    //   return
-    // }
-    // let shareWant:shareWant = {
-    //   type: ShareType.SAVE_TO_MEDIA_ASSET,
-    //   data: shareArr
-    // }
-    // let context: common.UIAbilityContext = globalThis.abilityContext
-    // context.startAbility({
-    //   bundleName: SHARE_BUNDLE_NAME,
-    //   abilityName: SHARE_ABILITY_NAME,
-    //   parameters: { shareWant: shareWant }
-    // }).then(() => {
-    //   Logger.debug(TAG, `share success`)
-    // }).catch((e:BusinessError) => {
-    //   Logger.error(TAG, `share err = ${JSON.stringify(e)}`)
-    //   promptAction.showToast({
-    //     message:$r('app.string.share_failed')
-    //   })
-    // })
   }
 
   dismissToDfsDialog() {
@@ -516,7 +451,7 @@ struct PhotoIndex {
   }
 
   getMenuClick() {
-    let tempList: Array<DialogModel> = [...this.dialogList]
+    let tempList: DialogModel[] = [...this.dialogList]
     if (this.isSelecting && this.isCheckAll) {
       tempList[2].name = $r('app.string.cancel_all_select')
       tempList[2].uri = 'app.media.p_check_all_default'
@@ -647,7 +582,7 @@ struct PhotoIndex {
   }
 
   onMenuClickInPhoto() {
-    let tempList: Array<DialogModel> = [...this.dialogList]
+    let tempList: DialogModel[] = [...this.dialogList]
     if (this.isSelecting && this.isCheckAll) {
       tempList[2].name = $r('app.string.cancel_all_select')
       tempList[2].uri = 'app.media.p_check_all_default'
@@ -769,7 +704,6 @@ struct PhotoIndex {
       this.focusFirstAlbum();
     } else {
       if (dfsManager.isConnected()) {
-        //this.clickFocusBtn('dfs_photo_0');
         this.clickFocusBtn('dfs_photo_0', false);
       } else {
         this.clickFocusBtn('to_dfs_manage', false);
@@ -787,18 +721,18 @@ struct PhotoIndex {
   build() {
     Column() {
       Row() {
-        Text($r("app.string.photo"))
-          .fontFamily("HarmonyOS Sans")
+        Text($r('app.string.photo'))
+          .fontFamily('HarmonyOS Sans')
           .fontColor(Color.White)
-          .fontSize("64lpx")
+          .fontSize('64lpx')
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
       .padding({
-        left: "33lpx",
-        right: "33lpx",
-        top: "48lpx",
-        bottom: "56lpx"
+        left: '33lpx',
+        right: '33lpx',
+        top: '48lpx',
+        bottom: '56lpx'
       })
 
       Row() {
@@ -807,16 +741,16 @@ struct PhotoIndex {
             Column() {
               Column() {
                 Text(item)
-                  .fontFamily("HarmonyOS Sans")
-                  .fontSize("36lpx")
+                  .fontFamily('HarmonyOS Sans')
+                  .fontSize('36lpx')
                   .fontWeight(500)
                   .fontColor((this.chooseIndex === index) ?
-                    this.focusStr == ('menu' + index) ? '#DBFFFFFF' : '#DB000000' : "#DBFFFFFF")
+                    this.focusStr == ('menu' + index) ? '#DBFFFFFF' : '#DB000000' : '#DBFFFFFF')
                   .textAlign(TextAlign.Center)
-                  .height("64lpx")
-                  .borderRadius("200lpx")
+                  .height('64lpx')
+                  .borderRadius('200lpx')
                   .backgroundColor((this.chooseIndex === index) ?
-                    this.focusStr == ('menu' + index) ? '#33FFFFFF' : '#DBFFFFFF' : "#33FFFFFF")
+                    this.focusStr == ('menu' + index) ? '#33FFFFFF' : '#DBFFFFFF' : '#33FFFFFF')
                   .focusable(true)
                   .defaultFocus(index === 0)
                   .id('menu' + index)
@@ -855,8 +789,8 @@ struct PhotoIndex {
               }
               .justifyContent(FlexAlign.Center)
               .alignItems(HorizontalAlign.Center)
-              .borderRadius("200lpx")
-              .padding("6lpx")
+              .borderRadius('200lpx')
+              .padding('6lpx')
               .border({
                 width: 2,
                 color: this.focusStr == ('menu' + index) ? '#fff' : Color.Transparent,
@@ -871,22 +805,22 @@ struct PhotoIndex {
               })
             }
             .margin({
-              left: "33lpx",
-              right: "4lpx"
+              left: '33lpx',
+              right: '4lpx'
             })
           }
         })
       }
       .width('100%')
       .margin({
-        bottom: "31lpx",
+        bottom: '31lpx',
       })
 
       if (this.chooseIndex === 0) {
         if (this.photoGroupList.totalCount() === 0) {
-          Text($r("app.string.no_data"))
+          Text($r('app.string.no_data'))
             .fontColor(Color.White)
-            .fontSize("34lpx")
+            .fontSize('34lpx')
             .size({ height: `calc(100% - 520lpx)` })
         } else {
           Row() {
@@ -897,8 +831,8 @@ struct PhotoIndex {
                     Text(Util.isToday(dateItem.createTime) ? $r('app.string.today') :
                       (Util.isYesterday(dateItem.createTime) ? $r('app.string.yesterday') :
                       Util.getDateFormatString(dateItem.createTime)))
-                      .fontFamily("HarmonyOS Sans")
-                      .fontSize("36lpx")
+                      .fontFamily('HarmonyOS Sans')
+                      .fontSize('36lpx')
                       .fontWeight(500)
                       .margin({ left: '24lpx', bottom: '12lpx' })
                       .alignSelf(ItemAlign.Start)
@@ -927,9 +861,9 @@ struct PhotoIndex {
                                 .margin({ left: '8%', bottom: '4%' })
                               // 照片编辑状态
                               if (this.isSelecting) {
-                                Image(this.selectedUriList.indexOf(item) >= 0 ? $r("app.media.p_yes") :
-                                $r("app.media.p_no"))
-                                  .width("24lpx")
+                                Image(this.selectedUriList.indexOf(item) >= 0 ? $r('app.media.p_yes') :
+                                $r('app.media.p_no'))
+                                  .width('24lpx')
                                   .aspectRatio(1)
                                   .margin({ right: '5%', bottom: '5%' })
                               }
@@ -939,9 +873,9 @@ struct PhotoIndex {
                             .align(Alignment.BottomStart)
                           }
                           .align(Alignment.BottomEnd)
-                          .borderRadius("22lpx")
-                          .margin("24lpx")
-                          .padding("6lpx")
+                          .borderRadius('22lpx')
+                          .margin('24lpx')
+                          .padding('6lpx')
                           .border({
                             width: 2,
                             color: this.focusStr === ('photo_' + dateIndex + '_' + index) ? '#fff' : Color.Transparent,
@@ -965,7 +899,7 @@ struct PhotoIndex {
                     .columnsTemplate('1fr '.repeat(this.gridRowCount))
                     .width('100%')
                     .scrollBar(BarState.Off)
-                  }.padding({ left: "4lpx", right: "4lpx" })
+                  }.padding({ left: '4lpx', right: '4lpx' })
                 }.width('100%')
               }, (item: PhotoGroupModel) => JSON.stringify(item))
             }
@@ -985,14 +919,14 @@ struct PhotoIndex {
                 ListItem() {
                   Column() {
                     Image($r(item.uri))
-                      .width("80lpx")
+                      .width('80lpx')
                       .aspectRatio(1)
-                      .margin({ bottom: "12lpx" })
+                      .margin({ bottom: '12lpx' })
                       .id('dialog' + index)
                       .focusable(true)
                       .defaultFocus(this.dialogFlag)
                       .borderRadius('40lpx')
-                      .padding("6lpx")
+                      .padding('6lpx')
                       .border({
                         width: 2,
                         color: this.dialogFocusStr == ('dialog' + index) ? '#fff' : Color.Transparent, // 边框颜色
@@ -1035,7 +969,7 @@ struct PhotoIndex {
                           } else if (this.dialogFocusStr === 'dialog2') {
                             //选择状态
                             if (this.isSelecting) {
-                              let tempList: Array<DialogModel> = [...this.dialogList]
+                              let tempList: DialogModel[] = [...this.dialogList]
                               if (this.isCheckAll) {
                                 tempList[0].uri = 'app.media.p_del_disabled';
                                 tempList[1].uri = 'app.media.p_share_disabled';
@@ -1096,7 +1030,7 @@ struct PhotoIndex {
                         } else if (this.dialogFocusStr === 'dialog2') {
                           //选择状态
                           if (this.isSelecting) {
-                            let tempList: Array<DialogModel> = [...this.dialogList]
+                            let tempList: DialogModel[] = [...this.dialogList]
                             if (this.isCheckAll) {
                               tempList[0].uri = 'app.media.p_del_disabled';
                               tempList[1].uri = 'app.media.p_share_disabled';
@@ -1124,9 +1058,9 @@ struct PhotoIndex {
                         }
                       })
                     Text(item.name)
-                      .fontSize("24lpx")
-                      .height("35lpx")
-                      .lineHeight("35lpx")
+                      .fontSize('24lpx')
+                      .height('35lpx')
+                      .lineHeight('35lpx')
                       .fontColor(Color.White)
                   }
                   .width('100lpx')
@@ -1167,7 +1101,7 @@ struct PhotoIndex {
                   } else if (this.dialogFocusStr === 'dialog2') {
                     //选择状态
                     if (this.isSelecting) {
-                      let tempList: Array<DialogModel> = [...this.dialogList]
+                      let tempList: DialogModel[] = [...this.dialogList]
                       if (this.isCheckAll) {
                         tempList[0].uri = 'app.media.p_del_disabled';
                         tempList[1].uri = 'app.media.p_share_disabled';
@@ -1196,13 +1130,13 @@ struct PhotoIndex {
                 })
               })
             }
-            .backgroundColor("#CC424242")
-            .borderRadius("48lpx")
+            .backgroundColor('#CC424242')
+            .borderRadius('48lpx')
             .padding({
-              top: "20lpx",
-              right: "26lpx",
-              bottom: "20lpx",
-              left: "26lpx"
+              top: '20lpx',
+              right: '26lpx',
+              bottom: '20lpx',
+              left: '26lpx'
             })
             .justifyContent(FlexAlign.Center)
           }
@@ -1214,25 +1148,25 @@ struct PhotoIndex {
             Column() {
               Column() {
                 Text($r('app.string.to_delete_the_file'))
-                  .fontSize("40lpx")
+                  .fontSize('40lpx')
                   .fontColor(Color.White)
                   .width('100%')
                   .fontWeight(FontWeight.Bold)
                   .textAlign(TextAlign.Center)
-              }.margin({ bottom: "40lpx" })
+              }.margin({ bottom: '40lpx' })
 
               Row() {
                 ForEach(this.deleteList, (item: string, index: number) => {
                   Column() {
                     Text(item)
-                      .width("230lpx")
-                      .height("72lpx")
+                      .width('230lpx')
+                      .height('72lpx')
                       .id('delete' + index)
                       .focusable(true)
-                      .backgroundColor(index == 1 ? this.deleteIndex === 0 ? "#99E52424" : "#FFE52424" : "#33FFFFFF")
-                      .borderRadius("200lpx")
-                      .fontFamily("HarmonyOS Sans")
-                      .fontSize("36lpx")
+                      .backgroundColor(index == 1 ? this.deleteIndex === 0 ? '#99E52424' : '#FFE52424' : '#33FFFFFF')
+                      .borderRadius('200lpx')
+                      .fontFamily('HarmonyOS Sans')
+                      .fontSize('36lpx')
                       .textAlign(TextAlign.Center)
                       .fontColor('#DBFFFFFF')
                       .fontWeight(FontWeight.Bold)
@@ -1276,8 +1210,8 @@ struct PhotoIndex {
                         }
                       })
                   }
-                  .borderRadius("200lpx")
-                  .padding("6lpx")
+                  .borderRadius('200lpx')
+                  .padding('6lpx')
                   .border({
                     width: 2,
                     color: this.dialogFocusStr == ('delete' + index) ? '#fff' : Color.Transparent,
@@ -1309,10 +1243,10 @@ struct PhotoIndex {
             }
             .width('640lpx')
             .height('260lpx')
-            .backgroundColor("rgba(64, 64, 64, 1.0)")
+            .backgroundColor('rgba(64, 64, 64, 1.0)')
             .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-            .borderRadius("24lpx")
-            .padding("48lpx")
+            .borderRadius('24lpx')
+            .padding('48lpx')
           }
           .position({ x: '0%', y: '39%' })
         }
@@ -1323,25 +1257,25 @@ struct PhotoIndex {
             Column() {
               Column() {
                 Text($r('app.string.select_the_sharing_device'))
-                  .fontSize("40lpx")
+                  .fontSize('40lpx')
                   .fontColor(Color.White)
                   .width('100%')
                   .fontWeight(FontWeight.Bold)
                   .textAlign(TextAlign.Center)
-              }.margin({ bottom: "24lpx" })
+              }.margin({ bottom: '24lpx' })
 
               Stack() {
                 if (this.deviceList.length == 0) {
                   Column() {
                     LoadingProgress()
                       .color(Color.White)
-                      .width("160lpx")
-                      .height("160lpx")
+                      .width('160lpx')
+                      .height('160lpx')
                     Text($r('app.string.search_for_the_device'))
-                      .fontSize("30lpx")
+                      .fontSize('30lpx')
                       .fontColor(Color.White)
                   }
-                  .height("270lpx")
+                  .height('270lpx')
                   .justifyContent(FlexAlign.Center)
                 } else {
                   List({ scroller: this.scrollerShareList }) {
@@ -1349,23 +1283,23 @@ struct PhotoIndex {
                       ListItem() {
                         Row() {
                           Row() {
-                            Image($r("app.media.p_phone"))
-                              .width("34lpx")
-                              .height("36lpx")
+                            Image($r('app.media.p_phone'))
+                              .width('34lpx')
+                              .height('36lpx')
                             Text(item.deviceName)
-                              .fontFamily("HarmonyOS Sans")
+                              .fontFamily('HarmonyOS Sans')
                               .textAlign(TextAlign.Start)
-                              .fontSize("30lpx")
+                              .fontSize('30lpx')
                               .fontColor('#DBFFFFFF')
                               .fontWeight(FontWeight.Bold)
-                              .margin({ left: "12lpx", right: "12lpx" })
+                              .margin({ left: '12lpx', right: '12lpx' })
                           }
 
-                          Image(this.deviceIndex === index ? $r("app.media.p_yes") : $r("app.media.p_no"))
+                          Image(this.deviceIndex === index ? $r('app.media.p_yes') : $r('app.media.p_no'))
                             .id('device' + index)
                             .focusable(true)
-                            .width("34lpx")
-                            .height("36lpx")
+                            .width('34lpx')
+                            .height('36lpx')
                             .onKeyEvent(e => {
                               if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Down) {
                                 if (this.deviceIndex !== 0) {
@@ -1388,18 +1322,18 @@ struct PhotoIndex {
                               }
                             })
                         }
-                        .width("440lpx")
-                        .borderRadius("16lpx")
+                        .width('440lpx')
+                        .borderRadius('16lpx')
                         .padding({
                           top: '18lpx',
                           right: '24lpx',
                           bottom: '18lpx',
                           left: '24lpx'
                         })
-                        .margin({ bottom: "12lpx" })
+                        .margin({ bottom: '12lpx' })
                         .backgroundColor('rgba(255, 255, 255, 0.1)')
                         .justifyContent(FlexAlign.SpaceBetween)
-                        .width("100%")
+                        .width('100%')
                         .border({
                           width: 2,
                           color: this.dialogFocusStr == ('device' + index) ? '#fff' : Color.Transparent,
@@ -1409,15 +1343,15 @@ struct PhotoIndex {
                     })
                   }
                   .scrollBar(BarState.Off)
-                  .height("270lpx")
+                  .height('270lpx')
                 }
               }
             }
             .width('640lpx')
-            .backgroundColor("rgba(64, 64, 64, 1.0)")
+            .backgroundColor('rgba(64, 64, 64, 1.0)')
             .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-            .borderRadius("24lpx")
-            .padding("48lpx")
+            .borderRadius('24lpx')
+            .padding('48lpx')
           }
           .position({ x: '0%', y: '30%' })
         }
@@ -1427,25 +1361,25 @@ struct PhotoIndex {
             Column() {
               Column() {
                 Text('1' + this.typeName + '接收中，共' + this.fullSize + ',是否接收此文件？')
-                  .fontSize("36lpx")
+                  .fontSize('36lpx')
                   .fontColor(Color.White)
                   .width('100%')
                   .fontWeight(FontWeight.Bold)
                   .textAlign(TextAlign.Center)
-              }.margin({ bottom: "40lpx" })
+              }.margin({ bottom: '40lpx' })
 
               Row() {
                 ForEach(this.receiveList, (item: string, index: number) => {
                   Column() {
                     Text(item)
-                      .width("230lpx")
-                      .height("72lpx")
+                      .width('230lpx')
+                      .height('72lpx')
                       .id('receive' + index)
                       .focusable(true)
-                      .backgroundColor(index == 1 ? this.receiveIndex === 0 ? "#99E52424" : "#FFE52424" : "#33FFFFFF")
-                      .borderRadius("200lpx")
-                      .fontFamily("HarmonyOS Sans")
-                      .fontSize("36lpx")
+                      .backgroundColor(index == 1 ? this.receiveIndex === 0 ? '#99E52424' : '#FFE52424' : '#33FFFFFF')
+                      .borderRadius('200lpx')
+                      .fontFamily('HarmonyOS Sans')
+                      .fontSize('36lpx')
                       .textAlign(TextAlign.Center)
                       .fontColor('#DBFFFFFF')
                       .fontWeight(FontWeight.Bold)
@@ -1466,14 +1400,6 @@ struct PhotoIndex {
                         // 电脑回车键KEYCODE_ENTER
                         if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                           e.type == KeyType.Down) {
-                         /* if (this.receiveIndex === 0) {
-                            setTimeout(() => {
-                              this.clickFocusBtn('dialog0', true)
-                              this.getDeleteBack();
-                            }, FOCUS_CHANGE_DELAY)
-                          } else {
-                            this.getDeleteAssets();
-                          }*/
                         }
                       })
                       .onClick(()=>{
@@ -1487,8 +1413,8 @@ struct PhotoIndex {
                         }
                       })
                   }
-                  .borderRadius("200lpx")
-                  .padding("6lpx")
+                  .borderRadius('200lpx')
+                  .padding('6lpx')
                   .border({
                     width: 2,
                     color: this.dialogFocusStr == ('receive' + index) ? '#fff' : Color.Transparent,
@@ -1520,19 +1446,19 @@ struct PhotoIndex {
             }
             .width('640lpx')
             .height('260lpx')
-            .backgroundColor("rgba(64, 64, 64, 1.0)")
+            .backgroundColor('rgba(64, 64, 64, 1.0)')
             .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-            .borderRadius("24lpx")
-            .padding("48lpx")
+            .borderRadius('24lpx')
+            .padding('48lpx')
           }
           .position({ x: '0%', y: '39%' })
         }
       } else
         if (this.chooseIndex === 1) {
         if (this.subTypeModels.length === 0) {
-          Text($r("app.string.no_data"))
+          Text($r('app.string.no_data'))
             .fontColor(Color.White)
-            .fontSize("34lpx")
+            .fontSize('34lpx')
             .size({ height: `calc(100% - 520lpx)` })
         } else {
           Row() {
@@ -1545,7 +1471,7 @@ struct PhotoIndex {
                         Image(item.cover)
                           .id('album' + index)
                           .focusable(true)
-                          .borderRadius("18lpx")
+                          .borderRadius('18lpx')
                           .width('100%')
                           .aspectRatio(1)
                           .shadow({ radius: 1, color: Color.Gray })
@@ -1613,27 +1539,11 @@ struct PhotoIndex {
                             if (!EventUtil.isTouchEvent(event)) {
                               return;
                             }
-                            if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== Constants.SOURCE_TOOL_MOUSE_CLICK) {
+                            if (event.sourceTool !== SourceTool.Pen &&
+                              event.sourceTool !== Constants.SOURCE_TOOL_MOUSE_CLICK) {
                               return;
                             }
                             if (event.type == TouchType.Up) {
-                              // if (item.type === AlbumType.NAS_SESSION) {
-                              //   router.pushUrl({
-                              //     url: 'pages/NasSessionPage'
-                              //   })
-                              // } else if (item.type === AlbumType.TRASH) {
-                              //   router.pushUrl({
-                              //     url: 'pages/PhotoDeleteList'
-                              //   })
-                              // } else {
-                              //   router.pushUrl({
-                              //     url: 'pages/PhotoList',
-                              //     params: {
-                              //       photoTitle: item.name,
-                              //       photoType: item.type
-                              //     }
-                              //   })
-                              // }
                             }
                           })
                           .onClick(()=>{
@@ -1657,34 +1567,34 @@ struct PhotoIndex {
                           })
                         Column() {
                           Text(item.name)
-                            .fontFamily("HarmonyOS Sans")
+                            .fontFamily('HarmonyOS Sans')
                             .width('100%')
-                            .height("32lpx")
+                            .height('32lpx')
                             .fontWeight(500)
-                            .fontColor("#DBFFFFFF")
-                            .fontSize("32lpx")
-                            .margin({ bottom: "12lpx" })
+                            .fontColor('#DBFFFFFF')
+                            .fontSize('32lpx')
+                            .margin({ bottom: '12lpx' })
                           Text(item.count.toString())
-                            .fontFamily("HarmonyOS Sans")
+                            .fontFamily('HarmonyOS Sans')
                             .width('100%')
-                            .height("32lpx")
+                            .height('32lpx')
                             .fontWeight(500)
-                            .fontColor("#DBFFFFFF")
-                            .fontSize("32lpx")
-                            .margin({ bottom: "10%" })
+                            .fontColor('#DBFFFFFF')
+                            .fontSize('32lpx')
+                            .margin({ bottom: '10%' })
                         }
                         .backgroundImage($r('app.media.mask'))
                         .width('100%')
                         .align(Alignment.Bottom)
-                        .padding({ top: "46lpx", left: "10%" })
+                        .padding({ top: '46lpx', left: '10%' })
                       }
                       .width('100%')
-                      .borderRadius("18lpx")
+                      .borderRadius('18lpx')
                       .aspectRatio(1)
                     }
-                    .borderRadius("22lpx")
-                    .margin("24lpx")
-                    .padding("6lpx")
+                    .borderRadius('22lpx')
+                    .margin('24lpx')
+                    .padding('6lpx')
                     .border({
                       width: 2,
                       color: this.focusStr == ('album' + index) ? '#fff' : Color.Transparent, // 边框颜色
@@ -1696,7 +1606,7 @@ struct PhotoIndex {
               })
             }
             .columnsTemplate('1fr '.repeat(this.albumGridRowCount))
-            .padding({ left: "4lpx", right: "4lpx" })
+            .padding({ left: '4lpx', right: '4lpx' })
             .width('100%')
           }
         }
@@ -1709,24 +1619,24 @@ struct PhotoIndex {
             Column() {
               Column() {
                 Text($r('app.string.dialog_title_to_distributed_device'))
-                  .fontSize("40lpx")
+                  .fontSize('40lpx')
                   .fontColor(Color.White)
                   .width('100%')
                   .fontWeight(FontWeight.Bold)
                   .textAlign(TextAlign.Center)
-              }.margin({ bottom: "40lpx" })
+              }.margin({ bottom: '40lpx' })
 
               Row() {
                 Column() {
                   Text($r('app.string.cancel'))
-                    .width("230lpx")
-                    .height("72lpx")
+                    .width('230lpx')
+                    .height('72lpx')
                     .id('dfs_dialog_cancel')
                     .focusable(true)
-                    .backgroundColor("#33FFFFFF")
-                    .borderRadius("200lpx")
-                    .fontFamily("HarmonyOS Sans")
-                    .fontSize("36lpx")
+                    .backgroundColor('#33FFFFFF')
+                    .borderRadius('200lpx')
+                    .fontFamily('HarmonyOS Sans')
+                    .fontSize('36lpx')
                     .textAlign(TextAlign.Center)
                     .fontColor('#DBFFFFFF')
                     .fontWeight(FontWeight.Bold)
@@ -1737,15 +1647,14 @@ struct PhotoIndex {
                       // 电脑回车键KEYCODE_ENTER
                       if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                         e.type == KeyType.Down) {
-                        // this.dismissToDfsDialog();
                       }
                     })
                     .onClick(()=>{
                       this.dismissToDfsDialog();
                     })
                 }
-                .borderRadius("200lpx")
-                .padding("6lpx")
+                .borderRadius('200lpx')
+                .padding('6lpx')
                 .border({
                   width: 2,
                   color: this.dialogFocusStr === 'dfs_dialog_cancel' ? '#fff' : Color.Transparent,
@@ -1754,14 +1663,14 @@ struct PhotoIndex {
 
                 Column() {
                   Text($r('app.string.confirm'))
-                    .width("230lpx")
-                    .height("72lpx")
+                    .width('230lpx')
+                    .height('72lpx')
                     .id('dfs_dialog_confirm')
                     .focusable(true)
-                    .backgroundColor("#33FFFFFF")
-                    .borderRadius("200lpx")
-                    .fontFamily("HarmonyOS Sans")
-                    .fontSize("36lpx")
+                    .backgroundColor('#33FFFFFF')
+                    .borderRadius('200lpx')
+                    .fontFamily('HarmonyOS Sans')
+                    .fontSize('36lpx')
                     .textAlign(TextAlign.Center)
                     .fontColor('#DBFFFFFF')
                     .fontWeight(FontWeight.Bold)
@@ -1772,15 +1681,14 @@ struct PhotoIndex {
                       // 电脑回车键KEYCODE_ENTER
                       if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                         e.type == KeyType.Down) {
-                        // this.toDfsDevicePage();
                       }
                     })
                     .onClick(()=>{
                       this.toDfsDevicePage();
                     })
                 }
-                .borderRadius("200lpx")
-                .padding("6lpx")
+                .borderRadius('200lpx')
+                .padding('6lpx')
                 .border({
                   width: 2,
                   color: this.dialogFocusStr === 'dfs_dialog_confirm' ? '#fff' : Color.Transparent,
@@ -1792,10 +1700,10 @@ struct PhotoIndex {
             }
             .width('640lpx')
             .height('260lpx')
-            .backgroundColor("rgba(64, 64, 64 , 1)")
+            .backgroundColor('rgba(64, 64, 64 , 1)')
             .shadow({ radius: 4, color: 'rgba(255, 255, 255, 0.25)' })
-            .borderRadius("24lpx")
-            .padding("48lpx")
+            .borderRadius('24lpx')
+            .padding('48lpx')
           }
           .position({ x: '0%', y: '39%' })
         }
@@ -1804,7 +1712,7 @@ struct PhotoIndex {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.main_color'))
-    .padding({ left: "63lpx", right: "63lpx" })
+    .padding({ left: '63lpx', right: '63lpx' })
     .onTouch((event) => {
       EventUtil.isTouchEvent(event);
     })

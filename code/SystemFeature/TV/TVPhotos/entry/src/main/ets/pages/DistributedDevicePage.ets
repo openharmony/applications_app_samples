@@ -385,10 +385,6 @@ export struct DistributedDevicePage {
                     // 电脑回车键KEYCODE_ENTER
                     if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                       e.type == KeyType.Down) {
-                      /*this.dismissDialog();
-                      if (this.selectedDevice) {
-                        this.connect(this.selectedDevice);
-                      }*/
                     }
                   })
                   .onClick(()=>{
@@ -427,10 +423,6 @@ export struct DistributedDevicePage {
                     // 电脑回车键KEYCODE_ENTER
                     if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
                       e.type == KeyType.Down) {
-                      /*if (this.selectedDevice) {
-                        dfsManager.unBindDevice(this.selectedDevice);
-                        this.dismissDialog();
-                      }*/
                     }
                   })
                   .onClick(()=>{

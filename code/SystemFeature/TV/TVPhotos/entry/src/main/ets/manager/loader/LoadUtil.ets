@@ -49,8 +49,13 @@ export function delay(millSeconds: number): Promise<void> {
 }
 
 
-export async function getThumbByUri(context: Context, photoModel: PhotoModel, tag: string, isDistributed?: boolean): Promise<string> {
-  Logger.info(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + " from " + tag)
+export async function getThumbByUri(
+  context: Context,
+  photoModel: PhotoModel,
+  tag: string,
+  isDistributed?: boolean
+): Promise<string> {
+  Logger.info(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + ' from ' + tag)
   const thumbPath = await getSavedThumbPath(context, photoModel.uri)
   if (thumbPath) {
     Logger.info(TAG, 'return on cached= ' + 'file://' + thumbPath)

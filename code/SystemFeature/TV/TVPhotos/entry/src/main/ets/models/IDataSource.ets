@@ -1,5 +1,5 @@
 import { PhotoGroupModel, PhotoModel } from './PhotoModel';
-import {DirectoryEntry} from 'smbProtocol'
+import { DirectoryEntry } from 'smbProtocol'
 // Basic implementation of IDataSource to handle data listener
 class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -119,7 +119,7 @@ export class PhotoDataSource extends BasicDataSource<PhotoDataModel> {
     (this.dataArray as PhotoModel[]).forEach((item: PhotoModel, index: number) => {
       if (item.displayName.startsWith('PRESET_')) {
         temporaryArray.push(item);
-        this.dataArray = this.dataArray.filter((res) => {
+        this.dataArray = this.dataArray.filter((res: PhotoDataModel) => {
           return (res as PhotoModel).displayName !== item.displayName;
         });
       }

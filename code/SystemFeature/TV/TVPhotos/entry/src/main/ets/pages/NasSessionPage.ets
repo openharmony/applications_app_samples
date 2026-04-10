@@ -89,7 +89,7 @@ struct NasSessionPage {
     nasSessionManager.registerSessionCallback(this.nasSessionObserver)
     this.clickFocusBtn(this.focusStr, this.focusIndex)
     try {
-      inputConsumer.on("key", this.keyOptionsMenu, this.keyCallback);
+      inputConsumer.on('key', this.keyOptionsMenu, this.keyCallback);
     } catch (error) {
       Logger.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
@@ -100,7 +100,7 @@ struct NasSessionPage {
     clearTimeout(this.focusIntval)
     this.focusRetryNum = 0;
     try {
-      inputConsumer.off("key", this.keyOptionsMenu, this.keyCallback);
+      inputConsumer.off('key', this.keyOptionsMenu, this.keyCallback);
     } catch (error) {
       Logger.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }

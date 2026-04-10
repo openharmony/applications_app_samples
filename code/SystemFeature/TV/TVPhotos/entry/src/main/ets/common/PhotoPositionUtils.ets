@@ -1,5 +1,5 @@
-import { PhotoGroupModel, PhotoPosition } from "../models/PhotoModel";
-import Logger from "./Logger";
+import { PhotoGroupModel, PhotoPosition } from '../models/PhotoModel';
+import Logger from './Logger';
 
 export const FIRST_ROW_MAX_INDEX = 4;
 
@@ -137,7 +137,8 @@ export class PhotoPositionUtils {
     Logger.debug(TAG, `findDownFocusPhoto  cruPosition = ${JSON.stringify(currentPosition)}`);
     let lastPosition = PhotoPositionUtils.getPhotoPosition(groupIndex, lastIndex);
     if (currentPosition.rowIndex === lastPosition.rowIndex ||
-      (currentPosition.rowIndex === 0 && currentPosition.columIndex === 0 && lastPosition.rowIndex <= 1)) {
+      (currentPosition.rowIndex === 0 && currentPosition.columIndex === 0 && lastPosition.rowIndex <= 1)
+    ) {
       // 去下一组
       if (groupIndex < allPhotoGroupList.length - 1) {
         nextGroupIndex = groupIndex + 1;

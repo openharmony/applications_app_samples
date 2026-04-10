@@ -24,19 +24,18 @@ import deviceInfo from '@ohos.deviceInfo';
 
 const TAG = 'PhotoWatch';
 const FOCUS_DELAY = 100;
-const SourceToolSeven = 7;
 const SWIPE_THRESHOLD = 40;
 
 @Entry
 @Component
 struct PhotoWatch {
   @State params: object = router.getParams() as Record<string, number>;
-  @State @Watch("photoIndexChange") photoIndex: number = 0;
+  @State @Watch('photoIndexChange') photoIndex: number = 0;
   //photoModel:存储图片信息的类
   @State photoList: PhotoDataModel[] = [];
   @State currentUri: string | undefined =
     undefined
-  @StorageProp('directUri')@Watch("directUrichange") directUri: string | undefined =
+  @StorageProp('directUri') @Watch('directUrichange') directUri: string | undefined =
     undefined
   @StorageProp('directType') directType: string | undefined =
     undefined
@@ -161,8 +160,6 @@ struct PhotoWatch {
     }
   }
   aboutToDisappear(): void {
-    // this.directUri = AppStorage.get<string>('directUri')
-    // this.directType = AppStorage.get<string>('directType')
   }
   view_4kWatch() {
     this.is_4k = this.is4K(this.isFromRemote ? this.selectPhotoModel! :
@@ -189,24 +186,24 @@ struct PhotoWatch {
       this.isNative4KViewing = false
     }
     try {
-      inputConsumer.on("key", this.keyOptions, this.keyCallback);
-      inputConsumer.on("key", this.keyOptionsMenu, this.keyCallback);
+      inputConsumer.on('key', this.keyOptions, this.keyCallback);
+      inputConsumer.on('key', this.keyOptionsMenu, this.keyCallback);
     } catch (error) {
       Logger.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
     this.defaultFocusBtn();
-    console.log("Pageshow路径"+this.directUri)
-    console.log("pageshow类型"+this.directType)
+    console.log('Pageshow路径' + this.directUri)
+    console.log('pageshow类型' + this.directType)
   }
 
   onPageHide(): void {
     this.exitNative4KView();
-    inputConsumer.off("key", this.keyOptions);
-    inputConsumer.off("key", this.keyOptionsMenu);
+    inputConsumer.off('key', this.keyOptions);
+    inputConsumer.off('key', this.keyOptionsMenu);
     this.currentUri = this.directUri
     this.directUri = undefined
-    console.log("PageHide路径"+this.directUri)
-    console.log("pageHide类型"+this.directType)
+    console.log('PageHide路径' + this.directUri)
+    console.log('pageHide类型' + this.directType)
   }
 
   defaultFocusBtn() {
@@ -246,7 +243,7 @@ struct PhotoWatch {
       hlGallery.exitViewImage()
       this.isNative4KViewing = false
     } catch (err) {
-      console.debug(TAG, "exitViewImage Err:" + JSON.stringify(err));
+      console.debug(TAG, 'exitViewImage Err:' + JSON.stringify(err));
     }
   }
 
@@ -287,23 +284,23 @@ struct PhotoWatch {
   }
 
   is4K(image: PhotoModel): boolean {
-    if(deviceInfo.productModel == "gk6320v100crb_b_vb"){
+    if (deviceInfo.productModel == 'gk6320v100crb_b_vb') {
       return false;
     }else {
       try {
-        console.log(TAG, "is4K  image is " + JSON.stringify(image.width))
+        console.log(TAG, 'is4K  image is ' + JSON.stringify(image.width))
         if (image.width && image.width >= 3840) {
           return true
         }
         return false
-      }catch (e) {
-        console.log(TAG, "is4K image width err: " + e)
+      } catch (e) {
+        console.log(TAG, 'is4K image width err: ' + e)
       }
       return false;
     }
   }
   async view4K() {
-    console.log(TAG, "view4K  border open")
+    console.log(TAG, 'view4K  border open')
     try {
       let uri = this.isFromRemote ? this.selectPhotoModel?.remoteUri :
         this.selectPhotoModel?.uri
@@ -314,13 +311,13 @@ struct PhotoWatch {
           hlgallery.viewImage(viewFd)
           this.isNative4KViewing = true
         } catch (e) {
-          console.error(TAG, "view4K catch err: " + e)
+          console.error(TAG, 'view4K catch err: ' + e)
         } finally {
           fs.closeSync(file)
         }
       }
     } catch (e) {
-      console.log(TAG, "view4K catch err border: " + e)
+      console.log(TAG, 'view4K catch err border: ' + e)
     }
 
   }
@@ -514,7 +511,6 @@ struct PhotoWatch {
               .width('200px')
               .height('200px');
 
-              // .margin("5px")
               Image($r('app.media.lading'))
                 .width('100px');
             }
