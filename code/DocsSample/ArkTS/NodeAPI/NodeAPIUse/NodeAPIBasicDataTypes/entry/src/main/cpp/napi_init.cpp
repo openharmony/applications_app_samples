@@ -29,7 +29,7 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
     // 获取传入参数的值中的无符号32位整数
     napi_status status = napi_get_value_uint32(env, argv[0], &number);
     // 如果传递的参数不是数字,将会返回napi_number_expected，设置函数返回nullptr
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     napi_value result = nullptr;
@@ -51,7 +51,7 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
     // 将前端传过来的参数转为Node-API模块的int32类型
     napi_status status = napi_get_value_int32(env, args[0], &result32);
     // 如果传递的参数不是数字napi_get_value_int32接口将会返回napi_number_expected，设置函数返回nullptr
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     // 调用napi_create_int32接口将int32类型的数据转为napi_value返回
@@ -73,7 +73,7 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
     // 将前端传过来的参数转为Node-API模块的int64类型
     napi_status status = napi_get_value_int64(env, args[0], &result64);
     // 如果传递的参数不是数字, 返回napi_number_expected.
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     // 调用napi_create_int64接口将int64类型的数据转为napi_value返回前端
@@ -93,7 +93,7 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
     double value = 0;
     napi_status status = napi_get_value_double(env, args[0], &value);
     // 传入非数字接口返回napi_number_expected
-    if (status == napi_number_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     napi_value result = nullptr;
@@ -147,7 +147,8 @@ static napi_value CreateInt64(napi_env env, napi_callback_info info)
     // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
     // 要表示的整数值
     int64_t value = 2147483648;
-    // 创建ArkTS中的int64数字
+    // 使用给定数值创建一个ArkTS number，仅能准确表示范围从-2^53 + 1到2^53 - 1（闭区间）的整数
+    // 如果想表示的数值超过了2^53，请使用napi_create_bigint64接口
     napi_value result = nullptr;
     napi_status status = napi_create_int64(env, value, &result);
     if (status != napi_ok) {
