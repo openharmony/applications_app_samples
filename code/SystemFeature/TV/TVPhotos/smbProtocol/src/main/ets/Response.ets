@@ -19,9 +19,9 @@ class EmptyPayload {
 }
 
 export default abstract class Response {
-  request?: Request;
-  header: Object;
-  body: Object;
+  public request?: Request;
+  public header: Object;
+  public body: Object;
 
   constructor(header?: Object, body?: Object) {
     this.header = header === undefined ? new EmptyPayload() : header;
