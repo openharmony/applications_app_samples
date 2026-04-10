@@ -22,7 +22,6 @@ const TAG: string = '[PublishOperation]';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [End cancel_notification_header]
 
-@Entry
 @Component
 export struct CancelNotification {
   @State message: string = 'Hello World';

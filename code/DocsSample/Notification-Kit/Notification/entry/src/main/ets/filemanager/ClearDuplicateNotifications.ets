@@ -18,7 +18,6 @@ import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End clear_duplicate_notifications_header]
 
-@Entry
 @Component
 export struct ClearDuplicateNotifications {
   build() {
@@ -27,7 +26,7 @@ export struct ClearDuplicateNotifications {
         Button($r('app.string.pub_notify_with_msgid'))
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
-            // [Start pub_appmsgid_notify]
+            // [Start pub_appMsgId_notify]
             // publish回调
             let publishCallback = (err: BusinessError): void => {
               if (err) {
@@ -50,7 +49,7 @@ export struct ClearDuplicateNotifications {
               appMessageId: 'test_appMessageId_1'
             };
             notificationManager.publish(notificationRequest, publishCallback);
-            // [End pub_appmsgid_notify]
+            // [End pub_appMsgId_notify]
           })
 
       }
