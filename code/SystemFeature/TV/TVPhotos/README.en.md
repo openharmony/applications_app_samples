@@ -12,6 +12,12 @@ Instructions:
 3. When the focus is on the album menu, press the OK button to enter the selected album and browse its photos and videos. If a video resource is selected, the app enters the playback page.
 4. The home page button opens the bottom action menu.
 
+### Screenshot Preview
+
+![](./figures/figures1.jpeg)
+![](./figures/figures2.jpeg)
+![](./figures/figures3.jpeg)
+
 ### Project Structure
 
 ```text
@@ -102,3 +108,7 @@ echo code/BasicFeature/TV/TVPhotos > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
+
+### Additional Document
+
+- ohosTest.md

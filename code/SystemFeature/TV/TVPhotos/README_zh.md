@@ -12,6 +12,11 @@
 3. 焦点位于册菜单时，按确定键可进入对应相册并浏览其中的照片和视频；选中视频资源时可进入播放界面。
 4. 首页按钮可打开底部操作菜单。
 
+### 截图预览
+![](./figures/figures1.jpeg)
+![](./figures/figures2.jpeg)
+![](./figures/figures3.jpeg)
+
 ### 工程目录
 ```text
 entry/src/main/ets/
