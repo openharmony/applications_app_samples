@@ -1,0 +1,78 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ]
+  },
+  "development": {
+    "addedSysCaps": []
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.AI.IntelligentVoice.Core",
+      "SystemCapability.AI.MindSporeLite",
+      "SystemCapability.Telephony.CallManager",
+      "SystemCapability.Telephony.CellularData",
+      "SystemCapability.Telephony.SmsMms",
+      "SystemCapability.Telephony.CoreService",
+      "SystemCapability.Telephony.StateRegistry",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Advertising.OAID",
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.Print.PrintFramework",
+      "SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask",
+      "SystemCapability.MiscServices.ScreenLock",
+      "SystemCapability.MiscServices.Wallpaper",
+      "SystemCapability.Msdp.DeviceStatus.Stationary",
+      "SystemCapability.Telephony.CellularCall",
+      "SystemCapability.Applications.Contacts",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Advertising.OAID",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.MiscServices.Wallpaper",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.XTS.DeviceAttest",
+      "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
+      "SystemCapability.Multimedia.ImageEffect.Core",
+      "SystemCapability.Customization.CustomConfig",
+      "SystemCapability.HiviewDFX.HiCollie",
+      "SystemCapability.Security.SecurityGuard",
+      "SystemCapability.Security.ScreenLockFileManager",
+      "SystemCapability.Security.CryptoFramework.Key",
+      "SystemCapability.Security.CryptoFramework.Key.SymKey",
+      "SystemCapability.Security.CryptoFramework.Key.AsymKey",
+      "SystemCapability.Security.CryptoFramework.Cipher",
+      "SystemCapability.Security.CryptoFramework.Kdf",
+      "SystemCapability.Security.CryptoFramework.Key",
+      "SystemCapability.Security.CryptoFramework.KeyAgreement",
+      "SystemCapability.Security.CryptoFramework.Mac",
+      "SystemCapability.Security.CryptoFramework.MessageDigest",
+      "SystemCapability.Security.CryptoFramework.Rand",
+      "SystemCapability.Security.CryptoFramework.Signature",
+      "SystemCapability.ResourceSchedule.SystemLoad",
+      "SystemCapability.Notification.NotificationSettings",
+      "SystemCapability.MultimodalInput.Input.InfraredEmitter",
+      "SystemCapability.Multimedia.VideoProcessingEngine",
+      "SystemCapability.MultimodalInput.Input.Cooperator",
+      "SystemCapability.Multimedia.Media.AVTranscoder",
+      "SystemCapability.AI.NeuralNetworkRuntime",
+      "SystemCapability.Ability.AppExtension.PhotoEditorExtension",
+      "SystemCapability.Ability.AppStartup",
+      "SystemCapability.BundleManager.AppDomainVerify",
+      "SystemCapability.Communication.NetManager.NetFirewall",
+      "SystemCapability.Driver.DDK.Extension",
+      "SystemCapability.Sensors.Sensor",
+      "SystemCapability.Sensors.MiscDevice",
+      "SystemCapability.ArkUi.Graphics3D"
+
+    ]
+  }
+}
