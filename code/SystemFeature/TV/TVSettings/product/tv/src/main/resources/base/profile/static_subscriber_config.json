@@ -1,0 +1,11 @@
+{
+  "commonEvents": [
+    {
+      "name": "BootCompletedSubscriber",
+      "permission": "",
+      "events": [
+        "usual.event.BOOT_COMPLETED"
+      ]
+    }
+  ]
+}

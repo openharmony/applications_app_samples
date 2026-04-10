@@ -1,0 +1,124 @@
+{
+  "strarray": [
+    {
+      "name": "screen_off_time",
+      "value": [
+        {
+          "value": "开关"
+        },
+        {
+          "value": "30分钟"
+        },
+        {
+          "value": "1小时"
+        },
+        {
+          "value": "2小时"
+        },
+        {
+          "value": "4小时"
+        },
+        {
+          "value": "6小时"
+        }
+      ]
+    },
+    {
+      "name": "signal_strength",
+      "value": [
+        {
+          "value": "信号强度： 弱"
+        },
+        {
+          "value": "信号强度： 较弱"
+        },
+        {
+          "value": "信号强度： 较强"
+        },
+        {
+          "value": "信号强度： 强"
+        }
+      ]
+    },
+    {
+      "name": "network_monitor_type",
+      "value": [
+        {
+          "value": "检测内网连接"
+        },
+        {
+          "value": "检测外网连接"
+        },
+        {
+          "value": "检测DNS 配置"
+        },
+        {
+          "value": "检测信号强度"
+        },
+        {
+          "value": "检测通用资源访问"
+        }
+      ]
+    },
+    {
+      "name": "network_monitor_description",
+      "value": [
+        {
+          "value": "内网连接正常"
+        },
+        {
+          "value": "未连接路由器"
+        },
+        {
+          "value": "外网连接正常"
+        },
+        {
+          "value": "无法连接到网络"
+        },
+        {
+          "value": "DNS 配置正确"
+        },
+        {
+          "value": "请检查 DNS 配置"
+        },
+        {
+          "value": "信号强度异常"
+        },
+        {
+          "value": "通用资源访问正常"
+        },
+        {
+          "value": "通用资源访问异常"
+        }
+      ]
+    },
+    {
+      "name": "software_update_titles",
+      "value": [
+        {
+          "value": "Online upgrade"
+        },
+        {
+          "value": "USB local upgrade"
+        }
+      ]
+    },
+    {
+      "name": "software_update_dialog",
+      "value": [
+        {
+          "value": "New version detected"
+        },
+        {
+          "value": "Do you want to upgrade?"
+        },
+        {
+          "value": "Cancel upgrade"
+        },
+        {
+          "value": "Upgrade now"
+        }
+      ]
+    }
+  ]
+}

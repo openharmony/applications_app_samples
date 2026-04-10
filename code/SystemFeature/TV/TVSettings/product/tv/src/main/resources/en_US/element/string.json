@@ -1,0 +1,1500 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "Settings"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "enabled",
+      "value": "On"
+    },
+    {
+      "name": "disable_",
+      "value": "Disable"
+    },
+    {
+      "name": "disabled",
+      "value": "Off"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "searchHint",
+      "value": "Search"
+    },
+    {
+      "name": "searchNoResult",
+      "value": "No search result "
+    },
+    {
+      "name": "wifiTab",
+      "value": "WLAN"
+    },
+    {
+      "name": "wifiTipConnectedWLAN",
+      "value": "Connected WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "Valid WLAN"
+    },
+    {
+      "name": "wifiButtonCancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "wifiButtonDelete",
+      "value": "Delete"
+    },
+    {
+      "name": "wifiButtonConnect",
+      "value": "Connect"
+    },
+    {
+      "name": "wifiInfoTitleIntensity",
+      "value": "Signal intensity"
+    },
+    {
+      "name": "wifiInfoTitleEncryptMethod",
+      "value": "Encrypt method"
+    },
+    {
+      "name": "wifiInfoTitleStatus",
+      "value": "Status"
+    },
+    {
+      "name": "wifiInfoTitleSpeed",
+      "value": "Speed"
+    },
+    {
+      "name": "wifiInfoTitleFrequency",
+      "value": "Frequency"
+    },
+    {
+      "name": "wifiSummaryConnected",
+      "value": "Connected"
+    },
+    {
+      "name": "wifiSummaryConnecting",
+      "value": "Connecting..."
+    },
+    {
+      "name": "wifiSummarySaveEncrypted",
+      "value": "Saved, Encrypted"
+    },
+    {
+      "name": "wifiSummarySaveOpen",
+      "value": "Saved, Open"
+    },
+    {
+      "name": "wifiSummaryEncrypted",
+      "value": "Encrypted"
+    },
+    {
+      "name": "wifiSummaryOpen",
+      "value": "Open"
+    },
+    {
+      "name": "wifiSummaryObtainingIP",
+      "value": "Obtaining IP address..."
+    },
+    {
+      "name": "wifiSigIntensityStrong",
+      "value": "Good"
+    },
+    {
+      "name": "wifiSigIntensityWell",
+      "value": "Well"
+    },
+    {
+      "name": "wifiSigIntensityNormal",
+      "value": "Normal"
+    },
+    {
+      "name": "wifiSigIntensityBad",
+      "value": "Bad"
+    },
+    {
+      "name": "wifiEncryptMethodOpen",
+      "value": "Open"
+    },
+    {
+      "name": "wifiEncryptMethodWEP",
+      "value": "WEP"
+    },
+    {
+      "name": "wifiEncryptMethodWPA",
+      "value": "WPA"
+    },
+    {
+      "name": "wifiEncryptMethodWPA2",
+      "value": "WPA2-Personal"
+    },
+    {
+      "name": "wifiTipsScanInfo",
+      "value": "Scan the QR to connect this AP, be careful your information security"
+    },
+    {
+      "name": "wifiTipsConnecting",
+      "value": "Connecting to \"%s\"..."
+    },
+    {
+      "name": "wifiTipsConnectAuthFailed",
+      "value": "Password incorrect, auth failed."
+    },
+    {
+      "name": "wifiTipsConnectFailed",
+      "value": "连接失败"
+    },
+    {
+      "name": "wifiTipsGotIt",
+      "value": "Got it"
+    },
+    {
+      "name": "brightnessTab",
+      "value": "Display & Brightness"
+    },
+    {
+      "name": "volumeControl",
+      "value": "volumeControl"
+    },
+    {
+      "name": "volumeAndVibrationControl",
+      "value": "volumeAndVibration"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "Sounds"
+    },
+    {
+      "name": "volumeControlRing",
+      "value": "Ringer"
+    },
+    {
+      "name": "volumeControlMedia",
+      "value": "Media"
+    },
+    {
+      "name": "volumeControlCall",
+      "value": "Call"
+    },
+    {
+      "name": "soundMode",
+      "value": "Sound Mode"
+    },
+    {
+      "name": "soundModeSound",
+      "value": "Sound"
+    },
+    {
+      "name": "soundModeVibration",
+      "value": "Vibration"
+    },
+    {
+      "name": "soundModeSilent",
+      "value": "Silent"
+    },
+    {
+      "name": "applyTab",
+      "value": "Apps"
+    },
+    {
+      "name": "moreConnectionsTab",
+      "value": "More Connections"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    },
+    {
+      "name": "nfcTips",
+      "value": "To perform mobile payment, key verification, and touch, touch the back of the device to the NFC sensor area of another terminal."
+    },
+    {
+      "name": "dateAndTimeTab",
+      "value": "dateAndTime"
+    },
+    {
+      "name": "aboutTab",
+      "value": "About Device"
+    },
+    {
+      "name": "applicationInfo",
+      "value": "App info"
+    },
+    {
+      "name": "appManagement",
+      "value": "Apps"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "continue_",
+      "value": "continue"
+    },
+    {
+      "name": "confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "ok",
+      "value": "ok"
+    },
+    {
+      "name": "next",
+      "value": "next"
+    },
+    {
+      "name": "clear",
+      "value": "Clear"
+    },
+    {
+      "name": "wifiPassword",
+      "value": "Password"
+    },
+    {
+      "name": "wifiMAC",
+      "value": "BSSID"
+    },
+    {
+      "name": "signalLevel",
+      "value": "RSSI"
+    },
+    {
+      "name": "signalBand",
+      "value": "BAND"
+    },
+    {
+      "name": "encryptMethod",
+      "value": "EncryptType"
+    },
+    {
+      "name": "disconnect",
+      "value": "disconnect"
+    },
+    {
+      "name": "timeMorning",
+      "value": "%s AM"
+    },
+    {
+      "name": "timeAfternoon",
+      "value": "%s PM"
+    },
+    {
+      "name": "settingTime",
+      "value": "settingTime"
+    },
+    {
+      "name": "timeFormat",
+      "value": "militaryTime"
+    },
+    {
+      "name": "timeZone",
+      "value": "TimeZone"
+    },
+    {
+      "name": "date",
+      "value": "Date"
+    },
+    {
+      "name": "time",
+      "value": "Time"
+    },
+    {
+      "name": "year",
+      "value": "year"
+    },
+    {
+      "name": "month",
+      "value": "month"
+    },
+    {
+      "name": "day",
+      "value": "date"
+    },
+    {
+      "name": "wifiSynonym",
+      "value": "net,network,connect,www,http"
+    },
+    {
+      "name": "wifiList",
+      "value": "WLAN-List which can be used"
+    },
+    {
+      "name": "wifiListSynonym",
+      "value": "wifi,liebiao"
+    },
+    {
+      "name": "deviceName",
+      "value": "Device Name"
+    },
+    {
+      "name": "model",
+      "value": "Model"
+    },
+    {
+      "name": "companyInfo",
+      "value": "CompanyInfo"
+    },
+    {
+      "name": "deviceId",
+      "value": "DeviceId"
+    },
+    {
+      "name": "softwareVersion",
+      "value": "SoftwareVersion"
+    },
+    {
+      "name": "version",
+      "value": "version "
+    },
+    {
+      "name": "password",
+      "value": "password"
+    },
+    {
+      "name": "connected",
+      "value": "connected"
+    },
+    {
+      "name": "monday",
+      "value": "monday"
+    },
+    {
+      "name": "tuesday",
+      "value": "tuesday"
+    },
+    {
+      "name": "wednesday",
+      "value": "wednesday"
+    },
+    {
+      "name": "thursday",
+      "value": "thursday"
+    },
+    {
+      "name": "friday",
+      "value": "friday"
+    },
+    {
+      "name": "saturday",
+      "value": "saturday"
+    },
+    {
+      "name": "sunday",
+      "value": "sunday"
+    },
+    {
+      "name": "restoreFactoryTab",
+      "value": "restoreFactorySettings"
+    },
+    {
+      "name": "restoreFactory",
+      "value": "Do you want to restore factory settings"
+    },
+    {
+      "name": "developerOptionsTab",
+      "value": "developerOptions"
+    },
+    {
+      "name": "usbDebugging",
+      "value": "USB Debugging"
+    },
+    {
+      "name": "usersAccountsTab",
+      "value": "Users & Accounts"
+    },
+    {
+      "name": "user",
+      "value": "User"
+    },
+    {
+      "name": "administrator",
+      "value": "Administrator"
+    },
+    {
+      "name": "quest",
+      "value": "Quest"
+    },
+    {
+      "name": "you",
+      "value": "You"
+    },
+    {
+      "name": "currentLogin",
+      "value": "Current Login"
+    },
+    {
+      "name": "addUser",
+      "value": "Add user"
+    },
+    {
+      "name": "addGuest",
+      "value": "Add guest"
+    },
+    {
+      "name": "removeUser",
+      "value": "Remove user"
+    },
+    {
+      "name": "addUserImage",
+      "value": "Touch icon to set a profile picture"
+    },
+    {
+      "name": "switchUser",
+      "value": "Switch user"
+    },
+    {
+      "name": "askAddGuest",
+      "value": "Add guest user？"
+    },
+    {
+      "name": "addNewUser",
+      "value": "Add New User"
+    },
+    {
+      "name": "isCreatingUser",
+      "value": "Is Creating User..."
+    },
+    {
+      "name": "isRemoving",
+      "value": "Is removing account..."
+    },
+    {
+      "name": "addUserDescription",
+      "value": "When you add a new user, that person needs to set up their space."
+    },
+    {
+      "name": "userCreatedWarn",
+      "value": "Name has been used"
+    },
+    {
+      "name": "askSwitchUser",
+      "value": "Switch to new user？"
+    },
+    {
+      "name": "switchButton",
+      "value": "SWITCH"
+    },
+    {
+      "name": "deleteUserWarn",
+      "value": "Delete this user and all related data?"
+    },
+    {
+      "name": "deleteButton",
+      "value": "DELETE"
+    },
+    {
+      "name": "takePhoto",
+      "value": "Take photo"
+    },
+    {
+      "name": "chooseFromShop",
+      "value": "Choose from photoshop"
+    },
+    {
+      "name": "systemTab",
+      "value": "System & Updates"
+    },
+    {
+      "name": "languageTab",
+      "value": "language"
+    },
+    {
+      "name": "setlanguage",
+      "value": "Set Language"
+    },
+    {
+      "name": "languageAndRegion",
+      "value": "LANGUAGE"
+    },
+    {
+      "name": "editLanguage",
+      "value": "Edit Language"
+    },
+    {
+      "name": "addLanguage",
+      "value": "Add Language"
+    },
+    {
+      "name": "edit",
+      "value": "EDIT"
+    },
+    {
+      "name": "delete",
+      "value": "DELETE"
+    },
+    {
+      "name": "region",
+      "value": "REGION"
+    },
+    {
+      "name": "currentRegion",
+      "value": "Current Region"
+    },
+    {
+      "name": "addedLanguage",
+      "value": "ADDED"
+    },
+    {
+      "name": "hasAdded",
+      "value": "Added to preferred languages."
+    },
+    {
+      "name": "allLanguage",
+      "value": "ALL LANGUAGES"
+    },
+    {
+      "name": "saveLanguage",
+      "value": "Please keep at least one language"
+    },
+    {
+      "name": "changeLanguage",
+      "value": "Are you sure you want to change your system language to %s?"
+    },
+    {
+      "name": "change",
+      "value": "CHANGE"
+    },
+    {
+      "name": "keepCurrent",
+      "value": "CANCEL"
+    },
+    {
+      "name": "selectRegion",
+      "value": "Select Region"
+    },
+    {
+      "name": "allRegion",
+      "value": "ALL REGION"
+    },
+    {
+      "name": "faceRecognition",
+      "value": "Face Recognition"
+    },
+    {
+      "name": "face_auth_failed",
+      "value": "Face recognition failed to start, please make sure the function is available."
+    },
+    {
+      "name": "privacy",
+      "value": "Privacy"
+    },
+    {
+      "name": "permissionManager",
+      "value": "Permission Manager"
+    },
+    {
+      "name": "permissionFailed",
+      "value": "Permission management failed to start, please make sure the function is available."
+    },
+    {
+      "name": "storageTab",
+      "value": "Storage"
+    },
+    {
+      "name": "security",
+      "value": "security"
+    },
+    {
+      "name": "securityFailed",
+      "value": "security failed to start, please make sure the function is available."
+    },
+    {
+      "name": "totalSpace",
+      "value": "totalSpace"
+    },
+    {
+      "name": "usedSpace",
+      "value": "usedSpace"
+    },
+    {
+      "name": "remainingSpace",
+      "value": "availableSpace"
+    },
+    {
+      "name": "authorityManagement",
+      "value": "authorityManagement"
+    },
+    {
+      "name": "deleteDataTab",
+      "value": "deleteData"
+    },
+    {
+      "name": "delete_data_prompt_title",
+      "value": "Delete the selected application data"
+    },
+    {
+      "name": "delete_data_prompt",
+      "value": "This will permanently delete all of this app's data,including files,settings and accounts"
+    },
+    {
+      "name": "clearCacheTab",
+      "value": "clearCache"
+    },
+    {
+      "name": "totalTab",
+      "value": "total"
+    },
+    {
+      "name": "dataTab",
+      "value": "data"
+    },
+    {
+      "name": "cacheTab",
+      "value": "cache"
+    },
+    {
+      "name": "uninstall",
+      "value": "uninstall"
+    },
+    {
+      "name": "uninstall_prompt",
+      "value": "Do you want to uninstall this app?"
+    },
+    {
+      "name": "forcedStop",
+      "value": "forcedStop"
+    },
+    {
+      "name": "Stop_exception_prompt",
+      "value": "This app may stop working properly if you force stop it."
+    },
+    {
+      "name": "privacyTab",
+      "value": "privacyTab"
+    },
+    {
+      "name": "locationServicesTab",
+      "value": "locationServicesTab"
+    },
+    {
+      "name": "positionInformation",
+      "value": "positionInformation"
+    },
+    {
+      "name": "positionContent",
+      "value": "\"Location service\" is provided based on GNSS, network information (WLAN / cellular network / Bluetooth / IP), etc. When enabled, your location may be shared with services authorized to locate. We may collect network information from your device to improve positioning accuracy. These information can not be identified or located to you personally. You can further select in \"improve accuracy\" to improve positioning accuracy or turn off some functions. For more information, see"
+    },
+    {
+      "name": "statement",
+      "value": "Statement on location services and privacy。"
+    },
+    {
+      "name": "biometrics",
+      "value": "biometrics"
+    },
+    {
+      "name":"face_recognition",
+      "value":"Face Recognition"
+    },
+    {
+      "name":"password_lock_screen",
+      "value":"Lock screen password"
+    },
+    {
+      "name":"password_change_password",
+      "value":"Change lock screen password"
+    },
+    {
+      "name":"password_disable_password",
+      "value":"Disable lock screen password"
+    },
+    {
+      "name":"password_enter_password",
+      "value":"Enter lock screen password"
+    },
+    {
+      "name":"password_change_unlock_method",
+      "value":"change unlock method"
+    },
+    {
+      "name":"password_select_unlock_method",
+      "value":"Select unlock method"
+    },
+    {
+      "name":"password_title_number",
+      "value":"Set new password"
+    },
+    {
+      "name":"password_title_character",
+      "value":"Set new password"
+    },
+    {
+      "name":"password_message_number_6",
+      "value":"Set a 6-digit PIN"
+    },
+    {
+      "name":"password_message_custom",
+      "value":"Enter a 4 to 32-digit PIN"
+    },
+    {
+      "name":"password_message_character",
+      "value":"Set a 4 to 32-character password (including at least 1 letter)"
+    },
+    {
+      "name":"password_message_repeat",
+      "value":"Enter the PIN again"
+    },
+    {
+      "name":"password_set_prompt",
+      "value":"Try not to forget your password. There is no way to recover it if you do."
+    },
+    {
+      "name":"password_message_repeat_error",
+      "value":"PINs do not match, Please try again."
+    },
+    {
+      "name":"password_item_text_number_4",
+      "value":"4-digit PIN"
+    },
+    {
+      "name":"password_item_text_number_6",
+      "value":"6-digit PIN"
+    },
+    {
+      "name":"password_item_text_custom",
+      "value":"Custom PIN"
+    },
+    {
+      "name":"password_item_text_character",
+      "value":"Password"
+    },
+    {
+      "name":"password_disable_prompt",
+      "value":"Your personal data can be used by anyone who has access to your device if you disable your lock screen password."
+    },
+    {
+      "name":"password_message_incorrect",
+      "value":"Incorrect password. %d attempts remaining."
+    },
+    {
+      "name":"password_remain_times",
+      "value":"PLEASE TRY AGAIN AFTER %dS."
+    },
+    {
+      "name":"password_PIN_must_be_6_numbers",
+      "value":"PIN must be 6 digits numbers."
+    },
+    {
+      "name":"password_PIN_check_min_error",
+      "value":"PIN must be at least 4 digits."
+    },
+	{
+      "name":"password_PIN_must_be_numbers",
+      "value":"PIN must be number"
+    },
+	{
+      "name":"password_illegal_character",
+      "value":"Password contains an illegal character"
+    },
+    {
+      "name":"password_PIN_check_max_error",
+      "value":"PIN must be fewer than 33 digits."
+    },
+    {
+      "name":"password_check_min_error",
+      "value":"password must be at least 4 characters."
+    },
+    {
+      "name":"password_check_max_error",
+      "value":"password must be fewer than 33 characters."
+    },
+    {
+      "name":"password_check_char_error",
+      "value":"Must include at least 1 letter."
+    },
+    {
+      "name": "biometricsAndPassword",
+      "value": "Biometrics & Password"
+    },
+    {
+      "name": "nickname",
+      "value": "Nickname"
+    },
+    {
+      "name": "brightness",
+      "value": "Brightness"
+    },
+    {
+      "name": "screen",
+      "value": "Screen"
+    },
+    {
+      "name": "screenResolution",
+      "value": "Screen Resolution"
+    },
+    {
+      "name": "screenResolutionWarning",
+      "value": "Changing the screen resolution will change the screen clarity and may close some applications running in the background."
+    },
+    {
+      "name": "high",
+      "value": "High"
+    },
+    {
+      "name": "highText",
+      "value": "%s, clearer screen"
+    },
+    {
+      "name": "used",
+      "value": "Used %s / %s"
+    },
+    {
+      "name": "resetPhone",
+      "value": "Reset Device"
+    },
+    {
+      "name": "resetPhonePrompt",
+      "value": "This will delete all data from your device,including:"
+    },
+    {
+      "name": "resetPhonePromptDetails",
+      "value": "• Accounts\n\n\n\n• App data and system settings\n\n\n\n• Installed apps\n\n\n\n• Music\n\n\n\n• Photos\n\n\n\n• Files\n\n\n\n• Security chip contents(will be erased the next time the device connects to the Internet)\n\n\n\n• Locally-stored system,app,and personal data related to HUAWEIIDs\n"
+    },
+    {
+      "name": "resetPhonePromptInfo",
+      "value": "Resetting your device will erase all system data and installed apps.Your personal files such as music and photos will be permanently deleted.This cannot be undone"
+    },
+    {
+      "name": "locationServicesPromptInfo",
+      "value": "Turn on debugging mode after connecting USB"
+    },
+    {
+      "name": "bluetoothTab",
+      "value": "Bluetooth"
+    },
+    {
+      "name": "bluetooth_state_pairing",
+      "value": "Pairing…"
+    },
+    {
+      "name": "bluetooth_state_connecting",
+      "value": "Connecting…"
+    },
+    {
+      "name": "bluetooth_state_connected",
+      "value": "Connected"
+    },
+    {
+      "name": "bluetooth_state_disconnecting",
+      "value": "Disconnecting…"
+    },
+    {
+      "name": "bluetooth_visible_to_nearby",
+      "value": "Currently visible to nearby devices"
+    },
+    {
+      "name": "bluetooth_device_name",
+      "value": "Device name"
+    },
+    {
+      "name": "bluetooth_paired_devices",
+      "value": "Paired devices"
+    },
+    {
+      "name": "bluetooth_available_devices",
+      "value": "Available devices"
+    },
+    {
+      "name": "bluetoothContent",
+      "value": "Other devices will see this name when using Bluetooth interconnection, hotspot sharing and USB connection"
+    },
+    {
+      "name": "cancelPairing",
+      "value": "cancelPairing"
+    },
+    {
+      "name": "scanning",
+      "value": "Scanning..."
+    },
+    {
+      "name": "bluetooth_pairing_request",
+      "value": "Bluetooth pairing request"
+    },
+    {
+      "name": "bluetooth_pairing_media_device_hit",
+      "value": "Pair with the following devices："
+    },
+    {
+      "name": "bluetooth_pairing_intelligent_device_hit",
+      "value": "%s would like to pair with this device. Confirm that this code is also shown on th %s."
+    },
+    {
+      "name": "bluetooth_disconnect",
+      "value": "Disconnect?"
+    },
+    {
+      "name": "bluetooth_disconnect_device",
+      "value": "This will end your connection with: %s"
+    },
+    {
+      "name": "pairing_failed_title",
+      "value": "Pairing failed"
+    },
+    {
+      "name": "pairing_failed_message",
+      "value": "An error occurred during pairing."
+    },
+    {
+      "name": "bluetooth_holding_should_pairing",
+      "value": "Ensure the bluetooth device is in pairable mode."
+    },
+    {
+      "name": "bluetooth_pairing_with_app",
+      "value": "Please complete pairing by the related app."
+    },
+    {
+      "name": "bluetooth_address_error_msg",
+      "value": "The address device is illegal and may be at risk. Continue connecting?"
+    },
+    {
+      "name": "bluetooth_connect_failed",
+      "value": "Failed to connect"
+    },
+    {
+      "name": "bluetooth_connect_failed_msg",
+      "value": "Unable to connect to %s. Possible reasons:\n1.The device is out of range (10 m) or Bluetooth is not enabled.\n2.The device is connected to another device. End that connection and try again."
+    },
+    {
+      "name": "bluetooth_know_button",
+      "value": "know"
+    },
+    {
+      "name": "bluetooth_pair_button",
+      "value": "pair"
+    },
+    {
+      "name": "mobileData",
+      "value": "Mobile Data"
+    },
+    {
+      "name": "mobileDataFailed",
+      "value": "Mobile data failed to start, please make sure the function is available."
+    },
+    {
+      "name": "regionExample",
+      "value": "Example of region format"
+    },
+    {
+      "name": "regionExampleLanguage",
+      "value": "English"
+    },
+    {
+      "name": "regionExampleDate",
+      "value": "Wednesday, April 7, 2019"
+    },
+    {
+      "name": "regionExampleTime",
+      "value": "1:03 am"
+    },
+    {
+      "name": "regionExampleNumber",
+      "value": "12,345.67"
+    },
+    {
+      "name": "regionExamplePercent",
+      "value": "78.9%"
+    },
+    {
+      "name": "regionExampleMoney",
+      "value": "/$1,234.56"
+    },
+    {
+      "name": "deviceNameChangeText",
+      "value": "This name will be visible to other devices when using Bluetooth Interconnect, WLAN Direct, Hotspot Sharing and USB connections."
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "put_away",
+      "value": "put away"
+    },
+    {
+      "name": "senior",
+      "value": "senior"
+    },
+    {
+      "name": "store_description_information",
+      "value": "Internal storage space used %s"
+    },
+    {
+      "name": "illegalcharacters",
+      "value": "Illegal Characters"
+    },
+    {
+      "name": "softwareUpdates",
+      "value": "Software Updates"
+    },
+    {
+      "name": "softwareUpdateFailed",
+      "value": "Software update startup failed, please make sure the function is available."
+    },
+    {
+      "name": "add",
+      "value": "Add"
+    },
+    {
+      "name": "MANAGE_LOCAL_ACCOUNTS",
+      "value": "MANAGE LOCAL ACCOUNTS"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "Distributed Data Synchronization"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+      "value": "Local extended user for cross-domain interaction"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS",
+      "value": "Local user for cross-domain interaction"
+    },
+    {
+      "name": "CLEAN_BACKGROUND_PROCESSES",
+      "value": "Clean background processes"
+    },
+    {
+      "name": "GET_RUNNING_INFO",
+      "value": "Obtaining Running Information"
+    },
+    {
+      "name": "CLEAN_APPLICATION_DATA",
+      "value": "Clean application data"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "Get Bundle Information Privilege"
+    },
+    {
+      "name": "INSTALL_BUNDLE",
+      "value": "Install Bundle"
+    },
+    {
+      "name": "REMOVE_CACHE_FILES",
+      "value": "Delete Cache Files"
+    },
+    {
+      "name": "USE_USER_IDM",
+      "value": "Use User IDM"
+    },
+    {
+      "name": "ACCESS_USER_AUTH_INTERNAL",
+      "value": "Access User Internal Authentication"
+    },
+    {
+      "name": "ACCESS_PIN_AUTH",
+      "value": "Access PIN Authentication"
+    },
+    {
+      "name": "MANAGE_USER_IDM",
+      "value": "Managing User IDMs"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "Obtaining Wi-Fi Information"
+    },
+    {
+      "name": "SET_WIFI_INFO",
+      "value": "Setting Wi-Fi Information"
+    },
+    {
+      "name": "MANAGE_WIFI_CONNECTION",
+      "value": "Managing Wi-Fi Connections"
+    },
+    {
+      "name": "SET_WIFI_CONFIG",
+      "value": "Setting the Wi-Fi Configuration"
+    },
+    {
+      "name": "GET_WIFI_CONFIG",
+      "value": "Getting the Wi-Fi Configuration"
+    },
+    {
+      "name": "GET_WIFI_INFO_INTERNAL",
+      "value": "Obtaining Internal Wi-Fi Information"
+    },
+    {
+      "name": "GET_WIFI_PEERS_MAC",
+      "value": "Obtaining the Wi-Fi Peer MAC Address"
+    },
+    {
+      "name": "ERROR_WIFI_CHANGE",
+      "value": "WLAN Operation Error"
+    },
+    {
+      "name": "USE_BLUETOOTH",
+      "value": "Using Bluetooth"
+    },
+    {
+      "name": "DISCOVER_BLUETOOTH",
+      "value": "Discover Bluetooth"
+    },
+    {
+      "name": "MANAGE_BLUETOOTH",
+      "value": "Managing Bluetooth"
+    },
+    {
+      "name": "MANAGE_SECURE_SETTINGS",
+      "value": "Security Settings Management"
+    },
+    {
+      "name": "SET_TIME",
+      "value": "Set the time"
+    },
+    {
+      "name": "SET_TIME_ZONE",
+      "value": "Set the time zone"
+    },
+    {
+      "name": "UPDATE_CONFIGURATION",
+      "value": "Update Configuration"
+    },
+    {
+      "name": "FACTORY_RESET",
+      "value": "Restoring Factory Settings"
+    },
+    {
+      "name": "ACCESS_NOTIFICATION_POLICY",
+      "value": "Access Notification Policy"
+    },
+    {
+      "name": "MODIFY_AUDIO_SETTINGS",
+      "value": "Modify Audio Settings"
+    },
+    {
+      "name": "Debug_GPU_OverDraw",
+      "value": "Debug GPU OverDraw"
+    },
+    {
+      "name": "Animation_Multiplier",
+      "value": "Animation Multiplier %sx"
+    },
+    {
+      "name": "Close_Animation",
+      "value": "Close Animation"
+    },
+    {
+      "name": "Animation_Zooms",
+      "value": "Animation Zooms 1x"
+    },
+    {
+      "name": "Show_Layout_Boundaries",
+      "value": "Show Layout Boundaries"
+    },
+    {
+      "name": "Show_boundaries_Margin",
+      "value": "Show Clip boundaries Margin"
+    },
+    {
+      "name": "Global_Animation",
+      "value": "Global Animation"
+    },
+    {
+      "name": "Excessive_animation_scaling",
+      "value": "Excessive animation scaling"
+    },
+    {
+      "name": "Cancel_Animation",
+      "value": "Cancel"
+    },
+    {
+      "name": "Input_Reached_Limited",
+      "value": "Input has reached the upper limit"
+    },
+    {
+      "name": "LegalInfo",
+      "value": "Legal information"
+    },
+    {
+      "name": "display",
+      "value": "Display"
+    },
+    {
+      "name": "hdr_setting",
+      "value": "HDR Setting"
+    },
+    {
+      "name": "hdmi_setting",
+      "value": "HDMI Setting"
+    },
+    {
+      "name": "voice",
+      "value": "Voice"
+    },
+    {
+      "name": "hdmi_output",
+      "value": "HDMI Output"
+    },
+    {
+      "name": "degraded_output",
+      "value": "Next generation degraded output"
+    },
+    {
+      "name": "spdif_output",
+      "value": "SPDIF Output"
+    },
+    {
+      "name": "network",
+      "value": "network"
+    },
+    {
+      "name": "picture",
+      "value": "picture"
+    },
+    {
+      "name": "pictureSetting",
+      "value": "Picture Settings"
+    },
+    {
+      "name": "wiredNetwork",
+      "value": "Wired Network"
+    },
+    {
+      "name": "displayFormatSetting",
+      "value": " Display Format Setting"
+    },
+    {
+      "name": "timeAndDate",
+      "value": "Time And Date"
+    },
+    {
+      "name": "deviceInfo",
+      "value": "Device Information"
+    },
+    {
+      "name": "tipsContent",
+      "value": "tipcontent"
+    },
+    {
+      "name": "tips_in_development",
+      "value": "The feature is under development. Stay tuned!"
+    },
+    {
+      "name": "set_image_type",
+      "value": "set image type"
+    },
+    {
+      "name": "customize_current_image_mode_parameters",
+      "value": "Customize the current image mode parameters"
+    },
+    {
+      "name": "display_control",
+      "value": " Display Control"
+    },
+    {
+      "name": "eye_protection_mode_reduce_blue_light_soft_display",
+      "value": "Eye protection mode: Reduce blue light, soft display"
+    },
+    {
+      "name": "select_sound_output_mode",
+      "value": "Select sound output mode"
+    },
+    {
+      "name": "adjust_the_volume_of_the_TV",
+      "value": "Adjust the volume of the TV"
+    },
+    {
+      "name": "select_modes_based_on_content_to_enhance_auditory_enjoyment",
+      "value": "Select modes based on content to enhance auditory enjoyment"
+    },
+    {
+      "name": "controlling_the_sound_feedback_of_the_TV",
+      "value": "Controlling the sound feedback of the TV"
+    },
+    {
+      "name": "software_update",
+      "value": "Software Update"
+    },
+    {
+      "name": "current_version",
+      "value": "current version"
+    },
+    {
+      "name": "set_system_time_and_date",
+      "value": "Set system time and date"
+    },
+    {
+      "name": "restore_to_factory_settings_and_information",
+      "value": "Restore to factory settings and information"
+    },
+    {
+      "name": "view_system_information",
+      "value": "View system information"
+    },
+    {
+      "name": "view_device_information",
+      "value": "View device information"
+    },
+    {
+      "name": "view_status_information",
+      "value": "View status information"
+    },
+    {
+      "name": "failed_to_get_network_time",
+      "value": "failed to get networkTime"
+    },
+    {
+      "name": "wirelessNetwork",
+      "value": "wirelessNetwork"
+    },
+    {
+      "name": "IPV4Address",
+      "value": "IPV4Address"
+    },
+    {
+      "name": "ModifyIPV4Address",
+      "value": "ModifyIPV4Address"
+    },
+    {
+      "name": "BluetoothMacInfo",
+      "value": "Bluetooth State is close"
+    },
+    {
+      "name": "wificonnectPromption",
+      "value": "connectting"
+    },
+    {
+      "name": "screen_casting",
+      "value": "Screen casting"
+    },
+    {
+      "name": "support_screen",
+      "value": "Support screen mirroring connection"
+    },
+    {
+      "name": "change_time_and_date",
+      "value": "Set time and date"
+    },
+    {
+      "name": "software_update_progress",
+      "value": "Current download progress：%s%"
+    },
+    {
+      "name": "screen_expansion",
+      "value": "Screen Expansion"
+    },
+    {
+      "name": "expansion",
+      "value": "expansion"
+    },
+    {
+      "name": "application_to_be_launched",
+      "value": "Application to be launched"
+    },
+    {
+      "name": "diffdisplay_reboot_tip",
+      "value": "The switch operation has been modified and needs to be manually restarted to take effect "
+    },
+    {
+      "name": "diffdisplay_not_found_expandscreen",
+      "value": "No extended display detected, please reconnect the extended display and try again."
+    },
+    {
+      "name": "diffdisplay_check_expandscreen_error",
+      "value": "Failed to detect the extension screen error:%s"
+    },
+    {
+      "name": "diffdisplay_start_fail",
+      "value": "Failed to launch the app error:%s"
+    },
+    {
+      "name": "diffdisplay_connect_expand",
+      "value": "Connect or select the extension screen first"
+    },
+    {
+      "name": "diffdisplay_app_notset",
+      "value": "The application package name or class name is not set"
+    },
+    {
+      "name": "new_version",
+      "value": "There is a new version."
+    },
+    {
+      "name": "one_connect",
+      "value" : "one connect"
+    },
+    {
+      "name": "one_connect_share",
+      "value" : "one connect share"
+    },
+    {
+      "name": "share_opening_time",
+      "value" : "Opening Time"
+    },
+    {
+      "name": "share_opening_time_minutes",
+      "value" : "%d minutes"
+    },
+    {
+      "name": "share_opening_time_unlimited",
+      "value" : "Unlimited"
+    },
+    {
+      "name": "cancel_share_time",
+      "value" : "CANCEL"
+    },
+    {
+      "name": "endTextEmpty",
+      "value": " "
+    },
+    {
+      "name": "bt_pair_required_message",
+      "value": "%s would like to pair with you. Confirm that thia code is also shown on %s before pairing."
+    },
+    {
+      "name": "bluetooth_pin_required_code_title",
+      "value": "Pairing code:"
+    },
+    {
+      "name": "bluetooth_pin_required_please_enter_message",
+      "value": "Enter the pairing code then press Return or Enter."
+    },
+    {
+      "name": "bluetooth_usually_message",
+      "value": "Usually 0000 or 1234"
+    },
+    {
+      "name": "bluetooth_PinConsist_message",
+      "value": "PIN contains letters or symbols"
+    },
+    {
+      "name": "bluetooth_pinCode_required_message",
+      "value": "You may also need to enter this PIN on the other device."
+    },
+    {
+      "name": "pair_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "access_permission_full_stop",
+      "value": "Allow access to contacts call logs after pairing"
+    },
+    {
+      "name": "access_permission_stop",
+      "value": "Allow this device to access contacts"
+    },
+    {
+      "name": "watch_tv_key_description",
+      "value": "Set the source which will enter when press [ TV ]  key"
+    },
+    {
+      "name": "watch_tv_key_title",
+      "value": "Watch TV Key Settings"
+    },
+    {
+      "name": "display_blacklight",
+      "value": "Display Blacklight"
+    }
+  ]
+}

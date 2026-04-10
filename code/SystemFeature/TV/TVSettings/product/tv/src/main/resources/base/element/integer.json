@@ -1,0 +1,272 @@
+{
+  "integer": [
+    {
+      "name": "wh_value_0",
+      "value": 0
+    },
+
+    {
+      "name": "wh_value_1",
+      "value": 1
+    },
+    {
+      "name": "wh_value_2",
+      "value": 2
+    },
+    {
+      "name": "wh_value_3",
+      "value": 3
+    },
+    {
+      "name": "wh_value_4",
+      "value": 4
+    },
+    {
+      "name": "wh_value_5",
+      "value": 5
+    },
+    {
+      "name": "wh_value_6",
+      "value": 6
+    },
+    {
+      "name": "wh_value_8",
+      "value": 8
+    },
+    {
+      "name": "wh_value_9",
+      "value":9
+    },
+    {
+      "name": "wh_value_10",
+      "value":10
+    },
+    {
+      "name": "wh_value_11",
+      "value": 11
+    },
+    {
+      "name": "wh_value_12",
+      "value": 12
+    },
+    {
+      "name": "wh_value_13",
+      "value": 13
+    },
+    {
+      "name": "wh_value_15",
+      "value": 15
+    },
+    {
+      "name": "wh_value_16",
+      "value":16
+    },
+    {
+      "name": "wh_value_18",
+      "value":18
+    },
+    {
+      "name": "wh_value_19",
+      "value": 19
+    },
+    {
+      "name": "wh_value_20",
+      "value": 20
+    },
+    {
+      "name": "wh_value_21",
+      "value": 21
+    },
+    {
+      "name": "wh_value_22",
+      "value": 22
+    },
+    {
+      "name": "wh_value_24",
+      "value": 24
+    },
+    {
+      "name": "wh_value_26",
+      "value":26
+    },
+    {
+      "name": "wh_value_28",
+      "value":28
+    },
+    {
+      "name": "wh_value_30",
+      "value": 30
+    },
+    {
+      "name": "wh_value_32",
+      "value": 32
+    },
+    {
+      "name": "wh_value_33",
+      "value": 33
+    },
+    {
+      "name": "wh_value_40",
+      "value": 40
+    },
+    {
+      "name": "wh_value_45",
+      "value": 45
+    },
+    {
+      "name": "wh_value_48",
+      "value": 48
+    },
+    {
+      "name": "wh_value_50",
+      "value": 50
+    },
+    {
+      "name": "wh_value_52",
+      "value": 52
+    },
+    {
+      "name": "wh_value_56",
+      "value": 56
+    },
+    {
+      "name": "wh_value_60",
+      "value":60
+    },
+    {
+      "name": "wh_value_64",
+      "value": 64
+    },
+    {
+      "name": "wh_value_65",
+      "value": 65
+    },
+    {
+      "name": "wh_value_67",
+      "value": 67
+    },
+    {
+      "name": "wh_value_70",
+      "value": 70
+    },
+    {
+      "name": "wh_value_75",
+      "value": 75
+    },
+    {
+      "name": "wh_value_80",
+      "value": 80
+    },
+    {
+      "name": "wh_value_96",
+      "value": 96
+    },
+    {
+      "name": "wh_value_100",
+      "value": 100
+    },
+    {
+      "name": "wh_value_109",
+      "value": 109
+    },
+    {
+      "name": "wh_value_118",
+      "value": 118
+    },
+    {
+      "name": "wh_value_119",
+      "value": 119
+    },
+    {
+      "name": "wh_value_120",
+      "value": 120
+    },
+    {
+      "name": "wh_value_130",
+      "value": 130
+    },
+    {
+      "name": "distance_1",
+      "value": 1
+    },
+    {
+      "name": "distance_2",
+      "value":2
+    },
+    {
+      "name": "distance_4",
+      "value":4
+    },
+    {
+      "name": "distance_6",
+      "value": 6
+    },
+    {
+      "name": "distance_7",
+      "value": 7
+    },
+    {
+      "name": "distance_8",
+      "value": 8
+    },
+    {
+      "name": "distance_9",
+      "value": 9
+    },
+
+    {
+      "name": "distance_10",
+      "value": 10
+    },
+    {
+      "name": "distance_11",
+      "value": 11
+    },
+
+    {
+      "name": "distance_12",
+      "value": 12
+    },
+    {
+      "name": "distance_13",
+      "value": 13
+    },
+    {
+      "name": "distance_14",
+      "value": 14
+    },
+    {
+      "name": "distance_15",
+      "value": 15
+    },
+    {
+      "name": "distance_16",
+      "value": 16
+    },
+    {
+      "name": "distance_17",
+      "value": 17
+    },
+    {
+      "name": "distance_18",
+      "value": 18
+    },
+    {
+      "name": "distance_19",
+      "value": 19
+    },
+
+    {
+      "name": "distance_20",
+      "value": 20
+    },
+    {
+      "name": "lineHeight_41",
+      "value": 41
+    },
+    {
+      "name": "lineHeight_60",
+      "value": 60
+    }
+  ]
+}
