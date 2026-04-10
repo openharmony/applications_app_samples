@@ -17,22 +17,22 @@
 ```
 entry/src/main/ets/
 |---base
-|	|---PhotoFileUri.ts                 //系统对接封装模块
+|	|---PhotoFileUri.ts                 //系统接口封装
 |---common  
-|	|---Constants.ts                    //枚举字符串封装
-|	|---GlobalContext.ts	            //GlobalContext封装
-|	|---Logger.ts                       //日志工具封装
-|	|---Common.ts                       //权限字符转换封装
-|	|---TraceControllerUtils.ts         //时间片跟踪模块封装
-|	|---Utils.ts                        //Tip弹窗，日志封装
-|	|---WifiManager.ts                  //wifi管理模块封装
+|	|---Constants.ts                    //常量定义
+|	|---GlobalContext.ts	            //全局上下文管理
+|	|---Logger.ts                       //日志封装
+|	|---Common.ts                       //权限处理工具
+|	|---TraceControllerUtils.ts         //耗时跟踪工具
+|	|---Utils.ts                        //弹窗与日志工具
+|	|---WifiManager.ts                  //Wi-Fi 管理
 |---entryability
-|	|---MainAbility.ts                  //ability类
+|	|---MainAbility.ts                  //应用入口能力
 |---model
-|	|---AlbumModel.ts                   //相册模型封装
-|	|---FileSendModel.ts                //文件分享模型封装
-|	|---IDataSource.ets                 //LazyForeach模型封装
-|	|---PhotoModel.ts                   //照片模型封装
+|	|---AlbumModel.ts                   //相册数据模型
+|	|---FileSendModel.ts                //文件分享数据模型
+|	|---IDataSource.ets                 //列表数据源模型
+|	|---PhotoModel.ts                   //照片数据模型
 |---pages
 |	|---Index.ets                       //首页（照片和相册）
 |	|---PhotoList.ets                   //照片删除列表
@@ -42,18 +42,16 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 获取照片列表和相册分类的功能封装在Index.ets，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)
-    * 焦点默认在照片上面，左右可进行照片，相册切换 使用phAccessHelper.getAlbums来获取相册的实例，用于访问视频、图片的分类；
-    * 使用使用phAccessHelper.getFileAssets来获取文件资源；使用来fetchFileResult.getAllObject获取所有文件检索结果，接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
-    * 点击菜单键，弹出菜单功能，选择照片，使用MediaAssetChangeRequest.deleteAssets来删除文件实例。
-- 照片列表的功能封装在PhotoList.ets，源码参考：[PhotoList.ets](entry/src/main/ets/pages/PhotoList.ets)
-    * 使用phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)
-      方法来进行获取照片分类。可以进行焦点切换，点击菜单键，选择照片，可进行删除操作。
-- 照片列表的功能封装在PhotoDeleteList.ets，源码参考：[PhotoDeleteList.ets](entry/src/main/ets/pages/PhotoDeleteList.ets)
-    * 使用phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)
-      方法来进行获取照片分类。
-- 查看图片或视频并查看的功能封装在ViewMedia.ets，源码参考：[PhotoWatch.ets](entry/src/main/ets/pages/PhotoWatch.ets)
-    * 确定键点击照片可进入查看照片页面，左右键可以进行查看上下一张照片，视频页面点击确定键可进行播放视频，再次点击即可停止播放
+- 获取照片列表和相册分类的能力封装在 [Index.ets](entry/src/main/ets/pages/Index.ets)
+    * 首页支持在“照片”和“相册”两个菜单之间进行焦点切换，并通过 `phAccessHelper.getAlbums` 获取相册分类数据；
+    * 通过 `phAccessHelper.getFileAssets` 获取媒体资源，再通过 `fetchFileResult.getAllObject` 读取检索结果，接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)；
+    * 底部菜单支持选择、分享和删除操作，其中删除能力通过 `MediaAssetChangeRequest.deleteAssets` 实现。
+- 相册列表页面的能力封装在 [PhotoList.ets](entry/src/main/ets/pages/PhotoList.ets)
+    * 通过 `phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)` 获取系统相册分类，并支持焦点切换和菜单操作。
+- 已删除照片列表页面的能力封装在 [PhotoDeleteList.ets](entry/src/main/ets/pages/PhotoDeleteList.ets)
+    * 通过 `phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, albumSubtype, albumFetchOptions)` 获取对应分类数据。
+- 图片与视频预览能力封装在 [PhotoWatch.ets](entry/src/main/ets/pages/PhotoWatch.ets)
+    * 选中照片后可进入预览页面；使用左右方向键可切换上一张或下一张；选中视频后可进入播放界面。
 
 ### 相关权限
 
