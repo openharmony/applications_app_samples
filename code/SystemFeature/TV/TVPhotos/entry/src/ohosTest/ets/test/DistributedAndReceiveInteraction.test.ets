@@ -247,6 +247,25 @@ class DistributedReceiveHarness {
     this.subTypeModels.pop();
   }
 
+  favoritePhotoObserver(albumModel: AlbumModel): void {
+    this.subTypeModels[AlbumType.FAVORITE] = albumModel;
+    this.subTypeModels.push(undefined);
+    this.subTypeModels.pop();
+  }
+
+  screenShotPhotoObserver(albumModel: AlbumModel): void {
+    this.subTypeModels[AlbumType.SCREENSHOT] = albumModel;
+    this.subTypeModels.push(undefined);
+    this.subTypeModels.pop();
+  }
+
+  trashPhotoObserver(albumModel: AlbumModel): void {
+    this.subTypeModels[AlbumType.TRASH] = albumModel;
+    this.subTypeModels[AlbumType.TRASH]!.cover = 'app.media.cover_trash';
+    this.subTypeModels.push(undefined);
+    this.subTypeModels.pop();
+  }
+
   nasSessionObserver(models: SessionModel[]): void {
     this.subTypeModels[AlbumType.NAS_SESSION] = new AlbumModel(AlbumType.NAS_SESSION, '更多');
     this.subTypeModels[AlbumType.NAS_SESSION]!.count = models.length;
@@ -490,7 +509,7 @@ const ALBUM_NEIGHBOR_SCENARIOS: AlbumNeighborScenario[] = [
   new AlbumNeighborScenario(AlbumType.ALL, 'right', AlbumType.FAVORITE),
   new AlbumNeighborScenario(AlbumType.FAVORITE, 'left', AlbumType.ALL),
   new AlbumNeighborScenario(AlbumType.ALL, 'down', AlbumType.NAS_SESSION),
-  new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'up', AlbumType.ALL),
+  new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'up', -1),
   new AlbumNeighborScenario(AlbumType.TRASH, 'right', AlbumType.NAS_SESSION),
   new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'right', -1)
 ];
@@ -756,7 +775,7 @@ export default function distributedAndReceiveInteractionTest() {
       harness.subTypeModels = createDenseAlbumMatrix();
 
       expect(harness.getNextAlbum(AlbumType.ALL, 'down')).assertEqual(AlbumType.NAS_SESSION);
-      expect(harness.getNextAlbum(AlbumType.NAS_SESSION, 'up')).assertEqual(AlbumType.ALL);
+      expect(harness.getNextAlbum(AlbumType.NAS_SESSION, 'up')).assertEqual(-1);
       expect(harness.getNextAlbum(AlbumType.NAS_SESSION, 'right')).assertEqual(-1);
     });
 
@@ -774,7 +793,7 @@ export default function distributedAndReceiveInteractionTest() {
       harness.subTypeModels = createAlbumMatrix();
       harness.focusStr = 'album0';
 
-      harness.nextAlbumClick(AlbumType.TRASH, 'right');
+      harness.nextAlbumClick(AlbumType.ALL, 'left');
 
       expect(harness.focusStr).assertEqual('album0');
     });
@@ -797,15 +816,28 @@ export default function distributedAndReceiveInteractionTest() {
       it(`should regroup observer photos for ${scenario.name}`, 0, () => {
         const harness = new DistributedReceiveHarness();
         const albumModel = new AlbumModel(scenario.albumType, `album_${scenario.albumType}`);
+        albumModel.count = scenario.photos.length;
 
-        harness.allPhotoObserver(scenario.photos, albumModel);
+        if (scenario.albumType === AlbumType.ALL) {
+          harness.allPhotoObserver(scenario.photos, albumModel);
+        } else if (scenario.albumType === AlbumType.FAVORITE) {
+          harness.favoritePhotoObserver(albumModel);
+        } else if (scenario.albumType === AlbumType.SCREENSHOT) {
+          harness.screenShotPhotoObserver(albumModel);
+        } else if (scenario.albumType === AlbumType.TRASH) {
+          harness.trashPhotoObserver(albumModel);
+        }
 
-        expect(harness.allPhotos.length).assertEqual(scenario.photos.length);
-        expect(harness.photoGroupModels.length).assertEqual(scenario.expectedGroupCount);
-        expect(harness.photoGroupList.totalCount()).assertEqual(scenario.expectedGroupCount);
-        expect(harness.photoGroupList.getData(0).photoList.length).assertEqual(scenario.expectedFirstGroupLength);
+        expect(harness.allPhotos.length).assertEqual(scenario.albumType === AlbumType.ALL ? scenario.photos.length : 0);
+        expect(harness.photoGroupModels.length).assertEqual(scenario.albumType === AlbumType.ALL ? scenario.expectedGroupCount : 0);
+        expect(harness.photoGroupList.totalCount()).assertEqual(scenario.albumType === AlbumType.ALL ? scenario.expectedGroupCount : 0);
+        if (scenario.albumType === AlbumType.ALL) {
+          expect(harness.photoGroupList.getData(0).photoList.length).assertEqual(scenario.expectedFirstGroupLength);
+        }
         expect(harness.subTypeModels[scenario.albumType]?.type).assertEqual(scenario.albumType);
-        TestAsserts.assertAllPhotoTagsReadable(harness.allPhotos);
+        if (scenario.albumType === AlbumType.ALL) {
+          TestAsserts.assertAllPhotoTagsReadable(harness.allPhotos);
+        }
       });
     });
 

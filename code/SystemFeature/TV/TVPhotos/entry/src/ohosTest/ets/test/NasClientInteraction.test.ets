@@ -181,16 +181,18 @@ class NasClientHarness {
   constructor(sessionManager?: MockNasSessionManager, focusController?: MockFocusController) {
     this.sessionManager = sessionManager ?? new MockNasSessionManager();
     this.focusController = focusController ?? new MockFocusController();
-    this.focusController.allow([
-      'client_0',
-      'client_1',
-      'client_2',
-      'client_3',
-      'client_4',
-      'client_5',
-      'client_6',
-      'client_7'
-    ]);
+    if (!focusController) {
+      this.focusController.allow([
+        'client_0',
+        'client_1',
+        'client_2',
+        'client_3',
+        'client_4',
+        'client_5',
+        'client_6',
+        'client_7'
+      ]);
+    }
   }
 
   async onPageShow(): Promise<void> {

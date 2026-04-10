@@ -152,7 +152,7 @@ class PickerAbilityReceiver {
     const close: boolean = want?.parameters?.close as boolean;
     if (close) {
       this.context.terminateSelf();
-    } else if (count) {
+    } else if (want?.parameters?.maxSelectCount !== undefined && want?.parameters?.maxSelectCount !== null) {
       AppStorage.setOrCreate('pickMaxSelectCount', count);
     }
   }

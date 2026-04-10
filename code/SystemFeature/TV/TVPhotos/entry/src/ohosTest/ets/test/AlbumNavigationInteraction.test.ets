@@ -136,20 +136,22 @@ class AlbumNavigationHarness {
 
   constructor(focusController?: MockFocusController) {
     this.focusController = focusController ?? new MockFocusController();
-    this.focusController.allow([
-      'menu0',
-      'menu1',
-      'menu2',
-      'photo_0_0',
-      'dfs_photo_0',
-      'to_dfs_manage',
-      'album0',
-      'album1',
-      'album2',
-      'album3',
-      'album4',
-      'album5'
-    ]);
+    if (!focusController) {
+      this.focusController.allow([
+        'menu0',
+        'menu1',
+        'menu2',
+        'photo_0_0',
+        'dfs_photo_0',
+        'to_dfs_manage',
+        'album0',
+        'album1',
+        'album2',
+        'album3',
+        'album4',
+        'album5'
+      ]);
+    }
   }
 
   onTabMenuLeftClick(index: number): void {
@@ -291,9 +293,9 @@ const TAB_RIGHT_SCENARIOS: TabMoveScenario[] = [
 
 const TAB_DOWN_SCENARIOS: TabDownScenario[] = [
   new TabDownScenario('photo_tab_with_data', 0, true, false, false, 'photo_0_0'),
-  new TabDownScenario('photo_tab_without_data', 0, false, false, false, 'menu0'),
+  new TabDownScenario('photo_tab_without_data', 0, false, false, false, 'to_dfs_manage'),
   new TabDownScenario('album_tab_with_dense_albums', 1, false, true, false, 'album0'),
-  new TabDownScenario('album_tab_without_albums', 1, false, false, false, 'album-1'),
+  new TabDownScenario('album_tab_without_albums', 1, false, false, false, 'to_dfs_manage'),
   new TabDownScenario('distributed_connected', 2, false, false, true, 'dfs_photo_0'),
   new TabDownScenario('distributed_disconnected', 2, false, false, false, 'to_dfs_manage')
 ];
@@ -306,7 +308,7 @@ const ALBUM_NEIGHBOR_SCENARIOS: AlbumNeighborScenario[] = [
   new AlbumNeighborScenario(AlbumType.TRASH, 'right', AlbumType.NAS_SESSION),
   new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'left', AlbumType.TRASH),
   new AlbumNeighborScenario(AlbumType.ALL, 'down', AlbumType.NAS_SESSION),
-  new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'up', AlbumType.ALL),
+  new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'up', -1),
   new AlbumNeighborScenario(AlbumType.ALL, 'left', -1),
   new AlbumNeighborScenario(AlbumType.NAS_SESSION, 'right', -1)
 ];

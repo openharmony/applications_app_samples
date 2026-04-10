@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { DisplayRotation } from '@ohos.UiTest';
 import { PhotoModel } from '../../../../main/ets/models/PhotoModel';
 import { NasDevice } from '../../../../main/ets/workers/NasSessionWorker';
 import { DirectoryEntry } from 'smbProtocol';
@@ -493,8 +494,20 @@ export class FakeUiDriver implements UiDriverLike {
     this.delays.push(delay);
   }
 
-  async setDisplayRotation(rotation: Object): Promise<void> {
-    this.rotations.push(`${rotation}`);
+  async setDisplayRotation(rotation: DisplayRotation): Promise<void> {
+    if (rotation === DisplayRotation.ROTATION_0) {
+      this.rotations.push('ROTATION_0');
+      return;
+    }
+    if (rotation === DisplayRotation.ROTATION_90) {
+      this.rotations.push('ROTATION_90');
+      return;
+    }
+    if (rotation === DisplayRotation.ROTATION_180) {
+      this.rotations.push('ROTATION_180');
+      return;
+    }
+    this.rotations.push('ROTATION_270');
   }
 
   async findComponent(probe: Object): Promise<UiComponentLike | undefined> {
@@ -502,7 +515,10 @@ export class FakeUiDriver implements UiDriverLike {
     if (driverProbe.type === 'text') {
       return this.components.find((component) => component.text === driverProbe.value);
     }
-    return this.components.find((component) => component.id === driverProbe.value);
+    if (driverProbe.type === 'id') {
+      return this.components.find((component) => component.id === driverProbe.value);
+    }
+    return undefined;
   }
 
   getDelayHistory(): number[] {

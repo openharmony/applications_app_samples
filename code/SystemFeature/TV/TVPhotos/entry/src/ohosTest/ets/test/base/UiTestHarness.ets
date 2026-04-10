@@ -45,7 +45,24 @@ export interface UiDriverLike {
   findComponent(locator: Object): Promise<UiComponentLike | undefined>;
 }
 
+class SelectorProbe {
+  type: 'text' | 'id';
+  value: string;
+
+  constructor(type: 'text' | 'id', value: string) {
+    this.type = type;
+    this.value = value;
+  }
+}
+
 export class PhotosUiHarness {
+  private static buildLocator(driver: UiDriverLike, type: 'text' | 'id', value: string): Object {
+    if (driver instanceof Driver) {
+      return type === 'text' ? ON.text(value) : ON.id(value);
+    }
+    return new SelectorProbe(type, value);
+  }
+
   static getEntryWant(): Want {
     return {
       bundleName: ENTRY_BUNDLE_NAME,
@@ -129,14 +146,14 @@ export class PhotosUiHarness {
     for (let index = 0; index < candidates.length; index++) {
       const candidate = candidates[index];
       if (candidate.text) {
-        const component = await driver.findComponent(ON.text(candidate.text));
+        const component = await driver.findComponent(PhotosUiHarness.buildLocator(driver, 'text', candidate.text));
         if (component) {
           return component;
         }
       }
 
       if (candidate.id) {
-        const component = await driver.findComponent(ON.id(candidate.id));
+        const component = await driver.findComponent(PhotosUiHarness.buildLocator(driver, 'id', candidate.id));
         if (component) {
           return component;
         }

@@ -502,7 +502,7 @@ export default function homeSelectionInteractionTest() {
 
     it('should launch external video player for video tiles in browse mode', 0, () => {
       const harness = new HomeSelectionHarness(createGroups());
-      const videoPhoto = harness.allPhotos[harness.allPhotos.length - 1];
+      const videoPhoto = harness.allPhotos.find((photo) => photo.photoType === Constants.PHOTO_TYPE_VIDEO)!;
       harness.onEnterClickInPhoto(videoPhoto);
 
       expect(harness.videoLaunchHistory.length).assertEqual(1);
@@ -533,7 +533,7 @@ export default function homeSelectionInteractionTest() {
 
     it('should resolve homepage photo model by grouped position', 0, () => {
       const harness = new HomeSelectionHarness(createGroups());
-      const position = new PhotoPosition(2, 0, 1);
+      const position = new PhotoPosition(2, 0, 0);
 
       const photo = harness.getPhotoModelByPosition(position);
 

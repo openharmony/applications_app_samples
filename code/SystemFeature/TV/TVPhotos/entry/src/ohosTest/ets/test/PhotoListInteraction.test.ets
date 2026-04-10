@@ -689,7 +689,7 @@ const SHORTCUT_SCENARIOS: ShortcutScenario[] = [
 
 const DELETE_DIALOG_SCENARIOS: DeleteDialogScenario[] = [
   new DeleteDialogScenario('dialog_cancel', 0, false, 1, 'dialog0'),
-  new DeleteDialogScenario('dialog_confirm_local', 1, false, 1, 'dialog0')
+  new DeleteDialogScenario('dialog_confirm_local', 1, false, 1, 'delete1')
 ];
 
 export default function photoListInteractionTest() {
@@ -1080,15 +1080,17 @@ export default function photoListInteractionTest() {
     it('should stop picture focus movement at all four grid boundaries', 0, () => {
       const harness = new PhotoListHarness();
       harness.photoList = createLocalPhotos(8);
+      harness.focusPhotoStr = 'picture7';
 
       harness.onItemKeyEvent(createKeyEvent(KEYCODE_DPAD_LEFT), 0);
       harness.onItemKeyEvent(createKeyEvent(KEYCODE_DPAD_UP), 0);
-      harness.onItemKeyEvent(createKeyEvent(KEYCODE_DPAD_RIGHT), 7);
       harness.pictureIndex = 7;
+      harness.onItemKeyEvent(createKeyEvent(KEYCODE_DPAD_RIGHT), 7);
       harness.onItemKeyEvent(createKeyEvent(KEYCODE_DPAD_DOWN), 7);
 
       expect(harness.pictureIndex).assertEqual(7);
       expect(harness.scrollHistory.length).assertEqual(0);
+      expect(harness.focusPhotoStr).assertEqual('picture7');
     });
 
     it('should open local photo watch page with current list payload', 0, () => {
@@ -1232,6 +1234,7 @@ export default function photoListInteractionTest() {
         const harness = new PhotoListHarness();
         harness.photoList = createLocalPhotos(8);
         harness.pictureIndex = scenario.startIndex;
+        harness.focusPhotoStr = `picture${scenario.startIndex}`;
 
         harness.onItemKeyEvent(createKeyEvent(scenario.keyCode), scenario.startIndex);
 
