@@ -10,7 +10,7 @@
     "dirs": {},
     "scripts": {},
     "component": {
-        "name": "app_samples_settings_standard",
+        "name": "settings_standard",
         "subsystem": "applications",
         "syscap": [
             "SystemCapability.Applications.settings.Core"
