@@ -13,127 +13,64 @@
  * limitations under the License.
  */
 
-import { LengthMetrics } from '@kit.ArkUI';
-import { RoutableCard } from '../common/Card';
-import { Route } from '../common/Route';
-import resource from '../common/Resource';
-import { applySyncUse } from './ApplySyncUse';
-import { flushUpdatesUse } from './FlushUpdatesUse';
-import { flushUIUpdatesUse } from './FlushUIUpdatesUse';
-import { applySyncNestApplySync } from './ApplySyncNestApplySync';
-import { applySyncNestOthers } from './ApplySyncNestOthers';
-import { callInComputed } from './CallInComputed';
-import { callInMonitor } from './CallInMonitor';
-import { animateToUse } from './AnimateToUse';
-import { pageUse } from './PageUse';
+import { router } from '@kit.ArkUI';
 
-const routes: Route[] = [
-  {
-    name: 'applySyncUse',
-    title: resource.resourceToString($r('app.string.applySync_use_title')),
-    description: ''
-  },
-  {
-    name: 'flushUpdatesUse',
-    title: resource.resourceToString($r('app.string.flushUpdates_use_title')),
-    description: ''
-  },
-  {
-    name: 'flushUIUpdatesUse',
-    title: resource.resourceToString($r('app.string.flushUIUpdates_use_title')),
-    description: ''
-  },
-  {
-    name: 'applySyncNestApplySync',
-    title: resource.resourceToString($r('app.string.applySync_nested_applySync')),
-    description: ''
-  },
-  {
-    name: 'applySyncNestOthers',
-    title: resource.resourceToString($r('app.string.applySync_nested_others')),
-    description: ''
-  },
-  {
-    name: 'callInComputed',
-    title: resource.resourceToString($r('app.string.called_in_computed')),
-    description: ''
-  },
-  {
-    name: 'callInMonitor',
-    title: resource.resourceToString($r('app.string.called_in_monitor')),
-    description: ''
-  },
-  {
-    name: 'animateToUse',
-    title: resource.resourceToString($r('app.string.use_with_animateTo')),
-    description: ''
-  },
-  {
-    name: 'pageUse',
-    title: resource.resourceToString($r('app.string.use_with_pageTransition')),
-    description: ''
-  }
-
-];
-
-@Builder
-function computedDestination(name: string) {
-  if (name.startsWith('applySyncUse')) {
-    applySyncUse();
-  } else if (name.startsWith('flushUpdatesUse')) {
-    flushUpdatesUse();
-  } else if (name.startsWith('flushUIUpdatesUse')) {
-    flushUIUpdatesUse();
-  } else if (name.startsWith('applySyncNestApplySync')) {
-    applySyncNestApplySync();
-  } else if (name.startsWith('applySyncNestOthers')) {
-    applySyncNestOthers();
-  } else if (name.startsWith('callInComputed')) {
-    callInComputed();
-  } else if (name.startsWith('callInMonitor')) {
-    callInMonitor();
-  } else if (name.startsWith('animateToUse')) {
-    animateToUse();
-  } else if (name.startsWith('pageUse')) {
-    pageUse();
-  }
+interface Ary {
+  path: string,
+  name: string
 }
 
 @Entry
 @Component
 struct Index {
-  @State condition: string = '';
-  @Provide pathStack: NavPathStack = new NavPathStack();
-
-  getFilteredRoutes(): Route[] {
-    if (!this.condition) {
-      return routes;
-    }
-    return routes.filter((route: Route) => {
-      return route.title.includes(this.condition);
-    })
-  }
-
+  ary: Ary[] = [
+    {
+      name: 'applySyncUse',
+      path: 'pages/ApplySyncUse'
+    },
+    {
+      name: 'flushUpdatesUse',
+      path: 'pages/FlushUpdatesUse'
+    },
+    {
+      name: 'flushUIUpdatesUse',
+      path: 'pages/FlushUIUpdatesUse'
+    },
+    {
+      name: 'applySyncNestApplySync',
+      path: 'pages/ApplySyncNestApplySync'
+    },
+    {
+      name: 'applySyncNestOthers',
+      path: 'pages/ApplySyncNestOthers'
+    },
+    {
+      name: 'callInComputed',
+      path: 'pages/CallInComputed'
+    },
+    {
+      name: 'callInMonitor',
+      path: 'pages/CallInMonitor'
+    },
+    {
+      name: 'animateToUse',
+      path: 'pages/AnimateToUse'
+    },
+    {
+      name: 'pageUse',
+      path: 'pages/PageUse'
+    },
+  ]
 
   build() {
-    Navigation(this.pathStack) {
-      List({ space: 12 }) {
-        ForEach(this.getFilteredRoutes(), (route: Route) => {
-          ListItem() {
-            RoutableCard({ title: route.title })
-          }
-          .width('100%')
-          .onClick(() => {
-            this.pathStack.pushPath({ name: route.name });
-          })
-        })
+    Scroll() {
+      Column({ space: 2 }) {
+        ForEach(this.ary, (item: Ary) => {
+          Button(item.name)
+            .onClick(() => this.getUIContext().getRouter().pushUrl({ url: item.path }))
+        }, (item: Ary) => item.name)
       }
-      .padding({ start: LengthMetrics.vp(16), end: LengthMetrics.vp(16) })
-      .contentStartOffset(56)
-      .height('100%')
       .width('100%')
     }
-    .backgroundColor('#f1f3f5')
-    .navDestination(computedDestination)
   }
 }

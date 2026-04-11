@@ -54,6 +54,6 @@ export struct ProblemUIStructureOpposite {
       Page()
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.problem_ui_not_refresh_opposite'))
+    .title($r('app.string.problem_ui_structure_opposite'))
   }
 }

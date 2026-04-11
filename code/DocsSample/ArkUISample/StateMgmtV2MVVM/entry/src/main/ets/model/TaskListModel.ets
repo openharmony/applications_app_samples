@@ -19,6 +19,9 @@
 import { common } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 import TaskModel from './TaskModel';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 export default class TaskListModel {
   public tasks: TaskModel[] = [];
@@ -28,6 +31,11 @@ export default class TaskListModel {
   }
 
   async loadTasks(context: common.UIAbilityContext) {
+    try {
+      let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
+    } catch (e) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to getRawFileContent', JSON.stringify(e) ?? '');
+    }
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
     let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);

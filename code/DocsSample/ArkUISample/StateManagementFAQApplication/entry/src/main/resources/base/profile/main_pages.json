@@ -1,5 +1,9 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/LazyImportNeg",
+    "pages/LazyImportPos",
+    "pages/DecUseIsolationNeg",
+    "pages/DecUseIsolationPos"
   ]
 }

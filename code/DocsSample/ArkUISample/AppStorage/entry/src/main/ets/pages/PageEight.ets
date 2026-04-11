@@ -90,8 +90,8 @@ struct Gallery {
 @Component
 export struct TapImage {
   @State tapColor: Color = Color.Black;
-  private index: number = 0;
-  private uri: Resource = {
+  index: number = 0;
+  uri: Resource = {
     id: 0,
     type: 0,
     moduleName: '',

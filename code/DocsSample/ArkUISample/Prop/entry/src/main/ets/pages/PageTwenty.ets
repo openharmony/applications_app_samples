@@ -42,3 +42,7 @@ struct Child {
   }
 }
 // [End prop_twenty_start]
+@Builder
+export function MyUnionSample() {
+  Parent()
+}

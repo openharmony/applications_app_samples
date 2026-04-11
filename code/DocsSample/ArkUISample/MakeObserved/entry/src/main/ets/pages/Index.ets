@@ -22,34 +22,34 @@ struct Index {
    Column(){
      MyComponent()
      Button('page1').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page1'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page1'})
      })
      Button('page2').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page2'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page2'})
      })
      Button('page3').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page3'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page3'})
      })
      Button('page4').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page4'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page4'})
      })
      Button('page5').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page5'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page5'})
      })
      Button('page6').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page6'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page6'})
      })
      Button('page7').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page7'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page7'})
      })
      Button('page8').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page8'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page8'})
      })
      Button('page9').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page9'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page9'})
      })
      Button('page10').onClick((event: ClickEvent) => {
-       router.pushUrl({url:'View/Page10'})
+        router.getUIContext().getRouter().pushUrl({url:'View/Page10'})
      })
    }
   }
