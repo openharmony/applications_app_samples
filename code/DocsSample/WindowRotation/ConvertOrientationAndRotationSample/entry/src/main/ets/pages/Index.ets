@@ -14,28 +14,32 @@
  */
 
 // [Start quick_start]
-import { window } from '@kit.ArkUI';
+import { display, window } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SpecificSceneSetOrientationIndex {
-  @State displayOrientation: number = 0;
   mainWindow: window.Window = AppStorage.get('mainWindow_SetOrientation') as window.Window;
 
-  options: SelectOption[] = [
-    { value: 'PORTRAIT', icon: '' },
-    { value: 'LANDSCAPE', icon: '' },
-    { value: 'PORTRAIT_INVERTED', icon: '' },
-    { value: 'LANDSCAPE_INVERTED', icon: '' },
-  ];
-  setOrientation(displayOrientation: number) {
+  setOrientationByDisplay() {
     try {
-      let windowOrientation: number = this.mainWindow.convertOrientationAndRotation(
-        window.RotationInfoType.DISPLAY_ORIENTATION,
-        window.RotationInfoType.WINDOW_ORIENTATION,
-        displayOrientation
-      );
-      let orientation: window.Orientation = window.Orientation.UNSPECIFIED; // 设置窗口方向旋转模式
+      // ① 获取当前默认 Display
+      const disp = display.getDefaultDisplaySync();
+      const displayOrientation = disp.orientation; // 当前屏幕方向（0/1/2/3）
+
+      console.info("Current display orientation = " + displayOrientation);
+
+      // ② 将 displayOrientation 转换为 windowOrientation
+      let windowOrientation: number =
+        this.mainWindow.convertOrientationAndRotation(
+          window.RotationInfoType.DISPLAY_ORIENTATION,
+          window.RotationInfoType.WINDOW_ORIENTATION,
+          displayOrientation
+        );
+
+      // ③ 根据 windowOrientation 映射到 window.Orientation
+      let orientation: window.Orientation = window.Orientation.UNSPECIFIED;
+
       switch (windowOrientation) {
         case 0:
           orientation = window.Orientation.PORTRAIT;
@@ -50,44 +54,35 @@ struct SpecificSceneSetOrientationIndex {
           orientation = window.Orientation.LANDSCAPE;
           break;
         default:
-          throw new Error('Invalid input value');
+          throw new Error("Invalid orientation value");
       }
-      try {
-        this.mainWindow.setPreferredOrientation(orientation, (err) => {
-          if (err.code) {
-            return;
-          }
-        });
-      } catch (exception) {
-        throw new Error(exception);
-      }
+
+      // ④ 设置窗口方向
+      this.mainWindow.setPreferredOrientation(orientation, (err) => {
+        if (err && err.code) {
+          console.error("setPreferredOrientation failed: " + JSON.stringify(err));
+        }
+      });
+
     } catch (exception) {
-      throw new Error(exception);
+      console.error("Exception in setOrientationByDisplay: " + JSON.stringify(exception));
     }
   }
 
   build() {
     Column() {
-      Text('lock display Orientation')
+      Text("Lock the display orientation")
         .fontSize(17)
 
-      Row() {
-        Select(this.options)
-          .selected(0)
-          .onSelect((_index: number, value: string) => {
-            this.displayOrientation = _index;
-          })
-        Button('Set the display orientation')
-          .onClick(() => {
-            console.info('demo click Create and Show Specific Window');
-            this.setOrientation(this.displayOrientation);
-          })
-      }
-      .justifyContent(FlexAlign.Center)   // Row内部居中
-      .alignItems(VerticalAlign.Center)
+      Button('Set orientation from display')
+        .onClick(() => {
+          console.info('Click: Set orientation from display');
+          this.setOrientationByDisplay();
+        })
+        .margin({ top: 20 })
     }
-    .justifyContent(FlexAlign.Center)     // Column内部垂直居中
-    .alignItems(HorizontalAlign.Center)   // Column内部水平居中
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
     .height('100%')
     .width('100%')
   }
