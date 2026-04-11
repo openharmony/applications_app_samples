@@ -16,6 +16,7 @@
 import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[MyAppServiceExtAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -26,9 +27,15 @@ class Stub extends rpc.RemoteObject {
     data: rpc.MessageSequence,
     reply: rpc.MessageSequence,
     options: rpc.MessageOption): boolean | Promise<boolean> {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoteMessageRequest');
-    let sum = data.readInt() + data.readInt();
-    reply.writeInt(sum);
+    try {
+ 	    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoteMessageRequest');
+ 	    let sum = data.readInt() + data.readInt();
+ 	    reply.writeInt(sum);
+ 	  } catch (error) {
+ 	    let e: BusinessError = error as BusinessError;
+ 	    hilog.error(DOMAIN_NUMBER, TAG, 'errorCode ' + e.code);
+ 	    hilog.error(DOMAIN_NUMBER, TAG, 'errorMessage ' + e.message);
+ 	  }
     return true;
   }
 }
