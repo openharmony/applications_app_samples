@@ -22,5 +22,5 @@ export const getDateValue: (date: Date) => number | undefined; // napi_get_date_
 // [End napi_get_date_value_api]
 
 // [Start napi_is_date_api]
-export const isDate: <T>(date: T) => boolean | void; // napi_is_date
+export const isDate: <T>(date: T) => boolean | undefined; // napi_is_date
 // [End napi_is_date_api]
