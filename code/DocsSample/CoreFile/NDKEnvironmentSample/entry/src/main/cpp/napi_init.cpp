@@ -35,10 +35,10 @@ void GetUserDownloadDirExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, download path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_example]
@@ -56,9 +56,9 @@ void ScanUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in scanning user download dir path, download Path=%{public}s", downloadPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
         return;
     }
     // 查看文件夹下的文件
@@ -71,7 +71,7 @@ void ScanUserDownloadDirPathExample()
     }
 
     for (int i = 0; i < num; i++) {
-        OH_LOG_INFO(LOG_APP, "%{public}s", namelist[i]->d_name);
+        OH_LOG_INFO(LOG_APP, "Succeeded in scanning dir, file name is %{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
     for (int i = 0; i < num; i++) {
@@ -94,9 +94,9 @@ void WriteUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, path=%{public}s", downloadPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
         return;
     }
     // 保存文件到 download 目录下
@@ -127,10 +127,10 @@ void GetUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_path_example]
@@ -147,10 +147,10 @@ void GetUserDesktopDirPathExample()
     char *desktopPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDesktopDir(&desktopPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Desktop Path=%{public}s", desktopPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user desktop dir, path=%{public}s", desktopPath);
         free(desktopPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDesktopPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get user desktop path, error code is %{public}d", ret);
     }
 }
 // [End get_user_desktop_dir_path_example]
@@ -166,10 +166,10 @@ void GetUserDocumentDirPathExample()
     char *documentPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Document Path=%{public}s", documentPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document dir, path=%{public}s", documentPath);
         free(documentPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDocumentPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get user document path, error code is %{public}d", ret);
     }
 }
 // [End get_user_document_dir_path_example]
@@ -186,17 +186,17 @@ void GetUserDownloadDirSizeExample()
     char *documentPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Document Path=%{public}s", documentPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document dir, path=%{public}s", documentPath);
         struct stat fileStat;
         int result = stat(documentPath, &fileStat);
         if (result == 0) {
-            OH_LOG_INFO(LOG_APP, "Document Size=%{public}ld", fileStat.st_size);
+            OH_LOG_INFO(LOG_APP, "Succeeded in stating. document Size=%{public}ld", fileStat.st_size);
         } else {
-            OH_LOG_ERROR(LOG_APP, "GetDocumentSize fail, error code is %{public}ld", result);
+            OH_LOG_ERROR(LOG_APP, "Failed to stat user document dir, error code is %{public}d", result);
         }
         free(documentPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "GetDocumentPath fail, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get user document dir, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_size_example]
