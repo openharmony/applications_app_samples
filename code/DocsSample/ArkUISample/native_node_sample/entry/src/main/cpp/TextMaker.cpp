@@ -1257,7 +1257,7 @@ void setText2(ArkUI_NodeHandle &text2)
     ArkUI_NumberValue fontStyleVal = {.i32 = ARKUI_FONT_STYLE_ITALIC};
     ArkUI_AttributeItem fontStyleItem = {&fontStyleVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text2, NODE_FONT_STYLE, &fontStyleItem);
-    
+
     // 字重：Bold（ARKUI_FONT_WEIGHT_W800）
     ArkUI_NumberValue fontWeightVal = {.i32 = ARKUI_FONT_WEIGHT_W800};
     ArkUI_AttributeItem textWeightItem = {.value = &fontWeightVal, .size = 1};
