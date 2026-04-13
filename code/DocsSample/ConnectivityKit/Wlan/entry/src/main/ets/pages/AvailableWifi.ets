@@ -15,40 +15,42 @@
 
 import hilog from '../model/Logger';
 import { WifiView } from '../component/WifiView';
-import wifi from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 const TAG = 'AvailableWiFi';
 let self: AvailableWifi | null = null;
 @Entry
 @Component
 export struct AvailableWifi {
-  @State wifilist: Array<wifi.WifiScanInfo> = []
-  @State wifilisttest: Array<wifi.WifiScanInfo> = []
+  @State wifilist: Array<wifiManager.WifiScanInfo> = [];
+  @State wifilisttest: Array<wifiManager.WifiScanInfo> = [];
   @State isSwitchOn: boolean = false;
-  private linkedInfo: wifi.WifiLinkedInfo | null = null;
+  private linkedInfo: wifiManager.WifiLinkedInfo | null = null;
   @State isLinked: boolean = false;
 
   // 扫描wifi
   async getScanInfos() {
-    // 不停地扫描wifi
-    let result: wifi.WifiScanInfo[] = await wifi.getScanInfoList();
-
-    if (this.isSwitchOn) {
-      setTimeout(async () => {
-        this.wifilist = result;
-        await this.getScanInfos();
-      }, 3000)
-    }
+    try {
+     let result: wifiManager.WifiScanInfo[] = await wifiManager.getScanInfoList();
+      if (this.isSwitchOn) {
+        setTimeout(async () => {
+          this.wifilist = result;
+          await this.getScanInfos();
+       }, 3000);
+     }
+   } catch (err) {
+      hilog.info(TAG, `getScanInfos failed: ${JSON.stringify(err)}`);
+   }
   }
 
   addListener() {
       // 连接状态改变时，修改连接信息
-      wifi.on('wifiConnectionChange', async state => {
+      wifiManager.on('wifiConnectionChange', async (state) => {
         hilog.info(TAG, `wifiConnectionChange: ${state}`);
         await this.getLinkedInfo();
-      })
+      });
     // wifi状态改变时，先清空wifi列表，然后判断是否是开启状态，如果是就扫描
-    wifi.on('wifiStateChange', state => {
+    wifiManager.on('wifiStateChange', (state) => {
       hilog.info(TAG, `wifiStateLisener state: ${state}`);
       if (state === 1) { // 1: wifi is enable, 0:wifi is disable
         this.isSwitchOn = true;
@@ -57,12 +59,12 @@ export struct AvailableWifi {
       if (state === 0) { // 1: wifi is enable, 0:wifi is disable
         this.isSwitchOn = false;
       }
-    })
+    });
   }
 
   async getLinkedInfo() {
     try {
-      let wifiLinkedInfo = await wifi.getLinkedInfo();
+      let wifiLinkedInfo = await wifiManager.getLinkedInfo();
       if (wifiLinkedInfo === null || wifiLinkedInfo.bssid === '') {
         this.isLinked = false;
         this.linkedInfo = null;
@@ -76,20 +78,19 @@ export struct AvailableWifi {
   }
 
   aboutToAppear() {
-    if (wifi.isWifiActive()) {
-      hilog.info(TAG, 'wifi is active');
-      this.isSwitchOn = true;
-      this.getScanInfos();
-      this.getLinkedInfo();
+    try {
+      if (wifiManager.isWifiActive()) {
+        hilog.info(TAG, 'wifi is active');
+        this.isSwitchOn = true;
+        this.getScanInfos();
+        this.getLinkedInfo();
+      } else {
+        hilog.info(TAG, 'wifi is disabled');
+      }
+    } catch (err) {
+      hilog.error(TAG, `aboutToAppear error: ${JSON.stringify(err)}`);
     }
-    hilog.info(TAG, 'wifi is disabled');
-    // 启动监听
     this.addListener();
-  }
-
-  aboutToDisappear() {
-    wifi.off('wifiConnectionChange');
-    wifi.off('wifiStateChange');
   }
 
   build() {
@@ -105,23 +106,23 @@ export struct AvailableWifi {
             .onChange((isOn: boolean) => {
               hilog.info(`wifi swtich is: ${isOn}`);
               this.wifilist = this.wifilisttest;
-            })
+            });
         }
       }
       .width('100%')
       .padding({ left: 16, right: 16 })
 
       List({ space: 5 }) {
-        ForEach(this.isSwitchOn ? this.wifilist : this.wifilisttest, (wifiItem: wifi.WifiScanInfo) => {
+        ForEach(this.isSwitchOn ? this.wifilist : this.wifilisttest, (wifiItem: wifiManager.WifiScanInfo) => {
           ListItem() {
-            WifiView({ wifi: wifiItem })
+            WifiView({ wifiManager: wifiItem });
           }
         }, 
-        (wifiItem: wifi.WifiScanInfo) => JSON.stringify(wifiItem))
+        (wifiItem: wifiManager.WifiScanInfo) => JSON.stringify(wifiItem));
       }
     }
     .width('100%')
     .height('100%')
-    .backgroundColor($r('app.color.index_bg'))
+    .backgroundColor($r('app.color.index_bg'));
   }
 }
