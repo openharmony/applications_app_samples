@@ -53,7 +53,7 @@
         "description": "agent",
         "type": "agent",
         "exported": true,
-        "srcEntry": "./ets/AgentExtAbility/AgentExtAbility.ets",
+        "srcEntry": "./ets/agentextability/AgentExtAbility.ets",
         "metadata": [
           {
             "name": "ohos.extension.agent",
