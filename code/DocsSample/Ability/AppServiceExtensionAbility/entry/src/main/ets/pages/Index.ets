@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -27,45 +28,85 @@ struct Index {
           .height('50vp')
           .margin({ top: '40vp' })
           .onClick(() => {
-            router.pushUrl({
-              url:'pages/StartAppServiceExt'
-            })
+            this.getUIContext()
+              .getRouter()
+              .pushUrl({
+                url:'pages/StartAppServiceExt'
+              })
+              .then(() => {
+                console.info('pushUrl success');
+              })
+              .catch((err: ESObject) => {
+                console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+              })
           })
         Button('stop backend service')
           .width('50%')
           .height('50vp')
           .margin({ top: '40vp' })
           .onClick(() => {
-            router.pushUrl({
-              url:'pages/StopAppServiceExt'
-            })
+            this.getUIContext()
+              .getRouter()
+              .pushUrl({
+                url:'pages/StopAppServiceExt'
+              })
+              .then(() => {
+                console.info('pushUrl success');
+              })
+              .catch((err: ESObject) => {
+                console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+              })
           })
         Button('connect backend service')
           .width('50%')
           .height('50vp')
           .margin({ top: '40vp' })
           .onClick(() => {
-            router.pushUrl({
-              url:'pages/ConnectAppServiceExt'
-            })
+            this.getUIContext()
+              .getRouter()
+              .pushUrl({
+                url:'pages/ConnectAppServiceExt'
+              })
+              .then(() => {
+                console.info('pushUrl success');
+              })
+              .catch((err: ESObject) => {
+                console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+              })
           })
         Button('dis connect backend service')
           .width('50%')
           .height('50vp')
           .margin({ top: '40vp' })
           .onClick(() => {
-            router.pushUrl({
-              url:'pages/DisConnectAppServiceExt'
-            })
+            this.getUIContext()
+              .getRouter()
+              .pushUrl({
+                url:'pages/DisConnectAppServiceExt'
+              })
+              .then(() => {
+                console.info('pushUrl success');
+              })
+              .catch((err: ESObject) => {
+                console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+              })
           })
         Button('client service')
           .width('50%')
           .height('50vp')
           .margin({ top: '40vp' })
           .onClick(() => {
-            router.pushUrl({
-              url:'pages/ClientServerExt'
-            })
+            this.getUIContext()
+              .getRouter()
+              .pushUrl({
+                url:'pages/ClientServerExt'
+              })
+              .then(() => {
+                console.info('pushUrl success');
+              })
+              .catch((err: ESObject) => {
+                console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+              })
           })
 
       }

@@ -38,9 +38,15 @@ let options: common.ConnectOptions = {
     let data = new rpc.MessageSequence();
     let reply = new rpc.MessageSequence();
 
-    // 写入请求数据
-    data.writeInt(1);
-    data.writeInt(2);
+    try {
+ 	    // 写入请求数据
+ 	    data.writeInt(1);
+ 	    data.writeInt(2);
+ 	  } catch (error) {
+ 	    let e: BusinessError = error as BusinessError;
+ 	    hilog.error(DOMAIN_NUMBER, TAG, 'errorCode ' + e.code);
+ 	    hilog.error(DOMAIN_NUMBER, TAG, 'errorMessage ' + e.message);
+ 	  }
 
     remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.RequestResult) => {
       if (ret.errCode === 0) {
