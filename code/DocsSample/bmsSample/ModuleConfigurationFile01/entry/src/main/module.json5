@@ -132,8 +132,8 @@
           "com.example.myapplication2"
         ],
         // [EndExclude module_abilities_metadata]
+        // [EndExclude module_abilities_skills]
       }
-      // [EndExclude module_abilities_skills]
     ],
     // [StartExclude module_abilities_skills]
     // [StartExclude module_abilities_metadata]

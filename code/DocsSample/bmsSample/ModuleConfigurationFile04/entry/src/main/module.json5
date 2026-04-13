@@ -61,7 +61,7 @@
     ],
     "extensionAbilities": [
     ]
-  },
-  // [EndExclude module_atomicService]
+    // [EndExclude module_atomicService]
+  }
 }
 // [End module_atomicService]
