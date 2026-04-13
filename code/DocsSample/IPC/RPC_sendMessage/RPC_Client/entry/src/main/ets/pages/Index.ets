@@ -31,7 +31,7 @@ let deviceId: string| undefined;
 // 死亡通知
 class MyDeathRecipient implements rpc.DeathRecipient {
   onRemoteDied() {
-    hilog.info(0x0000, 'testTag', 'server is died');
+    hilog.info(0x0000, 'testTag', 'server is dead');
   }
 };
 let deathRecipient = new MyDeathRecipient();
