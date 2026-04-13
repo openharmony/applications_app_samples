@@ -22,10 +22,10 @@ import { foo } from '../test1/test2';
 // [Start optionExample_keepPropertyName3]
 // 示例JSON文件结构(test.json)：
 /*
-{
-  "jsonProperty": "value",
-  "otherProperty": "value2"
-}
+ * {
+ *   "jsonProperty": "value",
+ *   "otherProperty": "value2"
+ * }
  */
 import jsonData from './test.json';
 // [StartExclude optionExample_keepPropertyName3]
