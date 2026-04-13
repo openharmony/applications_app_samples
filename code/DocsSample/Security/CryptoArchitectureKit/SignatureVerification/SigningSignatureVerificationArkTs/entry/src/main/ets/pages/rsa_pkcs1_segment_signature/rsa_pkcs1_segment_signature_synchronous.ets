@@ -33,7 +33,7 @@ function signMessageBySegment(priKey: cryptoFramework.PriKey, plainText: Uint8Ar
   return signData;
 }
 
-function verifyMessagBySegment(pubKey: cryptoFramework.PubKey, plainText: Uint8Array,
+function verifyMessageBySegment(pubKey: cryptoFramework.PubKey, plainText: Uint8Array,
   signMessageBlob: cryptoFramework.DataBlob) {
   let verifyAlg = 'RSA1024|PKCS1|SHA256';
   let verifier = cryptoFramework.createVerify(verifyAlg);
@@ -65,7 +65,7 @@ function rsaSignatureBySegment() {
   let keyPair = generator.generateKeyPairSync();
   let messageData = new Uint8Array(buffer.from(message, 'utf-8').buffer);
   let signData = signMessageBySegment(keyPair.priKey, messageData);
-  let verifyResult = verifyMessagBySegment(keyPair.pubKey, messageData, signData);
+  let verifyResult = verifyMessageBySegment(keyPair.pubKey, messageData, signData);
   if (verifyResult === true) {
     console.info('verify result: success.');
   } else {

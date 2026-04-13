@@ -18,7 +18,7 @@
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 
-OH_Crypto_ErrCode randomGenerateAsymKey();
-OH_Crypto_ErrCode randomGenerateRSA();
+OH_Crypto_ErrCode generateRSAKey();
+OH_Crypto_ErrCode generateSM2Key();
 
 #endif // FILE_H

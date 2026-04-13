@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-export const randomGenerateAsymKey: () => number;
+export const generateRSAKey: () => number;
 
-export const randomGenerateRSA: () => number;
+export const generateSM2Key: () => number;

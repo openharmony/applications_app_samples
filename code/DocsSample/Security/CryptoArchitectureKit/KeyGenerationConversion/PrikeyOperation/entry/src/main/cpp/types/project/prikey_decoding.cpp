@@ -22,7 +22,7 @@ OH_Crypto_ErrCode doTestPriKeyPkcs1Decoded()
 {
     std::string priKeyPkcs1EncodingStr =
         "-----BEGIN RSA PRIVATE KEY-----\n"
-         "Proc-Type: 4,ENCRYPTED\n"
+        "Proc-Type: 4,ENCRYPTED\n"
         "DEK-Info: AES-128-CBC,815A066131BF05CF87CE610A59CC69AE\n\n"
         "7Jd0vmOmYGFZ2yRY8fqRl3+6rQlFtNcMILvcb5KWHDSrxA0ULmJE7CW0DSRikHoA\n"
         "t0KgafhYXeQXh0dRy9lvVRAFSLHCLJVjchx90V7ZSivBFEq7+iTozVp4AlbgYsJP\n"
