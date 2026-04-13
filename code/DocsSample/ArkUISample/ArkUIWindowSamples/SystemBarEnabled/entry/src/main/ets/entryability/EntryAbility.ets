@@ -19,14 +19,15 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    windowStage.loadContent('pages/Index', (err) => {
+    windowStage.loadContent('pages/Index', async (err) => {
       if (err.code) {
         return;
       }
 
       try {
         const mainWindow: window.Window = windowStage.getMainWindowSync();  //获取应用主窗口
-        mainWindow.setSpecificSystemBarEnabled('status', false);  //设置状态栏隐藏
+        await mainWindow.setWindowLayoutFullScreen(true);  //设置窗口进入沉浸式
+        await mainWindow.setSpecificSystemBarEnabled('status', false);  //设置状态栏隐藏
       } catch (e) {
         console.error(`Failed to set status bar to invisible`);
       }

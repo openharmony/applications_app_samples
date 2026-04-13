@@ -27,12 +27,14 @@ struct Index {
     void this.initContextInfo();
   }
 
+  // 在页面内保留一份简单日志，方便直接观察每个截图接口的调用结果。
   private appendLog(message: string): void {
     const line = `${Date.now()}: ${message}`;
     this.logText += `${line}\n`;
     hilog.info(DOMAIN, 'snapshotSample', line);
   }
 
+  // 初始化宿主窗口，并收集可用于 screenshot.capture 的 displayId。
   private async initContextInfo(): Promise<void> {
     try {
       const hostContext = this.getUIContext().getHostContext();
@@ -57,6 +59,7 @@ struct Index {
     }
   }
 
+  // 解析页面输入的 displayId，传给 screenshot.capture 前先做一次基本校验。
   private parseDisplayId(): number {
     const displayId = Number.parseInt(this.displayIdText, 10);
     if (Number.isNaN(displayId) || displayId < 0) {
@@ -65,6 +68,7 @@ struct Index {
     return displayId;
   }
 
+  // 所有截图结果都复用同一个预览区域，便于对比不同接口的输出。
   private async updatePreview(pixelMap: image.PixelMap, source: string): Promise<void> {
     this.previewPixelMap = pixelMap;
     try {
@@ -80,6 +84,7 @@ struct Index {
     this.appendLog(this.statusText);
   }
 
+  // window.snapshot 系列接口都依赖当前窗口对象，这里统一兜底初始化。
   private async ensureWindow(): Promise<boolean> {
     if (!this.currentWindow) {
       await this.initContextInfo();
@@ -92,6 +97,7 @@ struct Index {
     return true;
   }
 
+  // 异步截取当前应用窗口。
   private async takeWindowSnapshot(): Promise<void> {
     if (!await this.ensureWindow()) {
       return;
@@ -105,6 +111,7 @@ struct Index {
     }
   }
 
+  // 同步版本的窗口截图接口。
   private takeWindowSnapshotSync(): void {
     if (!this.currentWindow) {
       this.statusText = 'window.snapshotSync failed: current window is unavailable.';
@@ -120,6 +127,7 @@ struct Index {
     }
   }
 
+  // 在设备支持的前提下，忽略隐私模式截取当前窗口。
   private async takeWindowSnapshotIgnorePrivacy(): Promise<void> {
     if (!await this.ensureWindow()) {
       return;
@@ -133,6 +141,7 @@ struct Index {
     }
   }
 
+  // 让用户手动框选屏幕区域，并返回选区信息和对应截图。
   private async pickScreenArea(): Promise<void> {
     try {
       const result = await screenshot.pick();
@@ -145,6 +154,7 @@ struct Index {
     }
   }
 
+  // screenshot.capture 需要在运行时申请 CUSTOM_SCREEN_CAPTURE 权限。
   private async requestCapturePermission(): Promise<boolean> {
     try {
       const hostContext = this.getUIContext().getHostContext();
@@ -167,6 +177,7 @@ struct Index {
     }
   }
 
+  // 权限申请成功后，按指定 displayId 截取对应屏幕。
   private async captureByDisplayId(): Promise<void> {
     try {
       const granted = await this.requestCapturePermission();
@@ -185,6 +196,7 @@ struct Index {
     }
   }
 
+  // 只截取指定 id 的组件，而不是整页或整窗口。
   private async takeComponentSnapshot(): Promise<void> {
     try {
       const pixelMap = await this.getUIContext().getComponentSnapshot().get(COMPONENT_ID, {

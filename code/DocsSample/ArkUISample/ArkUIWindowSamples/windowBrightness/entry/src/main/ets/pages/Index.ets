@@ -18,12 +18,14 @@ struct Index {
     void this.initWindow();
   }
 
+  // 在页面内保留一份简单日志，方便观察亮度和常亮接口的调用结果。
   private appendLog(message: string): void {
     const line = `${Date.now()}: ${message}`;
     this.logText += `${line}\n`;
     hilog.info(DOMAIN, 'windowBrightness', line);
   }
 
+  // 初始化当前宿主窗口，后续亮度和常亮设置都作用在这个窗口上。
   private async initWindow(): Promise<void> {
     try {
       const hostContext = this.getUIContext().getHostContext();
@@ -41,6 +43,7 @@ struct Index {
     }
   }
 
+  // setWindowBrightness 和 setWindowKeepScreenOn 都依赖当前窗口对象，这里统一兜底初始化。
   private async ensureWindow(): Promise<boolean> {
     if (!this.currentWindow) {
       await this.initWindow();
@@ -53,6 +56,7 @@ struct Index {
     return true;
   }
 
+  // 设置当前窗口亮度，取值范围为 0 ~ 1。
   private async applyBrightness(value: number): Promise<void> {
     if (!await this.ensureWindow()) {
       return;
@@ -69,6 +73,7 @@ struct Index {
     }
   }
 
+  // 设置当前窗口是否保持常亮。
   private async applyKeepScreenOn(value: boolean): Promise<void> {
     if (!await this.ensureWindow()) {
       return;

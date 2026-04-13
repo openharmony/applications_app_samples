@@ -5,6 +5,8 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+  private mainWindow?: window.Window;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -23,39 +25,86 @@ export default class EntryAbility extends UIAbility {
       if (err.code) {
         return;
       }
-
-      try {
-        const mainWindow: window.Window = windowStage.getMainWindowSync();  //获取应用主窗口
-        mainWindow.setWindowLayoutFullScreen(true);
-        const topAvoidArea = mainWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-        AppStorage.setOrCreate('topAvoidHeight', topAvoidArea.topRect.height);
-        const bottomAvoidArea = mainWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
-        AppStorage.setOrCreate('bottomAvoidHeight', bottomAvoidArea.bottomRect.height);
-        mainWindow.on('avoidAreaChange', (data) => {
-          if (data.type === window.AvoidAreaType.TYPE_SYSTEM) {
-            AppStorage.setOrCreate('topAvoidHeight', data.area.topRect.height)
-          } else if (data.type === window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
-            AppStorage.setOrCreate('bottomAvoidHeight', data.area.bottomRect.height);
-          }
-        })
-      } catch (e) {
-        console.error(`Failed to set status bar to invisible`);
-      }
+      void this.initializeMainWindow(windowStage);
     });
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
+    this.mainWindow?.off('avoidAreaChange');
+    AppStorage.delete('mainWindow');
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+
+  private async initializeMainWindow(windowStage: window.WindowStage): Promise<void> {
+    try {
+      this.mainWindow = windowStage.getMainWindowSync();
+      AppStorage.setOrCreate('mainWindow', this.mainWindow);
+      await this.mainWindow.setWindowLayoutFullScreen(true);
+      this.initSafeArea(this.mainWindow);
+      this.mainWindow.on('avoidAreaChange', (option) => {
+        switch (option.type) {
+          case window.AvoidAreaType.TYPE_SYSTEM: {
+            const topHeight = Math.max(option.area.topRect.height, AppStorage.get<number>('topAvoidHeight') ?? 0);
+            AppStorage.setOrCreate('topAvoidHeight', topHeight);
+            break;
+          }
+          case window.AvoidAreaType.TYPE_CUTOUT: {
+            this.handleCutoutAvoidArea(option.area);
+            break;
+          }
+          case window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR: {
+            const bottomHeight = Math.max(option.area.bottomRect.height, AppStorage.get<number>('bottomAvoidHeight') ?? 0);
+            AppStorage.setOrCreate('bottomAvoidHeight', bottomHeight);
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      });
+    } catch (err) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to initialize avoid area listener. Cause: %{public}s', JSON.stringify(err));
+    }
+  }
+
+  private initSafeArea(win: window.Window): void {
+    try {
+      const systemAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+      const navigationAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
+      const cutoutAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+
+      AppStorage.setOrCreate('topAvoidHeight', systemAvoidArea.topRect.height);
+      AppStorage.setOrCreate('bottomAvoidHeight', navigationAvoidArea.bottomRect.height);
+      AppStorage.setOrCreate('leftAvoidWidth', 0);
+      AppStorage.setOrCreate('rightAvoidWidth', 0);
+      this.handleCutoutAvoidArea(cutoutAvoidArea);
+    } catch (err) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to init safe area. Cause: %{public}s', JSON.stringify(err));
+    }
+  }
+
+  private handleCutoutAvoidArea(cutoutAvoidArea: window.AvoidArea): void {
+    if (cutoutAvoidArea.topRect.height > 0) {
+      const topHeight = Math.max(AppStorage.get<number>('topAvoidHeight') ?? 0, cutoutAvoidArea.topRect.height);
+      AppStorage.setOrCreate('topAvoidHeight', topHeight);
+    }
+    if (cutoutAvoidArea.bottomRect.height > 0) {
+      const bottomHeight = Math.max(AppStorage.get<number>('bottomAvoidHeight') ?? 0, cutoutAvoidArea.bottomRect.height);
+      AppStorage.setOrCreate('bottomAvoidHeight', bottomHeight);
+    }
+    if (cutoutAvoidArea.leftRect.width > 0) {
+      AppStorage.setOrCreate('leftAvoidWidth', cutoutAvoidArea.leftRect.width);
+    }
+    if (cutoutAvoidArea.rightRect.width > 0) {
+      AppStorage.setOrCreate('rightAvoidWidth', cutoutAvoidArea.rightRect.width);
+    }
   }
 }
