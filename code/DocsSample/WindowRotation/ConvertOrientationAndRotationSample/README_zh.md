@@ -12,7 +12,7 @@
 使用说明：
 
 1. 安装编译生成的hap包,打开应用。
-2. 选择希望设置的方向。
+2. 获取当前屏幕方向，并转换为setPreferredOrientation()可接受的旋转策略。
 3. 应用旋转到选择的方向。
 
 ## 工程目录
@@ -49,7 +49,7 @@ ConvertOrientationAdnRotationSample
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/NDKInputEventMonitor > .git/info/sparse-checkout
+echo code/DocsSample/WindowRotation/ConvertOrientationAndRotationSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

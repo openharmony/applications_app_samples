@@ -49,7 +49,7 @@ DeviceDifferentiation
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/NDKInputEventMonitor > .git/info/sparse-checkout
+echo code/DocsSample/WindowRotation/DeviceDifferentiationSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
