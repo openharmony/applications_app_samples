@@ -21,10 +21,16 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     // 1. 使用napi_load_module加载模块@ohos.hilog
     napi_value result;
     napi_status status = napi_load_module(env, "@ohos.hilog", &result);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     // 2. 使用napi_get_named_property获取info函数
     napi_value infoFn;
-    napi_get_named_property(env, result, "info", &infoFn);
+    status = napi_get_named_property(env, result, "info", &infoFn);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value tag;
     std::string formatStr = "test";
@@ -39,7 +45,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
 
     napi_value args[3] = {flag, tag, outputString};
     // 3. 使用napi_call_function调用info函数
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
+    status = napi_call_function(env, result, infoFn, 3, args, nullptr);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     return result;
 }
 // [End napi_load_module_napi_init]
