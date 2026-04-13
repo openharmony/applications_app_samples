@@ -64,7 +64,7 @@ struct Index {
           let isDesktopLyricSupported: boolean = false;
           try {
             isDesktopLyricSupported = await AVSessionManager.isDesktopLyricSupported();
-          } catch (e) {
+          } catch (err) {
             console.error(`Failed to get isDesktopLyricSupported. Code: ${err.code}, message: ${err.message}`);
           }
           if (!isDesktopLyricSupported) {
@@ -76,7 +76,7 @@ struct Index {
             session.onDesktopLyricVisibilityChanged((isVisible: boolean) => {
               console.info(`onDesktopLyricVisibilityChanged changed: ${isVisible}`)
             });
-          } catch (e) {
+          } catch (err) {
             console.error(`onDesktopLyricVisibilityChanged err. Code: ${err.code}, message: ${err.message}`);
           }
 
@@ -85,28 +85,28 @@ struct Index {
             session.onDesktopLyricStateChanged((state) => {
               console.info(`onDesktopLyricStateChanged changed: ${state.isLocked}`)
             });
-          } catch (e) {
+          } catch (err) {
             console.error(`onDesktopLyricStateChanged err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
             // 使能桌面歌词。
             session.enableDesktopLyric(true);
-          } catch (e) {
+          } catch (err) {
             console.error(`enableDesktopLyric err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
             // 开启或关闭桌面歌词。
             await session.setDesktopLyricVisible(true);
-          } catch (e) {
+          } catch (err) {
             console.error(`setDesktopLyricVisible err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
             // 桌面歌词锁定状态。
             await session.setDesktopLyricState({isLocked: true});
-          } catch (e) {
+          } catch (err) {
             console.error(`setDesktopLyricState err. Code: ${err.code}, message: ${err.message}`);
           }
 
