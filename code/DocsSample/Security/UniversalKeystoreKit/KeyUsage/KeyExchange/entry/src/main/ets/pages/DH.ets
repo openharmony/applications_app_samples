@@ -118,7 +118,7 @@ async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
   }
 }
 
-/*查询密钥是否存在*/
+/* 查询密钥是否存在 */
 async function isKeyItemExist(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info('promise: enter isKeyItemExist');
   try {
