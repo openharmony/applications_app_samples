@@ -87,6 +87,7 @@ static napi_value CreateNativeNode(napi_env env, napi_callback_info info, const 
     return nullptr;
 }
 
+constexpr int32_t NUM_10 = 10;
 constexpr int32_t MAX_LINES = 10;                // 最大行数
 constexpr int32_t FONT_SIZE = 28;                // 字体大小
 constexpr int32_t LAYOUT_MAX_WIDTH = 400;        // 排版最大宽度
@@ -203,14 +204,18 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     ArkUI_NodeHandle column = CreateColumnContainer(nodeApi);
     ArkUI_NodeHandle text = CreateStyledText(nodeApi);
 
+    // [Start styledstring_paragraph_style]
     // 创建字体集合与段落样式
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateFontCollection();
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, OH_Drawing_TextAlign::TEXT_ALIGN_CENTER);
-    OH_Drawing_SetTypographyTextMaxLines(typographyStyle, MAX_LINES);
+    OH_Drawing_SetTypographyTextMaxLines(typographyStyle, NUM_10);
+    // [End styledstring_paragraph_style]
 
+    // [Start styledstring_create]
     // 创建StyledString并设置文本内容
     ArkUI_StyledString *styledString = OH_ArkUI_StyledString_Create(typographyStyle, fontCollection);
+    // [End styledstring_create]
 
     // [Start styledstring_text_style]
     // 第一段文本（灰色"Hello"）
