@@ -1,0 +1,184 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "shared_desc"
+    },
+    {
+      "name": "collection_num",
+      "value": "12.5万"
+    },
+    {
+      "name": "list_name",
+      "value": "独立民谣"
+    },
+    {
+      "name": "playlist_Introduction",
+      "value": "歌单选取了一些比较受关注的民谣歌曲。"
+    },
+    {
+      "name": "play_all",
+      "value": "播放全部(%d)"
+    },
+    {
+      "name": "collect",
+      "value": "收藏"
+    },
+    {
+      "name": "download",
+      "value": "下载"
+    },
+    {
+      "name": "comment",
+      "value": "评论"
+    },
+    {
+      "name": "share",
+      "value": "分享"
+    },
+    {
+      "name": "play_list",
+      "value": "歌单(%d)"
+    },
+    {
+      "name": "song_name",
+      "value": "不知道"
+    },
+    {
+      "name": "singer",
+      "value": "小碗你好"
+    },
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "基于OHAudio播放PCM音频"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "sequential_playback",
+      "value": "顺序播放"
+    },
+    {
+      "name": "single_playback",
+      "value": "单曲播放"
+    },
+    {
+      "name": "random_playback",
+      "value": "随机播放"
+    },
+    {
+      "name": "reason_background",
+      "value": "允许应用在音乐播放器场景后台运行。"
+    },
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "volume_setting",
+      "value": "音量设置"
+    },
+    {
+      "name": "effect_setting",
+      "value": "音效设置"
+    },
+    {
+      "name": "speed_setting",
+      "value": "倍速设置"
+    },
+    {
+      "name": "singer_one",
+      "value": "Delacey"
+    },
+    {
+      "name": "song_title_one",
+      "value": "Dream It Possible"
+    },
+    {
+      "name": "song_title_two",
+      "value": "不知道"
+    },
+    {
+      "name": "singer_two",
+      "value": "第二个歌手"
+    },
+    {
+      "name": "song_title_three",
+      "value": "第三首歌"
+    },
+    {
+      "name": "singer_three",
+      "value": "第三个歌手"
+    },
+    {
+      "name": "song_title_four",
+      "value": "第四首歌"
+    },
+    {
+      "name": "singer_four",
+      "value": "第四个歌手"
+    },
+    {
+      "name": "song_title_five",
+      "value": "第五首歌"
+    },
+    {
+      "name": "singer_five",
+      "value": "第五个歌手"
+    },
+    {
+      "name": "song_title_six",
+      "value": "第六首歌"
+    },
+    {
+      "name": "singer_six",
+      "value": "第六个歌手"
+    },
+    {
+      "name": "song_title_seven",
+      "value": "第七首歌"
+    },
+    {
+      "name": "singer_seven",
+      "value": "第七个歌手"
+    },
+    {
+      "name": "song_title_eight",
+      "value": "第八首歌"
+    },
+    {
+      "name": "singer_eight",
+      "value": "第八个歌手"
+    },
+    {
+      "name": "song_title_nine",
+      "value": "第九首歌"
+    },
+    {
+      "name": "singer_nine",
+      "value": "第九个歌手"
+    },
+    {
+      "name": "song_title_ten",
+      "value": "第十个歌手"
+    },
+    {
+      "name": "singer_ten",
+      "value": "第十首歌"
+    }
+  ]
+}
