@@ -14,6 +14,7 @@
 */
 
 import { Router } from '@ohos.arkui.UIContext';
+import './SourceRetentionAnnotation';
 
 const router = new Router();
 
