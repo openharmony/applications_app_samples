@@ -81,7 +81,7 @@ struct WifiConnect {
     // 如果wifi是开的，就记录下状态，然后扫描p2p设备，并获取连接信息
     if (!wifiManager.isWifiActive()) {
       this.promptAction.showToast({
-        message: 'place active wifiManager',
+        message: 'please active wifi',
         duration: 2000
       });
       return;
