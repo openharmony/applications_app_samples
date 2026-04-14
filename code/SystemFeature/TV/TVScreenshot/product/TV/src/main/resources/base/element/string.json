@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "截屏"
+    },
+    {
+      "name": "description_mainability",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "button_name",
+      "value": "查 看"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "media_location_reason",
+      "value": "Screenshot apps need to read media location information"
+    },
+    {
+      "name": "read_media_reason",
+      "value": "Screenshot apps need to read media files"
+    },
+    {
+      "name": "write_media_reason",
+      "value": "Screenshot apps need to write media files"
+    },
+    {
+      "name": "avscreencapture_privacy_window_title",
+      "value": "Privacy notice"
+    },
+    {
+      "name": "avscreencapture_privacy_window_content",
+      "value": "%s will be able to record or project everything that's shown on your screen, as well as system sounds. Be sure to safeguard sensitive personal information such as passwords, payment information, photos, videos, and conversations."
+    },
+    {
+      "name": "avscreencapture_privacy_window_cancel",
+      "value": "Deny"
+    },
+    {
+      "name": "avscreencapture_privacy_window_agree",
+      "value": "Allow"
+    },
+    {
+      "name": "screenshot_reason",
+      "value": "Apply for screen capture permission to take screenshots of the current screen."
+    }
+  ]
+}

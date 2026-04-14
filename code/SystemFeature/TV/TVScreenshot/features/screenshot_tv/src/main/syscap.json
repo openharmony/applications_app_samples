@@ -1,0 +1,58 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ],
+    "custom": [
+      {
+        "ohtv": [
+          "SystemCapability.Notification.CommonEvent",
+          "SystemCapability.Account.OsAccount",
+          "SystemCapability.HiviewDFX.HiSysEvent",
+          "SystemCapability.BundleManager.BundleFramework.Launcher",
+          "SystemCapability.WindowManager.WindowManager.Core",
+          "SystemCapability.Ability.AbilityRuntime.Core",
+          "SystemCapability.HiviewDFX.HiLog",
+          "SystemCapability.DistributedDataManager.Preferences.Core",
+          "SystemCapability.Security.AccessToken",
+          "SystemCapability.ArkUI.ArkUI.Full",
+          "SystemCapability.MultimodalInput.Input.InputConsumer",
+          "SystemCapability.Ability.AbilityBase",
+          "SystemCapability.Communication.WiFi.STA",
+          "SystemCapability.Communication.Bluetooth.Core",
+          "SystemCapability.Communication.NetManager.Core",
+          "SystemCapability.Global.I18n",
+          "SystemCapability.Ability.AbilityBase",
+          "SystemCapability.Startup.SystemInfo"
+        ]
+      }
+    ]
+  },
+  "development": {
+    "addedSysCaps": []
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.AI.IntelligentVoice.Core",
+      "SystemCapability.AI.MindSporeLite",
+      "SystemCapability.Telephony.CallManager",
+      "SystemCapability.Telephony.CellularData",
+      "SystemCapability.Telephony.SmsMms",
+      "SystemCapability.Telephony.CoreService",
+      "SystemCapability.Telephony.StateRegistry",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Advertising.OAID",
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.Print.PrintFramework",
+      "SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask",
+      "SystemCapability.MiscServices.ScreenLock",
+      "SystemCapability.MiscServices.Wallpaper",
+      "SystemCapability.Msdp.DeviceStatus.Stationary"
+    ]
+  }
+}
