@@ -57,6 +57,14 @@
       "value": "@LocalBuilder函数和$$参数一起使用UI不刷新--正例"
     },
     {
+      "name": "problem_ui_structure_opposite",
+      "value": "@LocalBuilder函数在参数处直接调用出现布局错乱--反例"
+    },
+    {
+      "name": "problem_ui_structure_positive",
+      "value": "@LocalBuilder函数在参数处直接调用出现布局错乱--正例"
+    },
+    {
       "name": "v2_local_builder_update",
       "value": "@LocalBuilder在@ComponentV2修饰的自定义组件中使用"
     },

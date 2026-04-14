@@ -73,3 +73,7 @@ struct Child {
   }
 }
 // [End prop_nineteen_start]
+@Builder
+export function MyArraySample() {
+  Index()
+}
