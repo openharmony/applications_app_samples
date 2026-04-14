@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/index",
+    "pages/SplitBarIndex",
+    "pages/volumeDialog",
+    "pages/eventInterception"
+  ]
+}

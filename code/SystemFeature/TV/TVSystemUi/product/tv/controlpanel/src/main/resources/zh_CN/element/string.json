@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "SystemUI"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "airplane_mode",
+      "value": "飞行模式"
+    },
+    {
+      "name": "control_center_complex_toggle_bluetooth_title",
+      "value": "蓝牙"
+    },
+    {
+      "name": "control_center_complex_toggle_location_title",
+      "value": "位置信息"
+    },
+    {
+      "name": "control_center_complex_toggle_ring_mode_title_on",
+      "value": "响铃"
+    },
+    {
+      "name": "control_center_complex_toggle_ring_mode_title_off",
+      "value": "静音"
+    },
+    {
+      "name": "control_center_complex_toggle_ring_mode_title_vibration",
+      "value": "振动"
+    },
+    {
+      "name": "control_center_complex_toggle_nfc_mode_title",
+      "value": "NFC"
+    }
+  ]
+}
