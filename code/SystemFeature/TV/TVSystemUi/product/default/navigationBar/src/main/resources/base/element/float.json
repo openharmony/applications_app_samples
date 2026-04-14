@@ -1,0 +1,24 @@
+{
+  "float": [
+    {
+      "name": "navigation_bar_button_width",
+      "value": "144vp"
+    },
+    {
+      "name": "navigation_bar_button_height",
+      "value": "72vp"
+    },
+    {
+      "name": "navigation_bar_button_radius",
+      "value": "36vp"
+    },
+    {
+      "name": "navigation_bar_button_icon_width",
+      "value": "24vp"
+    },
+    {
+      "name": "navigation_bar_button_icon_height",
+      "value": "24vp"
+    }
+  ]
+}

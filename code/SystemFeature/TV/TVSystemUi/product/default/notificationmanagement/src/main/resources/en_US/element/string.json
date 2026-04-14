@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "NotificationManagement"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "timing_on",
+      "value": "Timing On"
+    },
+    {
+      "name": "allowDistribut",
+      "value": "Allow Distribut Notification"
+    },
+    {
+      "name": "allowDistributDescribe",
+      "value": "After this device is started, it can be synchronized to other devices"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "SystemUI"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "description_mainability",
+      "value": "SystemUI ServiceExtension"
+    },
+    {
+      "name": "distributed_data_sync_reason",
+      "value": "SystemUI Distributed Notification Request"
+    },
+    {
+      "name": "entry_floatWindow",
+      "value": "悬浮窗"
+    },
+    {
+      "name": "wifinotAvailable",
+      "value": "WIFI不可用"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<svg width="48.000000" height="48.000000" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs/>
+	<rect width="48.000000" height="48.000000"/>
+	<path id="path" d="M15.41 19.59L28.95 33.13C27.55 33.87 25.93 34.29 24.23 34.29C18.71 34.29 14.23 29.83 14.23 24.29C14.23 22.59 14.65 20.99 15.41 19.59Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+	<rect id="rect" x="22.214844" y="4.006348" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(-0.09 22.214844 4.006348)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<rect id="rect" x="37.125000" y="8.498047" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(44.91 37.125000 8.498047)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<rect id="rect" x="44.493164" y="22.225098" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(89.91 44.493164 22.225098)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<rect id="rect" x="26.263672" y="44.493652" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(179.91 26.263672 44.493652)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<rect id="rect" x="11.359375" y="40.007812" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(-135.09 11.359375 40.007812)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<rect id="rect" x="4.005859" y="26.273926" rx="2.000000" width="4.000000" height="8.000000" transform="rotate(-90.09 4.005859 26.273926)" fill="#FFFFFF" fill-opacity="1.000000"/>
+	<path id="path" d="M43.23 39L37.31 33.08L33.37 29.14L33.09 28.85C33.79 27.5 34.23 25.98 34.23 24.29C34.23 18.77 29.77 14.29 24.23 14.29C22.59 14.29 21.05 14.74 19.69 15.43L9.31 5.06C8.73 4.47 7.77 4.47 7.19 5.06C6.61 5.66 6.61 6.6 7.19 7.18L41.13 41.12C41.25 41.24 41.37 41.31 41.51 41.39C41.73 41.5 41.95 41.56 42.19 41.56C42.57 41.56 42.97 41.41 43.25 41.12C43.85 40.54 43.83 39.6 43.23 39Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+</svg>

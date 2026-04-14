@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/notificationManagenment",
+    "pages/batchSetEnable",
+    "pages/noDisturb",
+    "pages/setEnable",
+    "pages/noDisturbPre",
+    "pages/slotSetting"
+  ]
+}
