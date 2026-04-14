@@ -18,11 +18,13 @@ import { Calculator } from '../sdk/Calculator';
 import { TimerSdk } from '../sdk/TimerSdk';
 import { taskpool } from '@kit.ArkTS';
 
+// 初始化Calculator
 @Concurrent
 function initCalculator(): Calculator {
   return Calculator.init();
 }
 
+// 初始化TimerSdk
 @Concurrent
 function initTimerSdk(): TimerSdk {
   return TimerSdk.init();
