@@ -140,6 +140,8 @@ static void StringFinalizerUTF16(void* data, void* hint)
 {
     // 释放外部资源
     delete[] static_cast<char16_t*>(data);
+    // 重要：析构回调执行的时候会挂起其它js线程，因此需要保证回调执行过程中无锁操作，否则可能导致死锁。
+    // 由于回调是在其它非注册线程执行，因此需要保证回调是线程安全的。
 }
 
 static napi_value CreateExternalStringUtf16(napi_env env, napi_callback_info info)
@@ -179,6 +181,8 @@ static void StringFinalizerASCII(void* data, void* hint)
 {
     // 释放外部资源
     delete[] static_cast<char*>(data);
+    // 重要：析构回调执行的时候会挂起其它js线程，因此需要保证回调执行过程中无锁操作，否则可能导致死锁。
+    // 由于回调是在其它非注册线程执行，因此需要保证回调是线程安全的。
 }
 
 static napi_value CreateExternalStringAscii(napi_env env, napi_callback_info info)
