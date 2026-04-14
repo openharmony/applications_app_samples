@@ -222,7 +222,7 @@ function copyDistributedFile(context: common.UIAbilityContext): void {
       // 定义访问分布式目录的回调
       let listeners : fileIo.DfsListeners = {
         onStatus: (networkId: string, status: number): void => {
-          console.error(`Failed to access public directory，${status}`);
+          console.error(`Failed to access public directory, ${status}`);
         }
       };
       // 开始跨设备文件拷贝
