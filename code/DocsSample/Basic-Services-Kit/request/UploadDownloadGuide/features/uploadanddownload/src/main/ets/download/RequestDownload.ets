@@ -16,7 +16,6 @@
 import { logger } from '../utils/Logger';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import fileIo from '@ohos.file.fs';
-import fs from '@ohos.file.fs';
 import { common } from '@kit.AbilityKit';
 
 const TAG: string = 'RequestDownload';
@@ -97,9 +96,9 @@ class RequestDownload {
 
   clearExistFile(path: string) {
     try {
-      let exist = fs.accessSync(path);
+      let exist = fileIo.accessSync(path);
       if (exist) {
-        fs.unlinkSync(path);
+        fileIo.unlinkSync(path);
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
