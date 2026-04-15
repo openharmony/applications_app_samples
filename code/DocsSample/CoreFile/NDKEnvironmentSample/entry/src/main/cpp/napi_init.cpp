@@ -35,7 +35,7 @@ void GetUserDownloadDirExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, download path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download directory, download path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
@@ -56,7 +56,7 @@ void ScanUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in scanning user download dir path, download Path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in scanning user download directory, path=%{public}s", downloadPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
         return;
@@ -66,12 +66,12 @@ void ScanUserDownloadDirPathExample()
     int num = scandir(downloadPath, &namelist, nullptr, nullptr);
     if (num < 0) {
         free(downloadPath);
-        OH_LOG_ERROR(LOG_APP, "Failed to scan dir");
+        OH_LOG_ERROR(LOG_APP, "Failed to scan directory");
         return;
     }
 
     for (int i = 0; i < num; i++) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in scanning dir, file name is %{public}s", namelist[i]->d_name);
+        OH_LOG_INFO(LOG_APP, "Succeeded in scanning directory, file name is %{public}s", namelist[i]->d_name);
     }
     free(downloadPath);
     for (int i = 0; i < num; i++) {
@@ -94,7 +94,7 @@ void WriteUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download directory, path=%{public}s", downloadPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
         return;
@@ -127,7 +127,7 @@ void GetUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download dir, path=%{public}s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user download directory, path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get download path, error code is %{public}d", ret);
@@ -147,7 +147,7 @@ void GetUserDesktopDirPathExample()
     char *desktopPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDesktopDir(&desktopPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user desktop dir, path=%{public}s", desktopPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user desktop directory, path=%{public}s", desktopPath);
         free(desktopPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get user desktop path, error code is %{public}d", ret);
@@ -166,7 +166,7 @@ void GetUserDocumentDirPathExample()
     char *documentPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document dir, path=%{public}s", documentPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document directory, path=%{public}s", documentPath);
         free(documentPath);
     } else {
         OH_LOG_ERROR(LOG_APP, "Failed to get user document path, error code is %{public}d", ret);
@@ -186,17 +186,17 @@ void GetUserDownloadDirSizeExample()
     char *documentPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
     if (ret == 0) {
-        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document dir, path=%{public}s", documentPath);
+        OH_LOG_INFO(LOG_APP, "Succeeded in getting user document directory, path=%{public}s", documentPath);
         struct stat fileStat;
         int result = stat(documentPath, &fileStat);
         if (result == 0) {
-            OH_LOG_INFO(LOG_APP, "Succeeded in stating. document Size=%{public}ld", fileStat.st_size);
+            OH_LOG_INFO(LOG_APP, "Succeeded in getting file info. document Size=%{public}ld", fileStat.st_size);
         } else {
-            OH_LOG_ERROR(LOG_APP, "Failed to stat user document dir, error code is %{public}d", result);
+            OH_LOG_ERROR(LOG_APP, "Failed to stat user document directory, error code is %{public}d", result);
         }
         free(documentPath);
     } else {
-        OH_LOG_ERROR(LOG_APP, "Failed to get user document dir, error code is %{public}d", ret);
+        OH_LOG_ERROR(LOG_APP, "Failed to get user document directory, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_size_example]
