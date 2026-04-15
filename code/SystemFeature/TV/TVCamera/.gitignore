@@ -1,0 +1,10 @@
+/node_modules
+/local.properties
+/install.bat
+/.idea
+**/build
+/.hvigor
+.vscode
+
+package-lock.json
+debug.log
