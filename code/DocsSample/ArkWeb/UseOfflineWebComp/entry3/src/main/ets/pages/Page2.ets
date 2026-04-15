@@ -15,7 +15,6 @@
 
 // [Start use_offline_web_component_page_2]
 // Page2.ets
-// 使用NodeController的Page页
 import { getFreeWebNode, MyNodeController } from './Common'
 
 @Component
