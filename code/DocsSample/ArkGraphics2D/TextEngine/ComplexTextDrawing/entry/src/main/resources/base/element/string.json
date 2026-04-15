@@ -59,6 +59,22 @@
     {
       "name": "IndependentShaping",
       "value": "Shape page"
+    },
+    {
+      "name": "Button_page_Ellipsis",
+      "value": "Ellipsis-text page"
+    },
+    {
+      "name": "Button_page_BreakStrategy",
+      "value": "BreakStrategy page"
+    },
+    {
+      "name": "Button_page_Punctuation",
+      "value": "Punctuation page"
+    },
+    {
+      "name": "Button_page_FontQuery",
+      "value": "FontQuery page"
     }
   ]
 }
