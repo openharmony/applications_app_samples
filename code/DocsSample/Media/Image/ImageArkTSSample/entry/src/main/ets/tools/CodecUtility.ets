@@ -14,11 +14,12 @@
 */
 
 import { image } from '@kit.ImageKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { common } from '@kit.AbilityKit';
-
+// [Start create_copyData]
 let copyData: ArrayBuffer = new ArrayBuffer(0);
+// [End create_copyData]
 // [Start create_picturePackOpts]
 let packOpts: image.PackingOption = {
   format: 'image/jpeg',
@@ -39,7 +40,7 @@ function getFilePath(context: Context, fileName: string): string {
 function getFileFd(context: Context, fileName: string): number | undefined {
   try {
     const filePath: string = context.cacheDir + '/' + fileName;
-    const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+    const file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
     const fd: number = file?.fd;
     return fd;
   } catch (err) {
@@ -128,7 +129,7 @@ async function packToFileFromPixelMap(context : Context, pixelMap : image.PixelM
   let packOpts : image.PackingOption = { format: 'image/jpeg', quality: 95 };
   const path : string = context.cacheDir + '/pixel_map.jpg';
   try {
-    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     await imagePackerApi.packToFile(pixelMap, file.fd, packOpts);
   } catch (error) {
     console.error('Failed to pack the pixelMap to file. And the error is: ' + error);
@@ -142,7 +143,7 @@ async function packToFileFromImageSource(context : Context, imageSource : image.
   let packOpts : image.PackingOption = { format: 'image/jpeg', quality: 95 };
   const filePath : string = context.cacheDir + '/image_source.jpg';
   try {
-    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     await imagePackerApi.packToFile(imageSource, file.fd, packOpts);
   } catch (error) {
     console.error('Failed to pack the imageSource to file. And the error is: ' + error);
@@ -171,7 +172,7 @@ async function packing(picture: image.Picture, packOpts: image.PackingOption) {
 async function packToFile(picture: image.Picture, packOpts: image.PackingOption, context: Context) {
   try {
     const path : string = context.cacheDir + '/picture.jpg';
-    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     const imagePackerApi = image.createImagePacker();
     await imagePackerApi.packToFile(picture, file.fd, packOpts);
   } catch (error) {
