@@ -284,6 +284,7 @@ void StyledStringBase::CreateStyledStringWithLineHeightStyle(ArkUI_NodeHandle no
 
     OH_ArkUI_LineHeightStyle *lineHeightStyle = OH_ArkUI_LineHeightStyle_Create();
     OH_ArkUI_LineHeightStyle_SetLineHeight(lineHeightStyle, LINE_HEIGHT);
+    OH_ArkUI_LineHeightStyle_SetLineHeightMultiple(lineHeightStyle, LINE_HEIGHT_MULTIPLE);
 
     OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
     OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
@@ -298,6 +299,30 @@ void StyledStringBase::CreateStyledStringWithLineHeightStyle(ArkUI_NodeHandle no
 
     OH_ArkUI_SpanStyle_Destroy(spanStyle);
     OH_ArkUI_LineHeightStyle_Destroy(lineHeightStyle);
+    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
+}
+
+void StyledStringBase::CreateStyledStringWithLineSpacingStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func)
+{
+    StyledStringBase::SetTextTitle(node, "创建带行间距样式的StyledString");
+
+    OH_ArkUI_LineSpacingStyle *lineSpacingStyle = OH_ArkUI_LineSpacingStyle_Create();
+    OH_ArkUI_LineSpacingStyle_SetLineSpacing(lineSpacingStyle, LINE_SPACING);
+    OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines(lineSpacingStyle, ONLY_BETWEEN_LINES);
+
+    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
+    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
+    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_12);
+    OH_ArkUI_SpanStyle_SetLineSpacingStyle(spanStyle, lineSpacingStyle);
+
+    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
+    ArkUI_StyledString_Descriptor *styledString =
+        OH_ArkUI_StyledString_Descriptor_CreateWithString("行间距样式示例\n段落内容", spanStyles, SIZE_1);
+
+    func(styledString);
+
+    OH_ArkUI_SpanStyle_Destroy(spanStyle);
+    OH_ArkUI_LineSpacingStyle_Destroy(lineSpacingStyle);
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
