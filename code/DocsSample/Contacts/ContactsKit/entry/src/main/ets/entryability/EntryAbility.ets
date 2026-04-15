@@ -17,7 +17,6 @@ import { abilityAccessCtrl, AbilityConstant, ConfigurationConstant, Permissions,
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { contact } from '@kit.ContactsKit';
 
 const DOMAIN = 0x0000;
 
@@ -38,7 +37,6 @@ export default class EntryAbility extends UIAbility {
 
     abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, permissions).then(() => {
       hilog.info(DOMAIN, 'testTag', 'get Permission success');
-      calendarMgr = calendarManager.getCalendarManager(this.context);
     }).catch((error: BusinessError) => {
       hilog.error(DOMAIN, 'testTag', 'get Permission error, Cause: %{public}s', JSON.stringify(error));
     })
