@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { avSession } from '@kit.AVSessionKit';
 import { common } from '@kit.AbilityKit';
 import { media } from '@kit.MediaKit'
-import fileIo from '@ohos.fileio'
+import { fileIo } from '@kit.CoreFileKit'
 import Logger from '../util/Logger'
 import { SONG_List } from '../mock/BackgroundPlayerData'
 
@@ -41,43 +41,59 @@ class Song {
 class PlayerModel {
   public isPlaying: boolean = false
   public playlist: PlayList = new PlayList()
-  public playerIndex: number = 0; // play song index
-  public player: media.AudioPlayer
+  public playerIndex: number = 0;
+  public player: media.AVPlayer
   public avSession: avSession.AVSession
 
   constructor() {
-    Logger.info(TAG, `createAudioPlayer start`)
-    this.player = media.createAudioPlayer()
-    Logger.info(TAG, `createAudioPlayer end and initAudioPlayer`)
-    this.initAudioPlayer()
-    Logger.info(TAG, `createAudioPlayer= ${this.player}`)
+    Logger.info(TAG, `createAVPlayer start`)
+    media.createAVPlayer().then((player: media.AVPlayer) => {
+      Logger.info(TAG, `createAVPlayer end and initAVPlayer`)
+      this.player = player
+      this.initAVPlayer()
+      Logger.info(TAG, `createAVPlayer= ${this.player}`)
+    }).catch((err: Error) => {
+      Logger.error(TAG, `createAVPlayer failed: ${err.message}`)
+    })
   }
 
-  initAudioPlayer(): void {
-    Logger.info(TAG, 'initAudioPlayer begin')
-    this.player.on('error', () => {
-      Logger.error(TAG, `player error`)
+  initAVPlayer(): void {
+    Logger.info(TAG, 'initAVPlayer begin')
+    this.player.on('error', (err: Error) => {
+      Logger.error(TAG, `player error: ${err.message}`)
     })
-    this.player.on('finish', () => {
-      Logger.info(TAG, `finish() callback is called`)
+    this.player.on('stateChange', (state: string) => {
+      Logger.info(TAG, `stateChange() callback is called, state: ${state}`)
     })
-    this.player.on('timeUpdate', () => {
-      Logger.info(TAG, `timeUpdate() callback is called`)
+    this.player.on('seekDone', (time: number) => {
+      Logger.info(TAG, `seekDone() callback is called, time: ${time}`)
     })
-    Logger.info(TAG, `initAudioPlayer end`)
+    Logger.info(TAG, `initAVPlayer end`)
   }
 
   createAVSession(context: common.UIAbilityContext): void {
     Logger.debug(TAG, 'createAVSession begin');
-    avSession.createAVSession(context, 'player', 'audio').then((data) => {
-      Logger.debug(TAG, 'createAVSession succeed');
-      this.avSession = data;
-    });
+    try {
+      avSession.createAVSession(context, 'player', 'audio').then((data) => {
+        Logger.debug(TAG, 'createAVSession succeed');
+        this.avSession = data;
+      }).catch((err: Error) => {
+        Logger.error(TAG, `createAVSession failed: ${err.message}`);
+      });
+    } catch (error) {
+      Logger.error(TAG, `createAVSession exception: ${(error as Error).message}`);
+    }
   };
 
   destroyAVSession(): void {
     Logger.debug(TAG, 'destroyAVSession begin');
-    this.avSession?.destroy();
+    try {
+      this.avSession?.destroy().catch((err: Error) => {
+        Logger.error(TAG, `destroyAVSession failed: ${err.message}`);
+      });
+    } catch (error) {
+      Logger.error(TAG, `destroyAVSession exception: ${(error as Error).message}`);
+    }
   };
 
   getPlaylist(callback: () => void): void {
@@ -97,9 +113,17 @@ class PlayerModel {
       Logger.error(TAG, `preLoad ignored`)
       return 0
     }
+    if (!this.player) {
+      Logger.error(TAG, `preLoad ignored, player not initialized`)
+      return 0
+    }
     this.playerIndex = index
     let uri = this.playlist.audioFiles[index].fileUri
     fileIo.open(uri, (err, fdNumber) => {
+      if (err) {
+        Logger.error(TAG, `preLoad open file error: ${err.message}`)
+        return
+      }
       let fdPath = 'fd://'
       let source = fdPath + fdNumber
       Logger.info(TAG, `preLoad source ${source}`)
@@ -110,63 +134,92 @@ class PlayerModel {
       Logger.info(TAG, `preLoad ${source} begin`)
       Logger.info(TAG, `state= ${this.player.state}`)
 
-      if (source === this.player.src && this.player.state !== 'idle') {
-        Logger.info(TAG, `preLoad finished. src not changed`)
+      if (source === this.player.url && this.player.state !== 'idle') {
+        Logger.info(TAG, `preLoad finished. url not changed`)
         callback()
       } else {
         Logger.info(TAG, `player.reset`)
-        this.player.reset()
-        Logger.info(TAG, `player.reset done, state= ${this.player.state}`)
-        this.player.on('dataLoad', () => {
-          Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`)
-          callback()
+        this.player.reset().then(() => {
+          Logger.info(TAG, `player.reset done, state= ${this.player.state}`)
+          this.player.url = source
+          this.player.on('stateChange', (state: string) => {
+            if (state === 'prepared') {
+              Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`)
+              callback()
+            }
+          })
+        }).catch((err: Error) => {
+          Logger.error(TAG, `player.reset failed: ${err.message}`)
         })
-        Logger.info(TAG, `player.src= ${source}`)
-        this.player.src = source
       }
       Logger.info(TAG, `preLoad ${source} end`)
     })
+    return 0
   }
 
   getDuration(): number {
     Logger.info(TAG, `getDuration playerIndex= ${this.playerIndex}`)
+    if (!this.player) {
+      return 0
+    }
     if (this.playlist.audioFiles[this.playerIndex].duration > 0) {
       return this.playlist.audioFiles[this.playerIndex].duration
     }
     Logger.info(TAG, `getDuration state= ${this.player.state}`)
-    this.playlist.audioFiles[this.playerIndex].duration = Math.min(this.player.duration, 97615) // 97615表示预置时间
-    Logger.info(TAG, `getDuration player.src= ${this.player.src} player.duration= ${this.playlist.audioFiles[this.playerIndex].duration} `)
+    this.playlist.audioFiles[this.playerIndex].duration = Math.min(this.player.duration, 97615)
+    Logger.info(TAG, `getDuration player.url= ${this.player.url} player.duration= ${this.playlist.audioFiles[this.playerIndex].duration} `)
     return this.playlist.audioFiles[this.playerIndex].duration
   }
 
   playMusic(flag: number, startPlay: boolean, context: common.UIAbilityContext): void {
     Logger.info(TAG, `playMusic flag= ${flag} startPlay= ${startPlay}`);
+    if (!this.player) {
+      Logger.error(TAG, `playMusic ignored, player not initialized`)
+      return
+    }
     if (startPlay) {
-      this.player.play();
+      this.player.play().then(() => {
+        Logger.info(TAG, `player.play called player.state= ${this.player.state}`);
+      }).catch((err: Error) => {
+        Logger.error(TAG, `player.play failed: ${err.message}`)
+      })
       this.createAVSession(context);
-      Logger.info(TAG, `player.play called player.state= ${this.player.state}`);
     }
   }
 
-  pauseMusic(): boolean {
+  pauseMusic(): void {
     if (!this.isPlaying) {
       Logger.info(TAG, `pauseMusic ignored, isPlaying= ${this.isPlaying}`)
       return
     }
+    if (!this.player) {
+      Logger.error(TAG, `pauseMusic ignored, player not initialized`)
+      return
+    }
     Logger.info(TAG, `call player.pauseMusic`)
-    this.player.pause()
-    Logger.info(TAG, `player.pause called, player.state= ${this.player.state}`)
+    this.player.pause().then(() => {
+      Logger.info(TAG, `player.pause called, player.state= ${this.player.state}`)
+    }).catch((err: Error) => {
+      Logger.error(TAG, `player.pause failed: ${err.message}`)
+    })
   }
 
-  stopMusic(): boolean {
+  stopMusic(): void {
     if (!this.isPlaying) {
       Logger.info(TAG, `stopMusic ignored, isPlaying= ${this.isPlaying}`);
       return;
     }
+    if (!this.player) {
+      Logger.error(TAG, `stopMusic ignored, player not initialized`)
+      return
+    }
     Logger.info(TAG, 'call player.stop');
-    this.player.stop();
-    this.destroyAVSession();
-    Logger.info(TAG, `player.stop called, player.state= ${this.player.state}`);
+    this.player.stop().then(() => {
+      this.destroyAVSession();
+      Logger.info(TAG, `player.stop called, player.state= ${this.player.state}`);
+    }).catch((err: Error) => {
+      Logger.error(TAG, `player.stop failed: ${err.message}`)
+    })
   };
 }
 
