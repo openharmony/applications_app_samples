@@ -26,8 +26,10 @@ struct Page {
     monitor.dirty.forEach((path: string) => {
       console.info(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     });
-    UIUtils.flushUpdates(); // 在monitor中调用flushUpdates会运行时报错
-    UIUtils.flushUIUpdates(); // 在monitor中调用flushUIUpdates会运行时报错
+    // 在monitor中调用flushUpdates会运行时报错
+    // UIUtils.flushUpdates();
+    // 在monitor中调用flushUIUpdates会运行时报错
+    // UIUtils.flushUIUpdates();
   }
 
   build() {

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import resource from '../common/Resource';
 // [Start foreach_update_refresh]
 @Component
 struct ForEachTodoComponent {
@@ -113,7 +114,7 @@ struct ForEachIndex {
 
   aboutToAppear(): void {
     for (let i = 0; i < this.planList.length; i++) {
-      this.planList[i] = this.context1!.resourceManager.getStringSync((this.planList[i] as Resource).id);
+      this.planList[i] = resource.resourceToString(this.planList[i] as Resource);
     };
   }
 
