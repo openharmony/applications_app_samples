@@ -34,6 +34,15 @@ struct Index {
         .onClick(() => {
           ArkTSUtils.ASON.parse('{}');
           ArkTSUtils.ASON.stringify(new collections.Array(1, 2, 3));
+
+          let options2: ArkTSUtils.ASON.ParseOptions = {
+            bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+            parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+          }
+          let jsonText = '{"largeNumber":112233445566778899}';
+          let map = ArkTSUtils.ASON.parse(jsonText, undefined, options2);
+          // 执行结果为：{"largeNumber":112233445566778899}
+          console.info(ArkTSUtils.ASON.stringify(map));
           this.message = 'success';
         })
     }
