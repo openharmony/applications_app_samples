@@ -15,7 +15,6 @@
 
 // [Start use_offline_web_component_page_1]
 // Page1.ets
-// 使用NodeController的Page页
 import { getNWeb, getFreeWebNode, MyNodeController } from './Common'
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
