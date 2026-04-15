@@ -99,7 +99,7 @@ struct Index {
     // [Start contacts_addContactByPermissions]
     // 在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
+    const permissions: Permissions[] = ['ohos.permission.WRITE_CONTACTS'];
     const contactInfo: contact.Contact = {
       name: { fullName: '王小明' },
       phoneNumbers: [{ phoneNumber: '13912345678' }]

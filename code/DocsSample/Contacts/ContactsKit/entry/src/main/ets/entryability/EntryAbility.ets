@@ -33,7 +33,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS'];
+    const permissions: Permissions[] = ['ohos.permission.WRITE_CONTACTS', 'ohos.permission.READ_CONTACTS'];
 
     abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, permissions).then(() => {
       hilog.info(DOMAIN, 'testTag', 'get Permission success');
