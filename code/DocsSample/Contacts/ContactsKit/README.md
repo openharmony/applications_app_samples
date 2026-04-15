@@ -38,10 +38,10 @@ entry/src/
 ### 相关权限
 
 [ohos.permission.READ_CONTACTS]
-权限地址：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionread_contacts
+Permission URL: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionread_contacts
 
 [ohos.permission.WRITE_CONTACTS]
-权限地址：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionwrite_contacts
+Permission URL: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionwrite_contacts
 
 ### 依赖
 
