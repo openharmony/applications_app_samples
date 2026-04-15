@@ -30,7 +30,7 @@ struct Index {
         .textAlign(TextAlign.Center)
         .textContentAlign(TextContentAlign.CENTER)
         .fontSize(20)
-        .margin({ top:20, bottom:10 })
+        .margin({ top: 20, bottom: 10 })
         .width('100%')
 
       Button('1.使用Picker选择联系人', { type: ButtonType.Normal, stateEffect: true })
@@ -57,7 +57,7 @@ struct Index {
         .borderRadius(8)
         .backgroundColor(0x317aff)
         .onClick(() => {
-          this.addContactsByPicker();
+          this.addContactByPicker();
         })
         .align(Alignment.Start)
         .margin({ top: 20 })
@@ -121,8 +121,8 @@ struct Index {
   }
 
   // 调用新建联系人接口，打开新建联系人UI界面，用户可在UI界面中填写并新建联系人
-  private addContactsByPicker(): void {
-    // [Start contacts_addContactsByPicker]
+  private addContactByPicker(): void {
+    // [Start contacts_addContactByPicker]
     let contactInfo: contact.Contact = {
       name: {
         fullName: 'xxx'
@@ -138,7 +138,7 @@ struct Index {
     }).catch((err: BusinessError) => {
       console.error(`Failed to add Contact via UI. Code: ${err.code}, message: ${err.message}`);
     });
-    // [End contacts_addContactsByPicker]
+    // [End contacts_addContactByPicker]
   }
 
   // 可以通过拉起picker，将选中的联系人信息更新到现有联系人中。

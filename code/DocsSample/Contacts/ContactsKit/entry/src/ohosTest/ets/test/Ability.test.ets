@@ -54,7 +54,7 @@ export default function abilityTest() {
     })
     it('Sample_SelectContactsByPicker', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + `SelectContactsByPicker, begin`);
-      let btnAccept = await driver.findComponent(ON.text('1，使用Picker选择联系人'))
+      let btnAccept = await driver.findComponent(ON.text('1.使用Picker选择联系人'))
       if (btnAccept !== undefined) {
         await btnAccept.click();
         await driver.delayMs(2000);
@@ -64,7 +64,7 @@ export default function abilityTest() {
     })
     it('Sample_AddContactByPermissions', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + `AddContactByPermissions, begin`);
-      let btnAccept = await driver.findComponent(ON.text('2，联系人管理（受限开放）API添加联系人'))
+      let btnAccept = await driver.findComponent(ON.text('2.联系人管理（受限开放）API添加联系人'))
       if (btnAccept !== undefined) {
         await btnAccept.click();
         await driver.delayMs(2000);
@@ -74,7 +74,7 @@ export default function abilityTest() {
     })
     it('Sample_AddContactByPicker', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + `AddContactByPicker, begin`);
-      let btnAccept = await driver.findComponent(ON.text('3，使用picker新建联系人'))
+      let btnAccept = await driver.findComponent(ON.text('3.使用picker新建联系人'))
       if (btnAccept !== undefined) {
         await btnAccept.click();
         await driver.delayMs(2000);
@@ -84,7 +84,7 @@ export default function abilityTest() {
     })
     it('Sample_UpdateContactByPicker', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + `UpdateContactByPicker, begin`);
-      let btnAccept = await driver.findComponent(ON.text('4，使用picker更新联系人'))
+      let btnAccept = await driver.findComponent(ON.text('4.使用picker更新联系人'))
       if (btnAccept !== undefined) {
         await btnAccept.click();
         await driver.delayMs(2000);
