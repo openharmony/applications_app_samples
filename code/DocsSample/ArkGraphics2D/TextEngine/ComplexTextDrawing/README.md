@@ -43,6 +43,14 @@ ArkTSDrawing
 │  │     │  └─ MultilineText.ets
 │  │     └─ shape
 │  │        └─ IndependentShaping.ets
+│  │     ├─ ellipsis
+│  │     │  └─ EllipsisText.ets
+│  │     ├─ breakStrategy
+│  │     │  └─ BreakStrategyText.ets
+│  │     ├─ punctuation
+│  │     │  └─ PunctuationText.ets
+│  │     └─ fontQuery
+│  │        └─ FontQueryText.ets
 |  ├──resources                     // 资源文件目录
 └─ ohosTest
    └──ets
@@ -54,7 +62,7 @@ ArkTSDrawing
 ## 具体实现
 
 1. 利用Native XComponent来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。
-2. 通过在IDE中创建Native ArkTS工程，该工程复杂文本绘制主要包含以下几个场景：多语言文本绘制与显示、多行文本绘制与显示、多样式文本绘制与显示，针对每个场景实现了具体demo的编写。
+2. 通过在IDE中创建Native ArkTS工程，该工程复杂文本绘制主要包含以下几个场景：多语言文本绘制与显示、多行文本绘制与显示、省略号样式设置、文字换行方式设置、中文标点连续挤压、查询字体资源路径、多样式文本绘制与显示，针对每个场景实现了具体demo的编写。
 3. 在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。
 ## 相关权限
 
