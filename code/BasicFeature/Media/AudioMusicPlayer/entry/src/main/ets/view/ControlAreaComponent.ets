@@ -17,7 +17,7 @@ import { BreakpointConstants } from '../common/constants/BreakpointConstants';
 import { ContentConstants } from '../common/constants/ContentConstants';
 import {
   EFFECT_ID,
-  MusicPlayMode, PlayerConstants, PlayModeSwitchList, VOLUME_ID } from '../common/constants/PlayerConstants';
+  MusicPlayMode, PlayerConstants, playModeSwitchList, VOLUME_ID } from '../common/constants/PlayerConstants';
 import { StyleConstants } from '../common/constants/StyleConstants';
 import { BreakpointType } from '../common/utils/BreakpointSystem';
 import Logger from '../common/utils/Logger';
@@ -43,7 +43,7 @@ export struct ControlAreaComponent {
   @StorageLink('pageShowTime') pageShowTime: number = 0;
   @StorageLink('songList') songList: SongItem[] = [];
   @State isShowPlayList: boolean = false;
-  @StorageLink('playMode') playMode: MusicPlayMode = PlayModeSwitchList[this.playModeIndex];
+  @StorageLink('playMode') playMode: MusicPlayMode = playModeSwitchList[this.playModeIndex];
   @StorageLink('selectIndex') selectIndex: number = 0;
   @StorageLink('isSilentMode') @Watch('isSilentModeChange') isSilentMode: boolean = false;
   @StorageLink('isEffectOn') @Watch('isEffectModeChange') isEffectOn: boolean = false;
@@ -77,12 +77,12 @@ export struct ControlAreaComponent {
   // [End currentVolumeChange]
 
   switchPlayMode() {
-    if (this.playModeIndex === PlayModeSwitchList.length - 1) {
+    if (this.playModeIndex === playModeSwitchList.length - 1) {
       this.playModeIndex = 0;
     } else {
       this.playModeIndex++;
     }
-    this.playMode = PlayModeSwitchList[this.playModeIndex];
+    this.playMode = playModeSwitchList[this.playModeIndex];
     Logger.info(TAG, 'playModeIndex is' + this.playModeIndex);
     this.promptAction.openToast({
       message: `${this.playMode === MusicPlayMode.ORDER ?

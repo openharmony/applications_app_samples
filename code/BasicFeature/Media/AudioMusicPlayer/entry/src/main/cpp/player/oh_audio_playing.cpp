@@ -44,6 +44,7 @@ constexpr int WAV_FMT_CHUNK_SIZE_BYTE_RATE = 4;
 constexpr int WAV_FMT_CHUNK_SIZE_BLOCK_ALIGN = 2;
 constexpr int WAV_FMT_CHUNK_SIZE_BITS_PER_SAMPLE = 2;
 constexpr int WAV_HEADER_MAX_SEARCH_SIZE = 4096;
+constexpr int WAV_CHUNK_ALIGNMENT = 2;
 
 // Audio effect constants
 constexpr float AUDIO_EFFECT_GAIN_COEFFICIENT = 0.4f;
@@ -143,7 +144,7 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
 
     size_t actualSize = 0;
     bool success = audioFileOprInfo->audioBufferQueue->Pop(
-        reinterpret_cast<uint8_t*>(audioData),static_cast<size_t>(audioDataSize),actualSize);
+        reinterpret_cast<uint8_t*>(audioData), static_cast<size_t>(audioDataSize), actualSize);
     if (!success || actualSize == 0) {
         if (audioFileOprInfo->isFileEnd &&
             audioFileOprInfo->audioBufferQueue->IsEmpty()) {
@@ -248,7 +249,7 @@ static bool ReadWavFmtChunk(int32_t fd, uint32_t chunkSize, AudioFileOprInfo *au
 static void SkipUnknownChunk(int32_t fd, uint32_t chunkSize, uint32_t &currentOffset)
 {
     int skipBytes = chunkSize;
-    if (skipBytes % 2 != 0) {
+    if (skipBytes % WAV_CHUNK_ALIGNMENT != 0) {
         skipBytes += 1;
     }
     if (skipBytes > 0) {

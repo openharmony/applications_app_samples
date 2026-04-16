@@ -40,7 +40,8 @@ export async function getRawStringData(context: Context, rawFilePath: string): P
 }
 
 /**
- * Analysis of the lrc structure, similar to the following: [00:21.98] prime embryo outlines the blue and white pen dark to light.
+ * Analysis of the lrc structure, similar to the following:
+ * [00:21.98] prime embryo outlines the blue and white pen dark to light.
  *
  * @param text
  * @returns

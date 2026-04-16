@@ -47,8 +47,8 @@ export const enum LyricTopPosition {
 }
 
 export class LyricFile {
-  static readonly KRC: string = '.krc';
-  static readonly LRC: string = '.lrc';
+  public static readonly KRC: string = '.krc';
+  public static readonly LRC: string = '.lrc';
 }
 
 export class Rectangle {

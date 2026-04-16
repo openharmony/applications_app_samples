@@ -20,35 +20,35 @@ export class SongItem {
   /**
    * Primary key ID.
    */
-  id: number = 0;
+  public id: number = 0;
   /**
    * Music name.
    */
-  title: Resource | undefined;
+  public title: Resource | undefined;
   /**
    * Music author name.
    */
-  singer: Resource | undefined;
+  public singer: Resource | undefined;
   /**
    * Music logo information.
    */
-  mark: Resource = $r('app.string.page_show');
+  public mark: Resource = $r('app.string.page_show');
   /**
    * Music avatar information.
    */
-  label: Resource = $r('app.string.page_show');
+  public label: Resource = $r('app.string.page_show');
   /**
    * Music file path information.
    */
-  src: string = '';
+  public src: string = '';
   /**
    * Index of the current music list.
    */
-  index: number = 0;
+  public index: number = 0;
   /**
    * Lyric file path information.
    */
-  lyric: string = '';
+  public lyric: string = '';
   /**
    * Is the background dark.
    */

@@ -24,6 +24,13 @@
 #define LOG_DOMAIN 0x3200
 #define LOG_TAG "playingNDK"
 
+// Argument index constants for LoadSongInfoNDK
+constexpr size_t ARG_INDEX_FILE_NAME = 0;
+constexpr size_t ARG_INDEX_SONG_FD = 1;
+constexpr size_t ARG_INDEX_SONG_FILE_SIZE = 2;
+constexpr size_t ARG_INDEX_SONG_FILE_OFFSET = 3;
+constexpr size_t ARG_COUNT_LOAD_SONG_INFO = 4;
+
 struct PlayStatusCallbackContext {
     napi_env env = nullptr;
     napi_ref callbackRef = nullptr;
@@ -79,20 +86,20 @@ static napi_value InitPlayerNDK(napi_env env, napi_callback_info info)
 // Load song information
 static napi_value LoadSongInfoNDK(napi_env env, napi_callback_info info)
 {
-    size_t argCount = 4;
-    napi_value argValues[4] = {nullptr};
+    size_t argCount = ARG_COUNT_LOAD_SONG_INFO;
+    napi_value argValues[ARG_COUNT_LOAD_SONG_INFO] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
 
     char fileName[256] = {0};
     size_t fileNameLength = 0;
-    napi_get_value_string_utf8(env, argValues[0], fileName, sizeof(fileName), &fileNameLength);
+    napi_get_value_string_utf8(env, argValues[ARG_INDEX_FILE_NAME], fileName, sizeof(fileName), &fileNameLength);
 
     uint32_t songFd = -1;
-    napi_get_value_uint32(env, argValues[1], &songFd);
+    napi_get_value_uint32(env, argValues[ARG_INDEX_SONG_FD], &songFd);
     uint32_t songFileSize = 0;
-    napi_get_value_uint32(env, argValues[2], &songFileSize);
+    napi_get_value_uint32(env, argValues[ARG_INDEX_SONG_FILE_SIZE], &songFileSize);
     uint32_t songFileOffset = 0;
-    napi_get_value_uint32(env, argValues[3], &songFileOffset);
+    napi_get_value_uint32(env, argValues[ARG_INDEX_SONG_FILE_OFFSET], &songFileOffset);
 
     OHAudioPlayer::GetInstance().LoadSongInfo(fileName, songFd, songFileSize, songFileOffset);
     return nullptr;

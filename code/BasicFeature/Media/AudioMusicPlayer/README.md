@@ -46,7 +46,7 @@
 │  │     ├──ColorConversion.ets                            // 颜色转换类
 │  │     ├──Logger.ets                                     // 日志类
 │  │     ├──LrcUtils.ets                                   // 歌词工具类
-│  │     ├──PreferencesUtil.ets                            // 首选项工具类
+│  │     ├──PreferencesUtil.ets                            // 选项工具类
 │  │     └──ResourceConversion.ets                         // 资源工具类
 │  ├──component                                            // 组件
 │  │  └──CustomButton.ets                                  // 公共按钮组件

@@ -17,6 +17,7 @@
 #include <hilog/log.h>
 #include <chrono>
 #include <cstring>
+#include <securec.h>
 
 #undef LOG_DOMAIN
 #undef LOG_TAG
@@ -82,7 +83,7 @@ bool AudioBufferQueue::Pop(uint8_t* buffer, size_t bufferSize, size_t& actualSiz
     while (bytesCopied < bytesNeeded && !bufferQueue.empty()) {
         auto& data = bufferQueue.front();
         size_t bytesToCopy = std::min(bytesNeeded - bytesCopied, data.size());
-        memcpy(buffer + bytesCopied, data.data(), bytesToCopy);
+        memcpy_s(buffer + bytesCopied, bufferSize - bytesCopied, data.data(), bytesToCopy);
         bytesCopied += bytesToCopy;
 
         if (bytesToCopy == data.size()) {
