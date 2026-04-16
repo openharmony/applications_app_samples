@@ -27,9 +27,9 @@ export struct DataInGrid {
   @State services: Array<string> = [
     // app.string.Meeting资源文件中的value值为‘会议’
     this.context!.resourceManager.getStringSync($r('app.string.Meeting').id),
-    // app.string.Check_in资源文件中的value值为‘投票’
+    // app.string.Check_in资源文件中的value值为‘签到’
     this.context!.resourceManager.getStringSync($r('app.string.Check_in').id),
-    // app.string.Voting资源文件中的value值为‘签到’
+    // app.string.Voting资源文件中的value值为‘投票’
     this.context!.resourceManager.getStringSync($r('app.string.Voting').id),
     // app.string.Printing资源文件中的value值为‘打印’
     this.context!.resourceManager.getStringSync($r('app.string.Printing').id)
@@ -83,7 +83,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // app.string.Check_in资源文件中的value值为‘投票’
+              // app.string.Check_in资源文件中的value值为‘签到’
               Text($r('app.string.Check_in'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -91,7 +91,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // app.string.Voting资源文件中的value值为‘签到’
+              // app.string.Voting资源文件中的value值为‘投票’
               Text($r('app.string.Voting'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
