@@ -28,7 +28,6 @@ struct Index {
       Text('Contacts Kit (联系人服务)')
         .fontWeight(FontWeight.Bold)
         .textAlign(TextAlign.Center)
-        .textContentAlign(TextContentAlign.CENTER)
         .fontSize(20)
         .margin({ top: 20, bottom: 10 })
         .width('100%')
