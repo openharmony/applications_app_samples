@@ -69,7 +69,7 @@ struct AudioFileOprInfo {
     uint64_t songTotalFrames{0};
     int32_t targetPositionMs = 0;
     int32_t producerThreadTokenId = 0;
-    
+
     std::mutex songInfoMutex;
     std::atomic<bool> isSeekRequested{false};
     std::atomic<uint32_t> seekOffset{0};

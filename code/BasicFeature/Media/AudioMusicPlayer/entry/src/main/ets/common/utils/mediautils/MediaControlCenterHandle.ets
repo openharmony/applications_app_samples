@@ -87,7 +87,8 @@ export class MediaControlCenterHandle {
     audioPlayer.loadSongInfo(fileName, songRawFileDescriptor.fd, songRawFileDescriptor.length, songRawFileDescriptor.offset);
 
 
-      Logger.info(TAG, `WJJTest loadSongAssent is ${fileName} fd ${songRawFileDescriptor.fd}, songFileSize ${songRawFileDescriptor.length}, songOffset ${songRawFileDescriptor.offset}`);
+      Logger.info(TAG, `loadSongAssent is ${fileName} fd ${songRawFileDescriptor.fd},
+        songFileSize ${songRawFileDescriptor.length}, songOffset ${songRawFileDescriptor.offset}`);
     this.registerCallback();
   }
 

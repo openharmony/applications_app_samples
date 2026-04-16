@@ -226,7 +226,6 @@ export struct ControlAreaComponent {
           .trackColor($r('app.color.slider_track'))
           .onChange((value: number, mode: SliderChangeMode) => {
             if (mode === SliderChangeMode.End) {
-              Logger.info(TAG, `WJJseek from slider ${value}`);
               MediaControlCenter.getInstance().seek(value);
             }
             this.pageShowTime = 0;

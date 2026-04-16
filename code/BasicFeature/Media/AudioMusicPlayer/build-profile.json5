@@ -15,14 +15,28 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BB60CDDBA1BD70EC0E72B1D36279F413942451E4406082915A30B70AF12646B94C6C66BB07DE4BA",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.p12",
+          "storePassword": "0000001BB04598CFD0B9D0E8F33DDF5B08EF9E65BC6570345B81B14C2ABCCB1CC60C8383D6A03D8DEBBC6B"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "OpenHarmony",
+        "targetSdkVersion": "6.0.2(22)",
+        "compatibleSdkVersion": "6.0.2(22)",
+        "runtimeOS": "HarmonyOS",
         "buildOption": {
           "nativeCompiler": "BiSheng",
           "strictMode": {
@@ -34,7 +48,7 @@
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"

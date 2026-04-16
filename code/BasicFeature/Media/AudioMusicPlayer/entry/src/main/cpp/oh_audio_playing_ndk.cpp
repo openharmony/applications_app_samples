@@ -31,14 +31,15 @@ struct PlayStatusCallbackContext {
     uv_loop_s *loop = nullptr;
 };
 
-void PlayStateCallback(void *asyncContext, PlayStatus playStatus) {
+void PlayStateCallback(void *asyncContext, PlayStatus playStatus)
+{
     PlayStatusCallbackContext *context = (PlayStatusCallbackContext *)asyncContext;
-    
+
     if (context == nullptr || context->loop == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Invalid context or loop in PlayStateCallback");
         return;
     }
-    
+
     uv_work_t *work = new uv_work_t;
     context->playStatus = playStatus;
     work->data = context;
@@ -47,13 +48,13 @@ void PlayStateCallback(void *asyncContext, PlayStatus playStatus) {
         context->loop, work, [](uv_work_t *work) {},
         [](uv_work_t *work, int status) {
             PlayStatusCallbackContext *context = (PlayStatusCallbackContext *)work->data;
-            
+
             if (context == nullptr) {
                 OH_LOG_ERROR(LOG_APP, "Context is null in uv_work callback");
                 delete work;
                 return;
             }
-            
+
             napi_handle_scope scope = nullptr;
             napi_open_handle_scope(context->env, &scope);
             napi_value callback = nullptr;
@@ -69,65 +70,73 @@ void PlayStateCallback(void *asyncContext, PlayStatus playStatus) {
 
 
 // Initialize player
-static napi_value InitPlayerNDK(napi_env env, napi_callback_info info) {
+static napi_value InitPlayerNDK(napi_env env, napi_callback_info info)
+{
     OHAudioPlayer::GetInstance().InitPlayer();
     return nullptr;
 }
 
 // Load song information
-static napi_value LoadSongInfoNDK(napi_env env, napi_callback_info info) {
+static napi_value LoadSongInfoNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 4;
     napi_value argValues[4] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
-    
+
     char fileName[256] = {0};
     size_t fileNameLength = 0;
     napi_get_value_string_utf8(env, argValues[0], fileName, sizeof(fileName), &fileNameLength);
-    
+
     uint32_t songFd = -1;
     napi_get_value_uint32(env, argValues[1], &songFd);
     uint32_t songFileSize = 0;
     napi_get_value_uint32(env, argValues[2], &songFileSize);
     uint32_t songFileOffset = 0;
     napi_get_value_uint32(env, argValues[3], &songFileOffset);
-    
+
     OHAudioPlayer::GetInstance().LoadSongInfo(fileName, songFd, songFileSize, songFileOffset);
     return nullptr;
 }
 
 // Start to play song
-static napi_value PlaySongNDK(napi_env env, napi_callback_info info) {
+static napi_value PlaySongNDK(napi_env env, napi_callback_info info)
+{
     OHAudioPlayer::GetInstance().PlaySong();
     return nullptr;
 }
 
 // Pause to play song
-static napi_value PauseSongNDK(napi_env env, napi_callback_info info) {
+static napi_value PauseSongNDK(napi_env env, napi_callback_info info)
+{
     OHAudioPlayer::GetInstance().PauseSong();
     return nullptr;
 }
 
 // Stop to play song
-static napi_value StopSongNDK(napi_env env, napi_callback_info info) {
+static napi_value StopSongNDK(napi_env env, napi_callback_info info)
+{
     OHAudioPlayer::GetInstance().StopSong();
     return nullptr;
 }
 
-static napi_value GetProgressNDK(napi_env env, napi_callback_info info) {
+static napi_value GetProgressNDK(napi_env env, napi_callback_info info)
+{
     int32_t currentProgress = OHAudioPlayer::GetInstance().GetProgress();
     napi_value napiProgress = nullptr;
     napi_create_int32(env, currentProgress, &napiProgress);
     return napiProgress;
 }
 
-static napi_value GetSongDurationNDK(napi_env env, napi_callback_info info) {
+static napi_value GetSongDurationNDK(napi_env env, napi_callback_info info)
+{
     int32_t songDuration = OHAudioPlayer::GetInstance().GetSongDuration();
     napi_value napiDuration = nullptr;
     napi_create_int32(env, songDuration, &napiDuration);
     return napiDuration;
 }
 
-static napi_value GetRemainingTimeNDK(napi_env env, napi_callback_info info) {
+static napi_value GetRemainingTimeNDK(napi_env env, napi_callback_info info)
+{
     uint32_t remainingMs = OHAudioPlayer::GetInstance().GetRemainingTime();
     napi_value napiRemainingMs = nullptr;
     napi_create_uint32(env, remainingMs, &napiRemainingMs);
@@ -135,7 +144,8 @@ static napi_value GetRemainingTimeNDK(napi_env env, napi_callback_info info) {
 }
 
 // Seek to play song
-static napi_value SeekPlaySongNDK(napi_env env, napi_callback_info info) {
+static napi_value SeekPlaySongNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 1;
     napi_value argValues[1] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
@@ -146,11 +156,12 @@ static napi_value SeekPlaySongNDK(napi_env env, napi_callback_info info) {
 }
 
 // Watch play status
-static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info) {
+static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    
+
     if (OHAudioPlayer::GetInstance().PlayStatusCallbackContext != nullptr) {
         auto oldContext = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().PlayStatusCallbackContext;
         if (oldContext->callbackRef != nullptr) {
@@ -159,7 +170,7 @@ static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info) {
         delete oldContext;
         OH_LOG_INFO(LOG_APP, "Cleaned old PlayStatusCallbackContext");
     }
-    
+
     auto asyncContext = new PlayStatusCallbackContext();
     asyncContext->env = env;
     napi_create_reference(env, args[0], 1, &asyncContext->callbackRef);
@@ -170,7 +181,8 @@ static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info) {
 }
 
 // Set playing speed
-static napi_value SetPlayingSpeedNDK(napi_env env, napi_callback_info info) {
+static napi_value SetPlayingSpeedNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 1;
     napi_value argValues[1] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
@@ -181,7 +193,8 @@ static napi_value SetPlayingSpeedNDK(napi_env env, napi_callback_info info) {
 }
 
 // Get playing volume
-static napi_value GetPlayingVolumeNDK(napi_env env, napi_callback_info info) {
+static napi_value GetPlayingVolumeNDK(napi_env env, napi_callback_info info)
+{
     double currentVolume = OHAudioPlayer::GetInstance().GetPlayingVolume();
     napi_value napiVolume = nullptr;
     napi_create_double(env, currentVolume, &napiVolume);
@@ -189,7 +202,8 @@ static napi_value GetPlayingVolumeNDK(napi_env env, napi_callback_info info) {
 }
 
 // Set playing volume
-static napi_value SetPlayingVolumeNDK(napi_env env, napi_callback_info info) {
+static napi_value SetPlayingVolumeNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 1;
     napi_value argValues[1] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
@@ -200,7 +214,8 @@ static napi_value SetPlayingVolumeNDK(napi_env env, napi_callback_info info) {
 }
 
 // Set silent mode to player
-static napi_value SetSilentModeNDK(napi_env env, napi_callback_info info) {
+static napi_value SetSilentModeNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 1;
     napi_value argValues[1] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
@@ -211,7 +226,8 @@ static napi_value SetSilentModeNDK(napi_env env, napi_callback_info info) {
 }
 
 // Set effect mode to player
-static napi_value SetEffectModeNDK(napi_env env, napi_callback_info info) {
+static napi_value SetEffectModeNDK(napi_env env, napi_callback_info info)
+{
     size_t argCount = 1;
     napi_value argValues[1] = {nullptr};
     napi_get_cb_info(env, info, &argCount, argValues, nullptr, nullptr);
@@ -222,7 +238,8 @@ static napi_value SetEffectModeNDK(napi_env env, napi_callback_info info) {
 }
 
 // Release player
-static napi_value ReleasePlayerNDK(napi_env env, napi_callback_info info) {
+static napi_value ReleasePlayerNDK(napi_env env, napi_callback_info info)
+{
     if (OHAudioPlayer::GetInstance().PlayStatusCallbackContext != nullptr) {
         auto context = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().PlayStatusCallbackContext;
         if (context->callbackRef != nullptr) {
@@ -233,15 +250,17 @@ static napi_value ReleasePlayerNDK(napi_env env, napi_callback_info info) {
         OHAudioPlayer::GetInstance().PlayStatusCallback = nullptr;
         OH_LOG_INFO(LOG_APP, "Cleaned PlayStatusCallbackContext in ReleasePlayer");
     }
-    
+
     OHAudioPlayer::GetInstance().ReleasePlayer();
     return nullptr;
 }
 
-static napi_value NAPI_Global_setEffectMode(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_setEffectMode(napi_env env, napi_callback_info info)
+{
 }
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"initPlayer", nullptr, InitPlayerNDK, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"loadSongInfo", nullptr, LoadSongInfoNDK, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -274,4 +293,5 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{ napi_module_register(&demoModule); }
