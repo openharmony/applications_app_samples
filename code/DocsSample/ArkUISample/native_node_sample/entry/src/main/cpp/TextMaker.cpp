@@ -36,6 +36,12 @@
 #define LOG_TAG "manager"
 #define LOG_INFO(...) OH_LOG_Print(LOG_APP, LOG_INFO, 0xD001400, LOG_TAG, __VA_ARGS__)
 
+namespace {
+// ===== 常量定义 =====
+constexpr float TEXT_THICKNESS_SCALE = 2.0f;
+constexpr uint32_t TEXT_DECORATION_COLOR = 0xFF00FFFF;
+}  // namespace
+
 #define VALUE_0 0
 #define VALUE_1 1
 #define VALUE_2 2
@@ -1020,6 +1026,22 @@ void setTextInputDirection(ArkUI_NodeHandle &textInput11)
     ArkUI_NumberValue directionValue[] = {{.i32 = ARKUI_TEXT_DIRECTION_RTL}};
     ArkUI_AttributeItem direction_item = {directionValue, sizeof(directionValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textInput11, NODE_TEXT_INPUT_DIRECTION, &direction_item);
+}
+
+void setTextInputDecoration(ArkUI_NodeHandle &textInputDecoration)
+{
+    ArkUI_AttributeItem input_Item = {.string = "测试TextInput NODE_TEXT_INPUT_DECORATION "};
+    Manager::nodeAPI_->setAttribute(textInputDecoration, NODE_TEXT_INPUT_TEXT, &input_Item);
+
+    OH_ArkUI_DecorationStyleOptions *decoration = OH_ArkUI_DecorationStyleOptions_Create();
+    OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(
+        decoration, ArkUI_TextDecorationType::ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH);
+    OH_ArkUI_DecorationStyleOptions_SetColor(decoration, TEXT_DECORATION_COLOR);
+    OH_ArkUI_DecorationStyleOptions_SetTextDecorationStyle(decoration,
+        ArkUI_TextDecorationStyle::ARKUI_TEXT_DECORATION_STYLE_WAVY);
+    OH_ArkUI_DecorationStyleOptions_SetThicknessScale(decoration, TEXT_THICKNESS_SCALE);
+    ArkUI_AttributeItem textDecorationItem = {.object = decoration};
+    Manager::nodeAPI_->setAttribute(textInputDecoration, NODE_TEXT_INPUT_DECORATION, &textDecorationItem);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -2605,6 +2627,23 @@ void setTextAreaDirecton(ArkUI_NodeHandle &textArea12)
     Manager::nodeAPI_->setAttribute(textArea12, NODE_TEXT_AREA_DIRECTION, &direction_item);
 }
 
+void setTextAreaDecoration(ArkUI_NodeHandle &textAreaDecoration)
+{
+    ArkUI_AttributeItem input_Item = {.string = "测试TextArea NODE_TEXT_AREA_DECORATION "};
+    Manager::nodeAPI_->setAttribute(textAreaDecoration, NODE_TEXT_AREA_TEXT, &input_Item);
+
+    OH_ArkUI_DecorationStyleOptions *decoration = OH_ArkUI_DecorationStyleOptions_Create();
+    OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(
+        decoration, ArkUI_TextDecorationType::ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH);
+    OH_ArkUI_DecorationStyleOptions_SetColor(decoration, TEXT_DECORATION_COLOR);
+    OH_ArkUI_DecorationStyleOptions_SetTextDecorationStyle(decoration,
+        ArkUI_TextDecorationStyle::ARKUI_TEXT_DECORATION_STYLE_WAVY);
+    OH_ArkUI_DecorationStyleOptions_SetThicknessScale(decoration, TEXT_THICKNESS_SCALE);
+    ArkUI_AttributeItem textDecorationItem = {.object = decoration};
+    Manager::nodeAPI_->setAttribute(textAreaDecoration, NODE_TEXT_AREA_DECORATION, &textDecorationItem);
+    OH_ArkUI_DecorationStyleOptions_Destroy(decoration);
+}
+
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
 {
     const char *textAreaText = "这是设置自定义键盘";
@@ -3035,7 +3074,7 @@ void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInput10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput10Button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-    ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputDecoration = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     setTextInput1(textInput1);
     setTextInput2(textInput2);
     setTextInput3(textInput3);
@@ -3047,7 +3086,7 @@ void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
     setTextInput9(textInput9, textInput9Button1);
     setTextInput10(textInput10, textInput10Button);
     setTextInputDirection(textInput11);
-    setTextInputSelectAI(textInputAISelect);
+    setTextInputDecoration(textInputDecoration);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
     Manager::nodeAPI_->addChild(textContainer, textInput3);
@@ -3064,11 +3103,12 @@ void setAllTextInputPart1(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput10);
     Manager::nodeAPI_->addChild(textContainer, textInput10Button);
     Manager::nodeAPI_->addChild(textContainer, textInput11);
-    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textInputDecoration);
 }
 
 void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
 {
+    ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput13 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput13_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInput14 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
@@ -3077,10 +3117,12 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoard2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    setTextInputSelectAI(textInputAISelect);
     setTextInput13(textInput13, textInput13_2);
     setTextInput14(textInput14, true);
     setTextInput15(textInput15, textInput15_2);
     setTextInputKeyboard(textInputKeyBoard, textInputKeyBoard2, textInputKeyBoardButton);
+    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput13);
     Manager::nodeAPI_->addChild(textContainer, textInput13_2);
     Manager::nodeAPI_->addChild(textContainer, textInput14);
@@ -3160,10 +3202,12 @@ void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle horizontalTextArea = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textAreaDecoration = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
 
     setTextArea10(textArea10, textArea10Button1);
     setTextArea11(textArea11, textArea11Button);
     setTextAreaDirecton(textArea12);
+    setTextAreaDecoration(textAreaDecoration);
     setTextArea14(textArea14, textArea14_2);
     setTextArea16(textArea15, textArea15_2);
     setTextAreaHorizontalScrolling(horizontalTextArea);
@@ -3173,6 +3217,7 @@ void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea11);
     Manager::nodeAPI_->addChild(textContainer, textArea11Button);
     Manager::nodeAPI_->addChild(textContainer, textArea12);
+    Manager::nodeAPI_->addChild(textContainer, textAreaDecoration);
     Manager::nodeAPI_->addChild(textContainer, textArea14);
     Manager::nodeAPI_->addChild(textContainer, textArea14_2);
     Manager::nodeAPI_->addChild(textContainer, textArea15);

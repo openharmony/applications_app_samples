@@ -55,6 +55,9 @@ constexpr float SHADOW_OFFSET_X = 1.0f;
 constexpr float SHADOW_OFFSET_Y = 2.0f;
 constexpr int32_t SHADOW_NUM = 2;
 constexpr int32_t LINE_HEIGHT = 10;
+constexpr int32_t LINE_HEIGHT_MULTIPLE = 2;
+constexpr int32_t LINE_SPACING = 30;
+constexpr bool ONLY_BETWEEN_LINES = true;
 constexpr int32_t LETTER_SPACING = 9;
 constexpr uint32_t TEXT_STYLE_BG_COLOR = 0xFF00FF00;
 constexpr float TEXT_STYLE_BG_RADIUS_TL = 10.0f;
@@ -161,6 +164,7 @@ public:
     static void CreateStyledStringWithBackgroundColorStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithGestureStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithLineHeightStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
+    static void CreateStyledStringWithLineSpacingStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithUrlStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
 
     static void StyledStringBasicOperations(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
@@ -185,6 +189,7 @@ public:
         CreateStyledStringWithBackgroundColorStyle(node, std::move(func));
         CreateStyledStringWithGestureStyle(node, std::move(func));
         CreateStyledStringWithLineHeightStyle(node, std::move(func));
+        CreateStyledStringWithLineSpacingStyle(node, std::move(func));
         CreateStyledStringWithUrlStyle(node, std::move(func));
         StyledStringBasicOperations(node, std::move(func));
         StyledStringStyleOperations(node, std::move(func));
