@@ -37,9 +37,9 @@ entry/src/
 
 ### 相关权限
 
-[ohos.permission.READ_CONTACTS](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionread_contacts)
+[ohos.permission.READ_CONTACTS](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/security/AccessToken/restricted-permissions.md#ohospermissionread_contacts)
 
-[ohos.permission.WRITE_CONTACTS](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/restricted-permissions#ohospermissionwrite_contacts)
+[ohos.permission.WRITE_CONTACTS](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/security/AccessToken/restricted-permissions.md#ohospermissionwrite_contacts)
 
 ### 依赖
 
