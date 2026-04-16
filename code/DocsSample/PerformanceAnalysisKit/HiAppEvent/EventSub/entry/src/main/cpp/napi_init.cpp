@@ -64,6 +64,7 @@ static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
 {
     auto time = params["time"].asInt64();
     auto foreground = params["foreground"].asBool();
+    auto appRunningUniqueIdId = params["app_running_unique_id"].asString();
     auto bundleVersion = params["bundle_version"].asString();
     auto bundleName = params["bundle_name"].asString();
     auto processName = params["process_name"].asString();
@@ -82,6 +83,8 @@ static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
     auto logOverLimit = params["log_over_limit"].asBool();
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                appRunningUniqueIdId.c_str());
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                 bundleVersion.c_str());
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
@@ -106,8 +109,7 @@ static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
                 externalLog.c_str());
-    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
-                logOverLimit);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
 }
 // [End FreezeEvent_OnReceive_Output]
 // [Start FreezeEvent_OnReceive]
@@ -144,6 +146,7 @@ static void HandleLeakEventInfo(const struct HiAppEvent_AppEventInfo &appEventIn
             auto uid = params["uid"].asInt();
             auto resourceType = params["resourceType"].asString();
             auto bundleName = params["bundle_name"].asString();
+            auto appRunningUniqueIdId = params["app_running_unique_id"].asString();
             auto bundleVersion = params["bundle_version"].asString();
             auto memory = writer.write(params["memory"]);
             auto externalLog = writer.write(params["external_log"]);
@@ -155,6 +158,8 @@ static void HandleLeakEventInfo(const struct HiAppEvent_AppEventInfo &appEventIn
                 resourceType.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
                 bundleName.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                appRunningUniqueIdId.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                 bundleVersion.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s",
@@ -483,6 +488,8 @@ static void OnReceiveCrashEvent(const char *domain, const struct HiAppEvent_AppE
                     params["release_type"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.cpu_abi=%{public}s",
                     params["cpu_abi"].asString().c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                    params["app_running_unique_id"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                     params["bundle_version"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
@@ -580,6 +587,8 @@ static void OnTakeCrash(const char *const *events, uint32_t eventLen)
                     eventInfo["release_type"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.cpu_abi=%{public}s",
                     eventInfo["cpu_abi"].asString().c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                    eventInfo["app_running_unique_id"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                     eventInfo["bundle_version"].asString().c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
@@ -661,6 +670,7 @@ static void OnTriggerFreezeEvent(std::string domain, std::string name, Json::Val
     if (domain == DOMAIN_OS && name == EVENT_APP_FREEZE) {
         auto time = eventInfo["time"].asInt64();
         auto foreground = eventInfo["foreground"].asBool();
+        auto appRunningUniqueIdId = eventInfo["app_running_unique_id"].asString();
         auto bundleVersion = eventInfo["bundle_version"].asString();
         auto bundleName = eventInfo["bundle_name"].asString();
         auto processName = eventInfo["process_name"].asString();
@@ -679,6 +689,8 @@ static void OnTriggerFreezeEvent(std::string domain, std::string name, Json::Val
         auto logOverLimit = eventInfo["log_over_limit"].asBool();
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                    appRunningUniqueIdId.c_str());
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                     bundleVersion.c_str());
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
@@ -727,6 +739,7 @@ static void OnTakeLeakEvent(const char *const *events, uint32_t eventLen)
                 auto uid = eventInfo["uid"].asInt();
                 auto resourceType = eventInfo["resourceType"].asString();
                 auto bundleName = eventInfo["bundle_name"].asString();
+                auto appRunningUniqueIdId = eventInfo["app_running_unique_id"].asString();
                 auto bundleVersion = eventInfo["bundle_version"].asString();
                 auto memory = writer.write(eventInfo["memory"]);
                 auto externalLog = writer.write(eventInfo["external_log"]);
@@ -738,6 +751,8 @@ static void OnTakeLeakEvent(const char *const *events, uint32_t eventLen)
                     resourceType.c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
                     bundleName.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.app_running_unique_id=%{public}s",
+                    appRunningUniqueIdId.c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
                     bundleVersion.c_str());
                 OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s",
