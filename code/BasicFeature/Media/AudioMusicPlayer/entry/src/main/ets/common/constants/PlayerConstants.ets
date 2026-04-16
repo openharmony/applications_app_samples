@@ -108,9 +108,9 @@ export enum AudioPlayerState {
   UNKNOWN
 }
 
-export const FirstSongTitle = 'Dream It Possible';
+export const firstSongTitle = 'Dream It Possible';
 
-export const FirstSongSinger = 'Delacey';
+export const firstSongSinger = 'Delacey';
 
 export const SELECT_MUSIC_INDEX = 'selectIndex';
 
@@ -127,6 +127,6 @@ export const EFFECT_ID = 'effectId';
 export const DEFAULT_VOLUME = 1;
 
 export class Options {
-  offset?: number;
-  length?: number;
+  public offset?: number;
+  public length?: number;
 }

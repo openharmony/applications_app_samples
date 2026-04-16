@@ -45,19 +45,22 @@ export class MediaControlCenterCallbackAction {
   }
 
   doPlayAction() {
-    // When the monitoring focus is released and it is necessary to restore the focus, the playback state of the new upper layer needs to be refreshed
+    // When the monitoring focus is released and it is necessary to restore the focus,
+    // the playback state of the new upper layer needs to be refreshed
     MediaControlCenter.getInstance().play();
     MediaControlCenter.getInstance().updateIsPlay(true);
   }
 
   doPauseAction() {
-    // When the monitoring focus is preempted and a pause needs to be executed, the playback state of the new upper layer needs to be refreshed
+    // When the monitoring focus is preempted and a pause needs to be executed,
+    // the playback state of the new upper layer needs to be refreshed
     MediaControlCenter.getInstance().pause();
     MediaControlCenter.getInstance().updateIsPlay(false);
   }
 
   doStopAction() {
-    // When the monitoring focus is seized and it is necessary to stop, the playback state of the new upper layer needs to be refreshed
+    // When the monitoring focus is seized and it is necessary to stop,
+    // the playback state of the new upper layer needs to be refreshed
     MediaControlCenter.getInstance().stop();
     MediaControlCenter.getInstance().updateIsPlay(false);
   }

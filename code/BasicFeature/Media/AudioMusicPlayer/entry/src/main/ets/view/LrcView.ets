@@ -413,9 +413,9 @@ export default struct shiLrcView {
     let text = lyric.lineWords;
     if (lyric.words && lyric.words.length > 0) {
       this.context.textAlign = 'center';
-      let startX_g = this.lrcX - textMetrics.width / 2;
-      let endX_g = startX_g + textMetrics.width;
-      let gradY_g = this.lrcY - textMetrics.height / 2;
+      let startXg = this.lrcX - textMetrics.width / 2;
+      let endXg = startXg + textMetrics.width;
+      let gradYg = this.lrcY - textMetrics.height / 2;
 
       let progress = 0;
       let findPlayingWord = false;
@@ -443,7 +443,7 @@ export default struct shiLrcView {
         }
       }
 
-      this.context.fillStyle = this.progressGrad(startX_g, gradY_g, endX_g, gradY_g, progress);
+      this.context.fillStyle = this.progressGrad(startXg, gradYg, endXg, gradYg, progress);
       this.context.fillText(text, this.lrcX, this.lrcY, this.lrcWidth);
     } else {
       this.context.textAlign = 'center';
@@ -456,7 +456,7 @@ export default struct shiLrcView {
     if (lyric.words && lyric.words.length > 0) {
       let textStartX = this.lrcX - textMetrics.width / 2;
       let textEndX = textStartX + textMetrics.width;
-      let gradY_Star = this.lrcY - textMetrics.height / 2;
+      let gradYStar = this.lrcY - textMetrics.height / 2;
 
       let wordXX = textStartX;
       let starX = textStartX;
@@ -472,7 +472,7 @@ export default struct shiLrcView {
               (this.lyricMilliSecondsTime - wordStartTime) / lyric.words[i].duration / lyric.words.length;
             let wordPassedProgress = i / lyric.words.length;
             let progress = wordPassedProgress + wordProgress;
-            this.context.fillStyle = this.progressGrad(textStartX, gradY_Star, textEndX, gradY_Star, progress);
+            this.context.fillStyle = this.progressGrad(textStartX, gradYStar, textEndX, gradYStar, progress);
             this.context.font = this.fontWeight + ' ' + this.mCurrentTextSize + 'vp ' + this.fontFamily;
             this.context.fillText(lyric.words[i].text, wordXX, this.lrcY, this.lrcWidth);
             findPlayingWordStar = true;
@@ -625,8 +625,8 @@ export default struct shiLrcView {
       case LyricTopPosition.Top:
         for (let i = 0; i <= line && i < this.mLrcEntryList.length; i++) {
           if (i === line) {
-            offsetY += this.getLineHeight(this.mLrcEntryList[i].lineWords, true) / 2
-              - this.getLineHeight(this.mLrcEntryList[i].lineWords, false) / 2;
+            offsetY += this.getLineHeight(this.mLrcEntryList[i].lineWords, true) / 2 -
+              this.getLineHeight(this.mLrcEntryList[i].lineWords, false) / 2;
           } else {
             offsetY += this.getLineHeight(this.mLrcEntryList[i].lineWords, false) + this.mDividerHeight;
           }
@@ -690,8 +690,8 @@ export default struct shiLrcView {
   findShowLine(milliSeconds: number): number {
     if (this.mLrcEntryList && this.mLrcEntryList.length > 0) {
       for (let index = 0; index < this.mLrcEntryList.length; index++) {
-        if (this.mLrcEntryList[index].lineStartTime <= milliSeconds
-          && this.mLrcEntryList[index].lineStartTime + this.mLrcEntryList[index].lineDuration >= milliSeconds) {
+        if (this.mLrcEntryList[index].lineStartTime <= milliSeconds &&
+          this.mLrcEntryList[index].lineStartTime + this.mLrcEntryList[index].lineDuration >= milliSeconds) {
           return index;
         }
       }

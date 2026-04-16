@@ -20,7 +20,7 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { MediaTools } from './MediaTools';
 import { SongItem } from '../../../viewmodel/SongData';
 import Logger from '../Logger';
-import { FirstSongSinger, FirstSongTitle, MusicPlayMode } from '../../constants/PlayerConstants';
+import { firstSongSinger, firstSongTitle, MusicPlayMode } from '../../constants/PlayerConstants';
 import { PreferencesUtil } from '../PreferencesUtil';
 import { MediaControlCenter } from './MediaControlCenter';
 
@@ -28,7 +28,7 @@ const TAG = 'AVSessionController';
 
 export class AVSessionController {
   private context: common.UIAbilityContext | undefined = undefined;
-  private AVSession: avSession.AVSession | undefined = undefined;
+  private avSession: avSession.AVSession | undefined = undefined;
   private songList: SongItem[] = [];
   private musicIndex: number | undefined = 0;
   private mediaControlCenter: MediaControlCenter | undefined = undefined;
@@ -51,8 +51,8 @@ export class AVSessionController {
 
   // [Start initAVSession]
   public async initAVSession() {
-    if (this.isSessionInitialized && this.AVSession) {
-      Logger.info(TAG, `session already initialized: sessionId : ${this.AVSession.sessionId}`);
+    if (this.isSessionInitialized && this.avSession) {
+      Logger.info(TAG, `session already initialized: sessionId : ${this.avSession.sessionId}`);
       await this.setAVMetadata();
       return;
     }
@@ -63,10 +63,10 @@ export class AVSessionController {
       return;
     }
     this.mediaControlCenter = MediaControlCenter.getInstance();
-    this.AVSession = await avSession.createAVSession(this.context, "PLAY_AUDIO", 'audio');
-    await this.AVSession.activate();
+    this.avSession = await avSession.createAVSession(this.context, 'PLAY_AUDIO', 'audio');
+    await this.avSession.activate();
     this.isSessionInitialized = true;
-    Logger.info(TAG, `session create successed : sessionId : ${this.AVSession.sessionId}`);
+    Logger.info(TAG, `session create successed : sessionId : ${this.avSession.sessionId}`);
     await this.setAVMetadata();
     this.setLaunchAbility();
     this.setListenerForMesFromController();
@@ -95,8 +95,8 @@ export class AVSessionController {
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
     wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-      if (this.AVSession) {
-        this.AVSession.setLaunchAbility(agent);
+      if (this.avSession) {
+        this.avSession.setLaunchAbility(agent);
       }
     })
       .catch((err: BusinessError) => {
@@ -138,8 +138,8 @@ export class AVSessionController {
             artist = this.context.resourceManager.getStringSync(this.songList[this.musicIndex].singer!.id);
           }
         } else {
-          title = FirstSongTitle;
-          artist = FirstSongSinger;
+          title = firstSongTitle;
+          artist = firstSongSinger;
         }
         let metadata: avSession.AVMetadata = {
           assetId: `${this.musicIndex}`,
@@ -155,8 +155,8 @@ export class AVSessionController {
         if (lrc) {
           metadata.lyric = lrc;
         }
-        if (this.AVSession) {
-          this.AVSession.setAVMetadata(metadata).then(() => {
+        if (this.avSession) {
+          this.avSession.setAVMetadata(metadata).then(() => {
             Logger.info(TAG, 'SetAVMetadata successfully');
           }).catch((err: BusinessError) => {
             Logger.error(TAG, `SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -173,16 +173,16 @@ export class AVSessionController {
   // [Start setListenerForMesFromController]
   // Set listening events
   async setListenerForMesFromController() {
-    if (!this.AVSession) {
+    if (!this.avSession) {
       return;
     }
-    this.AVSession.on('play', this.onPlay);
-    this.AVSession.on('pause', this.onPause);
-    this.AVSession.on('playNext', this.onPlayNext);
-    this.AVSession.on('playPrevious', this.onPlayPrevious);
-    this.AVSession.on('seek', this.onSeek);
-    this.AVSession.on('setLoopMode', this.onSetLoopMode);
-    this.AVSession.on('toggleFavorite', this.onToggleFavorite);
+    this.avSession.on('play', this.onPlay);
+    this.avSession.on('pause', this.onPause);
+    this.avSession.on('playNext', this.onPlayNext);
+    this.avSession.on('playPrevious', this.onPlayPrevious);
+    this.avSession.on('seek', this.onSeek);
+    this.avSession.on('setLoopMode', this.onSetLoopMode);
+    this.avSession.on('toggleFavorite', this.onToggleFavorite);
   }
 
   // [End setListenerForMesFromController]
@@ -266,28 +266,28 @@ export class AVSessionController {
       Logger.error(TAG, 'mediaControlFunction is undefined in setPlayModeToAVSession');
       return;
     }
-    let AVSessionLoopMode: avSession.LoopMode = avSession.LoopMode.LOOP_MODE_SEQUENCE;
+    let avSessionLoopMode: avSession.LoopMode = avSession.LoopMode.LOOP_MODE_SEQUENCE;
     switch (currentPlayMode) {
       case MusicPlayMode.SINGLE_CYCLE:
-        AVSessionLoopMode = avSession.LoopMode.LOOP_MODE_SINGLE;
+        avSessionLoopMode = avSession.LoopMode.LOOP_MODE_SINGLE;
         break;
       case MusicPlayMode.ORDER:
-        AVSessionLoopMode = avSession.LoopMode.LOOP_MODE_SEQUENCE;
+        avSessionLoopMode = avSession.LoopMode.LOOP_MODE_SEQUENCE;
         break;
       case MusicPlayMode.RANDOM:
-        AVSessionLoopMode = avSession.LoopMode.LOOP_MODE_SHUFFLE;
+        avSessionLoopMode = avSession.LoopMode.LOOP_MODE_SHUFFLE;
         break;
       default:
         break;
     }
-    this.setLoopModeState(AVSessionLoopMode);
+    this.setLoopModeState(avSessionLoopMode);
   }
 
   // [Start setPlayState]
   // Set favorite state.
   private setFavoriteState(isFavorite: boolean) {
-    if (this.AVSession) {
-      this.AVSession.setAVPlaybackState({ isFavorite }, (err: BusinessError) => {
+    if (this.avSession) {
+      this.avSession.setAVPlaybackState({ isFavorite }, (err: BusinessError) => {
         if (err) {
           Logger.error(TAG, `setFavoriteState BusinessError: code: ${err.code}, message: ${err.message}`);
         } else {
@@ -299,8 +299,8 @@ export class AVSessionController {
 
   // Set progress state.
   public setProgressState(ms: number) {
-    if (this.AVSession) {
-      this.AVSession.setAVPlaybackState({
+    if (this.avSession) {
+      this.avSession.setAVPlaybackState({
         position: {
           elapsedTime: ms,
           updateTime: new Date().getTime()
@@ -317,11 +317,11 @@ export class AVSessionController {
 
   // Set play state.
   public setPlayState(isPlay: boolean) {
-    if (!this.AVSession) {
-      Logger.error(TAG, 'AVSession is undefined');
+    if (!this.avSession) {
+      Logger.error(TAG, 'avSession is undefined');
       return;
     }
-    this.AVSession.setAVPlaybackState({
+    this.avSession.setAVPlaybackState({
       state: isPlay ? avSession.PlaybackState.PLAYBACK_STATE_PLAY : avSession.PlaybackState.PLAYBACK_STATE_PAUSE,
     }, (err: BusinessError) => {
       if (err) {
@@ -358,9 +358,9 @@ export class AVSessionController {
   }
 
   // Set loopMode state.
-  public async setLoopModeState(AVSessionLoopMode: avSession.LoopMode) {
-    if (this.AVSession) {
-      this.AVSession.setAVPlaybackState({ loopMode: AVSessionLoopMode }, (err: BusinessError) => {
+  public async setLoopModeState(avSessionLoopMode: avSession.LoopMode) {
+    if (this.avSession) {
+      this.avSession.setAVPlaybackState({ loopMode: avSessionLoopMode }, (err: BusinessError) => {
         if (err) {
           Logger.error(TAG, `setLoopModeState BusinessError: code: ${err.code}, message: ${err.message}`);
         } else {
@@ -371,16 +371,16 @@ export class AVSessionController {
   }
 
   async unregisterSessionListener() {
-    if (!this.AVSession) {
+    if (!this.avSession) {
       return;
     }
-    this.AVSession.off('play');
-    this.AVSession.off('pause');
-    this.AVSession.off('playNext');
-    this.AVSession.off('playPrevious');
-    this.AVSession.off('setLoopMode');
-    this.AVSession.off('seek');
-    this.AVSession.off('toggleFavorite');
-    this.AVSession.destroy();
+    this.avSession.off('play');
+    this.avSession.off('pause');
+    this.avSession.off('playNext');
+    this.avSession.off('playPrevious');
+    this.avSession.off('setLoopMode');
+    this.avSession.off('seek');
+    this.avSession.off('toggleFavorite');
+    this.avSession.destroy();
   }
 }

@@ -140,15 +140,15 @@ export class BreakpointConstants {
   /**
    * Range of the small device width.
    */
-  static readonly RANGE_SM: string = '(320vp<=width<600vp)';
+  public static readonly RANGE_SM: string = '(320vp<=width<600vp)';
 
   /**
    * Range of the middle device width.
    */
-  static readonly RANGE_MD: string = '(600vp<=width<840vp)';
+  public static readonly RANGE_MD: string = '(600vp<=width<840vp)';
 
   /**
    * Range of the large device width.
    */
-  static readonly RANGE_LG: string = '(840vp<=width)';
+  public static readonly RANGE_LG: string = '(840vp<=width)';
 }

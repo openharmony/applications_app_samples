@@ -23,7 +23,7 @@ const MY_STORE = 'myStore';
 export class PreferencesUtil {
   private static preferencesUtil: PreferencesUtil;
   private context: common.UIAbilityContext | undefined = AppStorage.get('context');
-  preferences: preferences.Preferences | undefined;
+  public preferences: preferences.Preferences | undefined;
 
   constructor() {
     let options: preferences.Options = { name: MY_STORE };

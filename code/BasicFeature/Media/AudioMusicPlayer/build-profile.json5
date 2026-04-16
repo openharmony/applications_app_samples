@@ -15,7 +15,21 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B0D7B2CEF487914A6884C40D7759E4C3C6410216A9C022636F7729AFBF75B8E7A9B8C30FC430F47",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\default_AudioMusicPlayer_l1pS21kTAkwFJRmzPVP-wN-xYiFr6-0NzGArrLrifqU=.p12",
+          "storePassword": "0000001BBECEFCBE20281F6E00753E515B5ADA9360929B30B0E596FE7B59496C83DA3DD30600B0C93C3B0C"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

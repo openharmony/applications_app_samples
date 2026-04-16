@@ -52,5 +52,5 @@ export class SongItem {
   /**
    * Is the background dark.
    */
-  isDarkBackground: boolean = false;
+  public isDarkBackground: boolean = false;
 }

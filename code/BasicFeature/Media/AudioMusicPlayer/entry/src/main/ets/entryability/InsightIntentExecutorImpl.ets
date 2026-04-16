@@ -19,7 +19,7 @@ import { MediaControlCenter } from '../common/utils/mediautils/MediaControlCente
 const TAG = 'InsightIntentExecutor';
 
 class EntityIdObj {
-  entityId: string = '';
+  public entityId: string = '';
 }
 
 export default class InsightIntentExecutorImpl extends InsightIntentExecutor {
@@ -54,13 +54,17 @@ export default class InsightIntentExecutorImpl extends InsightIntentExecutor {
    * @param entityId Play content id
    */
   private async playFunc(entityId: string): Promise<insightIntent.ExecuteResult> {
-    // At this point, the application starts playing from the background. Besides initializing the playback resources, it is also necessary to set AVMetadata, register the broadcast control callback, and apply for a long-term broadcasting task
+    // At this point, the application starts playing from the background.
+    // Besides initializing the playback resources, it is also necessary to set AVMetadata,
+    // register the broadcast control callback, and apply for a long-term broadcasting task
     if (entityId.length === 0) {
       // The cold start of the broadcast control center has been initiated
-      // The entityId is empty (entityid.length == 0), and the application decides on its own whether to play content, continue historical content, or recommend content
+      // The entityId is empty (entityid.length == 0), and the application decides on its own whether to play content,
+      // continue historical content, or recommend content
       this.playMusic();
     } else {
-      // The entityId is not empty, indicating that the user specifies the content (playlist/album) to play. Here, all playlists are virtual
+      // The entityId is not empty, indicating that the user specifies the content (playlist/album) to play.
+      // Here, all playlists are virtual
       this.playMusic();
     }
     return Promise.resolve({

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SongItem } from "../viewmodel/SongData"
+import { SongItem } from '../viewmodel/SongData'
 
 const songList: SongItem[] = [
   {
@@ -32,7 +32,7 @@ const songList: SongItem[] = [
     singer: $r('app.string.singer_two'),
     mark: $r('app.media.ic_sq'),
     label: $r('app.media.ic_avatar2'),
-    src: 'world.pcm',
+    src: 'world.wav',
     index: 1,
     lyric: '',
     isDarkBackground: false
@@ -43,7 +43,7 @@ const songList: SongItem[] = [
     singer: $r('app.string.singer_three'),
     mark: $r('app.media.ic_vip'),
     label: $r('app.media.ic_avatar16'),
-    src: 'power.pcm',
+    src: 'power.wav',
     index: 2,
     lyric: '',
     isDarkBackground: true

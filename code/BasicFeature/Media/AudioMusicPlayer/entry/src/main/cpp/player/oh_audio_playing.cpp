@@ -71,16 +71,16 @@ static void OnAudioInterruptEvent(OH_AudioRenderer *audioRenderer, [[maybe_unuse
 {
     if ((type == AUDIOSTREAM_INTERRUPT_SHARE) && (hint == AUDIOSTREAM_INTERRUPT_HINT_RESUME)) {
         OH_LOG_INFO(LOG_APP, "Audio interrupt hint: RESUME");
-        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().PlayStatusCallbackContext,
-            PlayStatus::Play);
+        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().playStatusCallbackContext,
+            PlayStatus::PLAY);
     } else if (hint == AUDIOSTREAM_INTERRUPT_HINT_PAUSE) {
         OH_LOG_INFO(LOG_APP, "Audio interrupt hint: PAUSE");
-        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().PlayStatusCallbackContext,
-            PlayStatus::Pause);
+        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().playStatusCallbackContext,
+            PlayStatus::PAUSE);
     } else if (hint == AUDIOSTREAM_INTERRUPT_HINT_STOP) {
         OH_LOG_INFO(LOG_APP, "Audio interrupt hint: STOP");
-        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().PlayStatusCallbackContext,
-            PlayStatus::Stop);
+        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().playStatusCallbackContext,
+            PlayStatus::STOP);
     }
 }
 
@@ -97,8 +97,8 @@ static void OnAudioDeviceChangeEvent([[maybe_unused]] OH_AudioRenderer* renderer
 {
     OH_LOG_ERROR(LOG_APP, "receive audio device change, ret: %{public}d", reason);
     if (reason == REASON_OLD_DEVICE_UNAVAILABLE) {
-        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().PlayStatusCallbackContext,
-            PlayStatus::Pause);
+        OHAudioPlayer::GetInstance().PlayStatusCallback(OHAudioPlayer::GetInstance().playStatusCallbackContext,
+            PlayStatus::PAUSE);
     }
 }
 
@@ -143,10 +143,7 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
 
     size_t actualSize = 0;
     bool success = audioFileOprInfo->audioBufferQueue->Pop(
-        reinterpret_cast<uint8_t*>(audioData),
-        static_cast<size_t>(audioDataSize),
-        actualSize);
-
+        reinterpret_cast<uint8_t*>(audioData),static_cast<size_t>(audioDataSize),actualSize);
     if (!success || actualSize == 0) {
         if (audioFileOprInfo->isFileEnd &&
             audioFileOprInfo->audioBufferQueue->IsEmpty()) {
@@ -161,7 +158,15 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
 
     uint32_t channels = audioFileOprInfo->channels;
     uint32_t bitsPerSample = audioFileOprInfo->bitsPerSample;
+    if (bitsPerSample == 0 || channels == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid audio params: bits=%{public}u, channels=%{public}u", bitsPerSample, channels);
+        return AUDIO_DATA_CALLBACK_RESULT_INVALID;
+    }
     uint32_t bytesPerFrame = channels * (bitsPerSample / BITS_PER_BYTE);
+    if (bytesPerFrame == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid bytesPerFrame: %{public}u", bytesPerFrame);
+        return AUDIO_DATA_CALLBACK_RESULT_INVALID;
+    }
     uint64_t framesWritten = actualSize / bytesPerFrame;
     audioFileOprInfo->totalFramesWritten += framesWritten;
     audioFileOprInfo->currentFramesWritten += framesWritten;
@@ -169,7 +174,6 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
     if (workgroup != nullptr) {
         OH_AudioWorkgroup_Stop(workgroup);
     }
-
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
 // [End OnAudioRendererWriteDataEvent]
@@ -209,8 +213,12 @@ static bool ReadWavFmtChunk(int32_t fd, uint32_t chunkSize, AudioFileOprInfo *au
         return false;
     }
 
-    uint16_t audioFormat, numChannels, blockAlign, bitsPerSample;
-    uint32_t sampleRate, byteRate;
+    uint16_t audioFormat = 0;
+    uint16_t numChannels = 0;
+    uint16_t blockAlign = 0;
+    uint16_t bitsPerSample = 0;
+    uint32_t sampleRate = 0;
+    uint32_t byteRate = 0;
 
     read(fd, &audioFormat, WAV_FMT_CHUNK_SIZE_AUDIO_FORMAT);
     read(fd, &numChannels, WAV_FMT_CHUNK_SIZE_CHANNELS);
@@ -262,7 +270,7 @@ static bool ParseWavHeader(int32_t fd, AudioFileOprInfo *audioFileOprInfo)
     uint32_t currentOffset = WAV_HEADER_BASIC_SIZE;
     bool foundFmt = false;
 
-    while (true) {
+    while (currentOffset <= WAV_HEADER_MAX_SEARCH_SIZE) {
         if (read(fd, chunkId, WAV_HEADER_SIZE_CHUNK_ID) < WAV_HEADER_SIZE_CHUNK_ID) {
             OH_LOG_ERROR(LOG_APP, "Failed to read chunk ID at offset: %{public}u", currentOffset);
             return false;
@@ -294,33 +302,50 @@ static bool ParseWavHeader(int32_t fd, AudioFileOprInfo *audioFileOprInfo)
         } else {
             SkipUnknownChunk(fd, chunkSize, currentOffset);
         }
-
-        if (currentOffset > WAV_HEADER_MAX_SEARCH_SIZE) {
-            OH_LOG_ERROR(LOG_APP, "WAV header too large, no data chunk found");
-            return false;
-        }
     }
+
+    OH_LOG_ERROR(LOG_APP, "WAV header too large, no data chunk found");
+    return false;
 }
 
-// [Start GetAudioFileOffset]
-// Get audio file offset value by seek timeStamp
-static uint32_t GetAudioFileOffset(uint32_t songDuration, float targetTimeStamp, uint32_t fileSize,
-    uint32_t sampleRate, uint32_t channels, uint32_t bitsPerSample)
+static uint32_t GetAudioFileOffset(AudioFileOprInfo* info, uint32_t targetTimeStamp)
 {
-    uint32_t fileOffset = floor((targetTimeStamp / songDuration) * fileSize);
+    if (info == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "AudioFileOprInfo is null");
+        return 0;
+    }
+
+    uint32_t songDuration = info->songDuration;
+    uint32_t fileSize = info->songFileSize;
+    uint32_t channels = info->channels;
+    uint32_t bitsPerSample = info->bitsPerSample;
+
+    if (songDuration == 0 || bitsPerSample == 0 || channels == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid params: duration=%{public}u, bits=%{public}u, channels=%{public}u",
+            songDuration, bitsPerSample, channels);
+        return 0;
+    }
+    uint32_t fileOffset = floor((static_cast<float>(targetTimeStamp) / songDuration) * fileSize);
     uint32_t bytesPerSampleFrame = channels * (bitsPerSample / BITS_PER_BYTE);
+    if (bytesPerSampleFrame == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid bytesPerSampleFrame: %{public}u", bytesPerSampleFrame);
+        return 0;
+    }
     uint32_t alignedOffset = fileOffset - fileOffset % bytesPerSampleFrame;
     OH_LOG_INFO(LOG_APP,
-        "GetAudioFileOffset: targetTimeStamp=%{public}f, songDuration=%{public}u, "
+        "GetAudioFileOffset: targetTimeStamp=%{public}u, songDuration=%{public}u, "
         "fileSize=%{public}u, fileOffset=%{public}u, bytesPerSampleFrame=%{public}u, "
         "alignedOffset=%{public}u",
         targetTimeStamp, songDuration, fileSize, fileOffset, bytesPerSampleFrame, alignedOffset);
     return alignedOffset;
 }
-// [End GetAudioFileOffset]
 
 static uint32_t GetAudioCurrentTime(uint32_t songDuration, float currentOffset, uint32_t fileSize)
 {
+    if (fileSize == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid fileSize: %{public}u", fileSize);
+        return 0;
+    }
     uint32_t currentTime = floor((currentOffset / fileSize) * songDuration);
     OH_LOG_INFO(LOG_APP,
         "Get audio current time successfully. "
@@ -505,7 +530,23 @@ static void CalculateSongDuration(AudioFileOprInfo* info)
     uint32_t sampleRate = info->sampleRate;
     uint32_t channels = info->channels;
     uint32_t bitsPerSample = info->bitsPerSample;
+
+    if (sampleRate == 0 || channels == 0 || bitsPerSample == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid audio params: rate=%{public}u, channels=%{public}u, bits=%{public}u",
+            sampleRate, channels, bitsPerSample);
+        info->songDuration = 0;
+        info->songTotalFrames = 0;
+        return;
+    }
+
     uint32_t bytesPerSecond = sampleRate * channels * (bitsPerSample / BITS_PER_BYTE);
+    if (bytesPerSecond == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid bytesPerSecond: %{public}u", bytesPerSecond);
+        info->songDuration = 0;
+        info->songTotalFrames = 0;
+        return;
+    }
+
     info->songDuration = static_cast<uint32_t>(
         static_cast<double>(info->songFileSize) / bytesPerSecond * MILLIS_PER_SECOND);
     info->songTotalFrames = static_cast<uint64_t>(info->songDuration) * sampleRate / MILLIS_PER_SECOND;
@@ -576,8 +617,8 @@ void OHAudioPlayer::LoadSongInfo(const char *fileName, uint32_t songFd, uint32_t
     }
     OH_LOG_INFO(LOG_APP, "Restored effect mode: %{public}d", isEffectOn);
 
-    OH_LOG_INFO(LOG_APP, "Load song info success. fd=%{public}d, size=%{public}d, duration=%{public}d, offset=%{public}d",
-        songFd, songFileSize, audioFileOprInfo->songDuration, songFileOffset);
+    OH_LOG_INFO(LOG_APP, "Load song info success. fd=%{public}d, size=%{public}d, duration=%{public}d, "
+        "offset=%{public}d", songFd, songFileSize, audioFileOprInfo->songDuration, songFileOffset);
 }
 
 // [Start PlaySong]
@@ -669,6 +710,10 @@ int32_t OHAudioPlayer::GetProgress()
     }
 
     uint32_t sampleRate = audioFileOprInfo->sampleRate;
+    if (sampleRate == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid sampleRate: %{public}u", sampleRate);
+        return audioFileOprInfo->targetPositionMs;
+    }
 
     uint64_t framesWritten = audioFileOprInfo->currentFramesWritten.load();
     int32_t currentTimeMs = static_cast<int32_t>((framesWritten * MILLIS_PER_SECOND) / sampleRate);
@@ -692,6 +737,11 @@ uint32_t OHAudioPlayer::GetRemainingTime()
     }
 
     uint32_t sampleRate = audioFileOprInfo->sampleRate;
+    if (sampleRate == 0) {
+        OH_LOG_ERROR(LOG_APP, "Invalid sampleRate: %{public}u", sampleRate);
+        return 0;
+    }
+
     uint64_t framesWritten = audioFileOprInfo->totalFramesWritten.load();
 
     int64_t currentFramePosition;
@@ -705,8 +755,7 @@ uint32_t OHAudioPlayer::GetRemainingTime()
 
 static uint32_t CalculateSeekOffset(AudioFileOprInfo* info, uint32_t timeStamp)
 {
-    uint32_t fileOffset = GetAudioFileOffset(info->songDuration, timeStamp, info->songFileSize,
-        info->sampleRate, info->channels, info->bitsPerSample);
+    uint32_t fileOffset = GetAudioFileOffset(info, timeStamp);
     fileOffset += info->songFileOffset;
     if (info->isWavFile) {
         fileOffset += info->wavDataOffset;
@@ -1019,9 +1068,7 @@ void OHAudioPlayer::FileReaderThreadFunc(AudioFileOprInfo* audioFileOpr)
     if (!audioFileOpr || !audioFileOpr->audioBufferQueue) {
         return;
     }
-
     OH_LOG_INFO(LOG_APP, "File reader thread started");
-
     OH_AudioWorkgroup *workgroup = OHAudioPlayer::GetInstance().audioWorkgroup;
     if (workgroup != nullptr) {
         OH_AudioWorkgroup_AddCurrentThread(workgroup, &audioFileOpr->producerThreadTokenId);
@@ -1030,12 +1077,9 @@ void OHAudioPlayer::FileReaderThreadFunc(AudioFileOprInfo* audioFileOpr)
 
     uint8_t readBuffer[FILE_READ_BUFFER_SIZE];
     bool isReadError = false;
-
     while (audioFileOpr->audioBufferQueue->IsRunning()) {
         HandleSeekRequest(audioFileOpr);
-
         auto readSize = read(audioFileOpr->songFd, readBuffer, sizeof(readBuffer));
-
         if (readSize > 0) {
             if (!PushAudioData(audioFileOpr, readBuffer, readSize)) {
                 break;
@@ -1054,16 +1098,14 @@ void OHAudioPlayer::FileReaderThreadFunc(AudioFileOprInfo* audioFileOpr)
             break;
         }
     }
-
     if (isReadError) {
         TriggerPlayCompletionCallback(audioFileOpr);
     }
-
+    
     if (workgroup != nullptr && audioFileOpr->producerThreadTokenId != 0) {
         OH_AudioWorkgroup_RemoveThread(workgroup, audioFileOpr->producerThreadTokenId);
         OH_LOG_INFO(LOG_APP, "Producer thread removed from workgroup");
     }
-
     OH_LOG_INFO(LOG_APP, "File reader thread exited");
 }
 
@@ -1079,8 +1121,8 @@ void OHAudioPlayer::TriggerPlayCompletionCallback(AudioFileOprInfo* audioFileOpr
         OH_LOG_INFO(LOG_APP, "Triggering play completion callback");
         if (OHAudioPlayer::GetInstance().PlayStatusCallback) {
             OHAudioPlayer::GetInstance().PlayStatusCallback(
-                OHAudioPlayer::GetInstance().PlayStatusCallbackContext,
-                PlayStatus::Complete);
+                OHAudioPlayer::GetInstance().playStatusCallbackContext,
+                PlayStatus::COMPLETE);
         }
     }
 }

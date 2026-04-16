@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SongItem } from "./SongData";
+import { SongItem } from './SongData';
 
 
 export class SongDataSource implements IDataSource {

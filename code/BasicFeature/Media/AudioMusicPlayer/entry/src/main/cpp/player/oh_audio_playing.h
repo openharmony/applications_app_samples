@@ -28,7 +28,7 @@
 #include <mutex>
 #include "audio_buffer_queue.h"
 
-enum PlayStatus { Play = 1, Pause = 2, Stop = 3, Complete = 4};
+enum PlayStatus { PLAY = 1, PAUSE = 2, STOP = 3, COMPLETE = 4};
 
 #pragma pack(push, 1)
 struct WavHeader {
@@ -119,10 +119,11 @@ public:
     void SetEffectMode(bool isEffectOn);
     void ReleasePlayer();
     void (*PlayStatusCallback)(void *context, PlayStatus playStatus) = nullptr;
-    void *PlayStatusCallbackContext = nullptr;
+    void *playStatusCallbackContext = nullptr;
     static void TriggerPlayCompletionCallback(AudioFileOprInfo* audioFileOprInfo);
 
-    static OHAudioPlayer &GetInstance() {
+    static OHAudioPlayer &GetInstance()
+    {
         static OHAudioPlayer instance;
         return instance;
     }

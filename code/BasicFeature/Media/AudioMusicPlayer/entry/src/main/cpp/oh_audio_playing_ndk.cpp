@@ -162,8 +162,8 @@ static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    if (OHAudioPlayer::GetInstance().PlayStatusCallbackContext != nullptr) {
-        auto oldContext = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().PlayStatusCallbackContext;
+    if (OHAudioPlayer::GetInstance().playStatusCallbackContext != nullptr) {
+        auto oldContext = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().playStatusCallbackContext;
         if (oldContext->callbackRef != nullptr) {
             napi_delete_reference(env, oldContext->callbackRef);
         }
@@ -176,7 +176,7 @@ static napi_value OnPlayStatusNDK(napi_env env, napi_callback_info info)
     napi_create_reference(env, args[0], 1, &asyncContext->callbackRef);
     napi_get_uv_event_loop(env, &asyncContext->loop);
     OHAudioPlayer::GetInstance().PlayStatusCallback = &PlayStateCallback;
-    OHAudioPlayer::GetInstance().PlayStatusCallbackContext = asyncContext;
+    OHAudioPlayer::GetInstance().playStatusCallbackContext = asyncContext;
     return nullptr;
 }
 
@@ -240,13 +240,13 @@ static napi_value SetEffectModeNDK(napi_env env, napi_callback_info info)
 // Release player
 static napi_value ReleasePlayerNDK(napi_env env, napi_callback_info info)
 {
-    if (OHAudioPlayer::GetInstance().PlayStatusCallbackContext != nullptr) {
-        auto context = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().PlayStatusCallbackContext;
+    if (OHAudioPlayer::GetInstance().playStatusCallbackContext != nullptr) {
+        auto context = (PlayStatusCallbackContext *)OHAudioPlayer::GetInstance().playStatusCallbackContext;
         if (context->callbackRef != nullptr) {
             napi_delete_reference(env, context->callbackRef);
         }
         delete context;
-        OHAudioPlayer::GetInstance().PlayStatusCallbackContext = nullptr;
+        OHAudioPlayer::GetInstance().playStatusCallbackContext = nullptr;
         OHAudioPlayer::GetInstance().PlayStatusCallback = nullptr;
         OH_LOG_INFO(LOG_APP, "Cleaned PlayStatusCallbackContext in ReleasePlayer");
     }

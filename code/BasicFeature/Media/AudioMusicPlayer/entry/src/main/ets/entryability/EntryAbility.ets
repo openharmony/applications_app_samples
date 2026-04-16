@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
         AppStorage.setOrCreate<window.Window>('window', data);
         data.setWindowLayoutFullScreen(true);
         const uiContext = data.getUIContext();
-        AppStorage.setOrCreate("uiContext", uiContext);
+        AppStorage.setOrCreate('uiContext', uiContext);
         let topArea = this.windowObj.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
         let bottomArea = this.windowObj.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR)
         let topHeight: number;

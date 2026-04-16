@@ -32,8 +32,7 @@ export class BreakpointType<T> {
   getValue(currentPoint: string): T {
     if (currentPoint === 'sm') {
       return this.options.sm as T;
-    }
-    else if (currentPoint === 'md') {
+    } else if (currentPoint === 'md') {
       return this.options.md as T;
     } else {
       return this.options.lg as T;
@@ -43,10 +42,13 @@ export class BreakpointType<T> {
 
 export class BreakpointSystem {
   private currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
-  context: UIContext = AppStorage.get("uiContext") as UIContext;
-  private smListener: mediaquery.MediaQueryListener = this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_SM);
-  private mdListener: mediaquery.MediaQueryListener = this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_MD);
-  private lgListener: mediaquery.MediaQueryListener = this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_LG);
+  public context: UIContext = AppStorage.get('uiContext') as UIContext;
+  private smListener: mediaquery.MediaQueryListener =
+    this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_SM);
+  private mdListener: mediaquery.MediaQueryListener =
+    this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_MD);
+  private lgListener: mediaquery.MediaQueryListener =
+    this.context.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_LG);
 
   private updateCurrentBreakpoint(breakpoint: string): void {
     if (this.currentBreakpoint !== breakpoint) {

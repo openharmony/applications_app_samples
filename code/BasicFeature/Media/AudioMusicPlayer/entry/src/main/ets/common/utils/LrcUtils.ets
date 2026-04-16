@@ -89,7 +89,8 @@ export function parseLrcLyric(text: string): Array<LrcEntry> {
 
 /**
  * Resolve the lyrics of Cool Dog, similar to the following structure.
- * [494, 228] < 0, 38, 0 > for < 38, 38, 0 > song < 76, 38, 0 >: < 114, 38, 0 > Zhou < 152, 38, 0 > Jie < 190, 38, 0 > L\n.
+ * [494, 228] < 0, 38, 0 > for < 38, 38, 0 > song < 76, 38, 0 >:
+ * < 114, 38, 0 > Zhou < 152, 38, 0 > Jie < 190, 38, 0 > L\n.
  *
  * @param lyricText
  * @returns

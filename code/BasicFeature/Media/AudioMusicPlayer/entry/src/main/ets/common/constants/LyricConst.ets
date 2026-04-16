@@ -52,10 +52,10 @@ export class LyricFile {
 }
 
 export class Rectangle {
-  left: number = 0;
-  top: number = 0;
-  right: number = 0;
-  bottom: number = 0;
+  public left: number = 0;
+  public top: number = 0;
+  public right: number = 0;
+  public bottom: number = 0;
 
   constructor(left: number, top: number, right: number, bottom: number) {
     if (left > right || top > bottom) {

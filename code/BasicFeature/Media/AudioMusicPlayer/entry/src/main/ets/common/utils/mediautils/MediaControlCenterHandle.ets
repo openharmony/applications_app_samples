@@ -16,7 +16,6 @@
 import { resourceManager } from '@kit.LocalizationKit';
 import Logger from '../Logger';
 import audioPlayer from 'libentry.so'
-import { MediaTools } from "./MediaTools";
 import { MediaControlCenterCallbackAction } from './MediaControlCenterCallbackAction';
 import { PreferencesUtil } from '../PreferencesUtil';
 import { DEFAULT_VOLUME, SILENT_ID, VOLUME_ID, EFFECT_ID } from '../../constants/PlayerConstants';
@@ -82,9 +81,10 @@ export class MediaControlCenterHandle {
     this.onProgress();
   }
 
-  // Load the current song information. The song information can be obtained from this interface, including fd length offset
+  // Load the song information. The song information can be obtained from this interface, including fd length offset
   loadSongAssent(songRawFileDescriptor: resourceManager.RawFileDescriptor, fileName: string) {
-    audioPlayer.loadSongInfo(fileName, songRawFileDescriptor.fd, songRawFileDescriptor.length, songRawFileDescriptor.offset);
+    audioPlayer.loadSongInfo(fileName, songRawFileDescriptor.fd, songRawFileDescriptor.length,
+    songRawFileDescriptor.offset);
 
 
       Logger.info(TAG, `loadSongAssent is ${fileName} fd ${songRawFileDescriptor.fd},
