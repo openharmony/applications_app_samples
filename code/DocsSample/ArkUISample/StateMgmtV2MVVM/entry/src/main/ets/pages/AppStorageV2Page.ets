@@ -39,7 +39,7 @@ struct TaskItem {
 
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Task ' + this.task.taskName + ' completion status changed from ' + mon.value()?.before + ' to ' + mon.value()?.now);
   }
 
   build() {
