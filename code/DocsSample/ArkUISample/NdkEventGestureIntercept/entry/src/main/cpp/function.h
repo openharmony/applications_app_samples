@@ -28,11 +28,14 @@
 #define DEFAULT_BG_LENGTH 233
 #define DEFAULT_BG_BORDER_WIDTH 2
 #define NODE_ID 2
-#define BUTTON_ID 14
+#define DEFAULT_STACK_HEIGHT 0.6
 #define DEFAULT_BUTTON_HEIGHT 0.25
 #define DEFAULT_BUTTON_WIDTH 0.5
+// 空白间距10
+#define BLANK_10 10.0
 
 namespace NativeXComponentSample {
+// 处理手势识别器
 bool GestureRecognizerModule(ArkUI_GestureRecognizerHandleArray &array, int32_t &uniqueId, int32_t size,
                              ArkUI_GestureCollectInterceptInfo *info)
 {
@@ -42,7 +45,8 @@ bool GestureRecognizerModule(ArkUI_GestureRecognizerHandleArray &array, int32_t 
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
                          "NdkEventGestureIntercept_SampleLog, gestureRecognizer isHostBelongsTo");
         }
-        if (uniqueId == BUTTON_ID) {
+        // 根据uniqueId判断事件是否来自右侧button
+        if (uniqueId == g_buttonId) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkEventGestureIntercept]",
                          "NdkEventGestureIntercept_SampleLog, gestureRecognizer is from Button2");
             OH_ArkUI_GestureCollectInterceptInfo_SetGestureCollectIntervention(
@@ -52,6 +56,7 @@ bool GestureRecognizerModule(ArkUI_GestureRecognizerHandleArray &array, int32_t 
     }
     return true;
 }
+// 处理触摸识别器
 void TouchRecognizerModule(ArkUI_TouchRecognizerHandleArray &arrayTouch, int32_t size)
 {
     for (auto i = 0; i < size; i++) {
@@ -127,13 +132,17 @@ void SecondModule()
 }
 void FirstModule(ArkUI_NodeHandle &root)
 {
+    auto stack = nodeAPI->createNode(ARKUI_NODE_STACK);
+    SetWidthPercent(stack, 1);
+    SetHeightPercent(stack, DEFAULT_STACK_HEIGHT);
+    nodeAPI->addChild(root, stack);
     row1 = nodeAPI->createNode(ARKUI_NODE_ROW);
     SetId(row1, "bgRow");
-    nodeAPI->addChild(root, row1);
+    nodeAPI->addChild(stack, row1);
 
     row2 = nodeAPI->createNode(ARKUI_NODE_ROW);
     SetId(row2, "fgRow");
-    nodeAPI->addChild(root, row2);
+    nodeAPI->addChild(stack, row2);
     nodeAPI->registerNodeEvent(row1, NODE_TOUCH_EVENT, 0, &row1);
     nodeAPI->registerNodeEvent(row2, NODE_TOUCH_EVENT, 0, &row2);
 
@@ -151,15 +160,24 @@ void FirstModule(ArkUI_NodeHandle &root)
     nodeAPI->addChild(row2, button2);
     nodeAPI->registerNodeEvent(button1, NODE_TOUCH_EVENT, 0, &button1);
     nodeAPI->registerNodeEvent(button2, NODE_TOUCH_EVENT, 0, &button2);
+    OH_ArkUI_NodeUtils_GetNodeUniqueId(button2, &g_buttonId);
 
     SetWidthPercent(button1, DEFAULT_BUTTON_WIDTH);
     SetHeightPercent(button1, DEFAULT_BUTTON_HEIGHT);
     SetWidthPercent(button2, DEFAULT_BUTTON_WIDTH);
     SetHeightPercent(button2, DEFAULT_BUTTON_HEIGHT);
+    SetButtonLabel(button1, "Button1");
+    SetButtonLabel(button2, "Button2");
     SetId(button1, "Button1");
     SetId(button2, "Button2");
     SecondModule();
     ThirdModule();
+    infoText = nodeAPI->createNode(ARKUI_NODE_TEXT);
+    SetId(infoText, "info");
+    SetText(infoText, g_explain.c_str());
+    SetWidthPercent(infoText, 1);
+    SetPadding(infoText, BLANK_10);
+    nodeAPI->addChild(root, infoText);
 }
 
 } // namespace NativeXComponentSample
