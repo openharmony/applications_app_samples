@@ -16,7 +16,7 @@
 #include "napi/native_api.h"
 #include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-// [Stat oh_jsvm_get_date_value]
+// [Start oh_jsvm_get_date_value]
 #include <ctime>
 // [StartExclude oh_jsvm_get_date_value]
 #define LOG_DOMAIN 0x3200
