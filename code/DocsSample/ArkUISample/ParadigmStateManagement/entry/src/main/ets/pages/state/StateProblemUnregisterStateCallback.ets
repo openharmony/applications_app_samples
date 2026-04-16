@@ -13,9 +13,9 @@
 * limitations under the License.
 */
 
+import resource from '../../common/Resource';
 // [Start state_problem_unregister_state_callback]
 import { common } from '@kit.AbilityKit';
-import resource from '../../common/Resource';
 
 class Model {
   private callback: (() => void) | undefined = () => {
