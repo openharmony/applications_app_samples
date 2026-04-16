@@ -8,6 +8,7 @@
 
 | 分布式协作示例 |
 |---|
+| ![分布式协作示例](entry/src/main/resources/base/media/application-dev_distributedservice_abilityconnectmanager-works.png) |
 | 本示例需要两台设备配合测试，展示设备间的连接、消息传递、数据传输等功能。 |
 
 ### 使用说明
@@ -65,7 +66,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/ArkTS-Sta/static_collab_sample/ > .git/info/sparse-checkout
+echo code/ArkTS-Sta/StaticCollabSample/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -15,8 +15,8 @@
  */
 
 // [Start sta_import]
-import abilityConnectionManager from '@ohos.distributedsched.abilityConnectionManager';
-import distributedDeviceManager from '@ohos.distributedDeviceManager';
+import abilityConnectionManager from '@kit.DistributedKit';
+import distributedDeviceManager from '@kit.DistributedKit';
 import { util } from '@kit.ArkTS';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
