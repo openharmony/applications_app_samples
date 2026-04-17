@@ -1,0 +1,273 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "Launcher"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "into_settings",
+      "value": "选择桌面编辑项"
+    },
+    {
+      "name": "add_blank_page",
+      "value": "添加空白页"
+    },
+    {
+      "name": "delete_blank_page",
+      "value": "删除空白页"
+    },
+    {
+      "name": "layout",
+      "value": "布局"
+    },
+    {
+      "name": "layout_style",
+      "value": "布局样式"
+    },
+    {
+      "name": "launcher_layout",
+      "value": "桌面布局"
+    },
+    {
+      "name": "recent_tasks_setting",
+      "value": "最近任务数"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "uninstall",
+      "value": "卸载"
+    },
+    {
+      "name": "isUninstall",
+      "value": "是否卸载"
+    },
+    {
+      "name": "submit",
+      "value": "卸载"
+    },
+    {
+      "name": "launcher_edit",
+      "value": "更多设置"
+    },
+    {
+      "name": "uninstall_success",
+      "value": "卸载成功"
+    },
+    {
+      "name": "uninstall_failed",
+      "value": "卸载失败"
+    },
+    {
+      "name": "disable_uninstall",
+      "value": "禁止卸载"
+    },
+    {
+      "name": "duplicate_add",
+      "value": "重复添加"
+    },
+    {
+      "name": "no_space_for_add",
+      "value": "没有多余的空间"
+    },
+    {
+      "name": "delete_app",
+      "value": "移除应用"
+    },
+    {
+      "name": "disable_add_to_dock",
+      "value": "禁止添加"
+    },
+    {
+      "name": "disable_add_to_delete",
+      "value": "禁止移除"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "服务卡片"
+    },
+    {
+      "name": "form_edit",
+      "value": "编辑"
+    },
+    {
+      "name": "app_center_menu_add_dock",
+      "value": "添加到快捷栏"
+    },
+    {
+      "name": "app_center_menu_add_desktop",
+      "value": "添加到工作区"
+    },
+    {
+      "name": "disable_to_move",
+      "value": "禁止移动"
+    },
+    {
+      "name": "add",
+      "value": "添加"
+    },
+    {
+      "name": "add_to",
+      "value": "添加到"
+    },
+    {
+      "name": "new_folder_name",
+      "value": "新建文件夹"
+    },
+    {
+      "name": "rename_folder",
+      "value": "重命名"
+    },
+    {
+      "name": "cancel_dialog",
+      "value": "取消"
+    },
+    {
+      "name": "confirm_dialog",
+      "value": "确认"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "add_form_to_desktop_more",
+      "value": "更多服务卡片"
+    },
+    {
+      "name": "app_center_menu_uninstall",
+      "value": "卸载"
+    },
+    {
+      "name": "delete_form",
+      "value": "移除"
+    },
+    {
+      "name": "is_delete_form",
+      "value": "是否移除"
+    },
+    {
+      "name": "form",
+      "value": "卡片"
+    },
+    {
+      "name": "remove_form_dialog_content",
+      "value": "通过长按应用进入“卡片管理”界面可以重新添加"
+    },
+    {
+      "name": "gesture_navigation_options",
+      "value": "手势导航开关"
+    },
+    {
+      "name": "No_running_apps_recently",
+      "value": "最近无运行应用"
+    },
+    {
+      "name": "app_menu_open",
+      "value": "打开"
+    },
+    {
+      "name": "remove_app_from_folder",
+      "value": "移出文件夹"
+    },
+    {
+      "name": "remove_mission_up",
+      "value": "按上键或上滑关闭任务"
+    },
+    {
+      "name": "remove_all_mission",
+      "value": "移除所有任务"
+    },
+    {
+      "name": "diffdisplay_expend_info",
+      "value": "扩展屏ID：%d 名称：%s "
+    },
+    {
+      "name": "diffdisplay_not_found_expandscreen",
+      "value": "没有检测到扩展屏,请重新连接扩展屏在尝试"
+    },
+    {
+      "name": "diffdisplay_check_expandscreen_error",
+      "value": "检测扩展屏失败 error:%s"
+    },
+    {
+      "name": "diffdisplay_lable",
+      "value": "不同应用多屏异显"
+    },
+    {
+      "name": "diffdisplay_toogle",
+      "value": "多屏异显开关: "
+    },
+    {
+      "name": "diffdisplay_reboot",
+      "value": "操作成功后需要重启生效"
+    },
+    {
+      "name": "diffdisplay_reboot_tip",
+      "value": "开关操作已经修改,需要手动重启生效 "
+    },
+    {
+      "name": "diffdisplay_launch_app_select",
+      "value": "待启动应用包名:"
+    },
+    {
+      "name": "diffdisplay_click_select",
+      "value": "点击进行选择"
+    },
+    {
+      "name": "diffdisplay_launch_display_select",
+      "value": "待启动扩展屏: "
+    },
+
+    {
+      "name": "diffdisplay_launch_app",
+      "value": "启动应用"
+    },
+    {
+      "name": "diffdisplay_connect_expand",
+      "value": "先连接或者选择扩展屏"
+    },
+    {
+      "name": "diffdisplay_app_notset",
+      "value": "应用包名或者类名未设置"
+    },
+    {
+      "name": "diffdisplay_start_fail",
+      "value": "启动应用失败 error：%s"
+    },
+    {
+      "name": "diffdisplay_select_app_title",
+      "value": "选择应用包名"
+    },
+    {
+      "name": "diffdisplay_select_expand_title",
+      "value": "选择扩展屏"
+    },
+    {
+      "name": "add_shortcuts_error",
+      "value": "当前应用暂不支持添加桌面快捷方式"
+    },
+    {
+      "name": "clear_mission_tips",
+      "value": "已清理至最佳状态"
+    },
+    {
+      "name": "app_cannot_edit",
+      "value": "该应用无法编辑"
+    },
+    {
+      "name": "app_cannot_move",
+      "value": "已经到底了，不能移动了"
+    },
+    {
+      "name": "recent_no_app",
+      "value": "沒有正在运行的应用"
+    }
+  ]
+}

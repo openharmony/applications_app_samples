@@ -1,0 +1,272 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "Launcher"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "into_settings",
+      "value": "Launcher settings"
+    },
+    {
+      "name": "add_blank_page",
+      "value": "Add Blank Page"
+    },
+    {
+      "name": "delete_blank_page",
+      "value": "Delete Blank Page"
+    },
+    {
+      "name": "layout",
+      "value": "Layout"
+    },
+    {
+      "name": "layout_style",
+      "value": "Layout Style"
+    },
+    {
+      "name": "launcher_layout",
+      "value": "Launcher Layout"
+    },
+    {
+      "name": "recent_tasks_setting",
+      "value": "Recent Tasks Setting"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "uninstall",
+      "value": "Uninstall"
+    },
+    {
+      "name": "submit",
+      "value": "Submit"
+    },
+    {
+      "name": "launcher_edit",
+      "value": "Launcher Edit"
+    },
+    {
+      "name": "uninstall_success",
+      "value": "Successfully uninstalled"
+    },
+    {
+      "name": "uninstall_failed",
+      "value": "Uninstallation failed"
+    },
+    {
+      "name": "disable_uninstall",
+      "value": "Disable uninstall"
+    },
+    {
+      "name": "duplicate_add",
+      "value": "Duplicate add to desktop"
+    },
+    {
+      "name": "no_space_for_add",
+      "value": "No Space for add"
+    },
+    {
+      "name": "delete_app",
+      "value": "Delete application"
+    },
+    {
+      "name": "disable_add_to_dock",
+      "value": "Disable add to dock"
+    },
+    {
+      "name": "disable_add_to_delete",
+      "value": "Disable add to delete"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "add widget to desktop"
+    },
+    {
+      "name": "form_edit",
+      "value": "edit service widget"
+    },
+    {
+      "name": "app_center_menu_add_dock",
+      "value": "add to dock"
+    },
+    {
+      "name": "app_center_menu_add_desktop",
+      "value": "add to desktop"
+    },
+    {
+      "name": "disable_to_move",
+      "value": "disable to move"
+    },
+    {
+      "name": "add",
+      "value": "Add"
+    },
+    {
+      "name": "add_to",
+      "value": "Add to "
+    },
+    {
+      "name": "new_folder_name",
+      "value": "New folder"
+    },
+    {
+      "name": "rename_folder",
+      "value": "Rename"
+    },
+    {
+      "name": "cancel_dialog",
+      "value": "cancel"
+    },
+    {
+      "name": "confirm_dialog",
+      "value": "confirm"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "add to desktop"
+    },
+    {
+      "name": "add_form_to_desktop_more",
+      "value": "add widget to desktop more"
+    },
+    {
+      "name": "app_center_menu_uninstall",
+      "value": "uninstall"
+    },
+    {
+      "name": "delete_form",
+      "value": "Delete service widget"
+    },
+    {
+      "name": "is_delete_form",
+      "value": "Whether to remove "
+    },
+    {
+      "name": "form",
+      "value": "service widget"
+    },
+    {
+      "name": "remove_form_dialog_content",
+      "value": "Long press the application to enter the service widget management page to add a new service widget"
+    },
+    {
+      "name": "gesture_navigation_options",
+      "value": "Gesture Navigation Options"
+    },
+    {
+      "name": "No_running_apps_recently",
+      "value": "no recently running applications"
+    },
+    {
+      "name": "app_menu_open",
+      "value": "open"
+    },
+    {
+      "name": "remove_app_from_folder",
+      "value": "remove app from folder"
+    },
+    {
+      "name": "isUninstall",
+      "value": "Uninstall "
+    },
+    {
+      "name": "remove_mission_up",
+      "value": "Move up to remove mission"
+    },
+    {
+      "name": "remove_all_mission",
+      "value": "Remove all missions"
+    },
+    {
+      "name": "diffdisplay_expend_info",
+      "value": "Expand screen ID %d name %s"
+    },
+    {
+      "name": "diffdisplay_not_found_expandscreen",
+      "value": "No extended display detected, please reconnect the extended display and try again."
+    },
+    {
+      "name": "diffdisplay_check_expandscreen_error",
+      "value": "Failed to detect the extension screen error:%s"
+    },
+    {
+      "name": "diffdisplay_lable",
+      "value": "Multi-screen display for different applications"
+    },
+    {
+      "name": "diffdisplay_toogle",
+      "value": "Multi-screen display switch: "
+    },
+    {
+      "name": "diffdisplay_reboot",
+      "value": "After operation nedd restart"
+    },
+    {
+      "name": "diffdisplay_reboot_tip",
+      "value": "The switch operation has been modified and needs to be manually restarted to take effect "
+    },
+    {
+      "name": "diffdisplay_launch_app_select",
+      "value": "Launched App:"
+    },
+    {
+      "name": "diffdisplay_click_select",
+      "value": "Click to select"
+    },
+    {
+      "name": "diffdisplay_launch_display_select",
+      "value": "Launched Screen: "
+    },
+    {
+      "name": "diffdisplay_launch_app",
+      "value": "Launch App"
+    },
+    {
+      "name": "diffdisplay_connect_expand",
+      "value": "Connect or select the extension screen first"
+    },
+    {
+      "name": "diffdisplay_app_notset",
+      "value": "The application package name or class name is not set"
+    },
+    {
+      "name": "diffdisplay_start_fail",
+      "value": "Failed to launch the app error:%s"
+    },
+    {
+      "name": "diffdisplay_select_app_title",
+      "value": "Select the application package name"
+    },
+    {
+      "name": "diffdisplay_select_expand_title",
+      "value": "Select Extended Screen"
+    },
+    {
+      "name": "add_shortcuts_error",
+      "value": "the app does not support adding desktop shortcuts"
+    },
+    {
+      "name": "clear_mission_tips",
+      "value": "Cleaned to the best condition"
+    },
+    {
+      "name": "app_cannot_edit",
+      "value": "The application cannot be edited."
+    },
+    {
+      "name": "app_cannot_move",
+      "value": "The application cannot be move."
+    },
+    {
+      "name": "recent_no_app",
+      "value": "There is no running application"
+    }
+  ]
+}
