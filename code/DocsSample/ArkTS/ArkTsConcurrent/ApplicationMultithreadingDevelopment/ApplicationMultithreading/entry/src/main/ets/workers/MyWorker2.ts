@@ -15,25 +15,28 @@
 
 // [Start worker_handle_associated_sync_task]
 import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-import Handle from './handle'; // 返回句柄
+// 返回句柄
+import Handle from './handle'; 
 
-let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
 
 // 无法传输的句柄，所有操作依赖此句柄
-let handler: Handle = new Handle()
+let handler: Handle = new Handle();
 
 // Worker线程的onmessage逻辑
-workerPort.onmessage = (e: MessageEvents): void => {
+workerPort.onmessage = (e : MessageEvents): void => {
   switch (e.data.type as number) {
     case 0:
-      handler.syncSet(e.data.data);
-      workerPort.postMessage('success set');
+      let result: boolean = false;
+      result = handler.syncSet(e.data.data);
+      console.info("worker: result is " + result);
+      workerPort.postMessage({'message': 'the result of syncSet() is ' + result, 'isTerminate': false});
       break;
     case 1:
-      handler.syncGet();
-      workerPort.postMessage('success get');
-      break;
-    default:
+      let num: number = 0;
+      num = handler.syncGet();
+      console.info("worker: num is " + num);
+      workerPort.postMessage({'message': 'the result of syncGet() is ' + num, 'isTerminate': true});
       break;
   }
 }

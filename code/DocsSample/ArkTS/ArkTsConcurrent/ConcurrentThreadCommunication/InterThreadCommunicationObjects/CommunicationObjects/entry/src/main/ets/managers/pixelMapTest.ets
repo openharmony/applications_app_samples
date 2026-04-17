@@ -15,9 +15,10 @@
 
 // [Start example_pass_obj]
 import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Concurrent
-export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
+export async function loadPixelMap(rawFileDescriptor: resourceManager.RawFileDescriptor): Promise<PixelMap> {
   // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
   // 创建pixelMap。

@@ -17,17 +17,20 @@
 // 此段示例为伪代码仅作为逻辑示意，便于开发者理解使用内存共享模型和Actor模型的区别
 class Queue {
   // ...
-  push(value: number) {}
+  push(value: number) {
+    // ...
+  }
 
   empty(): boolean {
     // ...
-    return true
+    return true;
   }
 
-  pop(value: number) :number {
+  pop(value: number): number {
     // ...
     return value;
   }
+  // ...
 }
 
 class Mutex {
@@ -38,17 +41,20 @@ class Mutex {
   }
 
   unlock() {
-
+    // ...
   }
+  // ...
 }
+
 class BufferQueue {
-  public queue: Queue = new Queue()
-  public mutex: Mutex = new Mutex()
+  public queue: Queue = new Queue();
+  public mutex: Mutex = new Mutex();
+
   add(value: number) {
     // 尝试获取锁
     if (this.mutex.lock()) {
-      this.queue.push(value)
-      this.mutex.unlock()
+      this.queue.push(value);
+      this.mutex.unlock();
     }
   }
 
@@ -57,11 +63,12 @@ class BufferQueue {
     // 尝试获取锁
     if (this.mutex.lock()) {
       if (this.queue.empty()) {
+        this.mutex.unlock();
         res = 1;
         return res;
       }
-      let num: number = this.queue.pop(value)
-      this.mutex.unlock()
+      let num: number = this.queue.pop(value);
+      this.mutex.unlock();
       res = num;
     }
     return res;
@@ -69,44 +76,42 @@ class BufferQueue {
 }
 
 // 构造一段全局共享的内存
-let gBufferQueue = new BufferQueue()
+let gBufferQueue = new BufferQueue();
 
 class Producer {
   constructor() {
   }
+
   run() {
-    let value = Math.random()
+    let value = Math.random();
     // 跨线程访问bufferQueue对象
-    gBufferQueue.add(value)
+    gBufferQueue.add(value);
   }
 }
 
 class ConsumerTest {
   constructor() {
   }
+
   run() {
     // 跨线程访问bufferQueue对象
     let num = 123;
-    let res = gBufferQueue.take(num)
+    let res = gBufferQueue.take(num);
     if (res != null) {
       // 添加消费逻辑
-      console.info('Add logic');
     }
   }
 }
 
 export function Main(): void {
-  console.info('Main start');
-  let consumer: ConsumerTest = new ConsumerTest()
-  let producer1: Producer = new Producer()
+  let consumer: ConsumerTest = new ConsumerTest();
+  let producer: Producer = new Producer();
   let threadNum: number = 10;
   for (let i = 0; i < threadNum; i++) {
-    // 模拟启动多线程执行生产任务
-    /* let thread = new Thread()
-     * thread.run(producer.run())
-     * consumer.run()
-     */
+    // 如下伪代码模拟启动多线程执行生产任务
+    // let thread = new Thread();
+    // thread.run(producer.run());
+    // consumer.run();
   }
-  console.info('Main end');
 }
 // [End cale_model]

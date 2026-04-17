@@ -15,12 +15,15 @@
 
 // [Start worker_handle_associated_sync_task]
 export default class Handle {
-  syncGet() {
-    return;
+  id: number = 0;
+
+  syncGet(): number {
+    return this.id;
   }
 
-  syncSet(num: number) {
-    return;
+  syncSet(num: number): boolean {
+    this.id = num;
+    return true;
   }
 }
 // [End worker_handle_associated_sync_task]

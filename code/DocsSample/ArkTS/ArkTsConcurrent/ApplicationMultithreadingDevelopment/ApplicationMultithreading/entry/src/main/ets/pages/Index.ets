@@ -24,29 +24,29 @@ struct Index {
   build() {
     Scroll() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        Text(resource.resourceToString($r('app.string.Time_consuming_task_concurrency')))
+        Text(resource.resourceToString($r('app.string.Time_consuming_task_concurrency').id))
           .padding('15vp')
           .width('100%')
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Cpu_intensive_task_development')),
+          buttonName: resource.resourceToString($r('app.string.Cpu_intensive_task_development').id),
           buttonUrl: 'managers/CpuIntensiveTaskDevelopment'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Io_intensive_task_development')),
+          buttonName: resource.resourceToString($r('app.string.Io_intensive_task_development').id),
           buttonUrl: 'managers/IoIntensiveTaskDevelopment'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Sync_task_development')),
+          buttonName: resource.resourceToString($r('app.string.Sync_task_development').id),
           buttonUrl: 'managers/SyncTaskDevelopment'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Long_time_task_guide')),
+          buttonName: resource.resourceToString($r('app.string.Long_time_task_guide').id),
           buttonUrl: 'managers/LongTimeTaskGuide'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Resident_task_guide')),
+          buttonName: resource.resourceToString($r('app.string.Resident_task_guide').id),
           buttonUrl: 'managers/ResidentTaskGuide'
         });
       }
