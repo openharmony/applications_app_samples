@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
+import fileIo from '@ohos.file.fs';
 import { logger } from '../utils/Logger';
 
 const TAG: string = 'FileUtil';
@@ -27,9 +26,9 @@ class FileUtil {
   async initDownloadDir(downloadDir: string): Promise<void> {  
     logger.info(TAG, `initDownloadDir downloadDir=${downloadDir}`);
     try {
-      fs.mkdirSync(`${downloadDir}/${ALBUMS[0]}`);
-      fs.mkdirSync(`${downloadDir}/${ALBUMS[1]}`);
-      fs.mkdirSync(`${downloadDir}/${ALBUMS[2]}`);
+      fileIo.mkdirSync(`${downloadDir}/${ALBUMS[0]}`);
+      fileIo.mkdirSync(`${downloadDir}/${ALBUMS[1]}`);
+      fileIo.mkdirSync(`${downloadDir}/${ALBUMS[2]}`);
     } catch (err) {
       logger.info(TAG, `initDownloadDir err =${JSON.stringify(err)}`);
     }
@@ -42,10 +41,10 @@ class FileUtil {
 
   async clearFolder(downloadDir: string,folderName: string): Promise<void> {
     try {
-      let files: string[] = fs.listFileSync(`${downloadDir}/${folderName}`);
+      let files: string[] = fileIo.listFileSync(`${downloadDir}/${folderName}`);
       logger.info(TAG, `listFiles listFileSync =${JSON.stringify(files)}`);
       for (let i = 0; i < files.length; i++) {
-        fs.unlinkSync(`${downloadDir}/${folderName}/${files[i]}`);
+        fileIo.unlinkSync(`${downloadDir}/${folderName}/${files[i]}`);
       }
     } catch (err) {
       logger.info(TAG, `listFiles err =${JSON.stringify(err)}`);
@@ -55,7 +54,7 @@ class FileUtil {
   async listFiles(downloadDir:string,folderName: string): Promise<Array<string>> { 
     let files: string[] = [];
     try {
-      files = fs.listFileSync(`${downloadDir}/${folderName}`);
+      files = fileIo.listFileSync(`${downloadDir}/${folderName}`);
       logger.info(TAG, `listFiles listFileSync =${JSON.stringify(files)}`);
     } catch (err) {
       logger.info(TAG, `listFiles err =${JSON.stringify(err)}`);

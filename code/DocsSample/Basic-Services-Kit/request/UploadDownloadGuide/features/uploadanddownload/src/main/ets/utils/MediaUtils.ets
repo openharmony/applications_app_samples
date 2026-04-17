@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import fs from '@ohos.file.fs';
+import fileIo from '@ohos.file.fs';
 import { logger } from '../utils/Logger';
 
 const TAG: string = 'MediaUtils';
@@ -22,16 +22,16 @@ export class MediaUtils {
   async copyFileToCache(cacheDir: string, uri: string): Promise<string> {
     let id = uri.split('/').pop();
     let imagePath = `${cacheDir}/${id}`;
-    if(fs.accessSync(imagePath)){
+    if(fileIo.accessSync(imagePath)){
       return imagePath;
     }
-    let file = await fs.open(uri);
+    let file = await fileIo.open(uri);
     try {
-      fs.copyFileSync(file.fd, imagePath);
+      fileIo.copyFileSync(file.fd, imagePath);
     } catch (err) {
       logger.info(TAG, `copyFileToCache copyFileSync err = ${err}`);
     }
-    await fs.close(file.fd);
+    await fileIo.close(file.fd);
     return imagePath;
   }
 }
