@@ -38,7 +38,7 @@ export abstract class QueryResultLike {
 }
 
 export class TrustEquipmentBucket {
-  IP: string = '';
+  public IP: string = '';
 
   constructor(ip: string) {
     this.IP = ip;
@@ -47,27 +47,35 @@ export class TrustEquipmentBucket {
 
 export abstract class RdbStoreLike {
   abstract executeSql(sql: string): Promise<void>;
-  abstract insert(table: string, bucket: relationalStore.ValuesBucket, callback: (err: BusinessError | BasicErrorLike | null, rowId: number) => void): void;
-  abstract delete(predicates: relationalStore.RdbPredicates, callback: (err: BusinessError | BasicErrorLike | null, rows: number) => void): void;
-  abstract query(predicates: relationalStore.RdbPredicates, columns: Array<string>): Promise<relationalStore.ResultSet | QueryResultLike>;
+  abstract insert(
+    table: string, 
+    bucket: relationalStore.ValuesBucket, 
+    callback: (err: BusinessError | BasicErrorLike | null, 
+    rowId: number) => void): void;
+  abstract delete(
+    predicates: relationalStore.RdbPredicates, 
+    callback: (err: BusinessError | BasicErrorLike | null, 
+    rows: number) => void): void;
+  abstract query(predicates: relationalStore.RdbPredicates, columns: Array<string>): 
+  Promise<relationalStore.ResultSet | QueryResultLike>;
 }
 
 export class StoreConfigModel implements relationalStore.StoreConfig {
-  name: string = 'Projection.db';
-  securityLevel: relationalStore.SecurityLevel = relationalStore.SecurityLevel.S1;
+  public name: string = 'Projection.db';
+  public securityLevel: relationalStore.SecurityLevel = relationalStore.SecurityLevel.S1;
 }
 
 export default class DeviceInfo {
-  ID: number = 0;
-  NAME: string = '';
-  INFO: string = '';
+  public ID: number = 0;
+  public NAME: string = '';
+  public INFO: string = '';
 
   constructor() {
   }
 }
 
 export class Rdb extends DeviceInfo {
-  static rdb: Rdb = new Rdb();
+  public static rdb: Rdb = new Rdb();
   public deviceInfo: DeviceInfo = new DeviceInfo();
   public context: common.UIAbilityContext | null = null;
   public rdbStore: relationalStore.RdbStore | RdbStoreLike | undefined = undefined;
@@ -110,7 +118,9 @@ export class Rdb extends DeviceInfo {
     const tableName: string = 'TRUSTEQUIPMENT';
     const valueBacket: TrustEquipmentBucket = new TrustEquipmentBucket(ip);
     if (this.rdbStore !== undefined) {
-      this.rdbStore.insert(tableName, { IP: valueBacket.IP }, (err: BusinessError | BasicErrorLike | null, rowId: number) => {
+      this.rdbStore.insert(
+        tableName, { IP: valueBacket.IP }, 
+        (err: BusinessError | BasicErrorLike | null, rowId: number) => {
         if (err) {
           console.error(TAG + 'relationalStore ' + 'Insert data failed, err: ' + JSON.stringify(err));
           return;

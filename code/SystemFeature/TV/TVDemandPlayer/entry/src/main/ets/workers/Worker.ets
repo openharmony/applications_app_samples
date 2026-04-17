@@ -20,8 +20,8 @@ import { isVideoFile, secToStr  } from '../utils/Utils';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 export class WorkerDataHolder {
-  key: string = '';
-  num: number = 0;
+  public key: string = '';
+  public num: number = 0;
 
   constructor(key: string = '', num: number = 0) {
     this.key = key;
@@ -38,11 +38,11 @@ export class WorkerPortHolder {
 }
 
 export class Worker {
-  data: string | number | boolean | Array<number> | WorkerDataHolder | null | undefined = null;
-  dataLen: number = 0;
-  worker: WorkerPortHolder | null = null;
-  url: string = '';
-  srcPath: string = '';
+  public data: string | number | boolean | Array<number> | WorkerDataHolder | null | undefined = null;
+  public dataLen: number = 0;
+  public worker: WorkerPortHolder | null = null;
+  public url: string = '';
+  public srcPath: string = '';
 
   constructor(data: string | number | boolean | Array<number> | WorkerDataHolder | null | undefined = null,
     dataLen: number = 0, url: string = '', srcPath: string = '') {

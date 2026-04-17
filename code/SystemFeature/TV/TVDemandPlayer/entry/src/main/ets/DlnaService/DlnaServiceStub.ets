@@ -117,7 +117,12 @@ export default class DlnaServiceStub extends rpc.RemoteObject implements DlnaSer
   }
 
   public onPlayerStatusChanged(playerStatus: number, callback: OnPlayerStatusChangedCallback): void {
-    if (playerStatus == 5 || playerStatus == 6 || playerStatus == 7 || playerStatus == 8 || playerStatus == 9 || playerStatus == 14) {
+    if (playerStatus == 5 || 
+    playerStatus == 6 || 
+    playerStatus == 7 || 
+    playerStatus == 8 || 
+    playerStatus == 9 || 
+    playerStatus == 14) {
 
       this.playFlag = true
     } else {

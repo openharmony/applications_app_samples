@@ -124,14 +124,14 @@ export class VideoAVPlayerClass {
               if (data?.length > 0) {
                 let audioTrackList: ItemsType[] = []
                 data.forEach((item: media.MediaDescription, index: number) => {
-                  let codeMineStr = item["codec_mime"] as string
+                  let codeMineStr = item['codec_mime'] as string
                   let codeMine = codeMineStr.split('/')
-                  if (codeMine[0] === "video") {
-                    this.vWidth = item["width"] as number
-                    this.vHeight = item["height"] as number
+                  if (codeMine[0] === 'video') {
+                    this.vWidth = item['width'] as number
+                    this.vHeight = item['height'] as number
                     // Surface尺寸由 videoPlayer.ets 的 preparedStateEvent 统一处理，
                     // 避免在此处重复设置导致与旋转角度逻辑冲突
-                  } else if (codeMine[0] === "audio") {
+                  } else if (codeMine[0] === 'audio') {
                     const languageName = getLanguageName(item[media.MediaDescriptionKey.MD_KEY_LANGUAGE] as string)
                     const audioTrackItem: ItemsType = {
                       id: 's_4_' + index,
@@ -219,7 +219,7 @@ export class VideoAVPlayerClass {
       console.error('AVPlayer error:', err);
     });
 
-    this.avPlayer!.on("seekDone", () => {
+    this.avPlayer!.on('seekDone', () => {
       AppStorage.setOrCreate('isSeek', false)
       if (this.avPlayer?.state == 'paused') {
         this.avPlayer?.play();
@@ -248,9 +248,9 @@ export class VideoAVPlayerClass {
     let videoUri = AppStorage.get('videoUri') as string
     let fdPath = AppStorage.get('fdPath') as string
     if (subtitle) {
-      // let subtitleUrl_or = decodeURI(videoUri.replace(/\.[^/.]+$/, subtitle));不用解码也行
-      let subtitleUrl_or = videoUri.replace(/\.[^/.]+$/, subtitle);
-      let urlFd = fileIo.openSync(subtitleUrl_or)?.fd;
+      // let subtitleUrlOr = decodeURI(videoUri.replace(/\.[^/.]+$/, subtitle));不用解码也行
+      let subtitleUrlOr = videoUri.replace(/\.[^/.]+$/, subtitle);
+      let urlFd = fileIo.openSync(subtitleUrlOr)?.fd;
       subtitleUrl = 'fd://' + urlFd;
     }
     // 重置播放器到idle状态
@@ -281,10 +281,10 @@ export class VideoAVPlayerClass {
     }
     if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
 
-      if (e.type == KeyType.Down && this.avPlayer?.state == "playing") { // left Down
+      if (e.type == KeyType.Down && this.avPlayer?.state == 'playing') { // left Down
         this.seekVideo(1);
       }
-    } else if (e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT && this.avPlayer?.state == "playing") {
+    } else if (e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT && this.avPlayer?.state == 'playing') {
 
       if (e.type == KeyType.Down) { // right Down
         this.seekVideo(0);

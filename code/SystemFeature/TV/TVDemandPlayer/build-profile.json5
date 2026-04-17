@@ -14,20 +14,7 @@
  */
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storePassword": "000000165F0963041079FD50EF110153B867709412D310C015C8734D2BDF2FE4945491E53511",
-          "certpath": "signature/OpenHarmony.cer",
-          "keyAlias": "OpenHarmony Application Release",
-          "keyPassword": "00000016D579572009B3FF940D449E8DD18B083698B0E213E6EBA2DDC856A34B4074FA7D9C8D",
-          "profile": "signature/demand_player.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "signature/OpenHarmony.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",

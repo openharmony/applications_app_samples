@@ -80,12 +80,14 @@ export class DrmModel {
   }
 
   async handleMediaKeySystemInfo(avPlayer: media.AVPlayer | DecryptionAvPlayerLike,
-    mediaKeySystemInfo: Array<drm.MediaKeySystemInfo | DrmSystemInfoLike>, urlType: UrlType | undefined): Promise<boolean> {
+    mediaKeySystemInfo: 
+    drm.MediaKeySystemInfo[] | DrmSystemInfoLike[], 
+    urlType: UrlType | undefined): Promise<boolean> {
     if (mediaKeySystemInfo.length < 1) {
       log('handleDrmMediaInfo failed, mediaKeySystemInfo is empty');
       return false;
     }
-    let drmInfoArr: Array<drm.MediaKeySystemInfo | DrmSystemInfoLike> = mediaKeySystemInfo;
+    let drmInfoArr: drm.MediaKeySystemInfo[] | DrmSystemInfoLike[] = mediaKeySystemInfo;
     if (!drm.isMediaKeySystemSupported(DRM_SOLUTION_NAME)) {
       log('handleDrmMediaInfo failed, not support ' + DRM_SOLUTION_NAME);
       return false;
@@ -116,7 +118,7 @@ export class DrmModel {
   }
 
   async execLicenseProcess(urlType: UrlType | undefined,
-    drmInfoArr: Array<drm.MediaKeySystemInfo | DrmSystemInfoLike>): Promise<boolean> {
+    drmInfoArr: drm.MediaKeySystemInfo[] | DrmSystemInfoLike[]): Promise<boolean> {
     if (!this.mediaKeySession) {
       log('execLicenseProcess return, no mediaKeySession');
       return false;

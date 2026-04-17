@@ -18,13 +18,13 @@ import { PointerUtil } from './PointerUtil';
  * 事件相关工具类
  */
 export class EventUtil {
-  static pointStyleChanger: ((isClick: boolean) => void) | undefined = undefined;
+  public static pointStyleChanger: ((isClick: boolean) => void) | undefined = undefined;
 
   /**
    * 判断是否触发触摸事件
    * @returns 判断结果
    */
-  static isTouchEvent(event: TouchEvent): boolean {
+  public static isTouchEvent(event: TouchEvent): boolean {
     const changer = EventUtil.pointStyleChanger;
     if (changer !== undefined) {
       changer(event.type == TouchType.Down)

@@ -17,32 +17,59 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import Ability from '@ohos.application.Ability';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
 import Window from '@ohos.window';
 import Want from '@ohos.app.ability.Want';
 import { AbilityConstant } from '@kit.AbilityKit';
-import testsuite from '../test/List.test';
 
 export default class TestAbility extends Ability {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        hilog.info(0x0000, 'TVLauncherTest', 'TestAbility onCreate want %{public}s', JSON.stringify(want) ?? '');
-        hilog.info(0x0000, 'TVLauncherTest', 'TestAbility launchParam %{public}s', JSON.stringify(launchParam) ?? '');
-
-        const abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator =
-            AbilityDelegatorRegistry.getAbilityDelegator();
-        const abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs =
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
+        hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
+        hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+        let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+        let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs =
             AbilityDelegatorRegistry.getArguments();
-
-        globalThis.testAppContext = this.context;
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     }
 
+    onDestroy() {
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onDestroy');
+    }
+
     onWindowStageCreate(windowStage: Window.WindowStage) {
-        windowStage.loadContent('TestAbility/pages/index', (err, data) => {
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
+        windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
             if (err.code) {
-                hilog.error(0x0000, 'TVLauncherTest', 'load test page failed %{public}s', JSON.stringify(err) ?? '');
+                hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
+                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
                 return;
             }
-            hilog.info(0x0000, 'TVLauncherTest', 'load test page success %{public}s', JSON.stringify(data) ?? '');
+            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+            hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+                JSON.stringify(data) ?? '');
         });
+
+        globalThis.abilityContext = this.context;
     }
-}
+
+    onWindowStageDestroy() {
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageDestroy');
+    }
+
+    onForeground() {
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onForeground');
+    }
+
+    onBackground() {
+        hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+        hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onBackground');
+    }
+};
