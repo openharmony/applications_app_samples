@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/HttpVideoList",
+    "pages/LocalFolderList",
+    "pages/LocalVideoList",
+    "pages/VideoPlayer",
+    "pages/DlnaPlayer"
+  ],
+  "window": {
+    "designWidth": 1280,
+    "autoDesignWidth": false
+  }
+}

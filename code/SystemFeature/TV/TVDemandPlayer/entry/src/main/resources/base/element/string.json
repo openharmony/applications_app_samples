@@ -1,0 +1,292 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Demand Player"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "分布式视频远程控制服务"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "分布式视频服务"
+    },
+    {
+      "name": "network_player",
+      "value": "Network Player"
+    },
+    {
+      "name": "local_video",
+      "value": "Local Video"
+    },
+    {
+      "name": "resolution",
+      "value": "Video Quality"
+    },
+    {
+      "name": "player_speed",
+      "value": "playSpeed"
+    },
+    {
+      "name": "channel_type",
+      "value": "Channel"
+    },
+    {
+      "name": "video_ratio",
+      "value": "Video Ratio"
+    },
+    {
+      "name": "resolution_4K",
+      "value": "4K"
+    },
+    {
+      "name": "resolution_1080P",
+      "value": "1080P"
+    },
+    {
+      "name": "resolution_720P",
+      "value": "720P"
+    },
+    {
+      "name": "resolution_480P",
+      "value": "480P"
+    },
+    {
+      "name": "resolution_360P",
+      "value": "360P"
+    },
+    {
+      "name": "player_speed_0_75_X",
+      "value": "0.75X"
+    },
+    {
+      "name": "player_speed_1_00_X",
+      "value": "1.0X"
+    },
+    {
+      "name": "player_speed_1_25_X",
+      "value": "1.25X"
+    },
+    {
+      "name": "player_speed_1_75_X",
+      "value": "1.75X"
+    },
+    {
+      "name": "player_speed_2_00_X",
+      "value": "2.0X"
+    },
+    {
+      "name": "channel_type_stereo",
+      "value": "Stereo"
+    },
+    {
+      "name": "channel_type_mixed_stereo",
+      "value": "Mixed Stereo"
+    },
+    {
+      "name": "channel_type_dual_left_channel",
+      "value": "Dual Left Channel"
+    },
+    {
+      "name": "channel_type_dual_right_channel",
+      "value": "Dual Right Channel"
+    },
+    {
+      "name": "channel_type_alternating_left_and_right_channels",
+      "value": "Alternating Left And Right Channels"
+    },
+    {
+      "name": "channel_type_right_channel",
+      "value": "Right Channel"
+    },
+    {
+      "name": "channel_type_left_channel",
+      "value": "Left Channel"
+    },
+    {
+      "name": "channel_type_muted",
+      "value": "Muted"
+    },
+    {
+      "name": "video_ratio_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "video_ratio_4_3",
+      "value": "4:3"
+    },
+    {
+      "name": "video_ratio_16_9",
+      "value": "16:9"
+    },
+    {
+      "name": "folder_directory",
+      "value": "Folder Directory"
+    },
+    {
+      "name": "local_folder_directory",
+      "value": "Local Folder Directory"
+    },
+    {
+      "name": "mobile_device_folder_directory",
+      "value": "Mobile Device Folder Directory"
+    },
+    {
+      "name": "Dlnaability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Dlnaability_label",
+      "value": "label"
+    },
+    {
+      "name": "connection_error",
+      "value": "no connection, please check connection"
+    },
+    {
+      "name": "test_video_1",
+      "value": "mountains and rivers"
+    },
+    {
+      "name": "test_video_2",
+      "value": "cloud"
+    },
+    {
+      "name": "drm_play_failed",
+      "value": "DRM play failed"
+    },
+    {
+      "name": "list_error",
+      "value": "播放错误,请重试！"
+    },
+    {
+      "name": "video_url_1",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/87d3d62a-cfe2-4d03-8396-a1daf86b84ae/c2b325a7-0d9f-4b3f-a503-0568b15275b9.mp4"
+    },
+    {
+      "name": "img_url_1",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEhRJ.img"
+    },
+    {
+      "name": "video_url_2",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/a75a7d73-21ab-4ac9-8c30-890433965c24/e9f6bdcb-eba0-4eca-b9d2-60d3415bf65f.mp4"
+    },
+    {
+      "name": "img_url_2",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEa3q.img"
+    },
+    {
+      "name": "video_url_3",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/c66f076e-0032-4c28-bab5-51d28f650b4b/b09c5e47-dd44-4ee8-ad2c-6fadf08c66c0.mp4"
+    },
+    {
+      "name": "img_url_3",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOE2aB.img"
+    },
+    {
+      "name": "video_url_4",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/e1c45064-728f-4251-be31-778fefb4e784/01ae5076-482e-421c-80ac-d1d9892e0a55.mp4"
+    },
+    {
+      "name": "img_url_4",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOElaW.img"
+    },
+    {
+      "name": "video_url_5",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/394e73b6-e7ac-4b5d-8063-80d421afb446/0e09af42-f217-4deb-8580-fb0ab5420f6a.mp4"
+    },
+    {
+      "name": "img_url_5",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOElaX.img"
+    },
+    {
+      "name": "video_url_6",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/ba33094e-efb2-480f-ad77-1a103af156d2/3b215666-f0b7-4538-9ea2-0637d5ed2ea3.mp4"
+    },
+    {
+      "name": "img_url_6",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEe2J.img"
+    },
+    {
+      "name": "video_url_8",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/278b1c4f-3545-422c-9d56-242f18adadc9/2e3d6097-b233-40af-88f4-a90a74a33fa0.mp4"
+    },
+    {
+      "name": "img_url_8",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEiEl.img"
+    },
+    {
+      "name": "video_url_9",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/c633cd32-92ef-447f-876c-54c5c1a57484/d5a4b96f-01b4-4519-8470-62484e0b1b5b.mp4"
+    },
+    {
+      "name": "img_url_9",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOE58E.img"
+    },
+    {
+      "name": "video_url_10",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/a8c412fa-f696-4ff2-9c76-e8ed9cdffe0f/604a87fc-e7bc-463e-8d56-cde7e661d690.mp4"
+    },
+    {
+      "name": "img_url_10",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEcdM.img"
+    },
+    {
+      "name": "video_url_11",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/0b927d99-e38a-4f51-8d1a-598fd4d6ee97/3493c85c-f35a-488f-9a8f-633e747fb141.mp4"
+    },
+    {
+      "name": "img_url_11",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEhRG.img"
+    },
+    {
+      "name": "video_url_12",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/178161a4-26a5-4f84-96d3-6acea1909a06/2213bcd0-7d15-4da0-a619-e32d522572c0.mp4"
+    },
+    {
+      "name": "img_url_12",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOE58C.img"
+    },
+    {
+      "name": "video_url_13",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/fe13f13c-c2cc-4998-b525-038b23bfa9b5/1a9d30ca-54be-411e-8b09-d72ef4488e05.mp4"
+    },
+    {
+      "name": "img_url_13",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOE58B.img"
+    },
+    {
+      "name": "video_url_14",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/e908e91f-370f-49ad-b4ce-775b7e7a05b4/a6287f74-46f0-42f9-b5d9-997f00585696.mp4"
+    },
+    {
+      "name": "img_url_14",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEe2H.img"
+    },
+    {
+      "name": "video_url_15",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/15fc0eea-1091-4a28-a9b6-8caaf6013cf1/62b4c40f-ad3c-4099-a59a-bfbe324a461c.mp4"
+    },
+    {
+      "name": "img_url_15",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEcdO.img"
+    },
+    {
+      "name": "video_url_16",
+      "value": "https://prod-streaming-video-msn-com.akamaized.net/9752d732-2354-483f-a678-a6d0cd2c22b7/1a5ed13a-43f5-4e85-95c8-6579065c4d7c.mp4"
+    },
+    {
+      "name": "img_url_16",
+      "value": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAOEiEk.img"
+    }
+  ]
+}
