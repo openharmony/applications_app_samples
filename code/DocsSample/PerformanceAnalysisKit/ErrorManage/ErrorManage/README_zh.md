@@ -64,6 +64,15 @@ freezecallback
 [FirstHandler] First uncaught exception handler invoked.
 [SecondHandler] Second uncaught exception handler invoked.
 ```
+（8）重启应用，点击“freeze处理器责任链模式场景”按钮，出现如下形式日志输出：
+
+```
+Registered First freeze Handler.
+Registered Second freeze Handler.
+[SecondHandler] Second freeze handler invoked.
+[FirstHandler] First freeze handler invoked.
+[FirstHandler] First freeze handler end.
+```
 
 ###  工程目录
 
@@ -75,13 +84,15 @@ entry/src/main/ets
                 │   └─EntryBackupAbility.ets
                 └─pages
                     └─FirstErrorHandler.ets   // first error handler
+                    └─FirstFreezeHandler.ets   // first freeze handler
                     └─Index.ets   		      // 主页
                     └─SecondErrorHandler.ets  // second error handler
+                    └─SecondFreezeHandler.ets  // second freeze handler
 ```
 
 ###  具体实现
 
-- 在Index.ets、FirstErrorHandler.ets及SecondErrorHandler.ets中定义各类error的构造函数及回调函数
+- 在Index.ets、FirstErrorHandler.ets、FirstFreezeHandler.ets、SecondErrorHandler.ets及SecondFreezeHandler.ets中定义各类error的构造函数及回调函数。
 - 在Index.ets中添加触发按钮，点击按钮即可引发对应error事件，进而调用相关错误管理的回调函数。
 
 ###  相关权限
@@ -94,10 +105,11 @@ entry/src/main/ets
 
 ###  约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例中除错误处理器责任链模式场景外的所有错误场景均已适配API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
+1. 本示例仅支持标准系统上运行，支持设备：RK3568；
+2. 本示例中除错误处理器责任链模式场景外的所有错误场景均已适配API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56；
 3. 本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行；
-4. 错误处理器责任链模式场景需要适配API21版本SDK，支持API21版本SDK，版本号：6.0.1.112，镜像版本号：OpenHarmony_6.0.1.112。
+4. 错误处理器责任链模式场景需要适配API21版本SDK，支持API21版本SDK，版本号：6.0.1.112，镜像版本号：OpenHarmony_6.0.1.112；
+5. freeze处理器责任链模式场景需要适配API26版本SDK，支持API26版本SDK，版本号：7.0.0.20，镜像版本号：OpenHarmony_7.0.0.20。
 
 ### 下载
 
