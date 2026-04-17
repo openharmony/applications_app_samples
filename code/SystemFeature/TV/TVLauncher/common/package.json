@@ -1,0 +1,14 @@
+{
+	"devDependencies": {},
+	"name": "@ohos/common",
+	"description": "a npm package which contains common function",
+	"ohos": {
+		"org": "awei-organization",
+		"directoryLevel": "module",
+		"buildTool": "hvigor"
+	},
+	"main": "index.ets",
+	"version": "1.0.0",
+	"dependencies": {},
+	"type": "module"
+}

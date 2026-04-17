@@ -1,0 +1,233 @@
+{
+    "env": {
+        "es2017": true,
+        "node": true
+    },
+    "extends": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "max-lines": [
+            "warn", 2000
+        ],
+        "max-lines-per-function": [
+            "warn", 50
+        ],
+        "complexity": [
+            "warn", 20
+        ],
+        "max-depth": [
+            "warn", 4
+        ],
+        "@typescript-eslint/array-type": [
+            "error",
+            {
+                "options":
+                "array"
+            }
+        ],
+        "@typescript-eslint/prefer-as-const": [
+            "error"
+        ],
+        "@typescript-eslint/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": false,
+                "ignoreProperties": false
+              }
+        ],
+
+        "@typescript-eslint/method-signature-style": ["error", "method"],
+        "@typescript-eslint/naming-convention": [ "error",
+            {
+              "selector": "default",
+              "format": [ "camelCase" ],
+              "leadingUnderscore": "forbid",
+              "trailingUnderscore": "forbid"
+            },
+            {
+              "selector": "variable",
+              "modifiers": ["const"],
+              "format": [ "camelCase", "UPPER_CASE" ],
+              "leadingUnderscore": "forbid",
+              "trailingUnderscore": "forbid"
+            },
+            {
+              "selector": "memberLike",
+              "modifiers": ["static", "readonly"],
+              "format": [ "UPPER_CASE" ],
+              "leadingUnderscore": "forbid",
+              "trailingUnderscore": "forbid"
+            },
+            {
+              "selector": "typeLike",
+              "format": [ "PascalCase" ]
+            }
+        ],
+        "@typescript-eslint/no-base-to-string": [
+            "error",
+            {
+                "ignoredTypeNames": ["RegExp"]
+            }
+        ],
+        "@typescript-eslint/no-confusing-non-null-assertion": ["error"],
+        "@typescript-eslint/no-dynamic-delete": ["error"],
+        "@typescript-eslint/no-empty-interface": ["error"],
+        "@typescript-eslint/no-explicit-any": [ 
+            "error", 
+            {
+                "fixToUnknown": false,
+                "ignoreRestArgs": false
+            }
+        ],
+        "@typescript-eslint/no-extra-non-null-assertion": ["error"],
+        "@typescript-eslint/no-floating-promises": [ 
+			"error", 
+			{
+				"ignoreVoid": true,
+				"ignoreIIFE": false
+			}
+		],
+        "@typescript-eslint/no-for-in-array": ["error"],
+        "@typescript-eslint/no-meaningless-void-operator": [
+			"error",
+			{
+				"checkNever": false
+			}
+		],
+
+        "@typescript-eslint/no-invalid-void-type": [
+            "error", 
+            {
+                "allowInGenericTypeArguments": true,
+                "allowAsThisParameter": false
+            }
+        ],
+        "@typescript-eslint/prefer-readonly": ["error"],
+        "@typescript-eslint/prefer-string-starts-ends-with": ["error"],
+        "@typescript-eslint/prefer-ts-expect-error": ["error"],
+        "@typescript-eslint/promise-function-async": ["error"],
+        "@typescript-eslint/require-array-sort-compare": ["error"],
+        "@typescript-eslint/restrict-plus-operands": ["error"],
+        "@typescript-eslint/restrict-template-expressions": ["error"],
+        "@typescript-eslint/strict-boolean-expressions": ["error"],
+        "@typescript-eslint/triple-slash-reference": ["error"],
+        "@typescript-eslint/type-annotation-spacing": ["error"],
+        "@typescript-eslint/unbound-method": ["error"],
+        "@typescript-eslint/unified-signatures": ["error"],
+        "@typescript-eslint/no-unsafe-argument":["error"],
+        "@typescript-eslint/no-unsafe-assignment":["error"],
+        "@typescript-eslint/no-unsafe-call":["error"],
+        "@typescript-eslint/no-unsafe-member-access":["error"],
+        "@typescript-eslint/no-unsafe-return":["error"],
+        "@typescript-eslint/no-var-requires":["error"],
+        "@typescript-eslint/non-nullable-type-assertion-style":["error"],
+        "@typescript-eslint/prefer-for-of":["error"],
+        "@typescript-eslint/prefer-literal-enum-member":["error"],
+        "@typescript-eslint/prefer-optional-chain":["error"],
+        "@typescript-eslint/no-misused-new": ["error"],
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksConditionals": true,
+                "checksVoidReturn": true
+            }
+        ],
+        "@typescript-eslint/no-namespace": [
+            "error",
+            {
+                "allowDeclarations": false,
+                "allowDefinitionFiles": true
+            }
+        ],
+        "@typescript-eslint/no-non-null-asserted-nullish-coalescing":["error"],
+        "@typescript-eslint/no-non-null-asserted-optional-chain":["error"],
+        "@typescript-eslint/no-non-null-assertion":["error"],
+        "@typescript-eslint/no-parameter-properties":["error"],
+        "@typescript-eslint/no-require-imports":["error"],
+        "@typescript-eslint/no-this-alias":["error"],
+        "@typescript-eslint/no-type-alias":["error"],
+        "@typescript-eslint/no-unnecessary-boolean-literal-compare":["error"],
+        "@typescript-eslint/no-unnecessary-condition":["error"],
+        "@typescript-eslint/no-unnecessary-qualifier":["error"],
+        "@typescript-eslint/no-unnecessary-type-arguments":["error"],
+        "@typescript-eslint/no-unnecessary-type-assertion":["error"],
+        "@typescript-eslint/no-unnecessary-type-constraint":["error"],
+        "@typescript-eslint/adjacent-overload-signatures": ["error"],
+        "@typescript-eslint/await-thenable": ["error"],
+        "@typescript-eslint/ban-ts-comment":[
+            "error",
+            {
+                "ts-expect-error": true,
+                "ts-ignore": true,
+                "ts-nocheck": true,
+                "ts-check": true
+            }
+        ],
+        "@typescript-eslint/ban-tslint-comment": "error",
+        "@typescript-eslint/ban-types": [
+            "error",
+            {
+                "types": {
+                    "Array": {
+                        "message": "Use [] instead",
+                        "fixWith": "[]"
+                    },
+                    "Boolean": {
+                        "message": "Use boolean instead",
+                        "fixWith": "boolean"
+                    },
+                    "Number": {
+                        "message": "Use number instead",
+                        "fixWith": "number"
+                    },
+                    "function": "Do not use Function",
+                    "String": {
+                        "message": "Use string instead",
+                        "fixWith": "string"
+                    },
+                    "{}": {
+                        "message": "Use object instead",
+                        "fixWith": "object"
+                    }
+                }
+            }
+        ],
+        "@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            {
+                "allowExpressions": true,
+                "allowTypedFunctionExpressions": true,
+                "allowHigherOrderFunctions": false,
+                "allowDirectConstAssertionInArrowFunctions": false,
+                "allowConciseArrowFunctionExpressionsStartingWithVoid": false
+            }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+            "error",
+            {
+                "accessibility": "no-public"
+            }
+        ]
+    }
+}

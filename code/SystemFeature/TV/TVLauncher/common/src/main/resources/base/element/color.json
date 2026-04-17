@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "menu_divider_color_dark",
+      "value": "#33ffffff"
+    },
+    {
+      "name": "menu_divider_color_light",
+      "value": "#33000000"
+    },
+    {
+      "name": "menu_background_color_dark",
+      "value": "#ff333333"
+    },
+    {
+      "name": "menu_background_color_light",
+      "value": "#ffdddddd"
+    },
+    {
+      "name": "menu_text_color_dark",
+      "value": "#e5ffffff"
+    },
+    {
+      "name": "menu_text_color_light",
+      "value": "#e5000000"
+    },
+    {
+      "name": "default_dialog_background",
+      "value": "#D9FFFFFF"
+    }
+  ]
+}
