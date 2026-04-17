@@ -26,16 +26,23 @@ async function concurrentTest(context: common.UIAbilityContext): Promise<boolean
   // 循环写文件操作
   let fileList: string[] = [];
   fileList.push(filePath1);
-  fileList.push(filePath2)
+  fileList.push(filePath2);
+  const writePromises: Promise<boolean | void>[] = [];
   for (let i: number = 0; i < fileList.length; i++) {
-    write('Hello World!', fileList[i]).then(() => {
+    const writePromise = write('Hello World!', fileList[i]).then(() => {
       console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`)
       return false;
-    })
+    });
+    writePromises.push(writePromise);
   }
-  return true;
+  try {
+    await Promise.all(writePromises);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 // [End define_concurrent_function]
 

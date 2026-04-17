@@ -16,11 +16,14 @@
 // [Start define_timer_module]
 @Sendable
 export class TimerSdk {
+
+  // 初始化
   static init(): TimerSdk {
     let timer = new TimerSdk();
     return timer;
   }
 
+  // 倒计时
   async Countdown(time: number) {
     return new Promise((resolve: (value: boolean) => void) => {
       setTimeout(() => {
