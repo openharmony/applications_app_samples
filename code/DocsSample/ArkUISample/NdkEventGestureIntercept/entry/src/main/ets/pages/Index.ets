@@ -17,7 +17,7 @@ import nativeNode from 'libnativeNode.so';
 @Builder
 function title() {
   Column() {
-    Text('表冠事件C-API功能示例')
+    Text('事件拦截C-API功能示例')
       .fontSize(24)
       .fontWeight(FontWeight.Bold)
       .margin({ top: 15, bottom: 15 })

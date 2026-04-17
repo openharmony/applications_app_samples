@@ -162,6 +162,27 @@ void SetId(ArkUI_NodeHandle &node, const char *id)
     nodeAPI->setAttribute(node, NODE_ID, &idItem);
 }
 
+// 设置按钮标签文本
+void SetButtonLabel(ArkUI_NodeHandle &node, const char *label)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_AttributeItem NODE_Button_SRC_Item = {.string = label};
+    nodeAPI->setAttribute(node, NODE_BUTTON_LABEL, &NODE_Button_SRC_Item);
+}
+
+// 设置节点内边距
+void SetPadding(ArkUI_NodeHandle &node, float padding)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue paddingValue[] = {padding};
+    ArkUI_AttributeItem paddingItem = {paddingValue, 1};
+    nodeAPI->setAttribute(node, NODE_PADDING, &paddingItem);
+}
+
 } // namespace NativeXComponentSample
 
 #endif // DRAGANDDROP_COMMON_H

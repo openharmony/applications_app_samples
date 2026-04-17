@@ -23,6 +23,13 @@
 #include <sstream>
 
 namespace NativeXComponentSample {
+// 示例说明文本
+std::string g_explain = "通过本示例可以测试手势拦截事件C-API的各项功能。\n"
+    "1、测试按钮1：通过手指点击该按钮可测试事件透传到Row场景；\n"
+    "      该场景日志仅打印'NdkEventGestureIntercept_SampleLog, Row2 tap'；\n"
+    "2、测试按钮2：通过手指点击该按钮可测试事件不透传到Row场景；\n"
+    "      该场景日志仅打印'NdkEventGestureIntercept_SampleLog, Button2 tap'；\n";
+
 std::stringstream g_ss;
 
 ArkUI_NodeHandle column1;
@@ -31,6 +38,9 @@ ArkUI_NodeHandle row2 = nullptr;
 ArkUI_NodeHandle stack1 = nullptr;
 ArkUI_NodeHandle button1 = nullptr;
 ArkUI_NodeHandle button2 = nullptr;
+// 信息文本节点
+ArkUI_NodeHandle infoText = nullptr;
+int32_t g_buttonId;
 } // namespace NativeXComponentSample
 
 #endif //NDKINPUTEVENT_INFOS_H

@@ -52,11 +52,11 @@ Manager::~Manager()
 void SampleEntry(napi_env env, napi_value arg, OH_NativeXComponent *component)
 {
     // 根节点
-    auto stack = nodeAPI->createNode(ARKUI_NODE_STACK);
-    SetWidthPercent(stack, 1);
-    SetHeightPercent(stack, 1);
-    FirstModule(stack);
-    OH_NativeXComponent_AttachNativeRootNode(component, stack);
+    auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetWidthPercent(column, 1);
+    SetHeightPercent(column, 1);
+    FirstModule(column);
+    OH_NativeXComponent_AttachNativeRootNode(component, column);
 }
 
 napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
