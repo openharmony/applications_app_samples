@@ -1798,3 +1798,839 @@ struct VideoPlayer {
               this.isBarShow = true;
               if ((globalThis.startByOther && this.isBarFirstAppear) || this.isScreenVertical) {
                 this.tabStartClick();
+                this.isBarFirstAppear = false;
+              }
+              // 流转对话框打开时不抢占焦点，避免触发播放按钮 onFocus 关闭对话框
+              if (!this.isTransferDialogShow) {
+                this.focusId = this.playerBtns[2].id;
+                let ret = focusControl.requestFocus(this.focusId);
+                log('requestFocus bar, ret:' + ret);
+              }
+            } else {
+              this.isBarShow = false;
+            }
+          }
+        })
+
+        if (this.settingBtnsShow) {
+          // 视频设置选择栏
+          if (this.isScreenVertical) {
+            Column() {
+              VideoSettingVertical({
+                activeSettingBtns: this.activeSettingBtns || [],
+                activeSettingBtnId: this.activeSettingBtnId,
+                settingBtnsShow: this.settingBtnsShow,
+                activeSettingBtnIndex: this.activeSettingBtnIndex,
+                handleSubSettingKeyEvent: (e: KeyEvent, t: ItemsType, i: number) => {
+                  this.handleSubSettingKeyEvent(e, t, i);
+                },
+                handleSubSettingTouchEvent: (e: TouchEvent, t: ItemsType) => {
+                  this.handleSubSettingTouchEvent(e, t);
+                }
+              })
+            }
+            .zIndex(4)
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#0d000000')
+            .justifyContent(FlexAlign.Start)
+            .alignItems(HorizontalAlign.Center)
+
+
+            .onClick(() => {
+              this.settingBtnsShow = false;
+            })
+          } else {
+            Column() {
+              Column({ space: SETTING_ITEM_SPACE }) {
+                ForEach(this.activeSettingBtns, (t: ItemsType, i) => {
+                  Stack({ alignContent: Alignment.Center }) {
+                    Row() {
+                      Text(`${t.name}`)
+                        .fontSize('20lpx')
+                        .textAlign(TextAlign.Center)
+                        // 只有一个或没有，字体直接置灰
+                        .fontColor(
+                          t.id == this.activeSettingBtnId && this.activeSettingBtns.length >= 2
+                            ? FOCUS_FONT_COLOR
+                            : UNFOCUS_FONT_COLOR
+                        )
+                        .width(`${SETTING_ITEM_WIDTH}lpx`)
+                        .height(`${SETTING_ITEM_HEIGHT}lpx`)
+                        .borderRadius(globalThis.lpiPx(6))
+                    }
+                    .zIndex(1)
+                    .width(`${SETTING_ITEM_WIDTH}lpx`)
+                    .height(`${SETTING_ITEM_HEIGHT}lpx`)
+                    .alignItems(VerticalAlign.Center)
+                    .justifyContent(FlexAlign.Center)
+
+                    Text('')
+                      .zIndex(2)
+                      .width(`${SETTING_ITEM_WIDTH}lpx`)
+                      .height(`${SETTING_ITEM_HEIGHT}lpx`)
+                      .focusable(true)
+                      .focusOnTouch(true)
+                      .defaultFocus(t.id == this.activeSettingBtnId)
+                      .key(t.id)
+                      .id(t.id)
+                      .onFocus(() => {
+                        log(`settingBtns Text onFocus`);
+                        this.activeSettingBtnId = t.id;
+                      })
+                      .onKeyEvent(e => {
+                        this.handleSubSettingKeyEvent(e, t, i);
+                      })
+                      .onTouch(e => {
+                        // if (e.sourceTool !== SourceTool.Pen && e.sourceTool !== Constants.SOURCE_TOOL_MOUSE_CLICK) {
+                        //   return;
+                        // }
+                        this.handleSubSettingTouchEvent(e, t);
+                      })
+                  }
+                  .stateStyles({
+                    focused: {
+                      .border({
+                        color: Color.Transparent
+                      })
+                    }
+                  })
+                  .width(`${SETTING_ITEM_WIDTH}lpx`)
+                  .height(`${SETTING_ITEM_HEIGHT}lpx`)
+                  .alignContent(Alignment.Center)
+                })
+              }
+              .padding({
+                top: `${SETTING_ITEM_TOP_PADDING}lpx`,
+                bottom: `${SETTING_ITEM_TOP_PADDING}lpx`,
+                left: `${SETTING_ITEM_LEFT_PADDING}lpx`,
+                right: `${SETTING_ITEM_LEFT_PADDING}lpx`
+              })
+              .width(`${SETTING_ITEM_WIDTH + SETTING_ITEM_LEFT_PADDING * 2}lpx`)
+              .height(`${this.activeSettingBtns.length * SETTING_ITEM_HEIGHT + SETTING_ITEM_TOP_PADDING * 2 +
+                (this.activeSettingBtns.length - 1) * SETTING_ITEM_SPACE}lpx`)
+              .backgroundColor('rgba(0,0,0,0.8)')
+              .focusable(true)
+              .alignItems(HorizontalAlign.Center)
+              .justifyContent(FlexAlign.Center)
+              .borderRadius('8lpx')
+              .stateStyles({
+                focused: {
+                  .border({
+                    color: Color.Transparent
+                  })
+                }
+              })
+              .onAppear(() => {
+                focusControl.requestFocus(this.activeSettingBtnId)
+              })
+              .onFocus(() => {
+              })
+              .position({
+                x: `${this.screenW - (110 * (5 - this.activeSettingBtnIndex)) - 40}lpx`,
+                y: `${this.screenH - this.activeSettingBtns.length * 30 - 105}lpx`
+              })
+              .onTouch((e) => {
+                e.stopPropagation();
+              })
+              .justifyContent(FlexAlign.Start)
+              .alignItems(HorizontalAlign.Center)
+            }
+            .zIndex(4)
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#0d000000')
+            .justifyContent(FlexAlign.Center)
+            .alignItems(HorizontalAlign.Center)
+
+
+            .onClick(() => {
+              this.settingBtnsShow = false;
+            })
+          }
+        }
+
+        if (this.isTransferDialogShow) {
+          // 视频流转窗口
+          Column() {
+            Column() {
+              Text('分布式视频流转设备列表')
+                .fontSize('24lpx')
+                .width('100%')
+                .fontColor('#ffd6d6d6')
+                .padding({
+                  left: '20lpx',
+                  right: '20lpx',
+                  top: '20lpx',
+                  bottom: '15lpx'
+                })
+                .focusable(false)
+                .textAlign(TextAlign.Center)
+              Divider().strokeWidth(1).color('#ff47515d')
+              Scroll(this.transferScroller) {
+                Column({ space: '10lpx' }) {
+                  ForEach(this.deviceList, (t: DistributedManagerDeviceInfo, ind) => {
+                    Stack({ alignContent: Alignment.Center }) {
+                      Row() {
+                        Row() {
+                          Text(`${ind + 1}`)
+                            .fontSize(t.deviceId == this.transferFocusId ? '22lpx' : '20lpx')
+                            .textAlign(TextAlign.Center)
+                            .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                              'rgba(255,255,255,0.86)')
+                            .width('40lpx')
+                            .height('46lpx')
+                          Text(t.deviceName)
+                            .fontSize(t.deviceId == this.transferFocusId ? '22lpx' : '20lpx')
+                            .textAlign(TextAlign.Start)
+                            .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                              'rgba(255,255,255,0.86)')
+                            .width('270lpx')
+                            .height('46lpx')
+                            .maxLines(1)
+                          Blank()
+                        }
+                        .width(t.deviceId == this.transferFocusId ? '540lpx' : '530lpx')
+                        .height('55lpx')
+                        .backgroundColor(t.deviceId == this.transferFocusId ? 'rgba(255,255,255,0.86)' :
+                          'rgba(255,255,255,0.2)')
+                        .borderRadius(globalThis.lpiPx(12))
+                      }
+                      .width(t.deviceId == this.transferFocusId ? '550lpx' : '540lpx')
+                      .height('65lpx')
+                      .borderWidth('2lpx')
+                      .borderRadius(globalThis.lpiPx(12))
+                      .borderStyle(BorderStyle.Solid)
+                      .borderColor(t.deviceId == this.transferFocusId ? '#ffffff' : '#0054575d')
+                      .alignItems(VerticalAlign.Center)
+                      .justifyContent(FlexAlign.Center)
+                      .zIndex(1)
+
+
+                      Row() {
+                        Blank()
+                        if (t.isTrust) {
+                          if (t.isInTransfer) {
+                            Text('流转中，点击停止流转')
+                              .fontSize('16lpx')
+                              .textAlign(TextAlign.Start)
+                              .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                                'rgba(255,255,255,0.86)')
+                              .width('200lpx')
+                              .height('46lpx')
+                              .padding({ right: '10lpx' })
+                              .textAlign(TextAlign.End)
+                              .maxLines(1)
+                          } else {
+                            Text('点击进行视频流转')
+                              .fontSize('16lpx')
+                              .textAlign(TextAlign.Start)
+                              .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                                'rgba(255,255,255,0.86)')
+                              .width('180lpx')
+                              .height('46lpx')
+                              .padding({ right: '10lpx' })
+                              .textAlign(TextAlign.End)
+                              .maxLines(1)
+                          }
+                          if (t.transferLoading) {
+                            LoadingProgress()
+                              .color(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' : 'rgba(255,255,255,0.86)')
+                              .width('40lpx')
+                              .height('40lpx')
+                              .margin({ right: '10lpx' })
+                          }
+                        } else if (t.isInAuth) {
+                          Text('设备互信中...')
+                            .fontSize('16lpx')
+                            .textAlign(TextAlign.Start)
+                            .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                              'rgba(255,255,255,0.86)')
+                            .width('180lpx')
+                            .height('46lpx')
+                            .padding({ right: '10lpx' })
+                            .textAlign(TextAlign.End)
+                            .maxLines(1)
+                          LoadingProgress()
+                            .color(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' : 'rgba(255,255,255,0.86)')
+                            .width('40lpx')
+                            .height('40lpx')
+                            .margin({ right: '10lpx' })
+                        } else {
+                          Text('点击进行设备互信')
+                            .fontSize('16lpx')
+                            .textAlign(TextAlign.Start)
+                            .fontColor(t.deviceId == this.transferFocusId ? 'rgba(0,0,0,0.86)' :
+                              'rgba(255,255,255,0.86)')
+                            .width('200lpx')
+                            .height('46lpx')
+                            .padding({ right: '10lpx' })
+                            .textAlign(TextAlign.End)
+                            .maxLines(1)
+                        }
+                      }
+                      .width('540lpx')
+                      .height('65lpx')
+                      .borderRadius(globalThis.lpiPx(12))
+                      .borderStyle(BorderStyle.Solid)
+                      .borderColor('#00ffffff')
+                      .alignItems(VerticalAlign.Center)
+                      .justifyContent(FlexAlign.Center)
+                      .zIndex(2)
+
+                      Text('')
+                        .zIndex(3)
+                        .textAlign(TextAlign.Center)
+                        .width('542lpx')
+                        .height('65lpx')
+                        .focusable(true)
+                        .focusOnTouch(true)
+                        .key(t.deviceId)
+                        .id(t.deviceId)
+                        .onFocus(() => {
+                          log(`deviceList onFocus id:${t.deviceId}`);
+                          this.transferFocusInd = ind;
+                          if (this.transferFocusId !== t.deviceId) {
+                            this.transferFocusId = t.deviceId;
+                          }
+                          this.deviceOnFocus(ind);
+                        })
+                        .onKeyEvent(e => {
+                          let keycode = e.keyCode
+                          let isStop = false;
+                          // 列表边界防穿透：首项按上、末项按下时不允许把焦点弹出到播放器层
+                          if (ind == 0 && keycode == KeyCode.KEYCODE_DPAD_UP) {
+                            isStop = true;
+                          }
+                          if (ind == (this.deviceList.length - 1) && keycode == KeyCode.KEYCODE_DPAD_DOWN) {
+                            isStop = true;
+                          }
+                          // 弹窗内左右键不应穿透到播放器层
+                          if (keycode == KeyCode.KEYCODE_DPAD_LEFT || keycode == KeyCode.KEYCODE_DPAD_RIGHT) {
+                            isStop = true;
+                          }
+                          if (isStop) {
+                            e.stopPropagation();
+                          }
+                        })
+                        .onClick(() => {
+                          log(`onKeyEvent deviceList onClick`);
+                          if (this.transferFocusId) {
+                            let device: DistributedManagerDeviceInfo = {
+                              deviceId: '',
+                              deviceName: '',
+                              deviceType: DeviceType.UNKNOWN_TYPE,
+                              networkId: '',
+                              range: -1
+                            }
+                            let ind = 0;
+                            this.deviceList.forEach((t, i) => {
+                              if (t.deviceId == this.transferFocusId) {
+                                device = t;
+                                ind = i;
+                              }
+                            });
+                            if (device?.isTrust) {
+                              if (device?.isInTransfer) {
+                                this.stopTransfer(device, ind)
+                              } else {
+                                this.startAbility(device, ind)
+                              }
+                            } else if (!device.isInAuth) {
+                              this.authenticateDevice(device, ind)
+                            }
+                          }
+                        })
+                    }
+                    .width('542lpx')
+                    .height('65lpx')
+                    .padding('6lpx')
+                    .borderRadius(globalThis.lpiPx(12))
+                    .stateStyles({
+                      focused: {
+                        .border({
+                          color: Color.Transparent
+                        })
+                      }
+                    })
+                  }, (t: DistributedManagerDeviceInfo) => t.deviceId)
+                }
+                .width('580lpx')
+                .padding({
+                  left: '20lpx',
+                  right: '20lpx',
+                  top: '10lpx',
+                  bottom: '10lpx'
+                })
+              }
+              .scrollBar(BarState.Off)
+              .align(Alignment.Top)
+              .height('260lpx')
+              .width('580lpx')
+              .align(Alignment.Top)
+
+              Divider().strokeWidth(1).color('#ff47515d')
+              Text('按返回键退出')
+                .fontSize('16lpx')
+                .width('100%')
+                .fontColor('#ffcacaca')
+                .padding('10lpx')
+                .textAlign(TextAlign.Center)
+            }
+            .width('580lpx')
+            .height(`370lpx`)
+            .backgroundColor('#404040')
+            .backgroundImageSize({ width: '100%', height: '100%' })
+            .borderRadius(globalThis.lpiPx(16))
+            .focusable(true)
+            .onKeyEvent((e) => {
+              if (e.keyCode == KeyCode.KEYCODE_F24) {
+                e.stopPropagation();
+                return;
+              }
+              log(`TransferDialog :${e.keyCode}, keyType:${e.type}`);
+            })
+            .onAppear(() => {
+              log(`onAppear this.transferFocusId:${this.transferFocusId}`);
+              // 标记对话框已渲染完成，允许 requestTransferFocusLater 发起 requestFocus
+              this.transferDialogReady = true;
+              // 使用防抖机制请求焦点，200ms 延迟确保子组件挂载完成
+              // 若此后有 updateTransferFocusId 调用，会取消此定时器并以最新设备为准
+              this.requestTransferFocusLater(this.transferFocusId, 200);
+            })
+            .onTouch((e) => {
+              e.stopPropagation();
+            })
+          }
+          .zIndex(5)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#0d000000')
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
+          .onClick(() => {
+            this.closeTransferDialog(true);
+          })
+        }
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundImage($rawfile('page_bg.png'))
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .focusable(true)
+    .onAppear(() => {
+      log(`page onAppear`);
+    })
+    .onFocus(() => {
+      log(`page onFocus`);
+
+    })
+    .onKeyEvent((e) => {
+      if (e.keyCode == KeyCode.KEYCODE_F24) {
+        return
+      }
+
+      log(`page keyCode:${e.keyCode}, keyType:${e.type}`);
+
+      this.timeNotOperated = 0;
+
+      if (this.keyPressStartTime == 0 && e.type == KeyType.Down) {
+        this.keyPressStartTime = new Date().getTime();
+      }
+
+      log(`page this.isBarShow:${this.isBarShow}`);
+
+      if (this.isBarShow) {
+
+      } else {
+        // 流转对话框打开时，不响应操作栏和播放快捷键，避免干扰设备列表导航
+        if (!this.isTransferDialogShow) {
+          // 菜单键 小于1.5s拉起操作栏
+          if (e.keyCode == KeyCode.KEYCODE_MENU && e.type == KeyType.Up) {
+            let t = new Date().getTime();
+            log(`KEYCODE_MENU press time:${t - this.keyPressStartTime}`)
+            t = t - this.keyPressStartTime
+            if (t < 1500) {
+              this.showPlayerBtns();
+            }
+          }
+
+          if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+            this.showPlayerBtns();
+          }
+
+          if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+            this.showPlayerBtns();
+          }
+
+
+          if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Up) {
+            this.focusId = this.playerBtns[2].id
+
+          }
+        }
+      }
+
+      if (this.isTransferDialogShow) {
+        if (e.keyCode == KeyCode.KEYCODE_BACK) {
+          this.isTransferDialogBack = true;
+          this.closeTransferDialog();
+          e.stopPropagation();
+        }
+        // DPAD_UP/DOWN 由 ArkUI 自然焦点导航处理，onFocus 回调直接接受焦点变化。
+        // 用户按 DPAD 时，取消 updateTransferFocusId 可能设置的待执行 requestFocus，
+        // 避免设备列表更新的焦点纠正与用户导航冲突。
+        if ((e.keyCode == KeyCode.KEYCODE_DPAD_UP || e.keyCode == KeyCode.KEYCODE_DPAD_DOWN) &&
+          e.type == KeyType.Up) {
+          if (this.focusRequestTimer !== -1) {
+            clearTimeout(this.focusRequestTimer);
+            this.focusRequestTimer = -1;
+          }
+        }
+
+        if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Up) {
+          // 对话框刚打开时（500ms 内）忽略 ENTER，防止打开对话框的同一次按键事件被
+          // ArkUI 焦点切换后重新分发到对话框，导致误触选中第一个设备
+          if (this.transferFocusId && Date.now() - this.transferDialogOpenTime >= 500) {
+            let device: DistributedManagerDeviceInfo = {
+              deviceId: '',
+              deviceName: '',
+              deviceType: DeviceType.UNKNOWN_TYPE,
+              networkId: '',
+              range: -1
+            };
+            let ind = 0;
+            this.deviceList.forEach((t, i) => {
+              if (t.deviceId == this.transferFocusId) {
+                device = t;
+                ind = i;
+              }
+            });
+            if (device.isTrust) {
+              if (device.isInTransfer) {
+                this.stopTransfer(device, ind)
+              } else {
+                this.startAbility(device, ind)
+              }
+            } else if (!device.isInAuth) {
+              this.authenticateDevice(device, ind)
+            }
+          }
+          e.stopPropagation();
+        }
+      }
+
+      if (this.keyPressStartTime != 0 && e.type == KeyType.Up) {
+        this.keyPressStartTime = 0;
+      }
+    })
+    .onClick(() => {
+      this.timeNotOperated = 0;
+      this.showPlayerBtns();
+    })
+    .stateStyles({
+      focused: {
+        .border({
+          color: Color.Transparent
+        })
+      }
+    })
+  }
+
+  handleControlKeyEvent(e: KeyEvent, item: PlayerBtnsType) {
+    console.log('HmLog-->keyEvent2', `${e.keyCode} ${e.type}`)
+    if (e.keyCode == KeyCode.KEYCODE_F24) {
+      e.stopPropagation();
+      return;
+    }
+    if (this.isTransferDialogShow || this.settingBtnsShow) {
+      if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT || e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT) {
+        e.stopPropagation();
+        return;
+      }
+    }
+
+    if (this.isBarShow && item.id == this.focusId && !this.settingBtnsShow &&
+      !this.isTransferDialogShow) {
+
+
+      if (this.leftDown || this.rightDown) {
+        e.stopPropagation();
+      }
+    } else if (!this.isBarShow && item.id == this.focusId && !this.settingBtnsShow &&
+      !this.isTransferDialogShow) {
+      if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT || e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT) {
+        this.barOffsetY = this.screenH - END_MOVE_HEIGHT;
+      }
+      if (globalThis.fromDlnaAbility) {
+        this.dlnaKeyEventLeftRight(e)
+      } else {
+        this.videoAVPlayerClass.keyEventLeftRight(e)
+      }
+    }
+  }
+
+  handleSettingKeyEvent(e: KeyEvent, item: VideoSettingBtnsType, ind: number) {
+    if (e.keyCode == KeyCode.KEYCODE_F24) {
+      e.stopPropagation();
+      return;
+    }
+    if (this.isTransferDialogShow || this.settingBtnsShow) {
+      if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT || e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT) {
+        e.stopPropagation();
+        return;
+      }
+    }
+
+    if (this.isBarShow && item.id == this.focusId && !this.settingBtnsShow &&
+      !this.isTransferDialogShow) {
+      if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Down) {
+        if (!item.disable) {
+          this.closeTransferDialog(false);
+          this.settingBtnsShow = false;
+          this.activeSettingBtnIndex = ind;
+          this.activeSettingBtns = this.videoSettingBtns[ind].items;
+          switch (ind) {
+            case 0:
+              this.activeSettingBtnId = this.focusResolutionItemId;
+              break;
+
+            case 1:
+              this.activeSettingBtnId = this.focusSpeedItemId;
+              break;
+
+            case 2:
+              this.activeSettingBtnId = this.focusChannelItemId;
+              break;
+
+            case 3:
+              this.activeSettingBtnId = this.focusLanguageItemId;
+              break;
+
+            case 4:
+              this.activeSettingBtnId = this.focusRatioItemId;
+              break;
+          }
+          this.settingBtnsShow = true;
+        }
+        e.stopPropagation();
+      }
+
+      if (this.leftDown || this.rightDown) {
+        e.stopPropagation();
+      }
+    } else if (!this.isBarShow && item.id == this.focusId && !this.settingBtnsShow &&
+      !this.isTransferDialogShow) {
+      if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT || e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT) {
+        this.barOffsetY = this.screenH - END_MOVE_HEIGHT;
+      }
+      this.videoAVPlayerClass.keyEventLeftRight(e)
+    }
+  }
+
+  handleSettingTouchEvent(e: TouchEvent, ind: number) {
+    if (e.type == TouchType.Up) {
+      log(`videoSettingBtns onTouch`);
+      this.settingBtnsShow = false;
+      this.activeSettingBtnIndex = ind;
+      this.activeSettingBtns = this.videoSettingBtns[ind].items;
+      this.closeTransferDialog(false);
+      switch (this.activeSettingBtnIndex) {
+        case 0:
+          this.activeSettingBtnId = this.focusResolutionItemId;
+          break;
+
+        case 1:
+          this.activeSettingBtnId = this.focusSpeedItemId;
+          break;
+
+        case 2:
+          this.activeSettingBtnId = this.focusChannelItemId;
+          break;
+
+        case 3:
+          this.activeSettingBtnId = this.focusLanguageItemId;
+          break;
+
+        case 4:
+          this.activeSettingBtnId = this.focusRatioItemId;
+          break;
+      }
+      setTimeout(() => {
+        this.settingBtnsShow = true;
+      }, 100)
+    }
+  }
+
+  handleSubSettingTouchEvent(e: TouchEvent, t: ItemsType) {
+    // 只有长度大于等于2时，才执行有关操作
+    if (e.type == TouchType.Up) {
+      log(`activeSettingBtns onTouch`);
+      this.activeSettingBtnId = t.id;
+
+      switch (this.activeSettingBtnIndex) {
+        case 0:
+          if (this.activeSettingBtns.length >= 2) {
+            this.videoAVPlayerClass.setResolution(t);
+          }
+          this.focusResolutionItemId = t.id; // 分辨率
+          break;
+
+        case 1:
+          if (this.activeSettingBtns.length >= 2) {
+            this.videoAVPlayerClass.setSpeed(t);
+          }
+          this.focusSpeedItemId = t.id; // 倍速
+          break;
+
+        case 2:
+          if (this.activeSettingBtns.length >= 2) {
+            this.videoAVPlayerClass.setAudioChannelMode(t)
+          }
+          this.focusChannelItemId = t.id; // 声道
+          break;
+
+
+        case 3:
+          if (this.activeSettingBtns.length >= 2) {
+            this.videoAVPlayerClass.setAudioTracks(t, this.currentTime, this.isPlaying)
+          }
+          this.focusLanguageItemId = t.id; // 音轨切换
+          break;
+
+        case 4:
+          this.playRatio = t.param as number;
+          if (this.activeSettingBtns.length >= 2) {
+            this.setDisplayRatio(t)
+          }
+          this.focusRatioItemId = t.id; // 画面尺寸
+          break;
+      }
+      this.settingBtnsShow = false;
+      focusControl.requestFocus(this.focusId)
+    }
+    e.stopPropagation();
+  }
+
+  handleSubSettingKeyEvent(e: KeyEvent, t: ItemsType, i: number) {
+    if (e.keyCode == KeyCode.KEYCODE_F24) {
+      e.stopPropagation();
+      return;
+    }
+    log(`settingBtns onKeyEvent keyCode:${e.keyCode}, keyType:${e.type}`);
+    let isStop = false;
+    if (this.isBarShow && t.id == this.activeSettingBtnId) {
+      if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Down) {
+        isStop = true
+        // 只有长度大于等于2时，才执行有关操作
+        switch (this.activeSettingBtnIndex) {
+          case 0:
+            if (this.activeSettingBtns.length >= 2) {
+              this.videoAVPlayerClass.setResolution(t);
+            }
+            this.focusResolutionItemId = t.id; // 分辨率
+            break;
+
+          case 1:
+            if (this.activeSettingBtns.length >= 2) {
+              this.videoAVPlayerClass.setSpeed(t);
+            }
+            this.focusSpeedItemId = t.id; // 倍速
+            break;
+
+          case 2:
+            if (this.activeSettingBtns.length >= 2) {
+              this.videoAVPlayerClass.setAudioChannelMode(t)
+            }
+            this.focusChannelItemId = t.id; // 声道
+            break;
+
+          case 3:
+            if (this.activeSettingBtns.length >= 2) {
+              this.videoAVPlayerClass.setAudioTracks(t, this.currentTime, this.isPlaying)
+            }
+            this.focusLanguageItemId = t.id; // 音轨切换
+            break;
+
+          case 4:
+            this.playRatio = t.param as number;
+            if (this.activeSettingBtns.length >= 2) {
+              this.setDisplayRatio(t)
+            }
+            this.focusRatioItemId = t.id; // 画面尺寸
+            break;
+
+        }
+        this.settingBtnsShow = false;
+        focusControl.requestFocus(this.focusId)
+        e.stopPropagation();
+        return;
+      }
+    }
+    if (i == 0 && e.keyCode == KeyCode.KEYCODE_DPAD_UP) {
+      isStop = true;
+    }
+    if (i == (this.activeSettingBtns.length - 1) && e.keyCode == KeyCode.KEYCODE_DPAD_DOWN) {
+      isStop = true;
+    }
+    if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT || e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT) {
+      isStop = true;
+    }
+    if (isStop) {
+      e.stopPropagation();
+    }
+    if (e.keyCode == KeyCode.KEYCODE_BACK) {
+      this.settingBtnsShow = false;
+      this.isSettingBtnsBack = true;
+      e.stopPropagation();
+      focusControl.requestFocus(this.focusId)
+      return;
+    }
+  }
+
+  async handleRotationClick() {
+    // 记录旋转前的状态
+    log(`[VIDEO_ROTATION] === 旋转前状态 ===`);
+    log(`[VIDEO_ROTATION] 当前旋转角度: ${this.videoRotationAngle}`);
+    log(`[VIDEO_ROTATION] 当前videoWidth: ${this.videoWidth}, videoHeight: ${this.videoHeight}`);
+    log(`[VIDEO_ROTATION] 屏幕尺寸 pageW: ${this.pageW}, pageH: ${this.pageH}`);
+    if (this.videoAVPlayerClass.avPlayer) {
+      log(`[VIDEO_ROTATION] 原始视频尺寸: ${this.videoAVPlayerClass.avPlayer.width}x${this.videoAVPlayerClass.avPlayer.height}`);
+    }
+
+    // 旋转视频内容
+    let oldAngle = this.videoRotationAngle;
+    this.videoRotationAngle = (this.videoRotationAngle + 90) % 360;
+
+    log(`[VIDEO_ROTATION] === 旋转操作 ===`);
+    log(`[VIDEO_ROTATION] 旋转角度从 ${oldAngle} 变为 ${this.videoRotationAngle}`);
+
+    /*    // 更新视频尺寸
+        let rotatedSize = this.calculateRotatedVideoSize();
+        log(`[VIDEO_ROTATION] calculateRotatedVideoSize返回: ${rotatedSize.width}x${rotatedSize.height}`);
+
+        this.videoWidth = rotatedSize.width;
+        this.videoHeight = rotatedSize.height;
+
+        log(`[VIDEO_ROTATION] === 旋转后状态 ===`);
+        log(`[VIDEO_ROTATION] 新的videoWidth: ${this.videoWidth}, videoHeight: ${this.videoHeight}`);
+
+        // 更新视频表面尺寸
+        if (this.surfaceId) {
+          log(`[VIDEO_ROTATION] === 更新Surface尺寸 ===`);
+          log(`[VIDEO_ROTATION] 设置Surface尺寸: ${rotatedSize.width}x${rotatedSize.height}`);
+          this.mXComponentController.setXComponentSurfaceRect({
+            surfaceWidth: rotatedSize.width,
+            surfaceHeight: rotatedSize.height
+          })
+        } else {
+          log(`[VIDEO_ROTATION] Surface ID不存在，无法更新Surface尺寸`);
+        }*/
+
+    this.setDisplayRatio({ param: this.playRatio })
+    log(`[VIDEO_ROTATION] === 旋转完成 ===`);
+  }
+}
