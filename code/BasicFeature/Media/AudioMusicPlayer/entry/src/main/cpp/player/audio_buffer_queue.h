@@ -39,7 +39,7 @@ public:
     bool IsEmpty() const;
 
 private:
-    static constexpr size_t MAX_BUFFER_SIZE = 1024 * 1024;
+    static constexpr size_t maxBufferSize = 1024 * 1024;
 
     std::queue<std::vector<uint8_t>> bufferQueue;
     size_t currentSize = 0;

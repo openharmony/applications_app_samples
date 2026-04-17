@@ -17,7 +17,6 @@
 #include <hilog/log.h>
 #include <chrono>
 #include <cstring>
-#include <securec.h>
 
 #undef LOG_DOMAIN
 #undef LOG_TAG
@@ -48,7 +47,7 @@ bool AudioBufferQueue::Push(const std::vector<uint8_t>& data)
     }
 
     std::unique_lock<std::mutex> lock(queueMutex);
-    notFull.wait(lock, [this, &data] { return currentSize + data.size() <= MAX_BUFFER_SIZE || !isProducerRunning; });
+    notFull.wait(lock, [this, &data] { return currentSize + data.size() <= maxBufferSize || !isProducerRunning; });
 
     if (!isProducerRunning) {
         return false;
@@ -83,7 +82,7 @@ bool AudioBufferQueue::Pop(uint8_t* buffer, size_t bufferSize, size_t& actualSiz
     while (bytesCopied < bytesNeeded && !bufferQueue.empty()) {
         auto& data = bufferQueue.front();
         size_t bytesToCopy = std::min(bytesNeeded - bytesCopied, data.size());
-        memcpy_s(buffer + bytesCopied, bufferSize - bytesCopied, data.data(), bytesToCopy);
+        memcpy(buffer + bytesCopied, data.data(), bytesToCopy);
         bytesCopied += bytesToCopy;
 
         if (bytesToCopy == data.size()) {

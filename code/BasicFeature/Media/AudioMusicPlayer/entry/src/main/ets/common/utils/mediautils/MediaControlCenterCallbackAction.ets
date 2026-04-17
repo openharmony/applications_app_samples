@@ -61,7 +61,7 @@ export class MediaControlCenterCallbackAction {
   doStopAction() {
     // When the monitoring focus is seized and it is necessary to stop,
     // the playback state of the new upper layer needs to be refreshed
-    MediaControlCenter.getInstance().stop();
+    MediaControlCenter.getInstance().pause();
     MediaControlCenter.getInstance().updateIsPlay(false);
   }
 
