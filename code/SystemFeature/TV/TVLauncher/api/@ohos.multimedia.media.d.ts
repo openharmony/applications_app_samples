@@ -1798,3 +1798,561 @@ declare namespace media {
      */
     location?: Location;
   }
+
+  /**
+   * Provides the container definition for media description key-value pairs.
+   * @since 8
+   * @syscap SystemCapability.Multimedia.Media.Core
+   */
+  interface MediaDescription {
+    /**
+     * key:value pair, key see @MediaDescriptionKey .
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    [key : string]: Object;
+  }
+
+  /**
+   * Enumerates seek mode.
+   * @since 8
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @import import media from '@ohos.multimedia.media'
+   */
+  enum SeekMode {
+    /**
+     * seek to the next sync frame of the given timestamp
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    SEEK_NEXT_SYNC = 0,
+    /**
+     * seek to the previous sync frame of the given timestamp
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    SEEK_PREV_SYNC = 1,
+  }
+
+  /**
+   * Enumerates Codec MIME types.
+   * @since 8
+   * @syscap SystemCapability.Multimedia.Media.Core
+   * @import import media from '@ohos.multimedia.media'
+   */
+  enum CodecMimeType {
+    /**
+     * H.263 codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    VIDEO_H263 = 'video/h263',
+    /**
+     * H.264 codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    VIDEO_AVC = 'video/avc',
+    /**
+     * MPEG2 codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    VIDEO_MPEG2 = 'video/mpeg2',
+    /**
+     * MPEG4 codec MIME type
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    VIDEO_MPEG4 = 'video/mp4v-es',
+
+    /**
+     * VP8 codec MIME type
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    VIDEO_VP8 = 'video/x-vnd.on2.vp8',
+
+    /**
+     * AAC codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    AUDIO_AAC = 'audio/mp4a-latm',
+
+    /**
+     * vorbis codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    AUDIO_VORBIS = 'audio/vorbis',
+
+    /**
+     * flac codec MIME type.
+     * @since 8
+     * @syscap SystemCapability.Multimedia.Media.Core
+     */
+    AUDIO_FLAC = 'audio/flac',
+  }
+
+  /**
+   * Extend for TV
+   * Description of video area
+   * @since 1
+   * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+   */
+  interface VideoArea {
+    /**
+     * Extend for TV
+     * describe video area, x coordinate of the upper left corner of the window
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    x: number;
+    /**
+     * Extend for TV
+     * describe video area, y coordinate of the upper left corner of the window
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    y: number;
+
+    /**
+     * Extend for TV
+     * describe video area, width of the window
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    width: number;
+
+    /**
+     * Extend for TV
+     * describe video area, height of the window
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    height: number;
+  }
+
+  /**
+   * Extend API for TV
+   * Enumerates audio channel mode.
+   * @since 1
+   * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+   */
+  enum AudioChannelMode  {
+    /**
+     * stereo mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_STEREO = 0,
+    /**
+     * stereo mixing into left and right channel output: left，right，left，right…
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_DOUBLE_MONO = 1,
+    /**
+     * double left channel output
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_DOUBLE_LEFT = 2,
+    /**
+     * double right channel output
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_DOUBLE_RIGHT = 3,
+    /**
+     * output with left channel and right channel exchanging
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_EXCHANGE = 4,
+    /**
+     * only right channel output
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_ONLY_RIGHT = 5,
+    /**
+     * only left channel output
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_ONLY_LEFT = 6,
+    /**
+     * mute mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    AUDIO_CHANNEL_MODE_MUTED = 7,
+  }
+
+  /**
+   * Extend API for TV
+   * Enumerates display ratio.
+   * @since 1
+   * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+   */
+  enum DisplayRatio {
+    /**
+     * display ratio 4:3
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DISPLAY_RATIO_4TO3 = 0,
+    /**
+     * display ratio 16:9
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DISPLAY_RATIO_16TO9 = 1,
+    /**
+     * display ratio auto
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DISPLAY_RATIO_AUTO = 6,
+    /**
+     * display ratio error
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DISPLAY_RATIO_ERROR = 7,
+  }
+
+  /**
+   * Extend API for TV
+   * Enumerates display mode.
+   * @since 1
+   * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+   */
+  enum DisPlayMode {
+    /**
+     * display pan scan mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DIS_MODE_PAN_SCAN = 0,
+    /**
+     * display letterbox mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DIS_MODE_LETTERBOX,
+    /**
+     * display combined mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DIS_MODE_COMBINED,
+    /**
+     * display ignore mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DIS_MODE_IGNORE,
+    /**
+     * display custom mode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    DIS_MODE_CUSTOM,
+  }
+
+  /**
+   * Extend API for TV
+   * Enumerates paramType.
+   * @since 1
+   * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+   */
+  enum ParamType {
+    /**
+     * Turn on or off video display, type: number, 0: close, 1: open
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_CTRL_VDISP = 0,
+    /**
+     * FTP MODE SETTING, type: number, 1: port mode,0: passive, default: 0
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_FTP_MODE,
+    /**
+     * unique id, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_UNIQID,
+    /**
+     * zorder, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_ZORDER,
+    /**
+     * input window, type: VideoArea
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_INPUT_RECT,
+    /**
+     * rotation, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_ROTATION,
+    /**
+     * dolby stream info, type: DolbyStreamInfo
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DOLBY_STREAM_INFO,
+    /**
+     * dolby drc mode, type: ParamDolbyDcrMode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DOLBY_DRC_MODE,
+    /**
+     * dolby drc range, type: DolbyDcrRange
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DOLBY_DRC_RANGE,
+    /**
+     * dolby dmx mode, type: DolbyDmxMode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DOLBY_DMX_MODE,
+    /**
+     * set adaptive bandwidth, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_ADAP_BANDWIDTH,
+    /**
+     * set buffer time, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_BUFFERTIME,
+    /**
+     * set buffer watermark, type:BufferWaterMark
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_BUFFERWATERMARK,
+    /**
+     * set useragent, type:string; HTTP request header field
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_USERAGENT,
+    /**
+     * set byte range, type:boolean; byte-range HTTP header,default is 1
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_BYTERANGE,
+    /**
+     * set cookies, type:Cookies; HTTP request cookies
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_COOKIES,
+    /**
+     * set referer, type:string; Referer HTTP header
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_REFERER,
+    /**
+     * get download rate, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DOWNLOADRATE,
+    /**
+     * get buffer status, type:BufferStatus
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_BUFFERSTATUS,
+    /**
+     * pace mode, type:PlayerPaceMode
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_PACE_MODE,
+    /**
+     * set the time which client want to seek, type string, unit seconds
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_HTTP_RANGETIME,
+    /**
+     * set play type, type: string
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_PLAY_TYPE,
+    /**
+     * fcc mode, type: boolean
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_FCC_MODE,
+    /**
+     * enable ffmpeg native seek for mpegts or not, type: number, 1: enable, 0: disable, default: 0
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_FAST_SEEK_MODE,
+    /**
+     * sync mode, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_SYNC_MODE,
+    /**
+     * sideband mode, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_SIDEBAND_MODE,
+    /**
+     * thumbnail mode, type: boolean
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_THUMBNAIL_MODE,
+    /**
+     * metadata, type: MetadataInfo
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_METADATA,
+    /**
+     * the type for start display, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_START_TYPE,
+    /**
+     * max time for pre-synchronization maximum time, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAX_PRE_SYNC_TIME,
+    /**
+     * video fast/slow synchronization, type: boolean
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_VIDEO_FAST_SYNC,
+    /**
+     * the diff pts values for abnormal stream, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAX_AV_PTS_DIFF,
+    /**
+     * max time for slow display, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAX_SLOW_PLAY_TIME,
+    /**
+     * waiting time for start display, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAX_WAIT_ANOTHER_STREAM_TIME,
+    /**
+     * exception threshold of advance synchronous, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAXEARLINESS,
+    /**
+     * exception threshold of hysteresis synchronous, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_MAXLATENESS,
+    /**
+     * handle method for exception threshold, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DVBSYNC_HANDLE_ABNORMAL_BUF,
+    /**
+     * file size for app src, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_FILESIZE_FOR_APPSRC,
+    /**
+     * cal mode, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_CAL_MODE,
+    /**
+     * multi program index, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_MULTI_PROG_IDX,
+    /**
+     * multi program info, type: ProgramInfo
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_MULTI_PROG_INFO,
+    /**
+     * setup udp interface, type: string
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_MULTI_IFACE,
+    /**
+     * set HTTP persistent connection, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_KEEP_ALIVE,
+    /**
+     * The time of buffer invalid when the player is prepared, type: number
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_DISABLE_BUFFERTIME,
+    /**
+     * set app name for pulse asink, to decide priority, type:string
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_APP_NAME_FOR_PULSE_ASINK,
+    /**
+     * is 4k enable, type:boolean
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_ENABLE_4K,
+    /**
+     * butt
+     * @since 1
+     * @syscap SystemCapability.Multimedia.Media.VideoPlayer
+     */
+    PARAM_TYPE_BUTT
+  }
+
+}
+export default media;
