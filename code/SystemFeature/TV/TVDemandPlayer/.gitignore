@@ -1,0 +1,16 @@
+/node_modules
+/local.properties
+/install.bat
+/.idea
+**/build
+/.hvigor
+.vscode
+
+package-lock.json
+debug.log
+
+oh_modules/
+oh-package-lock.json5
+BuildProfile.ets
+**/.clang-format
+**/signature

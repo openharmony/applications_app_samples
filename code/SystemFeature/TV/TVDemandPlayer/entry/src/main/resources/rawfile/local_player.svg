@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="396px" height="222px" viewBox="0 0 396 222" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>pic_video</title>
+    <defs>
+        <radialGradient cx="45.0182822%" cy="100%" fx="45.0182822%" fy="100%" r="139.761432%" gradientTransform="translate(0.450183,1.000000),scale(0.560629,1.000000),rotate(180.000000),scale(1.000000,0.640329),translate(-0.450183,-1.000000)" id="radialGradient-1">
+            <stop stop-color="#19B29E" offset="0%"></stop>
+            <stop stop-color="#0096AC" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="0" y="-2.27373675e-13" width="396" height="222.008889"></rect>
+        <filter x="-4.0%" y="-3.6%" width="108.1%" height="114.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="pic_video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-3" fill="white">
+            <use xlink:href="#path-2"></use>
+        </mask>
+        <g id="Mask">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
+            <use fill="url(#radialGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+        </g>
+        <path d="M275.978261,47 C283.710247,47 289.978261,53.2680135 289.978261,61 L289.978261,74 L106,74 L106,81 L289.978261,81 L289.978261,161 C289.978261,168.731986 283.710247,175 275.978261,175 L119.978261,175 C112.246274,175 105.978261,168.731986 105.978261,161 L105.978261,61 C105.978261,53.2680135 112.246274,47 119.978261,47 L275.978261,47 Z M183.085238,94.2614812 C179.219245,94.2614812 176.085238,97.395488 176.085238,101.261481 L176.085238,148.240531 C176.085238,149.632591 176.500291,150.993039 177.277358,152.148027 C179.435409,155.355631 183.785131,156.206462 186.992734,154.048411 L223.143486,129.726467 C223.957076,129.17909 224.646586,128.466883 225.167335,127.635996 C227.220404,124.360204 226.229191,120.040309 222.953398,117.987241 L186.802647,95.330135 C185.688476,94.6318397 184.40015,94.2614812 183.085238,94.2614812 Z" id="形状结合" fill="#FFFFFF" mask="url(#mask-3)"></path>
+    </g>
+</svg>

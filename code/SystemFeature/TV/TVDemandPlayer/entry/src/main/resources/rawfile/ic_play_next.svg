@@ -1,0 +1,17 @@
+<svg width="96.000000" height="96.000000" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_40_2754_dd" x="0.000000" y="0.000000" width="96.000000" height="96.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="33.3333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_40_2754_dd)">
+		<circle id="椭圆 148" r="48.000000" transform="matrix(1 0 0 -1 48 48)" fill="#FFFFFF" fill-opacity="0.200000"/>
+	</g>
+	<path id="合并" d="M60.7705 44.3193L35.0889 28.5955C32.4233 26.9636 29 28.8816 29 32.0068L29 63.4546C29 66.5798 32.4233 68.4978 35.0889 66.866L60.7705 51.1421C60.8008 51.1235 60.8311 51.1045 60.8608 51.0854L60.8608 62.4153C60.8608 64.572 62.6089 66.3203 64.7656 66.3203C66.9224 66.3203 68.6709 64.572 68.6709 62.4153L68.6709 33.0698C68.6709 30.9131 66.9224 29.1648 64.7656 29.1648C62.6089 29.1648 60.8608 30.9131 60.8608 33.0698L60.8608 44.3762C60.8311 44.3569 60.8008 44.3379 60.7705 44.3193Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+</svg>

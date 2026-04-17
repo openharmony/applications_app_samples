@@ -1,0 +1,18 @@
+<svg width="96.000000" height="96.000000" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_40_2798_dd" x="0.000000" y="0.000000" width="96.000000" height="96.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="33.3333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+	</defs>
+	<rect id="属性 1=组件集 531" width="96.000000" height="96.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g filter="url(#filter_40_2798_dd)">
+		<circle id="椭圆 148" cx="48.000000" cy="48.000000" r="48.000000" fill="#FFFFFF" fill-opacity="0.200000"/>
+	</g>
+	<path id="多边形 13" d="M71 51.46L39.5 69.65C36.83 71.19 33.5 69.26 33.5 66.18L33.5 29.81C33.5 26.73 36.83 24.8 39.5 26.34L71 44.53C73.66 46.07 73.66 49.92 71 51.46Z" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+</svg>
