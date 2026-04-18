@@ -28,9 +28,10 @@ Muxer::~Muxer()
     Release();
 }
 
-int32_t Muxer::Create(int32_t fd)
+int32_t Muxer::Create(int32_t fd, int32_t outputFormat)
 {
-    muxer_ = OH_AVMuxer_Create(fd, AV_OUTPUT_FORMAT_MPEG_4);
+    outputFormat_ = outputFormat;
+    muxer_ = OH_AVMuxer_Create(fd, static_cast<OH_AVOutputFormat>(outputFormat));
     CHECK_AND_RETURN_RET_LOG(muxer_ != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Muxer create failed, fd: %{public}d", fd);
     return AVCODEC_SAMPLE_ERR_OK;
 }
@@ -64,9 +65,11 @@ int32_t Muxer::Config(SampleInfo &sampleInfo)
     
     ret = OH_AVMuxer_AddTrack(muxer_, &videoTrackId_, formatVideo);
     OH_AVFormat_Destroy(formatVideo);
-    // 由于相机只有1920×1080的profile，没有1080×1920的profile，所以得往文件里封装一个90度的角度信息，后续播放才会是竖屏显示。
-    OH_AVMuxer_SetRotation(muxer_, 90);
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "AddTrack failed");
+    // FLV不支持旋转元数据
+    if (outputFormat_ != 14) { // 14 is FLV
+        OH_AVMuxer_SetRotation(muxer_, VERTICAL_ANGLE);
+    }
     return AVCODEC_SAMPLE_ERR_OK;
 }
 

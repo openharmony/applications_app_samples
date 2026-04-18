@@ -63,6 +63,7 @@ struct SampleInfo {
     int32_t codecRunMode = 0;
     int32_t codecSyncMode = 0;
     string outputFilePath;
+    int32_t outputFormat = 2; // AV_OUTPUT_FORMAT_MPEG_4 = 2, AV_OUTPUT_FORMAT_FLV = 14
 
     int32_t audioSampleForamt = 0;
     int32_t audioSampleRate = 0;

@@ -53,6 +53,15 @@ export class CommonConstants {
    */
   public static readonly VIDEO_MIMETYPE: string[] = ['HDRVivid', 'H264', 'H265'];
   /**
+   * Output container format.
+   */
+  public static readonly OUTPUT_FORMAT: string[] = ['MP4', 'FLV'];
+  /**
+   * Output format enum values matching NDK OH_AVOutputFormat.
+   */
+  public static readonly FORMAT_MP4: number = 2;
+  public static readonly FORMAT_FLV: number = 14;
+  /**
    * Video resolution.
    */
   public static readonly VIDEO_RESOLUTION: string[] = ['4K', '1080P', '720P'];

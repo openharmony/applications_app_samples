@@ -27,7 +27,7 @@ public:
     Muxer() = default;
     ~Muxer();
 
-    int32_t Create(int32_t fd);
+    int32_t Create(int32_t fd, int32_t outputFormat);
     int32_t Config(SampleInfo &sampleInfo);
     int32_t Start();
     int32_t WriteSample(int32_t trackId, OH_AVBuffer *buffer, OH_AVCodecBufferAttr &attr);
@@ -38,6 +38,7 @@ public:
 
 private:
     OH_AVMuxer *muxer_ = nullptr;
+    int32_t outputFormat_ = 2;
     int32_t videoTrackId_ = -1;
     int32_t audioTrackId_ = -1;
     std::mutex writeMutex_;
