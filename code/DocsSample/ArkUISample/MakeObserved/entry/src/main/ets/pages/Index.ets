@@ -14,43 +14,65 @@
  */
 import { MyComponent } from '../common/MyComponent';
 import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @ComponentV2
 struct Index {
 
   build() {
-   Column(){
-     MyComponent()
-     Button('page1').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page1'})
-     })
-     Button('page2').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page2'})
-     })
-     Button('page3').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page3'})
-     })
-     Button('page4').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page4'})
-     })
-     Button('page5').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page5'})
-     })
-     Button('page6').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page6'})
-     })
-     Button('page7').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page7'})
-     })
-     Button('page8').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page8'})
-     })
-     Button('page9').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page9'})
-     })
-     Button('page10').onClick((event: ClickEvent) => {
-        router.getUIContext().getRouter().pushUrl({url:'View/Page10'})
-     })
-   }
+    Column() {
+      MyComponent()
+      Button('page1').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page1' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page2').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page2' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page3').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page3' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page4').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page4' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page5').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page5' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page6').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page6' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page7').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page7' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page8').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page8' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page9').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page9' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+      Button('page10').onClick((event: ClickEvent) => {
+        this.getUIContext().getRouter().pushUrl({ url: 'View/Page10' }, (e: Error) => {
+          hilog.error(0x0000, 'testTag', 'Failed to set color mode: %{public}s', JSON.stringify(e) ?? '');
+        })
+      })
+    }
   }
 }
