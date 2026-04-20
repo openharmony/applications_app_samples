@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "theme_color",
+      "value": "#FF0034"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "slider_track_color",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "slide_text_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "border_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "dialog_background_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "flash_background_color",
+      "value": "#33FFFFFF"
+    }
+  ]
+}
