@@ -13,14 +13,26 @@
  * limitations under the License.
  */
 
+// [Start napi_create_buffer_api]
 export const createBuffer: () => string; // napi_create_buffer
+// [End napi_create_buffer_api]
 
+// [Start napi_create_buffer_copy_api]
 export const createBufferCopy: () => string; // napi_create_buffer_copy
+// [End napi_create_buffer_copy_api]
 
+// [Start napi_create_external_buffer_api]
 export const createExternalBuffer: () => string; // napi_create_external_buffer
+// [End napi_create_external_buffer_api]
 
+// [Start napi_get_buffer_info_api]
 export const getBufferInfo: () => string; // napi_get_buffer_info
+// [End napi_get_buffer_info_api]
 
+// [Start napi_is_buffer_api]
 export const isBuffer: () => boolean; // napi_is_buffer
+// [End napi_is_buffer_api]
 
-export const createExternalArraybuffer: () => ArrayBuffer | void; // napi_create_external_arraybuffer
+// [Start napi_create_external_arraybuffer]
+export const createExternalArraybuffer: () => ArrayBuffer | undefined; // napi_create_external_arraybuffer
+// [End napi_create_external_arraybuffer]

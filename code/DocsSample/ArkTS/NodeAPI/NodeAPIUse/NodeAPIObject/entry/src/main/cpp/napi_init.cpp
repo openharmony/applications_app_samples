@@ -18,6 +18,7 @@
 #include "hilog/log.h"
 #include "napi/native_api.h"
 
+// [Start napi_get_prototype]
 // napi_get_prototype
 static napi_value GetPrototype(napi_env env, napi_callback_info info)
 {
@@ -30,6 +31,9 @@ static napi_value GetPrototype(napi_env env, napi_callback_info info)
     napi_get_prototype(env, args[0], &result);
     return result;
 }
+// [End napi_get_prototype]
+
+// [Start napi_create_object]
 // napi_create_object
 napi_value NewObject(napi_env env, napi_callback_info info)
 {
@@ -47,6 +51,9 @@ napi_value NewObject(napi_env env, napi_callback_info info)
     napi_set_property(env, object, name, value);
     return object;
 }
+// [End napi_create_object]
+
+// [Start napi_object_freeze]
 // napi_object_freeze
 static napi_value ObjectFreeze(napi_env env, napi_callback_info info)
 {
@@ -64,6 +71,9 @@ static napi_value ObjectFreeze(napi_env env, napi_callback_info info)
     // 将冻结后的object传回ArkTS侧
     return objFreeze;
 }
+// [End napi_object_freeze]
+
+// [Start napi_object_seal]
 // napi_object_seal
 static napi_value ObjectSeal(napi_env env, napi_callback_info info)
 {
@@ -76,12 +86,18 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     napi_status status = napi_object_seal(env, objSeal);
     if (status == napi_ok) {
         OH_LOG_INFO(LOG_APP, "Node-API napi_object_seal success");
+    } else {
+        napi_throw_error(env, nullptr, "Node-API napi_object_seal failed");
+        return nullptr;
     }
     // 将封闭后的object传回ArkTS侧
     return objSeal;
 }
+// [End napi_object_seal]
+
+// [Start napi_typeof]
 // napi_typeof
-static napi_value NapiTypeof(napi_env env, napi_callback_info info)
+static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 {
     // 接受一个入参
     size_t argc = 1;
@@ -127,8 +143,11 @@ static napi_value NapiTypeof(napi_env env, napi_callback_info info)
     }
     return returnValue;
 }
+// [End napi_typeof]
+
+// [Start napi_instanceof]
 // napi_instanceof
-static napi_value NapiInstanceof(napi_env env, napi_callback_info info)
+static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 {
     // 接受两个入参
     size_t argc = 2;
@@ -147,7 +166,9 @@ static napi_value NapiInstanceof(napi_env env, napi_callback_info info)
 
     return returnValue;
 }
+// [End napi_instanceof]
 
+// [Start napi_type_tag_object]
 #define NUMBERINT_FOUR 4
 // 定义一个静态常量napi_type_tag数组存储类型标签
 static const napi_type_tag TagsData[NUMBERINT_FOUR] = {
@@ -197,7 +218,9 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
 
     return checked;
 }
+// [End napi_type_tag_object]
 
+// [Start napi_create_external]
 // 用于释放外部数据的回调函数
 void finalizeCallback(napi_env env, void *data, void *hint)
 {
@@ -229,17 +252,24 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     const size_t dataSize = 10;
     // 分配外部数据
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
     // 初始化外部数据
     memset(data, 0, dataSize);
     napi_value result = nullptr;
     // 返回带有外部数据的对象
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
         return nullptr;
     }
     return result;
 }
+// [End napi_create_external]
+
+// [Start napi_get_value_external]
 // napi_get_value_external
 static int g_external = 5;
 static napi_value GetValueExternal(napi_env env, napi_callback_info info)
@@ -256,18 +286,30 @@ static napi_value GetValueExternal(napi_env env, napi_callback_info info)
     napi_create_int32(env, *(int *)getExternal, &result);
     return result;
 }
+// [End napi_get_value_external]
+
+// [Start napi_get_cb_info]
 // napi_create_symbol
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     const char *des = "only";
     // 使用napi_create_string_utf8创建描述字符串
-    napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_string_utf8 failed");
+        return nullptr;
+    }
     napi_value returnSymbol = nullptr;
     // 创建一个symbol类型，并返回
-    napi_create_symbol(env, result, &returnSymbol);
+    status = napi_create_symbol(env, result, &returnSymbol);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_symbol failed");
+        return nullptr;
+    }
     return returnSymbol;
 }
+// [End napi_create_symbol]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -277,8 +319,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"createObject", nullptr, NewObject, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"objectFreeze", nullptr, ObjectFreeze, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"objectSeal", nullptr, ObjectSeal, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiTypeof", nullptr, NapiTypeof, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiInstanceof", nullptr, NapiInstanceof, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"napiTypeOf", nullptr, NapiTypeOf, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"napiInstanceOf", nullptr, NapiInstanceOf, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"setTypeTagToObject", nullptr, SetTypeTagToObject, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"checkObjectTypeTag", nullptr, CheckObjectTypeTag, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createExternal", nullptr, GetExternalType, nullptr, nullptr, nullptr, napi_default, nullptr},

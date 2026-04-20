@@ -19,6 +19,7 @@
 
 static constexpr int INT_ARG_5 = 5; // 入参索引
 
+// [Start napi_create_buffer]
 // napi_create_buffer
 static napi_value CreateBuffer(napi_env env, napi_callback_info info)
 {
@@ -27,25 +28,41 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
     size_t bufferSize = str.size();
     napi_value buffer = nullptr;
     // 调用napi_create_buffer接口创建并获取一个指定大小的ArkTS Buffer
-    napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
+    napi_status status = napi_create_buffer(env, bufferSize + 1, &bufferPtr, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer failed");
+        return nullptr;
+    }
     // 将字符串str的值复制到buffer的内存中
     strcpy((char *)bufferPtr, str.data());
     return buffer;
 }
+// [End napi_create_buffer]
 
+// [Start napi_create_buffer_copy]
 // napi_create_buffer_copy
 static napi_value CreateBufferCopy(napi_env env, napi_callback_info info)
 {
     // 要copy的内容
-    std::string str("CreateBufferCopy");
+    char str[] = "CreateBufferCopy";
     napi_value buffer = nullptr;
     // 调用napi_create_buffer_copy接口创建buffer并将str的内容copy到buffer
-    void *resultData = nullptr;
-    napi_create_buffer_copy(env, str.size(), str.data(), &resultData, &buffer);
-    OH_LOG_INFO(LOG_APP, "Node-API resultData is : %{public}s.", resultData);
+    void* resultData = nullptr;
+    napi_status status = napi_create_buffer_copy(env, sizeof(str), str, &resultData, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer_copy failed");
+        return nullptr;
+    }
+    if (resultData != nullptr) {
+        OH_LOG_INFO(LOG_APP, "Node-API resultData is : %{public}s.", reinterpret_cast <const char*>(resultData));
+    } else {
+        OH_LOG_INFO(LOG_APP, "Node-API resultData is nullptr.");
+    }
     return buffer;
 }
+// [End napi_create_buffer_copy]
 
+// [Start napi_create_external_buffer]
 // 回调函数，用于释放内存
 void FinalizeCallback(napi_env env, void *data, void *hint)
 {
@@ -62,15 +79,27 @@ static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
     // 创建一个字符串
     std::string str("CreateExternalBuffer");
     // 在堆上分配内存，大小为字符串的长度
-    void *data = malloc(str.size());
+    void* data = malloc(str.size() + 1);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
+    memset(data, 0, str.size() + 1);
     // 将字符串复制到分配的内存中
     strcpy(static_cast<char *>(data), str.data());
     // 使用napi_create_external_buffer接口创建并获取一个指定大小buffer
     napi_value buffer = nullptr;
-    napi_create_external_buffer(env, str.size(), data, FinalizeCallback, nullptr, &buffer);
+    napi_status status = napi_create_external_buffer(env, str.size(), data, FinalizeCallback, nullptr, &buffer);
+    if (status != napi_ok) {
+        free(data);
+        OH_LOG_ERROR(LOG_APP, "napi_create_external_buffer failed");
+        return nullptr;
+    }
     return buffer;
 }
+// [End napi_create_external_buffer]
 
+// [Start napi_get_buffer_info]
 // napi_get_buffer_info
 static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
 {
@@ -79,7 +108,11 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
     napi_value buffer = nullptr;
     void *bufferPtr = nullptr;
     size_t bufferSize = str.size();
-    napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
+    napi_status status = napi_create_buffer(env, bufferSize + 1, &bufferPtr, &buffer);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_create_buffer failed");
+        return nullptr;
+    }
     strcpy((char *)bufferPtr, str.data());
 
     // 获取Buffer的信息
@@ -88,18 +121,25 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
     napi_get_buffer_info(env, buffer, &tmpBufferPtr, &bufferLength);
 
     // 创建一个新的ArkTS字符串来保存Buffer的内容并返出去
+    if (bufferLength == 0 || ((char*)tmpBufferPtr)[bufferLength - 1] != '\0') {
+        OH_LOG_ERROR(LOG_APP, "Buffer is not null-terminated");
+        return nullptr;
+    }
     napi_value returnValue = nullptr;
-    napi_create_string_utf8(env, (char *)tmpBufferPtr, bufferLength, &returnValue);
+    napi_create_string_utf8(env, (char*)tmpBufferPtr, bufferLength, &returnValue);
     return returnValue;
 }
+// [End napi_get_buffer_info]
 
+// [Start napi_is_buffer]
 // napi_is_buffer
 static napi_value IsBuffer(napi_env env, napi_callback_info info)
 {
     // 创建一个Buffer对象
     std::string str = "buffer";
     napi_value buffer = nullptr;
-    napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
+    void *bufferPtr = nullptr;
+    napi_create_buffer(env, str.size(), &bufferPtr, &buffer);
 
     // 调用napi_is_buffer接口判断创建的对象是否为buffer
     bool result = false;
@@ -109,7 +149,9 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
+// [End napi_is_buffer]
 
+// [Start napi_create_external_arraybuffer]
 typedef struct {
     uint8_t *data;
     size_t length;
@@ -138,6 +180,8 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
         napi_create_external_arraybuffer(env, dataArray, 5, FinalizeCallback1, bufferData, &externalBuffer);
     if (status != napi_ok) {
         // 处理错误
+        delete[] dataArray;
+        delete bufferData;
         napi_throw_error(env, nullptr, "Node-API napi_create_external_arraybuffer fail");
         return nullptr;
     }
@@ -151,6 +195,7 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
     }
     return outputArray;
 }
+// [End napi_create_external_arraybuffer]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
