@@ -13,7 +13,7 @@
 
 1. 安装编译生成的hap包,打开应用。
 2. 获取当前屏幕方向，并转换为setPreferredOrientation()可接受的旋转策略。
-3. 应用旋转到选择的方向。
+3. 应用旋转当前屏幕方向。
 
 ## 工程目录
 
@@ -38,8 +38,8 @@ ConvertOrientationAdnRotationSample
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：default。
-2. 本示例支持API23版本SDK，版本号：6.1.0.26。
+1. 本示例支持标准系统上运行，支持设备：华为手机、华为平板。
+2. 本示例API Version 23及以上版本SDK。
 3. 本示例已支持使DevEco Studio 6.0.2 Release (构建版本：6.0.2.650)编译运行。
 
 ## 下载
