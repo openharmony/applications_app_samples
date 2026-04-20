@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start ark_napi_get_cb_info]
+// [Start ark_napi_get_cb_info_header]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
@@ -40,9 +40,9 @@ class Student {
     this.score = score;
   }
 }
+// [End ark_napi_get_cb_info_header]
 
-// [StartExclude ark_napi_get_cb_info]
-// [Start ark_napi_call_function]
+// [Start ark_napi_call_function_header]
 function returnNumber() {
   return 10;
 }
@@ -52,8 +52,8 @@ class Person {
     return 11;
   }
 }
+// [End ark_napi_call_function_header]
 
-// [StartExclude ark_napi_call_function]
 @Entry
 @Component
 struct Index {
@@ -86,7 +86,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiGetCbInfo') {
-                  // [EndExclude ark_napi_get_cb_info]
+                  // [Start ark_napi_get_cb_info]
                   // napi_get_cb_info
                   let student = new Student('Alice', 18, 100);
                   // 获取参数
@@ -111,7 +111,7 @@ struct Index {
                   // [End ark_napi_get_cb_info]
                   this.result = 'napiGetCbInfoSuccess';
                 } else if (item === '2.napiCallFunction') {
-                  // [EndExclude ark_napi_call_function]
+                  // [Start ark_napi_call_function]
                   // napi_call_function
                   const person = new Person();
                   hilog.info(0x0000, 'testTag', 'Test Node-API call_function:%{public}d',
