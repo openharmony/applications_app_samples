@@ -42,6 +42,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+    // 更新卡片数据
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
     }).catch((error: BusinessError) => {
