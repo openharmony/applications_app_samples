@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatearraybufferfromexternalmemoryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatearraybufferfromexternalmemoryAbility_label",
+      "value": "JsvmAboutExternalArraybuffer"
+    }
+  ]
+}
