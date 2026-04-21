@@ -1,0 +1,23 @@
+<svg width="176.000000" height="176.000000" viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<linearGradient x1="77.466629" y1="103.609055" x2="98.933380" y2="72.633438" id="paint_linear_199_25989_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#6194F9"/>
+		</linearGradient>
+		<linearGradient x1="173.735382" y1="3.756178" x2="121.323532" y2="118.048805" id="paint_linear_199_25991_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="85.735382" y1="-84.243820" x2="33.323532" y2="30.048805" id="paint_linear_199_25992_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+	</defs>
+	<circle id="椭圆 24" cx="88.000000" cy="88.000000" r="80.000000" fill="#FFFFFF" fill-opacity="0.860000"/>
+	<path id="path" d="M123.42 72.04L52.57 72.04C47.85 72.04 44 75.95 44 80.73L44 86.39C44 88.69 44.9 90.91 46.48 92.52L52.57 98.69L55.23 101.43C56.86 103.08 59.05 104 61.32 104L114.5 104C116.77 104 118.92 103.08 120.55 101.47L123.33 98.69L129.47 92.52C131.1 90.86 132 88.65 132 86.34L132 80.69C132 75.91 128.14 72.04 123.42 72.04ZM109.44 91.3L66.55 91.3C64.79 91.3 63.34 89.82 63.34 88.04C63.34 86.26 64.79 84.78 66.55 84.78L109.44 84.78C111.2 84.78 112.65 86.26 112.65 88.04C112.65 89.82 111.2 91.3 109.44 91.3Z" fill="url(#paint_linear_199_25989_0)" fill-opacity="0.900000" fill-rule="nonzero"/>
+	<circle id="椭圆 218" cx="88.000000" cy="88.000000" r="87.000000" stroke="url(#paint_linear_199_25991_0)" stroke-opacity="0.860000" stroke-width="2.000000"/>
+	<circle id="椭圆 219" r="87.000000" transform="matrix(-1 0 0 -1 88 88)" stroke="url(#paint_linear_199_25992_0)" stroke-opacity="0.860000" stroke-width="2.000000"/>
+</svg>

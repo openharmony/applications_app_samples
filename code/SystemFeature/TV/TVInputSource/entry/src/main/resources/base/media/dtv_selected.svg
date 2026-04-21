@@ -1,0 +1,28 @@
+<svg width="184.000000" height="184.000000" viewBox="0 0 184 184" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<linearGradient x1="87.027969" y1="127.925720" x2="98.310211" y2="122.117798" id="paint_linear_186_20765_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#6194F9"/>
+		</linearGradient>
+		<linearGradient x1="83.142395" y1="112.159317" x2="101.193993" y2="62.025219" id="paint_linear_186_20769_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#6194F9"/>
+		</linearGradient>
+		<linearGradient x1="176.761078" y1="8.713476" x2="124.944839" y2="121.707336" id="paint_linear_186_20851_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="89.761078" y1="-78.286522" x2="37.944839" y2="34.707336" id="paint_linear_186_20852_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+	</defs>
+	<circle id="椭圆 214" cx="92.000000" cy="92.000000" r="80.000000" fill="#FFFFFF" fill-opacity="0.860000"/>
+	<path id="直线 21" d="M69.43 121.99L115.68 121.99" stroke="url(#paint_linear_186_20765_0)" stroke-opacity="0.900000" stroke-width="6.000000" stroke-linecap="round"/>
+	<path id="合并" d="M121 61L63 61C58.5815 61 55 64.5815 55 69L55 104.792C55 109.21 58.5815 112.792 63 112.792L121 112.792C125.418 112.792 129 109.21 129 104.792L129 69C129 64.5815 125.418 61 121 61ZM103.585 83.4131L89.1304 75.1875C86.4634 73.6704 83.1519 75.5962 83.1519 78.6646L83.1519 95.1152C83.1519 98.1831 86.4634 100.109 89.1304 98.5918L103.585 90.3662C106.281 88.8325 106.281 84.9468 103.585 83.4131Z" clip-rule="evenodd" fill="url(#paint_linear_186_20769_0)" fill-opacity="0.900000" fill-rule="evenodd"/>
+	<circle id="椭圆 222" cx="92.000000" cy="92.000000" r="85.000000" stroke="url(#paint_linear_186_20851_0)" stroke-opacity="0.860000" stroke-width="4.000000"/>
+	<circle id="椭圆 223" r="85.000000" transform="matrix(-1 0 0 -1 92 92)" stroke="url(#paint_linear_186_20852_0)" stroke-opacity="0.860000" stroke-width="4.000000"/>
+</svg>

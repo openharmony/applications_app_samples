@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "InputSource"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "InputSource"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "InputSource"
+    },
+    {
+      "name": "tips_in_development",
+      "value": "该功能开发中，敬请期待"
+    },
+     {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "电视直播"
+    },
+    {
+      "name": "No_Channel",
+      "value": "没有电视节目，请按确认键搜索"
+    },
+    {
+      "name": "Search_Type_Manual",
+      "value": "手动搜索"
+    },
+    {
+      "name": "Search_Type_Auto",
+      "value": "自动搜索"
+    }
+  ]
+}
