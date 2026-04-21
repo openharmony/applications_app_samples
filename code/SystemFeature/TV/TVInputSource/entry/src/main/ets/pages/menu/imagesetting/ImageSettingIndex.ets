@@ -1920,3 +1920,1240 @@ export struct ImageSettingIndex {
             left: lpx(12)
           })
           .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.audioLanguageFirstList, (item:AudioLanguageFirstItem, index: number) => {
+            ListItem() {
+              AudioLanguageFirstView({ item: item, isFocused: this.audioLanguageFirstIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('audioLanguageFirst' + item.id)
+            .onFocus(() => {
+              this.audioLanguageFirstIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.audioLanguageFirstIndex === item.id) {
+                this.audioLanguageFirstIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.audioLanguageFirstIndex = item.id - 1;
+                  focusControl.requestFocus(`${'audioLanguageFirst' + this.audioLanguageFirstIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.audioLanguageFirstList.length) {
+                  this.audioLanguageFirstIndex = item.id + 1;
+                  focusControl.requestFocus(`${'audioLanguageFirst' + this.audioLanguageFirstIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateAudioLanguageFirst(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.audioLanguageFirst ? Visibility.Visible : Visibility.None)
+      //第二音频语言
+      Column() {
+        Text('第二音频语言')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.audioLanguageSecondList, (item:AudioLanguageSecondItem, index: number) => {
+            ListItem() {
+              AudioLanguageSecondView({ item: item, isFocused: this.audioLanguageSecondIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('audioLanguageSecond' + item.id)
+            .onFocus(() => {
+              this.audioLanguageSecondIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.audioLanguageSecondIndex === item.id) {
+                this.audioLanguageSecondIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.audioLanguageSecondIndex = item.id - 1;
+                  focusControl.requestFocus(`${'audioLanguageSecond' + this.audioLanguageSecondIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.audioLanguageSecondList.length) {
+                  this.audioLanguageSecondIndex = item.id + 1;
+                  focusControl.requestFocus(`${'audioLanguageSecond' + this.audioLanguageSecondIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateAudioLanguageSecond(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.audioLanguageSecond ? Visibility.Visible : Visibility.None)
+      //声道
+      Column() {
+        Text('声道')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.channelList, (item:ChannelItem, index: number) => {
+            ListItem() {
+              ChannelView({ item: item, isFocused: this.channelIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('channel' + item.id)
+            .onFocus(() => {
+              this.channelIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.channelIndex === item.id) {
+                this.channelIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.channelIndex = item.id - 1;
+                  focusControl.requestFocus(`${'channel' + this.channelIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.channelList.length) {
+                  this.channelIndex = item.id + 1;
+                  focusControl.requestFocus(`${'channel' + this.channelIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateChannel(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.channel ? Visibility.Visible : Visibility.None)
+      //音效模式
+      Column() {
+        Text('音效模式')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+        List({ space: lpx(24) }) {
+          ForEach(this.soundModeList, (item:SoundModeItem, index: number) => {
+            ListItem() {
+              SoundModeView({ item: item, isFocused: this.soundModeIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('soundMode' + item.id)
+            .onFocus(() => {
+              this.soundModeIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.soundModeIndex === item.id) {
+                this.soundModeIndex = -1;
+              }
+            })
+            .onKeyEvent(async (e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.soundModeIndex = item.id - 1;
+                  focusControl.requestFocus(`${'soundMode' + this.soundModeIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.soundModeList.length) {
+                  this.soundModeIndex = item.id + 1;
+                  focusControl.requestFocus(`${'soundMode' + this.soundModeIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateSoundMode(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.soundMode ? Visibility.Visible : Visibility.None)
+      //字幕
+      Column() {
+        Text('字幕设置')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+        List({ space: lpx(24) }) {
+          ForEach(this.captionSettingsList, (item: SettingList, index: number) => {
+            ListItem() {
+              Column() {
+                Row() {
+                  Text(item.name)
+                    .fontColor(this.captionSettingsIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#dbffffff')
+                    .height(lpx(98))
+                    .fontSize(lpx(36))
+                    .align(Alignment.Center)
+                    .margin({
+                      left: lpx(24)
+                    })
+                    .focusable(true)
+                  Row(){
+                    if(index==0){
+                      Text(this.showCaptionSettingLanguage ? this.captionSettingLanguageText : '')
+                        .fontSize(lpx(36))
+                        .align(Alignment.Center)
+                        .fontColor(this.captionSettingsIndex == item.id ? '#99000000' : '#dbffffff')
+                        .margin({ right: lpx(12) })
+                    }else if(index==1){
+                      Text(this.captionSettingFirstText)
+                        .fontSize(lpx(36))
+                        .align(Alignment.Center)
+                        .fontColor(this.captionSettingsIndex == item.id ? '#99000000' : '#dbffffff')
+                        .margin({ right: lpx(12) })
+                    }else if(index==2){
+                      Text(this.captionSettingSecondText)
+                        .fontSize(lpx(36))
+                        .align(Alignment.Center)
+                        .fontColor(this.captionSettingsIndex == item.id ? '#99000000' : '#dbffffff')
+                        .margin({ right: lpx(12) })
+                    }
+                    Image($r(Ratio.resName('icon_arrow_right')))
+                      .fillColor(this.captionSettingsIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#99ffffff')
+                      .width(lpx(24))
+                      .height(lpx(48))
+                      .objectFit(ImageFit.Fill)
+                      .align(Alignment.Center)
+                      .margin({ right: lpx(24) })
+                      .focusable(true)
+                  }
+                }
+                .justifyContent(FlexAlign.SpaceBetween)
+                .focusable(true)
+                .width('550lpx')
+                .height('98lpx')
+                .backgroundColor(this.captionSettingsIndex == item.id ? '#e6ffffff' : '#33ffffff')
+                .border({
+                  radius: '18lpx',
+                })
+              }
+              .focusable(true)
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+              .width('566lpx')
+              .height('114lpx')
+              .border({
+                radius: '24lpx',
+                color: this.captionSettingsIndex == item.id ? '#e6ffffff' : 'transparent',
+                width: '2lpx',
+              })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('captionSettings' + item.id)
+            .onFocus(() => {
+              this.captionSettingsIndex = Number(item.id);
+            })
+            .onBlur(() => {
+              this.captionSettingsIndex = -1;
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.captionSettingsIndex--
+                  focusControl.requestFocus(`${'captionSettings' + this.captionSettingsIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.captionSettingsList.length) {
+                  this.captionSettingsIndex++
+                  focusControl.requestFocus(`${'captionSettings' + this.captionSettingsIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.resetAllStates();
+                if (item.name == '字幕') {
+                  if(this.showCaptionSettingLanguage){
+                    this.captionSettings=false;
+                    //显示字幕界面
+                    this.captionSettingLanguage=true;
+                    focusControl.requestFocus(
+                      'captionSettingLanguage' +
+                        (this.captionSettingLanguageList.find(item => item.name == this.captionSettingLanguageText)?.id || '1')
+                    );
+                    this.updateCaptionSettingLanguage(
+                      this.captionSettingLanguageList
+                        .find(item => item.name == this.captionSettingLanguageText)?.id || 1
+                    );
+                  }else {
+                    this.captionSettings=true;
+                    promptAction.showToast({
+                      message: '当前节目没有字幕',
+                      backgroundColor: '#404040',
+                      textColor: '#dbffffff'
+                    })
+                  }
+                }else if(item.name == '第一字幕语言'){
+                  this.captionSettings=false;
+                  //显示第一字幕语言
+                  this.captionSettingFirst=true;
+                  focusControl.requestFocus(
+                    'captionSettingFirst' +
+                      (this.captionSettingFirstList.find(item => item.name == this.captionSettingFirstText)?.id || '1')
+                  );
+                  this.updateCaptionSettingFirst(
+                    this.captionSettingFirstList.find(item => item.name == this.captionSettingFirstText)?.id || 1
+                  );
+                }else if(item.name == '第二字幕语言'){
+                  this.captionSettings=false;
+                  //显示第二字幕语言
+                  this.captionSettingSecond=true;
+                  focusControl.requestFocus(
+                    'captionSettingSecond' +
+                      (this.captionSettingSecondList.find(item => item.name == this.captionSettingSecondText)?.id || '1')
+                  );
+                  this.updateCaptionSettingSecond(
+                    this.captionSettingSecondList.find(item => item.name == this.captionSettingSecondText)?.id || 1
+                  );
+                }
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.captionSettings ? Visibility.Visible : Visibility.None)
+      //字幕语言
+      Column() {
+        Text('字幕设置')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.captionSettingLanguageList, (item:CaptionSettingLanguageItem, index: number) => {
+            ListItem() {
+              CaptionSettingLanguageView({ item: item, isFocused: this.captionSettingLanguageIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('captionSettingLanguage' + item.id)
+            .onFocus(() => {
+              this.captionSettingLanguageIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.captionSettingLanguageIndex === item.id) {
+                this.captionSettingLanguageIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.captionSettingLanguageIndex = item.id - 1;
+                  focusControl.requestFocus(`${'captionSettingLanguage' + this.captionSettingLanguageIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.captionSettingLanguageList.length) {
+                  this.captionSettingLanguageIndex = item.id + 1;
+                  focusControl.requestFocus(`${'captionSettingLanguage' + this.captionSettingLanguageIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateCaptionSettingLanguage(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.captionSettingLanguage ? Visibility.Visible : Visibility.None)
+      //第一字幕语言
+      Column() {
+        Text('第一字幕语言')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.captionSettingFirstList, (item:CaptionSettingFirstItem, index: number) => {
+            ListItem() {
+              CaptionSettingFirstView({ item: item, isFocused: this.captionSettingFirstIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('captionSettingFirst' + item.id)
+            .onFocus(() => {
+              this.captionSettingFirstIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.captionSettingFirstIndex === item.id) {
+                this.captionSettingFirstIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.captionSettingFirstIndex = item.id - 1;
+                  focusControl.requestFocus(`${'captionSettingFirst' + this.captionSettingFirstIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.captionSettingFirstList.length) {
+                  this.captionSettingFirstIndex = item.id + 1;
+                  focusControl.requestFocus(`${'captionSettingFirst' + this.captionSettingFirstIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateCaptionSettingFirst(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.captionSettingFirst ? Visibility.Visible : Visibility.None)
+      //第二字幕语言
+      Column() {
+        Text('第二字幕语言')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+
+        List({ space: lpx(24) }) {
+          ForEach(this.captionSettingSecondList, (item:CaptionSettingSecondItem, index: number) => {
+            ListItem() {
+              CaptionSettingSecondView({ item: item, isFocused: this.captionSettingSecondIndex == item.id })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('captionSettingSecond' + item.id)
+            .onFocus(() => {
+              this.captionSettingSecondIndex = Number(item.id)
+            })
+            .onBlur(() => {
+              if (this.captionSettingSecondIndex === item.id) {
+                this.captionSettingSecondIndex = -1;
+              }
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.captionSettingSecondIndex = item.id - 1;
+                  focusControl.requestFocus(`${'captionSettingSecond' + this.captionSettingSecondIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.captionSettingSecondList.length) {
+                  this.captionSettingSecondIndex = item.id + 1;
+                  focusControl.requestFocus(`${'captionSettingSecond' + this.captionSettingSecondIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                this.updateCaptionSettingSecond(item.id);
+                console.log('已选择:', item.name);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.captionSettingSecond ? Visibility.Visible : Visibility.None)
+      //频道管理
+      Column() {
+        Text('频道管理')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+        List({ space: lpx(24) }) {
+          ForEach(this.channelSettingsList, (item: SettingList, index: number) => {
+            ListItem() {
+              Column() {
+                Row() {
+                  Text(item.name)
+                    .fontColor(this.channelSettingsIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#dbffffff')
+                    .height(lpx(98))
+                    .fontSize(lpx(36))
+                    .align(Alignment.Center)
+                    .margin({
+                      left: lpx(24)
+                    })
+                    .focusable(true)
+                  Row(){
+                    Image($r(Ratio.resName('icon_arrow_right')))
+                      .fillColor(this.channelSettingsIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#99ffffff')
+                      .width(lpx(24))
+                      .height(lpx(48))
+                      .objectFit(ImageFit.Fill)
+                      .align(Alignment.Center)
+                      .margin({ right: lpx(24) })
+                      .focusable(true)
+                  }
+                }
+                .justifyContent(FlexAlign.SpaceBetween)
+                .focusable(true)
+                .width('550lpx')
+                .height('98lpx')
+                .backgroundColor(this.channelSettingsIndex == item.id ? '#e6ffffff' : '#33ffffff')
+                .border({
+                  radius: '18lpx',
+                })
+              }
+              .focusable(true)
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+              .width('566lpx')
+              .height('114lpx')
+              .border({
+                radius: '24lpx',
+                color: this.channelSettingsIndex == item.id ? '#e6ffffff' : 'transparent',
+                width: '2lpx',
+              })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('channelSettings' + item.id)
+            .onFocus(() => {
+              this.channelSettingsIndex = Number(item.id);
+            })
+            .onBlur(() => {
+              this.channelSettingsIndex = -1;
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.channelSettingsIndex--
+                  focusControl.requestFocus(`${'channelSettings' + this.channelSettingsIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.channelSettingsList.length) {
+                  this.channelSettingsIndex++
+                  focusControl.requestFocus(`${'channelSettings' + this.channelSettingsIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                if(item.name=='频道信息'){
+                  this.resetAllStates();
+                  this.channelInformation=true;
+                }else if(item.name=='手动搜索'){
+                  this.resetAllStates();
+                  this.searchManually=true;
+                  this.searchManuallyScroller.scrollToIndex(0);
+                  focusControl.requestFocus('Searchmanually1')
+                }else if(item.name=='频道删除'){
+                  this.deleteController.open()
+                }else if(item.name=='自动搜索'){
+                  this.controller.open()
+                }else if(item.name=='频道排序'){
+                  this.resetAllStates();
+                  this.channelSorting=true;
+                  this.channelSortingScroller.scrollToIndex(this.channelSortingIndex);
+                  focusControl.requestFocus('channelSorting' + Number(this.channelSortingIndex))
+                }
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .visibility(this.channelSettings ? Visibility.Visible : Visibility.None)
+
+      //频道信息
+      Column() {
+        Row(){
+          Text('信号信息')
+            .height(lpx(75))
+            .lineHeight(lpx(75))
+            .fontColor(Color.White)
+            .fontSize(lpx(64))
+            .fontWeight(FontWeight.Medium)
+            .textAlign(TextAlign.Start)
+        }
+        .height(lpx(75)).width('100%')
+        .margin({
+          top: lpx(48),
+          bottom: lpx(38.5),
+        })
+        .justifyContent(FlexAlign.Center)
+        Row(){
+          Text('使用遥控器切换频道，可查看不同频道信号信息。')
+            .fontColor('#e6ffffff')
+            .fontSize(lpx(30))
+            .fontWeight(500)
+        }.height(lpx(35)).width('100%').justifyContent(FlexAlign.Center)
+
+        Column(){
+          Row(){
+           Text('频道ID').fontColor('#e6ffffff')
+             .fontSize(lpx(36))
+             .fontWeight(500)
+            Text('2').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('频率').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('500.0MHz').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('天线').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('DTMB').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('业务标识').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('0000').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('复用流').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('TSID 0,ONID 0').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('网络ID').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('0').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('误码程度').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Text('0.0 BER').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('信号强度').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Progress({ value: 100,total: 100, type: ProgressType.Linear }).width('248lpx').height('8lpx').backgroundColor('#33ffffff')
+              .borderRadius('4lpx')
+            Text('100%').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('信号质量').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+            Progress({ value: 100,total: 100, type: ProgressType.Linear }).width('248lpx').height('8lpx').backgroundColor('#33ffffff')
+              .borderRadius('4lpx')
+            Text('100%').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').margin({
+            bottom:'24lpx'
+          }).justifyContent(FlexAlign.SpaceBetween)
+          Row(){
+            Text('SSI').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+              .margin({right:'50lpx'})
+            Progress({ value: 5,total: 100, type: ProgressType.Linear }).width('248lpx').height('8lpx').backgroundColor('#33ffffff')
+              .borderRadius('4lpx')
+            Text('5%').fontColor('#e6ffffff')
+              .fontSize(lpx(36))
+              .fontWeight(500)
+          }.height(lpx(42)).width('100%').justifyContent(FlexAlign.SpaceBetween)
+        }.padding({
+          left:'64lpx',
+          right:'64lpx'
+        })
+        .height(lpx(636)).width('100%').margin({
+          top: lpx(53.5),
+        })
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .width('936lpx')
+      .visibility(this.channelInformation ? Visibility.Visible : Visibility.None)
+
+      //手动搜索
+      Column() {
+        Text('手动搜索')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(48),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+        List({ space: lpx(24),scroller: this.searchManuallyScroller}) {
+          ForEach(this.searchManuallyList, (item: SettingList, index: number) => {
+            ListItem() {
+              Column() {
+                Row() {
+                  Text(item.name)
+                    .fontColor(this.searchManuallyIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#dbffffff')
+                    .height(lpx(98))
+                    .fontSize(lpx(36))
+                    .align(Alignment.Center)
+                    .margin({
+                      left: lpx(24)
+                    })
+                    .focusable(true)
+                  Row(){
+                    Image($r(Ratio.resName('icon_arrow_right')))
+                      .fillColor(this.searchManuallyIndex == item.id ? 'rgba(0, 0, 0, 0.86)' : '#99ffffff')
+                      .width(lpx(24))
+                      .height(lpx(48))
+                      .objectFit(ImageFit.Fill)
+                      .align(Alignment.Center)
+                      .margin({ right: lpx(24) })
+                      .focusable(true)
+                  }
+                }
+                .justifyContent(FlexAlign.SpaceBetween)
+                .focusable(true)
+                .width('550lpx')
+                .height('98lpx')
+                .backgroundColor(this.searchManuallyIndex == item.id ? '#e6ffffff' : '#33ffffff')
+                .border({
+                  radius: '18lpx',
+                })
+              }
+              .focusable(true)
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+              .width('566lpx')
+              .height('114lpx')
+              .border({
+                radius: '24lpx',
+                color: this.searchManuallyIndex == item.id ? '#e6ffffff' : 'transparent',
+                width: '2lpx',
+              })
+            }
+            .focusable(true)
+            .height(lpx(114))
+            .width(lpx(566))
+            .id('searchManually' + item.id)
+            .onFocus(() => {
+              this.searchManuallyIndex = Number(item.id);
+            })
+            .onBlur(() => {
+              this.searchManuallyIndex = -1;
+            })
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Up) {
+                if (Number(item.id) > 1) {
+                  this.searchManuallyIndex--
+                  this.searchManuallyScroller.scrollToIndex(Number(this.searchManuallyIndex) - 1)
+                  focusControl.requestFocus(`${'searchManually' + this.searchManuallyIndex.toString()}`)
+                }
+              }
+              if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Up) {
+                if (Number(item.id) < this.searchManuallyList.length) {
+                  this.searchManuallyIndex++
+                  this.searchManuallyScroller.scrollToIndex(Number(this.searchManuallyIndex) - 1)
+                  focusControl.requestFocus(`${'searchManually' + this.searchManuallyIndex.toString()}`)
+                }
+              }
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
+                e.type == KeyType.Up) {
+                router.pushUrl({ url: 'pages/ManualSearch' }, router.RouterMode.Single);
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+            })
+          })
+        }
+        .focusable(true)
+        .scrollBar(BarState.Off)
+        .width(ConfigData.WH_100_100)
+        .height('800lpx')
+        .alignListItem(ListItemAlign.Start)
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .width('936lpx')
+      .visibility(this.searchManually ? Visibility.Visible : Visibility.None)
+
+      //频道排序
+      Column() {
+        Text('频道排序')
+          .height(lpx(75))
+          .lineHeight(lpx(75))
+          .fontColor(Color.White)
+          .fontSize(lpx(64))
+          .fontWeight(FontWeight.Medium)
+          .textAlign(TextAlign.Start)
+          .margin({
+            top: lpx(48),
+            bottom: lpx(44),
+            left: lpx(12)
+          })
+          .focusable(true)
+
+        Text() {
+          Span('按').focusable(true)
+          ImageSpan($r('app.media.img_1'))
+            .width('24lpx')
+            .height('24lpx')
+            .verticalAlign(ImageSpanAlignment.CENTER)
+            .margin({ left: '8lpx', right: '8lpx' }).focusable(true)
+          Span('键进入编辑模式').focusable(true)
+        }
+        .focusable(true)
+        .fontColor('rgba(255, 255, 255, 0.6)')
+        .fontSize('30lpx')
+        .fontWeight(400)
+        .textAlign(TextAlign.Start)
+        .width('100%')
+        .height('35lpx')
+        .lineHeight('35lpx')
+        .margin({ left: lpx(12), bottom: lpx(9) }).focusable(true)
+        List({ space: '24lpx', scroller: this.channelSortingScroller }) {
+          ForEach(this.channelSortingList, (channel: IChannel, index) => {
+            ListItem() {
+              Column(){
+                Row() {
+                  Text(`${channel.id}  ${channel.channelName}`).focusable(true)
+                    .textExtend(this.channelSortingIndex, index)
+                  if (this.channelSortingIndex == index && this.isEdit) {
+                    Image($r('app.media.sort'))
+                      .width('48lpx')
+                      .height('48lpx').focusable(true)
+                  }
+                }
+                .width('550lpx')
+                .height('98lpx')
+                .padding({
+                  left: '24lpx',
+                  right: '30lpx'
+                })
+                .justifyContent(FlexAlign.SpaceBetween)
+                .focusable(true)
+                .backgroundColor(this.channelSortingIndex === index ? '#e6ffffff' : '#33ffffff')
+                .border({
+                  radius: '18lpx',
+                })
+              }
+              .focusable(true)
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+              .width('566lpx')
+              .height('114lpx')
+              .border({
+                radius: '24lpx',
+                color: this.channelSortingIndex === index ? '#e6ffffff' : 'transparent',
+                width: '2lpx',
+              })
+            }
+            .id('channelSorting' + index)
+            .focusable(true)
+            .width(lpx(566))
+            .height(lpx(114))
+            .onKeyEvent((e?: KeyEvent) => {
+              if (!e) {
+                return;
+              }
+              console.log('peng keyCode: ' + e.keyCode, 'type: ' + e.type);
+              if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Up) {
+                this.isEdit = !this.isEdit;
+                console.log('peng channelSortingIndex KEYCODE_ENTER', this.channelSortingIndex);
+                console.log(JSON.stringify(channel),'点击确定的item');
+                e.stopPropagation?.();
+              }
+              if (e.keyCode == KeyCode.KEYCODE_MENU&& e.type == KeyType.Up) {
+                e.stopPropagation?.();
+              }
+
+              if ((e.keyCode == KeyCode.KEYCODE_DPAD_UP || e.keyCode == KeyCode.KEYCODE_DPAD_DOWN) &&
+                e.type == KeyType.Up) {
+                // 只有大于2个，才能移动
+                if (this.channelSortingList.length < 2) {
+                  return;
+                }
+
+                if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && this.channelSortingIndex > 0) {
+                  console.log('peng channelSortingIndex up start', this.channelSortingIndex);
+                  if (this.isEdit) {
+                    const tempChannelList = this.channelSortingList.slice();
+                    tempChannelList[this.channelSortingIndex] = this.channelSortingList[this.channelSortingIndex - 1];
+                    tempChannelList[this.channelSortingIndex - 1] = this.channelSortingList[this.channelSortingIndex];
+                    this.channelSortingList = tempChannelList.slice();
+                  }
+                  this.channelSortingIndex = this.channelSortingIndex - 1;
+                  console.log('peng channelSortingIndex up end', this.channelSortingIndex);
+                }
+                if (
+                  e.keyCode == KeyCode.KEYCODE_DPAD_DOWN &&
+                  this.channelSortingIndex < this.channelSortingList.length - 1
+                ) {
+                  console.log('peng channelSortingIndex down start', this.channelSortingIndex);
+                  if (this.isEdit) {
+                    const tempChannelList = this.channelSortingList.slice();
+                    tempChannelList[this.channelSortingIndex] = this.channelSortingList[this.channelSortingIndex + 1];
+                    tempChannelList[this.channelSortingIndex + 1] = this.channelSortingList[this.channelSortingIndex];
+                    this.channelSortingList = tempChannelList.slice();
+                  }
+                  this.channelSortingIndex = this.channelSortingIndex + 1;
+                  console.log('peng channelSortingIndex down end', this.channelSortingIndex);
+                }
+                this.channelSortingScroller.scrollToIndex(this.channelSortingIndex, true);
+                focusControl.requestFocus('channelSorting' + Number(this.channelSortingIndex));
+              }
+            })
+          })
+        }
+        .width('100%')
+        .scrollBar(BarState.Off)
+        .focusable(true)
+        .layoutWeight(1)
+        .margin({
+          bottom: lpx(48),
+        })
+      }
+      .focusable(true)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Start)
+      .height('100%')
+      .width('936lpx')
+      .visibility(this.channelSorting ? Visibility.Visible : Visibility.None)
+    }
+    .focusable(true)
+    .alignItems(HorizontalAlign.Start)
+    .justifyContent(FlexAlign.Start)
+    .height('100%')
+  }
+}
+@Extend(Text)
+function textExtend(channelSortingIndex: number, index: number) {
+  .fontColor(channelSortingIndex == index ? 'rgba(0, 0, 0, 0.86)' : '#dbffffff')
+  .fontSize('36lpx')
+  .fontWeight(500)
+}
+
+
+
+
