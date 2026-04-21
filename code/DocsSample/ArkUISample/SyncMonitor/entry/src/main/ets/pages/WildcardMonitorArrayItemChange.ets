@@ -15,10 +15,12 @@
 
 // [Start wildcard_monitor_array_item_change]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class Person {
   @Trace public firstName: string;
   @Trace public lastName: string;
+
   constructor(first: string = 'no first', last: string = 'no last') {
     this.firstName = first;
     this.lastName = last;
@@ -26,15 +28,16 @@ class Person {
 }
 
 @ObservedV2
-class ArrayOfPerson extends Array<Person> {}
+class ArrayOfPerson extends Array<Person> {
+}
 
 @Entry
 @ComponentV2
 struct DocSampleArray {
-  @Local arrayOrPerson: ArrayOfPerson =
+  @Local arrayOfPerson: ArrayOfPerson =
     [new Person('Adrian'), new Person('Andrew'), new Person('Aaliyah'), new Person('Amir'), new Person('Angel')];
 
-  @SyncMonitor('arrayOrPerson.*')
+  @SyncMonitor('arrayOfPerson.*')
   arrayOfPersonMonitor(monitor: IMonitor) {
     hilog.info(0xFF00, 'testTag', '%{public}s', `### SyncMonitor dirty: ${monitor.dirty.toString()}`);
   }
@@ -43,31 +46,44 @@ struct DocSampleArray {
     Column() {
       Button('#1 arrayOfPerson.push')
         .onClick(() => {
-          this.arrayOrPerson.push(new Person('Austin'));
+          // arrayOfPersonMonitor回调触发
+          this.arrayOfPerson.push(new Person('Austin'));
         })
       Button('#2 arrayOfPerson.splice(0,1,P)')
         .onClick(() => {
-          this.arrayOrPerson.splice(0, 1, new Person('Addison'));
+          // arrayOfPersonMonitor回调触发
+          this.arrayOfPerson.splice(0, 1, new Person('Addison'));
         })
       Button('#3 arrayOfPerson.assign new [1]')
         .onClick(() => {
-          this.arrayOrPerson[1] = new Person('Amari');
+          if (this.arrayOfPerson.length > 1) {
+            // arrayOfPersonMonitor回调触发
+            this.arrayOfPerson[1] = new Person('Andy');
+          }
         })
       Button('#4 arrayOfPerson shift')
         .onClick(() => {
-          this.arrayOrPerson.shift();
+          if (this.arrayOfPerson.length > 2) {
+            // arrayOfPersonMonitor回调触发
+            this.arrayOfPerson.shift();
+          }
         })
       Button('#5 arrayOfPerson length change')
         .onClick(() => {
-          this.arrayOrPerson.length = this.arrayOrPerson.length +1;
+          // arrayOfPersonMonitor回调触发
+          this.arrayOfPerson.length = this.arrayOfPerson.length + 1;
         })
-      Button('#6 arrayOfPerson  = new Array')
+      Button('#6 arrayOfPerson = new Array')
         .onClick(() => {
-          this.arrayOrPerson = new ArrayOfPerson(new Person('Adrian'), new Person('Andrew'))
+          // arrayOfPersonMonitor回调触发
+          this.arrayOfPerson = new ArrayOfPerson(new Person('Adrian'), new Person('Andrew'))
         })
       Button('#7 arrayOfPerson [1] last name')
         .onClick(() => {
-          this.arrayOrPerson[1].lastName += '~'
+          if (this.arrayOfPerson.length > 1 && this.arrayOfPerson[1] instanceof Person) {
+            // arrayOfPersonMonitor回调不触发
+            this.arrayOfPerson[1].lastName += '~'
+          }
         })
     }
   }

@@ -40,6 +40,12 @@ import { MonitorProblemParamCounterExample2 } from './MonitorProblemParamCounter
 import { MonitorProblemParamPositiveExample2 } from './MonitorProblemParamPositiveExample2';
 import { MonitorProblemParamStateVariables } from './MonitorProblemParamStateVariables';
 import { MonitorProblemStateChangeUseAddMonitor } from './MonitorProblemStateChangeUseAddMonitor';
+import { MonitorWildcardSupportObjectProperty } from './MonitorWildcardSupportObjectProperty';
+import { MonitorWildcardSupportNestedObject } from './MonitorWildcardSupportNestedObject';
+import { MonitorWildcardSupportArray } from './MonitorWildcardSupportArray';
+import { MonitorWildcardSupportDate } from './MonitorWildcardSupportDate';
+import { MonitorWildcardSupportMap } from './MonitorWildcardSupportMap';
+import { MonitorWildcardSupportSet } from './MonitorWildcardSupportSet';
 
 export const MONITOR: string = 'monitor_text';
 
@@ -87,6 +93,36 @@ const routes: Route[] = [
   {
     name: `${MONITOR}/MonitorDecoratorLastWrite`,
     title: resource.resourceToString($r('app.string.monitor_decorator_last_write')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportObjectProperty`,
+    title: resource.resourceToString($r('app.string.monitor_decorator_wildcard_support_object')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportNestedObject`,
+    title: resource.resourceToString($r('app.string.monitor_wildcard_support_nested_object')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportArray`,
+    title: resource.resourceToString($r('app.string.monitor_wildcard_support_array')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportDate`,
+    title: resource.resourceToString($r('app.string.monitor_wildcard_support_date')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportMap`,
+    title: resource.resourceToString($r('app.string.monitor_wildcard_support_map')),
+    description: ''
+  },
+  {
+    name: `${MONITOR}/MonitorWildcardSupportSet`,
+    title: resource.resourceToString($r('app.string.monitor_wildcard_support_set')),
     description: ''
   },
   {
@@ -184,6 +220,18 @@ export function monitorDestination(name: string) {
     MonitorDecoratorObjectSupport()
   } else if (name === `${MONITOR}/MonitorDecoratorLastWrite`) {
     MonitorDecoratorLastWrite()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportObjectProperty`) {
+    MonitorWildcardSupportObjectProperty()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportNestedObject`) {
+    MonitorWildcardSupportNestedObject()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportArray`) {
+    MonitorWildcardSupportArray()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportDate`) {
+    MonitorWildcardSupportDate()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportMap`) {
+    MonitorWildcardSupportMap()
+  } else if (name === `${MONITOR}/MonitorWildcardSupportSet`) {
+    MonitorWildcardSupportSet()
   } else if (name === `${MONITOR}/MonitorLimitationLastListenerWins`) {
     MonitorLimitationLastListenerWins()
   } else if (name === `${MONITOR}/MonitorLimitationMultiplePathParams`) {

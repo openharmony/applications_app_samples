@@ -20,6 +20,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 class Person {
   @Trace firstName: string = 'first';
   @Trace lastName: string = 'last';
+
   constructor(first: string = 'no first', last: string = 'no last') {
     this.firstName = first;
     this.lastName = last;
@@ -27,10 +28,12 @@ class Person {
 }
 
 @ObservedV2
-class ArrayOfPerson extends Array<Person> {}
+class ArrayOfPerson extends Array<Person> {
+}
 
 @ObservedV2
-class TopArray extends Array<ArrayOfPerson> {}
+class TopArray extends Array<ArrayOfPerson> {
+}
 
 @Entry
 @ComponentV2
@@ -49,78 +52,81 @@ struct DocSampleArrayOfArrays {
 
   makeNewTopArray(): TopArray {
     return new TopArray(
-      new ArrayOfPerson(new Person('Adrian'), new Person('Andrew'), new Person('Aaliyah'), new Person('Amir'), new Person('Angel')),
-      new ArrayOfPerson(new Person('Carter'), new Person('Charlie'), new Person('Cooper'), new Person('Cole'), new Person('Callie')),
-      new ArrayOfPerson(new Person('Danile'), new Person('Dasy'), new Person('Dawson'), new Person('Dana'), new Person('Dalton'))
+      new ArrayOfPerson(new Person('Adrian'), new Person('Andrew'), new Person('Aaliyah'), new Person('Amir'),
+        new Person('Angel')),
+      new ArrayOfPerson(new Person('Carter'), new Person('Charlie'), new Person('Cooper'), new Person('Cole'),
+        new Person('Callie')),
+      new ArrayOfPerson(new Person('Daniel'), new Person('Daisy'), new Person('Dawson'), new Person('Dana'),
+        new Person('Dalton'))
     );
   }
 
   build() {
     Column() {
-      Text('Array of Arrays')
-        .fontSize(30)
-
-      // 因为脏的路径中包含'topArray.1'，会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏的路径中包含'topArray'，会触发路径为'topArray.*'的@SyncMonitor的回调
+      // topArrayMonitor1Star与topArrayMonitorStar回调均触发
       Button('topArray = new TopArray')
         .onClick(() => {
           this.topArray = this.makeNewTopArray();
         })
 
-      // 因为脏路径被包含在'topArray.1.*'中，会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏路径没被包含在'topArray.*'中，不会触发路径为'topArray.*'的@SyncMonitor的回调
+      // 当topArray[1][0]存在时，topArrayMonitor1Star回调触发，topArrayMonitorStar回调不触发
       Button('topArray[1][0] = new Person')
         .onClick(() => {
-          this.topArray[1][0] = new Person();
+          if (this.topArray.length > 1 && this.topArray[1].length > 0) {
+            this.topArray[1][0] = new Person();
+          }
         })
 
-      // 不会触发路径为 'topArray.1.*'的@SyncMonitor的回调
-      // 不会触发路径为'topArray.*'的@SyncMonitor的回调
+      // 当topArray[0][1]存在时，topArrayMonitor1Star与topArrayMonitorStar回调均不触发
       Button('topArray[0][1] = new Person')
         .onClick(() => {
-          this.topArray[0][1] = new Person();
+          if (this.topArray.length > 0 && this.topArray[0].length > 1) {
+            this.topArray[0][1] = new Person();
+          }
         })
 
-      // 因为脏路径被包含在'topArray.1.*'中，会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏路径没被包含在'topArray.*'中，不会触发路径为'topArray.*'的@SyncMonitor的回调
+      // 当topArray[1]存在时，topArrayMonitor1Star回调触发，topArrayMonitorStar回调不触发
       Button('topArray[1].push')
         .onClick(() => {
-          this.topArray[1].push(new Person());
+          if (this.topArray.length > 1 && this.topArray[1] instanceof ArrayOfPerson) {
+            this.topArray[1].push(new Person());
+          }
         })
 
-      // 因为脏的路径中包含'topArray.1'，会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏的路径中包含'topArray.*'，会触发路径为'topArray.*'的@SyncMonitor的回调
-      Button('topArray.shift (size>2)')
+      // 当topArray的length大于2时，topArrayMonitor1Star与topArrayMonitorStar回调均触发
+      Button('topArray.shift (length>2)')
         .onClick(() => {
-          this.topArray.shift();
+          if (this.topArray.length > 2) {
+            this.topArray.shift();
+          }
         })
 
-      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏的路径中包含'topArray.*'，会触发路径为'topArray.*'的@SyncMonitor的回调
+      // 当topArray[0]存在时，topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
       Button('topArray[0] = new ArrayOfPerson')
         .onClick(() => {
-          this.topArray[0] = new ArrayOfPerson(new Person(), new Person());
+          if (this.topArray.length > 0) {
+            this.topArray[0] = new ArrayOfPerson(new Person(), new Person());
+          }
         })
 
-      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 不会触发路径为'topArray.*'的@SyncMonitor的回调
+      // 当topArray[1][0]存在时，topArrayMonitor1Star与topArrayMonitorStar回调均不触发
       Button('topArray[1][0].last update')
         .onClick(() => {
-          this.topArray[1][0].lastName += '~';
+          if (this.topArray.length > 1 && this.topArray[1].length > 0 && this.topArray[1][0] instanceof Person) {
+            this.topArray[1][0].lastName += '~';
+          }
         })
 
-      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏的路径中包含'topArray'，会触发路径为'topArray.*'的@SyncMonitor的回调
+      // topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
       Button('topArray = new TopArray, keep [1]')
         .onClick(() => {
           let newTop = this.makeNewTopArray();
-          newTop[1] = this.topArray[1];
+          newTop[1] = this.topArray[1]; // topArray.1未改变，路径'topArray.1.*'中通配符前最后一个确定值未改变
           this.topArray = newTop;
         })
 
-      // 不会触发路径为'topArray.1.*'的@SyncMonitor的回调
-      // 因为脏的路径中包含'topArray.*'，会触发路径为'topArray.*'的@SyncMonitor的回调
-      Button('topArray.push, +0, +1')
+      // topArrayMonitor1Star回调不触发，topArrayMonitorStar回调触发
+      Button('topArray.push')
         .onClick(() => {
           this.topArray.push(new ArrayOfPerson(new Person(), new Person()));
         })
