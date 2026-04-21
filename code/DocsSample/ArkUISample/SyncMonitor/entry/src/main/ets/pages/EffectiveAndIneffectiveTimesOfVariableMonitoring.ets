@@ -75,7 +75,7 @@ struct Index {
     Column() {
       Button('show/hide Child')
         .onClick(() => {
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('change message in Index')
         .onClick(() => {

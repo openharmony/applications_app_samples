@@ -405,6 +405,30 @@
       "value": "@Monitor通用监听能力：在一次事件中多次改变被@Monitor监听的属性，以最后一次修改为准。"
     },
     {
+      "name": "monitor_decorator_wildcard_support_object",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听对象属性变化。"
+    },
+    {
+      "name": "monitor_wildcard_support_nested_object",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听嵌套对象属性变化。"
+    },
+    {
+      "name": "monitor_wildcard_support_array",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听数组对象的变化。"
+    },
+    {
+      "name": "monitor_wildcard_support_date",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听Date对象的变化。"
+    },
+    {
+      "name": "monitor_wildcard_support_map",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听Map对象的变化。"
+    },
+    {
+      "name": "monitor_wildcard_support_set",
+      "value": "@Monitor监听包含通配符的路径：使用通配符监听Set对象的变化。"
+    },
+    {
       "name": "monitor_limitation_last_listener_wins",
       "value": "@Monitor限制条件：当一个类中存在对一个属性的多次监听时，只有最后一个定义的监听方法会生效。"
     },
