@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>play/ic_sequence备份 4</title>
+    <defs>
+        <path d="M1.75,3.5 C2.71649831,3.5 3.5,2.71649831 3.5,1.75 C3.5,0.783501688 2.71649831,0 1.75,0 C0.783501688,0 0,0.783501688 0,1.75 C0,2.71649831 0.783501688,3.5 1.75,3.5 Z M1.75,15 C2.71649831,15 3.5,14.2164983 3.5,13.25 C3.5,12.2835017 2.71649831,11.5 1.75,11.5 C0.783501688,11.5 0,12.2835017 0,13.25 C0,14.2164983 0.783501688,15 1.75,15 Z M13.25,15 C14.2164983,15 15,14.2164983 15,13.25 C15,12.2835017 14.2164983,11.5 13.25,11.5 C12.2835017,11.5 11.5,12.2835017 11.5,13.25 C11.5,14.2164983 12.2835017,15 13.25,15 Z M13.25,3.5 C14.2164983,3.5 15,2.71649831 15,1.75 C15,0.783501688 14.2164983,0 13.25,0 C12.2835017,0 11.5,0.783501688 11.5,1.75 C11.5,2.71649831 12.2835017,3.5 13.25,3.5 Z" id="path-1"></path>
+    </defs>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.6">
+        <g id="功能icon_4备份" transform="translate(-292.500000, -4.500000)">
+            <g id="play/ic_sequence备份-4" transform="translate(292.500000, -2.000000)">
+                <g id="Public/ic_public_more" transform="translate(0.000000, 6.500000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="形状结合" fill="#FFFFFF" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
