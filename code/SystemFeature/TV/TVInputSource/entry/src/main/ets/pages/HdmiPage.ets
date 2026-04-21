@@ -405,7 +405,6 @@ struct HdmiPage {
             }
             if ((e.keyCode == KeyCode.KEYCODE_DPAD_CENTER || e.keyCode == KeyCode.KEYCODE_ENTER) &&
               e.type == KeyType.Down) {
-              // console.log('aque')
               this.SetCecMenuCtrlCmd(6);
             }else if(e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Down){
               console.log('aques');
