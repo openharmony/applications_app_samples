@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.envirommentprojet",
+    "bundleName": "com.samples.environmentproject",
     "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
