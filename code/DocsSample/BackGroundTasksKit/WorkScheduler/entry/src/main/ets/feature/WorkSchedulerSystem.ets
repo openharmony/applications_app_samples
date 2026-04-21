@@ -42,7 +42,7 @@ export namespace WorkSchedulerSystem {
     // [End startWork]
   }
 
-  async function stopWork(key1: string, module: string): Promise<void> {
+  export async function stopWork(key1: string, module: string): Promise<void> {
     // [Start stopWork]
     let workInfo: workScheduler.WorkInfo = {
       workId: 1,

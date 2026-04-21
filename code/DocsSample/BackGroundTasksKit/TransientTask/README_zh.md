@@ -58,7 +58,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/TaskManagement/TransientTask/ > .git/info/sparse-checkout
+echo code/DocsSample/BackGroundTasksKit/TransientTask/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 
