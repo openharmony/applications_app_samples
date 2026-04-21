@@ -14,9 +14,9 @@
  */
 
 import { UIAbility, Want, AbilityConstant, ConfigurationConstant } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI'
-import { Logger } from '../utils/Logger'
-const TAG: string = 'MainAbility'
+import { window } from '@kit.ArkUI';
+import { Logger } from '../utils/Logger';
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -31,10 +31,10 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
-        return
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     })
   }
 }
