@@ -636,6 +636,7 @@ Camera_ErrorCode NDKCamera::TakePicture(int32_t degree)
     bool isMirSupported;
     OH_PhotoOutput_IsMirrorSupported(photoOutput_, &isMirSupported);
     OH_PhotoOutput_GetPhotoRotation(photoOutput_, degree, &imageRotation);
+    imageRotation = Camera_ImageRotation::CAMERA_IMAGE_ROTATION_0;
 
     Camera_PhotoCaptureSetting curPhotoSetting = {
         quality : QUALITY_LEVEL_HIGH,
@@ -1110,7 +1111,6 @@ void OnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo)
         "rowStride: %{public}d, pixelFormat: %{public}d, alphaMode: %{public}d, alphaType:"
         "%{public}d", width, height, rowStride, pixelFormat, alphaMode, alphaType);
    // 释放资源。
-    OH_PixelmapNative_Release(mainPixelmap);
     OH_PictureNative_Release(picture);
 }
 
