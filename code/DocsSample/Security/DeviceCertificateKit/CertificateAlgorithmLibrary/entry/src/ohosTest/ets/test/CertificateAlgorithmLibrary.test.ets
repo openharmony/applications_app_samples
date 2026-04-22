@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -431,6 +431,78 @@ export default function certificateAlgorithmLibraryTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testCertificateAlgorithmLibrary019 end');
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    })
+    /**
+     * 点击按钮，使用带参数的证书链验证器验证证书
+     */
+    it('testCertificateAlgorithmLibrary020', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary020 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('ValidateCertChainByCertchainvalidator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      // 场景一：自定义信任锚
+      const button1 = await driver.findComponent(ON.text('ValidateCertChainWithCustomTrustAnchor'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call ValidateCertChainWithCustomTrustAnchor'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 场景二：信任系统预置CA证书
+      const button3 = await driver.findComponent(ON.text('ValidateCertChainWithSystemCa'));
+      await button3.click();
+      await driver.delayMs(1000);
+      const button4 = await driver.findComponent(ON.text('Call ValidateCertChainWithSystemCa'));
+      await button4.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    })
+
+    /**
+     * 点击按钮，使用带参数的证书链验证器验证证书
+     */
+    it('testCertificateAlgorithmLibrary021', 0, async (done: Function) => {
+      console.info('uitest: testCertificateAlgorithmLibrary021 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button0 = await driver.findComponent(ON.text('ValidateCertChainByCertchainvalidator'));
+      await button0.click();
+      await driver.delayMs(1000);
+      // 场景三：证书吊销校验（本地CRL）
+      const button5 = await driver.findComponent(ON.text('ValidateCertChainWithCrl'));
+      await button5.click();
+      await driver.delayMs(1000);
+      const button6 = await driver.findComponent(ON.text('Call ValidateCertChainWithCrl'));
+      await button6.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 场景四：国密证书链校验
+      const button7 = await driver.findComponent(ON.text('ValidateSm2CertChain'));
+      await button7.click();
+      await driver.delayMs(1000);
+      const button8 = await driver.findComponent(ON.text('Call ValidateSm2CertChain'));
+      await button8.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Call Success'));
+      console.info('uitest: testCertificateAlgorithmLibrary021 end');
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
       done();
     })
   })

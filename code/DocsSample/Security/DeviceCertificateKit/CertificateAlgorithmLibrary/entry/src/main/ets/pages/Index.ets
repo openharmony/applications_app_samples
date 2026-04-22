@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -93,6 +93,11 @@ struct Index {
         .width('70%')
         .onClick(() => {
           this.goToSample('pages/AllowDownloadIntermediateCert');
+        })
+      Button('ValidateCertChainByCertchainvalidator')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/ValidateCertChainByCertchainvalidator');
         })
     }
     .height('100%')

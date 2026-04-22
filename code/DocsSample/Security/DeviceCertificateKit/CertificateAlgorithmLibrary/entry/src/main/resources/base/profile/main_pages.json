@@ -22,6 +22,11 @@
     "pages/CreateOnlyCheckLeafCertRevocateObject",
     "pages/CreateOnlineCheckIntermediateCertificateonlyObject",
     "pages/IgnoreNetworkUnreachable",
-    "pages/AllowDownloadIntermediateCert"
+    "pages/AllowDownloadIntermediateCert",
+    "pages/ValidateCertChainByCertchainvalidator",
+    "pages/ValidateCertChainWithCustomTrustAnchor",
+    "pages/ValidateCertChainWithSystemCa",
+    "pages/ValidateCertChainWithCrl",
+    "pages/ValidateSm2CertChain"
   ]
 }
