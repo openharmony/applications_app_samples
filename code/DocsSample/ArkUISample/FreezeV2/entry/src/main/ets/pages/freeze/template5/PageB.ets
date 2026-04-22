@@ -29,6 +29,7 @@ struct PageB {
       Column() {
         Text('This is the PageB')
 
+        // 点击Button，页面跳转回PageA
         Button('Back').fontSize(30)
           .onClick(() => {
             this.pathStack.pop();

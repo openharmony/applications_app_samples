@@ -40,6 +40,7 @@ class Ancestor {
   }
 
   public loadData() {
+    // 临时的数组tempList修改为具有被观测能力的ChildList类
     let tempList = new ChildList();
     for (let i = 1; i < 6; i++) {
       tempList.push(new Child(i));

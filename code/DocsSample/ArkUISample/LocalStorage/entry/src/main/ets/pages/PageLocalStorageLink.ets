@@ -15,6 +15,7 @@
 // [Start localStorage_page_local_storage_link]
 @Component
 struct LocalStorageLinkComponent {
+  // LocalStorage支持联合类型
   @LocalStorageLink('LinkA') linkA: number | null = null;
   @LocalStorageLink('LinkB') linkB: number | undefined = undefined;
 

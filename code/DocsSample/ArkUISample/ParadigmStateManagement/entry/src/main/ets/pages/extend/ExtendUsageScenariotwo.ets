@@ -27,6 +27,7 @@ export struct LocalExtendUsageScenario2 {
 }
 
 // [Start Extend_Usage_Scenario_two]
+// 使用@Extend封装Text样式组合，便于复用
 @Extend(Text)
 function fancyText(weightValue: number, color: Color) {
   .fontStyle(FontStyle.Italic)
@@ -42,6 +43,7 @@ struct FancyUse {
 
   build() {
     Row({ space: 10 }) {
+      // 调用@Extend封装的fancyText复用样式
       Text(`${this.label}`)
         .fancyText(100, Color.Blue)
       Text(`${this.label}`)

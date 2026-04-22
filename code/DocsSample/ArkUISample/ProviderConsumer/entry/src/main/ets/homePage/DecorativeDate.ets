@@ -22,6 +22,7 @@ struct Parent {
   build() {
     Column() {
       Text(`parent: ${this.selectedDate}`)
+      // selectedDate被@Provider装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('update the new date')
         .onClick(() => {
           this.selectedDate = new Date('2023-07-07');
@@ -50,6 +51,7 @@ struct Child {
   build() {
     Column() {
       Text(`child: ${this.selectedDate}`)
+      // selectedDate被@Consumer装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('update the new date')
         .onClick(() => {
           this.selectedDate = new Date('2025-01-01');

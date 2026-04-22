@@ -38,6 +38,7 @@ export default class TodoListViewModel {
   }
 
   chooseAll(): void {
+    // 遍历所有待办事项，设置其完成状态
     for (let thing of this.things) {
       thing.isFinish = this.isChosen;
     }

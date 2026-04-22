@@ -23,6 +23,7 @@ function globalBuilder() {
 struct CustomBuilderDemo {
   build() {
     Column() {
+      // 正确写法
       ChildPage({ childBuilder: globalBuilder })
     }
   }

@@ -150,6 +150,7 @@ struct PageOneStack1 {
   build() {
     NavDestination() {
       Column() {
+        // NavDestination中创建TabContent
         TabsComponent()
 
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })

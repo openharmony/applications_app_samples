@@ -38,6 +38,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        // 对象、数组中某一单个属性或数组项变化，不会触发UI刷新
         Button('change info name')
           .onClick(() => {
             this.info.name = 'Jack';

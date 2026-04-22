@@ -23,6 +23,7 @@ class Info {
 }
 @ComponentV2
 struct Child {
+  // @Once与@Param结合使用时，可以在本地修改，并能够触发UI刷新
   @Param @Once onceParamNum: number = 0;
   @Param @Once @Require onceParamInfo: Info;
 

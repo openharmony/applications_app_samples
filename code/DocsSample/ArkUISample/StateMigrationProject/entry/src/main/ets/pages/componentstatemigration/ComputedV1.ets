@@ -23,6 +23,7 @@ struct Index {
     Column() {
       Text(this.lastName + ' ' + this.firstName)
       Text(this.lastName + ' ' + this.firstName)
+      // 每次改变lastName都会触发Text组件的刷新
       Button('changed lastName').onClick(() => {
         this.lastName += 'a';
       })

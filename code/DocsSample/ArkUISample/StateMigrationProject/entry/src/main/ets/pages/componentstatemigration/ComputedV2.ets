@@ -21,6 +21,7 @@ struct Index {
 
   @Computed
   get fullName() {
+    // 每次改变lastName仅会触发一次计算
     return this.firstName + ' ' + this.lastName;
   }
 

@@ -53,6 +53,7 @@ struct Page {
           hilog.info(DOMAIN_NUMBER, TAG, 'change font size');
         })
       List() {
+        // ForEach中生成的item是一个常量，点击改变item中的内容时没有办法观测到UI刷新
         ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text('Hello World')

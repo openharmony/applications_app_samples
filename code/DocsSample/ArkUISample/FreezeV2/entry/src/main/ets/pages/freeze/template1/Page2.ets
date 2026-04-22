@@ -19,6 +19,7 @@ struct Page2 {
   build() {
     Column() {
       Text('This is the page2').fontSize(25)
+      // 点击Button，路由跳转回页面1
       Button('Back')
         .onClick(() => {
           this.getUIContext().getRouter().back();

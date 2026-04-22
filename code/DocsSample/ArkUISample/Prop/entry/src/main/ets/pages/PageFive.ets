@@ -27,6 +27,7 @@ class Book {
 
 @Component
 struct ReaderComp {
+  // 父组件@State装饰的book传入子组件@Prop装饰的book
   @Prop book: Book = new Book('', 0);
 
   build() {
@@ -46,6 +47,7 @@ struct Library {
 
   build() {
     Column() {
+      // 父组件将同一book分别传给两个ReaderComp
       ReaderComp({ book: this.book })
       ReaderComp({ book: this.book })
     }

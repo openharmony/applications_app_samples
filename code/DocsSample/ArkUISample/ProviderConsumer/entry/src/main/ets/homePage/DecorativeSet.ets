@@ -26,6 +26,7 @@ struct Parent {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
+      // message被@Provider装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
       Button('init set').onClick(() => {
         this.message = new Set([1, 2, 3, 4]);
       })
@@ -54,6 +55,7 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
+      // message被@Consumer装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
       Button('init set').onClick(() => {
         this.message = new Set([1, 2, 3, 4, 5, 6]);
       })

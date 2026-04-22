@@ -37,6 +37,7 @@ struct PageA {
       Navigation(this.pageInfo) {
         Child()
 
+        // 点击Button，跳转页面至PageB
         Button('Go to next page').fontSize(30)
           .onClick(() => {
             this.pageInfo.pushPathByName('PageB', null);

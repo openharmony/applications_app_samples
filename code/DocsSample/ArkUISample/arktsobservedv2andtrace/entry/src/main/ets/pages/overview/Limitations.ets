@@ -45,6 +45,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // 嵌套类对象属性变化无法观测
             this.father.son.age++;
           })
       }

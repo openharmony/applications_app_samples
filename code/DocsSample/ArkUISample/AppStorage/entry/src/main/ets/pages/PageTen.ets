@@ -38,6 +38,7 @@ struct PageStorageProp {
       Button('change')
         .onClick(() => {
           AppStorage.setOrCreate('propA', false);
+          // 输出当前this.propA的值
           hilog.info(DOMAIN, TAG, `propA: ${this.propA}`);
         })
     }

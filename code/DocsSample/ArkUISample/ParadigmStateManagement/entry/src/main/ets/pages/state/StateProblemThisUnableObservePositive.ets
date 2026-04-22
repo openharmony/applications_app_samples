@@ -38,6 +38,7 @@ export class TestModel {
   public model: Model = new Model(() => {
   })
 
+  // 状态变量的修改放在类的普通方法中
   query() {
     this.model.callback = () => {
       this.isSuccess = true;

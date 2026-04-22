@@ -19,6 +19,7 @@ const INITIAL_VALUE = 10;
 @Entry
 @ComponentV2
 struct Child {
+  // V2的@Local装饰简单类型变量
   @Local val: number = INITIAL_VALUE;
 
   build() {

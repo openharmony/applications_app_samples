@@ -30,6 +30,7 @@ struct Parent {
 
 @Component
 struct Child {
+  // 子组件count本地默认值为0；父组件传入undefined时，框架会保留该本地默认值
   @State count: number | undefined = 0;
 
   build() {

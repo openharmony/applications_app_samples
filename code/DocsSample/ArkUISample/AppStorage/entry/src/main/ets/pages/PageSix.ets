@@ -26,6 +26,7 @@ struct SetSample {
             .fontSize(30)
           Divider()
         })
+        // 点击Button初始化memberSet
         Button('init set')
           .onClick(() => {
             this.memberSet = new Set([0, 1, 2, 3, 4]);

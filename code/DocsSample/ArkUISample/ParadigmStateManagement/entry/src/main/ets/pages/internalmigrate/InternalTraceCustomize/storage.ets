@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 // [Start Internal_Trace_customize_V2]
+// @ObservedV2装饰的class代替LocalStorage
 @ObservedV2
 export class MyStorageA {
   @Trace public propA: string = 'Hello';

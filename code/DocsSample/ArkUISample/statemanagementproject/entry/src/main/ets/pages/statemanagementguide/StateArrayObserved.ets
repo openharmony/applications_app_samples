@@ -40,6 +40,7 @@ class Ancestor {
   }
 
   public loadData() {
+    // 这里创建的Child[]类型的数组tempList并没有能被观测的能力
     let tempList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
     this.childList = tempList;
   }
@@ -129,6 +130,7 @@ struct CompAncestor {
     Column() {
       CompList({ childList: this.ancestor.childList })
       Row() {
+        // 点击Button对ancestor执行清空数据
         Button('Clear')
           .onClick(() => {
             this.ancestor.clearData();

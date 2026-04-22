@@ -36,6 +36,7 @@ struct Test {
       Text(`count value: ${this.count}`)
       Button('change')
         .onClick(() => {
+          // 自定义组件外改变状态变量，触发UI刷新
           model.call('count', this.count + 1);
         })
     }

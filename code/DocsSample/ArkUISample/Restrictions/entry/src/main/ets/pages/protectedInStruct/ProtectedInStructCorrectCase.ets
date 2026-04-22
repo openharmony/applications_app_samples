@@ -27,6 +27,7 @@ struct ProtectedCorrectAccessRestrictions {
 
 @Component
 struct ProtectedCorrectComponentChild {
+  // 正确用法
   regularValue: string = 'Hello';
 
   build() {

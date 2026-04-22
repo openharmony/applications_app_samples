@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 // [Start Internal_@ObservedV2_@Trace_V2]
+// 声明@ObservedV2装饰的MyStorage类
 @ObservedV2
 export class MyStorage {
   public static singleton_: MyStorage;

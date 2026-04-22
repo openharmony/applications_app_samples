@@ -20,6 +20,7 @@ const TAG = 'ArktsObservedV2AndTrace';
 
 @ObservedV2
 class GrandFather {
+  // 被@Trace装饰的属性具有被观测变化的能力
   @Trace public age: number = 0;
 
   constructor(age: number) {

@@ -29,6 +29,7 @@ struct PublicCorrectAccessRestrictions {
 
 @Component
 struct PublicCorrectComponentChild {
+  // 正确用法
   @LocalStorageProp('sessionLocalProp') localPropValue: string = 'Hello';
   @LocalStorageLink('sessionLocalLink') localLinkValue: string = 'Hello';
   @StorageProp('sessionProp') storagePropValue: string = 'Hello';

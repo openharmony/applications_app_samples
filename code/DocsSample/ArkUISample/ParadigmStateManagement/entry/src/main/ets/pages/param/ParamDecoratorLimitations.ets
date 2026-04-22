@@ -72,6 +72,7 @@ struct Index {
 
 @Component
 struct Child {
+  // V1版本接受外部传入的装饰器汇总
   @ObjectLink region: Region;
   @Prop regionProp: Region;
   @Prop infoProp: Info;

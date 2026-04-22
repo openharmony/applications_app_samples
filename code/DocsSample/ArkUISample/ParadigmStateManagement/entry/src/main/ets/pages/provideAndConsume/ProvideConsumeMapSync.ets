@@ -26,6 +26,7 @@ struct Child {
           .fontSize(30)
         Divider()
       })
+      // message被@Consume装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
       Button('Consume init Map')
         .onClick(() => {
           this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
@@ -59,6 +60,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
+        // message被@Provide装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
         Button('Provide init Map')
           .onClick(() => {
             this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c'], [4, 'd']]);

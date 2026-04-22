@@ -17,6 +17,7 @@ let nextId: number = 0;
 
 @ObservedV2
 class Person {
+  // @Trace装饰Person类中的age属性，使age可以被观测
   @Trace public age: number = 0;
 
   constructor(age: number) {

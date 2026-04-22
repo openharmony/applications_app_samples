@@ -16,6 +16,7 @@
 // [Start Decorative_Complex]
 @ObservedV2
 class User {
+  // 复杂数据类型的属性被@Trace装饰，可以被观察到属性变化
   @Trace public name: string;
   @Trace public age: number;
 

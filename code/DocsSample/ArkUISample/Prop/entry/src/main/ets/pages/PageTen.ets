@@ -25,6 +25,7 @@ struct Child {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
+      // value被@Prop装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
       Button('child init map').onClick(() => {
         this.value = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
       })

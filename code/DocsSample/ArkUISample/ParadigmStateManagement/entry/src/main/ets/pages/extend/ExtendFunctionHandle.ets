@@ -27,6 +27,7 @@ export struct LocalExtendFunctionHandle {
 }
 
 // [Start Extend_Function_handle_three]
+// @Extend装饰的方法支持function参数
 @Extend(Text)
 function makeMeClick(onClick: () => void) {
   .backgroundColor(Color.Blue)

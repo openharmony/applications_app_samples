@@ -32,6 +32,7 @@ struct Index {
 
   build() {
     Column() {
+      // 点击Button更新message和name，触发onStrChange回调
       Button('change string')
         .onClick(() => {
           this.message += '!';

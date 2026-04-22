@@ -20,6 +20,7 @@ struct LocalDateSample {
 
   build() {
     Column() {
+      // 更新Date类型变量，触发UI刷新
       Button('set selectedDate to 2023-07-08')
         .margin(10)
         .onClick(() => {

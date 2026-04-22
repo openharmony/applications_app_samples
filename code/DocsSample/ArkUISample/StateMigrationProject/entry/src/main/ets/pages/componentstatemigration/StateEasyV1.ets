@@ -18,6 +18,7 @@ const INITIAL_VALUE = 10;
 @Entry
 @Component
 struct Child {
+  // V1的@State装饰简单类型变量
   @State val: number = INITIAL_VALUE;
 
   build() {

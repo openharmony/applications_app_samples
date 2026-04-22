@@ -15,6 +15,7 @@
 // [Start Parent9_start]
 @Component
 struct Child {
+  // V1的@Prop装饰简单类型变量
   @Prop value: number;
 
   build() {

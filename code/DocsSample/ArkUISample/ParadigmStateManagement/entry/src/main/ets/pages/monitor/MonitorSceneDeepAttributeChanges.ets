@@ -45,6 +45,7 @@ class UIStyle {
     let curValue: number = monitor.value()?.now as number;
     if (lastValue != 0) {
       let diffPercent: number = (curValue - lastValue) / lastValue;
+      // 通过info.value变化的幅度，改变Text组件显示的样式
       if (diffPercent > 0.1) {
         this.color = Color.Red;
         this.fontSize = 50;

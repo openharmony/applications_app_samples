@@ -24,6 +24,7 @@ struct SetSampleChild {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
+      // 子组件的Set类型可以同步回父组件
       Button('init set').onClick(() => {
         this.message = new Set([0, 1, 2, 3, 4]);
       })

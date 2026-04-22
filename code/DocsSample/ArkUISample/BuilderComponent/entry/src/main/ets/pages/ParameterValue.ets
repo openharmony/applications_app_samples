@@ -27,6 +27,7 @@ struct ParameterValue {
 
   build() {
     Column() {
+      // 按值传递参数，状态变量的改变不会引起overBuilderByValue内的UI刷新
       overBuilderByValue(this.label)
     }
   }

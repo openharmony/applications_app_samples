@@ -47,6 +47,7 @@ struct UserProfile {
     Column() {
       Text(`Name: ${this.user.name}`)
       Text(`Age: ${this.user.age}`)
+      // 点击Button更新user.age，触发UI刷新
       Button('increase age')
         .onClick(() => {
           this.user.age++;

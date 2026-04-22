@@ -60,6 +60,9 @@ struct PageBuilderCorrectUsage {
   aboutToAppear(): void {
     this.progressTimer = setInterval(() => {
       if (this.builderParams.count < 100) {
+        // builderParams是被@ObservedV2装饰的ParamTmpClass类
+        // count属性被@Trace装饰
+        // count变化会引起UI刷新
         this.builderParams.count += 5;
         this.mapValue.set('name', this.builderParams.count);
         this.setValue.add(this.builderParams.count);

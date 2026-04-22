@@ -17,6 +17,7 @@
 @Entry
 @Component
 struct PrivateWithLinkAccessRestrictions {
+  // 正确用法
   @State linkValue: string = 'Hello';
   @State objectLinkValue: PrivateComponentObj = new PrivateComponentObj();
 

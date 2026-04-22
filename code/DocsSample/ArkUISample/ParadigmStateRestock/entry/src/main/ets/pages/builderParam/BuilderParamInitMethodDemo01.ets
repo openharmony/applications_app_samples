@@ -38,6 +38,7 @@ struct Parent {
 
   build() {
     Column() {
+      // 使用父组件自定义构建函数初始化子组件@BuilderParam装饰的方法
       Child({ customBuilderParam: this.componentBuilder })
     }
   }

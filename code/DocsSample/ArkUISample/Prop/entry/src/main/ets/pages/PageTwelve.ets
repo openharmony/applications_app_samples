@@ -20,6 +20,7 @@ struct DateComponent {
 
   build() {
     Column() {
+      // selectedDate被@Prop装饰，可以被观察到Date整体的赋值以及调用Date接口带来的变化
       Button('child update the new date')
         .margin(10)
         .onClick(() => {

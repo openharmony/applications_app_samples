@@ -23,6 +23,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 
+// Model层：TaskListModel负责加载任务列表
 export default class TaskListModel {
   public tasks: TaskModel[] = [];
 

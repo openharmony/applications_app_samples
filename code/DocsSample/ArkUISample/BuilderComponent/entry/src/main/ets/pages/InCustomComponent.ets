@@ -47,6 +47,7 @@ struct PrivateBuilder {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
         this.builder()
+        // 点击Button更新builderValue，用于更新文本显示
         Button('Click to change the builderValue')
           .onClick(() => {
             this.builderValue = 'builderValue was clicked';

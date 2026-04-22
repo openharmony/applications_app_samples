@@ -33,6 +33,7 @@ struct MapSample {
             .fontSize(30)
           Divider()
         })
+        // 被@Trace装饰的Map类型属性可以观测到调用API带来的变化
         Button('init map')
           .onClick(() => {
             this.info.memberMap = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
