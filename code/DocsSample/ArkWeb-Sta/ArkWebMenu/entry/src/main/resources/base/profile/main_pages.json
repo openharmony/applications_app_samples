@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/WebBindSelectionMenu",
+    "pages/WebBindSelectionMenuText",
+    "pages/WebContextMenu",
+    "pages/WebDisableLongPress",
+    "pages/WebEditMenuOptions",
+    "pages/WebPreviewBuilder",
+    "pages/WebSaveImage",
+    "pages/WebTextMenuItem"
+  ]
+}
