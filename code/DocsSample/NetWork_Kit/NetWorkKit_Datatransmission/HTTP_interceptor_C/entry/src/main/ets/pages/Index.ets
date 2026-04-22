@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import { promptAction } from '@kit.ArkUI';
 // [Start HttpInterceptor_C_full_example]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import httpInterceptor from 'libentry.so';
 import { http } from '@kit.NetworkKit';
 
+const LOG_TAG: string = 'HttpInterceptorDemo';
 const HTTP_URL_BAIDU: string = "http://www.baidu.com";
 
 @Entry
@@ -39,14 +40,14 @@ struct Index {
             .id('AddInterceptor')
             .onClick(() => {
               let ret = httpInterceptor.AddResponseInterceptor();
-              console.log('AddResponseInterceptor ret:', ret);
+              hilog.info(0x0000, LOG_TAG, `AddResponseInterceptor ret: ${ret}`);
             })
 
           Button('Start Interceptors')
             .id('StartInterceptors')
             .onClick(() => {
               let ret = httpInterceptor.StartInterceptors();
-              console.log('StartInterceptors ret:', ret);
+              hilog.info(0x0000, LOG_TAG, `StartInterceptors ret: ${ret}`);
             })
 
           Button('Send HTTP Request')
@@ -58,10 +59,10 @@ struct Index {
               };
               httpRequest.request(HTTP_URL_BAIDU, options, (err: BusinessError, res: http.HttpResponse) => {
                 if (err) {
-                  console.info(`request fail, error code: ${err.code}, msg: ${err.message}`);
+                  hilog.info(0x0000, LOG_TAG, `request fail, error code: ${err.code}, msg: ${err.message}`);
                   httpRequest.destroy();
                 } else {
-                  console.info(`res:${JSON.stringify(res)}`);
+                  hilog.info(0x0000, LOG_TAG, `res:${JSON.stringify(res)}`);
                   httpRequest.destroy();
                 }
               });
@@ -71,21 +72,21 @@ struct Index {
             .id('StopInterceptors')
             .onClick(() => {
               let ret = httpInterceptor.StopInterceptors();
-              console.log('StopInterceptors ret:', ret);
+              hilog.info(0x0000, LOG_TAG, `StopInterceptors ret: ${ret}`);
             })
 
           Button('Remove Interceptor')
             .id('RemoveInterceptor')
             .onClick(() => {
               let ret = httpInterceptor.RemoveInterceptor();
-              console.log('RemoveInterceptor ret:', ret);
+              hilog.info(0x0000, LOG_TAG, `RemoveInterceptor ret: ${ret}`);
             })
 
           Button('Remove All Interceptors')
             .id('RemoveAllInterceptors')
             .onClick(() => {
               let ret = httpInterceptor.RemoveAllInterceptors();
-              console.log('RemoveAllInterceptors ret:', ret);
+              hilog.info(0x0000, LOG_TAG, `RemoveAllInterceptors ret: ${ret}`);
             })
         }
       }

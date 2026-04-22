@@ -122,7 +122,7 @@ static napi_value StartInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
-    // 启用组 ID 为 1 的所有拦截器
+    // 启用组ID为1的所有拦截器
     int ret = OH_Http_StartAllInterceptors(1);
     
     OH_LOG_INFO(LOG_APP, "StartInterceptors ret: %{public}d", ret);
@@ -135,7 +135,7 @@ static napi_value StopInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
-    // 停用组 ID 为 1 的所有拦截器
+    // 停用组ID为1的所有拦截器
     int ret = OH_Http_StopAllInterceptors(1);
     
     OH_LOG_INFO(LOG_APP, "StopInterceptors ret: %{public}d", ret);
@@ -148,7 +148,7 @@ static napi_value RemoveAllInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
-    // 删除组 ID 为 1 的所有拦截器
+    // 删除组ID为1的所有拦截器
     int ret = OH_Http_RemoveAllInterceptors(1);
     
     OH_LOG_INFO(LOG_APP, "RemoveAllInterceptors ret: %{public}d", ret);

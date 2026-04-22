@@ -8,7 +8,7 @@
 ### 效果预览
 | 程序主页                                    |
 | ------------------------------------------- |
-| ![image](./screenshots/HTTP_interceptor_C_Index.jpg) |
+| ![image](./screenshots/HTTP_interceptor_C_Index.png) |
 
 本示例提供了一个简单的界面，包含以下功能按钮：
 - Add Response Interceptor：添加响应拦截器
