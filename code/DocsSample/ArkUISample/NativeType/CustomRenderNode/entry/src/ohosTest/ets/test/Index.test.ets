@@ -207,14 +207,14 @@ export default function IndexTest() {
 
     /**
      * @tc.number UiTest_007
-     * @tc.name testCheckRanderNodeDisposed
+     * @tc.name testCheckRenderNodeDisposed
      * @tc.desc 查询当前RenderNode是否解除引用。
      */
-    it('CheckRanderNodeDisposed', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: testCheckRanderNodeDisposed begin');
+    it('CheckRenderNodeDisposed', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: testCheckRenderNodeDisposed begin');
       let driver = Driver.create();
 
-      let str = await getResourceString('CheckRanderNodeDisposed');
+      let str = await getResourceString('CheckRenderNodeDisposed');
       let componentButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(componentButton === null).assertFalse();
       await componentButton.click();
@@ -230,7 +230,7 @@ export default function IndexTest() {
       await isDisposedButton.click();
 
       await driver.pressBack();
-      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: testCheckRanderNodeDisposed end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'uitest: testCheckRenderNodeDisposed end');
       done();
     })
 

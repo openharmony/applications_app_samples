@@ -23,7 +23,7 @@ import { CustomDraw } from './CustomDraw';
 import { CustomDrawCanvas } from './CustomDrawCanvas';
 import { CustomDrawCanvasNative } from './CustomDrawCanvasNative';
 import { SetLabel } from './SetLabel';
-import { CheckRanderNodeDisposed } from './CheckRanderNodeDisposed';
+import { CheckRenderNodeDisposed } from './CheckRenderNodeDisposed';
 
 const routes: Route[] = [
   {
@@ -51,8 +51,8 @@ const routes: Route[] = [
     name: 'SetLabel'
   },
   {
-    title: resource.resourceToString($r('app.string.CheckRanderNodeDisposed')),
-    name: 'CheckRanderNodeDisposed'
+    title: resource.resourceToString($r('app.string.CheckRenderNodeDisposed')),
+    name: 'CheckRenderNodeDisposed'
   }
 ];
 
@@ -71,7 +71,7 @@ function destination(name: string) {
   } else if (name === routes[5].name) {
     SetLabel();
   } else if (name === routes[6].name) {
-    CheckRanderNodeDisposed();
+    CheckRenderNodeDisposed();
   }
 }
 

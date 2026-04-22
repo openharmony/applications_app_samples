@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start check_rander_node_disposed]
+// [Start check_render_node_disposed]
 import { NodeController, FrameNode, RenderNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
@@ -51,14 +51,14 @@ class MyNodeController extends NodeController {
 
 @Entry
 @Component
-export struct CheckRanderNodeDisposed {
+export struct CheckRenderNodeDisposed {
   @State text: string = '';
   private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
-    // [StartExclude check_rander_node_disposed]
+    // [StartExclude check_render_node_disposed]
     NavDestination() {
-      // [EndExclude check_rander_node_disposed]
+      // [EndExclude check_render_node_disposed]
       Column({ space: 4 }) {
         NodeContainer(this.myNodeController);
         Button('RenderNode dispose')
@@ -80,14 +80,14 @@ export struct CheckRanderNodeDisposed {
       .width('100%')
       .height('100%');
 
-      // [StartExclude check_rander_node_disposed]
+      // [StartExclude check_render_node_disposed]
     }
     .backgroundColor('#f1f2f3')
-    // 请将$r('app.string.CheckRanderNodeDisposed')替换为实际资源文件，在本示例中该资源文件的value值为"查询当前RenderNode是否解除引用"
-    .title($r('app.string.CheckRanderNodeDisposed'));
+    // 请将$r('app.string.CheckRenderNodeDisposed')替换为实际资源文件，在本示例中该资源文件的value值为"查询当前RenderNode是否解除引用"
+    .title($r('app.string.CheckRenderNodeDisposed'));
 
-    // [EndExclude check_rander_node_disposed]
+    // [EndExclude check_render_node_disposed]
   }
 }
 
-// [End check_rander_node_disposed]
+// [End check_render_node_disposed]
