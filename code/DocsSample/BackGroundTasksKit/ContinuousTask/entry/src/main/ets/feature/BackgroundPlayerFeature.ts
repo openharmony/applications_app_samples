@@ -16,14 +16,13 @@
 import { avSession } from '@kit.AVSessionKit';
 import { common } from '@kit.AbilityKit';
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import Logger from '../util/Logger';
 import { SONG_List } from '../mock/BackgroundPlayerData';
 
 const TAG: string = 'BackgroundPlayerFeature';
 
-class PlayList {
-  public audioFiles: Array<Song> = [];
+class PlayList {  public audioFiles: Array<Song> = [];
 }
 
 class Song {
@@ -107,7 +106,7 @@ class PlayerModel {
     Logger.info(TAG, `getAudioAssets end`);
   }
 
-  preLoad(index: number, callback: () => void): number {
+  preLoad(index: number, context: common.UIAbilityContext, callback: () => void): number {
     Logger.info(TAG, `preLoad ${index}/${this.playlist.audioFiles.length}`);
     if (index < 0 || index >= this.playlist.audioFiles.length) {
       Logger.error(TAG, `preLoad ignored`);
@@ -118,30 +117,20 @@ class PlayerModel {
       return 0;
     }
     this.playerIndex = index;
-    let uri = this.playlist.audioFiles[index].fileUri;
-    fileIo.open(uri, (err, fdNumber) => {
-      if (err) {
-        Logger.error(TAG, `preLoad open file error: ${err.message}`);
-        return;
-      }
-      let fdPath = 'fd://';
-      let source = fdPath + fdNumber;
-      Logger.info(TAG, `preLoad source ${source}`);
-      if (typeof (source) === 'undefined') {
-        Logger.error(TAG, `preLoad ignored source= ${source}`);
-        return;
-      }
-      Logger.info(TAG, `preLoad ${source} begin`);
-      Logger.info(TAG, `state= ${this.player.state}`);
+    let fileName = this.playlist.audioFiles[index].fileUri;
+    try {
+      context.resourceManager.getRawFd(fileName).then((fileDescriptor: resourceManager.RawFileDescriptor) => {
+        Logger.info(TAG, `preLoad fd=${fileDescriptor.fd} offset=${fileDescriptor.offset} length=${fileDescriptor.length}`);
+        Logger.info(TAG, `state= ${this.player.state}`);
 
-      if (source === this.player.url && this.player.state !== 'idle') {
-        Logger.info(TAG, `preLoad finished. url not changed`);
-        callback();
-      } else {
         Logger.info(TAG, `player.reset`);
         this.player.reset().then(() => {
           Logger.info(TAG, `player.reset done, state= ${this.player.state}`);
-          this.player.url = source;
+          this.player.fdSrc = {
+            fd: fileDescriptor.fd,
+            offset: fileDescriptor.offset,
+            length: fileDescriptor.length
+          };
           this.player.on('stateChange', (state: string) => {
             if (state === 'prepared') {
               Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`);
@@ -151,9 +140,13 @@ class PlayerModel {
         }).catch((err: Error) => {
           Logger.error(TAG, `player.reset failed: ${err.message}`);
         })
-      }
-      Logger.info(TAG, `preLoad ${source} end`);
-    })
+        Logger.info(TAG, `preLoad end`);
+      }).catch((err: Error) => {
+        Logger.error(TAG, `getRawFd failed: ${err.message}`);
+      });
+    } catch (error) {
+      Logger.error(TAG, `getRawFd exception: ${(error as Error).message}`);
+    }
     return 0;
   }
 
@@ -167,7 +160,7 @@ class PlayerModel {
     }
     Logger.info(TAG, `getDuration state= ${this.player.state}`);
     this.playlist.audioFiles[this.playerIndex].duration = Math.min(this.player.duration, 97615);
-    Logger.info(TAG, `getDuration player.url= ${this.player.url} player.duration= ${this.playlist.audioFiles[this.playerIndex].duration} `);
+    Logger.info(TAG, `getDuration player.duration= ${this.playlist.audioFiles[this.playerIndex].duration} `);
     return this.playlist.audioFiles[this.playerIndex].duration;
   }
 
