@@ -14,7 +14,7 @@
  */
 
 import { avSession } from '@kit.AVSessionKit';
-import { common } from '@kit.AbilityKit';
+import { common, Context } from '@kit.AbilityKit';
 import { media } from '@kit.MediaKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import Logger from '../util/Logger';
@@ -43,6 +43,7 @@ class PlayerModel {
   public playerIndex: number = 0;
   public player: media.AVPlayer;
   public avSession: avSession.AVSession;
+  public prepareCallback: (() => void) | null = null;
 
   constructor() {
     Logger.info(TAG, `createAVPlayer start`);
@@ -63,6 +64,20 @@ class PlayerModel {
     })
     this.player.on('stateChange', (state: string) => {
       Logger.info(TAG, `stateChange() callback is called, state: ${state}`);
+      if (state === 'initialized' && this.prepareCallback) {
+        Logger.info(TAG, `state is initialized, calling prepare`);
+        this.player.prepare().then(() => {
+          Logger.info(TAG, `player.prepare done, state= ${this.player.state}`);
+        }).catch((err: Error) => {
+          Logger.error(TAG, `player.prepare failed: ${err.message}`);
+        });
+      }
+      if (state === 'prepared' && this.prepareCallback) {
+        Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`);
+        const callback = this.prepareCallback;
+        this.prepareCallback = null;
+        callback();
+      }
     })
     this.player.on('seekDone', (time: number) => {
       Logger.info(TAG, `seekDone() callback is called, time: ${time}`);
@@ -126,17 +141,12 @@ class PlayerModel {
         Logger.info(TAG, `player.reset`);
         this.player.reset().then(() => {
           Logger.info(TAG, `player.reset done, state= ${this.player.state}`);
+          this.prepareCallback = callback;
           this.player.fdSrc = {
             fd: fileDescriptor.fd,
             offset: fileDescriptor.offset,
             length: fileDescriptor.length
           };
-          this.player.on('stateChange', (state: string) => {
-            if (state === 'prepared') {
-              Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`);
-              callback();
-            }
-          })
         }).catch((err: Error) => {
           Logger.error(TAG, `player.reset failed: ${err.message}`);
         })
@@ -144,9 +154,11 @@ class PlayerModel {
       }).catch((err: Error) => {
         Logger.error(TAG, `getRawFd failed: ${err.message}`);
       });
+      Logger.error(TAG, `preLoad preLoad`);
     } catch (error) {
       Logger.error(TAG, `getRawFd exception: ${(error as Error).message}`);
     }
+
     return 0;
   }
 
