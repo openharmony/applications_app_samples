@@ -107,7 +107,7 @@ struct Index {
     try {
       // 查询认证能力是否支持
       userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
-      Logger.info('current auth trust level is supported');
+      Logger.info('current auth trust level is supported.');
       return true;
     } catch (error) {
       const err: BusinessError = error as BusinessError;
@@ -142,12 +142,12 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           try {
-            Logger.info('userAuthInstance callback');
+            Logger.info('userAuthInstance callback.');
             this.result[ResultIndex.EXAMPLE_1] = (`${result.result}`);
             // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
@@ -159,7 +159,7 @@ struct Index {
       });
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth failed, code is ${err?.code}, message is ${err?.message}`);
@@ -197,12 +197,12 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           try {
-            Logger.info('userAuthInstance callback');
+            Logger.info('userAuthInstance callback.');
             this.result[ResultIndex.EXAMPLE_2] = (`${result.result}`);
             // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
@@ -214,7 +214,7 @@ struct Index {
       });
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth failed, code is ${err?.code}, message is ${err?.message}`);
@@ -252,12 +252,12 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           try {
-            Logger.info('userAuthInstance callback');
+            Logger.info('userAuthInstance callback.');
             this.result[ResultIndex.EXAMPLE_3] = (`${result.result}`);
             // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
@@ -269,7 +269,7 @@ struct Index {
       });
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth failed, code is ${err?.code}, message is ${err?.message}`);
@@ -303,12 +303,12 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           try {
-            Logger.info('userAuthInstance callback');
+            Logger.info('userAuthInstance callback.');
             this.result[ResultIndex.EXAMPLE_4] = (`${result.result}`);
             // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
@@ -320,7 +320,7 @@ struct Index {
       });
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth failed, code is ${err?.code}, message is ${err?.message}`);
@@ -337,7 +337,7 @@ struct Index {
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           try {
-            Logger.info('userAuthInstance callback');
+            Logger.info('userAuthInstance callback.');
             this.result[exampleNumber] = (`${result.result}`);
             // 认证完成后取消订阅
             userAuthInstance.off('result');
@@ -350,7 +350,7 @@ struct Index {
       // [EndExclude cancel_authentication]
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
       // [StartExclude cancel_authentication]
       // 使用等待函数模拟等待用户认证
       let DELAY_TIME: number = 3000; // 停止3秒
@@ -358,7 +358,7 @@ struct Index {
         // [EndExclude cancel_authentication]
         // 取消认证
         userAuthInstance.cancel();
-        Logger.info('auth cancel successfully');
+        Logger.info('auth cancel successfully.');
         // [StartExclude cancel_authentication]
       });
     } catch (error) {
@@ -390,7 +390,7 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       this.handleAuthResultAndCanceling(userAuthInstance, ResultIndex.CANCEL);
     } catch (error) {
       const err: BusinessError = error as BusinessError;
@@ -424,11 +424,11 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证过程中的提示信息。
       userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
         try {
-          Logger.info('userAuthInstance callback');
+          Logger.info('userAuthInstance callback.');
           this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
           // 认证完成后取消订阅
           userAuthInstance.off('result');
@@ -445,10 +445,10 @@ struct Index {
         // [EndExclude perceive-adjust-authentication-process]
         // 取消订阅认证过程中的提示信息。
         userAuthInstance.off('authTip');
-        Logger.info('off authTip successfully');
+        Logger.info('off authTip successfully.');
         // 取消认证
         userAuthInstance.cancel();
-        Logger.info('auth cancel successfully');
+        Logger.info('auth cancel successfully.');
         // [StartExclude perceive-adjust-authentication-process]
       });
       // [EndExclude perceive-adjust-authentication-process]
@@ -496,7 +496,7 @@ struct Index {
       });
       // 启动认证
       userAuthInstance.start();
-      Logger.info('auth start successfully');
+      Logger.info('auth start successfully.');
       // [StartExclude custom_authentication]
     } catch (error) {
       const err: BusinessError = error as BusinessError;
@@ -527,7 +527,7 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       this.handleCustomAuthResult(userAuthInstance, ResultIndex.CUSTOMIZE);
     } catch (error) {
@@ -546,11 +546,11 @@ struct Index {
   obtainingEnrolledCredentialInformation() {
     try {
       let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
-      Logger.info('get current enrolled state successfully');
+      Logger.info('get current enrolled state successfully.');
       return enrolledState.credentialDigest;
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`get current enrolled state failed, code is ${err?.code}, message is ${err?.message}`);
       return false;
     }
   }
@@ -567,10 +567,10 @@ struct Index {
       Logger.info(`get auth lock state start`);
       const authLockState : userAuth.AuthLockState = await userAuth.getAuthLockState(userAuth.UserAuthType.PIN);
       if (authLockState.lockoutDuration === userAuth.PERMANENT_LOCKOUT_DURATION) {
-        Logger.info('the authentication of given authType is permanent locked');
+        Logger.info('the authentication of given authType is permanent locked.');
       }
       const authLockStateContent : string = JSON.stringify(authLockState);
-      Logger.info('get auth lock state successfully');
+      Logger.info('get auth lock state successfully.');
       return authLockStateContent;
     } catch (error) {
       const errorMessage : string = `get auth lock state failed, err code is : ${error?.code}, err message is : ${error?.message}`;
@@ -604,7 +604,7 @@ struct Index {
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      Logger.info('get userAuth instance successfully');
+      Logger.info('get userAuth instance successfully.');
       // 订阅认证结果
       this.handleCustomAuthResult(userAuthInstance, ResultIndex.CUSTOMIZE);
     } catch (error) {
@@ -814,11 +814,11 @@ struct Index {
               .onClick(() => {
                 try {
                   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.PIN);
-                  Logger.info('get current enrolled state successfully');
+                  Logger.info('get current enrolled state successfully.');
                   this.credentialValue = enrolledState.credentialDigest + '';
                 } catch (error) {
                   const err: BusinessError = error as BusinessError;
-                  Logger.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
+                  Logger.error(`get current enrolled state failed, code is ${err?.code}, message is ${err?.message}`);
                 }
               })
               .margin($r('app.float.size_10'))
