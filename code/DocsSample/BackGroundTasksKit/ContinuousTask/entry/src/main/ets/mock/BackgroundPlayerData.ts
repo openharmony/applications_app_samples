@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-const SONG_List = [	 
-  // 0 means no delay in playback	 
-  { name: 'dynamic.wav', fileUri: 'dynamic.wav', duration: 0 },	 
-  { name: 'demo.wav', fileUri: 'demo.wav', duration: 0 },	 
-]	 
+const SONG_List = [
+  // 0 means no delay in playback
+  { name: 'dynamic.wav', fileUri: 'system/etc/dynamic.wav', duration: 0 },
+  { name: 'demo.wav', fileUri: 'system/etc/demo.wav', duration: 0 },
+]
 
 export { SONG_List }
