@@ -137,7 +137,7 @@ class NDKCamera {
     Camera_OutputCapability *cameraOutputCapability_;
     Camera_Profile *previewProfile_;
     Camera_Profile *photoProfile_;
-    Camera_VideoProfile *recordStreamProfile_;
+    decltype(((Camera_OutputCapability *)nullptr)->videoProfiles[0]) recordStreamProfile_;
     Camera_PreviewOutput *previewOutput_;
     Camera_PhotoOutput *photoOutput_;
     Camera_VideoOutput *videoOutput_;

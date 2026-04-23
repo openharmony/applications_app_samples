@@ -21,9 +21,6 @@
 #undef LOG_TAG
 #define LOG_TAG "camera-manager:"
 #endif
-#ifdef LOG_DOMAIN
-#undef LOG_DOMAIN
-#endif
 #define LOG_DOMAIN 0x3200
 
 namespace OHOS_CAMERA_SAMPLE {
@@ -43,7 +40,7 @@ constexpr int32_t PARSED_RESOLUTION_FIELD_COUNT = 2;
 // Parse a resolution string formatted as "width*height".
 bool ParseResolution(const std::string &resolution, uint32_t &width, uint32_t &height)
 {
-    return sscanf(resolution.c_str(), "%u*%u", &width, &height) == PARSED_RESOLUTION_FIELD_COUNT;
+    return sscanf_s(resolution.c_str(), "%u*%u", &width, &height) == PARSED_RESOLUTION_FIELD_COUNT;
 }
 
 // Find the first preview profile that matches the requested size and optional photo format.
@@ -64,11 +61,11 @@ Camera_Profile *FindPreviewProfile(
 }
 
 // Find the first record stream config that matches the requested size.
-Camera_VideoProfile *FindRecordStream(Camera_OutputCapability *capability, uint32_t width, uint32_t height)
+auto FindRecordStream(Camera_OutputCapability *capability, uint32_t width, uint32_t height)
 {
-    Camera_VideoProfile **streamProfiles = capability->videoProfiles;
+    auto **streamProfiles = capability->videoProfiles;
     for (int i = 0; i < capability->videoProfilesSize; i++) {
-        Camera_VideoProfile *streamConfig = streamProfiles[i];
+        auto *streamConfig = streamProfiles[i];
         if (streamConfig != nullptr && streamConfig->size.width == width && streamConfig->size.height == height) {
             return streamConfig;
         }
@@ -1019,7 +1016,7 @@ Camera_ErrorCode NDKCamera::IsFocusModeSupported(uint32_t mode)
 {
     Camera_FocusMode focusMode = static_cast<Camera_FocusMode>(mode);
     ret_ = OH_CaptureSession_IsFocusModeSupported(captureSession_, focusMode, &isFocusModeSupported_);
-    if (ret_ != CAMERA_OK) {
+    if (&isFocusModeSupported_ == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "IsFocusModeSupported failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
@@ -1031,7 +1028,7 @@ Camera_ErrorCode NDKCamera::IsFocusMode(uint32_t mode)
     OH_LOG_INFO(LOG_APP, "IsFocusMode start.");
     Camera_FocusMode focusMode = static_cast<Camera_FocusMode>(mode);
     ret_ = OH_CaptureSession_IsFocusModeSupported(captureSession_, focusMode, &isFocusModeSupported_);
-    if (ret_ != CAMERA_OK) {
+    if (&isFocusModeSupported_ == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "IsFocusModeSupported failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
@@ -1041,7 +1038,7 @@ Camera_ErrorCode NDKCamera::IsFocusMode(uint32_t mode)
         return CAMERA_INVALID_ARGUMENT;
     }
     ret_ = OH_CaptureSession_GetFocusMode(captureSession_, &focusMode);
-    if (ret_ != CAMERA_OK) {
+    if (&focusMode == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "GetFocusMode failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
@@ -1061,7 +1058,7 @@ Camera_ErrorCode NDKCamera::IsFocusPoint(float x, float y)
         return CAMERA_INVALID_ARGUMENT;
     }
     ret_ = OH_CaptureSession_GetFocusPoint(captureSession_, &focusPoint);
-    if (ret_ != CAMERA_OK) {
+    if (&focusPoint == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "GetFocusPoint failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
@@ -1181,7 +1178,7 @@ Camera_ErrorCode NDKCamera::TakePictureWithPhotoSettings(Camera_PhotoCaptureSett
 
     OH_LOG_INFO(LOG_APP,
                 "TakePictureWithPhotoSettings get quality %{public}d, rotation %{public}d, mirror %{public}d, "
-                "latitude, %{public}f, longitude %{public}f, altitude %{public}f",
+                "latitude, %{public}d, longitude %{public}d, altitude %{public}d",
                 photoSetting.quality, photoSetting.rotation, photoSetting.mirror, photoSetting.location->latitude,
                 photoSetting.location->longitude, photoSetting.location->altitude);
 
