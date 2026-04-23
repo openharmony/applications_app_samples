@@ -41,6 +41,7 @@ struct Index {
       Text(`${this.numArr[2]}`)
       Text(`${this.dimensionTwo[0][0]}`)
       Text(`${this.dimensionTwo[1][1]}`)
+      // 装饰的变量为简单类型数组时，可观察到数组项变化
       Button('change array item')
         .onClick(() => {
           this.numArr[0]++;
@@ -48,6 +49,7 @@ struct Index {
           this.dimensionTwo[0][0] = 0;
           this.dimensionTwo[1][1] = 0;
         })
+      // 装饰的变量为简单类型数组时，可观察到数组整体变化
       Button('change whole array')
         .onClick(() => {
           this.numArr = [5, 4, 3, 2, 1];

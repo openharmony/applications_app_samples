@@ -68,6 +68,7 @@ struct Index {
 
   build() {
     Column() {
+      // 点击Button切换showFlag，触发Child组件的创建/销毁
       Button('change showFlag')
         .onClick(() => {
           this.showFlag = !this.showFlag;

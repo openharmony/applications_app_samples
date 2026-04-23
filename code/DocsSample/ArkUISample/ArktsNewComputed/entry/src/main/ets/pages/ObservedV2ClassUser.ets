@@ -42,6 +42,7 @@ struct ObservedV2ClassUser {
     Column() {
       Text(this.name1.fullName)
       Text(this.name1.fullName)
+      // 点击Button改变lastName，触发fullName重新计算，且只被计算一次
       Button('changed lastName').onClick(() => {
         this.name1.lastName += 'a';
       })

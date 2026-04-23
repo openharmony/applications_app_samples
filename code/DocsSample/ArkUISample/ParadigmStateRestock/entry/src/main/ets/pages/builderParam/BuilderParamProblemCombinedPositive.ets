@@ -23,6 +23,7 @@ function globalBuilder() {
 struct CustomBuilderDemo {
   build() {
     Column() {
+      // childBuilder被@Require装饰，必须从外部初始化
       ChildPage({ childBuilder: globalBuilder })
     }
   }

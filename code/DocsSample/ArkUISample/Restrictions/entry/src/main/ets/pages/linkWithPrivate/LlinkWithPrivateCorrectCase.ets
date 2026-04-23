@@ -38,6 +38,7 @@ struct LinkAccessRestrictions {
 
 @Component
 struct LinkComponentChild {
+  // 正确用法
   @State stateValue: string = 'Hello';
   @Prop propValue: string = 'Hello';
   @Provide provideValue: string = 'Hello';

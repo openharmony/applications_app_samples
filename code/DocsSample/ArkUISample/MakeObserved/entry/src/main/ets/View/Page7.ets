@@ -32,6 +32,7 @@ let test2JsonStr: string = JSON.stringify(test2);
 @Entry
 @ComponentV2
 struct Page7 {
+  // JSON.parse返回的Object用makeObserved转为可观察数据
   message: Record<string, number> = 
         UIUtils.makeObserved<Record<string, number>>(JSON.parse(testJsonStr) as Record<string, number>);
   message2: Record<string, Info> = 

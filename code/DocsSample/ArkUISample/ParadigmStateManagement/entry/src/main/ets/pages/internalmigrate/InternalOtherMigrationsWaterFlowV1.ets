@@ -44,6 +44,7 @@ struct WaterFlowSample {
     Column() {
       Text(`${this.arr.length}`)
 
+      // @State装饰sections，可以观察到调用WaterFlowSections接口带来的变化
       Button('push option').onClick(() => {
         let section: SectionOptions = {
           itemsCount: 1,

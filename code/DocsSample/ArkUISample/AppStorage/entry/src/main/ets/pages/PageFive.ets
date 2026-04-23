@@ -26,6 +26,7 @@ struct MapSample {
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
+        // 点击Button初始化message
         Button('init map').onClick(() => {
           this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })

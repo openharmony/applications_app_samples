@@ -30,6 +30,7 @@ struct Parent {
 
 @Component
 struct Child {
+  // 父组件传入undefined时，@Provide装饰的变量仍使用本地默认值进行初始化
   @Provide count: number | undefined = 0;
 
   build() {

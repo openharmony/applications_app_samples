@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start global_custom_constructor]
+// 全局自定义构建函数showTextBuilder
 @Builder
 function showTextBuilder() {
   Text('Hello World')

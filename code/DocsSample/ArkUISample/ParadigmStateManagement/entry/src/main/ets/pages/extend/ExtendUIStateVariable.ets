@@ -27,6 +27,7 @@ export struct LocalExtendUIStateVariable {
 }
 
 // [Start Extend_Refresh_rendering_four]
+// 将状态变量作为@Extend参数，状态变化驱动Text样式刷新
 @Extend(Text)
 function fancy(fontSize: number) {
   .fontColor(Color.Blue)

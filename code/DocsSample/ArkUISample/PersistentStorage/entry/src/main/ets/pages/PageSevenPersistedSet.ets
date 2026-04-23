@@ -69,6 +69,7 @@ struct PersistedSet {
           .width('60%')
           .height('5%')
           .onClick(() => {
+            // 点击Button改变persistedSet的值，视图会随之刷新
             this.clearSet();
           })
 

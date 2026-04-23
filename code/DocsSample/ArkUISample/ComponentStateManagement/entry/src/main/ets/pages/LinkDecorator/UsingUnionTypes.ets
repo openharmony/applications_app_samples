@@ -16,6 +16,7 @@
 // [Start link_union_type]
 @Component
 struct UnionChild {
+  // @Link支持联合类型
   @Link name: string | undefined;
 
   build() {

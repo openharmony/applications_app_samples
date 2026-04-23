@@ -15,6 +15,7 @@
 // [Start Provide_Consume_Provide_AllowOverride1]
 @Component
 struct MyComponent {
+  // 使用allowOverride参数重写同名的@Provide
   @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 10;
 
   // [StartExclude Provide_Consume_Provide_AllowOverride]

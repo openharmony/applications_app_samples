@@ -25,6 +25,7 @@ struct DateSample {
         .onClick(() => {
           AppStorage.setOrCreate('date', new Date('2023-07-08'));
         })
+      // 点击Button更新selectedDate年份数据，触发视图刷新
       Button('increase the year by 1')
         .margin(10)
         .onClick(() => {

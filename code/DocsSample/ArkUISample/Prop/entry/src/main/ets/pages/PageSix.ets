@@ -106,6 +106,7 @@ struct Library {
           if (this.allBooks.length > 0) {
             this.allBooks.shift();
           } else {
+            // allBooks为空时输出提示信息
             hilog.info(DOMAIN, TAG, 'length <= 0');
           }
         })

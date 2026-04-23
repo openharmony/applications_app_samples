@@ -33,6 +33,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
+  // 利用makeV1Observed观察二维数组的变化
   @State arr: Array<Array<string>> =
     [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
 

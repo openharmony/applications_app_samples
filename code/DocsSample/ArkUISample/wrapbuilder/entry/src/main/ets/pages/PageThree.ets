@@ -34,6 +34,7 @@ const builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(myBuilder0),
 struct IndexItem {
   @Builder
   IndexItem() {
+    // IndexItem使用ForEach进行不同@Builder函数的渲染
     ForEach(builderArr, (item: WrappedBuilder<[string, number]>) => {
       item.builder('Hello World', 30);
     })

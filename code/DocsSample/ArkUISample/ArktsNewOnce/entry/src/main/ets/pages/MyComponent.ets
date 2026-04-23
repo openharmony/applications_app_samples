@@ -16,6 +16,7 @@
 // [Start once_init_sync_noMore]
 @ComponentV2
 struct ChildComponent {
+  // @Once装饰的onceParam仅初始化同步一次
   @Param @Once onceParam: string = '';
 
   build() {

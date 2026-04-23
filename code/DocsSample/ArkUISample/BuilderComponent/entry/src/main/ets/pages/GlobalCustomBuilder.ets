@@ -83,6 +83,7 @@ struct ParentDemo {
         tmpValue: this.objParam.tmpValue,
         arrayTmpValue: this.objParam.arrayTmpValue
       })
+      // 点击Button更新objParam，触发overBuilder内组件的刷新
       Button('Update Values').onClick(() => {
         this.objParam.strValue = 'Hello World';
         this.objParam.numValue = 1;

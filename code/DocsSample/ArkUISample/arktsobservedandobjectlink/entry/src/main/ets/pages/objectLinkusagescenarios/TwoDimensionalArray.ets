@@ -36,6 +36,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
+  // new操作符创建的ObservedArray<string>的实例可以观察到属性变化
   @State arr: Array<ObservedArray<string>> = [
     new ObservedArray<string>('apple'),
     new ObservedArray<string>('banana'),

@@ -31,6 +31,7 @@ struct MonitorExample {
   build() {
     Column() {
       Text(`apple count: ${this.apple}`)
+      // 点击Button累加apple，触发UI刷新
       Button('add apple')
         .onClick(() => {
           this.apple++;

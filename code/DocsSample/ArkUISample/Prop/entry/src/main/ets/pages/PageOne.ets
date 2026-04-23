@@ -36,6 +36,7 @@ struct Father {
       Button(`father click`).onClick(() => {
         this.message += '*';
       })
+      // 父组件@State装饰的message传给子组件的message
       Son({ message: this.message })
     }
   }

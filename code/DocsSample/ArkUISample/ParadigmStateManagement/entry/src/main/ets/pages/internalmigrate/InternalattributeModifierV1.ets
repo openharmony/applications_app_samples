@@ -36,6 +36,7 @@ struct AttributeDemo {
         Button('Button')
           .attributeModifier(this.modifier)
           .onClick(() => {
+            // 在状态管理V1中，可以通过@State装饰观察modifier的变化
             this.modifier.isDark = !this.modifier.isDark;
           })
       }

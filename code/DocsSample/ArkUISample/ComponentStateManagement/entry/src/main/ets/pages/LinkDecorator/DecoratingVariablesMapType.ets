@@ -25,6 +25,7 @@ struct MapSampleChild {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
+      // 子组件的Map类型可以同步回父组件
       Button('child init map').onClick(() => {
         this.value = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
       })

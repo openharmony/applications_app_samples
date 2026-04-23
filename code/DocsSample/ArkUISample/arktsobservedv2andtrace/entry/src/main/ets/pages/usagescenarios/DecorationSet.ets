@@ -31,6 +31,7 @@ struct SetSample {
             .fontSize(30)
           Divider()
         })
+        // 被@Trace装饰的Set类型属性可以观测到调用API带来的变化
         Button('init set')
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);

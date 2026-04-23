@@ -33,6 +33,7 @@ struct Parent {
 
   build() {
     Column() {
+      // 引用传递参数，label.paramA2的改变会引起overBuilder内的UI刷新
       wBuilder.builder({ paramA2: this.label.paramA2 });
       Button('Click me').onClick(() => {
         this.label.paramA2 = 'ArkUI';

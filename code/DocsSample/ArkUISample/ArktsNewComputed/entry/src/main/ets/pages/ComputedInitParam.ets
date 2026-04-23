@@ -47,6 +47,7 @@ struct ComputingInitParam {
       ForEach(this.shoppingBasket, (item: Article) => {
         Row() {
           Text(`unitPrice: ${item.unitPrice}`)
+          // 点击Button减少quantity，触发total和qualifiesForDiscount重新计算
           Button('-')
             .onClick(() => {
               if (item.quantity > 0) {
@@ -54,6 +55,7 @@ struct ComputingInitParam {
               }
             })
           Text(`quantity: ${item.quantity}`)
+          // 点击Button增加quantity，触发total和qualifiesForDiscount重新计算
           Button('+')
             .onClick(() => {
               item.quantity++;

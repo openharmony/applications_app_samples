@@ -20,6 +20,7 @@ class Info {
   @Trace public message: string = 'not initialized';
 
   constructor() {
+    // 此时@Monitor还未生效，因此不会监听到message的变化
     this.message = 'initialized';
   }
 

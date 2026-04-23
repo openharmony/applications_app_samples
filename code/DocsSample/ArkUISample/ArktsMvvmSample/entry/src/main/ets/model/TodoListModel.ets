@@ -37,6 +37,7 @@ export default class TodoListModel {
       let result = textDecoder.decodeToString(getJson, { stream: false });
       this.things = JSON.parse(result);
     } catch (error) {
+      // 任务加载失败，输出error信息，便于排查失败原因
       hilog.error(DOMAIN, TAG, 'Failed to load tasks. Cause: %{public}s', JSON.stringify(error.message));
     }
   }

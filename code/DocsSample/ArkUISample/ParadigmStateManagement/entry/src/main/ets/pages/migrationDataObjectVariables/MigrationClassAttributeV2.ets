@@ -27,8 +27,10 @@ export struct MigrationClassAttributeV2 {
 
 
 // [Start Migration_Class_Attribute_V2]
+// V2使用@ObservedV2代替V1的@Observed
 @ObservedV2
 class User {
+  // V2使用@Trace代替V1的@Track
   @Trace public name: string;
   @Trace public age: number;
 

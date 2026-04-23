@@ -26,6 +26,7 @@ struct LocalSetSample {
             .fontSize(30)
           Divider()
         })
+        // 初始化Set类型变量，触发UI刷新
         Button('init set')
           .onClick(() => {
             this.memberSet = new Set([0, 1, 2, 3, 4]);

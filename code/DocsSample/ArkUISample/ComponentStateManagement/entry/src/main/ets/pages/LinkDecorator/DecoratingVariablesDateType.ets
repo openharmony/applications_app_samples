@@ -20,6 +20,7 @@ struct DateComponent {
 
   build() {
     Column() {
+      // 子组件的Date类型可以同步回父组件
       Button(`child increase the year by 1`)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
