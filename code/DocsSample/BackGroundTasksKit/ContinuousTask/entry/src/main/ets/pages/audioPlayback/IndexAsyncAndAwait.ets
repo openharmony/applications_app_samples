@@ -42,7 +42,7 @@ struct IndexAsyncAndAwait {
       this.stopContinuousTask();
       PlayerModel.isPlaying = false;
     } else {
-      PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+      PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
         PlayerModel.playMusic(-1, true, this.context as common.UIAbilityContext);
         // start continuous task
         PlayerModel.isPlaying = true;
@@ -65,7 +65,7 @@ struct IndexAsyncAndAwait {
       PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
     }
     this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+    PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
       this.isSwitching = false;
       PlayerModel.isPlaying = true;
@@ -87,7 +87,7 @@ struct IndexAsyncAndAwait {
       PlayerModel.playerIndex = 0;
     }
     this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+    PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
       this.isSwitching = false;
       PlayerModel.isPlaying = true;

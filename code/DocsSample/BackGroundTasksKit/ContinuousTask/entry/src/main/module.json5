@@ -14,7 +14,9 @@
  */
 
 {
+  // [Start continuous_task_configure]
   "module": {
+    // [StartExclude continuous_task_configure]
     "name": "entry",
     "type": "entry",
     "srcEntry": "./ets/Application/MyAbilityStage.ts",
@@ -27,8 +29,10 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [EndExclude continuous_task_configure]
     "abilities": [
       {
+        // [StartExclude continuous_task_configure]
         "name": "MainAbility",
         "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
@@ -37,14 +41,14 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
         "visible": true,
+        // [EndExclude continuous_task_configure]
         "backgroundModes": [
-          "dataTransfer",
-          "audioPlayback",
+          // 长时任务类型的配置项
           "audioRecording",
-          "location",
           "bluetoothInteraction",
-          "multiDeviceConnection"
+          "audioPlayback"
         ],
+        // [StartExclude continuous_task_configure]
         "skills": [
           {
             "entities": [
@@ -55,8 +59,10 @@
             ]
           }
         ]
+        // [EndExclude continuous_task_configure]
       }
     ],
+    // [StartExclude continuous_task_configure]
     "requestPermissions": [
       {
         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
@@ -99,5 +105,7 @@
         }
       }
     ]
+    // [EndExclude continuous_task_configure]
   }
+  // [End continuous_task_configure]
 }

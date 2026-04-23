@@ -13,10 +13,16 @@
  * limitations under the License.
  */
 
+// [Start continuous_include]
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
-import { common } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { rpc } from '@kit.IPCKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
+// 在原子化服务中，请删除WantAgent导入
+// [End continuous_include]
+import { common } from '@kit.AbilityKit';
 import PlayerModel from '../../feature/BackgroundPlayerFeature';
 
 // [Start continuous_task]
@@ -49,7 +55,7 @@ struct AudioPlaybackIndex {
       this.stopContinuousTask();
       PlayerModel.isPlaying = false;
     } else {
-      PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+      PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
         PlayerModel.playMusic(-1, true, this.context as common.UIAbilityContext);
         // start continuous task
         PlayerModel.isPlaying = true;
@@ -72,7 +78,7 @@ struct AudioPlaybackIndex {
       PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
     }
     this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+    PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
       this.isSwitching = false;
       PlayerModel.isPlaying = true;
@@ -94,7 +100,7 @@ struct AudioPlaybackIndex {
       PlayerModel.playerIndex = 0;
     }
     this.isSwitching = true;
-    PlayerModel.preLoad(PlayerModel.playerIndex, () => {
+    PlayerModel.preLoad(PlayerModel.playerIndex, this.context as common.UIAbilityContext, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
       this.isSwitching = false;
       PlayerModel.isPlaying = true;

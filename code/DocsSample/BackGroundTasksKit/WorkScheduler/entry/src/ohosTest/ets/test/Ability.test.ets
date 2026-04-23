@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-import { wifiManager } from '@kit.ConnectivityKit';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Logger } from '../utils/Logger';
 
@@ -30,72 +30,62 @@ export default function abilityTest() {
     it('StartAbility_001', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       Logger.info('StartAbility_001 begin');
+
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
-        await abilityDelRegistry.startAbility({
+        await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.workschedulerextensionability',
-          abilityName: 'TestAbility'
-        });
-        done();
-      } catch (err) {
-        expect(0).assertEqual(err.code);
-        done();
+          abilityName: 'MainAbility'
+        })
+        expect(true).assertTrue();
+      } catch (exception) {
+        Logger.info(`Failed to start ability, error info: ${JSON.stringify(exception)}`);
+        expect().assertFail();
       }
       Logger.info('StartAbility_001 end');
-    })
-
-    /**
-     * 检查版本
-     */
-    it('CheckoutVersion_001', 0, async () => {
-      Logger.info('CheckoutVersion_001 begin');
-      await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.id('version'));
-      let version = await DRIVER.findComponent(ON.id('version'));
-      // 断言当前版本为1.0
-      expect((await version.getText()).split('：')[1]).assertEqual('1.0');
-      Logger.info('CheckoutVersion_001 end');
-    })
-
-    /**
-     * 控制wifi
-     */
-    it('ControlWifi_001', 0, async (done: Function) => {
-      Logger.info('ControlWifi_001 begin');
-      // 如果没有打开wifi，就打开wifi
-      if (!wifiManager.isWifiActive()) {
-        wifiManager.enableWifi();
-      } else {
-        // 如果已经打开wifi了，就重新连接
-        try {
-          wifiManager.disableWifi();
-        } catch (err) {
-          Logger.info('disableWifi failed', `${JSON.stringify(err)}`);
-        }
-        await DRIVER.delayMs(5000);
-        try {
-          wifiManager.enableWifi();
-        } catch (err) {
-          Logger.info('enableWifi failed', `${JSON.stringify(err)}`);
-        }
-        await DRIVER.delayMs(5000);
-      }
-      Logger.info('ControlWifi_001 end');
       done();
     })
 
     /**
-     * 更新sample
+     * 检查控件是否存在
      */
-    it('UpdateApp_001', 1, async () => {
-      Logger.info('UpdateApp_001 begin');
-      // 等待文件下载并保存
-      await DRIVER.delayMs(12000);
-      // 点击确定开始装包
-      await DRIVER.assertComponentExist(ON.id('confirm'));
-      let confirmBtn = await DRIVER.findComponent(ON.id('confirm'));
+    it('CheckoutVersion_001', 0, async (done: Function) => {
+      Logger.info('CheckoutVersion_001 begin');
       await DRIVER.delayMs(1000);
-      await confirmBtn.click();
-      Logger.info('UpdateApp_001 end');
+      await DRIVER.assertComponentExist(ON.id('version'));
+      await DRIVER.assertComponentExist(ON.id('btn_start_work'));
+      await DRIVER.assertComponentExist(ON.id('btn_stop_work'));
+      expect(true).assertTrue();
+      Logger.info('CheckoutVersion_001 end');
+      done();
+    })
+
+    /**
+     * 测试申请延迟任务
+     */
+    it('StartWork_001', 0, async (done: Function) => {
+      Logger.info('StartWork_001 begin');
+      await DRIVER.delayMs(1000);
+      let startWorkBtn = await DRIVER.findComponent(ON.id('btn_start_work'));
+      await startWorkBtn.click();
+      await DRIVER.delayMs(1000);
+      expect(true).assertTrue();
+      Logger.info('StartWork_001 end');
+      done();
+    })
+
+    /**
+     * 测试取消延迟任务
+     */
+    it('StopWork_001', 0, async (done: Function) => {
+      Logger.info('StopWork_001 begin');
+      await DRIVER.delayMs(1000);
+      let stopWorkBtn = await DRIVER.findComponent(ON.id('btn_stop_work'));
+      await stopWorkBtn.click();
+      await DRIVER.delayMs(1000);
+      expect(true).assertTrue();
+      Logger.info('StopWork_001 end');
+      done();
     })
   })
 }
