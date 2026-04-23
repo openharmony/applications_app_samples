@@ -116,7 +116,7 @@ async function firstAdjustBufferSize(imgComponent: image.Component, height: numb
 async function secondAdjustBufferSize(imgComponent: image.Component, height: number, width: number, stride: number)
   : Promise<image.PixelMap> {
   // [Start adjust_width]
-  // 创建pixelMap，width宽传行距stride的值。
+  // 创建pixelMap，width传入行距（stride）的值。
   let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
     size:{height: height, width: stride}, srcPixelFormat: 8});
   // 裁剪多余的像素。

@@ -14,7 +14,7 @@
  */
 // [Start transcoding_example]
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 import { PromptAction } from '@kit.ArkUI';
 
@@ -33,7 +33,7 @@ export async function reEncoding(context : Context, fd : number | undefined) {
   // 指定图片编码文件的存放路径。
   const filePath : string = context.cacheDir + '/result.jpg';
   try {
-    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
       promptAction.showToast({ message: `Succeed to pack the image.`});
       console.info('Succeed to pack the image.');
@@ -41,7 +41,7 @@ export async function reEncoding(context : Context, fd : number | undefined) {
       promptAction.showToast({ message: 'Failed to pack the image. And the error is: ' + error});
       console.error('Failed to pack the image. And the error is: ' + error);
     }).finally(()=>{
-      fs.closeSync(file.fd);
+      fileIo.closeSync(file.fd);
     })
   } catch (error) {
     console.error('Failed to pack the image. And the error is: ' + error);
