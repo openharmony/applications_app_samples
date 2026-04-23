@@ -23,6 +23,22 @@
         "compatibleSdkVersion": 23,
         "runtimeOS": "OpenHarmony",
         "targetSdkVersion": 23
+      },
+      {
+        "name": "rk3568",
+        "signingConfig": "release",
+        "compileSdkVersion": 23,
+        "compatibleSdkVersion": 23,
+        "runtimeOS": "OpenHarmony",
+        "targetSdkVersion": 23
+      },
+      {
+        "name": "TV",
+        "signingConfig": "release",
+        "compileSdkVersion": 23,
+        "compatibleSdkVersion": 23,
+        "runtimeOS": "OpenHarmony",
+        "targetSdkVersion": 23
       }
     ],
     "signingConfigs": [
@@ -37,6 +53,18 @@
           "name": "default",
           "applyToProducts": [
             "default"
+          ]
+        },
+        {
+          "name": "rk3568",
+          "applyToProducts": [
+            "rk3568"
+          ]
+        },
+        {
+          "name": "TV",
+          "applyToProducts": [
+            "TV"
           ]
         }
       ]
