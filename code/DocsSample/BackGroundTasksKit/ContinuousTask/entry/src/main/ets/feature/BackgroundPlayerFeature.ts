@@ -14,15 +14,17 @@
  */
 
 import { avSession } from '@kit.AVSessionKit';
-import { common, Context } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
 import { media } from '@kit.MediaKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import Logger from '../util/Logger';
 import { SONG_List } from '../mock/BackgroundPlayerData';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG: string = 'BackgroundPlayerFeature';
 
-class PlayList {  public audioFiles: Array<Song> = [];
+class PlayList {
+  public audioFiles: Array<Song> = [];
 }
 
 class Song {
@@ -79,9 +81,6 @@ class PlayerModel {
         callback();
       }
     })
-    this.player.on('seekDone', (time: number) => {
-      Logger.info(TAG, `seekDone() callback is called, time: ${time}`);
-    })
     Logger.info(TAG, `initAVPlayer end`);
   }
 
@@ -133,32 +132,52 @@ class PlayerModel {
     }
     this.playerIndex = index;
     let fileName = this.playlist.audioFiles[index].fileUri;
-    try {
-      context.resourceManager.getRawFd(fileName).then((fileDescriptor: resourceManager.RawFileDescriptor) => {
-        Logger.info(TAG, `preLoad fd=${fileDescriptor.fd} offset=${fileDescriptor.offset} length=${fileDescriptor.length}`);
-        Logger.info(TAG, `state= ${this.player.state}`);
 
-        Logger.info(TAG, `player.reset`);
-        this.player.reset().then(() => {
-          Logger.info(TAG, `player.reset done, state= ${this.player.state}`);
-          this.prepareCallback = callback;
-          this.player.fdSrc = {
-            fd: fileDescriptor.fd,
-            offset: fileDescriptor.offset,
-            length: fileDescriptor.length
-          };
-        }).catch((err: Error) => {
-          Logger.error(TAG, `player.reset failed: ${err.message}`);
-        })
-        Logger.info(TAG, `preLoad end`);
-      }).catch((err: Error) => {
-        Logger.error(TAG, `getRawFd failed: ${err.message}`);
-      });
-      Logger.error(TAG, `preLoad preLoad`);
-    } catch (error) {
-      Logger.error(TAG, `getRawFd exception: ${(error as Error).message}`);
-    }
+    Logger.info(TAG, `player.reset`);
+    this.player.reset().then(() => {
+      Logger.info(TAG, `player.reset done, state= ${this.player.state}`);
+      this.prepareCallback = callback;
 
+      // 判断是系统路径还是应用资源文件
+      if (fileName.startsWith('system/') || fileName.startsWith('/system/')) {
+        // 系统路径，使用 fileIo.open 获取 fd
+        let filePath = fileName.startsWith('/') ? fileName : '/' + fileName;
+        Logger.info(TAG, `preLoad filePath= ${filePath}`);
+        try {
+          fileIo.open(filePath, 0o1000000).then((file: fileIo.File) => {
+            Logger.info(TAG, `preLoad fd=${file.fd}`);
+            this.player.fdSrc = {
+              fd: file.fd,
+              offset: 0,
+              length: -1
+            };
+          }).catch((err: Error) => {
+            Logger.error(TAG, `fileIo.open failed: ${err.message}`);
+          });
+        } catch (error) {
+          Logger.error(TAG, `fileIo.open exception: ${(error as Error).message}`);
+        }
+      } else {
+        // 应用资源文件，使用 resourceManager.getRawFd
+        try {
+          context.resourceManager.getRawFd(fileName).then((fileDescriptor: resourceManager.RawFileDescriptor) => {
+            Logger.info(TAG, `preLoad fd=${fileDescriptor.fd} offset=${fileDescriptor.offset} length=${fileDescriptor.length}`);
+            this.player.fdSrc = {
+              fd: fileDescriptor.fd,
+              offset: fileDescriptor.offset,
+              length: fileDescriptor.length
+            };
+          }).catch((err: Error) => {
+            Logger.error(TAG, `getRawFd failed: ${err.message}`);
+          });
+        } catch (error) {
+          Logger.error(TAG, `getRawFd exception: ${(error as Error).message}`);
+        }
+      }
+    }).catch((err: Error) => {
+      Logger.error(TAG, `player.reset failed: ${err.message}`);
+    })
+    Logger.info(TAG, `preLoad end`);
     return 0;
   }
 
