@@ -61,3 +61,13 @@
 
 3. 本示例已支持使DevEco Studio 6.0.0 Release(构建版本：6.0.0.858，构建 2026年4月7日)编译运行。
 
+### 下载
+
+```shell
+git init
+git config core.sparsecheckout true
+echo code/BasicFeature/Ability/AbilityFeature/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+```
+
