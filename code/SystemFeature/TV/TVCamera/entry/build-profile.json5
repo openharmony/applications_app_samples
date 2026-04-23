@@ -29,6 +29,12 @@
       "runtimeOS": "OpenHarmony"
     },
     {
+      "name": "rk3568"
+    },
+    {
+      "name": "TV",
+    },
+    {
       "name": "ohosTest",
     }
   ]
