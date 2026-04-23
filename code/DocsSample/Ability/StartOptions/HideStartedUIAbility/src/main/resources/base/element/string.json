@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "HideStartedUIAbilityAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "HideStartedUIAbilityAbility_label",
+      "value": "label"
+    }
+  ]
+}

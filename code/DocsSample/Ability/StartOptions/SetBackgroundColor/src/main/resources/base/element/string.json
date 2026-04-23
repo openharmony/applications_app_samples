@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SetBackgroundColorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SetBackgroundColorAbility_label",
+      "value": "label"
+    }
+  ]
+}

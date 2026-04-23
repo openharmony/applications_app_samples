@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetLaunchResultAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetLaunchResultAbility_label",
+      "value": "label"
+    }
+  ]
+}

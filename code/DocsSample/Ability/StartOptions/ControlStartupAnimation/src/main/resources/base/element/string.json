@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ControlStartupAnimationAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ControlStartupAnimationAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "StartWithSpecifiedWindowModeAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "StartWithSpecifiedWindowModeAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SetWindowSizeConstraintsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SetWindowSizeConstraintsAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "HideSplashScreenAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "HideSplashScreenAbility_label",
+      "value": "label"
+    }
+  ]
+}
