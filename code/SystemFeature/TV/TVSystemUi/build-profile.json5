@@ -23,22 +23,35 @@
         "compileSdkVersion": 18,
         "compatibleSdkVersion": 18,
         "targetSdkVersion": 18
+      },
+      {
+        "name": "rk3568",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        },
+        "targetSdkVersion": 18
+      },
+      {
+        "name": "TV",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        },
+        "targetSdkVersion": 18
       }
     ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storePassword": "0000001631CB7CFDE9A6EE75DD35D11ECE5685DEABEDC331E71698425BF05317F700D1F572DA",
-          "certpath": "signature/OpenHarmony.cer",
-          "keyAlias": "OpenHarmony Application Release",
-          "keyPassword": "0000001650BE35519D515DE9B4F833D4ECC6877556E200F9438CB0D28D15761E6A45559D15E3",
-          "profile": "signature/systemui.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "signature/OpenHarmony.p12"
-        }
-      }
-    ]
+    "signingConfigs": []
   },
   "modules": [
     {
@@ -48,6 +61,18 @@
         {
           "name": "default"
         },
+        {
+          "name": "rk3568",
+          "applyToProducts": [
+            "rk3568"
+          ]
+        },
+        {
+          "name": "TV",
+          "applyToProducts": [
+            "TV"
+          ]
+        }
       ],
     },
     {
@@ -75,7 +100,7 @@
         {
           "name": "default",
           applyToProducts: [
-            "default"
+            "default", "rk3568", "TV"
           ]
         },
       ],
@@ -87,7 +112,7 @@
         {
           "name": "default",
           "applyToProducts": [
-            "default"
+            "default", "rk3568", "TV"
           ]
         }
       ]

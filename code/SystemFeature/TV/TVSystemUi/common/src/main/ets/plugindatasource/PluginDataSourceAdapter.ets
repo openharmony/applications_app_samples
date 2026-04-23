@@ -38,7 +38,11 @@ export default class PluginDataSourceAdapter {
   private mPluginSourceLoaderPatch: PluginSourceLoaderPatch;
   private mModuleName: string;
 
-  constructor(name: string, context: common.ServiceExtensionContext, listener: PluginWorkerListener, moduleName: string) {
+  constructor(
+    name: string, 
+    context: common.ServiceExtensionContext, 
+    listener: PluginWorkerListener, 
+    moduleName: string) {
     Log.showDebug(TAG, `constructor, name: ${name}`);
     this.mName = name;
     this.mContext = context;
