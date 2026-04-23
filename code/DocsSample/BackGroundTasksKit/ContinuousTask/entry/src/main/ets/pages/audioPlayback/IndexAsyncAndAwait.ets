@@ -33,7 +33,7 @@ struct IndexAsyncAndAwait {
   onPlayClick(): void {
     if (this.isSwitching) {
       console.info(`onPlayClick ignored, isSwitching`);
-      return
+      return;
     }
     console.info(`onPlayClick isPlaying= ${PlayerModel.isPlaying}`);
     if (PlayerModel.isPlaying) {
