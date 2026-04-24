@@ -18,8 +18,7 @@ import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { contextConstant, common } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
-import fileUri from '@ohos.file.fileuri';
+import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 
 const TAG: string = '[SpecifiedCustomizedRingtone]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -47,7 +46,7 @@ export struct SpecifiedCustomizedRingtone {
     }
 
     notificationManager.publish(notificationRequest).then(() => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in publishing notification.`);
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
     }).catch((err: BusinessError) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
     });
