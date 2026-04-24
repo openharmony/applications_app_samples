@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 {
-  "modelVersion": "5.0.1",
+  "modelVersion": "6.0.0",
   "description": "Please describe the basic information.",
   "dependencies": {
     "@hadss/turbo-trans-core": "^1.0.0-rc.2",
-    "@hadss/turbo-trans-json": "^1.0.0-rc.2",
-    "@hadss/turbo-trans-protobuf": "^1.0.0-rc.0"
+    "@hadss/turbo-trans-json": "^1.0.0-rc.2"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.25",

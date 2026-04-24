@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import { turboTransJsonPlugin } from '@hadss/turbo-trans-json-plugin';
-import { turboTransProtobufPlugin } from '@hadss/turbo-trans-protobuf-plugin';
 import { hvigor } from '@ohos/hvigor';
 import { appTasks } from '@ohos/hvigor-ohos-plugin';
 
@@ -28,13 +27,6 @@ export default {
         scanPaths: ['src/main/ets', 'src/ohosTest/ets'],
         preserveOriginalImports: false
       }
-    }),
-    turboTransProtobufPlugin({
-      saveDir: 'src/main/ets/protobuf',
-      ignoreModuleNames: ['TurboTransCore' , 'PerformanceBaseline' , 'TurboTransProtobufCommon'],
-      sendable: true,
-      debug: false,
-      scanDir: ['protobuf'],
     }),
   ]       /* Custom plugin to extend the functionality of Hvigor. */
 }

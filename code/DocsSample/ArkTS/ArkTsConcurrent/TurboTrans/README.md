@@ -2,10 +2,9 @@
 
 ### 介绍
 
-本示例主要演示了 `@hadss/turbo-trans-json`（下文简称 **turbotransJSON**）与 `@hadss/turbo-trans-protobuf`（下文简称 **turbotransProtobuf**）在 ArkTS 中操作Sendable对象的典型用法：
+本示例主要演示了 `@hadss/turbo-trans-json`（下文简称 **turbotransJSON**）在 ArkTS 中操作Sendable对象的典型用法：
  	 
 - 使用 **turbotransJSON** 将 JSON 字符串反序列化为对象，并转换为 **Sendable 对象** 在并发实例间传递。
-- 使用 **turbotransProtobuf** 通过 `.proto` 生成 **@Sendable** 的消息类，并进行编码/解码。
 
 ### 效果预览
 
@@ -16,7 +15,7 @@
 ### 使用说明
 
 1. 在主界面，点击运行Taskpool测试。
-2. 执行结果会即时反馈在屏幕中央，打印出TestProtobuf_Success和Test。
+2. 执行结果会即时反馈在屏幕中央，打印出Test。
 
 ### 工程目录
 
@@ -34,8 +33,6 @@ entry/src/
  │   │   ├── turbotrans_JSON
  │   │   │   ├── layout.ets                // JSON布局模型
  │   │   │   └── test1.ets                 // JSON序列化测试
- │   │   ├── turbotrans_protobuf
- │   │   │   └── test1.ets                 // Protobuf编解码测试
  │   ├── module.json5
  │   └── resources
  ├── generated
@@ -44,16 +41,16 @@ entry/src/
  │       │   └── SendableLayout.ets        // 自动生成的Sendable布局模型
  │       └── turbotrans_JSON
  │           └── layout.ets                // 自动生成的JSON布局模型
- ├── protobuf
- │   └── test_pb.proto                     // Protobuf定义文件
+ ├── mock
+ │   └── mock-config.json5                 // Mock配置文件
  ├── ohosTest
- │   ├── ets
- │   │   ├── test
- │   │       ├── Ability.test.ets          // 自动化测试代码
- │   │       └── List.test.ets             // 列表测试代码
- ├── test
- │   ├── List.test.ets                     // 列表单元测试
- │   └── LocalUnit.test.ets                 // 本地单元测试
+ │   └── ets
+ │       └── test
+ │           ├── Ability.test.ets          // 自动化测试代码
+ │           └── List.test.ets             // 列表测试代码
+ └── test
+     ├── List.test.ets                     // 列表单元测试
+     └── LocalUnit.test.ets                // 本地单元测试
 ```
 
 ### 相关权限

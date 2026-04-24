@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { test_pb } from '../protobuf/test_pb';
 import { LayoutS } from '../turbotrans_JSON/layout';
 import { taskpool } from '@kit.ArkTS';
-import { observeJSON1, observeProtobuf } from './concurrentFunc';
+import { observeJSON1 } from './concurrentFunc';
 import { UIUtils } from '@kit.ArkUI';
 
 // [Start tranferabledObject_Text]
@@ -24,7 +23,6 @@ import { UIUtils } from '@kit.ArkUI';
 struct Index {
   @Local message: string = 'Hello World';
   @Local layout: LayoutS = new LayoutS();
-  @Local pb: test_pb = test_pb.create();
 
   build() {
     Column() {
@@ -41,17 +39,10 @@ struct Index {
         .onClick(() => {
           this.runTests();
         })
+        .id('button')
 
       Scroll() {
         Column() {
-          Text(`TestProtobuf: ${this.pb.value_string}`)
-            .fontSize(14)
-            .textAlign(TextAlign.Start)
-            .backgroundColor(Color.White)
-            .padding(10)
-            .borderRadius(8)
-            .margin({ bottom: 10 })
-            .width('100%')
 
           Text(`TestJSON: ${this.layout.type}`)
             .fontSize(14)
@@ -77,9 +68,6 @@ struct Index {
 // [StartExclude tranferabledObject_Text]
 // [Start tranferabledObject_makeObserved]
   runTests() {
-    taskpool.execute(observeProtobuf).then((res: test_pb) => {
-      this.pb = UIUtils.makeObserved(res);
-    })
     taskpool.execute(observeJSON1).then((res) => {
       this.layout = UIUtils.makeObserved(res as LayoutS);
     })

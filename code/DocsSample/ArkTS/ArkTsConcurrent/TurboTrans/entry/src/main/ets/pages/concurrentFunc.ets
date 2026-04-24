@@ -14,12 +14,6 @@
  */
 import { LayoutS } from '../turbotrans_JSON/layout';
 import { testJSON1, testJSON2 } from '../turbotrans_JSON/test1';
-import { testProtobuf } from '../turbotrans_protobuf/test1'
-
-@Concurrent
-export function observeProtobuf() {
-  return testProtobuf();
-}
 
 @Concurrent
 export function observeJSON1(): LayoutS {

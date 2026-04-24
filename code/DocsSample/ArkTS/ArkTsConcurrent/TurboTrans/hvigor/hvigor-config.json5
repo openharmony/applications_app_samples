@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 {
-  "modelVersion": "5.0.1",
+  "modelVersion": "6.0.0",
   "dependencies": {
-    "@hadss/turbo-trans-protobuf-plugin": "^1.0.0-rc.0",
     // [StartExclude dependPlugin]
     "@hadss/hmrouter-plugin": "^1.2.2",
     // [EndExclude dependPlugin]
