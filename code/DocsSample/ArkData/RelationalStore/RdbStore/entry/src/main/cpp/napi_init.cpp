@@ -523,7 +523,7 @@ void InitAttachStore()
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "NAME", "Lisa");
     valueBucket->putInt64(valueBucket, "AGE", 18); // The value of AGE is 18
-    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of AGE is 100.5
+    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of SALARY is 100.5
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "CODES", arr, len);
