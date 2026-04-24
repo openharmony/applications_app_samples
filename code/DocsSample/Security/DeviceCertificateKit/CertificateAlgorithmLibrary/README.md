@@ -21,6 +21,7 @@
 - [证书PKCS12的创建和解析](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-parse-pkcs12.md)
 - [证书链在线校验证书吊销状态](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/create-verify-cerchainvalidator-revocation-object.md)
 - [证书链校验时下载缺失的中间CA证书](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/allow-download-Intermediate-Cert.md)
+- [使用证书链校验器验证证书链](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DeviceCertificateKit/validate-cert-chain-by-cerchainvalidator.md)
 ### 效果预览
 
 | 首页效果图                                                   | 执行结果图                                                   |
@@ -65,6 +66,11 @@ entry/src/
  │   │       ├── CreateTrustanchorFromP12.ets
  │   │       ├── CreateVerifyCerchainvalidatorObject.ets
  │   │       ├── CreateVerifyCertchainObject.ets
+ │   │       ├── ValidateCertChainByCertchainvalidator.ets
+ │   │       ├── ValidateCertChainWithCustomTrustAnchor.ets
+ │   │       ├── ValidateCertChainWithSystemCa.ets
+ │   │       ├── ValidateCertChainWithCrl.ets
+ │   │       ├── ValidateSm2CertChain.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
