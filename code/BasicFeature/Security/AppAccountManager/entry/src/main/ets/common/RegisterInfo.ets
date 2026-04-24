@@ -18,14 +18,23 @@ import Logger from '../model/Logger'
 import { AccountData } from '../model/AccountData'
 import { AccountModel } from '../model/AccountModel'
 
-class BasicDataSource implements IDataSource {
+interface RegisterFieldItem {
+  text: Resource
+  inputType: InputType
+  length: number
+  event: number
+  inputFilter: string
+  promptText: Resource
+}
+
+class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
-  public totalCount() {
+  public totalCount(): number {
     return 0
   }
 
-  public getData(index: number) {
+  public getData(index: number): T | undefined {
     return undefined
   }
 
@@ -73,15 +82,8 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-class MyDataSource extends BasicDataSource {
-  private dataArray: Array<{
-    text: Resource,
-    inputType: InputType,
-    length: number,
-    event: number,
-    inputFilter: string,
-    promptText: Resource
-  }> = [
+class MyDataSource extends BasicDataSource<RegisterFieldItem> {
+  private dataArray: RegisterFieldItem[] = [
     {
       text: $r('app.string.username'),
       inputType: InputType.Normal,
@@ -124,25 +126,15 @@ class MyDataSource extends BasicDataSource {
     }
   ]
 
-  public totalCount() {
+  public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number) {
+  public getData(index: number): RegisterFieldItem | undefined {
     return this.dataArray[index]
   }
 
-  public addData(index: number) {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-
-  public pushData(index: number) {
-    this.dataArray.push()
-    this.notifyDataAdd(this.dataArray.length - 1)
-  }
-
-  public replaceData(result: any[]) {
+  public replaceData(result: RegisterFieldItem[]) {
     this.dataArray = result
   }
 }
@@ -157,7 +149,8 @@ export struct RegisterInfo {
   @State signature: string = ''
   @State confirmPassword: string = ''
   @State dataSet: MyDataSource = new MyDataSource()
-  private bundleName: string = ''
+  @Prop isWideLayout: boolean
+  @Prop bundleName: string = ''
   private storage: AccountData = AccountData.getInstance()
   private accountModel: AccountModel = new AccountModel()
 
@@ -177,68 +170,72 @@ export struct RegisterInfo {
       }
       .margin(5)
 
-      LazyForEach(this.dataSet, (item, index) => {
-        Row() {
-          Text(item.text)
-            .margin(10)
-            .fontSize(18)
-            .width('25%')
-            .textAlign(TextAlign.End)
-            .backgroundColor('#ffffff')
-          Column() {
-            Text(item.promptText)
-              .fontSize(14)
-              .width('80%')
-              .fontColor('#ffb0b0b0')
-              .textAlign(TextAlign.Center)
-
-            TextInput({ placeholder: 'xxxxx' })
-              .id('Register' + (index + 1))
+      Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+        LazyForEach(this.dataSet, (item: RegisterFieldItem, index: number) => {
+          Row() {
+            Text(item.text)
               .margin(10)
-              .width('55%')
-              .fontSize(20)
-              .maxLength(20)
-              .type(item.inputType)
-              .maxLength(item.length)
-              .inputFilter(item.inputFilter)
-              .fontWeight(FontWeight.Bold)
-              .placeholderFont({ size: 16, weight: FontWeight.Normal })
-              .onChange(async (value: string) => {
-                switch (item.event) {
-                  case 0:
-                    this.username = value
-                    break
-                  case 1:
-                    this.emailInfo = value
-                    break
-                  case 2:
-                    this.signature = value
-                    break
-                  case 3:
-                    this.passWord = value
-                    break
-                  case 4:
-                    this.confirmPassword = value
-                    break
-                  default:
-                    break
-                }
-              })
+              .fontSize(18)
+              .width('25%')
+              .textAlign(TextAlign.End)
+              .backgroundColor('#ffffff')
+            Column() {
+              Text(item.promptText)
+                .fontSize(14)
+                .width('80%')
+                .fontColor('#ffb0b0b0')
+                .textAlign(TextAlign.Center)
+
+              TextInput({ placeholder: 'xxxxx' })
+                .id('Register' + (index + 1))
+                .margin(10)
+                .width('55%')
+                .fontSize(20)
+                .maxLength(20)
+                .type(item.inputType)
+                .maxLength(item.length)
+                .inputFilter(item.inputFilter)
+                .fontWeight(FontWeight.Bold)
+                .placeholderFont({ size: 16, weight: FontWeight.Normal })
+                .onChange((value: string) => {
+                  switch (item.event) {
+                    case 0:
+                      this.username = value
+                      break
+                    case 1:
+                      this.emailInfo = value
+                      break
+                    case 2:
+                      this.signature = value
+                      break
+                    case 3:
+                      this.passWord = value
+                      break
+                    case 4:
+                      this.confirmPassword = value
+                      break
+                    default:
+                      break
+                  }
+                })
+            }
           }
-        }
-        .margin(5)
-      }, item => JSON.stringify(item))
+          .margin(5)
+          .width(this.isWideLayout ? '48%' : '100%')
+        }, (item: RegisterFieldItem) => JSON.stringify(item))
+      }
+      .width('100%')
 
       Button($r('app.string.setting'))
         .id('complete')
         .margin(10)
-        .width('60%')
+        .width(this.isWideLayout ? '40%' : '60%')
         .fontSize(20)
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
         .onClick(async () => {
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-          let result = await this.storage.hasStorageValue(getContext(), this.username, this.bundleName)
+          let result: boolean = await this.storage.hasStorageValue(getContext(), this.username, this.bundleName)
           Logger.info(TAG, `This result is ${result}`)
           if (this.username === '') {
             AlertDialog.show(

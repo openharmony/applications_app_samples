@@ -20,13 +20,13 @@ const TAG: string = '[NavigationBar]'
 
 @Component
 export struct NavigationBar {
-  private url: string = '';
-  private username: string = '';
-  private bundleName: string = '';
-  private signature: string = '';
-  private email: string = '';
-  private flag: boolean = undefined;
-  private title: Resource = undefined;
+  @Prop url: string = ''
+  @Prop username: string = ''
+  @Prop bundleName: string = ''
+  @Prop signature: string = ''
+  @Prop email: string = ''
+  @Prop flag: boolean = false
+  @Prop title: Resource = $r('app.string.entry_MainAbility')
 
   build() {
     Row() {
