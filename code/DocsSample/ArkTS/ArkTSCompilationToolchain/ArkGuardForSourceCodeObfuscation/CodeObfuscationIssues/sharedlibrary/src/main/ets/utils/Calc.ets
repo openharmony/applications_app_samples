@@ -17,6 +17,8 @@ export function add(a: number, b: number) {
 }
 
 // [Start export_addNum]
+// 混淆前
+// hsp模块
 export function addNum(a: number, b: number) {
   return a + b;
 }
