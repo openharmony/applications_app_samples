@@ -67,7 +67,7 @@ struct formHostSample {
     type: formInfo.FormType.eTS,
     jsComponentName: '',
     // [StartExclude form_host_index]
-    colorMode: formInfo.ColorMode.MODE_AUTO,
+    colorMode: -1,
     // [EndExclude form_host_index]
     isDefault: false,
     updateEnabled: false,
@@ -244,7 +244,7 @@ struct formHostSample {
           .enabled(this.showFormPicker)
           .onClick(() => {
             hilog.info(DOMAIN_NUMBER, TAG, 'TextPickerDialog: show()');
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,
