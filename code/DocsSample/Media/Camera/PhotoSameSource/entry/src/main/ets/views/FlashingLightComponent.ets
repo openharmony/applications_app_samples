@@ -94,7 +94,6 @@ export struct FlashingLightComponent {
           action: () => {
             this.flashMode = mode!;
             CameraService.hasFlashFn(mode);
-            // showToast(this.getUIContext(), flashItem.toast);
           }
         };
         return menuElement;
@@ -109,8 +108,6 @@ export struct FlashingLightComponent {
       .onClick(() => {
         this.isMovingPhotoEnable = !this.isMovingPhotoEnable;
         CameraService.enableMovingPhoto(this.isMovingPhotoEnable);
-        // const message = this.isMovingPhotoEnable ? $('动态照片开启') : $('动态照片关闭');
-        // showToast(this.getUIContext(), message);
       })
       .fontSize(22)
       .fontColor([Color.White])
