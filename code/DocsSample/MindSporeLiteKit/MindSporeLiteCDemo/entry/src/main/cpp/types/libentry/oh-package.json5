@@ -15,7 +15,7 @@
 
 {
   "name": "libentry.so",
-  "types": "./index.d.ts",
+  "types": "./Index.d.ts",
   "version": "3.4.1",
   "description": "MindSpore Lite inference module"
 }
