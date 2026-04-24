@@ -18,4 +18,14 @@ export const RemoveInterceptor: () => number;
 export const StartInterceptors: () => number;
 export const StopInterceptors: () => number;
 export const RemoveAllInterceptors: () => number;
+export const AddModifyRequestInterceptor: () => number;
+export const RemoveModifyRequestInterceptor: () => number;
+export const StartModifyRequestInterceptors: () => number;
+export const StopModifyRequestInterceptors: () => number;
+export const RemoveAllModifyRequestInterceptors: () => number;
+export const AddModifyResponseInterceptor: () => number;
+export const RemoveModifyResponseInterceptor: () => number;
+export const StartModifyResponseInterceptors: () => number;
+export const StopModifyResponseInterceptors: () => number;
+export const RemoveAllModifyResponseInterceptors: () => number;
 // [End HttpInterceptor_defining_function_types]
