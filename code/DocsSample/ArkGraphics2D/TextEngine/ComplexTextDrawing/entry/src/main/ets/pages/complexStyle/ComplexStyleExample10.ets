@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_break_strategy_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -20,25 +21,24 @@ import { text } from '@kit.ArkGraphics2D'
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // [Start arkts_punctuation_compress_step1]
-    // 开启标点压缩
+    // 设置断行策略为均衡策略（BALANCED）
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 0, green: 0, blue: 0 },
       fontSize: 40
     };
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
-      // 开启中文标点连续挤压
-      compressHeadPunctuation: true
+      // 设置断行策略为均衡策略，各行宽度尽量均衡
+      breakStrategy: text.BreakStrategy.BALANCED
     };
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     paragraphBuilder.pushStyle(myTextStyle);
-    paragraphBuilder.addText('。。。。。你好世界！！！！！你好世界。。。。。。');
+    paragraphBuilder.addText('This is a long text that demonstrates the balanced break strategy. ' +
+      'The lines will be distributed as evenly as possible to avoid wide spacing differences.');
     let paragraph = paragraphBuilder.build();
     paragraph.layoutSync(800);
     paragraph.paint(canvas, 10, 0);
-    // [End arkts_punctuation_compress_step1]
   }
 }
 
@@ -73,7 +73,7 @@ async function performTask() { myNodeController.clearNodes(); myNodeController.a
 
 @Entry
 @Component
-struct PunctuationText {
+struct BreakStrategyText {
   @State src: Resource = $r('app.media.startIcon');
   build() {
     Column() {
@@ -84,3 +84,4 @@ struct PunctuationText {
     }
   }
 }
+// [End arkts_break_strategy_example_text]

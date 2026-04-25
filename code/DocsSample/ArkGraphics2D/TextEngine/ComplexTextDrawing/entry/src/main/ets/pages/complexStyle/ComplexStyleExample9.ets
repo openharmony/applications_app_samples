@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_ellipsis_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -21,7 +22,6 @@ import { text } from '@kit.ArkGraphics2D'
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // [Start arkts_ellipsis_text_step1]
     // 设置文本样式，包含省略号字符串和省略号模式
     let myTextStyle: text.TextStyle = {
       color: {
@@ -36,8 +36,6 @@ class MyRenderNode extends RenderNode {
       // 设置省略号模式为尾部省略
       ellipsisMode: text.EllipsisMode.END
     };
-    // [End arkts_ellipsis_text_step1]
-    // [Start arkts_ellipsis_text_step2]
     // 设置段落样式，包含最大行数
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
@@ -53,35 +51,7 @@ class MyRenderNode extends RenderNode {
     paragraph.layoutSync(800);
     // 绘制尾部省略文本
     paragraph.paint(canvas, 10, 0);
-    // [End arkts_ellipsis_text_step2]
-    // [Start arkts_ellipsis_text_step3]
-    // 设置省略号模式为头部省略
-    let textStyleStart: text.TextStyle = {
-      color: {
-        alpha: 255,
-        red: 0,
-        green: 0,
-        blue: 0
-      },
-      fontSize: 40,
-      ellipsis: '...',
-      ellipsisMode: text.EllipsisMode.START
-    };
-    let paragraphStyleStart: text.ParagraphStyle = {
-      textStyle: textStyleStart,
-      maxLines: 2
-    };
-    let builderStart = new text.ParagraphBuilder(paragraphStyleStart, fontCollection);
-    builderStart.pushStyle(textStyleStart);
-    builderStart.addText('This is a long text that will be truncated with ellipsis at the start. ' +
-      'When the text exceeds the maximum number of lines, the ellipsis will be shown at the beginning.');
-    let paragraphStart = builderStart.build();
-    paragraphStart.layoutSync(800);
-    // 绘制头部省略文本
-    paragraphStart.paint(canvas, 10, 120);
-    // [End arkts_ellipsis_text_step3]
-    // [Start arkts_ellipsis_text_step4]
-    // 设置省略号模式为中部省略
+    // 设置省略号模式为多行中部省略
     let textStyleMiddle: text.TextStyle = {
       color: {
         alpha: 255,
@@ -91,7 +61,7 @@ class MyRenderNode extends RenderNode {
       },
       fontSize: 40,
       ellipsis: '...',
-      ellipsisMode: text.EllipsisMode.MIDDLE
+      ellipsisMode: text.EllipsisMode.MULTILINE_MIDDLE
     };
     let paragraphStyleMiddle: text.ParagraphStyle = {
       textStyle: textStyleMiddle,
@@ -103,9 +73,8 @@ class MyRenderNode extends RenderNode {
       'When the text exceeds the maximum number of lines, the ellipsis will be shown in the middle.');
     let paragraphMiddle = builderMiddle.build();
     paragraphMiddle.layoutSync(800);
-    // 绘制中部省略文本
-    paragraphMiddle.paint(canvas, 10, 240);
-    // [End arkts_ellipsis_text_step4]
+    // 绘制多行中部省略文本
+    paragraphMiddle.paint(canvas, 10, 120);
   }
 }
 
@@ -177,3 +146,4 @@ struct EllipsisText {
     }
   }
 }
+// [End arkts_ellipsis_example_text]

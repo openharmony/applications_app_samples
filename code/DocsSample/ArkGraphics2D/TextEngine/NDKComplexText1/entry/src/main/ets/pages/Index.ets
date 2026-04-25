@@ -155,6 +155,68 @@ const navTree: NavNode[] = [
         label: '行间距调整',
         targetPage: 'NdkPage',
         params: 'drawLineSpacingText'
+      },
+      {
+        label: '省略号样式设置',
+        targetPage: 'NavTreePage',
+        params: [
+          {
+            label: 'TAIL（尾部省略）',
+            targetPage: 'NdkPage',
+            params: 'drawEllipsisTailText'
+          },
+          {
+            label: 'HEAD（头部省略）',
+            targetPage: 'NdkPage',
+            params: 'drawEllipsisHeadText'
+          },
+          {
+            label: 'MIDDLE（中部省略）',
+            targetPage: 'NdkPage',
+            params: 'drawEllipsisMiddleText'
+          },
+          {
+            label: 'MULTILINE_HEAD（多行头部省略）',
+            targetPage: 'NdkPage',
+            params: 'drawEllipsisMultilineHeadText'
+          },
+          {
+            label: 'MULTILINE_MIDDLE（多行中部省略）',
+            targetPage: 'NdkPage',
+            params: 'drawEllipsisMultilineMiddleText'
+          },
+        ]
+      },
+      {
+        label: '文字换行方式',
+        targetPage: 'NavTreePage',
+        params: [
+          {
+            label: 'GREEDY（贪婪策略）',
+            targetPage: 'NdkPage',
+            params: 'drawBreakStrategyGreedyText'
+          },
+          {
+            label: 'HIGH_QUALITY（高质量策略）',
+            targetPage: 'NdkPage',
+            params: 'drawBreakStrategyHighQualityText'
+          },
+          {
+            label: 'BALANCED（均衡策略）',
+            targetPage: 'NdkPage',
+            params: 'drawBreakStrategyBalancedText'
+          },
+        ]
+      },
+      {
+        label: '行首标点挤压',
+        targetPage: 'NdkPage',
+        params: 'drawPunctuationCompressText'
+      },
+      {
+        label: '查询字体资源路径',
+        targetPage: 'NdkPage',
+        params: 'drawFontResourcePathText'
       }
     ]
   },

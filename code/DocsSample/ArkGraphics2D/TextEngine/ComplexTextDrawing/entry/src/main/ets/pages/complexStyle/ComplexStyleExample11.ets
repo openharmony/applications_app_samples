@@ -13,33 +13,35 @@
  * limitations under the License.
  */
 
+// [Start arkts_punctuation_compress_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
-import { text } from '@kit.ArkGraphics2D'
+import { text, drawing } from '@kit.ArkGraphics2D'
 
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // [Start arkts_break_strategy_step1]
-    // 设置断行策略为均衡策略（BALANCED）
+    // 开启标点压缩
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 0, green: 0, blue: 0 },
       fontSize: 40
     };
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
-      // 设置断行策略为均衡策略，各行宽度尽量均衡
-      breakStrategy: text.BreakStrategy.BALANCED
+      compressHeadPunctuation: true
     };
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     paragraphBuilder.pushStyle(myTextStyle);
-    paragraphBuilder.addText('This is a long text that demonstrates the balanced break strategy. ' +
-      'The lines will be distributed as evenly as possible to avoid wide spacing differences.');
+    paragraphBuilder.addText('《你好世界》这是一个中文标点压缩的示例文字，用于展示标点在行首的挤压效果。通过对比可以观察到挤压前后的差异。');
     let paragraph = paragraphBuilder.build();
     paragraph.layoutSync(800);
+    let backgroundPen = new drawing.Pen();
+    backgroundPen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachPen(backgroundPen);
+    canvas.drawRect({ left: 10, top: 0, right: 810, bottom: paragraph.getHeight() });
+    canvas.detachPen();
     paragraph.paint(canvas, 10, 0);
-    // [End arkts_break_strategy_step1]
   }
 }
 
@@ -74,7 +76,7 @@ async function performTask() { myNodeController.clearNodes(); myNodeController.a
 
 @Entry
 @Component
-struct BreakStrategyText {
+struct PunctuationText {
   @State src: Resource = $r('app.media.startIcon');
   build() {
     Column() {
@@ -85,3 +87,4 @@ struct BreakStrategyText {
     }
   }
 }
+// [End arkts_punctuation_compress_example_text]

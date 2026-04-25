@@ -90,7 +90,7 @@ class MyRenderNode extends RenderNode {
     // [End ts_text_metrics_get_all_case]
     // [Start ts_text_metrics_layout_with_constraints]
     // case6: 在限定宽高区域内排版文本，获取排版结果
-    let constraint: text.TextRectSize = { width: 500, height: 200 };
+    let constraint: text.TextRectSize = { width: 600, height: 200 };
     let layoutResult: text.TextLayoutResult = paragraph.layoutWithConstraints(constraint);
     // 获取排版后的实际尺寸
     console.info("MetricsMSG: correctRect width: " + layoutResult.correctRect.width +
@@ -117,20 +117,22 @@ class MyRenderNode extends RenderNode {
     // [Start ts_text_metrics_glyph_character_range]
     // case9: 根据字形范围获取字符范围
     let glyphRange: text.Range = { start: 0, end: 2 };
-    let charRanges: Array<text.Range> =
+    let glyphToCharRanges: Array<text.Range> =
       paragraph.getCharacterRangeForGlyphRange(glyphRange, drawing.TextEncoding.TEXT_ENCODING_UTF16);
-    for (let i = 0; i < charRanges.length; i++) {
-      console.info("MetricsMSG: charRange[" + i + "] start: " + charRanges[i].start +
-        ", end: " + charRanges[i].end);
-    }
+    // 返回数组第一个为字符范围，第二个为实际字形范围
+    console.info("MetricsMSG: charRange start: " + glyphToCharRanges[0].start +
+      ", end: " + glyphToCharRanges[0].end);
+    console.info("MetricsMSG: actualGlyphRange start: " + glyphToCharRanges[1].start +
+      ", end: " + glyphToCharRanges[1].end);
     // case10: 根据字符范围获取字形范围
     let charRange: text.Range = { start: 0, end: 2 };
-    let glyphRanges: Array<text.Range> =
+    let charToGlyphRanges: Array<text.Range> =
       paragraph.getGlyphRangeForCharacterRange(charRange, drawing.TextEncoding.TEXT_ENCODING_UTF16);
-    for (let i = 0; i < glyphRanges.length; i++) {
-      console.info("MetricsMSG: glyphRange[" + i + "] start: " + glyphRanges[i].start +
-        ", end: " + glyphRanges[i].end);
-    }
+    // 返回数组第一个为字形范围，第二个为实际字符范围
+    console.info("MetricsMSG: glyphRange start: " + charToGlyphRanges[0].start +
+      ", end: " + charToGlyphRanges[0].end);
+    console.info("MetricsMSG: actualCharRange start: " + charToGlyphRanges[1].start +
+      ", end: " + charToGlyphRanges[1].end);
     // [End ts_text_metrics_glyph_character_range]
     // 将文本绘制到画布上
     paragraph.paint(canvas, 0, 800);
