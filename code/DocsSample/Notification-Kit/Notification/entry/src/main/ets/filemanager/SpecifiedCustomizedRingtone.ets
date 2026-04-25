@@ -100,7 +100,7 @@ export struct SpecifiedCustomizedRingtone {
             // [Start specified_sandbox_file]
             // 获取沙箱文件uri
             let sandboxFileUri: string = fileUri.getUriFromPath(sandboxFilePath)
-            let soundFile: string = 'uri::' + sandboxFileUri; // 必须以uri::开头, 且路径中不能包含'../'和'/..'
+            let soundFile: string = 'uri::' + sandboxFileUri; // 必须以uri::开头，且路径中不能包含'../'和'/..'
             // [End specified_sandbox_file]
             this.publishNotification(soundFile);
           })
