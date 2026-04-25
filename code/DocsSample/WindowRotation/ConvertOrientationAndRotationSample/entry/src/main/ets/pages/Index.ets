@@ -20,24 +20,21 @@ import { display, window } from '@kit.ArkUI';
 @Component
 struct SpecificSceneSetOrientationIndex {
   mainWindow: window.Window = AppStorage.get('mainWindow_SetOrientation') as window.Window;
-
   setOrientationByDisplay() {
     try {
-      // ① 获取当前默认 Display
+      // 1.获取当前默认Display
       const disp = display.getDefaultDisplaySync();
       const displayOrientation = disp.orientation; // 当前屏幕方向（0/1/2/3）
 
-      console.info('Current display orientation = ' + displayOrientation);
-
-      // ② 将 displayOrientation 转换为 windowOrientation
+      console.info("Current display orientation = " + displayOrientation);
+      // 2.将displayOrientation转换为windowOrientation
       let windowOrientation: number =
         this.mainWindow.convertOrientationAndRotation(
           window.RotationInfoType.DISPLAY_ORIENTATION,
           window.RotationInfoType.WINDOW_ORIENTATION,
           displayOrientation
         );
-
-      // ③ 根据 windowOrientation 映射到 window.Orientation
+      // 3.根据windowOrientation映射到window.Orientation
       let orientation: window.Orientation = window.Orientation.UNSPECIFIED;
 
       switch (windowOrientation) {
@@ -54,26 +51,22 @@ struct SpecificSceneSetOrientationIndex {
           orientation = window.Orientation.LANDSCAPE;
           break;
         default:
-          throw new Error('Invalid orientation value');
+          throw new Error("Invalid orientation value");
       }
-
-      // ④ 设置窗口方向
+      // 4.设置旋转策略锁定窗口方向
       this.mainWindow.setPreferredOrientation(orientation, (err) => {
         if (err && err.code) {
-          console.error('setPreferredOrientation failed: ' + JSON.stringify(err));
+          console.error("setPreferredOrientation failed: " + JSON.stringify(err));
         }
       });
-
     } catch (exception) {
-      console.error('Exception in setOrientationByDisplay: ' + JSON.stringify(exception));
+      console.error("Exception in setOrientationByDisplay: " + JSON.stringify(exception));
     }
   }
-
   build() {
     Column() {
-      Text('Lock the display orientation')
+      Text("Lock the display orientation")
         .fontSize(17)
-
       Button('Set orientation from display')
         .onClick(() => {
           console.info('Click: Set orientation from display');
