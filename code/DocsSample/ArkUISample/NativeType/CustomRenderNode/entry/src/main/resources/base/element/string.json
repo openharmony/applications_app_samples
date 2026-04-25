@@ -37,7 +37,7 @@
       "value": "设置标签"
     },
     {
-      "name": "CheckRanderNodeDisposed",
+      "name": "CheckRenderNodeDisposed",
       "value": "查询当前RenderNode是否解除引用"
     }
   ]

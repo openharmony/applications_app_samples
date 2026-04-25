@@ -14,7 +14,7 @@
 |-----|-----|-----|-----|
 | <img src="./screenshots/index.jpeg" width="300" /> | <img src="./screenshots/OperationNodeTree.jpeg" width="300" /> | <img src="./screenshots/RenderingProperties.jpeg" width="300" /> | <img src="./screenshots/CustomDraw.jpeg" width="300" /> |
 | 调整自定义绘制Canvas的变换矩阵 | C++获取Canvas，并进行自定义绘制操作 | 设置标签 | 查询当前RenderNode是否解除引用 |
-| <img src="./screenshots/CustomDrawCanvas.jpeg" width="300" /> | <img src="./screenshots/CustomDrawCanvasNative.jpeg" width="300" /> | <img src="./screenshots/SetLabel.jpeg" width="300" /> | <img src="./screenshots/CheckRanderNodeDisposed.jpeg" width="300" /> |
+| <img src="./screenshots/CustomDrawCanvas.jpeg" width="300" /> | <img src="./screenshots/CustomDrawCanvasNative.jpeg" width="300" /> | <img src="./screenshots/SetLabel.jpeg" width="300" /> | <img src="./screenshots/CheckRenderNodeDisposed.jpeg" width="300" /> |
 
 ## 使用说明
 1. 在主界面，可以点击对应卡片，选择需要参考的示例。
@@ -38,7 +38,7 @@ entry/src/main/
     │   ├── Route.ets
     │   └── resource.ets
     └── pages
-        ├── CheckRanderNodeDisposed.ets
+        ├── CheckRenderNodeDisposed.ets
         ├── CustomDraw.ets
         ├── CustomDrawCanvas.ets
         ├── CustomDrawCanvasNative.ets
