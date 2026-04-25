@@ -21,10 +21,12 @@
 // [Start module_appEnvironments]
 // [Start module_abilities_metadata]
 // [Start module_pages]
+// [Start module_skillProfiles]
 {
   // [StartExclude module_abilities_skills]
   "module": {
     // [StartExclude module_pages]
+    // [StartExclude module_skillProfiles]
     // [StartExclude module_abilities_metadata]
     // [StartExclude module_appEnvironments]
     // [StartExclude module_systemTheme]
@@ -166,6 +168,18 @@
     "fileContextMenu": "$profile:menu", // 资源配置，指向profile下面定义的配置文件menu.json
     // [StartExclude module_fileContextMenu]
     "crossAppSharedConfig": "$profile:shared_config",
+    // [EndExclude module_skillProfiles]
+    "skillProfiles": [
+      {
+        "name": "my-skill",
+        "abilityName": "EntryAbility",
+        "srcEntries": [
+          "../../my-skill/scripts/Test.ets"
+        ],
+        "permissions": []
+      }
+    ],
+    // [StartExclude module_skillProfiles]
     // [StartExclude module_all]
     // [EndExclude module_systemTheme]
     "systemTheme": "$profile:theme_config", // 资源配置，指向profile下面定义的配置文件theme_config.json
@@ -175,6 +189,7 @@
     // [EndExclude module_appEnvironments]
     // [EndExclude module_abilities_metadata]
     // [EndExclude module_pages]
+    // [EndExclude module_skillProfiles]
   }
   // [EndExclude module_abilities_skills]
 }
