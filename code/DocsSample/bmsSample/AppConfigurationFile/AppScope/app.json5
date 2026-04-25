@@ -17,16 +17,30 @@
 // [Start app_json5_appEnvironments]
 // [Start app_json5_multiAppMode]
 // [Start app_json5_configuration]
+// [Start app_json5_alternateIcons]
 {
   "app": {
     // [StartExclude app_json5_appEnvironments]
     // [StartExclude app_json5_multiAppMode]
     // [StartExclude app_json5_configuration]
+    // [StartExclude app_json5_alternateIcons]
     "bundleName": "com.application.myapplication",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:layered_image",
+    // [EndExclude app_json5_alternateIcons]
+    "alternateIcons": [
+      {
+        "name": "summer_theme",
+        "icon": "$media:layered-image"
+      },
+      {
+        "name": "winter_theme",
+        "icon": "$media:background"
+      }
+    ],
+    // [StartExclude app_json5_alternateIcons]
     "label": "$string:app_name",
     "description": "$string:description_application",
     "minAPIVersion": 9,
@@ -70,8 +84,10 @@
     // [EndExclude app_json5_configuration]
     // [EndExclude app_json5_appEnvironments]
     // [EndExclude app_json5_multiAppMode]
+    // [EndExclude app_json5_alternateIcons]
   }
 }
+// [End app_json5_alternateIcons]
 // [End app_json5_configuration]
 // [End app_json5_multiAppMode]
 // [End app_json5_appEnvironments]
