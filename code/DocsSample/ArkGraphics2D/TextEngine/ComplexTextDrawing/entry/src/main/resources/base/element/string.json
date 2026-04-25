@@ -45,6 +45,22 @@
       "value": "Example8 (LineSpacing)"
     },
     {
+      "name": "ComplexStyle_Button_example9",
+      "value": "Example9 (Ellipsis)"
+    },
+    {
+      "name": "ComplexStyle_Button_example10",
+      "value": "Example10 (BreakStrategy)"
+    },
+    {
+      "name": "ComplexStyle_Button_example11",
+      "value": "Example11 (Punctuation)"
+    },
+    {
+      "name": "ComplexStyle_Button_example12",
+      "value": "Example12 (FontQuery)"
+    },
+    {
       "name": "Button_page_Multilanguage",
       "value": "Multilanguage-text page"
     },

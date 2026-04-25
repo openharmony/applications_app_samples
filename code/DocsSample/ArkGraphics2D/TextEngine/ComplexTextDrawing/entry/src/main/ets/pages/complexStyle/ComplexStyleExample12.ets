@@ -13,45 +13,19 @@
  * limitations under the License.
  */
 
+// [Start arkts_font_query_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
-import { BusinessError } from '@kit.BasicServicesKit'
 
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // [Start arkts_font_query_step1]
     // 按类型获取字体路径列表
     let fontPaths: Array<string> = text.getFontPathsByType(text.SystemFontType.GENERIC);
     for (let i = 0; i < fontPaths.length; i++) {
-      console.info("MetricsMSG: fontPath[" + i + "]: " + fontPaths[i]);
+      console.info("fontPath[" + i + "]: " + fontPaths[i]);
     }
-    // [End arkts_font_query_step1]
-    // [Start arkts_font_query_step2]
-    // 异步获取系统字体全名列表
-    text.getSystemFontFullNamesByType(text.SystemFontType.GENERIC).then((names: Array<string>) => {
-      for (let i = 0; i < names.length; i++) {
-        console.info("MetricsMSG: fontName[" + i + "]: " + names[i]);
-      }
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get font names. Code: ${err.code}, message: ${err.message}`);
-    });
-    // [End arkts_font_query_step2]
-    // [Start arkts_font_query_step3]
-    // 异步从字体文件获取描述符
-    if (fontPaths.length > 0) {
-      text.getFontDescriptorsFromPath(fontPaths[0]).then((descriptors: Array<text.FontDescriptor>) => {
-        for (let i = 0; i < descriptors.length; i++) {
-          let desc = descriptors[i];
-          console.info("MetricsMSG: descriptor fullName: " + desc.fullName +
-            ", family: " + desc.fontFamily + ", weight: " + desc.weight);
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get font descriptors. Code: ${err.code}, message: ${err.message}`);
-      });
-    }
-    // [End arkts_font_query_step3]
   }
 }
 
@@ -97,3 +71,4 @@ struct FontQueryText {
     }
   }
 }
+// [End arkts_font_query_example_text]

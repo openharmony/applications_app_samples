@@ -6,8 +6,8 @@
 
 ## 效果预览
 
-| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) | ![](screenshots/srceenshot_lineHeight1.jpeg) | ![](screenshots/srceenshot_lineHeight2.jpeg) | ![](screenshots/srceenshot_lineSpacing.jpeg) | ![](screenshots/Shape_Page.png) |
-|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) | ![](screenshots/srceenshot_lineHeight1.jpeg) | ![](screenshots/srceenshot_lineHeight2.jpeg) | ![](screenshots/srceenshot_lineSpacing.jpeg) | ![](screenshots/Example9_Ellipsis.png) | ![](screenshots/Example10_BreakStrategy.png) | ![](screenshots/Example11_CompressedPunctuation.png) | ![](screenshots/Example12_FontPathQuery.png) | ![](screenshots/Shape_Page.png) |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 
 **使用方法：**
 
@@ -35,6 +35,10 @@ ArkTSDrawing
 │  │     │  ├─ ComplexStyleExample6.ets
 │  │     │  ├─ ComplexStyleExample7.ets
 │  │     │  ├─ ComplexStyleExample8.ets
+│  │     │  ├─ ComplexStyleExample9.ets
+│  │     │  ├─ ComplexStyleExample10.ets
+│  │     │  ├─ ComplexStyleExample11.ets
+│  │     │  ├─ ComplexStyleExample12.ets
 │  │     │  └─ ComplexStyleText.ets
 │  │     ├─ Index.ets               // 主界面
 │  │     ├─ multilanguage
@@ -43,14 +47,6 @@ ArkTSDrawing
 │  │     │  └─ MultilineText.ets
 │  │     └─ shape
 │  │        └─ IndependentShaping.ets
-│  │     ├─ ellipsis
-│  │     │  └─ EllipsisText.ets
-│  │     ├─ breakStrategy
-│  │     │  └─ BreakStrategyText.ets
-│  │     ├─ punctuation
-│  │     │  └─ PunctuationText.ets
-│  │     └─ fontQuery
-│  │        └─ FontQueryText.ets
 |  ├──resources                     // 资源文件目录
 └─ ohosTest
    └──ets
@@ -75,7 +71,7 @@ ArkTSDrawing
 ## 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API22版本SDK，版本号：6.0.2.55。
+2. 本示例支持API24版本SDK，版本号：6.0.2.55。
 3. 本示例已支持DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年9月25日)编译运行。
 
 ## 下载

@@ -14,6 +14,9 @@
  */
 
 #include "common/log_common.h"
+
+#include <string>
+#include <unicode/ustring.h>
 #include "sample_bitmap.h"
 
 #include <native_drawing/drawing_font_collection.h>
@@ -27,6 +30,7 @@
 #include <native_drawing/drawing_text_lineTypography.h>
 #include <native_drawing/drawing_text_run.h>
 #include <native_drawing/drawing_text_typography.h>
+#include <native_drawing/drawing_text_font_descriptor.h>
 
 constexpr double TWENTY_DOUBLE = 20.0;
 constexpr double TEN_DOUBLE = 10.0;
@@ -913,7 +917,8 @@ void SampleBitMap::DrawStyleCopyText()
     // 设置段落最大行数为3行
     OH_Drawing_SetTypographyTextMaxLines(typoStyle, 3);
     // 设置省略号模式为尾部省略号
-    OH_Drawing_SetTypographyTextEllipsisModal(typoStyle, ELLIPSIS_MODAL_TAIL);
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_TAIL);
     // 设置省略号文本
     OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
     // 设置对齐方式为居中对齐
@@ -1177,4 +1182,484 @@ void SampleBitMap::DrawIndependentShapingText()
     OH_Drawing_DestroyTextLine(textLine);
     OH_Drawing_DestroyRuns(runs);
     // [End complex_text_c_independent_shaping_text_step5]
+}
+
+void SampleBitMap::DrawEllipsisTailText()
+{
+    // [Start complex_text_c_ellipsis_text]
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个带有省略号设置的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置最大行数为2，超过2行的部分将被省略
+    OH_Drawing_SetTypographyTextMaxLines(typoStyle, 2);
+    // 设置省略号模式为尾部省略
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_TAIL);
+    // 设置自定义省略号字符串
+    OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This is a long text that will be truncated with ellipsis at the tail. "
+        "The ellipsis will appear at the end of the text.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+    // [End complex_text_c_ellipsis_text]
+}
+
+void SampleBitMap::DrawEllipsisHeadText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个带有头部省略号设置的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置最大行数为1
+    OH_Drawing_SetTypographyTextMaxLines(typoStyle, 1);
+    // 设置省略号模式为头部省略
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_HEAD);
+    // 设置自定义省略号字符串
+    OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This is a long text that will be truncated with ellipsis at the head. "
+        "The ellipsis will appear at the beginning of the text.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawEllipsisMiddleText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个带有中部省略号设置的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置最大行数为1
+    OH_Drawing_SetTypographyTextMaxLines(typoStyle, 1);
+    // 设置省略号模式为中部省略
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_MIDDLE);
+    // 设置自定义省略号字符串
+    OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This is a long text that will be truncated with ellipsis in the middle. "
+        "The ellipsis will appear in the middle of the text.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawEllipsisMultilineHeadText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个带有多行头部省略号设置的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置最大行数为2
+    OH_Drawing_SetTypographyTextMaxLines(typoStyle, 2);
+    // 设置省略号模式为多行头部省略
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_MULTILINE_HEAD);
+    // 设置自定义省略号字符串
+    OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This is a long text that will be truncated with multiline head ellipsis. "
+        "The ellipsis will appear at the head of the last line.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawEllipsisMultilineMiddleText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个带有多行中部省略号设置的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置最大行数为2
+    OH_Drawing_SetTypographyTextMaxLines(typoStyle, 2);
+    // 设置省略号模式为多行中部省略
+    OH_Drawing_SetTypographyStyleAttributeInt(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL, ELLIPSIS_MODAL_MULTILINE_MIDDLE);
+    // 设置自定义省略号字符串
+    OH_Drawing_SetTypographyTextEllipsis(typoStyle, "...");
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This is a long text that will be truncated with multiline middle ellipsis. "
+        "The ellipsis will appear in the middle of the last line.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawBreakStrategyGreedyText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个设置了贪婪断行策略的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置断行策略为 GREEDY（贪婪策略）
+    OH_Drawing_SetTypographyTextBreakStrategy(typoStyle, BREAK_STRATEGY_GREEDY);
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This text demonstrates the greedy break strategy which fills each line as much as possible.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawBreakStrategyHighQualityText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个设置了高质量断行策略的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置断行策略为 HIGH_QUALITY（高质量策略）
+    OH_Drawing_SetTypographyTextBreakStrategy(typoStyle, BREAK_STRATEGY_HIGH_QUALITY);
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This text demonstrates the high quality break strategy which considers overall layout quality.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+}
+
+void SampleBitMap::DrawBreakStrategyBalancedText()
+{
+    // [Start complex_text_c_break_strategy_text]
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+
+    // 创建一个设置了均衡断行策略的 TypographyStyle
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    // 设置断行策略为 BALANCED（均衡策略）
+    OH_Drawing_SetTypographyTextBreakStrategy(typoStyle, BREAK_STRATEGY_BALANCED);
+    // 设置对齐方式为居中
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建段落并排版
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    const char *text =
+        "This text demonstrates the balanced break strategy which makes line lengths more even.";
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // 设置页面最大宽度
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typography, maxWidth);
+
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+
+    // 释放内存
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+    // [End complex_text_c_break_strategy_text]
+}
+
+void SampleBitMap::DrawPunctuationCompressText()
+{
+    // 创建 FontCollection
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+    const char *text = "《论语》是儒家经典著作，记录了孔子及其弟子的言行。";
+
+    // 创建文本样式
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+
+    // 创建红色画笔，用于绘制边框方便观察
+    OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
+    OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+
+    // 第一段：不开启行首标点压缩
+    OH_Drawing_TypographyStyle *typoStyleNoCompress = OH_Drawing_CreateTypographyStyle();
+    OH_Drawing_SetTypographyTextAlign(typoStyleNoCompress, TEXT_ALIGN_LEFT);
+    OH_Drawing_SetTypographyStyleAttributeBool(typoStyleNoCompress,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION, false);
+    OH_Drawing_TypographyCreate *handlerNoCompress = OH_Drawing_CreateTypographyHandler(typoStyleNoCompress, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handlerNoCompress, txtStyle);
+    OH_Drawing_TypographyHandlerAddText(handlerNoCompress, text);
+    OH_Drawing_Typography *typographyNoCompress = OH_Drawing_CreateTypography(handlerNoCompress);
+    double maxWidth = width_;
+    OH_Drawing_TypographyLayout(typographyNoCompress, maxWidth);
+    // 绘制红色边框
+    OH_Drawing_CanvasAttachPen(cCanvas_, pen);
+    double heightNoCompress = OH_Drawing_TypographyGetHeight(typographyNoCompress);
+    double longestLineNoCompress = OH_Drawing_TypographyGetLongestLine(typographyNoCompress);
+    OH_Drawing_Rect *rectNoCompress = OH_Drawing_RectCreate(0, DIV_TEN(width_), longestLineNoCompress,
+        DIV_TEN(width_) + heightNoCompress);
+    OH_Drawing_CanvasDrawRect(cCanvas_, rectNoCompress);
+    OH_Drawing_CanvasDetachPen(cCanvas_);
+    OH_Drawing_RectDestroy(rectNoCompress);
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typographyNoCompress, cCanvas_, 0, DIV_TEN(width_));
+
+    // [Start complex_text_c_punctuation_compress_text]
+    // 第二段：开启行首标点压缩
+    OH_Drawing_TypographyStyle *typoStyleCompress = OH_Drawing_CreateTypographyStyle();
+    OH_Drawing_SetTypographyTextAlign(typoStyleCompress, TEXT_ALIGN_LEFT);
+    OH_Drawing_ErrorCode errorCode = OH_Drawing_SetTypographyStyleAttributeBool(typoStyleCompress,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION, true);
+    if (errorCode != OH_DRAWING_SUCCESS) {
+        DRAWING_LOGE("SetTypographyStyleAttributeBool failed, errorCode: %{public}d", errorCode);
+    }
+    OH_Drawing_TypographyCreate *handlerCompress = OH_Drawing_CreateTypographyHandler(typoStyleCompress, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handlerCompress, txtStyle);
+    OH_Drawing_TypographyHandlerAddText(handlerCompress, text);
+    OH_Drawing_Typography *typographyCompress = OH_Drawing_CreateTypography(handlerCompress);
+    OH_Drawing_TypographyLayout(typographyCompress, maxWidth);
+    // 绘制红色边框
+    OH_Drawing_CanvasAttachPen(cCanvas_, pen);
+    double heightCompress = OH_Drawing_TypographyGetHeight(typographyCompress);
+    double longestLineCompress = OH_Drawing_TypographyGetLongestLine(typographyCompress);
+    double offsetY = DIV_TEN(width_) + heightNoCompress + DIV_TEN(width_);
+    OH_Drawing_Rect *rectCompress = OH_Drawing_RectCreate(0, offsetY, longestLineCompress,
+        offsetY + heightCompress);
+    OH_Drawing_CanvasDrawRect(cCanvas_, rectCompress);
+    OH_Drawing_CanvasDetachPen(cCanvas_);
+    OH_Drawing_RectDestroy(rectCompress);
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typographyCompress, cCanvas_, 0, offsetY);
+    // [End complex_text_c_punctuation_compress_text]
+
+    // 释放内存
+    OH_Drawing_PenDestroy(pen);
+    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyleNoCompress);
+    OH_Drawing_DestroyTypographyStyle(typoStyleCompress);
+    OH_Drawing_DestroyTypographyHandler(handlerNoCompress);
+    OH_Drawing_DestroyTypographyHandler(handlerCompress);
+    OH_Drawing_DestroyTypography(typographyNoCompress);
+    OH_Drawing_DestroyTypography(typographyCompress);
+}
+
+void SampleBitMap::DrawFontResourcePathText()
+{
+    // [Start complex_text_c_get_font_paths]
+    // 获取系统通用字体的路径列表
+    size_t pathCount = 0;
+    OH_Drawing_String *fontPaths = OH_Drawing_GetFontPathsByType(
+        OH_Drawing_SystemFontType::GENERIC, &pathCount);
+    if (fontPaths != nullptr && pathCount > 0) {
+        for (size_t i = 0; i < pathCount; ++i) {
+            if (fontPaths[i].strData != nullptr) {
+                const UChar *u16Src = reinterpret_cast<const UChar *>(fontPaths[i].strData);
+                int32_t u16Len = static_cast<int32_t>(fontPaths[i].strLen / sizeof(char16_t));
+                int32_t u8BufSize = u16Len * 3 + 1;
+                std::vector<char> u8Buf(u8BufSize);
+                UErrorCode status = U_ZERO_ERROR;
+                int32_t u8Len = 0;
+                u_strToUTF8(u8Buf.data(), u8BufSize - 1, &u8Len, u16Src, u16Len, &status);
+                if (U_SUCCESS(status)) {
+                    u8Buf[u8Len] = '\0';
+                    DRAWING_LOGI("Font path[%{public}zu]: %{public}s", i, u8Buf.data());
+                }
+                delete[] fontPaths[i].strData;
+            }
+        }
+        delete[] fontPaths;
+    }
+    // [End complex_text_c_get_font_paths]
+    // 创建排版样式并绘制提示文字
+    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    OH_Drawing_SetTextStyleFontSize(txtStyle, DIV_TWENTY(width_));
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    OH_Drawing_TypographyHandlerAddText(handler, "查询字体路径完成");
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    OH_Drawing_TypographyLayout(typography, width_);
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+    // 释放内存
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+    OH_Drawing_DestroyFontCollection(fc);
 }

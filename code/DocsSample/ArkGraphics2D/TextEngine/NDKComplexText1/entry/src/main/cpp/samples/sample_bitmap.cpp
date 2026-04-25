@@ -225,6 +225,16 @@ IMPL_NAPI_FUNC(DrawLineHeightLimitTwoText, return)
 IMPL_NAPI_FUNC(DrawLineSpacingText, return)
 IMPL_NAPI_FUNC(DrawStyleCopyText, return)
 IMPL_NAPI_FUNC(DrawIndependentShapingText, return)
+IMPL_NAPI_FUNC(DrawEllipsisTailText, return)
+IMPL_NAPI_FUNC(DrawEllipsisHeadText, return)
+IMPL_NAPI_FUNC(DrawEllipsisMiddleText, return)
+IMPL_NAPI_FUNC(DrawEllipsisMultilineHeadText, return)
+IMPL_NAPI_FUNC(DrawEllipsisMultilineMiddleText, return)
+IMPL_NAPI_FUNC(DrawBreakStrategyGreedyText, return)
+IMPL_NAPI_FUNC(DrawBreakStrategyHighQualityText, return)
+IMPL_NAPI_FUNC(DrawBreakStrategyBalancedText, return)
+IMPL_NAPI_FUNC(DrawPunctuationCompressText, return)
+IMPL_NAPI_FUNC(DrawFontResourcePathText, return)
 
 SampleBitMap::~SampleBitMap()
 {
@@ -322,6 +332,26 @@ void SampleBitMap::Export(napi_env env, napi_value exports)
         {"drawStyleCopyText", nullptr, SampleBitMap::NapiDrawStyleCopyText, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"drawIndependentShapingText", nullptr, SampleBitMap::NapiDrawIndependentShapingText, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drawEllipsisTailText", nullptr, SampleBitMap::NapiDrawEllipsisTailText, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drawEllipsisHeadText", nullptr, SampleBitMap::NapiDrawEllipsisHeadText, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drawEllipsisMiddleText", nullptr, SampleBitMap::NapiDrawEllipsisMiddleText, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drawEllipsisMultilineHeadText", nullptr, SampleBitMap::NapiDrawEllipsisMultilineHeadText, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drawEllipsisMultilineMiddleText", nullptr, SampleBitMap::NapiDrawEllipsisMultilineMiddleText, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drawBreakStrategyGreedyText", nullptr, SampleBitMap::NapiDrawBreakStrategyGreedyText, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drawBreakStrategyHighQualityText", nullptr, SampleBitMap::NapiDrawBreakStrategyHighQualityText, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drawBreakStrategyBalancedText", nullptr, SampleBitMap::NapiDrawBreakStrategyBalancedText, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drawPunctuationCompressText", nullptr, SampleBitMap::NapiDrawPunctuationCompressText, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drawFontResourcePathText", nullptr, SampleBitMap::NapiDrawFontResourcePathText, nullptr, nullptr, nullptr,
          napi_default, nullptr}};
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         DRAWING_LOGE("Export: napi_define_properties failed");

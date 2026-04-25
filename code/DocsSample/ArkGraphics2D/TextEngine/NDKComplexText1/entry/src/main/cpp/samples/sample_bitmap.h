@@ -61,6 +61,16 @@ public:
     DECLARE_NAPI_FUNC(DrawLineSpacingText);
     DECLARE_NAPI_FUNC(DrawStyleCopyText);
     DECLARE_NAPI_FUNC(DrawIndependentShapingText);
+    DECLARE_NAPI_FUNC(DrawEllipsisTailText);
+    DECLARE_NAPI_FUNC(DrawEllipsisHeadText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMiddleText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMultilineHeadText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMultilineMiddleText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyGreedyText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyHighQualityText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyBalancedText);
+    DECLARE_NAPI_FUNC(DrawPunctuationCompressText);
+    DECLARE_NAPI_FUNC(DrawFontResourcePathText);
 
     static napi_value NapiBaseFunc(napi_env env, napi_callback_info info, std::function<void(SampleBitMap *)> func,
                                    const std::string &name);
