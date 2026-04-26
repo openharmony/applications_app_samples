@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "相机"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "photo",
+      "value": "照片"
+    },
+    {
+      "name": "photoResolution",
+      "value": "照片分辨率"
+    },
+    {
+      "name": "cameraMirror",
+      "value": "照片镜像"
+    },
+    {
+      "name": "cameraWatermark",
+      "value": "相机水印"
+    },
+    {
+      "name": "cameraFrame",
+      "value": "相机相框"
+    },
+    {
+      "name": "video",
+      "value": "视频"
+    },
+    {
+      "name": "videoResolution",
+      "value": "视频分辨率"
+    },
+    {
+      "name": "videoWatermark",
+      "value": "视频水印"
+    },
+    {
+      "name": "resolution",
+      "value": "分辨率"
+    },
+    {
+      "name": "clickToDiscoverDevice",
+      "value": "点击开始发现设备"
+    },
+    {
+      "name": "noPhotos",
+      "value": "无图片"
+    },
+    {
+      "name": "startDiscoverDevice",
+      "value": "正在发现设备"
+    },
+    {
+      "name": "clickToLongToStop",
+      "value": "点击太快，暂停一下"
+    },
+    {
+      "name": "connectedDevice",
+      "value": "连接设备"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "sure",
+      "value": "确认"
+    },
+    {
+      "name": "trustDevice",
+      "value": "已认证设备"
+    },
+    {
+      "name": "onlineDevice",
+      "value": "未认证设备"
+    },
+    {
+      "name": "photoFrame",
+      "value": "相框"
+    },
+    {
+      "name": "multiCamera",
+      "value": "多机位"
+    },
+    {
+      "name": "takePhotos",
+      "value": "拍照"
+    },
+    {
+      "name": "takeVideo",
+      "value": "录像"
+    },
+    {
+      "name": "distribute",
+      "value": "分布式"
+    },
+    {
+      "name": "autoAddWater",
+      "value": "自动添加水印"
+    },
+    {
+      "name": "unKnow",
+      "value": "未知"
+    },
+    {
+      "name": "backPosition",
+      "value": "后置"
+    },
+    {
+      "name": "frontPosition",
+      "value": "前置"
+    },
+    {
+      "name": "foldPosition",
+      "value": "折叠态"
+    },
+    {
+      "name": "pleaseChooseCamera",
+      "value": "请选择摄像头"
+    },
+    {
+      "name": "startDiscover0DeviceName",
+      "value": "开始发现设备%s..."
+    },
+    {
+      "name": "deleteDevice",
+      "value": "删除设备"
+    },
+    {
+      "name": "unbindDevice",
+      "value": "开始解绑%s..."
+    },
+    {
+      "name": "trustAlert",
+      "value": "%s已认证，请勿重复认证"
+    },
+    {
+      "name": "connectDeviceAlert",
+      "value": "确定要连接%s设备吗?"
+    },
+    {
+      "name": "deleteDeviceAlert",
+      "value": "确定要删除%s设备吗?"
+    },
+    {
+      "name": "pleaseConnectCamera",
+      "value": "请接入摄像头"
+    },
+    {
+      "name": "camera",
+      "value": "相机"
+    },
+    {
+      "name": "noCameraDevice",
+      "value": "无相机设备..."
+    },
+    {
+      "name": "waterMark",
+      "value": "水印"
+    },
+    {
+      "name": "uninstallPhotos",
+      "value": "未安装图库应用!"
+    },
+    {
+      "name": "imageSavedSuccessfully",
+      "value": "图片保存成功"
+    },
+    {
+      "name": "videoSavedSuccessfully",
+      "value": "录制保存成功"
+    },
+    {
+      "name": "takingPhotos",
+      "value": "拍照中..."
+    },
+    {
+      "name": "cameraMode",
+      "value": "相机模式"
+    },
+    {
+      "name": "dualCamera",
+      "value": "双摄"
+    },
+    {
+      "name": "noPhoto",
+      "value": "未拍照或拍视频"
+    },
+    {
+      "name": "FloatWindow_Permission_Reason",
+      "value": "使用相机悬浮窗"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:bg",
+        "startWindowBackground": "$color:start_window_background",
+        "supportWindowMode": [
+          "fullscreen",
+          "split",
+          "floating"
+        ],
+        "launchType": "singleton",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntryAbility1",
+        "srcEntry": "./ets/entryability1/EntryAbility1.ets",
+        "description": "$string:EntryAbility1_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility1_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "supportWindowMode": [
+          "fullscreen",
+          "split",
+          "floating"
+        ],
+        "launchType": "singleton",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "FloatWindowAbility",
+        "srcEntry": "./ets/floatwindowability/FloatWindowAbility.ets",
+        "description": "$string:FloatWindowAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FloatWindowAbility_label",
+        "exported": true,
+        "type": "service"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.SYSTEM_FLOAT_WINDOW",
+        "reason": "$string:FloatWindow_Permission_Reason",
+        "usedScene": {
+          "abilities": [
+            "FloatWindowAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        // 后台启动Ability权限
+      },
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        },
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when": "always"
+        }
+      }
+    ]
+  }
+}

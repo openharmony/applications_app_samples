@@ -1,0 +1,212 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "CameraSample"
+    },
+    {
+      "name": "CONTENT_TYPE_UNKNOWN",
+      "value": "未知类型"
+    },
+    {
+      "name": "ALLOW_WLAN",
+      "value": "允许“相机”使用无线数据？"
+    },
+    {
+      "name": "CLOSE_WLAN",
+      "value": "关闭无线数据时，部分功能可能无法使用。"
+    },
+    {
+      "name": "WLAN_AND_CELLULAR",
+      "value": "无线局域网与蜂窝网络"
+    },
+    {
+      "name": "ONLY_WLAN",
+      "value": "仅限无限局域网"
+    },
+    {
+      "name": "NOT_ALLOW",
+      "value": "不允许"
+    },
+    {
+      "name": "SETTING",
+      "value": "设置"
+    },
+    {
+      "name": "SELFIE_IMAGE",
+      "value": "自拍镜像"
+    },
+    {
+      "name": "STEADY_VIDEO",
+      "value": "视频防抖"
+    },
+    {
+      "name": "EXPOSURE_MODE",
+      "value": "曝光模式"
+    },
+    {
+      "name": "FOCUS_MODE",
+      "value": "对焦模式"
+    },
+    {
+      "name": "CAPTURE_QUALITY",
+      "value": "拍摄质量"
+    },
+    {
+      "name": "DISPLAY_LOCATION",
+      "value": "拍摄时显示地理位置"
+    },
+    {
+      "name": "PHOTO_FORMAT",
+      "value": "照片格式"
+    },
+    {
+      "name": "PHOTO_DIRECTION_CONFIGURATION",
+      "value": "照片方向配置"
+    },
+    {
+      "name": "PHOTO_RESOLUTION",
+      "value": "照片分辨率"
+    },
+    {
+      "name": "VIDEO_RESOLUTION",
+      "value": "视频分辨率"
+    },
+    {
+      "name": "VIDEO_RATE",
+      "value": "录像帧率"
+    },
+    {
+      "name": "REFERENCE_LINE",
+      "value": "参考线"
+    },
+    {
+      "name": "CLOSE_STEADY_VIDEO",
+      "value": "关闭视频防抖"
+    },
+    {
+      "name": "BASIC_ANTI_SHAKE_ALGORITHM",
+      "value": "基础防抖算法"
+    },
+    {
+      "name": "GENERAL_ANTI_SHAKE_ALGORITHM",
+      "value": "一般防抖算法"
+    },
+    {
+      "name": "BEST_ANTI_SHAKE_ALGORITHM",
+      "value": "最好防抖算法"
+    },
+    {
+      "name": "AUTO_SELECT",
+      "value": "自动进行选择"
+    },
+    {
+      "name": "LOCK_EXPOSURE_MODE",
+      "value": "锁定曝光模式"
+    },
+    {
+      "name": "AUTO_EXPOSURE_MODE",
+      "value": "自动曝光模式"
+    },
+    {
+      "name": "CONTINUE_AUTO_EXPOSURE",
+      "value": "连续自动曝光"
+    },
+    {
+      "name": "MANUAL_FOCUS",
+      "value": "手动对焦"
+    },
+    {
+      "name": "CONTINUE_AUTO_FOCUS",
+      "value": "连续自动对焦"
+    },
+    {
+      "name": "AUTO_ZOOM",
+      "value": "自动变焦"
+    },
+    {
+      "name": "LOCK_FOCUS",
+      "value": "对焦锁定"
+    },
+    {
+      "name": "HIGH",
+      "value": "高"
+    },
+    {
+      "name": "MIDDLE",
+      "value": "中"
+    },
+    {
+      "name": "BAD",
+      "value": "差"
+    },
+    {
+      "name": "SELF_IMAGE_FUNC_ONLY_FRONT_CAMERA_OPEN_USE",
+      "value": "自拍镜像功能只能在前置摄像头打开时可使用。"
+    },
+    {
+      "name": "DISPLAY_LOCATION_RECORD_PHOTO_OR_VIDEO_INFO",
+      "value": "显示地理位置，用于记录照片或视频拍摄地理位置信息。"
+    },
+    {
+      "name": "OPEN_CAMERA_REFERENCE_LINE_CREATE_BETTER_FRAME",
+      "value": "打开相机参考线，可以帮你创造出构图更出色的画面。"
+    },
+    {
+      "name": "PHOTO_FORMAT_PNG",
+      "value": "PNG"
+    },
+    {
+      "name": "PHOTO_FORMAT_JPG",
+      "value": "JPG"
+    },
+    {
+      "name": "PHOTO_FORMAT_BMP",
+      "value": "BMP"
+    },
+    {
+      "name": "PHOTO_FORMAT_WEBP",
+      "value": "WEBP"
+    },
+    {
+      "name": "PHOTO_FORMAT_JPEG",
+      "value": "JPEG"
+    },
+    {
+      "name": "SRC",
+      "value": "0"
+    },
+    {
+      "name": "OVERTURN90",
+      "value": "90"
+    },
+    {
+      "name": "OVERTURN180",
+      "value": "180"
+    },
+    {
+      "name": "OVERTURN270",
+      "value": "270"
+    },
+    {
+      "name": "RESOLUTION1",
+      "value": "1920*1080"
+    },
+    {
+      "name": "RESOLUTION2",
+      "value": "1280*720"
+    },
+    {
+      "name": "RESOLUTION3",
+      "value": "640*480"
+    },
+    {
+      "name": "VIDEO_RATE_15",
+      "value": "15"
+    },
+    {
+      "name": "VIDEO_RATE_30",
+      "value": "30"
+    }
+  ]
+}

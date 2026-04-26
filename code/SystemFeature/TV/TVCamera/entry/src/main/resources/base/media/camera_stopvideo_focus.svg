@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144px" height="144px" viewBox="0 0 144 144" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>结束录像聚焦</title>
+    <g id="R005R012-相机系统能力增强详细方案设计(2.23-已提供)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-样式" transform="translate(-905.000000, -377.000000)">
+            <g id="矩形" transform="translate(905.000000, 377.000000)">
+                <rect stroke="#FFFFFF" fill="#FFFFFF" x="7.5" y="7.5" width="129" height="129" rx="64.5"></rect>
+                <rect stroke="#FFFFFF" stroke-width="4" x="2" y="2" width="140" height="140" rx="70"></rect>
+                <rect stroke="#FFFFFF" stroke-width="4" x="2" y="2" width="140" height="140" rx="70"></rect>
+                <rect fill="#000000" x="53" y="52" width="39" height="39" rx="8"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
