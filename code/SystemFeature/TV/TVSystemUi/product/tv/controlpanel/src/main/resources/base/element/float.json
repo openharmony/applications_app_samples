@@ -1,0 +1,60 @@
+{
+  "float": [
+    {
+      "name": "default_border_radius",
+      "value": "24vp"
+    },
+    {
+      "name": "brightness_margin_left",
+      "value": "26vp"
+    },
+    {
+      "name": "brightness_margin_right",
+      "value": "26vp"
+    },
+    {
+      "name": "brightness_component_gap",
+      "value": "26vp"
+    },
+    {
+      "name": "brightness_reduce_width",
+      "value": "44vp"
+    },
+    {
+      "name": "brightness_reduce_height",
+      "value": "44vp"
+    },
+    {
+      "name": "brightness_plus_width",
+      "value": "44vp"
+    },
+    {
+      "name": "brightness_plus_height",
+      "value": "44vp"
+    },
+    {
+      "name": "brightness_height",
+      "value": "44vp"
+    },
+    {
+      "name": "brightness_slider_height",
+      "value": "40vp"
+    },
+    {
+      "name": "status_bar_location_width",
+      "value": "20vp"
+    },
+    {
+      "name": "status_bar_location_height",
+      "value": "24vp"
+    },
+    {
+      "name": "status_bar_ring_mode_width",
+      "value": "27vp"
+    },
+    {
+      "name": "status_bar_ring_mode_height",
+      "value": "24vp"
+    }
+  ]
+}

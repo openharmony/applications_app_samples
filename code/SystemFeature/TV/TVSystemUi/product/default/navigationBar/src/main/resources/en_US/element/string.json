@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "nav_bar_size_portrait",
+      "value": "36"
+    },
+    {
+      "name": "nav_bar_size_landscape",
+      "value": "36"
+    },
+    {
+      "name": "nav_bar_position_portrait",
+      "value": "4"
+    },
+    {
+      "name": "nav_bar_position_landscape",
+      "value": "4"
+    },
+    {
+      "name": "app_name",
+      "value": "NavigationBar"
+    },
+    {
+      "name": "status_bar_size_portrait",
+      "value": "48"
+    },
+    {
+      "name": "status_bar_size_landscape",
+      "value": "48"
+    },
+    {
+      "name": "status_bar_position_portrait",
+      "value": "2"
+    },
+    {
+      "name": "status_bar_position_landscape",
+      "value": "2"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "module_desc",
+      "value": "privacy indicator"
+    }
+  ]
+}

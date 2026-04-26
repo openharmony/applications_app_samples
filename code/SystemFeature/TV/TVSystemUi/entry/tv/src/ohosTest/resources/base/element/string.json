@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "SystemUI TV Entry Test"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Test Ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "Test"
+    }
+  ]
+}

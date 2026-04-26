@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "button_default_background",
+      "value": "#00000000"
+    },
+    {
+      "name": "button_click_background",
+      "value": "#DCDCDC"
+    },
+    {
+      "name": "transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "indicator_color_orange",
+      "value": "#ED6F21"
+    },
+    {
+      "name": "indicator_color_green",
+      "value": "#64BB5C"
+    },
+    {
+      "name": "indicator_color_blue",
+      "value": "#0A59F7"
+    }
+  ]
+}

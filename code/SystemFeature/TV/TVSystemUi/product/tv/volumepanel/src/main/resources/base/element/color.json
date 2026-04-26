@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "panel_background",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "volume_slider_block_color",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "volume_slider_track_color",
+      "value": "#FFAFEAE7"
+    },
+    {
+      "name": "volume_slider_selected_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "volume_button_background_color",
+      "value": "#00000000"
+    },
+    {
+      "name": "volume_ring_mode_color",
+      "value": "#FF3B58C5"
+    },
+    {
+      "name": "volume_divider_color",
+      "value": "#FF9BB792"
+    }
+  ]
+}
