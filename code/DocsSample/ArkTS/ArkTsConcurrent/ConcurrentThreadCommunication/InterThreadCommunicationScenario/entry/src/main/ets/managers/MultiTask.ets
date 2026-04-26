@@ -28,7 +28,7 @@ taskpool.execute(taskGroup).then((ret: object) => {
   let tmpLength = (ret as IconItemSource[][]).length
   for (let i = 0; i < tmpLength; i++) {
     for (let j = 0; j < ret[i].length; j++) {
-      if (ret[i] && ret[i][j]) {
+      if (ret[i][j]) {
         iconItemSourceList.push(ret[i][j]);
       }
     }

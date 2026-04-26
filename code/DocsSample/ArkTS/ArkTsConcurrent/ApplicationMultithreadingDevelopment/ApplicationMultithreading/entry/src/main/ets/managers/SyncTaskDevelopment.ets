@@ -14,8 +14,12 @@
  */
 
 // [Start taskpool_handle_sync_task]
-import { worker } from '@kit.ArkTS';
 import { taskpool } from '@kit.ArkTS';
+// [StartExclude taskpool_handle_sync_task]
+// [Start worker_handle_associated_sync_task]
+import { MessageEvents, worker } from '@kit.ArkTS';
+// [StartExclude worker_handle_associated_sync_task]
+// [EndExclude taskpool_handle_sync_task]
 
 // 步骤1: 定义并发函数，实现业务逻辑
 @Concurrent
@@ -36,7 +40,7 @@ async function mainFunc(): Promise<void> {
   console.info('taskpool: task res2 is: ' + res2);
 }
 
-// [Start worker_handle_associated_sync_task]
+// [EndExclude worker_handle_associated_sync_task]
 @Entry
 @Component
 struct Index {
@@ -49,22 +53,24 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
+// [StartExclude worker_handle_associated_sync_task]
             mainFunc();
+// [StartExclude taskpool_handle_sync_task]
+// [EndExclude worker_handle_associated_sync_task]
             let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker2.ts');
-            w.onmessage = (): void => {
+            w.onmessage = (e: MessageEvents): void => {
               // 接收Worker子线程的结果
-            }
-            w.onerror = (): void => {
-              // 接收Worker子线程的错误信息
+              console.info('main thread onmessage, ' + e.data.message);
+              // 销毁Worker
+              if (e.data.isTerminate) {
+                w.terminate();
+              }
             }
             // 向Worker子线程发送Set消息
-            w.postMessage({ 'type': 0, 'data': 'data' });
+            w.postMessage({'type': 0, 'data': 10});
             // 向Worker子线程发送Get消息
-            w.postMessage({ 'type': 1 });
-            // ...
-            // 根据实际业务，选择时机以销毁线程
-            w.terminate();
-            this.message = 'success';
+            w.postMessage({'type': 1});
+// [EndExclude taskpool_handle_sync_task]
           })
       }
       .width('100%')

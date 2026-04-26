@@ -16,25 +16,30 @@
 // [Start create_worker_execute_multi_task]
 // [Start call_main_method]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { CopyEntry } from '../Sendable/CopyEntry';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
-// [StartExclude create_worker_execute_multi_task]
-try {
-  // 调用方法无入参
-  let res: string = workerPort.callGlobalCallObjectMethod('picData', 'setUp', 0) as string;
-  console.error('worker: ', res);
-} catch (error) {
-  // 异常处理
-  console.error('worker: error code is ' + error.code + ' error message is ' + error.message);
-}
-// [End call_main_method]
-// [EndExclude create_worker_execute_multi_task]
+workerPort.onmessage = async (e: MessageEvents) => {
+  // [StartExclude create_worker_execute_multi_task]
+  if (e.data === 'start') {
+    try {
+      // 调用方法
+      let res: string = workerPort.callGlobalCallObjectMethod('testObj', 'getMessage', 0) as string;
+      if (res === 'this is a message from TestObj') {
+        workerPort.postMessage('run function success.');
+      }
+    } catch (error) {
+      // 异常处理
+      console.error('worker: error code is ' + error.code + ' error message is ' + error.message);
+    }
+  }
 
-// Worker接收宿主线程的消息，做相应的处理
-workerPort.onmessage = (e: MessageEvents) => {
-  let obj: CopyEntry[] = e.data;
-  console.info(`The type of the first set of data is ${obj[0].type}.`);
+  // [StartExclude call_main_method]
+  // [EndExclude create_worker_execute_multi_task]
+  if (e.data === 'hello world') {
+    workerPort.postMessage('success');
+  }
+  // [EndExclude call_main_method]
 }
 // [End create_worker_execute_multi_task]
+// [End call_main_method]

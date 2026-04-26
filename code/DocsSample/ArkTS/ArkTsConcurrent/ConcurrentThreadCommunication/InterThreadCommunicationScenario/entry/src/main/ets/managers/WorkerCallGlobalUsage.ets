@@ -14,56 +14,44 @@
  */
 
 // [Start create_worker_obj]
-import worker from '@ohos.worker';
-import { IconItemSource } from './IconItemSource';
-
-// 创建Worker对象
-const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/Worker');
-
-class PicData {
-  public iconItemSourceList: IconItemSource[] = [];
-
-  public setUp(): string {
-    for (let index = 0; index < 20; index++) {
-      const numStart: number = index * 6;
-      // 此处循环使用6张图片资源
-      this.iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 1}`));
-      this.iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 2}`));
-      this.iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 3}`));
-      this.iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 4}`));
-      this.iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 5}`));
-      this.iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 6}`));
-
-    }
-    return 'setUpIconItemSourceList success!';
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          let picData = new PicData();
-          // 在Worker上注册需要调用的对象
-          workerInstance.registerGlobalCallObject('picData', picData);
-          workerInstance.postMessage('run setUp in picData');
-          this.message = 'success';
-        })
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
+import { MessageEvents, worker } from '@kit.ArkTS';
+   
+   class TestObj {
+     public getMessage(): string {
+       return 'this is a message from TestObj';
+     }
+   
+     public static testObj: TestObj = new TestObj();
+   }
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(() => {
+               // 创建Worker对象
+               const workerInstance: worker.ThreadWorker = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+               // 在Worker上注册需要调用的对象
+               workerInstance.registerGlobalCallObject('testObj', TestObj.testObj);
+               workerInstance.onmessage = (e: MessageEvents): void => {
+                 // 接收Worker子线程的结果
+                 console.info('mainThread: ' + e.data);
+                 // 销毁Worker
+                 workerInstance.terminate();
+               }
+               workerInstance.postMessage('start');
+             })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
 // [End create_worker_obj]

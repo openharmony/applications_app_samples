@@ -24,7 +24,7 @@ export class TimerSdk {
   }
 
   // 倒计时
-  async Countdown(time: number) {
+  async countdown(time: number) {
     return new Promise((resolve: (value: boolean) => void) => {
       setTimeout(() => {
         resolve(true);
