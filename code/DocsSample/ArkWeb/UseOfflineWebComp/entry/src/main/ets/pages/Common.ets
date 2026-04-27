@@ -15,7 +15,6 @@
 
 
 // [Start manage_dynamic_webview_components_in_harmonyos_app]
-// 创建NodeController
 // Common.ets
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';

@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start manage_dynamic_webview_components_in_harmonyos]
-// 创建NodeController
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 

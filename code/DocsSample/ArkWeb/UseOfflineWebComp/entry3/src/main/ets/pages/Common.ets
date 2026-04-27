@@ -15,7 +15,6 @@
 
 // [Start manage_dynamic_webview_components_functions]
 // Common.ets
-// 创建NodeController
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 
@@ -161,7 +160,6 @@ let recycledNWebs: Set<ResourceStr> = new Set()
 
 // 初始化需要UIContext 需在Ability获取
 export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
-  // 创建NodeController
   console.info('createNWeb, url = ' + url);
   if (!globalUiContext) {
     globalUiContext = uiContext;
@@ -171,6 +169,7 @@ export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
     return;
   }
 
+  // 创建NodeController
   let baseNode = new MyNodeController();
   // 初始化自定义Web组件
   baseNode.initWeb(url, uiContext);

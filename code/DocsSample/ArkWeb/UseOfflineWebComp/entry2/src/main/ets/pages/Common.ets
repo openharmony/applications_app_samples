@@ -14,7 +14,6 @@
  */
 
 // [Start offline_web_component_builder_with_render_controller]
-// 创建NodeController
 // Common.ets
 import { UIContext } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
