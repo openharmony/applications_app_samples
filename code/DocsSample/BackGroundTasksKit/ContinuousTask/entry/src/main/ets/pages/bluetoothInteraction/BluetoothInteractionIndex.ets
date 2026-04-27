@@ -54,7 +54,7 @@ struct BluetoothInteractionIndex {
       ble.on('BLEDeviceFind', (data) => {
         console.info(TAG + 'BLEScan device' + JSON.stringify(data));
         data.forEach((item, index, array) => {
-          console.log(TAG + `index: ${index}, deviceId:${item.deviceId}, rssi: ${item.rssi}, deviceName:  ${item.deviceName}`)
+          console.log(TAG + `index: ${index}, deviceId:${item.deviceId}, rssi: ${item.rssi}, deviceName:  ${item.deviceName}`);
         })
         // 设置deviceId用于创建GattClientDevice
         if (data.length > 0) {
