@@ -28,8 +28,8 @@ struct CustomFont {
         .height('100%')
         .backgroundColor('#F5DC62')
         .onReady(() => {
-          // 加载自定义字体
           let fontCollection = text.FontCollection.getGlobalInstance();
+          // 加载rawfile目录下的自定义字体文件customFont.ttf
           fontCollection.loadFontSync('customFont', $rawfile('customFont.ttf'));
           this.context.font = '30vp customFont';
           this.context.fillText('Hello World!', 20, 50);
