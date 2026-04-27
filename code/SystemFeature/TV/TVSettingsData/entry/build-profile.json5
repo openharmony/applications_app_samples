@@ -36,6 +36,12 @@
   ],
   "targets": [
     {
+      "name": "rk3568",
+    },
+    {
+      "name": "TV",
+    },
+    {
       "name": "default"
     },
     {
