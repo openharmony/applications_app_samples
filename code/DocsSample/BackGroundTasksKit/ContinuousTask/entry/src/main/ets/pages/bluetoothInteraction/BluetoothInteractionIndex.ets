@@ -50,20 +50,24 @@ struct BluetoothInteractionIndex {
 
   BLEDeviceFind() {
     console.info(TAG + 'BLEDeviceFind');
-    ble.on('BLEDeviceFind', (data) => {
-      console.info(TAG + 'BLEScan device' + JSON.stringify(data));
-      data.forEach((item, index, array) => {
-        console.log(TAG + `index: ${index}, deviceId:${item.deviceId}, rssi: ${item.rssi}, deviceName:  ${item.deviceName}`)
-      })
-      // 设置deviceId用于创建GattClientDevice
-      if (data.length > 0) {
-        serverDeviceId = data[0].deviceId;
-        console.info(TAG + 'scan result serverDeviceId:' + serverDeviceId);
-      }
-      this.CreateGattClient();
-      this.Connect();
-      this.StopBleScan();
-    });
+    try {
+      ble.on('BLEDeviceFind', (data) => {
+        console.info(TAG + 'BLEScan device' + JSON.stringify(data));
+        data.forEach((item, index, array) => {
+          console.log(TAG + `index: ${index}, deviceId:${item.deviceId}, rssi: ${item.rssi}, deviceName:  ${item.deviceName}`)
+        })
+        // 设置deviceId用于创建GattClientDevice
+        if (data.length > 0) {
+          serverDeviceId = data[0].deviceId;
+          console.info(TAG + 'scan result serverDeviceId:' + serverDeviceId);
+        }
+        this.CreateGattClient();
+        this.Connect();
+        this.StopBleScan();
+      });
+    } catch (err) {
+      console.error(TAG + `BLEDeviceFind errCode: ${err.code}, errMessage: ${err.message}`);
+    }
   }
 
   StartBLEScan() {
@@ -104,13 +108,17 @@ struct BluetoothInteractionIndex {
     } catch (err) {
       console.info(TAG + `errCode: ${err.code}, errMessage: ${err.message}`);
     }
-    gattClient.on('BLEConnectionStateChange', (state) => {
-      console.info(TAG + 'GattClient BLEConnectionStateChange deviceId:' + state.deviceId + ' state: ' + state.state);
-      if (state.state == constant.ProfileConnectionState.STATE_DISCONNECTED) {
-        console.info(TAG + 'GattClient disconnected, startBleScan');
-        this.StartBLEScan();
-      }
-    })
+    try {
+      gattClient.on('BLEConnectionStateChange', (state) => {
+        console.info(TAG + 'GattClient BLEConnectionStateChange deviceId:' + state.deviceId + ' state: ' + state.state);
+        if (state.state == constant.ProfileConnectionState.STATE_DISCONNECTED) {
+          console.info(TAG + 'GattClient disconnected, startBleScan');
+          this.StartBLEScan();
+        }
+      })
+    } catch (err) {
+      console.error(TAG + `BLEConnectionStateChange errCode: ${err.code}, errMessage: ${err.message}`);
+    }
   }
 
   OnRegisterStateChangeClient() {
@@ -301,42 +309,58 @@ struct BluetoothInteractionIndex {
   }
 
   OnRegisterStateChangeServer() {
-    gattServer.on('connectionStateChange', (data) => {
-      console.info(TAG + `Succeeded in operationing stopBackgroundRunning.`);
-    });
-    gattServer.on('BLEMtuChange', (mtu) => {
-      console.info(TAG + `BLEMtuChange mtu:` + mtu);
-    });
-    gattServer.on('descriptorWrite', (descriptorWriteRequest) => {
-      console.info(TAG + `descriptorWrite`);
-      if (descriptorWriteRequest.descriptorUuid == '00002901-0000-1000-8000-00805f9b34fb') {
-        descValue2901 = descriptorWriteRequest.value;
-        console.info(TAG + `onDescriptorWrite` + descValue2901);
-      }
-
-      gattServer.sendResponse({
-        'status': 0,
-        'offset': descriptorWriteRequest.offset,
-        'value': descriptorWriteRequest.value,
-        'deviceId': descriptorWriteRequest.deviceId,
-        'transId': descriptorWriteRequest.transId,
+    try {
+      gattServer.on('connectionStateChange', (data) => {
+        console.info(TAG + `Succeeded in operationing stopBackgroundRunning.`);
       });
-    });
-    gattServer.on('characteristicWrite', (characterWriteRequest) => {
-      console.info(TAG + `onCharacterWriteRequest`);
-      if (characterWriteRequest.characteristicUuid == '0000BBBC-0000-1000-8000-00805F9B34FB') {
-        characterValue = characterWriteRequest.value;
-        console.info(TAG + `onCharacterWriteRequest` + characterValue);
-      }
-
-      gattServer.sendResponse({
-        'status': 0,
-        'offset': characterWriteRequest.offset,
-        'value': characterWriteRequest.value,
-        'deviceId': characterWriteRequest.deviceId,
-        'transId': characterWriteRequest.transId,
+    } catch (err) {
+      console.error(TAG + `connectionStateChange errCode: ${err.code}, errMessage: ${err.message}`);
+    }
+    try {
+      gattServer.on('BLEMtuChange', (mtu) => {
+        console.info(TAG + `BLEMtuChange mtu:` + mtu);
       });
-    });
+    } catch (err) {
+      console.error(TAG + `BLEMtuChange errCode: ${err.code}, errMessage: ${err.message}`);
+    }
+    try {
+      gattServer.on('descriptorWrite', (descriptorWriteRequest) => {
+        console.info(TAG + `descriptorWrite`);
+        if (descriptorWriteRequest.descriptorUuid == '00002901-0000-1000-8000-00805f9b34fb') {
+          descValue2901 = descriptorWriteRequest.value;
+          console.info(TAG + `onDescriptorWrite` + descValue2901);
+        }
+
+        gattServer.sendResponse({
+          'status': 0,
+          'offset': descriptorWriteRequest.offset,
+          'value': descriptorWriteRequest.value,
+          'deviceId': descriptorWriteRequest.deviceId,
+          'transId': descriptorWriteRequest.transId,
+        });
+      });
+    } catch (err) {
+      console.error(TAG + `descriptorWrite errCode: ${err.code}, errMessage: ${err.message}`);
+    }
+    try {
+      gattServer.on('characteristicWrite', (characterWriteRequest) => {
+        console.info(TAG + `onCharacterWriteRequest`);
+        if (characterWriteRequest.characteristicUuid == '0000BBBC-0000-1000-8000-00805F9B34FB') {
+          characterValue = characterWriteRequest.value;
+          console.info(TAG + `onCharacterWriteRequest` + characterValue);
+        }
+
+        gattServer.sendResponse({
+          'status': 0,
+          'offset': characterWriteRequest.offset,
+          'value': characterWriteRequest.value,
+          'deviceId': characterWriteRequest.deviceId,
+          'transId': characterWriteRequest.transId,
+        });
+      });
+    } catch (err) {
+      console.error(TAG + `characteristicWrite errCode: ${err.code}, errMessage: ${err.message}`);
+    }
 
   }
 
@@ -375,7 +399,7 @@ struct BluetoothInteractionIndex {
         .backgroundColor('#0D9FFB')
         .width(250)
         .height(40)
-        .id('applyContinuousTask')
+        .id('applyBluetoothContinuousTask')
         .onClick(() => {
           // 通过按钮申请蓝牙长时任务
           this.startContinuousTask();
@@ -389,7 +413,7 @@ struct BluetoothInteractionIndex {
         .backgroundColor('#0D9FFB')
         .width(250)
         .height(40)
-        .id('resetContinuousTask')
+        .id('resetBluetoothContinuousTask')
         .onClick(() => {
           // 此处结束具体的长时任务的执行
 
