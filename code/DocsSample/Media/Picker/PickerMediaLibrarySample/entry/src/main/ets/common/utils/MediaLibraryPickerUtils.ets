@@ -227,4 +227,19 @@ export default class MediaLibraryPickerUtils {
     }
   }
   // [End PickerMediaLibrary_getMediaResource]
+
+  /**
+   * 通过mimeType判断媒体资源类型
+   * @param mimeType媒体文件mimeType
+   */
+   // [Start PickerMediaLibrary_getMediaTypeByMimeType]
+ 	 function getMediaTypeByMimeType(mimeType: string): string {
+ 	   if (mimeType.startsWith('video/')) {
+ 	     return 'video';
+ 	   } else if (mimeType.startsWith('image/')) {
+ 	     return 'image';
+ 	   }
+ 	   return 'unKnown';
+ 	 }
+   // [End PickerMediaLibrary_getMediaTypeByMimeType]
 }
