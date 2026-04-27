@@ -36,7 +36,7 @@ struct WebScrollDemo {
           .height(24)
           .margin({ left: 16 })
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
 
         Text('Web')

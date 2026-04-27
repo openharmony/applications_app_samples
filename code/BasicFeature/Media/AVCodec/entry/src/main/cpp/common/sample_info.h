@@ -24,14 +24,15 @@
 #include <queue>
 #include <fstream>
 #include <native_buffer/native_buffer.h>
+#include <atomic>
 #include "multimedia/player_framework/native_avcodec_base.h"
 #include "multimedia/player_framework/native_avbuffer.h"
 
 using namespace std;
 
-constexpr int32_t BITRATE_10M = 10 * 1024 * 1024; // 10Mbps
-constexpr int32_t BITRATE_20M = 20 * 1024 * 1024; // 20Mbps
-constexpr int32_t BITRATE_30M = 30 * 1024 * 1024; // 30Mbps
+constexpr int32_t BITRATE_10M = 10 * 1024 * 1024;
+constexpr int32_t BITRATE_20M = 20 * 1024 * 1024;
+constexpr int32_t BITRATE_30M = 30 * 1024 * 1024;
 
 const unordered_map<OH_AVPixelFormat, string> PIXEL_FORMAT_TO_STRING = {
     {AV_PIXEL_FORMAT_YUVI420,           "YUVI420"},
@@ -52,7 +53,7 @@ struct SampleInfo {
     int32_t videoWidth = 0;
     int32_t videoHeight = 0;
     double frameRate = 0.0;
-    int64_t bitrate = 10 * 1024 * 1024; // 10Mbps;
+    int64_t bitrate = 10 * 1024 * 1024;
     int64_t frameInterval = 0;
     OH_AVPixelFormat pixelFormat = AV_PIXEL_FORMAT_NV12;
     uint32_t bitrateMode = CBR;
@@ -78,10 +79,10 @@ struct SampleInfo {
     OH_ColorPrimary primary = COLOR_PRIMARY_BT2020;
     OH_TransferCharacteristic transfer = TRANSFER_CHARACTERISTIC_HLG;
     OH_MatrixCoefficient matrix = MATRIX_COEFFICIENT_BT2020_CL;
-    
+
     int32_t rotation = 0;
     OHNativeWindow *window = nullptr;
-    
+
     void (*playDoneCallback)(void *context) = nullptr;
     void *playDoneCallbackData = nullptr;
     uint8_t codecConfig[1024];
@@ -148,6 +149,8 @@ public:
     int64_t endPosAudioBufferPts = 0;
     int64_t currentPosAudioBufferPts = 0;
 
+    std::atomic<bool> isDestroyed { false };
+
     void ClearQueue()
     {
         {
@@ -162,7 +165,6 @@ public:
         }
     }
 
-    // Create cache
     std::vector<char> cache;
     int32_t remainlen = 0;
 
@@ -195,4 +197,4 @@ public:
     }
 };
 
-#endif // AVCODEC_SAMPLE_INFO_H
+#endif

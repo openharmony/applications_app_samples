@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,8 +18,7 @@ import { promptAction } from '@kit.ArkUI'
 
 const VERSION: string = '1.0'
 const FONT_WEIGHT: number = 700
-const LASTEST_VERSION: string = '1.1'
-
+const MODULE: string = 'WorkSchedulerSample'
 @Entry
 @Component
 struct Index {
@@ -58,53 +57,19 @@ struct Index {
         Column() {
           Row() {
             Column({ space: 10 }) {
-              Text($r('app.string.title1'))
-                .fontSize(16)
+              Button($r('app.string.title2'))
+                .id('btn_start_work')
+                .fontSize(25)
                 .fontWeight(FONT_WEIGHT)
-
-              Text(VERSION === LASTEST_VERSION ? $r('app.string.isLatest') : LASTEST_VERSION)
-                .fontSize(16)
-                .fontColor($r('app.color.fontColor'))
             }
             .flexShrink(1)
             .flexGrow(1)
-            .alignItems(HorizontalAlign.Start)
-
-            Image($r('app.media.right'))
-              .width(20)
-              .height(20)
+            .alignItems(HorizontalAlign.Center)
           }
           .width('100%')
-          .justifyContent(FlexAlign.SpaceBetween)
-
-          Divider()
-            .width('100%')
-            .strokeWidth(0.5)
-            .color($r('app.color.fontColor'))
-            .margin({ top: 12, bottom: 12 })
-
-          Row() {
-            Column({ space: 10 }) {
-              Text($r('app.string.title2'))
-                .fontSize(16)
-                .fontWeight(FONT_WEIGHT)
-
-              Text('https://www.openharmony.cn')
-                .fontSize(16)
-                .fontColor($r('app.color.fontColor'))
-            }
-            .flexShrink(1)
-            .flexGrow(1)
-            .alignItems(HorizontalAlign.Start)
-
-            Image($r('app.media.right'))
-              .width(20)
-              .height(20)
-          }
-          .width('100%')
-          .justifyContent(FlexAlign.SpaceBetween)
+          .justifyContent(FlexAlign.Center)
           .onClick(() => {
-            promptAction.showToast({ message: $r('app.string.is_develop') })
+            WorkSchedulerSystem.startUpdateSample(VERSION, MODULE);
           })
 
           Divider()
@@ -115,94 +80,31 @@ struct Index {
 
           Row() {
             Column({ space: 10 }) {
-              Text($r('app.string.title3'))
-                .fontSize(16)
+              Button($r('app.string.title3'))
+                .id('btn_stop_work')
+                .fontSize(25)
                 .fontWeight(FONT_WEIGHT)
-
-              Text('web@openharmony.io')
-                .fontSize(16)
-                .fontColor($r('app.color.fontColor'))
             }
             .flexShrink(1)
             .flexGrow(1)
-            .alignItems(HorizontalAlign.Start)
-
-            Image($r('app.media.right'))
-              .width(20)
-              .height(20)
+            .alignItems(HorizontalAlign.Center)
           }
           .width('100%')
-          .justifyContent(FlexAlign.SpaceBetween)
+          .justifyContent(FlexAlign.Center)
           .onClick(() => {
-            promptAction.showToast({ message: $r('app.string.is_develop') })
+            WorkSchedulerSystem.stopWork(VERSION, MODULE);
           })
         }
         .width('100%')
         .padding(12)
         .margin({ top: 50 })
-        .backgroundColor(Color.White)
         .borderRadius(16)
-
       }
       .width('100%')
       .height('100%')
       .alignItems(HorizontalAlign.Center)
       .backgroundColor($r('app.color.bg1'))
       .padding({ left: 12, right: 12 })
-
-      if (this.isShowDialog) {
-        Column()
-          .width('100%')
-          .height('100%')
-          .backgroundColor(Color.Black)
-          .opacity(.5)
-          .position({ x: 0, y: 0 })
-
-        Column() {
-          Column() {
-            Row() {
-              Text($r('app.string.dialogTitle'))
-                .fontSize(20)
-                .letterSpacing(1)
-            }.padding({ top: 30, bottom: 30 })
-
-            Row() {
-              Text($r('app.string.btn1'))
-                // 弹窗按钮需要占据一半宽度，这里使用50%
-                .width('50%')
-                .padding({ top: 10, bottom: 10 })
-                .textAlign(TextAlign.Center)
-                .fontSize(16)
-                .letterSpacing(1)
-                .id('confirm')
-                .backgroundColor($r('app.color.btn1'))
-                .onClick(() => {
-                  this.isShowDialog = false
-                  WorkSchedulerSystem.publishNotification('permission', 'allow', 'allow install hap to update the application')
-                })
-
-              Text($r('app.string.btn2'))
-                // 弹窗按钮需要占据一半宽度，这里使用50%
-                .width('50%')
-                .textAlign(TextAlign.Center)
-                .padding({ top: 10, bottom: 10 })
-                .fontSize(16)
-                .letterSpacing(1)
-                .backgroundColor($r('app.color.btn2'))
-                .onClick(() => {
-                  this.isShowDialog = false
-                })
-            }
-          }
-          .borderWidth(1)
-          .borderColor($r('app.color.btn2'))
-          .borderRadius(20)
-          .backgroundColor(Color.White)
-          .clip(true)
-        }
-        .padding(20)
-        .position({ x: 0, y: '40%' })
-      }
     }
   }
 }

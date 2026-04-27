@@ -13,28 +13,28 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
 
 @Component
 export struct CommonButton {
-  @State buttonName: string = '';
+  @State buttonName: string | ResourceStr = $r('app.string.uninitialized');
+  @State buttonId: string = '';
   @State buttonUrl: string = '';
   @State data: string = '';
 
   build() {
     Text(this.buttonName)
-      .id(this.buttonName)
-      .padding(px2vp(5))
-      .fontSize(px2fp(20))
+      .id(this.buttonId)
+      .padding(this.getUIContext().px2vp(5))
+      .fontSize(this.getUIContext().px2vp(20))
       .width('45%')
       .height(36)
       .backgroundColor('#04a4fc')
       .fontColor(Color.White)
       .textAlign(TextAlign.Center)
       .borderRadius(15)
-      .margin(px2vp(5))
+      .margin(this.getUIContext().px2vp(5))
       .onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: this.buttonUrl,
           params: {
             text: this.data,

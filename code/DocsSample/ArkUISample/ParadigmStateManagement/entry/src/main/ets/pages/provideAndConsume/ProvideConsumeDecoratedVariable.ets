@@ -15,6 +15,7 @@
 // [Start Provide_Consume_Decorated_Variable1]
 @Component
 struct MyComponent {
+  // @Consume装饰的变量设置默认值
   @Consume('withDefault') defaultValue: number = 10;
 
   // [StartExclude Provide_Consume_Decorated_Variable]

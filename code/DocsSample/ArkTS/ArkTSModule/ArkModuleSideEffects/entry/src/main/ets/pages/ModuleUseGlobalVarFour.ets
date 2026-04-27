@@ -18,6 +18,6 @@
 import { data1 } from './ModulePartFour'; // 此时可能预期全局变量someGlobalVar的值为100
 export function useGlobalVar() {
   console.info('data1 is ', data1);
-  console.info('globalThis.someGlobalVar is ', globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
+  console.info('globalThis.someGlobalVar is ', globalThis.someGlobalVar); // 此时由于PageFour.ets中加载了SideEffectModuleFour模块，someGlobalVar的值已经被改为200
 }
 // [End export_moduleUseGlobalVarFour]

@@ -16,7 +16,7 @@
  * Copyright (c) Huawei Technologies Co., Ltd. 2026-2026. All rights reserved.
  */
 
-import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
+import { avMusicTemplate } from '@kit.AVSessionKit';
 import { MainLeftComponent } from '../components/MainLeftComponent';
 import { MineContentComponent } from '../components/MineContentComponent';
 import { TabContentComponent } from '../components/TabContentComponent';

@@ -22,7 +22,7 @@ export struct ReminderCalendar {
   @State isEdit: boolean = false
   @State selectCalendar: number = 0
   @State calendarNames: string[] = []
-  private title: Resource | undefined = undefined;
+  public title: Resource | undefined = undefined;
   private calendarSetting: CustomDialogController = new CustomDialogController({
     builder: CalendarSetting({ selectIndex: this.selectCalendar })
   })
@@ -40,7 +40,7 @@ export struct ReminderCalendar {
           .margin({ right: 8 })
           .id('addCalendar')
           .onClick(() => {
-            DatePickerDialog.show({
+            this.getUIContext().showDatePickerDialog({
               start: new Date(),
               end: new Date('2100-12-31'),
               showTime: true,
@@ -83,14 +83,12 @@ export struct ReminderCalendar {
             .backgroundColor(Color.White)
             .padding({ left: 12, right: 12, top: 8, bottom: 8 })
           }
-          .editable(this.isEdit)
           .id(`calendar${index}`)
           .padding({ left: 12, right: 12 })
           .gesture(
             GestureGroup(GestureMode.Parallel,
               SwipeGesture({ direction: SwipeDirection.Horizontal })
                 .onAction((event: GestureEvent) => {
-                  this.isEdit = !this.isEdit;
                   this.deleteItem(index);
                 }),
               TapGesture()

@@ -20,10 +20,10 @@ import lottie from '@ohos/lottie'
 @Entry
 @Component
 struct CanvasExample2 {
-  //用来配置CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。true表明开启抗锯齿
+  // 用来配置CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。true表明开启抗锯齿
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  //用来创建OffscreenCanvas对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
+  // 用来创建OffscreenCanvas对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
@@ -34,9 +34,9 @@ struct CanvasExample2 {
         .backgroundColor('#F5DC62')
         .onReady(() => {
           let offContext = this.offCanvas.getContext('2d', this.settings);
-          //可以在这里绘制内容
+          // 可以在这里绘制内容
           offContext.strokeRect(50, 50, 200, 150);
-          //将离屏绘制渲染的图像在普通画布上显示
+          // 将离屏绘制渲染的图像在普通画布上显示
           let image = this.offCanvas.transferToImageBitmap();
           this.context.transferFromImageBitmap(image);
         })

@@ -39,16 +39,16 @@ let ivSpec = genIvParamsSpec();
 function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
   let cipher = cryptoFramework.createCipher('ChaCha20');
   cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, ivSpec);
-  let encryptUpdata = cipher.doFinalSync(plainText);
-  return encryptUpdata;
+  let encryptData = cipher.doFinalSync(plainText);
+  return encryptData;
 }
 
 // 解密消息。
 function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
   let decoder = cryptoFramework.createCipher('ChaCha20');
   decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, ivSpec);
-  let decryptdata = decoder.updateSync(cipherText);
-  return decryptdata;
+  let decryptData = decoder.updateSync(cipherText);
+  return decryptData;
 }
 
 function genSymKeyByData(symKeyData: Uint8Array) {

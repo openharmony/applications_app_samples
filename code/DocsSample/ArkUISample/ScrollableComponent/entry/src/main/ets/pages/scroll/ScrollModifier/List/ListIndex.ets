@@ -67,7 +67,7 @@ export struct ScrollModifierList {
               }
 
             }.width('90%').backgroundColor('#DCDCDC')
-          } //.attributeModifier(this.customModifier)
+          } // .attributeModifier(this.customModifier)
 
           ScrollBar({ scroller: this.scroller, state: BarState.On }) {
             Text()
@@ -89,7 +89,7 @@ export struct ScrollModifierList {
         })
 
         Button('flip').onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/scroll/ScrollModifier/List/ListIndex2',
             params: {
               data1: 'message'

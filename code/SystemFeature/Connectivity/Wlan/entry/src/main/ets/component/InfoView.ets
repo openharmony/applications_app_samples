@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { Info } from '../model/WifiModel';
 
 @Component
 export struct InfoView {
-  private infoList: Array<any> = []
+  private infoList: Info[] = []
 
   build() {
     Column() {
-      ForEach(this.infoList, (item, index) => {
+      ForEach(this.infoList, (item: Info, index) => {
         Column() {
           Text(item.key)
             .fontColor(Color.Black)
@@ -36,7 +37,7 @@ export struct InfoView {
           }
         }
         .padding(5)
-      }, item => JSON.stringify(item))
+      }, (item: Info) => JSON.stringify(item))
     }
     .margin(10)
     .border({ width: 1, color: Color.Gray, radius: 15 })

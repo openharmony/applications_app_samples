@@ -1,0 +1,153 @@
+{
+	"MetaData": {
+		"Create": "2022-09-26",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 233,
+						"StartTime": 23,
+						"Parameters": {
+							"Intensity": 84,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 28
+								},
+								{
+									"Time": 25,
+									"Intensity": 0.19,
+									"Frequency": 25
+								},
+								{
+									"Time": 75,
+									"Intensity": 0.32,
+									"Frequency": 29
+								},
+								{
+									"Time": 131,
+									"Intensity": 0.46,
+									"Frequency": 43
+								},
+								{
+									"Time": 177,
+									"Intensity": 0.5,
+									"Frequency": 53
+								},
+								{
+									"Time": 198,
+									"Intensity": 0.2,
+									"Frequency": 48
+								},
+								{
+									"Time": 218,
+									"Intensity": 0.08,
+									"Frequency": 41
+								},
+								{
+									"Time": 233,
+									"Intensity": 0,
+									"Frequency": 48
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 177,
+						"Parameters": {
+							"Intensity": 100,
+							"Frequency": 46
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 250,
+						"StartTime": 266,
+						"Parameters": {
+							"Intensity": 44,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 28
+								},
+								{
+									"Time": 27,
+									"Intensity": 0.19,
+									"Frequency": 25
+								},
+								{
+									"Time": 81,
+									"Intensity": 0.32,
+									"Frequency": 29
+								},
+								{
+									"Time": 136,
+									"Intensity": 0.39,
+									"Frequency": 43
+								},
+								{
+									"Time": 187,
+									"Intensity": 0.32,
+									"Frequency": 53
+								},
+								{
+									"Time": 212,
+									"Intensity": 0.2,
+									"Frequency": 48
+								},
+								{
+									"Time": 233,
+									"Intensity": 0.08,
+									"Frequency": 41
+								},
+								{
+									"Time": 250,
+									"Intensity": 0,
+									"Frequency": 48
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 308,
+						"Parameters": {
+							"Intensity": 89,
+							"Frequency": 13
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 382,
+						"Parameters": {
+							"Intensity": 81,
+							"Frequency": 13
+						}
+					}
+				}
+			]
+		}
+	]
+}

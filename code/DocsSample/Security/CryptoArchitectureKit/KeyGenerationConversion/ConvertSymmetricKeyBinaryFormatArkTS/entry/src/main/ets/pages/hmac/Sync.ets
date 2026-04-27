@@ -26,7 +26,7 @@ function testConvertKeySync() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
   let key = symKeyGenerator.convertKeySync(keyBlob);
   let encodedKey = key.getEncoded();
-  console.info('key encoded data：' + encodedKey.data);
+  console.info('key encoded data: ' + encodedKey.data);
 }
 // [End generate_hmac_key_sync]
 

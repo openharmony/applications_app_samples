@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 // [Start state_change_observation_object]
+// 声明Person类
 class Person {
   public value: string;
 
@@ -21,6 +22,7 @@ class Person {
   }
 }
 
+// 声明Model类
 class Model {
   public value: string;
   public name: Person;

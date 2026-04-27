@@ -25,6 +25,7 @@ struct ChildComponent {
 struct MyComponent {
   build() {
     Row() {
+      // 属性设置给ChildComponent而不是ChildComponent中的Button
       ChildComponent()
         .width(200)
         .height(300)

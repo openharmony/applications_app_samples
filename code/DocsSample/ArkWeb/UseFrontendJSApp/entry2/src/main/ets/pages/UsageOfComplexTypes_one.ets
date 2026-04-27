@@ -25,7 +25,7 @@ class TestClass {
     return [1, 2, 3, 4];
   }
 
-  toString(param: string): void {
+  toString(param: Array<number>): void {
     console.info('Web Component toString' + param);
   }
 }

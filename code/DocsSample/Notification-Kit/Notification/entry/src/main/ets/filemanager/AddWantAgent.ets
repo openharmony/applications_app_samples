@@ -23,7 +23,6 @@ const TAG: string = '[PublishOperation]';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [End add_behavior_intent_header]
 
-@Entry
 @Component
 export struct AddWantAgent {
   @State message: string = 'Hello World';
@@ -89,7 +88,7 @@ export struct AddWantAgent {
         Button($r('app.string.publish_one_button_notify'))
           .margin({ top: 20, bottom: 20 })
           .onClick(() => {
-            // [Start create_launch_uiability_agent_info]
+            // [Start create_launch_uiAbility_agent_info]
             let wantAgentObj: WantAgent | null = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
 
             // 通过WantAgentInfo的operationType设置动作类型
@@ -109,7 +108,7 @@ export struct AddWantAgent {
               requestCode: 0,
               actionFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
             };
-            // [End create_launch_uiability_agent_info]
+            // [End create_launch_uiAbility_agent_info]
 
             // [Start create_get_agent]
             // 创建WantAgent

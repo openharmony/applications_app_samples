@@ -47,6 +47,7 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
+          // 通过点击改变index数值，动态设置Text的属性类
           hilog.info(DOMAIN, 'testTag', 'Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {

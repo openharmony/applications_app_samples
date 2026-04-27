@@ -42,6 +42,8 @@ struct Parent {
 
   build() {
     Column() {
+      // 按值传递参数
+      // 改变@State修饰的label值时，@LocalBuilder函数内的值不会发生改变
       this.citeLocalBuilder(this.label)
     }
   }

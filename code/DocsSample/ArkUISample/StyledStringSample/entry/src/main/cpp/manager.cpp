@@ -87,6 +87,7 @@ static napi_value CreateNativeNode(napi_env env, napi_callback_info info, const 
     return nullptr;
 }
 
+constexpr int32_t NUM_10 = 10;
 constexpr int32_t MAX_LINES = 10;                // 最大行数
 constexpr int32_t FONT_SIZE = 28;                // 字体大小
 constexpr int32_t LAYOUT_MAX_WIDTH = 400;        // 排版最大宽度
@@ -137,17 +138,25 @@ static ArkUI_NodeHandle CreateStyledText(ArkUI_NativeNodeAPI_1 *nodeApi)
     return text;
 }
 
+// [Start serializeAndDeserialize_styledString]
 static void SerializeAndDeserializeStyledString()
 {
+    // 准备测试数据
     uint8_t data_bytes[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
     size_t dataSize = sizeof(data_bytes) / sizeof(data_bytes[0]);
+
+    // 创建StyledString描述符
     auto desc = OH_ArkUI_StyledString_Descriptor_Create();
     if (desc == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "styledString", "Create Descriptor failed");
         return;
     }
+
+    // 反序列化字节数据
     auto status = OH_ArkUI_UnmarshallStyledStringDescriptor(data_bytes, dataSize, desc);
     OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "styledString", "Unmarshall status: %{public}d", status);
+
+    // 转换为HTML格式
     const char* html = OH_ArkUI_ConvertToHtml(desc);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "styledString", "html: [%{public}s]", html);
     size_t resultSize = dataSize + 2;
@@ -158,6 +167,8 @@ static void SerializeAndDeserializeStyledString()
     }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "styledString", "resultSize: %{public}zu", resultSize);
     uint8_t *buf2 = (uint8_t *)malloc(resultSize * sizeof(uint8_t));
+
+    // 序列化字节数组
     if (buf2 != nullptr) {
         if (resultSize >= dataSize) {
             for (size_t i = 0; i < dataSize; i++) {
@@ -178,8 +189,11 @@ static void SerializeAndDeserializeStyledString()
         free(buf2);
     }
     free(buf1);
+
+    // 释放描述符
     OH_ArkUI_StyledString_Descriptor_Destroy(desc);
 }
+// [End serializeAndDeserialize_styledString]
 
 ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
 {
@@ -190,15 +204,20 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     ArkUI_NodeHandle column = CreateColumnContainer(nodeApi);
     ArkUI_NodeHandle text = CreateStyledText(nodeApi);
 
+    // [Start styledstring_paragraph_style]
     // 创建字体集合与段落样式
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateFontCollection();
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, OH_Drawing_TextAlign::TEXT_ALIGN_CENTER);
-    OH_Drawing_SetTypographyTextMaxLines(typographyStyle, MAX_LINES);
+    OH_Drawing_SetTypographyTextMaxLines(typographyStyle, NUM_10);
+    // [End styledstring_paragraph_style]
 
+    // [Start styledstring_create]
     // 创建StyledString并设置文本内容
     ArkUI_StyledString *styledString = OH_ArkUI_StyledString_Create(typographyStyle, fontCollection);
+    // [End styledstring_create]
 
+    // [Start styledstring_text_style]
     // 第一段文本（灰色"Hello"）
     OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleFontSize(textStyle, FONT_SIZE);
@@ -206,12 +225,16 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     OH_ArkUI_StyledString_PushTextStyle(styledString, textStyle);
     OH_ArkUI_StyledString_AddText(styledString, "Hello");
     OH_ArkUI_StyledString_PopTextStyle(styledString);
+    // [End styledstring_text_style]
     OH_Drawing_DestroyTextStyle(textStyle);
 
+    // [Start styledstring_placeholder]
     // 添加占位符
     OH_Drawing_PlaceholderSpan placeHolder{.width = PLACEHOLDER_WIDTH, .height = PLACEHOLDER_HEIGHT};
     OH_ArkUI_StyledString_AddPlaceholder(styledString, &placeHolder);
+    // [End styledstring_placeholder]
 
+    // [Start styledstring_world]
     // 第二段文本（蓝色"World!"）
     OH_Drawing_TextStyle *worldTextStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleFontSize(worldTextStyle, FONT_SIZE);
@@ -219,13 +242,17 @@ ArkUI_NodeHandle Manager::CreateNativeStyledStringNode()
     OH_ArkUI_StyledString_PushTextStyle(styledString, worldTextStyle);
     OH_ArkUI_StyledString_AddText(styledString, "World!");
     OH_ArkUI_StyledString_PopTextStyle(styledString);
+    // [End styledstring_world]
     OH_Drawing_DestroyTextStyle(worldTextStyle);
 
     // 排版与设置属性
+    // [Start styledstring_layout]
     OH_Drawing_Typography *typography = OH_ArkUI_StyledString_CreateTypography(styledString);
     OH_Drawing_TypographyLayout(typography, LAYOUT_MAX_WIDTH);
+    // 布局完成后，将StyledString设置给Text组件
     ArkUI_AttributeItem styledStringItem = {.object = styledString};
     nodeApi->setAttribute(text, NODE_TEXT_CONTENT_WITH_STYLED_STRING, &styledStringItem);
+    // [End styledstring_layout]
 
     SerializeAndDeserializeStyledString();
 

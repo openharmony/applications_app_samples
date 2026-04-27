@@ -19,6 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
+import { fileIo } from '@kit.CoreFileKit';
 // [End import_interface]
 import { sensor } from '@kit.SensorServiceKit';
 import { Decimal } from '@kit.ArkTS';
@@ -26,8 +27,6 @@ import { geoLocationManager } from '@kit.LocationKit';
 import { Logger } from 'commons';
 import OutputManager, { CreateOutputConfig, OutputType } from './OutputManager';
 import CameraConstant from '../constants/CameraConstants';
-import { fileIo as fs } from '@kit.CoreFileKit';
-import { fileIo } from '@kit.CoreFileKit';
 
 const TAG_LOG = 'PhotoManager';
 
@@ -77,6 +76,7 @@ export class PhotoManager implements OutputManager {
       console.error('cameraManager.getSupportedFullOutputCapability error');
       return undefined;
     }
+    // [StartExclude get_full_outputCapability]
     console.info(`outputCapability: ` + JSON.stringify(cameraOutputCapability));
     // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
     // previewProfiles属性为获取当前设备支持的预览输出流。
@@ -100,6 +100,7 @@ export class PhotoManager implements OutputManager {
     if (!isSupportYuv) {
       console.error('cameraManager.getSupportedFullOutputCapability error, yuv is not supported');
     }
+    // [EndExclude get_full_outputCapability]
     return cameraOutputCapability;
 }
   // [End get_full_outputCapability]
@@ -108,11 +109,14 @@ export class PhotoManager implements OutputManager {
   public createPhotoOutput(cameraManager: camera.CameraManager, cameraDevice: camera.CameraDevice,
     profile: camera.Profile) {
     let cameraPhotoOutput: camera.PhotoOutput | undefined = undefined;
+    // [StartExclude create_photo_output]
     const cameraOutputCapability = this.getFullOutputCapability(cameraManager, cameraDevice,
       camera.SceneMode.NORMAL_PHOTO);
     let photoProfilesArray: camera.Profile[] | undefined = cameraOutputCapability?.photoProfiles;
     if (photoProfilesArray?.length) {
+      // [EndExclude create_photo_output]
       try {
+        // [StartExclude create_photo_output]
         const displayRatio = profile.size.width / profile.size.height;
         const profileWidth = profile.size.width;
         // 获取当前设备支持的拍照输出流中，支持YUV格式的拍照输出流。
@@ -129,12 +133,15 @@ export class PhotoManager implements OutputManager {
           photoProfile = photoProfilesArray[0];
         }
         // 创建拍照输出流。
+        // [EndExclude create_photo_output]
         cameraPhotoOutput = cameraManager.createPhotoOutput(photoProfile);
       } catch (error) {
         Logger.error(TAG_LOG, `Failed to createPhotoOutput. error: ${JSON.stringify(error)}`);
       }
+      // [StartExclude create_photo_output]
     }
     this.output = cameraPhotoOutput;
+    // [EndExclude create_photo_output]
     return cameraPhotoOutput;
   }
 
@@ -148,7 +155,7 @@ export class PhotoManager implements OutputManager {
       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
         new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
       Logger.info(TAG_LOG, `saveCameraPhoto E`);
-      await assetChangeRequest.saveCameraPhoto();
+      await assetChangeRequest.saveCameraPhoto(photoAccessHelper.ImageFileType.JPEG);
       await phAccessHelper.applyChanges(assetChangeRequest);
       Logger.info(TAG_LOG, `saveCameraPhoto X`);
       await phAccessHelper.release();
@@ -165,37 +172,37 @@ export class PhotoManager implements OutputManager {
 
       class MediaDataHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
         onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
-          if (data === undefined) {
-            Logger.error(TAG_LOG, 'Error occurred when preparing data');
+          if (data != undefined) {
+            console.info(`On photoAssetAvailable callback data is not undefined`);
+            let pixelMap: image.PixelMap = data.getMainPixelmap();
+            callback(pixelMap, photoAsset.uri);
+          } else if (data === undefined && imageSource != undefined) {
+            console.info(`On photoAssetAvailable callback data is undefined, and imageSource is not undefined`);
+            imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
+              callback(pixelMap, photoAsset.uri);
+            }).catch((error: BusinessError) => {
+              console.error(`On photoAssetAvailable callback createPixelMap failed, error: ${error.message}`);
+            })
+          } else {
+            console.error(`On photoAssetAvailable callback data and imageSource are both undefined`);
             return;
           }
-          Logger.info(TAG_LOG, 'QuickImageDataHandler request picture success');
-          Logger.info(TAG_LOG, `photoAssetAvailable callabck uri:${photoAsset.uri}`);
-          imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
-            callback(pixelMap, photoAsset.uri);
-          }).catch((err: BusinessError) => {
-            Logger.error(TAG_LOG, `createPixelMap err:${err.code}`);
-          })
         }
       }
-
+      // 创建数据共享谓词。
       let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+      // 配置媒体资产检索条件。
       let fetchOptions: photoAccessHelper.FetchOptions = {
         fetchColumns: [],
         predicates: predicates
       };
-
+      // 配置请求策略为平衡模式。
       let requestOptions: photoAccessHelper.RequestOptions = {
         deliveryMode: photoAccessHelper.DeliveryMode.BALANCE_MODE,
       }
 
       const handler = new MediaDataHandler();
-      let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-      phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-        let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-        await photoAccessHelper.MediaAssetManager.quickRequestImage(context, photoAsset, requestOptions, handler);
-        Logger.info(TAG_LOG, 'quickRequestImage X');
-      })
+      await photoAccessHelper.MediaAssetManager.quickRequestImage(context, photoAsset, requestOptions, handler);
     } catch (error) {
       Logger.error(TAG_LOG, `mediaLibRequestBuffer failed with error: ${error.code}, ${error.message}`);
     }
@@ -207,12 +214,12 @@ export class PhotoManager implements OutputManager {
     cameraPhotoOutput.on('photoAssetAvailable',
       async (_err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
         try {
-          Logger.info(TAG_LOG, `on photoAssetAvailable callabck uri:${photoAsset.uri}`);
+          Logger.info(TAG_LOG, `on photoAssetAvailable callback uri:${photoAsset.uri}`);
           let accessHelper: photoAccessHelper.PhotoAccessHelper =
             photoAccessHelper.getPhotoAccessHelper(this.context);
-          await this.mediaLibRequestBuffer(photoAsset, this.context, this.callback);
           await this.mediaLibSavePhoto(photoAsset, accessHelper);
-        } catch(_err) {
+          await this.mediaLibRequestBuffer(photoAsset, this.context, this.callback);
+        } catch (_err) {
           Logger.error(TAG_LOG, `photoAssetAvailable err:${_err.code}`);
         }
       });
@@ -233,7 +240,7 @@ export class PhotoManager implements OutputManager {
       this.mediaLibSavePhotoSingle(context, capturePhoto.main)
     });
   }
-  
+
   async mediaLibSavePhotoSingle(context: Context, imageObj: image.Image | image.Picture) {
     let picture: image.Picture = imageObj as image.Picture;
     Logger.info(TAG_LOG, 'picture GetMainPixelmap E');
@@ -249,7 +256,7 @@ export class PhotoManager implements OutputManager {
     const imagePackerApi = image.createImagePacker();
     let packOpts : image.PackingOption = { format: 'image/jpeg', quality: 95 };
     const path : string = context.cacheDir + '/pixel_map.jpg';
-    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     try {
       await imagePackerApi.packToFile(pixelMap, file.fd, packOpts);
       this.srcFileUri = file.path;
@@ -418,6 +425,7 @@ export class PhotoManager implements OutputManager {
     Logger.info(TAG_LOG, 'capture start.');
     const degree = await this.getPhotoDegree();
     let rotation = this.getPhotoRotation(this.output!, degree);
+    rotation = camera.ImageRotation.ROTATION_0;
     Logger.info(TAG_LOG, `rotation: ${rotation}.`);
     let settings: camera.PhotoCaptureSetting = {
       quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,  // 设置图片质量。

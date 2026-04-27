@@ -38,11 +38,9 @@ void Callback(void *asyncContext)
         [](uv_work_t *work, int status) {
             CallbackContext *context = (CallbackContext *)work->data;
             napi_handle_scope scope = nullptr;
-            // 管理 napi_value 的生命周期，防止内存泄露
             napi_open_handle_scope(context->env, &scope);
             napi_value callback = nullptr;
             napi_get_reference_value(context->env, context->callbackRef, &callback);
-            // 回调至UI侧
             napi_call_function(context->env, nullptr, callback, 0, nullptr, nullptr);
             napi_close_handle_scope(context->env, scope);
             delete context;
@@ -77,9 +75,9 @@ napi_value PlayerNative::SetTransform(napi_env env, napi_callback_info info)
 napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
 {
     SampleInfo sampleInfo;
-    size_t argc = 7;                    // 参数个数，这里ArkTS往native测传递了七个参数，故此处赋值为7
-    napi_value args[7] = {nullptr};     // napi_value类型数组，用于存储接收的ArkTS侧参数
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);  // 从info中获取参数信息到参数数组args[]
+    size_t argc = 7;
+    napi_value args[7] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     int index = 0;
     napi_get_value_int32(env, args[index++], &sampleInfo.inputFd);

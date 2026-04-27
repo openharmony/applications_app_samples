@@ -310,9 +310,9 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     // 创建OH_Data_Values实例
     OH_Data_Values *values = OH_Values_Create();
     ret = OH_Values_PutInt(values, 1); // The value of id is 1
-    ret = OH_Values_PutInt(values, 2); // The value of datat2 is 2
-    ret = OH_Values_PutReal(values, 1.1); // The value of datat3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of datat3 is 1
+    ret = OH_Values_PutInt(values, 2); // The value of data2 is 2
+    ret = OH_Values_PutReal(values, 1.1); // The value of data3 is 1.1
+    ret = OH_Values_PutText(values, "1"); // The value of data3 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
     
@@ -324,7 +324,7 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     Data_Asset **assets = OH_Data_Asset_CreateMultiple(2); // The number of created Data_Assets is 2
     ret = OH_Data_Asset_SetName(assets[0], "name1");
     ret = OH_Data_Asset_SetName(assets[1], "name2");
-    ret = OH_Values_PutAssets(values, assets, 2); // The number of Data_ Assets is 2
+    ret = OH_Values_PutAssets(values, assets, 2); // The number of Data_Assets is 2
     ret = OH_Data_Asset_DestroyMultiple(assets, 2); // The number of destroyed Data_Assets is 2
     
     uint64_t bigInt[] = {1, 2, 3, 4, 5};
@@ -340,10 +340,10 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     OH_Values_Destroy(values);
     
     OH_VBucket *transValueBucket = OH_Rdb_CreateValuesBucket();
-    transValueBucket->putInt64(transValueBucket, "data1", 1); // The value of datat1 is 1
-    transValueBucket->putInt64(transValueBucket, "data2", 2); // The value of datat2 is 2
-    transValueBucket->putReal(transValueBucket, "data3", 1.1); // The value of datat3 is 1.1
-    transValueBucket->putText(transValueBucket, "data4", "1"); // The value of datat4 is 1
+    transValueBucket->putInt64(transValueBucket, "data1", 1); // The value of data1 is 1
+    transValueBucket->putInt64(transValueBucket, "data2", 2); // The value of data2 is 2
+    transValueBucket->putReal(transValueBucket, "data3", 1.1); // The value of data3 is 1.1
+    transValueBucket->putText(transValueBucket, "data4", "1"); // The value of data4 is 1
     transValueBucket->putBlob(transValueBucket, "data5", val, sizeof(val) / sizeof(val[0]));
     int64_t insertRowId = -1;
     // 通过事务对象执行OH_VBucket数据插入
@@ -352,8 +352,8 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     
     OH_VBucket *transValueBucket2 = OH_Rdb_CreateValuesBucket();
     transValueBucket2->putInt64(transValueBucket2, "id", 1); // The value of id is 1
-    transValueBucket2->putInt64(transValueBucket2, "data2", 2); // The value of datat2 is 2
-    transValueBucket2->putReal(transValueBucket2, "data3", 1.2); // The value of datat3 is 1.2
+    transValueBucket2->putInt64(transValueBucket2, "data2", 2); // The value of data2 is 2
+    transValueBucket2->putReal(transValueBucket2, "data3", 1.2); // The value of data3 is 1.2
     
     int64_t transInsertRow = -1;
     // 支持插入数据时配置冲突策略
@@ -523,7 +523,7 @@ void InitAttachStore()
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "NAME", "Lisa");
     valueBucket->putInt64(valueBucket, "AGE", 18); // The value of AGE is 18
-    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of AGE is 100.5
+    valueBucket->putReal(valueBucket, "SALARY", 100.5); // The value of SALARY is 100.5
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "CODES", arr, len);

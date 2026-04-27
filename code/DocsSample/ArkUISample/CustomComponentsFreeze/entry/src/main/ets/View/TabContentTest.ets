@@ -30,6 +30,7 @@ struct TabContentTest {
   build() {
     Row() {
       Column() {
+        // 点击Button修改message，触发可见TabContent的onMessageUpdated回调
         Button('change message').onClick(() => {
           this.message++;
         })

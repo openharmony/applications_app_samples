@@ -21,6 +21,7 @@ struct StorageLinkComponent {
   build() {
     Column() {
       Text('@StorageLink接口初始化，@StorageLink取值')
+      // linkA为null时，点击后会切换为1；linkA为1时，点击后会切换为null
       Text(`${this.linkA}`).fontSize(20).onClick(() => {
         this.linkA ? this.linkA = null : this.linkA = 1;
       })

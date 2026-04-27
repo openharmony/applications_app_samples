@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/ScreenRecorderTimer",
+    "pages/ScreenRecorderDialog",
+    "pages/ResolutionNotSupportedDialog"
+  ]
+}

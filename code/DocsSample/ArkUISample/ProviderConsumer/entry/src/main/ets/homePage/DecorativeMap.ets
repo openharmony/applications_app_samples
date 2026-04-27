@@ -27,6 +27,7 @@ struct Parent {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
+      // message被@Provider装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
       Button('init map').onClick(() => {
         this.message = new Map([[0, 'aa'], [1, 'bb'], [3, 'cc']]);
       })
@@ -59,6 +60,7 @@ struct Child {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
+      // message被@Consumer装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
       Button('init map').onClick(() => {
         this.message = new Map([[0, 'dd'], [1, 'ee'], [3, 'ff']]);
       })

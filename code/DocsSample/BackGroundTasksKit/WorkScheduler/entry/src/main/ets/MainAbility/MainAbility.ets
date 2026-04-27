@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,38 +13,28 @@
  * limitations under the License.
  */
 
-import { UIAbility, Want, AbilityConstant, abilityAccessCtrl } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI'
-import type { Permissions } from '@kit.AbilityKit';
-import { Logger } from '../utils/Logger'
-import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem'
-
-const TAG: string = 'MainAbility'
-const VERSION: string = '1.0'
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.INTERNET', 'ohos.permission.INSTALL_BUNDLE',
-  'ohos.permission.NOTIFICATION_CONTROLLER']
+import { UIAbility, Want, AbilityConstant, ConfigurationConstant } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { Logger } from '../utils/Logger';
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
-      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, PERMISSIONS);
-      console.info(`requestPermissionsFromUser`);
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+      Logger.error(TAG, 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
     }
-    AppStorage.SetOrCreate('filePath', this.context.filesDir)
+    Logger.info(TAG, '%{public}s', 'Ability onCreate');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    WorkSchedulerSystem.handleNotification()
-    let filePath = `${this.context.filesDir.split('/haps')[0]}/files`
-    WorkSchedulerSystem.startUpdateSample(VERSION, filePath)
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
-        return
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     })
   }
 }

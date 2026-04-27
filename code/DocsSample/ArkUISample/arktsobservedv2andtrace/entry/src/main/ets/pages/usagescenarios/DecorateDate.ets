@@ -25,6 +25,7 @@ struct DateSample {
 
   build() {
     Column() {
+      // @Trace装饰的Date类型属性可以观测调用API带来的变化
       Button('set selectedDate to 2023-07-08')
         .margin(10)
         .onClick(() => {

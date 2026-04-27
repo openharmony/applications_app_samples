@@ -17,7 +17,7 @@
 #include "napi/native_api.h"
 
 // napi_get_cb_info
-// 获取ArkTS侧入参的的参数信息
+// 获取ArkTS侧入参的参数信息
 static napi_value GetCbArgs(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;

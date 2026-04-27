@@ -30,7 +30,7 @@ struct Index {
           .height('5%')
           .margin({ top: 15, bottom: 15 } as Margin)
           .onClick(() => {
-            testNapi.geiPlainText();
+            testNapi.getPlainText();
           })
 
         Button('getFileUri')

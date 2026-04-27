@@ -24,8 +24,8 @@ struct PixelMapDrawing {
   private xComponentContext: XComponentContext | undefined = undefined;
   private pMap: image.PixelMap | undefined = undefined;
   aboutToAppear() {
-    const context: Context = getContext(this);
-    const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    const context: Context | undefined = this.getUIContext().getHostContext();
+    const resourceMgr: resourceManager.ResourceManager = context!.resourceManager;
     resourceMgr.getRawFileContent('startIcon.png').then((fileData: Uint8Array) => {
       console.log('Succeeded in getting RawFileContent');
       const buffer = fileData.buffer.slice(0);

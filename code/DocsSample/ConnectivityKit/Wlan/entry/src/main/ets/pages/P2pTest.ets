@@ -15,7 +15,7 @@
 
 import hilog from '../model/Logger';
 import { TitleBar } from '../component/TitleBar';
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 const TAG = 'Index';
 
@@ -32,7 +32,6 @@ struct P2pTest {
         .padding({ left: 15 })
         .borderRadius(5)
         .width('100%')
-          // .fontColor($r('app.color.text_color'))
         .backgroundColor($r('app.color.moon'))
         .onClick(() => {
           router.pushUrl({ url: 'pages/AvailableP2p' })
@@ -46,7 +45,6 @@ struct P2pTest {
         .padding({ left: 15 })
         .borderRadius(5)
         .width('100%')
-          // .fontColor($r('app.color.text_color'))
         .backgroundColor($r('app.color.cyan'))
         .onClick(() => {
           router.pushUrl({ url: 'pages/P2pSetting' })

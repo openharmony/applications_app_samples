@@ -16,19 +16,69 @@
 import router from '@ohos.router'
 import { LoginInfo } from '../common/LoginInfo'
 import { NavigationBar } from '../common/NavigationBar'
+import { BundleInfo } from '../common/BundleInfo'
+
+interface LoginPageParams {
+  bundleName?: string
+}
 
 @Entry
 @Component
 struct Login {
-  @State bundleName: string = <string> router.getParams()["bundleName"]
+  @StorageLink('selectedBundleName') bundleName: string = 'Music'
+  @State isWideLayout: boolean = false
+  private readonly splitThreshold: number = 840
+
+  aboutToAppear() {
+    const params: LoginPageParams = router.getParams() as LoginPageParams
+    let bundleNameFromParam: string = params.bundleName ?? ''
+    if (bundleNameFromParam) {
+      this.bundleName = bundleNameFromParam
+      AppStorage.SetOrCreate<string>('selectedBundleName', bundleNameFromParam)
+    }
+  }
 
   build() {
     Column() {
       NavigationBar({ title: $r('app.string.register_login'), flag: true, url: 'pages/Index' })
 
-      LoginInfo({ bundleName: this.bundleName })
+      if (this.isWideLayout) {
+        Row() {
+          Column() {
+            BundleInfo({
+              isWideLayout: false,
+              isSidebar: true,
+              selectedBundleName: this.bundleName
+            })
+          }
+          .width('32%')
+          .height('100%')
+          .padding({ left: 12, right: 8, top: 10, bottom: 10 })
+
+          Column() {
+            LoginInfo({ bundleName: this.bundleName, isWideLayout: true })
+          }
+          .width('68%')
+          .height('100%')
+          .padding({ left: 8, right: 12, top: 10, bottom: 10 })
+        }
+        .width('100%')
+        .layoutWeight(1)
+      } else {
+        Row() {
+          Column() {
+            LoginInfo({ bundleName: this.bundleName, isWideLayout: false })
+          }
+          .width('100%')
+        }
+        .width('100%')
+        .layoutWeight(1)
+      }
     }
     .width('100%')
     .height('100%')
+    .onAreaChange((oldArea, newArea) => {
+      this.isWideLayout = Number(newArea.width) >= this.splitThreshold
+    })
   }
 }

@@ -15,16 +15,17 @@
 
 // [Start example_pass_obj]
 import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Concurrent
-export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
+export async function loadPixelMap(rawFileDescriptor: resourceManager.RawFileDescriptor): Promise<PixelMap> {
   // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
   // 创建pixelMap。
   const pixelMap = imageSource.createPixelMapSync();
   // 释放imageSource。
   imageSource.release();
-  // 使pixelMap在跨线程传输完成后，断开原线程的引用。
+  // 使pixelMap在跨线程传输完成后，脱离原线程的引用。
   pixelMap.setTransferDetached(true);
   // 返回pixelMap给主线程。
   return pixelMap;

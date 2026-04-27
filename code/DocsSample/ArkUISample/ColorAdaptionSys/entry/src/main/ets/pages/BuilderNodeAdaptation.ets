@@ -135,9 +135,13 @@ struct Index {
     };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
-    // 设置应用深浅色跟随系统
-    this.getUIContext()
-      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    try {
+      // 设置应用深浅色跟随系统
+      this.getUIContext()
+        .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    } catch (e) {
+      hilog.error(DOMAIN, TAG, `setColorMode failed: ${JSON.stringify(e)}`);
+    }
     // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
     // [EndExclude color_mode_change_appear]

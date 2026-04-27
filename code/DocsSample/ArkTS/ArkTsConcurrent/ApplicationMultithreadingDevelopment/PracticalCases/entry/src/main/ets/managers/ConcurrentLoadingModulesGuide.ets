@@ -18,11 +18,13 @@ import { Calculator } from '../sdk/Calculator';
 import { TimerSdk } from '../sdk/TimerSdk';
 import { taskpool } from '@kit.ArkTS';
 
+// 初始化Calculator
 @Concurrent
 function initCalculator(): Calculator {
   return Calculator.init();
 }
 
+// 初始化TimerSdk
 @Concurrent
 function initTimerSdk(): TimerSdk {
   return TimerSdk.init();
@@ -84,7 +86,7 @@ struct Index {
           })
           .onClick(async () => {
             console.info(`Timer start`);
-            await this.timer?.Countdown(1000);
+            await this.timer?.countdown(1000);
             console.info(`Timer end`);
             this.countdown = 'success';
           })

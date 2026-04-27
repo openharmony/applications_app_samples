@@ -35,6 +35,7 @@ class Son {
 
 @Component
 struct Child {
+  // @Observed对象与@ObjectLink一起使用，实现对嵌套类对象属性的观测能力
   @ObjectLink son: Son;
 
   build() {

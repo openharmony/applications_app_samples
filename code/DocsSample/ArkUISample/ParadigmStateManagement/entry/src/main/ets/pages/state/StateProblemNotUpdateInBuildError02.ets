@@ -21,6 +21,7 @@ struct Index {
 
   build() {
     Column() {
+      // 典型错误，会导致appfreeze
       Text(`${this.message++}`)
       Text(`${this.message++}`)
     }

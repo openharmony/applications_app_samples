@@ -1,0 +1,19 @@
+{
+    "devices": {
+        "general": [
+            "default",
+            "tablet"
+        ]
+    },
+    "production": {
+        "removedSysCaps": [
+            "SystemCapability.Multimedia.MediaLibrary.Core",
+            "SystemCapability.Multimedia.MediaLibrary.DistributedCore",
+            "SystemCapability.PowerManager.BatteryManager.Extension",
+            "SystemCapability.PowerManager.PowerManager.Extension",
+            "SystemCapability.Security.DeviceSecurityLevel",
+            "SystemCapability.Security.DataTransitManager",
+            "SystemCapability.UserIAM.UserAuth.PinAuth"
+        ]
+    }
+}

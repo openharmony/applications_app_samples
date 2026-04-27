@@ -65,7 +65,7 @@ struct NodeTestPage {
                 .width('100%')
                 .onClick(() => {
                   // 跳转到指定的Node测试页面
-                  router.pushUrl({ url: item.page })
+                  this.getUIContext().getRouter().pushUrl({ url: item.page })
                 })
             }
             .width('100%')

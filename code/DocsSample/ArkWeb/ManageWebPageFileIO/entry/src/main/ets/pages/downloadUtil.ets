@@ -15,7 +15,8 @@
 
 // [Start task_info_persistence_util]
 import { util } from '@kit.ArkTS';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const helper = new util.Base64Helper();
 
@@ -45,7 +46,7 @@ export namespace  DownloadUtil {
 
   export function fileExists(filePath: string): boolean {
     try {
-      return fs.accessSync(filePath);
+      return fileIo.accessSync(filePath);
     } catch (error) {
       return false;
     }
@@ -53,19 +54,33 @@ export namespace  DownloadUtil {
 
   export function mkDirectorySync(directoryPath: string, recursion?: boolean): void {
     try {
-      fs.mkdirSync(directoryPath, recursion ?? false);
+      fileIo.mkdirSync(directoryPath, recursion ?? false);
     } catch (error) {
       console.error(`mk dir error. err message: ${error.message}, err code: ${error.code}`);
     }
   }
 
   export function writeToFileSync(dir: string, fileName: string, msg: string): void {
-    let file = fs.openSync(dir + '/' + fileName, fs.OpenMode.WRITE_ONLY | fs.OpenMode.CREATE);
-    fs.writeSync(file.fd, msg);
+    let file: fileIo.File | null = null;
+    try {
+      file = fileIo.openSync(dir + '/' + fileName, fileIo.OpenMode.WRITE_ONLY | fileIo.OpenMode.CREATE);
+      fileIo.writeSync(file.fd, msg);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
+    } finally {
+      if (file) {
+        fileIo.closeSync(file);
+      }
+    }
   }
 
   export function readFileSync(dir: string, fileName: string): string {
-    return fs.readTextSync(dir + '/' + fileName);
+    try {
+      return fileIo.readTextSync(dir + '/' + fileName);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
+      return '';
+    }
   }
 
 }

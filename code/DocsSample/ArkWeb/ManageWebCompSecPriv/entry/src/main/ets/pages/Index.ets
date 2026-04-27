@@ -22,51 +22,51 @@ struct Index {
     Column({ space: 10 }) {
       Button('LocCrossOriginResAccSol_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LocCrossOriginResAccSol_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LocCrossOriginResAccSol_one' });
         })
       Button('LocCrossOriginResAccSol_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LocCrossOriginResAccSol_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/LocCrossOriginResAccSol_two' });
         })
       Button('AddIntTrackPreventByPassList')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/AddIntTrackPreventByPassList' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/AddIntTrackPreventByPassList' });
         })
       Button('ClearIntTrackPreventByPassList')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/ClearIntTrackPreventByPassList' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/ClearIntTrackPreventByPassList' });
         })
       Button('EnableIntTrackPrevent')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/EnableIntTrackPrevent' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/EnableIntTrackPrevent' });
         })
       Button('IsIntTrackPreventEnabled')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/IsIntTrackPreventEnabled' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/IsIntTrackPreventEnabled' });
         })
       Button('OnIntTrackPreventResult')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/OnIntTrackPreventResult' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/OnIntTrackPreventResult' });
         })
       Button('RemoveIntTrackPreventByPassList')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/RemoveIntTrackPreventByPassList' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/RemoveIntTrackPreventByPassList' });
         })
       Button('EnablingAdsBlocking')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/EnablingAdsBlocking' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/EnablingAdsBlocking' });
         })
       Button('DisAdsBlockSpecDomPages_one')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DisAdsBlockSpecDomPages_one' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DisAdsBlockSpecDomPages_one' });
         })
       Button('DisAdsBlockSpecDomPages_two')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/DisAdsBlockSpecDomPages_two' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/DisAdsBlockSpecDomPages_two' });
         })
       Button('CollectingAdsBlockingInformation')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CollectingAdsBlockingInformation' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CollectingAdsBlockingInformation' });
         })
     }.height('100%')
     .width('100%')

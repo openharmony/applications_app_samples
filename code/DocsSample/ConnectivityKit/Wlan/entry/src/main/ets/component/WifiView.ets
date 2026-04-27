@@ -14,21 +14,21 @@
  */
 
 import hilog from '../model/Logger'
-import wifi from '@ohos.wifiManager'
+import { wifiManager } from '@kit.ConnectivityKit';
 
 const TAG: string = 'WifiView'
 
 @Component
 export struct WifiView {
-  private wifi: wifi.WifiScanInfo | null = null;
+  private wifiManager: wifiManager.WifiScanInfo | null = null;
   private securityString: Resource = $r('app.string.encryption')
   @State isLock: boolean = true
 
   aboutToAppear() {
-    hilog.debug(TAG, `aboutToAppear ${JSON.stringify(this.wifi)}`)
-    if (this.wifi) {
-      if (this.wifi.securityType) {
-        if ((this.wifi.securityType as number) === 0 || this.wifi.securityType === 1) {
+    hilog.debug(TAG, `aboutToAppear ${JSON.stringify(this.wifiManager)}`)
+    if (this.wifiManager) {
+      if (this.wifiManager.securityType) {
+        if ((this.wifiManager.securityType as number) === 0 || this.wifiManager.securityType === 1) {
           this.securityString = $r('app.string.open')
           this.isLock = false
         }
@@ -39,9 +39,9 @@ export struct WifiView {
   build() {
     Row() {
       Column() {
-        if (this.wifi) {
-          if (this.wifi.ssid) {
-            Text(this.wifi.ssid)
+        if (this.wifiManager) {
+          if (this.wifiManager.ssid) {
+            Text(this.wifiManager.ssid)
               .fontSize(20)
               .width('100%')
           }

@@ -46,7 +46,7 @@ entry/src/main/
 |   ├── ArkUINode.h (通用属性实现)
 |   ├── ArkUIScrollNode.h (scroll实现)
 |   ├── ArkUITextNode.h (text组件实现)
-|   ├── ArkUITransition.h
+|   ├── ArkUITransition.h (转场动画页面实现)
 |   ├── NativeEntry.cpp (使动画节点挂载到页面节点)
 │   └── napi_init.cpp
 └── resources
@@ -62,9 +62,14 @@ entry/src/main/
 1. 组件出现/消失转场
   组件内转场通过NODE_XX_TRANSITION属性（XX包括：OPACITY、TRANSLATE、SCALE、ROTATE、MOVE）配置转场参数，在组件插入和删除时显示过渡动效
   （通过NODE_TRANSFORM_CENTER属性设置NODE_SCALE_TRANSITION和NODE_ROTATE_ROTATE动效的中心点坐标）。主要用于容器组件中子组件插入和删除时，提升用户体验。
-2. 使用关键帧动画
+
+2. 一镜到底转场
+  通过[NODE_GEOMETRY_TRANSITION](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-animate-h.md)属性为两个组件绑定同一id，这样在移除一个组件并添加另一个组件的时候，系统会对二者切换添加一镜到底动效。
+
+3. 使用关键帧动画
   keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
-3. 使用帧动画
+  
+4. 使用帧动画
   帧动画具有逐帧回调的特性，便于开发者在每一帧中调整所需属性。通过提供onFrame逐帧回调，帧动画允许开发者在应用的每一帧设置属性值，从而实现组件属性值变化的自然过渡，营造出流畅的动画效果。帧动画接口可参考createAnimator。
   与属性动画相比，帧动画能让开发者实时感知动画进程，即时调整UI值，并具备事件即时响应和可暂停的优势，但在性能方面略逊于属性动画。当属性动画能满足需求时，建议优先采用属性动画接口实现。animateTo接口的使用可参考使用属性动画。
 

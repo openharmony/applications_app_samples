@@ -57,6 +57,7 @@ struct PersistedDate {
           .width('60%')
           .height('5%')
           .onClick(() => {
+            // 改变persistedDate的值，视图会随之刷新
             this.updateDate();
           })
 

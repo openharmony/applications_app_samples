@@ -76,7 +76,7 @@ ohos.permission.ACCESS_BIOMETRIC
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47。
+2.本示例为Stage模型，支持API26版本SDK。
 
 3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
@@ -88,6 +88,6 @@ ohos.permission.ACCESS_BIOMETRIC
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/AssetStoreKit/AssetStoreArkTS > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

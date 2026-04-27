@@ -34,4 +34,4 @@ public:
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
 };
 
-#endif // AVCODEC_SAMPLE_CALLBACK_H
+#endif

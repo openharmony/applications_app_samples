@@ -18,6 +18,7 @@ import { window } from '@kit.ArkUI';
 import { env } from '../pages/Env';
 
 export default class EntryAbility extends UIAbility {
+  // 在onCreate里获取需要的系统环境变量
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     env.language = this.context.config.language;
     env.colorMode = this.context.config.colorMode;

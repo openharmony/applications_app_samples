@@ -17,6 +17,7 @@ import { ComponentCard } from '../../common/Card';
 import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
 import { util } from '@kit.ArkTS';
 import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start arcAlphabetIndexer_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
@@ -149,11 +150,11 @@ export struct ArcListArcIndexerBar {
               .height(this.watchSize)
               .usePopup(false)
               .hitTestBehavior(HitTestMode.Transparent)
-              .selectedColor(ColorMetrics.resourceColor(0xFFFFFF))
-              .selectedBackgroundColor(ColorMetrics.resourceColor(0x1F71FF))
-              .color(ColorMetrics.resourceColor(0xFFFFFF))
-              .popupColor(ColorMetrics.resourceColor(0xFFFFFF))
-              .popupBackground(ColorMetrics.resourceColor(0xD8404040))
+              .selectedColor(ColorMetrics.numeric(0xFFFFFF))
+              .selectedBackgroundColor(ColorMetrics.numeric(0x1F71FF))
+              .color(ColorMetrics.numeric(0xFFFFFF))
+              .popupColor(ColorMetrics.numeric(0xFFFFFF))
+              .popupBackground(ColorMetrics.numeric(0xD8404040))
               .itemSize(LengthMetrics.px(12))
               .selectedFont({
                 size: '11.0fp',

@@ -23,6 +23,7 @@ class Info {
 @Entry
 @ComponentV2
 struct Page2 {
+  // message初始化为makeObserved的返回值，具有深度观察能力
   @Local message: Info = UIUtils.makeObserved(new Info(20));
   build() {
     Column() {

@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "截屏"
+    },
+    {
+      "name": "description_mainability",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "button_name",
+      "value": "查 看"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "media_location_reason",
+      "value": "Screenshot apps need to read media location information"
+    },
+    {
+      "name": "read_media_reason",
+      "value": "Screenshot apps need to read media files"
+    },
+    {
+      "name": "write_media_reason",
+      "value": "Screenshot apps need to write media files"
+    },
+    {
+      "name": "avscreencapture_privacy_window_title",
+      "value": "录屏投屏管理"
+    },
+    {
+      "name": "avscreencapture_privacy_window_content",
+      "value": "\"%s\"将录制/投射您屏幕上显示的内容和系统声音。请注意保护个人敏感信息，如密码、付款信息、照片、录像、聊天记录等。"
+    },
+    {
+      "name": "avscreencapture_privacy_window_cancel",
+      "value": "不允许"
+    },
+    {
+      "name": "avscreencapture_privacy_window_agree",
+      "value": "允许"
+    },
+    {
+      "name": "screenshot_reason",
+      "value": "申请屏幕截图权限，用于截取当前屏幕画面。"
+    }
+  ]
+}

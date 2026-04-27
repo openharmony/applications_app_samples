@@ -18,7 +18,7 @@
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
 
-OH_Crypto_ErrCode randomGenerateRSA()
+OH_Crypto_ErrCode generateSM2Key()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_CryptoKeyPair *dupKeyPair = nullptr;
@@ -46,6 +46,7 @@ OH_Crypto_ErrCode randomGenerateRSA()
         return ret;
     }
 
+    OH_Crypto_FreeDataBlob(&retBlob);
     OH_CryptoAsymKeyGenerator_Destroy(ctx);
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;

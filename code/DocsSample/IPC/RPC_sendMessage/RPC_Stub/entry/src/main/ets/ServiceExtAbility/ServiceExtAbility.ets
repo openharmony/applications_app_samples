@@ -27,12 +27,12 @@ class Stub extends rpc.RemoteObject {
     // 服务端Stub根据不同的请求code分别执行对应的处理流程
     if (code == 1) {
       let str = data.readString();
-      hilog.info(0x0000, 'testTag', 'RPC_Stub: stub receive str is ' + str);
+      hilog.info(0x0000, 'testTag', 'stub receive str is ' + str);
       // 服务端使用reply回传请求处理的结果给客户端
       reply.writeString('hello rpc');
       return true;
     } else {
-      hilog.info(0x0000, 'testTag', 'RPC_Stub: stub unknown code, code is ' + code);
+      hilog.info(0x0000, 'testTag', 'stub unknown code, code is ' + code);
       return false;
     }
   }
@@ -41,24 +41,24 @@ class Stub extends rpc.RemoteObject {
 // 定义后台服务
 export default class ServiceAbility extends ServiceExtensionAbility {
   onCreate(want: Want): void {
-    hilog.info(0x0000, 'testTag', 'RPC_Stub: onCreate');
+    hilog.info(0x0000, 'testTag', 'onCreate');
   }
 
   onRequest(want: Want, startId: number): void {
-    hilog.info(0x0000, 'testTag', 'RPC_Stub: onRequest');
+    hilog.info(0x0000, 'testTag', 'onRequest');
   }
 
   onConnect(want: Want): rpc.RemoteObject {
-    hilog.info(0x0000, 'testTag', 'RPC_Stub: onConnect');
+    hilog.info(0x0000, 'testTag', 'onConnect');
     // 返回Stub对象，客户端获取后便可以与ServiceExtensionAbility进行通信
     return new Stub('RPCStubTest');
   }
 
   onDisconnect(want: Want): void {
-    hilog.info(0x0000, 'testTag', 'RPC_Stub: onDisconnect');
+    hilog.info(0x0000, 'testTag', 'onDisconnect');
   }
 
   onDestroy(): void {
-    hilog.info(0x0000, 'testTag', 'RPC_Stub: onDestroy');
+    hilog.info(0x0000, 'testTag', 'onDestroy');
   }
 }

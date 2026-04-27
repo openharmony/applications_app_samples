@@ -38,8 +38,8 @@ function testConvertSymKey() {
         console.error(`convertKey failed: errCode: ${e.code}, message: ${e.message}`);
         return;
       }
-      console.info('key algName：' + key.algName);
-      console.info('key format：' + key.format);
+      console.info('key algName: ' + key.algName);
+      console.info('key format: ' + key.format);
       let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，并以字节数组形式输出。长度为24字节
       console.info('key getEncoded hex: ' + encodedKey.data);
     })

@@ -17,12 +17,21 @@
 #define NATIVE_NODE_SAMPLE_TEXTEDITORMAKER_H
 
 #include "manager.h"
+#include <native_drawing/drawing_pen.h>
+#include <native_drawing/drawing_canvas.h>
+#include <native_drawing/drawing_rect.h>
+#include <native_drawing/drawing_color_filter.h>
+#include <multimedia/image_framework/image/pixelmap_native.h>
 
 class TextEditorMaker {
 public:
     TextEditorMaker(){};
     ~TextEditorMaker(){};
     static ArkUI_NodeHandle CreateNativeNode();
+
+private:
+    static void StyledStringStyledPlaceholder();
+    static void StyledStringWithChangeCallbacks();
 };
 
 #endif //NATIVE_NODE_SAMPLE_TEXTEDITORMAKER_H

@@ -27,7 +27,7 @@ export struct AlarmClock {
   @State canvasRadius: number = 0
   @State alarmClockName: string[] = []
   @State selectAlarmClockIndex: number = 0
-  private title: Resource | undefined = undefined;
+  public title: Resource | undefined = undefined;
   private alarmClockSetting: CustomDialogController = new CustomDialogController({
     builder: AlarmClockSetting({ selectAlarmClockIndex: this.selectAlarmClockIndex })
   })
@@ -45,7 +45,7 @@ export struct AlarmClock {
           .margin({ right: 8 })
           .id('addClock')
           .onClick(() => {
-            TimePickerDialog.show({
+            this.getUIContext().showTimePickerDialog({
               selected: new Date,
               useMilitaryTime: true,
               onAccept: async (value: TimePickerResult) => {

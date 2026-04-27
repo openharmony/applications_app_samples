@@ -34,6 +34,8 @@ struct Index {
     Column() {
       ConsumerChild({ dataObj: this.dataObjFromList })
       Button('change to self').onClick(() => {
+        // DataObj被@Observed装饰，list[0]也是Proxy类型
+        // 再次赋值相同的对象时，不会触发刷新
         this.dataObjFromList = this.list[0];
       })
     }

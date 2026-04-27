@@ -23,6 +23,7 @@
     "mainElement": "EntryAbility",
     // [EndExclude module_json_config]
     "deviceTypes": [
+      "default",
       "wearable"
     ],
     // [StartExclude module_json_config]

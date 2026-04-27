@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "NotificationManagement"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "timing_on",
+      "value": "定时开启"
+    },
+    {
+      "name": "allowDistribut",
+      "value": "允许通知同步"
+    },
+    {
+      "name": "allowDistributDescribe",
+      "value": "开启后，本设备通知可同步到其他设备"
+    }
+  ]
+}

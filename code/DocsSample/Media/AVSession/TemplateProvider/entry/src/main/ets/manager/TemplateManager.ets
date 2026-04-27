@@ -55,7 +55,7 @@
 // [Start report_execute_action]
 // [Start set_extension_ability]
 // [Start destroy]
-import avMusicTemplate from '@ohos.multimedia.avMusicTemplate';
+import { avMusicTemplate } from '@kit.AVSessionKit';
 // [StartExclude manager_create_template]
 // [StartExclude template_register_listener]
 // [StartExclude set_user_info]

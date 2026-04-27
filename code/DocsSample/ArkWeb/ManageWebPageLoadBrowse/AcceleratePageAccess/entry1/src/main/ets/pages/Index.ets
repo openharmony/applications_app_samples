@@ -14,11 +14,6 @@
  */
 // [Start previously_connect_in_onAppear_to_pages_being_loaded]
 import { webview } from '@kit.ArkWeb';
-// [StartExclude previously_connect_in_onAppear_to_pages_being_loaded]
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-// [EndExclude previously_connect_in_onAppear_to_pages_being_loaded]
 
 @Entry
 @Component

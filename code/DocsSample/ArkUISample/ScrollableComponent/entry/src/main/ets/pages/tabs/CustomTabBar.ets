@@ -15,7 +15,6 @@
 
 import { ComponentCard } from '../../common/Card';
 
-@Entry
 @Component
 export struct CustomTabBar {
   // [Start custom_tab_bar_style]

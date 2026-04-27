@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "输入源"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "输入源"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "输入源"
+    },
+    {
+      "name": "tips_in_development",
+      "value": "该功能开发中，敬请期待"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +13,20 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
-
+import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
   @State message: string = 'CertificateAlgorithmLibrary';
 
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
-    }, router.RouterMode.Single, (err) => {
-      if (err) {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
+    }).then(() => {
       console.info('pushUrl success');
-    })
+    }).catch((err: BusinessError) => {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 
   build() {
@@ -96,6 +93,11 @@ struct Index {
         .width('70%')
         .onClick(() => {
           this.goToSample('pages/AllowDownloadIntermediateCert');
+        })
+      Button('ValidateCertChainByCertchainvalidator')
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/ValidateCertChainByCertchainvalidator');
         })
     }
     .height('100%')

@@ -17,6 +17,7 @@ import { describe, expect, it } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
 import hilog from '@ohos.hilog';
 import { resourceToString } from '../../../main/ets/component/ResourceToString';
+import { application } from '@kit.AbilityKit';
 
 const BUNDLE = 'I18nTest_';
 const TAG: string = '[Sample_Internationalization]';
@@ -82,19 +83,22 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'LaunchIndexPage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'LaunchIndexPage_001, begin');
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
       await delegator.startAbility({
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(DELAY_TIME_LONG);
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.LanguagePreferenceSetting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.NumberMeasurementFormatting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.PhoneNumberFormatting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.CalendarSetting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.TimezoneDstSetting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.MultilingualSorting'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.CharacterProcessing'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.NameLocalization'))));
+      await driver.assertComponentExist(
+        ON.text(resourceToString($r('app.string.LanguagePreferenceSetting'), context)));
+      await driver.assertComponentExist(
+        ON.text(resourceToString($r('app.string.NumberMeasurementFormatting'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.PhoneNumberFormatting'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.CalendarSetting'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.TimezoneDstSetting'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.MultilingualSorting'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.CharacterProcessing'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.NameLocalization'), context)));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'LaunchIndexPage_001, end');
     });
@@ -106,19 +110,22 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'LanguagePreferenceSetting_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'LanguagePreferenceSetting_002, begin');
-      await checkAndClickByText(resourceToString($r('app.string.LanguagePreferenceSetting')));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.LanguagePreferenceSetting'), context));
       await driver.assertComponentExist(
-        ON.text(resourceToString($r('app.string.ResultsOfSetSystemLanguageAndRegion'))));
+        ON.text(resourceToString($r('app.string.ResultsOfSetSystemLanguageAndRegion'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.SetAndGetSystemLanguage'))}zh-Hans --passed`));
+        ON.text(`${resourceToString($r('app.string.SetAndGetSystemLanguage'), context)}zh-Hans --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.SetAndGetSystemRegion'))}CN --passed`));
+        ON.text(`${resourceToString($r('app.string.SetAndGetSystemRegion'), context)}CN --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.SetAndGetSystemLocale'))}zh-Hans-CN --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfSetPreferredLanguage'))));
+        ON.text(`${resourceToString($r('app.string.SetAndGetSystemLocale'), context)}zh-Hans-CN --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.SetAndGetPreferredLanguage'))}zh-Hans --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfSetUserPreference'))));
+        ON.text(resourceToString($r('app.string.ResultsOfSetPreferredLanguage'), context)));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.SetAndGetPreferredLanguage'), context)}zh-Hans --passed`));
+      await driver.assertComponentExist(
+        ON.text(resourceToString($r('app.string.ResultsOfSetUserPreference'), context)));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'LanguagePreferenceSetting_002, end');
@@ -131,13 +138,14 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'NumberMeasurementFormatting_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_003, begin');
-      await checkAndClickByText(resourceToString($r('app.string.NumberMeasurementFormatting')));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.NumberMeasurementFormatting'), context));
       await scrollOuterBottomView('outerScrollInNumberMeasure');
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfMeasureTrans'))));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfMeasureTrans'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.MeasureTrans'))}236.588 L --passed`));
+        ON.text(`${resourceToString($r('app.string.MeasureTrans'), context)}236.588 L --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.LongMeasureTrans'))}236.588 liters --passed`));
+        ON.text(`${resourceToString($r('app.string.LongMeasureTrans'), context)}236.588 liters --passed`));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'NumberMeasurementFormatting_003, end');
@@ -150,16 +158,19 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'PhoneNumberFormatting_004', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_004, begin');
-      await checkAndClickByText(resourceToString($r('app.string.PhoneNumberFormatting')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfPhoneNumberFormat'))));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.PhoneNumberFormatting'), context));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfPhoneNumberFormat'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.PhoneNumberFormat'))}158 2312 --passed`));
+        ON.text(`${resourceToString($r('app.string.PhoneNumberFormat'), context)}158 2312 --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.RFC3966TypeNumberFormat'))}tel:+86-1582312 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.IsValidNumber'))}false --passed`));
+        ON.text(`${resourceToString($r('app.string.RFC3966TypeNumberFormat'), context)}tel:+86-1582312 --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CNLocationName'))} --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FormatResult'))}0755 453 --passed`));
+        ON.text(`${resourceToString($r('app.string.IsValidNumber'), context)}false --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.CNLocationName'), context)} --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.FormatResult'), context)}0755 453 --passed`));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'PhoneNumberFormatting_004, end');
@@ -172,28 +183,36 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'CalendarFormatting_005', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_005, begin');
-      await checkAndClickByText(resourceToString($r('app.string.CalendarSetting')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTheGregorianCalendar'))));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.TheGregorianCalendarSets'))));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.CalendarSetting'), context));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.Timezone'))}Asia/Shanghai --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FirstDayOfWeek'))}1 --passed`));
+        ON.text(resourceToString($r('app.string.ResultsOfTheGregorianCalendar'), context)));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.TheGregorianCalendarSets'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.MinimalDaysInFirstWeek'))}1 --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.SetMinimalDaysInFirstWeek'))));
+        ON.text(`${resourceToString($r('app.string.Timezone'), context)}Asia/Shanghai --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.YearOfTheFirstWeekIs3'))}2022 --passed`));
+        ON.text(`${resourceToString($r('app.string.FirstDayOfWeek'), context)}1 --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.LocalizedCalendarName'))}` +
-          `${resourceToString($r('app.string.Calendar'))} --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.IsWeekend'))}true --passed`));
+        ON.text(`${resourceToString($r('app.string.MinimalDaysInFirstWeek'), context)}1 --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.DateAfterAddingDays'))}17 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.DaysBetweenDates'))}-3 --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.LunarCalendar'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.LunarYear'))}40 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.LunarMonth'))}5 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.LunarDate'))}8 --passed`));
+        ON.text(resourceToString($r('app.string.SetMinimalDaysInFirstWeek'), context)));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.YearOfTheFirstWeekIs3'), context)}2022 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.LocalizedCalendarName'), context)}` +
+          `${resourceToString($r('app.string.Calendar'), context)} --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.IsWeekend'), context)}true --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.DateAfterAddingDays'), context)}17 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.DaysBetweenDates'), context)}-3 --passed`));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.LunarCalendar'), context)));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.LunarYear'), context)}40 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.LunarMonth'), context)}5 --passed`));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.LunarDate'), context)}8 --passed`));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'CalendarFormatting_005, end');
@@ -206,21 +225,26 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'TimezoneDstSetting_006', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TimezoneDstSetting_006, begin');
-      await checkAndClickByText(resourceToString($r('app.string.TimezoneDstSetting')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTimezoneFunction'))));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.TimezoneDstSetting'), context));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.GetAucklandID'))}Pacific/Auckland --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.TimeZoneLocalName'))}` +
-        `${resourceToString($r('app.string.ExpectedTimeZone'))}`, MatchPattern.CONTAINS));
+        ON.text(resourceToString($r('app.string.ResultsOfTimezoneFunction'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.AucklandDisplayName'))}` +
-          `${resourceToString($r('app.string.ExpectedCityDisplayName'))} --passed`));
+        ON.text(`${resourceToString($r('app.string.GetAucklandID'), context)}Pacific/Auckland --passed`));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.TimeZoneLocalName'), context)}` +
+        `${resourceToString($r('app.string.ExpectedTimeZone'), context)}`, MatchPattern.CONTAINS));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.GetRawOffset'))}-10800000 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.GetOffset'))}-10800000 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.GetAvailableIDs'))}passed`));
+        ON.text(`${resourceToString($r('app.string.AucklandDisplayName'), context)}` +
+          `${resourceToString($r('app.string.ExpectedCityDisplayName'), context)} --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.GetRawOffset'), context)}-10800000 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.GetOffset'), context)}-10800000 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.GetAvailableIDs'), context)}passed`));
       await scrollView('idsScroll', 'idsText', expectedIdsText)
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.GetAvailableZoneCityIDs'))}passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.GetAvailableZoneCityIDs'), context)}passed`));
       await scrollView('cityIdArrayScroll', 'cityIdArrayText', expectedCityIdArrayText);
       await scrollOuterBottomView('outerScrollInTimezone');
       await scrollView('timezoneListScroll', `timezoneListText${LAST_INDEX}`, expectedTimezoneListText);
@@ -236,11 +260,14 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'MultilingualSorting_007', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_007, begin');
-      await checkAndClickByText(resourceToString($r('app.string.MultilingualSorting')));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfIndexList'))}passed`));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.MultilingualSorting'), context));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.ResultOfIndexList'), context)}passed`));
       await driver.assertComponentExist(ON.text('…,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,' +
         '…,А,Б,В,Г,Д,Е,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ы,Э,Ю,Я,…'));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfIndex'))}N --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.ResultOfIndex'), context)}N --passed`));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'MultilingualSorting_007, end');
@@ -253,31 +280,39 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'CharacterProcessing_008', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_008, begin');
-      await checkAndClickByText(resourceToString($r('app.string.CharacterProcessing')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfCharacterType'))));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.CharacterProcessing'), context));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfCharacterType'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.Character1IsNumber'))}true --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.AIsRightToLeft'))}false --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.HuaIsIdeograph'))}true --passed`));
+        ON.text(`${resourceToString($r('app.string.Character1IsNumber'), context)}true --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.AGetType'))}U_LOWERCASE_LETTER --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTrans'))));
+        ON.text(`${resourceToString($r('app.string.AIsRightToLeft'), context)}false --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CharacterTransResult'))}zhōng guó --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ChinaTrans'))}zhong guo --passed`));
+        ON.text(`${resourceToString($r('app.string.HuaIsIdeograph'), context)}true --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.TeachersSurnameTrans'))}shàn lǎo shī --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultsOfSupportedId'))}passed`));
+        ON.text(`${resourceToString($r('app.string.AGetType'), context)}U_LOWERCASE_LETTER --passed`));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTrans'), context)));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.CharacterTransResult'), context)}zhōng guó --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.ChinaTrans'), context)}zhong guo --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.TeachersSurnameTrans'), context)}shàn lǎo shī --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.ResultsOfSupportedId'), context)}passed`));
       await scrollView('transIdsScroll', 'transIdsText', expectedTransIdsText);
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfNormalize'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.NFCNormalizeResult'))}ẛ̣ --passed`));
-      await scrollOuterBottomView('outerScrollInCharacter');
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfBreakIterator'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FirstPos'))}0 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.NextPos'))}9 --passed`));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.IsBoundary'))}true --passed`));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfNormalize'), context)));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.BreakText'))}Apple is my favorite fruit. --passed`));
+        ON.text(`${resourceToString($r('app.string.NFCNormalizeResult'), context)}ẛ̣ --passed`));
+      await scrollOuterBottomView('outerScrollInCharacter');
+      await driver.assertComponentExist(
+        ON.text(resourceToString($r('app.string.ResultsOfBreakIterator'), context)));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.FirstPos'), context)}0 --passed`));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.NextPos'), context)}9 --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.IsBoundary'), context)}true --passed`));
+      await driver.assertComponentExist(
+        ON.text(`${resourceToString($r('app.string.BreakText'), context)}Apple is my favorite fruit. --passed`));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'CharacterProcessing_008, end');
@@ -290,15 +325,16 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'NameLocalization_009', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_009, begin');
-      await checkAndClickByText(resourceToString($r('app.string.NameLocalization')));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfLanguageRegion'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.DisplayLanguage'))}` +
-        `${resourceToString($r('app.string.ExpectedDisplayLanguage'))} --passed`));
+      const context = await application.createModuleContext(application.getApplicationContext(), "entry_test");
+      await checkAndClickByText(resourceToString($r('app.string.NameLocalization'), context));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfLanguageRegion'), context)));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.DisplayLanguage'), context)}` +
+        `${resourceToString($r('app.string.ExpectedDisplayLanguage'), context)} --passed`));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.DisplayCountry'))}Saudi Arabia --passed`));
-      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfDisplayTimezone'))));
-      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfTimezoneName'))}` +
-        `${resourceToString($r('app.string.ExpectedTimeZone'))}`, MatchPattern.CONTAINS));
+        ON.text(`${resourceToString($r('app.string.DisplayCountry'), context)}Saudi Arabia --passed`));
+      await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfDisplayTimezone'), context)));
+      await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultOfTimezoneName'), context)}` +
+        `${resourceToString($r('app.string.ExpectedTimeZone'), context)}`, MatchPattern.CONTAINS));
       await goBack();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'NameLocalization_009, end');

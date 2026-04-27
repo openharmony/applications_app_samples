@@ -24,6 +24,7 @@ struct HelloWorldPage {
   @State pathStack: NavPathStack = new NavPathStack();
 
   build() {
+    // 用于跳转的子页面
     NavDestination() {
       Column() {
         Text(this.message)

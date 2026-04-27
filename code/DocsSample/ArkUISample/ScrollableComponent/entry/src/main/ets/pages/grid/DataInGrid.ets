@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 import common from '@ohos.app.ability.common';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start build_a_office_services_grid_of_foreach]
 @Entry
 @Component
@@ -26,9 +27,9 @@ export struct DataInGrid {
   @State services: Array<string> = [
     // app.string.Meeting资源文件中的value值为‘会议’
     this.context!.resourceManager.getStringSync($r('app.string.Meeting').id),
-    // app.string.Check_in资源文件中的value值为‘投票’
+    // app.string.Check_in资源文件中的value值为‘签到’
     this.context!.resourceManager.getStringSync($r('app.string.Check_in').id),
-    // app.string.Voting资源文件中的value值为‘签到’
+    // app.string.Voting资源文件中的value值为‘投票’
     this.context!.resourceManager.getStringSync($r('app.string.Voting').id),
     // app.string.Printing资源文件中的value值为‘打印’
     this.context!.resourceManager.getStringSync($r('app.string.Printing').id)
@@ -36,14 +37,30 @@ export struct DataInGrid {
   // [StartExclude build_a_office_services_grid_of_foreach]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const meeting = context.resourceManager.getStringByNameSync('Meeting')
-    this.services.push(meeting)
-    const check = context.resourceManager.getStringByNameSync('Check_in')
-    this.services.push(check)
-    const voting = context.resourceManager.getStringByNameSync('Voting')
-    this.services.push(voting)
-    const printing = context.resourceManager.getStringByNameSync('Printing')
-    this.services.push(printing)
+    try {
+      const meeting = context.resourceManager.getStringByNameSync('Meeting')
+      this.services.push(meeting)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Meeting: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const check = context.resourceManager.getStringByNameSync('Check_in')
+      this.services.push(check)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Check_in: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const voting = context.resourceManager.getStringByNameSync('Voting')
+      this.services.push(voting)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Voting: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      const printing = context.resourceManager.getStringByNameSync('Printing')
+      this.services.push(printing)
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get Printing: %{public}s', JSON.stringify(e) ?? '');
+    }
   }
   // [EndExclude build_a_office_services_grid_of_foreach]
 
@@ -66,7 +83,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // app.string.Check_in资源文件中的value值为‘投票’
+              // app.string.Check_in资源文件中的value值为‘签到’
               Text($r('app.string.Check_in'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -74,7 +91,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // app.string.Voting资源文件中的value值为‘签到’
+              // app.string.Voting资源文件中的value值为‘投票’
               Text($r('app.string.Voting'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)

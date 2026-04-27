@@ -191,5 +191,5 @@ private:
 
 } // namespace NativeModule
 
-#endif //MYAPPLICATION_FLOWITEMADAPTER_H
+#endif // MYAPPLICATION_FLOWITEMADAPTER_H
 // [End flow_item_adapter]

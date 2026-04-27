@@ -14,7 +14,7 @@
 */
 
 // [Start import_modulePartSeven]
-// ModulePartSeven.ets
+// PageSeven.ets
 import { data } from './ModulePartSeven';
 
 @Entry

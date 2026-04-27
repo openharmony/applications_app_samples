@@ -1,0 +1,93 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 114,
+						"StartTime": 106,
+						"Parameters": {
+							"Intensity": 44,
+							"Frequency": 20,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 72,
+									"Intensity": 0.26,
+									"Frequency": 10
+								},
+								{
+									"Time": 86,
+									"Intensity": 0.59,
+									"Frequency": 15
+								},
+								{
+									"Time": 102,
+									"Intensity": 0.59,
+									"Frequency": 10
+								},
+								{
+									"Time": 114,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 141,
+						"StartTime": 232,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 50,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 10
+								},
+								{
+									"Time": 1,
+									"Intensity": 1,
+									"Frequency": 30
+								},
+								{
+									"Time": 29,
+									"Intensity": 1,
+									"Frequency": 50
+								},
+								{
+									"Time": 45,
+									"Intensity": 0.51,
+									"Frequency": -20
+								},
+								{
+									"Time": 141,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -26,6 +26,7 @@ struct Index {
       Button('Click to print log')
         .onClick(() => {
           for (let i = 0; i < 10; i++) {
+            // 循环逻辑中频繁读取状态变量
             hilog.info(0x0000, 'TAG', '%{public}s', this.message);
           }
         })

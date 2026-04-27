@@ -67,7 +67,6 @@ struct CustomizeCanvasComponentDrawing {
         .onReady(() =>{
           this.drawText()
         })
-        .backgroundColor(Color.Pink)
     }
     .height('100%')
   }

@@ -37,7 +37,8 @@ const TAG: string = 'LayoutInfoModel';
 
 export const SHOPPING_BUNDLE: string = 'com.samples.asorangeshopping';
 
-const SYSTEM_APPLICATIONS: string = 'com.ohos.adminprovisioning,com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
+const SYSTEM_APPLICATIONS: string =
+  'com.ohos.adminprovisioning,com.ohos.launcher,ohos.samples.launcher,com.ohos.systemui,com.ohos.devicemanagerui,com.ohos.callui,com.example.kikakeyboard,com.ohos.contactdataability,com.ohos.telephonydataability,com.ohos.medialibrary.MediaLibraryDataA,com.ohos.medialibrary.MediaScannerAbilityA'
 const KEY_NAME = 'name';
 
 export class DesktopLayoutModel {
@@ -66,7 +67,6 @@ export class DesktopLayoutModel {
     }
   }
 
-
   /**
    * Get the application data model object.
    *
@@ -81,8 +81,8 @@ export class DesktopLayoutModel {
 
   private async removeItemByBundle(bundleName: string): Promise<void> {
     let page = this.layoutInfo.length;
-    for (let i = 0;i < page; i++) {
-      for (let j = 0;j < this.layoutInfo[i].length; j++) {
+    for (let i = 0; i < page; i++) {
+      for (let j = 0; j < this.layoutInfo[i].length; j++) {
         if (this.layoutInfo[i][j].bundleName === bundleName) {
           await this.removeItemFromDeskTop(this.layoutInfo[i][j]);
         }
@@ -245,9 +245,9 @@ export class DesktopLayoutModel {
     }
     // 数据库中查询到了数据，则优先加载数据库中的应用和卡片，剩余的应用图标在最后一个图标的位置后面添加
     else {
-      for (let i = 0;i < infos.length; i++) {
+      for (let i = 0; i < infos.length; i++) {
         let find = false;
-        for (let j = 0;j < gridLayoutItemInfos.length; j++) {
+        for (let j = 0; j < gridLayoutItemInfos.length; j++) {
           if (infos[i].bundleName === gridLayoutItemInfos[j].bundleName) {
             if (gridLayoutItemInfos[j].page >= result.length) {
               result.push([]);
@@ -265,7 +265,7 @@ export class DesktopLayoutModel {
       // 加载完数据库中的后，剩余的app
       if (plusApps.length > 0) {
         Logger.info(TAG, `加载完数据库中的后，剩余的app`)
-        for (let k = 0;k < plusApps.length; k++) {
+        for (let k = 0; k < plusApps.length; k++) {
           let item = plusApps[k];
           if (item) {
             this.addAppToDesktop(item, false);
@@ -308,10 +308,11 @@ export class DesktopLayoutModel {
       return;
     }
     let pageInfos = this.layoutInfo;
-    for (let i = 0;i < pageInfos.length; i++) {
+    for (let i = 0; i < pageInfos.length; i++) {
       Logger.info(TAG, `removeCardFromDeskTop pageInfos${i}`);
-      for (let j = 0;j < pageInfos[i].length; j++) {
-        if (pageInfos[i][j].bundleName === appInfo?.bundleName && pageInfos[i][j].abilityName === appInfo?.abilityName) {
+      for (let j = 0; j < pageInfos[i].length; j++) {
+        if (pageInfos[i][j].bundleName === appInfo?.bundleName &&
+          pageInfos[i][j].abilityName === appInfo?.abilityName) {
           return;
         }
       }
@@ -382,12 +383,12 @@ export class DesktopLayoutModel {
     let countsOnePage = CommonConstants.DEFAULT_COLUMN_COUNT * CommonConstants.DEFAULT_ROW_COUNT;
     let result: Array<Array<GridLayoutItemInfo>> = [];
     let page = Math.floor(appInfos.length / countsOnePage) + 1;
-    for (let i = 0;i < page; i++) {
+    for (let i = 0; i < page; i++) {
       let item: Array<GridLayoutItemInfo> | undefined = [];
       result.push(item);
     }
     Logger.info(TAG, `initPositionInfos result0 = ${JSON.stringify(result)}`);
-    for (let j = 0;j < appInfos.length; j++) {
+    for (let j = 0; j < appInfos.length; j++) {
       let item = appInfos[j];
       Logger.info(TAG, `initPositionInfos infos[${j}], item = ${JSON.stringify(item)}`);
       // 获取appLabelId，之后需要修改包名
@@ -431,8 +432,8 @@ export class DesktopLayoutModel {
    *
    * @param formCardItem
    */
-  async createCardToDeskTop(formCardItem: FormCardItem) {
-    if (CheckEmptyUtils.isEmpty(formCardItem)) {
+  async createCardToDeskTop(formCardItem: FormCardItem | undefined) {
+    if (formCardItem === undefined || CheckEmptyUtils.isEmpty(formCardItem)) {
       return;
     }
     Logger.info(TAG, `createCardToDeskTop formCardItem ${JSON.stringify(formCardItem)}`);
@@ -465,11 +466,11 @@ export class DesktopLayoutModel {
     }
     Logger.info(TAG, 'removeCardFromDeskTop start');
     let pageInfos = this.layoutInfo;
-    searchCircle:for (let i = 0;i < pageInfos.length; i++) {
+    searchCircle: for (let i = 0; i < pageInfos.length; i++) {
       Logger.info(TAG, `removeCardFromDeskTop pageInfos${i}`);
-      for (let j = 0;j < pageInfos[i].length; j++) {
+      for (let j = 0; j < pageInfos[i].length; j++) {
         if (pageInfos[i][j].bundleName === item.bundleName && pageInfos[i][j].page === item.page
-        && pageInfos[i][j].row === item.row && pageInfos[i][j].column === item.column) {
+          && pageInfos[i][j].row === item.row && pageInfos[i][j].column === item.column) {
           Logger.debug(TAG, `removeCardFromDeskTop pageInfos${i}${j} is find,remove`);
           pageInfos[i].splice(j, 1);
           // 移除后是空白屏幕，移除屏幕

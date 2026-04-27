@@ -20,9 +20,13 @@ import Logger from '../common/Logger';
 export class Mover {
   async move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore): Promise<void> {
     if (eStore != null && cStore != null) {
-      let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
-      await eStore.putBatch(entries);
-      Logger.info(`ECDB_Encry move success`);
+      try {
+        let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
+        await eStore.putBatch(entries);
+        Logger.info(`ECDB_Encry move success`);
+      } catch (e) {
+        Logger.info(`ECDB_Encry move failed,code is ${e.code},message is ${e.message}`);
+      }
     }
   }
 }

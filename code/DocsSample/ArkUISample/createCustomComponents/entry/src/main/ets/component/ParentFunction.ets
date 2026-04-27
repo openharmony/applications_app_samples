@@ -24,6 +24,7 @@ struct Parent {
   build() {
     Column() {
       Text(`${this.cnt}`)
+      // 父组件中的函数传递给子组件
       Son({ submitArrow: this.submit })
     }
   }

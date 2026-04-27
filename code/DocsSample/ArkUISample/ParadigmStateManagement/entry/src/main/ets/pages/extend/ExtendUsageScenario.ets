@@ -34,6 +34,7 @@ struct FancyUse {
 
   build() {
     Row({ space: 10 }) {
+      // Text组件重复设置样式
       Text(`${this.label}`)
         .fontStyle(FontStyle.Italic)
         .fontWeight(500)

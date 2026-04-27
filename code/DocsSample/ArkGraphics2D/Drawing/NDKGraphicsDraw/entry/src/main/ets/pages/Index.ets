@@ -33,18 +33,33 @@ const operationUrls: string[] = [
 @Entry
 @Component
 struct Index {
-  ResourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+  ResourceToString(resId: number): string {
+    return this.getUIContext().getHostContext()!.resourceManager.getStringSync(resId);
+  }
+
+  async routePage(index: number) {
+    let options: router.RouterOptions = {
+      url: operationUrls[index]
+    }
+    this.getUIContext()
+      .getRouter()
+      .pushUrl(options)
+      .then(() => {
+        console.error(`pushUrl finish`);
+      })
+      .catch((err: ESObject) => {
+        console.error(`pushUrl failed`);
+      })
   }
 
   @State listItem: Item[] = [
-    { text: this.ResourceToString($r('app.string.CanvasGetResult')) },
-    { text: this.ResourceToString($r('app.string.CanvasOperationState')) },
-    { text: this.ResourceToString($r("app.string.BasicEffect")) },
-    { text: this.ResourceToString($r('app.string.ComplexEffect')) },
-    { text: this.ResourceToString($r('app.string.Shape_Drawing')) },
-    { text: this.ResourceToString($r("app.string.PixelMap_Drawing")) },
-    { text: this.ResourceToString($r("app.string.TextBlock_Drawing")) }
+    { text: this.ResourceToString($r('app.string.CanvasGetResult').id) },
+    { text: this.ResourceToString($r('app.string.CanvasOperationState').id) },
+    { text: this.ResourceToString($r("app.string.BasicEffect").id) },
+    { text: this.ResourceToString($r('app.string.ComplexEffect').id) },
+    { text: this.ResourceToString($r('app.string.Shape_Drawing').id) },
+    { text: this.ResourceToString($r("app.string.PixelMap_Drawing").id) },
+    { text: this.ResourceToString($r("app.string.TextBlock_Drawing").id) }
   ]
 
   build() {
@@ -63,9 +78,7 @@ struct Index {
                 .width(12)
             }
             .onClick(() => {
-              router.pushUrl({
-                url: operationUrls[index]
-              });
+              this.routePage(index)
             })
             .border({ radius: 20 })
             .width('90%')

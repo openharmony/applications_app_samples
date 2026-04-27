@@ -1,0 +1,32 @@
+{
+  "strarray": [
+    {
+      "name": "software_update_titles",
+      "value": [
+        {
+          "value": "在线升级"
+        },
+        {
+          "value": "U盘本地升级"
+        }
+      ]
+    },
+    {
+      "name": "software_update_dialog",
+      "value": [
+        {
+          "value": "已检测到新版本"
+        },
+        {
+          "value": "是否进行升级？"
+        },
+        {
+          "value": "取消升级"
+        },
+        {
+          "value": "立即升级"
+        }
+      ]
+    }
+  ]
+}

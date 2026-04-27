@@ -1,0 +1,136 @@
+{
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 36,
+							"Frequency": 0
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 120,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 7
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 226,
+						"StartTime": 167,
+						"Parameters": {
+							"Intensity": 71,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 6,
+									"Intensity": 1.0,
+									"Frequency": -25
+								},
+								{
+									"Time": 50,
+									"Intensity": 0.52,
+									"Frequency": -68
+								},
+								{
+									"Time": 226,
+									"Intensity": 0.0,
+									"Frequency": -100
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 147,
+						"StartTime": 579,
+						"Parameters": {
+							"Intensity": 26,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 42,
+									"Intensity": 0.83,
+									"Frequency": -31
+								},
+								{
+									"Time": 102,
+									"Intensity": 1.0,
+									"Frequency": -91
+								},
+								{
+									"Time": 147,
+									"Intensity": 0.0,
+									"Frequency": -81
+								}
+							]
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 731,
+						"Parameters": {
+							"Intensity": 38,
+							"Frequency": 30,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0.0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1.0,
+									"Frequency": -19
+								},
+								{
+									"Time": 71,
+									"Intensity": 1.0,
+									"Frequency": -86
+								},
+								{
+									"Time": 150,
+									"Intensity": 0.0,
+									"Frequency": -100
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card'
 import common from '@ohos.app.ability.common';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // 消息类型定义
 // [Start listitem_data_structure]
 interface Message {
@@ -65,14 +66,30 @@ export struct ListChatRoom {
 
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    // app.string.welcome_live_room资源文件中的value值为'欢迎来到直播间'
-    const welcomeLiveRoom = context.resourceManager.getStringByNameSync('welcome_live_room');
-    // app.string.system资源文件中的value值为'系统'
-    const system = context.resourceManager.getStringByNameSync('system');
-    // app.string.hello_everyone资源文件中的value值为'大家好啊~'
-    const helloEveryone = context.resourceManager.getStringByNameSync('hello_everyone');
-    // app.string.anchors资源文件中的value值为'主播'
-    const anchors = context.resourceManager.getStringByNameSync('anchors');
+    let welcomeLiveRoom = '';
+    let system = '';
+    let helloEveryone = '';
+    let anchors = '';
+    try {
+      welcomeLiveRoom = context.resourceManager.getStringByNameSync('welcome_live_room');
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get welcome_live_room: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      system = context.resourceManager.getStringByNameSync('system');
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get system: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      helloEveryone = context.resourceManager.getStringByNameSync('hello_everyone');
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get hello_everyone: %{public}s', JSON.stringify(e) ?? '');
+    }
+    try {
+      anchors = context.resourceManager.getStringByNameSync('anchors');
+    } catch (e) {
+      hilog.error(0x0000, 'testTag', 'Failed to get anchors: %{public}s', JSON.stringify(e) ?? '');
+    }
     this.messages = [
       { id: 1, content: welcomeLiveRoom, sender: system },
       { id: 2, content: helloEveryone, sender: anchors }

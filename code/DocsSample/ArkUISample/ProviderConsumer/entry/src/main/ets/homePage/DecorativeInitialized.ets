@@ -22,6 +22,7 @@ struct Index {
   build() {
     Column() {
       Text(`Index @Provider val: ${this.val}`).fontSize(30)
+      // @Provider装饰的变量val可以初始化@Param装饰的变量val2
       Parent({ val2: this.val })
     }
   }
@@ -39,6 +40,7 @@ struct Parent {
         this.val++;
       })
       Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
+      // @Consumer装饰的变量val可以初始化@Param装饰的变量val
       Child({ val: this.val })
     }.border({ width: 2, color: Color.Green })
   }

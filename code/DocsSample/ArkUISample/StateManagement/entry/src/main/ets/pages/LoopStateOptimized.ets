@@ -25,6 +25,7 @@ struct Index {
     Column() {
       Button('Click to print log')
         .onClick(() => {
+          // 正确做法，在循环逻辑外读取状态变量
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
             hilog.info(0x0000, 'TAG', '%{public}s', logMessage);

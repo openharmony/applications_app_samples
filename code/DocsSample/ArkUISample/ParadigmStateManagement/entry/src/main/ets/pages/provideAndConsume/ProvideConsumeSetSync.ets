@@ -24,6 +24,7 @@ struct Child {
           .fontSize(30)
         Divider()
       })
+      // message被@Consume装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
       Button('Consume init set')
         .onClick(() => {
           this.message = new Set([0, 1, 2, 3, 4]);
@@ -54,6 +55,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
+        // message被@Provide装饰，可以被观察到Set整体的赋值以及调用Set接口带来的变化
         Button('Provide init set')
           .onClick(() => {
             this.message = new Set([0, 1, 2, 3, 4, 5]);

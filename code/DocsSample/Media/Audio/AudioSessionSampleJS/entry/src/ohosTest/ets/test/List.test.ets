@@ -1,5 +1,5 @@
 import abilityTest from './Ability.test';
-import AudioSessionManagerTest from './avsession.test';
+import AudioSessionManagerTest from './AudioSession.test';
 
 export default function testsuite() {
   abilityTest();

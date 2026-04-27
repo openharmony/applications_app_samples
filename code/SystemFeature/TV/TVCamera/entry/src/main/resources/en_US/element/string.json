@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Camera"
+    },
+    {
+      "name": "setting",
+      "value": "Settings"
+    },
+    {
+      "name": "photo",
+      "value": "Photo"
+    },
+    {
+      "name": "photoResolution",
+      "value": "Photo Resolution"
+    },
+    {
+      "name": "cameraMirror",
+      "value": "Photo Mirror"
+    },
+    {
+      "name": "cameraWatermark",
+      "value": "Camera Watermark"
+    },
+    {
+      "name": "cameraFrame",
+      "value": "Camera Frame"
+    },
+    {
+      "name": "video",
+      "value": "Video"
+    },
+    {
+      "name": "videoResolution",
+      "value": "Video Resolution"
+    },
+    {
+      "name": "videoWatermark",
+      "value": "Video Watermark"
+    },
+    {
+      "name": "resolution",
+      "value": "Resolution"
+    },
+    {
+      "name": "clickToDiscoverDevice",
+      "value": "Click to Start Discovering Devices"
+    },
+    {
+      "name": "noPhotos",
+      "value": "No Photos"
+    },
+    {
+      "name": "startDiscoverDevice",
+      "value": "Discovering Devices"
+    },
+    {
+      "name": "clickToLongToStop",
+      "value": "Clicked too fast. Please pause for a moment."
+    },
+    {
+      "name": "connectedDevice",
+      "value": "Connect Device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "sure",
+      "value": "Confirm"
+    },
+    {
+      "name": "trustDevice",
+      "value": "Trusted Device"
+    },
+    {
+      "name": "onlineDevice",
+      "value": "Uncertified Device"
+    },
+    {
+      "name": "photoFrame",
+      "value": "Photo Frame"
+    },
+    {
+      "name": "multiCamera",
+      "value": "Multi-Camera"
+    },
+    {
+      "name": "takePhotos",
+      "value": "Take Photos"
+    },
+    {
+      "name": "takeVideo",
+      "value": "Record Video"
+    },
+    {
+      "name": "distribute",
+      "value": "Distributed"
+    },
+    {
+      "name": "autoAddWater",
+      "value": "Automatically Add Watermark"
+    },
+    {
+      "name": "unKnow",
+      "value": "Unknown"
+    },
+    {
+      "name": "backPosition",
+      "value": "Rear"
+    },
+    {
+      "name": "frontPosition",
+      "value": "Front"
+    },
+    {
+      "name": "foldPosition",
+      "value": "Folded State"
+    },
+    {
+      "name": "pleaseChooseCamera",
+      "value": "Please Select a Camera"
+    },
+    {
+      "name": "startDiscover0DeviceName",
+      "value": "Start Discovering Device %s..."
+    },
+    {
+      "name": "deleteDevice",
+      "value": "Delete Device"
+    },
+    {
+      "name": "unbindDevice",
+      "value": "Start Unbinding %s..."
+    },
+    {
+      "name": "trustAlert",
+      "value": "%s is already trusted. Please do not trust it again."
+    },
+    {
+      "name": "connectDeviceAlert",
+      "value": "Are you sure you want to connect to the %s device?"
+    },
+    {
+      "name": "deleteDeviceAlert",
+      "value": "Are you sure you want to delete the %s device?"
+    },
+    {
+      "name": "pleaseConnectCamera",
+      "value": "Please Connect the Camera"
+    },
+    {
+      "name": "camera",
+      "value": "Camera"
+    },
+    {
+      "name": "noCameraDevice",
+      "value": "No Camera Device..."
+    },
+    {
+      "name": "waterMark",
+      "value": "Watermark"
+    },
+    {
+      "name": "uninstallPhotos",
+      "value": "Gallery Application is not installed!"
+    },
+    {
+      "name": "imageSavedSuccessfully",
+      "value": "Image Saved Successfully"
+    },
+    {
+      "name": "videoSavedSuccessfully",
+      "value": "Video Recorded and Saved Successfully"
+    },
+    {
+      "name": "takingPhotos",
+      "value": "Taking photos"
+    },
+    {
+      "name": "cameraMode",
+      "value": "Camera Mode"
+    },
+    {
+      "name": "dualCamera",
+      "value": "Dual camera"
+    },
+    {
+      "name": "noPhoto",
+      "value": "未拍照或拍视频"
+    },
+    {
+      "name": "FloatWindow_Permission_Reason",
+      "value": "Use For Camera"
+    }
+  ]
+}

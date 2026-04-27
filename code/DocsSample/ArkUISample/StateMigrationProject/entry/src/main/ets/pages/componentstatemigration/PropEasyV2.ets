@@ -15,6 +15,7 @@
 // [Start Parent10_start]
 @ComponentV2
 struct Child {
+  // V2的@Param装饰简单类型变量
   @Param value: number = 0;
 
   build() {

@@ -1,0 +1,4 @@
+*.bat   text eol=crlf
+*.sh    text eol=lf
+hvigorw text eol=lf
+local.properties text eol=lf

@@ -20,7 +20,7 @@ import common from '@ohos.app.ability.common';
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { identifySensitiveContent } from '@kit.DataProtectionKit';
 // [End dlp_include]
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { FileInfoType } from '../feature/FileManager';
 import Want from '@ohos.app.ability.Want';
 import Logger from '../util/Logger';
@@ -168,10 +168,10 @@ struct FilePicker {
     });
   }
 
-  openFile(filePath: string): fs.File | undefined {
-    let file : fs.File | undefined = undefined;
+  openFile(filePath: string): fileIo.File | undefined {
+    let file : fileIo.File | undefined = undefined;
     try {
-      file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      file = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
     } catch (error) {
       Logger.error(`OpenSync failed. Code: ${error.code}, message : ${error.message}`);
       hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, `OpenSync failed. Code: ${error.code}, message : ${error.message}`);
@@ -313,7 +313,7 @@ struct FilePicker {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
       hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     }).finally(() => {
-        fs.closeSync(file);
+      fileIo.closeSync(file);
     });
   }
   // [End dlp_isCurrentDlpFile]

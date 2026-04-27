@@ -16,10 +16,6 @@
 // [Start initialize_kernel_in_onCreate_and_pre_fetch_post_request]
 import { webview } from '@kit.ArkWeb';
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 @Entry
 @Component
 struct WebComponent {

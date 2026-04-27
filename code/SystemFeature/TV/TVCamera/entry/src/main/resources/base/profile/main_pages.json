@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/DeviceMangerPage",
+    "pages/CameraSettingsPage",
+    "pages/PhotoFramePage",
+    "pages/WaterMarkPage",
+    "pages/MultiCameraPreviewPage"
+  ],
+  "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

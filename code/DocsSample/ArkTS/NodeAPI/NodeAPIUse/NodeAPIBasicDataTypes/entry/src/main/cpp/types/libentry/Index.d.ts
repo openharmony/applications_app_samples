@@ -14,19 +14,19 @@
  */
 
 // [Start napi_get_value_uint32_api]
-export const getValueUint32: <T>(data: T) => number | void; // napi_get_value_uint32
+export const getValueUint32: <T>(data: T) => number | undefined; // napi_get_value_uint32
 // [End napi_get_value_uint32_api]
 
 // [Start napi_get_value_int32_api]
-export const getValueInt32: (value: number | string) => number | void; // napi_get_value_int32
+export const getValueInt32: (value: number | string) => number | undefined; // napi_get_value_int32
 // [End napi_get_value_int32_api]
 
 // [Start napi_get_value_int64_api]
-export const getValueInt64: (value: number | string) => number | void; // napi_get_value_int64
+export const getValueInt64: (value: number | string) => number | undefined; // napi_get_value_int64
 // [End napi_get_value_int64_api]
 
 // [Start napi_get_value_double_api]
-export const getDouble: (value: number | string) => number | void; // napi_get_value_double
+export const getDouble: (value: number | string) => number | undefined; // napi_get_value_double
 // [End napi_get_value_double_api]
 
 // [Start napi_create_int32_api]

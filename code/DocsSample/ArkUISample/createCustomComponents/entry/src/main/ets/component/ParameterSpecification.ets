@@ -15,8 +15,8 @@
 // [Start Parameter_specification]
 @Component
 struct MyComponent {
-  private countDownFrom: number = 0;
-  private color: Color = Color.Blue;
+  countDownFrom: number = 0;
+  color: Color = Color.Blue;
 
   build() {
     Column() {

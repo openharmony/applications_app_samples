@@ -14,7 +14,7 @@
  */
 
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Environment, fileIo as fs } from '@kit.CoreFileKit';
+import { Environment, fileIo } from '@kit.CoreFileKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 
 
@@ -25,12 +25,12 @@ const permissions: Permissions[] = ['ohos.permission.READ_WRITE_DOWNLOAD_DIRECTO
 function getUserDirExample() {
   try {
     const downloadPath = Environment.getUserDownloadDir();
-    console.info(`success to getUserDownloadDir: ${downloadPath}`);
+    console.info(`Succeeded in getting user download dir: ${downloadPath}`);
     const documentsPath = Environment.getUserDocumentDir();
-    console.info(`success to getUserDocumentDir: ${documentsPath}`);
+    console.info(`Succeeded in getting user document dir: ${documentsPath}`);
   } catch (error) {
     const err: BusinessError = error as BusinessError;
-    console.error(`failed to get user dir, Error code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get user dir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 // [End get_user_dir_example]
@@ -40,25 +40,24 @@ function readUserDownloadDirExample(context: common.UIAbilityContext) {
   try {
     // 获取 Download 目录
     const downloadPath = Environment.getUserDownloadDir();
-    console.info(`success to getUserDownloadDir: ${downloadPath}`);
+    console.info(`Succeeded in getting user download dir: ${downloadPath}`);
     const dirPath = context.filesDir;
-    console.info(`success to get filesDir: ${dirPath}`);
     // 查看 Download 目录下的文件并拷贝到沙箱目录中
-    let fileList: string[] = fs.listFileSync(downloadPath);
+    let fileList: string[] = fileIo.listFileSync(downloadPath);
     fileList.forEach((file, index) => {
       console.info(`${downloadPath} ${index}: ${file}`);
-      if (fs.statSync(`${downloadPath}/${file}`).isFile()) {
-        fs.copyFileSync(`${downloadPath}/${file}`, `${dirPath}/${file}`);
+      if (fileIo.statSync(`${downloadPath}/${file}`).isFile()) {
+        fileIo.copyFileSync(`${downloadPath}/${file}`, `${dirPath}/${file}`);
       }
     });
     // 查看沙箱目录下对应的文件
-    fileList = fs.listFileSync(dirPath);
+    fileList = fileIo.listFileSync(dirPath);
     fileList.forEach((file, index) => {
-      console.info(`${dirPath} ${index}: ${file}`);
+      console.info(`Succeeded in listing file, ${dirPath} ${index}: ${file}`);
     });
   } catch (error) {
     const err: BusinessError = error as BusinessError;
-    console.error(`Error code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to read user download dir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 // [End read_user_download_dir_example]
@@ -69,14 +68,14 @@ function writeUserDownloadDirExample() {
   try {
     // 获取 Download 目录
     const downloadPath = Environment.getUserDownloadDir();
-    console.info(`success to getUserDownloadDir: ${downloadPath}`);
+    console.info(`Succeeded in getting user download dir: ${downloadPath}`);
     // 保存 temp.txt 到 Download 目录下
-    const file = fs.openSync(`${downloadPath}/temp.txt`, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    fs.writeSync(file.fd, 'write a message');
-    fs.closeSync(file);
+    const file = fileIo.openSync(`${downloadPath}/temp.txt`, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+    fileIo.writeSync(file.fd, 'write a message');
+    fileIo.closeSync(file);
   } catch (error) {
     const err: BusinessError = error as BusinessError;
-    console.error(`Error code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to write user download dir. Code: ${err.code}, message: ${err.message}`);
   }
 }
 // [End write_user_download_dir_example]
@@ -97,7 +96,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
     }
     // 授权成功。
   }).catch((err: BusinessError) => {
-    console.error(`Failed to request permissions from user, code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
   })
 }
 

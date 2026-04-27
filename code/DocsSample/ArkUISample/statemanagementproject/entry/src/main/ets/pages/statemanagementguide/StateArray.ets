@@ -37,6 +37,7 @@ struct Index {
   }
 
   isRenderText(index: number): number {
+    // 日志打印，观察使用简单属性数组导致冗余刷新
     hilog.info(DOMAIN_NUMBER, TAG, `index ${index} is rendered`);
     return 1;
   }

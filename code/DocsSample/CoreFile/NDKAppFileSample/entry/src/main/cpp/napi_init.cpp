@@ -15,8 +15,8 @@
 
 #include "napi/native_api.h"
 #include <filemanagement/fileio/oh_fileio.h>
-#include "hilog/log.h"
 #include <cstring>
+#include <string>
 
 #undef LOG_TAG
 #define LOG_TAG "Sample_NDKAppFileAccess"
@@ -24,85 +24,45 @@
 #include <cstring>
 
 // [Start get_file_location_example]
-void GetFileLocationExample()
+void GetFileLocationExample(char *uri)
 {
-    char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
     FileIO_FileLocation location;
     FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
     if (ret == 0) {
         if (location == FileIO_FileLocation::LOCAL) {
-            printf("This file is on local.");
+            printf("Succeeded in getting file location, this file is on local.");
         } else if (location == FileIO_FileLocation::CLOUD) {
-            printf("This file is on cloud.");
+            printf("Succeeded in getting file location, this file is on cloud.");
         } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
-            printf("This file is both on local and cloud.");
+            printf("Succeeded in getting file location, this file is on  local and cloud.");
         }
     } else {
-        printf("GetFileLocation failed, error code is %d", ret);
+        printf("Failed to get file location, error code is %d", ret);
     }
 }
 // [End get_file_location_example]
 
 static napi_value GetFileLocation(napi_env env, napi_callback_info info)
 {
-    GetFileLocationExample();
+    size_t argc = 1;
+    napi_value args[1];
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    size_t len;
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &len);
+
+    std::string uriStr;
+    uriStr.resize(len);
+    napi_get_value_string_utf8(env, args[0], &uriStr[0], len + 1, &len);
+
+    char* uri = const_cast<char*>(uriStr.c_str());
+    GetFileLocationExample(uri);
     return nullptr;
 }
 
-static napi_value GetFileLocationOld(napi_env env, napi_callback_info info)
-{
-    // [StartExclude get_file_location]
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 确保传入了一个参数
-    if (argc < 1) {
-        napi_throw_error(env, nullptr, "Expected one argument");
-        return nullptr;
-    }
-    // 确保传入的是字符串
-    napi_valuetype valuetype;
-    napi_typeof(env, args[0], &valuetype);
-    if (valuetype != napi_string) {
-        napi_throw_error(env, nullptr, "Argument should be a string");
-        return nullptr;
-    }
-    // 获取字符串的长度
-    size_t strLength = 0;
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &strLength);
-    // [EndExclude get_file_location]
-    // 为 char* uri 分配内存
-    char *uri = new char[strLength + 1]; // +1 for null terminator
-    // 将 JavaScript 字符串复制到 uri
-    // [StartExclude get_file_location]
-    napi_get_value_string_utf8(env, args[0], uri, strLength + 1, &strLength);
-    // 输出 uri 字符串（用于调试）
-    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.WatcherType=OnTrigger: %{public}s", uri);
-    // [EndExclude get_file_location]
-    FileIO_FileLocation location;
-    FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
-    if (ret == 0) {
-        if (location == FileIO_FileLocation::LOCAL) {
-            OH_LOG_INFO(LogType::LOG_APP, "This file is on local.");
-        } else if (location == FileIO_FileLocation::CLOUD) {
-            OH_LOG_INFO(LogType::LOG_APP, "This file is on cloud.");
-        } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
-            OH_LOG_INFO(LogType::LOG_APP, "This file is both on local and cloud.");
-        }
-    } else {
-        OH_LOG_INFO(LogType::LOG_APP, "GetFileLocation failed, error code is %{public}d", ret);
-    }
-    // [StartExclude get_file_location]
-    // 如果需要返回值，可以创建一个 JavaScript 字符串返回
-    napi_value result;
-    napi_create_string_utf8(env, uri, strLength, &result);
-    return result;
-    // [EndExclude get_file_location]
-}
-
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"getFileLocation", nullptr, GetFileLocation, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

@@ -39,7 +39,7 @@ struct Index {
 
   build() {
     Column() {
-      // 注册到window上的javaScript对象不再使用后，需解除注册，防止内存泄漏
+      // jsb对象不再使用后，需解除注册，防止内存泄漏
       Button('deleteJavaScriptRegister')
         .onClick(() => {
           try {

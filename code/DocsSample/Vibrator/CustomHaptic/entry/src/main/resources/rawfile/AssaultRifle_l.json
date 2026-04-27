@@ -1,0 +1,47 @@
+{
+	"MetaData": {
+		"Create": "2020-08-10",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 0,
+						"Parameters": {
+							"Intensity": 5,
+							"Frequency": 45
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 35,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 130,
+						"Parameters": {
+							"Intensity": 48,
+							"Frequency": 100
+						}
+					}
+				}
+			]
+		}
+	]
+}

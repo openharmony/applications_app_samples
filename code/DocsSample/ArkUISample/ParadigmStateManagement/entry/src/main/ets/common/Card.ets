@@ -108,7 +108,7 @@ export struct ComponentCard {
   title: ResourceStr;
   @BuilderParam content: () => void;
   @Prop
-  description?: ResourceStr;
+  description: ResourceStr | undefined;
 
   build() {
     Column({ space: 8 }) {

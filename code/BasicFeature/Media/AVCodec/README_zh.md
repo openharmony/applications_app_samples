@@ -388,12 +388,11 @@ OH_AudioRenderer_GetTimeStamp获取的是实际写到硬件的采样帧数，不
 (1)获取音频渲染的位置
 
 ```cpp
-// get audio render position
 int64_t framePosition = 0;
 int64_t timestamp = 0;
 int32_t ret = OH_AudioRenderer_GetTimestamp(audioRenderer_, CLOCK_MONOTONIC, &framePosition, &timestamp);
 AVCODEC_SAMPLE_LOGI("VD framePosition: %{public}li, nowTimeStamp: %{public}li", framePosition, nowTimeStamp);
-audioTimeStamp = timestamp; // ns
+audioTimeStamp = timestamp;
 ```
 
 (2)音频启动前暂不做音画同步
@@ -401,10 +400,8 @@ audioTimeStamp = timestamp; // ns
 - 音频未启动前，timestamp和framePosition返回结果为0，为避免出现卡顿等问题，暂不同步
 
 ```cpp
-// audio render getTimeStamp error, render it
     if (ret != AUDIOSTREAM_SUCCESS || (timestamp == 0) || (framePosition == 0)) {
         DumpOutput(bufferInfo);
-        // first frame, render without wait
         ret = videoDecoder_->FreeOutputBuffer(bufferInfo.bufferIndex, sampleInfo_.codecRunMode ? false : true,
                                               GetCurrentTime());
         if (ret != AVCODEC_SAMPLE_ERR_OK) {
@@ -423,7 +420,6 @@ audioTimeStamp = timestamp; // ns
 - videoPlayedTime视频帧期望送显时间
 
 ```cpp
-// after seek, audio render flush, framePosition = 0, then writtenSampleCnt = 0
 int64_t latency = (audioDecContext_->frameWrittenForSpeed - framePosition) * 1000 *
                 1000 / sampleInfo_.audioSampleRate / speed;
 AVCODEC_SAMPLE_LOGI("VD latency: %{public}li writtenSampleCnt: %{public}li", latency, writtenSampleCnt);
@@ -431,13 +427,10 @@ AVCODEC_SAMPLE_LOGI("VD latency: %{public}li writtenSampleCnt: %{public}li", lat
 nowTimeStamp = GetCurrentTime();
 int64_t anchordiff = (nowTimeStamp - audioTimeStamp) / 1000;
 
-// us, audio buffer accelerate render time
 int64_t audioPlayedTime = audioDecContext_->currentPosAudioBufferPts - latency + anchorDiff;
-// us, video buffer expected render time
 int64_t videoPlayedTime = bufferInfo.attr.pts;
 
-// audio render timestamp and now timestamp diff
-int64_t waitTimeUs = videoPlayedTime - audioPlayedTime; // us
+int64_t waitTimeUs = videoPlayedTime - audioPlayedTime;
 ```
 
 (4)根据业务延迟做音画同步策略
@@ -447,18 +440,14 @@ int64_t waitTimeUs = videoPlayedTime - audioPlayedTime; // us
 - [0ms,)视频帧较早，根据业务需要选择现象追帧
 
 ```cpp
-// video buffer is too late, drop it
 if (waitTimeUs < WAIT_TIME_US_THRESHOLD_WARNING) {
     dropFrame = true;
     AVCODEC_SAMPLE_LOGI("VD buffer is too late");
 } else {
     AVCODEC_SAMPLE_LOGE("VD buffer is too early waitTimeUs:%{public}ld", waitTimeUs);
-    // [0, ), render it wait waitTimeUs, max 1s
-    // [-40, 0), render it
     if (waitTimeUs > WAIT_TIME_US_THRESHOLD) {
         waitTimeUs = WAIT_TIME_US_THRESHOLD;
     }
-    // per frame render time reduced by frame interval
     if (waitTimeUs > sampleInfo_.frameInterval + perSinkTimeThreshold) {
         waitTimeUs = sampleInfo_.frameInterval + perSinkTimeThreshold;
         AVCODEC_SAMPLE_LOGE("VD buffer is too early and reduced, waitTimeUs: %{public}ld", waitTimeUs);

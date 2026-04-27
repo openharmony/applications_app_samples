@@ -1,0 +1,11 @@
+{
+    "devices": {
+        "general": ["default", "tablet"]
+    },
+    "production": {
+        "removedSysCaps": [
+            "SystemCapability.FileManagement.DistributedFileService.CloudSyncManager",
+            "SystemCapability.FileManagement.DistributedFileService.CloudSync.Core"
+        ]
+    }
+}

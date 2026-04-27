@@ -1,8 +1,0 @@
-{
-  "src": [
-    "pages/Index",
-    "pages/DomainAccount/AuthenticationDomainAccount",
-    "pages/DomainAccount/ManageDomainAccounts",
-    "pages/DomainAccount/ManageDomainAccountsPlugin"
-  ]
-}

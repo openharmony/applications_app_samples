@@ -14,29 +14,40 @@
  */
  
 import { webview } from '@kit.ArkWeb';
-
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
   webviewController: webview.WebviewController = new webview.WebviewController();
 
+  resourceToString(resource: Resource): string {
+    let result = '';
+    try {
+      result = this.getUIContext().getHostContext()!.resourceManager.getStringSync(resource.id);
+    } catch (error) {
+      console.error(`getStringSync failed, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+    return result;
+  }
+
   build() {
     Column() {
       Button('loadData')
         .onClick(() => {
-          if (this.webviewController.accessBackward()) {
-            this.webviewController.backward();
+          try {
+            if (this.webviewController.accessBackward()) {
+              this.webviewController.backward();
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: resourceToString($r('app.string.web_path_one')), controller: this.webviewController })
+      Web({ src: this.resourceToString($r('app.string.web_path_one')), controller: this.webviewController })
         .onAppear(() => {
           // 指定第二个参数为true，代表要进行预连接，如果为false该接口只会对网址进行dns预解析
           // 第三个参数为要预连接socket的个数。最多允许6个。
-          webview.WebviewController.prepareForPageLoad(resourceToString($r('app.string.web_path_one')), true, 2);
+          webview.WebviewController.prepareForPageLoad(this.resourceToString($r('app.string.web_path_one')), true, 2);
         })
     }
   }

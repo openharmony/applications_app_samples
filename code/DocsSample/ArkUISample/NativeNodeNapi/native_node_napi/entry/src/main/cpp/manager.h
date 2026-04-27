@@ -82,6 +82,7 @@ public:
     static napi_value ProcessDrawable2(napi_env env, napi_callback_info info);
     static napi_value CreateNativeAccessibilityNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeEmbeddedComponentNode(napi_env env, napi_callback_info info);
+    static napi_value createEventPassthrough(napi_env env, napi_callback_info info);
 
 private:
     int32_t cnt = 0;

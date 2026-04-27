@@ -18,7 +18,9 @@ export const initNative: (fd: number, videoCodecMime: string, width: number, hei
 
 export const startNative: () => void
 
-export const stopNative: () => Promise<Response>
+export const stopBeginNative: () => Promise<Response>
+
+export const stopEndNative: () => Promise<Response>
 
 export class Response {
   code: number

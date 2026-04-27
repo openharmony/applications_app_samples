@@ -26,6 +26,7 @@ struct Child2 {
   }
 
   provideWatch() {
+    // 正确写法，不在@Watch函数中使用@Builder函数
     console.info(`content value has changed.`);
   }
 

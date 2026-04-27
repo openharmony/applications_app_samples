@@ -94,7 +94,7 @@ struct Index {
     // [StartExclude native_transient_task]
     this.requestId = requestId;
     // [EndExclude native_transient_task]
-    console.info('The return requestId is ' + requestId);
+    console.info('The returned requestId is ' + requestId);
   }
 
   GetRemainingDelayTime() {
@@ -103,13 +103,13 @@ struct Index {
   }
 
   CancelSuspendDelay() {
-    let ret = testTransientTask.CancelSuspendDelay();
-    console.info('The ret is ' + ret);
+    let result = testTransientTask.CancelSuspendDelay();
+    console.info('The return value is ' + result);
   }
 
   GetTransientTaskInfo() {
-    let ret = testTransientTask.GetTransientTaskInfo();
-    console.info('The ret is ' + JSON.stringify(ret));
+    let info = testTransientTask.GetTransientTaskInfo();
+    console.info('The transientTaskInfo is ' + JSON.stringify(info));
   }
 }
 // [End native_transient_task]

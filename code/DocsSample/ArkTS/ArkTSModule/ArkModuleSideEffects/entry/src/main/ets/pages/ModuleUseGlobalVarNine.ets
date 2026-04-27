@@ -16,6 +16,6 @@
 // [Start import_moduleUseGlobalVarNine]
 // ModuleUseGlobalVarNine.ets
 import lazy { data } from './ModulePartNine';
-console.info('globalThis.someGlobalVar', globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
-console.info('data is ', data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
+console.info('globalThis.someGlobalVar', globalThis.someGlobalVar); // 此时由于lazy特性，ModulePartNine模块还未执行，someGlobalVar的值为undefined
+console.info('data is ', data); // 使用到ModulePartNine模块的变量，此时ModulePartNine模块执行，someGlobalVar的值变为100
 // [End import_moduleUseGlobalVarNine]

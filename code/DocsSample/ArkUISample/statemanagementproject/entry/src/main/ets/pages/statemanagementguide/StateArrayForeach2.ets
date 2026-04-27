@@ -63,6 +63,7 @@ struct Page {
           hilog.info(DOMAIN_NUMBER, TAG, 'change font size');
         })
       List() {
+        // 使用@ObjectLink接受传入的item，TextComponent组件内的textStyle变量具有了被观测的能力
         ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             TextComponent({ textStyle: item })

@@ -121,7 +121,7 @@ struct Index {
                 } else if (item === '6.napiGetValueBool') {
                   // [Start ark_napi_get_value_bool]
                   // napi_get_value_bool
-                  //         // 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
+                  // 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
                   hilog.info(0x0000, 'Node-API', 'get_value_bool_not_bool %{public}s',
                     testNapi.getValueBool('你好123'));
                   hilog.info(0x0000, 'Node-API', 'get_value_bool_true %{public}s', testNapi.getValueBool(true));

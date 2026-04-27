@@ -65,6 +65,7 @@ struct MapSampleNestedChild {
           Divider().strokeWidth(5)
         })
 
+        // myMap被@Observed和@ObjectLink装饰，可以被观察到Map整体的赋值以及调用Map接口带来的变化
         Button('set new one')
           .width(200)
           .margin(10)

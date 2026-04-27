@@ -15,20 +15,22 @@
 
 // [Start wildcard_monitor_object_property_change]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class ClassA {
-  @Trace public propA : number = 8;
-  @Trace public propB : number = 99;
+  @Trace public propA: number = 8;
+  @Trace public propB: number = 99;
 
-  constructor(a : number, b: number) {
+  constructor(a: number, b: number) {
     this.propA = a;
     this.propB = b;
   }
 }
 
 @Entry
-@ComponentV2 struct DocSampleClass {
-  @Local cls : ClassA = new ClassA(100, 100);
+@ComponentV2
+struct DocSampleClass {
+  @Local cls: ClassA = new ClassA(100, 100);
 
   @SyncMonitor('cls.*')
   onClsChanged(m: IMonitor) {
@@ -38,17 +40,17 @@ class ClassA {
   build() {
     Column() {
       Divider()
-      Button(`#1 Change propA ${this.cls.propA}: +=1;`)
+      Button(`#1 Change propA ${this.cls.propA}: +=1`)
         .onClick(() => {
-          this.cls.propA += 1;
+          this.cls.propA += 1; // 触发onClsChanged
         })
       Button(`#2 Change propB ${this.cls.propB}: +=1`)
         .onClick(() => {
-          this.cls.propB += 1;
+          this.cls.propB += 1; // 触发onClsChanged
         })
       Button(`#3 Assign class object`)
         .onClick(() => {
-          this.cls = new ClassA(-200, -200);
+          this.cls = new ClassA(-200, -200); // 触发onClsChanged
         })
     }
     .border({ style: BorderStyle.Solid, width: 2, color: Color.Green })

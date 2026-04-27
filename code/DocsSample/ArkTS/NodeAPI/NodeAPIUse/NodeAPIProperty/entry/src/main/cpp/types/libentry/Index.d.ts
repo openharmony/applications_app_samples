@@ -14,19 +14,19 @@
  */
 
 // [Start napi_get_property_names_api]
-export const getPropertyNames: (obj: Object) => Array<string> | void; // napi_get_property_names
+export const getPropertyNames: (obj: Object) => Array<string> | undefined; // napi_get_property_names
 // [End napi_get_property_names_api]
 
 // [Start napi_set_property_api]
-export const setProperty: (obj: Object, key: String, value: string) => Object | void; // napi_set_property
+export const setProperty: (obj: Object, key: String, value: string) => Object | undefined; // napi_set_property
 // [End napi_set_property_api]
 
 // [Start napi_get_property_api]
-export const getProperty: (obj: Object, key: string) => string | void; // napi_get_property
+export const getProperty: (obj: Object, key: string) => string | undefined; // napi_get_property
 // [End napi_get_property_api]
 
 // [Start napi_has_property_api]
-export const hasProperty: (obj: Object, key: number | string) => boolean | void; // napi_has_property
+export const hasProperty: (obj: Object, key: number | string) => boolean | undefined; // napi_has_property
 // [End napi_has_property_api]
 
 // [Start napi_delete_property_api]
@@ -34,20 +34,20 @@ export const deleteProperty: (obj: Object, key: string) => boolean; // napi_dele
 // [End napi_delete_property_api]
 
 // [Start napi_has_own_property_api]
-export const napiHasOwnProperty: (obj: Object, key: string) => boolean | void; // napi_has_own_property
+export const napiHasOwnProperty: (obj: Object, key: string) => boolean | undefined; // napi_has_own_property
 // [End napi_has_own_property_api]
 
 // [Start napi_set_named_property_api]
-export const napiSetNamedProperty: (key: string) => Object | void; // napi_set_named_property
+export const napiSetNamedProperty: (key: string) => Object | undefined; // napi_set_named_property
 // [End napi_set_named_property_api]
 
 // [Start napi_get_named_property_api]
 export const napiGetNamedProperty: (obj: Object,
-  key: string) => boolean | number | string | Object | void; // napi_get_named_property
+  key: string) => boolean | number | string | Object | undefined; // napi_get_named_property
 // [End napi_get_named_property_api]
 
 // [Start napi_has_named_property_api]
-export const napiHasNamedProperty: (obj: Object, key: string) => boolean | void; // napi_has_named_property
+export const napiHasNamedProperty: (obj: Object, key: string) => boolean | undefined; // napi_has_named_property
 // [End napi_has_named_property_api]
 
 // [Start napi_define_properties_api]
@@ -72,5 +72,5 @@ export const createStringWithGetterSetter: () => DefineGetterSetterObj;
 // [End napi_define_properties_api]
 
 // [Start napi_get_all_property_names_api]
-export const getAllPropertyNames: (obj: Object) => Array<string> | void; // napi_get_all_property_names
+export const getAllPropertyNames: (obj: Object) => Array<string> | undefined; // napi_get_all_property_names
 // [End napi_get_all_property_names_api]

@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "default_background",
+      "value": "#F2F1F3F5"
+    },
+    {
+      "name": "default_font_color",
+      "value": "#000000"
+    },
+    {
+      "name": "brightness_slider_block_color",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "brightness_slider_track_color",
+      "value": "#1A000000"
+    },
+    {
+      "name": "brightness_slider_selected_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "control_center_complex_toggle_ring_mode_on_bg_color",
+      "value": "#FFFF9800"
+    }
+  ]
+}

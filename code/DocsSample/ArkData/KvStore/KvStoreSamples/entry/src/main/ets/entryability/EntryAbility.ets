@@ -17,7 +17,6 @@ import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.Ab
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle';
 import bundleManager from '@ohos.bundle.bundleManager';
 import accessControl from '@ohos.abilityAccessCtrl';
 import common from '@ohos.app.ability.common';
@@ -29,17 +28,23 @@ let abilityContext: common.UIAbilityContext; // 声明全局变量
 
 export default class EntryAbility extends UIAbility {
   async checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
-    let atManager = abilityAccessCtrl.createAtManager();
-    let grantStatus: abilityAccessCtrl.GrantStatus;
-    // 获取应用程序的accessTokenID
-    let tokenId: number;
-    let bundleInfo: bundleManager.BundleInfo;
-    bundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
-    let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
-    tokenId = appInfo.accessTokenId;
-    // 校验应用是否被授予权限
-    grantStatus = await atManager.checkAccessToken(tokenId, permission);
-    return grantStatus;
+    try {
+      let atManager = abilityAccessCtrl.createAtManager();
+      let grantStatus: abilityAccessCtrl.GrantStatus;
+      // 获取应用程序的accessTokenID
+      let tokenId: number;
+      let bundleInfo: bundleManager.BundleInfo;
+      bundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+      let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
+      tokenId = appInfo.accessTokenId;
+      // 校验应用是否被授予权限
+      grantStatus = await atManager.checkAccessToken(tokenId, permission);
+      Logger.info(`checkAccessToken success`);
+      return grantStatus;
+    } catch (e) {
+      Logger.info(`checkAccessToken failed,code is ${e.code},message is ${e.message}`);
+      return abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
+    }
   }
 
   /* 权限校验入口 */
@@ -87,6 +92,42 @@ export default class EntryAbility extends UIAbility {
     // Ability is destroying, release resources for this ability
   }
 
+  async requestPermissionsAsync(): Promise<void> {
+    let permissions: Permissions[] = [ 'ohos.permission.DISTRIBUTED_DATASYNC' ];
+    let needGrantPermission = false;
+    let accessManger = accessControl.createAtManager();
+    let atManager = abilityAccessCtrl.createAtManager();
+    Logger.info('[JSDemo]: app permission get bundle info');
+    const bundleInfo = await bundleManager.getBundleInfoForSelf(
+      bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+    const tokenId: number = bundleInfo.appInfo.accessTokenId;
+    Logger.info(`[JSDemo]: app permission query permission accessTokenId=${tokenId}`);
+    for (const permission of permissions) {
+      Logger.info(`[JSDemo]: app permission query grant status ${permission}`);
+      try {
+        let grantStatus = await atManager.checkAccessToken(tokenId, permission);
+        if (grantStatus === accessControl.GrantStatus.PERMISSION_DENIED) {
+          needGrantPermission = true;
+          break;
+        }
+      } catch (err) {
+        Logger.error(`[JSDemo]: app permission query grant status error ${permission} ${JSON.stringify(err)}`);
+        needGrantPermission = true;
+        break;
+      }
+    }
+    if (needGrantPermission) {
+      Logger.info('[JSDemo]: app permission needGrantPermission');
+      try {
+        await atManager.requestPermissionsFromUser(this.context, permissions);
+      } catch (err) {
+        Logger.error(`[JSDemo]: app permission ${JSON.stringify(err)}`);
+      }
+    } else {
+      Logger.info('[JSDemo]: app permission already granted');
+    }
+  }
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -98,39 +139,7 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
-
-    globalThis.requestPermissions = async () => {
-      let permissions: string[] = [ 'ohos.permission.DISTRIBUTED_DATASYNC' ];
-      let needGrantPermission = false;
-      let accessManger = accessControl.createAtManager();
-      Logger.info('[JSDemo]: app permission get bundle info');
-      let bundleInfo = await bundle.getApplicationInfo(appId, 0, 100);
-      Logger.info(`[JSDemo]: app permission query permission ${bundleInfo.accessTokenId.toString()}`);
-      for (const permission of permissions) {
-        Logger.info(`[JSDemo]: app permission query grant status ${permission}`);
-        try {
-          let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission);
-          if (grantStatus === accessControl.GrantStatus.PERMISSION_DENIED) {
-            needGrantPermission = true;
-            break;
-          }
-        } catch (err) {
-          Logger.error(`[JSDemo]: app permission query grant status error ${permission} ${JSON.stringify(err)}`);
-          needGrantPermission = true;
-          break;
-        }
-      }
-      if (needGrantPermission) {
-        Logger.info('[JSDemo]: app permission needGrantPermission');
-        try {
-          await globalThis.abilityContext.requestPermissionsFromUser(permissions);
-        } catch (err) {
-          Logger.error(`[JSDemo]: app permission ${JSON.stringify(err)}`);
-        }
-      } else {
-        Logger.info('[JSDemo]: app permission already granted');
-      }
-    }
+    this.requestPermissionsAsync();
   }
 
   onWindowStageDestroy(): void {

@@ -26,6 +26,7 @@ struct Parent {
           Text(`parent: ${item}`).fontSize(30)
           Divider()
         })
+        // count被@Provider装饰，可以被观察到Array整体的赋值以及调用Array接口带来的变化
         Button('push').onClick(() => {
           this.count.push(111);
         })
@@ -53,6 +54,7 @@ struct Child {
         Text(`child: ${item}`).fontSize(30)
         Divider()
       })
+      // count被@Consumer装饰，可以被观察到Array整体的赋值以及调用Array接口带来的变化
       Button('push').onClick(() => {
         this.count.push(222);
       })

@@ -41,7 +41,7 @@ export struct CalendarSetting {
           .fontColor($r('app.color.button_color'))
           .id(`calendarTime${this.selectIndex}`)
           .onClick(() => {
-            TimePickerDialog.show({
+            this.getUIContext().showTimePickerDialog({
               selected: new Date,
               useMilitaryTime: true,
               onAccept: (value: TimePickerResult) => {

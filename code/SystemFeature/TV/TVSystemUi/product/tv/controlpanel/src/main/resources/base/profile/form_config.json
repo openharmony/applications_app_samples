@@ -1,0 +1,12 @@
+{
+  "forms": [
+    {
+      "name": "Form_Js",
+      "isDefault": true,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}

@@ -163,8 +163,8 @@ napi_value CreateAudioCapturer(napi_env env, napi_callback_info info)
 
     // [EndExclude Set_AudioCallbackFunction]
     // 配置音频中断事件回调函数。
-    OH_AudioCapturer_OnInterruptCallback OnIntereruptCb = MyOnInterruptEvent_NewAPI;
-    OH_AudioStreamBuilder_SetCapturerInterruptCallback(builder, OnIntereruptCb, nullptr);
+    OH_AudioCapturer_OnInterruptCallback OnInterruptCb = MyOnInterruptEvent_NewAPI;
+    OH_AudioStreamBuilder_SetCapturerInterruptCallback(builder, OnInterruptCb, nullptr);
 
     // 配置音频异常回调函数。
     OH_AudioCapturer_OnErrorCallback OnErrorCb = MyOnError_NewAPI;

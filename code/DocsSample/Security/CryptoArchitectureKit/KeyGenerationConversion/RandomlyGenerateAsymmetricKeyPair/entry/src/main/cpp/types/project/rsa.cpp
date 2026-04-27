@@ -18,7 +18,7 @@
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
 
-OH_Crypto_ErrCode randomGenerateAsymKey()
+OH_Crypto_ErrCode generateRSAKey()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_CryptoKeyPair *keyPair = nullptr;

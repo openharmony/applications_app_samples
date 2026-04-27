@@ -16,27 +16,96 @@
 import router from '@ohos.router'
 import { AccountInfo } from '../common/AccountInfo'
 import { NavigationBar } from '../common/NavigationBar'
+import { BundleInfo } from '../common/BundleInfo'
+
+interface AccountPageParams {
+  email?: string
+  username?: string
+  signature?: string
+  bundleName?: string
+}
 
 @Entry
 @Component
 struct Account {
-  @State email: string = <string> router.getParams()['email']
-  @State username: string = <string> router.getParams()['username']
-  @State signature: string = <string> router.getParams()['signature']
-  @State bundleName: string = <string> router.getParams()['bundleName']
+  @State email: string = ''
+  @State username: string = ''
+  @State signature: string = ''
+  @StorageLink('selectedBundleName') @Watch('onBundleNameChange') bundleName: string = 'Music'
+  @State isWideLayout: boolean = false
+  private readonly splitThreshold: number = 840
+
+  aboutToAppear() {
+    const params: AccountPageParams = router.getParams() as AccountPageParams
+    this.email = params.email ?? ''
+    this.username = params.username ?? ''
+    this.signature = params.signature ?? ''
+    let bundleNameFromParam: string = params.bundleName ?? ''
+    if (bundleNameFromParam) {
+      this.bundleName = bundleNameFromParam
+      AppStorage.SetOrCreate<string>('selectedBundleName', bundleNameFromParam)
+    }
+  }
+
+  onBundleNameChange() {
+    this.email = ''
+    this.username = ''
+    this.signature = ''
+  }
 
   build() {
     Column() {
       NavigationBar({ title: $r('app.string.account'), flag: false })
 
-      AccountInfo({
-        email: this.email,
-        username: this.username,
-        signature: this.signature,
-        bundleName: this.bundleName
-      })
+      if (this.isWideLayout) {
+        Row() {
+          Column() {
+            BundleInfo({
+              isWideLayout: false,
+              isSidebar: true,
+              selectedBundleName: this.bundleName
+            })
+          }
+          .width('32%')
+          .height('100%')
+          .padding({ left: 12, right: 8, top: 10, bottom: 10 })
+
+          Column() {
+            AccountInfo({
+              email: this.email,
+              username: this.username,
+              signature: this.signature,
+              bundleName: this.bundleName,
+              isWideLayout: true
+            })
+          }
+          .width('68%')
+          .height('100%')
+          .padding({ left: 8, right: 12, top: 10, bottom: 10 })
+        }
+        .width('100%')
+        .layoutWeight(1)
+      } else {
+        Row() {
+          Column() {
+            AccountInfo({
+              email: this.email,
+              username: this.username,
+              signature: this.signature,
+              bundleName: this.bundleName,
+              isWideLayout: false
+            })
+          }
+          .width('100%')
+        }
+        .width('100%')
+        .layoutWeight(1)
+      }
     }
     .width('100%')
     .height('100%')
+    .onAreaChange((oldArea, newArea) => {
+      this.isWideLayout = Number(newArea.width) >= this.splitThreshold
+    })
   }
 }

@@ -177,8 +177,8 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     
     // [EndExclude Render_Callback]
     // 配置音频中断事件回调函数。
-    OH_AudioRenderer_OnInterruptCallback OnIntereruptCb = MyOnInterruptEvent_New;
-    OH_AudioStreamBuilder_SetRendererInterruptCallback(builder, OnIntereruptCb, nullptr);
+    OH_AudioRenderer_OnInterruptCallback OnInterruptCb = MyOnInterruptEvent_New;
+    OH_AudioStreamBuilder_SetRendererInterruptCallback(builder, OnInterruptCb, nullptr);
     
     // 配置音频异常回调函数。
     OH_AudioRenderer_OnErrorCallback OnErrorCb = MyOnError_New;

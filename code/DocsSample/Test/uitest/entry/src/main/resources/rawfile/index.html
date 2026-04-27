@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="head" style="font-size: 100px; text-align: center;">H5页面</h1>
+<label style="font-size: 60px;">输入框: </label>
+<input id="textField" type="text" style="font-size: 60px;" size="10"/>
+</body>
+<script type="text/javaScript">
+    function getCenterById(elementId) {
+        // 根据html中的控件id查询控件
+        var inputText = document.getElementById(elementId);
+        if (inputText == null) {
+            return "InputText is NULL";
+        }
+        // 获取当前web页面可见窗口的宽高
+        var width = document.documentElement.clientWidth;
+        var height = document.documentElement.clientHeight;
+        // 获取控件相对于页面可见窗口的边界坐标
+        var rect = inputText.getBoundingClientRect();
+        // web页面坐标与应用页面坐标不一致，需将上述坐标转换为控件相对可见窗口的比例返回，此处为控件中心点坐标，需保证控件中心点在应用页面中可见
+        var centerX = (rect.left + rect.right) / 2 / width;
+        var centerY = (rect.top + rect.bottom) / 2 / height;
+        return centerX + "," + centerY;
+    }
+
+    function getTextById(elementId) {
+        // 根据html中的控件id查询控件
+        var inputText = document.getElementById(elementId);
+        if (inputText == null) {
+            return "InputText is NULL";
+        }
+        return inputText.value;
+    }
+
+</script>
+</html>

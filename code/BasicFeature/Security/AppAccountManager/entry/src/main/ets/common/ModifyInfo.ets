@@ -20,14 +20,22 @@ import { AccountModel } from '../model/AccountModel'
 
 const TAG: string = '[ModifyInfo]'
 
-class BasicDataSource implements IDataSource {
+interface ModifyFieldItem {
+  text: Resource
+  inputType: InputType
+  length: number
+  event: number
+  promptText: Resource
+}
+
+class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
-  public totalCount() {
+  public totalCount(): number {
     return 0
   }
 
-  public getData(index: number) {
+  public getData(index: number): T | undefined {
     return undefined
   }
 
@@ -75,14 +83,8 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-class MyDataSource extends BasicDataSource {
-  private dataArray: Array<{
-    text: Resource,
-    inputType: InputType,
-    length: number,
-    event: number
-    promptText: Resource
-  }> = [
+class MyDataSource extends BasicDataSource<ModifyFieldItem> {
+  private dataArray: ModifyFieldItem[] = [
     {
       text: $r('app.string.email'),
       inputType: InputType.Normal,
@@ -113,25 +115,15 @@ class MyDataSource extends BasicDataSource {
     }
   ]
 
-  public totalCount() {
+  public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number) {
+  public getData(index: number): ModifyFieldItem | undefined {
     return this.dataArray[index]
   }
 
-  public addData(index: number) {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-
-  public pushData(index: number) {
-    this.dataArray.push()
-    this.notifyDataAdd(this.dataArray.length - 1)
-  }
-
-  public replaceData(result: any[]) {
+  public replaceData(result: ModifyFieldItem[]) {
     this.dataArray = result
   }
 }
@@ -144,6 +136,7 @@ export struct ModifyInfo {
   @State confirmPassword: string = ''
   @Prop username: string
   @Prop bundleName: string
+  @Prop isWideLayout: boolean
   @State dataSet: MyDataSource = new MyDataSource()
   private storage: AccountData = AccountData.getInstance()
   private accountModel: AccountModel = new AccountModel()
@@ -188,62 +181,70 @@ export struct ModifyInfo {
       }
       .margin(5)
 
-      LazyForEach(this.dataSet, (item, index) => {
-        Row() {
-          Text(item.text)
-            .margin(10)
-            .fontSize(18)
-            .width('25%')
-            .textAlign(TextAlign.End)
-            .backgroundColor('#ffffff')
-          Column() {
-            Text(item.promptText)
-              .fontSize(14)
-              .width('80%')
-              .fontColor('#ffb0b0b0')
-              .textAlign(TextAlign.Center)
-
-            TextInput({ placeholder: 'xxxxx' })
-              .id('Modify' + (index + 1))
+      Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+        LazyForEach(this.dataSet, (item: ModifyFieldItem, index: number) => {
+          Row() {
+            Text(item.text)
               .margin(10)
-              .width('55%')
-              .fontSize(20)
-              .maxLength(20)
-              .type(item.inputType)
-              .maxLength(item.length)
-              .fontWeight(FontWeight.Bold)
-              .placeholderFont({ size: 16, weight: FontWeight.Normal })
-              .onChange(async (value: string) => {
-                switch (item.event) {
-                  case 0:
-                    this.emailInfo = value
-                    break
-                  case 1:
-                    this.signature = value
-                    break
-                  case 2:
-                    this.passWord = value
-                    break
-                  case 3:
-                    this.confirmPassword = value
-                    break
-                  default:
-                    break
-                }
-              })
+              .fontSize(18)
+              .width('25%')
+              .textAlign(TextAlign.End)
+              .backgroundColor('#ffffff')
+            Column() {
+              Text(item.promptText)
+                .fontSize(14)
+                .width('80%')
+                .fontColor('#ffb0b0b0')
+                .textAlign(TextAlign.Center)
+
+              TextInput({ placeholder: 'xxxxx' })
+                .id('Modify' + (index + 1))
+                .margin(10)
+                .width('55%')
+                .fontSize(20)
+                .maxLength(20)
+                .type(item.inputType)
+                .maxLength(item.length)
+                .fontWeight(FontWeight.Bold)
+                .placeholderFont({ size: 16, weight: FontWeight.Normal })
+                .onChange((value: string) => {
+                  switch (item.event) {
+                    case 0:
+                      this.emailInfo = value
+                      break
+                    case 1:
+                      this.signature = value
+                      break
+                    case 2:
+                      this.passWord = value
+                      break
+                    case 3:
+                      this.confirmPassword = value
+                      break
+                    default:
+                      break
+                  }
+                })
+            }
           }
-        }
-        .margin(5)
-      }, item => JSON.stringify(item))
+          .margin(5)
+          .width(this.isWideLayout ? '48%' : '100%')
+        }, (item: ModifyFieldItem) => JSON.stringify(item))
+      }
+      .width('100%')
 
       Button($r('app.string.setting'))
         .id('modComplete')
         .margin(10)
-        .width('60%')
+        .width(this.isWideLayout ? '40%' : '60%')
         .fontSize(20)
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
+        .enabled(this.username !== '')
         .onClick(async () => {
+          if (this.username === '') {
+            return
+          }
           if (this.emailInfo !== '') {
             await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `email_${this.bundleName}`, this.emailInfo)
           }
@@ -251,7 +252,7 @@ export struct ModifyInfo {
             await this.accountModel.setAccountCredential(`${this.username}_${this.bundleName}`, `signature_${this.bundleName}`, this.signature)
           }
           let res = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-          let userPassWord = await this.storage.getStorageValue(getContext(), this.username, this.bundleName)
+          let userPassWord: string = await this.storage.getStorageValue(getContext(), this.username, this.bundleName)
           if (this.emailInfo !== '' && !res.test(this.emailInfo)) {
             AlertDialog.show(
               {

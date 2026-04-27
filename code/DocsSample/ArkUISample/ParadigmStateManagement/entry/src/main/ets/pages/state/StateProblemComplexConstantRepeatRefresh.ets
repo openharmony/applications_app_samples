@@ -33,6 +33,7 @@ struct Index {
     Column() {
       ConsumerChild({ dataObj: this.dataObjFromList })
       Button('change to self').onClick(() => {
+        // 把相同的类实例赋值给一个Class类型的状态变量，会触发刷新
         this.dataObjFromList = this.list[0];
       })
     }

@@ -28,32 +28,32 @@ export const ARCSWIPER_ROUTE_PREFIX: string = 'arcSwiper';
 const routes: Route[] = [
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperStyles`,
-    title: resource.resourceToString($r('app.string.ArcSwiperStyles_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperStyles_title'))},
     description: $r('app.string.ArcSwiperStyles_description')
   },
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperToggle`,
-    title: resource.resourceToString($r('app.string.ArcSwiperToggle_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperToggle_title'))},
     description: $r('app.string.ArcSwiperToggle_description')
   },
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperHorizontal`,
-    title: resource.resourceToString($r('app.string.ArcSwiperHorizontal_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperHorizontal_title'))},
     description: $r('app.string.ArcSwiperHorizontal_description')
   },
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperVertical`,
-    title: resource.resourceToString($r('app.string.ArcSwiperVertical_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperVertical_title'))},
     description: $r('app.string.ArcSwiperVertical_description')
   },
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperAction`,
-    title: resource.resourceToString($r('app.string.ArcSwiperAction_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperAction_title'))},
     description: $r('app.string.ArcSwiperAction_description')
   },
   {
     name: `${ARCSWIPER_ROUTE_PREFIX}/ArcSwiperSideSlip`,
-    title: resource.resourceToString($r('app.string.ArcSwiperSideSlip_title')),
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ArcSwiperSideSlip_title'))},
     description: $r('app.string.ArcSwiperSideSlip_description')
   }
 ];
@@ -87,7 +87,8 @@ struct ArcSwiperExample {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title(this.getUIContext().getHostContext()!),
+            description: route.description })
           }
           .width('100%')
           .onClick(() => {

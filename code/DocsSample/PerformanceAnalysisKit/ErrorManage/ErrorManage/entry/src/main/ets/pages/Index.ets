@@ -22,6 +22,11 @@ import { setFirstErrorHandler } from './FirstErrorHandler';
 import { setSecondErrorHandler } from './SecondErrorHandler';
 // [End error_handler_h]
 
+// [Start freeze_handler_h]
+import { setFirstFreezeHandler } from './FirstFreezeHandler';
+import { setSecondFreezeHandler } from './SecondFreezeHandler';
+// [End freeze_handler_h]
+
 // [Start error_observer]
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -103,6 +108,23 @@ function testErrorHandlers() {
   throw new Error('Test uncaught exception!');
 }
 // [End test_error_handlers]
+
+// [Start test_timeout_handlers]
+function waitTime() {
+  // 构造场景故障
+  let date = Date.now();
+  while (Date.now() - date < 15000) {
+  };
+}
+// [End test_timeout_handlers]
+
+// [Start test_freeze_handlers]
+function testFreezeHandlers() {
+  setFirstFreezeHandler();
+  setSecondFreezeHandler();
+  waitTime();
+}
+// [End test_freeze_handlers]
 
 @Entry
 @Component
@@ -213,6 +235,12 @@ struct Index {
         testErrorHandlers();
       }).position({x:50, y:350});
       // [End onclick_error_Handler]
+
+      // [Start onclick_freeze_Handler]
+      Button('freeze处理器责任链模式场景').onClick(()=>{
+        testFreezeHandlers();
+      }).position({x:50, y:400});
+      // [End onclick_freeze_Handler]
     }
   }
 }

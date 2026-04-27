@@ -26,6 +26,7 @@ export struct AccountInfo {
   @Prop username: string;
   @Prop signature: string;
   @Prop bundleName: string;
+  @Prop isWideLayout: boolean;
   private storage: AccountData = AccountData.getInstance();
   private accountModel: AccountModel = new AccountModel();
 
@@ -34,112 +35,127 @@ export struct AccountInfo {
       Text(title)
         .margin(10)
         .fontSize(18)
-        .width('25%')
+        .width(this.isWideLayout ? '35%' : '25%')
         .textAlign(TextAlign.End)
       Text(value)
         .margin(10)
-        .width('55%')
+        .width(this.isWideLayout ? '55%' : '55%')
         .fontSize(20)
         .textAlign(TextAlign.Start)
     }
+    .width(this.isWideLayout ? '48%' : '100%')
     .padding({ left: 5 })
   }
 
   build() {
     Scroll() {
       Column() {
-        this.infoShow($r('app.string.appname'), this.bundleName)
-        this.infoShow($r('app.string.unusername'), this.username)
-        this.infoShow($r('app.string.email'), this.email)
-        this.infoShow($r('app.string.signature'), this.signature)
+        Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+          this.infoShow($r('app.string.appname'), this.bundleName)
+          this.infoShow($r('app.string.unusername'), this.username)
+          this.infoShow($r('app.string.email'), this.email)
+          this.infoShow($r('app.string.signature'), this.signature)
+        }
+        .width('100%')
 
-        Button($r('app.string.modify'))
-          .id('modify')
-          .margin(10)
-          .width('60%')
-          .fontSize(20)
-          .fontColor(Color.White)
-          .type(ButtonType.Capsule)
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/Modify',
-              params: {
-                username: this.username,
-                bundleName: this.bundleName,
-                signature: this.signature,
-                email: this.email
+        Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+          Button($r('app.string.modify'))
+            .id('modify')
+            .margin(10)
+            .width(this.isWideLayout ? '30%' : '60%')
+            .fontSize(20)
+            .fontColor(Color.White)
+            .type(ButtonType.Capsule)
+            .enabled(this.username !== '')
+            .onClick(() => {
+              if (this.username === '') {
+                return
               }
+              router.pushUrl({
+                url: 'pages/Modify',
+                params: {
+                  username: this.username,
+                  bundleName: this.bundleName,
+                  signature: this.signature,
+                  email: this.email
+                }
+              })
             })
-          })
 
-        Button($r('app.string.application'))
-          .id('application')
-          .margin(10)
-          .width('60%')
-          .fontSize(20)
-          .fontColor(Color.White)
-          .type(ButtonType.Capsule)
-          .onClick(() => {
-            AlertDialog.show(
-              {
-                title: $r('app.string.warning'),
-                message: $r('app.string.switch_app'),
-                primaryButton: {
-                  value: $r('app.string.confirm'),
-                  action: () => {
-                    router.push({
-                      url: 'pages/Index'
-                    })
+          Button($r('app.string.application'))
+            .id('application')
+            .margin(10)
+            .width(this.isWideLayout ? '30%' : '60%')
+            .fontSize(20)
+            .fontColor(Color.White)
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              AlertDialog.show(
+                {
+                  title: $r('app.string.warning'),
+                  message: $r('app.string.switch_app'),
+                  primaryButton: {
+                    value: $r('app.string.confirm'),
+                    action: () => {
+                      router.push({
+                        url: 'pages/Index'
+                      })
+                    }
+                  },
+                  secondaryButton: {
+                    value: $r('app.string.cancel'),
+                    action: () => {
+                      Logger.info(TAG, `AlertDialog enter`)
+                    }
+                  },
+                  cancel: () => {
+                    Logger.info(TAG, `AlertDialog close`)
                   }
-                },
-                secondaryButton: {
-                  value: $r('app.string.cancel'),
-                  action: () => {
-                    Logger.info(TAG, `AlertDialog enter`)
-                  }
-                },
-                cancel: () => {
-                  Logger.info(TAG, `AlertDialog close`)
-                }
-              })
-          })
+                })
+            })
 
-        Button($r('app.string.delete'))
-          .id('delete')
-          .margin(10)
-          .width('60%')
-          .fontSize(20)
-          .fontColor(Color.White)
-          .type(ButtonType.Capsule)
-          .onClick(() => {
-            AlertDialog.show(
-              {
-                title: $r('app.string.warning'),
-                message: $r('app.string.delete_account'),
-                primaryButton: {
-                  value: $r('app.string.confirm'),
-                  action: () => {
-                    this.accountModel.deleteAccount(`${this.username}_${this.bundleName}`);
-                    this.storage.deleteStorageValue(getContext(), this.username, this.bundleName)
-                    router.push({
-                      url: 'pages/Login',
-                      params: {
-                        bundleName: this.bundleName
-                      }
-                    })
+          Button($r('app.string.delete'))
+            .id('delete')
+            .margin(10)
+            .width(this.isWideLayout ? '30%' : '60%')
+            .fontSize(20)
+            .fontColor(Color.White)
+            .type(ButtonType.Capsule)
+            .enabled(this.username !== '')
+            .onClick(() => {
+              if (this.username === '') {
+                return
+              }
+              AlertDialog.show(
+                {
+                  title: $r('app.string.warning'),
+                  message: $r('app.string.delete_account'),
+                  primaryButton: {
+                    value: $r('app.string.confirm'),
+                    action: () => {
+                      this.accountModel.deleteAccount(`${this.username}_${this.bundleName}`);
+                      this.storage.deleteStorageValue(getContext(), this.username, this.bundleName)
+                      router.push({
+                        url: 'pages/Login',
+                        params: {
+                          bundleName: this.bundleName
+                        }
+                      })
+                    }
+                  },
+                  secondaryButton: {
+                    value: $r('app.string.cancel'),
+                    action: () => {
+                      Logger.info(TAG, `AlertDialog enter`)
+                    }
+                  },
+                  cancel: () => {
+                    Logger.info(TAG, `AlertDialog close`)
                   }
-                },
-                secondaryButton: {
-                  value: $r('app.string.cancel'),
-                  action: () => {
-                    Logger.info(TAG, `AlertDialog enter`)
-                  }
-                },
-                cancel: () => {
-                  Logger.info(TAG, `AlertDialog close`)
-                }
-              })
-          })
+                })
+            })
+        }
+        .width('100%')
       }
       .width('100%')
       .height('100%')

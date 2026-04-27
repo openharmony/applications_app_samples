@@ -20,7 +20,7 @@ import { router } from '@kit.ArkUI';
 struct Index {
   @State message: string = 'CertificateManagement';
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
     }, router.RouterMode.Single, (err) => {
       if (err) {

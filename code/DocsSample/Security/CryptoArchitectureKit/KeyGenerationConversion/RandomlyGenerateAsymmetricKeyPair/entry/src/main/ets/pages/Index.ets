@@ -28,13 +28,13 @@ struct Index {
       Button($r('app.string.call_rsa'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.randomGenerateAsymKey();
+          let ret: number = testNapi.generateRSAKey();
           this.message = 'Call RSA Success Result:' + ret.toString();
         })
       Button($r('app.string.call_sm2'))
         .width('70%')
         .onClick(() => {
-          let ret: number = testNapi.randomGenerateRSA();
+          let ret: number = testNapi.generateSM2Key();
           this.message = 'Call SM2 Success Result:' + ret.toString();
         })
     }

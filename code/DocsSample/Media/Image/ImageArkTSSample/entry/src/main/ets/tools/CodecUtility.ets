@@ -14,11 +14,12 @@
 */
 
 import { image } from '@kit.ImageKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { common } from '@kit.AbilityKit';
-
+// [Start create_copyData]
 let copyData: ArrayBuffer = new ArrayBuffer(0);
+// [End create_copyData]
 // [Start create_picturePackOpts]
 let packOpts: image.PackingOption = {
   format: 'image/jpeg',
@@ -37,10 +38,15 @@ function getFilePath(context: Context, fileName: string): string {
 
 // [Start get_fileFd]
 function getFileFd(context: Context, fileName: string): number | undefined {
-  const filePath: string = context.cacheDir + '/' + fileName;
-  const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  const fd: number = file?.fd;
-  return fd;
+  try {
+    const filePath: string = context.cacheDir + '/' + fileName;
+    const file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+    const fd: number = file?.fd;
+    return fd;
+  } catch (err) {
+    console.error(`Failed to get the fileFd with error: ${err}.`);
+    return undefined;
+  }
 }
 // [End get_fileFd]
 
@@ -122,8 +128,8 @@ async function packToFileFromPixelMap(context : Context, pixelMap : image.PixelM
   const imagePackerApi = image.createImagePacker();
   let packOpts : image.PackingOption = { format: 'image/jpeg', quality: 95 };
   const path : string = context.cacheDir + '/pixel_map.jpg';
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   try {
+    let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     await imagePackerApi.packToFile(pixelMap, file.fd, packOpts);
   } catch (error) {
     console.error('Failed to pack the pixelMap to file. And the error is: ' + error);
@@ -136,8 +142,8 @@ async function packToFileFromImageSource(context : Context, imageSource : image.
   const imagePackerApi = image.createImagePacker();
   let packOpts : image.PackingOption = { format: 'image/jpeg', quality: 95 };
   const filePath : string = context.cacheDir + '/image_source.jpg';
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   try {
+    let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
     await imagePackerApi.packToFile(imageSource, file.fd, packOpts);
   } catch (error) {
     console.error('Failed to pack the imageSource to file. And the error is: ' + error);
@@ -164,10 +170,10 @@ async function packing(picture: image.Picture, packOpts: image.PackingOption) {
 
 // [Start packToFile_picture]
 async function packToFile(picture: image.Picture, packOpts: image.PackingOption, context: Context) {
-  const path : string = context.cacheDir + '/picture.jpg';
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  const imagePackerApi = image.createImagePacker();
   try {
+    const path : string = context.cacheDir + '/picture.jpg';
+    let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+    const imagePackerApi = image.createImagePacker();
     await imagePackerApi.packToFile(picture, file.fd, packOpts);
   } catch (error) {
     console.error('Failed to pack the picture to file. And the error is: ' + error);
@@ -316,18 +322,24 @@ export class ImageInterfaceCalled {
   // [End create_picture]
 
   // [Start allocator_called]
-  async CreatePixelMapUsingAllocator(context: Context, type: image.AllocatorType): Promise<image.PixelMap> {
+  async CreatePixelMapUsingAllocator(context: Context, type: image.AllocatorType): Promise<image.PixelMap | undefined> {
     const resourceMgr = context.resourceManager;
-    const rawFile = await resourceMgr.getRawFileContent('99_132.jpg'); // 测试图片为99*132的jpg图。
-    let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer);
-    let options: image.DecodingOptions = {};
-    let pixelmap = await imageSource.createPixelMapUsingAllocator(options, type);
-    if (pixelmap != undefined) {
-      let info = await pixelmap.getImageInfo();
-      // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-      console.info('stride = ' + info.stride);
+    try {
+      const rawFile = await resourceMgr.getRawFileContent('99_132.jpg'); // 测试图片为99*132的jpg图。
+      let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer);
+      let options: image.DecodingOptions = {};
+      let pixelmap = await imageSource.createPixelMapUsingAllocator(options, type);
+      if (pixelmap != undefined) {
+        let info = await pixelmap.getImageInfo();
+        // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
+        console.info('stride = ' + info.stride);
+      }
+      return pixelmap;
+    } catch (err) {
+      console.error(`Create PixelMap by setting allocator type failed: ${err}.`);
+      return undefined;
     }
-    return pixelmap;
+    
   }
   // [End allocator_called]
 
@@ -382,6 +394,31 @@ export class ImageInterfaceCalled {
       packedImageSource = image.createImageSource(filePath);
       return await packedImageSource.createPixelMap();
     }
+    return undefined;
+  }
+
+  async createImageRawData(imageSource: image.ImageSource | undefined) : Promise<image.ImageRawData | undefined> {
+    if (!imageSource) {
+      console.error('imageSource is undefined.');
+      return undefined;
+    }
+    await imageSource.createImageRawData().then((data: image.ImageRawData) => {
+      let array: Uint16Array = new Uint16Array();
+      if (data.bitsPerPixel == 16 && data.buffer) {
+        array = new Uint16Array(data.buffer);
+      }
+      let length = array.byteLength.valueOf();
+      console.info(`uint16Array length: ${length}`);
+      let value: string = '';
+      for (let i = 0; i < array.length && i < 10; i++) {
+        value += array[i] + ', ';
+      }
+      console.info(`get dng rawdata is:${value}.`);
+      return data
+    }).catch((err: BusinessError) => {
+      console.error(`get dng rawdata failed.err: ${JSON.stringify(err)}`);
+      return undefined;
+    })
     return undefined;
   }
 }

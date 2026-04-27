@@ -1,0 +1,55 @@
+<!--
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Get Select</title>
+    <style>
+        body {
+          margin: 40px;
+          background-color: #f4f4f4;
+        }
+        .edit-container {
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          margin: auto;
+        }
+        textarea {
+          width: 100%;
+          height: 400px;
+          font-size: 16px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="edit-container">
+    <textarea placeholder="Enter the text here and select it by long pressing."></textarea>
+</div>
+<script>
+    document.addEventListener('selectionchange', () => {
+      let selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        let selectedText = selection.toString();
+        selectObjName.setSelectText(selectedText);
+      }
+    });
+</script>
+</body>
+</html>

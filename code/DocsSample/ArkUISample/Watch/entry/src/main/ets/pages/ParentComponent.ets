@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import resource from '../common/resource';
+// [Start parent_component]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
-import resource from '../common/resource';
 
-// [Start parent_component]
 @Observed
 class Task {
   public isFinished: boolean = false;

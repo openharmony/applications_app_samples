@@ -14,9 +14,15 @@
  */
 
 export class ResourceManager {
-  public resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+  public resourceToString(context: Context, resource: Resource): string {
+    try {
+      return context.resourceManager.getStringSync(resource.id);
+    } catch (e) {
+      console.info('getStringSync error:', e);
+      return '';
+    }
   }
+  public context: Context | undefined = undefined;
 }
 
 // 默认导出let

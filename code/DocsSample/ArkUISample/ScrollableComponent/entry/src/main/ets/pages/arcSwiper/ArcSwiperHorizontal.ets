@@ -19,7 +19,6 @@ import {
 } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
 
-@Entry
 @Component
 export struct ArcSwiperHorizontal {
   @State message: string = 'Hello World';

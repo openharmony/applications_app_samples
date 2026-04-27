@@ -21,7 +21,7 @@ import { ComponentCard } from '../../common/Card';
 export struct GridSideToSide {
   numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller();
-  @State gridPosition: number = 0; //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  @State gridPosition: number = 0; // 0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
   @State data: number = 1;
 
   aboutToAppear() {

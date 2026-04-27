@@ -30,7 +30,7 @@ class VideoEncoder {
 public:
     VideoEncoder() = default;
     ~VideoEncoder();
-    
+
     int32_t Create(const std::string &videoCodecMime);
     int32_t Config(SampleInfo &sampleInfo, CodecUserData *codecUserData);
     int32_t Start();
@@ -49,4 +49,4 @@ private:
     std::shared_mutex codecMutex;
     OH_AVCodec *encoder_ = nullptr;
 };
-#endif // VIDEOENCODER_H
+#endif

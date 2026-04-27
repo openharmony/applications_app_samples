@@ -18,8 +18,12 @@
 // [Start Model_TaskListModel]
 import { common } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
-import TaskModel from'./TaskModel';
+import TaskModel from './TaskModel';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
+
+// Model层：TaskListModel负责加载任务列表
 export default class TaskListModel {
   public tasks: TaskModel[] = [];
 
@@ -27,17 +31,21 @@ export default class TaskListModel {
     this.tasks = tasks;
   }
 
-  async loadTasks(context: common.UIAbilityContext){
-    let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
-    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
-    let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result = textDecoder.decodeToString(getJson);
-    this.tasks =JSON.parse(result).map((task: TaskModel)=>{
-      let newTask = new TaskModel();
-      newTask.taskName = task.taskName;
-      newTask.isFinish = task.isFinish;
-      return newTask;
-    });
+  async loadTasks(context: common.UIAbilityContext) {
+    try {
+      let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
+      let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+      let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+      let result = textDecoder.decodeToString(getJson);
+      this.tasks = JSON.parse(result).map((task: TaskModel) => {
+        let newTask = new TaskModel();
+        newTask.taskName = task.taskName;
+        newTask.isFinish = task.isFinish;
+        return newTask;
+      });
+    } catch (e) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to getRawFileContent', JSON.stringify(e) ?? '');
+    }
   }
 }
 // [End Model_TaskListModel]

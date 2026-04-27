@@ -14,7 +14,6 @@
  */
 
 import TitleBar from '../component/TitleBar';
-import router from '@ohos.router';
 import { resourceToString } from '../component/ResourceToString';
 
 interface Item {
@@ -64,7 +63,9 @@ struct Index {
                 .width(12)
             }
             .onClick(() => {
-              router.pushUrl({
+              this.getUIContext()
+                .getRouter()
+                .pushUrl({
                 url: operationUrls[index]
               })
             })

@@ -14,7 +14,7 @@
 */
 
 // [Start allocator_import]
-// 导入相关模块包。
+// 导入相关模块。
 import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 // [End allocator_import]

@@ -27,6 +27,7 @@ struct PrivateCorrectAccessRestrictions {
 
 @Component
 struct PrivateCorrectComponentChild {
+  // 正确用法
   @Require @Prop propValue: string = 'Hello';
 
   build() {

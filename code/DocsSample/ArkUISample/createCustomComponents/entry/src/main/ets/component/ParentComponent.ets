@@ -36,6 +36,7 @@ struct HelloComponent {
 struct ParentComponent {
   build() {
     Column() {
+      // 多次创建HelloComponent，实现自定义组件的重用
       Text('ArkUI message')
       HelloComponent({ message: 'Hello World!' })
       Divider()

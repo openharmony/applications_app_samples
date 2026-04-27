@@ -23,7 +23,6 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 // [End manage_notification_badges_header]
 
-@Entry
 @Component
 export struct ManageNotificationBadges {
   @State badgeNum: number = 0;

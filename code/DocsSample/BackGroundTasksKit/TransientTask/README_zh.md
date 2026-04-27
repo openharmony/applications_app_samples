@@ -16,9 +16,7 @@
 
 1.进入应用，点击申请短时任务按钮，点击开始计数按钮；
 
-2.将应用退出到后台后关闭；
-
-3.应用在后台一段时间（单次不超过3分钟、一天不超过10分钟）内，仍然可以进行计数；
+2.短时任务Id有变化；
 
 ### 工程目录
 ```
@@ -60,7 +58,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/TaskManagement/TransientTask/ > .git/info/sparse-checkout
+echo code/DocsSample/BackGroundTasksKit/TransientTask/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 

@@ -1,0 +1,37 @@
+{
+	"MetaData": {
+		"Create": "2022-04-13",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
+		{
+			"Parameters": {
+				"Index": 0
+			},
+			"Pattern": [
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 107,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 21
+						}
+					}
+				},
+				{
+					"Event": {
+						"Type": "transient",
+						"StartTime": 161,
+						"Parameters": {
+							"Intensity": 100,
+							"Frequency": 21
+						}
+					}
+				}
+			]
+		}
+	]
+}

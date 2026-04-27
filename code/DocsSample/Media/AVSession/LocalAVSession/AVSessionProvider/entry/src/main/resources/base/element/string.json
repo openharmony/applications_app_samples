@@ -55,6 +55,10 @@
     {
       "name": "page_want_agent",
       "value": "设置WantAgent"
+    },
+    {
+      "name": "page_desktop_lyric",
+      "value": "开启桌面歌词"
     }
   ]
 }

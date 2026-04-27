@@ -16,20 +16,21 @@
 // [Start navigate_to_web_page_pre_start_webview_load]
 // index.ets
 import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index1 {
   webviewController: webview.WebviewController = new webview.WebviewController();
-  	
+
   build() {
     Column() {
-      //已经预启动Render进程
-      Button('Jump to web page').onClick(()=>{
-        this.getUIContext().getRouter().pushUrl({url: 'pages/index2'});
-      })
-        .width('100%')
-        .height('100%')
+      Button('Jump to web page').onClick(()=> {
+        this.getUIContext().getRouter().pushUrl({ url: 'pages/Index2' }).catch((error: BusinessError) => {
+          hilog.info(0x0000, 'testTag', 'pushUrl error, %{public}s', error);
+        })
+      }).width('100%').height('100%')
     }
   }
 }

@@ -62,7 +62,7 @@ ArkUI_NodeHandle SwipeAndPinchExclusiveGesture()
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::EXCLUSIVE_GROUP);
 
     // 创建滑动手势
-    auto panGesture = gestureApi->createPanGesture(GINGERS_NUM, GESTURE_DIRECTION_VERTICAL, DURATION_NUM);
+    auto panGesture = gestureApi->createPanGesture(FINGERS_NUM, GESTURE_DIRECTION_VERTICAL, DURATION_NUM);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(panGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "[Sample_NdkAddInteractionEvent]",

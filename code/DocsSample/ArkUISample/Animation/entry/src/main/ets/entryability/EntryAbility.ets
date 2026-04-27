@@ -49,7 +49,7 @@ export default class EntryAbility extends UIAbility {
       mainWindow = windowStage.getMainWindowSync();
       let displayClass: display.Display = display.getDefaultDisplaySync();
       AppStorage.setOrCreate('orientation', displayClass.orientation);
-      // 监听窗口的windowsSizeChange事件，旋转屏时会触发该事件
+      // 监听窗口的windowSizeChange事件，旋转屏时会触发该事件
       mainWindow.on('windowSizeChange', (data) => {
         hilog.info(DOMAIN, TAG, 'Succeeded in enabling the listener for window size changes. Data: ' + data);
         let displayClass: display.Display | null = null;

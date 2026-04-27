@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+import Log from '../Log';
+
+const STATUS_BAR_MIN_HEIGHT = 24
+const STATUS_BAR_COEFFICIENT = 1.0
+const NAV_BAR_MIN_HEIGHT = 32
+const NAV_BAR_COEFFICIENT = 1.0
+
+export default class HeightConfigUtils {
+
+  getStatusMinH(){
+    return STATUS_BAR_MIN_HEIGHT;
+  }
+
+  getminHeight(){
+    return NAV_BAR_MIN_HEIGHT;
+  }
+
+  getStatusCoefficient(){
+    return STATUS_BAR_COEFFICIENT;
+  }
+
+  getNavHCoefficient(){
+    return NAV_BAR_COEFFICIENT;
+  }
+}
+

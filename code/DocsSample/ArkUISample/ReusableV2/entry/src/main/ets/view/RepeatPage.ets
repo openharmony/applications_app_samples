@@ -51,6 +51,7 @@ struct Index {
                 ReusableV2Component({ num: obj.item })
               }
             }
+            .width('100%')
           })
       }.height('50%')
       .cachedCount(2)

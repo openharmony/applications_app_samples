@@ -121,7 +121,7 @@ entry1/src/main/
 |---|---pages
 |---|---|---Common.ets
 |---|---|---Index.ets						// 首页
-|---|---|---index2.ets
+|---|---|---Index2.ets
 |---resources								// 静态资源
 |---ohosTest
 |---|---ets
@@ -135,7 +135,7 @@ entry2/src/main/
 |---|---pages
 |---|---|---Common.ets
 |---|---|---Index.ets						// 首页
-|---|---|---index2.ets
+|---|---|---Index2.ets
 |---resources								// 静态资源
 |---ohosTest
 |---|---ets
@@ -177,8 +177,8 @@ entry3/src/main/
     * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理。
     * 实现getNWeb方法，用于获取MyNodeController实例。
   * 在EntryAbility中，使用createNWeb函数并以'about:blank'作为key值创建离线组件。
-  * 显示Index.ets的Index1页面时预启动Render进程。在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面index2。
-  * 在index2.ets中创建一个Web组件，加载示例网页。
+  * 显示Index.ets的Index1页面时预启动Render进程。在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面Index2。
+  * 在Index2.ets中创建一个Web组件，加载示例网页。
 * Entry2中实现预渲染Web页面功能。
   * 在Common.ets文件中封装了离线组件管理工具，功能如下。
     * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。
@@ -187,8 +187,8 @@ entry3/src/main/
     * 实现createNWeb方法，用于创建MyNodeController，并用nodeMap进行统一存放管理。
     * 实现getNWeb方法，用于获取MyNodeController实例。
     * 实现webBuilder方法，使用@Builder进行修饰。在此Builder方法中创建Web组件，并在onPageBegin回调中调用onActive开启渲染；在onFirstMeaningfulPaint回调中调用onInactive，在预渲染完成时触发停止渲染。
-  * 在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面index2。显示Index.ets的Index1页面时预启动Render进程。
-  * 在index2.ets中创建一个Web组件，加载示例网页。
+  * 在Index.ets中创建一个Button组件，在按钮的onClick回调中跳转到页面Index2。显示Index.ets的Index1页面时预启动Render进程。
+  * 在Index2.ets中创建一个Web组件，加载示例网页。
 * Entry3中实现离线Web组件的使用、复用和释放功能。
   * 在Common.ets文件中封装了离线组件管理工具，功能如下。
     * 实现继承自NodeController的MyNodeController类，用于控制和反馈对应NodeContainer上节点的行为，需要与NodeContainer一起使用。

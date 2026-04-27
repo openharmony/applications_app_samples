@@ -22,6 +22,7 @@
 #include "hilog/log.h"
 #include <memory>
 #include <new>
+#include <map>
 #include <multimedia/image_framework/image/image_native.h>
 #include <multimedia/image_framework/image/image_receiver_native.h>
 #include "ohcamera/camera.h"
@@ -89,6 +90,7 @@ public:
     Camera_ImageRotation GetPreviewRotation(int32_t rotation);
     int32_t GetDefaultDisplayRotation();
     void InitPreviewRotation();
+    OH_NativeBuffer_TransformType GetNativeBufferTransformType(int32_t previewRotation, bool isFront);
 
 private:
     enum CurRatio {

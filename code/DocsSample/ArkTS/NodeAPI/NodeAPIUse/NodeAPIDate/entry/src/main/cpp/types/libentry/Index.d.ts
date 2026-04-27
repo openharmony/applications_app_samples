@@ -18,9 +18,9 @@ export const createDate: () => Date; // napi_create_date
 // [End napi_create_date_api]
 
 // [Start napi_get_date_value_api]
-export const getDateValue: (date: Date) => number | void; // napi_get_date_value
+export const getDateValue: (date: Date) => number | undefined; // napi_get_date_value
 // [End napi_get_date_value_api]
 
 // [Start napi_is_date_api]
-export const isDate: <T>(date: T) => boolean | void; // napi_is_date
+export const isDate: <T>(date: T) => boolean | undefined; // napi_is_date
 // [End napi_is_date_api]

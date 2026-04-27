@@ -94,7 +94,7 @@ struct CreatSubscribeInfo {
       Button($r('app.string.unsubscribe_public_event'))
         .onClick(() => {
           // [Start UnsubscribePublicEvents]
-          // subscriber为订阅事件时创建的订阅者对象
+          // subscriberCustom为订阅事件时创建的订阅者对象
           if (subscriberCustom !== null) {
             commonEventManager.unsubscribe(subscriberCustom, (err: BusinessError) => {
               if (err) {

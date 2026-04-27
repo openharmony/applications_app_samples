@@ -14,11 +14,7 @@
  */
 // [Start on_page_end_trigger_prefetch_post_request_access_page]
 import { webview } from '@kit.ArkWeb';
-// [StartExclude on_page_end_trigger_prefetch_post_request_access_page]
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-// [EndExclude on_page_end_trigger_prefetch_post_request_access_page]
+
 @Entry
 @Component
 struct WebComponent {

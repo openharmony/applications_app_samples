@@ -1,0 +1,259 @@
+{
+    "MetaData": {
+        "Create": "2023-11-29",
+        "Discription": "A json file effect",
+        "ChannelNumber": 1,
+        "Version": 1.0
+    },
+    "Channels": [
+        {
+            "Parameters": {
+                "Index": 0
+            },
+            "Pattern": [
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "Duration": 4460,
+                        "StartTime": 0,
+                        "Parameters": {
+                            "Intensity": 45,
+                            "Frequency": 30,
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 602,
+                                    "Intensity": 0.76,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 1351,
+                                    "Intensity": 0.66,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1510,
+                                    "Intensity": 1,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 2377,
+                                    "Intensity": 0.69,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 2457,
+                                    "Intensity": 0.95,
+                                    "Frequency": 0
+                                },
+                                {
+                                    "Time": 3287,
+                                    "Intensity": 0.67,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 3381,
+                                    "Intensity": 0.93,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 3898,
+                                    "Intensity": 0.65,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 3985,
+                                    "Intensity": 0.91,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 4456,
+                                    "Intensity": 0.63,
+                                    "Frequency": -40
+                                },
+                                {
+                                    "Time": 4460,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "Duration": 3860,
+                        "StartTime": 5,
+                        "Parameters": {
+                            "Intensity": 39,
+                            "Frequency": 35,
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 637,
+                                    "Intensity": 0.81,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 1517,
+                                    "Intensity": 0.7,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1583,
+                                    "Intensity": 1,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 2420,
+                                    "Intensity": 0.72,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 2528,
+                                    "Intensity": 0.95,
+                                    "Frequency": 0
+                                },
+                                {
+                                    "Time": 3289,
+                                    "Intensity": 0.74,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 3358,
+                                    "Intensity": 0.94,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 3859,
+                                    "Intensity": 0.61,
+                                    "Frequency": -40
+                                },
+                                {
+                                    "Time": 3860,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "Duration": 2668,
+                        "StartTime": 3865,
+                        "Parameters": {
+                            "Intensity": 38,
+                            "Frequency": 35,
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1,
+                                    "Intensity": 0.56,
+                                    "Frequency": 0
+                                },
+                                {
+                                    "Time": 152,
+                                    "Intensity": 0.84,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 552,
+                                    "Intensity": 0.6,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 819,
+                                    "Intensity": 0.74,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 1706,
+                                    "Intensity": 0.35,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1817,
+                                    "Intensity": 0.54,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 2449,
+                                    "Intensity": 0.25,
+                                    "Frequency": -30
+                                },
+                                {
+                                    "Time": 2668,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "Duration": 2102,
+                        "StartTime": 4460,
+                        "Parameters": {
+                            "Intensity": 42,
+                            "Frequency": 30,
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1,
+                                    "Intensity": 0.66,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 273,
+                                    "Intensity": 0.75,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 1118,
+                                    "Intensity": 0.37,
+                                    "Frequency": -50
+                                },
+                                {
+                                    "Time": 1222,
+                                    "Intensity": 0.54,
+                                    "Frequency": -20
+                                },
+                                {
+                                    "Time": 1924,
+                                    "Intensity": 0.27,
+                                    "Frequency": -30
+                                },
+                                {
+                                    "Time": 2102,
+                                    "Intensity": 0,
+                                    "Frequency": -50
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -16,7 +16,7 @@
 import { router } from '@kit.ArkUI';
 // [Start import_modulePartOne]
 // PageOne.ets
-import { data } from './ModulePartOne'; // 导入时，module.ets中的console.info会执行，产生输出。
+import { data } from './ModulePartOne'; // 导入时，ModulePartOne.ets中的console.info会执行，产生输出。
 console.info('data is ', data);
 // [End import_modulePartOne]
 

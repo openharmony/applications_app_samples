@@ -35,12 +35,12 @@ struct Index {
   @Local condition: boolean = true;
 
   build() {
-    Column() {
+    Column({ space: 10 }) {
       Button('Recycle/Reuse')
         .onClick(() => {
           this.condition = !this.condition;
         })
-      Column() {
+      Column({ space: 10 }) {
         Text('Variables of parent component')
         Text(`local: ${this.local}`)
           .onClick(() => {
@@ -50,7 +50,9 @@ struct Index {
           .onClick(() => {
             this.inheritProvider++;
           })
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
 
       if (this.condition) {
         ReusableV2Component({
@@ -62,6 +64,7 @@ struct Index {
         })
       }
     }
+    .width('100%')
   }
 }
 
@@ -97,8 +100,8 @@ struct ReusableV2Component {
   }
 
   build() {
-    Column() {
-      Column() {
+    Column({ space: 10 }) {
+      Column({ space: 10 }) {
         Text('Variables reset to local initial values')
         Text(`val: ${this.val}`)
           .onClick(() => {
@@ -120,9 +123,11 @@ struct ReusableV2Component {
           .onClick(() => {
             this.selfConsumer++;
           })
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
 
-      Column() {
+      Column({ space: 10 }) {
         Text('Reset to an external variable')
         Text(`paramOut: ${this.paramOut}`)
           .onClick(() => {
@@ -132,18 +137,22 @@ struct ReusableV2Component {
           .onClick(() => {
             this.paramOnce++;
           })
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
 
-      Column() {
+      Column({ space: 10 }) {
         Text('Depending on the parent component')
         Text(`inheritConsumer: ${this.inheritConsumer}`)
           .onClick(() => {
             this.inheritConsumer++;
           })
         Text(`plusParam: ${this.plusParam}`)
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
 
-      Column() {
+      Column({ space: 10 }) {
         Text('Not reset')
         Text(`noDecoVariable: ${this.noDecoVariable}`)
         Text(`noDecoInfo.age: ${this.noDecoInfo.age}`)
@@ -151,8 +160,11 @@ struct ReusableV2Component {
             this.noDecoInfo.age++;
           }) // 能够触发刷新但是复用时不会被重置
         Text(`readOnlyVariable: ${this.readOnlyVariable}`)
-      }.borderWidth(2)
+      }
+      .width('80%')
+      .borderWidth(2)
     }
+    .width('100%')
   }
 }
 

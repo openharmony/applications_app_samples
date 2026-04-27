@@ -21,6 +21,7 @@ class Info {
 
   constructor() {
     hilog.info(0xFF00, 'testTag', '%{public}s', 'in constructor message change to initialized');
+    // 此时@Monitor还未初始化成功，因此不会监听到message的变化
     this.message = 'initialized';
   }
 }

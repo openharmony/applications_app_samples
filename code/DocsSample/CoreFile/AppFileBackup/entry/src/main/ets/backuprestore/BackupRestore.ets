@@ -16,7 +16,7 @@
 // [Start get_local_cap_ability]
 // [Start session_backup]
 // [Start session_restore]
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { backup } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude session_restore]
@@ -42,21 +42,21 @@ export async function getLocalCapabilities(): Promise<void> {
     let fileData = await backup.getLocalCapabilities();
     console.info('getLocalCapabilities success');
     let fpath = filesDir + '/localCapabilities.json';
-    fs.copyFileSync(fileData.fd, fpath);
+    fileIo.copyFileSync(fileData.fd, fpath);
     // [StartExclude get_local_cap_ability]
-    let file = fs.openSync(fpath, fs.OpenMode.READ_WRITE);
+    let file = fileIo.openSync(fpath, fileIo.OpenMode.READ_WRITE);
     // 从文件中读取一段内容
     let arrayBuffer = new ArrayBuffer(BUFFER);
     let readOptions: ReadOptions = {
       offset: 0, // 从文件的开头开始读取
       length: arrayBuffer.byteLength
     };
-    let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
+    let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
     // 这个 buf 对象是 arrayBuffer 中从位置 0 开始的前 readLen 字节
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info('the content of file: ' + buf.toString());
     // [EndExclude get_local_cap_ability]
-    fs.closeSync(fileData.fd);
+    fileIo.closeSync(fileData.fd);
   } catch (error) {
     console.error(`getLocalCapabilities failed with err, code is ${error.code}, message is ${error.message}`);
   }
@@ -77,12 +77,12 @@ function createSessionBackup(): backup.SessionBackup {
       }
       try {
         let bundlePath = filesDir + '/' + file.bundleName;
-        if (!fs.accessSync(bundlePath)) {
-          fs.mkdirSync(bundlePath);
+        if (!fileIo.accessSync(bundlePath)) {
+          fileIo.mkdirSync(bundlePath);
         }
         // 此处执行copyFileSync会多一次内存拷贝，开发者可以直接使用onFileReady的file.fd来进行数据处理，处理完成后close即可，这样会减少内存消耗
-        fs.copyFileSync(file.fd, bundlePath + `/${file.uri}`);
-        fs.closeSync(file.fd);
+        fileIo.copyFileSync(file.fd, bundlePath + `/${file.uri}`);
+        fileIo.closeSync(file.fd);
         console.info('onFileReady success');
       } catch (error) {
 		let err: BusinessError = error as BusinessError;
@@ -176,13 +176,13 @@ function createSessionRestore(): backup.SessionRestore {
       }
       // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
       let bundlePath: string = `${filesDir}/${file.bundleName}/`;
-      if (!fs.accessSync(bundlePath)) {
+      if (!fileIo.accessSync(bundlePath)) {
         console.error('onFileReady bundlePath err : ' + bundlePath);
       }
       console.info('fd : ' + file.fd);
       let targetPath = `${bundlePath}${file.uri}`;
-      fs.copyFileSync(targetPath, file.fd);
-      fs.closeSync(file.fd);
+      fileIo.copyFileSync(targetPath, file.fd);
+      fileIo.closeSync(file.fd);
       let currentCount = countMap.get(file.bundleName) || 0; // 如果没有找到对应的计数，则默认返回 0
       countMap.set(file.bundleName, ++currentCount);
       // 恢复数据传输完成后，会通知服务端文件准备就绪

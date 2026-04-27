@@ -636,6 +636,7 @@ Camera_ErrorCode NDKCamera::TakePicture(int32_t degree)
     bool isMirSupported;
     OH_PhotoOutput_IsMirrorSupported(photoOutput_, &isMirSupported);
     OH_PhotoOutput_GetPhotoRotation(photoOutput_, degree, &imageRotation);
+    imageRotation = Camera_ImageRotation::CAMERA_IMAGE_ROTATION_0;
 
     Camera_PhotoCaptureSetting curPhotoSetting = {
         quality : QUALITY_LEVEL_HIGH,
@@ -861,6 +862,7 @@ Camera_OutputCapability* NDKCamera::GetSupportedFullCameraOutputCapability(Camer
         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
         return cameraOutputCapability;
     }
+    // [StartExclude get_full_outputCapability]
     // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
     if (cameraOutputCapability->previewProfiles == nullptr) {
         OH_LOG_ERROR(LOG_APP, "previewProfiles == null");
@@ -885,6 +887,7 @@ Camera_OutputCapability* NDKCamera::GetSupportedFullCameraOutputCapability(Camer
         }
         cameraProfile_ = photoProfile;
     }
+    // [EndExclude get_full_outputCapability]
     return cameraOutputCapability;
 }
 // [End get_full_outputCapability]
@@ -1078,8 +1081,10 @@ void OnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo)
     OH_LOG_INFO(LOG_APP, "OH_PictureNative_GetMainPixelmap success");
 
     uint32_t byteCount = 0;
+    // 获取主图Pixelmap中所有像素所占用的总字节数。
     imageErr = OH_PixelmapNative_GetByteCount(mainPixelmap, &byteCount);
     OH_LOG_INFO(LOG_APP, "OH_PixelmapNative_GetByteCount count:%{public}u", byteCount);
+    // 获取主图的图像像素信息。
     OH_Pixelmap_ImageInfo* imageInfo;
     imageErr = OH_PixelmapNative_GetImageInfo(mainPixelmap, imageInfo);
     OH_LOG_INFO(LOG_APP, "OH_PixelmapNative_GetImageInfo errorCode:%{public}d", imageErr);
@@ -1090,11 +1095,17 @@ void OnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo)
     int32_t pixelFormat = PIXEL_FORMAT::PIXEL_FORMAT_UNKNOWN;
     int32_t alphaMode = PIXELMAP_ALPHA_TYPE::PIXELMAP_ALPHA_TYPE_UNKNOWN;
     int32_t alphaType = PIXELMAP_ALPHA_TYPE::PIXELMAP_ALPHA_TYPE_UNKNOWN;
+    // 获取主图图像像素信息中的宽度。
     OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
+    // 获取主图图像像素信息中的高度。
     OH_PixelmapImageInfo_GetHeight(imageInfo, &height);
+    // 获取主图图像像素信息中的行跨距。
     OH_PixelmapImageInfo_GetRowStride(imageInfo, &rowStride);
+    // 获取主图图像像素信息中的像素格式。
     OH_PixelmapImageInfo_GetPixelFormat(imageInfo, &pixelFormat);
+    // 获取主图图像像素信息中的透明通道类型。
     OH_PixelmapImageInfo_GetAlphaMode(imageInfo, &alphaMode);
+    // 获取主图图像像素信息中的默认的透明通道类型。
     OH_PixelmapImageInfo_GetAlphaType(imageInfo, &alphaType);
     OH_LOG_INFO(LOG_APP, "OH_PixelmapNative_GetImageInfo w: %{public}d, h: %{public}d,"
         "rowStride: %{public}d, pixelFormat: %{public}d, alphaMode: %{public}d, alphaType:"

@@ -54,7 +54,7 @@ export default class MyAppServiceExtAbility extends AppServiceExtensionAbility {
     this.context.terminateSelf().then(() => {
       hilog.info(0x0000, TAG, '----------- terminateSelf succeed -----------');
     }).catch((error: BusinessError) => {
-      hilog.error(0x0000, TAG, `terminateSelf failed, error.code: ${error.code}, error.message: $   {error.message}`);
+      hilog.error(0x0000, TAG, `terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
     // [EndExclude ability_app_service_one]
   }

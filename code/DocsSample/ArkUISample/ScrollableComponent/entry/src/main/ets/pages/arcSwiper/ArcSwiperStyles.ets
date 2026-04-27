@@ -24,7 +24,6 @@ import {
 // [End import]
 import { ComponentCard } from '../../common/Card';
 
-@Entry
 @Component
 export struct ArcSwiperStyles {
   @State message: string = 'Hello World';

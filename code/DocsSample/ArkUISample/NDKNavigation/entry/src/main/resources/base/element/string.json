@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "NDK Navigation Query"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "NDK Navigation Query"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NDK Navigation Query"
+    }
+  ]
+}

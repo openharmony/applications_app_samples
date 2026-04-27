@@ -14,9 +14,9 @@
 */
 
 // [Start receiver_import]
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
 import { camera } from '@kit.CameraKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End receiver_import]
 
@@ -116,11 +116,15 @@ async function firstAdjustBufferSize(imgComponent: image.Component, height: numb
 async function secondAdjustBufferSize(imgComponent: image.Component, height: number, width: number, stride: number)
   : Promise<image.PixelMap> {
   // [Start adjust_width]
-  // 创建pixelMap，width宽传行距stride的值。
+  // 创建pixelMap，width传入行距（stride）的值。
   let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
     size:{height: height, width: stride}, srcPixelFormat: 8});
   // 裁剪多余的像素。
-  pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
+  try {
+    pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
+  } catch (err) {
+    hilog.error(0x00000, TAG, `adjust bufferSize failed: ${err}!`);
+  }
   // [End adjust_width]
   return pixelMap;
 }
@@ -145,14 +149,18 @@ export class ReceiverUtility {
     } else {
       hilog.info(0x00000, TAG, `initCamera getSupportedCameras success! ` + cameras.length);
     }
-    let cameraInput = cameraManager.createCameraInput(cameras[0]) as camera.CameraInput;
-    if (!cameraInput) {
-      hilog.info(0x00000, TAG, `initCamera createCameraInput failed!`);
-    } else {
-      hilog.info(0x00000, TAG, `initCamera createCameraInput success!`);
+    try {
+      let cameraInput = cameraManager.createCameraInput(cameras[0]) as camera.CameraInput;
+      if (!cameraInput) {
+        hilog.info(0x00000, TAG, `initCamera createCameraInput failed!`);
+      } else {
+        hilog.info(0x00000, TAG, `initCamera createCameraInput success!`);
+      }
+      await cameraInput?.open();
+    } catch (err) {
+      hilog.error(0x00000, TAG, `initCamera createCameraInput failed: ${err}!`);
     }
-    await cameraInput?.open();
-
+    
     let capability: camera.CameraOutputCapability =
       cameraManager.getSupportedOutputCapability(cameras[0], camera.SceneMode.NORMAL_VIDEO);
     if (!capability) {
@@ -167,44 +175,59 @@ export class ReceiverUtility {
 
   // 创建相机输入流
   async createCameraInput(cameraManager: camera.CameraManager, cameras: Array<camera.CameraDevice>)
-    : Promise<camera.CameraInput> {
-    let cameraInput = cameraManager.createCameraInput(cameras[0]) as camera.CameraInput;
-    if (!cameraInput) {
-      hilog.info(0x00000, TAG, `initCamera createCameraInput failed!`);
-    } else {
-      hilog.info(0x00000, TAG, `initCamera createCameraInput success!`);
+    : Promise<camera.CameraInput | undefined> {
+    try {
+      let cameraInput = cameraManager.createCameraInput(cameras[0]) as camera.CameraInput;
+      if (!cameraInput) {
+        hilog.info(0x00000, TAG, `initCamera createCameraInput failed!`);
+      } else {
+        hilog.info(0x00000, TAG, `initCamera createCameraInput success!`);
+      }
+      await cameraInput?.open();
+      return cameraInput;
+    } catch (err) {
+      hilog.info(0x00000, TAG, `initCamera createCameraInput failed: ${err}!`);
+      return undefined;
     }
-    await cameraInput?.open();
-    return cameraInput;
   }
 
   // 创建预览输出流
   createPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile, receiverSurfaceId: string)
     : camera.PreviewOutput | undefined {
-    let previewOutput = cameraManager.createPreviewOutput(previewProfile, receiverSurfaceId) as camera.PreviewOutput;
-    if (!previewOutput) {
-      hilog.info(0x00000, TAG, `Create previewOutput failed!`);
+    try {
+      let previewOutput = cameraManager.createPreviewOutput(previewProfile, receiverSurfaceId) as camera.PreviewOutput;
+      if (!previewOutput) {
+        hilog.info(0x00000, TAG, `Create previewOutput failed!`);
+      }
+      return previewOutput;
+    } catch (err) {
+      hilog.info(0x00000, TAG, `Create previewOutput failed: ${err}!`);
+      return undefined;
     }
-    return previewOutput;
   }
 
   // 创建会话
-  createSession(cameraManager: camera.CameraManager, cameraInput: camera.CameraInput,
+  createSession(cameraManager: camera.CameraManager, cameraInput: camera.CameraInput | undefined,
     previewOutput1: camera.PreviewOutput, previewOutput2: camera.PreviewOutput): camera.VideoSession | undefined {
-    let tmpSession = cameraManager.createSession<camera.VideoSession>(camera.SceneMode.NORMAL_VIDEO);
-    let session = tmpSession as camera.VideoSession;
-    if (!session) {
-      hilog.info(0x00000, TAG, `initCamera createSession failed!`);
+    try {
+      let tmpSession = cameraManager.createSession<camera.VideoSession>(camera.SceneMode.NORMAL_VIDEO);
+      let session = tmpSession as camera.VideoSession;
+      if (!session) {
+        hilog.info(0x00000, TAG, `initCamera createSession failed!`);
+      }
+      hilog.info(0x00000, TAG, `initCamera beginConfig!`);
+      session?.beginConfig();
+      session?.addInput(cameraInput as camera.CameraInput);
+      session?.addOutput(previewOutput1 as camera.PreviewOutput);
+      session?.addOutput(previewOutput2 as camera.PreviewOutput);
+      session?.commitConfig();
+      session?.start();
+      hilog.info(0x00000, TAG, `initCamera initCamera Finished!`);
+      return session;
+    }  catch (err) {
+      hilog.info(0x00000, TAG, `initCamera createSession failed: ${err}!`);
+      return undefined;
     }
-    hilog.info(0x00000, TAG, `initCamera beginConfig!`);
-    session?.beginConfig();
-    session?.addInput(cameraInput as camera.CameraInput);
-    session?.addOutput(previewOutput1 as camera.PreviewOutput);
-    session?.addOutput(previewOutput2 as camera.PreviewOutput);
-    session?.commitConfig();
-    session?.start();
-    hilog.info(0x00000, TAG, `initCamera initCamera Finished!`);
-    return session;
   }
 
   // 创建receiver

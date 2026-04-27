@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Describe the Function Flow Runtime(FFRT) Task Graph Concurrency framework paradigm."
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "FFRT Task Graph Demo"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FFRT Task Graph"
+    },
+    {
+      "name": "title",
+      "value": "FFRT图依赖并发"
+    },
+    {
+      "name": "FFRT_TaskGraph_Dep_lable",
+      "value": "图依赖并发 依赖管理 C接口"
+    },
+    {
+      "name": "FFRT_TaskGraph_Dep_des",
+      "value": "用户上传视频到流媒体平台，处理步骤包含：视频解析A、视频转码B、视频缩略图生成C、视频水印添加D和视频发布E，其中步骤B和步骤C可以并行执行。"
+    },
+    {
+      "name": "FFRT_TaskGraph_Fib_lable",
+      "value": "图依赖并发 斐波那契 C接口"
+    },
+    {
+      "name": "FFRT_TaskGraph_Fib_des",
+      "value": "斐波那契数列中每个数字是前两个数字之和，计算斐波那契数的过程可以很好地通过数据对象来表达任务依赖关系。"
+    },
+    {
+      "name": "FFRT_TaskGraph_Dep_Cpp_lable",
+      "value": "依赖管理 Cpp接口"
+    },
+    {
+      "name": "FFRT_TaskGraph_Fib_Cpp_lable",
+      "value": "斐波那契 Cpp接口"
+    },
+    {
+      "name": "Print_des",
+      "value": "任务提交成功后查看Hilog日志打印"
+    }
+  ]
+}

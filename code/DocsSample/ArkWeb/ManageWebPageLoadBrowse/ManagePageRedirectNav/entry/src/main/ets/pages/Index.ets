@@ -22,15 +22,15 @@ struct Index {
     Column({ space: 10 }) {
       Button('HistoryNavigati')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/HistoryNavigati' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/HistoryNavigati' });
         })
       Button('PageRedirection')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PageRedirection' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PageRedirection' });
         })
       Button('CrossApplicationRedirection')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CrossApplicationRedirection' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CrossApplicationRedirection' });
         })
     }.height('100%')
     .width('100%')

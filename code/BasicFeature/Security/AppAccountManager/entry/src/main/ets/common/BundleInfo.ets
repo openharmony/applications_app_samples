@@ -15,14 +15,20 @@
 
 import router from '@ohos.router'
 
-class BasicDataSource implements IDataSource {
+interface BundleItem {
+  img: Resource
+  text: Resource
+  name: string
+}
+
+class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
-  public totalCount() {
+  public totalCount(): number {
     return 0
   }
 
-  public getData(index: number) {
+  public getData(index: number): T | undefined {
     return undefined
   }
 
@@ -70,36 +76,22 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-class MyDataSource extends BasicDataSource {
-  private dataArray: Array<{
-    img: Resource,
-    text: Resource,
-    name: string
-  }> = [
+class MyDataSource extends BasicDataSource<BundleItem> {
+  private dataArray: BundleItem[] = [
     { img: $r('app.media.music'), text: $r('app.string.music'), name: 'Music' },
     { img: $r('app.media.video'), text: $r('app.string.video'), name: 'Video' },
     { img: $r('app.media.map'), text: $r('app.string.map'), name: 'Map' }
   ]
 
-  public totalCount() {
+  public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number) {
+  public getData(index: number): BundleItem | undefined {
     return this.dataArray[index]
   }
 
-  public addData(index: number) {
-    this.dataArray.splice(index, 0)
-    this.notifyDataAdd(index)
-  }
-
-  public pushData(index: number) {
-    this.dataArray.push()
-    this.notifyDataAdd(this.dataArray.length - 1)
-  }
-
-  public replaceData(result: any[]) {
+  public replaceData(result: BundleItem[]) {
     this.dataArray = result
   }
 }
@@ -107,10 +99,13 @@ class MyDataSource extends BasicDataSource {
 @Component
 export struct BundleInfo {
   @State dataSet: MyDataSource = new MyDataSource()
+  @Prop isWideLayout: boolean
+  @Prop isSidebar: boolean = false
+  @Prop selectedBundleName: string = ''
 
   build() {
-    Column() {
-      LazyForEach(this.dataSet, item => {
+    Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+      LazyForEach(this.dataSet, (item: BundleItem) => {
         Row() {
           Image(item.img)
             .margin(10)
@@ -131,11 +126,15 @@ export struct BundleInfo {
         }
         .id(item.name + 'App')
         .margin(5)
-        .width('95%')
-        .height('20%')
+        .width(this.isSidebar ? '95%' : (this.isWideLayout ? '48%' : '95%'))
+        .height(this.isSidebar ? 90 : (this.isWideLayout ? 150 : '20%'))
         .borderRadius(20)
-        .backgroundColor('#f6f6f6')
+        .backgroundColor(this.isSidebar && this.selectedBundleName === item.name ? '#d7ebff' : '#f6f6f6')
         .onClick(() => {
+          if (this.isSidebar) {
+            AppStorage.SetOrCreate<string>('selectedBundleName', item.name)
+            return
+          }
           router.push({
             url: 'pages/Login',
             params: {
@@ -143,8 +142,10 @@ export struct BundleInfo {
             }
           })
         })
-      }, item => item.name.toString())
+      }, (item: BundleItem) => item.name)
     }
+    .width('100%')
+    .height('100%')
     .layoutWeight(1)
   }
 }

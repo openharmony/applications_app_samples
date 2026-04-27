@@ -16,7 +16,7 @@
 // [Start import_interface_select]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import { fileAccess, fileIo as fs,  picker } from '@kit.CoreFileKit';
+import { fileIo, picker } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
 // [End import_interface_select]
 
@@ -159,14 +159,14 @@ struct Index {
       // [Start document_read_only]
       if (uris.length > 0) {
         let uri: string = uris[0];
-        //这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
-        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+        //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
+        let file = fileIo.openSync(uri, fileIo.OpenMode.READ_WRITE);
         console.info('file fd: ' + file.fd);
         // [Start document_fs_read_sync]
         let buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
-        let readLen = fs.readSync(file.fd, buffer); // 读取文件内容
+        let readLen = fileIo.readSync(file.fd, buffer); // 读取文件内容
         console.info('readSync data to file succeed and buffer size is:' + readLen);
-        fs.closeSync(file);
+        fileIo.closeSync(file);
         // [End document_fs_read_sync]
       }
       // [End document_read_only]
@@ -212,17 +212,17 @@ struct Index {
       // [Start openmode_read_only]
       if (uris.length > 0) {
         let uri: string = uris[0];
-        //这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
-        let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+        //这里需要注意接口权限参数是fileIo.OpenMode.READ_ONLY。
+        let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
         console.info('file fd: ' + file.fd);
         // [Start fs_read_sync]
         const buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
-        const readLen = fs.readSync(file.fd, buffer); // 读取文件内容
+        const readLen = fileIo.readSync(file.fd, buffer); // 读取文件内容
         console.info('readSync data to file succeed and buffer size is:' + readLen);
         // [StartExclude fs_read_sync]
         this.fileContent = `Read ${readLen} bytes from file.`; // 显示读取的字节数
         // [EndExclude fs_read_sync]
-        fs.closeSync(file);
+        fileIo.closeSync(file);
         // [End fs_read_sync]
       }
       // [End openmode_read_only]

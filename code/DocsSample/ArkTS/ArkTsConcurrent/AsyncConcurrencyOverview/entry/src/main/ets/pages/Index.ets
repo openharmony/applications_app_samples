@@ -37,17 +37,17 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
    * 只传一个参数则表示当Promise对象状态变为fulfilled时，then方法会自动调用这个回调函数，并将Promise对象的结果作为参数传递给它。
    * 使用catch方法注册一个回调函数，用于处理“失败”的结果，即捕获Promise的状态改变为rejected状态或操作失败抛出的异常。
    */
-  // 使用 then 方法定义成功和失败的回调
+  // 使用then方法定义成功和失败的回调
   promise.then((result: number) => {
-    console.info(`Succesed number is ${result}`); // 成功时执行
+    console.info(`Successed number is ${result}`); // 成功时执行
   }, (error: BusinessError) => {
     console.error(error.message); // 失败时执行
   }
   );
 
-  // 使用 then 方法定义成功的回调，catch 方法定义失败的回调
+  // 使用then方法定义成功的回调，catch方法定义失败的回调
   promise.then((result: number) => {
-    console.info(`Random number is ${result}`); // 成功时执行
+    console.info(`Successed number is ${result}`); // 成功时执行
   }).catch((error: BusinessError) => {
     console.error(error.message); // 失败时执行
   });
@@ -91,7 +91,7 @@ struct PromiseAsyncAwait {
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
             let res = await myAsyncFunction();
-            console.info('res is: ' + res);
+            console.info('Result is: ' + res);
             // [StartExclude update_message_on_success]
             this.message = 'success';
             // [EndExclude update_message_on_success]

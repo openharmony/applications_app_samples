@@ -29,7 +29,7 @@ import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardContr
 // 无大小写的按键组件
 @Component
 export struct KeyItem {
-  private keyValue: keySourceListType | undefined = undefined;
+  keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {

@@ -39,7 +39,7 @@ declare class NodeControllerParams {
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用。
 class MyNodeController extends NodeController {
   private rootNode: BuilderNode<[Params]> | undefined | null;
-  private embedId_: string = '';	
+  private embedId_: string = '';
   private surfaceId_: string = '';
   private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
   private width_: number = 0;
@@ -64,11 +64,11 @@ class MyNodeController extends NodeController {
     }
     if (!this.rootNode) {// rootNode 为undefined时。
       this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
-      if (this.type_ == 'native/view1') {
+      if (this.type_ === 'native/view1') {
         this.rootNode.build(
           wrapBuilder(textInputBuilder1), {  textOne: 'myTextInput', width: this.width_, height: this.height_  });
         return this.rootNode.getFrameNode();
-      } else if (this.type_ == 'native/view2') {
+      } else if (this.type_ === 'native/view2') {
         this.rootNode.build(
           wrapBuilder(textInputBuilder2), {  textOne: 'myTextInput', width: this.width_, height: this.height_  });
         return this.rootNode.getFrameNode();
@@ -183,14 +183,14 @@ struct Page{
           }, (embedId: string) => embedId)
           // Web组件加载本地test4.html页面。
           Web({src: $rawfile('test4.html'), controller: this.browserTabController})
-            // 配置同层渲染开关开启。
+          // 配置同层渲染开关开启。
             .enableNativeEmbedMode(true)
-              // 获取<embed>标签的生命周期变化数据。
+            // 获取<embed>标签的生命周期变化数据。
             .onNativeEmbedLifecycleChange((embed) => {
               console.info('NativeEmbed surfaceId' + embed.surfaceId);
               // 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
               const componentId = embed.info?.id?.toString() as string
-              if (embed.status == NativeEmbedStatus.CREATE) {
+              if (embed.status === NativeEmbedStatus.CREATE) {
                 console.info('NativeEmbed create' + JSON.stringify(embed.info));
                 // 创建节点控制器、设置参数。
                 let nodeController = new MyNodeController();
@@ -210,15 +210,25 @@ struct Page{
                 this.positionMap.set(componentId, this.edges);
                 // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器,需要将push动作放在set之后。
                 this.componentIdArr.push(componentId);
-              } else if (embed.status == NativeEmbedStatus.UPDATE) {
+              } else if (embed.status === NativeEmbedStatus.UPDATE) {
                 let nodeController = this.nodeControllerMap.get(componentId);
                 console.info('NativeEmbed update' + JSON.stringify(embed));
                 this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`};
                 this.positionMap.set(componentId, this.edges);
                 this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
                 this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
-                nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject);
-              } else if (embed.status == NativeEmbedStatus.DESTROY) {
+                interface UpdateNodeParams {
+                  textOne: string;
+                  width: number;
+                  height: number;
+                }
+                const updateParams: UpdateNodeParams = {
+                  textOne: 'update',
+                  width: this.uiContext.px2vp(embed.info?.width),
+                  height: this.uiContext.px2vp(embed.info?.height)
+                }
+                nodeController?.updateNode(updateParams);
+              } else if (embed.status === NativeEmbedStatus.DESTROY) {
                 console.info('NativeEmbed destroy' + JSON.stringify(embed));
                 let nodeController = this.nodeControllerMap.get(componentId);
                 nodeController?.setDestroy(true);
@@ -236,7 +246,7 @@ struct Page{
               this.componentIdArr.forEach((componentId: string) => {
                 let nodeController = this.nodeControllerMap.get(componentId);
                 // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上。
-                if (nodeController?.getEmbedId() == touch.embedId) {
+                if (nodeController?.getEmbedId() === touch.embedId) {
                   let ret = nodeController?.postEvent(touch.touchEvent);
                   if (ret) {
                     console.info('onNativeEmbedGestureEvent success ' + componentId);

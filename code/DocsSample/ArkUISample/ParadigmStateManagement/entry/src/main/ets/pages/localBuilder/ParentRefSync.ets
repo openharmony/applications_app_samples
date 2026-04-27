@@ -60,6 +60,7 @@ struct Parent {
 
   build() {
     Column() {
+      // 按引用传递参数，传入的参数发生变化，会引起citeLocalBuilder内的UI刷新
       this.citeLocalBuilder({ paramString: this.variableValue })
       Button('Click me').onClick(() => {
         this.variableValue = 'Hi World';

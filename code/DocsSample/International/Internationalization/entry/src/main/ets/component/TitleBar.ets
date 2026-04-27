@@ -13,12 +13,10 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 @Component
 export default struct TitleBar {
-  private title: string | Resource = $r('app.string.Internationalization');
-  private hasBackPress: boolean = false;
+  public title: string | Resource = $r('app.string.Internationalization');
+  public hasBackPress: boolean = false;
 
   build() {
     Row() {
@@ -33,7 +31,9 @@ export default struct TitleBar {
         .aspectRatio(1)
         .margin({ left: 24 })
         .onClick(() => {
-          router.back()
+          this.getUIContext()
+            .getRouter()
+            .back()
         })
       }
       Text(this.title)

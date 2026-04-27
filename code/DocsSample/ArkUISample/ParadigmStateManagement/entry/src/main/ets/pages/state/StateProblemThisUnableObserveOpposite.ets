@@ -40,6 +40,8 @@ export class TestModel {
 
   constructor() {
     this.model = new Model(() => {
+      // 此时TestModel实例尚未被代理封装，this指向TestModel实例本身
+      // this.isSuccess的修改无法触发Index中Text的UI刷新
       this.isSuccess = true;
       hilog.info(0xFF00, 'testTag', '%{public}s', `this.isSuccess: ${this.isSuccess}`);
     })

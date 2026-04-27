@@ -61,6 +61,8 @@ struct Index {
           .fontSize(40)
       })
 
+      // numberArr是@Trace装饰的数组
+      // 使用数组API操作numberArr时，可以观测到对应的变化
       Button('push')
         .onClick(() => {
           this.arr.numberArr.push(50);
@@ -80,7 +82,6 @@ struct Index {
         .onClick(() => {
           this.arr.numberArr.splice(1, 0, 60);
         })
-
 
       Button('unshift')
         .onClick(() => {

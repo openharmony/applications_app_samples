@@ -15,7 +15,6 @@
 
 // Index.ets
 // [Start nodeContainer_bind_controller_to_show_dynamic_pages]
-// 使用NodeController的Page页
 import { getNWeb } from './Common'
 @Entry
 @Component

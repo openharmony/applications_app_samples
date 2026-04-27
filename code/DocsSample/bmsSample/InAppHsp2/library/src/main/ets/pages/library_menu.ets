@@ -19,7 +19,6 @@ export function PageOneBuilder() {
   Library_Menu()
 }
 
-@Entry
 @Component
 export struct Library_Menu {
   @State message: string = 'Hello World';

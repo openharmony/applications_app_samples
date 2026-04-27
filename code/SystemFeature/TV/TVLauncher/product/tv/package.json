@@ -1,0 +1,13 @@
+{
+	"devDependencies": {},
+	"name": "launcher",
+	"ohos": {
+		"org": "awei-organization",
+		"directoryLevel": "module",
+		"buildTool": "hvigor"
+	},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/common": "../../common"
+	}
+}

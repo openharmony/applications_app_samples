@@ -1,0 +1,71 @@
+<svg width="448.627197" height="276.628906" viewBox="0 0 448.627 276.629" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_196_21400_dd" x="0.000000" y="0.000000" width="448.627197" height="276.628906" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="0"/>
+			<feGaussianBlur stdDeviation="4.7712"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<filter id="filter_196_21401_dd" x="0.000000" y="0.000000" width="448.627197" height="276.628906" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="0"/>
+			<feGaussianBlur stdDeviation="4.7712"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<filter id="filter_196_21412_dd" x="138.313721" y="126.314453" width="80.105469" height="80.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="1.33333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="4"/>
+			<feGaussianBlur stdDeviation="1.33333"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.51765 0 0 0 0 0 0 0 0 0.1 0"/>
+			<feBlend mode="normal" in2="effect_backgroundBlur_1" result="effect_dropShadow_2"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_2" result="shape"/>
+		</filter>
+		<clipPath id="clip196_21414">
+			<rect id="画板 9" rx="18.000000" width="396.000000" height="224.000000" transform="translate(26.313721 26.314453)" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="14.313782" y1="262.314758" x2="162.940536" y2="69.269020" id="paint_linear_196_21400_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="402.861145" y1="474.528625" x2="646.951172" y2="259.996277" id="paint_linear_196_21401_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="224.313431" y1="250.314209" x2="224.313431" y2="122.314453" id="paint_linear_196_21414_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.858824"/>
+			<stop offset="1.000000" stop-color="#FFFFFF"/>
+		</linearGradient>
+		<linearGradient x1="227.724792" y1="78.314453" x2="227.724792" y2="198.314453" id="paint_linear_196_21411_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFA030"/>
+			<stop offset="1.000000" stop-color="#FF7D00"/>
+		</linearGradient>
+	</defs>
+	<g filter="url(#filter_196_21400_dd)">
+		<rect id="矩形 89" x="15.813721" y="15.814453" rx="22.000000" width="417.000000" height="245.000000" stroke="url(#paint_linear_196_21400_0)" stroke-opacity="0.900000" stroke-width="3.000000" stroke-linejoin="round"/>
+	</g>
+	<g filter="url(#filter_196_21401_dd)">
+		<rect id="矩形 89" x="432.813721" y="260.814453" rx="22.000000" width="417.000000" height="245.000000" transform="rotate(180 432.813721 260.814453)" stroke="url(#paint_linear_196_21401_0)" stroke-opacity="0.900000" stroke-width="3.000000" stroke-linejoin="round"/>
+	</g>
+	<rect id="画板 9" rx="18.000000" width="396.000000" height="224.000000" transform="translate(26.313721 26.314453)" fill="url(#paint_linear_196_21414_0)" fill-opacity="0.900000"/>
+	<g clip-path="url(#clip196_21414)">
+		<path id="合并" d="M214.402 78.3145C181.217 78.3145 154.314 105.178 154.314 138.314C154.314 171.408 181.145 198.244 214.27 198.314C214.284 198.314 214.299 198.314 214.313 198.314L287.62 198.314C290.98 198.314 293.62 195.674 293.62 192.314C293.62 188.955 290.98 186.314 287.62 186.314L250.46 186.314C265.052 175.367 274.49 157.941 274.49 138.314C274.49 105.178 247.588 78.3145 214.402 78.3145ZM214.402 186.314C222.698 186.314 229.424 179.6 229.424 171.314C229.424 163.029 222.698 156.314 214.402 156.314C206.106 156.314 199.38 163.029 199.38 171.314C199.38 179.6 206.106 186.314 214.402 186.314ZM199.38 105.314C199.38 97.0293 206.106 90.3145 214.402 90.3145C222.698 90.3145 229.424 97.0293 229.424 105.314C229.424 113.6 222.698 120.314 214.402 120.314C206.106 120.314 199.38 113.6 199.38 105.314ZM181.354 123.314C173.057 123.314 166.332 130.029 166.332 138.314C166.332 146.6 173.057 153.314 181.354 153.314C189.65 153.314 196.376 146.6 196.376 138.314C196.376 130.029 189.65 123.314 181.354 123.314ZM232.428 138.314C232.428 130.029 239.154 123.314 247.45 123.314C255.747 123.314 262.472 130.029 262.472 138.314C262.472 146.6 255.747 153.314 247.45 153.314C239.154 153.314 232.428 146.6 232.428 138.314Z" clip-rule="evenodd" fill="url(#paint_linear_196_21411_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<g filter="url(#filter_196_21412_dd)">
+			<ellipse id="椭圆 222" cx="178.366455" cy="162.314453" rx="36.052631" ry="36.000000" fill="#FFFFFF" fill-opacity="0.100000"/>
+		</g>
+	</g>
+</svg>

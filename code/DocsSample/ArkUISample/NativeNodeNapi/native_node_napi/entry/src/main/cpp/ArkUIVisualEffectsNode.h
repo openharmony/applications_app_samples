@@ -462,6 +462,56 @@ std::shared_ptr<ArkUIBaseNode> CreateVisualEffectsGroup()
     return column;
 }
 
+std::shared_ptr<ArkUIBaseNode> createEventPassthrough()
+{
+    auto column = std::make_shared<ArkUIColumnNode>();
+    auto textNode = std::make_shared<ArkUITextNode>();
+    textNode->SetTextContent("enableEventPassthrough");
+    textNode->SetWidth(MIDDLE_LENGTH);
+    textNode->SetHeight(MIDDLE_LENGTH);
+    textNode->SetBackgroundColor(COLOR_PINK);
+    column->AddChild(textNode);
+    auto textNodeHandle = textNode->GetHandle();
+    Manager::nodeAPI_->registerNodeEvent(textNodeHandle, NODE_ON_CLICK_EVENT, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(textNodeHandle, [](ArkUI_NodeEvent *event) {
+        if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_CLICK_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventPassthroughTest", "enableEventPassthrough");
+            auto node = OH_ArkUI_NodeEvent_GetNodeHandle(event);
+            auto uiContext = OH_ArkUI_GetContextByNode(node);
+            OH_ArkUI_EnableEventPassthrough(uiContext, true, ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH);
+        }
+    });
+    auto textNode2 = std::make_shared<ArkUITextNode>();
+    textNode2->SetTextContent("disableEventPassthrough");
+    textNode2->SetWidth(MIDDLE_LENGTH);
+    textNode2->SetHeight(MIDDLE_LENGTH);
+    textNode2->SetBackgroundColor(COLOR_YELLOW);
+    column->AddChild(textNode2);
+    auto textNodeHandle2 = textNode2->GetHandle();
+    Manager::nodeAPI_->registerNodeEvent(textNodeHandle2, NODE_ON_CLICK_EVENT, 1, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(textNodeHandle2, [](ArkUI_NodeEvent *event) {
+        if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_CLICK_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventPassthroughTest", "disableEventPassthrough");
+            auto node = OH_ArkUI_NodeEvent_GetNodeHandle(event);
+            auto uiContext = OH_ArkUI_GetContextByNode(node);
+            OH_ArkUI_EnableEventPassthrough(uiContext, false, ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH);
+        }
+    });
+    auto textNode3 = std::make_shared<ArkUITextNode>();
+    textNode3->SetTextContent("touch event");
+    textNode3->SetWidth(MIDDLE_LENGTH);
+    textNode3->SetHeight(MIDDLE_LENGTH);
+    textNode3->SetBackgroundColor(COLOR_RED);
+    column->AddChild(textNode3);
+    auto textNodeHandle3 = textNode3->GetHandle();
+    Manager::nodeAPI_->registerNodeEvent(textNodeHandle3, NODE_TOUCH_EVENT, 0, nullptr);
+    Manager::nodeAPI_->addNodeEventReceiver(textNodeHandle3, [](ArkUI_NodeEvent *event) {
+        if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_TOUCH_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventPassthroughTest", "NODE_TOUCH_EVENT");
+        }
+    });
+    return column;
+}
 
 } // namespace NativeModule
 

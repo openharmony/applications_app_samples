@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "On_Focused",
+      "value": "#FF0000"
+    },
+    {
+      "name": "color_464a51",
+      "value": "#464a51"
+    },
+    {
+      "name": "bgColor",
+      "value": "#00464A51"
+    }
+  ]
+}

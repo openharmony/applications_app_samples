@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="58px" viewBox="0 0 58 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>搜索高亮</title>
+    <defs>
+        <linearGradient x1="70.423913%" y1="5.23913043%" x2="27.423913%" y2="98.2391304%" id="linearGradient-1" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.21" offset="51%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Extra-Large备份" transform="translate(-1395.000000, -67.000000)">
+            <g id="搜索高亮" transform="translate(1396.000000, 68.000000)">
+                <circle id="椭圆_212" fill="#FFFFFF" fill-rule="nonzero" cx="28" cy="28" r="24"></circle>
+                <circle id="椭圆_12" stroke="url(#linearGradient-1)" stroke-width="2" cx="28" cy="28" r="28"></circle>
+                <g id="搜索-(1)" transform="translate(15.000000, 14.000000)" fill="#000000" fill-rule="nonzero">
+                    <path d="M19.7004101,22.0181054 C14.8957496,25.6899598 7.98172597,25.3383992 3.5937298,20.9373823 C-1.19790993,16.1457426 -1.19790993,8.38536953 3.5937298,3.5937298 C8.38536953,-1.19790993 16.1457426,-1.19790993 20.9373823,3.5937298 C25.3383992,7.99474673 25.6899598,14.8957496 22.0181054,19.7004101 L25.5597522,23.2420569 C26.1717279,23.9061156 26.1456864,24.9347557 25.4816276,25.5597522 C24.8566311,26.1456864 23.8800741,26.1456864 23.2420569,25.5597522 L19.7004101,22.0181054 Z M5.89840434,18.619687 C9.41400958,22.1352922 15.1040818,22.1352922 18.619687,18.619687 C22.1352922,15.1040818 22.1352922,9.41400958 18.619687,5.89840434 C15.1040818,2.38279911 9.41400958,2.38279911 5.89840434,5.89840434 C2.38279911,9.41400958 2.39581987,15.1171025 5.89840434,18.619687 Z" id="形状"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

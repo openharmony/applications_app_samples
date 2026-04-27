@@ -1,0 +1,20 @@
+{
+  "float": [
+    {
+      "name": "button_width",
+      "value": "150"
+    },
+    {
+      "name": "button_height",
+      "value": "80"
+    },
+    {
+      "name": "button_fontSize",
+      "value": "26"
+    },
+    {
+      "name": "container_padding",
+      "value": "20"
+    }
+  ]
+}

@@ -14,12 +14,13 @@
  */
 
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 // [Start napi_coerce_to_bool]
 // napi_coerce_to_bool
 static napi_value CoerceToBool(napi_env env, napi_callback_info info)
 {
-    // 获取并解析传进的参数
+    // 获取并解析传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -35,7 +36,7 @@ static napi_value CoerceToBool(napi_env env, napi_callback_info info)
 // napi_coerce_to_number
 static napi_value CoerceToNumber(napi_env env, napi_callback_info info)
 {
-    // 获取并解析传进的参数
+    // 获取并解析传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -50,7 +51,7 @@ static napi_value CoerceToNumber(napi_env env, napi_callback_info info)
 // napi_coerce_to_object
 static napi_value CoerceToObject(napi_env env, napi_callback_info info)
 {
-    // 获取并解析传进的参数
+    // 获取并解析传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value obj = nullptr;
@@ -65,7 +66,7 @@ static napi_value CoerceToObject(napi_env env, napi_callback_info info)
 // napi_coerce_to_string
 static napi_value CoerceToString(napi_env env, napi_callback_info info)
 {
-    // 获取并解析传进的参数
+    // 获取并解析传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -83,16 +84,24 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     // 传入两个参数并解析
     size_t argc = 2;
     napi_value argv[2];
-    napi_valuetype data;
-    napi_valuetype value;
-    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    napi_valuetype data = napi_undefined;
+    napi_valuetype value = napi_undefined;
+    napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        return nullptr;
+    }
     // 判断两个参数类型值
     napi_typeof(env, argv[0], &data);
     napi_typeof(env, argv[1], &value);
 
     napi_value returnValue = nullptr;
     // 判断两个类型值是否相等,获取结果的布尔值
-    napi_get_boolean(env, data == value, &returnValue);
+    status = napi_get_boolean(env, data == value, &returnValue);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     // 返回结果
     return returnValue;
 }
@@ -113,7 +122,11 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
         return nullptr;
     }
     napi_value boolNapi = nullptr;
-    napi_get_boolean(env, boolC, &boolNapi);
+    status = napi_get_boolean(env, boolC, &boolNapi);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     return boolNapi;
 }
 // [End napi_get_value_bool]
@@ -143,7 +156,7 @@ static napi_value GetNull(napi_env env, napi_callback_info info)
 // napi_get_undefined
 static napi_value GetUndefined(napi_env env, napi_callback_info info)
 {
-    // 获取并解析传进的参数
+    // 获取并解析传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);

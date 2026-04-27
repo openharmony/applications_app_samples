@@ -18,12 +18,6 @@ import { common } from '@kit.AbilityKit';
 import testNapi from 'libentry.so';
 import { createFile } from '../fileFs/FileFs';
 
-// 获取应用文件沙箱路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
-
-let filePath = filesDir + '/test.txt';
-let uri = fileUri.getUriFromPath(filePath);
 
 @Entry
 @Component
@@ -41,10 +35,15 @@ struct Index {
       Row() {
         Button($r('app.string.createWriteReadfile'))
           .onClick(() => {
-            this.message += createFile() + '\n';
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            createFile(context);
           })
         Button($r('app.string.DetermineFileLocation'))
           .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let filesDir = context.filesDir;
+            let filePath = filesDir + '/test.txt'
+            let uri = fileUri.getUriFromPath(filePath);
             testNapi.getFileLocation(uri);
             this.message += 'getFileLocation SUCCESS' + '\n';
           })

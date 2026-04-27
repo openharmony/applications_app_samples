@@ -26,6 +26,7 @@ struct LocalMapSample {
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
+        // 初始化Map类型变量，触发UI刷新
         Button('init map').onClick(() => {
           this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })

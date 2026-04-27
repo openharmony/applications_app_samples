@@ -1,0 +1,30 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ]
+  },
+
+  "development": {
+    "addedSysCaps": [
+      "SystemCapability.FileManagement.UserFileManager.Core"
+    ]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Sensors.Sensor",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.Multimedia.Camera.Core",
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Advertising.OAID",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.Sensors.MiscDevice",
+      "SystemCapability.MiscServices.Wallpaper",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Resourceschedule.BackgroundProcessManager",
+      "SystemCapability.ArkUi.Graphics3D"
+    ]
+  }
+}

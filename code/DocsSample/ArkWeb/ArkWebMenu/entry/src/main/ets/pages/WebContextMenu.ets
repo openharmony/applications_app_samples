@@ -35,7 +35,7 @@ struct WebComponent {
   MenuBuilder() {
     // 以垂直列表形式显示的菜单。
     Menu() {
-      // 展示菜单Menu中具体的item菜单项。
+      // 展示菜单Menu中具体的菜单项。
       MenuItem({
         content: 'Copy Image',
       })
@@ -78,7 +78,7 @@ struct WebComponent {
         .width(100)
         .height(50)
         .onClick(() => {
-          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkUrl);
           pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
             if (error) {
               return;

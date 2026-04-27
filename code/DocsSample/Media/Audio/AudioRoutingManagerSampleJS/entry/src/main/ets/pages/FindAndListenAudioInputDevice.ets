@@ -48,7 +48,9 @@ function listenInputStatus() {
     if (globalCallbackUpdate) {
       globalCallbackUpdate(callbackMsg);
     }
+    // [EndExclude listen_InputStatus]
   });
+  // [StartExclude listen_InputStatus]
 }
 
 function cancelListenInputStatus() {

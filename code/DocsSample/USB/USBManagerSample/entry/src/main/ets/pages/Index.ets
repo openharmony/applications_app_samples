@@ -31,7 +31,14 @@ struct Index {
   private getDevices() {
     // [Start getDevices]
     // 获取设备列表。
-    let deviceList: usbManager.USBDevice[] = usbManager.getDevices();
+    let deviceList: usbManager.USBDevice[] = [];
+    try {
+      deviceList = usbManager.getDevices();
+    } catch (error) {
+        console.error(`USB getDevices failed: ${error}`);
+        this.logInfo_ += '\n[ERROR] USB getDevices failed: ' + JSON.stringify(error);
+    }
+
     console.info(`deviceList: ${deviceList}`);
     this.logInfo_ += '\n[INFO] deviceList: ' + JSON.stringify(deviceList);
     if (deviceList === undefined || deviceList.length === 0) {
@@ -122,28 +129,33 @@ struct Index {
       return;
     }
     let deviceList: usbManager.USBDevice[] = this.deviceList_;
-    if (!usbManager.hasRight(deviceList[0]?.name)) {
-      console.error('permission denied');
-      this.logInfo_ += '\n[ERROR] permission denied';
-      return;
+    try {
+      if (!usbManager.hasRight(deviceList[0]?.name)) {
+        console.error('permission denied');
+        this.logInfo_ += '\n[ERROR] permission denied';
+        return;
+      }
+      // 打开设备，获取数据传输通道。
+      let pipe: usbManager.USBDevicePipe = usbManager.connectDevice(deviceList[0]);
+      if (!deviceList?.[0]?.configs?.[0]?.interfaces?.[0]) {
+        console.error('invalid interface');
+        this.logInfo_ += '\n[ERROR] invalid interface';
+        return;
+      }
+      let interface1: usbManager.USBInterface = deviceList?.[0]?.configs?.[0]?.interfaces?.[0];
+      /*
+        打开对应接口，在设备信息（deviceList）中选取对应的interface。
+        interface1为设备配置中的一个接口。
+       */
+      usbManager.claimInterface(pipe, interface1, true);
+      this.pipe_ = pipe;
+      this.interface_ = interface1;
+      console.info('open device success');
+      this.logInfo_ += '\n[INFO] open device success';
+    } catch (error) {
+      console.error(`USB hasRight failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB hasRight failed: ' + JSON.stringify(error);
     }
-    // 打开设备，获取数据传输通道。
-    let pipe: usbManager.USBDevicePipe = usbManager.connectDevice(deviceList[0]);
-    if (!deviceList?.[0]?.configs?.[0]?.interfaces?.[0]) {
-      console.error('invalid interface');
-      this.logInfo_ += '\n[ERROR] invalid interface';
-      return;
-    }
-    let interface1: usbManager.USBInterface = deviceList?.[0]?.configs?.[0]?.interfaces?.[0];
-    /*
-      打开对应接口，在设备信息（deviceList）中选取对应的interface。
-      interface1为设备配置中的一个接口。
-     */
-    usbManager.claimInterface(pipe, interface1, true);
-    this.pipe_ = pipe;
-    this.interface_ = interface1;
-    console.info('open device success');
-    this.logInfo_ += '\n[INFO] open device success';
     // [End connectDevice]
   }
 
@@ -219,7 +231,10 @@ struct Index {
     usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
       console.info(`usbControlTransfer = ${ret}`);
       this.logInfo_ += '\n[INFO] usbControlTransfer = ' + JSON.stringify(ret);
-    })
+    }).catch((error: BusinessError) => {
+      console.error(`usbControlTransfer error : ${error}`);
+      this.logInfo_ += '\n[ERROR] usbControlTransfer error: ' + JSON.stringify(error);
+    });
     // [End controlTransfer]
   }
 
@@ -231,12 +246,27 @@ struct Index {
       return;
     }
     let usbDevice: usbManager.USBDevice = this.deviceList_[0];
-    if (!usbManager.hasRight(usbDevice.name)) {
-      console.error('permission denied');
-      this.logInfo_ += '\n[ERROR] permission denied';
+    try {
+      if (!usbManager.hasRight(usbDevice.name)) {
+        console.error('permission denied');
+        this.logInfo_ += '\n[ERROR] permission denied';
+        return;
+      }
+    } catch (error) {
+      console.error(`USB hasRight failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB hasRight failed: ' + JSON.stringify(error);
       return;
     }
-    let devicePipe: usbManager.USBDevicePipe = usbManager.connectDevice(usbDevice);
+
+    let devicePipe: usbManager.USBDevicePipe;
+    try {
+      devicePipe = usbManager.connectDevice(usbDevice);
+    } catch (error) {
+      console.error(`USB connectDevice failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB connectDevice failed: ' + JSON.stringify(error);
+      return;
+    }
+
     let usbConfigs: usbManager.USBConfiguration[] = usbDevice.configs;
     let usbInterfaces: usbManager.USBInterface[] = [];
     let usbInterface: usbManager.USBInterface | undefined = undefined;
@@ -263,12 +293,19 @@ struct Index {
     // [End interruptTransfer_getEndpoint]
     // [Start interruptTransfer_claimInterface]
     // 注册通信接口，注册成功返回0，注册失败返回其他错误码。
-    let claimInterfaceResult: number = usbManager.claimInterface(devicePipe, usbInterface, true);
-    if (claimInterfaceResult !== 0) {
-      console.error(`claimInterface error = ${claimInterfaceResult}`)
-      this.logInfo_ += '\n[ERROR] claimInterface error = ' + JSON.stringify(claimInterfaceResult);
+    try {
+      let claimInterfaceResult: number = usbManager.claimInterface(devicePipe, usbInterface, true);
+      if (claimInterfaceResult !== 0) {
+        console.error(`claimInterface error = ${claimInterfaceResult}`)
+        this.logInfo_ += '\n[ERROR] claimInterface error = ' + JSON.stringify(claimInterfaceResult);
+        return;
+      }
+    } catch (error) {
+      console.error(`USB claimInterface failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB claimInterface failed: ' + JSON.stringify(error);
       return;
     }
+
     // [End interruptTransfer_claimInterface]
     // [Start interruptTransfer_interruptTransfer]
     let transferParams: usbManager.UsbDataTransferParams | undefined = undefined;
@@ -322,12 +359,26 @@ struct Index {
       return;
     }
     let usbDevice: usbManager.USBDevice = this.deviceList_[0];
-    if (!usbManager.hasRight(usbDevice.name)) {
-      console.error('permission denied');
-      this.logInfo_ += '\n[ERROR] permission denied';
+    try {
+      if (!usbManager.hasRight(usbDevice.name)) {
+        console.error('permission denied');
+        this.logInfo_ += '\n[ERROR] permission denied';
+        return;
+      }
+    } catch (error) {
+      console.error(`USB hasRight failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB hasRight failed: ' + JSON.stringify(error);
       return;
     }
-    let devicePipe: usbManager.USBDevicePipe = usbManager.connectDevice(usbDevice);
+
+    let devicePipe: usbManager.USBDevicePipe;
+    try {
+      devicePipe = usbManager.connectDevice(usbDevice);
+    } catch (error) {
+      console.error(`connectDevice failed ${error}`);
+      this.logInfo_ += '\n[ERROR] connectDevice: ' + JSON.stringify(error);
+      return
+    }
     let usbConfigs: usbManager.USBConfiguration[] = usbDevice.configs;
     let usbInterfaces: usbManager.USBInterface[] = [];
     let usbInterface: usbManager.USBInterface | undefined = undefined;
@@ -355,19 +406,31 @@ struct Index {
     // [End isochronousTransfer_getEndpoint]
     // [Start isochronousTransfer_claimInterface]
     // 注册通信接口，注册成功返回0，注册失败返回其他错误码。
-    let claimInterfaceResult: number = usbManager.claimInterface(devicePipe, usbInterface, true);
-    if (claimInterfaceResult !== 0) {
-      console.error(`claimInterface error = ${claimInterfaceResult}`)
-      this.logInfo_ += '\n[ERROR] claimInterface error = ' + JSON.stringify(claimInterfaceResult);
+    try {
+      let claimInterfaceResult: number = usbManager.claimInterface(devicePipe, usbInterface, true);
+      if (claimInterfaceResult !== 0) {
+        console.error(`claimInterface error = ${claimInterfaceResult}`)
+        this.logInfo_ += '\n[ERROR] claimInterface error = ' + JSON.stringify(claimInterfaceResult);
+        return;
+      }
+    } catch (error) {
+      console.error(`USB claimInterface failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] USB claimInterface failed: ' + JSON.stringify(error);
       return;
     }
 
     // 传输类型为“实时传输”时，需设置设备接口。设置成功返回0，注册失败返回其他错误码。
     if (usbEndpoint.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS) {
-      let setInterfaceResult = usbManager.setInterface(devicePipe, usbInterface);
-      if (setInterfaceResult !== 0) {
-        console.error(`setInterfaceResult error = ${setInterfaceResult}`)
-        this.logInfo_ += '\n[ERROR] setInterfaceResult error = ' + JSON.stringify(setInterfaceResult);
+      try {
+        let setInterfaceResult = usbManager.setInterface(devicePipe, usbInterface);
+        if (setInterfaceResult !== 0) {
+          console.error(`setInterfaceResult error = ${setInterfaceResult}`)
+          this.logInfo_ += '\n[ERROR] setInterfaceResult error = ' + JSON.stringify(setInterfaceResult);
+          return;
+        }
+      } catch (error) {
+        console.error(`USB setInterface failed: ${error}`);
+        this.logInfo_ += '\n[ERROR] USB setInterface failed: ' + JSON.stringify(error);
         return;
       }
     }
@@ -425,8 +488,14 @@ struct Index {
     }
     let pipe: usbManager.USBDevicePipe = this.pipe_;
     let interface1: usbManager.USBInterface = this.interface_;
-    usbManager.releaseInterface(pipe, interface1);
-    usbManager.closePipe(pipe);
+    try {
+      usbManager.releaseInterface(pipe, interface1);
+      usbManager.closePipe(pipe);
+    } catch (error) {
+      console.error(`failed: ${error}`);
+      this.logInfo_ += '\n[ERROR] failed: ' + JSON.stringify(error);
+    }
+
     this.pipe_ = undefined;
     this.interface_ = undefined;
     console.info('close device success');
