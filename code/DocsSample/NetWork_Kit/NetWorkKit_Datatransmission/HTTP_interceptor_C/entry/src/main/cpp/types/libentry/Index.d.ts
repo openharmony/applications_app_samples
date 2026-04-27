@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 // [Start HttpInterceptor_defining_function_types]
-export const AddResponseInterceptor: () => number;
-export const RemoveInterceptor: () => number;
-export const StartInterceptors: () => number;
-export const StopInterceptors: () => number;
-export const RemoveAllInterceptors: () => number;
+export const AddReadOnlyResponseInterceptor: () => number;
+export const RemoveReadOnlyResponseInterceptor: () => number;
+export const StartReadOnlyResponseInterceptors: () => number;
+export const StopReadOnlyResponseInterceptors: () => number;
+export const RemoveAllReadOnlyResponseInterceptors: () => number;
 export const AddModifyRequestInterceptor: () => number;
 export const RemoveModifyRequestInterceptor: () => number;
 export const StartModifyRequestInterceptors: () => number;

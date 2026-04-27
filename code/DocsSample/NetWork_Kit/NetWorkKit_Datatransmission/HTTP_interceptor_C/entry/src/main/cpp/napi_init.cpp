@@ -28,8 +28,8 @@
 #define LOG_DOMAIN 0x3200 // 全局domain宏，标识业务领域
 #define LOG_TAG "HttpInterceptorDemo"  // 全局tag宏，标识模块日志tag
 
-// 全局拦截器实例
-static OH_Http_Interceptor g_responseInterceptor = {
+// 全局只读响应拦截器实例
+static OH_Http_Interceptor g_readOnlyResponseInterceptor = {
     .groupId = 1,
     .stage = OH_STAGE_RESPONSE,
     .type = OH_TYPE_READ_ONLY,
@@ -37,7 +37,7 @@ static OH_Http_Interceptor g_responseInterceptor = {
     .handler = nullptr,
 };
 
-// 请求可写拦截器实例（用于修改Network Kit的请求数据包）
+// 可修改请求拦截器实例（用于修改Network Kit的请求数据包）
 static OH_Http_Interceptor g_modifyRequestInterceptor = {
     .groupId = 2,
     .stage = OH_STAGE_REQUEST,
@@ -46,7 +46,7 @@ static OH_Http_Interceptor g_modifyRequestInterceptor = {
     .handler = nullptr,
 };
 
-// 响应可写拦截器实例（用于修改Network Kit的响应数据包）
+// 可修改响应拦截器实例（用于修改Network Kit的响应数据包）
 static OH_Http_Interceptor g_modifyResponseInterceptor = {
     .groupId = 3,
     .stage = OH_STAGE_RESPONSE,
@@ -107,8 +107,8 @@ void PrintResponseInfo(OH_Http_Interceptor_Response *response)
     }
 }
 
-// 响应拦截器处理函数
-OH_Interceptor_Result ResponseInterceptorHandler(
+// 只读响应拦截器处理函数
+OH_Interceptor_Result ReadOnlyResponseInterceptorHandler(
     OH_Http_Interceptor_Request *request,
     OH_Http_Interceptor_Response *response,
     int32_t *isModified)
@@ -117,7 +117,7 @@ OH_Interceptor_Result ResponseInterceptorHandler(
     (void)isModified;
     
     if (response != nullptr) {
-        OH_LOG_INFO(LOG_APP, "---Response Interceptor Handler---");
+        OH_LOG_INFO(LOG_APP, "---ReadOnly Response Interceptor Handler---");
         PrintResponseInfo(response);
     }
     return OH_CONTINUE;
@@ -127,10 +127,10 @@ OH_Interceptor_Result ResponseInterceptorHandler(
 static void ModifyRequestMethod(OH_Http_Interceptor_Request *request)
 {
     if (request->method.buffer != nullptr) {
-        // 释放原有内存,必须使用free释放由malloc分配的内存
+        // 释放原有内存，必须使用free释放由malloc分配的内存
         free((void *)request->method.buffer);
         
-        // 重新申请内存并设置新值,必须使用malloc分配内存
+        // 重新申请内存并设置新值，必须使用malloc分配内存
         const std::string newMethodStr = "GET";
         char *newMethodBuffer = MallocCString(newMethodStr);
         if (newMethodBuffer != nullptr) {
@@ -149,7 +149,7 @@ static void ModifyFirstHeaderNode(OH_Http_Interceptor_Headers **headers, const c
     if (*headers != nullptr) {
         // 修改第一个header节点
         if ((*headers)->data != nullptr) {
-            // 释放原有内存,必须使用free释放由malloc分配的内存
+            // 释放原有内存，必须使用free释放由malloc分配的内存
             free((void *)(*headers)->data);
         }
         // 必须使用malloc分配内存
@@ -161,7 +161,7 @@ static void ModifyFirstHeaderNode(OH_Http_Interceptor_Headers **headers, const c
         }
     } else {
         // 若没有header节点，创建新的第一个节点
-        // 创建新的header节点,必须使用malloc分配内存
+        // 创建新的header节点，必须使用malloc分配内存
         OH_Http_Interceptor_Headers *newHeader =
             (OH_Http_Interceptor_Headers *)malloc(sizeof(OH_Http_Interceptor_Headers));
         if (newHeader != nullptr) {
@@ -174,7 +174,7 @@ static void ModifyFirstHeaderNode(OH_Http_Interceptor_Headers **headers, const c
                 *headers = newHeader;
                 OH_LOG_INFO(LOG_APP, "Created first header: %{public}s", headerData);
             } else {
-                // 内存分配失败，释放header节点,必须使用free释放由malloc分配的内存
+                // 内存分配失败，释放header节点，必须使用free释放由malloc分配的内存
                 free((void *)newHeader);
             }
         }
@@ -184,12 +184,12 @@ static void ModifyFirstHeaderNode(OH_Http_Interceptor_Headers **headers, const c
 // 修改body内容
 static void ModifyBodyContent(Http_Buffer *body, const char *newBodyContent)
 {
-    // 释放原有body内存,必须使用free释放由malloc分配的内存
+    // 释放原有body内存，必须使用free释放由malloc分配的内存
     if (body->buffer != nullptr) {
         free((void *)body->buffer);
     }
     
-    // 重新申请内存并设置新的body内容,必须使用malloc分配内存
+    // 重新申请内存并设置新的body内容，必须使用malloc分配内存
     const std::string bodyContentStr = newBodyContent;
     char *bodyBuffer = MallocCString(bodyContentStr);
     if (bodyBuffer != nullptr) {
@@ -199,7 +199,7 @@ static void ModifyBodyContent(Http_Buffer *body, const char *newBodyContent)
     }
 }
 
-// 请求可写拦截器处理函数（修改Network Kit的请求数据包）
+// 可修改请求拦截器处理函数（修改Network Kit的请求数据包）
 OH_Interceptor_Result ModifyRequestInterceptorHandler(
     OH_Http_Interceptor_Request *request,
     OH_Http_Interceptor_Response *response,
@@ -233,7 +233,7 @@ OH_Interceptor_Result ModifyRequestInterceptorHandler(
     return OH_CONTINUE;
 }
 
-// 响应可写拦截器处理函数（修改Network Kit的响应数据包）
+// 可修改响应拦截器处理函数（修改Network Kit的响应数据包）
 OH_Interceptor_Result ModifyResponseInterceptorHandler(
     OH_Http_Interceptor_Request *request,
     OH_Http_Interceptor_Response *response,
@@ -267,74 +267,74 @@ OH_Interceptor_Result ModifyResponseInterceptorHandler(
 }
 
 // 添加只读响应拦截器
-static napi_value AddResponseInterceptor(napi_env env, napi_callback_info info)
+static napi_value AddReadOnlyResponseInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
     // 设置拦截器处理函数
-    g_responseInterceptor.handler = ResponseInterceptorHandler;
+    g_readOnlyResponseInterceptor.handler = ReadOnlyResponseInterceptorHandler;
     
     // 添加拦截器
-    int ret = OH_Http_AddReadOnlyInterceptor(&g_responseInterceptor);
+    int ret = OH_Http_AddReadOnlyInterceptor(&g_readOnlyResponseInterceptor);
     
-    OH_LOG_INFO(LOG_APP, "AddResponseInterceptor ret: %{public}d", ret);
+    OH_LOG_INFO(LOG_APP, "AddReadOnlyResponseInterceptor ret: %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
 
-// 移除拦截器
-static napi_value RemoveInterceptor(napi_env env, napi_callback_info info)
+// 移除只读响应拦截器
+static napi_value RemoveReadOnlyResponseInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
     // 移除拦截器
-    int ret = OH_Http_RemoveInterceptor(&g_responseInterceptor);
+    int ret = OH_Http_RemoveInterceptor(&g_readOnlyResponseInterceptor);
     
-    OH_LOG_INFO(LOG_APP, "RemoveInterceptor ret: %{public}d", ret);
+    OH_LOG_INFO(LOG_APP, "RemoveReadOnlyResponseInterceptor ret: %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
 
-// 启用指定组的所有拦截器
-static napi_value StartInterceptors(napi_env env, napi_callback_info info)
+// 启用只读响应拦截器组
+static napi_value StartReadOnlyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
     // 启用组ID为1的所有拦截器
     int ret = OH_Http_StartAllInterceptors(1);
     
-    OH_LOG_INFO(LOG_APP, "StartInterceptors ret: %{public}d", ret);
+    OH_LOG_INFO(LOG_APP, "StartReadOnlyResponseInterceptors ret: %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
 
-// 停用指定组的所有拦截器
-static napi_value StopInterceptors(napi_env env, napi_callback_info info)
+// 停用只读响应拦截器组
+static napi_value StopReadOnlyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
     // 停用组ID为1的所有拦截器
     int ret = OH_Http_StopAllInterceptors(1);
     
-    OH_LOG_INFO(LOG_APP, "StopInterceptors ret: %{public}d", ret);
+    OH_LOG_INFO(LOG_APP, "StopReadOnlyResponseInterceptors ret: %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
 
-// 删除指定组的所有拦截器
-static napi_value RemoveAllInterceptors(napi_env env, napi_callback_info info)
+// 删除只读响应拦截器组
+static napi_value RemoveAllReadOnlyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
     
     // 删除组ID为1的所有拦截器
     int ret = OH_Http_RemoveAllInterceptors(1);
     
-    OH_LOG_INFO(LOG_APP, "RemoveAllInterceptors ret: %{public}d", ret);
+    OH_LOG_INFO(LOG_APP, "RemoveAllReadOnlyResponseInterceptors ret: %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
 
-// 添加请求可写拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
+// 添加可修改请求拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
 static napi_value AddModifyRequestInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -342,7 +342,7 @@ static napi_value AddModifyRequestInterceptor(napi_env env, napi_callback_info i
     // 设置拦截器处理函数
     g_modifyRequestInterceptor.handler = ModifyRequestInterceptorHandler;
     
-    // 添加可写拦截器
+    // 添加可修改拦截器
     int ret = OH_Http_AddWritableInterceptor(&g_modifyRequestInterceptor);
     
     OH_LOG_INFO(LOG_APP, "AddModifyRequestInterceptor ret: %{public}d", ret);
@@ -350,7 +350,7 @@ static napi_value AddModifyRequestInterceptor(napi_env env, napi_callback_info i
     return result;
 }
 
-// 移除请求可写拦截器
+// 移除可修改请求拦截器
 static napi_value RemoveModifyRequestInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -363,7 +363,7 @@ static napi_value RemoveModifyRequestInterceptor(napi_env env, napi_callback_inf
     return result;
 }
 
-// 启用请求可写拦截器组
+// 启用可修改请求拦截器组
 static napi_value StartModifyRequestInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -376,7 +376,7 @@ static napi_value StartModifyRequestInterceptors(napi_env env, napi_callback_inf
     return result;
 }
 
-// 停用请求可写拦截器组
+// 停用可修改请求拦截器组
 static napi_value StopModifyRequestInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -389,7 +389,7 @@ static napi_value StopModifyRequestInterceptors(napi_env env, napi_callback_info
     return result;
 }
 
-// 删除请求可写拦截器组
+// 删除可修改请求拦截器组
 static napi_value RemoveAllModifyRequestInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -402,7 +402,7 @@ static napi_value RemoveAllModifyRequestInterceptors(napi_env env, napi_callback
     return result;
 }
 
-// 添加响应可写拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
+// 添加可修改响应拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
 static napi_value AddModifyResponseInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -410,7 +410,7 @@ static napi_value AddModifyResponseInterceptor(napi_env env, napi_callback_info 
     // 设置拦截器处理函数
     g_modifyResponseInterceptor.handler = ModifyResponseInterceptorHandler;
     
-    // 添加可写拦截器
+    // 添加可修改拦截器
     int ret = OH_Http_AddWritableInterceptor(&g_modifyResponseInterceptor);
     
     OH_LOG_INFO(LOG_APP, "AddModifyResponseInterceptor ret: %{public}d", ret);
@@ -418,7 +418,7 @@ static napi_value AddModifyResponseInterceptor(napi_env env, napi_callback_info 
     return result;
 }
 
-// 移除响应可写拦截器
+// 移除可修改响应拦截器
 static napi_value RemoveModifyResponseInterceptor(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -431,7 +431,7 @@ static napi_value RemoveModifyResponseInterceptor(napi_env env, napi_callback_in
     return result;
 }
 
-// 启用响应可写拦截器组
+// 启用可修改响应拦截器组
 static napi_value StartModifyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -444,7 +444,7 @@ static napi_value StartModifyResponseInterceptors(napi_env env, napi_callback_in
     return result;
 }
 
-// 停用响应可写拦截器组
+// 停用可修改响应拦截器组
 static napi_value StopModifyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -457,7 +457,7 @@ static napi_value StopModifyResponseInterceptors(napi_env env, napi_callback_inf
     return result;
 }
 
-// 删除响应可写拦截器组
+// 删除可修改响应拦截器组
 static napi_value RemoveAllModifyResponseInterceptors(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -476,11 +476,16 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"AddResponseInterceptor", nullptr, AddResponseInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"RemoveInterceptor", nullptr, RemoveInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"StartInterceptors", nullptr, StartInterceptors, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"StopInterceptors", nullptr, StopInterceptors, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"RemoveAllInterceptors", nullptr, RemoveAllInterceptors, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"AddReadOnlyResponseInterceptor", nullptr, AddReadOnlyResponseInterceptor, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"RemoveReadOnlyResponseInterceptor", nullptr, RemoveReadOnlyResponseInterceptor, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"StartReadOnlyResponseInterceptors", nullptr, StartReadOnlyResponseInterceptors, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"StopReadOnlyResponseInterceptors", nullptr, StopReadOnlyResponseInterceptors, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"RemoveAllReadOnlyResponseInterceptors", nullptr, RemoveAllReadOnlyResponseInterceptors, nullptr, nullptr,
+            nullptr, napi_default, nullptr},
         {"AddModifyRequestInterceptor", nullptr, AddModifyRequestInterceptor, nullptr, nullptr, nullptr,
             napi_default, nullptr},
         {"RemoveModifyRequestInterceptor", nullptr, RemoveModifyRequestInterceptor, nullptr, nullptr, nullptr,
