@@ -1,0 +1,12 @@
+{
+  "commonEvents": [
+    {
+      "name": "UserChangeStaticSubscriber",
+      "permission": "",
+      "events":[
+        "usual.event.USER_ADDED",
+        "usual.event.USER_REMOVED"
+      ]
+    }
+  ]
+}

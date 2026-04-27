@@ -1,0 +1,84 @@
+{
+  "settings": [
+    {
+      "name": "settings.screen.brightness.default",
+      "value": "50"
+    },
+    {
+      "name": "settings.time.format.default",
+      "value": "24"
+    },
+    {
+      "name": "settings.audio.ringtone.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.audio.media.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.audio.voicecall.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.display.navigationbar_status.default",
+      "value": "1"
+    },
+    {
+      "name": "settings.screen.outputContrast.default",
+      "value": "50"
+    },
+    {
+      "name": "settings.screen.outputSaturation.default",
+      "value": "50"
+    },
+    {
+      "name": "settings.screen.displayHue.default",
+      "value": "50"
+    },
+    {
+      "name": "settings.screen.HDRType.default",
+      "value": "0"
+    },
+    {
+      "name": "settings.HDMI.adaptive.default",
+      "value": "true"
+    },
+    {
+      "name": "settings.HDMI.CEC.default",
+      "value": "true"
+    },
+    {
+      "name": "settings.HDMI.HDCP.default",
+      "value": "true"
+    },
+    {
+      "name": "settings.HDMI.CECRemote.default",
+      "value": "true"
+    },
+    {
+      "name": "settings.displayArea.X.default",
+      "value": "0"
+    },
+    {
+      "name": "settings.displayArea.Y.default",
+      "value": "0"
+    },
+    {
+      "name": "settings.displayArea.width.default",
+      "value": "533"
+    },
+    {
+      "name": "settings.displayArea.height.default",
+      "value": "300"
+    },
+    {
+      "name": "settings.displayFormat.default",
+      "value": "AUTO"
+    },
+    {
+      "name": "settings.resolution.default",
+      "value": "1080UI"
+    }
+  ]
+}
