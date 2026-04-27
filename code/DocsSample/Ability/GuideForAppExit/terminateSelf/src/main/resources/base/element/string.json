@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "TerminateSelfAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TerminateSelfAbility_label",
+      "value": "label"
+    }
+  ]
+}

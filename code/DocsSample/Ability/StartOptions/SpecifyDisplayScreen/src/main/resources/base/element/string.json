@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SpecifyDisplayScreenAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SpecifyDisplayScreenAbility_label",
+      "value": "label"
+    }
+  ]
+}
