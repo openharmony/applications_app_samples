@@ -1,0 +1,12 @@
+{
+  "files": [
+    "**/*.ets"
+  ],
+  "ignore": [],
+  "ruleSet": [
+    "eslint-config-standard"
+  ],
+  "rules": {
+  },
+  "overrides": []
+}

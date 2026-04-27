@@ -51,6 +51,14 @@
     {
       "name": "RenameMediaAbility_label",
       "value": "label"
+    },
+    {
+      "name": "CreateMediaAssetAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreateMediaAssetAbility_label",
+      "value": "label"
     }
   ]
 }
