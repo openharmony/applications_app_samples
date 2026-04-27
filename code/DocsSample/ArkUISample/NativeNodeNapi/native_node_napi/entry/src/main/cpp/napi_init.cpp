@@ -58,6 +58,8 @@ napi_property_descriptor desc[] = {
     {"destroyNativeRoot", nullptr, DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
     { "processDrawable", nullptr, Manager::ProcessDrawable, nullptr, nullptr, nullptr, napi_default, nullptr },
     { "processDrawable2", nullptr, Manager::ProcessDrawable2, nullptr, nullptr, nullptr, napi_default, nullptr },
+    {"createEventPassthrough", nullptr, Manager::createEventPassthrough, nullptr, nullptr, nullptr,
+        napi_default, nullptr},
 };
 
 static napi_value Init(napi_env env, napi_value exports)

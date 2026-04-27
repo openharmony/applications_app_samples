@@ -6,6 +6,7 @@
     "pages/page_accessibility",
     "pages/page_embedded_component",
     "pages/page_animation",
+    "pages/page_passthrough",
     "pages/animation/AnimationIndexCenter",
     "pages/animation/AnimationIndexOpacity",
     "pages/animation/AnimationIndexTranslate",
