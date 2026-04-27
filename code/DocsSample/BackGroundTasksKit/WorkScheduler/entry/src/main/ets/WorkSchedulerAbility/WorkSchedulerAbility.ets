@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-// [Start include]
+// [Start extension_include]
 import {workScheduler, WorkSchedulerExtensionAbility} from '@kit.BackgroundTasksKit';
-// [End include]
+// [End extension_include]
 import { Logger } from '../utils/Logger';
 
 // [Start workSchedulerExtension]

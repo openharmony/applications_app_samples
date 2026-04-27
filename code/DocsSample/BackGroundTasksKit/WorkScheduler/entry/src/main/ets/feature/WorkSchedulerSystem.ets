@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start workScheduler_include]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { workScheduler } from '@kit.BackgroundTasksKit';
+// [End workScheduler_include]
 
 export namespace WorkSchedulerSystem {
   export async function startUpdateSample(key1: string, module: string): Promise<void> {
