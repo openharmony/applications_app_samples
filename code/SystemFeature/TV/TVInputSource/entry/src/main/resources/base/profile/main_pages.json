@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/HdmiPage",
+    "pages/IndexDtv",
+    "pages/SearchPage",
+    "pages/ManualSearch"
+  ],
+  "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

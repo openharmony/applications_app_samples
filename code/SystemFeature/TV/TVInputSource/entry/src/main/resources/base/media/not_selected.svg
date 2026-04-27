@@ -1,0 +1,21 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_89_7716_dd" x="3.217529" y="6.528290" width="18.464600" height="14.518036" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0.0493555" dy="1.41335"/>
+			<feGaussianBlur stdDeviation="0.666667"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+	</defs>
+	<rect id="Rectangle 2375 Copy" rx="12.000000" width="24.000000" height="24.000000" fill="#0A59F7" fill-opacity="1.000000"/>
+	<g filter="url(#filter_89_7716_dd)">
+		<path id="Rectangle 62" d="M19.2512 7.43729C18.7664 6.98532 18.0071 7.01184 17.5551 7.49652L10.8035 14.7368L7.18652 11.364C6.70184 10.912 5.9425 10.9385 5.49054 11.4232C5.03851 11.9079 5.06506 12.6672 5.54974 13.1192L9.93787 17.2112C9.95532 17.2275 9.97314 17.2432 9.99133 17.2582C10.0083 17.2761 10.0259 17.2935 10.0441 17.3106C10.5289 17.7626 11.2882 17.7361 11.7402 17.2513L19.3104 9.13333C19.7623 8.64862 19.7358 7.88928 19.2512 7.43729Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

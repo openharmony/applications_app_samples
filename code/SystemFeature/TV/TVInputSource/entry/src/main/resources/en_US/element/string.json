@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "InputSource"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "InputSource"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "InputSource"
+    },
+    {
+      "name": "tips_in_development",
+      "value": "The feature is under development. Stay tuned!"
+    }
+  ]
+}
