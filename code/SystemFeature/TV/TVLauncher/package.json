@@ -1,0 +1,16 @@
+{
+	"devDependencies": {},
+	"name": "launcher",
+	"ohos": {
+		"org": "awei-organization",
+		"directoryLevel": "project",
+		"buildTool": "hvigor"
+	},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/hypium": "1.0.3",
+		"@ohos/hvigor-ohos-plugin": "1.3.1",
+		"hypium": "^1.0.0",
+		"@ohos/hvigor": "1.3.1"
+	}
+}

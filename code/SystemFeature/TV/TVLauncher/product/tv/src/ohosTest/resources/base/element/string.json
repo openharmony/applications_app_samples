@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "tv_launcher_test_desc",
+      "value": "TV Launcher ETS test module"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "TV Launcher automation runner"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "TVLauncherTest"
+    },
+    {
+      "name": "test_ability_title",
+      "value": "TV Launcher Automation"
+    }
+  ]
+}

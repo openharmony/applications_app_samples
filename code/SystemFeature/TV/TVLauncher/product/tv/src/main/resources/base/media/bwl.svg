@@ -1,0 +1,47 @@
+<svg width="512.000000" height="512.000000" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_271_44878_dd" x="82.000000" y="90.000000" width="348.000000" height="83.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="6.33333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+		<filter id="filter_271_44876_dd" x="82.000000" y="90.000000" width="348.000000" height="83.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="6.33333"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+		<linearGradient x1="0.000122" y1="-0.000031" x2="511.999969" y2="512.000061" id="paint_linear_271_44881_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFCA00"/>
+			<stop offset="0.117896" stop-color="#FFCA01"/>
+			<stop offset="0.213837" stop-color="#FFC803"/>
+			<stop offset="0.291200" stop-color="#FFC606"/>
+			<stop offset="0.353363" stop-color="#FFC30A"/>
+			<stop offset="0.403704" stop-color="#FFC00F"/>
+			<stop offset="0.445600" stop-color="#FFBC15"/>
+			<stop offset="0.482430" stop-color="#FFB71C"/>
+			<stop offset="0.517570" stop-color="#FFB223"/>
+			<stop offset="0.554400" stop-color="#FFAD2A"/>
+			<stop offset="0.596296" stop-color="#FFA832"/>
+			<stop offset="0.646637" stop-color="#FFA339"/>
+			<stop offset="0.708800" stop-color="#FF9E40"/>
+			<stop offset="0.786163" stop-color="#FF9948"/>
+			<stop offset="0.882104" stop-color="#FF944E"/>
+			<stop offset="1.000000" stop-color="#FF9055"/>
+		</linearGradient>
+	</defs>
+	<path id="矩形 287" d="M96 0L416 0C469.02 0 512 42.98 512 96L512 416C512 469.02 469.02 512 416 512L96 512C42.98 512 0 469.02 0 416L0 96C0 42.98 42.98 0 96 0Z" fill="url(#paint_linear_271_44881_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="矩形 290" d="M179 75L179 112C179 118.62 173.62 124 167 124L143 124C136.37 124 131 118.62 131 112L131 75C131 68.37 136.37 63 143 63L167 63C173.62 63 179 68.37 179 75Z" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+	<path id="矩形 291" d="M381 75L381 112C381 118.62 375.62 124 369 124L345 124C338.37 124 333 118.62 333 112L333 75C333 68.37 338.37 63 345 63L369 63C375.62 63 381 68.37 381 75Z" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+	<g filter="url(#filter_271_44878_dd)">
+		<path id="矩形 294" d="M128 90L384 90C409.4 90 430 110.59 430 136L430 173L82 173L82 136C82 110.59 102.59 90 128 90Z" fill="#FADF5D" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+	<path id="差集" d="M394 90L118 90C98.11 90 82 106.11 82 126L82 425C82 438.25 92.74 449 106 449L406 449C419.25 449 430 438.25 430 425L430 126C430 106.11 413.88 90 394 90ZM150 207L363 207C376.25 207 387 217.74 387 231C387 244.25 376.25 255 363 255L150 255C136.74 255 126 244.25 126 231C126 217.74 136.74 207 150 207ZM381.32 274.24C371.56 268.58 359.09 271.92 353.47 281.7L303.66 368.31C300.21 374.3 300.14 381.32 302.84 387.16L301.84 408.89C301.77 410.51 303.56 411.55 304.92 410.67L323.18 398.93C329.56 398.35 335.56 394.78 339 388.8L388.81 302.18C394.44 292.41 391.08 279.89 381.32 274.24ZM276 279L150 279C136.74 279 126 289.74 126 303C126 316.25 136.74 327 150 327L276 327C289.25 327 300 316.25 300 303C300 289.74 289.25 279 276 279ZM150 351L228 351C241.25 351 252 361.74 252 375C252 388.25 241.25 399 228 399L150 399C136.74 399 126 388.25 126 375C126 361.74 136.74 351 150 351Z" fill="#FFFFFF" fill-opacity="0.860000" fill-rule="evenodd"/>
+	<g filter="url(#filter_271_44876_dd)">
+		<path id="矩形 296" d="M118 90L394 90C413.88 90 430 106.11 430 126L430 173L82 173L82 126C82 106.11 98.11 90 118 90Z" fill="#FFE567" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

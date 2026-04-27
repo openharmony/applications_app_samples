@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "immersive_app_name",
+      "value": "#FFFFFFD9"
+    },
+    {
+      "name": "default_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "mission_label_color",
+      "value": "#CCD1DD"
+    },
+    {
+      "name": "default_Gray",
+      "value": "#66FFFFFF"
+    },
+    {
+      "name": "font_color_white",
+      "value": "#dbffffff"
+    },
+    {
+      "name": "font_color_black",
+      "value": "#000000"
+    },
+    {
+      "name": "background_color_gray",
+      "value": "#cc5e5e5e"
+    }
+  ]
+}
