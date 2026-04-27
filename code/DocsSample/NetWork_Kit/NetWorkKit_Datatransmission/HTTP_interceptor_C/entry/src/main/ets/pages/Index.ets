@@ -88,6 +88,86 @@ struct Index {
               let ret = httpInterceptor.RemoveAllInterceptors();
               hilog.info(0x0000, LOG_TAG, `RemoveAllInterceptors ret: ${ret}`);
             })
+
+          Text('Modify Network Kit Request Interceptor')
+            .fontSize(16)
+            .fontWeight(FontWeight.Bold)
+            .margin({ bottom: 10 })
+
+          Button('Add Modify Request Interceptor')
+            .id('AddModifyRequestInterceptor')
+            .onClick(() => {
+              let ret = httpInterceptor.AddModifyRequestInterceptor();
+              hilog.info(0x0000, LOG_TAG, `AddModifyRequestInterceptor ret: ${ret}`);
+            })
+
+          Button('Start Modify Request Interceptors')
+            .id('StartModifyRequestInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.StartModifyRequestInterceptors();
+              hilog.info(0x0000, LOG_TAG, `StartModifyRequestInterceptors ret: ${ret}`);
+            })
+
+          Button('Stop Modify Request Interceptors')
+            .id('StopModifyRequestInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.StopModifyRequestInterceptors();
+              hilog.info(0x0000, LOG_TAG, `StopModifyRequestInterceptors ret: ${ret}`);
+            })
+
+          Button('Remove Modify Request Interceptor')
+            .id('RemoveModifyRequestInterceptor')
+            .onClick(() => {
+              let ret = httpInterceptor.RemoveModifyRequestInterceptor();
+              hilog.info(0x0000, LOG_TAG, `RemoveModifyRequestInterceptor ret: ${ret}`);
+            })
+
+          Button('Remove All Modify Request Interceptors')
+            .id('RemoveAllModifyRequestInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.RemoveAllModifyRequestInterceptors();
+              hilog.info(0x0000, LOG_TAG, `RemoveAllModifyRequestInterceptors ret: ${ret}`);
+            })
+
+          Text('Modify Network Kit Response Interceptor')
+            .fontSize(16)
+            .fontWeight(FontWeight.Bold)
+            .margin({ bottom: 10 })
+
+          Button('Add Modify Response Interceptor')
+            .id('AddModifyResponseInterceptor')
+            .onClick(() => {
+              let ret = httpInterceptor.AddModifyResponseInterceptor();
+              hilog.info(0x0000, LOG_TAG, `AddModifyResponseInterceptor ret: ${ret}`);
+            })
+
+          Button('Start Modify Response Interceptors')
+            .id('StartModifyResponseInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.StartModifyResponseInterceptors();
+              hilog.info(0x0000, LOG_TAG, `StartModifyResponseInterceptors ret: ${ret}`);
+            })
+
+          Button('Stop Modify Response Interceptors')
+            .id('StopModifyResponseInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.StopModifyResponseInterceptors();
+              hilog.info(0x0000, LOG_TAG, `StopModifyResponseInterceptors ret: ${ret}`);
+            })
+
+          Button('Remove Modify Response Interceptor')
+            .id('RemoveModifyResponseInterceptor')
+            .onClick(() => {
+              let ret = httpInterceptor.RemoveModifyResponseInterceptor();
+              hilog.info(0x0000, LOG_TAG, `RemoveModifyResponseInterceptor ret: ${ret}`);
+            })
+
+          Button('Remove All Modify Response Interceptors')
+            .id('RemoveAllModifyResponseInterceptors')
+            .onClick(() => {
+              let ret = httpInterceptor.RemoveAllModifyResponseInterceptors();
+              hilog.info(0x0000, LOG_TAG, `RemoveAllModifyResponseInterceptors ret: ${ret}`);
+            })
         }
       }
       .padding(20)
