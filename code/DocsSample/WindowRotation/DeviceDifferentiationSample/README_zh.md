@@ -7,7 +7,7 @@
 
 ## 效果预览
 
-| ![](screenshot/example.gif) |
+| ![](screenshots/example.gif) |
 |----------------------------------|
 
 使用说明：
