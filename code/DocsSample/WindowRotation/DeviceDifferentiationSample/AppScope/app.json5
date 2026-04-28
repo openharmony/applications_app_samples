@@ -15,7 +15,7 @@
 
 {
   "app": {
-    "bundleName": "com.example.devicedifferentiation",
+    "bundleName": "com.example.devicedifferentiationsample",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

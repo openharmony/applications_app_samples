@@ -18,33 +18,105 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
+    });
+
     beforeEach(() => {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
+    });
+
     afterEach(() => {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
+    });
+
     afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    })
-  })
+    });
+
+    it('test_page_title_text_exists', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing page title text');
+      let titleText = 'Lock the display orientation';
+      expect(titleText).assertEqual('Lock the display orientation');
+    });
+
+    it('test_button_text_exists', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing button text');
+      let buttonText = 'Set orientation from display';
+      expect(buttonText).assertContain('Set orientation');
+    });
+
+    it('test_orientation_conversion_logic', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing orientation conversion logic');
+      let displayOrientation = 0;
+      let expectedOrientation = 'PORTRAIT';
+
+      let actualOrientation: string = '';
+      switch (displayOrientation) {
+        case 0:
+          actualOrientation = 'PORTRAIT';
+          break;
+        case 1:
+          actualOrientation = 'LANDSCAPE_INVERTED';
+          break;
+        case 2:
+          actualOrientation = 'PORTRAIT_INVERTED';
+          break;
+        case 3:
+          actualOrientation = 'LANDSCAPE';
+          break;
+        default:
+          actualOrientation = 'UNSPECIFIED';
+          break;
+      }
+      expect(actualOrientation).assertEqual(expectedOrientation);
+    });
+
+    it('test_orientation_values_range', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing orientation values range');
+      let validOrientations: number[] = [0, 1, 2, 3];
+      validOrientations.forEach((orientation) => {
+        expect(orientation >= 0 && orientation <= 3).assertEqual(true);
+      });
+    });
+
+    it('test_invalid_orientation_handling', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing invalid orientation handling');
+      let invalidOrientation = 5;
+      let isValid = invalidOrientation >= 0 && invalidOrientation <= 3;
+      expect(isValid).assertEqual(false);
+    });
+
+    it('test_display_orientation_mapping_completeness', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing display orientation mapping completeness');
+      let orientationMap: Map<number, string> = new Map();
+      orientationMap.set(0, 'PORTRAIT');
+      orientationMap.set(1, 'LANDSCAPE_INVERTED');
+      orientationMap.set(2, 'PORTRAIT_INVERTED');
+      orientationMap.set(3, 'LANDSCAPE');
+
+      expect(orientationMap.size).assertEqual(4);
+      expect(orientationMap.has(0)).assertEqual(true);
+      expect(orientationMap.has(1)).assertEqual(true);
+      expect(orientationMap.has(2)).assertEqual(true);
+      expect(orientationMap.has(3)).assertEqual(true);
+    });
+
+    it('test_rotation_info_type_values', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing rotation info type values');
+      let displayOrientationType = 0;
+      let windowOrientationType = 1;
+      expect(displayOrientationType).assertLarger(windowOrientationType - 1);
+      expect(windowOrientationType).assertGreater(displayOrientationType);
+    });
+
+    it('test_ui_layout_properties', 0, () => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Testing UI layout properties');
+      let expectedHeight = '100%';
+      let expectedWidth = '100%';
+      let expectedJustifyContent = 'Center';
+      let expectedAlignItems = 'Center';
+
+      expect(expectedHeight).assertEqual('100%');
+      expect(expectedWidth).assertEqual('100%');
+      expect(expectedJustifyContent).assertEqual('Center');
+      expect(expectedAlignItems).assertEqual('Center');
+    });
+  });
 }

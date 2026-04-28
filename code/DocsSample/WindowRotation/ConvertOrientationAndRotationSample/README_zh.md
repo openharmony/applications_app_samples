@@ -38,7 +38,7 @@ ConvertOrientationAdnRotationSample
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：华为手机、华为平板。
+1. 本示例支持标准系统上运行，支持设备：华为手机、平板。
 2. 本示例API Version 23及以上版本SDK。
 3. 本示例已支持使DevEco Studio 6.0.2 Release (构建版本：6.0.2.650)编译运行。
 
