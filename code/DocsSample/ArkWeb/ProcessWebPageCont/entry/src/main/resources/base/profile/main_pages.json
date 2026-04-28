@@ -4,6 +4,10 @@
     "pages/InitiatePrintW3CAPI",
     "pages/InitiatePrintAppAPI",
     "pages/PreviewPDF",
-    "pages/CalcAdjustSafeArea"
+    "pages/CalcAdjustSafeArea",
+    "pages/LoadNetworkPdf",
+    "pages/LoadSandboxPdf",
+    "pages/LoadRawfilePdf",
+    "pages/PdfEvent"
   ]
 }
