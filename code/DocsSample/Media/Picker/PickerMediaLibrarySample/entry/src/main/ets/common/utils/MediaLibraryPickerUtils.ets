@@ -230,7 +230,7 @@ export default class MediaLibraryPickerUtils {
 
   /**
    * 通过mimeType判断媒体资源类型
-   * @param mimeType媒体文件mimeType
+   * @param mimeType 媒体文件mimeType
    */
    // [Start PickerMediaLibrary_getMediaTypeByMimeType]
  	 function getMediaTypeByMimeType(mimeType: string): string {
@@ -242,4 +242,22 @@ export default class MediaLibraryPickerUtils {
  	   return 'unKnown';
  	 }
    // [End PickerMediaLibrary_getMediaTypeByMimeType]
+
+  /**
+   * 通过URI判断连拍图资源
+   * @param URI 媒体文件URI
+   */
+   // [Start PickerMediaLibrary_getBurstTypeByUri]
+ 	 function getBurstTypeByUri(uri: string): string {
+ 	   const hasBurst = uri.includes('burst');
+ 	   const hasCover = uri.includes('cover');
+ 	   
+ 	   if (hasBurst && hasCover) {
+ 	     return '连拍封面';
+ 	   } else if (hasBurst) {
+ 	     return '连拍照片';
+ 	   }
+ 	   return '非连拍图';
+ 	 }
+   // [End PickerMediaLibrary_getBurstTypeByUri]
 }
