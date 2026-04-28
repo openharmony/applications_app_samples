@@ -26,7 +26,7 @@ struct SpecificSceneSetOrientationIndex {
       const disp = display.getDefaultDisplaySync();
       const displayOrientation = disp.orientation; // 当前屏幕方向（0/1/2/3）
 
-      console.info("Current display orientation = " + displayOrientation);
+      console.info('Current display orientation = ' + displayOrientation);
       // 2.将displayOrientation转换为windowOrientation
       let windowOrientation: number =
         this.mainWindow.convertOrientationAndRotation(
@@ -51,21 +51,21 @@ struct SpecificSceneSetOrientationIndex {
           orientation = window.Orientation.LANDSCAPE;
           break;
         default:
-          throw new Error("Invalid orientation value");
+          throw new Error('Invalid orientation value');
       }
       // 4.设置旋转策略锁定窗口方向
       this.mainWindow.setPreferredOrientation(orientation, (err) => {
         if (err && err.code) {
-          console.error("setPreferredOrientation failed: " + JSON.stringify(err));
+          console.error('setPreferredOrientation failed: ' + JSON.stringify(err));
         }
       });
     } catch (exception) {
-      console.error("Exception in setOrientationByDisplay: " + JSON.stringify(exception));
+      console.error('Exception in setOrientationByDisplay: ' + JSON.stringify(exception));
     }
   }
   build() {
     Column() {
-      Text("Lock the display orientation")
+      Text('Lock the display orientation')
         .fontSize(17)
       Button('Set orientation from display')
         .onClick(() => {
