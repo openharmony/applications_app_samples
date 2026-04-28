@@ -345,7 +345,7 @@ EGL环境。在Native侧的OnsurfaceChanged回调中，传入OH_ArkUI_SurfaceHol
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Native/NativeXComponent/ > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/NativeXComponent/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
