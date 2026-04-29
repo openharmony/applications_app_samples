@@ -3,30 +3,30 @@
 ### 介绍
 
 本示例依照指南 开发->系统->网络->Network Kit（网络服务）->[使用HTTP拦截器(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/native-httpinterceptor-guidelines.md)进行编写。
-本示例展示了如何使用Network Kit的HTTP拦截器功能，通过C/C++实现HTTP请求和响应的拦截处理。通过在源文件中将相关接口封装，再在ArkTS层对封装的接口进行调用，以实现添加响应拦截器、移除拦截器、启用拦截器、停用拦截器和移除所有拦截器等功能。
+本示例展示了如何使用Network Kit的HTTP拦截器功能，通过C/C++实现HTTP请求和响应的拦截处理。通过在源文件中将相关接口封装，再在ArkTS层对封装的接口进行调用，以实现添加只读响应拦截器、移除只读响应拦截器、启用只读响应拦截器、停用只读响应拦截器和移除所有只读响应拦截器等功能，同时也支持可修改拦截器的相关操作。
 
 ### 效果预览
 | 程序主页                                    |
 | ------------------------------------------- |
-| ![image](./screenshots/HTTP_interceptor_C_Index.png) |
+| ![image](./screenshots/HTTP_interceptor_C_Index.png) ![image](./screenshots/HTTP_interceptor_C_Index2.png) |
 
 本示例提供了一个简单的界面，包含以下功能按钮：
-- Add Response Interceptor：添加响应拦截器
-- Remove Interceptor：移除拦截器
-- Start Interceptors：启用拦截器
-- Stop Interceptors：停用拦截器
-- Remove All Interceptors：移除所有拦截器
+- Add ReadOnly Response Interceptor：添加只读响应拦截器
+- Remove ReadOnly Response Interceptor：移除只读响应拦截器
+- Start ReadOnly Response Interceptors：启用只读响应拦截器
+- Stop ReadOnly Response Interceptors：停用只读响应拦截器
+- Remove All ReadOnly Response Interceptors：移除所有只读响应拦截器
+- Add Modify Request Interceptor：添加可修改请求拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
+- Start Modify Request Interceptors：启用可修改请求拦截器组
+- Stop Modify Request Interceptors：停用可修改请求拦截器组
+- Remove Modify Request Interceptor：移除可修改请求拦截器
+- Remove All Modify Request Interceptors：移除所有可修改请求拦截器
+- Add Modify Response Interceptor：添加可修改响应拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
+- Start Modify Response Interceptors：启用可修改响应拦截器组
+- Stop Modify Response Interceptors：停用可修改响应拦截器组
+- Remove Modify Response Interceptor：移除可修改响应拦截器
+- Remove All Modify Response Interceptors：移除所有可修改响应拦截器
 - Send HTTP Request：发送HTTP请求
-- Add Modify Request Interceptor：添加请求可写拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
-- Start Modify Request Interceptors：启用请求可写拦截器组
-- Stop Modify Request Interceptors：停用请求可写拦截器组
-- Remove Modify Request Interceptor：移除请求可写拦截器
-- Remove All Modify Request Interceptors：移除所有请求可写拦截器
-- Add Modify Response Interceptor：添加响应可写拦截器（OH_TYPE_MODIFY_NETWORK_KIT类型）
-- Start Modify Response Interceptors：启用响应可写拦截器组
-- Stop Modify Response Interceptors：停用响应可写拦截器组
-- Remove Modify Response Interceptor：移除响应可写拦截器
-- Remove All Modify Response Interceptors：移除所有响应可写拦截器
 
 ### 工程目录
 
@@ -55,16 +55,16 @@ entry/src/main/
 2. 编写调用该API的代码，在C++层实现拦截器的添加、移除、启用、停用等功能。
 3. 实现了两种类型的拦截器：
    - 只读拦截器（OH_TYPE_READ_ONLY）：用于读取和记录HTTP请求和响应信息
-   - 可写拦截器（OH_TYPE_MODIFY_NETWORK_KIT）：用于修改HTTP请求和响应信息
-4. 可写拦截器示例功能：
+   - 可修改拦截器（OH_TYPE_MODIFY_NETWORK_KIT）：用于修改HTTP请求和响应信息
+4. 可修改拦截器示例功能：
    - 修改请求方法（如将POST改为GET）
    - 添加自定义请求头
    - 修改请求体
    - 修改响应体
    - 添加自定义响应头
-5. 在ArkTS层通过`httpInterceptor.AddResponseInterceptor()`、`httpInterceptor.AddModifyRequestInterceptor()`、`httpInterceptor.AddModifyResponseInterceptor()`等方法调用C++层封装的接口。
+5. 在ArkTS层通过`httpInterceptor.AddReadOnlyResponseInterceptor()`、`httpInterceptor.AddModifyRequestInterceptor()`、`httpInterceptor.AddModifyResponseInterceptor()`等方法调用C++层封装的接口。
 6. 发送HTTP请求时，响应拦截器会打印响应信息，包括响应码、响应体、响应头以及性能计时信息。
-7. 可写拦截器会修改请求和响应信息，并在日志中打印修改前后的对比。
+7. 可修改拦截器会修改请求和响应信息，并在日志中打印修改前后的对比。
 
 ### 相关权限
 

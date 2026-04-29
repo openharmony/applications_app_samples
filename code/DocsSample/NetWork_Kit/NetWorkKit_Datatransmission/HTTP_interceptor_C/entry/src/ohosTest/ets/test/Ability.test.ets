@@ -112,9 +112,9 @@ export default function abilityTest() {
         const caseName: string = "testNetworkMgrHttpRequestInterceptorAddReadOnlyInterceptor0600";
         console.info(`${TAG} ${caseName} test Start`);
         try {
-          let addReadOnlyResult: number = testNetManager.AddResponseInterceptor();
+          let addReadOnlyResult: number = testNetManager.AddReadOnlyResponseInterceptor();
           ExpectTrue(addReadOnlyResult == 0);
-          console.info(`${TAG} ${caseName} AddResponseInterceptor success, addReadOnlyResult:${addReadOnlyResult}`);
+          console.info(`${TAG} ${caseName} AddReadOnlyResponseInterceptor success, addReadOnlyResult:${addReadOnlyResult}`);
           let httpRequest: http.HttpRequest = http.createHttp();
           let options: http.HttpRequestOptions = {
             method: http.RequestMethod.POST,
@@ -159,7 +159,7 @@ export default function abilityTest() {
         const caseName: string = "testNetworkMgrHttpRequestInterceptorAddReadOnlyInterceptor0700";
         console.info(`${TAG} ${caseName} test Start`);
         try {
-          let addReadOnlyResult: number = testNetManager.AddResponseInterceptor();
+          let addReadOnlyResult: number = testNetManager.AddReadOnlyResponseInterceptor();
           ExpectTrue(addReadOnlyResult == 0);
           console.info(`${TAG} ${caseName}AddReadOnlyResponseInterceptor success, addReadOnlyResult:${addReadOnlyResult}`);
           let httpRequest: http.HttpRequest = http.createHttp();
@@ -207,9 +207,9 @@ export default function abilityTest() {
         console.info(`${TAG} ${caseName} test Start`);
         try {
 
-          let result: number = testNetManager.AddResponseInterceptor();
+          let result: number = testNetManager.AddReadOnlyResponseInterceptor();
           ExpectTrue(result == 0);
-          console.info(`${TAG} ${caseName} AddResponseInterceptor success, result:${result}`);
+          console.info(`${TAG} ${caseName} AddReadOnlyResponseInterceptor success, result:${result}`);
           let startResult: number = testNetManager.StartInterceptors();
           ExpectTrue(startResult == 0);
           console.info(`${TAG} ${caseName} StartInterceptors success, startResult:${startResult}`);
@@ -255,9 +255,9 @@ export default function abilityTest() {
         const caseName: string = "testNetworkMgrHttpRequestInterceptorStopAllInterceptor0800";
         console.info(`${TAG} ${caseName} test Start`);
         try {
-          let result: number = testNetManager.AddResponseInterceptor();
+          let result: number = testNetManager.AddReadOnlyResponseInterceptor();
           ExpectTrue(result == 0);
-          console.info(`${TAG} ${caseName} AddResponseInterceptor success, result:${result}`);
+          console.info(`${TAG} ${caseName} AddReadOnlyResponseInterceptor success, result:${result}`);
           let stopResult: number = testNetManager.StopInterceptors();
           ExpectTrue(stopResult === 0);
           console.info(`${TAG} ${caseName} StopInterceptors success, stopResult:${stopResult}`);
