@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start worterflow_section]
+// [Start waterflow_section]
 // WaterflowSection.h
 
 #ifndef MYAPPLICATION_WATERFLOWSECTION_H
@@ -77,4 +77,4 @@ private:
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_WATERFLOWSECTION_H
-// [End worterflow_section]
+// [End waterflow_section]
