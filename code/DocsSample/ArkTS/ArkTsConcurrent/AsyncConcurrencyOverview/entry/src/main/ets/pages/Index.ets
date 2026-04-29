@@ -39,7 +39,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
    */
   // 使用then方法定义成功和失败的回调
   promise.then((result: number) => {
-    console.info(`Successed number is ${result}`); // 成功时执行
+    console.info(`Succeeded in getting number, number is ${result}`); // 成功时执行
   }, (error: BusinessError) => {
     console.error(error.message); // 失败时执行
   }
@@ -47,7 +47,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 
   // 使用then方法定义成功的回调，catch方法定义失败的回调
   promise.then((result: number) => {
-    console.info(`Successed number is ${result}`); // 成功时执行
+    console.info(`Succeeded in getting number, number is ${result}`); // 成功时执行
   }).catch((error: BusinessError) => {
     console.error(error.message); // 失败时执行
   });
