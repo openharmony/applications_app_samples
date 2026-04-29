@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.AVPlayerNDKStreamingMedia",
+    "bundleName": "com.samples.avplayerndkstreamingmedia",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
