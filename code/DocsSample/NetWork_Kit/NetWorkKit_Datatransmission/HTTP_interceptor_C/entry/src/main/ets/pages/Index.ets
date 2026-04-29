@@ -21,20 +21,6 @@ import { http } from '@kit.NetworkKit';
 const LOG_TAG: string = 'HttpInterceptorDemo';
 const HTTP_URL_BAIDU: string = "http://www.baidu.com";
 
-//常量定义
-interface SizeOptions {
-  SMALL: number;
-  MEDIUM: number;
-  LARGE: number;
-}
-
-//边距定义
-const MARGIN: SizeOptions = {
-  SMALL: 16,
-  MEDIUM: 20,
-  LARGE: 50
-};
-
 @Entry
 @Component
 struct Index {
