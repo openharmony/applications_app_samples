@@ -32,7 +32,7 @@ struct Index {
   private context: common.UIAbilityContext | undefined = undefined;
 
   @State title: Resource = $r('app.string.EntryAbility_label');
-  @State fileName: string = 'test1.mp4';
+  @State fileName: string = 'https://example.m3u8'; // 流媒体链接
   @State isPaused: boolean = true; // 暂停播放
   @State speedSelect: number = 0; // 倍速选择
   @State speedList: Resource[] = [$r('app.string.video_speed_1_0X'), $r('app.string.video_speed_1_25X'), $r('app.string.video_speed_1_75X'), $r('app.string.video_speed_2_0X')];
