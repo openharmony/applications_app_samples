@@ -20,7 +20,7 @@
     "mainElement": "EntryAbility",
     "requestPermissions": [
       {
-        "name": "ohos.permissions.INTERNET",
+        "name": "ohos.permission.INTERNET",
         "reason": "$string:internet_permission_reason",
         "usedScene": {
           "abilities": ["EntryAbility"],

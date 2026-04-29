@@ -400,7 +400,7 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     {
         LOG("player %{public}s >> URL source", url)
         LOG("call %{public}s", "OH_AVPlayer_SetUrlSource");
-        ret = OH_AVPlayer_SetUrlSource(player, url);
+        ret = OH_AVPlayer_SetURLSource(player, url);
         LOG("OH_AVPlayer_SetUrlSource ret:%{public}d", ret);
     }
     // 设置音频流类型
