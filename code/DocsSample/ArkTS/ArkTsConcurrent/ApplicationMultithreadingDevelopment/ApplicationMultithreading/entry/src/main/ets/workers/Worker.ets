@@ -14,12 +14,13 @@
  */
 
 // [Start worker_correspond_main_thread]
-import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+import { MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 let isRunning = false;
 workerPort.onmessage = (e: MessageEvents) => {
   const type = e.data.type as string;
-  if (type === 'End') {
+  if (type === 'start') {
     if (!isRunning) {
       isRunning = true;
       // 开始常驻任务
@@ -27,9 +28,9 @@ workerPort.onmessage = (e: MessageEvents) => {
     }
   } else if (type === 'stop') {
     isRunning = false;
-    workerPort.close();  // 关闭Worker
   }
 }
+
 // 模拟常驻任务
 function performTask() {
   if (isRunning) {
@@ -37,7 +38,9 @@ function performTask() {
     workerPort.postMessage('Worker is performing a task');
     // 1秒后再次执行任务
     setTimeout(performTask, 1000);
+  } else {
+    workerPort.postMessage('Worker has stopped performing the task');
+    workerPort.close();
   }
-  workerPort.postMessage('Worker is stop performing a task');
 }
 // [End worker_correspond_main_thread]
