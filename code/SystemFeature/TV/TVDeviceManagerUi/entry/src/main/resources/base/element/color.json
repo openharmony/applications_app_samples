@@ -1,0 +1,124 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_color",
+      "value": "#E5000000"
+    },
+    {
+      "name": "label_color",
+      "value": "#182431"
+    },
+    {
+      "name": "label_color_light",
+      "value": "#99182431"
+    },
+    {
+      "name": "label_color_lighter",
+      "value": "#66182431"
+    },
+    {
+      "name": "label_color_20",
+      "value": "#33182431"
+    },
+    {
+      "name": "label_color_lightest",
+      "value": "#0D182431"
+    },
+    {
+      "name": "background_color",
+      "value": "#F4F5F7"
+    },
+    {
+      "name": "list_background_color",
+      "value": "#FDFDFD"
+    },
+    {
+      "name": "text_secondary_color",
+      "value": "#99000000"
+    },
+    {
+      "name": "active_background_color",
+      "value": "#e5f3ff"
+    },
+    {
+      "name": "divider_color",
+      "value": "#f3f4f6"
+    },
+    {
+      "name": "text_decoration_color",
+      "value": "#f3f4f6"
+    },
+    {
+      "name": "default_background_color",
+      "value": "#ffffff"
+    },
+    {
+      "name": "button_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "shape_allow_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "location_circle_color",
+      "value": "#254FF7"
+    },
+    {
+      "name": "location_bgColor",
+      "value": "#19596080"
+    },
+    {
+      "name": "shape_ban_color",
+      "value": "#66000000"
+    },
+    {
+      "name": "first_font_color",
+      "value": "#E6000000"
+    },
+    {
+      "name": "secondary_font_color",
+      "value": "#66000000"
+    },
+    {
+      "name": "toggle_color",
+      "value": "#409eff"
+    },
+    {
+      "name": "color_Primary",
+      "value": "#E5000000"
+    },
+    {
+      "name": "color_Secondary",
+      "value": "#99000000"
+    },
+    {
+      "name": "color_Tertiary",
+      "value": "#66000000"
+    },
+    {
+      "name": "color_Fourth",
+      "value": "#33000000"
+    },
+    {
+      "name": "selected_Color",
+      "value": "#ffffff"
+    },
+    {
+      "name": "popup_Color",
+      "value": "#FFFAF0"
+    },
+    {
+      "name": "selected_Background_Color",
+      "value": "#CCCCCC"
+    },
+    {
+      "name": "popup_Background_Color",
+      "value": "#D2B48C"
+    }
+  ]
+}

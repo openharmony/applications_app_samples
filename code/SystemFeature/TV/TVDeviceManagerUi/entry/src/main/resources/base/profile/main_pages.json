@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/ConfirmDialog",
+    "pages/PinDialog",
+    "pages/InputPinDialog",
+    "pages/Transparent"
+  ]
+}

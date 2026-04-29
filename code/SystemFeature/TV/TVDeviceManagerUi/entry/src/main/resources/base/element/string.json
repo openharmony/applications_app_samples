@@ -1,0 +1,217 @@
+
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "manage the permissions of all applications from the permission and application dimensions"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "permission manage"
+    },
+    {
+      "name": "no_permission",
+      "value": "no permission"
+    },
+    {
+      "name": "access_permission",
+      "value": "access permission"
+    },
+    {
+      "name": "permission_access_record",
+      "value": "permission access record"
+    },
+    {
+      "name": "authority_management",
+      "value": "authority management"
+    },
+    {
+      "name": "other_permissions",
+      "value": "other permissions"
+    },
+    {
+      "name": "application",
+      "value": "application"
+    },
+    {
+      "name": "authority",
+      "value": "authority"
+    },
+    {
+      "name": "textInput_placeholder",
+      "value": "search application"
+    },
+    {
+      "name": "allowed",
+      "value": "allowed"
+    },
+    {
+      "name": "banned",
+      "value": "banned"
+    },
+    {
+      "name": "Authorization_failed",
+      "value": "Authorization failure!"
+    },
+    {
+      "name": "reason_suffix",
+      "value": " and other permissions."
+    },
+    {
+      "name": "separator",
+      "value": ","
+    },
+    {
+      "name": "visits",
+      "value": "Number of visits:"
+    },
+    {
+      "name": "recent_visit",
+      "value": ";Recent visits:"
+    },
+    {
+      "name": "morning",
+      "value": "am"
+    },
+    {
+      "name": "afternoon",
+      "value": "pm"
+    },
+    {
+      "name": "no_record",
+      "value": "No permission access record"
+    },
+    {
+      "name": "record_time_limit",
+      "value": "Access records in the last 7 days"
+    },
+    {
+      "name": "number_of_authorized_applications",
+      "value": " applications have this permission"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
+    },
+    {
+      "name": "ban",
+      "value": "ban"
+    },
+    {
+      "name": "precise_location",
+      "value": "Precise location"
+    },
+    {
+      "name": "precise_location_on",
+      "value": "Precise position: On"
+    },
+    {
+      "name": "precise_location_off",
+      "value": "Precise position: Off"
+    },
+    {
+      "name": "get_the_exact_position",
+      "value": "Allows the app to get your exact location. When closed, the location obtained by the application will be biased."
+    },
+    {
+      "name": "close_exact_position",
+      "value": "When Precise location is turned off, the location obtained by the application is biased."
+    },
+    {
+      "name": "whether_to_allow",
+      "value": "Whether to allow "
+    },
+    {
+      "name": "access_general_location",
+      "value": " access the general location?"
+    },
+    {
+      "name": "fuzzy_to_exact",
+      "value": " position access to change from \"APPROXIMATE POSITION\" to \"EXACT POSITION\"?"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "open",
+      "value": "open"
+    },
+    {
+      "name": "close",
+      "value": "close"
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "microphone",
+      "value": "microphone"
+    },
+    {
+      "name": "close_camera",
+      "value": "Turn off the camera"
+    },
+    {
+      "name": "close_microphone",
+      "value": "Turn off the microphone"
+    },
+    {
+      "name": "global_title_camera",
+      "value": "The camera is disabled"
+    },
+    {
+      "name": "global_title_microphone",
+      "value": "Microphone not turned on"
+    },
+    {
+      "name": "global_title_camera_and_microphone",
+      "value": "The camera and microphone are disabled"
+    },
+    {
+      "name": "global_desc_camera",
+      "value": "An application is accessing the camera. Click \"Open\" to resume normal use."
+    },
+    {
+      "name": "global_desc_microphone",
+      "value": "An application is accessing the microphone. Click \"Open\" to resume normal use."
+    },
+    {
+      "name": "global_desc_camera_and_microphone",
+      "value": "An application is accessing the camera and microphone. Click \"Open\" to resume normal use."
+    },
+    {
+      "name": "microphone_is_off",
+      "value": "The microphone is turned off. No application can use the microphone to record audio."
+    },
+    {
+      "name": "camera_is_off",
+      "value": "The camera is turned off and no apps can currently use the camera to take photos and videos."
+    },
+    {
+      "name": "close_microphone_desc",
+      "value": "After the microphone is disabled, all application services cannot use the microphone to make calls, record audio, or voice wake up. To restore data, turn on the microphone switch."
+    },
+    {
+      "name": "close_camera_desc",
+      "value": "After it is turned off, all apps will not be able to use the camera properly to take photos, videos or perform face recognition. To restore data, turn on the camera switch."
+    },
+    {
+      "name": "distributed_permission",
+      "value": "We need distributed_permission"
+    }
+  ]
+}
