@@ -84,6 +84,8 @@ public:
     static void CreateAccessibilityActionsSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
     static void CreateAccessibilityRoleSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
     static void CreateUniqueIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    static void CreateAccessibilityNextFocusIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    static void CreateAccessibilityDefaultFocusSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
     static void OnErrorCallback(int32_t code, const char* name, const char* message);
     static void OnTerminatedCallback(int32_t code, AbilityBase_Want* want);
 };
