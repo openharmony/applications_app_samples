@@ -398,7 +398,7 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%{public}d", ret);
     {
-        LOG("player %{public}s >> URL source", url)
+        LOG("player %{public}s >> URL source", url);
         LOG("call %{public}s", "OH_AVPlayer_SetUrlSource");
         ret = OH_AVPlayer_SetURLSource(player, url);
         LOG("OH_AVPlayer_SetUrlSource ret:%{public}d", ret);
