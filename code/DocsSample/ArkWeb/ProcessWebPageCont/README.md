@@ -62,9 +62,89 @@
 | ------------------------------------------------------- |
 | <img src="./screenshots/PreviewPDF.png" width="360;" /> |
 
- #### 具体实现
- 	 
+### 具体实现
+
 1. 使用Web组件的src参数传入不同来源的PDF文件，以加载PDF文档，参考源码：[PreviewPDF.ets](./entry/src/main/ets/pages/PreviewPDF.ets)
+
+## LoadNetworkPdf
+
+### 介绍
+
+1. 本示例主要介绍使用Web组件加载网络PDF文档。应用通过Web组件的src参数传入网络PDF地址，直接预览线上PDF文件。
+
+### 效果预览
+
+| 主页                                                         |
+| ------------------------------------------------------------ |
+| <img src="./screenshots/LoadNetworkPdf.jpeg" width="360;" /> |
+
+### 使用说明
+
+1. 点击首页LoadNetworkPdf按钮，进入页面后自动加载网络PDF文档。
+
+### 具体实现
+
+1. 使用Web组件的src参数传入网络PDF地址，以加载网络PDF文档，参考源码：[LoadNetworkPdf.ets](./entry/src/main/ets/pages/LoadNetworkPdf.ets)
+
+## LoadSandboxPdf
+
+### 介绍
+
+1. 本示例主要介绍使用Web组件加载应用沙箱中的PDF文档。应用通过Web组件的src参数传入应用沙箱目录下的PDF路径，实现本地PDF预览。
+
+### 效果预览
+
+| 主页                                                         |
+| ------------------------------------------------------------ |
+| <img src="./screenshots/LoadSandboxPdf.jpeg" width="360;" /> |
+
+### 使用说明
+
+1. 点击首页LoadSandboxPdf按钮，进入页面后自动加载应用沙箱中的PDF文档。
+
+### 具体实现
+
+1. 使用Web组件的src参数传入应用沙箱路径，并开启fileAccess访问本地文件，参考源码：[LoadSandboxPdf.ets](./entry/src/main/ets/pages/LoadSandboxPdf.ets)
+
+## LoadRawfilePdf
+
+### 介绍
+
+1. 本示例主要介绍使用Web组件加载应用rawfile中的PDF文档。应用通过资源路径加载随应用打包的PDF文件，实现离线预览。
+
+### 效果预览
+
+| 主页                                                         |
+| ------------------------------------------------------------ |
+| <img src="./screenshots/LoadRawfilePdf.jpeg" width="360;" /> |
+
+### 使用说明
+
+1. 点击首页LoadRawfilePdf按钮，进入页面后自动加载rawfile中的PDF文档。
+
+### 具体实现
+
+1. 使用Web组件的src参数传入`resource://rawfile/test.pdf`资源路径，以加载本地PDF文档，参考源码：[LoadRawfilePdf.ets](./entry/src/main/ets/pages/LoadRawfilePdf.ets)
+
+## PdfEvent
+
+### 介绍
+
+1. 本示例主要介绍Web组件在预览PDF文档时的事件回调能力。应用加载PDF文档后，可通过onPdfLoadEvent监听PDF加载结果，并通过onPdfScrollAtBottom监听PDF滚动到底部事件。
+
+### 效果预览
+
+| PDF事件页面                                             |
+| ------------------------------------------------------- |
+| <img src="./screenshots/PdfEvent.jpeg" width="360;" /> |
+
+### 使用说明
+
+1. 点击首页PdfEvent按钮，进入页面后自动加载PDF文档，并在回调中获取文档地址、加载结果和滚动到底部事件。
+
+### 具体实现
+
+1. 使用Web组件的onPdfLoadEvent接口监听PDF加载事件，使用onPdfScrollAtBottom接口监听PDF滚动到底部事件，参考源码：[PdfEvent.ets](./entry/src/main/ets/pages/PdfEvent.ets)
 
 # 网页中安全区域计算和避让适配
 
@@ -104,6 +184,10 @@ entry/src/main/
 |---|---|---InitiatePrintAppAPI
 |---|---|---InitiatePrintW3CAPI
 |---|---|---PreviewPDF
+|---|---|---LoadNetworkPdf
+|---|---|---LoadSandboxPdf
+|---|---|---LoadRawfilePdf
+|---|---|---PdfEvent
 |---|---|---CalcAdjustSafeArea
 |---resources								// 静态资源
 |---ohosTest
@@ -126,8 +210,8 @@ entry/src/main/
 ## 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，SDK版本号(API Version 14 Release)。
-3. 本示例需要使用DevEco Studio 版本号(5.0.1Release)才可编译运行。
+2. 本示例支持API20版本SDK，SDK版本号(API Version 20 Release)。
+3. 本示例需要使用DevEco Studio 版本号(6.1.0 Release)才可编译运行。
 
 ## 下载
 
