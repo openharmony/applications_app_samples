@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +15,7 @@
 // [Start certificate_management_get_ca_path]
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-function getUserCaPathSample() {
+function getUserCaPathSample(): void {
   try {
     /* 获取系统CA的存储位置。 */
     let property1: certificateManager.CertStoreProperty = {

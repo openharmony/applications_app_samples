@@ -18,7 +18,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 
-async function certificateManagerAuthDialogSample() {
+async function certificateManagerAuthDialogSample(): Promise<void> {
   /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
   let context: common.Context = new UIContext().getHostContext() as common.Context;
   let certTypes: certificateManagerDialog.CertificateType[] = [
@@ -33,7 +33,7 @@ async function certificateManagerAuthDialogSample() {
       (certReference: certificateManagerDialog.CertReference) => {
       let reference = certReference;
       console.info(`Success to open authorize dialog.`)
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
         console.error(`Failed to open authorize dialog. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {

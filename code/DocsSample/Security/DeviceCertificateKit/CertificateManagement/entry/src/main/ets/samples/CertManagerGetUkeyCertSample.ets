@@ -16,7 +16,7 @@
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function certificateManagerGetUkeyCertSample() {
+async function certificateManagerGetUkeyCertSample(): Promise<void> {
   let keyUri: string = 'test'; /* USB凭据的唯一标识符，此处省略 */
   let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
       certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT,
@@ -25,7 +25,7 @@ async function certificateManagerGetUkeyCertSample() {
     certificateManager.getUkeyCertificate(keyUri, ukeyInfo).then((cmResult) => {
         let list = cmResult.credentialDetailList;
         console.info('Succeeded in getting detail of USB key certificate.');
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error(`Failed to get detail of USB key certificate. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {
