@@ -71,7 +71,7 @@ export struct ArcListStyles {
                     Image($r('app.media.wlan')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
                     Column() {
-                      Text($r('app.string.ArcListStyles_waln')).fontSize('38px').fontColor('#FFFFFFFF')
+                      Text($r('app.string.ArcListStyles_wlan')).fontSize('38px').fontColor('#FFFFFFFF')
                       Text($r('app.string.ArcListStyles_open')).fontSize('20px').fontColor('#FFFFFFFF')
                     }.width('190px')
 
@@ -179,7 +179,7 @@ export struct ArcListStyles {
                     Image($r('app.media.wlan')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
                     Column() {
-                      Text($r('app.string.ArcListStyles_waln')).fontSize('38px').fontColor('#FFFFFFFF')
+                      Text($r('app.string.ArcListStyles_wlan')).fontSize('38px').fontColor('#FFFFFFFF')
                       Text($r('app.string.ArcListStyles_open')).fontSize('20px').fontColor('#FFFFFFFF')
                     }.width('190px')
 
@@ -294,7 +294,7 @@ export struct ArcListStyles {
                     Image($r('app.media.wlan')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
                     Column() {
-                      Text($r('app.string.ArcListStyles_waln')).fontSize('38px').fontColor('#FFFFFFFF')
+                      Text($r('app.string.ArcListStyles_wlan')).fontSize('38px').fontColor('#FFFFFFFF')
                       Text($r('app.string.ArcListStyles_open')).fontSize('20px').fontColor('#FFFFFFFF')
                     }.width('190px')
 
