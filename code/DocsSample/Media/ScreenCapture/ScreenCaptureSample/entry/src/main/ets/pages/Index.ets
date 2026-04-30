@@ -1,27 +1,28 @@
-import {Scene1} from './Scene1';
-import {Scene2} from './Scene2';
-import {Scene3} from './Scene3';
-import {Scene4} from './Scene4';
+import { Scene1 } from './Scene1';
+import { Scene2 } from './Scene2';
+import { Scene3 } from './Scene3';
+import { Scene4 } from './Scene4';
+import { Scene5 } from './Scene5';
 
 class DividerTmp {
-  strokeWidth: Length = 1
-  startMargin: Length = 60
-  endMargin: Length = 10
-  color: ResourceColor = '#ffe9f0f0'
+  strokeWidth: Length = 1;
+  startMargin: Length = 60;
+  endMargin: Length = 10;
+  color: ResourceColor = '#ffe9f0f0';
 
   constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
-    this.strokeWidth = strokeWidth
-    this.startMargin = startMargin
-    this.endMargin = endMargin
-    this.color = color
+    this.strokeWidth = strokeWidth;
+    this.startMargin = startMargin;
+    this.endMargin = endMargin;
+    this.color = color;
   }
 }
 
-@Entry({ routeName : 'Index' })
+@Entry({ routeName: 'Index' })
 @Component
 struct Index {
-  @Provide('NavPathStack') pageInfos: NavPathStack = new NavPathStack()
-  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  @Provide('NavPathStack') pageInfos: NavPathStack = new NavPathStack();
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
 
   @Builder
   PagesMap(name: string) {
@@ -33,6 +34,8 @@ struct Index {
       Scene3()
     } else if (name == 'Scene4') {
       Scene4()
+    } else if (name == 'Scene5') {
+      Scene5()
     }
   }
 
@@ -45,10 +48,12 @@ struct Index {
             Text($r('app.string.sample_label'))
               .fontSize(18)
           }
+
           ListItem() {
             Text($r('app.string.saving_file_desc'))
               .fontSize(20)
           }
+
           ListItem() {
             Button($r('app.string.saving_file_desc'))
               .width('80%')
@@ -56,6 +61,7 @@ struct Index {
                 this.pageInfos.pushPathByName('Scene1', '');
               })
           }
+
           ListItem() {
             Button($r('app.string.js_saving_file_desc'))
               .width('80%')
@@ -63,17 +69,28 @@ struct Index {
                 this.pageInfos.pushPathByName('Scene4', '');
               })
           }
+
+          ListItem() {
+            Button($r('app.string.saving_window_file_desc'))
+              .width('80%')
+              .onClick(() => {
+                this.pageInfos.pushPathByName('Scene5', '');
+              })
+          }
+
           ListItem() {
             Text($r('app.string.streaming_desc'))
               .fontSize(20)
           }
+
           ListItem() {
-            Button($r('app.string.streaming_desc'),{ type: ButtonType.Capsule, stateEffect: true })
+            Button($r('app.string.streaming_desc'), { type: ButtonType.Capsule, stateEffect: true })
               .width('80%')
               .onClick(() => {
                 this.pageInfos.pushPathByName('Scene2', '');
               })
           }
+
           ListItem() {
             Button($r('app.string.streaming_surface_mode_desc'))
               .width('80%')

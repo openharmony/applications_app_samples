@@ -21,6 +21,10 @@
       "value": "录屏存文件"
     },
     {
+      "name": "saving_window_file_desc",
+      "value": "窗口级录屏存文件"
+    },
+    {
       "name": "streaming_desc",
       "value": "录屏取码流"
     },
