@@ -33,6 +33,6 @@ export const getBufferInfo: () => string; // napi_get_buffer_info
 export const isBuffer: () => boolean; // napi_is_buffer
 // [End napi_is_buffer_api]
 
-// [Start napi_create_external_arraybuffer]
+// [Start napi_create_external_arraybuffer_api]
 export const createExternalArraybuffer: () => ArrayBuffer | undefined; // napi_create_external_arraybuffer
-// [End napi_create_external_arraybuffer]
+// [End napi_create_external_arraybuffer_api]

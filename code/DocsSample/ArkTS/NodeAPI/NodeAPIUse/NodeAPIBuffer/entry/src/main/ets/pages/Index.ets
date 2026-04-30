@@ -51,21 +51,21 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiCreateBuffer') {
-                  // [Strart ark_napi_create_buffer]
+                  // [Strart ark_napi_create_buffer_test]
                   // napi_create_buffer
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_buffer: %{public}s',
                       testNapi.createBuffer().toString());
-                    // [StartExclude ark_napi_create_buffer]
+                    // [StartExclude ark_napi_create_buffer_test]
                     this.result = 'napiCreateBufferSuccess';
-                    // [EndExclude ark_napi_create_buffer]
+                    // [EndExclude ark_napi_create_buffer_test]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_buffer error');
-                    // [StartExclude ark_napi_create_buffer]
+                    // [StartExclude ark_napi_create_buffer_test]
                     this.result = 'napiCreateBufferFail';
-                    // [EndExclude ark_napi_create_buffer]
+                    // [EndExclude ark_napi_create_buffer_test]
                   }
-                  // [End ark_napi_create_buffer]
+                  // [End ark_napi_create_buffer_test]
                 } else if (item === '2.napiCreateBufferCopy') {
                   // [Start ark_napi_create_buffer_copy]
                   // napi_create_buffer_copy
@@ -136,8 +136,8 @@ struct Index {
                   // napi_create_external_arraybuffer
                   hilog.info(0x0000, 'testTag', 'Node-API createExternalArraybuffer: %{public}s',
                     JSON.stringify(testNapi.createExternalArraybuffer()));
-                  this.result = 'napiCreateExternalArraybufferSuccess';
                   // [End ark_napi_create_external_arraybuffer]
+                  this.result = 'napiCreateExternalArraybufferSuccess';
                 }
               })
           }

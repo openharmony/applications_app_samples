@@ -160,7 +160,7 @@ typedef struct {
 void FinalizeCallback1(napi_env env, void *finalizeData, void *finalizeHint)
 {
     // 获取终结时的数据
-    BufferData *bufferData = static_cast<BufferData *>(finalizeData);
+    BufferData *bufferData = static_cast<BufferData *>(finalizeHint);
 
     // 执行清理操作，比如释放资源
     delete[] bufferData->data;
