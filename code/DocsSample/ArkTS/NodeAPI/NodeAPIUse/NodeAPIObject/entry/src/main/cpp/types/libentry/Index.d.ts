@@ -41,15 +41,15 @@ export const objectSeal: (objSeal: Object) => Obj1; // napi_object_seal
 // [End napi_object_seal_api]
 
 // [Start napi_typeof_api]
-export const napiTypeOf: <T>(value: T) => string | void; // napi_typeof
+export const napiTypeOf: <T>(value: T) => string | undefined; // napi_typeof
 // [End napi_typeof_api]
 
 // [Start napi_instanceof_api]
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void; // napi_instanceof
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined; // napi_instanceof
 // [End napi_instanceof_api]
 
 // [Start napi_type_tag_object_api]
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void; // napi_type_tag_object
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined; // napi_type_tag_object
 
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean; // napi_check_object_type_tag
 // [End napi_type_tag_object_api]

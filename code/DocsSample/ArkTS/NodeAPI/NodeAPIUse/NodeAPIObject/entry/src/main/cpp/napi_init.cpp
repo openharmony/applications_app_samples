@@ -288,7 +288,7 @@ static napi_value GetValueExternal(napi_env env, napi_callback_info info)
 }
 // [End napi_get_value_external]
 
-// [Start napi_get_cb_info]
+// [Start napi_create_symbol]
 // napi_create_symbol
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
