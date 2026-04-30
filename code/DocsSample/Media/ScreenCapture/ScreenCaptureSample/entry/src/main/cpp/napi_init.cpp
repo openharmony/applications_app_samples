@@ -417,6 +417,64 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
     return res;
 }
 
+// 开始窗口级录屏存文件
+static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
+{
+    g_avCapture = OH_AVScreenCapture_Create();
+    if (g_avCapture == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "create screen capture failed");
+    }
+    OH_AVScreenCaptureConfig config_;
+
+    OH_RecorderInfo recorderInfo;
+    const std::string filePath = "/data/storage/el2/base/files/";
+    int32_t outputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT, 0777);
+    std::string fileUrl = "fd://" + std::to_string(outputFd);
+    recorderInfo.url = const_cast<char *>(fileUrl.c_str());
+    recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
+
+    SetConfig(config_);
+    
+    // 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW
+    config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
+    config_.dataType = OH_CAPTURE_FILE;
+    config_.recorderInfo = recorderInfo;
+
+    // 期望录制的窗口，可传入单个窗口Id。
+    std::vector<int32_t> missionIds = {88}; // 指定窗口id列表口，可通过窗口接口获取。
+    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
+    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    
+    // 设置不弹出屏幕捕获Picker
+    OH_AVScreenCapture_CaptureStrategy *strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
+    OH_AVScreenCapture_SetCaptureStrategy(g_avCapture, strategy);
+
+    bool isMicrophone = true;
+    OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMicrophone);
+    OH_AVScreenCapture_SetStateCallback(g_avCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
+    OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(g_avCapture, config_);
+    if (result != AV_SCREEN_CAPTURE_ERR_OK) {
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
+
+    result = OH_AVScreenCapture_StartScreenRecording(g_avCapture);
+    if (result != AV_SCREEN_CAPTURE_ERR_OK) {
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
+        OH_AVScreenCapture_Release(g_avCapture);
+        g_avCapture = nullptr;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
+
+    m_scSaveFileIsRunning = true;
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
 // 停止
 static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
 {
@@ -546,6 +604,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startCaptureAsFile", nullptr, StartScreenCapture_02, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startScreenCaptureWithSurface", nullptr, StartScreenCapture_03, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"startScreenCaptureWithWindow", nullptr, StartScreenCapture_04, nullptr, nullptr, nullptr, napi_default,
          nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
