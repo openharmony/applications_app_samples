@@ -33,7 +33,8 @@ async function certificateManagerAuthDialogSample(): Promise<void> {
       (certReference: certificateManagerDialog.CertReference) => {
       let reference = certReference;
       console.info(`Success to open authorize dialog.`)
-    }).catch((err) => {
+      }).catch((error: Error) => {
+        let err = error as BusinessError;
         console.error(`Failed to open authorize dialog. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {

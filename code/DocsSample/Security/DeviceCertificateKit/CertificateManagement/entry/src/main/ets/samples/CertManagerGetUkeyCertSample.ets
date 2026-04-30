@@ -25,7 +25,8 @@ async function certificateManagerGetUkeyCertSample(): Promise<void> {
     certificateManager.getUkeyCertificate(keyUri, ukeyInfo).then((cmResult) => {
         let list = cmResult.credentialDetailList;
         console.info('Succeeded in getting detail of USB key certificate.');
-    }).catch((err) => {
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
       console.error(`Failed to get detail of USB key certificate. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {

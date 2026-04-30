@@ -52,7 +52,8 @@ async function installUserCADialogSample(): Promise<void> {
     certificateManagerDialog.openInstallCertificateDialog(context, certType, certScope, cert).then((result) => {
       console.info('Succeeded in opening install ca dialog.');
       certUri = result;
-    }).catch((err) => {
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
       console.error(`Failed to open install ca dialog. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {
@@ -67,7 +68,8 @@ async function uninstallUserCADialogSample(): Promise<void> {
     /* 删除证书。 */
     certificateManagerDialog.openUninstallCertificateDialog(context, certType, certUri).then(() => {
       console.info('Succeeded in opening uninstall ca dialog.');
-    }).catch((err) => {
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
       console.error(`Failed to open uninstall ca dialog. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {
@@ -85,7 +87,8 @@ async function certDetailDialogSample(): Promise<void> {
     /* 显示证书详情。 */
     certificateManagerDialog.openCertificateDetailDialog(context, cert, property).then(() => {
       console.info('Succeeded in opening show ca detail dialog.');
-    }).catch((err) => {
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
       console.error(`Failed to open show ca detail dialog. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {

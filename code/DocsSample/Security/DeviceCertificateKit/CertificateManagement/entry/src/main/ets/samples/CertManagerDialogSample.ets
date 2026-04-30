@@ -27,7 +27,8 @@ async function certificateManagerDialogSample(): Promise<void> {
   try {
     certificateManagerDialog.openCertificateManagerDialog(context, pageType).then(() => {
       console.info('Succeeded in opening certificate manager dialog.');
-    }).catch((err) => {
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
       console.error(`Failed to open certificate manager dialog. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (error) {

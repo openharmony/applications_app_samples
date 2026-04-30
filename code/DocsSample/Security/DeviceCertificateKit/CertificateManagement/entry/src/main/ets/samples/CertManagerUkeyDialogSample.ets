@@ -25,14 +25,15 @@ async function certUkeyDialogSample(): Promise<void> {
   let keyUri: string = 'test'
   let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri }
   try {
-      certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
-          console.info(`Success to open ukey authorization dialog`)
-      }).catch((err) => {
-          console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
-      });
+    certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
+      console.info(`Success to open ukey authorization dialog`)
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
+      console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
+    });
   } catch (err) {
-      let error = err as BusinessError;
-      console.error(`Failed to open ukey authorization dialog. Code: ${error.code}, message: ${error.message}`);
+    let error = err as BusinessError;
+    console.error(`Failed to open ukey authorization dialog. Code: ${error.code}, message: ${error.message}`);
   }
 }
 // [End certificate_management_auth_dialog_development_guide]
