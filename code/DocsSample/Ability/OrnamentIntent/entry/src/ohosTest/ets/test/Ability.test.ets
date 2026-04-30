@@ -18,6 +18,7 @@ import { ArtistClassDef } from '../../../main/ets/insightintents/ArtistClassDef'
 import PlayMusicImpl from '../../../main/ets/insightintents/PlayMusicImpl';
 import ViewLogisticsImpl from '../../../main/ets/insightintents/ViewLogisticsImpl';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import PlayMusicListImpl from '../../../main/ets/insightintents/PlayMusicListImpl';
 
 const DOMAIN = 0x0000;
 
@@ -58,9 +59,11 @@ export default function abilityTest() {
       try {
         let ArtistClassData: ArtistClassDef = new ArtistClassDef();
         let PlayMusicData: PlayMusicImpl = new PlayMusicImpl();
+        let PlayMusicListData: PlayMusicListImpl = new PlayMusicListImpl();
         let ViewLogisticsImplData: ViewLogisticsImpl = new ViewLogisticsImpl();
         hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(ArtistClassData));
         hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(PlayMusicData));
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(PlayMusicListData));
         hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(ViewLogisticsImplData));
         done();
       } catch (err) {
