@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start transferableObject_Text]
 import { LayoutS } from '../turbotrans_JSON/layout';
 import { taskpool } from '@kit.ArkTS';
 import { observeJSON1 } from './concurrentFunc';
 import { UIUtils } from '@kit.ArkUI';
 
-// [Start tranferabledObject_Text]
 @Entry
 @ComponentV2
 struct Index {
@@ -45,7 +45,7 @@ struct Index {
         Column() {
 
           Text(`TestJSON: ${this.layout.type}`)
-            .fontSize(14)
+            .fontSize(24)
             .textAlign(TextAlign.Start)
             .backgroundColor(Color.White)
             .padding(10)
@@ -65,14 +65,14 @@ struct Index {
     .backgroundColor('#F5F5F5')
   }
 
-// [StartExclude tranferabledObject_Text]
-// [Start tranferabledObject_makeObserved]
+// [StartExclude transferableObject_Text]
+// [Start transferableObject_makeObserved]
   runTests() {
     taskpool.execute(observeJSON1).then((res) => {
       this.layout = UIUtils.makeObserved(res as LayoutS);
     })
   }
-// [End tranferabledObject_makeObserved]
-// [EndExclude tranferabledObject_Text]
+// [End transferableObject_makeObserved]
+// [EndExclude transferableObject_Text]
 }
-// [End tranferabledObject_Text]
+// [End transferableObject_Text]

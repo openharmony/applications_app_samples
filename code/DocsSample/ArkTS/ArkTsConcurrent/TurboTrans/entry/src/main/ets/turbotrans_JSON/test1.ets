@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start tranferabledObject_testJSON]
+// [Start transferableObject_testJSON]
 import { TJSON } from '@hadss/turbo-trans-json';
-import { Layout, LayoutS } from 'entry/ets/turbotrans_JSON/layout'
+import { Layout, LayoutS } from 'entry/ets/turbotrans_JSON/layout';
+import type { ITSerializable } from '@hadss/turbo-trans-json';
 import { ArkTSUtils } from '@kit.ArkTS';
 
 export function testJSON1(): LayoutS {
@@ -24,7 +25,7 @@ export function testJSON1(): LayoutS {
   let str = JSON.stringify(obj);
   let layoutNormal = TJSON.fromString<Layout>(str, Layout);
   console.info('111 layout arr: ' + layoutNormal.arr);
-  let layoutS = layoutNormal.toSendable() as LayoutS;
+  let layoutS = (layoutNormal as object as ITSerializable).toSendable() as LayoutS;
   if (ArkTSUtils.isSendable(layoutS)) {
     console.info('expect layout from JSON string is Sendable');
   } else {
@@ -34,10 +35,10 @@ export function testJSON1(): LayoutS {
 }
 
 export function testJSON2(): LayoutS {
-  let layoutStr = '{"type":"Text","arr":[3,4],}';
+  let layoutStr = '{"type":"Text","arr":[3,4]}';
   let layoutNormal = TJSON.fromString<Layout>(layoutStr, Layout);
   console.info('222 layout arr: ' + layoutNormal.arr);
-  let layoutS = layoutNormal.toSendable() as LayoutS;
+  let layoutS = (layoutNormal as object as ITSerializable).toSendable() as LayoutS;
   if (ArkTSUtils.isSendable(layoutS)) {
     console.info('expect layout from simple string is Sendable');
   } else {
@@ -50,4 +51,4 @@ export function testJSON() {
   testJSON1();
   testJSON2();
 }
-// [End tranferabledObject_testJSON]
+// [End transferableObject_testJSON]
