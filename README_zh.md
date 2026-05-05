@@ -309,13 +309,13 @@
   <td ></td>
   <td ></td>
  </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>USB</strong></td>
-  <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a></td>
-  <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">串口设备管理</a></td>
-  <td ></td>
-  <td ></td>
- </tr>
+  <tr height="18" style='height:13.50pt;'>
+   <td x:str><strong>总线管理</strong></td>
+   <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a></td>
+   <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">USB虚拟串口管理</a></td>
+   <td x:str><a href="code/DocsSample/Serial/SerialManagerSample">串口管理服务</a></td>
+   <td ></td>
+  </tr>
  <tr height="18" style='height:13.50pt;'>
 <td height="90" align="center" rowspan="26" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
