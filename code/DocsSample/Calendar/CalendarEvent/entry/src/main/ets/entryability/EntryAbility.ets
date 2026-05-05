@@ -13,17 +13,17 @@
 * limitations under the License.
 */
 
-// [Start calendarEvent_entryAbilityImport]
+// [Start calendarData_entryAbilityImport]
 import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarManager } from '@kit.CalendarKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [End calendarEvent_entryAbilityImport]
+// [End calendarData_entryAbilityImport]
 
-// [Start calendarEvent_entryAbility]
+// [Start calendarData_entryAbility]
 const DOMAIN = 0x0000;
-
+    
 export let calendarMgr: calendarManager.CalendarManager | null = null;
 
 export let mContext: common.UIAbilityContext | null = null;
@@ -38,7 +38,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
+    // 主窗口已创建，请为此Ability设置主页
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -59,18 +59,18 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
+    // 主窗口已销毁，释放 UI 相关资源
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
+    // Ability 进入前台
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
+    // Ability 进入后台
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
-// [End calendarEvent_entryAbility]
+// [End calendarData_entryAbility]
