@@ -5,8 +5,8 @@
 本示例展示了如何使用MovingPhotoView组件播放动态照片文件。MovingPhotoView组件可用于图库类应用中，提供动态照片的播放功能。
 
 本示例使用的核心包包括：
-- [@kit.MediaLibraryKit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/medialibrary-kit) - 提供photoAccessHelper模块用于请求媒体文件访问权限
-- [@kit.AbilityKit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ability-kit) - 提供应用能力相关支持
+- [@kit.MediaLibraryKit](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/medialibrary/Readme-CN.md) - 提供photoAccessHelper模块用于访问和管理媒体资源
+- [@kit.AbilityKit](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/Readme-CN.md) - 提供Ability相关能力
 
 ## 使用说明
 
