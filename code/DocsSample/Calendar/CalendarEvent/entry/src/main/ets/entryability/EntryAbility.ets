@@ -13,17 +13,17 @@
 * limitations under the License.
 */
 
-// [Start calendarData_entryAbilityImport]
+// [Start calendarEvent_entryAbilityImport]
 import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarManager } from '@kit.CalendarKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [End calendarData_entryAbilityImport]
+// [End calendarEvent_entryAbilityImport]
 
-// [Start calendarData_entryAbility]
+// [Start calendarEvent_entryAbility]
 const DOMAIN = 0x0000;
-    
+
 export let calendarMgr: calendarManager.CalendarManager | null = null;
 
 export let mContext: common.UIAbilityContext | null = null;
@@ -73,4 +73,4 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
-// [End calendarData_entryAbility]
+// [End calendarEvent_entryAbility]
