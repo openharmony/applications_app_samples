@@ -282,7 +282,7 @@ struct Index {
     }
     // [Start calendarEvent_deleteEvent]
     calendar.deleteEvent(eventId).then(() => {
-      hilog.info(DOMAIN, 'testTag', "Succeeded in deleting event");
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in deleting event');
     }).catch((err: BusinessError) => {
       hilog.error(DOMAIN, 'testTag', `Failed to delete event. Code: ${err.code}, message: ${err.message}`);
     });
