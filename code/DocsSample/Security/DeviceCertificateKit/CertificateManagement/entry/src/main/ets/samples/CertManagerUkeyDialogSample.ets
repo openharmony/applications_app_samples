@@ -18,21 +18,22 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
 
-async function certUkeyDialogSample() {
+async function certUkeyDialogSample(): Promise<void> {
   /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
   let context: common.Context = new UIContext().getHostContext() as common.Context;
   /* keyUri为证书凭据的唯一标识符，调用方自行获取，此处仅为示例 */
   let keyUri: string = 'test'
   let ukeyAuthRequest: certificateManagerDialog.UkeyAuthRequest = { keyUri: keyUri }
   try {
-      certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
-          console.info(`Success to open ukey authorization dialog`)
-      }).catch((err: BusinessError) => {
-          console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
-      });
+    certificateManagerDialog.openUkeyAuthDialog(context, ukeyAuthRequest).then(() => {
+      console.info(`Success to open ukey authorization dialog`)
+    }).catch((error: Error) => {
+      let err = error as BusinessError;
+      console.error(`Failed to open ukey authorization dialog. Code: ${err.code}, message: ${err.message}`);
+    });
   } catch (err) {
-      let error = err as BusinessError;
-      console.error(`Failed to open ukey authorization dialog. Code: ${error.code}, message: ${error.message}`);
+    let error = err as BusinessError;
+    console.error(`Failed to open ukey authorization dialog. Code: ${error.code}, message: ${error.message}`);
   }
 }
 // [End certificate_management_auth_dialog_development_guide]
