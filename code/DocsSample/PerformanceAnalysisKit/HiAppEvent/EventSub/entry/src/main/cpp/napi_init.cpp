@@ -1090,7 +1090,7 @@ static napi_value Leak(napi_env env, napi_callback_info info)
 
 // [StartExclude AppEvent_C++_Init]
 // [Start Hicollie_Set_Timer]
-//定义回调函数
+// 定义回调函数
 void CallBack(void*)
 {
     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // 回调函数中打印日志
