@@ -5,6 +5,9 @@
     },
     {
       "srcEntry": "./ets/insightintents/PlayMusicImpl.ets"
+    },
+    {
+      "srcEntry": "./ets/insightintents/PlayMusicListImpl.ets"
     }
   ]
 }
