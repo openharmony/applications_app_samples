@@ -28,7 +28,7 @@ struct Index {
         .onClick(() => {
           const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
           workerInstance.onmessage = (event: MessageEvents) => {
-            console.info('UI主线程收到消息:', event.data);
+            console.info('UI主线程收到消息：', event.data);
           }
           workerInstance.postMessage({type: 'start'})
           // 10秒后停止worker
