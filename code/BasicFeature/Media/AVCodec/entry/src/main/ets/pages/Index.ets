@@ -625,7 +625,7 @@ export struct Player {
         Row() {
           this.RecorderSettingButton()
           Blank(5)
-          Button('MP4录制')
+          Button($r('app.string.record_mp4'))
             .onClick(() => {
               this.cameraData.outputFormat = Const.FORMAT_MP4;
               this.isShow = true;
@@ -642,7 +642,7 @@ export struct Player {
             })
             .enabled(this.buttonEnabled)
           Blank(5)
-          Button('FLV录制')
+          Button($r('app.string.record_flv'))
             .onClick(() => {
               this.cameraData.outputFormat = Const.FORMAT_FLV;
               this.isShowFlv = true;

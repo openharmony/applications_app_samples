@@ -143,6 +143,14 @@
     {
       "name": "end_recording",
       "value": "End recording"
+    },
+    {
+      "name": "record_mp4",
+      "value": "MP4 Record"
+    },
+    {
+      "name": "record_flv",
+      "value": "FLV Record"
     }
   ]
 }

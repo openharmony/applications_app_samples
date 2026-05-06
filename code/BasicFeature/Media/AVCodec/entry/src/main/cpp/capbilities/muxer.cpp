@@ -68,6 +68,7 @@ int32_t Muxer::Config(SampleInfo &sampleInfo)
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "AddTrack failed");
     // FLV不支持旋转元数据
     if (outputFormat_ != 14) { // 14 is FLV
+        // 由于相机只有1920×1080的profile，没有1080×1920的profile，所以得往文件里封装一个90度的角度信息，后续播放才会是竖屏显示。
         OH_AVMuxer_SetRotation(muxer_, VERTICAL_ANGLE);
     }
     return AVCODEC_SAMPLE_ERR_OK;
