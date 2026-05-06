@@ -18,7 +18,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 @Entry
 @Component
-export struct GeneralEvents {
+struct GeneralEvents {
   @State textStr1: string = '';
   @State textStr2: string = '';
 
@@ -52,3 +52,5 @@ export struct GeneralEvents {
 }
 
 // [End General_Events]
+
+export { GeneralEvents };

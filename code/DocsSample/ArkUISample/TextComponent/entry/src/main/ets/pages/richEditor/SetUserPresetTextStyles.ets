@@ -16,7 +16,7 @@
 // [Start richEditor_setTypingStyle]
 @Entry
 @Component
-export struct SetUserPresetTextStyles {
+struct SetUserPresetTextStyles {
 
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -75,3 +75,5 @@ export struct SetUserPresetTextStyles {
   }
 }
 // [End richEditor_setTypingStyle]
+
+export { SetUserPresetTextStyles };

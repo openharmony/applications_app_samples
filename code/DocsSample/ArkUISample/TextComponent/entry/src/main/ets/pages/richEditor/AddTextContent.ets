@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-export struct AddTextContent {
+struct AddTextContent {
   // [Start richEditor_addText]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -69,3 +69,5 @@ export struct AddTextContent {
   }
   // [End richEditor_addText]
 }
+
+export { AddTextContent };

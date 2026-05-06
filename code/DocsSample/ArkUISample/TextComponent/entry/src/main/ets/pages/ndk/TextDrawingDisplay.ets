@@ -18,7 +18,7 @@ import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct TextDrawingDisplay {
+struct TextDrawingDisplay {
   // 初始化NodeContent对象。
   private rootSlot = new NodeContent();
 
@@ -40,3 +40,5 @@ export struct TextDrawingDisplay {
     }.title($r('app.string.TextDrawingDisplay_NDK_title'))
   }
 }
+
+export { TextDrawingDisplay };

@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-export struct HeightAdaptivePolicy {
+struct HeightAdaptivePolicy {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
@@ -56,3 +56,5 @@ export struct HeightAdaptivePolicy {
 }
 
 // [End Height_AdaptivePolicy]
+
+export { HeightAdaptivePolicy };

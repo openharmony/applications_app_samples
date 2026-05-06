@@ -16,7 +16,7 @@
 import { common } from '@kit.AbilityKit';
 @Entry
 @Component
-export struct WordBreakd {
+struct WordBreakd {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
@@ -47,3 +47,5 @@ export struct WordBreakd {
   }
 }
 // [End Word_Break]
+
+export { WordBreakd };

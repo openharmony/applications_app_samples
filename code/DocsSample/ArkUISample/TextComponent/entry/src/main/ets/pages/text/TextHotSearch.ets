@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 // [Start the_text_fact_example]
 @Entry
 @Component
-export struct TextHotSearch {
+struct TextHotSearch {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -126,3 +126,5 @@ export struct TextHotSearch {
   }
 }
 // [End the_text_fact_example]
+
+export { TextHotSearch };

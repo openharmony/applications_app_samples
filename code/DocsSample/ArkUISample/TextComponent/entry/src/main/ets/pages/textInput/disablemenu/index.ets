@@ -44,7 +44,7 @@ export function ProhibitSelectDestination(name: string) {
 
 @Entry
 @Component
-export struct ProhibitSelectionMenu {
+struct ProhibitSelectionMenu {
   @Consume pathStack: NavPathStack;
 
   goToSample(url: string): void {
@@ -84,3 +84,4 @@ export struct ProhibitSelectionMenu {
 }
 
 
+export { ProhibitSelectionMenu };

@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct SetTextInputType {
+struct SetTextInputType {
   build() {
     NavDestination() {
       Scroll() {
@@ -95,3 +95,5 @@ export struct SetTextInputType {
     .title($r('app.string.SetTextInputType_title'))
   }
 }
+
+export { SetTextInputType };

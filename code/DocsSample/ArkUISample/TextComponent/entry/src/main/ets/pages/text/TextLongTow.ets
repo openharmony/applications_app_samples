@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 // [Start Text_Long_Tow]
 @Entry
 @Component
-export struct TextLongTow {
+struct TextLongTow {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
@@ -45,3 +45,5 @@ export struct TextLongTow {
   }
 }
 // [End Text_Long_Tow]
+
+export { TextLongTow };

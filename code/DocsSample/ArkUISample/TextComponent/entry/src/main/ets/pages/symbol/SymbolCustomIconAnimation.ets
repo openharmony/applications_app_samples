@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct SymbolGlyphSpanCustomIconAnimation {
+struct SymbolGlyphSpanCustomIconAnimation {
   scroller: Scroller = new Scroller();
   // [Start symbol_variable_color_new]
   @State isActive: boolean = true;
@@ -121,3 +121,5 @@ export struct SymbolGlyphSpanCustomIconAnimation {
     .title($r('app.string.SymbolGlyphSpanCustomIconAnimation_title'))
   }
 }
+
+export { SymbolGlyphSpanCustomIconAnimation };

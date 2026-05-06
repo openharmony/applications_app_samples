@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct CreatSymbolGlyph {
+struct CreatSymbolGlyph {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -38,3 +38,5 @@ export struct CreatSymbolGlyph {
     .title($r('app.string.CreatSymbolGlyph_title'))
   }
 }
+
+export { CreatSymbolGlyph };

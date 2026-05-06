@@ -16,7 +16,7 @@
 
 @Entry
 @Component
-export struct BackplaneHighlighting {
+struct BackplaneHighlighting {
   // [Start richEditor_selection]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -65,3 +65,5 @@ export struct BackplaneHighlighting {
   }
   // [End richEditor_selection]
 }
+
+export { BackplaneHighlighting };

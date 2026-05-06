@@ -18,7 +18,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct SetProperty {
+struct SetProperty {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -56,3 +56,5 @@ export struct SetProperty {
     .title($r('app.string.Set_Property'))
   }
 }
+
+export { SetProperty };

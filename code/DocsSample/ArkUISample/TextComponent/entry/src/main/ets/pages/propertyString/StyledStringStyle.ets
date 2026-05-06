@@ -19,7 +19,7 @@ import resource from '../../common/resource';
 
 @Entry
 @Component
-export struct StyledStringStyle {
+struct StyledStringStyle {
   textStyleAttrs: TextStyle = new TextStyle({
     fontWeight: FontWeight.Bolder,
     fontSize: LengthMetrics.vp(24),

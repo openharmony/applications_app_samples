@@ -60,6 +60,16 @@
           }
         ]
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.READ_PASTEBOARD",
+        "reason": "$string:READ_PASTEBOARD_Permission_Reason",
+        "usedScene": {
+          "abilities": ["EntryAbility"],
+          "when": "inuse"
+        }
+      }
     ]
   }
 }

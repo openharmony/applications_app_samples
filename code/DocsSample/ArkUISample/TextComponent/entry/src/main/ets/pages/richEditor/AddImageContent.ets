@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-export struct AddImageContent {
+struct AddImageContent {
   // [Start richEditor_addImage]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -69,3 +69,5 @@ export struct AddImageContent {
   }
   // [End richEditor_addImage]
 }
+
+export { AddImageContent };

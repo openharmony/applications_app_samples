@@ -466,7 +466,7 @@ struct event7 {
 
 @Entry
 @Component
-export struct AddEvent {
+struct AddEvent {
   scroller: Scroller = new Scroller();
 
   build() {
@@ -492,3 +492,5 @@ export struct AddEvent {
     .title($r('app.string.Add_Event_title'))
   }
 }
+
+export { AddEvent };

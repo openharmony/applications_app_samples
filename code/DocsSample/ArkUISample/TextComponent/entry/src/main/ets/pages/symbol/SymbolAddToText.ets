@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct SymbolGlyphSpanAddToText {
+struct SymbolGlyphSpanAddToText {
   scroller: Scroller = new Scroller();
   @State isActive: boolean = true;
 
@@ -271,3 +271,5 @@ export struct SymbolGlyphSpanAddToText {
     .title($r('app.string.SymbolGlyphSpanAddToText_title'))
   }
 }
+
+export { SymbolGlyphSpanAddToText };

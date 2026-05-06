@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct CustomTextStyle {
+struct CustomTextStyle {
   scroller: Scroller = new Scroller();
 
   build() {
@@ -348,3 +348,5 @@ export struct CustomTextStyle {
     .title($r('app.string.CustomTextStyle_title'))
   }
 }
+
+export { CustomTextStyle };

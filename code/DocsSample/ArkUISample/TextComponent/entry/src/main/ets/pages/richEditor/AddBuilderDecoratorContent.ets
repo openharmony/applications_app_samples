@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-export struct AddBuilderDecoratorContent {
+struct AddBuilderDecoratorContent {
   // [Start richEditor_addBuilder]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -87,3 +87,5 @@ export struct AddBuilderDecoratorContent {
   }
   // [End richEditor_addBuilder]
 }
+
+export { AddBuilderDecoratorContent };

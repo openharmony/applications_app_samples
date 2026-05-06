@@ -16,7 +16,7 @@
 // [Start Enable_AutoSpacing]
 @Entry
 @Component
-export struct EnableAutoSpacing {
+struct EnableAutoSpacing {
   @State enableSpacing: boolean = false;
 
   build() {
@@ -67,3 +67,5 @@ export struct EnableAutoSpacing {
   }
 }
 // [End Enable_AutoSpacing]
+
+export { EnableAutoSpacing };

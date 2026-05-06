@@ -100,7 +100,7 @@ export function PropertyStringDestination(name: string) {
 @Component
 struct PropertyStringExample {
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
     }, router.RouterMode.Single, (err) => {
       if (err) {

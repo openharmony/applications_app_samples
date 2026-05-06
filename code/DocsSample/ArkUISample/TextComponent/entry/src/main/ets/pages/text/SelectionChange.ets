@@ -16,7 +16,7 @@
 // xxx.ets
 @Entry
 @Component
-export struct SelectionChange {
+struct SelectionChange {
   @State text: string =
     'This is set selection to Selection text content This is set selection to Selection text content.';
   @State start: number = 0;
@@ -55,3 +55,5 @@ export struct SelectionChange {
 }
 
 // [End Selection_Change]
+
+export { SelectionChange };

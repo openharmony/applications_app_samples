@@ -19,7 +19,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct StyledStringParagraphStyle {
+struct StyledStringParagraphStyle {
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   //段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });

@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct AutoFill {
+struct AutoFill {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -41,3 +41,5 @@ export struct AutoFill {
     .title($r('app.string.Auto_Fill'))
   }
 }
+
+export { AutoFill };

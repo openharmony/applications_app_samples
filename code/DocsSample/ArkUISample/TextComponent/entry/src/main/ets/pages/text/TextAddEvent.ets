@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct TextAddEvent {
+struct TextAddEvent {
   @State onClickText: ResourceStr = $r('app.string.TextAddEvent_textContent_1');
 
   build() {
@@ -41,3 +41,5 @@ export struct TextAddEvent {
     .title($r('app.string.TextAddEvent_title'))
   }
 }
+
+export { TextAddEvent };

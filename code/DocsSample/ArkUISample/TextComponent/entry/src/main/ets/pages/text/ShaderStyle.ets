@@ -16,7 +16,7 @@
 // [Start Shader_Style]
 @Entry
 @Component
-export struct ShaderStyle {
+struct ShaderStyleDemo {
   @State message: string = 'Hello World';
   @State linearGradientOptions: LinearGradientOptions =
     {
@@ -49,3 +49,5 @@ export struct ShaderStyle {
 }
 
 // [End Shader_Style]
+
+export { ShaderStyleDemo };
