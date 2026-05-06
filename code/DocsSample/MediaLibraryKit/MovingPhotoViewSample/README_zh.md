@@ -86,13 +86,6 @@ entry/src/ohosTest/ets/
 - 使用onStop()监听播放停止事件
 - 使用onError()监听错误事件
 
-## 约束与限制
-
-1. 当前不支持动态属性设置；
-2. 当前不支持设置ArkUI通用属性expandSafeArea；
-3. 该组件长按触发播放时组件区域放大为1.1倍；
-4. 同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
-
 ## 相关权限
 
 - ohos.permission.READ_IMAGEVIDEO - 读取媒体资源时需要
