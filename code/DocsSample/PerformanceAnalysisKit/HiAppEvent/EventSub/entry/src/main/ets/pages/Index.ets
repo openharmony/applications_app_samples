@@ -241,7 +241,7 @@ struct Index {
           })
         // [End AsanEvent_Button]
         // [Start hicollie_timer_ndk_Button]
-        //添加点击事件，触发TestHiCollieTimerNdk方法。
+        // 添加点击事件，触发TestHiCollieTimerNdk方法。
         Button('TestHiCollieTimerNdk')
           .type(ButtonType.Capsule)
           .margin({
