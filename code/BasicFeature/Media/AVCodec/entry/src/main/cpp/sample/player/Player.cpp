@@ -428,9 +428,15 @@ void Player::DumpOutput(CodecBufferInfo &bufferInfo)
         case AV_PIXEL_FORMAT_NV12:
             [[fallthrough]];
         case AV_PIXEL_FORMAT_NV21:
+            // NV12/NV21 都是 YUV420 Semi-Planar，UV 顺序不同但写入逻辑相同
             WriteOutputFileWithStrideYUV420SP(bufferAddr);
             break;
+        case AV_PIXEL_FORMAT_RGBA1010102:
+            [[fallthrough]];
         case AV_PIXEL_FORMAT_RGBA:
+            // RGBA1010102: R10+G10+B10+A2 = 32bit = 4 字节/像素
+            // RGBA:        R8+G8+B8+A8   = 32bit = 4 字节/像素
+            // 两种格式存储大小相同，可以直接写入
             WriteOutputFileWithStrideRGBA(bufferAddr);
             break;
         default:
@@ -478,8 +484,6 @@ void Player::WriteOutputFileWithStrideYUV420SP(uint8_t *bufferAddr)
         videoDecContext_->width *
         ((info.videoCodecMime == OH_AVCODEC_MIMETYPE_VIDEO_HEVC && info.hevcProfile == HEVC_PROFILE_MAIN_10) ? 2 : 1);
     int32_t &stride = videoDecContext_->widthStride;
-    int32_t uvWidth = videoWidth / YUV420_SAMPLE_RATIO;
-    int32_t uvStride = stride / YUV420_SAMPLE_RATIO;
 
     // copy Y
     for (int32_t row = 0; row < videoDecContext_->height; row++) {
@@ -487,27 +491,18 @@ void Player::WriteOutputFileWithStrideYUV420SP(uint8_t *bufferAddr)
         bufferAddr += stride;
     }
     bufferAddr += (videoDecContext_->heightStride - videoDecContext_->height) * stride;
-
-    // copy U
+    
+    // copy UV
     for (int32_t row = 0; row < (videoDecContext_->height / YUV420_SAMPLE_RATIO); row++) {
-        outputFile_->write(reinterpret_cast<char *>(bufferAddr), uvWidth);
-        bufferAddr += uvStride;
-    }
-    bufferAddr += (videoDecContext_->heightStride - videoDecContext_->height) / YUV420_SAMPLE_RATIO * uvStride;
-    // copy V
-    for (int32_t row = 0; row < (videoDecContext_->height / YUV420_SAMPLE_RATIO); row++) {
-        outputFile_->write(reinterpret_cast<char *>(bufferAddr), uvWidth);
-        bufferAddr += uvStride;
+        outputFile_->write(reinterpret_cast<char *>(bufferAddr), videoWidth);
+        bufferAddr += videoWidth;
     }
 }
 
 void Player::WriteOutputFileWithStrideRGBA(uint8_t *bufferAddr)
 {
     CHECK_AND_RETURN_LOG(bufferAddr != nullptr, "Buffer is nullptr");
-    auto &info = sampleInfo_;
-    int32_t width =
-        videoDecContext_->width *
-        ((info.videoCodecMime == OH_AVCODEC_MIMETYPE_VIDEO_HEVC && info.hevcProfile == HEVC_PROFILE_MAIN_10) ? 2 : 1);
+    int32_t width = videoDecContext_->width;
     int32_t &stride = videoDecContext_->widthStride;
 
     for (int32_t row = 0; row < videoDecContext_->heightStride; row++) {
@@ -707,6 +702,21 @@ void Player::VideoDecOutputSyncThread()
                             ->GetOutputBuffer(bufferInfo, TIMEOUT_US), "VD Get out buffer failed, thread out");
         CHECK_AND_BREAK_LOG(isStarted_, "VD Decoder output thread out");
         CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
+        // 同步模式下没有回调，需要手动初始化 videoDecContext_ 的宽高和步长信息
+        if (videoDecContext_->isDecFirstFrame) {
+            OH_AVFormat *format = videoDecoder_->GetOutputDescription();
+            if (format != nullptr) {
+                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &videoDecContext_->width);
+                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &videoDecContext_->height);
+                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &videoDecContext_->widthStride);
+                OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &videoDecContext_->heightStride);
+                OH_AVFormat_Destroy(format);
+            }
+            videoDecContext_->isDecFirstFrame = false;
+            AVCODEC_SAMPLE_LOGI("Sync mode init: %{public}d*%{public}d, stride: %{public}d*%{public}d",
+                videoDecContext_->width, videoDecContext_->height,
+                videoDecContext_->widthStride, videoDecContext_->heightStride);
+        }
         videoDecContext_->outputFrameCount++;
         AVCODEC_SAMPLE_LOGW("Out buffer count: %{public}u, size: %{public}d, flag: %{public}u, pts: %{public}" PRId64,
                            videoDecContext_->outputFrameCount, bufferInfo.attr.size, bufferInfo.attr.flags,
