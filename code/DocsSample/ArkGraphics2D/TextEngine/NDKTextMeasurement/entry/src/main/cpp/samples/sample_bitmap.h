@@ -25,6 +25,7 @@
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_text_declaration.h>
 #include <cstdint>
 #include <map>
 #include <sys/mman.h>
@@ -51,6 +52,10 @@ public:
     static SampleBitMap *GetInstance(std::string &id);
     std::string id_;
 private:
+    void PrintMetricsAndLayout(OH_Drawing_Typography *typography, OH_Drawing_TextStyle *myTextStyle);
+    void PrintConstraintsAndPositions(OH_Drawing_Typography *typography);
+    void PrintCharAndGlyphInfo(OH_Drawing_Typography *typography);
+
     OH_NativeXComponent_Callback renderCallback_;
 
     uint64_t width_ = 0;

@@ -25,6 +25,7 @@
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_text_declaration.h>
 #include <cstdint>
 #include <map>
 #include <sys/mman.h>
@@ -88,6 +89,9 @@ public:
     std::string id_;
 
 private:
+    double DrawPunctuationNoCompress(OH_Drawing_FontCollection *fc,
+        OH_Drawing_TextStyle *txtStyle, OH_Drawing_Pen *pen);
+
     OH_NativeXComponent_Callback renderCallback_;
 
     uint64_t width_ = 0;

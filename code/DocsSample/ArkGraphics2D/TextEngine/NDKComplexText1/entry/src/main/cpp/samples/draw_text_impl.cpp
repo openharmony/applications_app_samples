@@ -1538,6 +1538,38 @@ void SampleBitMap::DrawBreakStrategyBalancedText()
     // [End complex_text_c_break_strategy_text]
 }
 
+double SampleBitMap::DrawPunctuationNoCompress(OH_Drawing_FontCollection *fc,
+    OH_Drawing_TextStyle *txtStyle, OH_Drawing_Pen *pen)
+{
+    const char *text = "《论语》是儒家经典著作，记录了孔子及其弟子的言行。";
+    // 第一段：不开启行首标点压缩
+    OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
+    OH_Drawing_SetTypographyStyleAttributeBool(typoStyle,
+        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION, false);
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    OH_Drawing_TypographyHandlerAddText(handler, text);
+    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    OH_Drawing_TypographyLayout(typography, width_);
+    // 绘制红色边框
+    OH_Drawing_CanvasAttachPen(cCanvas_, pen);
+    double height = OH_Drawing_TypographyGetHeight(typography);
+    double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
+    OH_Drawing_Rect *rect = OH_Drawing_RectCreate(0, DIV_TEN(width_), longestLine,
+        DIV_TEN(width_) + height);
+    OH_Drawing_CanvasDrawRect(cCanvas_, rect);
+    OH_Drawing_CanvasDetachPen(cCanvas_);
+    OH_Drawing_RectDestroy(rect);
+    // 将文本绘制到画布上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, DIV_TEN(width_));
+    // 释放本段资源
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
+    return height;
+}
+
 void SampleBitMap::DrawPunctuationCompressText()
 {
     // 创建 FontCollection
@@ -1554,27 +1586,7 @@ void SampleBitMap::DrawPunctuationCompressText()
     OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
 
     // 第一段：不开启行首标点压缩
-    OH_Drawing_TypographyStyle *typoStyleNoCompress = OH_Drawing_CreateTypographyStyle();
-    OH_Drawing_SetTypographyTextAlign(typoStyleNoCompress, TEXT_ALIGN_LEFT);
-    OH_Drawing_SetTypographyStyleAttributeBool(typoStyleNoCompress,
-        OH_Drawing_TypographyStyleAttributeId::TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION, false);
-    OH_Drawing_TypographyCreate *handlerNoCompress = OH_Drawing_CreateTypographyHandler(typoStyleNoCompress, fc);
-    OH_Drawing_TypographyHandlerPushTextStyle(handlerNoCompress, txtStyle);
-    OH_Drawing_TypographyHandlerAddText(handlerNoCompress, text);
-    OH_Drawing_Typography *typographyNoCompress = OH_Drawing_CreateTypography(handlerNoCompress);
-    double maxWidth = width_;
-    OH_Drawing_TypographyLayout(typographyNoCompress, maxWidth);
-    // 绘制红色边框
-    OH_Drawing_CanvasAttachPen(cCanvas_, pen);
-    double heightNoCompress = OH_Drawing_TypographyGetHeight(typographyNoCompress);
-    double longestLineNoCompress = OH_Drawing_TypographyGetLongestLine(typographyNoCompress);
-    OH_Drawing_Rect *rectNoCompress = OH_Drawing_RectCreate(0, DIV_TEN(width_), longestLineNoCompress,
-        DIV_TEN(width_) + heightNoCompress);
-    OH_Drawing_CanvasDrawRect(cCanvas_, rectNoCompress);
-    OH_Drawing_CanvasDetachPen(cCanvas_);
-    OH_Drawing_RectDestroy(rectNoCompress);
-    // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typographyNoCompress, cCanvas_, 0, DIV_TEN(width_));
+    double heightNoCompress = DrawPunctuationNoCompress(fc, txtStyle, pen);
 
     // [Start complex_text_c_punctuation_compress_text]
     // 第二段：开启行首标点压缩
@@ -1589,6 +1601,7 @@ void SampleBitMap::DrawPunctuationCompressText()
     OH_Drawing_TypographyHandlerPushTextStyle(handlerCompress, txtStyle);
     OH_Drawing_TypographyHandlerAddText(handlerCompress, text);
     OH_Drawing_Typography *typographyCompress = OH_Drawing_CreateTypography(handlerCompress);
+    double maxWidth = width_;
     OH_Drawing_TypographyLayout(typographyCompress, maxWidth);
     // 绘制红色边框
     OH_Drawing_CanvasAttachPen(cCanvas_, pen);
@@ -1608,11 +1621,8 @@ void SampleBitMap::DrawPunctuationCompressText()
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_DestroyFontCollection(fc);
     OH_Drawing_DestroyTextStyle(txtStyle);
-    OH_Drawing_DestroyTypographyStyle(typoStyleNoCompress);
     OH_Drawing_DestroyTypographyStyle(typoStyleCompress);
-    OH_Drawing_DestroyTypographyHandler(handlerNoCompress);
     OH_Drawing_DestroyTypographyHandler(handlerCompress);
-    OH_Drawing_DestroyTypography(typographyNoCompress);
     OH_Drawing_DestroyTypography(typographyCompress);
 }
 
@@ -1623,25 +1633,27 @@ void SampleBitMap::DrawFontResourcePathText()
     size_t pathCount = 0;
     OH_Drawing_String *fontPaths = OH_Drawing_GetFontPathsByType(
         OH_Drawing_SystemFontType::GENERIC, &pathCount);
-    if (fontPaths != nullptr && pathCount > 0) {
-        for (size_t i = 0; i < pathCount; ++i) {
-            if (fontPaths[i].strData != nullptr) {
-                const UChar *u16Src = reinterpret_cast<const UChar *>(fontPaths[i].strData);
-                int32_t u16Len = static_cast<int32_t>(fontPaths[i].strLen / sizeof(char16_t));
-                int32_t u8BufSize = u16Len * 3 + 1;
-                std::vector<char> u8Buf(u8BufSize);
-                UErrorCode status = U_ZERO_ERROR;
-                int32_t u8Len = 0;
-                u_strToUTF8(u8Buf.data(), u8BufSize - 1, &u8Len, u16Src, u16Len, &status);
-                if (U_SUCCESS(status)) {
-                    u8Buf[u8Len] = '\0';
-                    DRAWING_LOGI("Font path[%{public}zu]: %{public}s", i, u8Buf.data());
-                }
-                delete[] fontPaths[i].strData;
-            }
-        }
-        delete[] fontPaths;
+    if (fontPaths == nullptr || pathCount == 0) {
+        return;
     }
+    for (size_t i = 0; i < pathCount; ++i) {
+        if (fontPaths[i].strData == nullptr) {
+            continue;
+        }
+        const UChar *u16Src = reinterpret_cast<const UChar *>(fontPaths[i].strData);
+        int32_t u16Len = static_cast<int32_t>(fontPaths[i].strLen / sizeof(char16_t));
+        int32_t u8BufSize = u16Len * 3 + 1;
+        std::vector<char> u8Buf(u8BufSize);
+        UErrorCode status = U_ZERO_ERROR;
+        int32_t u8Len = 0;
+        u_strToUTF8(u8Buf.data(), u8BufSize - 1, &u8Len, u16Src, u16Len, &status);
+        if (U_SUCCESS(status)) {
+            u8Buf[u8Len] = '\0';
+            DRAWING_LOGI("Font path[%{public}zu]: %{public}s", i, u8Buf.data());
+        }
+        delete[] fontPaths[i].strData;
+    }
+    delete[] fontPaths;
     // [End complex_text_c_get_font_paths]
     // 创建排版样式并绘制提示文字
     OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
