@@ -45,11 +45,9 @@ struct WebComponent {
     };
     items.push(customItem1); // 在选项列表后添加新选项
     items.unshift(customItem2); // 在选项列表前添加选项
-    items.push(customItem1);
-    items.push(customItem1);
-    items.push(customItem1);
-    items.push(customItem1);
-    items.push(customItem1);
+    for (let i = 0; i < 5; i++) {
+      items.push(customItem1); // 重复添加选项，以便支持显示更多菜单
+    }
     return items;
   }
 
@@ -84,4 +82,5 @@ struct WebComponent {
     }
   }
 }
+
 // [End web_textMenuItem]
