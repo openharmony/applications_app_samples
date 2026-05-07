@@ -130,7 +130,7 @@ class CameraService {
       console.error(`Failed to createPhotoOutput. error: ${err}`);
     }
     return photoOutput;
-}
+  }
   // [End camera_getPhotoOutput]
 
   getVideoProfile(cameraOutputCapability: camera.CameraOutputCapability): camera.VideoProfile | undefined {
