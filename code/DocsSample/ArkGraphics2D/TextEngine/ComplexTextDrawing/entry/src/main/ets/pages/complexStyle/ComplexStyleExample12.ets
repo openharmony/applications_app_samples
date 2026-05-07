@@ -22,9 +22,9 @@ class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
     // 按类型获取字体路径列表
-    let fontPaths: Array<string> = text.getFontPathsByType(text.SystemFontType.GENERIC);
+    let fontPaths: string[] = text.getFontPathsByType(text.SystemFontType.GENERIC);
     for (let i = 0; i < fontPaths.length; i++) {
-      console.info("fontPath[" + i + "]: " + fontPaths[i]);
+      console.info('fontPath[' + i + ']: ' + fontPaths[i]);
     }
   }
 }
