@@ -14,13 +14,13 @@
  */
 // [Start localStorage_page_my_navigation]
 let localStorageA: LocalStorage = new LocalStorage();
-localStorageA.setOrCreate('propA', 'propA');
+localStorageA.setOrCreate('PropA', 'propA');
 
 let localStorageB: LocalStorage = new LocalStorage();
-localStorageB.setOrCreate('propB', 'propB');
+localStorageB.setOrCreate('PropB', 'propB');
 
 let localStorageC: LocalStorage = new LocalStorage();
-localStorageC.setOrCreate('propC', 'propC');
+localStorageC.setOrCreate('PropC', 'propC');
 
 @Entry
 @Component
@@ -68,7 +68,7 @@ struct PageOneStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // 显示绑定的LocalStorage中PropA的值'PropA'
+        // 显示绑定的LocalStorage中'PropA'对应的值'propA'
         Text(`${this.propA}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -95,7 +95,7 @@ struct PageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // 如果绑定的LocalStorage中没有PropB,显示本地初始化的值 'Hello World'
+        // 如果绑定的LocalStorage中没有'PropB',显示本地初始化的值'Hello World'
         Text(`${this.propB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -124,7 +124,7 @@ struct PageThreeStack {
       Column() {
         NavigationContentMsgStack()
 
-        // 如果绑定的LocalStorage中没有PropC,显示本地初始化的值 'pageThreeStack'
+        // 如果绑定的LocalStorage中没有'PropC',显示本地初始化的值'pageThreeStack'
         Text(`${this.propC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
