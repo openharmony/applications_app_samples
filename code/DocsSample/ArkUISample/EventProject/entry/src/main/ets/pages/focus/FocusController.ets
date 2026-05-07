@@ -61,7 +61,11 @@ export struct FocusControl {
             Button('FocusController.requestFocus')
               .width(200).height(70).fontColor(Color.White)
               .onClick(() => {
-                this.getUIContext().getFocusController().requestFocus('testButton');
+                try {
+                  this.getUIContext().getFocusController().requestFocus('testButton');
+                } catch (error) {
+                  console.error('Request focus failed!');
+                }
               })
               .backgroundColor('#ff2787d9')
 
