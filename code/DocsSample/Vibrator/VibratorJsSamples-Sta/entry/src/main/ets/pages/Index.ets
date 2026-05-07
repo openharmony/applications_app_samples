@@ -59,7 +59,6 @@ let TAG = 'vibrator:';
 @Component
 struct Index {
   private DOMAIN: int = 0x0000
-  @State message: string = 'Hello World';
   @State timeout_10: number = 10;
   @State timeout_20: number = 20;
   @State
