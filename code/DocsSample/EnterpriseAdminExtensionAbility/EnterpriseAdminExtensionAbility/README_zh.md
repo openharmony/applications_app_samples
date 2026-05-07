@@ -60,13 +60,13 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例已适配API version 20版本SDK，版本号：6.0.0.47。
+1. 本示例已适配API version 23版本SDK，版本：6.1.0 Release SDK。
 
-2. 本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858 构建 2025年9月24日)及以上版本才可编译运行。
+2. 本示例需要使用DevEco Studio 6.1.0 Release (Build Version: 6.1.0.830 构建 2026年4月20日)及以上版本才可编译运行。
 
 ### 下载
 
-如需单独下载本工程，执行如下命令：
+如需单独下载此项目，执行如下命令：
 ```
 git init
 git config core.sparsecheckout true

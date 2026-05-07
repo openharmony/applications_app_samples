@@ -31,8 +31,6 @@ import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 // [StartExclude set_disallowed_policy_wifi]
 import Logger from '../common/Logger';
-import { GlobalContext } from '../common/GlobalContext';
-
 // [EndExclude enterprise_admin_extension_ability]
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
@@ -44,7 +42,6 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
     abilityName: 'EnterpriseAdminAbility',
   };
   // [StartExclude set_disallowed_policy_wifi]
-  private context = GlobalContext.getContext();
   private dataPreferenceHelper: DataPreferencesHelper | null = null;
   private subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
     events: [
@@ -147,7 +144,12 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 
   private getStringByResource(resId: number): string {
-    return this.context.resourceManager.getStringSync(resId);
+    try {
+      return this.context.resourceManager.getStringSync(resId);
+    } catch (error) {
+      Logger.error(`Failed to get string for resource err = ${JSON.stringify(error)}`);
+      return '';
+    }
   }
 
   private async sendResult(code: number, result: string) {
