@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_modify_enum]
 import { taskpool } from "@kit.ArkTS";
 import { ModelState } from "./Test";
 
@@ -63,3 +64,4 @@ struct enumusage {
     .width('100%')
   }
 }
+// [End example_modify_enum]
