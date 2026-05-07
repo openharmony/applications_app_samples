@@ -34,6 +34,7 @@ entry/src/
  │   │   ├── entrybackupability
  │   │   ├── managers
  │   │       ├── classusage.ets        // 装饰器修饰Class使用示例
+ │   │       ├── enumusage.ets         // Sendable支持const enum类型使用示例
  │   │       ├── functionusage.ets     // 装饰器修饰Function使用示例
  │   │   ├── pages
  │   │       ├── Index.ets             // 首页
