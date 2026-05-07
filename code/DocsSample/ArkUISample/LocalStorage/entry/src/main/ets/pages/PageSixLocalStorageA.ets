@@ -14,15 +14,15 @@
  */
 // [Start localStorage_page_six_local_storageA]
 let localStorageInstance: LocalStorage = new LocalStorage();
-localStorageInstance.setOrCreate('propA', 'propA');
+localStorageInstance.setOrCreate('PropA', 'propA');
 
 let localStorageChange: LocalStorage = new LocalStorage();
-localStorageChange.setOrCreate('propB', 'propB');
+localStorageChange.setOrCreate('PropB', 'propB');
 
 @Entry(localStorageInstance)
 @Component
 struct Index {
-  // 'PropA'，和localStorageInstance中'PropA'的双向同步
+  // 变量propA和localStorageInstance中'PropA'双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
 
@@ -32,7 +32,7 @@ struct Index {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorageChange
+        // 使用LocalStorage实例localStorageChange
         ChildOne(localStorageChange)
       }
       .width('100%')
