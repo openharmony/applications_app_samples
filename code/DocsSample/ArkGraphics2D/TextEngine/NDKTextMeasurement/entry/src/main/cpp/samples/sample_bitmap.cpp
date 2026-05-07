@@ -197,6 +197,12 @@ void SampleBitMap::DrawText()
     // [End c_text_metrics_layout]
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+
+    PrintMetricsAndLayout(typography, myTextStyle);
+}
+
+void SampleBitMap::PrintMetricsAndLayout(OH_Drawing_Typography *typography, OH_Drawing_TextStyle *myTextStyle)
+{
     // [Start c_text_metrics_get_all_case]
     // case1: 获取排版后最长行行宽
     double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
@@ -231,6 +237,11 @@ void SampleBitMap::DrawText()
     DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f", -lineMetric.ascender);
     // [End c_text_metrics_get_all_case]
 
+    PrintConstraintsAndPositions(typography);
+}
+
+void SampleBitMap::PrintConstraintsAndPositions(OH_Drawing_Typography *typography)
+{
     // [Start c_text_metrics_layout_with_constraints_step1]
     // 设置限定区域的宽高
     OH_Drawing_RectSize constraintsRect;
@@ -242,8 +253,8 @@ void SampleBitMap::DrawText()
     OH_Drawing_Array *fitStrRangeArr = nullptr;
     size_t fitStrRangeArrayLen = 0;
     // 在限定区域内排版文本，返回实际排版尺寸
-    OH_Drawing_RectSize actualSize =
-        OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(typography, constraintsRect, &fitStrRangeArr, &fitStrRangeArrayLen);
+    OH_Drawing_RectSize actualSize = OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(typography,
+        constraintsRect, &fitStrRangeArr, &fitStrRangeArrayLen);
     DRAWING_LOGI("actualSize width: %{public}f, height: %{public}f", actualSize.width, actualSize.height);
     DRAWING_LOGI("fitStrRangeArrayLen: %{public}zu", fitStrRangeArrayLen);
     // [End c_text_metrics_layout_with_constraints_step2]
@@ -261,6 +272,11 @@ void SampleBitMap::DrawText()
     OH_Drawing_ReleaseArrayBuffer(fitStrRangeArr);
     // [End c_text_metrics_layout_with_constraints_step3]
 
+    PrintCharAndGlyphInfo(typography);
+}
+
+void SampleBitMap::PrintCharAndGlyphInfo(OH_Drawing_Typography *typography)
+{
     // [Start c_text_metrics_char_position_step1]
     // 根据坐标获取字符位置，使用UTF-8编码
     OH_Drawing_PositionAndAffinity *charPos =
