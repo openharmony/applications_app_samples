@@ -130,7 +130,7 @@ class CameraService {
       console.error(`Failed to createPhotoOutput. error: ${err}`);
     }
     return photoOutput;
-}
+  }
   // [End camera_getPhotoOutput]
 
   getVideoProfile(cameraOutputCapability: camera.CameraOutputCapability): camera.VideoProfile | undefined {
@@ -237,7 +237,7 @@ class CameraService {
         await this.prepareAVRecorder();
         let videoSurfaceId = await this.avRecorder.getInputSurface();
         // [End camera_video_getVideoSurface]
-        // 创建videoOutPut输出对象
+        // 创建videoOutput输出对象
         this.videoOutput = this.createVideoOutputFn(this.cameraManager, this.videoProfileObj, videoSurfaceId);
         if (this.videoOutput === undefined) {
           Logger.error(TAG, 'Failed to create the video stream.');
@@ -466,7 +466,7 @@ class CameraService {
   }
 
   /**
-   * 创建photoOutPut输出对象
+   * 创建photoOutput输出对象
    */
   createPhotoOutputFn(cameraManager: camera.CameraManager,
     photoProfileObj: camera.Profile): camera.PhotoOutput | undefined {
@@ -482,7 +482,7 @@ class CameraService {
   }
 
   /**
-   * 创建videoOutPut输出对象
+   * 创建videoOutput输出对象
    */
   // [Start camera_video_createAVRecorder]
   createVideoOutputFn(cameraManager: camera.CameraManager, videoProfileObj: camera.VideoProfile,
@@ -563,13 +563,13 @@ class CameraService {
         }
         // 拍照监听事件
         this.photoOutputCallBack(photoOutput);
-        // 把photoOutPut加入到会话
+        // 把photoOutput加入到会话
         this.session.addOutput(photoOutput);
       } else if (this.curSceneMode === camera.SceneMode.NORMAL_VIDEO) {
         if (videoOutput === undefined) {
           return;
         }
-        // 把photoOutPut加入到会话
+        // 把photoOutput加入到会话
         this.videoOutputCallback(videoOutput);
         this.session.addOutput(videoOutput);
       }
@@ -680,7 +680,7 @@ class CameraService {
         console.error(`photoAssetAvailable error: ${err}.`);
         return;
       }
-      console.info('photoOutPutCallBack photoAssetAvailable');
+      console.info('photoOutputCallBack photoAssetAvailable');
       // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片。
       // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
       let accessHelper: photoAccessHelper.PhotoAccessHelper =
@@ -768,7 +768,7 @@ class CameraService {
       // [Start photoOutput_error]
       // 监听拍照异常
       photoOutput.on('error', (data: BusinessError): void => {
-        Logger.info(TAG, `photoOutPut data: ${JSON.stringify(data)}`);
+        Logger.info(TAG, `photoOutput data: ${JSON.stringify(data)}`);
       });
       // [End photoOutput_error]
       if (this.context != undefined) {
@@ -1025,7 +1025,7 @@ class CameraService {
     }
     Logger.info(TAG, 'startVideo End of call');
   }
-  // [End camera_video_end]
+  // [End camera_video_start]
 
   /**
    * 停止录制
@@ -1050,7 +1050,8 @@ class CameraService {
       Logger.error(TAG, `stopVideo err: ${err.code}`);
     }
     Logger.info(TAG, 'stopVideo End of call');
-  }// [End camera_video_stop]
+  }
+  // [End camera_video_stop]
 
   /**
    * 闪关灯
