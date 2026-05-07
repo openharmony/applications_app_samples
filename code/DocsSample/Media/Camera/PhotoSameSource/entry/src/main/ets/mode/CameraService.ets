@@ -1025,7 +1025,7 @@ class CameraService {
     }
     Logger.info(TAG, 'startVideo End of call');
   }
-  // [End camera_video_end]
+  // [End camera_video_start]
 
   /**
    * 停止录制
@@ -1050,7 +1050,8 @@ class CameraService {
       Logger.error(TAG, `stopVideo err: ${err.code}`);
     }
     Logger.info(TAG, 'stopVideo End of call');
-  }// [End camera_video_stop]
+  }
+  // [End camera_video_stop]
 
   /**
    * 闪关灯
