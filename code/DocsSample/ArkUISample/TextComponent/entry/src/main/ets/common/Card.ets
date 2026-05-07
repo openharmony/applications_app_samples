@@ -104,10 +104,10 @@ export struct RoutableCard {
 @Component
 export struct ComponentCard {
   @Prop
-  title?: ResourceStr;
+  title: ResourceStr | undefined = undefined;
   @BuilderParam content: () => void;
   @Prop
-  description?: ResourceStr;
+  description: ResourceStr | undefined = undefined;
 
   build() {
     Column({ space: 8 }) {

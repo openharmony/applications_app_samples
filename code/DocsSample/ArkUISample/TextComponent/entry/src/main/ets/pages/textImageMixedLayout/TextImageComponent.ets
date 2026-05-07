@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-export struct TextImageComponent {
+struct TextImageComponent {
   build() {
     NavDestination() {
       // [Start textImage_component]
@@ -45,3 +45,5 @@ export struct TextImageComponent {
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
   }
 }
+
+export { TextImageComponent };

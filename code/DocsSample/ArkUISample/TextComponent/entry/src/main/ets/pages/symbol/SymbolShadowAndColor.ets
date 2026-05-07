@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct SymbolShadowAndColor {
+struct SymbolShadowAndColor {
   scroller: Scroller = new Scroller();
   // [Start shadow_color_1_new]
   @State isActive: boolean = true;
@@ -85,3 +85,5 @@ export struct SymbolShadowAndColor {
     .title($r('app.string.SymbolShadowAndColor_title'))
   }
 }
+
+export { SymbolShadowAndColor };

@@ -27,7 +27,7 @@ function style() {
 
 @Entry
 @Component
-export struct LineSpacing {
+struct LineSpacing {
   build() {
     NavDestination() {
       Column() {
@@ -44,3 +44,5 @@ export struct LineSpacing {
 }
 
 // [End Line_Spacing]
+
+export { LineSpacing };

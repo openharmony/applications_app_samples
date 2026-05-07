@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct CreateText {
+struct CreateText {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -51,3 +51,5 @@ export struct CreateText {
     .title($r('app.string.CreatText_title'))
   }
 }
+
+export { CreateText };

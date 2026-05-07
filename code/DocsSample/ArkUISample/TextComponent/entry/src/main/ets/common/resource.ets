@@ -12,12 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export class ResourceManager {
   private context: Context | undefined = undefined;
   public resourceToString(resource: Resource): string {
     if (this.context) {
-      return this.context.resourceManager.getStringSync(resource.id);
+      try {
+        return this.context.resourceManager.getStringSync(resource.id);
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', `resourceToString failed. error code: ${error.code}, error message: ${error.message}`);
+      }
     }
     return 'undefined|null';
   }

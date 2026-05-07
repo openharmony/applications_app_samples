@@ -15,7 +15,7 @@
 // [Start richEditor_getSpans]
 @Entry
 @Component
-export struct GetGraphicInfoInComponent {
+struct GetGraphicInfoInComponent {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   infoShowController: RichEditorController = new RichEditorController();
@@ -76,3 +76,5 @@ export struct GetGraphicInfoInComponent {
   }
 }
 // [End richEditor_getSpans]
+
+export { GetGraphicInfoInComponent };

@@ -17,7 +17,7 @@
 // [Start richEditor_create]
 @Entry
 @Component
-export struct CreateRichEditor {
+struct CreateRichEditor {
   // [StartExclude richEditor_create]
   controllerNoStyledString: RichEditorController = new RichEditorController();
   optionsNoStyledString: RichEditorOptions = { controller: this.controllerNoStyledString };
@@ -110,3 +110,5 @@ export struct CreateRichEditor {
 }
 // [End richEditor_create]
 // [End richEditor_create_span]
+
+export { CreateRichEditor };

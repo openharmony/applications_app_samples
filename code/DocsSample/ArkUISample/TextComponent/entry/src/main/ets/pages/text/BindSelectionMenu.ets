@@ -14,7 +14,7 @@
  */
 @Entry
 @Component
-export struct BindSelectionMenu {
+struct BindSelectionMenu {
   // [Start Bind_SelectionMenu]
   controller: TextController = new TextController()
   // 定义菜单项
@@ -62,3 +62,5 @@ export struct BindSelectionMenu {
   }
   // [End Right_ClickTextCustomMenu]
 }
+
+export { BindSelectionMenu };

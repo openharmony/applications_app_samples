@@ -18,7 +18,7 @@ import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-export struct LengthMetric {
+struct LengthMetric {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
@@ -110,3 +110,5 @@ export struct LengthMetric {
 }
 
 // [End Length_Metric]
+
+export { LengthMetric };

@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct SymbolGlyphSpanAddEvent {
+struct SymbolGlyphSpanAddEvent {
   // [Start symbol_glyph_span_add_event_up]
   @State wifiColor: ResourceColor = Color.Black;
   // [End symbol_glyph_span_add_event_up]
@@ -45,3 +45,5 @@ export struct SymbolGlyphSpanAddEvent {
     .title($r('app.string.SymbolGlyphSpanAddEvent_title'))
   }
 }
+
+export { SymbolGlyphSpanAddEvent };

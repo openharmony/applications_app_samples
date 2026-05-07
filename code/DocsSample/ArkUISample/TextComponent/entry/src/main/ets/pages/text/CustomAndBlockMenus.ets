@@ -17,7 +17,7 @@
 // xxx.ets
 @Entry
 @Component
-export struct CustomAndBlockMenus {
+struct CustomAndBlockMenus {
   private static readonly CREATE_MENU_ITEM_ID_1: string = 'create1';
   private static readonly CREATE_MENU_ITEM_ID_2: string = 'create2';
   private static readonly PREPARE_MENU_ITEM_ID: string = 'prepare1';
@@ -144,3 +144,5 @@ export struct CustomAndBlockMenus {
   }
 }
 // [End Custom_Block_Menus]
+
+export { CustomAndBlockMenus };

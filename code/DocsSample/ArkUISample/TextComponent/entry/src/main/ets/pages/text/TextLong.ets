@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 // [Start Text_Long]
 @Entry
 @Component
-export struct TextLong {
+struct TextLong {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
@@ -44,3 +44,5 @@ export struct TextLong {
   }
 }
 // [End Text_Long]
+
+export { TextLong };

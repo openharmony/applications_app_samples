@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-export struct SelectMenu {
+struct SelectMenu {
   // [Start set_selection_menu_with_bindselectionmenu]
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
@@ -149,3 +149,5 @@ export struct SelectMenu {
     .title($r('app.string.SetSelectionMenu_title'))
   }
 }
+
+export { SelectMenu };

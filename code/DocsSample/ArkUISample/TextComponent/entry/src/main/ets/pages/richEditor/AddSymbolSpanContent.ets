@@ -16,7 +16,7 @@
 
 @Entry
 @Component
-export struct AddSymbolSpanContent {
+struct AddSymbolSpanContent {
   // [Start richEditor_addSymbol]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -70,3 +70,5 @@ export struct AddSymbolSpanContent {
   }
   // [End richEditor_addSymbol]
 }
+
+export { AddSymbolSpanContent };

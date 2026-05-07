@@ -18,7 +18,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct SetTextMargin {
+struct SetTextMargin {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -40,3 +40,5 @@ export struct SetTextMargin {
     .title($r('app.string.Set_Text_Margin'))
   }
 }
+
+export { SetTextMargin };

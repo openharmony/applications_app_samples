@@ -18,7 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-export struct TextSpanOnHover {
+struct TextSpanOnHover {
   @State textStr1: string = '';
   @State textStr2: string = '';
 
@@ -56,3 +56,5 @@ export struct TextSpanOnHover {
 }
 
 // [End textspan_onhover]
+
+export { TextSpanOnHover };

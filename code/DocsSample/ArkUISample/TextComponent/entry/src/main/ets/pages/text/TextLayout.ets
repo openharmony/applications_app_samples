@@ -22,7 +22,7 @@ const DOMAIN = 0x0000;
 // [StartExclude onCreate_Menu]
 @Entry
 @Component
-export struct TextLayout {
+struct TextLayout {
   // [EndExclude onCreate_Menu]
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
@@ -147,3 +147,5 @@ export struct TextLayout {
 }
 
 // [EndExclude onCreate_Menu]
+
+export { TextLayout };

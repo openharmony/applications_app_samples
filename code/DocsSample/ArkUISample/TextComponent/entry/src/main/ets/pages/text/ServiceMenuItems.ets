@@ -17,7 +17,7 @@ import { TextMenuController } from '@kit.ArkUI';
 // xxx.ets
 @Entry
 @Component
-export struct ServiceMenuItems {
+struct ServiceMenuItems {
   aboutToAppear(): void {
     // 禁用所有系统服务菜单
     TextMenuController.disableSystemServiceMenuItems(true);
@@ -60,3 +60,5 @@ export struct ServiceMenuItems {
 }
 
 // [End Service_MenuItems]
+
+export { ServiceMenuItems };

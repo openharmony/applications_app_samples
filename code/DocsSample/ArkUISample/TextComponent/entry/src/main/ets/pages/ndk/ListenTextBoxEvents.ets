@@ -18,7 +18,7 @@ import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct ListenTextBoxEvents {
+struct ListenTextBoxEvents {
   // 初始化NodeContent对象。
   private rootSlot = new NodeContent();
 
@@ -40,3 +40,5 @@ export struct ListenTextBoxEvents {
     }.title($r('app.string.ListenTextBoxEvents_NDK_title'))
   }
 }
+
+export { ListenTextBoxEvents };

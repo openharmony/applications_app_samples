@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct TextSpan {
+struct TextSpan {
   @State onClickText: ResourceStr = 'I am Upper-span2';
 
   build() {
@@ -98,3 +98,5 @@ export struct TextSpan {
     .title($r('app.string.TextSpan_title'))
   }
 }
+
+export { TextSpan };

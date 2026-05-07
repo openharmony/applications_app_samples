@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct CustomTextInputStyle {
+struct CustomTextInputStyle {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -64,3 +64,5 @@ export struct CustomTextInputStyle {
     .title($r('app.string.CustomTextInputStyle_title'))
   }
 }
+
+export { CustomTextInputStyle };

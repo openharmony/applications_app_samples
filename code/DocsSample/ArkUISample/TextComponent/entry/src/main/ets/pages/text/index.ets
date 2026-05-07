@@ -24,11 +24,11 @@ import resource from '../../common/resource';
 import { SelectMenu } from './SelectMenu';
 import { AIMenu } from './AIMenu';
 import { TextSpanOnHover } from './TextSpanOnHover';
-import { ContentTransition } from './ContentTransition';
+import { ContentTransitionDemo } from './ContentTransition';
 import { TextLayout } from './TextLayout';
 import { LineSpacing } from './LineSpacing';
 import { EnableAutoSpacing } from './EnableAutoSpacing';
-import { ShaderStyle } from './ShaderStyle';
+import { ShaderStyleDemo } from './ShaderStyle';
 import { GeneralEvents } from './GeneralEvents';
 import { BindSelectionMenu } from './BindSelectionMenu';
 import { SelectionChange } from './SelectionChange';
@@ -47,7 +47,7 @@ export const TEXT_ROUTE_PREFIX: string = 'text';
 
 const routes: Route[] = [
   {
-    name: `${TEXT_ROUTE_PREFIX}/CreatText`,
+    name: `${TEXT_ROUTE_PREFIX}/CreateText`,
     title: resource.resourceToString($r('app.string.CreatText_title')),
     description: $r('app.string.CreatText_description')
   },
@@ -87,7 +87,7 @@ const routes: Route[] = [
     description: $r('app.string.OnClickOnHover_description')
   },
   {
-    name: `${TEXT_ROUTE_PREFIX}/ContentTransition`,
+    name: `${TEXT_ROUTE_PREFIX}/ContentTransitionDemo`,
     title: resource.resourceToString($r('app.string.Set_digital_flip_effect')),
     description: $r('app.string.Set_digital_flip_effect_description')
   },
@@ -107,7 +107,7 @@ const routes: Route[] = [
     description: $r('app.string.Automatic_spacing_description')
   },
   {
-    name: `${TEXT_ROUTE_PREFIX}/ShaderStyle`,
+    name: `${TEXT_ROUTE_PREFIX}/ShaderStyleDemo`,
     title: resource.resourceToString($r('app.string.Shader_Style')),
     description: $r('app.string.Shader_Style_description')
   },
@@ -199,7 +199,7 @@ export function TextDestination(name: string) {
   } else if (name === routes[7].name) {
     TextSpanOnHover();
   } else if (name === routes[8].name) {
-    ContentTransition();
+    ContentTransitionDemo();
   } else if (name === routes[9].name) {
     TextLayout();
   } else if (name === routes[10].name) {
@@ -207,7 +207,7 @@ export function TextDestination(name: string) {
   } else if (name === routes[11].name) {
     EnableAutoSpacing();
   } else if (name === routes[12].name) {
-    ShaderStyle();
+    ShaderStyleDemo();
   } else if (name === routes[13].name) {
     GeneralEvents();
   } else if (name === routes[14].name) {

@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -29,7 +28,7 @@ struct Index {
             // 请将$r('app.string.Progress_Update_Example')替换为实际资源文件，在本示例中该资源文件的value值为"更新进度示例"
             Button($r('app.string.Progress_Update_Example'))
               .onClick((event: ClickEvent) => {
-                router.pushUrl({
+                this.getUIContext().getRouter().pushUrl({
                   url: 'pages/ProgressCase1'
                 })
               })

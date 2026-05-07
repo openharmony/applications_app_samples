@@ -19,8 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 @Entry
 @Component
-
-export struct PrepareMenu {
+struct PrepareMenu {
   @State text: string = 'Text editMenuOptions';
   @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
@@ -94,3 +93,5 @@ export struct PrepareMenu {
   }
 }
 // [End Prepare_Menu]
+
+export { PrepareMenu };

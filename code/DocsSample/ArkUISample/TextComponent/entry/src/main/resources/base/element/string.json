@@ -1851,6 +1851,10 @@
     {
       "name": "Special_Characters_Display_Incorrectly_description",
       "value": "多数字符显示异常问题，特殊字符的高度超出同一行文本其他字符的高度导致，可以通过设置halfLeading属性和lineHeight属性解决。"
+    },
+    {
+      "name": "READ_PASTEBOARD_Permission_Reason",
+      "value": "用于读取剪贴板中的信息以提供便捷服务"
     }
   ]
 }

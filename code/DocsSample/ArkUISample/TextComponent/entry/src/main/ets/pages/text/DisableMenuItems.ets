@@ -18,7 +18,7 @@ import { TextMenuController } from '@kit.ArkUI';
 // xxx.ets
 @Entry
 @Component
-export struct DisableMenuItems {
+struct DisableMenuItems {
   aboutToAppear(): void {
     // 禁用搜索菜单
     TextMenuController.disableMenuItems([TextMenuItemId.SEARCH])
@@ -62,3 +62,5 @@ export struct DisableMenuItems {
 }
 
 // [End Disable_MenuItems]
+
+export { DisableMenuItems };

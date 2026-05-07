@@ -17,7 +17,7 @@ import { ComponentCard } from '../../common/Card';
 
 @Entry
 @Component
-export struct AIMenu {
+struct AIMenu {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -47,3 +47,5 @@ export struct AIMenu {
     .title($r('app.string.SetUpAIMenu_title'))
   }
 }
+
+export { AIMenu };

@@ -18,7 +18,7 @@ import { TextMenuController } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct DisableSystemServiceMenu {
+struct DisableSystemServiceMenu {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
 
@@ -73,3 +73,5 @@ export struct DisableSystemServiceMenu {
   }
 }
 // [End richEditor_disableSystemMenu]
+
+export { DisableSystemServiceMenu };
