@@ -262,6 +262,37 @@ void AccessibilityMaker::CreateUniqueIdSection(ArkUI_NativeNodeAPI_1* nodeApi, A
     nodeApi->addChild(parent, text2);
 }
 
+void AccessibilityMaker::CreateAccessibilityNextFocusIdSection(
+    ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "13. 通过 NODE_ACCESSIBILITY_NEXT_FOCUS_ID 设置无障碍下一个焦点ID:");
+    ArkUI_NodeHandle text2 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "13.(1). 默认的下一个焦点");
+    ArkUI_NodeHandle text3 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "13.(2) 设置的下一个焦点");
+
+    ArkUI_AttributeItem nextFocusId = {.string = "TestNextFocus"};
+    nodeApi->setAttribute(text3, NODE_ID, &nextFocusId);
+    nodeApi->setAttribute(text1, NODE_ACCESSIBILITY_NEXT_FOCUS_ID, &nextFocusId);
+
+    nodeApi->addChild(parent, text1);
+    nodeApi->addChild(parent, text2);
+    nodeApi->addChild(parent, text3);
+}
+
+void AccessibilityMaker::CreateAccessibilityDefaultFocusSection(
+    ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "14. 通过 NODE_ACCESSIBILITY_DEFAULT_FOCUS 设置无障碍默认焦点:");
+    ArkUI_NumberValue defaultFocusNumber[] = {{.i32 = true}};
+    ArkUI_AttributeItem defaultFocusItem = { defaultFocusNumber,
+        sizeof(defaultFocusNumber) / sizeof(ArkUI_NumberValue)};
+    nodeApi->setAttribute(text1, NODE_ACCESSIBILITY_DEFAULT_FOCUS, &defaultFocusItem);
+    nodeApi->addChild(parent, text1);
+}
+
 ArkUI_NodeHandle AccessibilityMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
@@ -289,6 +320,8 @@ ArkUI_NodeHandle AccessibilityMaker::CreateNativeNode()
     CreateAccessibilityActionsSection(nodeApi, column);
     CreateAccessibilityRoleSection(nodeApi, column);
     CreateUniqueIdSection(nodeApi, column);
+    CreateAccessibilityNextFocusIdSection(nodeApi, column);
+    CreateAccessibilityDefaultFocusSection(nodeApi, column);
 
     // Column作为XComponent子组件
     return scrollNode;
