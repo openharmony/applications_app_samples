@@ -355,7 +355,8 @@ void SampleBitMap::Export(napi_env env, napi_value exports)
         DRAWING_LOGE("Export: env or exports is null");
         return;
     }
-    if (napi_define_properties(env, exports, sizeof(g_exportDescs) / sizeof(g_exportDescs[0]), g_exportDescs) != napi_ok) {
+    if (napi_define_properties(env, exports, sizeof(g_exportDescs) / sizeof(g_exportDescs[0]),
+        g_exportDescs) != napi_ok) {
         DRAWING_LOGE("Export: napi_define_properties failed");
     }
 }
