@@ -40,6 +40,10 @@ extern napi_value GetDelayTimeList(napi_env env, napi_callback_info info);
 extern napi_value ReleaseImageSource(napi_env env, napi_callback_info info);
 extern void ShowPixelMap(OH_PixelmapNative *pixelmap, uint8_t *buffer, size_t pixelsBufferSize);
 napi_value TestStrideWithAllocatorType(napi_env env, napi_callback_info info);
+napi_value CreatePixelmapWithYUV(napi_env env, napi_callback_info info);
+napi_value DecodeRegion(napi_env env, napi_callback_info info);
+napi_value DownsampleDecode(napi_env env, napi_callback_info info);
+napi_value CombinedDecode(napi_env env, napi_callback_info info);
 // decodingPicture
 extern napi_value ReleasePictureSource(napi_env env, napi_callback_info info);
 extern napi_value SetDesiredAuxiliaryPictures(napi_env env, napi_callback_info info);

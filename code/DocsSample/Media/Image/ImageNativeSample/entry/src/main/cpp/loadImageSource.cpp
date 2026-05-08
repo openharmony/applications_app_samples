@@ -222,6 +222,110 @@ napi_value CreatePixelMap(napi_env env, napi_callback_info info)
 }
 // [End create_pixelMap]
 
+// [Start decode_region]
+// 区域解码示例。
+napi_value DecodeRegion(napi_env env, napi_callback_info info)
+{
+    OH_DecodingOptions *ops = nullptr;
+    OH_DecodingOptions_Create(&ops);
+    
+    // 设置裁剪区域参数，使用SetCropRegion实现区域解码。
+    Image_Region region = {
+        .x = 0,
+        .y = 0,
+        .width = 1000,
+        .height = 1000
+    };
+    OH_DecodingOptions_SetCropRegion(ops, &region);
+    
+    OH_PixelmapNative_Release(g_thisImageSource->resPixMap);
+    g_thisImageSource->resPixMap = nullptr;
+    
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreatePixelmap(g_thisImageSource->source,
+                                                                  ops, &g_thisImageSource->resPixMap);
+    OH_DecodingOptions_Release(ops);
+    ops = nullptr;
+    
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "DecodeRegion failed, errCode: %{public}d.", errCode);
+        return GetJsResult(env, errCode);
+    }
+    OH_LOG_INFO(LOG_APP, "DecodeRegion succeeded.");
+    return GetJsResult(env, errCode);
+}
+// [End decode_region]
+
+// [Start decode_downsample]
+// 下采样解码示例。
+napi_value DownsampleDecode(napi_env env, napi_callback_info info)
+{
+    OH_DecodingOptions *ops = nullptr;
+    OH_DecodingOptions_Create(&ops);
+    
+    // 设置期望输出大小参数。
+    Image_Size desiredSize = {
+        .width = 512,
+        .height = 512
+    };
+    OH_DecodingOptions_SetDesiredSize(ops, &desiredSize);
+    
+    OH_PixelmapNative_Release(g_thisImageSource->resPixMap);
+    g_thisImageSource->resPixMap = nullptr;
+    
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreatePixelmap(g_thisImageSource->source,
+                                                                  ops, &g_thisImageSource->resPixMap);
+    OH_DecodingOptions_Release(ops);
+    ops = nullptr;
+    
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "DownsampleDecode failed, errCode: %{public}d.", errCode);
+        return GetJsResult(env, errCode);
+    }
+    OH_LOG_INFO(LOG_APP, "DownsampleDecode succeeded.");
+    return GetJsResult(env, errCode);
+}
+// [End decode_downsample]
+
+// [Start decode_combined]
+// 区域解码与下采样组合使用示例。
+napi_value CombinedDecode(napi_env env, napi_callback_info info)
+{
+    OH_DecodingOptions *ops = nullptr;
+    OH_DecodingOptions_Create(&ops);
+    
+    Image_Region region = {
+        .x = 1000,
+        .y = 500,
+        .width = 2000,
+        .height = 2000
+    };
+    OH_DecodingOptions_SetCropRegion(ops, &region);
+    
+    Image_Size desiredSize = {
+        .width = 512,
+        .height = 512
+    };
+    OH_DecodingOptions_SetDesiredSize(ops, &desiredSize);
+    
+    OH_DecodingOptions_SetCropAndScaleStrategy(ops, IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST);
+    
+    OH_PixelmapNative_Release(g_thisImageSource->resPixMap);
+    g_thisImageSource->resPixMap = nullptr;
+    
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreatePixelmap(g_thisImageSource->source,
+                                                                  ops, &g_thisImageSource->resPixMap);
+    OH_DecodingOptions_Release(ops);
+    ops = nullptr;
+    
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "CombinedDecode failed, errCode: %{public}d.", errCode);
+        return GetJsResult(env, errCode);
+    }
+    OH_LOG_INFO(LOG_APP, "CombinedDecode succeeded.");
+    return GetJsResult(env, errCode);
+}
+// [End decode_combined]
+
 // [Start get_frameCount]
 // 获取图像帧数。
 napi_value GetFrameCount(napi_env env, napi_callback_info info)

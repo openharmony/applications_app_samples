@@ -49,72 +49,104 @@ struct AllocateMemory {
       Text('申请图片解码内存')
         .fontSize(25)
         .margin(10)
-        Button('DMA').onClick(async() => {
-          this.visible = Visibility.None;
-          this.cropVisible = Visibility.None;
-          this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
-            this.context, image.AllocatorType.DMA);
-          if(this.srcPixelMap) {
-            let info = await this.srcPixelMap.getImageInfo();
-            // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-            console.info('stride = ' + info.stride);
-            this.infoLog = `The stride of PixelMap obtained through DMA memory allocation is ${info.stride}.`;
-          } else {
-            this.infoLog = 'Create pixelMap failed.'
-          }
-          this.visible = Visibility.Visible;
-        })
-          .width('50%')
-          .margin(10)
-        Button('SHARE').onClick(async() => {
-          this.visible = Visibility.None;
-          this.cropVisible = Visibility.None;
-          this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
-            this.context, image.AllocatorType.SHARE_MEMORY);
-          if(this.srcPixelMap) {
-            let info = await this.srcPixelMap.getImageInfo();
-            // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-            console.info('stride = ' + info.stride);
-            this.infoLog = `The stride of PixelMap obtained through SHARE memory allocation is ${info.stride}.`;
-          } else {
-            this.infoLog = 'Create pixelMap failed.'
-          }
-          this.visible = Visibility.Visible;
-        })
-          .width('50%')
-          .margin(10)
-        Button('AUTO').onClick(async() => {
-          this.visible = Visibility.None;
-          this.cropVisible = Visibility.None;
-          this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
-            this.context, image.AllocatorType.AUTO);
-          if(this.srcPixelMap) {
-            let info = await this.srcPixelMap.getImageInfo();
-            // 用DMA_ALLOC内存申请出的pixelmap的stride与SHARE_MEMORY内存申请出的pixelmap的stride不同。
-            console.info('stride = ' + info.stride);
-            this.infoLog = `The stride of PixelMap obtained through AUTO memory allocation is ${info.stride}.`;
-          } else {
-            this.infoLog = 'Create pixelMap failed.'
-          }
-          this.visible = Visibility.Visible;
-        })
-          .width('50%')
-          .margin(10)
-      Button('释放').onClick(async() => {
-        this.release();
-        this.visible = Visibility.None;
-        this.cropVisible = Visibility.None;
-      })
-        .width('50%')
-        .margin(10)
-      Button('back')
-        .width('50%')
-        .margin(10)
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/Index' });
-        })
-        .width('50%')
-        .margin(10)
+
+      List({ space: 10 }) {
+        ListItem() {
+          Button('DMA').onClick(async() => {
+            this.visible = Visibility.None;
+            this.cropVisible = Visibility.None;
+            this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
+              this.context, image.AllocatorType.DMA);
+            if(this.srcPixelMap) {
+              let info = await this.srcPixelMap.getImageInfo();
+              console.info('stride = ' + info.stride);
+              this.infoLog = `The stride of PixelMap obtained through DMA memory allocation is ${info.stride}.`;
+            } else {
+              this.infoLog = 'Create pixelMap failed.'
+            }
+            this.visible = Visibility.Visible;
+          })
+            .width('50%')
+            .margin(10)
+        }
+        ListItem() {
+          Button('SHARE').onClick(async() => {
+            this.visible = Visibility.None;
+            this.cropVisible = Visibility.None;
+            this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
+              this.context, image.AllocatorType.SHARE_MEMORY);
+            if(this.srcPixelMap) {
+              let info = await this.srcPixelMap.getImageInfo();
+              console.info('stride = ' + info.stride);
+              this.infoLog = `The stride of PixelMap obtained through SHARE memory allocation is ${info.stride}.`;
+            } else {
+              this.infoLog = 'Create pixelMap failed.'
+            }
+            this.visible = Visibility.Visible;
+          })
+            .width('50%')
+            .margin(10)
+        }
+        ListItem() {
+          Button('AUTO').onClick(async() => {
+            this.visible = Visibility.None;
+            this.cropVisible = Visibility.None;
+            this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapUsingAllocator(
+              this.context, image.AllocatorType.AUTO);
+            if(this.srcPixelMap) {
+              let info = await this.srcPixelMap.getImageInfo();
+              console.info('stride = ' + info.stride);
+              this.infoLog = `The stride of PixelMap obtained through AUTO memory allocation is ${info.stride}.`;
+            } else {
+              this.infoLog = 'Create pixelMap failed.'
+            }
+            this.visible = Visibility.Visible;
+          })
+            .width('50%')
+            .margin(10)
+        }
+        ListItem() {
+          Button('YUV+DMA').onClick(async() => {
+            this.visible = Visibility.None;
+            this.cropVisible = Visibility.None;
+            this.srcPixelMap = await this.imageInterfaceCalled.CreatePixelMapWithYUV(this.context);
+            if(this.srcPixelMap) {
+              let info = await this.srcPixelMap.getImageInfo();
+              this.infoLog = `YUV PixelMap created, stride=${info.stride}, format=${info.pixelFormat}.`;
+            } else {
+              this.infoLog = 'Create YUV PixelMap failed.'
+            }
+            this.visible = Visibility.Visible;
+          })
+            .width('50%')
+            .margin(10)
+        }
+        ListItem() {
+          Text('资源释放后再进行其他操作会引起崩溃，请重新创建后再进行具体操作!')
+            .fontSize(14)
+            .fontColor(Color.Red)
+        }
+        ListItem() {
+          Button('释放').onClick(async() => {
+            this.release();
+            this.visible = Visibility.None;
+            this.cropVisible = Visibility.None;
+          })
+            .width('50%')
+            .margin(10)
+        }
+        ListItem() {
+          Button('返回')
+            .width('50%')
+            .margin(10)
+            .onClick(() => {
+              router.pushUrl({ url: 'pages/Index' });
+            })
+        }
+      }
+      .width('100%')
+      .height('60%')
+
       Text(this.infoLog)
         .width('80%')
         .margin(10)

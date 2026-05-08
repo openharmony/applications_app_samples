@@ -25,6 +25,7 @@ struct Index {
         this.textComponent('Index');
         this.buttonComponent('跳转到图片解码页面', 'pages/DecodingPixelMap');
         this.buttonComponent('跳转到多图解码页面', 'pages/DecodingPicture');
+        this.buttonComponent('跳转到区域解码和下采样解码页面', 'pages/RegionDownsample');
         this.buttonComponent('跳转到内存申请页面', 'pages/AllocateMemory');
         this.buttonComponent('跳转到图片编码页面', 'pages/EncodingPixelMap');
         this.buttonComponent('跳转到多图编码页面', 'pages/EncodingPicture');

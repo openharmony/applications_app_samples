@@ -46,25 +46,63 @@ struct ImageCodec {
   ];
 
   build() {
-    Row() {
-      Column() {
-        Text('请先创建ImageSource!')
-        MyButton({ text: 'CreateImageSource', context: this.context,  fileName: this.fileName,
-          chooseFun: 'fun1', fun1: this.test.createImageSource})
-        MyButton({ text: 'packToFileFromImageSource', context: this.context,  fileName: this.packSourceName,
-          chooseFun: 'fun5', fun5: this.test.packToFileFromImageSourceTestJs})
-        MyButton({ text: 'GetImageInfo', chooseFun: 'fun', fun: this.test.getImageInfo})
-        MyButton({ text: 'createPixelMap', chooseFun: 'fun', fun: this.test.createPixelMap})
-        MyButton({ text: 'packToFileFromPixelmap', context: this.context,  fileName: this.packPixelName,
-          chooseFun: 'fun5', fun5: this.test.packToFileFromPixelmapTestJs})
-        MyButton({ text: 'CreatePixelmapUsingAllocator', context: this.context, fileName: this.fileName,
-          chooseFun: 'fun1', fun1: this.test.createPixelmapUsingAllocator })
-        Text('资源释放后再进行其他操作会引起崩溃，请重新创建后再进行具体操作!')
-        MyButton({ text: 'ReleaseImageSource', chooseFun: 'fun', fun: this.test.releaseImageSource })
-        GotoButton({ text: 'back', dstUri: 'pages/Index'})
+    Column() {
+      Text('请先创建ImageSource!')
+        .fontSize(16)
+        .margin({ top: 10, bottom: 10 })
+
+      List({ space: 10 }) {
+        ListItem() {
+          MyButton({ text: 'CreateImageSource', context: this.context, fileName: this.fileName,
+            chooseFun: 'fun1', fun1: this.test.createImageSource })
+        }
+        ListItem() {
+          MyButton({ text: 'packToFileFromImageSource', context: this.context, fileName: this.packSourceName,
+            chooseFun: 'fun5', fun5: this.test.packToFileFromImageSourceTestJs })
+        }
+        ListItem() {
+          MyButton({ text: 'GetImageInfo', chooseFun: 'fun', fun: this.test.getImageInfo })
+        }
+        ListItem() {
+          MyButton({ text: 'createPixelMap', chooseFun: 'fun', fun: this.test.createPixelMap })
+        }
+        ListItem() {
+          MyButton({ text: 'packToFileFromPixelmap', context: this.context, fileName: this.packPixelName,
+            chooseFun: 'fun5', fun5: this.test.packToFileFromPixelmapTestJs })
+        }
+        ListItem() {
+          MyButton({ text: 'CreatePixelmapUsingAllocator', context: this.context, fileName: this.fileName,
+            chooseFun: 'fun1', fun1: this.test.createPixelmapUsingAllocator })
+        }
+        ListItem() {
+          MyButton({ text: 'CreatePixelmapWithYUV', context: this.context, fileName: this.fileName,
+            chooseFun: 'fun1', fun1: this.test.createPixelmapWithYUV })
+        }
+        ListItem() {
+          MyButton({ text: 'DecodeRegion', chooseFun: 'fun', fun: this.test.decodeRegion })
+        }
+        ListItem() {
+          MyButton({ text: 'DownsampleDecode', chooseFun: 'fun', fun: this.test.downsampleDecode })
+        }
+        ListItem() {
+          MyButton({ text: 'CombinedDecode', chooseFun: 'fun', fun: this.test.combinedDecode })
+        }
+        ListItem() {
+          Text('资源释放后再进行其他操作会引起崩溃，请重新创建后再进行具体操作!')
+            .fontSize(14)
+            .fontColor(Color.Red)
+        }
+        ListItem() {
+          MyButton({ text: 'ReleaseImageSource', chooseFun: 'fun', fun: this.test.releaseImageSource })
+        }
+        ListItem() {
+          GotoButton({ text: 'back', dstUri: 'pages/Index' })
+        }
       }
       .width('100%')
       .height('100%')
     }
+    .width('100%')
+    .height('100%')
   }
 }

@@ -18,10 +18,10 @@
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
 // [End decodingPixelMap_import]
-import { ImageInterfaceCalled } from '../tools/CodecUtility';
+import { ImageInterfaceCalled, getSupportedFormats } from '../tools/CodecUtility';
 import { UIComponentsBuilder } from '../tools/components';
 import { Router } from '@ohos.arkui.UIContext';
 
@@ -56,6 +56,13 @@ struct DecodingPixelmap {
         Text('选择解码图片资源')
             .fontSize(15)
             .margin(10)
+        Button('查询支持格式').onClick(() => {
+          let formats = getSupportedFormats();
+          this.infoLog = `Supported formats: ${formats.join(', ')}`;
+          this.infoVisible = Visibility.Visible;
+        })
+          .width('50%')
+          .margin(10)
         Row(){
           this.chooseFileSource('JPEG');
           this.chooseFileSource('PNG');

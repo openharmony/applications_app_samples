@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/AllocateMemory",
+    "pages/RegionDownsample",
     "pages/DecodingPicture",
     "pages/DecodingPixelMap",
     "pages/EncodingPicture",

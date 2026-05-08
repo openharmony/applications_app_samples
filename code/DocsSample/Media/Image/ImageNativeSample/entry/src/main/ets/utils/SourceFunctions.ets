@@ -142,6 +142,20 @@ export class SourceFunctions {
     return message;
   }
 
+  async createPixelmapWithYUV(context: common.UIAbilityContext, fileName: string): Promise<string> {
+    let message: string = '';
+    let filePath = context.filesDir + '/' + fileName;
+    await pushSourceToBox(context, fileName);
+    let errorCode: number = testNapi.createPixelmapWithYUV(filePath);
+    if(errorCode === 0) {
+      message = 'CreatePixelmapWithYUV success.';
+    } else {
+      this.logger.log('CreatePixelmapWithYUV error is: ' + errorCode);
+      message = 'CreatePixelmapWithYUV error is: ' + errorCode;
+    }
+    return message;
+  }
+
   packToFileFromImageSourceTestJs(context: common.UIAbilityContext, fileName: string): string {
     let message: string = '';
     const fd = getFileFd(context, fileName);
@@ -166,6 +180,42 @@ export class SourceFunctions {
     } else {
       message = `PackToFileFromPixelmapTestJs failed with ${errorCode}.`;
       this.logger.log(`PackToFileFromPixelmapTestJs failed with ${errorCode}.`);
+    }
+    return message;
+  }
+
+  decodeRegion(): string {
+    let message: string = '';
+    let errorCode: number = testNapi.decodeRegion();
+    if(errorCode === 0) {
+      message = 'DecodeRegion success.';
+    } else {
+      this.logger.log('DecodeRegion error is: ' + errorCode);
+      message = 'DecodeRegion error is: ' + errorCode;
+    }
+    return message;
+  }
+
+  downsampleDecode(): string {
+    let message: string = '';
+    let errorCode: number = testNapi.downsampleDecode();
+    if(errorCode === 0) {
+      message = 'DownsampleDecode success.';
+    } else {
+      this.logger.log('DownsampleDecode error is: ' + errorCode);
+      message = 'DownsampleDecode error is: ' + errorCode;
+    }
+    return message;
+  }
+
+  combinedDecode(): string {
+    let message: string = '';
+    let errorCode: number = testNapi.combinedDecode();
+    if(errorCode === 0) {
+      message = 'CombinedDecode success.';
+    } else {
+      this.logger.log('CombinedDecode error is: ' + errorCode);
+      message = 'CombinedDecode error is: ' + errorCode;
     }
     return message;
   }
