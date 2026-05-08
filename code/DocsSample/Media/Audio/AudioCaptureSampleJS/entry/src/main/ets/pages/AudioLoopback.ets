@@ -148,17 +148,28 @@ async function setReverbPreset(preset: audio.AudioLoopbackReverbPreset, updateCa
   if (audioLoopback !== undefined) {
     // [EndExclude set_ReverbPreset]
     try {
-      audioLoopback.setReverbPreset(preset);
-      console.info('Succeeded in setting reverb preset.');
-      // [StartExclude all_audioLoopback]
-      // [StartExclude set_ReverbPreset]
-      const successMsg = 'Succeeded in setting reverb preset.';
-      if (updateCallback) {
-        updateCallback(successMsg, false);
+      if (audioLoopback.setReverbPreset(preset)) {
+        console.info('Succeeded in setting reverb preset.');
+        // [StartExclude all_audioLoopback]
+        // [StartExclude set_ReverbPreset]
+        const successMsg = 'Succeeded in setting reverb preset.';
+        if (updateCallback) {
+          updateCallback(successMsg, false);
+        }
+        // [EndExclude set_ReverbPreset]
+        // [EndExclude all_audioLoopback]
+        currentReverbPreset = preset;
+      } else {
+        console.error('Failed to set reverb preset.');
+        // [StartExclude all_audioLoopback]
+        // [StartExclude set_ReverbPreset]
+        const errorMsg = 'Failed to set reverb preset.';
+        if (updateCallback) {
+          updateCallback(errorMsg, true);
+        }
+        // [EndExclude set_ReverbPreset]
+        // [EndExclude all_audioLoopback]
       }
-      // [EndExclude set_ReverbPreset]
-      // [EndExclude all_audioLoopback]
-      currentReverbPreset = audioLoopback.getReverbPreset(); // 查询当前的混响模式，防止设置失败。
     } catch (err) {
       console.error(`Failed to set reverb preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
@@ -188,17 +199,28 @@ async function setEqualizerPreset(preset: audio.AudioLoopbackEqualizerPreset, up
   if (audioLoopback !== undefined) {
     // [EndExclude set_EqualizerPreset]
     try {
-      audioLoopback.setEqualizerPreset(preset);
-      console.info('Succeeded in setting equalizer preset.');
-      // [StartExclude all_audioLoopback]
-      // [StartExclude set_EqualizerPreset]
-      const successMsg = 'Succeeded in setting equalizer preset.';
-      if (updateCallback) {
-        updateCallback(successMsg, false);
+      if (audioLoopback.setEqualizerPreset(preset)) {
+        console.info('Succeeded in setting equalizer preset.');
+        // [StartExclude all_audioLoopback]
+        // [StartExclude set_EqualizerPreset]
+        const successMsg = 'Succeeded in setting equalizer preset.';
+        if (updateCallback) {
+          updateCallback(successMsg, false);
+        }
+        // [EndExclude set_EqualizerPreset]
+        // [EndExclude all_audioLoopback]
+        currentEqualizerPreset = preset;
+      } else {
+        console.error('Failed to set equalizer preset.');
+        // [StartExclude all_audioLoopback]
+        // [StartExclude set_EqualizerPreset]
+        const errorMsg = 'Failed to set equalizer preset.';
+        if (updateCallback) {
+          updateCallback(errorMsg, true);
+        }
+        // [EndExclude set_EqualizerPreset]
+        // [EndExclude all_audioLoopback]
       }
-      // [EndExclude set_EqualizerPreset]
-      // [EndExclude all_audioLoopback]
-      currentEqualizerPreset = audioLoopback.getEqualizerPreset(); // 查询当前的均衡器类型，防止设置失败。
     } catch (err) {
       console.error(`Failed to set equalizer preset. Code: ${err.code}, message: ${err.message}`);
       // [StartExclude all_audioLoopback]
@@ -357,17 +379,7 @@ async function getStatus(updateCallback?: (msg: string, isError: boolean) => voi
 async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioLoopback !== undefined) {
     // [EndExclude get_ReverbPreset]
-    try {
-      let reverbPreset = audioLoopback.getReverbPreset();
-    } catch (err) {
-      console.error(`Failed to get reverb preset. Code: ${err.code}, message: ${err.message}`);
-      // [StartExclude get_ReverbPreset]
-      const errorMsg = `Failed to get reverb preset. Code: ${err.code}, message: ${err.message}`;
-      if (updateCallback) {
-        updateCallback(errorMsg, true);
-      }
-      // [EndExclude get_ReverbPreset]
-    }
+    let reverbPreset = audioLoopback.getReverbPreset();
     // [End get_ReverbPreset]
   }
 }
@@ -376,17 +388,7 @@ async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) 
 async function getEqualizerPreset(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioLoopback !== undefined) {
     // [EndExclude get_EqualizerPreset]
-    try {
-      let equalizerPreset = audioLoopback.getEqualizerPreset();
-    } catch (err) {
-      console.error(`Failed to get equalizer preset. Code: ${err.code}, message: ${err.message}`);
-      // [StartExclude get_EqualizerPreset]
-      const errorMsg = `Failed to get equalizer preset. Code: ${err.code}, message: ${err.message}`;
-      if (updateCallback) {
-        updateCallback(errorMsg, true);
-      }
-      // [EndExclude get_EqualizerPreset]
-    }
+    let equalizerPreset = audioLoopback.getEqualizerPreset();
     // [End get_EqualizerPreset]
   }
 }
