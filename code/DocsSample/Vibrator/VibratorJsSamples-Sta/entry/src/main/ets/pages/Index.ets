@@ -497,7 +497,7 @@ struct Index {
                   this.VibratorStateChangeInfo = JSON.stringify(data)
                 });
                 // 取消订阅所有 vibratorStateChange事件
-                // vibrator.off('vibratorStateChange');
+                // vibrator.offVibratorStateChange();
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
                 console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
