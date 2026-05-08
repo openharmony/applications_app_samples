@@ -669,6 +669,54 @@ static void CleanupInputPortContextsForDevice(int64_t deviceId)
     }
 }
 
+// 清理指定设备的所有资源（输入端口、输出端口、设备句柄），调用时需持有g_midiMutex
+static void CleanupDeviceResources(int64_t deviceId)
+{
+    OH_LOG_INFO(LOG_APP, "[CleanupDeviceResources] cleaning up device %{public}lld", (long long)deviceId);
+    auto devIt = g_openedDevices.find(deviceId);
+    OH_MIDIDevice* device = (devIt != g_openedDevices.end()) ? devIt->second : nullptr;
+    CleanupInputPortContextsForDevice(deviceId);
+    // 关闭输出端口并清理协议记录
+    if (device != nullptr) {
+        for (auto it = g_outputPortProtocols.begin(); it != g_outputPortProtocols.end();) {
+            if (it->first.first == deviceId) {
+                OH_MIDIDevice_CloseOutputPort(device, it->first.second);
+                OH_LOG_DEBUG(LOG_APP, "[CleanupDeviceResources] closed output port %{public}u", it->first.second);
+                it = g_outputPortProtocols.erase(it);
+            } else {
+                ++it;
+            }
+        }
+        OH_MIDIClient_CloseDevice(g_midiClient, device);
+        OH_LOG_INFO(LOG_APP, "[CleanupDeviceResources] closed device %{public}lld", (long long)deviceId);
+    }
+    g_openedDevices.erase(deviceId);
+    OH_LOG_INFO(LOG_APP, "[CleanupDeviceResources] device %{public}lld cleaned up", (long long)deviceId);
+}
+
+// 通过线程安全函数通知JS层设备变更
+static void NotifyDeviceChangeToJs(OH_MIDIDeviceChangeAction action, OH_MIDIDeviceInformation info)
+{
+    if (g_deviceChangeTsfn == nullptr) {
+        OH_LOG_WARN(LOG_APP, "[NotifyDeviceChangeToJs] g_deviceChangeTsfn is nullptr");
+        return;
+    }
+    DeviceChangeCallbackData* callbackData = new DeviceChangeCallbackData();
+    callbackData->action = static_cast<int32_t>(action);
+    callbackData->deviceId = info.midiDeviceId;
+    callbackData->deviceType = static_cast<int32_t>(info.deviceType);
+    callbackData->nativeProtocol = static_cast<int32_t>(info.nativeProtocol);
+    callbackData->deviceName = info.deviceName;
+    callbackData->deviceAddress = info.deviceAddress;
+    callbackData->vendorId = info.vendorId;
+    callbackData->productId = info.productId;
+    napi_status status = napi_call_threadsafe_function(g_deviceChangeTsfn, callbackData, napi_tsfn_nonblocking);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "[NotifyDeviceChangeToJs] napi_call_threadsafe_function failed: %{public}d", (int)status);
+        delete callbackData;
+    }
+}
+
 // [Start quick_start]
 // [Start device_change_callback]
 // 设备变更回调 - 由MIDI服务调用（请勿在此持有锁）
@@ -683,67 +731,17 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
         (int)info.deviceType, info.deviceAddress);
     // [EndExclude device_change_callback]
 
-    // 请勿在回调中持有锁！仅复制数据并发送到JS线程
-
-    // 设备下线时，在工作线程中清理该设备的所有资源
-    // 注：不能在回调中直接持有锁或执行繁重操作，因此通过detach线程延迟清理
+    // 设备下线时，在独立线程中延迟清理（不能在回调中持有锁或执行繁重操作）
     if (static_cast<int32_t>(action) != 0) {
         int64_t devId = info.midiDeviceId;
         std::thread([devId]() {
             std::lock_guard<std::mutex> lock(g_midiMutex);
-            OH_LOG_INFO(LOG_APP, "[OnDeviceChange/cleanup] cleaning up device %{public}lld", (long long)devId);
-            auto devIt = g_openedDevices.find(devId);
-            OH_MIDIDevice* device = (devIt != g_openedDevices.end()) ? devIt->second : nullptr;
-            // 清理该设备的输入端口上下文并关闭输入端口
-            CleanupInputPortContextsForDevice(devId);
-            // 关闭输出端口并清理协议记录
-            if (device != nullptr) {
-                for (auto it = g_outputPortProtocols.begin(); it != g_outputPortProtocols.end();) {
-                    if (it->first.first == devId) {
-                        OH_MIDIDevice_CloseOutputPort(device, it->first.second);
-                        OH_LOG_DEBUG(LOG_APP, "[OnDeviceChange/cleanup] closed output port %{public}u",
-                                     it->first.second);
-                        it = g_outputPortProtocols.erase(it);
-                    } else {
-                        ++it;
-                    }
-                }
-                // 关闭设备，释放句柄
-                OH_MIDIClient_CloseDevice(g_midiClient, device);
-                OH_LOG_INFO(LOG_APP, "[OnDeviceChange/cleanup] closed device %{public}lld", (long long)devId);
-            }
-            // 从已打开设备列表中移除
-            g_openedDevices.erase(devId);
-            OH_LOG_INFO(LOG_APP, "[OnDeviceChange/cleanup] device %{public}lld cleaned up", (long long)devId);
+            CleanupDeviceResources(devId);
         }).detach();
     }
 
-    if (g_deviceChangeTsfn != nullptr) {
-        DeviceChangeCallbackData* callbackData = new DeviceChangeCallbackData();
-        callbackData->action = static_cast<int32_t>(action);
-        callbackData->deviceId = info.midiDeviceId;
-        callbackData->deviceType = static_cast<int32_t>(info.deviceType);
-        callbackData->nativeProtocol = static_cast<int32_t>(info.nativeProtocol);
-        callbackData->deviceName = info.deviceName;
-        callbackData->deviceAddress = info.deviceAddress;
-        callbackData->vendorId = info.vendorId;
-        callbackData->productId = info.productId;
-
-        // [StartExclude device_change_callback]
-        OH_LOG_DEBUG(LOG_APP, "[OnDeviceChange] calling napi_call_threadsafe_function");
-        // [EndExclude device_change_callback]
-        napi_status status = napi_call_threadsafe_function(g_deviceChangeTsfn, callbackData, napi_tsfn_nonblocking);
-        // [StartExclude device_change_callback]
-        if (status != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "[OnDeviceChange] napi_call_threadsafe_function failed: %{public}d", (int)status);
-            delete callbackData;
-        } else {
-            OH_LOG_INFO(LOG_APP, "[OnDeviceChange] threadsafe function called successfully");
-        }
-    } else {
-        OH_LOG_WARN(LOG_APP, "[OnDeviceChange] g_deviceChangeTsfn is nullptr, cannot notify JS");
-    }
-
+    // [StartExclude device_change_callback]
+    NotifyDeviceChangeToJs(action, info);
     OH_LOG_INFO(LOG_APP, "[OnDeviceChange] --exit (callback thread)");
     // [EndExclude device_change_callback]
     // [EndExclude quick_start]
