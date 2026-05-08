@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start transferableObject_configPlugin]
 import { turboTransJsonPlugin } from '@hadss/turbo-trans-json-plugin';
 import { hvigor } from '@ohos/hvigor';
 import { appTasks } from '@ohos/hvigor-ohos-plugin';
@@ -20,9 +21,9 @@ export default {
   system: appTasks, /* Built-in plugin of Hvigor. It cannot be modified. */
   plugins: [
     turboTransJsonPlugin(hvigor, {
-      ignoreModuleNames: ['TurboTransCore' , 'TurboTransJSON',  'PerformanceBaseline','TurboTransProtobuf'],
-      scanDir: ['src/main/ets'],
-      deserializationMode: 'performance',
+      ignoreModuleNames: ['TurboTransCore' , 'TurboTransJSON',  'PerformanceBaseline','TurboTransProtobuf'], // 忽略的模块
+      scanDir: ['src/main/ets'], // 扫描目录
+      deserializationMode: 'performance', // 反序列化模式
       importRewrite: {
         scanPaths: ['src/main/ets', 'src/ohosTest/ets'],
         preserveOriginalImports: false
@@ -30,3 +31,4 @@ export default {
     }),
   ]       /* Custom plugin to extend the functionality of Hvigor. */
 }
+// [End transferableObject_configPlugin]

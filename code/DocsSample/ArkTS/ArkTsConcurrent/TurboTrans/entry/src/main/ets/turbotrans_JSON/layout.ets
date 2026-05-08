@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start tranferabledObject_Layout]
+// [Start transferableObject_Layout]
 import { Serializable, SerialName } from '@hadss/turbo-trans-core';
-// [StartExclude tranferabledObject_Layout]
+// [StartExclude transferableObject_Layout]
 import { collections } from '@kit.ArkTS';
-// [EndExclude tranferabledObject_Layout]
+// [EndExclude transferableObject_Layout]
 
 @Serializable({ generateSendable: true})
 export class Layout {
@@ -25,7 +25,7 @@ export class Layout {
   @SerialName({ name: 'arr'})
   public arr: number[] = [];
 }
-// [End tranferabledObject_Layout]
+// [End transferableObject_Layout]
 
 @Sendable
 export class LayoutS {
