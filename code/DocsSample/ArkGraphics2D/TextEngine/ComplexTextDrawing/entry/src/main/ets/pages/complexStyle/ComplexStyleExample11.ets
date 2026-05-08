@@ -21,7 +21,7 @@ import { text, drawing } from '@kit.ArkGraphics2D'
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // 开启标点压缩
+    // 开启行首标点挤压
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 0, green: 0, blue: 0 },
       fontSize: 40
