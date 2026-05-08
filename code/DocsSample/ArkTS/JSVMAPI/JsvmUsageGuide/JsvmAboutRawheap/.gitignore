@@ -1,0 +1,35 @@
+# gitignore template for HarmonyOS applications
+# recommended for all HarmonyOS projects
+
+*.o
+*.o.d
+*.elf
+*.map
+*.log
+*.txt
+*.bak
+*.log
+*.d
+
+# Build directories
+build/
+generated/
+tmp/
+out/
+
+# IDE directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies
+node_modules/
+
+# Hvigor cache
+.hvigor/
