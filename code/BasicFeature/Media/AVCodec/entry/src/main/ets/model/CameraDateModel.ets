@@ -28,6 +28,7 @@ export class CameraDataModel {
   public bitRate: number = Const.BITRATE_VIDEO_20M;
   public format: camera.CameraFormat = camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP;
   public isSync: number = 0;
+  public outputFormat: number = Const.FORMAT_MP4;
 
   setCodecFormat(isHDR: number, codecMime: string): void {
     this.isHDRVivid = isHDR;

@@ -92,14 +92,15 @@ static SampleInfo ParseSampleInfo(napi_env env, napi_value args[])
     napi_get_value_double(env, args[index++], &sampleInfo.frameRate);
     napi_get_value_int32(env, args[index++], &sampleInfo.isHDRVivid);
     napi_get_value_int64(env, args[index++], &sampleInfo.bitrate);
-    
+
     int32_t format;
     if (napi_ok == napi_get_value_int32(env, args[index++], &format)) {
         sampleInfo.pixelFormat = (format == RGBA) ? AV_PIXEL_FORMAT_RGBA : AV_PIXEL_FORMAT_NV12;
     }
-    
-    napi_get_value_int32(env, args[index], &sampleInfo.codecSyncMode);
-    
+
+    napi_get_value_int32(env, args[index++], &sampleInfo.codecSyncMode);
+    napi_get_value_int32(env, args[index], &sampleInfo.outputFormat);
+
     sampleInfo.videoCodecMime = videoCodecMime;
     if (sampleInfo.isHDRVivid) {
         sampleInfo.hevcProfile = HEVC_PROFILE_MAIN_10;
@@ -130,8 +131,8 @@ static void StartAsyncWork(napi_env env, AsyncCallbackInfo* asyncInfo)
 
 napi_value RecorderNative::Init(napi_env env, napi_callback_info info)
 {
-    size_t argc = 9;
-    napi_value args[9] = {nullptr};
+    size_t argc = 10;
+    napi_value args[10] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     SampleInfo sampleInfo = ParseSampleInfo(env, args);

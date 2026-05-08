@@ -14,7 +14,8 @@
  */
 
 export const initNative: (fd: number, videoCodecMime: string, width: number, height: number,
-  frameRate: number, isHDRVivid: number, bitRate: number, format: number, isSync: number) => Promise<Response>
+  frameRate: number, isHDRVivid: number, bitRate: number, format: number, isSync: number,
+  outputFormat: number) => Promise<Response>
 
 export const startNative: () => void
 

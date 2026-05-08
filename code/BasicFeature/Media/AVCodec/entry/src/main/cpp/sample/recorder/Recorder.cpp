@@ -63,7 +63,7 @@ int32_t Recorder::Init(SampleInfo &sampleInfo)
 
     int32_t ret = videoEncoder_->Create(sampleInfo_.videoCodecMime);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create video encoder failed");
-    ret = muxer_->Create(sampleInfo_.outputFd);
+    ret = muxer_->Create(sampleInfo_.outputFd, sampleInfo_.outputFormat);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create muxer with fd(%{public}d) failed",
                              sampleInfo_.outputFd);
 

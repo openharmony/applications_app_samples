@@ -139,6 +139,14 @@
     {
       "name": "end_recording",
       "value": "结束录制"
+    },
+    {
+      "name": "record_mp4",
+      "value": "MP4录制"
+    },
+    {
+      "name": "record_flv",
+      "value": "FLV录制"
     }
   ]
 }

@@ -34,6 +34,7 @@ const DATETIME: DateTimeUtil = new DateTimeUtil();
 export struct Player {
   @State buttonEnabled: boolean = true;
   @State isShow: boolean = false;
+  @State isShowFlv: boolean = false;
   private transformType: number = 0;
   private videoDecoderType: number = 0;
   private videoDecoderRunMode: number = 0;
@@ -369,7 +370,8 @@ export struct Player {
           .onClick(async () => {
             const context = this.getUIContext().getHostContext();
             let helper = photoAccessHelper.getPhotoAccessHelper(context);
-            let uri = await helper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', {
+            let fileExt = this.cameraData.outputFormat === Const.FORMAT_FLV ? 'flv' : 'mp4';
+            let uri = await helper.createAsset(photoAccessHelper.PhotoType.VIDEO, fileExt, {
               title: `AVCodecVideo_${DATETIME.getDate()}_${DATETIME.getTime()}`
             });
             await this.checkIsProfileSupport();
@@ -378,7 +380,8 @@ export struct Player {
             if (this.cameraData.outputfd !== null) {
               recorder.initNative(this.cameraData.outputfd, this.cameraData.videoCodecMime, this.cameraData.cameraWidth,
                 this.cameraData.cameraHeight, this.cameraData.frameRate, this.cameraData.isHDRVivid,
-                this.cameraData.bitRate, this.cameraData.format, this.cameraData.isSync).then((data) => {
+                this.cameraData.bitRate, this.cameraData.format, this.cameraData.isSync,
+                this.cameraData.outputFormat).then((data) => {
                 if (data.surfaceId !== null) {
                   this.cameraData.surfaceId = data.surfaceId;
                   this.getUIContext().getRouter().pushUrl({
@@ -622,8 +625,9 @@ export struct Player {
         Row() {
           this.RecorderSettingButton()
           Blank(5)
-          Button($r('app.string.record'))
+          Button($r('app.string.record_mp4'))
             .onClick(() => {
+              this.cameraData.outputFormat = Const.FORMAT_MP4;
               this.isShow = true;
             })
             .bindSheet($$this.isShow, this.Authorized, {
@@ -633,7 +637,24 @@ export struct Player {
               }
             })
             .size({
-              width: '80%',
+              width: '38%',
+              height: $r('app.float.index_button_height')
+            })
+            .enabled(this.buttonEnabled)
+          Blank(5)
+          Button($r('app.string.record_flv'))
+            .onClick(() => {
+              this.cameraData.outputFormat = Const.FORMAT_FLV;
+              this.isShowFlv = true;
+            })
+            .bindSheet($$this.isShowFlv, this.Authorized, {
+              height: 210,
+              title: {
+                title: $r('app.string.saveButtonTitle')
+              }
+            })
+            .size({
+              width: '38%',
               height: $r('app.float.index_button_height')
             })
             .enabled(this.buttonEnabled)
