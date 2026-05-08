@@ -176,7 +176,7 @@ entry/src/main/
 ```
 git init
 git config core.sparsecheckout true
-echo code\DocsSample\Media\Audio\Midi > .git/info/sparse-checkout
+echo code/DocsSample/Media/Audio/Midi > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

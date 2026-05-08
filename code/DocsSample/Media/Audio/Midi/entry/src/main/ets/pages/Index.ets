@@ -1365,7 +1365,8 @@ struct Index {
 
     try {
       const status = midi.openBLEDevice(deviceAddress, (opened: boolean, deviceInfo: MidiDeviceInfo) => {
-        // 在回调中：仅复制数据并发射事件，不要持有锁或执行繁重操作 opened=%{public}s, devId=%{public}d, name=%{public}s',
+        // 在回调中：仅复制数据并发射事件，不要持有锁或执行繁重操作
+        hilog.info(DOMAIN, TAG, '[openBLEDevice/cb] opened=%{public}s, devId=%{public}d, name=%{public}s',
           opened.toString(), deviceInfo.deviceId, deviceInfo.deviceName);
         const eventData: BleOpenedEventData = {
           opened: opened,

@@ -232,17 +232,14 @@ public:
 
         cv_.notify_one();
 
-        // 先abort tsfn，阻止新的JS调用
-        if (tsfn_ != nullptr) {
-            napi_release_threadsafe_function(tsfn_, napi_tsfn_abort);
-        }
-
+        // 先join工作线程，确保它已完全退出，不再使用tsfn
         if (workerThread_.joinable()) {
             workerThread_.join();
         }
 
-        // 再release tsfn
+        // 工作线程已退出，现在安全地abort和release tsfn
         if (tsfn_ != nullptr) {
+            napi_release_threadsafe_function(tsfn_, napi_tsfn_abort);
             napi_release_threadsafe_function(tsfn_, napi_tsfn_release);
             tsfn_ = nullptr;
         }
@@ -645,6 +642,31 @@ static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context,
 
     delete callbackData;
     OH_LOG_INFO(LOG_APP, "[CallJsBleOpened] --exit (JS thread)");
+}
+
+// 辅助函数：清理指定设备的输入端口上下文并关闭端口
+static void CleanupInputPortContextsForDevice(int64_t deviceId)
+{
+    OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld",
+                 (long long)deviceId);
+    auto devIt = g_openedDevices.find(deviceId);
+    OH_MIDIDevice* device = (devIt != g_openedDevices.end()) ? devIt->second : nullptr;
+    for (auto ctxIt = g_inputPortContexts.begin(); ctxIt != g_inputPortContexts.end();) {
+        if (ctxIt->first.first == deviceId) {
+            if (device != nullptr) {
+                uint32_t portIndex = ctxIt->first.second;
+                OH_MIDIDevice_CloseInputPort(device, portIndex);
+                OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] closed input port %{public}u", portIndex);
+            }
+            if (ctxIt->second != nullptr) {
+                ctxIt->second->Stop();
+            }
+            // 关闭输入端口
+            ctxIt = g_inputPortContexts.erase(ctxIt);
+        } else {
+            ++ctxIt;
+        }
+    }
 }
 
 // [Start quick_start]
@@ -1154,31 +1176,6 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
     // [EndExclude open_device]
 }
 // [End open_device]
-
-// 辅助函数：清理指定设备的输入端口上下文并关闭端口
-static void CleanupInputPortContextsForDevice(int64_t deviceId)
-{
-    OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld",
-                 (long long)deviceId);
-    auto devIt = g_openedDevices.find(deviceId);
-    OH_MIDIDevice* device = (devIt != g_openedDevices.end()) ? devIt->second : nullptr;
-    for (auto ctxIt = g_inputPortContexts.begin(); ctxIt != g_inputPortContexts.end();) {
-        if (ctxIt->first.first == deviceId) {
-            if (ctxIt->second != nullptr) {
-                ctxIt->second->Stop();
-            }
-            // 关闭输入端口
-            if (device != nullptr) {
-                uint32_t portIndex = ctxIt->first.second;
-                OH_MIDIDevice_CloseInputPort(device, portIndex);
-                OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] closed input port %{public}u", portIndex);
-            }
-            ctxIt = g_inputPortContexts.erase(ctxIt);
-        } else {
-            ++ctxIt;
-        }
-    }
-}
 
 // 辅助函数：从JS数组解析MIDI事件
 static bool ParseMIDIEventsFromArray(napi_env env, napi_value jsArray,
