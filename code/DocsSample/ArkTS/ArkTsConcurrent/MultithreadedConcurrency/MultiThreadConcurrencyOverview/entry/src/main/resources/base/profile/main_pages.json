@@ -1,5 +1,7 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "managers/actormodel",
+    "managers/actormodel2"
   ]
 }
