@@ -53,9 +53,7 @@ struct sequenceIdentification {
               if (event.repeat) {
                 this.count++;
               }
-              ;
             }
-            ;
             hilog.info(DOMAIN, TAG, 'LongPress onAction');
           })
           .onActionEnd(() => {
@@ -73,7 +71,6 @@ struct sequenceIdentification {
               this.offsetX = (this.positionX + event.offsetX);
               this.offsetY = this.positionY + event.offsetY;
             }
-            ;
             hilog.info(DOMAIN, TAG, 'pan update');
           })
           .onActionEnd(() => {
