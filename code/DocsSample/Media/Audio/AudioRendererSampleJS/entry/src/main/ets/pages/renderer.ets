@@ -460,22 +460,18 @@ async function getDevicesSync(){
 async function getStatus(){
   // [EndExclude check_isspacesoundon]
   let isSpatializationEnabledForCurrentDevice = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
-  console.info(`Succeeded in using isSpatializationEnabledForCurrentDevice function,
-    IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
+  console.info(`Succeeded in checking spatialization enabled for current device is: ${isSpatializationEnabledForCurrentDevice}.`);
   // [End check_isspacesoundon]
-  globalLogUpdate(`Succeeded in using isSpatializationEnabledForCurrentDevice function,
-    IsSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`, false);
+  globalLogUpdate(`Succeeded in checking spatialization enabled for current device is: ${isSpatializationEnabledForCurrentDevice}.`, false);
 }
 
 async function on(){
   // [EndExclude regist_spacesoundcallback]
   audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice',
     (isSpatializationEnabledForCurrentDevice: boolean) => {
-    console.info(`Succeeded in using on function, IsSpatializationEnabledForCurrentDevice:
-      ${isSpatializationEnabledForCurrentDevice}.`);
+    console.info(`Succeeded in using isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
     // [StartExclude regist_spacesoundcallback]
-    globalCallbackUpdate(`Succeeded in using on function, IsSpatializationEnabledForCurrentDevice:
-      ${isSpatializationEnabledForCurrentDevice}.`);
+    globalCallbackUpdate(`Succeeded in using isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}.`);
     // [EndExclude regist_spacesoundcallback]
   });
   // [End regist_spacesoundcallback]
