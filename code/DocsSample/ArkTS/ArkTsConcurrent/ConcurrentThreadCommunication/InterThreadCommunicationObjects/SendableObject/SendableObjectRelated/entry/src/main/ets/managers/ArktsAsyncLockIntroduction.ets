@@ -38,6 +38,7 @@ export class A {
 
 @Concurrent
 async function printCount(a: A) {
+  a.increaseCount();
   console.info('InputModule: count is:' + await a.getCount());
 }
 
