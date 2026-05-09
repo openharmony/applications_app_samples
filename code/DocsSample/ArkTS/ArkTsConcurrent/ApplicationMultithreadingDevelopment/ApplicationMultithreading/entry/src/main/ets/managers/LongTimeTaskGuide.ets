@@ -14,10 +14,13 @@
  */
 
 // [Start taskpool_listen_sensor_data]
+// [Start taskpool_listen_sensor_data_import]
 import { sensor } from '@kit.SensorServiceKit';
 import { taskpool } from '@kit.ArkTS';
 import { BusinessError, emitter } from '@kit.BasicServicesKit';
+// [End taskpool_listen_sensor_data_import]
 
+// [Start taskpool_listen_sensor_data_concurrent]
 @Concurrent
 async function sensorListener(): Promise<void> {
   sensor.on(sensor.SensorId.ACCELEROMETER, (data) => {
@@ -29,6 +32,7 @@ async function sensorListener(): Promise<void> {
     emitter.off(1)
   })
 }
+// [End taskpool_listen_sensor_data_concurrent]
 
 @Entry
 @Component
