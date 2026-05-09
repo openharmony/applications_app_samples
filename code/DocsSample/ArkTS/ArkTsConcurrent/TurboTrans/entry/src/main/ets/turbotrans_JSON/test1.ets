@@ -25,12 +25,13 @@ export function testJSON1(): LayoutS {
   let str = JSON.stringify(obj);
   let layoutNormal = TJSON.fromString<Layout>(str, Layout);
   console.info('111 layout arr: ' + layoutNormal.arr);
-  let layoutS = (layoutNormal as object as ITSerializable).toSendable() as LayoutS;
-  if (ArkTSUtils.isSendable(layoutS)) {
+  let layoutSendable = (layoutNormal as object as ITSerializable).toSendable();
+  if (ArkTSUtils.isSendable(layoutSendable)) {
     console.info('expect layout from JSON string is Sendable');
   } else {
     console.error('test occur error');
   }
+  let layoutS = layoutSendable as LayoutS;
   return layoutS;
 }
 
@@ -38,12 +39,13 @@ export function testJSON2(): LayoutS {
   let layoutStr = '{"type":"Text","arr":[3,4]}';
   let layoutNormal = TJSON.fromString<Layout>(layoutStr, Layout);
   console.info('222 layout arr: ' + layoutNormal.arr);
-  let layoutS = (layoutNormal as object as ITSerializable).toSendable() as LayoutS;
-  if (ArkTSUtils.isSendable(layoutS)) {
+  let layoutSendable = (layoutNormal as object as ITSerializable).toSendable();
+  if (ArkTSUtils.isSendable(layoutSendable)) {
     console.info('expect layout from simple string is Sendable');
   } else {
     console.error('test occur error');
   }
+  let layoutS = layoutSendable as LayoutS;
   return layoutS;
 }
 
