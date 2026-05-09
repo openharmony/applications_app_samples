@@ -42,7 +42,11 @@ struct Index {
             .draggable(true)
             .onDragStart(() => {
               // 请将$r('app.string.Allow_dragging_prompt')替换为实际资源文件，在本示例中该资源文件的value值为"Drag 下半区蓝色区域，Image响应"
-              this.promptAction.showToast({ message: $r('app.string.Allow_dragging_prompt') });
+              try {
+                this.promptAction.showToast({ message: $r('app.string.Allow_dragging_prompt') });
+              } catch (error) {
+                console.error('ShowToast failed!')
+              }
             })
             .width('200vp').height('200vp')
           // Stack的上半区是绑定了长按手势的浮动区域。
@@ -53,14 +57,18 @@ struct Index {
           .hitTestBehavior(HitTestMode.Transparent)
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
-              .onAction((event: GestureEvent) => {
+              .onAction(() => {
                 /*
                 请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中
                 该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应"
                  */
-                this.promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt') });
+                try {
+                  this.promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt') });
+                } catch (error) {
+                  console.error('ShowToast failed!')
+                }
               })
-              .tag('longpress')
+              .tag('longPress')
           ))
           .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
             // 如果是长按类型手势，判断点击的位置是否在上半区
