@@ -1,0 +1,21 @@
+# gitignore template for HarmonyOS applications
+*.o
+*.o.d
+*.elf
+*.map
+*.log
+*.txt
+*.bak
+build/
+generated/
+tmp/
+out/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+node_modules/
+.hvigor/
