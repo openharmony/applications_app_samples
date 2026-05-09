@@ -20,6 +20,22 @@ import { common } from '@kit.AbilityKit';
 // [Start create_copyData]
 let copyData: ArrayBuffer = new ArrayBuffer(0);
 // [End create_copyData]
+
+// [Start get_supportedFormats]
+// 获取当前设备支持的解码格式列表。
+export function getSupportedFormats(): string[] {
+  let formats = image.getImageSourceSupportedFormats();
+  console.info('Supported formats: ' + formats);
+  return formats;
+}
+
+// 检查指定格式是否支持解码。
+export function isFormatSupported(format: string): boolean {
+  let formats = image.getImageSourceSupportedFormats();
+  return formats.includes(format);
+}
+// [End get_supportedFormats]
+
 // [Start create_picturePackOpts]
 let packOpts: image.PackingOption = {
   format: 'image/jpeg',
@@ -245,7 +261,7 @@ export class ImageInterfaceCalled {
       editable: true,
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
       // 设置为AUTO会根据图片资源格式和设备支持情况进行解码，如果图片资源为HDR资源且设备支持HDR解码则会解码为HDR的pixelMap。
-      desiredDynamicRange: image.DecodingDynamicRange.HDR,
+      desiredDynamicRange: image.DecodingDynamicRange.AUTO,
     };
 
     try {
@@ -342,6 +358,92 @@ export class ImageInterfaceCalled {
     
   }
   // [End allocator_called]
+
+  // [Start allocator_yuv_called]
+  async CreatePixelMapWithYUV(context: Context): Promise<image.PixelMap | undefined> {
+    const resourceMgr = context.resourceManager;
+    try {
+      const rawFileDescriptor = await resourceMgr.getRawFd('test.jpeg');
+      let imageSource: image.ImageSource = image.createImageSource(rawFileDescriptor);
+
+      // 设置YUV像素格式和DMA内存分配，实现最优解码性能。
+      let options: image.DecodingOptions = {
+        desiredPixelFormat: image.PixelMapFormat.NV21  // 设置为YUV格式，也可选择NV12。
+      };
+      let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.DMA);
+
+      if (pixelmap != undefined) {
+        let info = await pixelmap.getImageInfo();
+        console.info('YUV PixelMap created, stride = ' + info.stride + ', pixelFormat = ' + info.pixelFormat);
+      }
+      return pixelmap;
+    } catch (err) {
+      console.error(`Create PixelMap with YUV format failed: ${err}.`);
+      return undefined;
+    }
+  }
+  // [End allocator_yuv_called]
+
+  // [Start decode_region]
+  async DecodeRegion(imageSource: image.ImageSource): Promise<image.PixelMap | undefined> {
+    let decodingOptions: image.DecodingOptions = {
+      desiredRegion: {
+        size: { width: 1000, height: 1000 },
+        x: 0,
+        y: 0
+      }
+    };
+
+    try {
+      let pixelMap = await imageSource.createPixelMap(decodingOptions);
+      console.info('Succeeded in decoding region.');
+      return pixelMap;
+    } catch (error) {
+      console.error(`Failed to decode region: ${error}.`);
+      return undefined;
+    }
+  }
+  // [End decode_region]
+
+  // [Start decode_downsample]
+  async DownsampleDecode(imageSource: image.ImageSource): Promise<image.PixelMap | undefined> {
+    let decodingOptions: image.DecodingOptions = {
+      desiredSize: { width: 512, height: 512 }
+    };
+
+    try {
+      let pixelMap = await imageSource.createPixelMap(decodingOptions);
+      console.info('Succeeded in downsample decoding.');
+      return pixelMap;
+    } catch (error) {
+      console.error(`Failed to downsample decode: ${error}.`);
+      return undefined;
+    }
+  }
+  // [End decode_downsample]
+
+  // [Start decode_combined]
+  async CombinedDecode(imageSource: image.ImageSource): Promise<image.PixelMap | undefined> {
+    let decodingOptions: image.DecodingOptions = {
+      desiredRegion: {
+        size: { width: 2000, height: 2000 },
+        x: 1000,
+        y: 500
+      },
+      desiredSize: { width: 512, height: 512 },
+      cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST
+    };
+
+    try {
+      let pixelMap = await imageSource.createPixelMap(decodingOptions);
+      console.info('Succeeded in combined decoding.');
+      return pixelMap;
+    } catch (error) {
+      console.error(`Failed to combined decode: ${error}.`);
+      return undefined;
+    }
+  }
+  // [End decode_combined]
 
   // [Start release_pictureDecoder]
   async release(picture: image.Picture) {

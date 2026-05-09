@@ -39,6 +39,10 @@ export const createPictureByImageSource: (filePath: string) => number;
 export const releasePictureSource: () => number;
 // allocator
 export const testStrideWithAllocatorType: (filePath: string) => number;
+export const createPixelmapWithYUV: (filePath: string) => number;
+export const decodeRegion: () => number;
+export const downsampleDecode: () => number;
+export const combinedDecode: () => number;
 // packer
 export const packToFileFromImageSourceTestJs: (fd: number) => number;
 export const packToFileFromPixelmapTestJs: (fd: number) => number;
