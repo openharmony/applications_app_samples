@@ -22,7 +22,7 @@ import { Material } from './Material';
 @Concurrent
 async function create(context: Context): Promise<boolean> {
   const CONFIG: relationalStore.StoreConfig = {
-    name: "Store.db",
+    name: 'Store.db',
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
