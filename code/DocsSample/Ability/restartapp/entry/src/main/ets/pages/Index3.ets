@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start restartapp_withNewWindow]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'restartApp';
-  private context = this.getUIContext().getHostContext()?.getApplicationContext() as common.ApplicationContext;
+  @State message: string = 'restartApp to new page';
 
   build() {
     RelativeContainer() {
@@ -50,3 +50,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End restartapp_withNewWindow]

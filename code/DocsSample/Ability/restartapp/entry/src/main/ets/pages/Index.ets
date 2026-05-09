@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start restartapp_withoutWindow]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common, Want } from '@kit.AbilityKit';
 
@@ -51,3 +52,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End restartapp_withoutWindow]
