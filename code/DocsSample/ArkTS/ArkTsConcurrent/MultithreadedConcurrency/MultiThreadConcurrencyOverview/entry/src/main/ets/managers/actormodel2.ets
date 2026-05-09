@@ -45,7 +45,7 @@ struct ActorModel2 {
         Button() {
           Text('start')
         }.onClick(async () => {
-          let dataArray = new Array<number>();
+          let dataArray: number[] = [];
           let produceTask: taskpool.Task = new taskpool.Task(produce);
           let consumer: Consumer = new Consumer();
           for (let index: number = 0; index < 10; index++) {

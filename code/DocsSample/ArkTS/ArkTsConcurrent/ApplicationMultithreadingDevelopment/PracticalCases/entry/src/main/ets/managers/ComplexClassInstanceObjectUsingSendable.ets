@@ -32,12 +32,12 @@ async function create(context: Context): Promise<boolean> {
     console.info('Create Store.db successfully!');
 
     // 创建表
-    const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
-      "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-      "name TEXT NOT NULL, " +
-      "age INTEGER, " +
-      "salary REAL, " +
-      "blobType BLOB)";
+    const CREATE_TABLE_SQL = 'CREATE TABLE IF NOT EXISTS test (' +
+      'id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+      'name TEXT NOT NULL, ' +
+      'age INTEGER, ' +
+      'salary REAL, ' +
+      'blobType BLOB)';
     await store.executeSql(CREATE_TABLE_SQL);
     console.info('Create table test successfully!');
     return true;
@@ -50,7 +50,7 @@ async function create(context: Context): Promise<boolean> {
 @Concurrent
 async function insert(context: Context, valueBucketArray: collections.Array<SharedValuesBucket | undefined>) {
   const CONFIG: relationalStore.StoreConfig = {
-    name: "Store.db",
+    name: 'Store.db',
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
@@ -59,13 +59,13 @@ async function insert(context: Context, valueBucketArray: collections.Array<Shar
   console.info('Create Store.db successfully!');
 
   // 数据插入
-  await store.batchInsert("test", valueBucketArray as Object as Array<ValuesBucket>);
+  await store.batchInsert('test', valueBucketArray as Object as Array<ValuesBucket>);
 }
 
 @Concurrent
 async function query(context: Context): Promise<collections.Array<SharedValuesBucket | undefined>> {
   const CONFIG: relationalStore.StoreConfig = {
-    name: "Store.db",
+    name: 'Store.db',
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
@@ -74,7 +74,7 @@ async function query(context: Context): Promise<collections.Array<SharedValuesBu
   console.info('Create Store.db successfully!');
 
   // 获取用于查询的谓词
-  let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
+  let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates('test');
   // 查询所有数据
   let resultSet = await store.query(predicates);
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
@@ -83,10 +83,10 @@ async function query(context: Context): Promise<collections.Array<SharedValuesBu
   resultSet.goToFirstRow();
   do {
     let value: IValueBucket = {
-      id: resultSet.getLong(resultSet.getColumnIndex("id")),
-      name: resultSet.getString(resultSet.getColumnIndex("name")),
-      age: resultSet.getLong(resultSet.getColumnIndex("age")),
-      salary: resultSet.getLong(resultSet.getColumnIndex("salary"))
+      id: resultSet.getLong(resultSet.getColumnIndex('id')),
+      name: resultSet.getString(resultSet.getColumnIndex('name')),
+      age: resultSet.getLong(resultSet.getColumnIndex('age')),
+      salary: resultSet.getLong(resultSet.getColumnIndex('salary'))
     };
     result[index++] = new SharedValuesBucket(value);
   } while (resultSet.goToNextRow());
@@ -97,7 +97,7 @@ async function query(context: Context): Promise<collections.Array<SharedValuesBu
 @Concurrent
 async function deleteStore(context: Context) {
   const CONFIG: relationalStore.StoreConfig = {
-    name: "Store.db",
+    name: 'Store.db',
     securityLevel: relationalStore.SecurityLevel.S1,
   };
 
@@ -113,13 +113,13 @@ function initMaterial(): Material {
   for (let i = 0; i < count; i++) {
     let value: IValueBucket = {
       id: i,
-      name: "zhangsan" + i,
+      name: 'zhangsan' + i,
       age: 20,
       salary: 5000 + 50 * i
     };
     valueBucketArray[i] = new SharedValuesBucket(value);
   }
-  let material = new Material(1, "test", valueBucketArray);
+  let material = new Material(1, 'test', valueBucketArray);
   return material;
 }
 
@@ -143,7 +143,7 @@ struct Index {
           let material = initMaterial();
           let ret = await taskpool.execute(create, context);
           if (!ret) {
-            console.error("Create db failed.");
+            console.error('Create db failed.');
             return;
           }
           await taskpool.execute(insert, context, material.getBuckets());

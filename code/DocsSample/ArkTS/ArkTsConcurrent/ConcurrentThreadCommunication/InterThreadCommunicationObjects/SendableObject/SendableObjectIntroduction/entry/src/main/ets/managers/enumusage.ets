@@ -14,15 +14,15 @@
  */
 
 // [Start example_modify_enum]
-import { taskpool } from "@kit.ArkTS";
-import { ModelState } from "./Test";
+import { taskpool } from '@kit.ArkTS';
+import { ModelState } from './Test';
 
 @Sendable
 class Model {
-  state: ModelState = ModelState.ACTIVE;
+  public state: ModelState = ModelState.ACTIVE;
 
   getState() {
-    console.info("model state is " + this.state);
+    console.info('model state is ' + this.state);
   }
 
   setState(state: ModelState) {
