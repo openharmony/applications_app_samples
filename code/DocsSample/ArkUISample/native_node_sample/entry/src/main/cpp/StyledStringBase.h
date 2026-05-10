@@ -146,9 +146,14 @@ constexpr int32_t INDEX_1 = 1;
 constexpr int32_t INDEX_2 = 2;
 constexpr int32_t INDEX_3 = 3;
 
+constexpr float FLOAT_50 = 50.0f;
+constexpr float FLOAT_20 = 20.0f;
+
+constexpr int32_t NUMBER_3 = 3;
+
 constexpr float LEADING_MARGIN_CALL_BACK_RETURN_VALUE = 10.0f;
 
-using BindDescriptorFunc = std::function<void(ArkUI_StyledString_Descriptor*& )>;
+using BindDescriptorFunc = std::function<void(ArkUI_StyledString_Descriptor*&)>;
 
 class StyledStringBase {
 public:

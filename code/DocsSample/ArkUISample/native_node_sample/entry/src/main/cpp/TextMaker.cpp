@@ -2256,7 +2256,7 @@ void setTextInput16(ArkUI_NodeHandle &textArea)
         linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
     linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
     linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
-    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_LINEAR_GRADIENT  , &linearGradientItem);
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_LINEAR_GRADIENT, &linearGradientItem);
     // [End text_linear_gradient]
 }
 
@@ -2288,7 +2288,7 @@ void setTextInput17(ArkUI_NodeHandle &textArea)
     radialGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
     radialGradientItem.size = sizeof(radialGradientItem) / sizeof(ArkUI_NumberValue);
 
-    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_RADIAL_GRADIENT , &radialGradientItem);
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_RADIAL_GRADIENT, &radialGradientItem);
 }
 
 void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
@@ -2405,7 +2405,7 @@ void setTextArea17(ArkUI_NodeHandle &textArea)
         linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
     linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
     linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
-    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_LINEAR_GRADIENT , &linearGradientItem);
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_LINEAR_GRADIENT, &linearGradientItem);
     // [End text_linear_gradient]
 }
 
