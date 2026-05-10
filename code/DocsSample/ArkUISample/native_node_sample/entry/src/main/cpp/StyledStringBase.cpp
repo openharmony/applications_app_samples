@@ -114,6 +114,68 @@ void StyledStringBase::CreateStyledStringWithParagraphStyle(ArkUI_NodeHandle nod
     OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
 }
 
+void StyledStringBase::CreateStyledStringWithParagraphStyle2(ArkUI_NodeHandle node, BindDescriptorFunc &&func)
+{
+    StyledStringBase::StyledStringBase::SetTextTitle(node, "创建线性渐变段落样式的StyledString");
+    OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
+    const float *stops = new float[3]{0.0f, 0.1f, 0.5f};
+    const uint32_t *colors = new uint32_t[3]{0xFFFF0000, 0xFFFFFF00, 0xFF0000FF};
+    auto* linearGradientOptions = OH_ArkUI_LinearGradientOptions_Create();
+    OH_ArkUI_LinearGradientOptions_SetAngle(linearGradientOptions,45);
+    OH_ArkUI_LinearGradientOptions_SetDirection(linearGradientOptions, ArkUI_LinearGradientDirection::ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP);
+    OH_ArkUI_LinearGradientOptions_SetRepeating(linearGradientOptions, false);
+
+    OH_ArkUI_LinearGradientOptions_SetColorStop(linearGradientOptions, colors, stops, 3);
+    OH_ArkUI_ParagraphStyle_SetLinearGradient(paragraphStyle, linearGradientOptions);
+
+    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
+    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
+    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_12);
+    OH_ArkUI_SpanStyle_SetParagraphStyle(spanStyle, paragraphStyle);
+
+
+    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
+    ArkUI_StyledString_Descriptor *styledString =
+        OH_ArkUI_StyledString_Descriptor_CreateWithString("段落样式示例", spanStyles, 1);
+
+    func(styledString);
+
+    OH_ArkUI_SpanStyle_Destroy(spanStyle);
+    OH_ArkUI_ParagraphStyle_Destroy(paragraphStyle);
+    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
+}
+
+void StyledStringBase::CreateStyledStringWithParagraphStyle3(ArkUI_NodeHandle node, BindDescriptorFunc &&func)
+{
+    StyledStringBase::StyledStringBase::SetTextTitle(node, "创建径向渐变段落样式的StyledString");
+    OH_ArkUI_ParagraphStyle *paragraphStyle = OH_ArkUI_ParagraphStyle_Create();
+    const float *stops = new float[3]{0.0f, 0.1f, 0.5f};
+    const uint32_t *colors = new uint32_t[3]{0xFFFF0000, 0xFFFFFF00, 0xFF0000FF};
+    auto *radialGradientOptions = OH_ArkUI_RadialGradientOptions_Create();
+    OH_ArkUI_RadialGradientOptions_SetCenterX(radialGradientOptions, 50);
+    OH_ArkUI_RadialGradientOptions_SetCenterY(radialGradientOptions, 50);
+    OH_ArkUI_RadialGradientOptions_SetRadius(radialGradientOptions, 20);
+    OH_ArkUI_RadialGradientOptions_SetRepeating(radialGradientOptions, true);
+    OH_ArkUI_RadialGradientOptions_SetColorStop(radialGradientOptions, colors, stops, 3);
+    OH_ArkUI_ParagraphStyle_SetRadialGradient(paragraphStyle, radialGradientOptions);
+
+    OH_ArkUI_SpanStyle *spanStyle = OH_ArkUI_SpanStyle_Create();
+    OH_ArkUI_SpanStyle_SetStart(spanStyle, 0);
+    OH_ArkUI_SpanStyle_SetLength(spanStyle, SPAN_LENGTH_12);
+    OH_ArkUI_SpanStyle_SetParagraphStyle(spanStyle, paragraphStyle);
+
+
+    const OH_ArkUI_SpanStyle *spanStyles[] = {spanStyle};
+    ArkUI_StyledString_Descriptor *styledString =
+        OH_ArkUI_StyledString_Descriptor_CreateWithString("段落样式示例", spanStyles, 1);
+
+    func(styledString);
+
+    OH_ArkUI_SpanStyle_Destroy(spanStyle);
+    OH_ArkUI_ParagraphStyle_Destroy(paragraphStyle);
+    OH_ArkUI_StyledString_Descriptor_Destroy(styledString);
+}
+
 void StyledStringBase::CreateStyledStringWithDecorationStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func)
 {
     StyledStringBase::StyledStringBase::SetTextTitle(node, "创建带装饰样式的StyledString");
@@ -482,14 +544,6 @@ void StyledStringBase::StyledStringAdvancedOperations(ArkUI_NodeHandle node, Bin
     const char *html = OH_ArkUI_ConvertToHtml(styledString1);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TextEditorMaker", "HTML: %{public}s", html);
     func(styledString1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle1);
-    OH_ArkUI_TextStyle_Destroy(textStyle1);
-    OH_ArkUI_SpanStyle_Destroy(spanStyle2);
-    OH_ArkUI_TextStyle_Destroy(textStyle2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString1);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString2);
-    OH_ArkUI_StyledString_Descriptor_Destroy(subString);
-    OH_ArkUI_StyledString_Descriptor_Destroy(styledString3);
 }
 
 void StyledStringBase::StyledStringComparisonAndSerialization(ArkUI_NodeHandle node, BindDescriptorFunc &&func)

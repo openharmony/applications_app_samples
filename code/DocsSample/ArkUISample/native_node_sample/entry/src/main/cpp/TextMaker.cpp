@@ -3178,7 +3178,7 @@ ArkUI_NodeHandle InitText(ArkUI_NodeHandle& textContainer)
 
 BindDescriptorFunc GetBindDescriptorFunc(ArkUI_NodeHandle& textContainer)
 {
-    return [&textContainer](ArkUI_StyledString_Descriptor * descriptor) {
+    return [&textContainer](ArkUI_StyledString_Descriptor*& descriptor) {
             auto text = InitText(textContainer);
             OH_ArkUI_TextController *controller = OH_ArkUI_TextController_Create();
             ArkUI_AttributeItem controllerItem = {.object = controller};
