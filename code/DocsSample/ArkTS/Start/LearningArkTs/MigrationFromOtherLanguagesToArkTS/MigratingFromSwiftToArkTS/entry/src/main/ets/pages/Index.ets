@@ -156,7 +156,7 @@ function testThisContext() {
 
   // callFunction(a.foo); // 程序crash。this的上下文发生了变化
   // b.callFunction(a.foo); // 程序crash。this的上下文发生了变化
-  b.callFunction(a.foo.bind(b)) // 输出'I'm B'
+  b.callFunction(a.foo.bind(b)) // 输出'I am B'
   // [End this_context]
 
   let logMsg = `b.callFunction: ${b.callFunction(a.foo.bind(b))}`;
