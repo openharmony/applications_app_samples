@@ -17,15 +17,18 @@
 #define AVSCREENCAPTURENDKDEMO_MAIN_H
 #endif // AVSCREENCAPTURENDKDEMO_MAIN_H
 
+// [Start screenCapture_import]
 #include "napi/native_api.h"
-#include <unistd.h>
-#include <fcntl.h>
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avbuffer.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include "hilog/log.h"
+#include <unistd.h>
+#include <fcntl.h>
 #include <string>
+// [End screenCapture_import]
+
 #include "multimedia/player_framework/native_avcodec_videodecoder.h"
 #include "multimedia/player_framework/native_avcodec_videoencoder.h"
 #include <native_buffer/native_buffer.h>

@@ -53,28 +53,57 @@ void CloseFile(void)
     }
 }
 
+// [Start screenCapture_config]
 void SetConfig(OH_AVScreenCaptureConfig &config)
 {
-    int32_t width = 720;
-    int32_t height = 1280;
-    OH_AudioCaptureInfo micCapInfo = {.audioSampleRate = 48000, .audioChannels = 2, .audioSource = OH_MIC};
-    OH_AudioCaptureInfo innerCapInfo = {.audioSampleRate = 48000, .audioChannels = 2, .audioSource = OH_ALL_PLAYBACK};
-    OH_AudioEncInfo audioEncInfo = {.audioBitrate = 48000, .audioCodecformat = OH_AudioCodecFormat::OH_AAC_LC};
-    OH_AudioInfo audioInfo = {.micCapInfo = micCapInfo, .innerCapInfo = innerCapInfo, .audioEncInfo = audioEncInfo};
+    OH_AudioCaptureInfo micCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_MIC
+    };
+
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_ALL_PLAYBACK
+    };
+
+    OH_AudioEncInfo audioEncInfo = {
+        .audioBitrate = 48000,
+        .audioCodecformat = OH_AAC_LC
+    };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = width, .videoFrameHeight = height, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 720,
+        .videoFrameHeight = 1280,
+        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
+    };
+
     OH_VideoEncInfo videoEncInfo = {
-        .videoCodec = OH_VideoCodecFormat::OH_H264, .videoBitrate = 2000000, .videoFrameRate = 30};
-    OH_VideoInfo videoInfo = {.videoCapInfo = videoCapInfo, .videoEncInfo = videoEncInfo};
+        .videoCodec = OH_H264,
+        .videoBitrate = 2000000,
+        .videoFrameRate = 30
+    };
+
+    OH_AudioInfo audioInfo = {
+        .micCapInfo = micCapInfo,
+        .innerCapInfo = innerCapInfo,
+        .audioEncInfo = audioEncInfo
+    };
+
+    OH_VideoInfo videoInfo = {
+        .videoCapInfo = videoCapInfo,
+        .videoEncInfo = videoEncInfo
+    };
 
     config = {
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioInfo,
-        .videoInfo = videoInfo,
+        .videoInfo = videoInfo
     };
 }
+// [End screenCapture_config]
 
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData)
 {
@@ -417,10 +446,12 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
     return res;
 }
 
-// 开始窗口级录屏存文件
+// 开始窗口级录屏
 static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
 {
+// [Start screenCapture_create]
     g_avCapture = OH_AVScreenCapture_Create();
+// [End screenCapture_create]
     if (g_avCapture == nullptr) {
         OH_LOG_ERROR(LOG_APP, "create screen capture failed");
     }
@@ -441,15 +472,12 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     config_.dataType = OH_CAPTURE_FILE;
     config_.recorderInfo = recorderInfo;
 
-    // 期望录制的窗口，可传入单个窗口Id。
-    std::vector<int32_t> missionIds = {88}; // 指定窗口id列表口，可通过窗口接口获取。
-    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
-    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
-    
-    // 设置不弹出屏幕捕获Picker
+    // [Start screenCapture_createCaptureStrategy]
+    // 通过弹出屏幕捕获Picker列表方式，选择已打开的应用窗口进行窗口级录屏。
     OH_AVScreenCapture_CaptureStrategy *strategy = OH_AVScreenCapture_CreateCaptureStrategy();
-    OH_AVScreenCapture_StrategyForPickerPopUp(strategy, false);
+    OH_AVScreenCapture_StrategyForPickerPopUp(strategy, true);
     OH_AVScreenCapture_SetCaptureStrategy(g_avCapture, strategy);
+    // [End screenCapture_createCaptureStrategy]
 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMicrophone);
@@ -460,12 +488,15 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
-
+    // [Start screenCapture_startScreenRecording]
     result = OH_AVScreenCapture_StartScreenRecording(g_avCapture);
+    // [End screenCapture_startScreenRecording]
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
         OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
+    // [Start screenCapture_releaseScreenRecording]
         OH_AVScreenCapture_Release(g_avCapture);
         g_avCapture = nullptr;
+    // [Start screenCapture_releaseScreenRecording]
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
@@ -497,7 +528,9 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         OH_LOG_ERROR(LOG_APP, "capture_ is null.");
     }
     if (m_scSaveFileIsRunning) {
+        // [Start screenCapture_stopScreenRecording]
         result = OH_AVScreenCapture_StopScreenRecording(g_avCapture);
+        // [End screenCapture_stopScreenRecording]
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenRecording Result: %{public}d",
                 result);
