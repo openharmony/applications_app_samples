@@ -96,4 +96,53 @@ public:
 };
 // [End define_auxPictureClass]
 
+// animated decoding
+extern napi_value CreateAnimatedImageSource(napi_env env, napi_callback_info info);
+extern napi_value GetAnimatedFrameCount(napi_env env, napi_callback_info info);
+extern napi_value GetAnimatedDelayTimeList(napi_env env, napi_callback_info info);
+extern napi_value CreateAnimatedPixelmapList(napi_env env, napi_callback_info info);
+extern napi_value CreateAnimatedPixelmapByIndex(napi_env env, napi_callback_info info);
+extern napi_value ReleaseAnimatedImageSource(napi_env env, napi_callback_info info);
+
+// [Start define_animatedSourceClass]
+class ImageAnimatedNative {
+public:
+    OH_ImageSourceNative *source = nullptr;
+    OH_PixelmapNative **pixelMapList = nullptr;
+    OH_PixelmapNative *pixelMap = nullptr;
+    uint32_t frameCnt = 0;
+    size_t pixelMapListSize = 0;
+    ImageAnimatedNative() {}
+    ~ImageAnimatedNative() {}
+};
+// [End define_animatedSourceClass]
+
+// HDR decoding and color space
+extern napi_value CreateHdrImageSource(napi_env env, napi_callback_info info);
+extern napi_value DecodeHdrPixelMap(napi_env env, napi_callback_info info);
+extern napi_value CheckHdrDynamicRange(napi_env env, napi_callback_info info);
+extern napi_value DecodeSdrPixelMap(napi_env env, napi_callback_info info);
+extern napi_value DecodeHdrPicture(napi_env env, napi_callback_info info);
+extern napi_value GetMainPixelmapFromPicture(napi_env env, napi_callback_info info);
+extern napi_value GetGainmapPixelmapFromPicture(napi_env env, napi_callback_info info);
+extern napi_value GetHdrComposedPixelmapFromPicture(napi_env env, napi_callback_info info);
+extern napi_value PackHdrPixelMap(napi_env env, napi_callback_info info);
+extern napi_value ReleaseHdrColorSpaceSource(napi_env env, napi_callback_info info);
+
+// [Start define_hdrColorSpaceClass]
+class ImageHdrColorSpaceNative {
+public:
+    OH_ImageSourceNative *source = nullptr;
+    OH_PixelmapNative *pixelMap = nullptr;
+    OH_PixelmapNative *mainPixelMap = nullptr;
+    OH_PixelmapNative *gainmapPixelMap = nullptr;
+    OH_PixelmapNative *hdrPixelMap = nullptr;
+    OH_Pixelmap_ImageInfo *pixelMapImageInfo = nullptr;
+    OH_PictureNative *picture = nullptr;
+    bool isHdr = false;
+    ImageHdrColorSpaceNative() {}
+    ~ImageHdrColorSpaceNative() {}
+};
+// [End define_hdrColorSpaceClass]
+
 #endif // IMAGEKITS_H

@@ -31,14 +31,17 @@ struct GifCodec {
     Row() {
       Column() {
         Text('请先创建ImageSource!')
-        MyButton({ text: 'CreateImageSource', context: this.context,  fileName: this.gifName,
-          chooseFun: 'fun1', fun1: this.test.createImageSource})
-        MyButton({ text: 'CreatePixelmapList', chooseFun: 'funGroup1', fun: this.test.getFrameCount,
-          fun4: this.test.createPixelmapList})
-        MyButton({ text: 'GetDelayTimeList', chooseFun: 'funGroup1', fun: this.test.getFrameCount,
-          fun4: this.test.getDelayTimeList})
+        MyButton({ text: 'CreateAnimatedImageSource', context: this.context,  fileName: this.gifName,
+          chooseFun: 'fun1', fun1: this.test.createAnimatedImageSource })
+        MyButton({ text: 'GetAnimatedFrameCount', chooseFun: 'fun', fun: this.test.getAnimatedFrameCount })
+        MyButton({ text: 'GetAnimatedDelayTimeList', chooseFun: 'funGroup1', fun: this.test.getAnimatedFrameCount,
+          fun4: this.test.getAnimatedDelayTimeList })
+        MyButton({ text: 'CreateAnimatedPixelmapList', chooseFun: 'funGroup1', fun: this.test.getAnimatedFrameCount,
+          fun4: this.test.createAnimatedPixelmapList })
+        MyButton({ text: 'CreateAnimatedPixelmapByIndex', chooseFun: 'fun',
+          fun: () => this.test.createAnimatedPixelmapByIndex(0) })
         Text('资源释放后再进行其他操作会引起崩溃，请重新创建后再进行具体操作!')
-        MyButton({ text: 'ReleaseImageSource', chooseFun: 'fun', fun: this.test.releaseImageSource })
+        MyButton({ text: 'ReleaseAnimatedImageSource', chooseFun: 'fun', fun: this.test.releaseAnimatedImageSource })
         GotoButton({ text: 'back', dstUri: 'pages/Index'})
       }
       .width('100%')

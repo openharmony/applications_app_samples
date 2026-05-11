@@ -28,8 +28,25 @@ napi_value GetJsResult(napi_env env, int result)
 }
 // [End get_returnValue]
 
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
+namespace {
+constexpr size_t NapiDescCount(const napi_property_descriptor* desc, size_t bytes)
+{
+    return bytes / sizeof(desc[0]);
+}
+
+napi_status DefineProperties(
+    napi_env env,
+    napi_value exports,
+    const napi_property_descriptor* desc,
+    size_t count)
+{
+    if (count == 0 || desc == nullptr) {
+        return napi_ok;
+    }
+    return napi_define_properties(env, exports, count, desc);
+}
+
+napi_status RegisterBasicImage(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         { "createImageSource", nullptr, CreateImageSource, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -41,11 +58,80 @@ static napi_value Init(napi_env env, napi_value exports)
         { "createPixelmapList", nullptr, CreatePixelmapList, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "getDelayTimeList", nullptr, GetDelayTimeList, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "releaseImageSource", nullptr, ReleaseImageSource, nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
+
+    return napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+}
+
+napi_status RegisterAnimatedImage(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "createAnimatedImageSource", nullptr, CreateAnimatedImageSource,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getAnimatedFrameCount", nullptr, GetAnimatedFrameCount,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getAnimatedDelayTimeList", nullptr, GetAnimatedDelayTimeList,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createAnimatedPixelmapList", nullptr, CreateAnimatedPixelmapList,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createAnimatedPixelmapByIndex", nullptr, CreateAnimatedPixelmapByIndex,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "releaseAnimatedImageSource", nullptr, ReleaseAnimatedImageSource,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
+
+    return napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+}
+
+napi_status RegisterHdrImage(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "createHdrImageSource", nullptr, CreateHdrImageSource,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "decodeHdrPixelMap", nullptr, DecodeHdrPixelMap,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "checkHdrDynamicRange", nullptr, CheckHdrDynamicRange,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "decodeSdrPixelMap", nullptr, DecodeSdrPixelMap,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "decodeHdrPicture", nullptr, DecodeHdrPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getMainPixelmapFromPicture", nullptr, GetMainPixelmapFromPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getGainmapPixelmapFromPicture", nullptr, GetGainmapPixelmapFromPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getHdrComposedPixelmapFromPicture", nullptr, GetHdrComposedPixelmapFromPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "packHdrPixelMap", nullptr, PackHdrPixelMap,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "releaseHdrColorSpaceSource", nullptr, ReleaseHdrColorSpaceSource,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
+
+    return napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+}
+
+napi_status RegisterPictureOps(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
         { "setDesiredAuxiliaryPictures", nullptr, SetDesiredAuxiliaryPictures,
           nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createPictureByImageSource", nullptr, CreatePictureByImageSource,
           nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "releasePictureSource", nullptr, ReleasePictureSource, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "releasePictureSource", nullptr, ReleasePictureSource,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "packToDataFromPicture", nullptr, PackToDataFromPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "packToFileFromPicture", nullptr, PackToFileFromPicture,
+          nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
+
+    return napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+}
+
+napi_status RegisterDecodeAndPackOps(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
         { "testStrideWithAllocatorType", nullptr, TestStrideWithAllocatorType,
           nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createPixelmapWithYUV", nullptr, CreatePixelmapWithYUV,
@@ -60,12 +146,28 @@ static napi_value Init(napi_env env, napi_value exports)
           nullptr, nullptr, nullptr, napi_default, nullptr },
         { "packToFileFromPixelmapTestJs", nullptr, PackToFileFromPixelmapTestJs,
           nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "packToDataFromPicture", nullptr, PackToDataFromPicture,
-          nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "packToFileFromPicture", nullptr, PackToFileFromPicture,
-          nullptr, nullptr, nullptr, napi_default, nullptr },
     };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+
+    return napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+}
+
+bool RegisterAllProperties(napi_env env, napi_value exports)
+{
+    return RegisterBasicImage(env, exports) == napi_ok &&
+        RegisterAnimatedImage(env, exports) == napi_ok &&
+        RegisterHdrImage(env, exports) == napi_ok &&
+        RegisterPictureOps(env, exports) == napi_ok &&
+        RegisterDecodeAndPackOps(env, exports) == napi_ok;
+}
+} // namespace
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    if (!RegisterAllProperties(env, exports)) {
+        return exports;
+    }
+
     InitReceiverDemo(env, exports);
     return exports;
 }
