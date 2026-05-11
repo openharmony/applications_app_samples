@@ -51,7 +51,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiCreateBuffer') {
-                  // [Strart ark_napi_create_buffer_test]
+                  // [Start ark_napi_create_buffer_test]
                   // napi_create_buffer
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_buffer: %{public}s',
