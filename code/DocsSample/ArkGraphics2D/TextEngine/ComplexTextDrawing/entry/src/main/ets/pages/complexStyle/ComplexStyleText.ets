@@ -111,6 +111,49 @@ struct ComplexText {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
+        Button($r('app.string.ComplexStyle_Button_example9'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/complexStyle/ComplexStyleExample9' })
+          })
+          .width('90%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.ComplexStyle_Button_example10'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/complexStyle/ComplexStyleExample10' })
+          })
+          .width('90%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.ComplexStyle_Button_example11'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/complexStyle/ComplexStyleExample11' })
+          })
+          .width('90%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.ComplexStyle_Button_example12'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/complexStyle/ComplexStyleExample12' })
+          })
+          .width('90%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
       }.width('100%')
     }.height('100%')

@@ -69,6 +69,50 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
+        Button($r('app.string.Button_page_Ellipsis'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/ellipsis/EllipsisText' })
+          })
+          .width('60%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.Button_page_BreakStrategy'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/breakStrategy/BreakStrategyText' })
+          })
+          .width('60%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.Button_page_Punctuation'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/punctuation/PunctuationText' })
+          })
+          .width('60%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+        Button($r('app.string.Button_page_FontQuery'))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/fontQuery/FontQueryText' })
+          })
+          .width('60%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
       }.width('100%')
     }.height('100%')
 

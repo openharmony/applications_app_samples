@@ -25,6 +25,7 @@
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
+#include <native_drawing/drawing_text_declaration.h>
 #include <cstdint>
 #include <map>
 #include <sys/mman.h>
@@ -61,6 +62,16 @@ public:
     DECLARE_NAPI_FUNC(DrawLineSpacingText);
     DECLARE_NAPI_FUNC(DrawStyleCopyText);
     DECLARE_NAPI_FUNC(DrawIndependentShapingText);
+    DECLARE_NAPI_FUNC(DrawEllipsisTailText);
+    DECLARE_NAPI_FUNC(DrawEllipsisHeadText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMiddleText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMultilineHeadText);
+    DECLARE_NAPI_FUNC(DrawEllipsisMultilineMiddleText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyGreedyText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyHighQualityText);
+    DECLARE_NAPI_FUNC(DrawBreakStrategyBalancedText);
+    DECLARE_NAPI_FUNC(DrawPunctuationCompressText);
+    DECLARE_NAPI_FUNC(DrawFontResourcePathText);
 
     static napi_value NapiBaseFunc(napi_env env, napi_callback_info info, std::function<void(SampleBitMap *)> func,
                                    const std::string &name);
@@ -78,6 +89,9 @@ public:
     std::string id_;
 
 private:
+    double DrawPunctuationNoCompress(OH_Drawing_FontCollection *fc,
+        OH_Drawing_TextStyle *txtStyle, OH_Drawing_Pen *pen);
+
     OH_NativeXComponent_Callback renderCallback_;
 
     uint64_t width_ = 0;

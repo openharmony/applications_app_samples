@@ -197,6 +197,12 @@ void SampleBitMap::DrawText()
     // [End c_text_metrics_layout]
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+
+    PrintMetricsAndLayout(typography, myTextStyle);
+}
+
+void SampleBitMap::PrintMetricsAndLayout(OH_Drawing_Typography *typography, OH_Drawing_TextStyle *myTextStyle)
+{
     // [Start c_text_metrics_get_all_case]
     // case1: 获取排版后最长行行宽
     double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
@@ -224,12 +230,102 @@ void SampleBitMap::DrawText()
     OH_Drawing_Font_Metrics fontMetrics;
     // 获取文本字体属性
     bool result = OH_Drawing_TextStyleGetFontMetrics(typography, myTextStyle, &fontMetrics);
-    DRAWING_LOGI("result: %{public}zu, fontMetrics ascent: %{public}f" , result, fontMetrics.ascent);
+    DRAWING_LOGI("result: %{public}zu, fontMetrics ascent: %{public}f", result, fontMetrics.ascent);
     // 获取排版对象的指定行位置信息，该接口需要在OH_Drawing_TypographyLayout接口调用之后调用
     OH_Drawing_LineMetrics lineMetric;
     OH_Drawing_TypographyGetLineMetricsAt(typography, 0, &lineMetric);
     DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f", -lineMetric.ascender);
     // [End c_text_metrics_get_all_case]
+
+    PrintConstraintsAndPositions(typography);
+}
+
+void SampleBitMap::PrintConstraintsAndPositions(OH_Drawing_Typography *typography)
+{
+    // [Start c_text_metrics_layout_with_constraints_step1]
+    // 设置限定区域的宽高
+    OH_Drawing_RectSize constraintsRect;
+    constraintsRect.width = 500.0;
+    constraintsRect.height = 200.0;
+    // [End c_text_metrics_layout_with_constraints_step1]
+
+    // [Start c_text_metrics_layout_with_constraints_step2]
+    OH_Drawing_Array *fitStrRangeArr = nullptr;
+    size_t fitStrRangeArrayLen = 0;
+    // 在限定区域内排版文本，返回实际排版尺寸
+    OH_Drawing_RectSize actualSize = OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(typography,
+        constraintsRect, &fitStrRangeArr, &fitStrRangeArrayLen);
+    DRAWING_LOGI("actualSize width: %{public}f, height: %{public}f", actualSize.width, actualSize.height);
+    DRAWING_LOGI("fitStrRangeArrayLen: %{public}zu", fitStrRangeArrayLen);
+    // [End c_text_metrics_layout_with_constraints_step2]
+
+    // [Start c_text_metrics_layout_with_constraints_step3]
+    // 遍历适配字符串范围数组
+    for (size_t i = 0; i < fitStrRangeArrayLen; ++i) {
+        OH_Drawing_Range *range = OH_Drawing_GetRangeByArrayIndex(fitStrRangeArr, i);
+        if (range != nullptr) {
+            DRAWING_LOGI("fitStrRange[%{public}zu] start: %{public}zu, end: %{public}zu",
+                i, OH_Drawing_GetStartFromRange(range), OH_Drawing_GetEndFromRange(range));
+        }
+    }
+    // 释放适配字符串范围数组
+    OH_Drawing_ReleaseArrayBuffer(fitStrRangeArr);
+    // [End c_text_metrics_layout_with_constraints_step3]
+
+    PrintCharAndGlyphInfo(typography);
+}
+
+void SampleBitMap::PrintCharAndGlyphInfo(OH_Drawing_Typography *typography)
+{
+    // [Start c_text_metrics_char_position_step1]
+    // 根据坐标获取字符位置，使用UTF-8编码
+    OH_Drawing_PositionAndAffinity *charPos =
+        OH_Drawing_TypographyGetCharacterPositionAtCoordinateWithBuffer(
+            typography, 100.0, 30.0, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+    if (charPos != nullptr) {
+        size_t charPosition = OH_Drawing_GetPositionFromPositionAndAffinity(charPos);
+        int affinity = OH_Drawing_GetAffinityFromPositionAndAffinity(charPos);
+        DRAWING_LOGI("charPosition (UTF-8 byte offset): %{public}zu, affinity: %{public}d",
+            charPosition, affinity);
+        OH_Drawing_DestroyPositionAndAffinity(charPos);
+    }
+    // [End c_text_metrics_char_position_step1]
+
+    // [Start c_text_metrics_glyph_info_step1]
+    // 根据字形范围[0, 5)获取对应的字符范围
+    OH_Drawing_Range *actualGlyphRange = nullptr;
+    OH_Drawing_Range *charRange =
+        OH_Drawing_TypographyGetCharacterRangeForGlyphRangeWithBuffer(
+            typography, 0, 5, &actualGlyphRange, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+    if (charRange != nullptr) {
+        DRAWING_LOGI("charRange start: %{public}zu, end: %{public}zu",
+            OH_Drawing_GetStartFromRange(charRange), OH_Drawing_GetEndFromRange(charRange));
+        OH_Drawing_ReleaseRangeBuffer(charRange);
+    }
+    if (actualGlyphRange != nullptr) {
+        DRAWING_LOGI("actualGlyphRange start: %{public}zu, end: %{public}zu",
+            OH_Drawing_GetStartFromRange(actualGlyphRange), OH_Drawing_GetEndFromRange(actualGlyphRange));
+        OH_Drawing_ReleaseRangeBuffer(actualGlyphRange);
+    }
+    // [End c_text_metrics_glyph_info_step1]
+
+    // [Start c_text_metrics_glyph_info_step2]
+    // 根据字符范围[0, 10)获取对应的字形范围
+    OH_Drawing_Range *actualCharRange = nullptr;
+    OH_Drawing_Range *glyphRange =
+        OH_Drawing_TypographyGetGlyphRangeForCharacterRangeWithBuffer(
+            typography, 0, 10, &actualCharRange, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+    if (glyphRange != nullptr) {
+        DRAWING_LOGI("glyphRange start: %{public}zu, end: %{public}zu",
+            OH_Drawing_GetStartFromRange(glyphRange), OH_Drawing_GetEndFromRange(glyphRange));
+        OH_Drawing_ReleaseRangeBuffer(glyphRange);
+    }
+    if (actualCharRange != nullptr) {
+        DRAWING_LOGI("actualCharRange start: %{public}zu, end: %{public}zu",
+            OH_Drawing_GetStartFromRange(actualCharRange), OH_Drawing_GetEndFromRange(actualCharRange));
+        OH_Drawing_ReleaseRangeBuffer(actualCharRange);
+    }
+    // [End c_text_metrics_glyph_info_step2]
 }
 
 napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info)
