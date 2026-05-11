@@ -2228,6 +2228,69 @@ void setTextInput15(ArkUI_NodeHandle &textInput, ArkUI_NodeHandle &textInput2)
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
 
+void setTextInput16(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &textWidthItem);
+
+    const char *textContent = "线性渐变--线性渐变";
+    ArkUI_AttributeItem contentItem = {.string = textContent};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_TEXT, &contentItem);
+
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_FONT_SIZE, &fontSizeItem);
+
+    // [Start text_linear_gradient]
+    // 设置渐变颜色和位置
+    float stops[] = { 0.0f, 0.5f };
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
+
+    // 设置线性渐变
+    ArkUI_NumberValue linearGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}};
+    ArkUI_AttributeItem linearGradientItem = {
+        linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
+    linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_LINEAR_GRADIENT, &linearGradientItem);
+    // [End text_linear_gradient]
+}
+
+void setTextInput17(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &textWidthItem);
+    
+    const char *textContent = "径向渐变--径向渐变";
+    ArkUI_AttributeItem contentItem = {.string = textContent};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_TEXT, &contentItem);
+    
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_FONT_SIZE, &fontSizeItem);
+    // 设置径向渐变
+    float stops[] = { 0.0f, 0.5f };
+
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
+
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
+
+    ArkUI_NumberValue radialGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.i32 = true}};
+    ArkUI_AttributeItem radialGradientItem = {
+        radialGradient, sizeof(radialGradient) / sizeof(ArkUI_NumberValue)};
+    radialGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    radialGradientItem.size = sizeof(radialGradientItem) / sizeof(ArkUI_NumberValue);
+
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_INPUT_RADIAL_GRADIENT, &radialGradientItem);
+}
+
 void setTextArea14(ArkUI_NodeHandle &textArea14, ArkUI_NodeHandle &textArea15)
 {
     ArkUI_AttributeItem content_item1 = {};
@@ -2313,6 +2376,70 @@ void setTextArea16(ArkUI_NodeHandle &textArea, ArkUI_NodeHandle &textArea2)
 
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
+
+void setTextArea17(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &textWidthItem);
+
+    const char *textContent = "线性渐变--线性渐变";
+    ArkUI_AttributeItem contentItem = {.string = textContent};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_TEXT, &contentItem);
+
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_FONT_SIZE, &fontSizeItem);
+
+    // [Start text_linear_gradient]
+    // 设置渐变颜色和位置
+    float stops[] = { 0.0f, 0.5f };
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
+
+    // 设置线性渐变
+    ArkUI_NumberValue linearGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}};
+    ArkUI_AttributeItem linearGradientItem = {
+        linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
+    linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_LINEAR_GRADIENT, &linearGradientItem);
+    // [End text_linear_gradient]
+}
+
+void setTextArea18(ArkUI_NodeHandle &textArea)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_WIDTH, &textWidthItem);
+    
+    const char *textContent = "径向渐变--径向渐变";
+    ArkUI_AttributeItem contentItem = {.string = textContent};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_TEXT, &contentItem);
+    
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea, NODE_FONT_SIZE, &fontSizeItem);
+    // 设置径向渐变
+    float stops[] = { 0.0f, 0.5f };
+
+    uint32_t colors[] = { 0xFFFFFF00, 0xFF0000FF };
+
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_2 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
+
+    ArkUI_NumberValue radialGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.i32 = true}};
+    ArkUI_AttributeItem radialGradientItem = {
+        radialGradient, sizeof(radialGradient) / sizeof(ArkUI_NumberValue)};
+    radialGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    radialGradientItem.size = sizeof(radialGradientItem) / sizeof(ArkUI_NumberValue);
+
+    Manager::nodeAPI_->setAttribute(textArea, NODE_TEXT_AREA_RADIAL_GRADIENT, &radialGradientItem);
+}
+
 
 void setTextAreaHorizontalScrolling(ArkUI_NodeHandle &textArea)
 {
@@ -3051,7 +3178,7 @@ ArkUI_NodeHandle InitText(ArkUI_NodeHandle& textContainer)
 
 BindDescriptorFunc GetBindDescriptorFunc(ArkUI_NodeHandle& textContainer)
 {
-    return [&textContainer](ArkUI_StyledString_Descriptor * descriptor) {
+    return [&textContainer](ArkUI_StyledString_Descriptor*& descriptor) {
             auto text = InitText(textContainer);
             OH_ArkUI_TextController *controller = OH_ArkUI_TextController_Create();
             ArkUI_AttributeItem controllerItem = {.object = controller};
@@ -3216,6 +3343,9 @@ void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea14_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea15_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea17 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea18 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+
     ArkUI_NodeHandle horizontalTextArea = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaDecoration = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
 
@@ -3225,6 +3355,8 @@ void SetAllTextAreaPart3(ArkUI_NodeHandle &textContainer)
     setTextAreaDecoration(textAreaDecoration);
     setTextArea14(textArea14, textArea14_2);
     setTextArea16(textArea15, textArea15_2);
+    setTextArea17(textArea17);
+    setTextArea18(textArea18);
     setTextAreaHorizontalScrolling(horizontalTextArea);
 
     Manager::nodeAPI_->addChild(textContainer, textArea10);

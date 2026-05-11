@@ -146,9 +146,14 @@ constexpr int32_t INDEX_1 = 1;
 constexpr int32_t INDEX_2 = 2;
 constexpr int32_t INDEX_3 = 3;
 
+constexpr float FLOAT_50 = 50.0f;
+constexpr float FLOAT_20 = 20.0f;
+
+constexpr int32_t NUMBER_3 = 3;
+
 constexpr float LEADING_MARGIN_CALL_BACK_RETURN_VALUE = 10.0f;
 
-using BindDescriptorFunc = std::function<void(ArkUI_StyledString_Descriptor *)>;
+using BindDescriptorFunc = std::function<void(ArkUI_StyledString_Descriptor*&)>;
 
 class StyledStringBase {
 public:
@@ -157,6 +162,8 @@ public:
     static void SetTextTitle(ArkUI_NodeHandle node, const char *title);
     static void CreateStyledStringWithTextStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithParagraphStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
+    static void CreateStyledStringWithParagraphStyle2(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
+    static void CreateStyledStringWithParagraphStyle3(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithDecorationStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithBaselineOffsetStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
     static void CreateStyledStringWithLetterSpacingStyle(ArkUI_NodeHandle node, BindDescriptorFunc &&func);
@@ -182,6 +189,8 @@ public:
     {
         CreateStyledStringWithTextStyle(node, std::move(func));
         CreateStyledStringWithParagraphStyle(node, std::move(func));
+        CreateStyledStringWithParagraphStyle2(node, std::move(func));
+        CreateStyledStringWithParagraphStyle3(node, std::move(func));
         CreateStyledStringWithDecorationStyle(node, std::move(func));
         CreateStyledStringWithBaselineOffsetStyle(node, std::move(func));
         CreateStyledStringWithLetterSpacingStyle(node, std::move(func));

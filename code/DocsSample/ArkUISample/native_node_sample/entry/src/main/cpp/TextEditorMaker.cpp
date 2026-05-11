@@ -90,7 +90,7 @@ ArkUI_NodeHandle InitTextEditor()
 
 BindDescriptorFunc GetBindDescriptorFunc()
 {
-    return [](ArkUI_StyledString_Descriptor * descriptor) {
+    return [](ArkUI_StyledString_Descriptor*& descriptor) {
             auto textEditor = InitTextEditor();
             OH_ArkUI_TextEditorStyledStringController *controller = OH_ArkUI_TextEditorStyledStringController_Create();
             ArkUI_AttributeItem controllerItem = {.object = controller};
