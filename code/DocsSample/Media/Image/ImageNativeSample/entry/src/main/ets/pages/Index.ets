@@ -39,6 +39,10 @@ struct Index {
           }
 
           ListItem() {
+            GotoButton({ text: '跳转到HDR图片解码与色彩空间管理页面', dstUri: 'pages/HdrColorSpaceCodec'})
+          }
+
+          ListItem() {
             GotoButton({ text: '跳转到读取和修改Exif信息页面', dstUri: 'pages/EditExif'})
           }
 

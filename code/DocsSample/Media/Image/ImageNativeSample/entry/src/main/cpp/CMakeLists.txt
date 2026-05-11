@@ -17,6 +17,8 @@ add_library(entry SHARED
     loadPicture.cpp
     loadAllocator.cpp
     loadImageSource.cpp
+    loadAnimatedImageSource.cpp
+    loadHdrColorSpace.cpp
     loadReceiver.cpp
     )
 target_link_libraries(

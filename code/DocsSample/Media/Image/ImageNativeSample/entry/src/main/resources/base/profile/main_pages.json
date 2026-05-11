@@ -5,6 +5,7 @@
     "pages/ImageReceiver",
     "pages/PictureCodec",
     "pages/EditExif",
-    "pages/GifCodec"
+    "pages/GifCodec",
+    "pages/HdrColorSpaceCodec"
   ]
 }

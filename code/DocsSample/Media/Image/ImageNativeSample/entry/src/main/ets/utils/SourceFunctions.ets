@@ -219,4 +219,77 @@ export class SourceFunctions {
     }
     return message;
   }
+
+  async createAnimatedImageSource(context: common.UIAbilityContext, fileName: string): Promise<string> {
+    let message: string = '';
+    let filePath = context.filesDir + '/' + fileName;
+    await pushSourceToBox(context, fileName);
+    let errorCode = testNapi.createAnimatedImageSource(filePath);
+    this.logger.check_result('CreateAnimatedImageSource', errorCode);
+    if (errorCode === 0) {
+      message = 'CreateAnimatedImageSource success.';
+    } else {
+      message = `CreateAnimatedImageSource failed with ${errorCode}.`;
+      this.logger.log(message);
+    }
+    return message;
+  }
+
+  getAnimatedFrameCount(): string {
+    let count = testNapi.getAnimatedFrameCount();
+    return `GetAnimatedFrameCount return count ${count}.`;
+  }
+
+  getAnimatedDelayTimeList(): string {
+    let message: string = '';
+    let errorCode = testNapi.getAnimatedDelayTimeList();
+    this.logger.check_result('GetAnimatedDelayTimeList', errorCode);
+    if (errorCode === 0) {
+      message = 'GetAnimatedDelayTimeList success.';
+    } else {
+      message = `GetAnimatedDelayTimeList failed with ${errorCode}.`;
+      this.logger.log(message);
+    }
+    return message;
+  }
+
+  createAnimatedPixelmapList(): string {
+    let message: string = '';
+    let errorCode = testNapi.createAnimatedPixelmapList();
+    this.logger.check_result('CreateAnimatedPixelmapList', errorCode);
+    if (errorCode === 0) {
+      message = 'CreateAnimatedPixelmapList success.';
+    } else {
+      message = `CreateAnimatedPixelmapList failed with ${errorCode}.`;
+      this.logger.log(message);
+    }
+    return message;
+  }
+
+  createAnimatedPixelmapByIndex(index: number): string {
+    let message: string = '';
+    let errorCode = testNapi.createAnimatedPixelmapByIndex(index);
+    this.logger.check_result('CreateAnimatedPixelmapByIndex', errorCode);
+    if (errorCode === 0) {
+      message = `CreateAnimatedPixelmapByIndex ${index} success.`;
+    } else {
+      message = `CreateAnimatedPixelmapByIndex ${index} failed with ${errorCode}.`;
+      this.logger.log(message);
+    }
+    return message;
+  }
+
+  releaseAnimatedImageSource(): string {
+    let message: string = '';
+    let errorCode = testNapi.releaseAnimatedImageSource();
+    this.logger.check_result('ReleaseAnimatedImageSource', errorCode);
+    if (errorCode === 0) {
+      message = 'ReleaseAnimatedImageSource success.';
+    } else {
+      message = `ReleaseAnimatedImageSource failed with ${errorCode}.`;
+      this.logger.log(message);
+    }
+    return message;
+  }
+
 }
