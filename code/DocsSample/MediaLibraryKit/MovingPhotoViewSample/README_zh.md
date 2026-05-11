@@ -17,6 +17,10 @@
 5. 点击"stop"按钮，停止动态照片播放；
 6. 点击"静音"按钮，切换静音/非静音播放模式。
 
+## 效果截图
+
+![实机效果](entry/src/main/resources/base/media/Effect.jpg)
+
 ## 工程目录
 
 ```
