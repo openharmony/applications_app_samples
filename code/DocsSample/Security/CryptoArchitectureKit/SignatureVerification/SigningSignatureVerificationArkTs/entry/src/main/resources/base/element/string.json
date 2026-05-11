@@ -53,6 +53,14 @@
       "value": "ecdsa_signature_verification_synchronous"
     },
     {
+      "name": "ml_dsa_signature_verification_asynchronous",
+      "value": "ml_dsa_signature_verification_asynchronous"
+    },
+    {
+      "name": "ml_dsa_signature_verification_synchronous",
+      "value": "ml_dsa_signature_verification_synchronous"
+    },
+    {
       "name": "sm2_signature_verification_asynchronous",
       "value": "sm2_signature_verification_asynchronous"
     },
@@ -67,6 +75,14 @@
     {
       "name": "call_ecdsasignature_synchronous",
       "value": "Call ECDSASignature Synchronous"
+    },
+    {
+      "name": "call_ml_dsasignature_asynchronous",
+      "value": "Call ML-DSASignature Asynchronous"
+    },
+    {
+      "name": "call_ml_dsasignature_synchronous",
+      "value": "Call ML-DSASignature Synchronous"
     },
     {
       "name": "call_signatureseg_asynchronous",

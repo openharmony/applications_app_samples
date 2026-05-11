@@ -83,6 +83,16 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/ecdsa_signature_verification/ecdsa_signature_verification_synchronous')
         })
+      Button($r('app.string.ml_dsa_signature_verification_asynchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/ml_dsa_signature_verification/ml_dsa_signature_verification_asynchronous')
+        })
+      Button($r('app.string.ml_dsa_signature_verification_synchronous'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/ml_dsa_signature_verification/ml_dsa_signature_verification_synchronous')
+        })
       Button($r('app.string.sm2_signature_verification_asynchronous'))
         .width('70%')
         .onClick(() => {
