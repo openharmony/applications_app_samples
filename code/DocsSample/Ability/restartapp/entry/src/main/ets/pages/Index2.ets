@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start restartapp_withOldWindow]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'restartApp';
-  private context = this.getUIContext().getHostContext()?.getApplicationContext() as common.ApplicationContext;
+  @State message: string = 'restartApp with window';
 
   build() {
     RelativeContainer() {
@@ -50,3 +50,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End restartapp_withOldWindow]
