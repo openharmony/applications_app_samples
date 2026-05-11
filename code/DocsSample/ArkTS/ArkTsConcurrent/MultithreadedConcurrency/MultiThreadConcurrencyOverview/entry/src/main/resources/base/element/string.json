@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "MultiThreadConcurrencyOverview"
+    },
+    {
+      "name": "Multi_thread_concurrency",
+      "value": "多线程并发概述"
+    },
+    {
+      "name": "Actor_model",
+      "value": "Actor模型示例"
+    },
+    {
+      "name": "Actor_model2",
+      "value": "Actor模型示例2"
     }
   ]
 }

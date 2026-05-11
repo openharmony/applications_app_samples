@@ -37,6 +37,10 @@ struct Index {
           buttonName: resource.resourceToString($r('app.string.Modifying_function')),
           buttonUrl: 'managers/functionusage'
         });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Modifying_enum')),
+          buttonUrl: 'managers/enumusage'
+        });
       }
       .padding('20vp')
       .width('100%')
