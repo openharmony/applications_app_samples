@@ -98,7 +98,7 @@ void SetConfig(OH_AVScreenCaptureConfig &config)
 
     config = {
         .captureMode = OH_CAPTURE_HOME_SCREEN,
-        .dataType = OH_ORIGINAL_STREAM,
+        .dataType = OH_ORIGINAL_STREAM, // 录屏数据类型，原始码流或文件
         .audioInfo = audioInfo,
         .videoInfo = videoInfo
     };
@@ -496,7 +496,7 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     // [Start screenCapture_releaseScreenRecording]
         OH_AVScreenCapture_Release(g_avCapture);
         g_avCapture = nullptr;
-    // [Start screenCapture_releaseScreenRecording]
+    // [End screenCapture_releaseScreenRecording]
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
