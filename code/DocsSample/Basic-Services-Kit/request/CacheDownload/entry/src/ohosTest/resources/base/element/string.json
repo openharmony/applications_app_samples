@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "Test module description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Test ability description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "CacheDownload Test"
+    },
+    {
+      "name": "allow",
+      "value": "Allow"
+    },
+    {
+      "name": "allow_up",
+      "value": "ALLOW"
+    }
+  ]
+}

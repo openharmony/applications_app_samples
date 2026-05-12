@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "CacheDownload sample module - demonstrating API 26 new features"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Cache Download Sample Application"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CacheDownload"
+    },
+    {
+      "name": "home_subtitle",
+      "value": "Demonstrates cacheDownload API 26 new features"
+    },
+    {
+      "name": "media_internet_permission",
+      "value": "Allow access to the network"
+    },
+    {
+      "name": "media_get_network_info_permission",
+      "value": "Allow access to network information"
+    },
+    {
+      "name": "cache_download_retry",
+      "value": "RetryOptions Demo"
+    },
+    {
+      "name": "cache_download_timeout",
+      "value": "TimeoutOptions Demo"
+    },
+    {
+      "name": "global_retry_options_title",
+      "value": "setGlobalRetryOptions Demo"
+    },
+    {
+      "name": "global_timeout_options_title",
+      "value": "setGlobalTimeoutOptions Demo"
+    },
+    {
+      "name": "download_url",
+      "value": "Download URL"
+    },
+    {
+      "name": "retry_config",
+      "value": "Retry Configuration"
+    },
+    {
+      "name": "max_retry_count",
+      "value": "Max Retry Count"
+    },
+    {
+      "name": "max_retry_hint",
+      "value": "Range: 0-10. Default: 1. Set to 0 for no retry."
+    },
+    {
+      "name": "timeout_config",
+      "value": "Timeout Configuration"
+    },
+    {
+      "name": "network_check_timeout",
+      "value": "Network Check Timeout"
+    },
+    {
+      "name": "network_check_timeout_hint",
+      "value": "Range: 0-20 seconds. Default: 20. Set to 0 for no check."
+    },
+    {
+      "name": "http_total_timeout",
+      "value": "HTTP Total Timeout"
+    },
+    {
+      "name": "http_total_timeout_hint",
+      "value": "Range: 1+ seconds. Default: 60. Complete HTTP request timeout."
+    },
+    {
+      "name": "download_status",
+      "value": "Download Status"
+    },
+    {
+      "name": "start_download",
+      "value": "Start Download"
+    },
+    {
+      "name": "cancel_download",
+      "value": "Cancel Download"
+    },
+    {
+      "name": "download_success",
+      "value": "Download completed successfully"
+    },
+    {
+      "name": "download_failed",
+      "value": "Download failed"
+    },
+    {
+      "name": "download_cancelled",
+      "value": "Download cancelled"
+    },
+    {
+      "name": "global_retry_config",
+      "value": "Global Retry Configuration"
+    },
+    {
+      "name": "global_max_retry_count",
+      "value": "Global Max Retry"
+    },
+    {
+      "name": "global_timeout_config",
+      "value": "Global Timeout Configuration"
+    },
+    {
+      "name": "global_network_check_timeout",
+      "value": "Global Network Check Timeout"
+    },
+    {
+      "name": "global_http_total_timeout",
+      "value": "Global HTTP Total Timeout"
+    },
+    {
+      "name": "current_global_status",
+      "value": "Current Global Config"
+    },
+    {
+      "name": "set_global_retry",
+      "value": "Set Global Retry Options"
+    },
+    {
+      "name": "set_global_timeout",
+      "value": "Set Global Timeout Options"
+    },
+    {
+      "name": "global_config_success",
+      "value": "Global configuration set successfully"
+    },
+    {
+      "name": "global_config_failed",
+      "value": "Failed to set global configuration"
+    },
+    {
+      "name": "test_download",
+      "value": "Test Download"
+    },
+    {
+      "name": "test_download_hint",
+      "value": "This download will use global configuration (no task-level config specified)"
+    },
+    {
+      "name": "start_test_download",
+      "value": "Start Test Download"
+    }
+  ]
+}
