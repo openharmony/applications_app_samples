@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+ // [Start oh_jsvm_take_raw_heap_snapshot]
 #include <iostream>
 #include <fstream>
 #include <thread>
@@ -197,6 +198,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 const char* SRC_CALL_NATIVE = R"JS(heapMgmtTest();)JS";
+// [End oh_jsvm_take_raw_heap_snapshot]
 
 static int32_t InitJSVM(JSVM_VM* vm, JSVM_Env* env)
 {
