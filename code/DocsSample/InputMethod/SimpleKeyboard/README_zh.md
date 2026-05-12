@@ -14,22 +14,27 @@
 ### 工程目录
 
 ```
-KikaInput
+SimpleKeyboard
 ├── AppScope                                    
-│   └── app.json5                                  // APP信息配置文件
-├── entry/src/main                                 // 应用首页
+│   └── app.json5                               //APP信息配置文件
+├── entry/src/main                              //应用首页
 │   ├── ets
-│   │   ├── entryability                           // 应用入口
-│   │   │   ├── EntryAbility.ets                   // 应用入口Ability
+│   │   ├── common
+│   │   │   ├── StyleConfiguration.ets         //适配不同设备下的键盘布局
+│   │   ├── components                         //输入法软键盘自定义组件
+│   │   ├── entryability                       //应用入口
+│   │   │   ├── EntryAbility.ets               //应用入口Ability
 │   │   ├── pages
-│   │   │   ├── Index.ets                          // 输入法主页
-│   │   ├── entryinputmethodextability
-│   │   │   ├── model
-│   │   │   │   ├── KeyboardController.ets         // 输入法键盘控制
-│   │   │   ├── pages
-│   │   │   │   ├── Index.ets                      // 输入法键盘页面
-│   │   │   │   ├── KeyboardKeyData.ets            // 输入法键盘数据
-│   │   │   ├── InputMethodExtAbility.ets          // 输入法Ability
+│   │   │   ├── PrivatePreview.ets             //预上屏主页
+│   │   ├── model
+│   │   │   ├── HardKeyUtils.ets               //外接键盘KeyCode数据
+│   │   ├── InputMethodExtensionAbility
+│   │   │   ├── InputMethodService.ets         //输入法Ability
+│   │   │   |── model                           
+│   │   │   |   ├── KeyboardController.ets     //输入法键盘控制
+│   │   │   |── pages                           
+│   │   │   |   ├── Index.ets                  //输入法主页
+│   │   │   |   ├── KeyboardKeyData.ets        //输入法键盘数据
 │   └── module.json5
 ```
 
