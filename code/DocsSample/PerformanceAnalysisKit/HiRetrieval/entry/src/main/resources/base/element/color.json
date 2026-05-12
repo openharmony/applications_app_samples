@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "input_place_holder_color",
+      "value": "#33000000"
+    }
+  ]
+}

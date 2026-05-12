@@ -1,0 +1,13 @@
+# Obfuscation configuration for release build.
+# You can customize the obfuscation rules here.
+-keep-file-name
+# -keep-file-name EntryAbility
+# -keep-file-name Index
+-keep-global-name
+# -keep-global-name #XXXX
+# -keep-global-name XXXX
+-keep-property-name
+# -keep-property-name #XXXX
+# -keep-property-name XXXX
+-keep-dts
+# -keep-dts ./path/to/your.d.ts
