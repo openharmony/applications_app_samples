@@ -65,7 +65,8 @@ export struct RequestEnableNotification {
             notificationManager.isNotificationEnabled().then((data: boolean) => {
               hilog.info(DOMAIN_NUMBER, TAG, `isNotificationEnabled success, data:  ${data}`);
               if (!data) {
-                notificationManager.openNotificationSettingsWithResult(context).then((result: NotificationSetting) => {
+                notificationManager.openNotificationSettingsWithResult(context)
+                .then((result: notificationManager.NotificationSetting) => {
                   // result为当前设置的结果
                   hilog.info(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettingsWithResult success, result: ${JSON.stringify(result)}`);
                 }).catch((err: BusinessError) => {
