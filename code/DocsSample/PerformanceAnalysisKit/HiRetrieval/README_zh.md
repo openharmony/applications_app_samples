@@ -66,9 +66,10 @@ entry/src/main/ets/
 
 ###  约束与限制
 
-1. 本示例仅支持标准系统上运行；
-2. 本示例已适配API26版本SDK，版本号：26.0.0，镜像版本号：OpenHarmony6；
-3. 本示例需要使用DevEco Studio Release(26.0.0.410)及以上版本才可编译运行。
+1. 本示例仅支持标准系统上运行。
+2. 本示例支持API 26版本SDK，SDK版本号(API Version 26)，镜像版本号(6.0)。
+3. 本示例需要使用DevEco Studio版本号(5.0.5 Release)及以上版本才可编译运行。
+4. 运行本实例需连接WIFI。
 
 ### 下载
 
