@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_completionHandler]
 import { AbilityConstant, CompletionHandler, StartOptions, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -21,6 +22,7 @@ const TAG: string = '[StartAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class GetLaunchResultAbility extends UIAbility {
+  // [StartExclude startOptions_completionHandler]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -46,6 +48,7 @@ export default class GetLaunchResultAbility extends UIAbility {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
+  // [EndExclude startOptions_completionHandler]
 
   onForeground(): void {
     // Ability has brought to foreground
@@ -82,8 +85,11 @@ export default class GetLaunchResultAbility extends UIAbility {
 
   }
 
+  // [StartExclude startOptions_completionHandler]
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude startOptions_completionHandler]
 }
+// [End startOptions_completionHandler]

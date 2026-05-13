@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_windowPosition]
 import { common, Want, StartOptions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -61,6 +62,7 @@ struct SetWindowPosition {
     .height('100%')
   }
 }
+// [End startOptions_windowPosition]
 
 
 
