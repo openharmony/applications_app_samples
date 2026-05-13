@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer播放外挂字幕(C/C++)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/using-ndk-avplayer-for-video-playback.md)的配套示例工程。 
+本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer播放外挂字幕(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/using-ndk-avplayer-for-video-playback.md)的配套示例工程。 
 
 本示例展示了如何使用AVPlayer组件播放外挂字幕。
 
@@ -68,6 +68,6 @@ entry/src/ohosTest/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Media/AVPlayer/AVPlayerNDKSubtitle/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
