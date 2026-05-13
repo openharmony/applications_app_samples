@@ -49,7 +49,7 @@ export default class HideStartedUIAbilityAbility extends UIAbility {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
-  // // [EndExclude startOptions_startupVisibility]
+  // [EndExclude startOptions_startupVisibility]
 
   onForeground(): void {
     // Ability has brought to foreground
@@ -96,4 +96,4 @@ export default class HideStartedUIAbilityAbility extends UIAbility {
   }
   // [EndExclude startOptions_startupVisibility]
 }
-// [Start startOptions_startupVisibility]
+// [End startOptions_startupVisibility]

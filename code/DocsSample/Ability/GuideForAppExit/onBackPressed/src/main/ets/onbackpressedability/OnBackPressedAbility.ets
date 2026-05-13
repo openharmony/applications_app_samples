@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appStop_backPressed]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -19,6 +20,7 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class OnBackPressedAbility extends UIAbility {
+  // [StartExclude appStop_backPressed]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -54,6 +56,7 @@ export default class OnBackPressedAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude appStop_backPressed]
 
   onBackPressed() {
     // 调用terminateSelf退出UIAbility
@@ -67,3 +70,4 @@ export default class OnBackPressedAbility extends UIAbility {
     return true;
   }
 }
+// [End appStop_backPressed]

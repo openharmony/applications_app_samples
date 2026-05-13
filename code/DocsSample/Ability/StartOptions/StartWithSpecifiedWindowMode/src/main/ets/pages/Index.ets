@@ -20,8 +20,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = '[StartAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-
-
 @Entry
 @Component
 struct StartWithSpecifiedWindowModeAbility {
