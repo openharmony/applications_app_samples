@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.AVPlayerNDKSubtitle",
+    "bundleName": "com.samples.avplayerndksubtitle",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
