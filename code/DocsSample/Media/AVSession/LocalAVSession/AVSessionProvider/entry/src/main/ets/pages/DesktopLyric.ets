@@ -60,7 +60,7 @@ struct Index {
           // 假设已经创建了一个session，如何创建session可以参考之前的案例。
           let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
 
-          // 系统是否支持桌面歌词。
+          // 系统是否支持歌词组件
           let isDesktopLyricSupported: boolean = false;
           try {
             isDesktopLyricSupported = await AVSessionManager.isDesktopLyricSupported();
@@ -72,7 +72,14 @@ struct Index {
           }
 
           try {
-            // 监听桌面歌词是否开启。
+            // 使能歌词组件
+            session.enableDesktopLyric(true);
+          } catch (err) {
+            console.error(`enableDesktopLyric err. Code: ${err.code}, message: ${err.message}`);
+          }
+
+          try {
+            // 监听歌词组件是否显示
             session.onDesktopLyricVisibilityChanged((isVisible: boolean) => {
               console.info(`onDesktopLyricVisibilityChanged changed: ${isVisible}`)
             });
@@ -81,7 +88,7 @@ struct Index {
           }
 
           try {
-            // 监听桌面歌词锁定状态。
+            // 监听歌词组件锁定状态
             session.onDesktopLyricStateChanged((state) => {
               console.info(`onDesktopLyricStateChanged changed: ${state.isLocked}`)
             });
@@ -90,21 +97,14 @@ struct Index {
           }
 
           try {
-            // 使能桌面歌词。
-            session.enableDesktopLyric(true);
-          } catch (err) {
-            console.error(`enableDesktopLyric err. Code: ${err.code}, message: ${err.message}`);
-          }
-
-          try {
-            // 开启或关闭桌面歌词。
+            // 显示或隐藏歌词组件，歌词组件使能后默认隐藏
             await session.setDesktopLyricVisible(true);
           } catch (err) {
             console.error(`setDesktopLyricVisible err. Code: ${err.code}, message: ${err.message}`);
           }
 
           try {
-            // 桌面歌词锁定状态。
+            // 锁定或解锁歌词组件，歌词组件使能后默认是解锁状态
             await session.setDesktopLyricState({isLocked: true});
           } catch (err) {
             console.error(`setDesktopLyricState err. Code: ${err.code}, message: ${err.message}`);
