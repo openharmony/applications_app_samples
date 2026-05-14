@@ -16,23 +16,19 @@
 // [Start import_module]
 // [Start import_lazy_module]
 import lazy { a } from './mod1'; // 'mod1' 未执行
-// [StartExclude import_lazy_module]
 import { c } from './mod2'; // 'mod2' 执行
-// [EndExclude import_lazy_module]
-import { b } from './mod1'; // 'mod1' 执行
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_lazy_module]
+import { b } from './mod1'; // 'mod1' 执行
 // [End import_module]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 
 // [Start main_running_info]
 console.info('main executed');
 while (false) {
   let xx = a;
-  // [StartExclude main_running_info]
-  let xy = b;
-  let xz = c;
-  // [EndExclude main_running_info]
+  let yy = c;
+  let zz = b;
 }
 // [End main_running_info]
 

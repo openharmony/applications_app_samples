@@ -20,9 +20,15 @@
   "main": "",
   "author": "",
   "license": "",
+  // [Start dynamic_call_add_dependencies]
+  // [Start const_dynamic_import_har_dependencies]
   "dependencies": {
+    // [StartExclude const_dynamic_import_har_dependencies]
     "harlibrary": "file:../harlibrary",
+    // [StartExclude dynamic_call_add_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
     "myhar": "file:../myHar",
+    // [StartExclude const_dynamic_import_har_dependencies]
     //HAP常量动态import HAR模块名 HAP常量动态import HAR模块文件路径
     "myhsp": "file:../myHsp",
     //HAP常量动态import HSP模块名 HAP常量动态import HSP模块名文件路径
@@ -34,5 +40,9 @@
     //HAP常量动态import自己的Native库
     "har1": "file:../har1",
     "har2": "file:../har2"
+    // [EndExclude dynamic_call_add_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
   }
+  // [End dynamic_call_add_dependencies]
+  // [End const_dynamic_import_har_dependencies]
 }
