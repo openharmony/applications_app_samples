@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer设置边播边缓存(ArkTS)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/playback-url-setting-method.md)的配套示例工程。 
+本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer设置边播边缓存(ArkTS)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/playback-url-setting-method.md)的配套示例工程。 
 
 本示例展示了如何使用AVPlayer开发播放功能，在流媒体的场景下如何设置边播边缓存。
 
@@ -37,11 +37,16 @@ entry/src/ohosTest/ets/
     ├── Ability.test.ets (UI测试代码)
     └── List.test.ets (测试套件列表)
 ```
+## 具体实现
 
+1. 通过 `media.createMediaSourceWithUrl(url, headers)` 创建 MediaSource 对象
+2. 调用 `mediaSource.enableOfflineCache(true)` 开启离线缓存功能
+3. 使用 `avPlayer.setMediaSource(mediaSource, strategy)` 设置媒体源，播放器将自动边播边缓存
 ## 相关权限
 
-ohos.permission.INTERNET
-ohos.permission.GET_WIFI_INFO
+ohos.permission.INTERNET：允许使用Internet网络。
+
+ohos.permission.GET_WIFI_INFO：允许应用获取Wi-Fi信息和使用P2P能力。
 
 ## 依赖
 
@@ -51,9 +56,9 @@ ohos.permission.GET_WIFI_INFO
 
 1. 本示例支持标准系统上运行，支持设备：RK3568;
 
-2. 本示例支持API15版本SDK，版本号：5.0.3.135;
+2. 本示例支持API23版本SDK，版本号：6.1.0.830;
    
-3. 本示例已支持使DevEco Studio 5.0.3 Release (构建版本：5.0.8.300，构建 2025年3月19日)编译运行
+3. 本示例已支持使DevEco Studio 6.1.0 Release (构建版本：6.1.0.830，构建 2026年4月20日)编译运行
 
 ## 下载
 
@@ -63,6 +68,6 @@ ohos.permission.GET_WIFI_INFO
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Media/AVPlayer/AVPlayerArkTSPlayWithCache/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
