@@ -122,8 +122,8 @@ struct Index {
         }
       }, SET_INTERVAL);
     });
-    // 设置mediaSource
-    let url = 'https://vd3.bdstatic.com/mda-pdc2kmwtd2vxhiy4/cae_h264/1681502407203843413/mda-pdc2kmwtd2vxhiy4.mp4';
+    // 设置mediaSource，应用按需设置URL
+    let url = '';
     await this.preDownload(url);
   }
 
