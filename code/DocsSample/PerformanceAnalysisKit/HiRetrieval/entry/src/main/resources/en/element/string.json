@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "init",
+      "value": "Init"
+    },
+    {
+      "name": "participate",
+      "value": "Participate"
+    },
+    {
+      "name": "run",
+      "value": "Run"
+    },
+    {
+      "name": "quit",
+      "value": "Quit"
+    },
+    {
+      "name": "user_type",
+      "value": "User type:"
+    },
+    {
+      "name": "device_type",
+      "value": "Device type:"
+    },
+    {
+      "name": "device_model",
+      "value": "Device model:"
+    },
+    {
+      "name": "user_type_input",
+      "value": "Input user type"
+    },
+    {
+      "name": "device_type_input",
+      "value": "Input device type"
+    },
+    {
+      "name": "device_model_input",
+      "value": "Input device model"
+    }
+  ]
+}
