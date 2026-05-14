@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer播放外挂字幕(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/using-ndk-avplayer-for-video-playback.md)的配套示例工程。 
+本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer播放外挂字幕(C/C++) ](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/using-native-avplayer-for-video-playback.md)的配套示例工程。
 
 本示例展示了如何使用AVPlayer组件播放外挂字幕。
 
@@ -44,7 +44,7 @@ entry/src/ohosTest/ets/
     └── List.test.ets (测试套件列表)
 ```
 ## 具体实现
-本示例使用AVPlayer NDK接口实现外挂字幕播放功能。主要流程如下：
+本示例使用AVPlayer Native API接口实现外挂字幕播放功能。主要流程如下：
 1. **字幕源添加**：通过`OH_ResourceManager_OpenRawFile`获取rawfile中字幕文件的文件描述符，使用`OH_AVPlayer_AddFdSubtitleSource`接口将字幕添加到播放器。
 2. **字幕回调监听**：注册`OH_AVPlayer_SetOnInfoCallback`信息回调，监听`AV_INFO_TYPE_SUBTITLE_UPDATE`类型事件，在回调中通过`OH_AVFormat_GetStringValue`获取字幕文本内容。
 3. **字幕显示**：Native层通过NAPI将字幕文本传递给ArkTS前端，前端在XComponent视频播放界面上叠加Text组件显示字幕。
