@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appStop_terminateSelf]
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -19,6 +20,7 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+  // [StartExclude appStop_terminateSelf]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -49,6 +51,7 @@ export default class EntryAbility extends UIAbility {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
+  // [EndExclude appStop_terminateSelf]
 
   onForeground(): void {
     // Ability has brought to foreground
@@ -66,8 +69,11 @@ export default class EntryAbility extends UIAbility {
     }, 2000);
   }
 
+  // [StartExclude appStop_terminateSelf]
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude appStop_terminateSelf]
 }
+// [End appStop_terminateSelf]
