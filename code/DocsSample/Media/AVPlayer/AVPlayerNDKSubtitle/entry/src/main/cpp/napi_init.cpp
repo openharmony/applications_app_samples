@@ -27,7 +27,8 @@
 
 #define LOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
 #define LOGE(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
-#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, LOG_MSG_TAG, "[cclog] " format, ##__VA_ARGS__))
+#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, 
+    LOG_MSG_TAG, "[cclog] " format, ##__VA_ARGS__))
 
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window);
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window);
@@ -651,118 +652,139 @@ static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info) {
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info) {
-    CCLOG("NAPI_Global_AddSubtitle called");
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    
+static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success) {
     napi_valuetype valueType;
-    napi_typeof(env, args[0], &valueType);
+    napi_typeof(env, arg, &valueType);
     if (valueType != napi_string) {
         CCLOG("AddSubtitle error: first parameter should be string");
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        success = false;
+        return nullptr;
     }
     
     size_t length = 0;
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &length);
+    napi_get_value_string_utf8(env, arg, nullptr, 0, &length);
     if (length == 0) {
         CCLOG("AddSubtitle error: empty file name");
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        success = false;
+        return nullptr;
     }
     
     char *fileName = new char[length + 1];
-    napi_get_value_string_utf8(env, args[0], fileName, length + 1, &length);
+    napi_get_value_string_utf8(env, arg, fileName, length + 1, &length);
     CCLOG("AddSubtitle fileName: %{public}s", fileName);
-    
-    auto manager = SampleManager::GetInstance();
-    if (manager->player_ == nullptr) {
-        CCLOG("AddSubtitle error: player not initialized");
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
-    }
-    
-    if (argc < 2 || args[1] == nullptr) {
-        CCLOG("AddSubtitle error: missing context parameter");
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
-    }
-    
+    success = true;
+    return fileName;
+}
+
+static NativeResourceManager* GetResourceManagerFromContext(napi_env env, napi_value contextArg, bool &success) {
     napi_valuetype contextType;
-    napi_typeof(env, args[1], &contextType);
+    napi_typeof(env, contextArg, &contextType);
     if (contextType != napi_object) {
         CCLOG("AddSubtitle error: second parameter should be object (context)");
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        success = false;
+        return nullptr;
     }
     
     napi_value resourceManagerObj = nullptr;
-    if (napi_get_named_property(env, args[1], "resourceManager", &resourceManagerObj) != napi_ok) {
+    if (napi_get_named_property(env, contextArg, "resourceManager", &resourceManagerObj) != napi_ok) {
         CCLOG("AddSubtitle error: failed to get resourceManager from context");
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        success = false;
+        return nullptr;
     }
     
     NativeResourceManager *resManager = OH_ResourceManager_InitNativeResourceManager(env, resourceManagerObj);
     if (resManager == nullptr) {
         CCLOG("AddSubtitle error: failed to init NativeResourceManager");
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        success = false;
+        return nullptr;
     }
     
+    success = true;
+    return resManager;
+}
+
+static bool GetRawFileDescriptor(NativeResourceManager *resManager, const char *fileName, 
+                                  RawFileDescriptor &descriptor, RawFile* &outRawFile) {
     RawFile *rawFile = OH_ResourceManager_OpenRawFile(resManager, fileName);
     if (rawFile == nullptr) {
         CCLOG("AddSubtitle error: failed to open rawfile %{public}s", fileName);
-        OH_ResourceManager_ReleaseNativeResourceManager(resManager);
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        return false;
     }
     
     long rawFileSize = OH_ResourceManager_GetRawFileSize(rawFile);
     CCLOG("AddSubtitle: rawfile opened, size %{public}ld", rawFileSize);
     
-    RawFileDescriptor descriptor;
     bool getDescriptorResult = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
     if (!getDescriptorResult) {
         CCLOG("AddSubtitle error: failed to get rawfile descriptor");
         OH_ResourceManager_CloseRawFile(rawFile);
-        OH_ResourceManager_ReleaseNativeResourceManager(resManager);
-        delete[] fileName;
-        napi_value result;
-        napi_create_int32(env, -1, &result);
-        return result;
+        return false;
     }
     
     CCLOG("AddSubtitle: got descriptor fd=%{public}d, start=%{public}lld, length=%{public}lld", 
           descriptor.fd, (long long)descriptor.start, (long long)descriptor.length);
     
-    OH_AVErrCode ret = OH_AVPlayer_AddFdSubtitleSource(manager->player_, descriptor.fd, descriptor.start, descriptor.length);
-    CCLOG("OH_AVPlayer_AddFdSubtitleSource result: %{public}d", ret);
+    outRawFile = rawFile;
+    return true;
+}
+
+static napi_value CreateInt32Result(napi_env env, int32_t value) {
+    napi_value result;
+    napi_create_int32(env, value, &result);
+    return result;
+}
+
+static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info) {
+    CCLOG("NAPI_Global_AddSubtitle called");
+    size_t argc = 2;
+    size_t argNum = 2;
+    napi_value args[2] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+    bool success = false;
+    char *fileName = GetFileNameFromNapiArg(env, args[0], success);
+    if (!success) {
+        return CreateInt32Result(env, -1);
+    }
+    
+    auto manager = SampleManager::GetInstance();
+    if (manager->player_ == nullptr) {
+        CCLOG("AddSubtitle error: player not initialized");
+        delete[] fileName;
+        return CreateInt32Result(env, -1);
+    }
+    
+    if (argc < argNum || args[1] == nullptr) {
+        CCLOG("AddSubtitle error: missing context parameter");
+        delete[] fileName;
+        return CreateInt32Result(env, -1);
+    }
+    
+    NativeResourceManager *resManager = GetResourceManagerFromContext(env, args[1], success);
+    if (!success) {
+        delete[] fileName;
+        return CreateInt32Result(env, -1);
+    }
+    
+    RawFileDescriptor descriptor;
+    RawFile *rawFile = nullptr;
+    bool descriptorOk = GetRawFileDescriptor(resManager, fileName, descriptor, rawFile);
+    if (!descriptorOk) {
+        OH_ResourceManager_ReleaseNativeResourceManager(resManager);
+        delete[] fileName;
+        return CreateInt32Result(env, -1);
+    }
+    
+    OH_AVErrCode ret = OH_AVPlayer_AddFdSubtitleSource(
+        manager->player_, descriptor.fd, descriptor.start, descriptor.length);
     
     OH_ResourceManager_CloseRawFile(rawFile);
     OH_ResourceManager_ReleaseNativeResourceManager(resManager);
     delete[] fileName;
     
-    napi_value result;
-    napi_create_int32(env, ret, &result);
-    return result;
+    return CreateInt32Result(env, ret);
 }
+
 static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info) {
     auto context = SampleManager::GetInstance();
     CCLOG("GetSubtitle called, current text: %{public}s", context->currentSubtitle_.c_str());
@@ -772,8 +794,7 @@ static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
+static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"setup", nullptr, NAPI_Global_Setup, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"play", nullptr, NAPI_Global_Play, nullptr, nullptr, nullptr, napi_default, nullptr},
