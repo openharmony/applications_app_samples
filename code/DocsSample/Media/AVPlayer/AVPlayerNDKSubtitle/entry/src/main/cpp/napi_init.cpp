@@ -192,177 +192,213 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleRenderer::Release(id);
 }
 
-void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData)
-{
-    int32_t ret;
-    int32_t value = -1;
+void HandleStateInitialized(OH_AVPlayer *player) {
+    LOG("AVPlayerState AV_INITIALIZED");
+    auto context = SampleManager::GetInstance();
+    int32_t ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
+    LOG("OH_AVPlayer_SetVideoSurface ret:%{public}d", ret);
+    ret = OH_AVPlayer_Prepare(player);  // 设置播放源后触发该状态上报
+    if (ret != AV_ERR_OK) {
+        LOG("player %{public}s", "OH_AVPlayer_Prepare Err");
+    }
+}
 
+void HandleStatePrepared(OH_AVPlayer *player) {
+    LOG("AVPlayerState AV_PREPARED");
+    int32_t ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE);  // 设置音频音效模式
+    LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
+    ret = OH_AVPlayer_Play(player);  // 调用播放接口开始播放
+    LOG("OH_AVPlayer_Play ret:%{public}d", ret);
+}
+
+void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody) {
     int32_t state = -1;
     int32_t stateChangeReason = -1;
-    AVPlayerState avState = AV_IDLE;
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE, &state);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE_CHANGE_REASON, &stateChangeReason);
+    LOG("AV_INFO_TYPE_STATE_CHANGE state: %{public}d, reason: %{public}d", state, stateChangeReason);
+    
+    AVPlayerState avState = static_cast<AVPlayerState>(state);
+    switch (avState) {
+    case AV_IDLE:
+        LOG("AVPlayerState AV_IDLE");
+        break;
+    case AV_INITIALIZED:
+        HandleStateInitialized(player);
+        break;
+    case AV_PREPARED:
+        HandleStatePrepared(player);
+        break;
+    case AV_PLAYING:
+        LOG("AVPlayerState AV_PLAYING");
+        break;
+    case AV_PAUSED:
+        LOG("AVPlayerState AV_PAUSED");
+        break;
+    case AV_STOPPED:
+        LOG("AVPlayerState AV_STOPPED");
+        break;
+    case AV_COMPLETED:
+        LOG("AVPlayerState AV_COMPLETED");
+        break;
+    case AV_ERROR:
+        LOG("AVPlayerState AV_ERROR");
+        break;
+    case AV_RELEASED:
+        LOG("AVPlayerState AV_RELEASED");
+        break;
+    default:
+        break;
+    }
+}
 
-    float volume = 0.0;
+void HandleSubtitleUpdate(OH_AVFormat *infoBody) {
+    CCLOG("AV_INFO_TYPE_SUBTITLE_UPDATE received");
+    int32_t duration = 0;
+    int32_t startTime = 0;
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_DURATION, &duration);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_START_TIME, &startTime);
+    CCLOG("Subtitle duration: %{public}d, startTime: %{public}d", duration, startTime);
+    
+    const char *subtitleText = nullptr;
+    OH_AVFormat_GetStringValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_TEXT, &subtitleText);
+    
+    auto manager = SampleManager::GetInstance();
+    if (subtitleText != nullptr) {
+        manager->currentSubtitle_ = std::string(subtitleText);
+        CCLOG("Subtitle text updated: %{public}s", manager->currentSubtitle_.c_str());
+    } else {
+        manager->currentSubtitle_ = "";
+        CCLOG("Subtitle text cleared (no data)");
+    }
+}
 
+void HandleBitrateCollect(OH_AVFormat *infoBody) {
+    uint8_t *bitRates = nullptr;
+    size_t size = 0;
+    OH_AVFormat_GetBuffer(infoBody, OH_PLAYER_BITRATE_ARRAY, &bitRates, &size);
+    LOG("AV_INFO_TYPE_BITRATE_COLLECT size: %{public}zu", size);
+    for (size_t i = 0, cnt = size / sizeof(uint32_t); i < cnt; i++) {
+        LOG("AV_INFO_TYPE_BITRATE_COLLECT bitRates[%{public}zu]: %{public}u", i,
+            *(static_cast<uint32_t *>(static_cast<void *>(bitRates)) + i));
+    }
+}
+
+void HandleIntValueInfo(AVPlayerOnInfoType type, OH_AVFormat *infoBody, const char *key) {
+    int32_t value = -1;
+    OH_AVFormat_GetIntValue(infoBody, key, &value);
+    LOG("%{public}d type: value: %{public}d", type, value);
+}
+
+void HandleResolutionChange(OH_AVFormat *infoBody) {
     int32_t width = -1;
     int32_t height = -1;
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_WIDTH, &width);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_HEIGHT, &height);
+    LOG("AV_INFO_TYPE_RESOLUTION_CHANGE width: %{public}d, height: %{public}d", width, height);
+}
 
-    int32_t bufferType = -1;
-    int32_t bufferValue = -1;
-
-    uint8_t *bitRates;
-    size_t size;
-
+void HandleInterruptEvent(OH_AVFormat *infoBody) {
     int32_t interruptType = -1;
     int32_t interruptForce = -1;
     int32_t interruptHint = -1;
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_TYPE, &interruptType);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_FORCE, &interruptForce);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_HINT, &interruptHint);
+    LOG("AV_INFO_TYPE_INTERRUPT_EVENT type: %{public}d, force: %{public}d, hint: %{public}d", 
+        interruptType, interruptForce, interruptHint);
+}
+
+void HandleVolumeChange(OH_AVFormat *infoBody) {
+    float volume = 0.0;
+    OH_AVFormat_GetFloatValue(infoBody, OH_PLAYER_VOLUME, &volume);
+    LOG("AV_INFO_TYPE_VOLUME_CHANGE value: %{public}f", volume);
+}
+
+void HandleBufferingUpdate(OH_AVFormat *infoBody) {
+    int32_t bufferType = -1;
+    int32_t bufferValue = -1;
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_TYPE, &bufferType);
+    OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_VALUE, &bufferValue);
+}
+
+void HandleSimpleLogInfo(AVPlayerOnInfoType type) {
+    if (type == AV_INFO_TYPE_EOS) {
+        LOG("AV_INFO_TYPE_EOS");
+    } else if (type == AV_INFO_TYPE_TRACKCHANGE) {
+        LOG("AV_INFO_TYPE_TRACKCHANGE");
+    } else if (type == AV_INFO_TYPE_TRACK_INFO_UPDATE) {
+        LOG("AV_INFO_TYPE_TRACK_INFO_UPDATE");
+    }
+}
+
+static const char* GetKeyByInfoType(AVPlayerOnInfoType type) {
+    switch (type) {
+    case AV_INFO_TYPE_MESSAGE:
+        return OH_PLAYER_MESSAGE_TYPE;
+    case AV_INFO_TYPE_DURATION_UPDATE:
+        return OH_PLAYER_DURATION;
+    case AV_INFO_TYPE_IS_LIVE_STREAM:
+        return OH_PLAYER_IS_LIVE_STREAM;
+    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
+        return OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
+    default:
+        return nullptr;
+    }
+}
+
+void HandleIntValueInfoByType(AVPlayerOnInfoType type, OH_AVFormat *infoBody) {
+    const char *key = GetKeyByInfoType(type);
+    if (key != nullptr) {
+        HandleIntValueInfo(type, infoBody, key);
+    }
+}
+
+void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
     switch (type) {
     case AV_INFO_TYPE_STATE_CHANGE:
-        LOG("AVPlayerOnInfoType AV_INFO_TYPE_STATE_CHANGE");
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE, &state);
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE_CHANGE_REASON, &stateChangeReason);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_STATE_CHANGE  state: %{public}d ,stateChangeReason: %{public}d", 
-            state, stateChangeReason);
-        avState = static_cast<AVPlayerState>(state);
-        switch (avState) {
-        case AV_IDLE: // 成功调用reset接口后触发该状态机上报
-            LOG("AVPlayerState  AV_IDLE");
-            break;
-        case AV_INITIALIZED: {
-            LOG("AVPlayerState  AV_INITIALIZED");
-            auto context = SampleManager::GetInstance();
-            ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
-            LOG("OH_AVPlayer_SetVideoSurface ret:%{public}d", ret);
-            ret = OH_AVPlayer_Prepare(player); // 设置播放源后触发该状态上报
-            if (ret != AV_ERR_OK) {
-                // 处理异常
-                LOG("player  %{public}s", "OH_AVPlayer_Prepare Err");
-            }
-        } break;
-        case AV_PREPARED:
-            LOG("AVPlayerState AV_PREPARED");
-            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
-            LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
-            ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
-            LOG("OH_AVPlayer_Play ret:%{public}d", ret);
-            break;
-        case AV_PLAYING:
-            LOG("AVPlayerState AV_PLAYING");
-            break;
-        case AV_PAUSED:
-            LOG("AVPlayerState AV_PAUSED");
-            break;
-        case AV_STOPPED:
-            LOG("AVPlayerState AV_STOPPED");
-            break;
-        case AV_COMPLETED:
-            LOG("AVPlayerState AV_COMPLETED");
-            break;
-        case AV_ERROR:
-            LOG("AVPlayerState AV_ERROR");
-            break;
-        case AV_RELEASED:
-            LOG("AVPlayerState AV_RELEASED");
-            break;
-        default:
-            break;
-        }
+        HandleStateChange(player, infoBody);
         break;
     case AV_INFO_TYPE_SEEKDONE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SEEK_POSITION, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SEEKDONE value: %{public}d", value);
+        HandleIntValueInfo(type, infoBody, OH_PLAYER_SEEK_POSITION);
         break;
     case AV_INFO_TYPE_SPEEDDONE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_PLAYBACK_SPEED, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SPEEDDONE value: %{public}d", value);
+        HandleIntValueInfo(type, infoBody, OH_PLAYER_PLAYBACK_SPEED);
         break;
     case AV_INFO_TYPE_BITRATEDONE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BITRATE, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATEDONE value: %{public}d", value);
+        HandleIntValueInfo(type, infoBody, OH_PLAYER_BITRATE);
         break;
     case AV_INFO_TYPE_EOS:
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_EOS");
+    case AV_INFO_TYPE_TRACKCHANGE:
+    case AV_INFO_TYPE_TRACK_INFO_UPDATE:
+        HandleSimpleLogInfo(type);
         break;
     case AV_INFO_TYPE_POSITION_UPDATE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_CURRENT_POSITION, &value);
-        // 以下log会频繁打印
-        // LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_POSITION_UPDATE value: %{public}d", value);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_CURRENT_POSITION, nullptr);
         break;
     case AV_INFO_TYPE_MESSAGE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_MESSAGE_TYPE, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_MESSAGE value: %{public}d", value);
+    case AV_INFO_TYPE_DURATION_UPDATE:
+    case AV_INFO_TYPE_IS_LIVE_STREAM:
+    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
+        HandleIntValueInfoByType(type, infoBody);
         break;
     case AV_INFO_TYPE_VOLUME_CHANGE:
-        OH_AVFormat_GetFloatValue(infoBody, OH_PLAYER_VOLUME, &volume);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_VOLUME_CHANGE value: %{public}f", volume);
+        HandleVolumeChange(infoBody);
         break;
     case AV_INFO_TYPE_RESOLUTION_CHANGE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_WIDTH, &width);
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_HEIGHT, &height);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_RESOLUTION_CHANGE width: %{public}d, height: %{public}d", 
-            width, height);
+        HandleResolutionChange(infoBody);
         break;
     case AV_INFO_TYPE_BUFFERING_UPDATE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_TYPE, &bufferType);
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_VALUE, &bufferValue);
-        // 以下log会频繁打印
-//        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BUFFERING_UPDATE bufferType: %{public}d, bufferValue: %{public}d",
-//            bufferType, bufferValue);
+        HandleBufferingUpdate(infoBody);
         break;
     case AV_INFO_TYPE_BITRATE_COLLECT:
-        OH_AVFormat_GetBuffer(infoBody, OH_PLAYER_BITRATE_ARRAY, &bitRates, &size);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT size: %{public}zu", size);
-        for (size_t i = 0, cnt = size / sizeof(uint32_t); i < cnt; i++) {
-            LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT bitRates[%{public}zu]: %{public}u", i,
-                *(static_cast<uint32_t *>(static_cast<void *>(bitRates)) + i));
-        }
+        HandleBitrateCollect(infoBody);
         break;
     case AV_INFO_TYPE_INTERRUPT_EVENT:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_TYPE, &interruptType);
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_FORCE, &interruptForce);
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_HINT, &interruptHint);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_INTERRUPT_EVENT interruptType: %{public}d, "
-            "interruptForce: %{public}d, interruptHint: %{public}d", interruptType, interruptForce, interruptHint);
-        break;
-    case AV_INFO_TYPE_DURATION_UPDATE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_DURATION, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_DURATION_UPDATE value: %{public}d", value);
-        break;
-    case AV_INFO_TYPE_IS_LIVE_STREAM:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_IS_LIVE_STREAM, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_IS_LIVE_STREAM value: %{public}d", value);
-        break;
-    case AV_INFO_TYPE_TRACKCHANGE:
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_TRACKCHANGE value: %{public}d", value);
-        break;
-    case AV_INFO_TYPE_TRACK_INFO_UPDATE:
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_TRACK_INFO_UPDATE value: %{public}d", value);
+        HandleInterruptEvent(infoBody);
         break;
     case AV_INFO_TYPE_SUBTITLE_UPDATE:
-        CCLOG("AV_INFO_TYPE_SUBTITLE_UPDATE received");
-        {
-            int32_t duration = 0;
-            int32_t startTime = 0;
-            OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_DURATION, &duration);
-            OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_START_TIME, &startTime);
-            CCLOG("Subtitle duration: %{public}d, startTime: %{public}d", duration, startTime);
-            
-            const char *subtitleText = nullptr;
-            OH_AVFormat_GetStringValue(infoBody, OH_PLAYER_SUBTITLE_UPDATE_INFO_TEXT, &subtitleText);
-            
-            if (subtitleText != nullptr) {
-                auto manager = SampleManager::GetInstance();
-                manager->currentSubtitle_ = std::string(subtitleText);
-                CCLOG("Subtitle text updated: %{public}s", manager->currentSubtitle_.c_str());
-            } else {
-                auto manager = SampleManager::GetInstance();
-                manager->currentSubtitle_ = "";
-                CCLOG("Subtitle text cleared (no data)");
-            }
-        }
-        break;
-    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON, &value);
-        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE value: %{public}d", value);
+        HandleSubtitleUpdate(infoBody);
         break;
     default:
         break;
@@ -372,88 +408,112 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
 {
     LOG("OHAVPlayerOnErrorCallback errorCode: %{public}d ,errorMsg: %{public}s", errorCode, errorMsg);
 }
-static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info)
-{
-
-    LOG("Call NAPI AVPlayer setup");
-    size_t argc = 4;
-    napi_value args[4] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+static char* GetUrlFromNapiArg(napi_env env, napi_value arg, bool &success) {
     // 获取参数类型
     napi_valuetype stringType;
-    if (napi_ok != napi_typeof(env, args[0], &stringType)) {
+    if (napi_ok != napi_typeof(env, arg, &stringType)) {
         // 处理异常
         LOG("参数异常");
+        success = false;
         return nullptr;
     }
     // 参数校验
     if (napi_null == stringType) {
         // 处理异常
         LOG("参数异常 null");
+        success = false;
         return nullptr;
     }
+    
     // 获取传递的string长度
     size_t length = 0;
-    if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
+    if (napi_ok != napi_get_value_string_utf8(env, arg, nullptr, 0, &length)) {
         // 处理异常
         LOG("参数长度异常");
+        success = false;
         return nullptr;
     }
     // 如果传入的是""，则直接返回
     if (length == 0) {
         // 处理异常
         LOG("参数空字符");
+        success = false;
         return nullptr;
     }
+    
     // 读取传入的string放入buffer中
     char *url = new char[length + 1];
-    if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
+    if (napi_ok != napi_get_value_string_utf8(env, arg, url, length + 1, &length)) {
         delete[] url;
-        url = nullptr;
         // 处理异常
         LOG("url 异常");
+        success = false;
         return nullptr;
     }
-    int pType;
-    napi_get_value_int32(env, args[1], &pType);
-    LOG("fd type %{public}d", pType);
-    int pOffset;
-    napi_get_value_int32(env, args[2], &pOffset);
-    LOG("fd size %{public}d", pOffset);
-    int pSize;
-    napi_get_value_int32(env, args[3], &pSize);
-    LOG("fd size %{public}d", pSize);
     
+    success = true;
+    return url;
+}
+
+static void GetFdParamsFromNapiArgs(napi_env env, napi_value args[4], int &fd, int &offset, int &size) {
+    napi_get_value_int32(env, args[1], &fd);
+    LOG("fd type %{public}d", fd);
+    napi_get_value_int32(env, args[2], &offset);
+    LOG("fd size %{public}d", offset);
+    napi_get_value_int32(env, args[3], &size);
+    LOG("fd size %{public}d", size);
+}
+
+static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const char *url) {
     // 创建播放实例
-    if(SampleManager::GetInstance()->player_) {
+    if (SampleManager::GetInstance()->player_) {
         OH_AVPlayer_Release(SampleManager::GetInstance()->player_);
     }
     OH_AVPlayer *player = OH_AVPlayer_Create();
     SampleManager::GetInstance()->SetAVPlayer(player);
+    
     // 设置回调，监听信息
     LOG("call OH_AVPlayer_SetPlayerOnInfoCallback");
     int32_t ret = OH_AVPlayer_SetOnInfoCallback(player, OHAVPlayerOnInfoCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%{public}d", ret);
+    
     LOG("call OH_AVPlayer_SetPlayerOnErrorCallback");
     ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, nullptr);
-    LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%{public}d", ret);
-    {
-        LOG("player %{public}s  >> fd: %{public}d offset: %{public}d fileSize: %{public}d", 
-            url, pType, pOffset, pSize);
-        LOG("call %{public}s", "OH_AVPlayer_SetFDSource");
-        ret = OH_AVPlayer_SetFDSource(player, pType, pOffset, pSize);
-        LOG("OH_AVPlayer_SetFDSource ret:%{public}d", ret);
-    }
+    
+    LOG("call %{public}s", "OH_AVPlayer_SetFDSource");
+    ret = OH_AVPlayer_SetFDSource(player, fd, offset, size);
+    
     // 设置音频流类型
     LOG("call %{public}s", "OH_AVPlayer_SetAudioRendererInfo");
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
-    LOG("OH_AVPlayer_SetAudioRendererInfo ret:%{public}d", ret);
+    
     // 设置音频流打断模式
     LOG("call OH_AVPlayer_SetAudioInterruptMode");
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
-    LOG("OH_AVPlayer_SetAudioInterruptMode ret:%{public}d", ret);
+    
+    return player;
+}
+
+static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
+    LOG("Call NAPI AVPlayer setup");
+    size_t argc = 4;
+    napi_value args[4] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+    bool success = false;
+    char *url = GetUrlFromNapiArg(env, args[0], success);
+    if (!success) {
+        return nullptr;
+    }
+    
+    int fd = 0, offset = 0, size = 0;
+    GetFdParamsFromNapiArgs(env, args, fd, offset, size);
+    
+    OH_AVPlayer *player = CreateAndConfigurePlayer(fd, offset, size, url);
+    delete[] url;
+    
     napi_value value;
     napi_create_int32(env, 0, &value);
     return value;
