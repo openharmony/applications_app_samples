@@ -100,8 +100,9 @@ struct Index {
   async initPlayer(){
     // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
-    if (this.context == undefined) return;
-
+    if (this.context == undefined) {
+      return;
+    }
     if (this.avPlayer) {
       console.info(`${this.tag}: init avPlayer release2createNew`);
       this.avPlayer.release();
@@ -121,8 +122,8 @@ struct Index {
         }
       }, SET_INTERVAL);
     });
-
-    let url = 'https://appimg.dbankcdn.com/appVideo/f59583660abd45bcb4fb9c3e3f1125a9.mp4';
+    // 设置mediaSource
+    let url = 'https://vd3.bdstatic.com/mda-pdc2kmwtd2vxhiy4/cae_h264/1681502407203843413/mda-pdc2kmwtd2vxhiy4.mp4';
     await this.preDownload(url);
   }
 
