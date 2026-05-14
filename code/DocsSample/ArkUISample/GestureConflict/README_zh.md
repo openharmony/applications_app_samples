@@ -10,10 +10,11 @@
 
 | 首页                                    | 自定义手势判定                             |
 |---------------------------------------|-------------------------------------|
-| ![](screenshots/Home.jpg)       | ![](screenshots/userDefined.jpg)    |
+| ![](screenshots/Home.png)       | ![](screenshots/userDefined.jpg)    |
 | 手势并行动态控制                              | 阻止手势参与识别                            |
 | ![](screenshots/kineticControl.jpg)   | ![](screenshots/Stop.jpg)  |
-
+| 自定义手势并行动态控制                              |
+| ![](screenshots/CustomkineticControl.jpg)   |
 
 ### 使用说明
 
@@ -41,6 +42,8 @@ entry/src/main/ets/
 └── Component/GestureAndMotionControl
     └── GestureAndMotionControl.ets      // 手势并行动态控制页面
     └── GestureControl.ets               // 手势并行动态控制页面片段
+└── Component/CustomGestureAndMotionControl
+    └── CustomGestureControl.ets         // 自定义手势并行动态控制页面
 └── Component/PreventGestureRecognition
     └── PreventGestureRecognition.ets    //  阻止手势参与识别页面
     └── PreventIdentification.ets        //  阻止手势参与识别页面片段

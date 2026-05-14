@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,6 +30,11 @@ let demandList: listItem[] = [
     name: 'Gesture and motion control',
     description: 'Gesture and motion control refers to the situation where the gesture has been successfully recognized, but the developer can still control whether the gesture callback can respond by calling the API interface.',
     router: 'Component/GestureAndMotionControl/GestureAndMotionControl'
+  },
+  {
+    name: 'Custom gesture and motion control',
+    description: 'Custom gesture and motion control refers to the situation where the gesture has been successfully recognized, but the developer can still control whether the gesture callback can respond by calling the API interface.',
+    router: 'Component/CustomGestureAndMotionControl/GestureControl'
   },
   {
     name: 'Preventing gesture participation in recognition',
