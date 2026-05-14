@@ -24,10 +24,6 @@ export default {
       ignoreModuleNames: ['TurboTransCore' , 'TurboTransJSON',  'PerformanceBaseline','TurboTransProtobuf'], // 忽略的模块
       scanDir: ['src/main/ets'], // 扫描目录
       deserializationMode: 'performance', // 反序列化模式
-      importRewrite: {
-        scanPaths: ['src/main/ets', 'src/ohosTest/ets'],
-        preserveOriginalImports: false
-      }
     }),
   ]       /* Custom plugin to extend the functionality of Hvigor. */
 }

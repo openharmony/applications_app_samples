@@ -37,8 +37,10 @@ struct Index {
             taskpool.execute(loadPictureTask).then((res: object) => {
               // loadPicture方法的执行结果
               iconItemSourceList = res as IconItemSource[];
+              this.message = 'success';
+            }).catch(() => {
+              console.error(`Failed to execute taskpool.`);
             })
-            this.message = 'success';
           })
       }
       .width('100%')

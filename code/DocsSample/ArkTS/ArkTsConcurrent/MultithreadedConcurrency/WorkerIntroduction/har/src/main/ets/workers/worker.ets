@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start create_har_worker]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+// [StartExclude create_har_worker]
 
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
@@ -24,7 +26,7 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
  * @param e message data
  */
 
-// [Start create_har_worker]
+// [EndExclude create_har_worker]
 workerPort.onmessage = (e: MessageEvents) => {
   console.info('worker thread receive message: ', e.data);
   workerPort.postMessage('worker thread post message to main thread');
