@@ -298,11 +298,11 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
     if (render != nullptr) {
         DisplaySoloist_ExpectedRateRange range;
         bool useExclusiveThread = false;
-        if (id == "xcomponentId30") {
+        if (id == "xcomponentId_30") {
             range = {30, 120, 30};
         }
 
-        if (id == "xcomponentId120") {
+        if (id == "xcomponentId_120") {
             range = {30, 120, 120};
         }
         ExecuteDisplaySoloist(id, range, useExclusiveThread, nativeXComponent);
