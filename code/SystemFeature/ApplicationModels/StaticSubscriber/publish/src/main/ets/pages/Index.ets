@@ -40,8 +40,7 @@ struct Index {
           // 公共事件相关信息
           let options: CommonEventManager.CommonEventPublishData = {
             code: 0, // 公共事件的初始代码
-            bundleName: '',
-            data: getContext(this).resourceManager.getStringSync($r('app.string.publish_data')),
+            data: this.getUIContext()?.getHostContext()?.resourceManager.getStringSync($r('app.string.publish_data').id),
             isOrdered: true // 有序公共事件
           }
 

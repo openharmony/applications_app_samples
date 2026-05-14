@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import userFileManager from '@ohos.filemanagement.userFileManager'
-import fileAccess from '@ohos.file.fileAccess';
+import { fileAccess, fileIo, ListFileOptions } from '@kit.CoreFileKit';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import DateTimeUtil from '../model/DateTimeUtil'
 import Logger from '../model/Logger'
@@ -23,7 +23,13 @@ export enum FileType {
   IMAGE = 1,
   VIDEO = 2,
   AUDIO = 3,
-  FILE= 4
+  FILE = 4
+}
+
+export interface FileInfo {
+  uri: string;
+  fileName: string;
+  mtime: number;
 }
 
 export default class MediaUtils {
@@ -72,25 +78,16 @@ export default class MediaUtils {
     let displayName = `${info.prefix}${name}${info.suffix}`
     Logger.info(this.tag, `displayName = ${displayName},mediaType = ${mediaType}`)
     let fd: number = -1;
-
+    Logger.info(this.tag, `filePath = ${context.filesDir}`)
     try {
-      let fileAccessHelper = fileAccess.createFileAccessHelper(context);
-
-      // 获取目录url
-      let rootIterator: fileAccess.RootIterator = await fileAccessHelper.getRoots();
-      let sourceUri: string = rootIterator.next().value.uri
-
-      // 以异步方法创建文件到指定目录，返回新文件uri
-      let fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-      Logger.info(this.tag, "createFile success, fileUri: " + JSON.stringify(fileUri));
-
-      // 以异步方法打开文件，返回文件描述符
-      fd = await fileAccessHelper.openFile(fileUri, fileAccess.OPENFLAGS.WRITE_READ);
+      let file =
+        fileIo.openSync(context.filesDir + "/" + displayName, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
       Logger.info(this.tag, `openFile success, fd = ${fd}`)
+      return file;
     } catch (err) {
       Logger.info(this.tag, "createFile failed, err:" + JSON.stringify(err));
     }
-    return fd;
+    return null;
   }
 
   async getFileAssetsFromType(mediaType: number): Promise<userFileManager.FileAsset[]> {
@@ -122,23 +119,27 @@ export default class MediaUtils {
     return fileAssets
   }
 
-  async getFileAssets(context: common.UIAbilityContext): Promise<fileAccess.FileInfo[]> {
+  async getFileAssets(context: common.UIAbilityContext, mediaType?: number): Promise<FileInfo[]> {
     let isDone: boolean = false;
-    let fileInfos: Array<fileAccess.FileInfo> = [];
+    const pathDir: string = context.filesDir;
+    let fileInfos: Array<FileInfo> = [];
     try {
-      let fileAccessHelper = fileAccess.createFileAccessHelper(context);
-      let rootIterator: fileAccess.RootIterator = await fileAccessHelper.getRoots();
-      // 获取目录url
-      let catalogueUrl: string = rootIterator.next().value.uri;
-      let fileInfo: fileAccess.FileInfo = await fileAccessHelper.getFileInfoFromUri(catalogueUrl);
-      let fileIterator = fileInfo.scanFile();
-      while (!isDone) {
-        let result = fileIterator.next();
-        isDone = result.done;
-        if (!isDone) {
-          fileInfos.push(result.value);
+      let listFileOption: ListFileOptions = {
+        recursion: false,
+        listNum: 0,
+        filter: {
+          suffix: ["txt"],
+          excludeMedia: true
         }
       }
+      fileIo.listFileSync(pathDir).forEach((fileName: string) => {
+        let fileStat: fileIo.Stat = fileIo.statSync(pathDir + "/" + fileName);
+        fileInfos.push({
+          uri: pathDir + "/" + fileName,
+          fileName: fileName,
+          mtime: fileStat.mtime
+        });
+      })
     } catch (error) {
       Logger.info(this.tag, "getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
@@ -149,7 +150,7 @@ export default class MediaUtils {
     Logger.info(this.tag, 'getAlbums begin')
 
     let albums = []
-    const [ images, videos, audios, fileInfos ] = await Promise.all([
+    const [images, videos, audios, fileInfos] = await Promise.all([
       this.getFileAssetsFromType(FileType.IMAGE),
       this.getFileAssetsFromType(FileType.VIDEO),
       this.getFileAssetsFromType(FileType.AUDIO),
@@ -176,8 +177,9 @@ export default class MediaUtils {
       try {
         let fileAccessHelper = fileAccess.createFileAccessHelper(context);
         let code = await fileAccessHelper.delete(uri);
-        if (code != 0)
+        if (code != 0) {
           Logger.info(this.tag, `delete failed, code: ${code}`);
+        }
       } catch (err) {
         Logger.info(this.tag, `delete failed, err: ${err}`);
       }

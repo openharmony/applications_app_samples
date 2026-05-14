@@ -17,9 +17,9 @@ export default class Contact {
   name: string
   destinationHost: string
 
-  constructor(name, destinationHost) {
-    this.name = name,
-    this.destinationHost = destinationHost
+  constructor(name:string, destinationHost:string) {
+    this.name = name;
+    this.destinationHost = destinationHost;
   }
 }
 

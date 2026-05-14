@@ -32,12 +32,16 @@ struct Player {
   private heightPx = (this.display.width * Const.DEFAULT_HEIGHT / Const.DEFAULT_WIDTH) + Const.PX;
 
   selectFile() {
+    let i:number=0;
+    console.info(i.toString());
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    hilog.info(0x0000, TAG, 'documentViewPicker.select to file start');
     photoPicker.select({
       MIMEType: photoAccessHelper.PhotoViewMIMETypes.VIDEO_TYPE,
       maxSelectNumber: 1
     })
       .then((photoSelectResult) => {
+        hilog.info(0x0000, TAG, 'documentViewPicker.select to file succeed');
         this.selectFilePath = photoSelectResult.photoUris[0];
         if (this.selectFilePath === null) {
           promptAction.showToast({
@@ -46,14 +50,22 @@ struct Player {
             bottom: Const.BOTTOM
           });
         } else {
-          this.play();
           hilog.info(0x0000, TAG, 'documentViewPicker.select to file succeed and URI is:' + this.selectFilePath);
+          this.play();
         }
+      })
+      .catch((err:BusinessError) => {
+        hilog.error(0x0000, TAG, 'documentViewPicker.select to file failed: '+JSON.stringify(err));
       });
   }
 
-  ratePlay(speed : number) {
-    player.ratePlay(speed);
+  ratePlay(speed: number) {
+    if (player) {
+      player.ratePlay(speed);
+    } else {
+      hilog.error(0x0000, TAG, 'player playNative failed');
+    }
+
   }
 
   play() {
@@ -67,7 +79,6 @@ struct Player {
     }
     this.buttonEnabled = false;
     player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, () => {
-      hilog.info(0x0000, TAG, 'player JSCallback');
       this.buttonEnabled = true;
       fileIo.close(inputFile);
     });
@@ -84,7 +95,7 @@ struct Player {
           })
           .fontColor('#e5000000')
       }
-      .margin({top: 64})
+      .margin({ top: 64 })
       .padding({
         left: '16vp'
       })
@@ -104,6 +115,7 @@ struct Player {
         Column() {
           Button(this.buttonEnabled ? $r('app.string.play') : $r('app.string.playing'))
             .onClick(() => {
+              hilog.info(0x0000, TAG, 'player button click')
               this.selectFile();
             })
             .size({

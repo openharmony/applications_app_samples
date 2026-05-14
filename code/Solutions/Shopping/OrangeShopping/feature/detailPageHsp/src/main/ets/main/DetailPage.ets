@@ -200,7 +200,7 @@ export struct DetailPage {
           .position({ x: 0, y: '100%' })
           .translate({ x: 0, y: -56 });
         SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
-          .position({ x: '100%', y: '60%' })
+          .position({ x: '100%', y: '30%' })
           .translate({ x: -180, y: 0 });
         Panel(this.isPanel) {
           Location({ isPanel: $isPanel, currentLocation: $currentLocation });

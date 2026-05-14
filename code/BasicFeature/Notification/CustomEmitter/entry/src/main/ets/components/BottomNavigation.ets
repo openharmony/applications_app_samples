@@ -73,7 +73,6 @@ export struct BottomNavigation {
             .opacity(0.6)
             .margin({ top: 4 })
         }
-        .width(74)
         .onClick(() => {
           router.pushUrl({
             url: 'pages/Index'
@@ -90,14 +89,16 @@ export struct BottomNavigation {
             .opacity(0.6)
             .margin({ top: 4 })
         }
-        .width(74)
         .onClick(() => {
           router.pushUrl({
             url: 'pages/ShopCart'
           })
         })
+        .margin({
+          left:10
+        })
       }
-      .justifyContent(this.curBp === 'sm' ? FlexAlign.SpaceEvenly : FlexAlign.Start)
+      .justifyContent(FlexAlign.SpaceEvenly)
       .layoutWeight(1)
 
       Row() {
@@ -107,7 +108,7 @@ export struct BottomNavigation {
             .fontSize(this.curBp === 'sm' ? 16 : 20)
         }
         .alignItems(VerticalAlign.Center)
-        .padding({ left: 20, right: 20 })
+        .padding({ right: 20 })
         .onClick(() => {
           this.emitterClass.addGoods(this.goodItemData.id)
         })
@@ -124,8 +125,10 @@ export struct BottomNavigation {
             })
         }
         .alignItems(VerticalAlign.Center)
-        .padding({ left: 20, right: 20 })
+        .padding({ left: 20 })
       }
+      .layoutWeight(3)
+      .justifyContent(this.curBp === 'sm' ? FlexAlign.SpaceEvenly : FlexAlign.Center)
       .height('100%')
       .borderRadius(50)
       .clip(true)

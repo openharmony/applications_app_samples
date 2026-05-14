@@ -27,6 +27,7 @@ const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.WRITE_AUDIO',
   'ohos.permission.READ_IMAGEVIDEO',
   'ohos.permission.WRITE_IMAGEVIDEO',
+  'ohos.permission.FILE_ACCESS_MANAGER',
   'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'];
 
 export default class MainAbility extends UIAbility {

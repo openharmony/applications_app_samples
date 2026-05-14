@@ -25,23 +25,23 @@ class Logger {
     this.domain = 0x5022
   }
 
-  debug(...args: any[]) {
+  debug(...args: string[]) {
     hilog.debug(this.domain, this.prefix, this.format, args)
   }
 
-  info(...args: any[]) {
+  info(...args: string[]) {
     hilog.info(this.domain, this.prefix, this.format, args)
   }
 
-  warn(...args: any[]) {
+  warn(...args: string[]) {
     hilog.warn(this.domain, this.prefix, this.format, args)
   }
 
-  error(...args: any[]) {
+  error(...args: string[]) {
     hilog.error(this.domain, this.prefix, this.format, args)
   }
 
-  isLoggable(...args: any[]) {
+  isLoggable(...args: string[]) {
     hilog.isLoggable(this.domain, this.prefix, hilog.LogLevel.INFO)
   }
 }

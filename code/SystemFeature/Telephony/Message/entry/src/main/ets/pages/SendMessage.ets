@@ -21,6 +21,7 @@ import Logger from '../model/Logger'
 import SmsModel from '../model/SmsModel'
 import DateTimeUtil from '../model/DateTimeUtil'
 import { MessageSource } from '../model/DataSource'
+import { RouterParams } from './Index'
 
 const TAG: string = '[SendMessage]'
 const NO_SIM_STATE: number = -1
@@ -36,12 +37,12 @@ struct SendMessage {
   @State messages: MessageSource = new MessageSource([])
   private slotId: number = 0 // 卡槽id
   private destinationPort: number = 1000
-  private contact: Contact
+  private contact: Contact=new Contact('','')
   private smsModel: SmsModel = new SmsModel()
   private dateTimeUtil: DateTimeUtil = new DateTimeUtil()
 
   aboutToAppear() {
-    this.contact = <Contact> router.getParams()['contact']
+    this.contact = (this.getUIContext().getRouter().getParams() as RouterParams).contact;
     Logger.info(`${TAG}, aboutToAppear name = ${this.contact.name} destinationHost = ${this.contact.destinationHost}`)
     this.getData()
   }
@@ -115,7 +116,7 @@ struct SendMessage {
           Logger.info(`${TAG}, deliveryCallback--- success`)
         }
       })
-    Logger.info(`${TAG}, onClick sendMessage done ${JSON.stringify(this.messages['MessageData'])}`)
+    Logger.info(`${TAG}, onClick sendMessage done ${JSON.stringify(this.messages.MessageData)}`)
   }
 
   build() {
@@ -182,7 +183,7 @@ struct SendMessage {
               }
               .alignSelf(ItemAlign.End)
             }
-          }, item => item.content)
+          }, (item: Message) => item.content)
         }
         .width('100%')
         .alignItems(HorizontalAlign.End)

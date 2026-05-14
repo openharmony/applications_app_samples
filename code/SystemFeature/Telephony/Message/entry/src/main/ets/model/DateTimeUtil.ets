@@ -38,7 +38,7 @@ export default class DateTimeUtil {
    * 日期不足两位补充0
    * @param value-数据值
    */
-  fill(value) {
+  fill(value:number) {
     return (value > 9 ? '' : '0') + value
   }
 
@@ -48,7 +48,7 @@ export default class DateTimeUtil {
    * @param month
    * @param date
    */
-  concatDate(month, date) {
+  concatDate(month:number, date:number) :string{
     return `${this.fill(month)}-${this.fill(date)}`
   }
 
@@ -58,7 +58,7 @@ export default class DateTimeUtil {
    * @param minutes
    * @param seconds
    */
-  concatTime(hours, minutes) {
+  concatTime(hours:number, minutes:number):string {
     return `${this.fill(hours)}:${this.fill(minutes)}`
   }
 }
