@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "缓存下载示例模块，演示API 26新增特性"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "缓存下载示例应用"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "缓存下载"
+    },
+    {
+      "name": "home_subtitle",
+      "value": "演示cacheDownload API 26新增特性"
+    },
+    {
+      "name": "media_internet_permission",
+      "value": "允许访问网络"
+    },
+    {
+      "name": "media_get_network_info_permission",
+      "value": "允许获取网络信息"
+    },
+    {
+      "name": "cache_download_retry",
+      "value": "重试参数示例"
+    },
+    {
+      "name": "cache_download_timeout",
+      "value": "超时参数示例"
+    },
+    {
+      "name": "global_retry_options_title",
+      "value": "全局重试配置示例"
+    },
+    {
+      "name": "global_timeout_options_title",
+      "value": "全局超时配置示例"
+    },
+    {
+      "name": "download_url",
+      "value": "下载地址"
+    },
+    {
+      "name": "retry_config",
+      "value": "重试配置"
+    },
+    {
+      "name": "max_retry_count",
+      "value": "最大重试次数"
+    },
+    {
+      "name": "max_retry_hint",
+      "value": "范围：0-10。默认值：1。设为0表示不重试。"
+    },
+    {
+      "name": "timeout_config",
+      "value": "超时配置"
+    },
+    {
+      "name": "network_check_timeout",
+      "value": "网络检查超时"
+    },
+    {
+      "name": "network_check_timeout_hint",
+      "value": "范围：0-20秒。默认值：20。设为0表示不检查。"
+    },
+    {
+      "name": "http_total_timeout",
+      "value": "HTTP总超时"
+    },
+    {
+      "name": "http_total_timeout_hint",
+      "value": "范围：1秒以上。默认值：60。HTTP请求总超时时间。"
+    },
+    {
+      "name": "download_status",
+      "value": "下载状态"
+    },
+    {
+      "name": "start_download",
+      "value": "开始下载"
+    },
+    {
+      "name": "cancel_download",
+      "value": "取消下载"
+    },
+    {
+      "name": "download_success",
+      "value": "下载成功"
+    },
+    {
+      "name": "download_failed",
+      "value": "下载失败"
+    },
+    {
+      "name": "download_cancelled",
+      "value": "下载已取消"
+    },
+    {
+      "name": "global_retry_config",
+      "value": "全局重试配置"
+    },
+    {
+      "name": "global_max_retry_count",
+      "value": "全局最大重试次数"
+    },
+    {
+      "name": "global_timeout_config",
+      "value": "全局超时配置"
+    },
+    {
+      "name": "global_network_check_timeout",
+      "value": "全局网络检查超时"
+    },
+    {
+      "name": "global_http_total_timeout",
+      "value": "全局HTTP总超时"
+    },
+    {
+      "name": "current_global_status",
+      "value": "当前全局配置"
+    },
+    {
+      "name": "set_global_retry",
+      "value": "设置全局重试配置"
+    },
+    {
+      "name": "set_global_timeout",
+      "value": "设置全局超时配置"
+    },
+    {
+      "name": "global_config_success",
+      "value": "全局配置设置成功"
+    },
+    {
+      "name": "global_config_failed",
+      "value": "全局配置设置失败"
+    },
+    {
+      "name": "test_download",
+      "value": "测试下载"
+    },
+    {
+      "name": "test_download_hint",
+      "value": "此下载将使用全局配置（未指定任务级配置）"
+    },
+    {
+      "name": "start_test_download",
+      "value": "开始测试下载"
+    }
+  ]
+}
