@@ -16,7 +16,7 @@
 // [Start interact_with_the_webview_via_the_native_api]
 // [Start use_the_native_interface_to_bind_arkweb]
 // entry4/src/main/ets/pages/Index.ets
-import testNapi from 'libentry.so';
+import testNapi from 'libentry4.so';
 import { webview } from '@kit.ArkWeb';
 
 class testObj {
