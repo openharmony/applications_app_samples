@@ -15,5 +15,5 @@
 
 // [Start scenario_2]
 import { a } from './1' // innerinner文件从1文件中加载了a变量
-console.log('example ', a); // a变量在innerinner文件执行时就被使用
+console.info('example ', a); // a变量在innerinner文件执行时就被使用
 // [End scenario_2]

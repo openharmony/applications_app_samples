@@ -24,15 +24,19 @@
         "compatibleSdkVersion": 20,
         "targetSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
+        // [Start lazy_import_build]
         "buildOption": {
           "arkOptions": {
             "reExportCheckMode": "compatible"
           },
+          // [StartExclude lazy_import_build]
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true
           }
+          // [EndExclude lazy_import_build]
         }
+        // [End lazy_import_build]
       }
     ],
     "buildModeSet": [

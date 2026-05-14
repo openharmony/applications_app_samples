@@ -14,10 +14,12 @@
  */
 
 // [Start import_variable_c]
+// A.ets
 import { c } from './B';
 console.info(c);
 // [End import_variable_c]
 
 // [Start export_variable_a]
+// A.ets
 export let a = 10;
 // [End export_variable_a]

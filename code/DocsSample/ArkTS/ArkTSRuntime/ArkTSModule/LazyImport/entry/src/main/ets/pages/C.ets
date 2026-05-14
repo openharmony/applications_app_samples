@@ -14,6 +14,7 @@
  */
 
 // [Start export_variable_c]
+// C.ets
 let c = 'c';
 export { c };
 // [End export_variable_c]

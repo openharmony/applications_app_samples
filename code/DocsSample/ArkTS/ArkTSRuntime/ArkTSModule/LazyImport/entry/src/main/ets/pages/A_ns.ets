@@ -14,6 +14,7 @@
  */
 
 // [Start a_ns]
+// A_ns.ets
 import * as ns from './B';
 console.info(ns.c);
 // [End a_ns]

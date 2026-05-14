@@ -17,4 +17,4 @@
 import('./1').then((ns:ESObject) => {
   console.info('import file 1 success');
 });
-// [Start scenario_4]
+// [End scenario_4]
