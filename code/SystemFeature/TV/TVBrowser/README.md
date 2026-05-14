@@ -1,11 +1,5 @@
 # TV Browser 项目
 
-### 效果预览
-
-| 首页界面 | 网页跳转 |
-| :--- | :--- |
-| ![首页界面](screenshots/device/home.png) | ![网页跳转](screenshots/device/jump.png) |
-
 ### 介绍
 
 本示例为 OpenHarmony TV / 大屏场景下的浏览器应用（包名 `ohos.samples.browser1`），基于 **Stage 模型**与 **单模块 entry** 工程组织，通过 `Web` 组件提供网页浏览、多标签管理、加载进度与标题栏等能力；结合网络与 Wi-Fi 状态检测，在无网或异常场景下可跳转系统设置（如 Wi-Fi）。工程可作为 TV / 平板等设备上 **浏览器类应用** 的参考实现。
