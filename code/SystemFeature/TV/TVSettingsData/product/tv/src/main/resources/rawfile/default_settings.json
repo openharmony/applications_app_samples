@@ -1,0 +1,32 @@
+{
+  "settings": [
+    {
+      "name": "settings.screen.brightness.default",
+      "value": "50"
+    },
+    {
+      "name": "settings.time.format.default",
+      "value": "24"
+    },
+    {
+      "name": "settings.audio.ringtone.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.audio.media.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.audio.voicecall.default",
+      "value": "5"
+    },
+    {
+      "name": "settings.display.navigationbar_status.default",
+      "value": "1"
+    },
+    {
+      "name": "cellular_data_enable.default",
+      "value": "1"
+    }
+  ]
+}
