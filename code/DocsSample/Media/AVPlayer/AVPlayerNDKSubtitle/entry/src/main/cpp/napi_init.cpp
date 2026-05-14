@@ -27,7 +27,7 @@
 
 #define LOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
 #define LOGE(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
-#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, 
+#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00,
     LOG_MSG_TAG, "[cclog] " format, ##__VA_ARGS__))
 
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window);
@@ -157,7 +157,8 @@ public:
 };
 SampleManager SampleManager::pluginManager_;
 
-void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
+void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
+{
     LOG("OnSurfaceCreatedCB");
     if ((component == nullptr) || (window == nullptr)) {
         return;
@@ -176,7 +177,8 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
         context->SetNativeWindow(nativeWindow, width, height);
     }
 }
-void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
+{
     LOG("OnSurfaceDestroyedCB");
     if ((component == nullptr) || (window == nullptr)) {
         return;
@@ -190,7 +192,8 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
     SampleRenderer::Release(id);
 }
 
-void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
+void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData)
+{
     int32_t ret;
     int32_t value = -1;
 
@@ -365,10 +368,12 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
         break;
     }
 }
-void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData) {
+void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)
+{
     LOG("OHAVPlayerOnErrorCallback errorCode: %{public}d ,errorMsg: %{public}s", errorCode, errorMsg);
 }
-static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info)
+{
 
     LOG("Call NAPI AVPlayer setup");
     size_t argc = 4;
@@ -453,7 +458,8 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     napi_create_int32(env, 0, &value);
     return value;
 }
-static napi_value NAPI_Global_Play(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Play(napi_env env, napi_callback_info info)
+{
     int ret = -1;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
@@ -466,7 +472,8 @@ static napi_value NAPI_Global_Play(napi_env env, napi_callback_info info) {
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_SetSpeed(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_SetSpeed(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -517,7 +524,8 @@ static napi_value NAPI_Global_SetSpeed(napi_env env, napi_callback_info info) {
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_GetSpeed(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetSpeed(napi_env env, napi_callback_info info)
+{
     auto context = SampleManager::GetInstance();
     AVPlaybackSpeed speed;
     if (context->player_ != NULL) {
@@ -529,7 +537,8 @@ static napi_value NAPI_Global_GetSpeed(napi_env env, napi_callback_info info) {
     napi_create_int32(env, speed, &value);
     return value;
 }
-static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info)
+{
     int ret = 100;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
@@ -542,7 +551,8 @@ static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info) {
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info)
+{
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -579,7 +589,8 @@ static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info) {
     napi_create_int32(env, 0, &value);
     return value;
 }
-static napi_value NAPI_Global_GetDuration(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetDuration(napi_env env, napi_callback_info info)
+{
     auto context = SampleManager::GetInstance();
     int ret;
     int32_t duration;
@@ -595,7 +606,8 @@ static napi_value NAPI_Global_GetDuration(napi_env env, napi_callback_info info)
     napi_create_int32(env, duration, &value);
     return value;
 }
-static napi_value NAPI_Global_GetCurrentTime(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetCurrentTime(napi_env env, napi_callback_info info)
+{
     auto context = SampleManager::GetInstance();
     int ret;
     int32_t currentTime;
@@ -611,7 +623,8 @@ static napi_value NAPI_Global_GetCurrentTime(napi_env env, napi_callback_info in
     napi_create_int32(env, currentTime, &value);
     return value;
 }
-static napi_value NAPI_Global_GetVideoHeight(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetVideoHeight(napi_env env, napi_callback_info info)
+{
     int ret = -1;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
@@ -625,7 +638,8 @@ static napi_value NAPI_Global_GetVideoHeight(napi_env env, napi_callback_info in
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_GetVideoWidth(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetVideoWidth(napi_env env, napi_callback_info info)
+{
     int ret = -1;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
@@ -639,7 +653,8 @@ static napi_value NAPI_Global_GetVideoWidth(napi_env env, napi_callback_info inf
     napi_create_int32(env, ret, &value);
     return value;
 }
-static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info)
+{
     int ret = -1;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
@@ -652,7 +667,8 @@ static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info) {
     napi_create_int32(env, ret, &value);
     return value;
 }
-static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success) {
+static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success)
+{
     napi_valuetype valueType;
     napi_typeof(env, arg, &valueType);
     if (valueType != napi_string) {
@@ -676,7 +692,8 @@ static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success)
     return fileName;
 }
 
-static NativeResourceManager* GetResourceManagerFromContext(napi_env env, napi_value contextArg, bool &success) {
+static NativeResourceManager* GetResourceManagerFromContext(napi_env env, napi_value contextArg, bool &success)
+{
     napi_valuetype contextType;
     napi_typeof(env, contextArg, &contextType);
     if (contextType != napi_object) {
@@ -703,8 +720,9 @@ static NativeResourceManager* GetResourceManagerFromContext(napi_env env, napi_v
     return resManager;
 }
 
-static bool GetRawFileDescriptor(NativeResourceManager *resManager, const char *fileName, 
-                                  RawFileDescriptor &descriptor, RawFile* &outRawFile) {
+static bool GetRawFileDescriptor(NativeResourceManager *resManager, const char *fileName,
+    RawFileDescriptor &descriptor, RawFile* &outRawFile)
+{
     RawFile *rawFile = OH_ResourceManager_OpenRawFile(resManager, fileName);
     if (rawFile == nullptr) {
         CCLOG("AddSubtitle error: failed to open rawfile %{public}s", fileName);
@@ -721,20 +739,22 @@ static bool GetRawFileDescriptor(NativeResourceManager *resManager, const char *
         return false;
     }
     
-    CCLOG("AddSubtitle: got descriptor fd=%{public}d, start=%{public}lld, length=%{public}lld", 
+    CCLOG("AddSubtitle: got descriptor fd=%{public}d, start=%{public}lld, length=%{public}lld",
           descriptor.fd, (long long)descriptor.start, (long long)descriptor.length);
     
     outRawFile = rawFile;
     return true;
 }
 
-static napi_value CreateInt32Result(napi_env env, int32_t value) {
+static napi_value CreateInt32Result(napi_env env, int32_t value)
+{
     napi_value result;
     napi_create_int32(env, value, &result);
     return result;
 }
 
-static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info)
+{
     CCLOG("NAPI_Global_AddSubtitle called");
     size_t argc = 2;
     size_t argNum = 2;
@@ -785,7 +805,8 @@ static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info)
     return CreateInt32Result(env, ret);
 }
 
-static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info)
+{
     auto context = SampleManager::GetInstance();
     CCLOG("GetSubtitle called, current text: %{public}s", context->currentSubtitle_.c_str());
     napi_value result;
@@ -794,7 +815,8 @@ static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"setup", nullptr, NAPI_Global_Setup, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"play", nullptr, NAPI_Global_Play, nullptr, nullptr, nullptr, napi_default, nullptr},
