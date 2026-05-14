@@ -32,20 +32,6 @@
         "name": "release"
       }
     ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/mandongfeng/.ohos/config/openharmony/default_AVPlayerArkTSMediaSourceWithCache_bKEVWpX_0pI1TbN4iHvV-S_ZVsr1GwqxTOEZWkGVclU=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "000000193555DED3E3711E0503A48FF3CB7D2E9A820031D7097A09D1BDA33756B26BFCBE0DE472FCC6",
-          "profile": "C:/Users/mandongfeng/.ohos/config/openharmony/default_AVPlayerArkTSMediaSourceWithCache_bKEVWpX_0pI1TbN4iHvV-S_ZVsr1GwqxTOEZWkGVclU=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/mandongfeng/.ohos/config/openharmony/default_AVPlayerArkTSMediaSourceWithCache_bKEVWpX_0pI1TbN4iHvV-S_ZVsr1GwqxTOEZWkGVclU=.p12",
-          "storePassword": "000000197E92F26C6FDB0CEAF0E7C091BF9B560D7E20A5DCA0C250BAC86B658AA36F9FD5C03876D2E1"
-        }
-      }
-    ]
   },
   "modules": [
     {
