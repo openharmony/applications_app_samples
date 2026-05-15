@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start arkts_ellipsis_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -22,6 +21,7 @@ import { text } from '@kit.ArkGraphics2D'
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
+    // [Start arkts_ellipsis_example_text]
     // 设置文本样式，包含省略号字符串和省略号模式
     let myTextStyle: text.TextStyle = {
       color: {
@@ -42,6 +42,7 @@ class MyRenderNode extends RenderNode {
       // 设置最大显示行数为2
       maxLines: 2
     };
+    // [End arkts_ellipsis_example_text]
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     paragraphBuilder.pushStyle(myTextStyle);
@@ -146,4 +147,3 @@ struct EllipsisText {
     }
   }
 }
-// [End arkts_ellipsis_example_text]

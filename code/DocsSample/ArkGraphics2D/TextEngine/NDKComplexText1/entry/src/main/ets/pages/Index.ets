@@ -213,11 +213,6 @@ const navTree: NavNode[] = [
         targetPage: 'NdkPage',
         params: 'drawPunctuationCompressText'
       },
-      {
-        label: '查询字体资源路径',
-        targetPage: 'NdkPage',
-        params: 'drawFontResourcePathText'
-      }
     ]
   },
   {
