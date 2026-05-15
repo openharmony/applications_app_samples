@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start transferableObject_observeJSON]
 import { LayoutS } from '../turbotrans_JSON/layout';
 import { testJSON1, testJSON2 } from '../turbotrans_JSON/test1';
 
@@ -24,3 +25,4 @@ export function observeJSON1(): LayoutS {
 export function observeJSON2(): LayoutS {
   return testJSON2();
 }
+// [End transferableObject_observeJSON]

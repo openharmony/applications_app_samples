@@ -25,10 +25,10 @@ export class Layout {
   @SerialName({ name: 'arr'})
   public arr: number[] = [];
 }
-// [End transferableObject_Layout]
 
 @Sendable
 export class LayoutS {
   public type: string = '';
   public arr: collections.Array<number> = new collections.Array();
 }
+// [End transferableObject_Layout]

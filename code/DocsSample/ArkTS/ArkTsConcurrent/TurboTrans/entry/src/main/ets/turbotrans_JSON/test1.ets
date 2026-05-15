@@ -48,9 +48,9 @@ export function testJSON2(): LayoutS {
   let layoutS = layoutSendable as LayoutS;
   return layoutS;
 }
+// [End transferableObject_testJSON]
 
 export function testJSON() {
   testJSON1();
   testJSON2();
 }
-// [End transferableObject_testJSON]
