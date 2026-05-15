@@ -60,7 +60,7 @@ struct Index {
               .onAction(() => {
                 /*
                 请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中
-                该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应"
+                该资源文件的value值为"LongPressGesture 长按上半区 灰色区域，灰色区域响应"
                  */
                 try {
                   this.promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt') });

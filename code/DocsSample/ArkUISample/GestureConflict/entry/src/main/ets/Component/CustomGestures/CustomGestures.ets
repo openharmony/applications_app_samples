@@ -26,7 +26,7 @@ struct CustomGestures {
         Stack({ alignContent: Alignment.Center }) {
           Column() {
             // 模拟上半区和下半区
-            Stack().width('200vp').height('100vp').backgroundColor(Color.Red)
+            Stack().width('200vp').height('100vp').backgroundColor(Color.Gray)
             Stack().width('200vp').height('100vp').backgroundColor(Color.Blue)
           }.width('200vp').height('200vp')
 
@@ -60,7 +60,7 @@ struct CustomGestures {
                 // [EndExclude set_gestures]
                 /*
                 请将$r('app.string.Stop_dragging_prompt')替换为实际资源文件，在本示例中
-                该资源文件的value值为"LongPressGesture 长按上半区 红色区域，红色区域响应"
+                该资源文件的value值为"LongPressGesture 长按上半区 灰色区域，灰色区域响应"
                  */
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })
