@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,11 +27,20 @@
 
 #define LOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
 #define LOGE(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
-#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00,
+#define CCLOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, \
     LOG_MSG_TAG, "[cclog] " format, ##__VA_ARGS__))
 
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window);
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window);
+
+static constexpr size_t ARG_COUNT = 4;
+static constexpr int32_t DEFAULT_RETURN_VALUE = 0;
+enum ArgIndex {
+    ARG_URL = 0,
+    ARG_FD = 1,
+    ARG_OFFSET = 2,
+    ARG_SIZE = 3
+};
 
 class SampleRenderer {
 public:
@@ -192,7 +201,8 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleRenderer::Release(id);
 }
 
-void HandleStateInitialized(OH_AVPlayer *player) {
+void HandleStateInitialized(OH_AVPlayer *player)
+{
     LOG("AVPlayerState AV_INITIALIZED");
     auto context = SampleManager::GetInstance();
     int32_t ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
@@ -203,7 +213,8 @@ void HandleStateInitialized(OH_AVPlayer *player) {
     }
 }
 
-void HandleStatePrepared(OH_AVPlayer *player) {
+void HandleStatePrepared(OH_AVPlayer *player)
+{
     LOG("AVPlayerState AV_PREPARED");
     int32_t ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE);  // 设置音频音效模式
     LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
@@ -211,7 +222,8 @@ void HandleStatePrepared(OH_AVPlayer *player) {
     LOG("OH_AVPlayer_Play ret:%{public}d", ret);
 }
 
-void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody) {
+void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody)
+{
     int32_t state = -1;
     int32_t stateChangeReason = -1;
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE, &state);
@@ -220,39 +232,40 @@ void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody) {
     
     AVPlayerState avState = static_cast<AVPlayerState>(state);
     switch (avState) {
-    case AV_IDLE:
-        LOG("AVPlayerState AV_IDLE");
-        break;
-    case AV_INITIALIZED:
-        HandleStateInitialized(player);
-        break;
-    case AV_PREPARED:
-        HandleStatePrepared(player);
-        break;
-    case AV_PLAYING:
-        LOG("AVPlayerState AV_PLAYING");
-        break;
-    case AV_PAUSED:
-        LOG("AVPlayerState AV_PAUSED");
-        break;
-    case AV_STOPPED:
-        LOG("AVPlayerState AV_STOPPED");
-        break;
-    case AV_COMPLETED:
-        LOG("AVPlayerState AV_COMPLETED");
-        break;
-    case AV_ERROR:
-        LOG("AVPlayerState AV_ERROR");
-        break;
-    case AV_RELEASED:
-        LOG("AVPlayerState AV_RELEASED");
-        break;
-    default:
-        break;
+        case AV_IDLE:
+            LOG("AVPlayerState AV_IDLE");
+            break;
+        case AV_INITIALIZED:
+            HandleStateInitialized(player);
+            break;
+        case AV_PREPARED:
+            HandleStatePrepared(player);
+            break;
+        case AV_PLAYING:
+            LOG("AVPlayerState AV_PLAYING");
+            break;
+        case AV_PAUSED:
+            LOG("AVPlayerState AV_PAUSED");
+            break;
+        case AV_STOPPED:
+            LOG("AVPlayerState AV_STOPPED");
+            break;
+        case AV_COMPLETED:
+            LOG("AVPlayerState AV_COMPLETED");
+            break;
+        case AV_ERROR:
+            LOG("AVPlayerState AV_ERROR");
+            break;
+        case AV_RELEASED:
+            LOG("AVPlayerState AV_RELEASED");
+            break;
+        default:
+            break;
     }
 }
 
-void HandleSubtitleUpdate(OH_AVFormat *infoBody) {
+void HandleSubtitleUpdate(OH_AVFormat *infoBody)
+{
     CCLOG("AV_INFO_TYPE_SUBTITLE_UPDATE received");
     int32_t duration = 0;
     int32_t startTime = 0;
@@ -273,7 +286,8 @@ void HandleSubtitleUpdate(OH_AVFormat *infoBody) {
     }
 }
 
-void HandleBitrateCollect(OH_AVFormat *infoBody) {
+void HandleBitrateCollect(OH_AVFormat *infoBody)
+{
     uint8_t *bitRates = nullptr;
     size_t size = 0;
     OH_AVFormat_GetBuffer(infoBody, OH_PLAYER_BITRATE_ARRAY, &bitRates, &size);
@@ -284,13 +298,15 @@ void HandleBitrateCollect(OH_AVFormat *infoBody) {
     }
 }
 
-void HandleIntValueInfo(AVPlayerOnInfoType type, OH_AVFormat *infoBody, const char *key) {
+void HandleIntValueInfo(AVPlayerOnInfoType type, OH_AVFormat *infoBody, const char *key)
+{
     int32_t value = -1;
     OH_AVFormat_GetIntValue(infoBody, key, &value);
     LOG("%{public}d type: value: %{public}d", type, value);
 }
 
-void HandleResolutionChange(OH_AVFormat *infoBody) {
+void HandleResolutionChange(OH_AVFormat *infoBody)
+{
     int32_t width = -1;
     int32_t height = -1;
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_WIDTH, &width);
@@ -298,31 +314,35 @@ void HandleResolutionChange(OH_AVFormat *infoBody) {
     LOG("AV_INFO_TYPE_RESOLUTION_CHANGE width: %{public}d, height: %{public}d", width, height);
 }
 
-void HandleInterruptEvent(OH_AVFormat *infoBody) {
+void HandleInterruptEvent(OH_AVFormat *infoBody)
+{
     int32_t interruptType = -1;
     int32_t interruptForce = -1;
     int32_t interruptHint = -1;
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_TYPE, &interruptType);
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_FORCE, &interruptForce);
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_HINT, &interruptHint);
-    LOG("AV_INFO_TYPE_INTERRUPT_EVENT type: %{public}d, force: %{public}d, hint: %{public}d", 
+    LOG("AV_INFO_TYPE_INTERRUPT_EVENT type: %{public}d, force: %{public}d, hint: %{public}d",
         interruptType, interruptForce, interruptHint);
 }
 
-void HandleVolumeChange(OH_AVFormat *infoBody) {
+void HandleVolumeChange(OH_AVFormat *infoBody)
+{
     float volume = 0.0;
     OH_AVFormat_GetFloatValue(infoBody, OH_PLAYER_VOLUME, &volume);
     LOG("AV_INFO_TYPE_VOLUME_CHANGE value: %{public}f", volume);
 }
 
-void HandleBufferingUpdate(OH_AVFormat *infoBody) {
+void HandleBufferingUpdate(OH_AVFormat *infoBody)
+{
     int32_t bufferType = -1;
     int32_t bufferValue = -1;
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_TYPE, &bufferType);
     OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_VALUE, &bufferValue);
 }
 
-void HandleSimpleLogInfo(AVPlayerOnInfoType type) {
+void HandleSimpleLogInfo(AVPlayerOnInfoType type)
+{
     if (type == AV_INFO_TYPE_EOS) {
         LOG("AV_INFO_TYPE_EOS");
     } else if (type == AV_INFO_TYPE_TRACKCHANGE) {
@@ -332,83 +352,87 @@ void HandleSimpleLogInfo(AVPlayerOnInfoType type) {
     }
 }
 
-static const char* GetKeyByInfoType(AVPlayerOnInfoType type) {
+static const char* GetKeyByInfoType(AVPlayerOnInfoType type)
+{
     switch (type) {
-    case AV_INFO_TYPE_MESSAGE:
-        return OH_PLAYER_MESSAGE_TYPE;
-    case AV_INFO_TYPE_DURATION_UPDATE:
-        return OH_PLAYER_DURATION;
-    case AV_INFO_TYPE_IS_LIVE_STREAM:
-        return OH_PLAYER_IS_LIVE_STREAM;
-    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
-        return OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
-    default:
-        return nullptr;
+        case AV_INFO_TYPE_MESSAGE:
+            return OH_PLAYER_MESSAGE_TYPE;
+        case AV_INFO_TYPE_DURATION_UPDATE:
+            return OH_PLAYER_DURATION;
+        case AV_INFO_TYPE_IS_LIVE_STREAM:
+            return OH_PLAYER_IS_LIVE_STREAM;
+        case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
+            return OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
+        default:
+            return nullptr;
     }
 }
 
-void HandleIntValueInfoByType(AVPlayerOnInfoType type, OH_AVFormat *infoBody) {
+void HandleIntValueInfoByType(AVPlayerOnInfoType type, OH_AVFormat *infoBody)
+{
     const char *key = GetKeyByInfoType(type);
     if (key != nullptr) {
         HandleIntValueInfo(type, infoBody, key);
     }
 }
 
-void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
+void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData)
+{
     switch (type) {
-    case AV_INFO_TYPE_STATE_CHANGE:
-        HandleStateChange(player, infoBody);
-        break;
-    case AV_INFO_TYPE_SEEKDONE:
-        HandleIntValueInfo(type, infoBody, OH_PLAYER_SEEK_POSITION);
-        break;
-    case AV_INFO_TYPE_SPEEDDONE:
-        HandleIntValueInfo(type, infoBody, OH_PLAYER_PLAYBACK_SPEED);
-        break;
-    case AV_INFO_TYPE_BITRATEDONE:
-        HandleIntValueInfo(type, infoBody, OH_PLAYER_BITRATE);
-        break;
-    case AV_INFO_TYPE_EOS:
-    case AV_INFO_TYPE_TRACKCHANGE:
-    case AV_INFO_TYPE_TRACK_INFO_UPDATE:
-        HandleSimpleLogInfo(type);
-        break;
-    case AV_INFO_TYPE_POSITION_UPDATE:
-        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_CURRENT_POSITION, nullptr);
-        break;
-    case AV_INFO_TYPE_MESSAGE:
-    case AV_INFO_TYPE_DURATION_UPDATE:
-    case AV_INFO_TYPE_IS_LIVE_STREAM:
-    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
-        HandleIntValueInfoByType(type, infoBody);
-        break;
-    case AV_INFO_TYPE_VOLUME_CHANGE:
-        HandleVolumeChange(infoBody);
-        break;
-    case AV_INFO_TYPE_RESOLUTION_CHANGE:
-        HandleResolutionChange(infoBody);
-        break;
-    case AV_INFO_TYPE_BUFFERING_UPDATE:
-        HandleBufferingUpdate(infoBody);
-        break;
-    case AV_INFO_TYPE_BITRATE_COLLECT:
-        HandleBitrateCollect(infoBody);
-        break;
-    case AV_INFO_TYPE_INTERRUPT_EVENT:
-        HandleInterruptEvent(infoBody);
-        break;
-    case AV_INFO_TYPE_SUBTITLE_UPDATE:
-        HandleSubtitleUpdate(infoBody);
-        break;
-    default:
-        break;
+        case AV_INFO_TYPE_STATE_CHANGE:
+            HandleStateChange(player, infoBody);
+            break;
+        case AV_INFO_TYPE_SEEKDONE:
+            HandleIntValueInfo(type, infoBody, OH_PLAYER_SEEK_POSITION);
+            break;
+        case AV_INFO_TYPE_SPEEDDONE:
+            HandleIntValueInfo(type, infoBody, OH_PLAYER_PLAYBACK_SPEED);
+            break;
+        case AV_INFO_TYPE_BITRATEDONE:
+            HandleIntValueInfo(type, infoBody, OH_PLAYER_BITRATE);
+            break;
+        case AV_INFO_TYPE_EOS:
+        case AV_INFO_TYPE_TRACKCHANGE:
+        case AV_INFO_TYPE_TRACK_INFO_UPDATE:
+            HandleSimpleLogInfo(type);
+            break;
+        case AV_INFO_TYPE_POSITION_UPDATE:
+            OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_CURRENT_POSITION, nullptr);
+            break;
+        case AV_INFO_TYPE_MESSAGE:
+        case AV_INFO_TYPE_DURATION_UPDATE:
+        case AV_INFO_TYPE_IS_LIVE_STREAM:
+        case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
+            HandleIntValueInfoByType(type, infoBody);
+            break;
+        case AV_INFO_TYPE_VOLUME_CHANGE:
+            HandleVolumeChange(infoBody);
+            break;
+        case AV_INFO_TYPE_RESOLUTION_CHANGE:
+            HandleResolutionChange(infoBody);
+            break;
+        case AV_INFO_TYPE_BUFFERING_UPDATE:
+            HandleBufferingUpdate(infoBody);
+            break;
+        case AV_INFO_TYPE_BITRATE_COLLECT:
+            HandleBitrateCollect(infoBody);
+            break;
+        case AV_INFO_TYPE_INTERRUPT_EVENT:
+            HandleInterruptEvent(infoBody);
+            break;
+        case AV_INFO_TYPE_SUBTITLE_UPDATE:
+            HandleSubtitleUpdate(infoBody);
+            break;
+        default:
+            break;
     }
 }
 void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)
 {
     LOG("OHAVPlayerOnErrorCallback errorCode: %{public}d ,errorMsg: %{public}s", errorCode, errorMsg);
 }
-static char* GetUrlFromNapiArg(napi_env env, napi_value arg, bool &success) {
+static char* GetUrlFromNapiArg(napi_env env, napi_value arg, bool &success)
+{
     // 获取参数类型
     napi_valuetype stringType;
     if (napi_ok != napi_typeof(env, arg, &stringType)) {
@@ -455,16 +479,8 @@ static char* GetUrlFromNapiArg(napi_env env, napi_value arg, bool &success) {
     return url;
 }
 
-static void GetFdParamsFromNapiArgs(napi_env env, napi_value args[4], int &fd, int &offset, int &size) {
-    napi_get_value_int32(env, args[1], &fd);
-    LOG("fd type %{public}d", fd);
-    napi_get_value_int32(env, args[2], &offset);
-    LOG("fd size %{public}d", offset);
-    napi_get_value_int32(env, args[3], &size);
-    LOG("fd size %{public}d", size);
-}
-
-static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const char *url) {
+static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const char *url)
+{
     // 创建播放实例
     if (SampleManager::GetInstance()->player_) {
         OH_AVPlayer_Release(SampleManager::GetInstance()->player_);
@@ -496,26 +512,36 @@ static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const
     return player;
 }
 
-static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
+static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info)
+{
     LOG("Call NAPI AVPlayer setup");
-    size_t argc = 4;
-    napi_value args[4] = {nullptr};
+    size_t argc = ARG_COUNT;
+    napi_value args[ARG_COUNT] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     bool success = false;
-    char *url = GetUrlFromNapiArg(env, args[0], success);
+    char *url = GetUrlFromNapiArg(env, args[ARG_URL], success);
     if (!success) {
         return nullptr;
     }
     
-    int fd = 0, offset = 0, size = 0;
-    GetFdParamsFromNapiArgs(env, args, fd, offset, size);
+    int fd = 0;
+    napi_get_value_int32(env, args[ARG_FD], &fd);
+    LOG("fd type %{public}d", fd);
+    
+    int offset = 0;
+    napi_get_value_int32(env, args[ARG_OFFSET], &offset);
+    LOG("fd offset %{public}d", offset);
+    
+    int size = 0;
+    napi_get_value_int32(env, args[ARG_SIZE], &size);
+    LOG("fd size %{public}d", size);
     
     OH_AVPlayer *player = CreateAndConfigurePlayer(fd, offset, size, url);
     delete[] url;
     
     napi_value value;
-    napi_create_int32(env, 0, &value);
+    napi_create_int32(env, DEFAULT_RETURN_VALUE, &value);
     return value;
 }
 static napi_value NAPI_Global_Play(napi_env env, napi_callback_info info)
@@ -543,40 +569,39 @@ static napi_value NAPI_Global_SetSpeed(napi_env env, napi_callback_info info)
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
         switch (speed_code) {
-        case 0:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_0_75_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_0_75_X);
-            break;
-        case 1:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_00_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_00_X);
-            break;
-        case 2:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_25_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_25_X);
-            break;
-        case 3:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_75_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_75_X);
-            break;
-        case 4:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_2_00_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_2_00_X);
-            break;
-        case 5:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_0_50_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_0_50_X);
-            break;
-        case 6:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_50_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_50_X);
-            break;
-        default:
-            LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_00_X");
-            ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_00_X);
-            break;
+            case 0:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_0_75_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_0_75_X);
+                break;
+            case 1:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_00_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_00_X);
+                break;
+            case 2:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_25_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_25_X);
+                break;
+            case 3:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_75_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_75_X);
+                break;
+            case 4:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_2_00_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_2_00_X);
+                break;
+            case 5:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_0_50_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_0_50_X);
+                break;
+            case 6:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_50_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_50_X);
+                break;
+            default:
+                LOG("OH_AVPlayer_SetPlaybackSpeed AV_SPEED_FORWARD_1_00_X");
+                ret = OH_AVPlayer_SetPlaybackSpeed(context->player_, AV_SPEED_FORWARD_1_00_X);
+                break;
         }
-        LOG("OH_AVPlayer_SetPlaybackSpeed ret:%{public}d", ret);
     } else {
         LOG("no found Player Instances");
     }
@@ -624,22 +649,22 @@ static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info)
     if (context->player_ != NULL) {
         int ret;
         switch (mode) {
-        case 0:
-            LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_NEXT_SYNC", seekValue);
-            ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_NEXT_SYNC);
-            break;
-        case 1:
-            LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_PREVIOUS_SYNC", seekValue);
-            ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_PREVIOUS_SYNC);
-            break;
-        case 2:
-            LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_CLOSEST", seekValue);
-            ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_CLOSEST);
-            break;
-        default:
-            LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_PREVIOUS_SYNC", seekValue);
-            ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_PREVIOUS_SYNC);
-            break;
+            case 0:
+                LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_NEXT_SYNC", seekValue);
+                ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_NEXT_SYNC);
+                break;
+            case 1:
+                LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_PREVIOUS_SYNC", seekValue);
+                ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_PREVIOUS_SYNC);
+                break;
+            case 2:
+                LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_CLOSEST", seekValue);
+                ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_CLOSEST);
+                break;
+            default:
+                LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_PREVIOUS_SYNC", seekValue);
+                ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_PREVIOUS_SYNC);
+                break;
         }
         LOG("OH_AVPlayer_Seek ret:%{public}d", ret);
     } else {
