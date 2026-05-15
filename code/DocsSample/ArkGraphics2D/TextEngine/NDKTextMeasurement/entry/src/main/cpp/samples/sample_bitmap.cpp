@@ -241,14 +241,11 @@ void SampleBitMap::PrintMetricsAndLayout(OH_Drawing_Typography *typography, OH_D
 
 void SampleBitMap::PrintConstraintsAndPositions(OH_Drawing_Typography *typography)
 {
-    // [Start c_text_metrics_layout_with_constraints_step1]
+    // [Start c_text_metrics_layout_with_constraints]
     // 设置限定区域的宽高
     OH_Drawing_RectSize constraintsRect;
     constraintsRect.width = 500.0;
     constraintsRect.height = 200.0;
-    // [End c_text_metrics_layout_with_constraints_step1]
-
-    // [Start c_text_metrics_layout_with_constraints_step2]
     OH_Drawing_Array *fitStrRangeArr = nullptr;
     size_t fitStrRangeArrayLen = 0;
     // 在限定区域内排版文本，返回实际排版尺寸
@@ -256,9 +253,6 @@ void SampleBitMap::PrintConstraintsAndPositions(OH_Drawing_Typography *typograph
         constraintsRect, &fitStrRangeArr, &fitStrRangeArrayLen);
     DRAWING_LOGI("actualSize width: %{public}f, height: %{public}f", actualSize.width, actualSize.height);
     DRAWING_LOGI("fitStrRangeArrayLen: %{public}zu", fitStrRangeArrayLen);
-    // [End c_text_metrics_layout_with_constraints_step2]
-
-    // [Start c_text_metrics_layout_with_constraints_step3]
     // 遍历适配字符串范围数组
     for (size_t i = 0; i < fitStrRangeArrayLen; ++i) {
         OH_Drawing_Range *range = OH_Drawing_GetRangeByArrayIndex(fitStrRangeArr, i);
@@ -269,7 +263,7 @@ void SampleBitMap::PrintConstraintsAndPositions(OH_Drawing_Typography *typograph
     }
     // 释放适配字符串范围数组
     OH_Drawing_ReleaseArrayBuffer(fitStrRangeArr);
-    // [End c_text_metrics_layout_with_constraints_step3]
+    // [End c_text_metrics_layout_with_constraints]
 
     PrintCharAndGlyphInfo(typography);
 }

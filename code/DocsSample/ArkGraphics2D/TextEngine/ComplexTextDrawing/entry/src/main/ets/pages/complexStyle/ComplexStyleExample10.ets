@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start arkts_break_strategy_example_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -21,16 +20,18 @@ import { text } from '@kit.ArkGraphics2D'
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     let canvas = context.canvas;
-    // 设置断行策略为均衡策略（BALANCED）
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 0, green: 0, blue: 0 },
       fontSize: 40
     };
+    // [Start arkts_break_strategy_example_text]
+    // 设置断行策略为均衡策略（BALANCED）
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
       // 设置断行策略为均衡策略，各行宽度尽量均衡
       breakStrategy: text.BreakStrategy.BALANCED
     };
+    // [End arkts_break_strategy_example_text]
     let fontCollection = text.FontCollection.getGlobalInstance();
     let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     paragraphBuilder.pushStyle(myTextStyle);
@@ -51,20 +52,32 @@ class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext);
-    if (this.rootNode == null) { return this.rootNode; }
+    if (this.rootNode == null) {
+      return this.rootNode;
+    }
     const renderNode = this.rootNode.getRenderNode();
-    if (renderNode != null) { renderNode.frame = { x: 0, y: 0, width: 10, height: 500 }; }
+    if (renderNode != null) {
+      renderNode.frame = { x: 0, y: 0, width: 10, height: 500 };
+    }
     return this.rootNode;
   }
   addNode(node: RenderNode): void {
-    if (this.rootNode == null) { return; }
+    if (this.rootNode == null) {
+      return;
+    }
     const renderNode = this.rootNode.getRenderNode();
-    if (renderNode != null) { renderNode.appendChild(node); }
+    if (renderNode != null) {
+      renderNode.appendChild(node);
+    }
   }
   clearNodes(): void {
-    if (this.rootNode == null) { return; }
+    if (this.rootNode == null) {
+      return;
+    }
     const renderNode = this.rootNode.getRenderNode();
-    if (renderNode != null) { renderNode.clearChildren(); }
+    if (renderNode != null) {
+      renderNode.clearChildren();
+    }
   }
 }
 
@@ -84,4 +97,3 @@ struct BreakStrategyText {
     }
   }
 }
-// [End arkts_break_strategy_example_text]

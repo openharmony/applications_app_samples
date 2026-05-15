@@ -71,7 +71,6 @@ public:
     DECLARE_NAPI_FUNC(DrawBreakStrategyHighQualityText);
     DECLARE_NAPI_FUNC(DrawBreakStrategyBalancedText);
     DECLARE_NAPI_FUNC(DrawPunctuationCompressText);
-    DECLARE_NAPI_FUNC(DrawFontResourcePathText);
 
     static napi_value NapiBaseFunc(napi_env env, napi_callback_info info, std::function<void(SampleBitMap *)> func,
                                    const std::string &name);
@@ -89,8 +88,8 @@ public:
     std::string id_;
 
 private:
-    double DrawPunctuationNoCompress(OH_Drawing_FontCollection *fc,
-        OH_Drawing_TextStyle *txtStyle, OH_Drawing_Pen *pen);
+    void DrawPunctuationNoCompress(OH_Drawing_FontCollection *fc,
+        OH_Drawing_TextStyle *txtStyle);
 
     OH_NativeXComponent_Callback renderCallback_;
 

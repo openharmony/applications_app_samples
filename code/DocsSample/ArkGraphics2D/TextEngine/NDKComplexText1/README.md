@@ -10,7 +10,7 @@
 | ---------------------------------- | --------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | --------------------------------- | --------------------------------- |
 | ![](screenshots/device/3-2.jpeg)   | ![](screenshots/device/3-3.jpeg)  | ![](screenshots/device/3-4.jpeg) | ![](screenshots/device/3-5.jpeg) | ![](screenshots/device/3-6.jpeg) | ![](screenshots/device/3-7.jpeg) | ![](screenshots/device/3-8.jpeg) | ![](screenshots/device/3-9.jpeg) | ![](screenshots/device/3-10.jpeg) | ![](screenshots/device/3-11.jpeg) |
 | ![](screenshots/device/3-12.jpeg)  | ![](screenshots/device/3-13.jpeg) | ![](screenshots/device/3-14.png) | ![](screenshots/device/3-14-1.png) | ![](screenshots/device/3-14-2.png) | ![](screenshots/device/3-14-3.png) | ![](screenshots/device/3-14-4.png) | ![](screenshots/device/3-14-5.png) | ![](screenshots/device/3-15.png) | ![](screenshots/device/3-15-1.png) |
-| ![](screenshots/device/3-15-2.png) | ![](screenshots/device/3-15-3.png) | ![](screenshots/device/3-16.png) | ![](screenshots/device/3-17.png) | ![](screenshots/device/4.jpeg)   | ![](screenshots/device/5.jpeg)   |                                  |                                  |                                   |                                   |
+| ![](screenshots/device/3-15-2.png) | ![](screenshots/device/3-15-3.png) | ![](screenshots/device/3-16.png) | ![](screenshots/device/4.jpeg)   | ![](screenshots/device/5.jpeg)   |                                  |                                  |                                   |                                   |
 
 使用说明
 
@@ -49,7 +49,7 @@ NDKComplexText1
 
 1. 利用Native XComponent来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。
 2. 通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口，在js侧调用该接口可在页面上绘制出相对应的不同效果的文字。
-3. 在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。调用OH_Drawing_TextStyle接口创建指向OH_Drawing_TextStyle对象的指针，调用OH_Drawing_SetTextStyleFontSize接口设置字号，OH_Drawing_SetTextStyleFontWeight接口设置字重，OH_Drawing_TextStyleAddFontFeature接口设置文本样式中指定字体特征是否启用，OH_Drawing_SetTypographyTextLocale接口来设置指定排版样式的语言环境，OH_Drawing_SetTypographyTextAlign接口设置文本对齐方式，OH_Drawing_SetTypographyTextWordBreakType接口设置单词的断词方式，OH_Drawing_SetTypographyTextMaxLines接口设置文本最大行数，OH_Drawing_SetTypographyStyleEllipsisModal接口设置省略号模式（支持TAIL、HEAD、MIDDLE、MULTILINE_HEAD、MULTILINE_MIDDLE），OH_Drawing_SetTypographyTextBreakStrategy接口设置断行策略（支持GREEDY、HIGH_QUALITY、BALANCED），OH_Drawing_SetTypographyStyleAttributeBool接口传入TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION属性设置是否启用行首标点挤压，OH_Drawing_GetFontPathsByType接口按字体类型查询系统字体路径列表，OH_Drawing_CopyTypographyStyle、OH_Drawing_CopyTextStyle、OH_Drawing_CopyTextShadow接口拷贝段落样式、文本样式和阴影样式。
+3. 在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。调用OH_Drawing_TextStyle接口创建指向OH_Drawing_TextStyle对象的指针，调用OH_Drawing_SetTextStyleFontSize接口设置字号，OH_Drawing_SetTextStyleFontWeight接口设置字重，OH_Drawing_TextStyleAddFontFeature接口设置文本样式中指定字体特征是否启用，OH_Drawing_SetTypographyTextLocale接口来设置指定排版样式的语言环境，OH_Drawing_SetTypographyTextAlign接口设置文本对齐方式，OH_Drawing_SetTypographyTextWordBreakType接口设置单词的断词方式，OH_Drawing_SetTypographyTextMaxLines接口设置文本最大行数，OH_Drawing_SetTypographyStyleAttributeInt接口设置省略号模式（支持TAIL、HEAD、MIDDLE、MULTILINE_HEAD、MULTILINE_MIDDLE），OH_Drawing_SetTypographyTextBreakStrategy接口设置断行策略（支持GREEDY、HIGH_QUALITY、BALANCED），OH_Drawing_SetTypographyStyleAttributeBool接口传入TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION属性设置是否启用行首标点压缩。
 
 ## 相关权限
 
@@ -61,9 +61,7 @@ NDKComplexText1
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API22版本SDK，版本号：6.0.2.55。
-3. 本示例已支持DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年9月25日)编译运行。
+1. 本示例支持API26版本SDK，版本号：26.0.0。
 
 ## 下载
 
