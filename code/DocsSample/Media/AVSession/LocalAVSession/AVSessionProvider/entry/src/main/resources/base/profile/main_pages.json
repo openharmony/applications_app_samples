@@ -10,6 +10,7 @@
     "pages/SetAVSessionInformation",
     "pages/SetExtras",
     "pages/WantAgent",
-    "pages/FixedPlaybackControlCommands"
+    "pages/FixedPlaybackControlCommands",
+    "pages/DesktopLyric"
   ]
 }
