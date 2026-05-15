@@ -24,17 +24,17 @@ export struct CommonButton {
   build() {
     Text(this.buttonName)
       .id(this.buttonName)
-      .padding(px2vp(5))
-      .fontSize(px2fp(25))
+      .padding(this.getUIContext().px2vp(5))
+      .fontSize(this.getUIContext().px2fp(25))
       .width('45%')
       .height(36)
       .backgroundColor('#04a4fc')
       .fontColor(Color.White)
       .textAlign(TextAlign.Center)
       .borderRadius(15)
-      .margin(px2vp(5))
+      .margin(this.getUIContext().px2vp(5))
       .onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: this.buttonUrl,
           params: {
             text: this.data,

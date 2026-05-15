@@ -23,6 +23,10 @@
     {
       "name": "Modifying_function",
       "value": "装饰器修饰Function"
+    },
+    {
+      "name": "Modifying_enum",
+      "value": "EnumFunction"
     }
   ]
 }

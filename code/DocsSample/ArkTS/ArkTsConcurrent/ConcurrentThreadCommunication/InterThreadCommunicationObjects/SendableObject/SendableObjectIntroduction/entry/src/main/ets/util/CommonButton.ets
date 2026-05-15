@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,17 +24,17 @@ export struct CommonButton {
   build() {
     Text(this.buttonName)
       .id(this.buttonName)
-      .padding(px2vp(5))
-      .fontSize(px2fp(25))
+      .padding(this.getUIContext().px2vp(5))
+      .fontSize(this.getUIContext().px2fp(25))
       .width('45%')
       .height(36)
       .backgroundColor('#04a4fc')
       .fontColor(Color.White)
       .textAlign(TextAlign.Center)
       .borderRadius(15)
-      .margin(px2vp(5))
+      .margin(this.getUIContext().px2vp(5))
       .onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: this.buttonUrl,
           params: {
             text: this.data,
