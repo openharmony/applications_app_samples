@@ -58,6 +58,7 @@ struct Index {
 
   build() {
     Column() {
+      // 避让顶部和挖孔区域
       Row() {
         Text('Top Container')
           .fontSize(40)
@@ -68,6 +69,7 @@ struct Index {
       .padding({
         top: this.getUIContext().px2vp(this.topAvoidHeight) + 10,
         bottom: 10,
+        // 避让挖孔区域
         left: this.getUIContext().px2vp(this.leftAvoidWidth),
         right: this.getUIContext().px2vp(this.rightAvoidWidth)
       })
@@ -126,7 +128,7 @@ struct Index {
         right: this.getUIContext().px2vp(this.rightAvoidWidth)
       })
       .layoutWeight(1)
-
+      // 避让底部和挖孔区域
       Row() {
         Text('Bottom Container')
           .fontSize(40)
@@ -137,6 +139,7 @@ struct Index {
       .padding({
         top: 10,
         bottom: this.getUIContext().px2vp(this.bottomAvoidHeight) + 10,
+        // 避让挖孔区域
         left: this.getUIContext().px2vp(this.leftAvoidWidth),
         right: this.getUIContext().px2vp(this.rightAvoidWidth)
       })

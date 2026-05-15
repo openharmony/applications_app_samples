@@ -51,15 +51,18 @@ export default class EntryAbility extends UIAbility {
       this.initSafeArea(this.mainWindow);
       this.mainWindow.on('avoidAreaChange', (option) => {
         switch (option.type) {
+          // 监听状态栏避让区域
           case window.AvoidAreaType.TYPE_SYSTEM: {
             const topHeight = Math.max(option.area.topRect.height, AppStorage.get<number>('topAvoidHeight') ?? 0);
             AppStorage.setOrCreate('topAvoidHeight', topHeight);
             break;
           }
+          // 监听挖孔区避让区域
           case window.AvoidAreaType.TYPE_CUTOUT: {
             this.handleCutoutAvoidArea(option.area);
             break;
           }
+          // 监听底部导航区避让区域
           case window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR: {
             const bottomHeight = Math.max(option.area.bottomRect.height, AppStorage.get<number>('bottomAvoidHeight') ?? 0);
             AppStorage.setOrCreate('bottomAvoidHeight', bottomHeight);
@@ -77,8 +80,11 @@ export default class EntryAbility extends UIAbility {
 
   private initSafeArea(win: window.Window): void {
     try {
+      // 获取状态栏避让区域
       const systemAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+      // 获取底部导航区避让区域
       const navigationAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
+      // 获取挖孔区避让区域
       const cutoutAvoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
 
       AppStorage.setOrCreate('topAvoidHeight', systemAvoidArea.topRect.height);
