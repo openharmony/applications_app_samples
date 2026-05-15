@@ -32,13 +32,13 @@ import midi, {
 const DOMAIN = 0xFF00;
 const TAG = 'MidiSample';
 
-// Event IDs for async callback handling
+// 异步回调处理的事件ID
 const EVENT_DEVICE_CHANGE = 1001;
 const EVENT_MIDI_RECEIVED = 1002;
 const EVENT_BLE_OPENED = 1003;
 const EVENT_ERROR = 1004;
 
-// Event data interfaces
+// 事件数据接口
 interface DeviceChangeEventData {
   action: number;
   deviceId: number;
@@ -64,28 +64,28 @@ interface ErrorEventData {
   message: string;
 }
 
-// Piano key interface
+// 钢琴琴键接口
 interface PianoKey {
   note: number;
   name: string;
   isBlack: boolean;
 }
 
-// Recent BLE device interface for local storage
+// 最近BLE设备接口，用于本地存储
 interface RecentBleDevice {
   address: string;
   name: string;
   timestamp: number;
 }
 
-// Scanned BLE device interface
+// 扫描到的BLE设备接口
 interface ScannedBleDevice {
   deviceId: string;
   rssi: number;
   name: string;
 }
 
-// Piano key dimensions interface
+// 钢琴琴键尺寸接口
 interface PianoKeyDimensions {
   whiteKeyWidth: number;
   whiteKeyHeight: number;
@@ -93,10 +93,10 @@ interface PianoKeyDimensions {
   blackKeyHeight: number;
 }
 
-// Breakpoint type for responsive design
+// 响应式设计的断点类型
 type BreakpointType = 'xs' | 'sm' | 'md' | 'lg';
 
-// Breakpoint sizes interface - defines values for each breakpoint
+// 断点尺寸接口 - 定义各断点的值
 interface BreakpointSizes {
   xs: number;
   sm: number;
@@ -104,7 +104,7 @@ interface BreakpointSizes {
   lg: number;
 }
 
-// Font sizes configuration interface
+// 字体大小配置接口
 interface FontSizesConfig {
   title: BreakpointSizes;
   subtitle: BreakpointSizes;
@@ -114,7 +114,7 @@ interface FontSizesConfig {
   pianoKey: BreakpointSizes;
 }
 
-// Responsive font sizes configuration
+// 响应式字体大小配置
 const FONT_SIZES: FontSizesConfig = {
   title: { xs: 18, sm: 20, md: 24, lg: 28 },
   subtitle: { xs: 14, sm: 16, md: 16, lg: 18 },
@@ -124,7 +124,7 @@ const FONT_SIZES: FontSizesConfig = {
   pianoKey: { xs: 6, sm: 7, md: 8, lg: 8 }
 };
 
-// Helper function to get font size (avoids dynamic index access)
+// 辅助函数：获取字体大小（避免动态索引访问）
 function getFontSize(config: FontSizesConfig, category: keyof FontSizesConfig, breakpoint: BreakpointType): number {
   let sizes: BreakpointSizes;
   switch (category) {
@@ -164,7 +164,7 @@ function getFontSize(config: FontSizesConfig, category: keyof FontSizesConfig, b
   }
 }
 
-// Piano keys configuration (C4 to C5, one octave)
+// 钢琴琴键配置（C4到C5，一个八度）
 const WHITE_KEYS: PianoKey[] = [
   { note: 60, name: 'C4', isBlack: false },
   { note: 62, name: 'D4', isBlack: false },
@@ -194,30 +194,30 @@ struct Index {
   @State portList: MidiPortInfo[] = [];
   @State inputPorts: MidiPortInfo[] = [];
   @State outputPorts: MidiPortInfo[] = [];
-  @State logMessages: string[] = []; // Changed to array for better performance
+  @State logMessages: string[] = []; // 改用数组以提升性能
   @State isDeviceOpen: boolean = false;
   @State openInputPorts: Set<number> = new Set<number>();
   @State openOutputPorts: Set<number> = new Set<number>();
-  @State receivedMessages: string[] = []; // Changed to array for better performance
+  @State receivedMessages: string[] = []; // 改用数组以提升性能
   @State channelValue: number = 0;
   @State activeKeys: Set<number> = new Set<number>();
   @State keyDimensions: PianoKeyDimensions = {
     whiteKeyWidth: 40, whiteKeyHeight: 140, blackKeyWidth: 28, blackKeyHeight: 90
   };
 
-  // BLE related states
+  // BLE相关状态
   @State bleDeviceAddress: string = '';
   @State bleScanning: boolean = false;
   @State bleDeviceList: MidiDeviceInfo[] = [];
   @State bleConnecting: boolean = false;
-  @State recentBleDevices: RecentBleDevice[] = []; // Recent BLE devices for quick access
-  @State scannedBleDevices: ScannedBleDevice[] = []; // Scanned BLE MIDI devices
-  @State bleScanError: string = ''; // BLE scan error message
+  @State recentBleDevices: RecentBleDevice[] = []; // 最近连接的BLE设备，用于快速访问
+  @State scannedBleDevices: ScannedBleDevice[] = []; // 扫描到的BLE MIDI设备
+  @State bleScanError: string = ''; // BLE扫描错误消息
 
-  // Responsive design states
+  // 响应式设计状态
   @State currentBreakpoint: BreakpointType = 'md';
 
-  // Media query listeners
+  // 媒体查询监听器
   private xsMediaQueryListener: mediaquery.MediaQueryListener | null = null;
   private smMediaQueryListener: mediaquery.MediaQueryListener | null = null;
   private mdMediaQueryListener: mediaquery.MediaQueryListener | null = null;
@@ -235,11 +235,11 @@ struct Index {
 
   aboutToAppear(): void {
     hilog.info(DOMAIN, TAG, '[aboutToAppear] ++enter');
-    // Setup responsive design media query listeners
+    // 设置响应式设计的媒体查询监听器
     this.setupMediaQueryListeners();
-    // Register event listeners for async callback handling
+    // 注册异步回调处理的事件监听器
     this.registerEventListeners();
-    // Initialize preferences for recent devices
+    // 初始化最近设备的偏好设置
     this.initPreferences();
     this.log('MIDI Sample initialized');
     this.log('Tap "Create Client" to start');
@@ -249,9 +249,9 @@ struct Index {
 
   aboutToDisappear(): void {
     hilog.info(DOMAIN, TAG, '[aboutToDisappear] ++enter');
-    // Teardown responsive design media query listeners
+    // 拆除响应式设计的媒体查询监听器
     this.teardownMediaQueryListeners();
-    // Stop BLE scan if active
+    // 如果正在扫描则停止BLE扫描
     if (this.bleScanning) {
       this.stopBleScan();
     }
@@ -260,11 +260,11 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[aboutToDisappear] --exit');
   }
 
-  // Register event listeners to handle callbacks on main thread
+  // 注册事件监听器，在主线程处理回调
   registerEventListeners(): void {
     hilog.info(DOMAIN, TAG, '[registerEventListeners] ++enter');
 
-    // Device change event
+    // 设备变更事件
     emitter.on({ eventId: EVENT_DEVICE_CHANGE }, (eventData: emitter.EventData) => {
       const data: DeviceChangeEventData = eventData.data as DeviceChangeEventData;
       hilog.info(DOMAIN, TAG,
@@ -272,7 +272,7 @@ struct Index {
       this.handleDeviceChange(data);
     });
 
-    // MIDI received event
+    // MIDI数据接收事件
     emitter.on({ eventId: EVENT_MIDI_RECEIVED }, (eventData: emitter.EventData) => {
       const data: MidiReceivedEventData = eventData.data as MidiReceivedEventData;
       hilog.info(DOMAIN, TAG,
@@ -280,7 +280,7 @@ struct Index {
       this.handleMidiReceived(data.umpData);
     });
 
-    // BLE opened event
+    // BLE设备已打开事件
     emitter.on({ eventId: EVENT_BLE_OPENED }, (eventData: emitter.EventData) => {
       const data: BleOpenedEventData = eventData.data as BleOpenedEventData;
       hilog.info(DOMAIN, TAG,
@@ -288,7 +288,7 @@ struct Index {
       this.handleBleOpened(data);
     });
 
-    // Error event
+    // 错误事件
     emitter.on({ eventId: EVENT_ERROR }, (eventData: emitter.EventData) => {
       const data: ErrorEventData = eventData.data as ErrorEventData;
       hilog.error(DOMAIN, TAG,
@@ -310,10 +310,10 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[unregisterEventListeners] --exit, all events unregistered');
   }
 
-  // Initialize preferences for storing recent BLE devices
+  // 初始化偏好设置，用于存储最近的BLE设备
   async initPreferences(): Promise<void> {
     try {
-      // Use getUIContext().getHostContext() instead of deprecated getContext
+      // 使用getUIContext().getHostContext()替代已废弃的getContext
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       this.preferencesStore = await preferences.getPreferences(context, 'midi_recent_devices');
       await this.loadRecentBleDevices();
@@ -323,7 +323,7 @@ struct Index {
     }
   }
 
-  // Load recent BLE devices from preferences
+  // 从偏好设置加载最近的BLE设备
   async loadRecentBleDevices(): Promise<void> {
     if (!this.preferencesStore) {
       return;
@@ -338,7 +338,7 @@ struct Index {
     }
   }
 
-  // Save recent BLE devices to preferences
+  // 将最近的BLE设备保存到偏好设置
   async saveRecentBleDevices(): Promise<void> {
     if (!this.preferencesStore) {
       return;
@@ -352,39 +352,39 @@ struct Index {
     }
   }
 
-  // Add device to recent list
+  // 将设备添加到最近列表
   async addRecentBleDevice(address: string, name: string): Promise<void> {
-    // Remove existing entry for same address
+    // 移除相同地址的已有条目
     this.recentBleDevices = this.recentBleDevices.filter(d => d.address !== address);
-    // Add new entry at the beginning
+    // 在列表开头添加新条目
     this.recentBleDevices.unshift({
       address: address,
       name: name || 'BLE MIDI Device',
       timestamp: Date.now()
     });
-    // Keep only max devices
+    // 仅保留最大数量的设备
     if (this.recentBleDevices.length > this.MAX_RECENT_DEVICES) {
       this.recentBleDevices = this.recentBleDevices.slice(0, this.MAX_RECENT_DEVICES);
     }
     await this.saveRecentBleDevices();
   }
 
-  // Remove device from recent list
+  // 从最近列表中移除设备
   async removeRecentBleDevice(address: string): Promise<void> {
     this.recentBleDevices = this.recentBleDevices.filter(d => d.address !== address);
     await this.saveRecentBleDevices();
   }
 
-  // BLE Scanner Methods
+  // BLE扫描器方法
   private bleScanner: ble.BleScanner = ble.createBleScanner();
-  private bleScanTimer: number = -1; // Timer for BLE scan timeout
+  private bleScanTimer: number = -1; // BLE扫描超时定时器
 
 
-  // BLE device found callback
+  // BLE设备发现回调
   onBleDeviceFound = (scanReport: ble.ScanReport): void => {
     hilog.info(DOMAIN, TAG, '[onBleDeviceFound] received scan report');
 
-    // scanResult is an array, iterate through each result
+    // scanResult是数组，遍历每个结果
     if (!scanReport.scanResult || scanReport.scanResult.length === 0) {
       return;
     }
@@ -392,11 +392,11 @@ struct Index {
     for (const result of scanReport.scanResult) {
       const deviceId: string = result.deviceId;
       const rssi: number = result.rssi;
-      // ScanResult may not have localName, use 'Unknown' as default
-      // Device name can be parsed from advertisement data if needed
+      // ScanResult可能没有localName，使用'Unknown'作为默认值
+      // 如需要可从广播数据中解析设备名称
       const name: string = result.deviceName;
 
-      // Check if already in list
+      // 检查是否已在列表中
       const exists = this.scannedBleDevices.some(d => d.deviceId === deviceId);
       if (!exists) {
         this.scannedBleDevices.push({
@@ -409,17 +409,16 @@ struct Index {
     }
   };
 
-  // Start BLE scan for MIDI devices
+  // 开始扫描BLE MIDI设备
   async startBleScan(): Promise<void> {
     hilog.info(DOMAIN, TAG, '[startBleScan] ++enter');
     this.bleScanError = '';
     this.scannedBleDevices = [];
 
     try {
-      // Request runtime permissions for Bluetooth scanning
+      // 请求蓝牙扫描的运行时权限
       const permissions: Permissions[] = [
-        'ohos.permission.ACCESS_BLUETOOTH',
-        'ohos.permission.DISCOVER_BLUETOOTH'
+        'ohos.permission.ACCESS_BLUETOOTH'
       ];
 
       try {
@@ -428,12 +427,16 @@ struct Index {
         const grantResults = await atManager.requestPermissionsFromUser(context, permissions);
         hilog.info(DOMAIN, TAG, '[startBleScan] Permission request results: %{public}s', JSON.stringify(grantResults));
 
-        // Check if all permissions are granted (authResults: 0 = granted)
+        // 检查是否所有权限已授予（authResults: 0 = 已授予）
         const allGranted = grantResults.authResults.every((result: number) => result === 0);
         if (!allGranted) {
           this.bleScanError = 'Required permissions not granted';
           this.log('Error: Required permissions not granted');
           return;
+        }
+        // 权限获取成功后刷新设备列表，蓝牙权限获取前无法发现BLE MIDI设备
+        if (this.clientCreated) {
+          this.refreshDevices();
         }
       } catch (permErr) {
         hilog.error(DOMAIN, TAG, '[startBleScan] Permission request failed: %{public}s', JSON.stringify(permErr));
@@ -442,21 +445,21 @@ struct Index {
         return;
       }
 
-      // Check if Bluetooth is enabled
-      // Note: We try to start scan directly, if Bluetooth is off it will fail with an error
-      // This is a more reliable approach than checking state which may require additional APIs
+      // 检查蓝牙是否已启用
+      // 注意：我们直接尝试开始扫描，如果蓝牙未开启则会报错
+      // 这比检查状态更可靠，因为检查状态可能需要额外的API
       hilog.info(DOMAIN, TAG, '[startBleScan] Proceeding with BLE scan...');
 
-      // Clear any existing scan timer
+      // 清除已有的扫描定时器
       if (this.bleScanTimer !== -1) {
         clearTimeout(this.bleScanTimer);
         this.bleScanTimer = -1;
       }
 
-      // Set up scan callback
+      // 设置扫描回调
       this.bleScanner.on('BLEDeviceFind', this.onBleDeviceFound);
 
-      // Start scanning with proper scan options
+      // 使用适当的扫描选项开始扫描
       const scanOptions: ble.ScanOptions = {
         interval: 500,
         dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
@@ -469,7 +472,7 @@ struct Index {
       this.bleScanning = true;
       this.log('Started BLE scan for MIDI devices...');
 
-      // Auto-stop after 30 seconds
+      // 30秒后自动停止
       this.bleScanTimer = setTimeout(() => {
         if (this.bleScanning) {
           this.stopBleScan();
@@ -486,11 +489,11 @@ struct Index {
     }
   }
 
-  // Stop BLE scan
+  // 停止BLE扫描
   stopBleScan(): void {
     hilog.info(DOMAIN, TAG, '[stopBleScan] ++enter');
     try {
-      // Clear scan timer
+      // 清除扫描定时器
       if (this.bleScanTimer !== -1) {
         clearTimeout(this.bleScanTimer);
         this.bleScanTimer = -1;
@@ -506,7 +509,7 @@ struct Index {
     }
   }
 
-  // Connect to a scanned BLE device
+  // 连接到扫描到的BLE设备
   connectToScannedDevice(device: ScannedBleDevice): void {
     hilog.info(DOMAIN, TAG, '[connectToScannedDevice] ++enter, deviceId=%{public}s', device.deviceId);
     this.log(`Connecting to ${device.name}...`);
@@ -518,7 +521,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, '%{public}s', msg);
     const timestamp = new Date().toLocaleTimeString();
     this.logMessages.unshift(`[${timestamp}] ${msg}`);
-    // Keep only max entries
+    // 仅保留最大条目数
     if (this.logMessages.length > this.MAX_LOG_ENTRIES) {
       this.logMessages = this.logMessages.slice(0, this.MAX_LOG_ENTRIES);
     }
@@ -529,7 +532,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, 'MIDI Input: %{public}s', msg);
     const timestamp = new Date().toLocaleTimeString();
     this.receivedMessages.unshift(`[${timestamp}] ${msg}`);
-    // Keep only max entries
+    // 仅保留最大条目数
     if (this.receivedMessages.length > this.MAX_MIDI_ENTRIES) {
       this.receivedMessages = this.receivedMessages.slice(0, this.MAX_MIDI_ENTRIES);
     }
@@ -546,7 +549,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[clearMidiInput] MIDI input cleared');
   }
 
-  // Scroll to top with debounce for performance
+  // 使用防抖滚动到顶部以提升性能
   scrollToTopWithDebounce(scroller: Scroller): void {
     if (this.scrollDebounceTimer !== -1) {
       clearTimeout(this.scrollDebounceTimer);
@@ -565,7 +568,7 @@ struct Index {
       if (this.isDeviceOpen && this.selectedDeviceId >= 0) {
         hilog.info(DOMAIN, TAG, '[cleanup] closing ports, inputCount=%{public}d, outputCount=%{public}d',
           this.openInputPorts.size, this.openOutputPorts.size);
-        // Close all ports
+        // 关闭所有端口
         this.openInputPorts.forEach((portIndex: number) => {
           hilog.info(DOMAIN, TAG, '[cleanup] closing input port %{public}d', portIndex);
           midi.closeInputPort(this.selectedDeviceId, portIndex);
@@ -574,7 +577,7 @@ struct Index {
           hilog.info(DOMAIN, TAG, '[cleanup] closing output port %{public}d', portIndex);
           midi.closeOutputPort(this.selectedDeviceId, portIndex);
         });
-        // Close device
+        // 关闭设备
         hilog.info(DOMAIN, TAG, '[cleanup] closing device %{public}d', this.selectedDeviceId);
         midi.closeDevice(this.selectedDeviceId);
       }
@@ -591,9 +594,9 @@ struct Index {
   // [Start arkts_create_client]
   createClient(): void {
     try {
-      // Device change callback
+      // 设备变更回调
       const deviceChangeCallback = (action: number, deviceInfo: MidiDeviceInfo) => {
-        // In callback: only copy data and emit event, do not hold locks or execute heavy operations
+        // 在回调中：仅复制数据并发射事件，不要持有锁或执行繁重操作
         // [StartExclude arkts_create_client]
         hilog.info(DOMAIN, TAG, '[createClient/callback] action=%{public}d, deviceId=%{public}d, deviceName=%{public}s',
           action, deviceInfo.deviceId, deviceInfo.deviceName);
@@ -611,7 +614,7 @@ struct Index {
         // [EndExclude arkts_create_client]
       };
 
-      // Error callback
+      // 错误回调
       const errorCallback = (error: ErrorEventData) => {
         // [StartExclude arkts_create_client]
         hilog.error(DOMAIN, TAG, '[createClient/errorCallback] code=%{public}d, message=%{public}s',
@@ -671,16 +674,16 @@ struct Index {
   }
   // [End arkts_destroy_client]
 
-  // Handle device change on main thread (called from event listener)
+  // 在主线程处理设备变更（由事件监听器调用）
   handleDeviceChange(data: DeviceChangeEventData): void {
     hilog.info(DOMAIN, TAG,
       '[handleDeviceChange] ++enter, action=%{public}d, deviceId=%{public}d, ' +
       'deviceName=%{public}s, deviceType=%{public}d, deviceAddress=%{public}s',
       data.action, data.deviceId, data.deviceName, data.deviceType, data.deviceAddress);
 
-    if (data.action === 0) { // CONNECTED
+    if (data.action === 0) { // 已连接
       this.log(`Device connected: ${data.deviceName} (ID: ${data.deviceId})`);
-      // Add to BLE device list if it's a BLE device
+      // 如果是BLE设备则添加到BLE设备列表
       if (data.deviceType === MidiDeviceType.BLE) {
         hilog.info(DOMAIN, TAG, '[handleDeviceChange] BLE device detected');
         const exists = this.bleDeviceList.find(d => d.deviceId === data.deviceId);
@@ -699,9 +702,9 @@ struct Index {
             '[handleDeviceChange] added to BLE device list, count=%{public}d', this.bleDeviceList.length);
         }
       }
-    } else { // DISCONNECTED
+    } else { // 已断开
       this.log(`Device disconnected: ${data.deviceName} (ID: ${data.deviceId})`);
-      // Remove from BLE device list
+      // 从BLE设备列表中移除
       const prevCount = this.bleDeviceList.length;
       this.bleDeviceList = this.bleDeviceList.filter(d => d.deviceId !== data.deviceId);
       hilog.info(DOMAIN, TAG, '[handleDeviceChange] removed from BLE list, prevCount=%{public}d, newCount=%{public}d',
@@ -731,7 +734,7 @@ struct Index {
         this.deviceList = midi.getDeviceInfos();
         // [StartExclude arkts_enum_devices]
         hilog.info(DOMAIN, TAG, '[refreshDevices] got %{public}d devices', this.deviceList.length);
-        // Log each device info
+        // 记录每个设备信息
         this.deviceList.forEach((device, index) => {
           hilog.info(DOMAIN, TAG,
             '[refreshDevices] device[%{public}d]: id=%{public}d, name=%{public}s, type=%{public}d',
@@ -783,7 +786,7 @@ struct Index {
         this.outputPorts = this.portList.filter(p => p.direction === MidiPortDirection.OUTPUT);
         hilog.info(DOMAIN, TAG, '[loadPorts] totalPorts=%{public}d, inputPorts=%{public}d, outputPorts=%{public}d',
           this.portList.length, this.inputPorts.length, this.outputPorts.length);
-        // Log each port info
+        // 记录每个端口信息
         this.portList.forEach((port, index) => {
           hilog.info(DOMAIN, TAG,
             '[loadPorts] port[%{public}d]: index=%{public}d, name=%{public}s, direction=%{public}d',
@@ -870,12 +873,12 @@ struct Index {
   }
   // [End arkts_close_device]
 
-  // Handle MIDI received on main thread (called from event listener)
+  // 在主线程处理MIDI数据接收（由事件监听器调用）
   handleMidiReceived(umpData: number[]): void {
     hilog.info(DOMAIN, TAG, '[handleMidiReceived] ++enter, dataCount=%{public}d', umpData.length);
 
     for (const ump of umpData) {
-      // Parse UMP message
+      // 解析UMP消息
       const messageType = (ump >> 28) & 0x0F;
       const status = (ump >> 20) & 0x0F;
       const channel = (ump >> 16) & 0x0F;
@@ -884,27 +887,27 @@ struct Index {
         '[handleMidiReceived] UMP=0x%{public}X, type=%{public}d, status=%{public}d, ch=%{public}d',
         ump, messageType, status, channel);
 
-      if (messageType === 0x2) { // MIDI 1.0 Channel Voice
+      if (messageType === 0x2) { // MIDI 1.0通道语音
         switch (status) {
-          case 0x8: // Note Off
+          case 0x8: // 音符关闭
             this.handleNoteOff(ump, channel);
             break;
-          case 0x9: // Note On
+          case 0x9: // 音符开启
             this.handleNoteOn(ump, channel);
             break;
-          case 0xA: // Polyphonic Aftertouch
+          case 0xA: // 复音触后
             this.handlePolyAftertouch(ump, channel);
             break;
-          case 0xB: // Control Change
+          case 0xB: // 控制变更
             this.handleControlChange(ump, channel);
             break;
-          case 0xC: // Program Change
+          case 0xC: // 程序变更
             this.handleProgramChange(ump, channel);
             break;
-          case 0xD: // Channel Aftertouch
+          case 0xD: // 通道触后
             this.handleChannelAftertouch(ump, channel);
             break;
-          case 0xE: // Pitch Bend
+          case 0xE: // 弯音轮
             this.handlePitchBend(ump, channel);
             break;
           default:
@@ -913,14 +916,14 @@ struct Index {
             break;
         }
       } else if (messageType === 0x0 || messageType === 0x1) {
-        // System messages and utility messages - check for realtime filtering
+        // 系统消息和工具消息 - 检查实时过滤
         const statusByte = (ump >> 16) & 0xFF;
         if (!this.shouldFilterRealtimeMessage(statusByte)) {
           this.logMidiInput(`System: 0x${ump.toString(16).toUpperCase()}`);
           hilog.info(DOMAIN, TAG, '[handleMidiReceived] System message: 0x%{public}X', ump);
         }
       } else {
-        // Other UMP types (MIDI 2.0, etc)
+        // 其他UMP类型（MIDI 2.0等）
         this.logMidiInput(`UMP: 0x${ump.toString(16).toUpperCase()}`);
         hilog.info(DOMAIN, TAG, '[handleMidiReceived] Non-MIDI1.0 UMP: 0x%{public}X', ump);
       }
@@ -928,7 +931,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleMidiReceived] --exit, activeKeys.size=%{public}d', this.activeKeys.size);
   }
 
-  // Handle Note On message
+  // 处理音符开启消息
   handleNoteOn(ump: number, channel: number): void {
     const note = (ump >> 8) & 0x7F;
     const velocity = ump & 0x7F;
@@ -938,12 +941,12 @@ struct Index {
       this.activeKeys.add(note);
       hilog.info(DOMAIN, TAG, '[handleNoteOn] note=%{public}d, vel=%{public}d', note, velocity);
     } else {
-      // Velocity 0 means Note Off
+      // 力度为0表示音符关闭
       this.handleNoteOff(ump, channel);
     }
   }
 
-  // Handle Note Off message
+  // 处理音符关闭消息
   handleNoteOff(ump: number, channel: number): void {
     const note = (ump >> 8) & 0x7F;
     const velocity = ump & 0x7F;
@@ -953,7 +956,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleNoteOff] note=%{public}d, vel=%{public}d', note, velocity);
   }
 
-  // Handle Polyphonic Aftertouch message
+  // 处理复音触后消息
   handlePolyAftertouch(ump: number, channel: number): void {
     const note = (ump >> 8) & 0x7F;
     const pressure = ump & 0x7F;
@@ -962,7 +965,7 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handlePolyAftertouch] note=%{public}d, pressure=%{public}d', note, pressure);
   }
 
-  // Handle Control Change message
+  // 处理控制变更消息
   handleControlChange(ump: number, channel: number): void {
     const controller = (ump >> 8) & 0x7F;
     const value = ump & 0x7F;
@@ -971,37 +974,37 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleControlChange] cc=%{public}d, val=%{public}d', controller, value);
   }
 
-  // Handle Program Change message
+  // 处理程序变更消息
   handleProgramChange(ump: number, channel: number): void {
     const program = (ump >> 8) & 0x7F;
     this.logMidiInput(`PC: ch${channel}, program=${program}`);
     hilog.info(DOMAIN, TAG, '[handleProgramChange] program=%{public}d', program);
   }
 
-  // Handle Channel Aftertouch message
+  // 处理通道触后消息
   handleChannelAftertouch(ump: number, channel: number): void {
     const pressure = (ump >> 8) & 0x7F;
     this.logMidiInput(`Ch AT: ch${channel}, pressure=${pressure}`);
     hilog.info(DOMAIN, TAG, '[handleChannelAftertouch] pressure=%{public}d', pressure);
   }
 
-  // Handle Pitch Bend message
+  // 处理弯音轮消息
   handlePitchBend(ump: number, channel: number): void {
     const lsb = (ump >> 8) & 0x7F;
     const msb = ump & 0x7F;
     const bendValue = (msb << 7) | lsb;
-    const bendRange = bendValue - 8192; // Center is 8192
+    const bendRange = bendValue - 8192; // 中心值为8192
     this.logMidiInput(`Pitch: ch${channel}, bend=${bendRange} (raw=${bendValue})`);
     hilog.info(DOMAIN, TAG, '[handlePitchBend] bend=%{public}d, raw=%{public}d', bendRange, bendValue);
   }
 
-  // Check if message should be filtered (realtime messages)
+  // 检查消息是否应被过滤（实时消息）
   shouldFilterRealtimeMessage(statusByte: number): boolean {
-    // Realtime messages: 0xF8 (Clock), 0xFA (Start), 0xFB (Continue), 0xFC (Stop), 0xFE (Active Sensing), 0xFF (Reset)
+    // 实时消息：0xF8（时钟）、0xFA（开始）、0xFB（继续）、0xFC（停止）、0xFE（活动检测）、0xFF（复位）
     return statusByte >= 0xF8;
   }
 
-  // Convert MIDI note number to name
+  // 将MIDI音符编号转换为名称
   noteToName(note: number): string {
     const octave = Math.floor(note / 12) - 1;
     const noteIndex = note % 12;
@@ -1050,7 +1053,7 @@ struct Index {
     return `${noteName}${octave}`;
   }
 
-  // Get common controller name
+  // 获取通用控制器名称
   getControllerName(controller: number): string {
     const controllerNames = new Map<number, string>([
       [0, 'Bank Select MSB'],
@@ -1112,14 +1115,14 @@ struct Index {
       const status = midi.openInputPort(
         this.selectedDeviceId,
         portIndex,
-        1, // MIDI 1.0 protocol
+        1, // MIDI 1.0协议
         (events: MidiEvent[]) => {
-          // In callback: only copy data and emit event, do not hold locks or execute heavy operations
+          // 在回调中：仅复制数据并发射事件，不要持有锁或执行繁重操作
           hilog.debug(DOMAIN, TAG, '[openInputPort/callback] received %{public}d events', events.length);
           const umpData: number[] = [];
           for (const event of events) {
             if (event.data && event.data.length > 0) {
-              // Traverse all elements in event.data array
+              // 遍历event.data数组中的所有元素
               for (let i = 0; i < event.data.length; i++) {
                 umpData.push(event.data[i]);
               }
@@ -1218,7 +1221,7 @@ struct Index {
   }
   // [End arkts_close_output_port]
 
-  // Piano key handlers
+  // 钢琴琴键处理函数
   // [Start arkts_on_key_press]
   onKeyPress(note: number): void {
     if (this.openOutputPorts.size === 0) {
@@ -1275,7 +1278,7 @@ struct Index {
   }
   // [End arkts_on_key_release]
 
-  // Handle BLE opened on main thread (called from event listener)
+  // 在主线程处理BLE设备已打开（由事件监听器调用）
   handleBleOpened(data: BleOpenedEventData): void {
     hilog.info(DOMAIN, TAG, '[handleBleOpened] opened=%{public}s, devId=%{public}d, name=%{public}s, type=%{public}d',
       data.opened.toString(), data.deviceId, data.deviceName, data.deviceType);
@@ -1284,9 +1287,9 @@ struct Index {
     if (data.opened) {
       this.log(`BLE device connected: ${data.deviceName}`);
       this.log(`Device ID: ${data.deviceId}`);
-      // Add to recent BLE devices
+      // 添加到最近BLE设备
       this.addRecentBleDevice(data.deviceAddress, data.deviceName);
-      // Add to BLE device list
+      // 添加到BLE设备列表
       const exists = this.bleDeviceList.find(d => d.deviceId === data.deviceId);
       if (!exists) {
         const deviceInfo: MidiDeviceInfo = {
@@ -1305,12 +1308,12 @@ struct Index {
 
       this.selectDevice(data.deviceId);
 
-      // The device is already opened in C++ (stored in g_openedDevices)
-      // So we need to update our state to reflect this
+      // 设备已在C++中打开（存储在g_openedDevices中）
+      // 因此需要更新状态以反映此情况
       this.isDeviceOpen = true;
       hilog.info(DOMAIN, TAG, '[handleBleOpened] device is already opened, isDeviceOpen set to true');
 
-      // Refresh main device list
+      // 刷新主设备列表
       this.refreshDevices();
 
       this.log(`Device opened automatically, you can now open ports`);
@@ -1321,14 +1324,14 @@ struct Index {
     hilog.info(DOMAIN, TAG, '[handleBleOpened] --exit');
   }
 
-  // Handle MIDI error on main thread (called from event listener)
+  // 在主线程处理MIDI错误（由事件监听器调用）
   handleMidiError(data: ErrorEventData): void {
     hilog.error(DOMAIN, TAG, '[handleMidiError] ++enter, code=%{public}d, message=%{public}s',
       data.code, data.message);
 
     this.log(`MIDI Error: ${data.message} (code: ${data.code})`);
 
-    // Handle service died error - reset client state
+    // 处理服务终止错误 - 重置客户端状态
     if (data.code === MidiStatusCode.SERVICE_DIED) {
       hilog.info(DOMAIN, TAG, '[handleMidiError] service died, resetting state');
       this.clientCreated = false;
@@ -1348,7 +1351,7 @@ struct Index {
     hilog.error(DOMAIN, TAG, '[handleMidiError] --exit');
   }
 
-  // BLE Device functions
+  // BLE设备函数
   // [Start arkts_open_ble_device]
   openBLEDevice(deviceAddress: string): void {
     hilog.info(DOMAIN, TAG, '[openBLEDevice] ++enter, address=%{public}s', deviceAddress);
@@ -1362,7 +1365,7 @@ struct Index {
 
     try {
       const status = midi.openBLEDevice(deviceAddress, (opened: boolean, deviceInfo: MidiDeviceInfo) => {
-        // In callback: only copy data and emit event, do not hold locks or execute heavy operations
+        // 在回调中：仅复制数据并发射事件，不要持有锁或执行繁重操作
         hilog.info(DOMAIN, TAG, '[openBLEDevice/cb] opened=%{public}s, devId=%{public}d, name=%{public}s',
           opened.toString(), deviceInfo.deviceId, deviceInfo.deviceName);
         const eventData: BleOpenedEventData = {
@@ -1403,7 +1406,7 @@ struct Index {
     return direction === MidiPortDirection.INPUT ? 'IN' : 'OUT';
   }
 
-  // Update responsive key dimensions based on breakpoint
+  // 根据断点更新响应式琴键尺寸
   updateKeyDimensions(): void {
     switch (this.currentBreakpoint) {
       case 'xs':
@@ -1422,7 +1425,7 @@ struct Index {
     }
   }
 
-  // Setup media query listeners for responsive design
+  // 设置响应式设计的媒体查询监听器
   setupMediaQueryListeners(): void {
     const xsQuery = mediaquery.matchMediaSync('(width < 320vp)');
     const smQuery = mediaquery.matchMediaSync('(320vp <= width < 600vp)');
@@ -1457,7 +1460,7 @@ struct Index {
       }
     });
 
-    // Set initial breakpoint
+    // 设置初始断点
     if (xsQuery.matches) {
       this.currentBreakpoint = 'xs';
     } else if (smQuery.matches) {
@@ -1470,7 +1473,7 @@ struct Index {
     this.updateKeyDimensions();
   }
 
-  // Handle breakpoint change with debounce
+  // 使用防抖处理断点变更
   handleBreakpointChange(breakpoint: BreakpointType): void {
     if (this.breakpointDebounceTimer !== -1) {
       clearTimeout(this.breakpointDebounceTimer);
@@ -1483,7 +1486,7 @@ struct Index {
     }, 100);
   }
 
-  // Teardown media query listeners
+  // 拆除媒体查询监听器
   teardownMediaQueryListeners(): void {
     if (this.xsMediaQueryListener) {
       this.xsMediaQueryListener.off('change');
@@ -1507,7 +1510,7 @@ struct Index {
     }
   }
 
-  // Format timestamp for recent devices
+  // 格式化最近设备的时间戳
   formatTimestamp(timestamp: number): string {
     const now = Date.now();
     const diff = now - timestamp;
@@ -1537,9 +1540,9 @@ struct Index {
           .margin({ bottom: 8 })
       }
 
-      // Responsive piano keyboard container
+      // 响应式钢琴键盘容器
       if (this.currentBreakpoint === 'xs') {
-        // xs breakpoint: horizontal scrollable
+        // xs断点：水平可滚动
         Scroll(this.pianoScroller) {
           Stack({ alignContent: Alignment.TopStart }) {
             this.pianoKeysBuilder()
@@ -1550,7 +1553,7 @@ struct Index {
         .scrollBar(BarState.Auto)
         .width('100%')
       } else {
-        // Other breakpoints: fit within container
+        // 其他断点：适应容器
         Stack({ alignContent: Alignment.TopStart }) {
           this.pianoKeysBuilder()
         }
@@ -1558,7 +1561,7 @@ struct Index {
         .height(this.keyDimensions.whiteKeyHeight + 10)
       }
 
-      // Channel selector
+      // 通道选择器
       Row() {
         Text('Channel:')
           .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
@@ -1584,7 +1587,7 @@ struct Index {
 
   @Builder
   pianoKeysBuilder() {
-    // White keys row
+    // 白键行
     Row() {
       ForEach(WHITE_KEYS, (key: PianoKey) => {
         Column() {
@@ -1612,7 +1615,7 @@ struct Index {
     }
     .margin({ top: 0 })
 
-    // Black keys row (overlayed)
+    // 黑键行（覆盖层）
     Row() {
       ForEach(BLACK_KEYS, (key: PianoKey, index: number) => {
         Column() {
@@ -1646,7 +1649,7 @@ struct Index {
 
   build() {
     Column() {
-      // Header
+      // 标题栏
       Row() {
         Text(this.message)
           .fontSize(getFontSize(FONT_SIZES, 'title', this.currentBreakpoint))
@@ -1662,7 +1665,7 @@ struct Index {
 
       Scroll() {
         Column({ space: 12 }) {
-          // Client Controls
+          // 客户端控制
           Column() {
             Text('Client Management')
               .fontSize(getFontSize(FONT_SIZES, 'subtitle', this.currentBreakpoint))
@@ -1699,7 +1702,7 @@ struct Index {
           .backgroundColor(Color.White)
           .borderRadius(16)
 
-          // BLE MIDI Section
+          // BLE MIDI部分
           if (this.clientCreated) {
             Column() {
               Text('Bluetooth MIDI')
@@ -1712,7 +1715,7 @@ struct Index {
                 .fontColor('#666666')
                 .margin({ bottom: 8 })
 
-              // BLE Scan Section
+              // BLE扫描部分
               Row({ space: 8 }) {
                 Button(this.bleScanning ? 'Scanning...' : 'Scan for MIDI Devices')
                   .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
@@ -1741,7 +1744,7 @@ struct Index {
               .width('100%')
               .margin({ bottom: 8 })
 
-              // BLE Scan Error
+              // BLE扫描错误
               if (this.bleScanError.length > 0) {
                 Text(this.bleScanError)
                   .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
@@ -1749,7 +1752,7 @@ struct Index {
                   .margin({ bottom: 8 })
               }
 
-              // Scanned BLE MIDI Devices
+              // 扫描到的BLE MIDI设备
               if (this.scannedBleDevices.length > 0) {
                 Text('Found MIDI Devices:')
                   .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
@@ -1789,11 +1792,11 @@ struct Index {
                 }, (device: ScannedBleDevice) => device.deviceId)
               }
 
-              // Divider
+              // 分隔线
               Divider()
                 .margin({ top: 8, bottom: 8 })
 
-              // Recent BLE devices for quick access
+              // 最近连接的BLE设备，用于快速访问
               if (this.recentBleDevices.length > 0) {
                 Text('Recent Devices:')
                   .fontSize(getFontSize(FONT_SIZES, 'caption', this.currentBreakpoint))
@@ -1863,7 +1866,7 @@ struct Index {
               .width('100%')
               .margin({ top: 8 })
 
-              // Discovered BLE devices
+              // 已发现的BLE设备
               if (this.bleDeviceList.length > 0) {
                 Text('Connected BLE Devices:')
                   .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
@@ -1909,7 +1912,7 @@ struct Index {
             .borderRadius(16)
           }
 
-          // Device List
+          // 设备列表
           if (this.clientCreated) {
             Column() {
               Row() {
@@ -1970,7 +1973,7 @@ struct Index {
             .borderRadius(16)
           }
 
-          // Device Controls
+          // 设备控制
           if (this.selectedDeviceId >= 0) {
             Column() {
               Text('Device Control')
@@ -2000,7 +2003,7 @@ struct Index {
             .borderRadius(16)
           }
 
-          // Port Management
+          // 端口管理
           if (this.isDeviceOpen) {
             Column() {
               Text('Port Management')
@@ -2008,7 +2011,7 @@ struct Index {
                 .fontWeight(FontWeight.Medium)
                 .margin({ bottom: 12 })
 
-              // Input Ports
+              // 输入端口
               if (this.inputPorts.length > 0) {
                 Text('Input Ports (Receive MIDI)')
                   .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
@@ -2042,7 +2045,7 @@ struct Index {
                 }, (port: MidiPortInfo) => `in-${this.selectedDeviceId}-${port.portIndex}`)
               }
 
-              // Output Ports
+              // 输出端口
               if (this.outputPorts.length > 0) {
                 Text('Output Ports (Send MIDI)')
                   .fontSize(getFontSize(FONT_SIZES, 'body', this.currentBreakpoint))
@@ -2082,12 +2085,12 @@ struct Index {
             .borderRadius(16)
           }
 
-          // Virtual Piano Keyboard
+          // 虚拟钢琴键盘
           if (this.isDeviceOpen) {
             this.pianoKeyboard()
           }
 
-          // MIDI Input Display
+          // MIDI输入显示
           if (this.openInputPorts.size > 0) {
             Column() {
               Row() {
@@ -2131,7 +2134,7 @@ struct Index {
             .alignItems(HorizontalAlign.Start)
           }
 
-          // Log Panel
+          // 日志面板
           Column() {
             Row() {
               Text('Event Log')
