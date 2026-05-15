@@ -25,7 +25,7 @@ struct Index {
         .margin({ bottom: 3 })
         .onClick(() => {
           // [Start hap_load_system_module]
-          //HAP加载系统库模块
+          // HAP加载系统库模块
           let hilog: ESObject = loadNativeModule('@ohos.hilog');
           hilog.info(0, 'testTag', 'loadNativeModule ohos.hilog success');
           // [End hap_load_system_module]
