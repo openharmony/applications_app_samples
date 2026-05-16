@@ -17,8 +17,6 @@
 #include "hilog/log.h"
 #include "napi/native_api.h"
 
-static constexpr int INT_ARG_5 = 5; // 入参索引
-
 // [Start napi_create_buffer]
 // napi_create_buffer
 static napi_value CreateBuffer(napi_env env, napi_callback_info info)
@@ -152,6 +150,9 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
 // [End napi_is_buffer]
 
 // [Start napi_create_external_arraybuffer]
+
+static constexpr int INT_ARG_5 = 5; // 入参索引
+
 typedef struct {
     uint8_t *data;
     size_t length;
@@ -177,7 +178,7 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
 
     // 使用napi_create_external_arraybuffer创建一个外部Array Buffer对象，并指定终结回调函数
     napi_status status =
-        napi_create_external_arraybuffer(env, dataArray, 5, FinalizeCallback1, bufferData, &externalBuffer);
+        napi_create_external_arraybuffer(env, dataArray, INT_ARG_5, FinalizeCallback1, bufferData, &externalBuffer);
     if (status != napi_ok) {
         // 处理错误
         delete[] dataArray;
