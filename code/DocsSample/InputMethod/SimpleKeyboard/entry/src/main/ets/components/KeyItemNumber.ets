@@ -14,18 +14,34 @@
  * limitations under the License.
  */
 
-import { deviceInfo } from '@kit.BasicServicesKit';
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  ForEach,
+  Flex,
+  Text,
+  Consume,
+  StateStyles,
+  $r,
+  ClickEvent,
+  FlexOptions,
+  ShadowOptions,
+  StackOptions,
+  ItemAlign,
+  FlexAlign,
+  FlexDirection,
+  Color,
+  AppStorage,
+  FontWeight,
+  Alignment,
+  TextAlign
+} from '@kit.ArkUI';
+import deviceInfo from '@ohos.deviceInfo';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
-import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
+import { KeyState, keySourceListType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_normal_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_normal'))
-}
 
 // 有大小写的按键组件
 @Component
@@ -34,19 +50,23 @@ export struct KeyItemNumber {
   @Consume keyState: number;
   keyValue: keySourceListType | undefined = undefined;
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+  build(): void {
+    Flex({
+      direction: FlexDirection.Column,
+      alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center
+    } as FlexOptions) {
       if (AppStorage.get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone' && this.keyValue) {
-        Stack({ alignContent: Alignment.TopEnd }) {
-          Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue.content : this.keyValue.upperContent)
+        Stack({ alignContent: Alignment.TopEnd } as StackOptions) {
+          Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue?.content : this.keyValue?.upperContent)
             .fontSize(this.inputStyle.en_fontSize)
             .fontColor(Color.Black)
             .fontWeight(FontWeight.Regular)
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-          Text(this.keyValue.title)
-            .fontSize(this.inputStyle.litterNumberFontSize)
+          Text(this.keyValue?.title)
+            .fontSize(this.inputStyle?.litterNumberFontSize)
             .fontColor(Color.Black)
             .fontWeight(FontWeight.Regular)
             .width('12vp')
@@ -57,34 +77,39 @@ export struct KeyItemNumber {
         .width('100%')
         .height('100%')
       } else if (this.keyValue) {
-        Text(this.keyValue.title)
+        Text(this.keyValue?.title)
           .fontSize(this.inputStyle.litterNumberFontSize)
           .fontColor($r('app.color.key_item_normal_text'))
           .fontWeight(FontWeight.Regular)
           .margin({ top: 4 })
-        Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue.content : this.keyValue.upperContent)
-          .fontSize(this.inputStyle.en_fontSize)
+        Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue?.content : this.keyValue?.upperContent)
+          .fontSize(this.inputStyle?.en_fontSize)
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Regular)
       }
     }
     .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
-    .onClick(() => {
+    .onClick((e: ClickEvent) => {
       if (this.keyState === KeyState.LOWER_CASE && this.keyValue) {
-        InputHandler.getInstance().insertText(this.keyValue.content);
+        InputHandler.getInstance().insertText(this.keyValue?.content as string);
       } else if (this.keyValue) {
         if (this.keyState === KeyState.ONCE_UPPER_CASE) {
           this.keyState = KeyState.LOWER_CASE;
         }
-        InputHandler.getInstance().insertText(this.keyValue.upperContent);
+        InputHandler.getInstance().insertText(this.keyValue?.upperContent as string);
       }
     })
     .width(this.inputStyle.basicButtonWidth)
     .height('100%')
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
     .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
+      normal: () => {
+        this.backgroundColor($r('app.color.key_item_normal'))
+      },
+      pressed: () => {
+        this.backgroundColor($r('app.color.key_item_normal_pressed'))
+      }
+    } as StateStyles)
   }
 }
