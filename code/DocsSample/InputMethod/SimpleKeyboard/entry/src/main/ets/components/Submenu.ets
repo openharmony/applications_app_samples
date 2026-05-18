@@ -14,32 +14,40 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  Grid,
+  GridItem,
+  Column,
+  Text,
+  Image,
+  FlexAlign,
+  List,
+  ListItem,
+  Resource,
+  ForEach,
+  Blank,
+  Row,
+  HorizontalAlign,
+  State,
+  StorageLink,
+  ImageFit,
+  $r
+} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { SubMenuType } from '../model/KeyboardKeyData';
+import { SubMenuType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { inputMethod, InputMethodSubtype } from '@kit.IMEKit';
 import Log from '../model/Log';
 
 const TAG = '[Submenu]';
 
-class Contact {
-  public name: string;
-  private icon: Resource;
-
-  constructor(name: string, icon: Resource) {
-    this.name = name;
-    this.icon = icon;
-  }
-}
-
-@Preview
 @Component
 export struct Submenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-  private contacts: Array<Contact> = []
-  @State inputMethods: inputMethod.InputMethodProperty[] = []
-  @State inputMethodSubtypes: InputMethodSubtype[] = []
+  @State inputMethods: inputMethod.InputMethodProperty[] = new Array<inputMethod.InputMethodProperty>();
+  @State inputMethodSubtypes: InputMethodSubtype[] = new Array<InputMethodSubtype>();
   @State currentInputMethodSubtype: string = '';
 
   async inputList() {
@@ -76,6 +84,7 @@ export struct Submenu {
       Log.showError(TAG, `switchInputMethod catch error: ${error.code} ${error.message}`);
     }
   }
+
   // [End input_case_input_switchInputMethod]
 
   // [Start input_case_input_switchInputMethodgetInputMethods]
@@ -88,6 +97,7 @@ export struct Submenu {
       let error: BusinessError = err as BusinessError;
     }
   }
+
   // [End input_case_input_switchInputMethodgetInputMethods]
 
   aboutToAppear(): void {
@@ -95,7 +105,7 @@ export struct Submenu {
     this.typeList()
   }
 
-  build() {
+  build(): void {
     Grid() {
       GridItem() {
         Column() {
@@ -112,14 +122,15 @@ export struct Submenu {
         .height('50%')
         .justifyContent(FlexAlign.Center)
         .id('btnEdit')
-        .onClick(() => {
+        .onClick((): void => {
           this.submenuType = SubMenuType.EDIT;
         })
       }
+
       GridItem() {
         Column() {
           List() {
-            ForEach(this.inputMethods, (item: Contact, index: number) => {
+            ForEach(this.inputMethods, (item: inputMethod.InputMethodProperty, index: int) => {
               ListItem() {
                 Column() {
                   Row() {
@@ -139,6 +150,7 @@ export struct Submenu {
                         this.switchInputMethod(item.name)
                       })
                   }
+
                   if (this.inputMethods[index].name == inputMethod.getCurrentInputMethod().name) {
                     List() {
                       ForEach(this.inputMethodSubtypes, (item: InputMethodSubtype) => {
@@ -163,14 +175,14 @@ export struct Submenu {
                       })
                     }
                     .width('90%')
-                    .margin({left: '10%'})
-                    .divider({color: '#000000', strokeWidth: 1})
+                    .margin({ left: '10%' })
+                    .divider({ color: '#000000', strokeWidth: 1 })
                   }
                 }
                 .width('100%')
                 .alignItems(HorizontalAlign.Start)
               }
-            }, (item: Contact) => JSON.stringify(item))
+            }, (item: inputMethod.InputMethodProperty) => JSON.stringify(item))
           }
           .width('100%')
         }
