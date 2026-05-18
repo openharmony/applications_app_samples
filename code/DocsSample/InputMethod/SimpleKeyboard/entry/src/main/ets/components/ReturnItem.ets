@@ -14,6 +14,20 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  $r,
+  $rawfile,
+  Text,
+  Image,
+  Color,
+  EnterKeyType,
+  ShadowOptions,
+  StateStyles
+} from '@kit.ArkUI';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
@@ -23,33 +37,25 @@ enum EntryKey {
   Go = 'Go'
 }
 
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
-}
-
 // 返回组件
 @Component
 export struct ReturnItem {
-  @StorageLink('enterKeyType') enterKeyType: EnterKeyType = EnterKeyType.Done
+  @StorageLink('enterKeyType') enterKeyType: int = EnterKeyType.Done as int;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   returnWidth: Resource | undefined = undefined;
 
-  build() {
+  build(): void {
     if (this.returnWidth) {
       Stack() {
-        if (this.enterKeyType === EnterKeyType.Send) {
+        if (this.enterKeyType === EnterKeyType.Send as int) {
           Text(EntryKey.Send)
             .fontSize(this.inputStyle.symbol_fontSize)
             .fontColor(Color.Black)
-        } else if (this.enterKeyType === EnterKeyType.Search) {
+        } else if (this.enterKeyType === EnterKeyType.Search as int) {
           Text(EntryKey.Search)
             .fontSize(this.inputStyle.symbol_fontSize)
             .fontColor(Color.Black)
-        } else if (this.enterKeyType === EnterKeyType.Go) {
+        } else if (this.enterKeyType === EnterKeyType.Go as int) {
           Text(EntryKey.Go)
             .fontSize(this.inputStyle.symbol_fontSize)
             .fontColor(Color.Black)
@@ -64,13 +70,18 @@ export struct ReturnItem {
       .borderRadius(4)
       .height('100%')
       .id('returnItem')
-      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
       .onClick(() => {
         InputHandler.getInstance().sendKeyFunction();
       })
       .stateStyles({
-        normal: normalStyles, pressed: pressedStyles
-      })
+        normal: () => {
+          this.backgroundColor($r('app.color.key_item_gray'))
+        },
+        pressed: () => {
+          this.backgroundColor($r('app.color.key_item_gray_pressed'))
+        }
+      } as StateStyles)
     }
   }
 }
