@@ -8,7 +8,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
  * 事件相关公共类
  */
 export class EventUtil {
-  static pixelMap: image.PixelMap | null = null
+  public static pixelMap: image.PixelMap | null = null
 
   private constructor() {
   }
@@ -38,7 +38,7 @@ export class EventUtil {
   static changePointStyle(isClick: boolean): void {
     getContext()
       .resourceManager
-      .getMediaContent(isClick ? $r("app.media.mouse_click") : $r("app.media.mouse_show"))
+      .getMediaContent(isClick ? $r('app.media.mouse_click') : $r('app.media.mouse_show'))
       .then((svgFileData) => {
         const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
         let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);

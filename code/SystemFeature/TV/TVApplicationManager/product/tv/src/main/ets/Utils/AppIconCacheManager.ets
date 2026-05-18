@@ -164,25 +164,7 @@ export class AppIconCacheManager {
       console.log('熊 pixelMapToBase64 预估大小:', estimatedSize, 'bytes', '耗时:', (new Date().getTime()) - (AppStorage.get('time') as number));
 
       let compressQuality = 100;
-      // if (estimatedSize > 1024 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 512 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 256 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 128 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 64 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 32 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 16 * 1024) {
-      //   compressQuality = 70;
-      // } else if (estimatedSize > 10 * 1024) {
-      //   compressQuality = 70;
-      // } else {
-      //   compressQuality = 100;
-      // }
+      
       console.log('熊 pixelMapToBase64 压缩质量设置:', compressQuality, '耗时:', (new Date().getTime()) - (AppStorage.get('time') as number));
 
       const packOpts: image.PackingOption = {

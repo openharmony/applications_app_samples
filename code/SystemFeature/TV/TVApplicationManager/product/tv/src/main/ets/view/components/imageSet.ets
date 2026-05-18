@@ -9,7 +9,6 @@ export default struct imageSet  {
   @State setListData:Array<number>=[]
   aboutToAppear(): void {
     this.setListData = []
-    // this.image = this.imageSrc
     this.setListData =[...this.setList]
   }
   build() {

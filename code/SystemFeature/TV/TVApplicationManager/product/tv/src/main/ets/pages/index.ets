@@ -2,11 +2,11 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 import CustomDialogExample from '../components/customDialog';
-import storeAppList from '../common/utils/storage'
+import StoreAppList from '../common/utils/storage'
 import { headerBar } from '../view/headerBar'
 import { gridList } from '../view/gridList'
 import emitter from '@ohos.events.emitter';
-import filterAppList from '../components/filterApp'
+import FilterAppList from '../components/filterApp'
 import display from '@ohos.display';
 import { common } from '@kit.AbilityKit';
 import CommonEvent from '@ohos.commonEventManager';
@@ -16,7 +16,7 @@ import App from '@system.app';
 
 // import display from '@ohos.display';
 
-const TAG = "applicationManager";
+const TAG = 'applicationManager';
 const CURRENT_ID = 100;
 const ADD_DOCKER_SHORTCUTS:string = 'ADD_DOCKER_SHORTCUTS'
 const REMOVE_DOCKER_SHORTCUTS:string = 'REMOVE_DOCKER_SHORTCUTS'
@@ -33,8 +33,8 @@ interface AppList {
 }
 
 class Element {
-  bundleName: string = ""
-  abilityName: string = ""
+  public bundleName: string = ''
+  public abilityName: string = ''
 }
 
 interface Element1 {
@@ -125,7 +125,7 @@ struct Index {
         return this.getAppInfo(infoList);
       })
       .catch((err: BusinessError) => {
-        console.log(TAG, "getAllLauncherAbilityInfo fail, err: " + JSON.stringify(err));
+        console.log(TAG, 'getAllLauncherAbilityInfo fail, err: ' + JSON.stringify(err));
       })
   }
 
@@ -158,8 +158,8 @@ struct Index {
       }
     }
     try {
-      inputConsumer.on("key", keyOptions, callback);
-      inputConsumer.on("key", keyOptionsMenu, callback);
+      inputConsumer.on('key', keyOptions, callback);
+      inputConsumer.on('key', keyOptionsMenu, callback);
     } catch (error) {
       console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
@@ -235,8 +235,8 @@ struct Index {
   }
 
   onPageHide(): void {
-    inputConsumer.off("key", keyOptions);
-    inputConsumer.off("key", keyOptionsMenu);
+    inputConsumer.off('key', keyOptions);
+    inputConsumer.off('key', keyOptionsMenu);
     this.dialogController?.close()
   }
 
@@ -247,7 +247,7 @@ struct Index {
       return
     }
     // 页面重新回到前台时刷新应用列表，确保商店安装后能立即显示新应用
-    this.show_state = true
+    this.showState = true
     this.getAllAppList()
   }
 
@@ -306,8 +306,8 @@ struct Index {
 
     emitter.on('menuEvent', (data) => {
       if(data.data) {
-        inputConsumer.off("key", keyOptions);
-        inputConsumer.off("key", keyOptionsMenu);
+        inputConsumer.off('key', keyOptions);
+        inputConsumer.off('key', keyOptionsMenu);
         this.dialogController?.close()
       }
     })
@@ -318,7 +318,7 @@ struct Index {
 
   // 获取历史排序
   orderList(tempList: Array<Element1>, sortedAppList: Array<AppList>):Array<AppList> {
-    let appTempList: Array<AppList> = []
+    let appTempList: AppList[] = []
     tempList.forEach((item) => {
       let obj = sortedAppList.find(e => JSON.stringify(e.element) === JSON.stringify(item))
       appTempList.push(obj as AppList)
@@ -336,27 +336,27 @@ struct Index {
     const uniqueElementSet: Set<string> = new Set<string>()
     for (let i = 0; i < this.infoList.length; i++) {
       curAppInfo = this.infoList[i];
-      if (curAppInfo.elementName.bundleName === "com.ohos.adminprovisioning" ||
-        curAppInfo.elementName.bundleName === "com.ohos.applicationmanager") {
+      if (curAppInfo.elementName.bundleName === 'com.ohos.adminprovisioning' ||
+        curAppInfo.elementName.bundleName === 'com.ohos.applicationmanager') {
         continue;
       }
 
       let appInfo: AppList =
         {
-          element: { bundleName: "", abilityName: "" },
-          label: "",
-          icon: "",
+          element: { bundleName: '', abilityName: '' },
+          label: '',
+          icon: '',
           installSource: '',
           installTime: 0,
           labelId: curAppInfo.labelId,
           iconId: curAppInfo.iconId,
-          moduleName: ""
+          moduleName: ''
         }
       appInfo.element.abilityName = curAppInfo.elementName.abilityName;
       appInfo.moduleName = curAppInfo.elementName.moduleName!;
       appInfo.element.bundleName = curAppInfo.elementName.bundleName;
       appInfo.installTime = curAppInfo.installTime
-      let appFilter = new filterAppList()
+      let appFilter = new FilterAppList()
       //过滤多余应用
       if (appFilter.handleFilter(JSON.stringify(appInfo.element))) {
         const uniqueKey = `${appInfo.element.bundleName}::${appInfo.element.abilityName}::${appInfo.moduleName}`
@@ -372,7 +372,7 @@ struct Index {
       const timeB = b.installTime;
       return timeA - timeB;
     });
-    let storageList = new storeAppList(getContext())
+    let storageList = new StoreAppList(getContext())
     let storageAppList = await storageList.getAppList()
     if (tempList.length === 0){
       this.appList=[]
@@ -382,17 +382,17 @@ struct Index {
       this.appList=this.orderList(storageAppList, tempList)
     }
     setTimeout(() => {
-      this.show_state=false
+      this.showState=false
     }, 0);
     AppStorage.setOrCreate('time',(new Date()).getTime() )
   }
-  @State show_state:boolean=true
+  @State showState:boolean=true
   //UI代码块
   build() {
       Column() {
         headerBar()
         Stack(){
-          if (this.show_state){
+          if (this.showState){
             Column()
               .width('1804lpx')
               .height('912lpx').zIndex(1).backgroundColor('#18181A')

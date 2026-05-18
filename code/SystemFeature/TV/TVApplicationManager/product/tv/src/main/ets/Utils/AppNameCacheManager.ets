@@ -1,5 +1,5 @@
-import { application } from "@kit.AbilityKit";
-import { preferences } from "@kit.ArkData";
+import { application } from '@kit.AbilityKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG = 'AppNameCacheManager'
 

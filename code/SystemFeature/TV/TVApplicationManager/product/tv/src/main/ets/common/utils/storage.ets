@@ -9,8 +9,8 @@ interface Element{
   abilityName: string
 }
 const infoList: string = '';
-export default class storeAppList {
-  context: Context
+export default class StoreAppList {
+  public context: Context
   constructor(context: Context) {
     this.context = context
   }

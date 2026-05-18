@@ -1,10 +1,10 @@
-import storeAppList from '../common/utils/storage'
+import StoreAppList from '../common/utils/storage'
 import { Throttle } from '../common/utils/throttle';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { cursorImage } from './cursorImage'
 import { BusinessError, emitter } from '@kit.BasicServicesKit';
 import { application } from '@kit.AbilityKit';
-import filterAppList from '../components/filterApp';
+import FilterAppList from '../components/filterApp';
 import { EventUtil } from '../common/utils/EventUtil';
 import { ColorMetrics, DrawableDescriptor, LengthMetrics } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -28,8 +28,8 @@ interface AppList {
 }
 
 class Element {
-  bundleName: string = ""
-  abilityName: string = ""
+  public bundleName: string = ''
+  public abilityName: string = ''
 }
 
 
@@ -327,7 +327,7 @@ export struct gridList {
   //移动卸载后对应用列表做持久化存储
   localStorageApp() {
     let appList = this.appList.map(item => item.element)
-    let storageList = new storeAppList(getContext())
+    let storageList = new StoreAppList(getContext())
     storageList.setAppList(JSON.stringify(appList))
   }
 
@@ -368,20 +368,10 @@ export struct gridList {
     this.allList=this.appList//同步
     this.focusIndex=toIndex
     this.localStorageApp()
-    // this.appList = newList;
-    // setTimeout(()=>{
-    //   try {
-    //     // this.getUIContext().getFocusController().requestFocus('itemid_' + this.focusIndex)
-    //     focusControl.requestFocus('itemid_' + this.focusIndex)
-    //   }catch (e) {
-    //     console.log('====err')
-    //   }
-    //       },100)
 
   }
 onDidBuild(): void {
   try {
-    // this.getUIContext().getFocusController().requestFocus('itemid_' + this.focusIndex)
     focusControl.requestFocus('itemid_' + this.focusIndex)
   }catch (e) {
     console.log('====err')
@@ -423,27 +413,6 @@ onDidBuild(): void {
           .onBlur(() => {
             this.focusControl = false
           })
-          /*.onTouch((event) => {
-            if (!EventUtil.isTouchEvent(event)) {
-              return
-            }
-            if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== sourceToolMouseClick) {
-              return;
-            }
-            //移动不处理其他逻辑
-            if (this.ifMove == 'true') {
-              this.ifMove = 'false'
-              this.localStorageApp()
-              return
-            }
-
-            this.focusIndex = index
-            focusControl.requestFocus('itemid_' + this.focusIndex);
-            globalThis.context.startAbility({
-              bundleName: this.appList[this.focusIndex].element.bundleName as string,
-              abilityName: this.appList[this.focusIndex].element.abilityName as string
-            });
-          })*/
           .onTouch((event) => {
             if (event.type==TouchType.Down) {
               this.isPanMove=false
@@ -505,8 +474,6 @@ onDidBuild(): void {
                   return
                 }
                 focusIndex = (this.focusIndex - 6) < 0 ? 0 : this.focusIndex - 6
-
-                // this.commonOperation(focusIndex, temp, false, 0, this.bigScreen ? -296 : -296)
                 this.commonOperation(focusIndex, temp, false, 0, this.bigScreen ? -624 : -311)
                 this.ifChangePage(this.focusIndex, 'up')  // 只有上下移动才翻页
               }
@@ -519,7 +486,6 @@ onDidBuild(): void {
                   return
                 }
                 focusIndex = newIndex;
-                // this.commonOperation(focusIndex, temp, true, 0, this.bigScreen ? 296 : 296)
                 this.commonOperation(focusIndex, temp, true, 0, this.bigScreen ? 624 : 311)
                 this.ifChangePage(this.focusIndex, 'down')  // 只有上下移动才翻页
               }
@@ -530,7 +496,6 @@ onDidBuild(): void {
                 temp = this.appList[this.focusIndex]
                 focusIndex = this.focusIndex - 1
                 if (focusIndex >= 0) {
-                  // this.moveAble(focusIndex, temp, this.bigScreen ? -288 : -288, 0)
                   this.moveAble(focusIndex, temp, this.bigScreen ? -576 : -288, 0)
 
                 } else {
@@ -544,7 +509,6 @@ onDidBuild(): void {
                 }
                 let num = this.appList.length
                 if (focusIndex < num) {
-                  // this.moveAble(focusIndex, temp, this.bigScreen ? 288 : 288, 0)
                   this.moveAble(focusIndex, temp, this.bigScreen ? 576 : 288, 0)
                 } else {
                   return

@@ -1,7 +1,6 @@
 @Component
 export struct cursorImage {
   @Prop arrowXPos: number
-  // @State arrowXPos: number=0
   ifOpacity: boolean = false
   image: string = 'app.media.left'
   rowOrColumn:boolean = true
@@ -26,7 +25,6 @@ export struct cursorImage {
         curve: Curve.Linear
       })
       .autoResize(true)
-      // .opacity(this.ifOpacity ? 1 : 0)
       .visibility(this.ifOpacity ?Visibility.Visible : Visibility.Hidden)
   }
 }

@@ -14,5 +14,5 @@
  */
 
 export class StyleConstants {
-  static readonly LPX_DESIGNWIDTH = 1920;
+  public static readonly LPX_DESIGNWIDTH = 1920;
 }

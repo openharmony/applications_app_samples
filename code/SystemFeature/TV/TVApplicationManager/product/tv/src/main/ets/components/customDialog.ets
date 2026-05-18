@@ -1,9 +1,9 @@
 import bundleInstall from '@ohos.bundle.installer';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-import storeAppList from '../common/utils/storage'
+import StoreAppList from '../common/utils/storage'
 import emitter from '@ohos.events.emitter';
-import dealErrorCode from './errorCode'
+import ErrorCodeHandler from './errorCode'
 import { inputEventClient, KeyCode } from '@kit.InputKit';
 import { LengthMetrics } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -22,8 +22,8 @@ interface AppList {
 }
 
 class Element {
-  bundleName: string = ""
-  abilityName: string = ""
+  public bundleName: string = ''
+  public abilityName: string = ''
 }
 
 @CustomDialog
@@ -53,7 +53,7 @@ export default struct CustomDialogExample {
   //移动卸载后对应用列表做持久化存储
   localStorageApp() {
     let appList = this.appList.map(item => item.element)
-    let storageList = new storeAppList(getContext())
+    let storageList = new StoreAppList(getContext())
     storageList.setAppList(JSON.stringify(appList))
   }
 
@@ -132,7 +132,7 @@ export default struct CustomDialogExample {
       installer.uninstall(bundleName, installParam, err => {
 
         if (err) {
-          let dealErr = new dealErrorCode()
+          let dealErr = new ErrorCodeHandler()
           this.getUIContext().getPromptAction().showToast({
             message: '卸载失败,' + dealErr.handleErrorCode(err.code as number),
             duration: 2000
