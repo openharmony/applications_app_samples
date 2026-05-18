@@ -50,7 +50,7 @@ export enum KeyState {
   UPPER_CASE = 2
 }
 
-export let keySourceListData: Array<keySourceListType> = [
+export let keySourceListData: keySourceListType[] = [
   {
     title: '1',
     content: 'q',
@@ -186,7 +186,7 @@ export let keySourceListData: Array<keySourceListType> = [
 // [End input_case_input_KeyboardKeyData016]
 
 // [Start input_case_input_KeyboardKeyData186]
-export const numberSourceListData: Array<sourceListType> = [
+export const numberSourceListData: sourceListType[] = [
   {
     content: '1'
   },
@@ -271,7 +271,7 @@ export const numberSourceListData: Array<sourceListType> = [
 
 ]
 
-export const symbolSourceListData: Array<sourceListType> = [
+export const symbolSourceListData: sourceListType[] = [
   {
     content: '~'
   },
