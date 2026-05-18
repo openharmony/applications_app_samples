@@ -1,4 +1,3 @@
-
 'use static'
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
@@ -14,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import {
+  $r, Resource, AppStorage
+} from '@kit.ArkUI';
 import deviceInfo from '@ohos.deviceInfo';
 
 export interface KeyStyle {
@@ -170,8 +171,7 @@ export class StyleConfiguration {
           editSmallCircleMargin: $r('app.float.rk_edit_small_circle_margin')
         };
       }
-    }
-    else {
+    } else {
       if (!islandSpace) {
         return {
           basicButtonWidth: $r('app.float.s_basic_button_width'),
