@@ -63,13 +63,14 @@ export struct KeyMenu {
   // 如果是沉浸模式，设置新样式
   aboutToAppear(): void {
 
-    inputMethodEngine.getKeyboardDelegate()?.onEditorAttributeChanged((attr: inputMethodEngine.EditorAttribute | undefined): void => {
-      if (attr?.immersiveMode == inputMethodEngine.ImmersiveMode.IMMERSIVE) {
-        this.styleMode = 0;
-      } else {
-        this.styleMode = 1;
-      }
-    })
+    inputMethodEngine.getKeyboardDelegate()?.onEditorAttributeChanged(
+      (attr: inputMethodEngine.EditorAttribute | undefined): void => {
+        if (attr?.immersiveMode == inputMethodEngine.ImmersiveMode.IMMERSIVE) {
+          this.styleMode = 0;
+        } else {
+          this.styleMode = 1;
+        }
+      });
   }
 
   build(): void {
