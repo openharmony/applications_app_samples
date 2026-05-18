@@ -46,8 +46,8 @@ const TAG = '[Submenu]';
 export struct Submenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-  @State inputMethods: inputMethod.InputMethodProperty[] = new Array<inputMethod.InputMethodProperty>();
-  @State inputMethodSubtypes: InputMethodSubtype[] = new Array<InputMethodSubtype>();
+  @StorageLink('inputMethods') inputMethods: inputMethod.InputMethodProperty[] = [];
+  @StorageLink('InputMethodSubtypes'): inputMethodSubtypes: InputMethodSubtype[] = [];
   @State currentInputMethodSubtype: string = '';
 
   async inputList() {
