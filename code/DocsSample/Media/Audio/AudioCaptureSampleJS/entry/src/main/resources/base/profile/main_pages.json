@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/AudioCapture",
     "pages/AudioLoopback",
+    "pages/AudioLoopbackDebugInfo",
     "pages/AudioStreamManager",
     "pages/MacManager"
   ]
