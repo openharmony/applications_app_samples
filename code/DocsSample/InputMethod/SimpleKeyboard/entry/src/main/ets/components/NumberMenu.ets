@@ -14,11 +14,25 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  ForEach,
+  Flex,
+  Consume,
+  FlexDirection,
+  ItemAlign,
+  FlexOptions,
+  FlexAlign,
+  Padding
+} from '@kit.ArkUI';
 import { DeleteItem } from './DeleteItem';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
-import { MenuKey, numberSourceListData, sourceListType } from '../model/KeyboardKeyData';
+import { MenuKey, numberSourceListData, sourceListType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { SpaceItem } from './SpaceItem';
 import { ReturnItem } from './ReturnItem';
 
@@ -29,11 +43,10 @@ export struct NumberMenu {
   @Consume menuType: number;
   private numberList: sourceListType[] = numberSourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth2;
-  private returnWidth: Resource = this.inputStyle.returnButtonWidthType2;
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+  build(): void {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center } as FlexOptions) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         ForEach(this.numberList.slice(0, 10), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
@@ -42,7 +55,7 @@ export struct NumberMenu {
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         ForEach(this.numberList.slice(10, 20), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
@@ -51,7 +64,7 @@ export struct NumberMenu {
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         KeyItemGray({ keyValue: MenuKey.SPECIAL_KEY })
         ForEach(this.numberList.slice(20), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
@@ -62,22 +75,22 @@ export struct NumberMenu {
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         KeyItemGray({ keyValue: MenuKey.NORMAL_KEY })
         KeyItem({ keyValue: { content: '_', title: '_', upperContent: '_' } })
         KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
 
         SpaceItem({ spaceWith: this.spaceWidth })
         KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
-        ReturnItem({ returnWidth: this.returnWidth })
+        ReturnItem({ returnWidth: this.inputStyle.returnButtonWidthType2 })
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
     }
     .padding({
       left: this.inputStyle.paddingLeftRight,
       right: this.inputStyle.paddingLeftRight
-    })
+    } as Padding)
   }
 }
