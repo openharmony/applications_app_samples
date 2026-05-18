@@ -1,0 +1,55 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "storePassword": "000000165DC9844C7A5007D24C7D5C8B2269F8607B55D4722CD9208A06881765A48AC155B799",
+          "certpath": "signature/OpenHarmony.cer",
+          "keyAlias": "OpenHarmony Application Release",
+          "keyPassword": "00000016F23E737B33ED232A583E02DC2B4936538B912277969D184EA1F02666AF2C7C90D6E9",
+          "profile": "signature/applicationmanager.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "signature/OpenHarmony.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "targetSdkVersion": 18,
+        //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
+        "runtimeOS": "OpenHarmony"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tv",
+      "srcPath": "./product/tv",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

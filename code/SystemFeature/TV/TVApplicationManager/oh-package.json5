@@ -1,0 +1,12 @@
+{
+  "modelVersion": "5.1.0",
+  "license": "ISC",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.6"
+  },
+  "name": "application_manager",
+  "description": "example description",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {}
+}
