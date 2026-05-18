@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  Text,
+  Consume,
+  $r,
+  StateStyles,
+  ShadowOptions
+} from '@kit.ArkUI';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { MenuKey, MenuType } from '../model/KeyboardKeyData';
-
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
-}
+import { MenuKey, MenuType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 
 // 无大小写的灰色组件
 @Component
@@ -32,7 +35,7 @@ export struct KeyItemGray {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
 
-  build() {
+  build(): void {
     Stack() {
       if (this.keyValue) {
         Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
@@ -41,19 +44,24 @@ export struct KeyItemGray {
     .backgroundColor($r('app.color.key_item_gray'))
     .borderRadius(4)
     .onClick(() => {
-      if (this.keyValue === MenuKey.NUMBER_KEY) {
+      if (this.keyValue === String(MenuKey.NUMBER_KEY)) {
         this.menuType = MenuType.NUMBER;
-      } else if (this.keyValue === MenuKey.SPECIAL_KEY) {
+      } else if (this.keyValue === String(MenuKey.SPECIAL_KEY)) {
         this.menuType = MenuType.SPECIAL;
-      } else if (this.keyValue === MenuKey.NORMAL_KEY) {
+      } else if (this.keyValue === String(MenuKey.NORMAL_KEY)) {
         this.menuType = MenuType.NORMAL;
       }
     })
     .height('100%')
     .width(this.inputStyle.switchButtonWidth)
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
     .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
+      normal: () => {
+        this.backgroundColor($r('app.color.key_item_gray'))
+      },
+      pressed: () => {
+        this.backgroundColor($r('app.color.key_item_gray_pressed'))
+      }
+    } as StateStyles)
   }
 }
