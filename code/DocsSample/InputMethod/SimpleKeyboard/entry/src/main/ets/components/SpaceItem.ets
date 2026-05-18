@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  $r,
+  Text,
+  StateStyles,
+  ShadowOptions
+} from '@kit.ArkUI';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_normal_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_normal'))
-}
 
 // 空格组件
 @Component
@@ -31,7 +33,7 @@ export struct SpaceItem {
   spaceWith: Resource | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
-  build() {
+  build(): void {
     if (this.spaceWith) {
       Stack() {
         Text('space')
@@ -45,10 +47,15 @@ export struct SpaceItem {
       .onClick(() => {
         InputHandler.getInstance().insertText(' ');
       })
-      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
       .stateStyles({
-        normal: normalStyles, pressed: pressedStyles
-      })
+        normal: () => {
+          this.backgroundColor($r('app.color.key_item_gray'))
+        },
+        pressed: () => {
+          this.backgroundColor($r('app.color.key_item_gray_pressed'))
+        }
+      } as StateStyles)
     }
   }
 }
