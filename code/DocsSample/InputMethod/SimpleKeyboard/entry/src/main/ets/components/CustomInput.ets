@@ -16,6 +16,9 @@
 
 // [Start input_case_input_CustomInput]
 // [Start input_case_input_CustomInputText]
+import {
+  Component, State, Text, focusControl
+} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethod } from '@kit.IMEKit';
 import Log from '../model/Log';
@@ -28,7 +31,7 @@ export struct CustomInput {
   private isAttach: boolean = false;
   private inputController: inputMethod.InputMethodController = inputMethod.getController();
 
-  build() {
+  build(): void {
     Text(this.inputText) // Text组件作为自绘编辑框的文本显示组件。
       .fontSize(16)
       .width('100%')
@@ -44,21 +47,22 @@ export struct CustomInput {
         this.attachAndListener(); // 点击控件
       })
   }
+
   // [End input_case_input_CustomInputText]
   async attachAndListener() { // 绑定和设置监听
     focusControl.requestFocus('customInput');
     try {
-      await this.inputController.attach(true, {
+      await this.inputController?.attach(true, {
         inputAttribute: {
           textInputType: inputMethod.TextInputType.TEXT,
           enterKeyType: inputMethod.EnterKeyType.SEARCH
         }
       });
       if (!this.isAttach) {
-        this.inputController.on('insertText', (text) => {
+        this.inputController?.onInsertText((text) => {
           this.inputText += text;
         })
-        this.inputController.on('deleteLeft', (length) => {
+        this.inputController?.onDeleteLeft((length) => {
           this.inputText = this.inputText.substring(0, this.inputText.length - length);
         })
         this.isAttach = true;
@@ -69,10 +73,11 @@ export struct CustomInput {
     }
   }
 
-  off() {
+  off(): void {
     this.isAttach = false;
-    this.inputController.off('insertText');
-    this.inputController.off('deleteLeft');
+    this.inputController?.offInsertText();
+    this.inputController?.offDeleteLeft();
   }
 }
+
 // [End input_case_input_CustomInput]
