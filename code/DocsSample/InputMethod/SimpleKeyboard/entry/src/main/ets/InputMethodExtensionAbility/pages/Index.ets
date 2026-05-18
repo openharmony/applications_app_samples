@@ -14,15 +14,27 @@
  * limitations under the License.
  */
 
- // [Start input_case_input_index]
+// [Start input_case_input_index]
+import {
+  Entry,
+  StorageLink,
+  Provide,
+  Component,
+  Column,
+  Row,
+  Stack,
+  $r,
+  InputType,
+  Watch,
+  Color,
+  FlexAlign,
+  AppStorage
+} from '@kit.ArkUI';
 import deviceInfo from '@ohos.deviceInfo';
 import Log from '../../model/Log';
 import { EditView } from '../../components/EditView';
 import { InputHandler } from '../model/KeyboardController';
-import {
-  MenuType,
-  SubMenuType,
-} from './KeyboardKeyData';
+import { MenuType, SubMenuType } from './KeyboardKeyData';
 import { KeyMenu } from '../../components/KeyMenu';
 import { NumberMenu } from '../../components/NumberMenu';
 import { StyleConfiguration, KeyStyle } from '../../common/StyleConfiguration';
@@ -39,23 +51,24 @@ const TAG: string = 'index->';
 @Component
 struct Index {
   @Provide menuType: number = MenuType.NORMAL;
-  @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
+  @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType =
+    InputType.fromValue(InputType.Normal)
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
   @StorageLink('isRkDevice') isRkDevice: boolean = true;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE);
+  @StorageLink('inputStyle') inputStyle: KeyStyle =
+    StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE);
   private panel: inputMethodEngine.Panel | undefined;
   @StorageLink('subtypeChange') subtypeChange: number = 0;
-
 
   aboutToAppear(): void {
     // [Start input_case_input_immersiveMode]
     // 感知是否设置沉浸模式，如果是沉浸模式选择沉浸模式类型
     // [Start input_case_input_immersiveModeeditorAttributeChanged]
-    inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
+    inputMethodEngine.getKeyboardDelegate()?.onEditorAttributeChanged((attr: inputMethodEngine.EditorAttribute) => {
       // [End input_case_input_immersiveModeeditorAttributeChanged]
       console.info('recv editorAttributeChanged, immersiveMode: ', attr.immersiveMode);
-      if (attr.immersiveMode == 1) {
+      if (attr.immersiveMode == inputMethodEngine.ImmersiveMode.IMMERSIVE) {
         this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE);
         console.info('recv editorAttributeChanged, panel:', this.panel?.getImmersiveMode());
       }
@@ -70,19 +83,17 @@ struct Index {
     return true;
   }
 
-  inputPatternChange(): void {
-    if (this.inputPattern === InputType.Number || this.inputPattern === InputType.PhoneNumber) {
+  inputPatternChange(value: string): void {
+    if (this.inputPattern === InputType.NUMBER || this.inputPattern === InputType.PhoneNumber) {
       this.menuType = MenuType.NUMBER;
     } else {
       this.menuType = MenuType.NORMAL;
     }
   }
 
-  change(): void {
+  change(value: string): void {
     AppStorage.set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
   }
-
-
 
   build() {
     Stack() {
@@ -120,4 +131,5 @@ struct Index {
     .backgroundColor(Color.White)
   }
 }
+
 // [End input_case_input_index]
