@@ -15,10 +15,11 @@
  */
 
 // [Start input_case_module_import_InputMethodExtensionAbility]
-
 import { Want } from '@kit.AbilityKit';
 import { keyboardController } from './model/KeyboardController';
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
+
+const TAG: string = 'InputMethodService->';
 
 export default class InputMethodService extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -26,8 +27,8 @@ export default class InputMethodService extends InputMethodExtensionAbility {
   }
 
   onDestroy(): void {
-    console.log(`InputMethodExtAbility onDestroy.`);
     keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
   }
 }
+
 // [End input_case_module_import_InputMethodExtensionAbility]
