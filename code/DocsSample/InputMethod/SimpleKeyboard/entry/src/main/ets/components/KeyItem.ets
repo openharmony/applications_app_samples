@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-import { keySourceListType, } from '../model/KeyboardKeyData';
+import {
+  Component,
+  StorageLink,
+  Flex,
+  Resource,
+  Text,
+  Consume,
+  $r,
+  StateStyles,
+  ClickEvent,
+  FlexOptions,
+  ShadowOptions,
+  ItemAlign,
+  FlexAlign,
+  FlexDirection,
+  Color
+} from '@kit.ArkUI';
+import { keySourceListType, } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
-
-
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_normal_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_normal'))
-}
 
 // 无大小写的按键组件
 @Component
@@ -33,10 +41,14 @@ export struct KeyItem {
   keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+  build(): void {
+    Flex({
+      direction: FlexDirection.Column,
+      alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center
+    } as FlexOptions) {
       if (this.keyValue) {
-        Text(this.keyValue.content)
+        Text(this.keyValue?.content)
           .fontSize(this.inputStyle.symbol_fontSize)
           .fontColor(Color.Black)
       }
@@ -45,14 +57,19 @@ export struct KeyItem {
     .borderRadius(4)
     .width(this.inputStyle.basicButtonWidth)
     .height('100%')
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
-    .onClick(() => {
+    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
+    .onClick((e: ClickEvent): void => {
       if (this.keyValue) {
-        InputHandler.getInstance().insertText(this.keyValue.content);
+        InputHandler.getInstance().insertText(this.keyValue?.content as string);
       }
     })
     .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
+      normal: () => {
+        this.backgroundColor($r('app.color.key_item_normal'))
+      },
+      pressed: () => {
+        this.backgroundColor($r('app.color.key_item_normal_pressed'))
+      }
+    } as StateStyles)
   }
 }
