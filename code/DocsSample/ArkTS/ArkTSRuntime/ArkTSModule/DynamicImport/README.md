@@ -67,6 +67,15 @@ entry/src/
  │   │   │   └── components
  │   │   │   │   └── MainPage.ets
  ├── Index.ets
+ har3                                    // har3模块函数实现
+ ├── src
+ │   ├── main
+ │   │   ├── ets
+ │   │   │   ├── utils
+ │   │   │   │   └── Calc.ets
+ │   │   │   └── components
+ │   │   │   │   └── MainPage.ets
+ ├── Index.ets
  harlibrary                              // harlibrary模块函数实现
  ├── src
  │   ├── main
