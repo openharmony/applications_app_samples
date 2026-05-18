@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,19 +20,74 @@
   "main": "",
   "author": "",
   "license": "",
+  // [Start dynamic_call_add_dependencies]
+  // [Start const_dynamic_import_har_dependencies]
+  // [Start const_dynamic_import_hsp_dependencies]
+  // [Start const_dynamic_import_crypto_dependencies]
+  // [Start const_dynamic_import_ohpm_dependencies]
+  // [Start hap_const_dynamic_import_native_dependencies]
+  // HAP's oh-package.json5
   "dependencies": {
+    // [StartExclude const_dynamic_import_har_dependencies]
+    // [StartExclude const_dynamic_import_hsp_dependencies]
+    // [StartExclude const_dynamic_import_crypto_dependencies]
+    // [StartExclude const_dynamic_import_ohpm_dependencies]
+    // [StartExclude hap_const_dynamic_import_native_dependencies]
     "harlibrary": "file:../harlibrary",
+    // [StartExclude dynamic_call_add_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "myhar": "file:../myHar",
+    // [StartExclude const_dynamic_import_har_dependencies]
     //HAP常量动态import HAR模块名 HAP常量动态import HAR模块文件路径
+    // [EndExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "myhsp": "file:../myHsp",
-    //HAP常量动态import HSP模块名 HAP常量动态import HSP模块名文件路径
+    // [StartExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "@ohos/crypto-js": "2.0.3-rc.0",
     //HAP常量动态import远程HAR模块名
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "@ohos/hypium": "1.0.19",
     //HAP常量动态import ohpm包
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "libentry.so": "file:./src/main/cpp/types/libentry",
     //HAP常量动态import自己的Native库
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [Start hap_decoupled_dependencies]
+    // HAP's oh-package.json5
     "har1": "file:../har1",
-    "har2": "file:../har2"
+    "har2": "file:../har2",
+    "har3": "file:../har3"
+    // [End hap_decoupled_dependencies]
+    // [EndExclude dynamic_call_add_dependencies]
+    // [EndExclude const_dynamic_import_har_dependencies]
+    // [EndExclude const_dynamic_import_hsp_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
+    // [EndExclude const_dynamic_import_ohpm_dependencies]
+    // [EndExclude hap_const_dynamic_import_native_dependencies]
   }
+  // [End dynamic_call_add_dependencies]
+  // [End const_dynamic_import_har_dependencies]
+  // [End const_dynamic_import_hsp_dependencies]
+  // [End const_dynamic_import_crypto_dependencies]
+  // [End const_dynamic_import_ohpm_dependencies]
+  // [End hap_const_dynamic_import_native_dependencies]
 }
