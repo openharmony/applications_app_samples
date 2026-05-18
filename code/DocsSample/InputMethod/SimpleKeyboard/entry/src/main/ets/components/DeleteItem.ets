@@ -14,23 +14,25 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Image,
+  $r,
+  StateStyles,
+  ShadowOptions,
+  $rawfile
+} from '@kit.ArkUI';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
-}
 
 // 删除组件
 @Component
 export struct DeleteItem {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
-  build() {
+  build(): void {
     Stack() {
       Image($rawfile('delete.svg'))
         .width(this.inputStyle.featurePicSize)
@@ -43,9 +45,14 @@ export struct DeleteItem {
     })
     .width(this.inputStyle.switchButtonWidth)
     .height('100%')
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
     .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
+      normal: () => {
+        this.backgroundColor($r('app.color.key_item_gray'))
+      },
+      pressed: () => {
+        this.backgroundColor($r('app.color.key_item_gray_pressed'))
+      }
+    } as StateStyles)
   }
 }
