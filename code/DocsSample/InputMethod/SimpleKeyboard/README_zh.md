@@ -40,9 +40,7 @@ SimpleKeyboard
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
-
-[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_abilities_from_background)
+不涉及。
 
 ### 依赖
 
@@ -52,6 +50,4 @@ SimpleKeyboard
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
-
-3.本示例需要使用@ohos.application.InputMethodExtensionAbility系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+2.本示例需要使用DevEco Studio 版本号(DevEco Studio 6.0.0 Canary1)及以上版本才可编译运行。
