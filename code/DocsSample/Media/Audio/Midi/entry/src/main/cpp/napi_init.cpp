@@ -37,14 +37,14 @@
 #define LOG_TAG "MidiSample"
 
 // ============================================================================
-// 共享缓存+常驻线程相关定义 - 解决每次MIDI事件创建新线程的问题
+// 共享缓存+常驻线程相关定义，解决每次MIDI事件创建新线程的问题。
 // ============================================================================
 constexpr size_t MIDI_RING_BUFFER_SIZE = 1024;
 constexpr size_t MIDI_MAX_UMP_WORDS = 4;
 constexpr size_t MIDI_BATCH_SIZE = 64;
 constexpr size_t MIDI_CACHE_LINE_SIZE = 64;
 
-// MIDI相关常量
+// MIDI相关常量。
 constexpr uint32_t MIDI_MAX_VELOCITY = 127;
 constexpr uint32_t MIDI_VELOCITY_SCALE = 65535;
 constexpr uint32_t MIDI_UMP_MT_1_0 = 0x2;
@@ -53,7 +53,7 @@ constexpr uint32_t MIDI_UMP_STATUS_NOTE_ON = 0x9;
 constexpr uint32_t MIDI_UMP_STATUS_NOTE_OFF = 0x8;
 constexpr uint32_t MIDI_CHANNEL_MASK = 0x0F;
 constexpr uint32_t MIDI_NOTE_MASK = 0x7F;
-// 用于codecheck合规的附加常量
+// 用于codecheck合规的附加常量。
 constexpr uint32_t MIDI_DATA_WORDS_2 = 2;
 constexpr uint32_t MIDI_DATA_WORDS_3 = 3;
 constexpr uint32_t MIDI_DATA_WORDS_4 = 4;
@@ -65,15 +65,15 @@ constexpr uint32_t MIDI_UMP_SHIFT_24 = 24;
 constexpr size_t MIDI_MAX_PORT_INDEX = 2;
 constexpr size_t MIDI_PROTOCOL_1_0 = 1;
 constexpr size_t MIDI_PROTOCOL_2_0 = 2;
-// 事件长度常量
+// 事件长度常量。
 constexpr uint32_t MIDI_EVENT_LENGTH_1 = 1;
 constexpr uint32_t MIDI_EVENT_LENGTH_2 = 2;
-// 参数索引常量
+// 参数索引常量。
 constexpr size_t MIDI_ARG_INDEX_2 = 2;
 constexpr size_t MIDI_ARG_INDEX_3 = 3;
 constexpr size_t MIDI_ARG_INDEX_4 = 4;
 
-// 单个MIDI事件槽位（缓存行对齐）
+// 单个MIDI事件槽位（缓存行对齐）。
 struct alignas(MIDI_CACHE_LINE_SIZE) MidiEventSlot {
     uint64_t timestamp;
     uint32_t length;
@@ -88,12 +88,12 @@ struct alignas(MIDI_CACHE_LINE_SIZE) MidiEventSlot {
     }
 };
 
-// 无锁环形缓冲区（SPSC - 单生产者单消费者）
+// 无锁环形缓冲区（SPSC，单生产者单消费者）。
 class MidiRingBuffer {
 public:
     MidiRingBuffer() : head_(0), tail_(0), overflowFlag_(false) {}
 
-    // 批量写入（由MIDI回调调用，需快速返回）
+    // 批量写入（由MIDI回调调用，需快速返回）。
     size_t PushBatch(const OH_MIDIEvent* events, size_t count)
     {
         size_t pushed = 0;
@@ -103,7 +103,7 @@ public:
             size_t currentTail = tail_.load(std::memory_order_acquire);
             if (nextHead == currentTail) {
                 overflowFlag_.store(true, std::memory_order_relaxed);
-                continue; // 缓冲区满，跳过此事件
+                continue; // 缓冲区满，跳过此事件。
             }
 
             buffer_[head].timestamp = events[i].timestamp;
@@ -112,7 +112,7 @@ public:
                 buffer_[head].data[j] = events[i].data[j];
             }
 
-            // Memory fence确保数据写入顺序
+            // Memory fence确保数据写入顺序。
             std::atomic_thread_fence(std::memory_order_release);
             head_.store(nextHead, std::memory_order_relaxed);
             pushed++;
@@ -120,7 +120,7 @@ public:
         return pushed;
     }
 
-    // 批量读取（由常驻工作线程调用）
+    // 批量读取（由常驻工作线程调用）。
     size_t PopBatch(MidiEventSlot* outEvents, size_t maxCount)
     {
         size_t tail = tail_.load(std::memory_order_relaxed);
@@ -157,12 +157,12 @@ public:
 
 private:
     MidiEventSlot buffer_[MIDI_RING_BUFFER_SIZE];
-    alignas(MIDI_CACHE_LINE_SIZE) std::atomic<size_t> head_;  // 写指针
-    alignas(MIDI_CACHE_LINE_SIZE) std::atomic<size_t> tail_;  // 读指针
+    alignas(MIDI_CACHE_LINE_SIZE) std::atomic<size_t> head_;  // 写指针。
+    alignas(MIDI_CACHE_LINE_SIZE) std::atomic<size_t> tail_;  // 读指针。
     std::atomic<bool> overflowFlag_;
 };
 
-// 线程安全函数调用的回调数据结构
+// 线程安全函数调用的回调数据结构。
 struct DeviceChangeCallbackData {
     int32_t action;
     int64_t deviceId;
@@ -184,7 +184,7 @@ struct MidiReceivedCallbackData {
 
 static void CallJsMidiReceived(napi_env env, napi_value js_callback, void* context, void* data);
 
-// 输入端口上下文（每个input port一个，包含常驻线程和共享缓存）
+// 输入端口上下文（每个input port一个，包含常驻线程和共享缓存）。
 class InputPortContext : public std::enable_shared_from_this<InputPortContext> {
 public:
     InputPortContext(int64_t deviceId, uint32_t portIndex)
@@ -201,7 +201,7 @@ public:
     {
         bool expected = false;
         if (!running_.compare_exchange_strong(expected, true, std::memory_order_acq_rel)) {
-            return true; // 已经在运行
+            return true; // 已经在运行。
         }
 
         napi_value resourceName;
@@ -216,7 +216,7 @@ public:
 
         workerThread_ = std::thread(&InputPortContext::WorkerLoop, this);
 
-        // 等待线程真正启动
+        // 等待线程真正启动。
         while (!started_.load(std::memory_order_acquire)) {
             std::this_thread::yield();
         }
@@ -227,17 +227,17 @@ public:
     {
         bool expected = true;
         if (!running_.compare_exchange_strong(expected, false, std::memory_order_acq_rel)) {
-            return; // 已经停止
+            return; // 已经停止。
         }
 
         cv_.notify_one();
 
-        // 先join工作线程，确保它已完全退出，不再使用tsfn
+        // 先join工作线程，确保它已完全退出，不再使用tsfn。
         if (workerThread_.joinable()) {
             workerThread_.join();
         }
 
-        // 工作线程已退出，现在安全地abort和release tsfn
+        // 工作线程已退出，现在安全地abort和release tsfn。
         if (tsfn_ != nullptr) {
             napi_release_threadsafe_function(tsfn_, napi_tsfn_abort);
             napi_release_threadsafe_function(tsfn_, napi_tsfn_release);
@@ -245,7 +245,7 @@ public:
         }
     }
 
-    // MIDI回调入口 - 批量写入环形缓冲区
+    // MIDI回调入口，批量写入环形缓冲区。
     void PushEventBatch(const OH_MIDIEvent* events, size_t eventCount)
     {
         if (events == nullptr || eventCount == 0) {
@@ -288,7 +288,7 @@ private:
                 continue;
             }
 
-            // 无数据，等待
+            // 无数据，等待。
             std::unique_lock<std::mutex> lock(mutex_);
             cv_.wait(lock, [this] {
                 return !ringBuffer_.Empty() || !running_.load(std::memory_order_acquire);
@@ -339,26 +339,26 @@ private:
     std::atomic<uint64_t> totalDropped_;
 };
 
-// 全局MIDI客户端和状态管理
+// 全局MIDI客户端和状态管理。
 static OH_MIDIClient *g_midiClient = nullptr;
 static std::mutex g_midiMutex;
 static std::map<int64_t, OH_MIDIDevice*> g_openedDevices;
 static napi_threadsafe_function g_deviceChangeTsfn = nullptr;
 static napi_threadsafe_function g_errorTsfn = nullptr;
 
-// 错误回调数据结构
+// 错误回调数据结构。
 struct ErrorCallbackData {
     int32_t errorCode;
     std::string errorMessage;
 };
 
-// 输入端口上下文存储（使用shared_ptr管理生命周期）
+// 输入端口上下文存储（使用shared_ptr管理生命周期）。
 static std::map<std::pair<int64_t, uint32_t>, std::shared_ptr<InputPortContext>> g_inputPortContexts;
 
-// 输出端口协议存储 key = (deviceId, portIndex), value = protocol
+// 输出端口协议存储，key = (deviceId, portIndex), value = protocol。
 static std::map<std::pair<int64_t, uint32_t>, OH_MIDIProtocol> g_outputPortProtocols;
 
-// BLE设备打开回调存储
+// BLE设备打开回调存储。
 struct BLEOpenCallbackInfo {
     napi_threadsafe_function tsfn;
     std::string deviceAddress;
@@ -376,7 +376,7 @@ struct BleOpenedCallbackData {
     uint64_t productId;
 };
 
-// 辅助函数：在对象上设置int64属性
+// 辅助函数：在对象上设置int64属性。
 static inline void SetInt64Prop(napi_env env, napi_value obj, const char* name, int64_t value)
 {
     napi_value val;
@@ -384,7 +384,7 @@ static inline void SetInt64Prop(napi_env env, napi_value obj, const char* name, 
     napi_set_named_property(env, obj, name, val);
 }
 
-// 辅助函数：在对象上设置int32属性
+// 辅助函数：在对象上设置int32属性。
 static inline void SetInt32Prop(napi_env env, napi_value obj, const char* name, int32_t value)
 {
     napi_value val;
@@ -392,7 +392,7 @@ static inline void SetInt32Prop(napi_env env, napi_value obj, const char* name, 
     napi_set_named_property(env, obj, name, val);
 }
 
-// 辅助函数：在对象上设置字符串属性
+// 辅助函数：在对象上设置字符串属性。
 static inline void SetStringProp(napi_env env, napi_value obj, const char* name, const std::string& value)
 {
     napi_value val;
@@ -400,7 +400,7 @@ static inline void SetStringProp(napi_env env, napi_value obj, const char* name,
     napi_set_named_property(env, obj, name, val);
 }
 
-// 辅助函数：在对象上设置bigint uint64属性
+// 辅助函数：在对象上设置bigint uint64属性。
 static inline void SetBigintUint64Prop(napi_env env, napi_value obj, const char* name, uint64_t value)
 {
     napi_value val;
@@ -408,7 +408,7 @@ static inline void SetBigintUint64Prop(napi_env env, napi_value obj, const char*
     napi_set_named_property(env, obj, name, val);
 }
 
-// 设备信息数据结构，用于简化参数传递
+// 设备信息数据结构，用于简化参数传递。
 struct DeviceInfoData {
     int64_t deviceId;
     int32_t deviceType;
@@ -419,7 +419,7 @@ struct DeviceInfoData {
     uint64_t productId;
 };
 
-// 辅助函数：在JS对象上设置所有设备属性
+// 辅助函数：在JS对象上设置所有设备属性。
 static void SetDeviceProperties(napi_env env, napi_value obj, const DeviceInfoData& data)
 {
     SetInt64Prop(env, obj, "deviceId", data.deviceId);
@@ -431,7 +431,7 @@ static void SetDeviceProperties(napi_env env, napi_value obj, const DeviceInfoDa
     SetStringProp(env, obj, "deviceAddress", data.deviceAddress);
 }
 
-// 辅助函数：从设备信息数据创建JavaScript对象
+// 辅助函数：从设备信息数据创建JavaScript对象。
 static napi_value CreateDeviceInfoObjectFromData(napi_env env, const DeviceInfoData& data)
 {
     OH_LOG_DEBUG(LOG_APP, "[CreateDeviceInfoObjectFromData] deviceId=%{public}lld",
@@ -443,7 +443,7 @@ static napi_value CreateDeviceInfoObjectFromData(napi_env env, const DeviceInfoD
     return deviceObj;
 }
 
-// 辅助函数：从设备信息创建JavaScript对象
+// 辅助函数：从设备信息创建JavaScript对象。
 static napi_value CreateDeviceInfoObject(napi_env env, const OH_MIDIDeviceInformation& info)
 {
     DeviceInfoData data;
@@ -457,7 +457,7 @@ static napi_value CreateDeviceInfoObject(napi_env env, const OH_MIDIDeviceInform
     return CreateDeviceInfoObjectFromData(env, data);
 }
 
-// 辅助函数：从端口信息创建JavaScript对象
+// 辅助函数：从端口信息创建JavaScript对象。
 static napi_value CreatePortInfoObject(napi_env env, const OH_MIDIPortInformation& info)
 {
     OH_LOG_DEBUG(LOG_APP,
@@ -486,7 +486,7 @@ static napi_value CreatePortInfoObject(napi_env env, const OH_MIDIPortInformatio
     return portObj;
 }
 
-// 线程安全函数调用JS回调：设备变更
+// 线程安全函数调用JS回调：设备变更。
 static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* context, void* data)
 {
     OH_LOG_INFO(LOG_APP, "[CallJsDeviceChange] ++enter (JS thread)");
@@ -523,7 +523,7 @@ static void CallJsDeviceChange(napi_env env, napi_value js_callback, void* conte
     OH_LOG_INFO(LOG_APP, "[CallJsDeviceChange] --exit (JS thread)");
 }
 
-// 线程安全函数调用JS回调：错误
+// 线程安全函数调用JS回调：错误。
 static void CallJsError(napi_env env, napi_value js_callback, void* context, void* data)
 {
     OH_LOG_INFO(LOG_APP, "[CallJsError] ++enter (JS thread)");
@@ -558,7 +558,7 @@ static void CallJsError(napi_env env, napi_value js_callback, void* context, voi
     OH_LOG_INFO(LOG_APP, "[CallJsError] --exit (JS thread)");
 }
 
-// 辅助函数：创建MIDI事件JS对象
+// 辅助函数：创建MIDI事件JS对象。
 static napi_value CreateMidiEventObject(napi_env env, uint64_t timestamp, uint32_t length,
     const std::vector<uint32_t>& umpData, size_t& dataIndex)
 {
@@ -585,7 +585,7 @@ static napi_value CreateMidiEventObject(napi_env env, uint64_t timestamp, uint32
     return eventObj;
 }
 
-// 线程安全函数调用JS回调：MIDI数据接收
+// 线程安全函数调用JS回调：MIDI数据接收。
 static void CallJsMidiReceived(napi_env env, napi_value js_callback, void* context, void* data)
 {
     MidiReceivedCallbackData* callbackData = static_cast<MidiReceivedCallbackData*>(data);
@@ -609,7 +609,7 @@ static void CallJsMidiReceived(napi_env env, napi_value js_callback, void* conte
     delete callbackData;
 }
 
-// 线程安全函数调用JS回调：BLE设备已打开
+// 线程安全函数调用JS回调：BLE设备已打开。
 static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context, void* data)
 {
     OH_LOG_INFO(LOG_APP, "[CallJsBleOpened] ++enter (JS thread)");
@@ -644,7 +644,7 @@ static void CallJsBleOpened(napi_env env, napi_value js_callback, void* context,
     OH_LOG_INFO(LOG_APP, "[CallJsBleOpened] --exit (JS thread)");
 }
 
-// 辅助函数：清理指定设备的输入端口上下文并关闭端口
+// 辅助函数：清理指定设备的输入端口上下文并关闭端口。
 static void CleanupInputPortContextsForDevice(int64_t deviceId)
 {
     OH_LOG_DEBUG(LOG_APP, "[CleanupInputPortContextsForDevice] cleaning up for device %{public}lld",
@@ -661,7 +661,7 @@ static void CleanupInputPortContextsForDevice(int64_t deviceId)
             if (ctxIt->second != nullptr) {
                 ctxIt->second->Stop();
             }
-            // 关闭输入端口
+            // 关闭输入端口。
             ctxIt = g_inputPortContexts.erase(ctxIt);
         } else {
             ++ctxIt;
@@ -669,14 +669,14 @@ static void CleanupInputPortContextsForDevice(int64_t deviceId)
     }
 }
 
-// 清理指定设备的所有资源（输入端口、输出端口、设备句柄），调用时需持有g_midiMutex
+// 清理指定设备的所有资源（输入端口、输出端口、设备句柄），调用时需持有g_midiMutex。
 static void CleanupDeviceResources(int64_t deviceId)
 {
     OH_LOG_INFO(LOG_APP, "[CleanupDeviceResources] cleaning up device %{public}lld", (long long)deviceId);
     auto devIt = g_openedDevices.find(deviceId);
     OH_MIDIDevice* device = (devIt != g_openedDevices.end()) ? devIt->second : nullptr;
     CleanupInputPortContextsForDevice(deviceId);
-    // 关闭输出端口并清理协议记录
+    // 关闭输出端口并清理协议记录。
     if (device != nullptr) {
         for (auto it = g_outputPortProtocols.begin(); it != g_outputPortProtocols.end();) {
             if (it->first.first == deviceId) {
@@ -694,7 +694,7 @@ static void CleanupDeviceResources(int64_t deviceId)
     OH_LOG_INFO(LOG_APP, "[CleanupDeviceResources] device %{public}lld cleaned up", (long long)deviceId);
 }
 
-// 通过线程安全函数通知JS层设备变更
+// 通过线程安全函数通知JS层设备变更。
 static void NotifyDeviceChangeToJs(OH_MIDIDeviceChangeAction action, OH_MIDIDeviceInformation info)
 {
     if (g_deviceChangeTsfn == nullptr) {
@@ -719,7 +719,7 @@ static void NotifyDeviceChangeToJs(OH_MIDIDeviceChangeAction action, OH_MIDIDevi
 
 // [Start quick_start]
 // [Start device_change_callback]
-// 设备变更回调 - 由MIDI服务调用（请勿在此持有锁）
+// 设备变更回调，由MIDI服务调用（请勿在此持有锁）。
 static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_MIDIDeviceInformation info)
 {
     // [StartExclude quick_start]
@@ -731,7 +731,7 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
         (int)info.deviceType, info.deviceAddress);
     // [EndExclude device_change_callback]
 
-    // 设备下线时，在独立线程中延迟清理（不能在回调中持有锁或执行繁重操作）
+    // 设备下线时，在独立线程中延迟清理（不能在回调中持有锁或执行繁重操作）。
     if (static_cast<int32_t>(action) != 0) {
         int64_t devId = info.midiDeviceId;
         std::thread([devId]() {
@@ -748,10 +748,10 @@ static void OnDeviceChange(void *userData, OH_MIDIDeviceChangeAction action, OH_
 }
 // [End device_change_callback]
 
-// 辅助函数：清理所有端口上下文与回调
+// 辅助函数：清理所有端口上下文与回调。
 static void CleanupAllPortContexts()
 {
-    // 清理输入端口上下文
+    // 清理输入端口上下文。
     for (auto& pair : g_inputPortContexts) {
         if (pair.second != nullptr) {
             pair.second->Stop();
@@ -759,10 +759,10 @@ static void CleanupAllPortContexts()
     }
     g_inputPortContexts.clear();
 
-    // 清理输出端口协议
+    // 清理输出端口协议。
     g_outputPortProtocols.clear();
 
-    // 清理BLE回调
+    // 清理BLE回调。
     for (auto& pair : g_bleOpenCallbacks) {
         if (pair.second.tsfn != nullptr) {
             napi_release_threadsafe_function(pair.second.tsfn, napi_tsfn_release);
@@ -770,7 +770,7 @@ static void CleanupAllPortContexts()
     }
     g_bleOpenCallbacks.clear();
 
-    // 释放设备变更线程安全函数
+    // 释放设备变更线程安全函数。
     if (g_deviceChangeTsfn != nullptr) {
         napi_release_threadsafe_function(g_deviceChangeTsfn, napi_tsfn_release);
         g_deviceChangeTsfn = nullptr;
@@ -778,17 +778,17 @@ static void CleanupAllPortContexts()
 }
 
 // [Start error_callback]
-// 错误回调 - MIDI服务遇到严重错误时调用
+// 错误回调，MIDI服务遇到严重错误时调用。
 static void OnError(void *userData, OH_MIDIStatusCode code)
 {
     // [StartExclude error_callback]
     OH_LOG_ERROR(LOG_APP, "[OnError] ++enter, errorCode=%{public}d", (int)code);
 
-    // 通过线程安全函数通知前端
+    // 通过线程安全函数通知前端。
     if (g_errorTsfn != nullptr) {
         ErrorCallbackData* callbackData = new ErrorCallbackData();
         callbackData->errorCode = static_cast<int32_t>(code);
-        // 根据错误码生成错误消息
+        // 根据错误码生成错误消息。
         if (code == OH_MIDI_STATUS_SERVICE_DIED) {
             callbackData->errorMessage = "MIDI service died";
         }
@@ -812,7 +812,7 @@ static void OnError(void *userData, OH_MIDIStatusCode code)
         CleanupAllPortContexts();
         g_openedDevices.clear();
     }
-    // 错误处理逻辑
+    // 错误处理逻辑。
     // [StartExclude error_callback]
     OH_LOG_ERROR(LOG_APP, "[OnError] --exit");
     // [EndExclude error_callback]
@@ -820,14 +820,14 @@ static void OnError(void *userData, OH_MIDIStatusCode code)
 // [End error_callback]
 
 // [Start midi_callbacks_struct]
-// MIDI客户端回调
+// MIDI客户端回调。
 static OH_MIDICallbacks g_midiCallbacks = {
     .onDeviceChange = OnDeviceChange,
     .onError = OnError
 };
 // [End midi_callbacks_struct]
 
-// 辅助函数：清理现有MIDI客户端资源
+// 辅助函数：清理现有MIDI客户端资源。
 static void CleanupExistingClient()
 {
     if (g_midiClient != nullptr) {
@@ -847,10 +847,10 @@ static void CleanupExistingClient()
     }
 }
 
-// 辅助函数：设置设备变更和错误回调
+// 辅助函数：设置设备变更和错误回调。
 static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_value errorCallback)
 {
-    // 设置设备变更回调
+    // 设置设备变更回调。
     if (deviceChangeCallback != nullptr) {
         napi_valuetype valueType;
         napi_typeof(env, deviceChangeCallback, &valueType);
@@ -867,7 +867,7 @@ static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_v
         }
     }
 
-    // 设置错误回调
+    // 设置错误回调。
     if (errorCallback != nullptr) {
         napi_valuetype valueType;
         napi_typeof(env, errorCallback, &valueType);
@@ -886,7 +886,7 @@ static void SetupCallbacks(napi_env env, napi_value deviceChangeCallback, napi_v
 }
 
 // [Start create_midi_client]
-// 创建MIDI客户端
+// 创建MIDI客户端。
 static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
 {
     // [StartExclude create_midi_client]
@@ -900,7 +900,7 @@ static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
     // [EndExclude quick_start]
     // [StartExclude create_midi_client]
     CleanupExistingClient();
-    // args[0] = 设备变更回调, args[1] = 错误回调
+    // args[0] = 设备变更回调，args[1] = 错误回调。
     SetupCallbacks(env, args[0], args[1]);
     // [EndExclude create_midi_client]
     OH_MIDIStatusCode status = OH_MIDIClient_Create(&g_midiClient, g_midiCallbacks, nullptr);
@@ -915,7 +915,7 @@ static napi_value CreateMIDIClient(napi_env env, napi_callback_info info)
 }
 // [End create_midi_client]
 
-// 辅助函数：关闭所有已打开的MIDI设备
+// 辅助函数：关闭所有已打开的MIDI设备。
 static void CloseAllOpenedDevices()
 {
     if (g_midiClient == nullptr) {
@@ -928,7 +928,7 @@ static void CloseAllOpenedDevices()
     g_openedDevices.clear();
 }
 
-// 销毁MIDI客户端
+// 销毁MIDI客户端。
 // [Start destroy_midi_client]
 // [Start cleanup_destroy_client]
 static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
@@ -966,7 +966,7 @@ static napi_value DestroyMIDIClient(napi_env env, napi_callback_info info)
 // [End quick_start]
 
 // [Start get_device_count]
-// 获取设备数量
+// 获取设备数量。
 static napi_value GetDeviceCount(napi_env env, napi_callback_info info)
 {
     // [StartExclude get_device_count]
@@ -1004,7 +1004,7 @@ static napi_value GetDeviceCount(napi_env env, napi_callback_info info)
 }
 // [End get_device_count]
 
-// 获取设备列表
+// 获取设备列表。
 // [Start get_device_infos]
 static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
 {
@@ -1051,7 +1051,7 @@ static napi_value GetDeviceInfos(napi_env env, napi_callback_info info)
 }
 // [End get_device_infos]
 
-// 获取设备的端口数量
+// 获取设备的端口数量。
 static napi_value GetPortCount(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -1085,7 +1085,7 @@ static napi_value GetPortCount(napi_env env, napi_callback_info info)
     return result;
 }
 
-// 获取设备的端口信息
+// 获取设备的端口信息。
 // [Start get_port_infos]
 static napi_value GetPortInfos(napi_env env, napi_callback_info info)
 {
@@ -1141,7 +1141,7 @@ static napi_value GetPortInfos(napi_env env, napi_callback_info info)
 }
 // [End get_port_infos]
 
-// 打开MIDI设备
+// 打开MIDI设备。
 // [Start open_device]
 static napi_value OpenDevice(napi_env env, napi_callback_info info)
 {
@@ -1175,7 +1175,7 @@ static napi_value OpenDevice(napi_env env, napi_callback_info info)
 }
 // [End open_device]
 
-// 辅助函数：从JS数组解析MIDI事件
+// 辅助函数：从JS数组解析MIDI事件。
 static bool ParseMIDIEventsFromArray(napi_env env, napi_value jsArray,
     std::vector<OH_MIDIEvent>& events, std::vector<std::vector<uint32_t>>& eventDataBuffers)
 {
@@ -1214,7 +1214,7 @@ static bool ParseMIDIEventsFromArray(napi_env env, napi_value jsArray,
     return true;
 }
 
-// 关闭MIDI设备
+// 关闭MIDI设备。
 // [Start close_device]
 // [Start cleanup_close_device]
 static napi_value CloseDevice(napi_env env, napi_callback_info info)
@@ -1272,11 +1272,11 @@ static napi_value CloseDevice(napi_env env, napi_callback_info info)
 // [End cleanup_close_device]
 // [End close_device]
 
-// MIDI数据接收回调
+// MIDI数据接收回调。
 // [Start midi_received_callback]
 static void OnMIDIReceived(void *userData, const OH_MIDIEvent *events, size_t eventCount)
 {
-    // userData指向InputPortContext
+    // userData指向InputPortContext。
     InputPortContext* context = static_cast<InputPortContext*>(userData);
     // [StartExclude midi_received_callback]
     if (context == nullptr || events == nullptr || eventCount == 0) {
@@ -1287,7 +1287,7 @@ static void OnMIDIReceived(void *userData, const OH_MIDIEvent *events, size_t ev
 }
 // [End midi_received_callback]
 
-// 输入端口参数辅助结构体
+// 输入端口参数辅助结构体。
 struct InputPortArgs {
     int64_t deviceId;
     uint32_t portIndex;
@@ -1295,7 +1295,7 @@ struct InputPortArgs {
     napi_value callbackValue;
 };
 
-// 辅助函数：解析输入端口参数
+// 辅助函数：解析输入端口参数。
 static InputPortArgs ParseInputPortArgs(napi_env env, napi_callback_info info)
 {
     InputPortArgs args = {0, 0, static_cast<int32_t>(MIDI_PROTOCOL_1_0), nullptr};
@@ -1314,7 +1314,7 @@ static InputPortArgs ParseInputPortArgs(napi_env env, napi_callback_info info)
     return args;
 }
 
-// 打开输入端口
+// 打开输入端口。
 // [Start open_input_port]
 static napi_value OpenInputPort(napi_env env, napi_callback_info info)
 {
@@ -1330,12 +1330,12 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
         return result;
     }
 
-    // 构造端口描述符
+    // 构造端口描述符。
     OH_MIDIPortDescriptor descriptor;
     descriptor.portIndex = args.portIndex;
     descriptor.protocol = static_cast<OH_MIDIProtocol>(args.protocol);
 
-    // 创建输入端口上下文用于线程安全回调处理
+    // 创建输入端口上下文，用于线程安全回调处理。
     auto context = std::make_shared<InputPortContext>(args.deviceId, args.portIndex);
 
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenInputPort(it->second, descriptor, OnMIDIReceived, context.get());
@@ -1346,7 +1346,7 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
         napi_valuetype valueType;
         napi_typeof(env, args.callbackValue, &valueType);
         if (valueType == napi_function) {
-            // 启动上下文用于线程安全回调处理
+            // 启动上下文，用于线程安全回调处理。
             if (!context->Start(env, args.callbackValue)) {
                 OH_LOG_ERROR(LOG_APP, "[OpenInputPort] failed to start context");
                 OH_MIDIDevice_CloseInputPort(it->second, args.portIndex);
@@ -1369,7 +1369,7 @@ static napi_value OpenInputPort(napi_env env, napi_callback_info info)
 
 // [Start close_input_port]
 // [Start cleanup_close_input_port]
-// 关闭输入端口
+// 关闭输入端口。
 static napi_value CloseInputPort(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -1397,7 +1397,7 @@ static napi_value CloseInputPort(napi_env env, napi_callback_info info)
 
     OH_MIDIStatusCode status = OH_MIDIDevice_CloseInputPort(it->second, portIndex);
 
-    // 清理输入端口上下文
+    // 清理输入端口上下文。
     auto key = std::make_pair(deviceId, portIndex);
     auto contextIt = g_inputPortContexts.find(key);
     if (contextIt != g_inputPortContexts.end()) {
@@ -1419,7 +1419,7 @@ static napi_value CloseInputPort(napi_env env, napi_callback_info info)
 // [End cleanup_close_input_port]
 // [End close_input_port]
 
-// 打开输出端口
+// 打开输出端口。
 // [Start open_output_port]
 static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
 {
@@ -1433,7 +1433,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     uint32_t portIndex = 0;
     napi_get_value_uint32(env, args[1], &portIndex);
 
-    int32_t protocol = static_cast<int32_t>(MIDI_PROTOCOL_1_0); // 默认使用MIDI 1.0协议
+    int32_t protocol = static_cast<int32_t>(MIDI_PROTOCOL_1_0); // 默认使用MIDI 1.0协议。
     napi_get_value_int32(env, args[MIDI_ARG_INDEX_2], &protocol);
 
     OH_LOG_INFO(LOG_APP, "[OpenOutputPort] ++enter, deviceId=%{public}lld, portIndex=%{public}u, protocol=%{public}d",
@@ -1455,7 +1455,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
     
     OH_MIDIStatusCode status = OH_MIDIDevice_OpenOutputPort(it->second, descriptor);
     // [StartExclude open_output_port]
-    // 存储此输出端口的协议信息
+    // 存储此输出端口的协议信息。
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
         g_outputPortProtocols[key] = static_cast<OH_MIDIProtocol>(protocol);
@@ -1474,7 +1474,7 @@ static napi_value OpenOutputPort(napi_env env, napi_callback_info info)
 
 // [Start close_output_port]
 // [Start cleanup_close_output_port]
-// 关闭输出端口
+// 关闭输出端口。
 static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -1500,7 +1500,7 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
         return result;
     }
     OH_MIDIStatusCode status = OH_MIDIDevice_CloseOutputPort(it->second, portIndex);
-    // 移除此输出端口的协议信息
+    // 移除此输出端口的协议信息。
     if (status == OH_MIDI_STATUS_OK) {
         auto key = std::make_pair(deviceId, portIndex);
         g_outputPortProtocols.erase(key);
@@ -1518,7 +1518,7 @@ static napi_value CloseOutputPort(napi_env env, napi_callback_info info)
 // [End cleanup_close_output_port]
 // [End close_output_port]
 
-// 发送MIDI数据
+// 发送MIDI数据。
 // [Start send_midi]
 static napi_value SendMIDI(napi_env env, napi_callback_info info)
 {
@@ -1570,10 +1570,10 @@ static napi_value SendMIDI(napi_env env, napi_callback_info info)
 // [End send_midi]
 
 // ============================================================================
-// UMP辅助函数：支持MIDI 1.0和MIDI 2.0协议
+// UMP辅助函数：支持MIDI 1.0和MIDI 2.0协议。
 // ============================================================================
 
-// 构建MIDI 2.0音符开启UMP（64位，2个字）
+// 构建MIDI 2.0音符开启UMP（64位，2个字）。
 static void BuildMIDI2NoteOn(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
     // MIDI 2.0音符开启：MT=0x4, 组=0x0, 状态=0x9, 通道, 音符, 属性类型=0x00
@@ -1587,7 +1587,7 @@ static void BuildMIDI2NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
     umpData[1] = (static_cast<uint32_t>(velocity16) << MIDI_UMP_WORDS_16) | 0x0000;
 }
 
-// 构建MIDI 2.0音符关闭UMP（64位，2个字）
+// 构建MIDI 2.0音符关闭UMP（64位，2个字）。
 static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
     // MIDI 2.0音符关闭：MT=0x4, 组=0x0, 状态=0x8, 通道, 音符, 属性类型=0x00
@@ -1602,22 +1602,22 @@ static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
 }
 
 // [Start ump_helper_functions]
-// 构建MIDI 1.0音符开启UMP（32位，1个字）
+// 构建MIDI 1.0音符开启UMP（32位，1个字）。
 static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
     // UMP格式：MT[31-28]=0x2, 组[27-24]=0x0, 状态[23-20]=0x9
-    // 通道[19-16], 数据1[15-8]=音符, 数据2[7-0]=力度
+    // 通道[19-16]，数据1[15-8]=音符，数据2[7-0]=力度。
     umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
                  (MIDI_UMP_STATUS_NOTE_ON << MIDI_UMP_SHIFT_20) |
                  ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
                  ((note & MIDI_NOTE_MASK) << MIDI_UMP_SHIFT_8) | (velocity & MIDI_NOTE_MASK);
 }
 
-// 构建MIDI 1.0音符关闭UMP（32位，1个字）
+// 构建MIDI 1.0音符关闭UMP（32位，1个字）。
 static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
     // UMP格式：MT[31-28]=0x2, 组[27-24]=0x0, 状态[23-20]=0x8
-    // 通道[19-16], 数据1[15-8]=音符, 数据2[7-0]=力度
+    // 通道[19-16]，数据1[15-8]=音符，数据2[7-0]=力度。
     umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
                  (MIDI_UMP_STATUS_NOTE_OFF << MIDI_UMP_SHIFT_20) |
                  ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
@@ -1625,7 +1625,7 @@ static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
 }
 // [End ump_helper_functions]
 
-// 获取输出端口协议（若未找到则默认返回MIDI_PROTOCOL_1_0）
+// 获取输出端口协议（若未找到则默认返回MIDI_PROTOCOL_1_0）。
 static OH_MIDIProtocol GetOutputPortProtocol(int64_t deviceId, uint32_t portIndex)
 {
     auto key = std::make_pair(deviceId, portIndex);
@@ -1633,10 +1633,10 @@ static OH_MIDIProtocol GetOutputPortProtocol(int64_t deviceId, uint32_t portInde
     if (it != g_outputPortProtocols.end()) {
         return it->second;
     }
-    return OH_MIDI_PROTOCOL_1_0; // 默认使用MIDI 1.0协议
+    return OH_MIDI_PROTOCOL_1_0; // 默认使用MIDI 1.0协议。
 }
 
-// 辅助函数：解析音符消息参数（设备ID、端口索引、通道、音符、力度）
+// 辅助函数：解析音符消息参数（设备ID、端口索引、通道、音符、力度）。
 struct NoteMessageArgs {
     int64_t deviceId;
     uint32_t portIndex;
@@ -1660,7 +1660,7 @@ static NoteMessageArgs ParseNoteMessageArgs(napi_env env, napi_callback_info inf
     return args;
 }
 
-// 辅助函数：发送音符消息（内部实现）
+// 辅助函数：发送音符消息（内部实现）。
 static napi_value SendNoteMessage(napi_env env, NoteMessageArgs args, bool isNoteOn)
 {
     const char* funcName = isNoteOn ? "SendNoteOn" : "SendNoteOff";
@@ -1706,7 +1706,7 @@ static napi_value SendNoteMessage(napi_env env, NoteMessageArgs args, bool isNot
 }
 
 // [Start send_note_on]
-// 发送音符开启消息（测试辅助函数）
+// 发送音符开启消息（测试辅助函数）。
 static napi_value SendNoteOn(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
@@ -1715,7 +1715,7 @@ static napi_value SendNoteOn(napi_env env, napi_callback_info info)
 // [End send_note_on]
 
 // [Start send_note_off]
-// 发送音符关闭消息（测试辅助函数）
+// 发送音符关闭消息（测试辅助函数）。
 static napi_value SendNoteOff(napi_env env, napi_callback_info info)
 {
     NoteMessageArgs args = ParseNoteMessageArgs(env, info);
@@ -1723,7 +1723,7 @@ static napi_value SendNoteOff(napi_env env, napi_callback_info info)
 }
 // [End send_note_off]
 
-// 刷新输出端口
+// 刷新输出端口。
 // [Start flush_output_port]
 static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
 {
@@ -1759,7 +1759,7 @@ static napi_value FlushOutputPort(napi_env env, napi_callback_info info)
 }
 // [End flush_output_port]
 
-// BLE原始数据结构，用于异步处理
+// BLE原始数据结构，用于异步处理。
 struct BleRawData {
     std::string deviceAddress;
     bool opened;
@@ -1772,7 +1772,7 @@ struct BleRawData {
     uint64_t productId;
 };
 
-// 辅助函数：为BLE设备回调创建线程安全函数
+// 辅助函数：为BLE设备回调创建线程安全函数。
 static napi_threadsafe_function CreateBLEThreadsafeFunction(napi_env env, napi_value callbackValue,
     const std::string& deviceAddr)
 {
@@ -1782,14 +1782,14 @@ static napi_threadsafe_function CreateBLEThreadsafeFunction(napi_env env, napi_v
         return nullptr;
     }
 
-    // 如果存在旧的回调则删除
+    // 如果存在旧的回调则删除。
     auto oldCallback = g_bleOpenCallbacks.find(deviceAddr);
     if (oldCallback != g_bleOpenCallbacks.end() && oldCallback->second.tsfn != nullptr) {
         OH_LOG_DEBUG(LOG_APP, "[CreateBLEThreadsafeFunction] releasing old threadsafe function");
         napi_release_threadsafe_function(oldCallback->second.tsfn, napi_tsfn_release);
     }
 
-    // 为此BLE设备创建线程安全函数
+    // 为此BLE设备创建线程安全函数。
     napi_value resourceName;
     std::string resourceNameStr = "BleOpenedCallback_" + deviceAddr;
     napi_create_string_utf8(env, resourceNameStr.c_str(), NAPI_AUTO_LENGTH, &resourceName);
@@ -1811,7 +1811,7 @@ static napi_threadsafe_function CreateBLEThreadsafeFunction(napi_env env, napi_v
     return tsfn;
 }
 
-// 辅助函数：在工作线程中处理BLE设备打开
+// 辅助函数：在工作线程中处理BLE设备打开。
 static void BleWorkerThreadFunc(BleRawData* rawData)
 {
     OH_LOG_DEBUG(LOG_APP, "[BleWorkerThread] addr=%{public}s, opened=%{public}d",
@@ -1854,8 +1854,8 @@ static void BleWorkerThreadFunc(BleRawData* rawData)
     napi_release_threadsafe_function(tsfn, napi_tsfn_release);
 }
 
-// BLE设备打开回调 - 启动异步线程进行处理
-// 所有繁重操作（加锁、数据复制、JS回调）均在工作线程中进行
+// BLE设备打开回调，启动异步线程进行处理。
+// 所有繁重操作（加锁、数据复制、JS回调）均在工作线程中进行。
 // [Start ble_device_opened_callback]
 static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device, OH_MIDIDeviceInformation info)
 {
@@ -1864,7 +1864,7 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     OH_LOG_INFO(LOG_APP, "[OnBLEDeviceOpened] ++enter (callback thread), addr=%{public}s, opened=%{public}d",
                 deviceAddr.c_str(), opened ? 1 : 0);
 
-    // 在回调线程中复制必要数据（快速操作）
+    // 在回调线程中复制必要数据（快速操作）。
     BleRawData* rawData = new BleRawData();
     rawData->deviceAddress = deviceAddr;
     rawData->opened = opened;
@@ -1876,7 +1876,7 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
     rawData->vendorId = info.vendorId;
     rawData->productId = info.productId;
 
-    // 启动工作线程执行所有繁重操作
+    // 启动工作线程执行所有繁重操作。
     std::thread workerThread(BleWorkerThreadFunc, rawData);
     workerThread.detach();
 
@@ -1886,14 +1886,14 @@ static void OnBLEDeviceOpened(void *userData, bool opened, OH_MIDIDevice *device
 // [End ble_device_opened_callback]
 
 // [Start open_ble_device]
-// 异步打开BLE设备
+// 异步打开BLE设备。
 static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取设备地址
+    // 获取设备地址。
     size_t addrLen = 0;
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &addrLen);
     std::string deviceAddr(addrLen, '\0');
@@ -1902,7 +1902,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
     // [StartExclude open_ble_device]
     OH_LOG_INFO(LOG_APP, "[OpenBLEDevice] ++enter, address=%{public}s", deviceAddr.c_str());
 
-    // 获取回调函数
+    // 获取回调函数。
     napi_value callbackValue = nullptr;
     if (argc > 1 && args[1] != nullptr) {
         callbackValue = args[1];
@@ -1919,7 +1919,7 @@ static napi_value OpenBLEDevice(napi_env env, napi_callback_info info)
         return result;
     }
 
-    // 如果提供了回调则创建线程安全函数
+    // 如果提供了回调则创建线程安全函数。
     if (callbackValue != nullptr) {
         CreateBLEThreadsafeFunction(env, callbackValue, deviceAddr);
     }
