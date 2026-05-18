@@ -14,17 +14,31 @@
  * limitations under the License.
  */
 
+import {
+  StorageLink,
+  Component,
+  Column,
+  Row,
+  Stack,
+  Divider,
+  Image,
+  Blank,
+  $r,
+  ImageFit,
+  $rawfile,
+  ItemAlign,
+  VerticalAlign
+} from '@kit.ArkUI';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
-import { SubMenuType } from '../model/KeyboardKeyData';
+import { SubMenuType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 
-@Preview
 @Component
 export struct TopMenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
-  build() {
+  build(): void {
     Column() {
       Divider()
         .color($r('app.color.light_gray'))
