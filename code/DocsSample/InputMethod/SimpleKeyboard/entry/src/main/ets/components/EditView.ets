@@ -14,34 +14,49 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  State,
+  Column,
+  Stack,
+  Button,
+  ButtonType,
+  Text,
+  Image,
+  ImageFit,
+  $r,
+  Row,
+  HorizontalAlign,
+  Alignment,
+  Color,
+  ImageAttribute,
+  FlexAlign,
+  StackOptions,
+  SizeOptions,
+  Padding,
+  Rectangle,
+  Resource,
+  ClickEvent
+} from '@kit.ArkUI';
 import { inputMethodEngine } from '@kit.IMEKit';
 import { InputHandler } from '../InputMethodExtensionAbility/model/KeyboardController';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
-@Extend(Image) function arrowStyle(isSelection: boolean, inputStyle: KeyStyle) {
-  .size({ width: inputStyle.editImageSize, height: inputStyle.editImageSize })
-  .objectFit(ImageFit.Contain)
-  .responseRegion({ x: -20, y: -20, width: 64, height: 64 })
-  .backgroundColor(Color.White)
-  .borderRadius(20)
-  .colorBlend(isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
-}
-
-@Preview
 @Component
 export struct EditView {
   @State isSelection: boolean = false;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
-  build() {
+  build(): void {
     Column() {
-      Stack({ alignContent: Alignment.Center }) {
+      Stack({ alignContent: Alignment.Center } as StackOptions) {
         Button() {
           Text($r('app.string.selection'))
             .fontColor(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.text_normal'))
             .fontSize(14)
         }
-        .size({ width: this.inputStyle.editSmallCircle, height: this.inputStyle.editSmallCircle })
+        .size({ width: this.inputStyle.editSmallCircle, height: this.inputStyle.editSmallCircle } as SizeOptions)
         .type(ButtonType.Circle)
         .border({ width: 1, color: $r('app.color.circle_black'), radius: 90 })
         .backgroundColor(Color.White)
@@ -51,29 +66,69 @@ export struct EditView {
         })
 
         Image($r('app.media.ic_arrow_up'))
-          .arrowStyle(this.isSelection, this.inputStyle)
+          .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+          .objectFit(ImageFit.Contain)
+          .responseRegion({
+            x: -20,
+            y: -20,
+            width: 64,
+            height: 64
+          } as Rectangle)
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
           .margin({ bottom: this.inputStyle.editSmallCircleMargin })
           .id('arrow_up')
-          .onClick(() => {
+          .onClick((e: ClickEvent) => {
             this.moveOrSelect(inputMethodEngine.CURSOR_UP);
           })
         Image($r('app.media.ic_arrow_left'))
-          .arrowStyle(this.isSelection, this.inputStyle)
+          .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+          .objectFit(ImageFit.Contain)
+          .responseRegion({
+            x: -20,
+            y: -20,
+            width: 64,
+            height: 64
+          } as Rectangle)
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
           .margin({ right: this.inputStyle.editSmallCircleMargin })
           .id('arrow_left')
           .onClick(() => {
             this.moveOrSelect(inputMethodEngine.CURSOR_LEFT);
           })
         Image($r('app.media.ic_arrow_right'))
-          .arrowStyle(this.isSelection, this.inputStyle)
+          .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+          .objectFit(ImageFit.Contain)
+          .responseRegion({
+            x: -20,
+            y: -20,
+            width: 64,
+            height: 64
+          } as Rectangle)
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
           .id('arrow_right')
-          .margin({ left: this.inputStyle.editSmallCircleMargin })
+          .margin({ left: this.inputStyle.editSmallCircleMargin } as Padding)
           .onClick(() => {
             this.moveOrSelect(inputMethodEngine.CURSOR_RIGHT);
           })
         Image($r('app.media.ic_arrow_down'))
-          .arrowStyle(this.isSelection, this.inputStyle)
-          .margin({ top: this.inputStyle.editSmallCircleMargin })
+          .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+          .objectFit(ImageFit.Contain)
+          .responseRegion({
+            x: -20,
+            y: -20,
+            width: 64,
+            height: 64
+          } as Rectangle)
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
+          .margin({ top: this.inputStyle.editSmallCircleMargin } as Padding)
           .id('arrow_down')
           .onClick(() => {
             this.moveOrSelect(inputMethodEngine.CURSOR_DOWN);
@@ -87,9 +142,19 @@ export struct EditView {
       Row() {
         Button() {
           Image($r('app.media.ic_cursor_left'))
-            .arrowStyle(this.isSelection, this.inputStyle)
+            .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+            .objectFit(ImageFit.Contain)
+            .responseRegion({
+              x: -20,
+              y: -20,
+              width: 64,
+              height: 64
+            } as Rectangle)
+            .backgroundColor(Color.White)
+            .borderRadius(20)
+            .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
         }
-        .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize })
+        .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize } as SizeOptions)
         .type(ButtonType.Circle)
         .backgroundColor(Color.White)
         .borderRadius(90)
@@ -101,9 +166,19 @@ export struct EditView {
         if (this.isSelection) {
           Button() {
             Image($r('app.media.ic_cursor_all'))
-              .arrowStyle(this.isSelection, this.inputStyle)
+              .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+              .objectFit(ImageFit.Contain)
+              .responseRegion({
+                x: -20,
+                y: -20,
+                width: 64,
+                height: 64
+              } as Rectangle)
+              .backgroundColor(Color.White)
+              .borderRadius(20)
+              .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
           }
-          .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize })
+          .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize } as SizeOptions)
           .type(ButtonType.Circle)
           .backgroundColor(Color.White)
           .borderRadius(90)
@@ -116,9 +191,19 @@ export struct EditView {
 
         Button() {
           Image($r('app.media.ic_cursor_right'))
-            .arrowStyle(this.isSelection, this.inputStyle)
+            .size({ width: this.inputStyle.editImageSize, height: this.inputStyle.editImageSize } as SizeOptions)
+            .objectFit(ImageFit.Contain)
+            .responseRegion({
+              x: -20,
+              y: -20,
+              width: 64,
+              height: 64
+            } as Rectangle)
+            .backgroundColor(Color.White)
+            .borderRadius(20)
+            .colorBlend(this.isSelection ? $r('app.color.edit_blue') : $r('app.color.edit_black'))
         }
-        .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize })
+        .size({ width: this.inputStyle.editButtonSize, height: this.inputStyle.editButtonSize } as SizeOptions)
         .margin({ left: 74 })
         .type(ButtonType.Circle)
         .backgroundColor(Color.White)
@@ -138,11 +223,11 @@ export struct EditView {
     .backgroundColor('#F1F3F5')
   }
 
-  moveOrSelect(direction: inputMethodEngine.Direction): void {
+  moveOrSelect(direction: int): void {
     if (this.isSelection) {
-      InputHandler.getInstance().selectByMovement(direction);
+      InputHandler.getInstance().selectByMovement(inputMethodEngine.Direction.fromValue(direction));
     } else {
-      InputHandler.getInstance().moveCursor(direction);
+      InputHandler.getInstance().moveCursor(inputMethodEngine.Direction.fromValue(direction));
     }
   }
 
