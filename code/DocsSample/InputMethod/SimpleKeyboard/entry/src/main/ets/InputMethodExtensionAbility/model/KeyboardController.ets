@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+import {
+  AppStorage
+} from '@kit.ArkUI';
 import deviceInfo from '@ohos.deviceInfo';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
@@ -25,18 +28,18 @@ import { StyleConfiguration } from '../../common/StyleConfiguration';
 
 
 interface DeviceSize {
-  width: number;
-  height: number;
+  width: int;
+  height: int;
 }
 
-interface CursorInfo {
-  x: number;
-  y: number;
-  height: number
+export interface CursorInfo {
+  x: double;
+  y: double;
+  height: double
 }
 
 const previewContent: string = 'hello world';
-const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+const inputMethodAbility: inputMethodEngine.InputMethodAbility | null = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
 // 定义不同设备的宽高，用于键盘显示适配不同设备
@@ -90,28 +93,32 @@ export class InputHandler {
     textInputClient: inputMethodEngine.InputClient): void {
     this.mKbController = kbController;
     this.mTextInputClient = textInputClient;
-    this.mTextInputClient.getEditorAttribute().then((res: inputMethodEngine.EditorAttribute) => {
-      this.mEditorAttribute = res;
-      AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
-      AppStorage.setOrCreate('inputPattern', res.inputPattern);
+    try {
+      this.mTextInputClient?.getEditorAttribute().then((res: inputMethodEngine.EditorAttribute | null): void => {
+        if (res === null) {
+          return;
+        }
+        this.mEditorAttribute = res;
+        AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
+        AppStorage.setOrCreate('inputPattern', res.inputPattern);
 
-      this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' +
-      this.mEditorAttribute.inputPattern +
-        '; isTextPreviewSupported = ' + this.mEditorAttribute.isTextPreviewSupported);
-      this.addLog(`onInputStart editorAttribute enterKeyType : ${res.enterKeyType}, inputPattern : ${res.inputPattern}`);
-    }).catch((err: BusinessError) => {
-      this.addLog(`onInputStart getEditorAttribute catch error: ${err.code} ${err.message}`);
-    });
+        this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute?.enterKeyType + ';inputPattern = ' +
+          this.mEditorAttribute?.inputPattern +
+          '; isTextPreviewSupported = ' + this.mEditorAttribute?.isTextPreviewSupported);
+        this.addLog(`onInputStart editorAttribute enterKeyType : ${res.enterKeyType}, inputPattern : ${res.inputPattern}`);
+      })
+    } catch (err) {
+      let error = err as BusinessError;
+      this.addLog(`insertText sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    }
     try {
       this.addLog(`onInputStart sendPrivateCommand begin`);
       let record: Record<string, inputMethodEngine.CommandDataType> = {
         'previewTextStyle': 'underline'
       };
-      this.mTextInputClient.sendPrivateCommand(record).then((err) => {
+      this.mTextInputClient?.sendPrivateCommand(record).then((): void => {
         this.addLog(`insertText sendPrivateCommand success`);
-      }).catch((err: BusinessError) => {
-        this.addLog(`insertText sendPrivateCommand catch error: ${err.code} ${err.message}`);
-      });
+      })
     } catch (err) {
       let error = err as BusinessError;
       this.addLog(`insertText sendPrivateCommand catch error: ${error.code} ${error.message}`);
@@ -120,11 +127,14 @@ export class InputHandler {
 
   public hideKeyboardSelf(): void {
     if (this.mKbController !== undefined) {
-      this.mKbController.hide().then(() => {
-        this.addLog('Succeeded in hideKeyboardSelf.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mKbController?.hide().then((): void => {
+          this.addLog('Succeeded in hideKeyboardSelf.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to hideKeyboardSelf: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('hideKeyboardSelf this.mKbController is undefined');
     }
@@ -133,29 +143,38 @@ export class InputHandler {
   public sendKeyFunction(): void {
     this.addLog('sendKeyFunction')
     if (this.mTextInputClient && this.mEditorAttribute) {
-      this.mTextInputClient.sendKeyFunction(this.mEditorAttribute.enterKeyType).then(() => {
-        this.addLog('Succeeded in sendKeyFunction.');
-      }).catch((err: BusinessError) => {
-        Log.showError(TAG, `Failed to sendKeyFunction: ${err.code} ${err.message}`);
-      });
-      //调用结束预上屏接口, 预上屏内容将被系统正式上屏
-      this.mTextInputClient.finishTextPreview().then(() => {
-        this.addLog('Succeeded in finishing text preview.');
-      }).catch((err: BusinessError) => {
-        Log.showError(TAG, `Failed to finishTextPreview: ${err.code} ${err.message}`);
-      });
+      try {
+        this.mTextInputClient?.sendKeyFunction(this.mEditorAttribute?.enterKeyType as int).then(() => {
+          this.addLog('Succeeded in sendKeyFunction.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
+        this.addLog(`Failed to sendKeyFunction: ${err.code} ${err.message}`);
+      }
+      try {
+        //调用结束预上屏接口, 预上屏内容将被系统正式上屏
+        this.mTextInputClient?.finishTextPreview().then(() => {
+          this.addLog('Succeeded in finishing text preview.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
+        this.addLog(`Failed to finishTextPreview: ${err.code} ${err.message}`);
+      }
     } else {
       this.addLog('sendKeyFunction this.mTextInputClient is undefined');
     }
   }
 
-  public deleteBackward(length: number): void {
+  public deleteBackward(length: int): void {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.deleteBackward(length).then(() => {
-        this.addLog('Succeeded in deleteBackward.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.deleteBackward(length).then(() => {
+          this.addLog('Succeeded in deleteBackward.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to deleteBackward: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('deleteBackward this.mTextInputClient is undefined');
     }
@@ -164,13 +183,16 @@ export class InputHandler {
     }
   }
 
-  public deleteForward(length: number): void {
+  public deleteForward(length: int): void {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.deleteForward(length).then(() => {
-        this.addLog('Succeeded in deleteForward.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.deleteForward(length).then(() => {
+          this.addLog('Succeeded in deleteForward.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to deleteForward: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('deleteForward this.mTextInputClient is undefined');
     }
@@ -183,17 +205,17 @@ export class InputHandler {
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       try {
-        this.mTextInputClient.insertTextSync(text);
-        let indexCursor: number = 0;
-        indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
+        this.mTextInputClient?.insertTextSync(text);
+        let indexCursor: int = 0;
+        indexCursor = this.mTextInputClient?.getTextIndexAtCursorSync() as int;
         if (indexCursor >= 0) {
-          this.intputText = this.mTextInputClient.getForwardSync(indexCursor);
+          this.intputText = this.mTextInputClient?.getForwardSync(indexCursor) as string;
         }
         this.intputText = this.intputText + text;
 
         //设置预上屏数据
-        let length = 2;
-        let textPre: string = this.mTextInputClient.getForwardSync(length);
+        let length: int = 2;
+        let textPre: string = this.mTextInputClient?.getForwardSync(length) as string;
         this.addLog('insertText textPre:' + textPre);
 
         // 取出的内容为当前输入之前的字符，不包含当前的字符,需将当前字符加上
@@ -201,19 +223,17 @@ export class InputHandler {
         if (textPre === 'hel') {
           this.addLog('insertText hel');
           //把当前字符计算在内
-          let endRange: number = indexCursor + 1;
+          let endRange: int = indexCursor + 1;
           this.addLog('insertText start ' + (indexCursor - length).toString());
           this.addLog('insertText end ' + (indexCursor).toString());
           let range: inputMethodEngine.Range = { start: indexCursor - length, end: endRange };
-          this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
+          this.mTextInputClient?.setPreviewText(previewContent, range).then(() => {
             this.addLog('insertText preViewText Succeeded in setting preview text.');
-          }).catch((err: BusinessError) => {
-            this.addLog(`insertText preViewText Failed to setPreviewText: ${err.code} ${err.message}`);
-          });
+          })
         } else if (this.intputText.length > length + 1) {
           this.addLog('insertText this.intputText ' + this.intputText);
 
-          let indexSubStrStart: number = this.intputText.lastIndexOf('hel');
+          let indexSubStrStart: int = this.intputText.lastIndexOf('hel');
           this.addLog('insertText indexSubStrStart ' + indexSubStrStart.toString());
 
           if (indexSubStrStart >= 0) {
@@ -226,11 +246,9 @@ export class InputHandler {
               this.addLog('insertText previewContent indexSubStrStart ' + indexSubStrStart.toString());
               this.addLog('insertText previewContent end ' + (indexCursor).toString());
               let range: inputMethodEngine.Range = { start: indexSubStrStart, end: indexCursor + 1 };
-              this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
+              this.mTextInputClient?.setPreviewText(previewContent, range).then(() => {
                 this.addLog('insertText preViewText Succeeded in setting preview text.');
-              }).catch((err: BusinessError) => {
-                this.addLog(`insertText preViewText Failed to setPreviewText: ${err.code} ${err.message}`);
-              });
+              })
             }
           }
         }
@@ -258,11 +276,14 @@ export class InputHandler {
 
   public moveCursor(direction: inputMethodEngine.Direction): void {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.moveCursor(direction).then(() => {
-        this.addLog('Succeeded in moveCursor.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.moveCursor(direction).then(() => {
+          this.addLog('Succeeded in moveCursor.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to moveCursor: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('moveCursor this.mTextInputClient is undefined');
     }
@@ -270,11 +291,14 @@ export class InputHandler {
 
   public async moveCursorToBegin(): Promise<void> {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.selectByRange({ start: 0, end: 0 }).then(() => {
-        this.addLog('Succeeded in selectByRange.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.selectByRange({ start: 0, end: 0 }).then(() => {
+          this.addLog('Succeeded in selectByRange.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to selectByRange: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('moveCursor this.mTextInputClient is undefined');
     }
@@ -283,11 +307,14 @@ export class InputHandler {
   public async moveCursorToEnd(): Promise<void> {
     if (this.mTextInputClient !== undefined) {
       this.addLog(`moveCursorToEnd`);
-      this.mTextInputClient.selectByRange({ start: 1000, end: 1000 }).then(() => {
-        this.addLog('Succeeded in selectByRange.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.selectByRange({ start: 1000, end: 1000 }).then(() => {
+          this.addLog('Succeeded in selectByRange.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to selectByRange: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('moveCursor this.mTextInputClient is undefined');
     }
@@ -295,9 +322,12 @@ export class InputHandler {
 
   public selectByMovement(direction: inputMethodEngine.Direction): void {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.selectByMovement({ direction: direction }, (err: BusinessError) => {
-        this.addLog(`selectByMovement err is ${err.code} ${err.message}`);
-      });
+      try {
+        this.mTextInputClient?.selectByMovementSync({ direction: direction });
+      } catch (err) {
+        let error = err as BusinessError;
+        Log.showError(TAG, `Failed to selectByMovementSync: ${err.code} ${err.message}`);
+      }
     } else {
       this.addLog('selectByMovement this.mTextInputClient is undefined');
     }
@@ -306,12 +336,15 @@ export class InputHandler {
   public async selectToBegin(): Promise<void> {
     if (this.mTextInputClient !== undefined) {
       try {
-        let index = await this.mTextInputClient.getTextIndexAtCursor();
+        let index = await this.mTextInputClient?.getTextIndexAtCursor() as int;
         this.addLog(`selectToBegin index= ${index}, x = ${this.cursorInfo.x}`);
         if (index > 0) {
-          await this.mTextInputClient.selectByRange({ start: 0, end: index });
+          await this.mTextInputClient?.selectByRangeSync({ start: 0, end: index } as inputMethodEngine.Range);
         } else {
-          await this.mTextInputClient.selectByRange({ start: 0, end: this.cursorInfo.x });
+          await this.mTextInputClient?.selectByRangeSync({
+            start: 0,
+            end: Double.toInt(this.cursorInfo.x)
+          } as inputMethodEngine.Range);
         }
       } catch (err) {
         let error = err as BusinessError;
@@ -325,12 +358,15 @@ export class InputHandler {
   public async selectToEnd(): Promise<void> {
     if (this.mTextInputClient !== undefined) {
       try {
-        let index = await this.mTextInputClient.getTextIndexAtCursor();
+        let index = await this.mTextInputClient?.getTextIndexAtCursor() as int;
         this.addLog(`selectToEnd index= ${index}, x = ${this.cursorInfo.x}`);
         if (index > 0) {
-          await this.mTextInputClient.selectByRange({ start: index, end: 1000 });
+          await this.mTextInputClient?.selectByRange({ start: index, end: 1000 } as inputMethodEngine.Range);
         } else {
-          await this.mTextInputClient.selectByRange({ start: this.cursorInfo.x, end: 1000 });
+          await this.mTextInputClient?.selectByRange({
+            start: Double.toInt(this.cursorInfo.x),
+            end: 1000
+          } as inputMethodEngine.Range);
         }
       } catch (err) {
         let error = err as BusinessError;
@@ -343,11 +379,14 @@ export class InputHandler {
 
   public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.sendExtendAction(action).then(() => {
-        this.addLog('Succeeded in sendExtendAction.');
-      }).catch((err: BusinessError) => {
+      try {
+        this.mTextInputClient?.sendExtendAction(action).then(() => {
+          this.addLog('Succeeded in sendExtendAction.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to sendExtendAction: ${err.code} ${err.message}`);
-      });
+      }
     } else {
       this.addLog('sendExtendAction this.mTextInputClient is undefined');
     }
@@ -372,8 +411,8 @@ export class InputHandler {
     let showText = '';
     try {
       if (this.mTextInputClient) {
-        showText += 'five chars: before：[' + this.mTextInputClient.getForward(5) + '];after：[' +
-        this.mTextInputClient.getBackward(5) + ']\n';
+        showText += 'five chars: before：[' + this.mTextInputClient?.getForward(5) + '];after：[' +
+          this.mTextInputClient?.getBackward(5) + ']\n';
         showText += this.cursorInfo + "\n";
         showText += this.selectInfo + "\n";
         showText += this.textInfo + "\n";
@@ -389,7 +428,7 @@ export class InputHandler {
 }
 
 // [Start input_case_input_KeyboardController358]
-class KeyboardController {
+export class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
   private mContext: InputMethodExtensionContext | undefined;
@@ -397,12 +436,12 @@ class KeyboardController {
   private isSpecialKeyPress: boolean = false;
   private isKeyboardShow: boolean = false;
   private inputHandle: InputHandler = InputHandler.getInstance();
-  private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate | undefined;
+  private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate | null;
 
   constructor() {
     this.mContext = undefined;
     this.panel = undefined;
-    this.mKeyboardDelegate = undefined;
+    this.mKeyboardDelegate = null;
   }
 
   public onCreate(context: InputMethodExtensionContext): void {
@@ -466,7 +505,7 @@ class KeyboardController {
       navigationBar_height = 0;
       keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
-    let keyHeight = dHeight * keyHeightRate;
+    let keyHeight = Double.toLong(dHeight * keyHeightRate);
     this.barPosition = dHeight - keyHeight - navigationBar_height;
     this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationBar_height`);
     this.inputHandle.addLog(`initWindow-deviceType = ${deviceInfo.deviceType}`);
@@ -476,28 +515,31 @@ class KeyboardController {
     }
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
     AppStorage.setOrCreate('inputStyle', inputStyle);
-    inputMethodAbility.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
-      this.panel = panel;
-      panel.resize(dWidth, keyHeight).then(() => {
-        panel.setUiContent('InputMethodExtensionAbility/pages/Index').then(() => {
-          this.inputHandle.addLog('loadContent finished');
-        })
-      }).catch((err: BusinessError) => {
-        Log.showError(TAG, `Failed to setUiContent: ${err.code} ${err.message}`);
+    try {
+      inputMethodAbility?.createPanel(this.mContext!, panelInfo).then((inputPanel: inputMethodEngine.Panel) => {
+        this.panel = inputPanel;
+        if (this.panel) {
+          this.panel?.resize(dWidth, keyHeight)!;
+          this.panel?.setUiContent('InputMethodExtensionAbility/pages/Index')!;
+        }
       });
-    }).catch((err: BusinessError) => {
-      Log.showError(TAG, `Failed to resize: ${err.code} ${err.message}`);
-    });
+    } catch (err) {
+      let error = err as BusinessError;
+      Log.showError(TAG, `Failed to createPanel: ${err.code} ${err.message}`);
+    }
   }
 
   private destroyPanel(): void {
     this.inputHandle.addLog('destroyPanel');
     if (this.panel) {
-      inputMethodAbility.destroyPanel(this.panel).then(() => {
-        this.inputHandle.addLog('Succeeded in destroyPanel.');
-      }).catch((err: BusinessError) => {
+      try {
+        inputMethodAbility?.destroyPanel(this.panel!).then(() => {
+          this.inputHandle.addLog('Succeeded in destroyPanel.');
+        })
+      } catch (err) {
+        let error = err as BusinessError;
         Log.showError(TAG, `Failed to destroyPanel: ${err.code} ${err.message}`);
-      });
+      }
     }
   }
 
@@ -540,14 +582,16 @@ class KeyboardController {
     } else if (dWidth === DEVICE_BIG.height && dHeight === DEVICE_BIG.width) {
       keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
-    let keyHeight = dHeight * keyHeightRate;
+    let keyHeight = Double.toLong(dHeight * keyHeightRate);
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
     AppStorage.setOrCreate('inputStyle', inputStyle);
     if (this.panel) {
-      this.panel.resize(dWidth, keyHeight).then(() => {
-      }).catch((err: BusinessError) => {
-        this.inputHandle.addLog(`resizePanel err = ${err.code} ${err.message}`);
-      })
+      try {
+        this.panel?.resize(dWidth, keyHeight);
+      } catch (err) {
+        let error = err as BusinessError;
+        Log.showError(TAG, `Failed to resizePanel: ${err.code} ${err.message}`);
+      }
     }
   }
 
@@ -557,7 +601,7 @@ class KeyboardController {
   private registerListener(): void {
     this.inputHandle.addLog('registerListener');
     try {
-      display.on('change', () => {
+      display.onChange(() => {
         this.inputHandle.addLog('screenChangeEvent');
         this.resizePanel();
       });
@@ -565,7 +609,7 @@ class KeyboardController {
       let error = err as BusinessError;
       Log.showError(TAG, `display on change catch error: ${error.code} ${error.message}`);
     }
-    inputMethodAbility.on('inputStart',
+    inputMethodAbility?.onInputStart(
       (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
         this.inputHandle.addLog('keyboard inputStart');
         this.inputHandle.onInputStart(kbController, textInputClient);
@@ -573,7 +617,7 @@ class KeyboardController {
 
     // [Start input_case_input_KeyboardControllersetSubtype]
     // 设置监听子类型事件，改变输入法应用界面
-    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+    inputMethodAbility?.onSetSubtype((inputMethodSubtype: InputMethodSubtype) => {
       if (inputMethodSubtype.id === 'InputMethodExtAbility') {
         AppStorage.setOrCreate('subtypeChange', 0);
       }
@@ -583,17 +627,17 @@ class KeyboardController {
     });
     // [End input_case_input_KeyboardControllersetSubtype]
 
-    inputMethodAbility.on('inputStop', () => {
+    inputMethodAbility?.onInputStop((): void => {
       this.inputHandle.addLog('keyboard inputStop');
       this.onDestroy();
       if (this.mContext) {
-        this.mContext.destroy();
+        this.mContext?.destroy();
       }
     });
 
     this.inputHandle.addLog('pre on privateCommand');
     try {
-      inputMethodAbility.on('privateCommand', (record: Record<string, inputMethodEngine.CommandDataType>) => {
+      inputMethodAbility?.onPrivateCommand((record: Record<string, inputMethodEngine.CommandDataType>) => {
         this.inputHandle.addLog(`keyboard privateCommand : ${record}`);
         Object.keys(record).forEach((key: string) => {
           this.inputHandle.addLog(`onPageShow private command key: ${key}, value: ${record[key]}`);
@@ -606,7 +650,7 @@ class KeyboardController {
 
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
-    this.mKeyboardDelegate.on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
+    this.mKeyboardDelegate?.onKeyDown((keyEvent: inputMethodEngine.KeyEvent) => {
       if (this.isKeyboardShow) {
         this.inputHandle.hideKeyboardSelf();
       }
@@ -616,23 +660,23 @@ class KeyboardController {
       return result;
     });
 
-    this.mKeyboardDelegate.on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
+    this.mKeyboardDelegate?.onKeyUp((keyEvent: inputMethodEngine.KeyEvent) => {
       this.inputHandle.addLog(`keyUp: code = ${keyEvent.keyCode}`);
       let result = this.onKeyUp(keyEvent);
       this.inputHandle.addLog(`keyUp: result = ${result}`);
       return result;
     });
-    this.mKeyboardDelegate.on('cursorContextChange', (x: number, y: number, height: number) => {
+    this.mKeyboardDelegate?.onCursorContextChange((x: double, y: double, height: double) => {
       let cursorInfo: CursorInfo = { x: x, y: y, height: height };
       this.inputHandle.setCursorInfo(cursorInfo);
     });
     if (isDebug) {
-      this.mKeyboardDelegate.on('selectionChange',
-        (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
+      this.mKeyboardDelegate?.onSelectionChange(
+        (oldBegin: int, oldEnd: int, newBegin: int, newEnd: int) => {
           this.inputHandle.setSelectInfo('selectInfo: from(' + oldBegin + ',' + oldEnd + ') to (' + newBegin + ',' +
             newEnd + ')');
         });
-      this.mKeyboardDelegate.on('textChange', (text: string) => {
+      this.mKeyboardDelegate?.onTextChange((text: string) => {
         this.inputHandle.setTextInfo('textInfo: ' + text);
       });
     }
@@ -765,16 +809,16 @@ class KeyboardController {
   private unRegisterListener(): void {
     this.inputHandle.addLog('unRegisterListener');
 
-    inputMethodAbility.off('inputStop', () => {
+    inputMethodAbility?.offInputStop(() => {
       this.inputHandle.addLog('inputStop off');
     });
     if (this.mKeyboardDelegate) {
-      this.mKeyboardDelegate.off('keyDown');
-      this.mKeyboardDelegate.off('keyUp');
+      this.mKeyboardDelegate?.offKeyDown();
+      this.mKeyboardDelegate?.offKeyUp();
       if (isDebug) {
-        this.mKeyboardDelegate.off('cursorContextChange');
-        this.mKeyboardDelegate.off('selectionChange');
-        this.mKeyboardDelegate.off('textChange');
+        this.mKeyboardDelegate?.offCursorContextChange();
+        this.mKeyboardDelegate?.offSelectionChange();
+        this.mKeyboardDelegate?.offTextChange();
       }
     }
   }
