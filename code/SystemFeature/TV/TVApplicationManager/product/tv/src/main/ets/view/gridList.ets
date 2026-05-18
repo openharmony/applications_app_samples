@@ -241,7 +241,7 @@ export struct gridList {
   }
 
   //移动逻辑
-  @Throttle(230)
+  // @Throttle(230)
   async moveItem(focusIndex: number, temp: Object, translateX: number, translateY: number) {
     const originalIndex = this.focusIndex;
     const originalItem = this.appList[originalIndex];
