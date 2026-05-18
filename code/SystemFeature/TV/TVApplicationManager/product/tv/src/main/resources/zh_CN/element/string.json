@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "全部应用"
+    },
+    {
+      "name": "allApp",
+      "value": "全部应用"
+    },
+    {
+      "name": "mune_tips",
+      "value": "按菜单键进行更多操作"
+    }
+  ]
+}

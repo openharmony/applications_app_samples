@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "MainAbility_label",
+      "value": "App manager"
+    },
+    {
+      "name": "allApp",
+      "value": "App manager"
+    },
+    {
+      "name": "mune_tips",
+      "value": "Press the menu key for more operations"
+    }
+  ]
+}

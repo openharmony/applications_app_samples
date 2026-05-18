@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "focus_true",
+      "value": "#070707"
+    },
+    {
+      "name": "focus_false",
+      "value": "#ffffff"
+    },
+    {
+      "name": "focus_BG_true",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "focus_BG_false",
+      "value": "#484D59"
+    }
+  ]
+}

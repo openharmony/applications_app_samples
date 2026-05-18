@@ -1,0 +1,18 @@
+<svg width="64.000000" height="64.000000" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip434_43830">
+			<rect id="画板 291" width="64.000000" height="64.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="24.058607" y1="60.159309" x2="39.490700" y2="5.125429" id="paint_linear_434_43828_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#206BFF"/>
+			<stop offset="1.000000" stop-color="#5F94FF"/>
+		</linearGradient>
+	</defs>
+	<rect id="画板 291" width="64.000000" height="64.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip434_43830)">
+		<path id="path" d="M53.75 4L9.5 4C4.26 4 0 8.62 0 14.29L0 50.55C0 56.03 3.96 60.5 8.94 60.82C9.13 60.83 9.31 60.85 9.5 60.85L53.75 60.85C55.61 60.85 57.35 60.26 58.82 59.25C59.21 58.98 59.58 58.68 59.93 58.36C61.96 56.46 63.26 53.67 63.26 50.55L63.26 14.3C63.26 8.62 59 4 53.75 4ZM13.92 12.66C17.07 12.66 19.63 15.43 19.63 18.84C19.63 22.25 17.07 25.02 13.92 25.02C10.77 25.02 8.21 22.25 8.21 18.84C8.21 15.43 10.77 12.66 13.92 12.66ZM53.75 54L9.5 54C8.52 54 7.9 52.85 8.39 51.93L15.36 38.43C16.38 36.51 18.93 36.51 19.96 38.43L24.75 47.41C25.71 49.23 28.14 49.23 29.11 47.41L38.94 28.99C39.96 27.08 42.51 27.08 43.54 28.99L55.14 51.44C55.73 52.58 54.97 54 53.75 54Z" fill="url(#paint_linear_434_43828_0)" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>
