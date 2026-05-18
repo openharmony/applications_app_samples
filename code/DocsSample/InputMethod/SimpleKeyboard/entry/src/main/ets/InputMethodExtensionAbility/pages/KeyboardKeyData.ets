@@ -1,4 +1,5 @@
 'use static'
+
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +50,7 @@ export enum KeyState {
   UPPER_CASE = 2
 }
 
-export let keySourceListData: keySourceListType[] = [
+export let keySourceListData: Array<keySourceListType> = [
   {
     title: '1',
     content: 'q',
@@ -185,7 +186,7 @@ export let keySourceListData: keySourceListType[] = [
 // [End input_case_input_KeyboardKeyData016]
 
 // [Start input_case_input_KeyboardKeyData186]
-export let numberSourceListData: sourceListType[] = [
+export const numberSourceListData: Array<sourceListType> = [
   {
     content: '1'
   },
@@ -270,7 +271,7 @@ export let numberSourceListData: sourceListType[] = [
 
 ]
 
-export let symbolSourceListData: sourceListType[] = [
+export const symbolSourceListData: Array<sourceListType> = [
   {
     content: '~'
   },
@@ -353,4 +354,5 @@ export let symbolSourceListData: sourceListType[] = [
     content: ']'
   }
 ]
+
 // [End input_case_input_KeyboardKeyData186]
