@@ -1,4 +1,5 @@
 'use static'
+
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +15,25 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Flex,
+  Consume,
+  ItemAlign,
+  FlexDirection,
+  Padding,
+  Resource,
+  ForEach,
+  FlexAlign,
+  FlexOptions
+} from '@kit.ArkUI';
 import { DeleteItem } from './DeleteItem';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { ReturnItem } from './ReturnItem';
-import { MenuKey, symbolSourceListData, sourceListType } from '../model/KeyboardKeyData';
+import { MenuKey, symbolSourceListData, sourceListType } from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { SpaceItem } from './SpaceItem';
 
 // 符号键盘
@@ -29,29 +43,28 @@ export struct SymbolMenu {
   @Consume menuType: number;
   private symbolList: sourceListType[] = symbolSourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth2;
-  private returnWidth: Resource = this.inputStyle.returnButtonWidthType2;
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+  build(): void {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center } as FlexOptions) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         ForEach(this.symbolList.slice(0, 10), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         ForEach(this.symbolList.slice(10, 20), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
         ForEach(this.symbolList.slice(20), (item: sourceListType) => {
           KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
@@ -60,23 +73,23 @@ export struct SymbolMenu {
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         KeyItemGray({ keyValue: MenuKey.NORMAL_KEY })
         KeyItem({ keyValue: { content: '<', title: '<', upperContent: '<' } })
         KeyItem({ keyValue: { content: '>', title: '>', upperContent: '>' } })
         SpaceItem({ spaceWith: this.spaceWidth })
         KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
-        ReturnItem({ returnWidth: this.returnWidth })
+        ReturnItem({ returnWidth: this.inputStyle.returnButtonWidthType2 })
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
     }
     .padding({
       left: this.inputStyle.paddingLeftRight,
       right: this.inputStyle.paddingLeftRight
-    })
+    } as Padding)
   }
 }
