@@ -141,7 +141,7 @@ struct Index {
     //设置资源
     // 若启用代理preDownload下载则使用以下操作
     if (this.isPreDownload) {
-      let url = 'https://appimg.dbankcdn.com/appVideo/f59583660abd45bcb4fb9c3e3f1125a9.mp4'
+      let url = 'https://example.com/video.mp4' //此处url仅作示例
       await this.preDownload(url);
     } else {
       this.videoSrc = "test1.mp4";
