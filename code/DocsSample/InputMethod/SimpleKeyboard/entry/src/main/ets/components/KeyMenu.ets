@@ -14,8 +14,34 @@
  * limitations under the License.
  */
 
+import {
+  Component,
+  StorageLink,
+  Stack,
+  Resource,
+  ForEach,
+  Flex,
+  Consume,
+  State,
+  Provide,
+  StateStyles,
+  FlexDirection,
+  ItemAlign,
+  FlexAlign,
+  ShadowOptions,
+  Padding,
+  FlexOptions,
+  Image,
+  $rawfile,
+  $r
+} from '@kit.ArkUI';
 import { DeleteItem } from './DeleteItem';
-import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
+import {
+  MenuKey,
+  KeyState,
+  keySourceListType,
+  keySourceListData
+} from '../InputMethodExtensionAbility/pages/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
@@ -24,30 +50,21 @@ import { SpaceItem } from './SpaceItem';
 import { ReturnItem } from './ReturnItem';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-@Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
-}
-
-@Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
-}
-
 // key键盘
 @Component
 export struct KeyMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   @Provide keyState: number = KeyState.LOWER_CASE;
-  private keyList: keySourceListType[] = keySourceListData;
+  private keyList: Array<keySourceListType> = keySourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth1;
-  private returnWidth: Resource = this.inputStyle.returnButtonWidthType1;
   @State styleMode: number = 1;
 
   // 如果是沉浸模式，设置新样式
   aboutToAppear(): void {
 
-    inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr : inputMethodEngine.EditorAttribute) => {
-      if (attr.immersiveMode == 1) {
+    inputMethodEngine.getKeyboardDelegate()?.onEditorAttributeChanged((attr: inputMethodEngine.EditorAttribute | undefined): void => {
+      if (attr?.immersiveMode == inputMethodEngine.ImmersiveMode.IMMERSIVE) {
         this.styleMode = 0;
       } else {
         this.styleMode = 1;
@@ -55,10 +72,9 @@ export struct KeyMenu {
     })
   }
 
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+  build(): void {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center } as FlexOptions) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         ForEach(this.keyList.slice(0, 10), (item: keySourceListType) => {
           KeyItemNumber({ keyValue: item })
         }, (item: keySourceListType) => item.content)
@@ -67,7 +83,7 @@ export struct KeyMenu {
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         Stack() {
         }.width('4%').height(0)
 
@@ -81,9 +97,10 @@ export struct KeyMenu {
       .height(this.inputStyle.basicButtonHeight)
       .margin({ top: this.inputStyle.paddingTop })
 
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center } as FlexOptions) {
         Stack() {
-          Image($rawfile(this.keyState === KeyState.ONCE_UPPER_CASE ? 'shift light.svg' : this.keyState === KeyState.UPPER_CASE ? 'shift light long.svg' : 'shift.svg'))
+          Image($rawfile(this.keyState === KeyState.ONCE_UPPER_CASE ? 'shift light.svg' :
+            this.keyState === KeyState.UPPER_CASE ? 'shift light long.svg' : 'shift.svg'))
             .width(this.inputStyle.featurePicSize)
             .height(this.inputStyle.featurePicSize)
         }
@@ -100,10 +117,15 @@ export struct KeyMenu {
         })
         .height('100%')
         .width(this.inputStyle.switchButtonWidth)
-        .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+        .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 } as ShadowOptions)
         .stateStyles({
-          normal: normalStyles, pressed: pressedStyles
-        })
+          normal: () => {
+            this.backgroundColor($r('app.color.key_item_gray'))
+          },
+          pressed: () => {
+            this.backgroundColor($r('app.color.key_item_gray_pressed'))
+          }
+        } as StateStyles)
 
         ForEach(this.keyList.slice(19), (item: keySourceListType) => {
           KeyItemNumber({ keyValue: item })
@@ -112,18 +134,18 @@ export struct KeyMenu {
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
         KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
         SpaceItem({ spaceWith: this.spaceWidth })
         KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
-        ReturnItem({ returnWidth: this.returnWidth })
+        ReturnItem({ returnWidth: this.inputStyle.returnButtonWidthType1 })
       }
       .width('100%')
       .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
+      .margin({ top: this.inputStyle.paddingTop } as Padding)
 
     }
     .width('100%')
@@ -131,7 +153,7 @@ export struct KeyMenu {
     .padding({
       left: this.inputStyle.paddingLeftRight,
       right: this.inputStyle.paddingLeftRight
-    })
+    } as Padding)
     .backgroundColor(this.styleMode === 1 ? '' : '#ffffff')
   }
 }
