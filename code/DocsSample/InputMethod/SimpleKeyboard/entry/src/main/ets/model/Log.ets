@@ -16,7 +16,8 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN: number = 0x300A;
+const DOMAIN: int = 0x300A;
+
 /**
  * Basic log class
  */
