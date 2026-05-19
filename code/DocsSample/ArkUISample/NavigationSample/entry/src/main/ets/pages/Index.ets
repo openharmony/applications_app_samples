@@ -16,7 +16,6 @@
 import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
-import router from '@ohos.router';
 
 @Styles
 function cardPressedStyle() {
@@ -112,7 +111,7 @@ struct Index {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext().animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
@@ -124,9 +123,10 @@ struct Index {
     })
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
   }
+
   build() {
     Column() {
       Text('Index')
@@ -162,7 +162,7 @@ struct Index {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    router.pushUrl({url: name})
+                    this.getUIContext().getRouter().pushUrl({ url: name })
                   })
                 }
                 .width('100%')
@@ -172,7 +172,7 @@ struct Index {
           .padding(2)
           .divider({ strokeWidth: 0.5 })
         })
-      }.padding({bottom: 10})
+      }.padding({ bottom: 10 })
       .id('list')
     }
   }

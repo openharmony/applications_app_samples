@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { uiObserver } from '@kit.ArkUI';
-import resource from '../../common/Index';
+import resourceManager from '@ohos.resourceManager';
 
 @Builder
 export function PageOneBuilder() {
@@ -24,6 +24,7 @@ export function PageOneBuilder() {
 export struct PageOneComponent {
   navDesInfo: uiObserver.NavDestinationInfo | undefined;
   @State text: string = '';
+
   build() {
     NavDestination() {
       Column() {
@@ -38,7 +39,8 @@ export struct PageOneComponent {
             this.text = JSON.stringify(this.navDesInfo?.name);
           })
         // 请将$r('app.string.navStackTemp1PageOne_text2')替换为实际资源文件，在本示例中该资源文件的value值为"向内查找的NavDestination是"
-        Text(resource.resourceToString($r('app.string.navStackTemp1PageOne_text2')) + this.text)
+        Text(resourceManager.getSysResourceManager().getStringSync($r('app.string.navStackTemp1PageOne_text2').id) +
+        this.text)
           .width('80%')
           .height(50)
           .margin(50)
@@ -68,7 +70,8 @@ struct MyComponent {
           this.text = JSON.stringify(this.navDesInfo?.name);
         })
       // 请将$r('app.string.navStackTemp1PageOne_text4')替换为实际资源文件，在本示例中该资源文件的value值为"向外查找的NavDestination是"
-      Text(resource.resourceToString($r('app.string.navStackTemp1PageOne_text4')) + this.text)
+      Text(resourceManager.getSysResourceManager().getStringSync($r('app.string.navStackTemp1PageOne_text4').id) +
+      this.text)
         .width('80%')
         .height(50)
         .margin(50)
