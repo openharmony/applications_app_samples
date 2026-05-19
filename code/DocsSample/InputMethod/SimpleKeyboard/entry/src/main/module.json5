@@ -48,12 +48,18 @@
     ],
     "extensionAbilities": [
       {
-        "description": "inputMethod",
-        "name": "EntryInputMethodExtAbility",
-        "icon": "$media:app_icon",
-        "srcEntry": "./ets/entryinputmethodextability/InputMethodExtAbility.ets",
+        "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ets",
+        "name": "InputMethodService",
+        "label": "$string:MainAbility_label",
+        "description": "$string:extension_ability_descriptor",
         "type": "inputMethod",
-        "exported": false
+        "exported": true,
+        "metadata": [
+          {
+            "name": "ohos.extension.input_method",
+            "resource": "$profile:input_method_config"
+          }
+        ]
       }
     ]
   }

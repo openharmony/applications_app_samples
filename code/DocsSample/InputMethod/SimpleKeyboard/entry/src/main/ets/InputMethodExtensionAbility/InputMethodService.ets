@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
+// [Start input_case_module_import_InputMethodExtensionAbility]
 import { Want } from '@kit.AbilityKit';
-import keyboardController from './model/KeyboardController';
+import { keyboardController } from './model/KeyboardController';
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 
-export default class InputMethodExtAbility extends InputMethodExtensionAbility {
+const TAG: string = 'InputMethodService->';
+
+export default class InputMethodService extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     keyboardController.onCreate(this.context); // 初始化窗口并注册对输入法框架的事件监听
   }
 
   onDestroy(): void {
-    console.log(`InputMethodExtAbility onDestroy.`);
     keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
   }
 }
+
+// [End input_case_module_import_InputMethodExtensionAbility]
