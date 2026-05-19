@@ -141,10 +141,10 @@ struct Index {
     //设置资源
     // 若启用代理preDownload下载则使用以下操作
     if (this.isPreDownload) {
-      let url = 'https://example.com/video.mp4' //此处url仅作示例
+      let url = '' //此处填写播放资源的url
       await this.preDownload(url);
     } else {
-      this.videoSrc = "test1.mp4";
+      this.videoSrc = 'test1.mp4';
       let fileDescriptor = await this.context.resourceManager.getRawFd(this.videoSrc);
       let avFileDescriptor: media.AVFileDescriptor =
         { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
@@ -420,7 +420,8 @@ struct Index {
       return this.uuid;
     };
 
-    let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+    let sourceReadCallback: media.SourceReadCallback = (
+      uuid: number, requestedOffset: number, requestedLength: number) => {
       console.info(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
       // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
       if (!this.requests.hasKey(uuid)) {
