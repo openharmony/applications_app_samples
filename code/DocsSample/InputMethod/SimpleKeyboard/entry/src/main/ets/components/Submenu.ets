@@ -47,7 +47,7 @@ export struct Submenu {
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @StorageLink('inputMethods') inputMethods: inputMethod.InputMethodProperty[] = [];
-  @StorageLink('InputMethodSubtypes'): inputMethodSubtypes: InputMethodSubtype[] = [];
+  @StorageLink('InputMethodSubtypes') inputMethodSubtypes: InputMethodSubtype[] = [];
   @State currentInputMethodSubtype: string = '';
 
   async inputList() {

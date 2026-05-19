@@ -3,6 +3,10 @@
 ### 介绍
 本示例使用[inputMethodEngine](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md)实现一个轻量级输入法应用SimpleKeyboard，支持在运行OpenHarmony OS的智能终端上。
 
+### 效果预览
+
+![main](screenshots/devices/main.jpg)
+
 ### 使用说明
 
 1.在设置中切换当前输入法为此输入法。
@@ -38,6 +42,18 @@ SimpleKeyboard
 │   └── module.json5
 ```
 
+### 具体实现
+
+* 该示例分为两个模块：
+  * 键盘布局
+    * 在Index中完成键盘的总体布局。在components中自定不同的按键组件。
+    * 源码链接：[Index.ets](./entry/src/main/ets/pages/Index.ets)，[components](./entry/src/main/ets/components)
+    * 参考接口：[ArkTs声明式开发范式](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-arkui)
+  * 输入法控制
+    * 创建输入法窗口，实现文本插入、删除、选中功能。
+    * 源码链接：[KeyboardController.ets](entry/src/main/ets/model/KeyboardController.ets)
+    * 参考接口：[@ohos.inputMethodEngine](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md)
+
 ### 相关权限
 
 不涉及。
@@ -51,3 +67,15 @@ SimpleKeyboard
 1.本示例仅支持标准系统上运行。
 
 2.本示例需要使用DevEco Studio 版本号(DevEco Studio 6.0.0 Canary1)及以上版本才可编译运行。
+
+###  下载
+
+如需单独下载本工程，执行如下命令：
+
+```
+git init
+git config core.sparsecheckout true
+echo code/DocsSample/InputMethod/SimpleKeyboard > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
+git pull origin master
+```
