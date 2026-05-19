@@ -182,7 +182,7 @@ struct AudioPlaybackIndex {
       // 车钥匙长时任务子类型，从API version 16开始支持。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
       // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
       // extraInfo: {
-      // [backgroundTaskManager.BackgroundModeType.SUB_MODE] :backgroundTaskManager.BackgroundSubMode.CAR_KEY
+        // [backgroundTaskManager.BackgroundModeType.SUB_MODE] :backgroundTaskManager.BackgroundSubMode.CAR_KEY
       // }
     };
 
@@ -194,7 +194,7 @@ struct AudioPlaybackIndex {
           let list: string[] = ['audioPlayback'];
           // let list: string[] = ['bluetoothInteraction']; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
           backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).
-          then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+            then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info('Operation startBackgroundRunning succeeded');
             // 此处执行具体的长时任务逻辑，如播音等。
             // 系统会对业务场景的真实性进行检测，如果没有实际执行对应的业务，系统可能会取消对应的长时任务并挂起应用。
