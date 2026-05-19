@@ -114,8 +114,8 @@ struct Index {
             } catch (err) {
               console.error(`startArkChildProcess error, errorCode: ${(err as BusinessError).code}`);
             }
+            // [End arkts_child_process_arg]
           })
-          // [End arkts_child_process_arg]
       }
       .width('100%')
     }
