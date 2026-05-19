@@ -91,7 +91,7 @@ struct AnimateIndex {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext().animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
