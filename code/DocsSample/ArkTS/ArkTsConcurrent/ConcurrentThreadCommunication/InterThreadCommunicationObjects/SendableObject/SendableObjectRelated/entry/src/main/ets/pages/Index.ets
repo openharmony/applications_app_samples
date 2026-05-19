@@ -24,29 +24,29 @@ struct Index {
   build() {
     Scroll() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        Text(resource.resourceToString($r('app.string.Sendable_object_related')))
+        Text(resource.resourceToString($r('app.string.Sendable_object_related').id))
           .padding('15vp')
           .width('100%')
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Arkts_asyncLock_introduction')),
+          buttonName: resource.resourceToString($r('app.string.Arkts_asyncLock_introduction').id),
           buttonUrl: 'managers/ArktsAsyncLockIntroduction'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Ason_parsing_generation')),
+          buttonName: resource.resourceToString($r('app.string.Ason_parsing_generation').id),
           buttonUrl: 'managers/AsonParsingGeneration'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Arkts_collections_introduction')),
+          buttonName: resource.resourceToString($r('app.string.Arkts_collections_introduction').id),
           buttonUrl: 'managers/ArktsCollectionsIntroduction'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Arkts_sendable_module')),
+          buttonName: resource.resourceToString($r('app.string.Arkts_sendable_module').id),
           buttonUrl: 'managers/ArktsSendableModule'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Sendable_freeze')),
+          buttonName: resource.resourceToString($r('app.string.Sendable_freeze').id),
           buttonUrl: 'managers/SendableFreeze'
         });
       }

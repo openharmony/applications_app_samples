@@ -24,22 +24,18 @@ struct Index {
   build() {
     Scroll() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
-        Text(resource.resourceToString($r('app.string.Sendable_object')))
+        Text(resource.resourceToString($r('app.string.Sendable_object').id))
           .padding('15vp')
           .width('100%')
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Modifying_class')),
+          buttonName: resource.resourceToString($r('app.string.Modifying_class').id),
           buttonUrl: 'managers/classusage'
         });
         CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Modifying_function')),
+          buttonName: resource.resourceToString($r('app.string.Modifying_function').id),
           buttonUrl: 'managers/functionusage'
-        });
-        CommonButton({
-          buttonName: resource.resourceToString($r('app.string.Modifying_enum')),
-          buttonUrl: 'managers/enumusage'
         });
       }
       .padding('20vp')
