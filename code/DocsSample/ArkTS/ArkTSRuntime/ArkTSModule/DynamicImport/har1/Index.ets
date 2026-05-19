@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-export { MainPage } from './src/main/ets/components/MainPage';
+export { MainPage } from './src/main/ets/components/MainPage'
 
-// [Start export_add_har1]
-export { addHar1 } from './src/main/ets/utils/Calc';
-// [End export_add_har1]
+// [Start har1_export]
+// HAR1's Index.ets
+export { ClassHar1 } from './src/main/ets/utils/Calc';
+// [End har1_export]
