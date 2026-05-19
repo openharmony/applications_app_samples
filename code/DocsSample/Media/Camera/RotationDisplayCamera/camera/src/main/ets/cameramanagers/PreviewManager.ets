@@ -64,7 +64,8 @@ export class PreviewManager implements OutputManager {
     try {
       let initDisplayRotation = display.getDefaultDisplaySync().rotation;
       let initPreviewRotation = this.output?.getPreviewRotation(initDisplayRotation * camera.ImageRotation.ROTATION_90);
-      this.output?.setPreviewRotation(initPreviewRotation, false);
+      let isDisplayLocked: boolean = true; // 建议与setXComponentSurfaceRotation入参的lock属性保持一致
+      this.output?.setPreviewRotation(initPreviewRotation, isDisplayLocked);
     } catch (error) {
       // 失败返回错误码error.code并处理
       let err = error as BusinessError;
