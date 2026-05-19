@@ -417,9 +417,9 @@ async function getSupportedDevicePairs(updateCallback?: (msg: string, isError: b
       return;
     }
     const firstPair = devicePairs[0];
-    const successMsg = `Succeeded in getting supported device pairs, count: ${devicePairs.length}, `
-      + `first pair inputType: ${firstPair.inputDevice.deviceType}, `
-      + `outputType: ${firstPair.outputDevice.deviceType}.`;
+    const successMsg = `Succeeded in getting supported device pairs, count: ${devicePairs.length}, ` +
+      `first pair inputType: ${firstPair.inputDevice.deviceType}, ` +
+      `outputType: ${firstPair.outputDevice.deviceType}.`;
     if (updateCallback) {
       updateCallback(successMsg, false);
     }
@@ -448,9 +448,9 @@ async function getPreferredDevicePair(updateCallback?: (msg: string, isError: bo
       }
       return;
     }
-    const successMsg = `Succeeded in getting preferred device pair, `
-      + `inputType: ${devicePair.inputDevice.deviceType}, `
-      + `outputType: ${devicePair.outputDevice.deviceType}.`;
+    const successMsg = `Succeeded in getting preferred device pair, ` +
+      `inputType: ${devicePair.inputDevice.deviceType}, ` +
+      `outputType: ${devicePair.outputDevice.deviceType}.`;
     if (updateCallback) {
       updateCallback(successMsg, false);
     }
