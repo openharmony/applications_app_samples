@@ -10,9 +10,8 @@
 4. [SideBarContainer](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)
 5. [NavPathStack派生类](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
 6. [Router](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
-7. [Stepper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
-8. [Router切换Navigation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-router-to-navigation.md)
-9. [页面路由 (@ohos.router)(不推荐)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-routing.md)
+7. [Router切换Navigation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-router-to-navigation.md)
+8. [页面路由 (@ohos.router)(不推荐)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-routing.md)
 
 ### 效果预览
 
@@ -115,10 +114,7 @@ entry/src/main/ets/
 |   |   |   |---Index.ets  
 |   |---sideBarContainer                 // SideBarContainer
 |   |   |---template1
-|   |   |   |---Index.ets   
-|   |---stepper                      // Stepper
-|   |   |---template1
-|   |   |   |---Index.ets      
+|   |   |   |---Index.ets       
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -130,7 +126,6 @@ entry/src/ohosTest/
 |   |   |---Router.test.ets                       // Router示例代码测试代码
 |   |   |---RouterToNavigation.test.ets           // Router切换Navigation
 |   |   |---SideBarContainer.test.ets                       // SideBarContainer示例代码测试代码
-|   |   |---Stepper.test.ets                       // Stepper示例代码测试代码
 |   |   |---UiObserver.test.ets                    // 无感监听示例代码测试代码
 ```
 

@@ -43,7 +43,9 @@ struct Index {
       params: new RouterParams('This is the value of the first page', [12, 45, 78])
     };
     // 建议使用this.getUIContext().getRouter().pushUrl()
-    router.pushUrl(options)
+    this.getUIContext()
+      .getRouter()
+      .pushUrl(options)
       .then(() => {
         console.error(`pushUrl finish`);
       })

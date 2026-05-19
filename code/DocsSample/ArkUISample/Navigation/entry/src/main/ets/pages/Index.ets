@@ -16,7 +16,6 @@
 import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
-import router from '@ohos.router';
 
 @Styles
 function cardPressedStyle() {
@@ -75,46 +74,40 @@ struct Index {
         { name: 'template4/Index', label: $r('app.string.stepperIndex_text17') },
       ]
     }, {
-      name: 'observer',
-      label: $r('app.string.stepperIndex_text18'),
-      children: [
-        { name: 'template1/Index', label: "uiObserver.on('navDestinationUpdate')" },
-        { name: 'template2/Index', label: $r('app.string.stepperIndex_text19') },
-        { name: 'template3/Index', label: "uiObserver.on('navDestinationSwitch')" },
-        { name: 'template4/Index', label: $r('app.string.stepperIndex_text20') },
-      ]
-    }, {
-      name: 'sideBarContainer',
-      label: 'SideBarContainer',
-      children: [
-        { name: 'template1/Index', label: $r('app.string.stepperIndex_text21') },
-      ]
-    }, {
-      name: "navPathStackExtend",
-      label: $r('app.string.stepperIndex_text22'),
-      children: [
-        { name: 'template1/Index', label: "queryNavDestinationInfo18+" },
-      ]
-    }, {
-      name: 'router',
-      label: 'Router',
-      children: [
-        { name: 'template1/Index', label: $r('app.string.stepperIndex_text23') },
-      ]
-    }, {
-      name: 'stepper',
-      label: 'Stepper',
-      children: [
-        { name: 'template1/Index', label: $r('app.string.stepperIndex_text21') },
-      ]
-    }, {
-      name: 'routerToNavigation',
-      label: $r('app.string.routerToNavigation_text'),
-      children: [
-        { name: 'router/Index', label: $r('app.string.routerToNavigation_text1') },
-        { name: 'navigation/Index', label: $r('app.string.routerToNavigation_text2') }
-      ]
-    }, {
+    name: 'observer',
+    label: $r('app.string.stepperIndex_text18'),
+    children: [
+      { name: 'template1/Index', label: "uiObserver.on('navDestinationUpdate')" },
+      { name: 'template2/Index', label: $r('app.string.stepperIndex_text19') },
+      { name: 'template3/Index', label: "uiObserver.on('navDestinationSwitch')" },
+      { name: 'template4/Index', label: $r('app.string.stepperIndex_text20') },
+    ]
+  }, {
+    name: 'sideBarContainer',
+    label: 'SideBarContainer',
+    children: [
+      { name: 'template1/Index', label: $r('app.string.stepperIndex_text21') },
+    ]
+  }, {
+    name: "navPathStackExtend",
+    label: $r('app.string.stepperIndex_text22'),
+    children: [
+      { name: 'template1/Index', label: "queryNavDestinationInfo18+" },
+    ]
+  }, {
+    name: 'router',
+    label: 'Router',
+    children: [
+      { name: 'template1/Index', label: $r('app.string.stepperIndex_text23') },
+    ]
+  }, {
+    name: 'routerToNavigation',
+    label: $r('app.string.routerToNavigation_text'),
+    children: [
+      { name: 'router/Index', label: $r('app.string.routerToNavigation_text1') },
+      { name: 'navigation/Index', label: $r('app.string.routerToNavigation_text2') }
+    ]
+  }, {
     name: 'pageRouter',
     label: $r('app.string.pageRouter_text'),
     children: [
@@ -162,7 +155,7 @@ struct Index {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext().animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
@@ -174,9 +167,10 @@ struct Index {
     })
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
   }
+
   build() {
     Column() {
       Text('Index')
@@ -212,7 +206,7 @@ struct Index {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    router.pushUrl({url: name});
+                    this.getUIContext().getRouter().pushUrl({ url: name });
                   })
                 }
                 .width('100%')
@@ -222,7 +216,7 @@ struct Index {
           .padding(2)
           .divider({ strokeWidth: 0.5 })
         })
-      }.padding({bottom: 10})
+      }.padding({ bottom: 10 })
     }
   }
 }

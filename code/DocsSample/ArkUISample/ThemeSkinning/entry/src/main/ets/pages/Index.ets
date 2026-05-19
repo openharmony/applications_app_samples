@@ -16,6 +16,7 @@ import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 import { ThemeControl } from '@kit.ArkUI';
+
 ThemeControl.setDefaultTheme(undefined);
 
 @Styles
@@ -100,7 +101,7 @@ struct themeskinning {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext().animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
@@ -112,9 +113,10 @@ struct themeskinning {
     })
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
   }
+
   build() {
     Column() {
       Text('ComponentExtension')
@@ -150,7 +152,7 @@ struct themeskinning {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    this.getUIContext().getRouter().pushUrl({url: name});
+                    this.getUIContext().getRouter().pushUrl({ url: name });
                   })
                 }
                 .width('100%')
@@ -160,7 +162,7 @@ struct themeskinning {
           .padding(2)
           .divider({ strokeWidth: 0.5 })
         })
-      }.padding({bottom: 10})
+      }.padding({ bottom: 10 })
     }
   }
 }
