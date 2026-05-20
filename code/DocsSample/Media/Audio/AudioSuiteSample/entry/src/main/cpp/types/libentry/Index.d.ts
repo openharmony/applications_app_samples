@@ -1,1 +1,3 @@
-export const add: (a: number, b: number) => number;
+export const CreateAudioRender: (type: number) => string;
+export const DestroyAudioRender: () => string;
+export const BaseEditor: () => string;

@@ -6,12 +6,7 @@
 #include <ohaudiosuite/native_audio_suite_engine.h>
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
-
-struct AudioDataInfo {
-    uint8_t *buffer = nullptr;  // 音频数据。
-    int32_t bufferSize = 0;     // 音频数据总大小。
-    int32_t totalWriteSize = 0; // 处理过的音频数据总大小。
-};
+#include "realTimeRendering.h"
 
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(

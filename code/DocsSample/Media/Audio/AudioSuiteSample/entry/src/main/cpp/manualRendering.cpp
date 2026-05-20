@@ -5,11 +5,11 @@
 #include <ohaudiosuite/native_audio_suite_base.h>
 #include <ohaudiosuite/native_audio_suite_engine.h>
 #include <cstdint>
-struct AudioDataInfo {
-    uint8_t *buffer = nullptr;  // 音频数据。
-    int32_t bufferSize = 0;     // 音频数据总大小。
-    int32_t totalWriteSize = 0; // 处理过的音频数据总大小。
-};
+#include "manualRendering.h"
+#include "hilog/log.h"
+const int GLOBAL_RESMGR = 0xFF00;
+static const char *TAG = "[AudioSuiteApp_manual_cpp]";
+
 
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(
@@ -43,23 +43,25 @@ static int32_t InputNodeWriteDataCallBack(
  * 基础离线编辑
  * @return
  */
-void BaseEditor() {
+void BaseEditorEffect(AudioDataInfo *audioInfo,const char *newFilePath) {
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"0000000000000000000000");
+    AudioDataInfo *resultInfo;
     //1.创建引擎和管线
     // 创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
-
+OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"1111111111111111111");
     // 创建管线。
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_EDIT_MODE);
-    
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"22222222222222222222");
     //2.创建输入、输出、均衡器节点并连接组网
     // 创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::INPUT_NODE_TYPE_DEFAULT);
-
+OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"333333333333333");
     // 配置音频数据格式，开发者根据要处理的音频数据格式设置采样率、声道分布、声道数、位深、编码格式参数。
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
@@ -69,16 +71,14 @@ void BaseEditor() {
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
     // 设置音频流的回调。
-    struct AudioDataInfo audioInfo;
-    audioInfo.buffer = nullptr; // 开发者根据业务场景存放要处理的音频数据。
-    audioInfo.bufferSize = 0;   // 开发者根据业务场景存放要处理的音频数据大小。
-    audioInfo.totalWriteSize = 0;
     void *userData = static_cast<void *>(&audioInfo);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"audioInfo : %{public}d",audioInfo->bufferSize);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"333333333333333");
     OH_AudioSuiteNodeBuilder_SetRequestDataCallback(nodeBuilder, InputNodeWriteDataCallBack, userData);
     // 创建输入节点。
     OH_AudioNode *inputNode = nullptr;
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &inputNode);
-
+ OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"4444444444444444444444");
     // 重置构造器配置并设置为均衡器节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
@@ -109,7 +109,7 @@ void BaseEditor() {
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
-    
+     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"555555555555555555555555");
     //3.渲染音频数据
      int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
@@ -127,11 +127,16 @@ void BaseEditor() {
             audioSuitePipeline, static_cast<void *>(audioData), frameSize, &responseSize, &finished);
         if ((result != OH_AudioSuite_Result::AUDIOSUITE_SUCCESS) || (responseSize <= 0)) {
             // 本次音频编创渲染失败。
+             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"777777777777777777777777");
             break;
         } else {
+             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"88888888888888888888888888888");
+            WritePcmFile(newFilePath, resultInfo);
+             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"9999999999999999999999");
             // audioData是渲染过后的音频数据，音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
         }
     } while (!finished);
+     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"65666666666666666666666666");
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     free(audioData);
     audioData = nullptr;

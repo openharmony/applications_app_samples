@@ -11,5 +11,5 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp manualRendering.cpp realTimeRendering.cpp)
-target_link_libraries(entry PUBLIC libace_napi.z.so libohaudio.so libohaudiosuite.so)
+add_library(entry SHARED manualRendering.cpp realTimeRendering.cpp audioSuite.cpp pcmFileUtils.cpp)
+target_link_libraries(entry PUBLIC libace_napi.z.so libohaudio.so libohaudiosuite.so libhilog_ndk.z.so)
