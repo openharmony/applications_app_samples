@@ -221,7 +221,7 @@ void InputMethodNdkDemo()
     ConstructTextEditorProxy(textEditorProxy);
 
     // [Start input_case_input_attachOptions]
-    // 创建InputMethod_AttachOptions实例，选项showKeyboard用于指定此次绑定成功后是否显示键盘，此处以目标显示键盘为例
+    // 创建InputMethod_AttachOptions实例，选项showKeyboard用于指定此次绑定成功后是否显示键盘，设置为true 表示绑定成功后自动显示键盘；false 表示不自动显示
     bool showKeyboard = true;
     attachOptions = OH_AttachOptions_Create(showKeyboard);
     // [End input_case_input_attachOptions]
