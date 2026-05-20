@@ -1,0 +1,9 @@
+export enum KeyCode {
+  KEY_BACK = 2,
+  KEY_DPAD_UP = 2012,
+  KEY_DPAD_DOWN = 2013,
+  KEY_DPAD_LEFT = 2014,
+  KEY_DPAD_RIGHT = 2015,
+  KEY_ENTER = 2054,
+  KEYCODE_TAB
+}
