@@ -22,20 +22,20 @@ import { inputEventClient, KeyCode } from '@kit.InputKit';
 const TAG = 'IssueReporterDetail'
 
 class IssueDetailParam {
-  issueId: string = ''
-  devid: string = ''
+  public issueId: string = ''
+  public devid: string = ''
 }
 
 class IssueHistory {
-  title: string = ''
-  time: string = ''
-  content?: string = ''
+  public title: string = ''
+  public time: string = ''
+  public content?: string = ''
 }
 
 class IssueHistoryRecord {
-  title: string = ''
-  createTime: string = ''
-  content?: string = ''
+  public title: string = ''
+  public createTime: string = ''
+  public content?: string = ''
 }
 
 
@@ -76,17 +76,11 @@ export default struct IssueReporterDetail {
       isIntercepted: false
     };
 
-    class KeyEvent {
-      KeyEvent: inputEventClient.KeyEvent | null = null
-    }
-
-    let eventDown: KeyEvent = { KeyEvent: keyDownOpt }
-    let eventUp: KeyEvent = { KeyEvent: keyUpOpt }
 
     try {
       // 触发tab点击，使默认焦点组件多态样式生效
-      inputEventClient.injectEvent(eventDown);
-      inputEventClient.injectEvent(eventUp);
+      inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
+      inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
     } catch (err) {
       console.error('settingList inputEventClient' + err)
     }
@@ -160,7 +154,7 @@ export default struct IssueReporterDetail {
         if (obj !== undefined) {
           listResult.result = obj
         }
-        // let code = listResult.result['code'] as number
+
         let code = listResult.responseCode as number
         LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`)
 

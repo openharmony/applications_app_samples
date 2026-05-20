@@ -70,21 +70,21 @@ export default struct IssueReporterHome {
               switch (this.currentIndex) {
                 case 0:
                   console.log('点击了创建', index, this.currentIndex)
-                  AppStorage.setOrCreate("page",0)
+                  AppStorage.setOrCreate('page',0)
                   router.pushUrl({
                     url: 'pages/IssueReporter/IssueReporterAdd',
                   })
                   break
                 case 1:
                   console.log('点击了创建', index, this.currentIndex)
-                  AppStorage.setOrCreate("page",1)
+                  AppStorage.setOrCreate('page',1)
                   router.pushUrl({
                     url: 'pages/IssueReporter/views/IssueReporterList',
                   })
                   break
                 case 2:
                   console.log('点击了创建', index, this.currentIndex)
-                  AppStorage.setOrCreate("page",2)
+                  AppStorage.setOrCreate('page',2)
                   router.pushUrl({
                     url: 'pages/IssueReporter/UseIntroduction',
                   })
@@ -106,7 +106,7 @@ export default struct IssueReporterHome {
           .onKeyEvent((item)=>{
             if (item.type==0) {
               let focus:number=AppStorage.get('page') as number
-              console.log('熊', focus,":",this.currentIndex,":",json.stringify(item))
+              console.log('熊', focus,':',this.currentIndex,':',json.stringify(item))
 
               if (focus==0) {
                 if(item.keyCode==KeyCode.KEYCODE_DPAD_DOWN){

@@ -12,9 +12,9 @@ const TAG = 'NetworkManager'
 const OVERTIME = 30
 
 export class BusinessErrorImpl implements base.BusinessError {
-  code: number = 0
-  name: string = ''
-  message: string = ''
+  public code: number = 0
+  public name: string = ''
+  public message: string = ''
 }
 
 export default class NetworkManager {
@@ -27,8 +27,11 @@ export default class NetworkManager {
     return NetworkManager.manager
   }
 
-  public request(apiUrl: string, params: object | ArrayBuffer | string, callback: (err: base.BusinessError, data: http.HttpResponse) => void, method?: http.RequestMethod, filename?: string, contentType?: string, expectDataType?: http.HttpDataType, baseUrl?: string) {
-    LogManager.hilogIWithTag(TAG, `request, apiUrl: ${JSON.stringify(apiUrl)}, params: ${JSON.stringify(params)}, expectDataType: ${JSON.stringify(expectDataType)}, contentType: ${JSON.stringify(contentType)}, baseUrl: ${JSON.stringify(baseUrl)}, method: ${JSON.stringify(method)}`)
+  public request(apiUrl: string, params: object | ArrayBuffer | string,
+    callback: (err: base.BusinessError, data: http.HttpResponse) => void, method?: http.RequestMethod,
+    filename?: string, contentType?: string, expectDataType?: http.HttpDataType, baseUrl?: string) {
+    LogManager.hilogIWithTag(TAG,
+      `request, apiUrl: ${JSON.stringify(apiUrl)}, params: ${JSON.stringify(params)}, expectDataType: ${JSON.stringify(expectDataType)}, contentType: ${JSON.stringify(contentType)}, baseUrl: ${JSON.stringify(baseUrl)}, method: ${JSON.stringify(method)}`)
 
     let httpRequest = http.createHttp()
     httpRequest.on('headersReceive', (header: Object) => {
@@ -40,7 +43,8 @@ export default class NetworkManager {
     let requestExpectDataType = expectDataType == undefined ? http.HttpDataType.OBJECT : expectDataType
     let requestContentType = contentType == undefined ? 'application/json' : contentType
 
-    LogManager.hilogIWithTag(TAG, `request, url: ${JSON.stringify(url)}, params: ${JSON.stringify(params)}, requestMethod: ${JSON.stringify(requestMethod)}, requestContentType: ${JSON.stringify(requestContentType)}, requestExpectDataType: ${JSON.stringify(requestExpectDataType)}, filename: ${JSON.stringify(filename)}`)
+    LogManager.hilogIWithTag(TAG,
+      `request, url: ${JSON.stringify(url)}, params: ${JSON.stringify(params)}, requestMethod: ${JSON.stringify(requestMethod)}, requestContentType: ${JSON.stringify(requestContentType)}, requestExpectDataType: ${JSON.stringify(requestExpectDataType)}, filename: ${JSON.stringify(filename)}`)
     httpRequest.request(
       url,
       {
@@ -63,8 +67,10 @@ export default class NetworkManager {
       });
   }
 
-  public upload(issueId: string, context: Context, apiUrl: string, folder: string, fileName: string, fileType: string, type: string, callback: (err?: base.BusinessError, data?: object) => void, baseUrl?: string) {
-    LogManager.hilogIWithTag(TAG, `upload, apiUrl: ${JSON.stringify(apiUrl)}, fileName: ${JSON.stringify(fileName)}, fileType: ${JSON.stringify(fileType)}, folder: ${JSON.stringify(folder)}`)
+  public upload(issueId: string, context: Context, apiUrl: string, folder: string, fileName: string, fileType: string,
+    type: string, callback: (err?: base.BusinessError, data?: object) => void, baseUrl?: string) {
+    LogManager.hilogIWithTag(TAG,
+      `upload, apiUrl: ${JSON.stringify(apiUrl)}, fileName: ${JSON.stringify(fileName)}, fileType: ${JSON.stringify(fileType)}, folder: ${JSON.stringify(folder)}`)
 
     let uploadTask: request.UploadTask
 
@@ -109,7 +115,8 @@ export default class NetworkManager {
             clearInterval(timer)
             LogManager.hilogIWithTag(TAG, 'Succeeded in removing the download task.');
           }).catch((err: BusinessError) => {
-            LogManager.hilogIWithTag(TAG, `Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+            LogManager.hilogIWithTag(TAG,
+              `Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
           });
         }
       }, 1000)
@@ -117,22 +124,27 @@ export default class NetworkManager {
       uploadTask = data
       uploadTask.on('headerReceive', (header) => {
         LogManager.hilogIWithTag(TAG, `upload header: ${JSON.stringify(header)}`)
+
         interface HeaderData {
           url?: string
           id?: string
         }
+
         interface BodyData {
           data?: HeaderData
         }
+
         interface HeadersData {
-          body?:BodyData
+          body?: BodyData
         }
+
         interface ReceiveData {
           headers?: HeadersData
         }
+
         let uploadImage: UploadImageInfo = {
           type: type,
-          image_name: fileName,
+          imageName: fileName,
         }
         let headers = (header as ReceiveData).headers
         if (!!headers) {
@@ -163,7 +175,8 @@ export default class NetworkManager {
 
       uploadTask.on('progress', (uploadedSize, totalSize) => {
         upLoadNewProgress = uploadedSize
-        LogManager.hilogIWithTag(TAG, `upload totalSize: ${JSON.stringify(totalSize)}, uploadedSize: ${JSON.stringify(uploadedSize)}`)
+        LogManager.hilogIWithTag(TAG,
+          `upload totalSize: ${JSON.stringify(totalSize)}, uploadedSize: ${JSON.stringify(uploadedSize)}`)
       })
 
       uploadTask.on('complete', (taskStates) => {
@@ -204,7 +217,8 @@ export default class NetworkManager {
       }).then((data: request.DownloadTask) => {
         downloadTask = data;
         downloadTask.on('progress', (uploadedSize, totalSize) => {
-          LogManager.hilogIWithTag(TAG, `down totalSize: ${JSON.stringify(totalSize)}, downSize: ${JSON.stringify(uploadedSize)}`)
+          LogManager.hilogIWithTag(TAG,
+            `down totalSize: ${JSON.stringify(totalSize)}, downSize: ${JSON.stringify(uploadedSize)}`)
         })
 
         downloadTask.on('complete', () => {
@@ -220,7 +234,8 @@ export default class NetworkManager {
             if (!!callback) {
               callback('')
             }
-            LogManager.hilogIWithTag(TAG, `Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
+            LogManager.hilogIWithTag(TAG,
+              `Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
           });
         })
 

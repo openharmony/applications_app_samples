@@ -3,7 +3,7 @@ import { UploadImageInfo } from '../../common/Constants/TypeData'
 
 export interface ThumbnailInfo {
   thumbnail: string,
-  image_name: string
+  imageName: string
 }
 
 export interface AttachmentParams {
@@ -18,13 +18,13 @@ export interface AttachmentParams {
  * 将缩略图转化为base64后进行存储
  *
  */
-export const setImageBase64 = async (image_name_raw: string, readBuffer: ArrayBuffer): Promise<void> => {
+export const setImageBase64 = async (imageNameRaw: string, readBuffer: ArrayBuffer): Promise<void> => {
   const thumbnailBase64 = encodeToBase64(readBuffer)
   console.info('wbbBase', thumbnailBase64.length)
   console.info('wbbBase', thumbnailBase64)
   let thumbnail: ThumbnailInfo = {
     thumbnail: thumbnailBase64,
-    image_name: image_name_raw
+    imageName: imageNameRaw
   }
   let thumbnails: ThumbnailInfo[];
   if (!!AppStorage.get('thumbnails')) {
@@ -62,21 +62,21 @@ export const attachmentParams = (): AttachmentParams[] => {
   let arr: ThumbnailInfo[] = AppStorage.get('thumbnails') || []
   let objKey: string[] = []
   for (let i = 0; i < arr.length; i++) {
-    objKey.push(arr[i].image_name)
+    objKey.push(arr[i].imageName)
   }
   let attachmentParams: AttachmentParams[] = []
   let attachmentParamsObj: AttachmentParams = {
-    type: "",
-    url: "",
-    id: "",
-    thumbnail: ""
+    type: '',
+    url: '',
+    id: '',
+    thumbnail: ''
   }
   let arrImage: UploadImageInfo[] = AppStorage.get('uploadImageArr') || []
   arrImage.forEach((item) => {
     const type = item.type
     const url = item.url ?? ''
     const id = item.id ?? ''
-    attachmentParamsObj = { type, url, id, thumbnail: arr[objKey.indexOf(item.image_name)].thumbnail }
+    attachmentParamsObj = { type, url, id, thumbnail: arr[objKey.indexOf(item.imageName)].thumbnail }
     if (attachmentParamsObj.type !== 'tar') {
       attachmentParams.push(attachmentParamsObj)
     }

@@ -21,8 +21,8 @@ import LogManager from '../common/Log/LogManager'
 const TAG = 'PHOTOM_manager'
 
 class PhotoManager {
-  loadRecord: Map<AlbumType, ILoader> = new Map()
-  inited = false
+  public loadRecord: Map<AlbumType, ILoader> = new Map()
+  public inited = false
 
   public init(context: common.UIAbilityContext) {
     if (this.inited) {

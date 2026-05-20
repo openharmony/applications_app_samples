@@ -1,8 +1,8 @@
-import { fpChangeLpx, vpChangeLpx } from "../models/IssueDetailInfo"
+import { fpChangeLpx, vpChangeLpx } from '../models/IssueDetailInfo'
 
-class tagItem {
-  key: string = ''
-  color: ResourceColor = ''
+class TagItem {
+  public key: string = ''
+  public color: ResourceColor = ''
 }
 
 @Component
@@ -31,7 +31,7 @@ export default struct cardItem {
     }
   }
 
-  tagItem: tagItem = new tagItem()
+  tagItem: TagItem = new TagItem()
 
   build() {
     if (!this.isDecItem) {

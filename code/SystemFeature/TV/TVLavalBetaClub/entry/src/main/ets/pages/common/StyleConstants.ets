@@ -42,8 +42,8 @@ export enum CustomDialogContentStyle {
 }
 
 export class StyleConstants {
-  static readonly DEFAULT_BG_COLOR = '#ff262e3c';
-  static readonly DEFAULT_DIALOG_COLOR = '#323232';
-  static readonly DEFAULT_SETTING = '#404040';
-  static readonly DEFAULT_BACKGROUND_IMAGE="/res/image/default_background.png"
+  public static readonly DEFAULT_BG_COLOR = '#ff262e3c';
+  public static readonly DEFAULT_DIALOG_COLOR = '#323232';
+  public static readonly DEFAULT_SETTING = '#404040';
+  public static readonly DEFAULT_BACKGROUND_IMAGE='/res/image/default_background.png'
 }

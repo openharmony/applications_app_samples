@@ -1,7 +1,7 @@
 class IssueHistory {
-  title: string = ''
-  time: string = ''
-  content?: string = ''
+  public title: string = ''
+  public time: string = ''
+  public content?: string = ''
 }
 
 @Component

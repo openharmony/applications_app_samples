@@ -27,7 +27,9 @@ export default struct attachmentVideoView {
 
   getVideoViewUrl(url: string) {
     const fileName = url.split('id=')[1]
-    if (!fileName) return
+    if (!fileName) {
+      return
+    }
     const fileUrl = `${getContext(this).cacheDir}/${fileName}.mp4`
     let existJudgment = fs.accessSync(fileUrl);
     this.isLoadVideo = true
@@ -63,7 +65,7 @@ export default struct attachmentVideoView {
               })
           }
         }
-        .width("100%")
+        .width('100%')
         .height('100%')
 
         if (this.isLoadVideo) {
@@ -74,7 +76,7 @@ export default struct attachmentVideoView {
         }
 
       }
-      .width("100%")
+      .width('100%')
       .height('100%')
       .backgroundColor(Color.Black)
 
@@ -90,7 +92,7 @@ export default struct attachmentVideoView {
       .padding({ top: '24lpx', left: '24lpx' })
       .alignItems(HorizontalAlign.Start)
     }
-    .width("100%")
+    .width('100%')
     .height('100%')
   }
 }

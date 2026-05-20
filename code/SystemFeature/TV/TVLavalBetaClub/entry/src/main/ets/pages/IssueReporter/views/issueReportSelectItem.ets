@@ -1,6 +1,6 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import LogManager from '../../../common/Log/LogManager'
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 import { tabClick } from '../../Index';
 import { inputConsumer, inputEventClient, KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
@@ -58,24 +58,19 @@ export function enterClick() {
     isIntercepted: false
   };
 
-  class KeyEvent {
-    KeyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventDown: KeyEvent = { KeyEvent: keyDownOpt }
-  let eventUp: KeyEvent = { KeyEvent: keyUpOpt }
 
   try {
     // 触发tab点击，使默认焦点组件多态样式生效
-    inputEventClient.injectEvent(eventDown);
-    inputEventClient.injectEvent(eventUp);
+    inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
+    inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
     console.error('settingList inputEventClient' + err)
   }
 }
 
 const TAG = 'IssueReporterDetailItem'
-const  sourceToolMouseClick: number = 7
+const sourceToolMouseClick: number = 7
+
 @Component
 export default struct issueReportSelectItem {
   @Prop itemType: IssueReporterDetailItemType = IssueReporterDetailItemType.default
@@ -92,8 +87,8 @@ export default struct issueReportSelectItem {
   filters: string[] = []
   @State selectedFilterNumber: number | number[] = 0
   @State isFocus: boolean = false
-  @State titleKey:string=''
-  private DataSelectController: CustomDialogController = new CustomDialogController({
+  @State titleKey: string = ''
+  private dataSelectController: CustomDialogController = new CustomDialogController({
     builder: DataSelect({
       range: this.filters,
       selectedFilterNumber: this.selectedFilterNumber,
@@ -144,6 +139,7 @@ export default struct issueReportSelectItem {
     alignment: DialogAlignment.Center,
     customStyle: true
   })
+
   onPageShow() {
     this.issueReportTime = ''
     this.issueReportDate = ''
@@ -162,6 +158,7 @@ export default struct issueReportSelectItem {
   onDateCancel() {
     this.dateDialogController.close()
   }
+
   onTimeCancel() {
     this.timeDialogController.close()
   }
@@ -194,11 +191,10 @@ export default struct issueReportSelectItem {
   setDate() {
     this.setTimeFormat('date', this.is24Hours, this.content.customTime)
     let date = (new Date(this.content.customTime)).toDateString()
-    let match = date.replace(/^\w{3}\s+/,'');
+    let match = date.replace(/^\w{3}\s+/, '');
     this.itemValue = match
     this.issueReportDate = match
   }
-
 
   async aboutToAppear() {
     this.titleKey = await getContext(this).resourceManager.getStringValue(this.title as Resource)
@@ -220,7 +216,6 @@ export default struct issueReportSelectItem {
       this.selectedDate = new Date(this.itemValue)
     }
 
-    // tabClick();
 
     emitter.on('auto_focus', (data) => {
       let title: string = String(data?.data);
@@ -230,7 +225,6 @@ export default struct issueReportSelectItem {
       this.isFocus = false
     })
   }
-
 
   build() {
     Row() {
@@ -262,24 +256,26 @@ export default struct issueReportSelectItem {
           Image($r('app.media.icon_arrow_right'))
             .width(vpChangeLpx(21))
             .height(vpChangeLpx(34))
-            .fillColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white') )
+            .fillColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'))
         }
       }
-        .onFocus(() => {
-          registerInputConsumer(KeyCode.KEYCODE_DPAD_LEFT, () => {})
-          registerInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT, () => {})
+      .onFocus(() => {
+        registerInputConsumer(KeyCode.KEYCODE_DPAD_LEFT, () => {
         })
-        .onBlur(() => {
-          unregisterInputConsumer(KeyCode.KEYCODE_DPAD_LEFT)
-          unregisterInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT)
+        registerInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT, () => {
         })
+      })
+      .onBlur(() => {
+        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_LEFT)
+        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT)
+      })
       .onTouch((event) => {
         focusControl.requestFocus(this.titleKey)
-          try {
-            emitter.emit('auto_focus', { data: this.getUniqueId() })
-          } catch (e) {
-            console.error(e)
-          }
+        try {
+          emitter.emit('auto_focus', { data: this.getUniqueId() })
+        } catch (e) {
+          console.error(e)
+        }
         if (!EventUtil.isTouchEvent(event)) {
           return;
         }
@@ -287,34 +283,34 @@ export default struct issueReportSelectItem {
           return;
         }
       })
-        .onClick(() => {
-        this.isFocus=true
-          switch (this.itemType) {
-            case IssueReporterDetailItemType.date: {
-              this.dateDialogController.open()
-              setTimeout(() => {
-                tabClick();
-              }, TIME_INT)
-            }
-              break
-            case IssueReporterDetailItemType.time: {
-              this.timeDialogController.open()
-              setTimeout(() => {
-                tabClick();
-              }, TIME_INT)
-            }
-              break
-
-            case IssueReporterDetailItemType.filter: {
-              this.DataSelectController.open()
-              setTimeout(() => {
-                tabClick();
-              }, TIME_INT)
-            }
-              break
-
+      .onClick(() => {
+        this.isFocus = true
+        switch (this.itemType) {
+          case IssueReporterDetailItemType.date: {
+            this.dateDialogController.open()
+            setTimeout(() => {
+              tabClick();
+            }, TIME_INT)
           }
-        })
+            break
+          case IssueReporterDetailItemType.time: {
+            this.timeDialogController.open()
+            setTimeout(() => {
+              tabClick();
+            }, TIME_INT)
+          }
+            break
+
+          case IssueReporterDetailItemType.filter: {
+            this.dataSelectController.open()
+            setTimeout(() => {
+              tabClick();
+            }, TIME_INT)
+          }
+            break
+
+        }
+      })
 
       .height(vpChangeLpx(94))
       .width('100%')
@@ -339,7 +335,7 @@ export default struct issueReportSelectItem {
       this.isFocus = false
     })
     .onHover((isHover: boolean) => {
-        focusControl.requestFocus(this.titleKey)
+      focusControl.requestFocus(this.titleKey)
       if (isHover) {
         try {
           emitter.emit('auto_focus', { data: this.getUniqueId() })
@@ -353,7 +349,8 @@ export default struct issueReportSelectItem {
     .width('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(VerticalAlign.Center)
-    .border(this.isFocus ? { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } : null)
+    .border(this.isFocus ? { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } :
+      null)
   }
 }
 
@@ -378,9 +375,15 @@ struct DataSelect {
         .defaultPickerItemHeight(vpChangeLpx(79))
         .width(vpChangeLpx(739))
         .height(vpChangeLpx(333))
-        .disappearTextStyle({ color: $r('app.color.default_white'), font: { size: fpChangeLpx(36), weight: FontWeight.Lighter } })
+        .disappearTextStyle({
+          color: $r('app.color.default_white'),
+          font: { size: fpChangeLpx(36), weight: FontWeight.Lighter }
+        })
         .textStyle({ color: $r('app.color.default_white'), font: { size: fpChangeLpx(36), weight: FontWeight.Normal } })
-        .selectedTextStyle({ color: $r('app.color.default_white'), font: { size: fpChangeLpx(55), weight: FontWeight.Bolder } })
+        .selectedTextStyle({
+          color: $r('app.color.default_white'),
+          font: { size: fpChangeLpx(55), weight: FontWeight.Bolder }
+        })
         .focusBox({
           margin: LengthMetrics.px(2),
           strokeColor: ColorMetrics.resourceColor($r('app.color.button_transParent')),
@@ -403,7 +406,7 @@ struct DataSelect {
         })
 
       Row() {
-        Row(){
+        Row() {
           Button($r('app.string.cancel'))
             .key('cancel')
             .focusable(true)
@@ -443,16 +446,17 @@ struct DataSelect {
               this.controller.close()
             })
         }
-        .width( '160lpx' )
-        .height( '60lpx' )
+        .width('160lpx')
+        .height('60lpx')
         .border({
-          width: this.isFocusCancel? '2lpx' : 0,
+          width: this.isFocusCancel ? '2lpx' : 0,
           radius: '30lpx',
           color: Color.White,
           style: BorderStyle.Solid
         })
         .justifyContent(FlexAlign.Center)
-        Row(){
+
+        Row() {
           Button($r('app.string.sure'))
             .key('confirm')
             .width('148lpx')
@@ -501,10 +505,10 @@ struct DataSelect {
               this.controller.close()
             })
         }
-        .width( '160lpx' )
-        .height( '60lpx' )
+        .width('160lpx')
+        .height('60lpx')
         .border({
-          width: this.isFocusAccept? '2lpx' : 0,
+          width: this.isFocusAccept ? '2lpx' : 0,
           radius: '30lpx',
           color: Color.White,
           style: BorderStyle.Solid
@@ -512,7 +516,7 @@ struct DataSelect {
         .justifyContent(FlexAlign.Center)
       }
       .width('100%')
-      .height( '60lpx')
+      .height('60lpx')
       .justifyContent(FlexAlign.SpaceAround)
     }
     .padding({ top: vpChangeLpx(5), bottom: vpChangeLpx(27) })

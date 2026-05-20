@@ -1,9 +1,7 @@
 import { KeyCode } from './KeyCode'
 import InputMethod from '@ohos.inputMethod';
 import {
-  CustomDialogButtonStyle,
-  CustomDialogContentStyle,
-  StyleConstants
+  CustomDialogButtonStyle, CustomDialogContentStyle, StyleConstants
 } from './StyleConstants'
 import promptAction from '@ohos.promptAction';
 import { inputEventClient } from '@kit.InputKit';
@@ -11,8 +9,9 @@ import { i18n } from '@kit.LocalizationKit';
 import { ColorMetrics } from '@kit.ArkUI';
 import { EventUtil } from './EventUtil';
 
-const  sourceToolMouseClick: number = 7
-const TAG = "CustomDialogTvComponent";
+const sourceToolMouseClick: number = 7
+const TAG = 'CustomDialogTvComponent';
+
 @Entry
 @CustomDialog
 export struct CustomDialogTvComponent {
@@ -56,17 +55,11 @@ export struct CustomDialogTvComponent {
       isIntercepted: false
     };
 
-    class KeyEvent {
-      KeyEvent: inputEventClient.KeyEvent | null = null
-    }
-
-    let eventDown: KeyEvent = { KeyEvent: keyDownOpt }
-    let eventUp: KeyEvent = { KeyEvent: keyUpOpt }
 
     try {
       // 触发tab点击，使默认焦点组件多态样式生效
-      inputEventClient.injectEvent(eventDown);
-      inputEventClient.injectEvent(eventUp);
+      inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
+      inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
       console.log('手动触发tab点击成功')
     } catch (e) {
       console.log('手动触发tab点击失败')
@@ -81,7 +74,7 @@ export struct CustomDialogTvComponent {
     console.info(TAG + 'aboutToAppear' + '宽度' + this.content.dialogWidth + '高度' + this.content.dialogHeight)
     this.get24HourFormat()
     this.userCustomTime = this.selectDate.getTime()
-    if(this.content.content=="此操作将会连接当前wifi"){
+    if (this.content.content == '此操作将会连接当前wifi') {
       this.tabClick();
     }
   }
@@ -128,7 +121,7 @@ export struct CustomDialogTvComponent {
             .caretColor(Color.White)
             .defaultFocus(true)
             .border({
-              width: this.focusIndex == 0 ? 2 + "lpx" : 0,
+              width: this.focusIndex == 0 ? 2 + 'lpx' : 0,
               radius: globalThis.screenHeight * 0.05 + 'lpx',
               color: Color.White,
               style: BorderStyle.Solid
@@ -138,7 +131,7 @@ export struct CustomDialogTvComponent {
             .focusable(true)
             .onFocus(() => {
               this.focusIndex = 0;
-              console.info(TAG + "textInput:" + this.focusIndex);
+              console.info(TAG + 'textInput:' + this.focusIndex);
             })
             .onBlur(() => {
               this.focusIndex = -1;
@@ -162,11 +155,11 @@ export struct CustomDialogTvComponent {
                 case KeyCode.KEY_9:
                   if (event.type == KeyType.Up) {
                     this.userInputs += event.keyCode % 2000;
-                    console.info(TAG + ":input value:" + this.userInputs);
+                    console.info(TAG + ':input value:' + this.userInputs);
                     if (this.userInputs.length > 30) {
                       this.userInputs.substring(0, 30);
                       promptAction.showToast({
-                        message: "自定义名称超长",
+                        message: '自定义名称超长',
                         duration: 2000,
                         bottom: globalThis.screenHeight / 4
                       })
@@ -175,10 +168,10 @@ export struct CustomDialogTvComponent {
                   }
                   break;
                 case KeyCode.KEY_ENTER:
-                  focusControl.requestFocus("textInput")
+                  focusControl.requestFocus('textInput')
                   break;
                 case KeyCode.KEY_DPAD_DOWN:
-                  focusControl.requestFocus("confirm")
+                  focusControl.requestFocus('confirm')
                   event.stopPropagation()
                   break;
               }
@@ -201,7 +194,7 @@ export struct CustomDialogTvComponent {
               .fontColor(('rgb(255, 255, 255)'))
               .fontSize('32lpx')
               .margin({
-                bottom:"20lpx"
+                bottom: '20lpx'
               })
             DatePicker({ selected: this.selectDate })
               .focusBox({ strokeColor: ColorMetrics.rgba(255, 255, 255, 0.86) })
@@ -219,7 +212,7 @@ export struct CustomDialogTvComponent {
               .focusable(true)
               .onFocus(() => {
                 this.focusIndex = 0;
-                console.info(TAG + "textInput:" + this.focusIndex);
+                console.info(TAG + 'textInput:' + this.focusIndex);
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {
@@ -236,7 +229,7 @@ export struct CustomDialogTvComponent {
                 }
               })
               .margin({
-                bottom:"20lpx",
+                bottom: '20lpx',
               })
           }
           .width('100%')
@@ -280,7 +273,7 @@ export struct CustomDialogTvComponent {
               .focusable(true)
               .onFocus(() => {
                 this.focusIndex = 0;
-                console.info(TAG + "textInput:" + this.focusIndex);
+                console.info(TAG + 'textInput:' + this.focusIndex);
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {
@@ -309,7 +302,7 @@ export struct CustomDialogTvComponent {
                 .fontSize('32lpx')
                 .borderRadius('200lpx')
                 .backgroundColor(this.focusIndex === 1 ? Color.White : '#666666')
-                .key("Cancel")
+                .key('Cancel')
                 .defaultFocus(true)
                 .focusable(true)
                 .stateStyles({
@@ -337,7 +330,7 @@ export struct CustomDialogTvComponent {
                     event.stopPropagation();
                   }
                 })
-                .onClick(()=>{
+                .onClick(() => {
                   focusControl.requestFocus('Cancel')
                   this.cancel();
                 })
@@ -412,7 +405,7 @@ export struct CustomDialogTvComponent {
                   event.stopPropagation();
                 }
               })
-              .onClick(()=>{
+              .onClick(() => {
                 focusControl.requestFocus('confirm')
                 this.content.setTextInputValue(this.userInputs);
                 this.content.setCustomTime(this.userCustomTime)
@@ -421,15 +414,15 @@ export struct CustomDialogTvComponent {
               .onHover(() => {
                 focusControl.requestFocus('confirm')
               })
-              /*.onTouch((event) => {
-                if (!EventUtil.isTouchEvent(event) || event.sourceTool !== 2) {
-                  return;
-                }
+            /*.onTouch((event) => {
+              if (!EventUtil.isTouchEvent(event) || event.sourceTool !== 2) {
+                return;
+              }
 
-                this.content.setTextInputValue(this.userInputs);
-                this.content.setCustomTime(this.userCustomTime)
-                this.confirm();
-              })*/
+              this.content.setTextInputValue(this.userInputs);
+              this.content.setCustomTime(this.userCustomTime)
+              this.confirm();
+            })*/
           }
           .width(this.focusIndex === 2 ? '160lpx' : '150lpx')
           .height(this.focusIndex === 2 ? '60lpx' : '50lpx')
@@ -460,7 +453,7 @@ export struct CustomDialogTvComponent {
           this.contentStyle == CustomDialogContentStyle.titleInput ||
           this.contentStyle == CustomDialogContentStyle.DatePicker ||
           this.contentStyle == CustomDialogContentStyle.TimePicker)) {
-          focusControl.requestFocus("Cancel");
+          focusControl.requestFocus('Cancel');
         }
       })
 
@@ -468,7 +461,7 @@ export struct CustomDialogTvComponent {
     .height('100%')
     .width('100%')
     .padding({
-      right:0,
+      right: 0,
 
     })
     .backgroundColor('#b3000000')
@@ -479,38 +472,40 @@ export struct CustomDialogTvComponent {
 }
 
 export class DialogContent {
-  title: string;
-  content: string;
-  textInputValue: string = '';
-  firstValue: string;
-  secondValue: string;
-  dialogWidth: Length;
-  dialogHeight: Length
-  customTime: number = 0;
+  public title: string;
+  public content: string;
+  public textInputValue: string = '';
+  public firstValue: string;
+  public secondValue: string;
+  public dialogWidth: Length;
+  public dialogHeight: Length
+  public customTime: number = 0;
 
   constructor(title: string, content: string, firstValue: string, secondValue: string, dialogWidth: Length,
     dialogHeight: Length) {
     this.title = title;
     this.content = content;
-    this.firstValue = firstValue === "" ? "取消" : firstValue;
-    this.secondValue = secondValue === "" ? "确认" : secondValue;
-    this.dialogWidth = dialogWidth as number === 0 ? `${(globalThis.screenWidth / 2)}lpx` : `${(Number(dialogWidth))}lpx`;
-    this.dialogHeight = dialogHeight as number === 0 ? `${(globalThis.screenHeight / 2)}lpx` : `${(Number(dialogHeight))}lpx`;
+    this.firstValue = firstValue === '' ? '取消' : firstValue;
+    this.secondValue = secondValue === '' ? '确认' : secondValue;
+    this.dialogWidth =
+      dialogWidth as number === 0 ? `${(globalThis.screenWidth / 2)}lpx` : `${(Number(dialogWidth))}lpx`;
+    this.dialogHeight =
+      dialogHeight as number === 0 ? `${(globalThis.screenHeight / 2)}lpx` : `${(Number(dialogHeight))}lpx`;
   }
 
-  setTextInputValue(value: string) {
+  public setTextInputValue(value: string) {
     this.textInputValue = value;
   }
 
-  getTextInputValue() {
+  public getTextInputValue() {
     return this.textInputValue;
   }
 
-  setCustomTime(value: number) {
+  public setCustomTime(value: number) {
     this.customTime = value
   }
 
-  getCustomTime() {
+  public getCustomTime() {
     return this.customTime
   }
 }

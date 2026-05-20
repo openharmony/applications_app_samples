@@ -18,5 +18,5 @@ export default class KeyConstant {
 
   public static KV_ISSUE_KEY = 'kv_issue_key'
 
-  public static KV_ISSUE_UPDATE_TIME_KEY = "kv_issue_update_time_key"
+  public static KV_ISSUE_UPDATE_TIME_KEY = 'kv_issue_update_time_key'
 }

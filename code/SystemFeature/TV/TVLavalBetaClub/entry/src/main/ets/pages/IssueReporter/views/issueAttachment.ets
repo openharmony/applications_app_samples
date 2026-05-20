@@ -16,25 +16,25 @@ const TAG = 'issueAttachment'
 const  sourceToolMouseClick: number = 7
 @Observed
 export class PhotoModel {
-  uri: string = '';
-  displayName: string = '';
-  dateAdded: number = 0;
-  duration?: number;
-  dateTrashed?: number;
-  photoType?: photoAccessHelper.PhotoType;
-  thumbnail?: image.PixelMap;
-  imageUri?: string;
-  thumbWidth?: number;
-  thumbHeight?: number;
-  photoAsset?: photoAccessHelper.PhotoAsset
+  public uri: string = '';
+  public displayName: string = '';
+  public dateAdded: number = 0;
+  public duration?: number;
+  public dateTrashed?: number;
+  public photoType?: photoAccessHelper.PhotoType;
+  public thumbnail?: image.PixelMap;
+  public imageUri?: string;
+  public thumbWidth?: number;
+  public thumbHeight?: number;
+  public photoAsset?: photoAccessHelper.PhotoAsset
 
   constructor() {
   }
 }
 
 export class LazyIndex {
-  start: number = 0
-  end: number = 0
+  public start: number = 0
+  public end: number = 0
 
   constructor() {
   }

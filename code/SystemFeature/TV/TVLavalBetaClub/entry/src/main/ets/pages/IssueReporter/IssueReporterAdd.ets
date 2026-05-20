@@ -24,7 +24,7 @@ import router from '@ohos.router';
 import KeyConstant from '../../common/Constants/KeyConstant';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { attachmentParams, initImageCollection } from '../common/utilImage';
-import kvManagerService from '../../common/kvManager/kvManagerService';
+import KvManagerService from '../../common/kvManager/kvManagerService';
 import issueReportSelectItem, { registerInputConsumer, unregisterInputConsumer } from './views/issueReportSelectItem'
 import issueAttachment, { PhotoModel } from './views/issueAttachment'
 import { zlib } from '@kit.BasicServicesKit';
@@ -41,21 +41,22 @@ import { EventUtil } from '../common/EventUtil';
 const TAG = 'IssueReporterAdd'
 
 class SubmitInfo {
-  issueId: string = '' // 问题单id
-  devid: string = '' // 设备id
-  faultTime: string = '' // 故障时间
-  probability: string = '' // 问题概率
-  description: string = '' // 问题描述
-  logs: string = '' // 日志
-  phone?: string = '' // 手机
-  attachment?: Attachment[] = [] // 附件
-  phoneModel?: string = '' // 手机型号
-  softwareVersion?: string = '' // 软件版本
-  type: string = '' // 问题类型
+  public issueId: string = '' // 问题单id
+  public devid: string = '' // 设备id
+  public faultTime: string = '' // 故障时间
+  public probability: string = '' // 问题概率
+  public description: string = '' // 问题描述
+  public logs: string = '' // 日志
+  public phone?: string = '' // 手机
+  public attachment?: Attachment[] = [] // 附件
+  public phoneModel?: string = '' // 手机型号
+  public softwareVersion?: string = '' // 软件版本
+  public type: string = '' // 问题类型
 }
 
 const BYTE_TO_MB: number = 1024 * 1024
-const  sourceToolMouseClick: number = 7
+const sourceToolMouseClick: number = 7
+
 @Entry
 @Component
 export default struct IssueReporterAdd {
@@ -98,15 +99,16 @@ export default struct IssueReporterAdd {
   }
   @StorageLink('issueReportTime') issueReportTime: string = '';
   @StorageLink('issueReportDate') issueReportDate: string = '';
-
-  @State focus_: boolean = false;   //解决6320该页面在输入需求描述区域无法正常上下  false代表下键 true代表上
-   focusController = this.getUIContext().getFocusController();
-   issueAttachmentFocusKey:string='FocusUpload'
+  @State focus_: boolean = false; //解决6320该页面在输入需求描述区域无法正常上下  false代表下键 true代表上
+  focusController = this.getUIContext().getFocusController();
+  issueAttachmentFocusKey: string = 'FocusUpload'
   private lastHoverTime: number = 0;
   private readonly THROTTLE_DELAY: number = 500; // 500ms内只执行一次
+
   onBackPress() {
     return !this.isManualBack
   }
+
   onPageShow() {
     this.issueReportTime = ''
     this.issueReportDate = ''
@@ -159,8 +161,8 @@ export default struct IssueReporterAdd {
 
   private async submit() {
     this.isManualBack = false
-    if(this.issueReportDate && this.issueReportTime){
-      this.faultTime = this.issueReportDate + " " + this.issueReportTime
+    if (this.issueReportDate && this.issueReportTime) {
+      this.faultTime = this.issueReportDate + ' ' + this.issueReportTime
     }
     if (this.faultTime.length == 0) {
       this.isManualBack = true
@@ -290,7 +292,7 @@ export default struct IssueReporterAdd {
     }
     LogManager.hilogIWithTag(TAG, `issueInfoCache-newCaches, ${JSON.stringify(newCaches)}`)
     AppStorage.setOrCreate('issueInfoCaches', newCaches)
-    kvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(newCaches))
+    KvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(newCaches))
   }
 
   private async uploadAttachment() {
@@ -363,7 +365,7 @@ export default struct IssueReporterAdd {
       }
     }
 
-    let uid: number = AppStorage.get<number>("appUid") as number;
+    let uid: number = AppStorage.get<number>('appUid') as number;
     LogManager.hilogIWithTag(TAG, `submitLogs uid: ${uid}`);
     if (uid === undefined) {
       LogManager.hilogIWithTag(TAG, `submitLogs error uid is undefined`);
@@ -775,7 +777,7 @@ export default struct IssueReporterAdd {
                     .fontSize(fpChangeLpx(36))
                     .fontWeight(500)
                     .fontColor(this.isFocusInput ? $r('app.color.global_default_background') :
-                      $r('app.color.default_white'))
+                    $r('app.color.default_white'))
                   Text('*')
                     .fontColor(Color.Red)
                     .fontSize(fpChangeLpx(36))
@@ -796,12 +798,12 @@ export default struct IssueReporterAdd {
                   .enterKeyType(EnterKeyType.Done)
                   .placeholderFont({ size: fpChangeLpx(24) })
                   .placeholderColor(this.isFocusInput ? $r('app.color.global_default_background') :
-                    $r('app.color.default_white'))
+                  $r('app.color.default_white'))
                   .height(vpChangeLpx(100))
                   .barState(BarState.Auto)
                   .fontSize(fpChangeLpx(28))
                   .fontColor(this.isFocusInput ? $r('app.color.global_default_background') :
-                    $r('app.color.default_white'))
+                  $r('app.color.default_white'))
                   .maxLength(1024)
                   .enableKeyboardOnFocus(true)
                   .backgroundColor($r('app.color.button_transParent'))
@@ -869,7 +871,7 @@ export default struct IssueReporterAdd {
             { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } : null)
           .margin({ bottom: vpChangeLpx(24) })
         }
-        .onFocus(()=>{
+        .onFocus(() => {
           this.scroller.scrollToIndex(3, false, ScrollAlign.START)
         })
 
@@ -905,7 +907,7 @@ export default struct IssueReporterAdd {
                 .borderRadius(vpChangeLpx(55))
                 .fontSize(fpChangeLpx(48))
                 .fontColor(this.isFocusSubmit ? $r('app.color.global_default_background') :
-                  $r('app.color.default_white'))
+                $r('app.color.default_white'))
                 .backgroundColor(this.isFocusSubmit ? $r('app.color.default_white') : $r('app.color.button_gray'))
                 .focusBox({
                   margin: LengthMetrics.lpx(2),
@@ -949,7 +951,7 @@ export default struct IssueReporterAdd {
             .alignItems(VerticalAlign.Center)
             .margin({ top: vpChangeLpx(24) })
             .border({
-              width: this.isFocusSubmit? '2lpx' : 0,
+              width: this.isFocusSubmit ? '2lpx' : 0,
               radius: '50lpx',
               color: Color.White,
               style: BorderStyle.Solid
@@ -977,29 +979,15 @@ export default struct IssueReporterAdd {
     .height('100%')
     .backgroundColor($r('app.color.global_default_background'))
     .onKeyEvent((event) => {
-      if (event.keyCode==KeyCode.KEYCODE_DPAD_UP) {
-        this.focus_=true
-      }else if (event.keyCode==KeyCode.KEYCODE_DPAD_DOWN) {
-        this.focus_=false
+      if (event.keyCode == KeyCode.KEYCODE_DPAD_UP) {
+        this.focus_ = true
+      } else if (event.keyCode == KeyCode.KEYCODE_DPAD_DOWN) {
+        this.focus_ = false
       }
       if (event.keyCode == KeyCode.KEYCODE_ESCAPE) {
         router.back()
       }
     })
-    // .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-    //   if (isVisible && currentRatio >= 1.0) {
-    //     setTimeout(() => {
-    //       if (this.focus_) {
-    //         this.focusController.activate(true, true);
-    //         focusControl.requestFocus('question_type')
-    //       }else {
-    //         tabClick();
-    //       }
-    //     }, TIME_INT)
-    //   }
-    // })
-    // .onTouch((event) => {
-    //   PointerUtil.changePointStyle(event.type == TouchType.Down);
-    // })
+
   }
 }

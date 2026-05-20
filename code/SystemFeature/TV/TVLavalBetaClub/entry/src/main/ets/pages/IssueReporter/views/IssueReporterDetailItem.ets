@@ -1,5 +1,5 @@
 import LogManager from '../../../common/Log/LogManager'
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 import picker from '@ohos.file.picker'
 import base from '@ohos.base';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -85,10 +85,10 @@ export default struct IssueReporterDetailItem {
         }
       },
       onCancel: () => {
-        console.info("DatePickerDialog:onCancel()")
+        console.info('DatePickerDialog:onCancel()')
       },
       onDateChange: (value: Date) => {
-        console.info("DatePickerDialog:onDateChange()" + value.toString())
+        console.info('DatePickerDialog:onDateChange()' + value.toString())
       }
     })
   }
@@ -113,10 +113,10 @@ export default struct IssueReporterDetailItem {
         }
       },
       onCancel: () => {
-        console.info("TextPickerDialog:onCancel()")
+        console.info('TextPickerDialog:onCancel()')
       },
       onChange: (value: TextPickerResult) => {
-        console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+        console.info('TextPickerDialog:onChange()' + JSON.stringify(value))
       }
     })
   }
@@ -128,11 +128,11 @@ export default struct IssueReporterDetailItem {
       this.selectedPhotoHandle(this.photoInfos)
     }
 
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
-    PhotoSelectOptions.maxSelectNumber = 9;
+    let photoSelectOptions = new picker.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+    photoSelectOptions.maxSelectNumber = 9;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then(async (PhotoSelectResult: picker.PhotoSelectResult) => {
+    photoPicker.select(photoSelectOptions).then(async (photoSelectResult: picker.PhotoSelectResult) => {
       LogManager.hilogIWithTag(TAG, `selectPhoto select, PhotoSelectResult: ${JSON.stringify(PhotoSelectResult)}`)
 
       let uris = PhotoSelectResult.photoUris;
@@ -148,7 +148,8 @@ export default struct IssueReporterDetailItem {
             predicates: predicates
           };
           LogManager.hilogIWithTag(TAG, `selectPhoto select, getAssets start`)
-          let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+          let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+            await phAccessHelper.getAssets(fetchOption);
           // 得到uri对应的PhotoAsset对象，读取文件的部分信息
           LogManager.hilogIWithTag(TAG, `selectPhoto select, getFirstObject start`)
           let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();

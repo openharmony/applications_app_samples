@@ -2,7 +2,7 @@ export interface UploadImageInfo {
   type: string,
   url?: string,
   id?: string,
-  image_name: string
+  imageName: string
 }
 
 export const ANIMATION_FIVE = 500

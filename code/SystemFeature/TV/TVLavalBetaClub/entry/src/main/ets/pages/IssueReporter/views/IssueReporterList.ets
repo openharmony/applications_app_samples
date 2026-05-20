@@ -1,6 +1,11 @@
-import IssueDetailInfo, { statusList, issueUpdateTime, fpChangeLpx, vpChangeLpx,
+import IssueDetailInfo, {
+  statusList,
+  IssueUpdateTime,
+  fpChangeLpx,
+  vpChangeLpx,
   TIME_INT_VIS,
-  PROMPT_TIME} from '../models/IssueDetailInfo'
+  PROMPT_TIME
+} from '../models/IssueDetailInfo'
 import router from '@ohos.router';
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import KeyConstant from '../../../common/Constants/KeyConstant';
@@ -9,7 +14,7 @@ import NetworkManager from '../../../common/Network/NetworkManager';
 import UrlConstant from '../../../common/Constants/UrlConstant';
 import LogManager from '../../../common/Log/LogManager';
 import promptAction from '@ohos.promptAction';
-import kvManagerService from '../../../common/kvManager/kvManagerService';
+import KvManagerService from '../../../common/kvManager/kvManagerService';
 import issueReportCardItem from './issueReportCardItem'
 import { http } from '@kit.NetworkKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
@@ -21,15 +26,16 @@ import { EventUtil } from '../../common/EventUtil';
 import { enterClick } from './issueReportSelectItem';
 
 class Page {
-  current: number = 0
-  size: number = 0
-  devid: string = ''
-  pages?: number
-  total?: number
+  public current: number = 0
+  public size: number = 0
+  public devid: string = ''
+  public pages?: number
+  public total?: number
 }
 
 const TAG = 'IssueReporterList'
-const  sourceToolMouseClick: number = 7
+const sourceToolMouseClick: number = 7
+
 @Entry
 @Component
 export default struct IssueReporterList {
@@ -55,7 +61,7 @@ export default struct IssueReporterList {
       return item
     })
     LogManager.hilogIWithTag(TAG, `KV_ISSUE_KEY, data: ${JSON.stringify(cacheIssueInfos)}`)
-    kvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(cacheIssueInfos))
+    KvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(cacheIssueInfos))
   }
 
   loadIssueList() {
@@ -64,7 +70,7 @@ export default struct IssueReporterList {
 
     this.getList(() => {
       AppStorage.set(KeyConstant.IS_SHOW_LOADING, false)
-      kvManagerService.getValue(KeyConstant.KV_ISSUE_KEY, (data: string) => {
+      KvManagerService.getValue(KeyConstant.KV_ISSUE_KEY, (data: string) => {
         LogManager.hilogIWithTag(TAG, `KV_ISSUE_KEY, data: ${data}`)
         const cacheIssueInfos = JSON.parse(data) as IssueDetailInfo[]
         AppStorage.setOrCreate('issueInfoCaches', cacheIssueInfos)
@@ -92,61 +98,64 @@ export default struct IssueReporterList {
 
   private getList(handle: () => void) {
     NetworkManager.shareInstance()
-      .request(UrlConstant.ISSUE_LIST + '?' + 'current=' + this.page.current + '&' + 'size=' + this.page.size, this.page, (listErr, listResult) => {
-        LogManager.hilogIWithTag(TAG, `getList, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`)
-        if (handle) {
-          handle()
-        }
-
-        if (!listResult || !listResult.result) {
-          promptAction.showToast({
-            message: $r('app.string.warning_prompt'),
-            duration: PROMPT_TIME
-          })
-          return
-        }
-
-        let code = listResult.responseCode as number
-        LogManager.hilogIWithTag(TAG, `getList, code: ${JSON.stringify(code)}`)
-
-        if (listErr && code != 200) {
-          promptAction.showToast({
-            message: $r('app.string.warning_prompt'),
-            duration: PROMPT_TIME
-          })
-          return
-        }
-
-        if (listResult.result['data']?.records) {
-          if (this.page.current == 1) {
-            this.issueDetailAllInfos = []
+      .request(UrlConstant.ISSUE_LIST + '?' + 'current=' + this.page.current + '&' + 'size=' + this.page.size,
+        this.page, (listErr, listResult) => {
+          LogManager.hilogIWithTag(TAG,
+            `getList, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`)
+          if (handle) {
+            handle()
           }
-          if (listResult.result['data'].records?.length > 0) {
-            for (let index = 0; index < listResult.result['data']?.records.length; index++) {
-              this.issueDetailAllInfos.push(listResult.result['data']?.records[index])
+
+          if (!listResult || !listResult.result) {
+            promptAction.showToast({
+              message: $r('app.string.warning_prompt'),
+              duration: PROMPT_TIME
+            })
+            return
+          }
+
+          let code = listResult.responseCode as number
+          LogManager.hilogIWithTag(TAG, `getList, code: ${JSON.stringify(code)}`)
+
+          if (listErr && code != 200) {
+            promptAction.showToast({
+              message: $r('app.string.warning_prompt'),
+              duration: PROMPT_TIME
+            })
+            return
+          }
+
+          if (listResult.result['data']?.records) {
+            if (this.page.current == 1) {
+              this.issueDetailAllInfos = []
             }
+            if (listResult.result['data'].records?.length > 0) {
+              for (let index = 0; index < listResult.result['data']?.records.length; index++) {
+                this.issueDetailAllInfos.push(listResult.result['data']?.records[index])
+              }
+            }
+            this.checkIssueUpdate()
+
+            this.page.pages = listResult.result['data']['pages']
+            this.page.total = listResult.result['data']['total']
+
+            LogManager.hilogIWithTag(TAG, `getList, issueDetailAllInfos: ${JSON.stringify(this.issueDetailAllInfos)}`)
+            LogManager.hilogIWithTag(TAG,
+              `getList, pages: ${JSON.stringify(this.page.pages)}, total: ${JSON.stringify(this.page.total)}`)
           }
-          this.checkIssueUpdate()
-
-          this.page.pages = listResult.result['data']['pages']
-          this.page.total = listResult.result['data']['total']
-
-          LogManager.hilogIWithTag(TAG, `getList, issueDetailAllInfos: ${JSON.stringify(this.issueDetailAllInfos)}`)
-          LogManager.hilogIWithTag(TAG, `getList, pages: ${JSON.stringify(this.page.pages)}, total: ${JSON.stringify(this.page.total)}`)
-        }
-      },http.RequestMethod.GET)
+        }, http.RequestMethod.GET)
   }
 
   private checkIssueUpdate() {
-    kvManagerService.getValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, (data: string) => {
+    KvManagerService.getValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, (data: string) => {
       LogManager.hilogIWithTag(TAG, `KV_ISSUE_UPDATE_TIME_KEY, data xx: ${data}`)
-      let issueUpdateTimeList: issueUpdateTime[] = JSON.parse(data) as issueUpdateTime[]
-      let newIssueUpdateTimeList: issueUpdateTime[] = []
+      let issueUpdateTimeList: IssueUpdateTime[] = JSON.parse(data) as IssueUpdateTime[]
+      let newIssueUpdateTimeList: IssueUpdateTime[] = []
       this.issueDetailAllInfos.forEach((info: IssueDetailInfo) => {
         let hasIssueTime = false
         if (issueUpdateTimeList?.length) {
           for (let index = 0; index < issueUpdateTimeList.length; index++) {
-            let issue: issueUpdateTime = issueUpdateTimeList[index]
+            let issue: IssueUpdateTime = issueUpdateTimeList[index]
             if (info.issueId === issue.id) {
               hasIssueTime = true
               if (info.updateTime !== issue.time) {
@@ -161,16 +170,18 @@ export default struct IssueReporterList {
         }
       })
       this.getInfoList()
-      kvManagerService.putValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, JSON.stringify(issueUpdateTimeList.concat(newIssueUpdateTimeList)))
-      LogManager.hilogIWithTag(TAG, `issueUpdateTimeList: ${JSON.stringify(issueUpdateTimeList.concat(newIssueUpdateTimeList))}`)
+      KvManagerService.putValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY,
+        JSON.stringify(issueUpdateTimeList.concat(newIssueUpdateTimeList)))
+      LogManager.hilogIWithTag(TAG,
+        `issueUpdateTimeList: ${JSON.stringify(issueUpdateTimeList.concat(newIssueUpdateTimeList))}`)
     })
   }
 
   resetNewKey(info: IssueDetailInfo) {
     LogManager.hilogIWithTag(TAG, `issueUpdateTimeListxxxxxxxx: ${JSON.stringify(info)}`)
-    kvManagerService.getValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, (data: string) => {
+    KvManagerService.getValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, (data: string) => {
       LogManager.hilogIWithTag(TAG, `KV_ISSUE_UPDATE_TIME_KEY, data: ${data}`)
-      let issueUpdateTimeList: issueUpdateTime[] = JSON.parse(data) as issueUpdateTime[]
+      let issueUpdateTimeList: IssueUpdateTime[] = JSON.parse(data) as IssueUpdateTime[]
       this.issueDetailAllInfos = this.issueDetailAllInfos.map((item: IssueDetailInfo) => {
         if (info.issueId === item.issueId) {
           item.isNew = false
@@ -181,14 +192,14 @@ export default struct IssueReporterList {
       this.getInfoList()
       if (issueUpdateTimeList?.length) {
         for (let index = 0; index < issueUpdateTimeList.length; index++) {
-          let issue: issueUpdateTime = issueUpdateTimeList[index]
+          let issue: IssueUpdateTime = issueUpdateTimeList[index]
           if (info.issueId === issue.id) {
             issue.time = info.updateTime || ''
             break
           }
         }
       }
-      kvManagerService.putValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, JSON.stringify(issueUpdateTimeList))
+      KvManagerService.putValue(KeyConstant.KV_ISSUE_UPDATE_TIME_KEY, JSON.stringify(issueUpdateTimeList))
       LogManager.hilogIWithTag(TAG, `getList, issueDetailAllInfos: ${JSON.stringify(issueUpdateTimeList)}`)
     })
   }
@@ -226,97 +237,101 @@ export default struct IssueReporterList {
 
   @Builder
   getListView() {
-    List({  scroller: this.scroller }) {
-      ForEach(this.issueDetailNewInfos.concat(this.cacheIssueInfos, this.issueDetailInfos), (item: IssueDetailInfo, index: number) => {
-        ListItem() {
-          Row(){//用来加加边框
-            Column({ space: '18lpx' }) {
-              issueReportCardItem({
-                itemLabel: '问题单号:',
-                itemValue: item.issueId,
-                isBold: true,
-                isShow: item.isNew,
-                tagItem: { key: 'new', color: Color.Orange },
-                isFocus: this.currentIndex === index
-              })
-              issueReportCardItem({
-                itemLabel: '当前状态:',
-                itemValue: (item.status === '6' || item.status === '7') ? '' : item.statusDesc,
-                isShow: item.status === '6' || item.status === '7',
-                tagItem: { key: item.statusDesc, color: Color.Red },
-                isFocus: this.currentIndex === index
-              })
-              issueReportCardItem({
-                itemLabel: '创建时间:',
-                itemValue: item.faultTime,
-                isFocus: this.currentIndex === index
-              })
-              issueReportCardItem({
-                itemLabel: '问题描述:',
-                itemValue: item.description,
-                isDecItem: true,
-                isFocus: this.currentIndex === index
-              })
-            }.layoutWeight(1)
-            .borderRadius(vpChangeLpx(24))
-            .backgroundColor(this.currentIndex === index ? $r('app.color.default_white') : $r('app.color.custom_background'))
-            .padding('15lpx')
-          }
-          .border({
-            width: this.currentIndex == index? '2lpx' : 0,
-            radius: '24lpx',
-            color: Color.White,
-            style: BorderStyle.Solid
-          })
-          .padding('5lpx')
-        }
-        .margin('20lpx')
-        .key('item'+index)
-        .defaultFocus(true)
-        .focusBox({
-          margin: LengthMetrics.lpx(5),
-          strokeColor: ColorMetrics.resourceColor($r('app.color.default_white')),
-          strokeWidth: LengthMetrics.lpx(0)
-        })
-        .onFocus(() => {
-          this.currentIndex = index
-          this.scroller.scrollToIndex(index, true)
-        })
-        .onTouch((event) => {
-          focusControl.requestFocus('item'+index)
-          if (!EventUtil.isTouchEvent(event)) {
-            return;
-          }
-          if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== sourceToolMouseClick) {
-            return;
-          }
-        })
-        .onHover(()=>{
-          focusControl.requestFocus('item'+index)
-          this.scroller.scrollToIndex(index, true)
-        })
-        .animation({
-          duration: ANIMATION_FIVE,
-          curve: Curve.Ease
-        })
-        .onClick((event) => {
-          focusControl.requestFocus('item'+index)
-          if (item.status == '5' ) {{
-              promptAction.showToast({
-                message: '上传中...'
-              })
-              return
+    List({ scroller: this.scroller }) {
+      ForEach(this.issueDetailNewInfos.concat(this.cacheIssueInfos, this.issueDetailInfos),
+        (item: IssueDetailInfo, index: number) => {
+          ListItem() {
+            Row() { //用来加加边框
+              Column({ space: '18lpx' }) {
+                issueReportCardItem({
+                  itemLabel: '问题单号:',
+                  itemValue: item.issueId,
+                  isBold: true,
+                  isShow: item.isNew,
+                  tagItem: { key: 'new', color: Color.Orange },
+                  isFocus: this.currentIndex === index
+                })
+                issueReportCardItem({
+                  itemLabel: '当前状态:',
+                  itemValue: (item.status === '6' || item.status === '7') ? '' : item.statusDesc,
+                  isShow: item.status === '6' || item.status === '7',
+                  tagItem: { key: item.statusDesc, color: Color.Red },
+                  isFocus: this.currentIndex === index
+                })
+                issueReportCardItem({
+                  itemLabel: '创建时间:',
+                  itemValue: item.faultTime,
+                  isFocus: this.currentIndex === index
+                })
+                issueReportCardItem({
+                  itemLabel: '问题描述:',
+                  itemValue: item.description,
+                  isDecItem: true,
+                  isFocus: this.currentIndex === index
+                })
+              }.layoutWeight(1)
+              .borderRadius(vpChangeLpx(24))
+              .backgroundColor(this.currentIndex === index ? $r('app.color.default_white') :
+              $r('app.color.custom_background'))
+              .padding('15lpx')
             }
+            .border({
+              width: this.currentIndex == index ? '2lpx' : 0,
+              radius: '24lpx',
+              color: Color.White,
+              style: BorderStyle.Solid
+            })
+            .padding('5lpx')
           }
-          this.resetNewKey(item)
-          LogManager.hilogIWithTag(TAG, `submitRequest upload, error xx: ${JSON.stringify(item)}`)
-          const url = (item.status == '6' || item.status == '7') ? 'pages/IssueReporter/IssueReporterAdd' : 'pages/IssueReporter/IssueReporterDetail'
-          router.pushUrl({
-            url,
-            params: item
+          .margin('20lpx')
+          .key('item' + index)
+          .defaultFocus(true)
+          .focusBox({
+            margin: LengthMetrics.lpx(5),
+            strokeColor: ColorMetrics.resourceColor($r('app.color.default_white')),
+            strokeWidth: LengthMetrics.lpx(0)
+          })
+          .onFocus(() => {
+            this.currentIndex = index
+            this.scroller.scrollToIndex(index, true)
+          })
+          .onTouch((event) => {
+            focusControl.requestFocus('item' + index)
+            if (!EventUtil.isTouchEvent(event)) {
+              return;
+            }
+            if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== sourceToolMouseClick) {
+              return;
+            }
+          })
+          .onHover(() => {
+            focusControl.requestFocus('item' + index)
+            this.scroller.scrollToIndex(index, true)
+          })
+          .animation({
+            duration: ANIMATION_FIVE,
+            curve: Curve.Ease
+          })
+          .onClick((event) => {
+            focusControl.requestFocus('item' + index)
+            if (item.status == '5') {
+              {
+                promptAction.showToast({
+                  message: '上传中...'
+                })
+                return
+              }
+            }
+            this.resetNewKey(item)
+            LogManager.hilogIWithTag(TAG, `submitRequest upload, error xx: ${JSON.stringify(item)}`)
+            const url = (item.status == '6' || item.status == '7') ? 'pages/IssueReporter/IssueReporterAdd' :
+              'pages/IssueReporter/IssueReporterDetail'
+            router.pushUrl({
+              url,
+              params: item
+            })
           })
         })
-      })
     }
     .edgeEffect(EdgeEffect.None)
     .layoutWeight(1)

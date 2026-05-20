@@ -49,7 +49,7 @@ export function delay(millSeconds: number): Promise<void> {
 
 
 export async function getThumbByUri(context: Context, photoModel: PhotoModel, tag: string): Promise<string> {
-  LogManager.hilogIWithTag(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + " from " + tag)
+  LogManager.hilogIWithTag(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + ' from ' + tag)
   const thumbPath = await getSavedThumbPath(context, photoModel.uri)
   if (thumbPath) {
     LogManager.hilogIWithTag(TAG, 'return on cached= ' + 'file://' + thumbPath)

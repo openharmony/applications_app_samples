@@ -6,12 +6,10 @@ const LOG_DOMAIN = 0x0102
 
 export default class LogManager {
 
-    // console.log
     public static log(tag: string, msg: string) {
         console.log(`${TAG} tag: ${tag} --> ${msg}`)
     }
 
-    // hilog
     public static hilogD(msg: string) {
         if (hilog.isLoggable(LOG_DOMAIN, TAG, hilog.LogLevel.DEBUG)) {
             hilog.debug(LOG_DOMAIN, TAG, msg)

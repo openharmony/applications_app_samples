@@ -19,18 +19,12 @@ export function tabClick() {
     keyDownDuration: 0,
     isIntercepted: false
   };
-
-  class KeyEvent {
-    KeyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventDown: KeyEvent = { KeyEvent: keyDownOpt }
-  let eventUp: KeyEvent = { KeyEvent: keyUpOpt }
+  
 
   try {
     // 触发tab点击，使默认焦点组件多态样式生效
-    inputEventClient.injectEvent(eventDown);
-    inputEventClient.injectEvent(eventUp);
+    inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
+    inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
     console.error('settingList inputEventClient' + err)
   }

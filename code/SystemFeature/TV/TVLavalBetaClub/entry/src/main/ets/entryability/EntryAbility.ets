@@ -11,7 +11,7 @@ import LogManager from '../common/Log/LogManager'
 import DeviceManager from '../common/Device/DeviceManager';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
-import kvManagerService from '../common/kvManager/kvManagerService';
+import KvManagerService from '../common/kvManager/kvManagerService';
 import systemParameter from '@ohos.systemparameter';
 import photoManager from '../manager/PhotoManager';
 import { getAllMediaItems } from '../manager/loader/MediaTasks';
@@ -29,17 +29,17 @@ export default class EntryAbility extends UIAbility {
 
     this.startRequestPermission()
 
-    bundleManager.getApplicationInfo("com.laval.betaclub", bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT)
+    bundleManager.getApplicationInfo('com.laval.betaclub', bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT)
       .then((applicationInfo) => {
-        AppStorage.setOrCreate<number>("appUid", applicationInfo.uid);
+        AppStorage.setOrCreate<number>('appUid', applicationInfo.uid);
         console.info(TAG, `getApplicationInfo success, uid: ${applicationInfo.uid}`);
       })
       .catch((err: BusinessError) => {
         console.error(TAG, `getApplicationInfo fail, err: ${err}`);
       })
 
-    kvManagerService.createKV(this.context, 'com.laval.betaclub');
-    kvManagerService.createStore(KeyConstant.KV_STORE_ID);
+    KvManagerService.createKV(this.context, 'com.laval.betaclub');
+    KvManagerService.createStore(KeyConstant.KV_STORE_ID);
   }
 
   // 保护性验证，确认只能开发者手机使用
@@ -58,7 +58,7 @@ export default class EntryAbility extends UIAbility {
     getAllMediaItems('init', this.context)
     photoManager.init(this.context)
     // 应用启动，开启hilog抓取
-    const url = systemParameter.getSync("persist.basic.betaclube.url")
+    const url = systemParameter.getSync('persist.basic.betaclube.url')
     const productUrl = 'http://10.20.72.111:3470/'
     LogManager.hilogIWithTag(TAG, `initConfig url: ${JSON.stringify(url)}`)
 

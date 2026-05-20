@@ -104,7 +104,7 @@ export default struct ImagePreViewDialog {
             .selectedColor(Color.Blue))
         .displayArrow(false, false)
       }
-      .width("100%")
+      .width('100%')
       .height('100%')
       .justifyContent(FlexAlign.Center)
 
@@ -119,7 +119,7 @@ export default struct ImagePreViewDialog {
       }
 
     }
-    .width("100%")
+    .width('100%')
     .height('100%')
     .backgroundColor(Color.Black)
   }

@@ -60,11 +60,11 @@ export async function loadVideoThumb(context: Context, uri: string, thumbWidth: 
       LogManager.hilogIWithTag(TAG, `do save`)
       await fileUtil.savePixelMap(thumbnail, localPath)
     } else {
-      throw new Error(`thumbnail create fail`)
+      localPath = ''
     }
     LogManager.hilogIWithTag(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime))
-    return localPath
   }
+  return localPath
 }
 
 @Concurrent
