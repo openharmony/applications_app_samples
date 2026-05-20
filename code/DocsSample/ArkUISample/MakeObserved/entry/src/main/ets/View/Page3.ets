@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start function threadGetData]
+// [Start function_threadGetData]
 import { taskpool } from '@kit.ArkTS';
 import { SendableData } from '../Model/modelView';
 import { UIUtils } from '@kit.ArkUI';
@@ -55,4 +55,4 @@ struct Page3 {
     }
   }
 }
-// [End function threadGetData]
+// [End function_threadGetData]

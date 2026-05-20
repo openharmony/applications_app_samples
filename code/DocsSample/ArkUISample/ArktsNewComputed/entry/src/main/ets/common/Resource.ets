@@ -14,8 +14,20 @@
  */
 
 export class ResourceManager {
+  public context: Context | null = null;
+
+  // 初始化上下文
+  initContext(context: Context) {
+    this.context = context;
+  }
+
   public resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
+    try {
+      return this.context?.resourceManager.getStringSync(resource.id) || '';
+    } catch (error) {
+      // TODO: Implement error handling.
+      return ''
+    }
   }
 }
 
