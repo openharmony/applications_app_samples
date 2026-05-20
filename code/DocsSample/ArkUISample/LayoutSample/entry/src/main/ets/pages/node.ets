@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
 import { NavigationItem } from '../models/NavigationItem'
 
 @Entry
