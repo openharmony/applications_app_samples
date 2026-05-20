@@ -57,10 +57,6 @@
       "value": "Example11 (Punctuation)"
     },
     {
-      "name": "ComplexStyle_Button_example12",
-      "value": "Example12 (FontQuery)"
-    },
-    {
       "name": "Button_page_Multilanguage",
       "value": "Multilanguage-text page"
     },
@@ -75,22 +71,6 @@
     {
       "name": "IndependentShaping",
       "value": "Shape page"
-    },
-    {
-      "name": "Button_page_Ellipsis",
-      "value": "Ellipsis-text page"
-    },
-    {
-      "name": "Button_page_BreakStrategy",
-      "value": "BreakStrategy page"
-    },
-    {
-      "name": "Button_page_Punctuation",
-      "value": "Punctuation page"
-    },
-    {
-      "name": "Button_page_FontQuery",
-      "value": "FontQuery page"
     }
   ]
 }

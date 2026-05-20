@@ -17,7 +17,8 @@
       "SystemCapability.UserIAM.UserAuth.PinAuth",
       "SystemCapability.HiviewDFX.HiDumper",
       "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
-      "SystemCapability.Security.DeviceAuth"
+      "SystemCapability.Security.DeviceAuth",
+      "SystemCapability.Multimedia.AVSession.AVInputCast"
     ]
   }
 }

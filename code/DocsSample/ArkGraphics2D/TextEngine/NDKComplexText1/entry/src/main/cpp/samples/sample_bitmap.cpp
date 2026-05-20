@@ -234,7 +234,6 @@ IMPL_NAPI_FUNC(DrawBreakStrategyGreedyText, return)
 IMPL_NAPI_FUNC(DrawBreakStrategyHighQualityText, return)
 IMPL_NAPI_FUNC(DrawBreakStrategyBalancedText, return)
 IMPL_NAPI_FUNC(DrawPunctuationCompressText, return)
-IMPL_NAPI_FUNC(DrawFontResourcePathText, return)
 
 SampleBitMap::~SampleBitMap()
 {
@@ -345,8 +344,6 @@ static napi_property_descriptor g_exportDescs[] = {
      nullptr, napi_default, nullptr},
     {"drawPunctuationCompressText", nullptr, SampleBitMap::NapiDrawPunctuationCompressText, nullptr, nullptr,
      nullptr, napi_default, nullptr},
-    {"drawFontResourcePathText", nullptr, SampleBitMap::NapiDrawFontResourcePathText, nullptr, nullptr, nullptr,
-     napi_default, nullptr},
 };
 
 void SampleBitMap::Export(napi_env env, napi_value exports)

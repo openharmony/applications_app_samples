@@ -18,7 +18,8 @@
       "SystemCapability.Multimedia.Drm.Core",
       "SystemCapability.Advertising.Ads",
       "SystemCapability.BundleManager.AppDomainVerify",
-      "SystemCapability.Customization.EnterpriseDeviceManager"
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.Multimedia.AVSession.AVInputCast"
     ]
   }
 }
