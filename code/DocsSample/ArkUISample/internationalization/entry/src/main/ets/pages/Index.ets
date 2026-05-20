@@ -12,27 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router, Router } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-build() {
- Column(){
-   Column(){
-     // 请将$r('app.string.Interface_Layout_Border_Settings')替换为实际资源文件，在本示例中该资源文件的value值为"点击界面布局和边框设置"
-     Text($r('app.string.Interface_Layout_Border_Settings')).backgroundColor(Color.Green)
-   }.width('100%').height(50)
-   .onClick(()=>{
-     router.pushUrl({url:'homePage/InterfaceLayoutBorderSettings'});
-   })
-   Column(){
-     // 请将$r('app.string.Customize_Canvas_Component_Drawing')替换为实际资源文件，在本示例中该资源文件的value值为"点击自定义绘制Canvas组件"
-     Text($r('app.string.Customize_Canvas_Component_Drawing')).backgroundColor(Color.Green)
-   }.width('100%').height(50)
-   .onClick(()=>{
-     router.pushUrl({url:'homePage/CustomizeCanvasComponentDrawing'});
-   })
- }
-}
+  build() {
+    Column() {
+      Column() {
+        // 请将$r('app.string.Interface_Layout_Border_Settings')替换为实际资源文件，在本示例中该资源文件的value值为"点击界面布局和边框设置"
+        Text($r('app.string.Interface_Layout_Border_Settings')).backgroundColor(Color.Green)
+      }.width('100%').height(50)
+      .onClick(() => {
+        this.getUIContext().getRouter().pushUrl({ url: 'homePage/InterfaceLayoutBorderSettings' }).catch(() => {
+          console.info('push failed')
+        });
+      })
+
+      Column() {
+        // 请将$r('app.string.Customize_Canvas_Component_Drawing')替换为实际资源文件，在本示例中该资源文件的value值为"点击自定义绘制Canvas组件"
+        Text($r('app.string.Customize_Canvas_Component_Drawing')).backgroundColor(Color.Green)
+      }.width('100%').height(50)
+      .onClick(() => {
+        this.getUIContext().getRouter().pushUrl({ url: 'homePage/CustomizeCanvasComponentDrawing' }).catch(() => {
+          console.info('push failed')
+        });
+      })
+    }
+  }
 }
