@@ -17,6 +17,9 @@
 import { audio } from '@kit.AudioKit'; // 导入audio模块。
 // [Start get_Status]
 // [Start set_Volume]
+// [Start get_Volume]
+// [Start get_SupportedDevicePairs]
+// [Start get_PreferredDevicePair]
 // [Start set_ReverbPreset]
 // [Start get_ReverbPreset]
 // [Start set_EqualizerPreset]
@@ -26,6 +29,9 @@ import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError。
 // [StartExclude create_AudioLoopback]
 // [StartExclude get_Status]
 // [StartExclude set_Volume]
+// [StartExclude get_Volume]
+// [StartExclude get_SupportedDevicePairs]
+// [StartExclude get_PreferredDevicePair]
 // [StartExclude set_ReverbPreset]
 // [StartExclude get_ReverbPreset]
 // [StartExclude set_EqualizerPreset]
@@ -375,6 +381,91 @@ async function getStatus(updateCallback?: (msg: string, isError: boolean) => voi
   }
 }
 
+// 查询当前的音频返听音量。
+async function getVolume(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
+  if (audioLoopback !== undefined) {
+    // [EndExclude get_Volume]
+    let volume = audioLoopback.getVolume();
+    // [StartExclude get_Volume]
+    const successMsg = `Succeeded in getting volume, volume is ${volume}.`;
+    if (updateCallback) {
+      updateCallback(successMsg, false);
+    }
+    // [EndExclude get_Volume]
+    // [End get_Volume]
+  } else {
+    // [StartExclude get_Volume]
+    const errorMsg = 'Audio loopback not created.';
+    if (updateCallback) {
+      updateCallback(errorMsg, true);
+    }
+    // [EndExclude get_Volume]
+  }
+}
+
+// 查询当前支持返听的设备对。
+async function getSupportedDevicePairs(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
+  if (audioLoopback !== undefined) {
+    // [EndExclude get_SupportedDevicePairs]
+    let devicePairs = audioLoopback.getSupportedDevicePairs();
+    // [StartExclude get_SupportedDevicePairs]
+    if (devicePairs.length === 0) {
+      const emptyMsg = 'No supported loopback device pair found.';
+      if (updateCallback) {
+        updateCallback(emptyMsg, true);
+      }
+      return;
+    }
+    const firstPair = devicePairs[0];
+    const successMsg = `Succeeded in getting supported device pairs, count: ${devicePairs.length}, ` +
+      `first pair inputType: ${firstPair.inputDevice.deviceType}, ` +
+      `outputType: ${firstPair.outputDevice.deviceType}.`;
+    if (updateCallback) {
+      updateCallback(successMsg, false);
+    }
+    // [EndExclude get_SupportedDevicePairs]
+    // [End get_SupportedDevicePairs]
+  } else {
+    // [StartExclude get_SupportedDevicePairs]
+    const errorMsg = 'Audio loopback not created.';
+    if (updateCallback) {
+      updateCallback(errorMsg, true);
+    }
+    // [EndExclude get_SupportedDevicePairs]
+  }
+}
+
+// 查询当前系统首选的返听设备对。
+async function getPreferredDevicePair(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
+  if (audioLoopback !== undefined) {
+    // [EndExclude get_PreferredDevicePair]
+    let devicePair = audioLoopback.getPreferredDevicePair();
+    // [StartExclude get_PreferredDevicePair]
+    if (devicePair === null) {
+      const emptyMsg = 'No preferred loopback device pair found.';
+      if (updateCallback) {
+        updateCallback(emptyMsg, true);
+      }
+      return;
+    }
+    const successMsg = `Succeeded in getting preferred device pair, ` +
+      `inputType: ${devicePair.inputDevice.deviceType}, ` +
+      `outputType: ${devicePair.outputDevice.deviceType}.`;
+    if (updateCallback) {
+      updateCallback(successMsg, false);
+    }
+    // [EndExclude get_PreferredDevicePair]
+    // [End get_PreferredDevicePair]
+  } else {
+    // [StartExclude get_PreferredDevicePair]
+    const errorMsg = 'Audio loopback not created.';
+    if (updateCallback) {
+      updateCallback(errorMsg, true);
+    }
+    // [EndExclude get_PreferredDevicePair]
+  }
+}
+
 // 查询当前的音频返听的混响模式。
 async function getReverbPreset(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioLoopback !== undefined) {
@@ -606,6 +697,40 @@ struct Index {
 
         Row() {
           Column() {
+            Text('查询返听音量')
+              .fontColor(Color.Black)
+              .fontSize(14)
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .width('45%')
+          .height(60)
+          .margin({ right: 12, bottom: 12 })
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
+          .onClick(async (): Promise<void> => {
+            await getVolume((msg, isError) => this.updateLogInfo(msg, isError));
+          });
+
+          Column() {
+            Text('查询支持设备对')
+              .fontColor(Color.Black)
+              .fontSize(14)
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .width('45%')
+          .height(60)
+          .margin({ bottom: 12 })
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
+          .onClick(async (): Promise<void> => {
+            await getSupportedDevicePairs((msg, isError) => this.updateLogInfo(msg, isError));
+          });
+        }
+
+        Row() {
+          Column() {
             Text('查询均衡器类型')
               .fontColor(Color.Black)
               .fontSize(14)
@@ -641,7 +766,7 @@ struct Index {
 
         Row() {
           Column() {
-            Text('禁用音频返听')
+            Text('查询首选设备对')
               .fontColor(Color.Black)
               .fontSize(14)
           }
@@ -650,6 +775,22 @@ struct Index {
           .width('45%')
           .height(60)
           .margin({ right: 12, bottom: 12 })
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
+          .onClick(async (): Promise<void> => {
+            await getPreferredDevicePair((msg, isError) => this.updateLogInfo(msg, isError));
+          });
+
+          Column() {
+            Text('禁用音频返听')
+              .fontColor(Color.Black)
+              .fontSize(14)
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .width('45%')
+          .height(60)
+          .margin({ bottom: 12 })
           .justifyContent(FlexAlign.Center)
           .alignItems(HorizontalAlign.Center)
           .onClick(async (): Promise<void> => {
