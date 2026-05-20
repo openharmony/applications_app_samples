@@ -102,6 +102,8 @@ export default struct IssueReporterAdd {
   @State focus_: boolean = false;   //解决6320该页面在输入需求描述区域无法正常上下  false代表下键 true代表上
    focusController = this.getUIContext().getFocusController();
    issueAttachmentFocusKey:string='FocusUpload'
+  private lastHoverTime: number = 0;
+  private readonly THROTTLE_DELAY: number = 500; // 500ms内只执行一次
   onBackPress() {
     return !this.isManualBack
   }
@@ -524,7 +526,7 @@ export default struct IssueReporterAdd {
           (uploadErr, uploadResult) => {
             LogManager.hilogIWithTag(TAG,
               `submitRequest upload, err: ${JSON.stringify(uploadErr)}, result: ${JSON.stringify(uploadResult)}`)
-            if (uploadErr || !uploadResult['body'] || uploadResult['headers']['content-type'] == 'text/html') {
+            if (uploadErr || !uploadResult!['body'] || uploadResult!['headers']['content-type'] == 'text/html') {
               promptAction.showToast({
                 message: $r('app.string.warning_net_prompt'),
                 duration: PROMPT_TIME
@@ -532,7 +534,7 @@ export default struct IssueReporterAdd {
               this.issueInfoCache('6')
               return
             }
-            let logAtt: Attachment = (JSON.parse(uploadResult['body']) as UploadBody).data
+            let logAtt: Attachment = (JSON.parse(uploadResult!['body']) as UploadBody).data
             this.logAtt = logAtt
             if (this.hasLogTar) {
               try {
@@ -626,6 +628,21 @@ export default struct IssueReporterAdd {
     LogManager.hilogIWithTag(TAG, `deleteFiles, files: ${JSON.stringify(files)}`)
     for (let index = 0; index < files.length; index++) {
       fs.unlinkSync(dirPath + '/' + files[index])
+    }
+  }
+
+  // 节流处理问题描述hover事件
+  handleHoverWithThrottle(isHover: boolean): void {
+    const now = Date.now();
+    // 如果距离上次执行时间超过延迟时间，才执行
+    if (now - this.lastHoverTime >= this.THROTTLE_DELAY) {
+      this.lastHoverTime = now;
+      if (isHover) {
+        focusControl.requestFocus('TextArea');
+        LogManager.hilogIWithTag(TAG, `Focus after throttling`)
+      } else {
+        LogManager.hilogIWithTag(TAG, `Throttle skipped`)
+      }
     }
   }
 
@@ -829,7 +846,7 @@ export default struct IssueReporterAdd {
               }
             })
             .onHover((isHover: boolean) => {
-              focusControl.requestFocus('TextArea')
+              this.handleHoverWithThrottle(isHover);
             })
             .height(vpChangeLpx(239))
             .padding(vpChangeLpx(24))
@@ -969,5 +986,20 @@ export default struct IssueReporterAdd {
         router.back()
       }
     })
+    // .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
+    //   if (isVisible && currentRatio >= 1.0) {
+    //     setTimeout(() => {
+    //       if (this.focus_) {
+    //         this.focusController.activate(true, true);
+    //         focusControl.requestFocus('question_type')
+    //       }else {
+    //         tabClick();
+    //       }
+    //     }, TIME_INT)
+    //   }
+    // })
+    // .onTouch((event) => {
+    //   PointerUtil.changePointStyle(event.type == TouchType.Down);
+    // })
   }
 }

@@ -111,7 +111,10 @@ export default struct IssueReporterDetail {
         })
         return
       }
-      listResult.result = stringToObject(listResult.result)
+      let obj = stringToObject(listResult.result)
+      if (obj !== undefined) {
+        listResult.result = obj
+      }
       let code = listResult.responseCode as number
       LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`)
 
@@ -153,7 +156,10 @@ export default struct IssueReporterDetail {
           })
           return
         }
-        listResult.result = stringToObject(listResult.result)
+        let obj = stringToObject(listResult.result)
+        if (obj !== undefined) {
+          listResult.result = obj
+        }
         // let code = listResult.result['code'] as number
         let code = listResult.responseCode as number
         LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`)

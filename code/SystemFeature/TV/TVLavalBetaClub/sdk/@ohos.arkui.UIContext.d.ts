@@ -1976,7 +1976,7 @@ export interface AtomicServiceBar {
 export class DynamicSyncScene {
   /**
    * Sets the FrameRateRange of the DynamicSyncScene.
-   *
+   * 
    * @param { ExpectedFrameRateRange } range - The range of frameRate.
    * @syscap SystemCapability.ArkUI.ArkUI.Full
    * @atomicservice
@@ -1986,7 +1986,7 @@ export class DynamicSyncScene {
 
   /**
    * Gets the FrameRateRange of the DynamicSyncScene.
-   *
+   * 
    * @returns { ExpectedFrameRateRange } The range of frameRate.
    * @syscap SystemCapability.ArkUI.ArkUI.Full
    * @atomicservice
@@ -1997,7 +1997,7 @@ export class DynamicSyncScene {
 
 /**
  * Represents a dynamic synchronization scene of Swiper.
- *
+ * 
  * @extends DynamicSyncScene
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @atomicservice
@@ -2045,7 +2045,7 @@ export class DragController {
    * Execute a drag event.
    * @param { CustomBuilder | DragItemInfo } custom - Object used for prompts displayed when the object is dragged.
    * @param { dragController.DragInfo } dragInfo - Information about the drag event.
-   * @param { AsyncCallback<dragController.DragEventParam> } callback - Callback that contains
+   * @param { AsyncCallback<dragController.DragEventParam> } callback - Callback that contains 
    * the drag event information.
    * @throws { BusinessError } 401 - Parameter error. Possible causes:
    * <br> 1. Mandatory parameters are left unspecified.
@@ -3229,7 +3229,7 @@ export const enum KeyboardAvoidMode {
 
 /**
  * Enum of SwiperDynamicSyncSceneType
- *
+ * 
  * @enum { number } SwiperDynamicSyncSceneType
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @atomicservice
@@ -3238,7 +3238,7 @@ export const enum KeyboardAvoidMode {
 export const enum SwiperDynamicSyncSceneType {
   /**
    * Scene type is GESTURE.
-   *
+   * 
    * @syscap SystemCapability.ArkUI.ArkUI.Full
    * @atomicservice
    * @since 12
@@ -3247,7 +3247,7 @@ export const enum SwiperDynamicSyncSceneType {
 
   /**
    * Scene type is ANIMATION.
-   *
+   * 
    * @syscap SystemCapability.ArkUI.ArkUI.Full
    * @atomicservice
    * @since 12
