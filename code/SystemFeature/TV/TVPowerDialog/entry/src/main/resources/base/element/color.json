@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_color",
+      "value": "#182431"
+    },
+    {
+      "name": "button_text_color",
+      "value": "#0D81F2"
+    },
+    {
+      "name": "button_background_color",
+      "value": "#00FFFFFF"
+    },
+    {
+      "name": "default_background_color",
+      "value": "#00FFFFFF"
+    },
+    {
+      "name": "split_color",
+      "value": "#1AFFFFFF"
+    }
+  ]
+}

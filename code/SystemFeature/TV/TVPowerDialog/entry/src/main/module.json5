@@ -1,0 +1,66 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "exported": true,
+        "launchType": "standard",
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "PowerUiExtensionAbility",
+        "srcEntry": "./ets/ServiceExtAbility/PowerDialogAbility.ts",
+        "icon": "$media:icon",
+        "label": "$string:PowerServiceExtAbility_label",
+        "exported": true,
+        "type": "sysDialog/power"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "reason": "$string:PowerServiceExtAbility_reason",
+        "name": "ohos.permission.REBOOT",
+        "usedScene": {
+          "abilities": [
+            "PowerDialogAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "reason": "$string:PowerServiceExtAbility_reason",
+        "name": "ohos.permission.POWER_MANAGER",
+        "usedScene": {
+          "abilities": [
+            "PowerDialogAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ]
+  }
+}
