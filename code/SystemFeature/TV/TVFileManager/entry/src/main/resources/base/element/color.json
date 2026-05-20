@@ -1,0 +1,92 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_bar_text",
+      "value": "#E6FFFFFF"
+    },
+    {
+      "name": "title_bar_hint_text",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "home_tab_bg",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "home_tab_bg_sel",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "home_tab_text",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "home_tab_text_sel",
+      "value": "#DB000000"
+    },
+    {
+      "name": "storage_progress_color",
+      "value": "#006CED"
+    },
+    {
+      "name": "file_list_item_bg",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "file_list_item_bg_sel",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "file_list_text",
+      "value": "#DBffffff"
+    },
+    {
+      "name": "file_list_text_sel",
+      "value": "#DB000000"
+    },
+    {
+      "name": "dialog_bg",
+      "value": "#424242"
+    },
+    {
+      "name": "rename_title",
+      "value": "#E6FFFFFF"
+    },
+    {
+      "name": "rename_input_text",
+      "value": "#DB000000"
+    },
+    {
+      "name": "rename_input_text_hint",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "rename_input_bg",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "progress_dialog_bg",
+      "value": "#404040"
+    },
+    {
+      "name": "progress_dialog_title",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "progress_dialog_text",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "progress_dialog_progress_color1",
+      "value": "#206BFF"
+    },
+    {
+      "name": "progress_dialog_progress_color2",
+      "value": "#6194F9"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "storePassword": "0000001B857380FF15BC41137A265FF55485552C85B9BB4DF42B32A5C74843BCB30BC0B0BD5404E04D5BF3",
+          "certpath": "signature/FileManangerTV.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BD8DA5AE25B65F1371EF43B55F4949594CD17BC6BCAE25249A4EAD01931D9AF05AC9BB7D2442E10",
+          "profile": "signature/FileManangerTV.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "signature/FileManangerTV.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 15,
+        "compatibleSdkVersion": 15,
+        "runtimeOS": "OpenHarmony",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

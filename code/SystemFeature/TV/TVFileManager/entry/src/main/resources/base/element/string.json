@@ -1,0 +1,192 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "文件管理"
+    },
+    {
+      "name": "app_name",
+      "value": "文件管理器"
+    },
+    {
+      "name": "title_bar_hint",
+      "value": "按菜单键进行更多操作"
+    },
+    {
+      "name": "storage_space_text",
+      "value": "存储: %s"
+    },
+    {
+      "name": "media_type_video",
+      "value": "视频"
+    },
+    {
+      "name": "media_type_image",
+      "value": "图片"
+    },
+    {
+      "name": "media_type_doc",
+      "value": "文档"
+    },
+    {
+      "name": "media_type_audio",
+      "value": "音频"
+    },
+    {
+      "name": "media_type_device",
+      "value": "本机目录%s"
+    },
+    {
+      "name": "external_storage",
+      "value": "外部储存%s"
+    },
+    {
+      "name": "operation_type_delete",
+      "value": "删除"
+    },
+    {
+      "name": "operation_type_move",
+      "value": "移动"
+    },
+    {
+      "name": "operation_type_move_confirm",
+      "value": "确定移动"
+    },
+    {
+      "name": "operation_type_move_cancel",
+      "value": "取消移动"
+    },
+    {
+      "name": "operation_type_copy",
+      "value": "拷贝"
+    },
+    {
+      "name": "operation_type_copy_confirm",
+      "value": "确认拷贝"
+    },
+    {
+      "name": "operation_type_copy_cancel",
+      "value": "取消拷贝"
+    },
+    {
+      "name": "operation_type_all_choice",
+      "value": "全选"
+    },
+    {
+      "name": "operation_type_all_choice_cancel",
+      "value": "取消全选"
+    },
+    {
+      "name": "operation_type_more_choice",
+      "value": "多选"
+    },
+    {
+      "name": "operation_type_more_choice_cancel",
+      "value": "取消多选"
+    },
+    {
+      "name": "operation_type_share",
+      "value": "分享"
+    },
+    {
+      "name": "operation_type_rename",
+      "value": "重命名"
+    },
+    {
+      "name": "prompt",
+      "value": "提示"
+    },
+    {
+      "name": "sure_to_delete",
+      "value": "是否确定删除文件？"
+    },
+    {
+      "name": "delete_failed_warning",
+      "value": "文件删除失败！"
+    },
+    {
+      "name": "sure",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "at_last_one",
+      "value": "请至少选择一项"
+    },
+    {
+      "name": "at_more_one",
+      "value": "最多只能选择一项"
+    },
+    {
+      "name": "support_one_item",
+      "value": "仅支持单个文件操作，请选择一项"
+    },
+    {
+      "name": "no_support_dir",
+      "value": "不支持文件夹操作"
+    },
+    {
+      "name": "no_support_root",
+      "value": "不支持根目录操作"
+    },
+    {
+      "name": "rename_dialog_title",
+      "value": "文件重命名"
+    },
+    {
+      "name": "override_dialog_context",
+      "value": "检测到重名文件:%s"
+    },
+    {
+      "name": "file_operation_failed",
+      "value": "文件操作失败(%d)"
+    },
+    {
+      "name": "override_dialog_confirm",
+      "value": "替换"
+    },
+    {
+      "name": "override_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "rename_dialog_input_hint",
+      "value": "请输入名称"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "progress_dialog_title",
+      "value": "正在进行传输"
+    },
+    {
+      "name": "open_file_no_support_tip",
+      "value": "不支持打开当前文件"
+    },
+    {
+      "name": "share_failed",
+      "value": "分享失败，请重试"
+    },
+    {
+      "name": "share_service_not_ready",
+      "value": "分享服务尚未就绪，请稍后重试"
+    },
+    {
+      "name": "no_files",
+      "value": "NO Files"
+    }
+  ]
+}

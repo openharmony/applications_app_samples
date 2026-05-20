@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "com.ohos.file.manager",
+    "vendor": "example",
+    "versionCode": 1001020,
+    "versionName": "1.1.20.250918",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name"
+  }
+}

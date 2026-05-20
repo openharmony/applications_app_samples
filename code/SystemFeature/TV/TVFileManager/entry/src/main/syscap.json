@@ -1,0 +1,30 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ],
+    "custom": [
+    ]
+  },
+  "development": {
+    "addedSysCaps": [
+    ]
+  },
+  "production": {
+    "addedSysCaps": [
+    ],
+    "removedSysCaps": [
+      "SystemCapability.Multimedia.Media.AVTranscoder",
+      "SystemCapability.Security.CertificateManagerDialog",
+      "SystemCapability.Notification.NotificationSettings",
+      "SystemCapability.ArkUi.Graphics3D",
+      "SystemCapability.Sensors.Sensor",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.Sensors.MiscDevice", "SystemCapability.MiscServices.Wallpaper"
+    ]
+  }
+}
