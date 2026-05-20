@@ -121,7 +121,7 @@ function drawGradientText(canvas: drawing.Canvas) {
 
 function drawThemeText(canvas: drawing.Canvas) {
   // [Start arkts_graphics_draw_theme_text]
-  // 创建线性渐变着色器
+  // 创建字型对象
   const font = new drawing.Font();
   // 设置文字大小
   font.setSize(100);
