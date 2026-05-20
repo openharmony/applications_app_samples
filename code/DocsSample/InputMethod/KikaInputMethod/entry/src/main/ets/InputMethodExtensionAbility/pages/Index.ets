@@ -54,7 +54,7 @@ struct Index {
     inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
       // [End input_case_input_immersiveModeeditorAttributeChanged]
       console.info('recv editorAttributeChanged, immersiveMode: ', attr.immersiveMode);
-      if (attr.immersiveMode == 1) {
+      if (attr.immersiveMode == inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE) {
         this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE);
         console.info('recv editorAttributeChanged, panel:', this.panel?.getImmersiveMode());
       }
