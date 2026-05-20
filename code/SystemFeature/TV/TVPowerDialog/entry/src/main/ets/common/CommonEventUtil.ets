@@ -8,9 +8,9 @@ export function commonEventPowerDataFunc(powerBoolean: boolean) {
   };
   try {
     commonEvent.publish('powerBoolean', commonEventData, (err) => {
-      console.log("onSystemEvent powerBoolean Err:" + JSON.stringify(err));
+      console.log('onSystemEvent powerBoolean Err:' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("onSystemEvent  powerBoolean catch Err:" + JSON.stringify(err));
+    console.log('onSystemEvent  powerBoolean catch Err:' + JSON.stringify(err));
   }
 }

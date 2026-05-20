@@ -1,10 +1,10 @@
 @Observed
 export class PowerItemInfo {
-  icon: string
-  onFocusIcon: string
-  isFocus: boolean
-  name: string
-  operationType: number
+  public icon: string
+  public onFocusIcon: string
+  public isFocus: boolean
+  public name: string
+  public operationType: number
 
   constructor(icon: string, onFocusIcon: string, isFocus: boolean, name: string, operationType: number) {
     this.icon = icon;

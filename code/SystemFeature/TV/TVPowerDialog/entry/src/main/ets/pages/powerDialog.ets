@@ -9,7 +9,7 @@ import { EventUtil } from '../common/EventUtil';
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { commonEventPowerDataFunc } from '../common/CommonEventUtil';
 
-const TAG = "PowerCustomDialog";
+const TAG = 'PowerCustomDialog';
 
 @Entry
 @Component
@@ -40,7 +40,7 @@ struct PowerDialog {
   onDidBuild(): void {
     if (globalThis.session) {
       (globalThis.session as UIExtensionContentSession ).sendData({
-        isReady:"1"
+        isReady:'1'
       })
     }
   }
@@ -115,26 +115,25 @@ struct FocusMethod {
             // 所有的熄屏逻辑在systemui项目中
             commonEventPowerDataFunc(true);
             globalThis.extensionContext.terminateSelf();
-            // power.suspend()
-            Logger.info(TAG, "suspend succeeded")
+            Logger.info(TAG, 'suspend succeeded')
           } catch (err) {
-            Logger.error(TAG, "suspend failed. info:" + JSON.stringify(err))
+            Logger.error(TAG, 'suspend failed. info:' + JSON.stringify(err))
           }
         }
         if (this.powerItemInfo.operationType === PowerOperation.POWEROPERATION_REBOOT) {
           try {
-            power.reboot("power_dialog");
-            Logger.info(TAG, "reboot succeeded")
+            power.reboot('power_dialog');
+            Logger.info(TAG, 'reboot succeeded')
           } catch (err) {
-            Logger.error(TAG, "reboot failed. info:" + JSON.stringify(err))
+            Logger.error(TAG, 'reboot failed. info:' + JSON.stringify(err))
           }
         }
         if (this.powerItemInfo.operationType === PowerOperation.POWEROPERATION_SHUTDOWN) {
           try {
             power.shutdown('');
-            Logger.info(TAG, "shutdown succeeded")
+            Logger.info(TAG, 'shutdown succeeded')
           } catch (err) {
-            Logger.error(TAG, "shutdown failed. info:" + JSON.stringify(err))
+            Logger.error(TAG, 'shutdown failed. info:' + JSON.stringify(err))
           }
         }
       }
@@ -149,25 +148,25 @@ struct FocusMethod {
           globalThis.session.terminateSelf()
           globalThis.extensionContext.terminateSelf();
             power.suspend()
-            Logger.info(TAG, "suspend succeeded")
+            Logger.info(TAG, 'suspend succeeded')
         } catch (err) {
-          Logger.error(TAG, "suspend failed. info:" + JSON.stringify(err))
+          Logger.error(TAG, 'suspend failed. info:' + JSON.stringify(err))
         }
       }
       if (this.powerItemInfo.operationType === PowerOperation.POWEROPERATION_REBOOT) {
         try {
-          power.reboot("power_dialog");
-          Logger.info(TAG, "reboot succeeded")
+          power.reboot('power_dialog');
+          Logger.info(TAG, 'reboot succeeded')
         } catch (err) {
-          Logger.error(TAG, "reboot failed. info:" + JSON.stringify(err))
+          Logger.error(TAG, 'reboot failed. info:' + JSON.stringify(err))
         }
       }
       if (this.powerItemInfo.operationType === PowerOperation.POWEROPERATION_SHUTDOWN) {
         try {
           power.shutdown('');
-          Logger.info(TAG, "shutdown succeeded")
+          Logger.info(TAG, 'shutdown succeeded')
         } catch (err) {
-          Logger.error(TAG, "shutdown failed. info:" + JSON.stringify(err))
+          Logger.error(TAG, 'shutdown failed. info:' + JSON.stringify(err))
         }
       }
     })
