@@ -227,7 +227,7 @@ struct Index {
                   }
 
                   let objA: Obj = { data: 0, message: 'hello world' };
-                  let objB: Obj = { data: 10, message: 'typetag' };
+                  let objB: Obj = { data: 10, message: 'typeTag' };
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objA -> 0: %{public}s',
                     testNapi.setTypeTagToObject(objA, 0));
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objB -> 0: %{public}s',

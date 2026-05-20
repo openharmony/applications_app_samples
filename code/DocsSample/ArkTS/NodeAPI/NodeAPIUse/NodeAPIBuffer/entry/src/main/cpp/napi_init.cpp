@@ -150,7 +150,6 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
 // [End napi_is_buffer]
 
 // [Start napi_create_external_arraybuffer]
-
 static constexpr int INT_ARG_5 = 5; // 入参索引
 
 typedef struct {
