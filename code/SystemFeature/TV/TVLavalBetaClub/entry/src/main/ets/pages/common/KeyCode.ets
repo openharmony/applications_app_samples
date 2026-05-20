@@ -1,0 +1,20 @@
+export enum KeyCode {
+  KEY_BACK = 2,
+  KEY_DPAD_UP = 2012,
+  KEY_DPAD_DOWN = 2013,
+  KEY_DPAD_LEFT = 2014,
+  KEY_DPAD_RIGHT = 2015,
+  KEYCODE_TAB = 2049,
+  KEY_ENTER = 2054,
+  KEY_0 = 2000,
+  KEY_1 = 2001,
+  KEY_2 = 2002,
+  KEY_3 = 2003,
+  KEY_4 = 2004,
+  KEY_5 = 2005,
+  KEY_6 = 2006,
+  KEY_7 = 2007,
+  KEY_8 = 2008,
+  KEY_9 = 2009,
+
+}
