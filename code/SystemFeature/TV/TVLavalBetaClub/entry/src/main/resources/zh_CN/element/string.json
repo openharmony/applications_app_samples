@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "提单应用"
+    },
+    {
+      "name": "instructions",
+      "value": "使用说明"
+    },
+    {
+      "name": "instructions_text",
+      "value": "欢迎使用开发者提单功能。当你遇到故障问题时，请及时使用本应用进行提单，收集对应时间的日志，以便开发分析解决。"
+    },
+    {
+      "name": "instructions_step",
+      "value": "提单步骤"
+    },
+    {
+      "name": "instructions_step_one",
+      "value": "1.点击新建问题单进入提单页面。"
+    },
+    {
+      "name": "instructions_step_two",
+      "value": "2.按照提示选择或输入提单内容。"
+    },
+    {
+      "name": "instructions_step_three",
+      "value": "3.点击“提交”按钮进行提单。"
+    },
+    {
+      "name": "preset_conditions",
+      "value": "预置条件"
+    },
+    {
+      "name": "instructions_warning",
+      "value": "提单过程需要保持网络通畅"
+    },
+    {
+      "name": "create_a_new_questionnaire",
+      "value": "新建问题单"
+    },
+    {
+      "name": "list_of_questions",
+      "value": "问题单列表"
+    },
+    {
+      "name": "collect_logs",
+      "value": "收集日志"
+    },
+    {
+      "name": "attachment_uploaded",
+      "value": "附件上传"
+    },
+    {
+      "name": "no_attachment_uploaded",
+      "value": "未上传附件"
+    },
+    {
+      "name": "select_images_videos",
+      "value": "选择图片/视频(最大可选数量为4)"
+    },
+    {
+      "name": "more_select_images_videos",
+      "value": "最多可选4张图片/视频"
+    },
+    {
+      "name": "sure",
+      "value": "确定"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "submit",
+      "value": "提交"
+    },
+    {
+      "name": "resubmit",
+      "value": "重新提交"
+    },
+    {
+      "name": "probability_of_problem",
+      "value": "问题概率"
+    },
+    {
+      "name": "mean_date_to_failure",
+      "value": "故障日期"
+    },
+    {
+      "name": "mean_time_to_failure",
+      "value": "故障时间"
+    },
+    {
+      "name": "question_type",
+      "value": "问题类型"
+    },
+    {
+      "name": "problem_description",
+      "value": "问题描述"
+    },
+    {
+      "name": "local_picture",
+      "value": "本地图片/视频"
+    },
+    {
+      "name": "selected_picture",
+      "value": "已选图片/视频"
+    },
+    {
+      "name": "placeholder_input",
+      "value": "请输入问题描述（最大1024个字符）"
+    },
+    {
+      "name": "attachment",
+      "value": "附件"
+    },
+    {
+      "name": "character_exceeding_prompt",
+      "value": "您输入的字符数量已达到上限，请不要再输入"
+    },
+    {
+      "name": "warning_prompt",
+      "value": "列表获取失败,请检查网络连接和服务器是否正常"
+    },
+    {
+      "name": "warning_net_prompt",
+      "value": "上传失败,请检查网络是否可用"
+    }
+  ]
+}

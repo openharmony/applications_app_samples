@@ -1,0 +1,40 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "global_default_background",
+      "value": "#FF18181A"
+    },
+    {
+      "name": "default_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "choose_background",
+      "value": "#464648"
+    },
+    {
+      "name": "custom_background",
+      "value": "#2D2B2B"
+    },
+    {
+      "name": "button_blue",
+      "value": "#0094FE"
+    },
+    {
+      "name": "button_transParent",
+      "value": "#00111111"
+    },
+    {
+      "name": "button_gray",
+      "value": "#FF696969"
+    },
+    {
+      "name": "warning_red",
+      "value": "#FFFF0000"
+    }
+  ]
+}
