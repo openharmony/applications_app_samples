@@ -71,7 +71,6 @@ function getParamValue(): string {
 
 @Component
 export struct FileList {
-  // private stack: NavPathStack | null = null;
   @Link isFocusable: boolean;
   scroller: Scroller = new Scroller();
   @Prop @Watch('changePage') name: string = '';
@@ -81,14 +80,14 @@ export struct FileList {
   private overrideFileType: boolean = false;
   private rootInfo?: FileInfo;
   private data: ListPageAdapter = new ListPageAdapter(getContext(this));
-  @State imageMap:Set<string> = new Set();
+  @State imageMap: Set<string> = new Set();
   // 视频缩略图
   @State videoThumbCache: Map<string, string> = new Map();
   @State loadingVideos: Set<string> = new Set();
   @State menuList: Operation[] = [];
-  @State specialSelectMod:boolean = false; //  1-全选 0-取消全选
+  @State specialSelectMod: boolean = false; //  1-全选 0-取消全选
   @State selectedIndex: string = '';
-  @State isRootUsbPage:boolean = false;
+  @State isRootUsbPage: boolean = false;
   @LocalStorageLink('backPageBeanId') backPageBeanId: string = '';
   @StorageLink('showFileOperation') showFileOperation: boolean = false;
   @StorageLink(FocusIdTag) @Watch('changeFocus') focusId: string = '';
@@ -109,7 +108,7 @@ export struct FileList {
         this.closeCopyMode();
       },
       confirm: () => {
-        this.confirmCopyOrMove(this.overrideFileType,true);
+        this.confirmCopyOrMove(this.overrideFileType, true);
       }
     }),
     customStyle: true,
@@ -125,22 +124,21 @@ export struct FileList {
         this.requestFocus();
       },
       confirm: () => {
-        if(this.operationFiles.length==0){
+        if (this.operationFiles.length == 0) {
           return;
         }
         let files = [...this.operationFiles];
         let hasRootFile = files.some((file): boolean => file.isDevice());
         FileAccessManager.getIns(getContext(this)).delete(files).then((num: number) => {
           MLog.info(TAG, `delete result num:${num}`);
-          if(num>0) {
+          if (num > 0) {
             this.data?.splice(files);
-          }else{
+          } else {
             if (!hasRootFile) {
               this.showWarning($r('app.string.delete_failed_warning'));
             }
           }
           this.hideFileOperation();
-          // MLog.show(`提示`,`成功删除${num}个文件！`)
           emitter.emit('REFRESH_SPACE_SIZE');
           emitter.emit(`REFRESH_LIST`);
         });
@@ -150,13 +148,12 @@ export struct FileList {
     autoCancel: true,
     alignment: DialogAlignment.Center,
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-      MLog.info(TAG,'dialog onWillDismiss reason' + JSON.stringify(dismissDialogAction.reason));
+      MLog.info(TAG, 'dialog onWillDismiss reason' + JSON.stringify(dismissDialogAction.reason));
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK ||
         dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
         dismissDialogAction.dismiss();
         this.closeCopyMode();
         this.requestFocus();
-        // InputKeyEventUtils.inputTab();
       }
     }
   });
@@ -166,29 +163,28 @@ export struct FileList {
         this.operationFiles[0].name.substring(0, this.operationFiles[0].name.lastIndexOf('.')) : '',
       confirm: (text: string) => {
         MLog.info(TAG, `RenameDialog confirm text:${text} -- ${this.operationFiles[0].name}`);
-        if(this.operationFiles[0] && text !== this.operationFiles[0].name) {
+        if (this.operationFiles[0] && text !== this.operationFiles[0].name) {
           FileAccessManager.getIns(getContext(this)).rename(this.operationFiles, text).then(() => {
             this.data!.rename(this.operationFiles, text);
             this.hideFileOperation();
             emitter.emit(`REFRESH_LIST`);
           });
-        }else{
+        } else {
           this.hideFileOperation();
         }
       }
     }),
-    cancel:()=>{
+    cancel: () => {
       MLog.info(TAG, `RenameDialog cancel`);
       this.hideFileOperation();
       this.requestFocus();
-      // InputKeyEventUtils.inputTab();
     },
     customStyle: true,
     autoCancel: true,
     maskColor: $r('app.color.rename_input_text'),
     alignment: DialogAlignment.Center,
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-      MLog.info(TAG,'dialog onWillDismiss reason' + JSON.stringify(dismissDialogAction.reason));
+      MLog.info(TAG, 'dialog onWillDismiss reason' + JSON.stringify(dismissDialogAction.reason));
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
         this.hideFileOperation();
@@ -196,14 +192,13 @@ export struct FileList {
       }
     }
   });
-
-  private taskPool?:FileTaskPool;
+  private taskPool?: FileTaskPool;
   private progressIsOpen: boolean = false;
   private progressController: CustomDialogController = new CustomDialogController({
     builder: ProgressDialog({
       cancel: () => {
         MLog.print(TAG, `ProgressDialog cancel `);
-        if(this.taskPool){
+        if (this.taskPool) {
           this.taskPool.cancel();
           this.closeCopyMode();
           emitter.emit('REFRESH_SPACE_SIZE');
@@ -214,20 +209,11 @@ export struct FileList {
     customStyle: true,
     autoCancel: false,
     maskColor: $r('app.color.rename_input_text'),
-    alignment: DialogAlignment.Center,
-    //todo 需要api >= 12
-    // onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-    //   MLog.info(TAG,'dialog onWillDismiss reason' + JSON.stringify(dismissDialogAction.reason))
-    //   if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-    //     // dismissDialogAction.dismiss()
-    //   }
-    // }
+    alignment: DialogAlignment.Center
   });
-
   backPressCB = (): boolean | void => {
     return this.onBackPress();
   };
-
   statusCB = (isSelect: boolean) => {
     MLog.print(TAG, `refresh: ${this.name}`);
     if (isSelect) {
@@ -242,7 +228,6 @@ export struct FileList {
 
   aboutToAppear() {
     FileAccessManager.getIns(getContext(this));
-    // this.data = new ListPageAdapter(getContext(this))
     this.isCopying = NavStack.getIns().isCopy();
     this.isMoving = NavStack.getIns().isMove();
     NavStack.getIns().regBackPressFun(this.backPressCB);
@@ -256,26 +241,26 @@ export struct FileList {
     NavStack.getIns().removeStatusLis(this.statusCB);
   }
 
-  requestFocus(){
+  requestFocus() {
     // backPageBeanId
-    if (this.name && this.data && this.data.totalCount()>0) {
-      MLog.print(TAG,`load backPageBeanId:${this.backPageBeanId}`);
+    if (this.name && this.data && this.data.totalCount() > 0) {
+      MLog.print(TAG, `load backPageBeanId:${this.backPageBeanId}`);
       let id = this.data.getData(0).id;
-      if(this.backPageBeanId && this.data.find(this.backPageBeanId)){
+      if (this.backPageBeanId && this.data.find(this.backPageBeanId)) {
         id = this.backPageBeanId;
       }
       MLog.print(TAG, `request first item:${this.name}-fileItem-${id}`);
       this.focusId = `${this.name}-fileItem-${id}`;
       this.changeFocus(this.focusId);
-    }else if(this.showFileOperation){
-      MLog.print(TAG,`request showFileOperation first`);
+    } else if (this.showFileOperation) {
+      MLog.print(TAG, `request showFileOperation first`);
       this.focusId = this.menuList[0].action;
     }
   }
 
   changeFocus(focus: string, times?: number) {
-    if(!this.focusId){
-      MLog.warn(TAG,`changeFocus is empty!`);
+    if (!this.focusId) {
+      MLog.warn(TAG, `changeFocus is empty!`);
       return;
     }
     let time = times || 1;
@@ -289,9 +274,8 @@ export struct FileList {
     }
   }
 
-  changePage(){
+  changePage() {
     MLog.print(TAG, `changePage:${this.name}`);
-    // this.onRefreshData();
     emitter.emit(`REFRESH_LIST`);
   }
 
@@ -339,52 +323,52 @@ export struct FileList {
           MLog.printError(TAG, `onRefreshData ${this.pageType} error!`, err);
         }
         break;
-      case PageType.DOC_PAGE: try{
-        this.data.clear();
-        // this.data!.getDocData();
-        ins.getRootLocal().then(roots => {
-          if (roots) {
-            ins.getDocs(roots).then(fileArr => {
-              let arr: FileBean[] = fileArr.map(it => new FileBean(it.uri, it).updateDirType());
-              arr.sort();
-              this.pushData(arr);
-            });
-          }
-        });
-      } catch (err) {
-        MLog.printError(TAG, `onRefreshData ${this.pageType} error!`, err);
-      }
+      case PageType.DOC_PAGE:
+        try {
+          this.data.clear();
+          ins.getRootLocal().then(roots => {
+            if (roots) {
+              ins.getDocs(roots).then(fileArr => {
+                let arr: FileBean[] = fileArr.map(it => new FileBean(it.uri, it).updateDirType());
+                arr.sort();
+                this.pushData(arr);
+              });
+            }
+          });
+        } catch (err) {
+          MLog.printError(TAG, `onRefreshData ${this.pageType} error!`, err);
+        }
         break;
       case PageType.VIDEO_PAGE:
       case PageType.IMAGE_PAGE:
-      case PageType.AUDIO_PAGE: try{
-        let mediaType = this.pageType == PageType.VIDEO_PAGE ? MediaType.VIDEO
-          : this.pageType == PageType.IMAGE_PAGE ? MediaType.IMAGE : MediaType.AUDIO;
-        this.data.clear();
-        // this.data!.getMediaData(mediaType);
-        ins.getMediaFileAsset(mediaType).then(arr=>{
-          this.pushData(arr);
-        });
-        ins.getFileAsset(mediaType).then(arr=>{
-          this.pushData(arr);
-        });
-        // 进入媒体页时提前预热分享服务：用户浏览选图期间服务即可完成初始化，
-        // 使点击分享时直接走热启动路径，弹窗近乎即时出现。
-        AbilityManager.preloadShareService(getContext(this) as common.UIAbilityContext);
-      } catch (err) {
-        MLog.printError(TAG, `onRefreshData ${this.pageType} error!`, err);
-      }
+      case PageType.AUDIO_PAGE:
+        try {
+          let mediaType = this.pageType == PageType.VIDEO_PAGE ? MediaType.VIDEO
+            : this.pageType == PageType.IMAGE_PAGE ? MediaType.IMAGE : MediaType.AUDIO;
+          this.data.clear();
+          ins.getMediaFileAsset(mediaType).then(arr => {
+            this.pushData(arr);
+          });
+          ins.getFileAsset(mediaType).then(arr => {
+            this.pushData(arr);
+          });
+          // 进入媒体页时提前预热分享服务：用户浏览选图期间服务即可完成初始化，
+          // 使点击分享时直接走热启动路径，弹窗近乎即时出现。
+          AbilityManager.preloadShareService(getContext(this) as common.UIAbilityContext);
+        } catch (err) {
+          MLog.printError(TAG, `onRefreshData ${this.pageType} error!`, err);
+        }
         break;
       default:
         if (info.uri) {
-          if(info.rootRelativePath){
+          if (info.rootRelativePath) {
             MLog.print(TAG, `REFRESH_SPACE_SIZE name:${info.name} info.rootRelativePath:${info.rootRelativePath}`);
-            emitter.emit('REFRESH_SPACE_SIZE', { data: { relativePath: info.rootRelativePath, name:info.name } });
+            emitter.emit('REFRESH_SPACE_SIZE', { data: { relativePath: info.rootRelativePath, name: info.name } });
           }
           MLog.print(TAG, `getDataByFile id:${info.uri}`);
-          ins.getListFormUri(info.uri).then((files: Array<FileInfo>)=>{
+          ins.getListFormUri(info.uri).then((files: Array<FileInfo>) => {
             MLog.print(TAG, `getDataByFile files:${files.length}`);
-            let arr: FileBean[] = files.map(it=>new FileBean(it.uri, it).updateDirType());
+            let arr: FileBean[] = files.map(it => new FileBean(it.uri, it).updateDirType());
             arr.sort();
             this.pushData(arr);
           });
@@ -417,12 +401,10 @@ export struct FileList {
       if (this.dataLength === 0) {
         this.isFocusable = true;
         setTimeout(() => {
-          // InputKeyEventUtils.inputTab()
         }, 200);
       }
     }
   }
-
 
   onPageShow(): void {
     this.isCopying = NavStack.getIns().isCopy();
@@ -439,7 +421,8 @@ export struct FileList {
         this.menuList = [OperationAction.Del, OperationAction.Share, OperationAction.Rename];
         break;
       default:
-        this.menuList = [OperationAction.Del, OperationAction.Move, OperationAction.Copy, OperationAction.SelectAll, OperationAction.Share, OperationAction.Rename];
+        this.menuList = [OperationAction.Del, OperationAction.Move, OperationAction.Copy, OperationAction.SelectAll,
+          OperationAction.Share, OperationAction.Rename];
         break;
     }
     if (this.isCopying) {
@@ -493,18 +476,17 @@ export struct FileList {
         break;
       case OperationActionID.SelectAll: {
         if (this.operationFiles.length < this.data!.totalCount()) {
-          if(this.data!.totalCount()<=20){
+          if (this.data!.totalCount() <= 20) {
             this.operationFiles = [];
             for (let i = 0; i < this.data!.totalCount(); i++) {
               this.operationFiles.push(this.data!.getData(i));
             }
             this.specialSelectMod = true;
             MLog.print(TAG, `click select all operationFiles:${this.operationFiles.length}`);
-          }
-          else {
+          } else {
             this.showWarning('最多可处理20个文件');
           }
-        }else{
+        } else {
           this.specialSelectMod = false;
           this.operationFiles = [];
         }
@@ -558,231 +540,235 @@ export struct FileList {
   }
 
   build() {
-    // NavDestination() {
-    // Row(){
-      Stack() {
-        List({ scroller: this.scroller }) {
-          if (this.dataLength > 0) {
-            LazyForEach(this.data, (item: FileBean, index: number) => {
-              ListItem() {
-                Row() {
-                  Image(this.getFileIcon(item))
-                    .sourceSize({
-                      width: Units.px2vp(item.imageWidth),
-                      height: Units.px2vp(item.imageHeight)
-                    })
-                    .objectFit(ImageFit.Contain)
-                    .width(lpx(Units.px2vp(75)))
-                    .height(lpx(Units.px2vp(75)))
-                    .onError(err => {
-                      MLog.warn(TAG, `Image onError message:${err?.message ?? ''} index:${index} item.id:${item.id}`);
-                      const path = item.getPath();
-                      if (!path) return;
-
-                      this.getUIContext().runScopedTask(() => {
-                        if (item.isVideo() && this.videoThumbCache.has(path)) {
-                          MLog.info(TAG, `Video thumbnail failed to load, path:${path}`);
-                          this.videoThumbCache.delete(path);
-                          this.videoThumbCache = new Map(this.videoThumbCache);
-                        }
-                        if (item.isImage() && this.imageMap.has(path)) {
-                          this.imageMap.delete(path);
-                        }
-                      });
-                    })
-                  Text(item.name)
-                    .fontSize(lpx(Units.px2fp(18)))
-                    .fontColor(this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
-                    .margin({ left: lpx(Units.px2vp(22)) })
-                    .layoutWeight(1)
-                  Text(this.isFile(item) ? Tools.byte2Str(item.size) : '')
-                    .fontSize(lpx(Units.px2vp(18)))
-                    .fontColor(this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
-                    .margin({ left: lpx(Units.px2vp(10)) })
-                  if (this.isRootUsbPage) {
-                    Row() {
-                      StorageSpaceComponent({ storagePath: item.relativePath })
-                    }.size({ width: lpx(Units.px2vp(180)), height: lpx(Units.px2vp(50)) })
-                  }
-
-                  if (this.isSelect) {
-                    Image(this.checkOperationFile(item) ? $r('app.media.ic_public_selected') : $r('app.media.ic_public_no_select'))
-                      .width(lpx(Units.px2vp(18)))
-                      .height(lpx(Units.px2vp(18)))
-                      .margin({ left: lpx(Units.px2vp(32)) })
-                  } else {
-                    if(item.isDir()) {
-                      Blank().width(lpx(Units.px2vp(18)))
-                      Image(this.selectedIndex == item.id ? $r('app.media.ic_right') : $r('app.media.right'))
-                        .size({ width: '8lpx', height: '16lpx' })
-                    }else{
-                      Blank().width(lpx(Units.px2vp(55)))
-                    }
-                  }
-                }
-                .alignItems(VerticalAlign.Center)
-                .padding({
-                  left: lpx(Units.px2vp(24)),
-                  top: lpx(Units.px2vp(9)),
-                  bottom: lpx(Units.px2vp(9)),
-                  right: lpx(Units.px2vp(20))
-                })
-                .backgroundColor(this.selectedIndex == item.id ? $r('app.color.file_list_item_bg_sel') : $r('app.color.file_list_item_bg'))
-                .borderRadius(lpx(Units.px2vp(18)))
-              }
-              .id(`${this.name}-fileItem-${item.id}`)
-              .margin({ bottom: lpx(Units.px2vp(10)), top: lpx(Units.px2vp(12)) })
-              .width('100%')
-              .height(lpx(Units.px2vp(80)))
-              .focusBox( {
-                strokeColor: ColorMetrics.numeric(Color.Transparent),
-                strokeWidth: LengthMetrics.px(0)
-              })
-              .onFocus(() => {
-                animateTo({
-                  duration: 0
-                }, () => {
-                  this.selectedIndex = item.id;
-                  MLog.print(TAG, `onFocus selectedIndex:${this.selectedIndex}`);
-                });
-              })
-              .onHover((isHover) => {
-                if (isHover) {
-                  focusControl.requestFocus(`${this.name}-fileItem-${item.id}`);
-                }
-              })
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.backPageBeanId = item.id;
-                  focusControl.requestFocus(`${this.name}-fileItem-${item.id}`);
-                }
-              })
-              .onClick(() => {
-                this.isFocusable = false;
-                this.backPageBeanId = item.id;
-                setTimeout(() => {
-                  this.onClickItem(item);
-                }, 100);
-              })
-              .onAppear(()=>{
-                MLog.print(TAG, `onAppear ListItem index:${index} item.id:${item.id}`);
-                if (item.isImage()) {
-                  console.log(TAG, `传入sourceSize的[${index}] ${item.name} - 宽:${item.imageWidth}, 高:${item.imageHeight}`);
-                }
-                if(IS_SHOW_IMAGE) {
-                  if (item.isImage() || item.isVideo()) {
-                    this.imageMap.add(item.getPath());
-                    if (item.isVideo()) {
-                      this.loadVideoThumb(item);
-                    }
-                    if (item.isImage()) {
-                      this.loadImageDimensions(item);
-                    }
-                  }
-                }
-
-                if (index == 0) {
-                  MLog.print(TAG, `set focusId index:${index} totalCount:${this.data.totalCount()} item.id:${item.id}`);
-                  this.requestFocus();
-
-                }
-
-              })
-              .onDisAppear(() => {
-                // MLog.print(TAG, `onDisAppear ListItem index:${index} item.id:${item.id}`)
-                setTimeout(() => {
-                  const path = item.getPath();
-                  if (this.imageMap.has(path)) {
-                    this.imageMap.delete(path);
-                  }
-                  if (this.videoThumbCache.has(path)) {
-                    this.videoThumbCache.delete(path);
-                  }
-                });
-              })
-              .gesture(LongPressGesture({ repeat: false })
-                .onAction((event: GestureEvent) => {
-                  this.showFileOperation = true;
-                  this.isSelect = true;
-                  this.operationFiles.push(item);
-                })
-              )
-            }, (item: FileBean) => `${item.id}-${item.size}-${this.operationFiles.includes(item) ?'s':'-'}`)
-          } else {
+    Stack() {
+      List({ scroller: this.scroller }) {
+        if (this.dataLength > 0) {
+          LazyForEach(this.data, (item: FileBean, index: number) => {
             ListItem() {
-              Text($r('app.string.no_files'))
-                .fontColor($r('app.color.file_list_text'))
-                .fontSize(lpx(Units.px2vp(36)))
-            }.width('100%')
-            .height('100%')
-            .alignSelf(ItemAlign.Center)
-          }
-        }
-        .width('100%')
-        .height('100%')
-        .cachedCount(LIST_CACHE_COUNT)
-        // .padding({ top: Units.px2vp(56.6) })
-        .padding({right: lpx(Units.px2vp(20))})
-        .id('list_def')
-        .focusBox( {
-          strokeColor: ColorMetrics.numeric(Color.Transparent),
-          strokeWidth: LengthMetrics.px(0)
-        })
-        .onBlur(() => {
-          this.isFocusable = true;
-          this.selectedIndex = '';
-          this.focusId='';
-          MLog.print(TAG, `onBlur list selectedIndex:${this.selectedIndex}`);
-        })
-        .onAppear(() => {
-          MLog.print(TAG, `onAppear list selectedIndex:${this.selectedIndex}`);
-          MLog.print(TAG, `onAppear backPageBeanId:${this.backPageBeanId}`);
-          emitter.emit(`REFRESH_LIST`);
-          AppStorage.setOrCreate('REFRESH_PAGE', `REFRESH_LIST`);
-          this.setMenu();
-          this.onPageShow();
-        })
-        .onDisAppear(() => {
-          MLog.print(TAG, `onDisAppear pageName:${this.name}`);
-          this.focusId = '';
-          this.data.clear();
-          this.imageMap.clear();
-          this.videoThumbCache.clear();
-          this.loadingVideos.clear();
-        })
+              Row() {
+                Image(this.getFileIcon(item))
+                  .sourceSize({
+                    width: Units.px2vp(item.imageWidth),
+                    height: Units.px2vp(item.imageHeight)
+                  })
+                  .objectFit(ImageFit.Contain)
+                  .width(lpx(Units.px2vp(75)))
+                  .height(lpx(Units.px2vp(75)))
+                  .onError(err => {
+                    MLog.warn(TAG, `Image onError message:${err?.message ?? ''} index:${index} item.id:${item.id}`);
+                    const path = item.getPath();
+                    if (!path) {
+                      return;
+                    }
 
+                    this.getUIContext().runScopedTask(() => {
+                      if (item.isVideo() && this.videoThumbCache.has(path)) {
+                        MLog.info(TAG, `Video thumbnail failed to load, path:${path}`);
+                        this.videoThumbCache.delete(path);
+                        this.videoThumbCache = new Map(this.videoThumbCache);
+                      }
+                      if (item.isImage() && this.imageMap.has(path)) {
+                        this.imageMap.delete(path);
+                      }
+                    });
+                  })
+                Text(item.name)
+                  .fontSize(lpx(Units.px2fp(18)))
+                  .fontColor(
+                    this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
+                  .margin({ left: lpx(Units.px2vp(22)) })
+                  .layoutWeight(1)
+                Text(this.isFile(item) ? Tools.byte2Str(item.size) : '')
+                  .fontSize(lpx(Units.px2vp(18)))
+                  .fontColor(
+                    this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
+                  .margin({ left: lpx(Units.px2vp(10)) })
+                if (this.isRootUsbPage) {
+                  Row() {
+                    StorageSpaceComponent({ storagePath: item.relativePath })
+                  }.size({ width: lpx(Units.px2vp(180)), height: lpx(Units.px2vp(50)) })
+                }
 
-        Row() {
-          ForEach(this.menuList, (it: Operation, index: number) => {
-              FileOperationItem({
-                focusId: it.action,
-                image: it.image,
-                imageFocus: it.imageFocus,
-                text: it.text ,
-                specialSelectMod:$specialSelectMod,
-                visible: true,
-                itemClick: () => {
-                  this.onClickMenu(it.action);
-                },
+                if (this.isSelect) {
+                  Image(this.checkOperationFile(item) ? $r('app.media.ic_public_selected') :
+                    $r('app.media.ic_public_no_select'))
+                    .width(lpx(Units.px2vp(18)))
+                    .height(lpx(Units.px2vp(18)))
+                    .margin({ left: lpx(Units.px2vp(32)) })
+                } else {
+                  if (item.isDir()) {
+                    Blank().width(lpx(Units.px2vp(18)))
+                    Image(this.selectedIndex == item.id ? $r('app.media.ic_right') : $r('app.media.right'))
+                      .size({ width: '8lpx', height: '16lpx' })
+                  } else {
+                    Blank().width(lpx(Units.px2vp(55)))
+                  }
+                }
+              }
+              .alignItems(VerticalAlign.Center)
+              .padding({
+                left: lpx(Units.px2vp(24)),
+                top: lpx(Units.px2vp(9)),
+                bottom: lpx(Units.px2vp(9)),
+                right: lpx(Units.px2vp(20))
               })
-          })
+              .backgroundColor(this.selectedIndex == item.id ? $r('app.color.file_list_item_bg_sel') :
+                $r('app.color.file_list_item_bg'))
+              .borderRadius(lpx(Units.px2vp(18)))
+            }
+            .id(`${this.name}-fileItem-${item.id}`)
+            .margin({ bottom: lpx(Units.px2vp(10)), top: lpx(Units.px2vp(12)) })
+            .width('100%')
+            .height(lpx(Units.px2vp(80)))
+            .focusBox({
+              strokeColor: ColorMetrics.numeric(Color.Transparent),
+              strokeWidth: LengthMetrics.px(0)
+            })
+            .onFocus(() => {
+              animateTo({
+                duration: 0
+              }, () => {
+                this.selectedIndex = item.id;
+                MLog.print(TAG, `onFocus selectedIndex:${this.selectedIndex}`);
+              });
+            })
+            .onHover((isHover) => {
+              if (isHover) {
+                focusControl.requestFocus(`${this.name}-fileItem-${item.id}`);
+              }
+            })
+            .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.backPageBeanId = item.id;
+                focusControl.requestFocus(`${this.name}-fileItem-${item.id}`);
+              }
+            })
+            .onClick(() => {
+              this.isFocusable = false;
+              this.backPageBeanId = item.id;
+              setTimeout(() => {
+                this.onClickItem(item);
+              }, 100);
+            })
+            .onAppear(() => {
+              MLog.print(TAG, `onAppear ListItem index:${index} item.id:${item.id}`);
+              if (item.isImage()) {
+                console.log(TAG,
+                  `传入sourceSize的[${index}] ${item.name} - 宽:${item.imageWidth}, 高:${item.imageHeight}`);
+              }
+              if (IS_SHOW_IMAGE) {
+                if (item.isImage() || item.isVideo()) {
+                  this.imageMap.add(item.getPath());
+                  if (item.isVideo()) {
+                    this.loadVideoThumb(item);
+                  }
+                  if (item.isImage()) {
+                    this.loadImageDimensions(item);
+                  }
+                }
+              }
 
+              if (index == 0) {
+                MLog.print(TAG, `set focusId index:${index} totalCount:${this.data.totalCount()} item.id:${item.id}`);
+                this.requestFocus();
+
+              }
+
+            })
+            .onDisAppear(() => {
+              setTimeout(() => {
+                const path = item.getPath();
+                if (this.imageMap.has(path)) {
+                  this.imageMap.delete(path);
+                }
+                if (this.videoThumbCache.has(path)) {
+                  this.videoThumbCache.delete(path);
+                }
+              });
+            })
+            .gesture(LongPressGesture({ repeat: false })
+              .onAction((event: GestureEvent) => {
+                this.showFileOperation = true;
+                this.isSelect = true;
+                this.operationFiles.push(item);
+              })
+            )
+          }, (item: FileBean) => `${item.id}-${item.size}-${this.operationFiles.includes(item) ? 's' : '-'}`)
+        } else {
+          ListItem() {
+            Text($r('app.string.no_files'))
+              .fontColor($r('app.color.file_list_text'))
+              .fontSize(lpx(Units.px2vp(36)))
+          }.width('100%')
+          .height('100%')
+          .alignSelf(ItemAlign.Center)
         }
-        .borderRadius(lpx(Units.px2vp(48)))
-        .padding({ top: lpx(Units.px2vp(20)), bottom: lpx(Units.px2vp(25)), left: lpx(Units.px2vp(24)), right:lpx(Units.px2vp(24)) })
-        .backgroundColor($r('app.color.dialog_bg'))
-        .margin({ bottom:lpx(Units.px2vp(96))})
-        .visibility(this.showFileOperation ? Visibility.Visible : Visibility.None)
       }
-      .alignContent(Alignment.Bottom)
       .width('100%')
       .height('100%')
-    // }
-    // .width('100%')
-    // .height('100%')
-    // .hideTitleBar(true)
+      .cachedCount(LIST_CACHE_COUNT)
+      .padding({ right: lpx(Units.px2vp(20)) })
+      .id('list_def')
+      .focusBox({
+        strokeColor: ColorMetrics.numeric(Color.Transparent),
+        strokeWidth: LengthMetrics.px(0)
+      })
+      .onBlur(() => {
+        this.isFocusable = true;
+        this.selectedIndex = '';
+        this.focusId = '';
+        MLog.print(TAG, `onBlur list selectedIndex:${this.selectedIndex}`);
+      })
+      .onAppear(() => {
+        MLog.print(TAG, `onAppear list selectedIndex:${this.selectedIndex}`);
+        MLog.print(TAG, `onAppear backPageBeanId:${this.backPageBeanId}`);
+        emitter.emit(`REFRESH_LIST`);
+        AppStorage.setOrCreate('REFRESH_PAGE', `REFRESH_LIST`);
+        this.setMenu();
+        this.onPageShow();
+      })
+      .onDisAppear(() => {
+        MLog.print(TAG, `onDisAppear pageName:${this.name}`);
+        this.focusId = '';
+        this.data.clear();
+        this.imageMap.clear();
+        this.videoThumbCache.clear();
+        this.loadingVideos.clear();
+      })
+
+
+      Row() {
+        ForEach(this.menuList, (it: Operation, index: number) => {
+          FileOperationItem({
+            focusId: it.action,
+            image: it.image,
+            imageFocus: it.imageFocus,
+            text: it.text,
+            specialSelectMod: $specialSelectMod,
+            visible: true,
+            itemClick: () => {
+              this.onClickMenu(it.action);
+            },
+          })
+        })
+
+      }
+      .borderRadius(lpx(Units.px2vp(48)))
+      .padding({
+        top: lpx(Units.px2vp(20)),
+        bottom: lpx(Units.px2vp(25)),
+        left: lpx(Units.px2vp(24)),
+        right: lpx(Units.px2vp(24))
+      })
+      .backgroundColor($r('app.color.dialog_bg'))
+      .margin({ bottom: lpx(Units.px2vp(96)) })
+      .visibility(this.showFileOperation ? Visibility.Visible : Visibility.None)
+    }
+    .alignContent(Alignment.Bottom)
+    .width('100%')
+    .height('100%')
     .backgroundColor(Color.Transparent)
-    .focusBox( {
+    .focusBox({
       strokeColor: ColorMetrics.numeric(Color.Transparent),
       strokeWidth: LengthMetrics.px(0)
     })
@@ -792,22 +778,23 @@ export struct FileList {
       }
       MLog.print(TAG, `NavDestination onKeyEvent event:${JSON.stringify(event)}`);
 
-        if (event.keyCode === KeyCode.KEYCODE_MENU && event.type == KeyType.Up) {
-          if (this.showFileOperation) {
-            this.hideFileOperation();
-          } else {
-            this.showFileOperation = true;
-            this.isSelect = true;
-            this.setMenu();
-            AbilityManager.preloadShareService(getContext(this) as common.UIAbilityContext);
-          }
+      if (event.keyCode === KeyCode.KEYCODE_MENU && event.type == KeyType.Up) {
+        if (this.showFileOperation) {
+          this.hideFileOperation();
+        } else {
+          this.showFileOperation = true;
+          this.isSelect = true;
+          this.setMenu();
+          AbilityManager.preloadShareService(getContext(this) as common.UIAbilityContext);
         }
+      }
     })
   }
 
   onBackPress(): boolean | void {
     this.isFocusable = false;
-    MLog.print(TAG, `onBackPress isCopying:${this.isCopying} isMoving:${this.isMoving} showFileOperation:${this.showFileOperation}`);
+    MLog.print(TAG,
+      `onBackPress isCopying:${this.isCopying} isMoving:${this.isMoving} showFileOperation:${this.showFileOperation}`);
     if (!this.isCopying && !this.isMoving && this.showFileOperation) {
       MLog.info(TAG, 'onBackPressed hide file operation');
       this.hideFileOperation();
@@ -860,12 +847,11 @@ export struct FileList {
     try {
       // 获取原始尺寸
       const dimensions = await fileUtil.getImageOriginalDimensions(imagePath);
-      let w:number  = dimensions.width;
-      let h:number = dimensions.height;
+      let w: number = dimensions.width;
+      let h: number = dimensions.height;
 
       console.log(TAG, `图片原始尺寸:${w}x${h}`);
       let pxTarget = 96; // 系统性能差，降低解析分辨率
-      // let pxTarget = 96*2 // 系统性能好，适当提高解析分辨率
 
       // 设置到 FileBean
       const index = this.data.getIndexById(item.id);
@@ -898,7 +884,7 @@ export struct FileList {
     let icon: Resource | image.PixelMap | string;
     if (bean.isVideo()) {
       if (this.videoThumbCache.has(bean.getPath())) {
-        icon = this.videoThumbCache.get(bean.getPath()) || $r('app.media.ic_file_video') ;
+        icon = this.videoThumbCache.get(bean.getPath()) || $r('app.media.ic_file_video');
       } else {
         icon = $r('app.media.ic_file_video');
       }
@@ -921,7 +907,7 @@ export struct FileList {
   }
 
   private isFile(item: FileBean): boolean {
-    return!item.isDevice() && item.isFile();
+    return !item.isDevice() && item.isFile();
   }
 
   async onClickItem(item: FileBean) {
@@ -931,15 +917,15 @@ export struct FileList {
         //如果操作列表已添加该item，去掉
         this.operationFiles.splice(this.operationFiles.indexOf(item), 1);
       } else {
-        if(this.operationFiles.length>19){
+        if (this.operationFiles.length > 19) {
           this.showWarning('最多可处理20个文件');
-        }
-        else {
+        } else {
           this.operationFiles.push(item);
         }
       }
       this.specialSelectMod = this.operationFiles.length == this.data!.totalCount();
-      MLog.info(TAG, `operationFile totalCount:${this.data!.totalCount()} operationFiles length: ${this.operationFiles.length}`);
+      MLog.info(TAG,
+        `operationFile totalCount:${this.data!.totalCount()} operationFiles length: ${this.operationFiles.length}`);
       this.setMenu();
       return;
     }
@@ -981,6 +967,7 @@ export struct FileList {
       }
     }
   }
+
   private buildMusicPlayList(): PlaylistItem[] {
     const playList: PlaylistItem[] = [];
 
@@ -1038,8 +1025,7 @@ export struct FileList {
     return false;
   }
 
-
-  private confirmCopyOrMove(isMove: boolean,force?:boolean) {
+  private confirmCopyOrMove(isMove: boolean, force?: boolean) {
     let target = NavStack.getIns().curPageInfo.uri || this.rootInfo?.uri;
     if (!target) {
       this.showWarning($r('app.string.no_support_root'));
@@ -1055,17 +1041,17 @@ export struct FileList {
     NavStack.setFocusId('progressCancel');
 
     let context = getContext() as common.UIAbilityContext;
-    this.taskPool = new FileTaskPool(context,this.operationFiles,destUri,isMove);
-    this.taskPool.setProgressFun((progress:number,progressOne?:string,result?:string)=>{
+    this.taskPool = new FileTaskPool(context, this.operationFiles, destUri, isMove);
+    this.taskPool.setProgressFun((progress: number, progressOne?: string, result?: string) => {
       this.progressValue = progress;
       this.progressOne = progressOne ?? '';
       MLog.print(TAG, `progress:${this.progressOne} ${this.progressValue}/${this.progressSize}`);
-      if(result && result !== 'success'){
-        this.showWarning($r('app.string.file_operation_failed',result));
+      if (result && result !== 'success') {
+        this.showWarning($r('app.string.file_operation_failed', result));
       }
     });
-    this.taskPool.setFinishCall(result=>{
-      MLog.print(TAG,`Finish call result:${result}`);
+    this.taskPool.setFinishCall(result => {
+      MLog.print(TAG, `Finish call result:${result}`);
 
       this.closeCopyMode();
 
@@ -1104,7 +1090,7 @@ export struct FileList {
     this.specialSelectMod = false;
     MLog.print(TAG, `closeCopyMode  isMoving:${this.isMoving} isCopying:${this.isCopying}`);
     this.hideFileOperation();
-    if(this.taskPool){
+    if (this.taskPool) {
       this.taskPool.release();
       this.taskPool = undefined;
     }

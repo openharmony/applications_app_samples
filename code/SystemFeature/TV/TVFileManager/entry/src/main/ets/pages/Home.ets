@@ -113,7 +113,6 @@ export struct Home {
   }
 
   private itemClicked(item: MediaTypeModel) {
-    // NavStack.getIns().pushPath({ name: 'FileList', param: new Object({ mediaType: item.mediaType })})
     switch(item.mediaType){
       case MediaType.VIDEO:
         NavStack.getIns().pushRoot(PageType.VIDEO_PAGE);

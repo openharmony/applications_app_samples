@@ -40,46 +40,42 @@ struct Index {
   // 控制本机和外部存储焦点
   @State isFocusable: boolean = true;
   @State selectedTab: number = 0;
-  @StorageLink('isShowHomePage') isShowHomePage:boolean = false;
+  @StorageLink('isShowHomePage') isShowHomePage: boolean = false;
   @LocalStorageLink('backPageBeanId') backPageBeanId: string = '';
-  @State isShowPath:boolean =false;
+  @State isShowPath: boolean = false;
   @State parentDirs: string[] = [];
   @State showFreeSize: [number, number] = [0, 0];
   @State freeSize: [number, number] = [0, 0];
-  // @StorageLink('freeSizeExternal') freeSizeExternal: [number, number] = [0, 0];
-
   private subscriber?: CommonEvent.CommonEventSubscriber;
-  @State isSelectMode:boolean = false;
-  @State curName:string = '';
-  private relativePathLocal:string = '';
-  private relativePathUsb:string = '';
-  @State pageName:string = '';
+  @State isSelectMode: boolean = false;
+  @State curName: string = '';
+  private relativePathLocal: string = '';
+  private relativePathUsb: string = '';
+  @State pageName: string = '';
   focusController = this.getUIContext().getFocusController();
+
   aboutToAppear() {
     // 触发tab走焦
-    // InputKeyEventUtils.inputTab();
-    this.focusController.activate(true,false);
-    MLog.info(TAG,`AppInfo: ${JSON.stringify(app.getInfo())}`);
-    NavStack.getIns().addStatusLis(mod=> {
+    this.focusController.activate(true, false);
+    MLog.info(TAG, `AppInfo: ${JSON.stringify(app.getInfo())}`);
+    NavStack.getIns().addStatusLis(mod => {
       this.isShowPath = NavStack.getIns().isShowPath();
       this.navRefresh(mod);
     });
     NavStack.getIns().pushRoot(PageType.HOME_PAGE);
-    // this.checkExternal();
     this.relativePathLocal = getContext(this).filesDir;
     let dis = display.getDefaultDisplaySync();
     MLog.print(TAG, `display:${JSON.stringify(dis)}`);
     this.externalDeviceListener();
-    // this.refreshSpaceSize();
     this.showFreeSize = this.freeSize;
     emitter.on('CHECK_EXTERNAL', this.checkExternal);
-    emitter.on('REFRESH_SPACE_SIZE',this.refreshSpaceSize);
-    Permission.checkAndRequest().then(ret=>{
+    emitter.on('REFRESH_SPACE_SIZE', this.refreshSpaceSize);
+    Permission.checkAndRequest().then(ret => {
       MLog.print(TAG, `checkAndRequest ret:${ret}`);
-      if(ret){
+      if (ret) {
         emitter.emit('CHECK_EXTERNAL');
         emitter.emit('REFRESH_SPACE_SIZE');
-      }else{
+      } else {
         MLog.print(TAG, `checkAndRequest terminate`);
         app.terminate();
       }
@@ -88,18 +84,18 @@ struct Index {
 
   aboutToDisappear(): void {
     emitter.off('CHECK_EXTERNAL', this.checkExternal);
-    emitter.off('REFRESH_SPACE_SIZE',this.refreshSpaceSize);
+    emitter.off('REFRESH_SPACE_SIZE', this.refreshSpaceSize);
   }
 
-  private refreshSpaceSize = (eventData?:emitter.EventData) => {
+  private refreshSpaceSize = (eventData?: emitter.EventData) => {
     if (eventData && eventData.data) {
       MLog.print(TAG, `refreshSpaceSize data:${JSON.stringify(eventData)}`);
-      if(eventData.data?.isShowSpaceSize){
+      if (eventData.data?.isShowSpaceSize) {
         this.showFreeSize = this.freeSize;
-      }else {
+      } else {
         this.showFreeSize = [0, 0];
       }
-      if(eventData.data?.relativePath) {
+      if (eventData.data?.relativePath) {
         let pathSize = StorageManager.getFreeSpaceSize(eventData.data?.relativePath);
         MLog.print(TAG, `refreshSpaceSize pathSize:${JSON.stringify(pathSize)}`);
         this.showFreeSize = pathSize;
@@ -107,9 +103,6 @@ struct Index {
     } else {
       MLog.print(TAG, `refreshSpaceSize isExternal:${NavStack.getIns().isExternal()}`);
       this.freeSize = StorageManager.getFreeSpaceSize(this.relativePathLocal);
-      // if (NavStack.getIns().isExternal()) {
-      //   this.freeSizeExternal = StorageManager.getFreeSpaceSize(this.relativePathUsb);
-      // }
       switch (this.selectedTab) {
         case 0:
           this.showFreeSize = this.freeSize;
@@ -120,25 +113,6 @@ struct Index {
       }
     }
   }
-
-  // private checkExternal = () => {
-  //   FileAccessManager.getIns(getContext(this)).getRoots().then(infoArr => {
-  //     MLog.print(TAG, `getRoots infoArr size:${infoArr.length}`)
-  //     for (let it of infoArr) {
-  //       MLog.print(TAG, `getRoots it:${FileAccessManager.rootInfoToString(it)}`)
-  //       MLog.print(TAG, `getRoots deviceType:${it.deviceType} relativePath:${it.relativePath}`)
-  //       if (FileAccessManager.isUsbDevice(it.deviceType)) {
-  //         NavStack.getIns().openUSB();
-  //         setTimeout(() => {
-  //           this.focusController.activate(true, true);
-  //         }, 300);
-  //         return;
-  //       }
-  //     }
-  //     MLog.print(TAG, `relativePathUsb:${this.relativePathUsb}  isExternal:${NavStack.getIns().isExternal()}`)
-  //     NavStack.getIns().closeUSB()
-  //   })
-  // }
   private checkExternal = () => {
     const prevUsbCount = this.getUsbDeviceCount(); // 记录之前的 USB 数量
 
@@ -162,7 +136,6 @@ struct Index {
       if (currentUsbCount > 0) {
         NavStack.getIns().openUSB();
         setTimeout(() => {
-          // this.focusController.activate(true, true);
         }, 300);
       }
 
@@ -170,7 +143,6 @@ struct Index {
       this.setUsbDeviceCount(currentUsbCount);
     });
   }
-
   // 添加成员变量记录 USB 数量
   private usbDeviceCount: number = 0;
 
@@ -182,19 +154,19 @@ struct Index {
     this.usbDeviceCount = count;
   }
 
-  navRefresh(isMode:boolean){
+  navRefresh(isMode: boolean) {
     let curInfo = NavStack.getIns().curPageInfo;
-    if(!curInfo){
+    if (!curInfo) {
       return;
     }
-    // this.pageName = curInfo.name;
-    this.pageName = Object.values(PageType).includes(curInfo.name as PageType) ? curInfo.name : curInfo.name + Date.now();
-    MLog.print(TAG,`navRefresh pageName:${this.pageName} curInfo:${JSON.stringify(curInfo)}`);
+    this.pageName =
+      Object.values(PageType).includes(curInfo.name as PageType) ? curInfo.name : curInfo.name + Date.now();
+    MLog.print(TAG, `navRefresh pageName:${this.pageName} curInfo:${JSON.stringify(curInfo)}`);
     this.isSelectMode = isMode;
-    MLog.print(TAG,`change mode:${this.isSelectMode}`);
+    MLog.print(TAG, `change mode:${this.isSelectMode}`);
     this.parentDirs = NavStack.getIns().getPathListNames();
-    MLog.print(TAG,`selectedTab:${this.selectedTab} NavStack Device:${NavStack.getIns().getDevice()}`);
-    if(this.selectedTab != NavStack.getIns().getDevice()){
+    MLog.print(TAG, `selectedTab:${this.selectedTab} NavStack Device:${NavStack.getIns().getDevice()}`);
+    if (this.selectedTab != NavStack.getIns().getDevice()) {
       this.selectedTab = NavStack.getIns().getDevice();
     }
 
@@ -204,18 +176,19 @@ struct Index {
     MLog.info(TAG, 'onPageShow ');
     this.isFocusable = false;
     let isFromShare: ESObject = AppStorage.get('isFromShare');
-    MLog.info(TAG, 'isFromShare = '+ isFromShare);
+    MLog.info(TAG, 'isFromShare = ' + isFromShare);
     if (isFromShare) {
-      // this.data = new ListPageAdapter(getContext(this))
       let fileBean = await this.getShareDir();
-      if (fileBean == undefined) return;
-      MLog.info(TAG, 'fileBean = '+ JSON.stringify(fileBean.relativePath));
+      if (fileBean == undefined) {
+        return;
+      }
+      MLog.info(TAG, 'fileBean = ' + JSON.stringify(fileBean.relativePath));
       NavStack.getIns().pushBean(fileBean);
       AppStorage.SetOrCreate('isFromShare', undefined);
     }
     emitter.emit('CHECK_EXTERNAL');
     emitter.emit('REFRESH_SPACE_SIZE');
-    if(AppStorage.has('REFRESH_PAGE')){
+    if (AppStorage.has('REFRESH_PAGE')) {
       MLog.info(TAG, `'REFRESH_PAGE value:${AppStorage.get('REFRESH_PAGE')}`);
       emitter.emit(AppStorage.get('REFRESH_PAGE'));
     }
@@ -240,14 +213,14 @@ struct Index {
 
   onBackPress(): boolean | void {
     MLog.info(TAG, `onBackPress`);
-    if(NavStack.getIns().onBackPress() ){
-        MLog.warn(TAG, `onBackPress true`);
-        return true;
+    if (NavStack.getIns().onBackPress()) {
+      MLog.warn(TAG, `onBackPress true`);
+      return true;
     }
-    if(NavStack.getIns().isExitApp()) {
+    if (NavStack.getIns().isExitApp()) {
       MLog.warn(TAG, `onBackPress isExitApp`);
       return false;
-    }else{
+    } else {
       return true;
     }
   }
@@ -267,7 +240,7 @@ struct Index {
       .width('100%')
       .margin({ top: lpx(Units.px2vp(24)) })
 
-      Row(){
+      Row() {
         if (this.pageName === PageType.HOME_PAGE) {
           Home({
             isFocusable: this.isFocusable
@@ -279,11 +252,11 @@ struct Index {
           })
         }
       }.layoutWeight(1)
-      .focusBox( {
+      .focusBox({
         strokeColor: ColorMetrics.numeric(Color.Transparent),
         strokeWidth: LengthMetrics.px(0)
       })
-      .margin({top:lpx(Units.px2vp(10)), bottom:lpx(Units.px2vp(16))})
+      .margin({ top: lpx(Units.px2vp(10)), bottom: lpx(Units.px2vp(16)) })
 
     }
     .width('100%')
@@ -293,7 +266,6 @@ struct Index {
     .padding({ left: lpx(Units.px2vp(24)), right: lpx(Units.px2vp(24)), top: lpx(Units.px2vp(13)) })
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
-        // InputKeyEventUtils.inputTab();
       }
     })
   }
@@ -307,7 +279,7 @@ struct Index {
           .fontColor($r('app.color.title_bar_text'))
           .margin({ right: lpx(Units.px2vp(24)) })
 
-        if(this.isShowPath) {
+        if (this.isShowPath) {
           Row() {
             Text(this.getParentDirName('', -1))
               .fontSize(lpx(Units.px2fp(16)))
@@ -317,7 +289,8 @@ struct Index {
                 ForEach(this.parentDirs, (item: string, index: number) => {
                   Span(this.getParentDirName(item, index))
                 })
-              }.fontSize(lpx(Units.px2fp(16)))
+              }
+              .fontSize(lpx(Units.px2fp(16)))
               .fontColor($r('app.color.title_bar_hint_text'))
               .maxLines(1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -349,17 +322,20 @@ struct Index {
           .id(`index_${index}`)
           .fontSize(lpx(Units.px2fp(20)))
           .fontColor(this.selectedTab == index ? $r('app.color.home_tab_text_sel') : $r('app.color.home_tab_text'))
-          .padding({ left: lpx(Units.px2vp(24)), right: lpx(Units.px2vp(24)), top: lpx(Units.px2vp(12)), bottom: lpx(Units.px2vp(12)) })
+          .padding({
+            left: lpx(Units.px2vp(24)),
+            right: lpx(Units.px2vp(24)),
+            top: lpx(Units.px2vp(12)),
+            bottom: lpx(Units.px2vp(12))
+          })
           .backgroundColor(this.selectedTab == index ? $r('app.color.home_tab_bg_sel') : $r('app.color.home_tab_bg'))
           .borderRadius(lpx(Units.px2vp(110)))
-          .margin({ right: lpx(Units.px2vp(24)) })// .onFocus(() => this.switchTab(index))
+          .margin({ right: lpx(Units.px2vp(24)) })
           .onTouch((e) => {
             if (e.type === TouchType.Down) {
               console.log(`zyh touch down ${this.isFocusable}`);
               // 请求焦点
-              // if (this.isFocusable) {
-                this.getUIContext().getFocusController().requestFocus(`index_${index}`);
-              // }
+              this.getUIContext().getFocusController().requestFocus(`index_${index}`);
             }
           })
           .onHover((isHover) => {
@@ -382,13 +358,14 @@ struct Index {
           })
       })
     }
-    .focusScopeId('tabs',true)
+    .focusScopeId('tabs', true)
   }
 
   @Builder
   StorageSpace() {
     Column() {
-      Text($r('app.string.storage_space_text', `${Tools.byte2Str(this.showFreeSize[1] - this.showFreeSize[0]) + '/' + Tools.byte2Str(this.showFreeSize[1])}`))
+      Text($r('app.string.storage_space_text',
+        `${Tools.byte2Str(this.showFreeSize[1] - this.showFreeSize[0]) + '/' + Tools.byte2Str(this.showFreeSize[1])}`))
         .fontSize(lpx(Units.px2fp(18)))
         .fontColor($r('app.color.title_bar_hint_text'))
         .fontWeight(400)
@@ -408,7 +385,6 @@ struct Index {
     .alignItems(HorizontalAlign.Center)
   }
 
-
   private switchTab(index: number) {
     MLog.print(TAG, `switchTab:${index} selectedTab:${this.selectedTab}`);
     if (this.selectedTab == index) {
@@ -416,26 +392,26 @@ struct Index {
     }
 
     try {
-      if(index == 1 && !NavStack.getIns().isExternal() ){
-        MLog.showToast(TAG,'没有检测到外部存储');
+      if (index == 1 && !NavStack.getIns().isExternal()) {
+        MLog.showToast(TAG, '没有检测到外部存储');
         return;
       }
-    }catch (e){
-      console.log('get isExternal failed:',e.message);
+    } catch (e) {
+      console.log('get isExternal failed:', e.message);
     }
 
     this.selectedTab = index;
     NavStack.getIns().setDevice(this.selectedTab);
-    if(index == 1) {
+    if (index == 1) {
       this.checkExternal();
     }
     this.refreshSpaceSize();
   }
 
-  private getParentDirName(name:string, index: number) {
+  private getParentDirName(name: string, index: number) {
     if (index == -1) {
       return this.selectedTab == 1 ?
-          $r('app.string.external_storage', this.parentDirs?.length > 0 ? ' > ' : '')
+        $r('app.string.external_storage', this.parentDirs?.length > 0 ? ' > ' : '')
         : $r('app.string.media_type_device', this.parentDirs?.length > 0 ? ' > ' : '');
     }
     return index == this.parentDirs.length - 1 ? name : `${name} > `;
@@ -451,21 +427,18 @@ struct Index {
     };
     this.subscriber = await CommonEvent.createSubscriber(subscribeInfo);
     CommonEvent.subscribe(this.subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
-      if(data && data.event === 'usual.event.data.VOLUME_UNMOUNTED'){
+      if (data && data.event === 'usual.event.data.VOLUME_UNMOUNTED') {
         MLog.print(TAG, `CommonEvent VOLUME_UNMOUNTED data:${JSON.stringify(data)}`);
         emitter.emit('CHECK_EXTERNAL');
         if (this.selectedTab == 1) {
           this.switchTab(0);
-          // this.focusController.activate(true, true);
 
         }
-      }else if(data && data.event === 'usual.event.data.VOLUME_MOUNTED'){
+      } else if (data && data.event === 'usual.event.data.VOLUME_MOUNTED') {
         MLog.print(TAG, `CommonEvent VOLUME_MOUNTED data:${JSON.stringify(data)}`);
         emitter.emit('CHECK_EXTERNAL');
-        // this.focusController.activate(true, true);
 
       }
     });
   }
-
 }
