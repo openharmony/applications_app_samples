@@ -3,8 +3,8 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "phone",
-      "2in1"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false
