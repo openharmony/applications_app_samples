@@ -17,36 +17,36 @@
 // ParentWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// 父Worker线程中与宿主线程通信的对象
+// 父worker线程中与宿主线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  // 收到宿主线程指令后，创建子Worker
+  // 收到宿主线程指令后，创建子worker
   if (e.data == '宿主线程发送消息给父worker-推荐示例') {
     let childWorker = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
-    // 接收子Worker的执行结果
+    // 接收子worker的执行结果
     childWorker.onmessage = (e: MessageEvents) => {
-      console.info('父Worker收到子Worker的信息 ' + e.data);
-      if (e.data == '子Worker向父Worker发送信息') {
-        // 子Worker任务完成后，通知宿主线程
-        workerPort.postMessage('父Worker向宿主线程发送信息');
+      console.info('父worker收到子worker的信息 ' + e.data);
+      if (e.data == '子worker向父worker发送信息') {
+        // 子worker任务完成后，通知宿主线程
+        workerPort.postMessage('父worker向宿主线程发送信息');
       }
     }
 
-    // 子Worker退出后再销毁父Worker
+    // 子worker退出后再销毁父worker
     childWorker.onexit = () => {
-      console.info('子Worker退出');
+      console.info('子worker退出');
       workerPort.close();
     }
 
-    // 子Worker运行过程中发生未被捕获的异常或运行错误时的回调
+    // 子worker运行过程中发生未被捕获的异常或运行错误时的回调
     childWorker.onAllErrors = (err: ErrorEvent) => {
-      console.error('子Worker发生报错 ' + err.message);
+      console.error('子worker发生报错 ' + err.message);
     }
 
-    // 向子Worker发送启动消息，用于触发其onmessage中的处理逻辑
-    childWorker.postMessage('父Worker向子Worker发送信息-推荐示例');
+    // 向子worker发送启动消息，用于触发其onmessage中的处理逻辑
+    childWorker.postMessage('父worker向子worker发送信息-推荐示例');
   }
 }
 // [End recommended_example]
