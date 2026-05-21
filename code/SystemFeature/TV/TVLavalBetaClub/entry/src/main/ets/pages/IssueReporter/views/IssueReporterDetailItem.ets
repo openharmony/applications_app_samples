@@ -133,9 +133,9 @@ export default struct IssueReporterDetailItem {
     photoSelectOptions.maxSelectNumber = 9;
     let photoPicker = new picker.PhotoViewPicker();
     photoPicker.select(photoSelectOptions).then(async (photoSelectResult: picker.PhotoSelectResult) => {
-      LogManager.hilogIWithTag(TAG, `selectPhoto select, PhotoSelectResult: ${JSON.stringify(PhotoSelectResult)}`)
+      LogManager.hilogIWithTag(TAG, `selectPhoto select, PhotoSelectResult: ${JSON.stringify(photoSelectResult)}`)
 
-      let uris = PhotoSelectResult.photoUris;
+      let uris = photoSelectResult.photoUris;
 
       try {
         for (let index = 0; index < uris.length; index++) {
