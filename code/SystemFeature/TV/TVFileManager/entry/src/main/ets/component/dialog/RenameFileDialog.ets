@@ -32,7 +32,8 @@ export struct RenameFileDialog {
         Button('confirm')
           .onClick(() => {
             if (this.inputValue.length > 0) {
-              this.controller.close();;
+              this.controller.close();
+              ;
               this.confirm!()
             }
           }).backgroundColor(0xffffff).fontColor(Color.Blue)

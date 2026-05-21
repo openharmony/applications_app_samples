@@ -46,7 +46,6 @@ export struct ProgressDialog {
         .backgroundColor($r('app.color.file_list_item_bg'))
         .style({ strokeWidth: Units.px2vp(15) })
 
-      // Text(`${this.progressOne.length > 0 ? '(' + this.progressOne + ')' : ''}${this.currentNum}/${this.totalNum}`)
       Text(`${this.currentNum}/${this.totalNum}`)
         .fontSize(Units.px2fp(28))
         .fontColor($r('app.color.progress_dialog_text'))

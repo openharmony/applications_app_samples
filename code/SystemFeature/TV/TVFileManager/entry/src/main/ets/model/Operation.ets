@@ -21,7 +21,6 @@ export enum OperationActionID {
   CopyConfirm = 'CopyConfirm',
   CopyCancel = 'CopyCancel',
   SelectAll = 'SelectAll',
-  // SelectAllCancel = 'SelectAllCancel',
   Select = 'Select',
   SelectCancel = 'SelectCancel',
   Share = 'Share',
@@ -84,12 +83,6 @@ export class OperationAction {
     imageFocus: $r('app.media.ic_public_all_choice_selected'),
     text: $r('app.string.operation_type_all_choice'),
   }
-  // public static SelectAllCancel: Operation = {
-  //   action: OperationActionID.SelectAllCancel,
-  //   image: $r('app.media.ic_public_all_choice'),
-  //   imageFocus: $r('app.media.ic_public_all_choice_selected'),
-  //   text: $r('app.string.operation_type_all_choice_cancel'),
-  // }
   public static Share: Operation = {
     action: OperationActionID.Share,
     image: $r('app.media.ic_public_share'),
@@ -100,16 +93,6 @@ export class OperationAction {
     action: OperationActionID.Rename,
     image: $r('app.media.ic_public_rename'),
     imageFocus: $r('app.media.ic_public_rename_selected'),
-    text: $r('app.string.operation_type_rename'),
-    // }, {
-    // action: OperationAction.Select,
-    //   image: $r('app.media.ic_public_more_choice'),
-    //   imageFocus: $r('app.media.ic_public_more_choice_selected'),
-    //   text: $r('app.string.operation_type_more_choice_cancel'),
-    // }, {
-    //   action: OperationAction.SelectCancel,
-    //   image: $r('app.media.ic_public_more_choice'),
-    //   imageFocus: $r('app.media.ic_public_more_choice_selected'),
-    //   text: $r('app.string.operation_type_more_choice'),
+    text: $r('app.string.operation_type_rename')
   }
 }

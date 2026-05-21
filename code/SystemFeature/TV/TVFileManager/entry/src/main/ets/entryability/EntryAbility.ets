@@ -77,15 +77,6 @@ export default class EntryAbility extends UIAbility {
     if (want.parameters) {
       AppStorage.setOrCreate('isFromShare', want.parameters?.isFromShare);
     }
-    // if(this.mWindowStage) {
-    //   this.mWindowStage.loadContent('pages/Index', (err) => {
-    //     if (err.code) {
-    //       MLog.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-    //       return;
-    //     }
-    //    MLog.info(TAG,'Succeeded in loading the content.');
-    //   });
-    // }
   }
 
 }

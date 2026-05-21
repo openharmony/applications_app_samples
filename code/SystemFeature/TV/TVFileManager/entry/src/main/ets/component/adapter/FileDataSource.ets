@@ -36,7 +36,6 @@ export default class FileDataSource extends BasicDataSource<FileBean> {
   }
 
 
-
   public clear() {
     this.array = [];
   }
@@ -91,5 +90,4 @@ export default class FileDataSource extends BasicDataSource<FileBean> {
   public getCheckArray() {
     return this.checkArray;
   }
-
 }

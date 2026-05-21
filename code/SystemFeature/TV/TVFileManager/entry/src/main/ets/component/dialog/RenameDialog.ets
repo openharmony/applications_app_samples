@@ -20,38 +20,39 @@ import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 import { Units } from '../../common/utils/PixelUnitConversion';
 
 const TAG = 'RenameDialog';
+
 @CustomDialog
 export struct RenameDialog {
   textInputController: TextInputController = new TextInputController();
   controller: CustomDialogController;
   @State focusIndex: number = -1;
-  @State enableKeyboard:boolean=false;
+  @State enableKeyboard: boolean = false;
   confirm?: (text: string) => void;
   private text: string = '';
   private TextInputController: TextInputController = new TextInputController();
+
   aboutToAppear(): void {
-    MLog.print(TAG,`RenameFileDialog aboutToAppear`);
+    MLog.print(TAG, `RenameFileDialog aboutToAppear`);
     setTimeout(() => {
       focusControl.requestFocus('renameInput');
     }, 200);
     try {
       inputMethod.getSetting().on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
-        MLog.print(TAG,'Succeeded in subscribing imeHide event.');
-        // focusControl.requestFocus('renameSave')
+        MLog.print(TAG, 'Succeeded in subscribing imeHide event.');
       });
-    } catch(err) {
-      MLog.printError(TAG,`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`,err);
+    } catch (err) {
+      MLog.printError(TAG, `Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`, err);
     }
   }
 
   aboutToDisappear(): void {
-    MLog.print(TAG,`RenameFileDialog aboutToDisappear`);
+    MLog.print(TAG, `RenameFileDialog aboutToDisappear`);
     AppStorage.setOrCreate('isSelect', false);
     AppStorage.setOrCreate('operationFiles', []);
     try {
       inputMethod.getSetting().off('imeHide');
-    } catch(err) {
-      MLog.printError(TAG,`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`,err);
+    } catch (err) {
+      MLog.printError(TAG, `Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`, err);
     }
   }
 
@@ -61,43 +62,52 @@ export struct RenameDialog {
         .fontSize(Units.px2fp(64))
         .fontColor($r('app.color.rename_title'))
 
-      TextInput({  controller: this.textInputController,placeholder: $r('app.string.rename_dialog_input_hint'), text: this.text })
+      TextInput({
+        controller: this.textInputController,
+        placeholder: $r('app.string.rename_dialog_input_hint'),
+        text: this.text
+      })
         .id('renameInput')
         .width(Units.px2vp(864))
         .fontSize(Units.px2fp(36))
         .fontColor(this.focusIndex == 0 ? $r('app.color.rename_input_text') : $r('app.color.rename_input_text_hint'))
         .placeholderColor($r('app.color.rename_input_text_hint'))
         .placeholderFont({
-          size:Units.px2fp(36)
+          size: Units.px2fp(36)
         })
         .borderRadius(Units.px2vp(18))
         .margin({ top: Units.px2vp(62) })
-        .padding({ top: Units.px2vp(39), bottom: Units.px2vp(39), left: Units.px2vp(24), right: Units.px2vp(24) })
-        .backgroundColor(this.focusIndex == 0 ? $r('app.color.rename_input_text_hint') : $r('app.color.rename_input_bg'))
+        .padding({
+          top: Units.px2vp(39),
+          bottom: Units.px2vp(39),
+          left: Units.px2vp(24),
+          right: Units.px2vp(24)
+        })
+        .backgroundColor(
+          this.focusIndex == 0 ? $r('app.color.rename_input_text_hint') : $r('app.color.rename_input_bg'))
         .focusable(true)
         .defaultFocus(true)
         .onFocus(() => {
-          MLog.print(TAG,`TextInput onFocus`);
+          MLog.print(TAG, `TextInput onFocus`);
           this.focusIndex = 0;
           // 手动获取焦点，拉起输入法
 
         })
         .enableKeyboardOnFocus(true)
         .onBlur(() => {
-          MLog.print(TAG,`TextInput onBlur`);
+          MLog.print(TAG, `TextInput onBlur`);
           this.focusIndex = -1;
-          // focusControl.requestFocus('renameInput')
         })
         .onChange(text => {
           this.text = text;
         })
-        .onKeyEvent((e)=>{
-          if(e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Down){
+        .onKeyEvent((e) => {
+          if (e.keyCode == KeyCode.KEYCODE_ENTER && e.type == KeyType.Down) {
             focusControl.requestFocus('renameInput');
             this.focusIndex = 0;
             e.stopPropagation();
           }
-          if(e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Down){
+          if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Down) {
             focusControl.requestFocus('renameSave');
             this.focusIndex = 1;
             e.stopPropagation();
@@ -123,7 +133,7 @@ export struct RenameDialog {
             .objectFit(ImageFit.Contain)
         }
       }
-      .onKeyEvent((e)=> {
+      .onKeyEvent((e) => {
         if (e.keyCode == KeyCode.KEYCODE_DPAD_UP && e.type == KeyType.Down) {
           focusControl.requestFocus('renameInput');
           this.focusIndex = 0;
@@ -136,7 +146,9 @@ export struct RenameDialog {
       .alignContent(Alignment.Center)
       .align(Alignment.Center)
       .margin({ top: Units.px2vp(44) })
-      .onFocus(() => { this.focusIndex = 1; })
+      .onFocus(() => {
+        this.focusIndex = 1;
+      })
       .onClick(() => {
         this.controller.close();
         this.confirm && this.confirm(this.text);
@@ -149,7 +161,6 @@ export struct RenameDialog {
       })
     }
     .width('100%')
-    // .height('100%')
     .margin({ top: Units.px2vp(44) })
   }
 }

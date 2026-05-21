@@ -20,7 +20,6 @@ import FileDataSource from './FileDataSource';
 const TAG = 'ListPageAdapter';
 
 export default class ListPageAdapter extends FileDataSource {
-
   constructor(ctx: Context) {
     super(ctx, [])
   }
@@ -35,8 +34,4 @@ export default class ListPageAdapter extends FileDataSource {
     super.clear();
     this.notifyDataReload();
   }
-
-
-
-
 }

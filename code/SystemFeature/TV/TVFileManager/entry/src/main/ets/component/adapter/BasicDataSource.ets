@@ -14,7 +14,7 @@
  */
 export class BasicDataSource<T> implements IDataSource {
   public array: T[] = [];
-  public checkArray: Map<number,T> = new Map();
+  public checkArray: Map<number, T> = new Map();
   lastArray: Array<Array<T>> = [];
   private listeners: DataChangeListener[] = [];
 
