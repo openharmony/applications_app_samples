@@ -431,18 +431,21 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     LOG("OH_AVPlayer_SetAudioInterruptMode ret:%{public}d", ret);
     // [End OH_AVPlayer_SetAudioInterruptMode]
-    // [Start OH_AVPlayer_SetPlaybackStrategy]
+    OHAVPlayerSetPlaybackStrategy(player);
+    napi_value value;
+    napi_create_int32(env, 0, &value);
+    return value;
+}
+// [Start OH_AVPlayer_SetPlaybackStrategy]
+void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player) {
     // 设置播放策略
     OH_AVPlaybackStrategy *myStrategy = OH_AVPlaybackStrategy_Create();
     OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, 6.0); //直播场景设置智能追帧
     ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
     LOG("OH_AVPlayer_SetPlaybackStrategy ret:%{public}d", ret);
     OH_AVPlaybackStrategy_Destroy(myStrategy);
-    // [End OH_AVPlayer_SetPlaybackStrategy]
-    napi_value value;
-    napi_create_int32(env, 0, &value);
-    return value;
 }
+// [End OH_AVPlayer_SetPlaybackStrategy]
 // [Start OH_AVPlayer_Play]
 static napi_value NAPI_Global_Play(napi_env env, napi_callback_info info) {
     int ret = -1;
