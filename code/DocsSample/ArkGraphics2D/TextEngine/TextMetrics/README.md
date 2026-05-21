@@ -34,7 +34,7 @@ ArkTSDrawing
 
 1. 利用Native XComponent来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。
 2. 通过在IDE中创建Native ArkTS 工程，在ts代码中定义对外接口为drawText，在js侧调用该接口可在页面上绘制出“文本测量测试”文字。
-3. 在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。调用getLongestLine获取段落最长行的宽度，getLongestLineWithIndent获取段落最长行的宽度（该宽度包含当前行缩进的宽度），getTextLines获取当前段落文本行对象数组，getLineMetrics获取段落所有行的度量信息，getLineMetrics(lineNumber: number)获取段落指定行的度量信息。包含行的高度、宽度、起始坐标等信息。超出当前段落排版后最大行数后返回 undefined。
+3. 在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。调用getLongestLine获取段落最长行的宽度，getLongestLineWithIndent获取段落最长行的宽度（该宽度包含当前行缩进的宽度），getTextLines获取当前段落文本行对象数组，getLineMetrics获取段落所有行的度量信息，getLineMetrics(lineNumber: number)获取段落指定行的度量信息。包含行的高度、宽度、起始坐标等信息。超出当前段落排版后最大行数后返回undefined。调用layoutWithConstraints在限定宽高区域内排版文本，获取排版结果（包括实际排版尺寸correctRect和适配的字符串范围fitStrRange）。调用getGlyphPositionAtCoordinate根据坐标获取最接近的字形位置及其亲和度，调用getCharacterPositionAtCoordinate根据坐标获取指定编码类型下的字符位置及其亲和度。调用getCharacterRangeForGlyphRange根据字形范围获取对应的字符范围，调用getGlyphRangeForCharacterRange根据字符范围获取对应的字形范围。
 ## 相关权限
 
 无。
@@ -45,9 +45,7 @@ ArkTSDrawing
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，版本号：5.0.2.123。
-3. 本示例已支持DevEco Studio 5.0.2 Release (构建版本：5.0.7.210，构建 2025年5月6日)编译运行。
+1. 本示例支持API26版本SDK，版本号：26.0.0。
 
 ## 下载
 
