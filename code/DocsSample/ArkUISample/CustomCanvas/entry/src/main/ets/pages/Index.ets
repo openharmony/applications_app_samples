@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 interface listItem {
   router?: string;
   name: string;
@@ -109,7 +107,7 @@ struct Index {
               }
               .onClick(() => {
                 if (!!listitem.router) {
-                  router.pushUrl({ url: listitem.router });
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
                 }
               })
             }
