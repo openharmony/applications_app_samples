@@ -247,7 +247,7 @@ export struct Timer {
       // [Start timer_reminder]
       let timer: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // 提醒类型为倒计时类型
-        ringDuration: Constant.REMINDER_DURATION,
+        ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长和振动时长（单位：秒）
         title: context.resourceManager.getStringSync($r('app.string.timer')
           .id), // 指明提醒标题, "app.string.timer"资源文件中的value值为"计时器"
         content: context.resourceManager.getStringSync($r('app.string.countdown_close')

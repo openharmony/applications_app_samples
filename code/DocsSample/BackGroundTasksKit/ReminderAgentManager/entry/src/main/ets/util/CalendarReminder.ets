@@ -75,7 +75,7 @@ class CalendarReminder {
           }],
           // 点击提醒通知后跳转的目标UIAbility信息
           wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
-          ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长（单位：秒）
+          ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长和振动时长（单位：秒）
           title: context.resourceManager.getStringSync($r('app.string.calendar')
             .id), // 指明提醒标题, "app.string.calendar"资源文件中的value值为"日历"
           content: context.resourceManager.getStringSync($r('app.string.calendar_reach')
