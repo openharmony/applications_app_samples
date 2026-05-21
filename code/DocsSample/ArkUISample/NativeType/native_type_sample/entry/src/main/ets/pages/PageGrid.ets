@@ -65,7 +65,7 @@ struct MenuIndex {
               .borderRadius($r('sys.float.select_border_radius_default'))
               .backgroundColor(Color.White)
               .onClick(() => {
-                router.pushUrl({ url: item.url })
+                this.getUIContext().getRouter().pushUrl({ url: item.url })
               })
             }.margin($r('sys.float.menu_item_content_align'))
           })
