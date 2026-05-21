@@ -28,6 +28,7 @@
 
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window);
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window);
+void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player);
 
 class SampleRenderer {
 public:
@@ -441,7 +442,7 @@ void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player) {
     // 设置播放策略
     OH_AVPlaybackStrategy *myStrategy = OH_AVPlaybackStrategy_Create();
     OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, 6.0); //直播场景设置智能追帧
-    ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
+    int32_t ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
     LOG("OH_AVPlayer_SetPlaybackStrategy ret:%{public}d", ret);
     OH_AVPlaybackStrategy_Destroy(myStrategy);
 }
