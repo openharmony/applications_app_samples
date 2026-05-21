@@ -29,9 +29,9 @@ export class Calc {
   }
 }
 
-export function addHarlibrary(a: number, b: number): number {
+export function addHarLibrary(a: number, b: number): number {
   let c = a + b;
-  console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
 }
 // [End dynamic_call_add]

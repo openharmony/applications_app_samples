@@ -15,6 +15,7 @@
 
 {
   "apiType": "stageMode",
+  // [Start variable_dynamic_import_runtimeOnly]
   // [Start hap_variable_dynamic_import_har_runtimeOnly]
   // [Start hap_variable_dynamic_import_hsp_runtimeOnly]
   // [Start hap_variable_dynamic_import_ohpm_runtimeOnly]
@@ -34,99 +35,64 @@
           // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
           // [StartExclude hap_decoupled_runtimeOnly]
           "myhar",
+          // [StartExclude variable_dynamic_import_runtimeOnly]
           // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
           // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [EndExclude hap_decoupled_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [StartExclude hap_decoupled_runtimeOnly]
           "myhsp",
           // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
           // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [EndExclude hap_decoupled_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [StartExclude hap_decoupled_runtimeOnly]
           "@ohos/hypium",
           // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [EndExclude hap_decoupled_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [StartExclude hap_decoupled_runtimeOnly]
           "@ohos/crypto-js",
           // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [EndExclude hap_decoupled_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [StartExclude hap_decoupled_runtimeOnly]
           "libentry.so",
           // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
           // [EndExclude hap_decoupled_runtimeOnly]
-          // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
-          // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
           "har1",
           "har2",
           "har3"
+          // [EndExclude variable_dynamic_import_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
           // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
         ],
-        // [End hap_decoupled_runtimeOnly]
-        // [End hap_variable_dynamic_import_har_runtimeOnly]
-        // [End hap_variable_dynamic_import_hsp_runtimeOnly]
-        // [End hap_variable_dynamic_import_ohpm_runtimeOnly]
-        // [End hap_variable_dynamic_import_har_crypto_runtimeOnly]
-        // [End hap_variable_dynamic_import_native_runtimeOnly]
+        // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
+        // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
+        // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
+        // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
+        // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
+        // [StartExclude hap_decoupled_runtimeOnly]
         // [EndExclude hap_variable_dynamic_import_calc_runtimeOnly]
         "sources": [
           // [StartExclude hap_variable_dynamic_import_calc_runtimeOnly]
-          // 仅用于使用变量动态import模块自己单文件场景，静态import或常量动态import无需配置。
           "./src/main/ets/utils/Calc.ets",
           // [EndExclude hap_variable_dynamic_import_calc_runtimeOnly]
-          "./src/main/ets/Calc.ets"  // 仅用于使用变量动态import模块自己单文件场景，静态import或常量动态import无需配置。
+          // [StartExclude variable_dynamic_import_runtimeOnly]
+          "./src/main/ets/Calc.ets"
+          // [EndExclude variable_dynamic_import_runtimeOnly]
         ]
-        // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
+        // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
+        // [EndExclude hap_decoupled_runtimeOnly]
       }
     },
+    // [StartExclude variable_dynamic_import_runtimeOnly]
+    // [StartExclude hap_variable_dynamic_import_har_runtimeOnly]
+    // [StartExclude hap_variable_dynamic_import_hsp_runtimeOnly]
+    // [StartExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
+    // [StartExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
     // [StartExclude hap_variable_dynamic_import_calc_runtimeOnly]
+    // [StartExclude hap_variable_dynamic_import_native_runtimeOnly]
+    // [StartExclude hap_decoupled_runtimeOnly]
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
@@ -137,9 +103,23 @@
         "armeabi-v7a"
       ]
     },
-    // [EndExclude hap_variable_dynamic_import_calc_runtimeOnly]
+        // [EndExclude variable_dynamic_import_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_har_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_hsp_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_har_crypto_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_ohpm_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_calc_runtimeOnly]
+        // [EndExclude hap_variable_dynamic_import_native_runtimeOnly]
+        // [EndExclude hap_decoupled_runtimeOnly]
   },
-  // [End hap_variable_dynamic_import_calc_runtimeOnly]
+    // [End variable_dynamic_import_runtimeOnly]
+    // [End hap_variable_dynamic_import_har_runtimeOnly]
+    // [End hap_variable_dynamic_import_hsp_runtimeOnly]
+    // [End hap_variable_dynamic_import_har_crypto_runtimeOnly]
+    // [End hap_variable_dynamic_import_ohpm_runtimeOnly]
+    // [End hap_variable_dynamic_import_calc_runtimeOnly]
+    // [End hap_variable_dynamic_import_native_runtimeOnly]
+    // [End hap_decoupled_runtimeOnly]
   "buildOptionSet": [
     {
       "name": "release",
