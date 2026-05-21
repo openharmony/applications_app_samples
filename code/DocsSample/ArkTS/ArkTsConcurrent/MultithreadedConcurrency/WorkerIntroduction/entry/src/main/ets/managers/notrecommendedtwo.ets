@@ -16,26 +16,26 @@
 // [Start not_recommended_example]
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-// 宿主线程中创建父Worker对象
+// 宿主线程中创建父worker对象
 const parentWorker = new worker.ThreadWorker('entry/ets/workers/ParentWorker.ets');
 
-// 接收父Worker返回的消息
+// 接收父worker返回的消息
 parentWorker.onmessage = (e: MessageEvents) => {
-  console.info('宿主线程收到父Worker信息' + e.data);
+  console.info('宿主线程收到父worker信息' + e.data);
 }
 
-// 父Worker正常退出后的回调
+// 父worker正常退出后的回调
 parentWorker.onexit = () => {
-  console.info('父Worker退出');
+  console.info('父worker退出');
 }
 
-// 父Worker运行过程中发生未被捕获的异常或运行错误时的回调
+// 父worker运行过程中发生未被捕获的异常或运行错误时的回调
 parentWorker.onAllErrors = (err: ErrorEvent) => {
-  console.error('宿主线程接收到父Worker报错 ' + err.message);
+  console.error('宿主线程接收到父worker报错 ' + err.message);
 }
 
-// 向父Worker发送启动消息，用于触发其onmessage中的处理逻辑
-parentWorker.postMessage('宿主线程发送消息给父Worker');
+// 向父worker发送启动消息，用于触发其onmessage中的处理逻辑
+parentWorker.postMessage('宿主线程发送消息给父worker');
 // [End not_recommended_example]
 @Entry
 @Component

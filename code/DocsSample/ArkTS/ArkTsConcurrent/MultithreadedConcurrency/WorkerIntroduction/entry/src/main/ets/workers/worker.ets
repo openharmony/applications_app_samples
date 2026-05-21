@@ -19,7 +19,7 @@ import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
-// 注册onmessage回调，当Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用，在Worker线程执行
+// 注册onmessage回调，当worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用，在worker线程执行
 workerPort.onmessage = (e: MessageEvents) => {
   let data: string = e.data;
   console.info('workerPort onmessage is: ', data);
@@ -28,12 +28,12 @@ workerPort.onmessage = (e: MessageEvents) => {
   workerPort.postMessage('2');
 }
 
-// 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在Worker线程执行
+// 注册onmessageerror回调，当worker对象接收到一条无法被序列化的消息时被调用，在worker线程执行
 workerPort.onmessageerror = () => {
   console.error('workerPort onmessageerror');
 }
 
-// 注册onerror回调，捕获Worker在执行过程中发生的异常，在Worker线程执行
+// 注册onerror回调，捕获worker在执行过程中发生的异常，在worker线程执行
 workerPort.onerror = (err: ErrorEvent) => {
   console.error('workerPort onerror err is: ', err.message);
 }

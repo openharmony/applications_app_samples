@@ -17,14 +17,14 @@
 // ChildWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// 子Worker线程中与父Worker线程通信的对象
+// 子worker线程中与父worker线程通信的对象
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e: MessageEvents) => {
-  if (e.data == '父Worker向子Worker发送信息-推荐示例') {
-    // 子Worker线程业务逻辑...
-    console.info('业务执行结束，然后子Worker销毁');
-    // 子Worker任务完成后退出
+  if (e.data == '父worker向子worker发送信息-推荐示例') {
+    // 子worker线程业务逻辑...
+    console.info('业务执行结束，然后子worker销毁');
+    // 子worker任务完成后退出
     workerPort.close();
   }
 }
