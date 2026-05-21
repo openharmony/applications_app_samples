@@ -13,24 +13,21 @@
  * limitations under the License.
  */
 import testNapi from 'libentry.so';
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-
+  private nodeContent = new NodeContent();
+  aboutToAppear() {
+    // 通过C-API创建节点，并添加到管理器nodeContent上
+    testNapi.CreateStyledStringNativeNode(this.nodeContent);
+  }
   build() {
-    Row() {
-      Column() {
-        XComponent({
-          id: "xComponent",
-          type: XComponentType.NODE,
-          libraryname: "entry"
-        }).onAppear(()=> {
-          testNapi.createNativeNode()
-        })
-      }
-      .width('100%')
+    Column() {
+      ContentSlot(this.nodeContent)
     }
+    .width('100%')
     .height('100%')
   }
 }

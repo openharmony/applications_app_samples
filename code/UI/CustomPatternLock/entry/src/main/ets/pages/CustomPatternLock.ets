@@ -575,7 +575,7 @@ export struct CustomPatternLock {
       pen.setStrokeWidth(this.getUIContext().vp2px(2));  // 波纹线宽2vp
       pen.setColor(drawColor);
       pen.setAntiAlias(true);
-      let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.NORMAL, vp2px(2));
+      let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.NORMAL, this.getUIContext().vp2px(2));
       pen.setMaskFilter(maskFilter); // 添加蒙板滤镜
 
       this.context.canvas.attachPen(pen);

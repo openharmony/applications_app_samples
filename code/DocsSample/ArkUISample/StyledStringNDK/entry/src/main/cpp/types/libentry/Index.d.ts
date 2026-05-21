@@ -12,4 +12,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export const createNativeNode: () => void;
+export const CreateStyledStringNativeNode: (content: Object) => void;
