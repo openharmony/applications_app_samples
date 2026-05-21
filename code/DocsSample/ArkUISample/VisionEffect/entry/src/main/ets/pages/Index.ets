@@ -192,7 +192,7 @@ struct VisionEffectIndex {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext()?.animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
@@ -242,7 +242,7 @@ struct VisionEffectIndex {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    router.pushUrl({url: name})
+                    this.getUIContext()?.getRouter().pushUrl({url: name})
                   })
                 }
                 .width('100%')
