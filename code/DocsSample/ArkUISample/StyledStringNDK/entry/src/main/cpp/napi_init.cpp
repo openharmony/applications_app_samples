@@ -13,42 +13,16 @@
  * limitations under the License.
  */
 #include "manager.h"
-#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <napi/native_api.h>
-
-static OH_NativeXComponent* GetXComponent(napi_env env, napi_value exports)
-{
-    if ((env == nullptr) || (exports == nullptr)) {
-        return nullptr;
-    }
-    napi_value exportInstance = nullptr;
-    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
-        return nullptr;
-    }
-    OH_NativeXComponent* xComp = nullptr;
-    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&xComp)) != napi_ok) {
-        return nullptr;
-    }
-    return xComp;
-}
-
-static napi_value createNativeNode(napi_env env, napi_callback_info info)
-{
-    NativeNode::Manager::NodeManager::GetInstance().CreateNativeNode();
-    return nullptr;
-}
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "createNativeNode", nullptr, createNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "CreateStyledStringNativeNode", nullptr, Manager::CreateStyledStringNativeNode,
+            nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    auto xComponent = GetXComponent(env, exports);
-    if (xComponent) {
-        NativeNode::Manager::NodeManager::GetInstance().SetXComponent(xComponent);
-    }
     return exports;
 }
 EXTERN_C_END

@@ -16,30 +16,24 @@
 #ifndef CAPI_MANAGER_H
 #define CAPI_MANAGER_H
 
-#include <functional>
 #include <arkui/native_node.h>
+#include <arkui/native_node_napi.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
-#include <unordered_map>
+#include <js_native_api.h>
+#include <js_native_api_types.h>
+#include <napi/native_api.h>
 
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 
-namespace NativeNode::Manager {
-using EventCallback = std::function<void(ArkUI_NodeEvent*)>;
-
-class NodeManager {
+class Manager {
 public:
-    ~NodeManager() = default;
-    static NodeManager& GetInstance();
-    void SetXComponent(OH_NativeXComponent* xComponent);
-    void CreateNativeNode();
-    void CreateTextAreaNode();
-    const EventCallback& GetCallback(int32_t id);
+    static ArkUI_NativeNodeAPI_1 *nodeAPI_;
+    ~Manager(){};
+    static napi_value CreateTextAreaNativeNode(napi_env__* env, napi_callback_info__* info);
+    static ArkUI_NodeHandle CreateTextAreaNativeNode();
 private:
-    NodeManager() = default;
-    void AddNodeEventCallback(int32_t id, EventCallback&& callback);
-    void TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi);
-    OH_NativeXComponent* xComponent_;
-    std::unordered_map<int32_t, EventCallback> callbackMap_;
+    static Manager manager_;
+    static void TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi);
 };
-}
 
 #endif //CAPI_MANAGER_H
