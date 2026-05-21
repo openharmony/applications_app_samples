@@ -42,7 +42,7 @@ struct VisualEffectsIndex {
             .fontSize(10)
             .padding(1)
             .onClick(() => {
-              router.pushUrl({ url: item.url });
+              this.getUIContext()?.pushUrl({ url: item.url });
             })
         }
       })
@@ -90,7 +90,7 @@ struct VisualEffectsIndex {
                 .fontSize(15)
                 .labelStyle({ maxLines: 10 })
                 .onClick(() => {
-                  router.pushUrl({ url: item.url });
+                  this.getUIContext()?.pushUrl({ url: item.url });
                 })
             }
           })
