@@ -52,7 +52,7 @@ async function main() {
       return 'Fail';
     }
   } catch (error) {
-    console.error(`verify failed, error: + ${JSON.stringify(error)}`);
+    console.error(`verify failed, error: ${JSON.stringify(error)}`);
     return 'Fail';
   }
 }
