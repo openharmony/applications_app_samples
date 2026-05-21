@@ -221,20 +221,28 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
         case AV_INITIALIZED: {
             LOG("AVPlayerState  AV_INITIALIZED");
             auto context = SampleManager::GetInstance();
+            // [Start OH_AVPlayer_SetVideoSurface]
             ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
             LOG("OH_AVPlayer_SetVideoSurface ret:%{public}d", ret);
+            // [End OH_AVPlayer_SetVideoSurface]
+            // [Start OH_AVPlayer_Prepare]
             ret = OH_AVPlayer_Prepare(player); // 设置播放源后触发该状态上报
             if (ret != AV_ERR_OK) {
                 // 处理异常
                 LOG("player  %{public}s", "OH_AVPlayer_Prepare Err");
             }
+            // [End OH_AVPlayer_Prepare]
         } break;
         case AV_PREPARED:
+            // [Start OH_AVPlayer_SetAudioEffectMode]
             LOG("AVPlayerState AV_PREPARED");
             ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
             LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
+            // [End OH_AVPlayer_SetAudioEffectMode]
+            // [Start OH_AVPlayer_Play]
             ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
             LOG("OH_AVPlayer_Play ret:%{public}d", ret);
+            // [End OH_AVPlayer_Play]
             break;
         case AV_PLAYING:
             LOG("AVPlayerState AV_PLAYING");
@@ -388,31 +396,51 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     if(SampleManager::GetInstance()->player_) {
         OH_AVPlayer_Release(SampleManager::GetInstance()->player_);
     }
+    // [Start OH_AVPlayer_Create]
     OH_AVPlayer *player = OH_AVPlayer_Create();
+    // [End OH_AVPlayer_Create]
     SampleManager::GetInstance()->SetAVPlayer(player);
+    // [Start OH_AVPlayer_SetOnInfoCallback]
     // 设置回调，监听信息
     LOG("call OH_AVPlayer_SetPlayerOnInfoCallback");
     int32_t ret = OH_AVPlayer_SetOnInfoCallback(player, OHAVPlayerOnInfoCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%{public}d", ret);
+    // [End OH_AVPlayer_SetOnInfoCallback]
+    // [Start OH_AVPlayer_SetOnErrorCallback]
     LOG("call OH_AVPlayer_SetPlayerOnErrorCallback");
     ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%{public}d", ret);
+    // [End OH_AVPlayer_SetOnErrorCallback]
     {
+        // [Start OH_AVPlayer_SetURLSource]
         LOG("player %{public}s >> URL source", url);
         LOG("call %{public}s", "OH_AVPlayer_SetUrlSource");
         ret = OH_AVPlayer_SetURLSource(player, url);
         LOG("OH_AVPlayer_SetUrlSource ret:%{public}d", ret);
+        // [End OH_AVPlayer_SetURLSource]
     }
+    // [Start OH_AVPlayer_SetAudioRendererInfo]
     // 设置音频流类型
     LOG("call %{public}s", "OH_AVPlayer_SetAudioRendererInfo");
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     LOG("OH_AVPlayer_SetAudioRendererInfo ret:%{public}d", ret);
+    // [End OH_AVPlayer_SetAudioRendererInfo]
+    // [Start OH_AVPlayer_SetAudioInterruptMode]
     // 设置音频流打断模式
     LOG("call OH_AVPlayer_SetAudioInterruptMode");
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     LOG("OH_AVPlayer_SetAudioInterruptMode ret:%{public}d", ret);
+    // [End OH_AVPlayer_SetAudioInterruptMode]
+    // [Start OH_AVPlayer_SetPlaybackStrategy]
+    // 设置播放策略
+    OH_AVPlaybackStrategy *myStrategy = OH_AVPlaybackStrategy_Create();
+    OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, 6.0); //直播场景设置智能追帧
+    ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
+    LOG("OH_AVPlayer_SetPlaybackStrategy ret:%{public}d", ret);
+    OH_AVPlaybackStrategy_Destroy(myStrategy);
+    // [End OH_AVPlayer_SetPlaybackStrategy]
     napi_value value;
     napi_create_int32(env, 0, &value);
     return value;
@@ -497,8 +525,10 @@ static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info) {
     int ret = 100;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
+        // [Start OH_AVPlayer_Pause]
         ret = OH_AVPlayer_Pause(context->player_);
         LOG("OH_AVPlayer_Pause ret:%{public}d", ret);
+        // [End OH_AVPlayer_Pause]
     } else {
         LOG("no found Player Instances");
     }
@@ -519,8 +549,10 @@ static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info) {
         int ret;
         switch (mode) {
         case 0:
+            // [Start OH_AVPlayer_Seek]
             LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_NEXT_SYNC", seekValue);
             ret = OH_AVPlayer_Seek(context->player_, seekValue, AV_SEEK_NEXT_SYNC);
+            // [End OH_AVPlayer_Seek]
             break;
         case 1:
             LOG("call NAPI_Global_Seek value:%{public}d  mode:AV_SEEK_PREVIOUS_SYNC", seekValue);
@@ -607,8 +639,10 @@ static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info) {
     int ret = -1;
     auto context = SampleManager::GetInstance();
     if (context->player_ != NULL) {
+        // [Start OH_AVPlayer_Release]
         ret = OH_AVPlayer_Release(context->player_);
         LOG("OH_AVPlayer_Release ret:%{public}d", ret);
+        // [End OH_AVPlayer_Release]
     } else {
         LOG("no found Player Instances");
     }
