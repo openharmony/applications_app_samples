@@ -438,10 +438,12 @@ static napi_value NAPI_Global_Setup(napi_env env, napi_callback_info info) {
     return value;
 }
 // [Start OH_AVPlayer_SetPlaybackStrategy]
-void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player) {
+void OHAVPlayerSetPlaybackStrategy(OH_AVPlayer *player)
+{
     // 设置播放策略
     OH_AVPlaybackStrategy *myStrategy = OH_AVPlaybackStrategy_Create();
-    OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, 6.0); //直播场景设置智能追帧
+    double waterLine = 6.0;
+    OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay(myStrategy, waterLine); //直播场景设置智能追帧
     int32_t ret = OH_AVPlayer_SetPlaybackStrategy(player, myStrategy);
     LOG("OH_AVPlayer_SetPlaybackStrategy ret:%{public}d", ret);
     OH_AVPlaybackStrategy_Destroy(myStrategy);
