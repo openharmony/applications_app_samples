@@ -126,7 +126,7 @@ struct Index {
           for (let i = 0; i < data.length; i++) {
             console.info(TAG + JSON.stringify(data[i]));
             // [StartExclude sensor_js_get_sensor_list_example]
-            this.sensorItems[i] = data[i].sensorName;
+            this.sensorItems.push(data[i].sensorName);
             this.sensors.set(data[i].sensorName, data[i].sensorId);
             // [EndExclude sensor_js_get_sensor_list_example]
           }
