@@ -16,7 +16,9 @@
 import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
 import { common } from '@kit.AbilityKit';
+// [Start createMediaSource1]
 import media from '@ohos.multimedia.media';
+// [End createMediaSource1]
 
 
 const PROPORTION = 0.99; // 占屏幕比例
@@ -53,7 +55,9 @@ struct Index {
   private intervalID: number = -1;
   private seekTime: number = -1;
   private context: common.UIAbilityContext | undefined = undefined;
+  // [Start createMediaSource2]
   private mediaSource: media.MediaSource | null = null;
+  // [End createMediaSource2]
 
   @State title: Resource = $r('app.string.EntryAbility_label');
   @State fileName: string = 'test_01.mp3';
@@ -122,8 +126,10 @@ struct Index {
         }
       }, SET_INTERVAL);
     });
+    // [Start createMediaSource3]
     // 设置mediaSource，应用按需设置URL
     let url = '';
+    // [End createMediaSource3]
     await this.preDownload(url);
   }
 
@@ -378,15 +384,29 @@ struct Index {
 
   async preDownload(url: string): Promise<void> {
     console.info(`${this.tag}: preDownload start, url=${url}`);
+    // [Start createMediaSource4]
     let headers: Record<string, string> = {};
     this.mediaSource = media.createMediaSourceWithUrl(url, headers);
+    // [End createMediaSource4]
+    // [Start enableOfflineCache]
     this.mediaSource.enableOfflineCache(true);
-        
+    // [End enableOfflineCache]
+    // [Start PlaybackStrategy]
     if (this.avPlayer) {
       let strategy: media.PlaybackStrategy = { preferredBufferDuration: 0 };
       this.avPlayer.setMediaSource(this.mediaSource, strategy);
       console.info(`${this.tag}: setMediaSource completed, ready to play`);
     }
+    // [End PlaybackStrategy]
+  }
+
+  offEnableOfflineCache() {
+    // [Start offEnableOfflineCache]
+    let url = '';
+    let headers: Record<string, string> = {};
+    this.mediaSource = media.createMediaSourceWithUrl(url, headers);
+    this.mediaSource.enableOfflineCache(false);
+    // [End offEnableOfflineCache]
   }
 
   @Builder
