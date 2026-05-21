@@ -25,6 +25,7 @@ let textConfig: intelligence.ModelConfig = {
   cachePath: "/data"
 }
 let textEmbedding: intelligence.TextEmbedding;
+let modelInfo:  intelligence.CloudModelInfo;
 // [End aip_getTextEmbeddingModel_operating_parameter]
 
 // [Start aip_getImageEmbeddingModel_operating_parameter]
@@ -40,6 +41,41 @@ let imageEmbedding: intelligence.ImageEmbedding;
 @Component
 struct Index {
   @State message: string = 'aip';
+
+  private getSupportedCloudModel(): void {
+    // [Start aip_getSupportedCloudModel_operating]
+    intelligence.getSupportedCloudModel()
+      .then((info: Array<intelligence.CloudModelInfo>) => {
+        console.info('Succeeded in getting TextModel');
+        if (info.length > 0) {
+          modelInfo = info[0];
+        }
+      })
+    // [End aip_getSupportedCloudModel_operating]
+  }
+
+  private getCloudTextEmbeddingModel(): void {
+    // [Start aip_getCloudTextEmbeddingModel_operating]
+    if (modelInfo !== undefined) {
+      textConfig.modelInfo = modelInfo;
+      textConfig.networkPolicy = intelligence.NetworkPolicy.WIFI_ONLY;
+    }
+    intelligence.getTextEmbeddingModel(textConfig)
+      .then((data: intelligence.TextEmbedding) => {
+        console.info('Succeeded in getting TextModel');
+        textEmbedding = data;
+        // [StartExclude aip_getCloudTextEmbeddingModel_operating]
+        this.message = 'aip getTextEmbeddingModel';
+        // [EndExclude aip_getCloudTextEmbeddingModel_operating]
+      })
+      .catch((err: BusinessError) => {
+        console.error('Failed to get TextModel and code is ' + err.code);
+        // [StartExclude aip_getCloudTextEmbeddingModel_operating]
+        this.message = 'aip getTextEmbeddingModel';
+        // [EndExclude aip_getCloudTextEmbeddingModel_operating]
+      })
+    // [End aip_getCloudTextEmbeddingModel_operating]
+  }
 
   private getTextEmbeddingModel(): void {
     // [Start aip_getTextEmbeddingModel_operating]
@@ -259,7 +295,17 @@ struct Index {
         .fontWeight(FontWeight.Bold).margin({ bottom:10 })
         .height('20%')
         .id('show')
-      Button('获取文本模型')
+      Button('获取支持的文本向量模型')
+        .margin(10)
+        .id('button3')
+        .width('30%')
+        .onClick(() => this.getSupportedCloudModel())
+      Button('获取文本模型(Phone，Tablet)')
+        .margin(10)
+        .id('button3')
+        .width('30%')
+        .onClick(() => this.getCloudTextEmbeddingModel())
+      Button('获取文本模型(PC/2in1)')
         .margin(10)
         .id('button1')
         .width('30%')
