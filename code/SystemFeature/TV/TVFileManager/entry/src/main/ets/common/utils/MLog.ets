@@ -60,7 +60,8 @@ export class MLog {
   }
 
   public static stackError(tag: string, error: Error, method?: string): void {
-    MLog.error(tag, `${method ? 'Method:' + method : ''} Error name:${error.name ?? '--'} message:${error.message ?? '--'}\n ${error.stack ?? '--'}`);
+    MLog.error(tag, `${method ? 'Method:' + method : ''} Error name:${error.name ?? '--'} message:${error.message ??
+      '--'}\n ${error.stack ?? '--'}`);
   }
 
   public static show(tag: string, msg: string): void {

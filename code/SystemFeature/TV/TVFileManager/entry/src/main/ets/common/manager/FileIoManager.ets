@@ -38,7 +38,8 @@ export class FileIoManager {
     });
   }
 
-  public static async copy(srcUri: string, destUri: string, progressFun?: (progress: FileIO.Progress) => void): Promise<string> {
+  public static async copy(srcUri: string, destUri: string,
+    progressFun?: (progress: FileIO.Progress) => void): Promise<string> {
     try {
       MLog.info(TAG, `copy srcUri:${srcUri} destUri:${destUri}`);
       let options: FileIO.CopyOptions = {

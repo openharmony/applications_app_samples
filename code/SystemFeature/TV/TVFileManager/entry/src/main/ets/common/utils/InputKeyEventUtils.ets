@@ -12,24 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// import { inputEventClient } from '@kit.InputKit';
 import { KeyCode } from '@kit.InputKit';
 
 export class InputKeyEventUtils {
   public static inputTab() {
-    // let tabDown: inputEventClient.KeyEvent = {
-    //   isPressed: true,
-    //   keyCode: KeyCode.KEYCODE_TAB,
-    //   keyDownDuration: 1,
-    //   isIntercepted: false
-    // }
-    // inputEventClient.injectKeyEvent({ keyEvent: tabDown })
-    // let tabUp: inputEventClient.KeyEvent = {
-    //   isPressed: false,
-    //   keyCode: KeyCode.KEYCODE_TAB,
-    //   keyDownDuration: 0,
-    //   isIntercepted: false
-    // }
-    // inputEventClient.injectKeyEvent({ keyEvent: tabUp })
+
   }
 }

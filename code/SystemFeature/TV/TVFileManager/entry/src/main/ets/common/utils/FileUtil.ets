@@ -34,6 +34,7 @@ interface ImageErrorInfo {
   errorName?: string;
   fullError: string;
 }
+
 class FileUtil {
   // 获取缓存目录
   async getCacheDir(context: Context): Promise<string> {
@@ -103,25 +104,25 @@ class FileUtil {
 
       // 检查 URI 是否有效
       if (!uri || typeof uri !== 'string') {
-        console.error(TAG,'Invalid URI: URI is empty or not a string');
+        console.error(TAG, 'Invalid URI: URI is empty or not a string');
       }
 
       file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
-      console.info(TAG,`文件打开成功，FD: ${file.fd}`);
+      console.info(TAG, `文件打开成功，FD: ${file.fd}`);
 
       // 创建图片源
       imageSource = image.createImageSource(file.fd);
       // 验证 imageSource 是否成功创建
       if (!imageSource) {
-        console.error(TAG,`createImageSource returned null/undefined for URI: ${uri}`);
+        console.error(TAG, `createImageSource returned null/undefined for URI: ${uri}`);
       }
       imageSource.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
         if (error) {
-          console.error(TAG,`获取基础信息失败: ${error.code}, ${error.message}`);
+          console.error(TAG, `获取基础信息失败: ${error.code}, ${error.message}`);
         } else {
-          console.info(TAG,`图片宽度: ${imageInfo.size.width}`);
-          console.info(TAG,`图片高度: ${imageInfo.size.height}`);
-          console.info(TAG,`图片格式: ${imageInfo.mimeType}`);
+          console.info(TAG, `图片宽度: ${imageInfo.size.width}`);
+          console.info(TAG, `图片高度: ${imageInfo.size.height}`);
+          console.info(TAG, `图片格式: ${imageInfo.mimeType}`);
         }
       });
       // 获取图片信息（只读元数据，不解码）
@@ -131,15 +132,15 @@ class FileUtil {
       await imageSource.release();
 
       // 提取原始宽高
-      const width :number = imageInfo.size.width;
-      const height :number = imageInfo.size.height;
+      const width: number = imageInfo.size.width;
+      const height: number = imageInfo.size.height;
       // 验证宽高是否有效
       if (width <= 0 || height <= 0) {
         MLog.warn(TAG, '图片尺寸无效');
       }
       MLog.info(TAG, `Image original dimensions: ${width}x${height}`);
 
-      return { width,height };
+      return { width, height };
     } catch (err) {
       // 确保释放资源
       if (imageSource) {
@@ -170,7 +171,7 @@ class FileUtil {
       } else {
         throw new Error(`获取图片信息失败：${(err as Error)?.message || '未知错误'}`);
       }
-    }finally {
+    } finally {
       // 关闭打开的文件资源
       if (file) {
         fileIo.closeSync(file);

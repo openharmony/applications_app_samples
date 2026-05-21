@@ -23,7 +23,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = 'SubtitleHelper';
 
 export class SubtitleHelper {
-
   // 常见的字幕文件扩展名
   private readonly SUBTITLE_EXTENSIONS: string[] = [
     '.srt', '.ass', '.ssa', '.vtt', '.sub', '.sbv', '.ttml', '.txt', '.lrc', '.smi'
@@ -153,4 +152,5 @@ export class SubtitleHelper {
 }
 
 let subtitleHelper: SubtitleHelper = new SubtitleHelper();
+
 export default subtitleHelper;

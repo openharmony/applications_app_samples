@@ -51,7 +51,7 @@ export class NavStack {
   private pathList: HashMap<DeviceType, PathName[]> = new HashMap();
   private bakNavPathMap: HashMap<DeviceType, PathInfo[]> = new HashMap();
   private externalActive: boolean = false;
-  private backPressObs:Array<()=>boolean|void> = [];
+  private backPressObs: Array<() => boolean | void> = [];
 
   public static getIns(): NavStack {
     let ins = AppStorage.get<NavStack>(NavPathStackTag);
@@ -73,7 +73,7 @@ export class NavStack {
     this.bakNavPathMap.set(DeviceType.USB, []);
   }
 
-  public regBackPressFun(fun:()=>boolean|void){
+  public regBackPressFun(fun: () => boolean | void) {
     fun && this.backPressObs.push(fun);
   }
 
@@ -84,21 +84,21 @@ export class NavStack {
     }
   }
 
-  public onBackPress():boolean{
-    for(let fun of this.backPressObs){
-      if(fun()){
+  public onBackPress(): boolean {
+    for (let fun of this.backPressObs) {
+      if (fun()) {
         return true;
       }
     }
     return false;
   }
 
-  public clear(){
+  public clear() {
     this.device = 0;
     this.clearStack();
   }
 
-  private clearStack(){
+  private clearStack() {
     this.pathList.set(DeviceType.Local, []);
     this.pathList.set(DeviceType.USB, []);
     this.bakNavPathMap.set(DeviceType.Local, []);
@@ -119,7 +119,7 @@ export class NavStack {
   public setDevice(dev: number) {
     if (dev <= DeviceType.USB) {
       this.device = dev;
-      if(this.curNavPathInfo) {
+      if (this.curNavPathInfo) {
         MLog.print(TAG, `setDevice dev:${this.device} pagename:${this.curNavPathInfo?.name} `);
         if (this.device === DeviceType.Local && this.isSelectMod() && this.curNavPathInfo?.name.startsWith(HOME_NAME)) {
           MLog.warn(TAG, `setDevice jump local root page`);
@@ -127,10 +127,10 @@ export class NavStack {
           this.pushRoot(PageType.ROOT_PAGE);
         } else {
         }
-      }else{
-        if(this.isExternal() && this.device == DeviceType.USB){
+      } else {
+        if (this.isExternal() && this.device == DeviceType.USB) {
           this.pushRoot(PageType.EXTERNAL_USB_PAGE);
-        }else {
+        } else {
           this.pushRoot(PageType.HOME_PAGE);
         }
       }
@@ -153,15 +153,15 @@ export class NavStack {
 
   public checkBackPress(): boolean {
     MLog.print(TAG, `checkBackPress dev:${this.device} curBakNavPath.length:${this.curBakNavPath.length} `);
-    if(this.device == DeviceType.Local && this.isSelectMod()){
+    if (this.device == DeviceType.Local && this.isSelectMod()) {
       return this.curBakNavPath.length > 2;
     }
     return this.curBakNavPath.length > 1;
   }
 
-  public isExitApp():boolean{
+  public isExitApp(): boolean {
     MLog.print(TAG, `isExitApp dev:${this.device} curBakNavPath.length:${this.curBakNavPath.length} `);
-    if(this.isSelectMod()){
+    if (this.isSelectMod()) {
       return false;
     }
     return this.curBakNavPath.length == 1;
@@ -184,7 +184,6 @@ export class NavStack {
 
   public setCopyMode() {
     this.selectMode = SelectMode.Copy;
-    // this.setSelectMode();
     this.callRefresh();
   }
 
@@ -213,7 +212,7 @@ export class NavStack {
     this.callRefresh();
   }
 
-  openUSB(){
+  openUSB() {
     this.externalActive = true;
   }
 
@@ -222,9 +221,9 @@ export class NavStack {
     if (type == PageType.EXTERNAL_USB_PAGE) {
       this.externalActive = true;
     }
-    if(type == PageType.HOME_PAGE){
+    if (type == PageType.HOME_PAGE) {
       this.clearStack();
-      MLog.print(TAG,`clear stack!`);
+      MLog.print(TAG, `clear stack!`);
     }
     this.pushPath(type);
   }
@@ -237,7 +236,7 @@ export class NavStack {
   }
 
   private pushPath(name: string, bean?: FileBean) {
-    MLog.print(TAG,`pushPath name:${name} bean:${JSON.stringify(bean)}`);
+    MLog.print(TAG, `pushPath name:${name} bean:${JSON.stringify(bean)}`);
     //初始化时会直接push usb的路径进来
     let curType: DeviceType = this.device;
     if (name === PageType.EXTERNAL_USB_PAGE) {
@@ -251,8 +250,9 @@ export class NavStack {
       rootRelativePath: bean?.isRoot ? bean?.relativePath : this.curPageInfo?.rootRelativePath
     };
     this.bakNavPathMap.get(curType).push(info);
-    MLog.print(TAG,`pushPath info:${JSON.stringify(info)}`);
-    MLog.warn(TAG, `bakNavPathMap curType:${curType} info:${info.name} bak:${this.bakNavPathMap.get(curType).map(it => it.name)} `);
+    MLog.print(TAG, `pushPath info:${JSON.stringify(info)}`);
+    MLog.warn(TAG,
+      `bakNavPathMap curType:${curType} info:${info.name} bak:${this.bakNavPathMap.get(curType).map(it => it.name)} `);
 
     this.callRefresh();
   }
@@ -261,7 +261,7 @@ export class NavStack {
     return this.pathList.get(this.device).map(it => it.name);
   }
 
-  get curPageInfo():PathInfo {
+  get curPageInfo(): PathInfo {
     return this.curNavPathInfo;
   }
 
@@ -273,8 +273,8 @@ export class NavStack {
   private get curNavPathInfo(): PathInfo {
     let nav = this.curBakNavPath;
     if (nav.length > 0) {
-      return nav[nav.length-1];
-    }else{
+      return nav[nav.length - 1];
+    } else {
       return nav[0];
     }
   }
@@ -288,12 +288,13 @@ export class NavStack {
   }
 
   popPath() {
-    if(this.curBakNavPath.length < 1){
+    if (this.curBakNavPath.length < 1) {
       MLog.warn(TAG, `bakNavPathMap device:${this.device} curBakNavPath:${this.curBakNavPath.map(it => it.name)} `);
       return;
     }
     let info = this.curBakNavPath.pop();
-    MLog.info(TAG, `bakNavPathMap device:${this.device} info:${info?.name} curBakNavPath:${this.curBakNavPath.map(it => it.name)} `);
+    MLog.info(TAG,
+      `bakNavPathMap device:${this.device} info:${info?.name} curBakNavPath:${this.curBakNavPath.map(it => it.name)} `);
 
     let bean = this.pathList.get(this.device).pop();
     MLog.print(TAG, `popPath pathList pop:${bean?.name} PathListNames:${this.getPathListNames()}`);

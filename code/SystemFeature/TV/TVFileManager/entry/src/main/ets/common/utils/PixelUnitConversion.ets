@@ -17,27 +17,26 @@ import lpx from './Lpx';
 
 
 export class Units {
-
-  static   px2fp(size:number){
-    if(display.getDefaultDisplaySync().width>3800){
+  static px2fp(size: number) {
+    if (display.getDefaultDisplaySync().width > 3800) {
       return px2fp(size * 1.1);
-    }else {
+    } else {
       return px2fp(size);
     }
   }
 
-  static   px2vp(size:number){
-    if(display.getDefaultDisplaySync().width>3800){
+  static px2vp(size: number) {
+    if (display.getDefaultDisplaySync().width > 3800) {
       return px2vp(size * 1.1);
-    }else {
+    } else {
       return px2vp(size);
     }
   }
 
-  static   px(size:number){
-    if(display.getDefaultDisplaySync().width>3800){
+  static px(size: number) {
+    if (display.getDefaultDisplaySync().width > 3800) {
       return `${size * 1.1}px`;
-    }else {
+    } else {
       return `${size}px`;
     }
   }

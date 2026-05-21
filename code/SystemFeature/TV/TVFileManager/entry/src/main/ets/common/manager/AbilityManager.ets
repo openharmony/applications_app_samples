@@ -31,7 +31,6 @@ const SHARE_ABILITY_NAME: string = 'ServiceExtAbility';
 const SHARE_SERVICE_COLD_INIT_DELAY_MS: number = 800;
 
 export class AbilityManager {
-
   /**
    * 检查分享服务进程是否已在运行（区分冷启动/热启动）。
    * 冷启动：第一次 startAbility 只负责启动服务并创建窗口，

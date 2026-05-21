@@ -31,7 +31,6 @@ interface DateFormatDict {
 }
 
 export class DateTools {
-
   /**
    * 格式化时间
    * 调用formatDate(strDate, 'yyyy-MM-dd');

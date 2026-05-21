@@ -32,13 +32,13 @@ const TAG_FINISH = 'TAG_FINISH';
 
 export class FileTaskPool {
   private task: taskpool.LongTask;
-  private progressCall?:(progress:number,progressOne?:string,result?:string)=>void;
-  private finishCall?:(result:Map<string,string>)=>void;
+  private progressCall?: (progress: number, progressOne?: string, result?: string) => void;
+  private finishCall?: (result: Map<string, string>) => void;
 
-  constructor(context: common.UIAbilityContext,src: FileBean[], dest: string, isMove: boolean = false) {
+  constructor(context: common.UIAbilityContext, src: FileBean[], dest: string, isMove: boolean = false) {
     let arr = src.map(it => new FileTaskBean(it, dest, isMove));
 
-    this.task = new taskpool.LongTask(FileTaskRun,context, arr);
+    this.task = new taskpool.LongTask(FileTaskRun, context, arr);
     emitter.on(TAG_EXECUTE, this.executeFun);
     emitter.on(TAG_FINISH, this.finishFun);
     emitter.on(TAG_PROGRESS, this.progressFun);
@@ -47,35 +47,34 @@ export class FileTaskPool {
 
 
   private executeFun = () => {
-    MLog.print(TAG,`task executeFun:${this.task.arguments}`);
-    taskpool.execute(this.task).then(()=>{
-      MLog.print(TAG,`task execute success!`);
+    MLog.print(TAG, `task executeFun:${this.task.arguments}`);
+    taskpool.execute(this.task).then(() => {
+      MLog.print(TAG, `task execute success!`);
       emitter.emit(TAG_FINISH);
     });
   }
-
-  private finishFun = (data:emitter.EventData)=>{
-    MLog.print(TAG,`task finish totalDuration:${this.task.totalDuration} ioDuration:${this.task.ioDuration} cpuDuration:${this.task.cpuDuration}`);
-    if(data.data?.listBean){
-      MLog.print(TAG,`task finish listBean:${JSON.stringify(data.data?.listBean)}`);
+  private finishFun = (data: emitter.EventData) => {
+    MLog.print(TAG,
+      `task finish totalDuration:${this.task.totalDuration} ioDuration:${this.task.ioDuration} cpuDuration:${this.task.cpuDuration}`);
+    if (data.data?.listBean) {
+      MLog.print(TAG, `task finish listBean:${JSON.stringify(data.data?.listBean)}`);
     }
-    if(this.finishCall){
+    if (this.finishCall) {
       this.finishCall(data.data?.listBean);
     }
   }
-
-  private progressFun = (data:emitter.EventData) => {
-    MLog.print(TAG,`progressFun data:${JSON.stringify(data)}`);
-    if(this.progressCall){
-      this.progressCall(data.data?.progress,data.data?.progressOne,data.data?.taskResult);
+  private progressFun = (data: emitter.EventData) => {
+    MLog.print(TAG, `progressFun data:${JSON.stringify(data)}`);
+    if (this.progressCall) {
+      this.progressCall(data.data?.progress, data.data?.progressOne, data.data?.taskResult);
     }
   }
 
-  setProgressFun(progressCall:(progress:number)=>void) {
+  setProgressFun(progressCall: (progress: number) => void) {
     this.progressCall = progressCall;
   }
 
-  run(){
+  run() {
     emitter.emit(TAG_EXECUTE);
   }
 
@@ -84,18 +83,17 @@ export class FileTaskPool {
     emitter.emit(TAG_FINISH);
   }
 
-  setFinishCall(finishCall?:(result:Map<string,string>)=>void){
+  setFinishCall(finishCall?: (result: Map<string, string>) => void) {
     this.finishCall = finishCall;
   }
 
-  release(){
+  release() {
     emitter.off(TAG_EXECUTE);
     emitter.off(TAG_CANCEL);
     emitter.off(TAG_PROGRESS);
     emitter.off(TAG_FINISH);
     taskpool.terminateTask(this.task);
   }
-
 }
 
 @Concurrent
@@ -103,7 +101,7 @@ async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]
   let TAG = 'FileTaskRun';
   try {
     MLog.print(TAG, `task execute CopyFileTask! context:${context} taskBeanList:${taskBeanList.length}`);
-    let num:number|string = -1;
+    let num: number | string = -1;
     for (let k = 0; k < taskBeanList.length; k++) {
       if (taskpool.Task.isCanceled()) {
         MLog.print(TAG, `task execute Canceled!`);
@@ -116,7 +114,8 @@ async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]
       if (taskBean.srcUri === taskBean.destFolderUri) {
         continue;
       }
-      MLog.print(TAG, `copy srcName:${taskBean.srcName} srcUri:${taskBean.srcUri} destFolderUri:${taskBean.destFolderUri} srcRelativePath:${taskBean.srcRelativePath}`);
+      MLog.print(TAG,
+        `copy srcName:${taskBean.srcName} srcUri:${taskBean.srcUri} destFolderUri:${taskBean.destFolderUri} srcRelativePath:${taskBean.srcRelativePath}`);
       num = await FileIoManager.copy(taskBean.srcUri, taskBean.destFolderUri, (progress) => {
         let p = ((progress.processedSize / progress.totalSize) * 100).toFixed(2);
         MLog.print(TAG, `copy src:${taskBean.srcUri} progress:${p}=${progress.processedSize}/${progress.totalSize}`);
@@ -143,15 +142,13 @@ async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]
             return `[${err?.code}] ${err?.message}`;
           });
       }
-      if (num === 0) {
-        // taskBean.taskResult = 'success'
-      } else {
+      if (num !== 0) {
         taskBean.taskResult = typeof num == 'number' ? `Code:${num}` : num;
       }
       emitter.emit('TAG_PROGRESS', { data: { progress: k + 1, taskResult: taskBean.taskResult } });
     }
   } catch (err) {
-    MLog.printError(TAG,`execute err!`,err);
+    MLog.printError(TAG, `execute err!`, err);
   }
   return 'finish';
 }
@@ -219,25 +216,25 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
 }
 
 class FileTaskBean {
-  srcUri:string;
-  srcName:string;
-  srcRelativePath:string;
+  srcUri: string;
+  srcName: string;
+  srcRelativePath: string;
   destFolderUri: string;
   isMove: boolean = false;
-  isMedia:boolean = false;
-  taskResult:string = '';
+  isMedia: boolean = false;
+  taskResult: string = '';
 
   constructor(src: FileBean, destUri: string, isMove?: boolean) {
     this.srcUri = src.getPath();
     this.srcName = src.name;
     this.srcRelativePath = src.relativePath;
     this.isMedia = src.isMediaFile();
-    if(src.isDir()) {
+    if (src.isDir()) {
       this.destFolderUri = destUri;
-    }else{
-      this.destFolderUri = `${destUri}/${this.srcUri.substring(this.srcUri.lastIndexOf('/')+1)}`;
+    } else {
+      this.destFolderUri = `${destUri}/${this.srcUri.substring(this.srcUri.lastIndexOf('/') + 1)}`;
     }
-    if (isMove && this.srcUri!=this.destFolderUri) {
+    if (isMove && this.srcUri != this.destFolderUri) {
       this.isMove = isMove;
     }
 

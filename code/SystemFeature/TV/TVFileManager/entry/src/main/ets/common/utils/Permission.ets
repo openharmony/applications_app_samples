@@ -21,34 +21,36 @@ const PERMISSIONS_ARR: Array<Permissions> = [
   'ohos.permission.FILE_ACCESS_MANAGER', 'ohos.permission.STORAGE_MANAGER',
   'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED', 'ohos.permission.MANAGE_MISSIONS',
   'ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_AUDIO', 'ohos.permission.READ_IMAGEVIDEO',
-  'ohos.permission.WRITE_IMAGEVIDEO','ohos.permission.CLEAN_BACKGROUND_PROCESSES',
-  'ohos.permission.INTERNET','ohos.permission.SET_WALLPAPER','ohos.permission.GET_RUNNING_INFO',
+  'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.CLEAN_BACKGROUND_PROCESSES',
+  'ohos.permission.INTERNET', 'ohos.permission.SET_WALLPAPER', 'ohos.permission.GET_RUNNING_INFO',
 ];
 
 export class Permission {
-
-  public static async checkAndRequest(permissions: Permissions[] = PERMISSIONS_ARR): Promise<boolean>{
+  public static async checkAndRequest(permissions: Permissions[] = PERMISSIONS_ARR): Promise<boolean> {
     MLog.print(TAG, `checkAndRequest permissions:${permissions}`);
-    if(!Permission.allAllowed(permissions)){
+    if (!Permission.allAllowed(permissions)) {
       MLog.print(TAG, `checkAndRequest allAllowed:false`);
       let status = await Permission.requestPermissions(permissions);
       MLog.print(TAG, `checkAndRequest status:${status}`);
       return status && Permission.allAllowed(permissions);
-    }else{
+    } else {
       return true;
     }
   }
+
   private static allAllowed(permissions: Permissions[]): boolean {
     if (permissions.length == 0) {
       return false;
     }
 
     const mgr: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-    const bundleInfo = bundleManager.getBundleInfoForSelfSync(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+    const bundleInfo =
+      bundleManager.getBundleInfoForSelfSync(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
 
     let tokenID: number = bundleInfo.appInfo.accessTokenId;
 
-    return permissions.every(permission => abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED == mgr.checkAccessTokenSync(tokenID, permission));
+    return permissions.every(
+      permission => abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED == mgr.checkAccessTokenSync(tokenID, permission));
   }
 
   private static async requestPermissions(permissions: Permissions[]): Promise<boolean> {

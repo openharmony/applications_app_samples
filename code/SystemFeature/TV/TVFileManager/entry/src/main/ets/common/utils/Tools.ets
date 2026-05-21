@@ -45,7 +45,6 @@ const MB: number = KB * 1024;
 const GB: number = MB * 1024;
 
 export class Tools {
-
   public static byte2Str(limit: number): string {
     let size: string = '';
     if (limit < KB) {
