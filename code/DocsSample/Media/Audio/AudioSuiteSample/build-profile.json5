@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
+ */
 {
   "app": {
     "signingConfigs": [],
@@ -5,9 +8,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.1.1(24)",
-        "compatibleSdkVersion": "6.1.1(24)",
-        "runtimeOS": "HarmonyOS",
+        "compileSdkVersion": 24,
+        "targetSdkVersion": 24,
+        "compatibleSdkVersion": 24,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "nativeCompiler": "BiSheng",
           "strictMode": {

@@ -7,8 +7,8 @@
 
 #include "pcmFileUtils.h"
 
-void BaseEditorEffect(AudioDataInfo *info, const char *newFilePath);
-void AudioSourceSeparation();
-void MixingAndCascading();
+void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath);
+void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath, const char *accompanimentFilePath);
+void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInfoForMix, const char *mixFilePath);
 
 #endif

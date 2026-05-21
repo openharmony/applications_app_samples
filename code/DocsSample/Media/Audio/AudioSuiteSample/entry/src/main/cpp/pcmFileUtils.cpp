@@ -5,13 +5,8 @@
 #include "pcmFileUtils.h"
 #include <cstdio>
 #include <cstring>
-#include "hilog/log.h"
 
-const int GLOBAL_RESMGR = 0xFF00;
-static const char *TAG = "[AudioSuiteApp_fileUtiles_cpp]";
-
-bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
-{
+bool ReadPcmFile(const char *filePath, AudioDataInfo *info) {
     if (filePath == nullptr || info == nullptr) {
         return false;
     }
@@ -49,32 +44,26 @@ bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
     return true;
 }
 
-bool WritePcmFile(const char *filePath, const AudioDataInfo *info)
-{
-//     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log filePath : %{public}d info : %{public}d", filePath,info);
+bool WritePcmFile(const char *filePath, const AudioDataInfo *info) {
     if (filePath == nullptr || info == nullptr || info->buffer == nullptr || info->bufferSize <= 0) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log filePath 111111111111");
         return false;
     }
- OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log filePath 22222222222222");
     FILE *fp = fopen(filePath, "wb");
     if (fp == nullptr) {
-         OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log filePath 33333333333333333");
         return false;
     }
 
     size_t writeSize = fwrite(info->buffer, 1, info->bufferSize, fp);
- OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log filePath 111111111444444444444444444444444");
     fclose(fp);
 
     return writeSize == static_cast<size_t>(info->bufferSize);
 }
 
-void FreeAudioDataInfo(AudioDataInfo *info)
-{
+void FreeAudioDataInfo(AudioDataInfo *info) {
     if (info != nullptr && info->buffer != nullptr) {
         delete[] info->buffer;
         info->buffer = nullptr;
         info->bufferSize = 0;
+        info->totalWriteSize = 0;
     }
 }

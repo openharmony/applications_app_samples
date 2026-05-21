@@ -14,6 +14,6 @@ struct AudioDataInfo {
 };
 bool ReadPcmFile(const char *filePath, AudioDataInfo *info);
 bool WritePcmFile(const char *filePath, const AudioDataInfo *info);
-void FreePcmData(AudioDataInfo *info);
+void FreeAudioDataInfo(AudioDataInfo *info);
 
 #endif

@@ -9,15 +9,10 @@
 #include "realTimeRendering.h"
 
 // 输入节点请求数据的回调函数。
-static int32_t InputNodeWriteDataCallBack(
-    OH_AudioNode *audioNode,
-    void *userData,
-    void *audioData,
-    int32_t audioDataSize,
-    bool *finished)
-{
-    if ((audioNode == nullptr) || (userData == nullptr) ||
-        (audioData == nullptr) || (audioDataSize <= 0) || (finished == nullptr)) {
+static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
+                                          int32_t audioDataSize, bool *finished) {
+    if ((audioNode == nullptr) || (userData == nullptr) || (audioData == nullptr) || (audioDataSize <= 0) ||
+        (finished == nullptr)) {
         return -1;
     }
 
@@ -35,16 +30,12 @@ static int32_t InputNodeWriteDataCallBack(
     return actualDataSize;
 }
 
-static OH_AudioData_Callback_Result AudioRendererOnWriteData(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    void* audioData,
-    int32_t audioDataSize)
-{
+static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *renderer, void *userData,
+                                                             void *audioData, int32_t audioDataSize) {
     bool finishedFlag = false;
     int32_t writeSize = 0;
-    OH_AudioSuite_Result result = OH_AudioSuiteEngine_RenderFrame(
-        static_cast<OH_AudioSuitePipeline *>(userData), audioData, audioDataSize, &writeSize, &finishedFlag);
+    OH_AudioSuite_Result result = OH_AudioSuiteEngine_RenderFrame(static_cast<OH_AudioSuitePipeline *>(userData),
+                                                                  audioData, audioDataSize, &writeSize, &finishedFlag);
     if (result != OH_AudioSuite_Result::AUDIOSUITE_SUCCESS) {
         // 音频编创渲染失败。
         return AUDIO_DATA_CALLBACK_RESULT_INVALID;
@@ -55,26 +46,33 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(
     }
 
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
- }
+}
 
+
+OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
+OH_AudioStreamBuilder *rendererBuilder = nullptr;
+// 创建实时渲染的管线。
+OH_AudioSuitePipeline *audioSuitePipeline;
+// 创建输入节点。
+OH_AudioNode *inputNode = nullptr;
+// 创建输出节点。
+OH_AudioNode *outputNode = nullptr;
+// 创建均衡器节点。
+OH_AudioNode *eqNode = nullptr;
+OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
 /**
  * 均衡器效果
  */
-void EqualizerEffect(){
+void EqualizerEffect(AudioDataInfo *audioInfo) {
     // 创建引擎。
-    OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
-    
-    // 创建实时渲染的管线。
-    OH_AudioSuitePipeline *audioSuitePipeline;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
-        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
-    
+                                       OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // 创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::INPUT_NODE_TYPE_DEFAULT);
-    
+
     // 配置音频数据格式，开发者根据要处理的音频数据格式设置采样率、声道分布、声道数、位深、编码格式参数。
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
@@ -84,25 +82,19 @@ void EqualizerEffect(){
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
     // 设置音频流的回调。
-    struct AudioDataInfo audioInfo;
-    audioInfo.buffer = nullptr; // 开发者根据业务场景存放要处理的音频数据。
-    audioInfo.bufferSize = 0; // 开发者根据业务场景存放要处理的音频数据大小。
-    audioInfo.totalWriteSize = 0;
-    void *userData = static_cast<void *>(&audioInfo);
+    void *userData = static_cast<void *>(audioInfo);
     OH_AudioSuiteNodeBuilder_SetRequestDataCallback(nodeBuilder, InputNodeWriteDataCallBack, userData);
     // 创建输入节点。
-    OH_AudioNode *inputNode = nullptr;
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &inputNode);
-    
+
     // 重置构造器配置并设置为均衡器节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
     // 创建均衡器节点。
-    OH_AudioNode *eqNode = nullptr;
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &eqNode);
     // 设置均衡器节点效果为默认。
-    OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(eqNode, OH_EQUALIZER_PARAM_DEFAULT);
-    
+    OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(eqNode, OH_EQUALIZER_PARAM_ROCK);
+
     // 重置构造器配置并设置为输出节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::OUTPUT_NODE_TYPE_DEFAULT);
@@ -115,56 +107,64 @@ void EqualizerEffect(){
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
     // 创建输出节点。
-    OH_AudioNode *outputNode = nullptr;
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &outputNode);
-    
+
     // 销毁节点构造器。
     OH_AudioSuiteNodeBuilder_Destroy(nodeBuilder);
-    
+
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
-    
-    //3.在播放器的回调函数中，将处理后的数据复制到OH_AudioRenderer实例的缓冲区中，实现音频播放过程中实时渲染
-    // 创建构建器
-    OH_AudioStreamBuilder *rendererBuilder = nullptr;
+
+    // 3.在播放器的回调函数中，将处理后的数据复制到OH_AudioRenderer实例的缓冲区中，实现音频播放过程中实时渲染
+    //  创建构建器
+
     OH_AudioStreamBuilder_Create(&rendererBuilder, OH_AudioStream_Type::AUDIOSTREAM_TYPE_RENDERER);
     OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, 48000);
     OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, 2);
     OH_AudioStreamBuilder_SetSampleFormat(rendererBuilder, AUDIOSTREAM_SAMPLE_S16LE);
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_RAW);
     OH_AudioStreamBuilder_SetRendererInfo(rendererBuilder, AUDIOSTREAM_USAGE_MUSIC);
-    
+
     int32_t byteSize = 2; // AUDIOSTREAM_SAMPLE_S16LE格式对应的字节大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
     int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
     // 设置audioDataSize长度（待播放的数据大小）。
     OH_AudioStreamBuilder_SetFrameSizeInCallback(rendererBuilder, frameSize);
     // 配置写入音频数据回调函数。
-    OH_AudioStreamBuilder_SetRendererWriteDataCallback(
-        rendererBuilder, AudioRendererOnWriteData, static_cast<void *>(audioSuitePipeline));
-    
+    OH_AudioStreamBuilder_SetRendererWriteDataCallback(rendererBuilder, AudioRendererOnWriteData,
+                                                       static_cast<void *>(audioSuitePipeline));
+
     // 启动管线。
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
-    
+
     // 开发者可以自行创建renderer流，播放音频。
-    // ...
-    
+    // 设置声道布局
+    OH_AudioStreamBuilder_SetChannelLayout(rendererBuilder, CH_LAYOUT_STEREO);
+    OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRendererEqualizerEffect);
+    // 设置编码类型。
+    OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
+
+    OH_AudioRenderer_Start(audioRendererEqualizerEffect);
+}
+
+void DestroyEqualizerEffect() {
+    OH_AudioRenderer_Stop(audioRendererEqualizerEffect);
+    OH_AudioRenderer_Release(audioRendererEqualizerEffect);
     // 停止管线。
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
-    
-    //4.资源销毁
-    // 销毁流构造器。
+    // 4.资源销毁
+    //  销毁流构造器。
     OH_AudioStreamBuilder_Destroy(rendererBuilder);
-    
+
     // 销毁节点。
     OH_AudioSuiteEngine_DestroyNode(inputNode);
     OH_AudioSuiteEngine_DestroyNode(eqNode);
     OH_AudioSuiteEngine_DestroyNode(outputNode);
-    
+
     // 销毁管线。
     OH_AudioSuiteEngine_DestroyPipeline(audioSuitePipeline);
-    
+
     // 销毁引擎。
     OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
 }

@@ -4,66 +4,265 @@
 
 #include "napi/native_api.h"
 #include "ohaudio/native_audiocapturer.h"
-// [Start Render_headFile]
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
-// [End Render_headFile]
 #include "ohaudio/native_audio_session_manager.h"
-// [Start GetAudioResourceManager]
 #include <ohaudio/native_audio_resource_manager.h>
-// [StartExclude GetAudioResourceManager]
-// [Start CreateWorkgroup]
-#include <chrono>
-// [StartExclude CreateWorkgroup]
 #include <cstdint>
 #include <sstream>
 #include "./manualRendering.h"
 #include "pcmFileUtils.h"
 #include "hilog/log.h"
+#include "realTimeRendering.h"
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
-napi_value BaseEditor(napi_env env, napi_callback_info info)
-{
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"1111111111111111111");
+std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
+std::string g_filePathAccompaniment = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Accompaniment.pcm";
+std::string g_filePathMix = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Mix.pcm";
+// BaseEditor 异步执行的数据结构
+struct BaseEditorData {
+    napi_async_work work;
+    std::string inputFilePath;
+    std::string outputFilePath;
     AudioDataInfo audioInfo;
-    ReadPcmFile(g_filePath.c_str(),&audioInfo);
-        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"audioInfo : %{public}d",audioInfo.bufferSize);
-        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"222222222222222222222");
+    napi_ref callback;
+};
 
-    BaseEditorEffect(&audioInfo,g_filePathEffect.c_str());
-        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"33333333333333333333");
+// 异步执行函数
+void BaseEditorExecute(napi_env env, void *data) {
+    BaseEditorData *asyncData = static_cast<BaseEditorData *>(data);
+    ReadPcmFile(asyncData->inputFilePath.c_str(), &asyncData->audioInfo);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", asyncData->audioInfo.bufferSize);
+    BaseEditorEffect(&asyncData->audioInfo, asyncData->outputFilePath.c_str());
+    FreeAudioDataInfo(&asyncData->audioInfo);
+}
+
+// 异步完成函数
+void BaseEditorComplete(napi_env env, napi_status status, void *data) {
+    BaseEditorData *asyncData = static_cast<BaseEditorData *>(data);
+
+    if (status == napi_ok) {
+        std::stringstream ss;
+        ss << "均衡器效果添加成功\n";
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+
+        // 调用回调函数
+        napi_value global;
+        napi_get_global(env, &global);
+        napi_value callback;
+        napi_get_reference_value(env, asyncData->callback, &callback);
+        napi_value undefined;
+        napi_get_undefined(env, &undefined);
+        napi_call_function(env, global, callback, 1, &retVal, nullptr);
+    }
+
+    // 清理资源
+    napi_delete_reference(env, asyncData->callback);
+    napi_delete_async_work(env, asyncData->work);
+    delete asyncData;
+}
+
+napi_value BaseEditor(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value argv[1];
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+    // 创建异步数据
+    BaseEditorData *asyncData = new BaseEditorData();
+    asyncData->inputFilePath = g_filePath;
+    asyncData->outputFilePath = g_filePathEffect;
+
+    // 保存回调函数
+    napi_create_reference(env, argv[0], 1, &asyncData->callback);
+
+    // 创建异步工作
+    napi_value resource_name;
+    napi_create_string_utf8(env, "BaseEditor", NAPI_AUTO_LENGTH, &resource_name);
+    napi_create_async_work(env, nullptr, resource_name, BaseEditorExecute, BaseEditorComplete, asyncData,
+                           &asyncData->work);
+
+    // 将异步工作加入队列
+    napi_queue_async_work(env, asyncData->work);
+
+    napi_value undefined;
+    napi_get_undefined(env, &undefined);
+    return undefined;
+}
+// AudioSourceSeparation 异步执行的数据结构
+struct AudioSourceSeparationData {
+    napi_async_work work;
+    std::string inputFilePath;
+    std::string vocalsFilePath;
+    std::string accompanimentFilePath;
+    AudioDataInfo audioInfo;
+    napi_ref callback;
+};
+
+// 异步执行函数
+void AudioSourceSeparationExecute(napi_env env, void *data) {
+    AudioSourceSeparationData *asyncData = static_cast<AudioSourceSeparationData *>(data);
+    ReadPcmFile(asyncData->inputFilePath.c_str(), &asyncData->audioInfo);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", asyncData->audioInfo.bufferSize);
+    AudioSourceSeparation(&asyncData->audioInfo, asyncData->vocalsFilePath.c_str(),
+                          asyncData->accompanimentFilePath.c_str());
+    FreeAudioDataInfo(&asyncData->audioInfo);
+}
+
+// 异步完成函数
+void AudioSourceSeparationComplete(napi_env env, napi_status status, void *data) {
+    AudioSourceSeparationData *asyncData = static_cast<AudioSourceSeparationData *>(data);
+    if (status == napi_ok) {
+        std::stringstream ss;
+        ss << "音源分离成功\n";
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+
+        // 调用回调函数
+        napi_value global;
+        napi_get_global(env, &global);
+        napi_value callback;
+        napi_get_reference_value(env, asyncData->callback, &callback);
+        napi_value undefined;
+        napi_get_undefined(env, &undefined);
+        napi_call_function(env, global, callback, 1, &retVal, nullptr);
+    }
+    // 清理资源
+    napi_delete_reference(env, asyncData->callback);
+    napi_delete_async_work(env, asyncData->work);
+    delete asyncData;
+}
+
+napi_value AudioSourceSeparationNapi(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value argv[1];
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+    // 创建异步数据
+    AudioSourceSeparationData *asyncData = new AudioSourceSeparationData();
+    asyncData->inputFilePath = g_filePath;
+    asyncData->vocalsFilePath = g_filePathVocals;
+    asyncData->accompanimentFilePath = g_filePathAccompaniment;
+
+    // 保存回调函数
+    napi_create_reference(env, argv[0], 1, &asyncData->callback);
+
+    // 创建异步工作
+    napi_value resource_name;
+    napi_create_string_utf8(env, "AudioSourceSeparation", NAPI_AUTO_LENGTH, &resource_name);
+    napi_create_async_work(env, nullptr, resource_name, AudioSourceSeparationExecute, AudioSourceSeparationComplete,
+                           asyncData, &asyncData->work);
+
+    // 将异步工作加入队列
+    napi_queue_async_work(env, asyncData->work);
+
+    napi_value undefined;
+    napi_get_undefined(env, &undefined);
+    return undefined;
+}
+
+// MixingAndCascading 异步执行的数据结构
+struct MixingAndCascadingData {
+    napi_async_work work;
+    std::string inputFilePath1;
+    std::string inputFilePath2;
+    std::string outputFilePath;
+    AudioDataInfo audioInfo1;
+    AudioDataInfo audioInfo2;
+    napi_ref callback;
+};
+
+// 异步执行函数
+void MixingAndCascadingExecute(napi_env env, void *data) {
+    MixingAndCascadingData *asyncData = static_cast<MixingAndCascadingData *>(data);
+    ReadPcmFile(asyncData->inputFilePath1.c_str(), &asyncData->audioInfo1);
+    ReadPcmFile(asyncData->inputFilePath2.c_str(), &asyncData->audioInfo2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo1 : %{public}d, audioInfo2 : %{public}d",
+                 asyncData->audioInfo1.bufferSize, asyncData->audioInfo2.bufferSize);
+    MixingAndCascading(&asyncData->audioInfo1, &asyncData->audioInfo2, asyncData->outputFilePath.c_str());
+    FreeAudioDataInfo(&asyncData->audioInfo1);
+    FreeAudioDataInfo(&asyncData->audioInfo2);
+}
+
+// 异步完成函数
+void MixingAndCascadingComplete(napi_env env, napi_status status, void *data) {
+    MixingAndCascadingData *asyncData = static_cast<MixingAndCascadingData *>(data);
+
+    if (status == napi_ok) {
+        std::stringstream ss;
+        ss << "混音与级联成功\n";
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+
+        // 调用回调函数
+        napi_value global;
+        napi_get_global(env, &global);
+        napi_value callback;
+        napi_get_reference_value(env, asyncData->callback, &callback);
+        napi_value undefined;
+        napi_get_undefined(env, &undefined);
+        napi_call_function(env, global, callback, 1, &retVal, nullptr);
+    }
+
+    // 清理资源
+    napi_delete_reference(env, asyncData->callback);
+    napi_delete_async_work(env, asyncData->work);
+    delete asyncData;
+}
+
+napi_value MixingAndCascadingNapi(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value argv[1];
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+    // 创建异步数据
+    MixingAndCascadingData *asyncData = new MixingAndCascadingData();
+    asyncData->inputFilePath1 = g_filePathVocals;        // 原始音频
+    asyncData->inputFilePath2 = g_filePathAccompaniment; // 均衡器效果音频
+    asyncData->outputFilePath = g_filePathMix;           // 混音输出
+
+    // 保存回调函数
+    napi_create_reference(env, argv[0], 1, &asyncData->callback);
+
+    // 创建异步工作
+    napi_value resource_name;
+    napi_create_string_utf8(env, "MixingAndCascading", NAPI_AUTO_LENGTH, &resource_name);
+    napi_create_async_work(env, nullptr, resource_name, MixingAndCascadingExecute, MixingAndCascadingComplete,
+                           asyncData, &asyncData->work);
+
+    // 将异步工作加入队列
+    napi_queue_async_work(env, asyncData->work);
+
+    napi_value undefined;
+    napi_get_undefined(env, &undefined);
+    return undefined;
+}
+
+AudioDataInfo audioInfoEqualizerEffect;
+napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info) {
+
+    ReadPcmFile(g_filePath.c_str(), &audioInfoEqualizerEffect);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", audioInfoEqualizerEffect.bufferSize);
+
+    EqualizerEffect(&audioInfoEqualizerEffect);
 
     std::stringstream ss;
-    ss << "均衡器效果添加成功\n";
+    ss << "实时渲染播放成功\n";
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;
 }
 
 // 全局变量 - 用于主要功能
-// [Start Render_CreateStreamType]
-// [Start Render_Create]
-OH_AudioStreamBuilder* builderRender;
-// [StartExclude Render_CreateStreamType]
-// [StartExclude Render_Create]
-// [Start Render_GenerateRenderer]
-OH_AudioRenderer* audioRenderer;
-// [StartExclude Render_GenerateRenderer]
-// [EndExclude GetAudioResourceManager]
+OH_AudioStreamBuilder *builderRender;
+OH_AudioRenderer *audioRenderer;
 OH_AudioResourceManager *resMgr;
-// [StartExclude GetAudioResourceManager]
-// [EndExclude CreateWorkgroup]
 int32_t g_tokenId;
 OH_AudioWorkgroup *grp = nullptr;
-// [StartExclude CreateWorkgroup]
-// [Start Render_CustomCallback]
-// [Start Render_callBackInit]
 OH_AudioRenderer_Callbacks callbacks;
-// [StartExclude Render_callBackInit]
-// [StartExclude Render_CustomCallback]
 
 
 FILE *g_fp = nullptr;
@@ -73,16 +272,9 @@ const int SAMPLING_RATE_48K = 48000;
 const int channelCount = 2;
 
 
-// ==================== 回调函数 - CreateAudioRender 使用 ====================
-// [Start Render_Callback]
-// [Start Render_SetRendererWriteDataCallback]
 // 自定义写入数据函数。
-static OH_AudioData_Callback_Result MyOnWriteData_New(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    void* audioData,
-    int32_t audioDataSize)
-{
+static OH_AudioData_Callback_Result MyOnWriteData_New(OH_AudioRenderer *renderer, void *userData, void *audioData,
+                                                      int32_t audioDataSize) {
     // 将待播放的数据，按audioDataSize长度写入audioData。
     // 如果开发者不希望播放某段audioData，返回AUDIO_DATA_CALLBACK_RESULT_INVALID即可。
     int32_t readCount = fread(audioData, audioDataSize, 1, g_fp);
@@ -94,87 +286,8 @@ static OH_AudioData_Callback_Result MyOnWriteData_New(
     }
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
-// [StartExclude Render_SetRendererWriteDataCallback]
 
-// 自定义音频中断事件函数。
-void MyOnInterruptEvent_New(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    OH_AudioInterrupt_ForceType type,
-    OH_AudioInterrupt_Hint hint)
-{
-    // 根据type和hint表示的音频中断信息，更新播放器状态和界面。
-}
-
-// 自定义异常回调函数。
-void MyOnError_New(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    OH_AudioStream_Result error)
-{
-    // 根据error表示的音频异常信息，做出相应的处理。
-}
-// [StartExclude Render_Callback]
-
-// [Start Render_SetWriteDataWithMetadataCallback]
-// 自定义同时写入PCM数据和元数据函数。
-int32_t MyOnWriteDataWithMetadata_New(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    void* audioData,
-    int32_t audioDataSize,
-    void* metadata,
-    int32_t metadataSize)
-{
-    // 将待播放的PCM数据和元数据，分别按audioDataSize和metadataSize写入buffer。
-    return 0;
-}
-// [StartExclude Render_SetWriteDataWithMetadataCallback]
-
-// ==================== 回调函数 - registcallback 使用（Legacy API）====================
-// [EndExclude Render_CustomCallback]
-// [EndExclude Render_callBackInit]
-// 自定义写入数据函数。
-int32_t MyOnWriteData_Legacy(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    void* buffer,
-    int32_t length)
-{
-    // 将待播放的数据，按length长度写入buffer。
-    return 0;
-}
-
-// 自定义音频中断事件函数。
-int32_t MyOnInterruptEvent_Legacy(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    OH_AudioInterrupt_ForceType type,
-    OH_AudioInterrupt_Hint hint)
-{
-    // 根据type和hint表示的音频中断信息，更新播放器状态和界面。
-    return 0;
-}
-// [StartExclude Render_callBackInit]
-// [StartExclude Render_CustomCallback]
-
-// 自定义同时写入PCM数据和元数据函数。
-int32_t MyOnWriteDataWithMetadata_Legacy(
-    OH_AudioRenderer* renderer,
-    void* userData,
-    void* audioData,
-    int32_t audioDataSize,
-    void* metadata,
-    int32_t metadataSize)
-{
-    // 将待播放的PCM数据和元数据，分别按audioDataSize和metadataSize写入buffer。
-    return 0;
-}
-
-// ==================== NAPI 函数实现 ====================
-
-napi_value CreateAudioRender(napi_env env, napi_callback_info info)
-{
+napi_value CreateAudioRender(napi_env env, napi_callback_info info) {
     size_t argc = 1;
     napi_value *argv = new napi_value[argc];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
@@ -186,10 +299,7 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
         return nullptr;
     }
     delete[] argv;
-    // [EndExclude Render_Create]
     OH_AudioStreamBuilder_Create(&builderRender, AUDIOSTREAM_TYPE_RENDERER);
-    // [End Render_Create]
-    // [Start Render_ConfigStream]
     // 设置音频采样率。
     OH_AudioStreamBuilder_SetSamplingRate(builderRender, SAMPLING_RATE_48K);
     // 设置音频声道。
@@ -200,48 +310,42 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_RAW);
     // 设置输出音频流的工作场景。
     OH_AudioStreamBuilder_SetRendererInfo(builderRender, AUDIOSTREAM_USAGE_MUSIC);
-    // [End Render_ConfigStream]
-    
-    // [EndExclude Render_SetRendererWriteDataCallback]
     // 配置写入音频数据回调函数。
     OH_AudioRenderer_OnWriteDataCallback writeDataCb = MyOnWriteData_New;
     OH_AudioStreamBuilder_SetRendererWriteDataCallback(builderRender, writeDataCb, nullptr);
-    // [End Render_SetRendererWriteDataCallback]
-    // [End Render_Callback]
-    //设置时延模式
-    // [Start OH_AudioStreamBuilder_SetLatencyMode]
+    // 设置时延模式
     OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
     OH_AudioStreamBuilder_SetLatencyMode(builderRender, latencyMode);
-    // [End OH_AudioStreamBuilder_SetLatencyMode]
 
-    //设置声道布局
-    // [Start Render_SetChannelLayout]
+    // 设置声道布局
     OH_AudioStreamBuilder_SetChannelLayout(builderRender, CH_LAYOUT_STEREO);
-    // [End Render_SetChannelLayout]
-    // [EndExclude Render_GenerateRenderer]
     OH_AudioStreamBuilder_GenerateRenderer(builderRender, &audioRenderer);
-    // [End Render_GenerateRenderer]
-    // [EndExclude Render_SetWriteDataWithMetadataCallback]
     // 设置编码类型。
     OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
-    // 配置回调函数。
-    OH_AudioRenderer_WriteDataWithMetadataCallback metadataCallback = MyOnWriteDataWithMetadata_New;
-    // 设置同时写入PCM数据和元数据的回调。
-    OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(builderRender, metadataCallback, nullptr);
-    // [End Render_SetWriteDataWithMetadataCallback]
-    const int GLOBAL_RESMGR = 0xFF00;
-static const char *TAG = "[AudioEditTestApp_AudioEdit_cpp]";
-     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log type : %{public}d", type);
-    if (type == 1) {
-           OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "log type 1111 : %{public}d", type);
-        g_fp = fopen(g_filePath.c_str(), "rb");
-    } else if (type == 2) {
-         OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,"log type 2222 : %{public}d", type);
-        g_fp = fopen(g_filePathEffect.c_str(), "rb");
+    // 根据type选择播放的音频文件
+    std::string selectedFile;
+    switch (type) {
+    case 1:
+        selectedFile = g_filePath;
+        break;
+    case 2:
+        selectedFile = g_filePathEffect;
+        break;
+    case 3:
+        selectedFile = g_filePathAccompaniment;
+        break;
+    case 4:
+        selectedFile = g_filePathVocals;
+        break;
+    case 5:
+        selectedFile = g_filePathMix;
+        break;
+    default:
+        selectedFile = g_filePath;
+        break;
     }
-  
+    g_fp = fopen(selectedFile.c_str(), "rb");
     OH_AudioRenderer_Start(audioRenderer);
-
     std::stringstream ss;
     ss << "播放成功\n";
     napi_value retVal;
@@ -249,16 +353,33 @@ static const char *TAG = "[AudioEditTestApp_AudioEdit_cpp]";
     return retVal;
 }
 
-napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
-{
-    std::stringstream ss;
-    OH_AudioRenderer_Stop(audioRenderer);
-    OH_AudioRenderer_Release(audioRenderer);
-    audioRenderer = nullptr;
-    if (g_fp) {
-        (void)fclose(g_fp);
-        g_fp = nullptr;
+napi_value DestroyAudioRender(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value *argv = new napi_value[argc];
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    // Determine the current work mode based on the input parameters
+    unsigned int type = -1;
+    napi_status status = napi_get_value_uint32(env, argv[0], &type);
+    if (status != napi_ok) {
+        delete[] argv;
+        return nullptr;
     }
+    delete[] argv;
+    std::stringstream ss;
+    if (type == 2) {
+        DestroyEqualizerEffect();
+        // 释放音频数据资源
+        FreeAudioDataInfo(&audioInfoEqualizerEffect);
+    } else {
+        OH_AudioRenderer_Stop(audioRenderer);
+        OH_AudioRenderer_Release(audioRenderer);
+        audioRenderer = nullptr;
+        if (g_fp) {
+            (void)fclose(g_fp);
+            g_fp = nullptr;
+        }
+    }
+
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;
@@ -269,7 +390,11 @@ static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"CreateAudioRender", nullptr, CreateAudioRender, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"DestroyAudioRender", nullptr, DestroyAudioRender, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"BaseEditor", nullptr, BaseEditor, nullptr, nullptr, nullptr, napi_default, nullptr },
+        {"BaseEditor", nullptr, BaseEditor, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"AudioSourceSeparationNapi", nullptr, AudioSourceSeparationNapi, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"MixingAndCascadingNapi", nullptr, MixingAndCascadingNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"EqualizerEffectNapi", nullptr, EqualizerEffectNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
