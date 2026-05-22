@@ -162,6 +162,7 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     // [End Render_Create]
     // [Start Render_ConfigStream]
     // 设置音频采样率。
+    // 从API版本26.0.0开始：音频渲染扩展支持8000Hz到384000Hz范围内以10Hz为步长的采样率值。具体设备支持的采样率规格会存在差异。
     const int SAMPLING_RATE_48K = 48000;
     OH_AudioStreamBuilder_SetSamplingRate(builder, SAMPLING_RATE_48K);
     // 设置音频声道。
