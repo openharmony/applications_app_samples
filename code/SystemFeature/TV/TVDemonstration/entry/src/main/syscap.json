@@ -1,0 +1,38 @@
+{
+  "devices": {
+    "general": [
+      "default"
+    ]
+  },
+  "development": {
+    "addedSysCaps": [
+      "SystemCapability.FileManagement.UserFileManager.Core"
+    ]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Sensors.Sensor",
+      "SystemCapability.Location.Location.Core",
+      "SystemCapability.Multimedia.Camera.Core",
+      "SystemCapability.Location.Location.Gnss",
+      "SystemCapability.Advertising.OAID",
+      "SystemCapability.Location.Location.Geofence",
+      "SystemCapability.Location.Location.Geocoder",
+      "SystemCapability.Sensors.MiscDevice",
+      "SystemCapability.MiscServices.Wallpaper",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Resourceschedule.BackgroundProcessManager",
+      "SystemCapability.Telephony.CellularData",
+      "SystemCapability.Telephony.CoreService",
+      "SystemCapability.Telephony.StateRegistry",
+      "SystemCapability.Telephony.SmsMms",
+      "SystemCapability.Telephony.CallManager",
+      "SystemCapability.Applications.Contacts",
+      "SystemCapability.BundleManager.AppDomainVerify",
+      "SystemCapability.ArkUi.Graphics3D",
+      "SystemCapability.Telephony.CellularCall",
+      "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast"
+    ],
+    "addedSysCaps": []
+  }
+}

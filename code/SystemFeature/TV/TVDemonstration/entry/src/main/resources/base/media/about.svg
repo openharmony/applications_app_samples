@@ -1,0 +1,50 @@
+<svg width="124.000000" height="70.000000" viewBox="0 0 124 70" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_2_960_dd" x="48.500000" y="17.000000" width="42.000000" height="37.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+			<feGaussianBlur stdDeviation="0.333333" result="effect_layerBlur_1"/>
+		</filter>
+		<filter id="filter_2_961_dd" x="32.000000" y="17.000000" width="49.500000" height="37.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+			<feGaussianBlur stdDeviation="0.333333" result="effect_layerBlur_1"/>
+		</filter>
+		<linearGradient x1="62.000000" y1="0.000000" x2="62.000000" y2="70.000000" id="paint_linear_2_952_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#0091FF"/>
+			<stop offset="1.000000" stop-color="#007FE0"/>
+		</linearGradient>
+		<linearGradient x1="69.500000" y1="18.000000" x2="69.500000" y2="53.000000" id="paint_linear_2_960_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.400000"/>
+			<stop offset="0.847328" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="56.750000" y1="18.000000" x2="56.750000" y2="53.000000" id="paint_linear_2_961_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.400000"/>
+			<stop offset="0.847328" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="12.500000" y1="0.000000" x2="12.500000" y2="69.750000" id="paint_linear_2_962_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.101961"/>
+			<stop offset="0.816794" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+		<linearGradient x1="110.000000" y1="0.000000" x2="110.000000" y2="69.750000" id="paint_linear_2_963_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.101961"/>
+			<stop offset="0.816794" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</linearGradient>
+	</defs>
+	<rect id="矩形 184" width="124.000000" height="70.000000" fill="url(#paint_linear_2_952_0)" fill-opacity="1.000000"/>
+	<path id="减去顶层" d="M55.5 13.5L68.5 13.5C68.7761 13.5 69 13.7239 69 14L69 15.5L55 15.5L55 14C55 13.7239 55.2239 13.5 55.5 13.5ZM62 14C61.7239 14 61.5 14.2239 61.5 14.5C61.5 14.7761 61.7239 15 62 15C62.2761 15 62.5 14.7761 62.5 14.5C62.5 14.2239 62.2761 14 62 14Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="0.900000" fill-rule="evenodd"/>
+	<path id="减去顶层" d="M35 54.17L81.67 54.17L79.67 52.17L33 52.17L33 18L91 18L91 42.49L93 44.49L93 20C93 17.79 91.2 16 89 16L35 16C32.79 16 31 17.79 31 20L31 50.17C31 52.38 32.79 54.17 35 54.17Z" fill="#FFFFFF" fill-opacity="0.900000" fill-rule="evenodd"/>
+	<rect id="矩形 187" x="81.399414" y="35.621826" rx="2.000000" width="21.000000" height="11.000000" transform="rotate(45 81.399414 35.621826)" stroke="#FFFFFF" stroke-opacity="0.900000" stroke-width="3.000000"/>
+	<rect id="矩形 188" x="75.035645" y="43.400024" rx="0.500000" width="2.000000" height="1.000000" transform="rotate(-45 75.035645 43.400024)" fill="#FFFFFF" fill-opacity="0.900000"/>
+	<g filter="url(#filter_2_960_dd)">
+		<path id="矢量 1" d="M89.5 18L54.53 53L49.5 53L84.46 18L89.5 18Z" fill="url(#paint_linear_2_960_0)" fill-opacity="0.600000" fill-rule="evenodd"/>
+	</g>
+	<g filter="url(#filter_2_961_dd)">
+		<path id="矢量 2" d="M80.5 18L45.5 53L33 53L68.25 18L80.5 18Z" fill="url(#paint_linear_2_961_0)" fill-opacity="0.600000" fill-rule="evenodd"/>
+	</g>
+	<path id="矢量 7" d="M14.75 0L0 0L0 69.75L25 69.75C20.33 53 11.75 15.59 14.75 0Z" fill="url(#paint_linear_2_962_0)" fill-opacity="0.400000" fill-rule="evenodd"/>
+	<path id="矢量 8" d="M109.25 0L124 0L124 69.75L96 69.75C100.66 53 112.25 15.59 109.25 0Z" fill="url(#paint_linear_2_963_0)" fill-opacity="0.400000" fill-rule="evenodd"/>
+</svg>

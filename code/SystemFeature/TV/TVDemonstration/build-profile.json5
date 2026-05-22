@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B39519AEAEFB584542044AAB4F7C03F9FCA35FAC8533037DDC1B2DED42885AAE1A1EB7DFFAFA99A",
+          "profile": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.p12",
+          "storePassword": "0000001B4099454506F0FAF9AA81B57D2A3D26B83A08AF18CE35BBE1A7A220EA89E5E6E4309D645227BD26"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        },
+        "targetSdkVersion":18
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
