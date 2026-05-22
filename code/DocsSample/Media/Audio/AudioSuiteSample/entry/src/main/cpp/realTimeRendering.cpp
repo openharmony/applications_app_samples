@@ -8,6 +8,7 @@
 #include <ohaudio/native_audiostreambuilder.h>
 #include "realTimeRendering.h"
 
+// [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
                                           int32_t audioDataSize, bool *finished) {
@@ -29,7 +30,9 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
     }
     return actualDataSize;
 }
+// [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
 
+// [Start audioSuite_AudioRendererOnWriteData]
 static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *renderer, void *userData,
                                                              void *audioData, int32_t audioDataSize) {
     bool finishedFlag = false;
@@ -47,25 +50,23 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *r
 
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
-
+// [End audioSuite_AudioRendererOnWriteData]
 
 OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
 OH_AudioStreamBuilder *rendererBuilder = nullptr;
-// 创建实时渲染的管线。
-OH_AudioSuitePipeline *audioSuitePipeline;
-// 创建输入节点。
+OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
 OH_AudioNode *inputNode = nullptr;
-// 创建输出节点。
 OH_AudioNode *outputNode = nullptr;
-// 创建均衡器节点。
 OH_AudioNode *eqNode = nullptr;
 OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
 /**
  * 均衡器效果
  */
 void EqualizerEffect(AudioDataInfo *audioInfo) {
+    // [Start audioSuite_CreateRealTimeRendering]
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
+    // 创建实时渲染的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // 创建节点构造器。
@@ -93,7 +94,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     // 创建均衡器节点。
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &eqNode);
     // 设置均衡器节点效果为默认。
-    OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(eqNode, OH_EQUALIZER_PARAM_ROCK);
+    OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(eqNode, OH_EQUALIZER_PARAM_DEFAULT);
 
     // 重置构造器配置并设置为输出节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
@@ -112,13 +113,13 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     // 销毁节点构造器。
     OH_AudioSuiteNodeBuilder_Destroy(nodeBuilder);
 
+
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
-
-    // 3.在播放器的回调函数中，将处理后的数据复制到OH_AudioRenderer实例的缓冲区中，实现音频播放过程中实时渲染
+    // [End audioSuite_CreateRealTimeRendering]
+    // [Start audioSuite_StartRealTimeRenderingPipeline]
     //  创建构建器
-
     OH_AudioStreamBuilder_Create(&rendererBuilder, OH_AudioStream_Type::AUDIOSTREAM_TYPE_RENDERER);
     OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, 48000);
     OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, 2);
@@ -139,6 +140,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
 
     // 开发者可以自行创建renderer流，播放音频。
+    // [End audioSuite_StartRealTimeRenderingPipeline]
     // 设置声道布局
     OH_AudioStreamBuilder_SetChannelLayout(rendererBuilder, CH_LAYOUT_STEREO);
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRendererEqualizerEffect);
@@ -151,6 +153,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
 void DestroyEqualizerEffect() {
     OH_AudioRenderer_Stop(audioRendererEqualizerEffect);
     OH_AudioRenderer_Release(audioRendererEqualizerEffect);
+    // [Start audioSuite_DestroyRealTimeRendering]
     // 停止管线。
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     // 4.资源销毁
@@ -167,4 +170,5 @@ void DestroyEqualizerEffect() {
 
     // 销毁引擎。
     OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
+    // [End audioSuite_DestroyRealTimeRendering]
 }

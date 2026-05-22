@@ -11,7 +11,7 @@
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_manual_cpp]";
 
-
+// [Start audioSuite_InputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
                                           int32_t audioDataSize, bool *finished) {
@@ -31,7 +31,7 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
     }
     return actualDataSize;
 }
-
+// [End audioSuite_InputNodeWriteDataCallBack]
 
 /**
  * 基础离线编辑
@@ -49,7 +49,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
                          newFilePath);
         }
     }
-    // 1.创建引擎和管线
+    // [Start audioSuite_CreateEngineAndPipeline]
     //  创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
@@ -57,7 +57,9 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_EDIT_MODE);
-    // 2.创建输入、输出、均衡器节点并连接组网
+    // [End audioSuite_CreateEngineAndPipeline]
+
+    // [Start audioSuite_CreateBaseNode]
     //  创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
@@ -76,6 +78,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     // 创建输入节点。
     OH_AudioNode *inputNode = nullptr;
     OH_AudioSuiteEngine_CreateNode(audioSuitePipeline, nodeBuilder, &inputNode);
+
     // 重置构造器配置并设置为均衡器节点类型。
     OH_AudioSuiteNodeBuilder_Reset(nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::EFFECT_NODE_TYPE_EQUALIZER);
@@ -106,7 +109,9 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
-    // 3.渲染音频数据
+    // [End audioSuite_CreateBaseNode]
+
+    // [Start audioSuite_StartBasePipeline]
     int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
@@ -117,7 +122,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     bool finished = false;
     // 渲染。
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
-
+    // [StartExclude audioSuite_StartBasePipeline]
     // 打开输出文件
     FILE *fp = fopen(newFilePath, "wb");
     if (fp == nullptr) {
@@ -132,7 +137,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
         OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
         return;
     }
-
+    // [EndExclude audioSuite_StartBasePipeline]
     do {
         OH_AudioSuite_Result result = OH_AudioSuiteEngine_RenderFrame(
             audioSuitePipeline, static_cast<void *>(audioData), frameSize, &responseSize, &finished);
@@ -140,19 +145,22 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
             // 本次音频编创渲染失败。
             break;
         } else {
+            // audioData是渲染过后的音频数据，音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
+            // [StartExclude audioSuite_StartBasePipeline]
             // 直接写入文件
             fwrite(audioData, 1, responseSize, fp);
-            // audioData是渲染过后的音频数据，音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
+            // [EndExclude audioSuite_StartBasePipeline]
         }
     } while (!finished);
-
+    // [StartExclude audioSuite_StartBasePipeline]
     // 关闭文件
     fclose(fp);
+    // [EndExclude audioSuite_StartBasePipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     free(audioData);
     audioData = nullptr;
-
-    // 4.资源销毁
+    // [End audioSuite_StartBasePipeline]
+    // [Start audioSuite_DestroyBase]
     //  销毁节点。
     OH_AudioSuiteEngine_DestroyNode(inputNode);
     OH_AudioSuiteEngine_DestroyNode(eqNode);
@@ -163,6 +171,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
 
     // 销毁引擎。
     OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
+    // [End audioSuite_DestroyBase]
 }
 
 /***
@@ -186,7 +195,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
         }
     }
 
-    // 1.创建引擎和管线
+    // [Start audioSuite_CreateSeparationEngineAndPipeline]
     //  创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
@@ -195,8 +204,8 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_EDIT_MODE);
-
-    // 2.创建输入、输出、音源分离节点并连接
+    // [End audioSuite_CreateSeparationEngineAndPipeline]
+    // [Start audioSuite_CreateSeparationNode]
     //  创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
@@ -249,8 +258,8 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, aissNode);
     OH_AudioSuiteEngine_ConnectNodes(aissNode, outputNode);
-
-    // 3.渲染音频数据
+    // [End audioSuite_CreateSeparationNode]
+    // [Start audioSuite_StartSeparationPipeline]
     int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
@@ -269,7 +278,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
 
     // 渲染。
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
-
+    // [StartExclude audioSuite_StartSeparationPipeline]
     // 打开两个输出文件
     FILE *fpVocals = fopen(vocalsFilePath, "wb");
     FILE *fpAccompaniment = fopen(accompanimentFilePath, "wb");
@@ -292,7 +301,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
         OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
         return;
     }
-
+    // [EndExclude audioSuite_StartSeparationPipeline]
     do {
         OH_AudioSuite_Result result =
             OH_AudioSuiteEngine_MultiRenderFrame(audioSuitePipeline, &audioDataArray, &responseSize, &finished);
@@ -303,15 +312,17 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
             // audioDataArray.audioDataArray[0]是提取的人声。
             // audioDataArray.audioDataArray[1]是提取的背景声。
             // 音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
+            // [StartExclude audioSuite_StartSeparationPipeline]
             fwrite(audioDataArray.audioDataArray[0], 1, responseSize, fpVocals);        // 写入人声
             fwrite(audioDataArray.audioDataArray[1], 1, responseSize, fpAccompaniment); // 写入背景声
+            // [EndExclude audioSuite_StartSeparationPipeline]
         }
     } while (!finished);
-
+    // [StartExclude audioSuite_StartSeparationPipeline]
     // 关闭文件
     fclose(fpVocals);
     fclose(fpAccompaniment);
-
+    // [EndExclude audioSuite_StartSeparationPipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
 
     for (int32_t i = 0; i < outPutNum; i++) {
@@ -320,8 +331,8 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     }
     free(audioDataArray.audioDataArray);
     audioDataArray.audioDataArray = nullptr;
-
-    // 4.资源销毁
+    // [End audioSuite_StartSeparationPipeline]
+    // [Start audioSuite_DestroySeparation]
     //  销毁节点。
     OH_AudioSuiteEngine_DestroyNode(inputNode);
     OH_AudioSuiteEngine_DestroyNode(aissNode);
@@ -332,6 +343,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
 
     // 销毁引擎。
     OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
+    // [End audioSuite_DestroySeparation]
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "AudioSourceSeparation end");
 }
 
@@ -354,7 +366,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
         }
     }
 
-    // 1.创建引擎和管线
+    // [Start audioSuite_CreateMixingEngineAndPipeline]
     //  创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
@@ -363,8 +375,8 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_EDIT_MODE);
-
-    // 2.创建输入、输出、效果类节点并连接
+    // [End audioSuite_CreateMixingEngineAndPipeline]
+    // [Start audioSuite_CreateMixingNode]
     //  创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
@@ -433,8 +445,8 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioSuiteEngine_ConnectNodes(fieldNode, mixerNode);
     OH_AudioSuiteEngine_ConnectNodes(inputNodeForMix, mixerNode);
     OH_AudioSuiteEngine_ConnectNodes(mixerNode, outputNode);
-
-    // 3.渲染音频数据
+    // [End audioSuite_CreateMixingNode]
+    // [Start audioSuite_StartMixingPipeline]
     int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
@@ -446,7 +458,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
 
     // 渲染。
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
-
+    // [StartExclude audioSuite_StartMixingPipeline]
     // 打开输出文件
     FILE *fp = fopen(mixFilePath, "wb");
     if (fp == nullptr) {
@@ -463,7 +475,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
         OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
         return;
     }
-
+    // [EndExclude audioSuite_StartMixingPipeline]
     do {
         OH_AudioSuite_Result result = OH_AudioSuiteEngine_RenderFrame(
             audioSuitePipeline, static_cast<void *>(audioData), frameSize, &responseSize, &finished);
@@ -471,19 +483,22 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
             // 本次音频编创渲染失败。
             break;
         } else {
+            // audioData是渲染过后的音频数据，音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
+            // [StartExclude audioSuite_StartMixingPipeline]
             // 直接写入文件
             fwrite(audioData, 1, responseSize, fp);
+            // [EndExclude audioSuite_StartMixingPipeline]
         }
     } while (!finished);
-
+    // [StartExclude audioSuite_StartMixingPipeline]
     // 关闭文件
     fclose(fp);
-
+    // [EndExclude audioSuite_StartMixingPipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     free(audioData);
     audioData = nullptr;
-
-    // 4.销毁节点
+    // [End audioSuite_StartMixingPipeline]
+    // [Start audioSuite_DestroyMixing]
     //  销毁节点。
     OH_AudioSuiteEngine_DestroyNode(inputNodeForMix);
     OH_AudioSuiteEngine_DestroyNode(inputNodeForField);
@@ -496,5 +511,6 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
 
     // 销毁引擎。
     OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
+    // [End audioSuite_DestroyMixing]
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "MixingAndCascading end");
 }
