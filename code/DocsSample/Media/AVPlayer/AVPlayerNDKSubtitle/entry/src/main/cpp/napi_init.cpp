@@ -926,7 +926,8 @@ static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info)
 }
 // [End OH_AVPlayer_AddFdSubtitleSource]
 // [Start OH_AVPlayer_AddUrlSubtitleSource]
-void OHAVPlayerSetUrlSubtitle(OH_AVPlayer *player, char *url) {
+void OHAVPlayerSetUrlSubtitle(OH_AVPlayer *player, char *url)
+{
     LOG("player %{public}s >> SubtitleURL source", url);
     LOG("call %{public}s", "OH_AVPlayer_AddUrlSubtitleSource");
     int32_t ret = OH_AVPlayer_AddUrlSubtitleSource(player, url);
