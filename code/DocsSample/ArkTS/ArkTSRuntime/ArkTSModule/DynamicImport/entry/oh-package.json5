@@ -36,41 +36,24 @@
     "harlibrary": "file:../harlibrary",
     // [StartExclude dynamic_call_add_dependencies]
     // [EndExclude const_dynamic_import_har_dependencies]
-    // [EndExclude const_dynamic_import_crypto_dependencies]
-    // [EndExclude const_dynamic_import_ohpm_dependencies]
-    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "myhar": "file:../myHar",
     // [StartExclude const_dynamic_import_har_dependencies]
     //HAP常量动态import HAR模块名 HAP常量动态import HAR模块文件路径
     // [EndExclude const_dynamic_import_hsp_dependencies]
-    // [EndExclude const_dynamic_import_crypto_dependencies]
-    // [EndExclude const_dynamic_import_ohpm_dependencies]
-    // [EndExclude hap_const_dynamic_import_native_dependencies]
     "myhsp": "file:../myHsp",
     // [StartExclude const_dynamic_import_hsp_dependencies]
-    // [EndExclude const_dynamic_import_har_dependencies]
-    // [EndExclude const_dynamic_import_ohpm_dependencies]
-    // [EndExclude hap_const_dynamic_import_native_dependencies]
+    // [EndExclude const_dynamic_import_crypto_dependencies]
     "@ohos/crypto-js": "2.0.3-rc.0",
+    // [StartExclude const_dynamic_import_crypto_dependencies]
     //HAP常量动态import远程HAR模块名
-    // [EndExclude const_dynamic_import_crypto_dependencies]
-    // [EndExclude const_dynamic_import_har_dependencies]
-    // [EndExclude const_dynamic_import_hsp_dependencies]
-    // [EndExclude hap_const_dynamic_import_native_dependencies]
-    "@ohos/hypium": "1.0.19",
-    //HAP常量动态import ohpm包
     // [EndExclude const_dynamic_import_ohpm_dependencies]
-    // [EndExclude const_dynamic_import_har_dependencies]
-    // [EndExclude const_dynamic_import_hsp_dependencies]
-    // [EndExclude const_dynamic_import_crypto_dependencies]
+    "@ohos/hypium": "1.0.19",
+    // [StartExclude const_dynamic_import_ohpm_dependencies]
+    //HAP常量动态import ohpm包
     // [EndExclude hap_const_dynamic_import_native_dependencies]
     "libentry.so": "file:./src/main/cpp/types/libentry",
+    // [StartExclude hap_const_dynamic_import_native_dependencies]
     //HAP常量动态import自己的Native库
-    // [EndExclude hap_const_dynamic_import_native_dependencies]
-    // [EndExclude const_dynamic_import_har_dependencies]
-    // [EndExclude const_dynamic_import_hsp_dependencies]
-    // [EndExclude const_dynamic_import_crypto_dependencies]
-    // [EndExclude const_dynamic_import_ohpm_dependencies]
     // [Start hap_decoupled_dependencies]
     // HAP's oh-package.json5
     "har1": "file:../har1",

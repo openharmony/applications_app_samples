@@ -24,12 +24,12 @@ export default function dynamicImportTest() {
       expect(har.Calc.staticAdd(8, 9)).assertEqual(17);
       let calc: ESObject = new har.Calc();
       expect(calc.instanceAdd(10, 11)).assertEqual(21);
-      expect(har.addHarlibrary(6, 7)).assertEqual(13);
+      expect(har.addHarLibrary(6, 7)).assertEqual(13);
 
       let className = 'Calc';
       let methodName = 'instanceAdd';
       let staticMethod = 'staticAdd';
-      let functionName = 'addHarlibrary';
+      let functionName = 'addHarLibrary';
       expect(har[className][staticMethod](12, 13)).assertEqual(25);
       let calc1: ESObject = new har[className]();
       expect(calc1[methodName](14, 15)).assertEqual(29);
