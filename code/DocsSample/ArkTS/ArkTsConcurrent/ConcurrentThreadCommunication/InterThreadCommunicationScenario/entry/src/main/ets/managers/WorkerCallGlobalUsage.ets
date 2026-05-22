@@ -36,14 +36,14 @@ import { MessageEvents, worker } from '@kit.ArkTS';
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
-               // 创建worker对象
+               // 创建Worker对象
                const workerInstance: worker.ThreadWorker = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
-               // 在worker上注册需要调用的对象
+               // 在Worker上注册需要调用的对象
                workerInstance.registerGlobalCallObject('testObj', TestObj.testObj);
                workerInstance.onmessage = (e: MessageEvents): void => {
-                 // 接收worker子线程的结果
+                 // 接收Worker子线程的结果
                  console.info('mainThread: ' + e.data);
-                 // 销毁worker
+                 // 销毁Worker
                  workerInstance.terminate();
                }
                workerInstance.postMessage('start');

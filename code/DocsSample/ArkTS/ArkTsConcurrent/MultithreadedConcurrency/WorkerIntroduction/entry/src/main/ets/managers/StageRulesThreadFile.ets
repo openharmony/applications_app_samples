@@ -14,9 +14,9 @@
  */
 // [Start import_worker]
 import { worker } from '@kit.ArkTS';
-// worker线程文件所在路径："entry/src/main/ets/workers/worker.ets"
+// Worker线程文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerInstance1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
-// worker线程文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+// Worker线程文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
 const workerInstance2: worker.ThreadWorker = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 // [End import_worker]
 workerInstance1.onexit = () => {
