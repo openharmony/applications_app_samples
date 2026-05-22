@@ -37,6 +37,7 @@ entry/src/main/
     │       ├── ic_video_play.svg  (播放键图片资源)
     │       └── ic_video_pause.svg (暂停键图片资源)
     └── rawfile
+        ├── subtitle.srt （字幕资源）
         └── test1.mp4 （视频资源）
 entry/src/ohosTest/ets/
 └── test
@@ -60,9 +61,9 @@ entry/src/ohosTest/ets/
 
 1. 本示例支持标准系统上运行，支持设备：RK3568;
 
-2. 本示例支持API15版本SDK，版本号：5.0.3.135;
+2. 本示例支持API23版本SDK，版本号：6.1.0.830;
    
-3. 本示例已支持使DevEco Studio 5.0.3 Release (构建版本：5.0.8.300，构建 2025年3月19日)编译运行
+3. 本示例已支持使DevEco Studio 6.1.0 Release (构建版本：6.1.0.830，构建 2026年4月20日)编译运行
 
 ## 下载
 
