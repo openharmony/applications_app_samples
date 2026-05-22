@@ -38,7 +38,7 @@ export class FileTaskPool {
   constructor(context: common.UIAbilityContext, src: FileBean[], dest: string, isMove: boolean = false) {
     let arr = src.map(it => new FileTaskBean(it, dest, isMove));
 
-    this.task = new taskpool.LongTask(FileTaskRun, context, arr);
+    this.task = new taskpool.LongTask(fileTaskRun, context, arr);
     emitter.on(TAG_EXECUTE, this.executeFun);
     emitter.on(TAG_FINISH, this.finishFun);
     emitter.on(TAG_PROGRESS, this.progressFun);
@@ -97,7 +97,7 @@ export class FileTaskPool {
 }
 
 @Concurrent
-async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]): Promise<string> {
+async function fileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]): Promise<string> {
   let tag = 'FileTaskRun';
   try {
     MLog.print(tag, `task execute CopyFileTask! context:${context} taskBeanList:${taskBeanList.length}`);
@@ -195,6 +195,13 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
       height: thumbHeight,
     };
     thumbnail = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
+    if (!thumbnail) {
+      throw new Error('AVImageGenerator returned empty thumbnail');
+    }
+    MLog.info(tag, `Thumbnail generated successfully, saving to: ${newPath}`);
+    // 保存缩略图
+    await fileUtil.savePixelMap(thumbnail, newPath);
+    return newPath;
   } catch (err) {
     MLog.error(tag, `createVideoThumbnail is failed, path = ${newPath} , err = ${JSON.stringify(err)}`);
   } finally {
@@ -204,15 +211,7 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
     if (videoFile) {
       fileIo.closeSync(videoFile);
     }
-    // 保存缩略图
-    if (thumbnail) {
-      MLog.info(tag, `do save`);
-      await fileUtil.savePixelMap(thumbnail, newPath);
-    } else {
-      throw new Error(`thumbnail create fail`);
-    }
   }
-  return newPath;
 }
 
 class FileTaskBean {

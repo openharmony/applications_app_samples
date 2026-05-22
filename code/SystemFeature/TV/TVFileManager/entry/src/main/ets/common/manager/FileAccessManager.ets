@@ -121,15 +121,15 @@ class MediaFileInfoImpl implements FileInfo {
 }
 
 class RootFileInfoImpl implements FileInfo {
-  uri: string;
-  relativePath: string;
-  fileName: string;
-  size: number;
-  mtime: number;
-  mimeType: string;
-  mode: number;
-  isRoot: boolean;
-  deviceType?: number;
+  public uri: string;
+  public relativePath: string;
+  public fileName: string;
+  public size: number;
+  public mtime: number;
+  public mimeType: string;
+  public mode: number;
+  public isRoot: boolean;
+  public deviceType?: number;
   private root: fileAccess.RootInfo;
 
   constructor(root: fileAccess.RootInfo) {
