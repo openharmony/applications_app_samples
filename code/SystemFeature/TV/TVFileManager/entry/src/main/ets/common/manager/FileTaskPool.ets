@@ -201,7 +201,6 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
     MLog.info(tag, `Thumbnail generated successfully, saving to: ${newPath}`);
     // 保存缩略图
     await fileUtil.savePixelMap(thumbnail, newPath);
-    return newPath;
   } catch (err) {
     MLog.error(tag, `createVideoThumbnail is failed, path = ${newPath} , err = ${JSON.stringify(err)}`);
   } finally {
@@ -212,16 +211,17 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
       fileIo.closeSync(videoFile);
     }
   }
+  return newPath;
 }
 
 class FileTaskBean {
-  private srcUri: string;
-  private srcName: string;
-  private srcRelativePath: string;
-  private destFolderUri: string;
-  private isMove: boolean = false;
-  private isMedia: boolean = false;
-  private taskResult: string = '';
+  public srcUri: string;
+  public srcName: string;
+  public srcRelativePath: string;
+  public destFolderUri: string;
+  public isMove: boolean = false;
+  public isMedia: boolean = false;
+  public taskResult: string = '';
 
   constructor(src: FileBean, destUri: string, isMove?: boolean) {
     this.srcUri = src.getPath();

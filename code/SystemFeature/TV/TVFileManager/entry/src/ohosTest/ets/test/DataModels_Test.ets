@@ -150,7 +150,7 @@ export default function dataModelsTest() {
         // Copy和CopyConfirm同理：同一操作的不同阶段
         expect(OperationAction.copy.image).assertEqual(OperationAction.copyConfirm.image);
         expect(OperationAction.copy.action).not().assertEqual(OperationAction.copyConfirm.action);
-      })c
+      })
 
       it('OperationAction_all_actions_are_unique', 0, () => {
         // 集合操作使用action字段作为菜单项的key标识
