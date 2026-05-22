@@ -14,6 +14,8 @@ BetaClub是[Laval社区](https://laval.csdn.net/)为laphone开发者提供的问
 ├── apis                      # 依赖的定制化api
 
 ```
+## 截图预览
+![](./screenshot/lavalBetaClub.jpg)
 
 ## 开发环境
 **IDE:** DevEco Studio 4.0 Release(Build Version: 4.0.0.600)
