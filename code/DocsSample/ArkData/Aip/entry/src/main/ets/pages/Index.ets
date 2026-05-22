@@ -46,7 +46,7 @@ struct Index {
     // [Start aip_getSupportedCloudModel_operating]
     intelligence.getSupportedCloudModel()
       .then((info: Array<intelligence.CloudModelInfo>) => {
-        console.info('Succeeded in getting TextModel');
+        console.info('Succeeded in getting supported model');
         if (info.length > 0) {
           modelInfo = info[0];
         }
