@@ -93,13 +93,13 @@ export interface RootData {
 }
 
 class MediaFileInfoImpl implements FileInfo {
-  uri: string;
-  relativePath: string;
-  fileName: string;
-  size: number;
-  mtime: number;
-  mimeType: string;
-  mode: number;
+  public uri: string;
+  public relativePath: string;
+  public fileName: string;
+  public size: number;
+  public mtime: number;
+  public mimeType: string;
+  public mode: number;
 
   constructor(fileAsset: userFileManager.FileAsset) {
     this.uri = fileAsset.uri;
