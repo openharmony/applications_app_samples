@@ -27,8 +27,7 @@ struct AnimatorTest {
   @State hei: number = 100;
 
   create() {
-    this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.createAnimator()接口
+    this.backAnimator = animator.createAnimator({
       duration: 2000,
       easing: "ease",
       delay: 0,
