@@ -75,7 +75,7 @@ class AlarmClockReminder {
             }
           ],
           slotType: notificationManager.SlotType.CONTENT_INFORMATION, // 指明提醒的Slot类型
-          ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长（单位：秒）
+          ringDuration: Constant.REMINDER_DURATION, // 指明响铃时长和振动时长（单位：秒）
           wantAgent: {
             // 点击提醒通知后跳转的目标UIAbility信息
             pkgName: 'com.example.reminderagentmanager',
