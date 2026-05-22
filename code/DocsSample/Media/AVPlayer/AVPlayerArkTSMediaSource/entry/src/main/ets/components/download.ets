@@ -18,7 +18,7 @@ export class DownloadPool {
   private getFilePath(uuid: number, offset: number): string {
     return `/data/storage/el2/base/haps/entry/files/segment_${uuid}_${offset}.data`;
   }
-
+  // [Start downloadWork]
   public downloadWork(request: media.MediaSourceLoadingRequest, uuid: number,
     offset: number, length: number, url: string) {
     let filePath = this.getFilePath(uuid, offset);
@@ -71,6 +71,7 @@ export class DownloadPool {
       httpRequest.destroy();
     });
   }
+  // [End downloadWork]
 }
 
 export enum FileType {

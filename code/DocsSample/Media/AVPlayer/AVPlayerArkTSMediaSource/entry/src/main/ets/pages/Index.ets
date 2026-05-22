@@ -15,11 +15,13 @@
 
 import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
+// [Start CreateAVPlayer_1]
 import { common } from '@kit.AbilityKit';
 import media from '@ohos.multimedia.media';
+import http from '@ohos.net.http';
+// [End CreateAVPlayer_1]
 import { HashMap } from '@kit.ArkTS';
 import { fileIo as fs } from '@kit.CoreFileKit';
-import http from '@ohos.net.http';
 import { DownloadPool } from '../components/download.ets'
 
 const PROPORTION = 0.99; // 占屏幕比例
@@ -117,7 +119,7 @@ struct Index {
     if (this.context == undefined) {
       return;
     }
-
+    // [Start CreatAVPlayer_2]
     if (this.avPlayer) {
       console.info(`${this.tag}: init avPlayer release2createNew`);
       this.avPlayer.release();
@@ -125,6 +127,7 @@ struct Index {
     }
     // 创建avPlayer实例对象
     this.avPlayer = await media.createAVPlayer();
+    // [End CreatAVPlayer_2]
 
     // 创建状态机变化回调函数
     await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
@@ -222,6 +225,7 @@ struct Index {
       }
       this.avPlayer.reset();
     });
+    // [Start stateChange]
     // 状态机变化回调函数
     this.avPlayer.on('stateChange', async (state, reason) => {
       if (this.avPlayer == null) {
@@ -323,6 +327,7 @@ struct Index {
           break;
       }
     });
+    // [End stateChange]
     // 时间上报监听函数
     this.avPlayer.on('timeUpdate', (time: number) => {
       this.currentTime = time;
@@ -400,18 +405,19 @@ struct Index {
       this.surfaceW = Math.round(this.surfaceH * this.percent);
     }
   }
-
+  // [Start respondData]
   async respondData(uuid: number, requestedOffset: number, requestedLength: number, url: string) {
     console.info(`reading resource uuid: ${uuid}, requestedOffset: ${requestedOffset}, requestedLength: ${requestedLength}`);
     let request = this.requests.get(uuid);
     this.download.downloadWork(request, uuid, requestedOffset, requestedLength, url);
   }
+  // [Start respondData]
 
 
   async preDownload(url: string): Promise<void> {
     console.info(`${this.tag}: preDownload start, url=${url}`);
     this.videoUrl = url;
-
+    // [Start SourceLoader]
     let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
       console.info(`Opening resource: ${request.url}`);
       // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
@@ -436,14 +442,16 @@ struct Index {
       // 清除当前uuid相关资源。
       this.requests.remove(uuid);
     };
-
+    // [End SourceLoader]
+    // [Start ResourceLoader]
     // 应用按需实现。
     let resourceLoader: media.MediaSourceLoader = {
       open: sourceOpenCallback,
       read: sourceReadCallback,
       close: sourceCloseCallback
     };
-
+    // [End ResourceLoader]
+    // [Start LoaderDelegate]
     let headers: Record<string, string> = {};
     this.mediaSource = media.createMediaSourceWithUrl(this.videoUrl, headers);
     this.mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -453,6 +461,7 @@ struct Index {
       this.avPlayer.setMediaSource(this.mediaSource, strategy);
       console.info(`${this.tag}: setMediaSource completed, ready to play`);
     }
+    // [End LoaderDelegate]
   }
 
   @Builder
