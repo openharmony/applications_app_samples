@@ -15,8 +15,8 @@
 // [Start import_worker]
 import { worker } from '@kit.ArkTS';
 // 相对路径加载形式：
-// worker线程文件所在路径: "har/src/main/ets/workers/worker.ets"
-// 创建worker对象的文件所在路径："har/src/main/ets/components/mainpage/MainPage.ets"
+// Worker线程文件所在路径: "har/src/main/ets/workers/worker.ets"
+// 创建Worker对象的文件所在路径："har/src/main/ets/components/mainpage/MainPage.ets"
 const workerInstance4: worker.ThreadWorker = new worker.ThreadWorker('../../workers/worker.ets');
 // [End import_worker]
 @Component
@@ -31,7 +31,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             workerInstance4.onexit = () => {
-              console.info('父worker退出');
+              console.info('父Worker退出');
             }
             this.message = 'success';
           })

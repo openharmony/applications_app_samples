@@ -32,7 +32,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // 通过@标识路径加载形式，加载har中worker线程文件
+          // 通过@标识路径加载形式，加载har中Worker线程文件
           let workerInstance = new worker.ThreadWorker('@har/ets/workers/worker.ets');
           workerInstance.onmessage = () => {
             console.info('main thread onmessage');
