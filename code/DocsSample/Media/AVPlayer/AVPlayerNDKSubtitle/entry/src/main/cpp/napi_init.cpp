@@ -32,6 +32,7 @@
 
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window);
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window);
+void OHAVPlayerSetUrlSubtitle(OH_AVPlayer *player, char *url);
 
 static constexpr size_t ARG_COUNT = 4;
 static constexpr int32_t DEFAULT_RETURN_VALUE = 0;
@@ -205,8 +206,10 @@ void HandleStateInitialized(OH_AVPlayer *player)
 {
     LOG("AVPlayerState AV_INITIALIZED");
     auto context = SampleManager::GetInstance();
+    // [Start OH_AVPlayer_SetVideoSurface]
     int32_t ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
     LOG("OH_AVPlayer_SetVideoSurface ret:%{public}d", ret);
+    // [End OH_AVPlayer_SetVideoSurface]
     ret = OH_AVPlayer_Prepare(player);  // 设置播放源后触发该状态上报
     if (ret != AV_ERR_OK) {
         LOG("player %{public}s", "OH_AVPlayer_Prepare Err");
@@ -218,8 +221,10 @@ void HandleStatePrepared(OH_AVPlayer *player)
     LOG("AVPlayerState AV_PREPARED");
     int32_t ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE);  // 设置音频音效模式
     LOG("OH_AVPlayer_SetAudioEffectMode ret:%{public}d", ret);
+    // [Start OH_AVPlayer_Play]
     ret = OH_AVPlayer_Play(player);  // 调用播放接口开始播放
     LOG("OH_AVPlayer_Play ret:%{public}d", ret);
+    // [End OH_AVPlayer_Play]
 }
 
 void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody)
@@ -263,7 +268,7 @@ void HandleStateChange(OH_AVPlayer *player, OH_AVFormat *infoBody)
             break;
     }
 }
-
+// [Start HandleSubtitleUpdate]
 void HandleSubtitleUpdate(OH_AVFormat *infoBody)
 {
     CCLOG("AV_INFO_TYPE_SUBTITLE_UPDATE received");
@@ -285,6 +290,7 @@ void HandleSubtitleUpdate(OH_AVFormat *infoBody)
         CCLOG("Subtitle text cleared (no data)");
     }
 }
+// [End HandleSubtitleUpdate]
 
 void HandleBitrateCollect(OH_AVFormat *infoBody)
 {
@@ -375,10 +381,11 @@ void HandleIntValueInfoByType(AVPlayerOnInfoType type, OH_AVFormat *infoBody)
         HandleIntValueInfo(type, infoBody, key);
     }
 }
-
+// [Start OHAVPlayerOnInfoCallback]
 void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData)
 {
     switch (type) {
+        // [StartExclude OHAVPlayerOnInfoCallback]
         case AV_INFO_TYPE_STATE_CHANGE:
             HandleStateChange(player, infoBody);
             break;
@@ -420,6 +427,7 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
         case AV_INFO_TYPE_INTERRUPT_EVENT:
             HandleInterruptEvent(infoBody);
             break;
+        // [EndExclude OHAVPlayerOnInfoCallback]
         case AV_INFO_TYPE_SUBTITLE_UPDATE:
             HandleSubtitleUpdate(infoBody);
             break;
@@ -427,6 +435,7 @@ void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_A
             break;
     }
 }
+// [End OHAVPlayerOnInfoCallback]
 void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)
 {
     LOG("OHAVPlayerOnErrorCallback errorCode: %{public}d ,errorMsg: %{public}s", errorCode, errorMsg);
@@ -485,19 +494,24 @@ static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const
     if (SampleManager::GetInstance()->player_) {
         OH_AVPlayer_Release(SampleManager::GetInstance()->player_);
     }
+    // [Start OH_AVPlayer_Create]
     OH_AVPlayer *player = OH_AVPlayer_Create();
+    // [End OH_AVPlayer_Create]
     SampleManager::GetInstance()->SetAVPlayer(player);
-    
+    // [Start OH_AVPlayer_SetOnInfoCallback]
     // 设置回调，监听信息
     LOG("call OH_AVPlayer_SetPlayerOnInfoCallback");
     int32_t ret = OH_AVPlayer_SetOnInfoCallback(player, OHAVPlayerOnInfoCallback, nullptr);
     LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%{public}d", ret);
-    
+    // [End OH_AVPlayer_SetOnInfoCallback]
+    // [Start OH_AVPlayer_SetOnErrorCallback]
     LOG("call OH_AVPlayer_SetPlayerOnErrorCallback");
     ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, nullptr);
-    
+    // [End OH_AVPlayer_SetOnErrorCallback]
+    // [Start OH_AVPlayer_SetFDSource]
     LOG("call %{public}s", "OH_AVPlayer_SetFDSource");
     ret = OH_AVPlayer_SetFDSource(player, fd, offset, size);
+    // [End OH_AVPlayer_SetFDSource]
     
     // 设置音频流类型
     LOG("call %{public}s", "OH_AVPlayer_SetAudioRendererInfo");
@@ -622,6 +636,7 @@ static napi_value NAPI_Global_GetSpeed(napi_env env, napi_callback_info info)
     napi_create_int32(env, speed, &value);
     return value;
 }
+// [Start OH_AVPlayer_Pause]
 static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info)
 {
     int ret = 100;
@@ -636,6 +651,8 @@ static napi_value NAPI_Global_Pause(napi_env env, napi_callback_info info)
     napi_create_int32(env, ret, &value);
     return value;
 }
+// [End OH_AVPlayer_Pause]
+// [Start OH_AVPlayer_Seek]
 static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -674,6 +691,7 @@ static napi_value NAPI_Global_Seek(napi_env env, napi_callback_info info)
     napi_create_int32(env, 0, &value);
     return value;
 }
+// [End OH_AVPlayer_Seek]
 static napi_value NAPI_Global_GetDuration(napi_env env, napi_callback_info info)
 {
     auto context = SampleManager::GetInstance();
@@ -738,6 +756,7 @@ static napi_value NAPI_Global_GetVideoWidth(napi_env env, napi_callback_info inf
     napi_create_int32(env, ret, &value);
     return value;
 }
+// [Start OH_AVPlayer_Release]
 static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info)
 {
     int ret = -1;
@@ -752,6 +771,7 @@ static napi_value NAPI_Global_Release(napi_env env, napi_callback_info info)
     napi_create_int32(env, ret, &value);
     return value;
 }
+// [End OH_AVPlayer_Release]
 static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success)
 {
     napi_valuetype valueType;
@@ -776,6 +796,21 @@ static char* GetFileNameFromNapiArg(napi_env env, napi_value arg, bool &success)
     success = true;
     return fileName;
 }
+// [Start OH_AVPlayer_Stop]
+static napi_value NAPI_Global_Stop(napi_env env, napi_callback_info info) {
+    int ret = 100;
+    auto context = SampleManager::GetInstance();
+    if (context->player_ != NULL) {
+        ret = OH_AVPlayer_Stop(context->player_);
+        LOG("OH_AVPlayer_Stop ret:%{public}d", ret);
+    } else {
+        LOG("no found Player Instances");
+    }
+    napi_value value;
+    napi_create_int32(env, ret, &value);
+    return value;
+}
+// [End OH_AVPlayer_Stop]
 
 static NativeResourceManager* GetResourceManagerFromContext(napi_env env, napi_value contextArg, bool &success)
 {
@@ -837,7 +872,7 @@ static napi_value CreateInt32Result(napi_env env, int32_t value)
     napi_create_int32(env, value, &result);
     return result;
 }
-
+// [Start OH_AVPlayer_AddFdSubtitleSource]
 static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info)
 {
     CCLOG("NAPI_Global_AddSubtitle called");
@@ -889,6 +924,15 @@ static napi_value NAPI_Global_AddSubtitle(napi_env env, napi_callback_info info)
     
     return CreateInt32Result(env, ret);
 }
+// [End OH_AVPlayer_AddFdSubtitleSource]
+// [Start OH_AVPlayer_AddUrlSubtitleSource]
+void OHAVPlayerSetUrlSubtitle(OH_AVPlayer *player, char *url) {
+    LOG("player %{public}s >> SubtitleURL source", url);
+    LOG("call %{public}s", "OH_AVPlayer_AddUrlSubtitleSource");
+    int32_t ret = OH_AVPlayer_AddUrlSubtitleSource(player, url);
+    LOG("OH_AVPlayer_AddUrlSubtitleSource ret:%{public}d", ret);
+}
+// [End OH_AVPlayer_AddUrlSubtitleSource]
 
 static napi_value NAPI_Global_GetSubtitle(napi_env env, napi_callback_info info)
 {
