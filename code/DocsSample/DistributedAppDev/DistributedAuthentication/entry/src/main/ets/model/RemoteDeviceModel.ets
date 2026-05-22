@@ -307,7 +307,7 @@ class RemoteDeviceModel {
   }
   // [End start_discovering]
 
-  // [Start stop_device_discovery]
+  // [Start stop_discovering]
   stopDeviceDiscovery(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
@@ -323,7 +323,7 @@ class RemoteDeviceModel {
       logger.error('[DeviceManager.RemoteDeviceModel] stopDeviceDiscovery failed err: ' + e.toString());
     }
   }
-  // [End stop_device_discovery]
+  // [End stop_discovering]
 
   unregisterDeviceListCallback(): void {
     if (typeof (this.deviceManager) == 'undefined') {
