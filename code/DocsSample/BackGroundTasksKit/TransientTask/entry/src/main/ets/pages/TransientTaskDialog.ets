@@ -37,7 +37,7 @@ function requestSuspendDelay() {
     })
     id = delayInfo.requestId;
     delayTime = delayInfo.actualDelayTime;
-    console.info(`Operation requestSuspendDelay failed. id is ${id} delayTime is ${delayTime}`);
+    console.info(`Operation requestSuspendDelay success. id is ${id} delayTime is ${delayTime}`);
   } catch (error) {
     console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
