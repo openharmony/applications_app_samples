@@ -40,7 +40,7 @@ export class AbilityManager {
   private async isShareServiceRunning(): Promise<boolean> {
     MLog.info(TAG, `isShareServiceRunning: checking if [${SHARE_BUNDLE_NAME}] is already running`);
     try {
-      const processes: Array<appManager.ProcessInformation> = await appManager.getRunningProcessInformation();
+      const processes: appManager.ProcessInformation[] = await appManager.getRunningProcessInformation();
       const running: boolean = processes.some(p => p.bundleNames.includes(SHARE_BUNDLE_NAME));
       MLog.info(TAG, `isShareServiceRunning: result=${running}, total processes=${processes.length}`);
       return running;

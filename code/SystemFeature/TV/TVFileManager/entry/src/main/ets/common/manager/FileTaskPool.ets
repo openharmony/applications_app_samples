@@ -98,47 +98,47 @@ export class FileTaskPool {
 
 @Concurrent
 async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]): Promise<string> {
-  let TAG = 'FileTaskRun';
+  let tag = 'FileTaskRun';
   try {
-    MLog.print(TAG, `task execute CopyFileTask! context:${context} taskBeanList:${taskBeanList.length}`);
+    MLog.print(tag, `task execute CopyFileTask! context:${context} taskBeanList:${taskBeanList.length}`);
     let num: number | string = -1;
     for (let k = 0; k < taskBeanList.length; k++) {
       if (taskpool.Task.isCanceled()) {
-        MLog.print(TAG, `task execute Canceled!`);
+        MLog.print(tag, `task execute Canceled!`);
         return 'canceled';
       }
       let taskBean = taskBeanList[k];
-      MLog.print(TAG, `task execute k:${k} `);
+      MLog.print(tag, `task execute k:${k} `);
       num = -1;
-      MLog.print(TAG, `start taskBean:${JSON.stringify(taskBean)}`);
+      MLog.print(tag, `start taskBean:${JSON.stringify(taskBean)}`);
       if (taskBean.srcUri === taskBean.destFolderUri) {
         continue;
       }
-      MLog.print(TAG,
+      MLog.print(tag,
         `copy srcName:${taskBean.srcName} srcUri:${taskBean.srcUri} destFolderUri:${taskBean.destFolderUri} srcRelativePath:${taskBean.srcRelativePath}`);
       num = await FileIoManager.copy(taskBean.srcUri, taskBean.destFolderUri, (progress) => {
         let p = ((progress.processedSize / progress.totalSize) * 100).toFixed(2);
-        MLog.print(TAG, `copy src:${taskBean.srcUri} progress:${p}=${progress.processedSize}/${progress.totalSize}`);
+        MLog.print(tag, `copy src:${taskBean.srcUri} progress:${p}=${progress.processedSize}/${progress.totalSize}`);
         emitter.emit('TAG_PROGRESS', { data: { progress: k, progressOne: p } });
       })
         .then(result => {
-          MLog.print(TAG, `copy src:${taskBean.srcUri} dest:${taskBean.destFolderUri} result:${result}`);
+          MLog.print(tag, `copy src:${taskBean.srcUri} dest:${taskBean.destFolderUri} result:${result}`);
           return 0;
         })
         .catch((err: BusinessError) => {
-          MLog.printError(TAG, 'copyOne', err);
+          MLog.printError(tag, 'copyOne', err);
           return `[${err?.code}] ${err?.message}`;
         });
       if (num === 0 && taskBean.isMove) {
         num = await FileAccessManager.getIns(context)
           .deleteOne(taskBean.srcName, taskBean.srcUri, taskBean.isMedia)
           .then((result) => {
-            MLog.print(TAG,
+            MLog.print(tag,
               `is move del srcName:${taskBean.srcName} srcUri:${taskBean.srcUri} result:${result}`);
             return result;
           })
           .catch((err: BusinessError) => {
-            MLog.printError(TAG, 'is move del err', err);
+            MLog.printError(tag, 'is move del err', err);
             return `[${err?.code}] ${err?.message}`;
           });
       }
@@ -148,7 +148,7 @@ async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]
       emitter.emit('TAG_PROGRESS', { data: { progress: k + 1, taskResult: taskBean.taskResult } });
     }
   } catch (err) {
-    MLog.printError(TAG, `execute err!`, err);
+    MLog.printError(tag, `execute err!`, err);
   }
   return 'finish';
 }
@@ -156,21 +156,21 @@ async function FileTaskRun(context: common.Context, taskBeanList: FileTaskBean[]
 @Concurrent
 export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: number,
   thumbHeight: number): Promise<string> {
-  const TAG = 'getVideoThumb';
+  const tag = 'getVideoThumb';
   // 处理带中文路径的uri
   const decodedUri = decodeURIComponent(uri);
-  MLog.log(TAG, `Original uri: ${uri}, decoded uri: ${decodedUri}`);
+  MLog.log(tag, `Original uri: ${uri}, decoded uri: ${decodedUri}`);
   const videoPath = decodedUri.replace('file://', '');
   const imageName = `${fileUtil.getFileName(videoPath)}.thumb`;
   const newPath = cacheDir + imageName;
-  MLog.log(TAG, `Generated thumbnail path: ${newPath} for video: ${videoPath}`);
+  MLog.log(tag, `Generated thumbnail path: ${newPath} for video: ${videoPath}`);
   let thumbExist = false;
   try {
     thumbExist = await fileIo.access(newPath);
     if (thumbExist) {
       const stat = await fileIo.stat(newPath);
       thumbExist = stat.size > 0;
-      MLog.log(TAG, `path = ${newPath}, exist = ${thumbExist}, size = ${stat.size}`);
+      MLog.log(tag, `path = ${newPath}, exist = ${thumbExist}, size = ${stat.size}`);
     }
   } catch (e) {
     thumbExist = false;
@@ -196,7 +196,7 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
     };
     thumbnail = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
   } catch (err) {
-    MLog.error(TAG, `createVideoThumbnail is failed, path = ${newPath} , err = ${JSON.stringify(err)}`);
+    MLog.error(tag, `createVideoThumbnail is failed, path = ${newPath} , err = ${JSON.stringify(err)}`);
   } finally {
     if (avImageGenerator) {
       avImageGenerator.release();
@@ -206,23 +206,23 @@ export async function getVideoThumb(cacheDir: string, uri: string, thumbWidth: n
     }
     // 保存缩略图
     if (thumbnail) {
-      MLog.info(TAG, `do save`);
+      MLog.info(tag, `do save`);
       await fileUtil.savePixelMap(thumbnail, newPath);
     } else {
       throw new Error(`thumbnail create fail`);
     }
-    return newPath;
   }
+  return newPath;
 }
 
 class FileTaskBean {
-  srcUri: string;
-  srcName: string;
-  srcRelativePath: string;
-  destFolderUri: string;
-  isMove: boolean = false;
-  isMedia: boolean = false;
-  taskResult: string = '';
+  private srcUri: string;
+  private srcName: string;
+  private srcRelativePath: string;
+  private destFolderUri: string;
+  private isMove: boolean = false;
+  private isMedia: boolean = false;
+  private taskResult: string = '';
 
   constructor(src: FileBean, destUri: string, isMove?: boolean) {
     this.srcUri = src.getPath();

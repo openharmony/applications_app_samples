@@ -155,13 +155,13 @@ class RootFileInfoImpl implements FileInfo {
 }
 
 class EmptyFileInfo implements FileInfo {
-  uri: string = '';
-  relativePath: string = '';
-  fileName: string = '';
-  size: number = 0;
-  mtime: number = 0;
-  mimeType: string = '';
-  mode: number = 0;
+  public uri: string = '';
+  public relativePath: string = '';
+  public fileName: string = '';
+  public size: number = 0;
+  public mtime: number = 0;
+  public mimeType: string = '';
+  public mode: number = 0;
 
   listFile(filter?: Filter): fileAccess.FileIterator {
     return new MediaFileIterator();
@@ -211,8 +211,8 @@ export class FileAccessManager {
     return FileAccessManager.ins;
   }
 
-  public static async getFileAccessAbilityInfo(): Promise<Array<Want>> {
-    let wantInfos: Array<Want> = await fileAccess.getFileAccessAbilityInfo();
+  public static async getFileAccessAbilityInfo(): Promise<Want[]> {
+    let wantInfos: Want[] = await fileAccess.getFileAccessAbilityInfo();
     MLog.log(TAG, 'getFileAccessAbilityInfo data ' + JSON.stringify(wantInfos));
     return wantInfos;
   }
@@ -227,11 +227,11 @@ export class FileAccessManager {
     return this.helper;
   }
 
-  private async convertRootIterator(iterator: fileAccess.RootIterator): Promise<Array<fileAccess.RootInfo>> {
+  private async convertRootIterator(iterator: fileAccess.RootIterator): Promise<fileAccess.RootInfo[]> {
     if (!iterator) {
       throw new Error('RootIterator is null');
     }
-    let arr: fileAccess.RootInfo[] = new Array<fileAccess.RootInfo>();
+    let arr: fileAccess.RootInfo[] = [];
     let info: RootIteratorResult;
     do {
       info = iterator.next();
@@ -247,7 +247,7 @@ export class FileAccessManager {
     if (!iterator) {
       throw new Error('FileIterator is null');
     }
-    let arr: FileInfo[] = new Array<FileInfo>();
+    let arr: FileInfo[] = [];
     let info: FileIteratorResult;
     do {
       info = iterator.next();
@@ -259,7 +259,7 @@ export class FileAccessManager {
     return arr;
   }
 
-  private async listIteratorRoot(): Promise<Array<fileAccess.RootInfo>> {
+  private async listIteratorRoot(): Promise<fileAccess.RootInfo[]> {
     let roots: fileAccess.RootIterator = await this.getHelper().getRoots();
     MLog.print(TAG, `getRoots:${roots}`);
     return this.convertRootIterator(roots);
@@ -272,8 +272,8 @@ export class FileAccessManager {
   /**
    * 获取根目录列表
    */
-  public async getRoots(): Promise<Array<fileAccess.RootInfo>> {
-    let list: Array<fileAccess.RootInfo> = await this.listIteratorRoot();
+  public async getRoots(): Promise<fileAccess.RootInfo[]> {
+    let list: fileAccess.RootInfo[] = await this.listIteratorRoot();
     return list;
   }
 

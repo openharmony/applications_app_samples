@@ -133,32 +133,32 @@ export default function dataModelsTest() {
     describe('OperationAction_Static_Properties', () => {
       it('OperationAction_Del_has_valid_structure', 0, () => {
         // 删除操作必须关联正确的action ID和资源，否则点击删除按钮无响应
-        expect(OperationAction.Del.action).assertEqual(OperationActionID.Del);
-        expect(OperationAction.Del.text).not().assertEqual(undefined);
-        expect(OperationAction.Del.image).not().assertEqual(undefined);
-        expect(OperationAction.Del.imageFocus).not().assertEqual(undefined);
+        expect(OperationAction.del.action).assertEqual(OperationActionID.Del);
+        expect(OperationAction.del.text).not().assertEqual(undefined);
+        expect(OperationAction.del.image).not().assertEqual(undefined);
+        expect(OperationAction.del.imageFocus).not().assertEqual(undefined);
       });
 
       it('OperationAction_Move_and_MoveConfirm_share_same_icons', 0, () => {
         // Move和MoveConfirm是同一操作的两个阶段，UI图标应一致
         // 但action不同——用于区分"进入移动模式"和"执行移动"
-        expect(OperationAction.Move.image).assertEqual(OperationAction.MoveConfirm.image);
-        expect(OperationAction.Move.action).not().assertEqual(OperationAction.MoveConfirm.action);
+        expect(OperationAction.move.image).assertEqual(OperationAction.moveConfirm.image);
+        expect(OperationAction.move.action).not().assertEqual(OperationAction.moveConfirm.action);
       });
 
       it('OperationAction_Copy_and_CopyConfirm_share_same_icons', 0, () => {
         // Copy和CopyConfirm同理：同一操作的不同阶段
-        expect(OperationAction.Copy.image).assertEqual(OperationAction.CopyConfirm.image);
-        expect(OperationAction.Copy.action).not().assertEqual(OperationAction.CopyConfirm.action);
-      });
+        expect(OperationAction.copy.image).assertEqual(OperationAction.copyConfirm.image);
+        expect(OperationAction.copy.action).not().assertEqual(OperationAction.copyConfirm.action);
+      })c
 
       it('OperationAction_all_actions_are_unique', 0, () => {
         // 集合操作使用action字段作为菜单项的key标识
         let ops: Operation[] = [
-          OperationAction.Del, OperationAction.Move, OperationAction.MoveCancel,
-          OperationAction.MoveConfirm, OperationAction.Copy, OperationAction.CopyCancel,
-          OperationAction.CopyConfirm, OperationAction.SelectAll, OperationAction.Share,
-          OperationAction.Rename
+          OperationAction.del, OperationAction.move, OperationAction.moveCancel,
+          OperationAction.moveConfirm, OperationAction.copy, OperationAction.copyCancel,
+          OperationAction.copyConfirm, OperationAction.selectAll, OperationAction.share,
+          OperationAction.rename
         ];
         let actionSet: Set<string> = new Set(ops.map((it: Operation): string => it.action));
         expect(actionSet.size).assertEqual(ops.length);

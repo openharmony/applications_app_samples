@@ -18,7 +18,7 @@ import { Tools } from '../common/utils/Tools';
 import { MediaType } from '../model/MediaType';
 import { MLog } from '../common/utils/MLog';
 import { image } from '@kit.ImageKit';
-import { FocusIdTag, NavStack } from '../common/manager/NavPathStackManager';
+import { focusIdTag, NavStack } from '../common/manager/NavPathStackManager';
 import { FileAccessManager, RootData } from '../common/manager/FileAccessManager';
 import { common } from '@kit.AbilityKit';
 import { Want } from '@kit.AbilityKit';
@@ -90,7 +90,7 @@ export struct FileList {
   @State isRootUsbPage: boolean = false;
   @LocalStorageLink('backPageBeanId') backPageBeanId: string = '';
   @StorageLink('showFileOperation') showFileOperation: boolean = false;
-  @StorageLink(FocusIdTag) @Watch('changeFocus') focusId: string = '';
+  @StorageLink(focusIdTag) @Watch('changeFocus') focusId: string = '';
   @State isCopying: boolean = false;
   @State isMoving: boolean = false;
   //选择需要操作的文件列表
@@ -418,17 +418,17 @@ export struct FileList {
       case PageType.IMAGE_PAGE:
       case PageType.AUDIO_PAGE:
       case PageType.DOC_PAGE:
-        this.menuList = [OperationAction.Del, OperationAction.Share, OperationAction.Rename];
+        this.menuList = [OperationAction.del, OperationAction.share, OperationAction.rename];
         break;
       default:
-        this.menuList = [OperationAction.Del, OperationAction.Move, OperationAction.Copy, OperationAction.SelectAll,
-          OperationAction.Share, OperationAction.Rename];
+        this.menuList = [OperationAction.del, OperationAction.move, OperationAction.copy, OperationAction.selectAll,
+          OperationAction.share, OperationAction.rename];
         break;
     }
     if (this.isCopying) {
-      this.menuList = [OperationAction.CopyCancel, OperationAction.CopyConfirm];
+      this.menuList = [OperationAction.copyCancel, OperationAction.copyConfirm];
     } else if (this.isMoving) {
-      this.menuList = [OperationAction.MoveCancel, OperationAction.MoveConfirm];
+      this.menuList = [OperationAction.moveCancel, OperationAction.moveConfirm];
     }
   }
 

@@ -38,8 +38,8 @@ export interface FileItemInfo extends DirInfo {
 
 type DirType = DirInfo | string;
 
-const TextDecoder: util.TextDecoder = new util.TextDecoder('utf-8', { ignoreBOM: true });
-const TextEncoder: util.TextEncoder = new util.TextEncoder();
+const textDecoder: util.TextDecoder = new util.TextDecoder('utf-8', { ignoreBOM: true });
+const textEncoder: util.TextEncoder = new util.TextEncoder();
 const KB: number = 1024;
 const MB: number = KB * 1024;
 const GB: number = MB * 1024;
@@ -74,11 +74,11 @@ export class Tools {
   }
 
   public static arrayToString(arr: ArrayBuffer): string {
-    return TextDecoder.decode(new Uint8Array(arr));
+    return textDecoder.decode(new Uint8Array(arr));
   }
 
   public static stringToArray(str: string): Uint8Array {
-    return TextEncoder.encode(str);
+    return textEncoder.encode(str);
   }
 
   public static parseFileInfo(obj: FileInfo): FileItemInfo {

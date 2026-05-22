@@ -35,61 +35,61 @@ export interface Operation {
 }
 
 export class OperationAction {
-  public static Del: Operation = {
+  public static del: Operation = {
     action: OperationActionID.Del,
     image: $r('app.media.ic_public_delete'),
     imageFocus: $r('app.media.ic_public_delete_selected'),
     text: $r('app.string.operation_type_delete'),
   }
-  public static Move: Operation = {
+  public static move: Operation = {
     action: OperationActionID.Move,
     image: $r('app.media.ic_public_move'),
     imageFocus: $r('app.media.ic_public_move_selected'),
     text: $r('app.string.operation_type_move'),
   }
-  public static MoveCancel: Operation = {
+  public static moveCancel: Operation = {
     action: OperationActionID.MoveCancel,
     image: $r('app.media.ic_public_move'),
     imageFocus: $r('app.media.ic_public_move_selected'),
     text: $r('app.string.operation_type_move_cancel'),
   }
-  public static MoveConfirm: Operation = {
+  public static moveConfirm: Operation = {
     action: OperationActionID.MoveConfirm,
     image: $r('app.media.ic_public_move'),
     imageFocus: $r('app.media.ic_public_move_selected'),
     text: $r('app.string.operation_type_move_confirm'),
   }
-  public static Copy: Operation = {
+  public static copy: Operation = {
     action: OperationActionID.Copy,
     image: $r('app.media.ic_public_copy'),
     imageFocus: $r('app.media.ic_public_copy_selected'),
     text: $r('app.string.operation_type_copy'),
   }
-  public static CopyCancel: Operation = {
+  public static copyCancel: Operation = {
     action: OperationActionID.CopyCancel,
     image: $r('app.media.ic_public_copy'),
     imageFocus: $r('app.media.ic_public_copy_selected'),
     text: $r('app.string.operation_type_copy_cancel'),
   }
-  public static CopyConfirm: Operation = {
+  public static copyConfirm: Operation = {
     action: OperationActionID.CopyConfirm,
     image: $r('app.media.ic_public_copy'),
     imageFocus: $r('app.media.ic_public_copy_selected'),
     text: $r('app.string.operation_type_copy_confirm'),
   }
-  public static SelectAll: Operation = {
+  public static selectAll: Operation = {
     action: OperationActionID.SelectAll,
     image: $r('app.media.ic_public_all_choice'),
     imageFocus: $r('app.media.ic_public_all_choice_selected'),
     text: $r('app.string.operation_type_all_choice'),
   }
-  public static Share: Operation = {
+  public static share: Operation = {
     action: OperationActionID.Share,
     image: $r('app.media.ic_public_share'),
     imageFocus: $r('app.media.ic_public_share_selected'),
     text: $r('app.string.operation_type_share'),
   }
-  public static Rename: Operation = {
+  public static rename: Operation = {
     action: OperationActionID.Rename,
     image: $r('app.media.ic_public_rename'),
     imageFocus: $r('app.media.ic_public_rename_selected'),

@@ -95,16 +95,16 @@ export default function comprehensiveOperationTest() {
     describe('OperationAction_Property_Completeness', () => {
       it('all_OperationAction_objects_have_required_properties', 0, () => {
         let ops: OpEntry[] = [
-          { name: 'Del', op: OperationAction.Del },
-          { name: 'Move', op: OperationAction.Move },
-          { name: 'MoveCancel', op: OperationAction.MoveCancel },
-          { name: 'MoveConfirm', op: OperationAction.MoveConfirm },
-          { name: 'Copy', op: OperationAction.Copy },
-          { name: 'CopyCancel', op: OperationAction.CopyCancel },
-          { name: 'CopyConfirm', op: OperationAction.CopyConfirm },
-          { name: 'SelectAll', op: OperationAction.SelectAll },
-          { name: 'Share', op: OperationAction.Share },
-          { name: 'Rename', op: OperationAction.Rename }
+          { name: 'Del', op: OperationAction.del },
+          { name: 'Move', op: OperationAction.move },
+          { name: 'MoveCancel', op: OperationAction.moveCancel },
+          { name: 'MoveConfirm', op: OperationAction.moveConfirm },
+          { name: 'Copy', op: OperationAction.copy },
+          { name: 'CopyCancel', op: OperationAction.copyCancel },
+          { name: 'CopyConfirm', op: OperationAction.copyConfirm },
+          { name: 'SelectAll', op: OperationAction.selectAll },
+          { name: 'Share', op: OperationAction.share },
+          { name: 'Rename', op: OperationAction.rename }
         ];
         for (let entry of ops) {
           expect(entry.op.action.length > 0).assertEqual(true);
@@ -115,24 +115,24 @@ export default function comprehensiveOperationTest() {
       });
 
       it('Del_uses_delete_icon', 0, () => {
-        expect(OperationAction.Del.action).assertEqual(OperationActionID.Del);
+        expect(OperationAction.del.action).assertEqual(OperationActionID.Del);
       });
 
       it('Move_Copy_use_respective_icons', 0, () => {
         // 移动和复制的图标应该不同（视觉区分）
-        expect(OperationAction.Move.image).not().assertEqual(OperationAction.Copy.image);
+        expect(OperationAction.move.image).not().assertEqual(OperationAction.copy.image);
       });
 
       it('Share_uses_share_icon', 0, () => {
-        expect(OperationAction.Share.action).assertEqual(OperationActionID.Share);
+        expect(OperationAction.share.action).assertEqual(OperationActionID.Share);
       });
 
       it('Rename_uses_rename_icon', 0, () => {
-        expect(OperationAction.Rename.action).assertEqual(OperationActionID.Rename);
+        expect(OperationAction.rename.action).assertEqual(OperationActionID.Rename);
       });
 
       it('SelectAll_uses_all_choice_icon', 0, () => {
-        expect(OperationAction.SelectAll.action).assertEqual(OperationActionID.SelectAll);
+        expect(OperationAction.selectAll.action).assertEqual(OperationActionID.SelectAll);
       });
     });
 

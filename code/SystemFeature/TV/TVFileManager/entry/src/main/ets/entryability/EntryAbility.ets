@@ -43,7 +43,7 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
    MLog.info(TAG, 'Ability onWindowStageCreate');
     this.mWindowStage = windowStage;
-    let names: Array<SystemBarKeys> = new Array<SystemBarKeys>('navigation');
+    let names: SystemBarKeys[] = new Array<SystemBarKeys>('navigation');
     windowStage.getMainWindow().then((window: window.Window) => {
       window.setWindowSystemBarEnable(names);
       window.setWindowSystemBarProperties({navigationBarColor: '#1f2e4d', navigationBarContentColor: '#ffffff'});

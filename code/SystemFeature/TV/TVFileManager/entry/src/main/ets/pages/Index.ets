@@ -175,7 +175,7 @@ struct Index {
   async onPageShow() {
     MLog.info(TAG, 'onPageShow ');
     this.isFocusable = false;
-    let isFromShare: ESObject = AppStorage.get('isFromShare');
+    let isFromShare: boolean = AppStorage.get('isFromShare') as boolean;
     MLog.info(TAG, 'isFromShare = ' + isFromShare);
     if (isFromShare) {
       let fileBean = await this.getShareDir();

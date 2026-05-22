@@ -16,7 +16,7 @@ import { Permissions, abilityAccessCtrl, bundleManager, common } from '@kit.Abil
 import { MLog } from './MLog';
 
 const TAG = 'Permission';
-const PERMISSIONS_ARR: Array<Permissions> = [
+const PERMISSIONS_ARR: Permissions[] = [
   'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
   'ohos.permission.FILE_ACCESS_MANAGER', 'ohos.permission.STORAGE_MANAGER',
   'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED', 'ohos.permission.MANAGE_MISSIONS',

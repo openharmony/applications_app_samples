@@ -20,9 +20,9 @@ import { DeviceType } from '../data/DeviceType';
 import { PageType } from '../../model/PageType';
 
 const TAG = 'NavPathStackManager';
-const NavPathStackTag = 'NavPathStackTag';
+const navPathStackTag = 'NavPathStackTag';
 
-export const FocusIdTag = 'FocusIdTag';
+export const focusIdTag = 'FocusIdTag';
 
 export const HOME_NAME = 'HOME';
 
@@ -54,16 +54,16 @@ export class NavStack {
   private backPressObs: Array<() => boolean | void> = [];
 
   public static getIns(): NavStack {
-    let ins = AppStorage.get<NavStack>(NavPathStackTag);
+    let ins = AppStorage.get<NavStack>(navPathStackTag);
     if (!ins) {
       ins = new NavStack();
-      AppStorage.setOrCreate<NavStack>(NavPathStackTag, ins);
+      AppStorage.setOrCreate<NavStack>(navPathStackTag, ins);
     }
     return ins;
   }
 
   public static setFocusId(name: string) {
-    AppStorage.set(FocusIdTag, name);
+    AppStorage.set(focusIdTag, name);
   }
 
   constructor() {

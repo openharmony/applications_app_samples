@@ -29,7 +29,6 @@ export struct RenameDialog {
   @State enableKeyboard: boolean = false;
   confirm?: (text: string) => void;
   private text: string = '';
-  private TextInputController: TextInputController = new TextInputController();
 
   aboutToAppear(): void {
     MLog.print(TAG, `RenameFileDialog aboutToAppear`);

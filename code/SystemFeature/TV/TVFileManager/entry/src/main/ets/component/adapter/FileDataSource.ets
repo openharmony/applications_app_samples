@@ -18,9 +18,9 @@ import { BasicDataSource } from './BasicDataSource';
 const TAG = 'FileDataSource';
 
 export default class FileDataSource extends BasicDataSource<FileBean> {
-  selectBean?: FileBean;
-  pageContext?: Context;
-  lastIndex: number = -1;
+  public selectBean?: FileBean;
+  public pageContext?: Context;
+  public lastIndex: number = -1;
 
   constructor(ctx: Context, arr: FileBean[]) {
     super(arr);
