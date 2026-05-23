@@ -23,6 +23,7 @@
 // [Start audio_session_v2]
 // [Start enable_mute_suggestion]
 // [Start set_default_output_device]
+// [Start set_session_behavior]
 import { audio } from '@kit.AudioKit';
 // [StartExclude get_session_manager]
 // [StartExclude on_audio_session_deactivated]
@@ -39,6 +40,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude audio_session_v2]
 // [StartExclude enable_mute_suggestion]
 // [StartExclude set_default_output_device]
+// [StartExclude set_session_behavior]
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -400,6 +402,12 @@ async function useAudioSessionV2(){
       case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION:
         // 此分支表示其他应用的非混音音频播放结束，系统可自行决定是否取消静音。
         break;
+      case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_MUTE:
+        // 此分支表示系统已将应用所有播放音频流静音。
+        break;
+      case audio.AudioSessionStateChangeHint.AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE:
+        // 此分支表示系统已将应用所有播放音频流解除静音。
+        break;
       default:
         break;
     }
@@ -417,6 +425,33 @@ async function useAudioSessionV2(){
     // 如果存在多条音频流同时播放，需要特别注意AudioSession停用时机（停用AudioSession时会同时释放应用所有音频播放流）。
   }
   // [StartExclude audio_session_v2]
+}
+
+async function setSessionBehavior(){
+  // [EndExclude set_session_behavior]
+
+  // 应用根据业务场景设置适合自己的音频会话场景，激活AudioSession时，系统会根据应用选择的音频会话场景申请对应的音频焦点。
+  audioSessionManager.setAudioSessionScene(audio.AudioSessionScene.AUDIO_SESSION_SCENE_MEDIA);
+
+  // 本接口应在激活音频会话前调用。
+  // 若音频会话在激活状态时调用此接口后，必须重新激活音频会话使其生效。
+  // behavior参数支持位或操作，可同时设置多个会话行为标志。
+  let behavior =
+    audio.AudioSessionBehaviorFlags.VOIP_PRIVACY_TYPE_PUBLIC | audio.AudioSessionBehaviorFlags.MUTE_WHEN_INTERRUPTED;
+  audioSessionManager.setAudioSessionBehavior(behavior);
+
+  // 设置音频会话策略。
+  let strategy: audio.AudioSessionStrategy = {
+    concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_PAUSE_OTHERS
+  };
+
+  // 激活AudioSession。
+  audioSessionManager.activateAudioSession(strategy).then(() => {
+    console.info('Succeeded in activating audio session.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`);
+  });
+  // [End set_session_behavior]
 }
 
 async function deactivateAudioSession(){
@@ -669,6 +704,21 @@ struct Index {
           .onClick(async (): Promise<void> => {
             await useAudioSessionV2();
             this.runningResult = 'Activate audioSession V2 success.';
+          })
+        }
+        .width('80%')
+        .height(50)
+        .justifyContent(FlexAlign.Center)
+
+        Row() {
+          Button() {
+            Text('使用音频会话行为设置策略').fontSize(15).fontColor(Color.White)
+          }
+          .width('80%')
+          .height(40)
+          .onClick(async (): Promise<void> => {
+            await setSessionBehavior();
+            this.runningResult = 'Set session behavior and activate audioSession V2 success.';
           })
         }
         .width('80%')

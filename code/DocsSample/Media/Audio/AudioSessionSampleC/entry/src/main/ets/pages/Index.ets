@@ -30,6 +30,12 @@ async function deactive() {
   return result || '停用音频会话完成';
 }
 
+async function setAudioSessionBehavior() {
+  let result = testNapi.SetAudioSessionBehavior();
+  console.info('set audio session behavior result: ' + result);
+  return '设置音频会话行为和激活音频会话完成';
+}
+
 @Entry
 @Component
 struct Index {
@@ -101,6 +107,30 @@ struct Index {
           .onClick(async () => {
             try {
               let result = await active();
+              const timestamp = new Date().toLocaleTimeString();
+              this.runningResult = '激活成功';
+              this.logMessages = `[${timestamp}] ${result}`;
+            } catch (err) {
+              const timestamp = new Date().toLocaleTimeString();
+              this.runningResult = '激活失败';
+              this.logMessages = `[${timestamp}] 错误: ${err}`;
+            };
+          })
+        }
+        .width('100%')
+        .height(50)
+        .justifyContent(FlexAlign.Center)
+        .margin({ bottom: 12 })
+
+        Row() {
+          Button() {
+            Text('设置场景+设置音频会话行为+激活焦点').fontSize(10).fontColor(Color.White).fontSize(18)
+          }
+          .width('80%')
+          .height(40)
+          .onClick(async () => {
+            try {
+              let result = await setAudioSessionBehavior();
               const timestamp = new Date().toLocaleTimeString();
               this.runningResult = '激活成功';
               this.logMessages = `[${timestamp}] ${result}`;
