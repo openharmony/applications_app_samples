@@ -26,6 +26,24 @@ enum AudioFileType {
     AUDIO_FILE_MIX = 5
 };
 
+static std::string SelectAudioFile(unsigned int type)
+{
+    switch (type) {
+        case AUDIO_FILE_ORIGINAL:
+            return g_filePath;
+        case AUDIO_FILE_EFFECT:
+            return g_filePathEffect;
+        case AUDIO_FILE_ACCOMPANIMENT:
+            return g_filePathAccompaniment;
+        case AUDIO_FILE_VOCALS:
+            return g_filePathVocals;
+        case AUDIO_FILE_MIX:
+            return g_filePathMix;
+        default:
+            return g_filePath;
+    }
+}
+
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
 std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
@@ -342,27 +360,7 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     // 设置编码类型。
     OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
     // 根据type选择播放的音频文件
-    std::string selectedFile;
-    switch (type) {
-        case AUDIO_FILE_ORIGINAL:
-            selectedFile = g_filePath;
-            break;
-        case AUDIO_FILE_EFFECT:
-            selectedFile = g_filePathEffect;
-            break;
-        case AUDIO_FILE_ACCOMPANIMENT:
-            selectedFile = g_filePathAccompaniment;
-            break;
-        case AUDIO_FILE_VOCALS:
-            selectedFile = g_filePathVocals;
-            break;
-        case AUDIO_FILE_MIX:
-            selectedFile = g_filePathMix;
-            break;
-        default:
-            selectedFile = g_filePath;
-            break;
-    }
+    std::string selectedFile = SelectAudioFile(type);
     g_fp = fopen(selectedFile.c_str(), "rb");
     OH_AudioRenderer_Start(audioRenderer);
     std::stringstream ss;
