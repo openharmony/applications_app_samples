@@ -3,8 +3,10 @@
  */
 #include <algorithm>
 #include <cstdio>
+// [Start audioSuite_ManualRenderingInclude]
 #include <ohaudiosuite/native_audio_suite_base.h>
 #include <ohaudiosuite/native_audio_suite_engine.h>
+// [End audioSuite_ManualRenderingInclude]
 #include <cstdint>
 #include "manualRendering.h"
 #include "hilog/log.h"
