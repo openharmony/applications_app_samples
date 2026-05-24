@@ -64,10 +64,9 @@ OH_AudioNode *inputNode = nullptr;
 OH_AudioNode *outputNode = nullptr;
 OH_AudioNode *eqNode = nullptr;
 OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
-/**
- * 均衡器效果
- */
-void EqualizerEffect(AudioDataInfo *audioInfo)
+OH_AudioFormat g_audioFormatOutput;
+
+static void EqualizerCreateRealTimeRendering(AudioDataInfo *audioInfo)
 {
     // [Start audioSuite_CreateRealTimeRendering]
     // 创建引擎。
@@ -123,6 +122,11 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
     // [End audioSuite_CreateRealTimeRendering]
+    g_audioFormatOutput = audioFormatOutput;
+}
+
+static void EqualizerStartRealTimeRenderingPipeline()
+{
     // [Start audioSuite_StartRealTimeRenderingPipeline]
     //  创建构建器
     OH_AudioStreamBuilder_Create(&rendererBuilder, OH_AudioStream_Type::AUDIOSTREAM_TYPE_RENDERER);
@@ -134,7 +138,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
 
     int32_t byteSize = 2;  // AUDIOSTREAM_SAMPLE_S16LE格式对应的字节大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
-    int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
+    int32_t frameSize = 20 * g_audioFormatOutput.samplingRate * g_audioFormatOutput.channelCount * byteSize / 1000;
     // 设置audioDataSize长度（待播放的数据大小）。
     OH_AudioStreamBuilder_SetFrameSizeInCallback(rendererBuilder, frameSize);
     // 配置写入音频数据回调函数。
@@ -146,12 +150,15 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
 
     // 开发者可以自行创建renderer流，播放音频。
     // [End audioSuite_StartRealTimeRenderingPipeline]
-    // 设置声道布局
+}
+
+void EqualizerEffect(AudioDataInfo *audioInfo)
+{
+    EqualizerCreateRealTimeRendering(audioInfo);
+    EqualizerStartRealTimeRenderingPipeline();
     OH_AudioStreamBuilder_SetChannelLayout(rendererBuilder, CH_LAYOUT_STEREO);
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRendererEqualizerEffect);
-    // 设置编码类型。
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
-
     OH_AudioRenderer_Start(audioRendererEqualizerEffect);
 }
 
