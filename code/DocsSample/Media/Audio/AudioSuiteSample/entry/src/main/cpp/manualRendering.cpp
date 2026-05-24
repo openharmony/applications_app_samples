@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  */
 #include <algorithm>
 #include <cstdio>
@@ -8,15 +8,18 @@
 #include <ohaudiosuite/native_audio_suite_engine.h>
 // [End audioSuite_ManualRenderingInclude]
 #include <cstdint>
-#include "manualRendering.h"
 #include "hilog/log.h"
+
+#include "manualRendering.h"
+
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_manual_cpp]";
-
+const int channelCount = 2;
 // [Start audioSuite_InputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
-                                          int32_t audioDataSize, bool *finished) {
+                                          int32_t audioDataSize, bool *finished)
+{
     if ((audioNode == nullptr) || (userData == nullptr) || (audioData == nullptr) || (audioDataSize <= 0) ||
         (finished == nullptr)) {
         return -1;
@@ -39,11 +42,14 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
  * 基础离线编辑
  * @return
  */
-void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
+void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
+{
     // 检查输出文件是否存在，存在则删除
     FILE *checkFile = fopen(newFilePath, "rb");
     if (checkFile != nullptr) {
-        fclose(checkFile);
+        if (fclose(checkFile) != 0) {
+            OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close check file");
+        }
         if (remove(newFilePath) == 0) {
             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Output file exists, deleted: %{public}s", newFilePath);
         } else {
@@ -70,7 +76,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = 2;
+    audioFormatInput.channelCount = channelCount;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -97,7 +103,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = 2;
+    audioFormatOutput.channelCount = channelCount;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -114,7 +120,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     // [End audioSuite_CreateBaseNode]
 
     // [Start audioSuite_StartBasePipeline]
-    int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
+    int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
     int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
@@ -156,7 +162,9 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
     } while (!finished);
     // [StartExclude audioSuite_StartBasePipeline]
     // 关闭文件
-    fclose(fp);
+    if (fclose(fp) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close file");
+    }
     // [EndExclude audioSuite_StartBasePipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     free(audioData);
@@ -179,14 +187,17 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath) {
 /***
  * 音源分离场景
  */
-void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath, const char *accompanimentFilePath) {
+void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath, const char *accompanimentFilePath)
+{
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "AudioSourceSeparation start");
 
     // 检查输出文件是否存在，存在则删除
     for (const char *filePath : {vocalsFilePath, accompanimentFilePath}) {
         FILE *checkFile = fopen(filePath, "rb");
         if (checkFile != nullptr) {
-            fclose(checkFile);
+            if (fclose(checkFile) != 0) {
+                OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close check file");
+            }
             if (remove(filePath) == 0) {
                 OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Output file exists, deleted: %{public}s",
                              filePath);
@@ -217,7 +228,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = 2;
+    audioFormatInput.channelCount = channelCount;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -245,7 +256,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = 2;
+    audioFormatOutput.channelCount = channelCount;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -262,7 +273,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioSuiteEngine_ConnectNodes(aissNode, outputNode);
     // [End audioSuite_CreateSeparationNode]
     // [Start audioSuite_StartSeparationPipeline]
-    int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
+    int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
     int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
@@ -287,10 +298,16 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
 
     if (fpVocals == nullptr || fpAccompaniment == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to open output files");
-        if (fpVocals)
-            fclose(fpVocals);
-        if (fpAccompaniment)
-            fclose(fpAccompaniment);
+        if (fpVocals) {
+            if (fclose(fpVocals) != 0) {
+                OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close vocals file");
+            }
+        }
+        if (fpAccompaniment) {
+            if (fclose(fpAccompaniment) != 0) {
+                OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close accompaniment file");
+            }
+        }
         OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
         for (int32_t i = 0; i < outPutNum; i++) {
             free(audioDataArray.audioDataArray[i]);
@@ -315,15 +332,19 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
             // audioDataArray.audioDataArray[1]是提取的背景声。
             // 音频数据长度为responseSize，开发者根据业务场景自行使用或者保存。
             // [StartExclude audioSuite_StartSeparationPipeline]
-            fwrite(audioDataArray.audioDataArray[0], 1, responseSize, fpVocals);        // 写入人声
-            fwrite(audioDataArray.audioDataArray[1], 1, responseSize, fpAccompaniment); // 写入背景声
+            fwrite(audioDataArray.audioDataArray[0], 1, responseSize, fpVocals);         // 写入人声
+            fwrite(audioDataArray.audioDataArray[1], 1, responseSize, fpAccompaniment);  // 写入背景声
             // [EndExclude audioSuite_StartSeparationPipeline]
         }
     } while (!finished);
     // [StartExclude audioSuite_StartSeparationPipeline]
     // 关闭文件
-    fclose(fpVocals);
-    fclose(fpAccompaniment);
+    if (fclose(fpVocals) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close vocals file");
+    }
+    if (fclose(fpAccompaniment) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close accompaniment file");
+    }
     // [EndExclude audioSuite_StartSeparationPipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
 
@@ -353,13 +374,16 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
  * 混音与级联
  */
 
-void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInfoForMix, const char *mixFilePath) {
+void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInfoForMix, const char *mixFilePath)
+{
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "MixingAndCascading start");
 
     // 检查输出文件是否存在，存在则删除
     FILE *checkFile = fopen(mixFilePath, "rb");
     if (checkFile != nullptr) {
-        fclose(checkFile);
+        if (fclose(checkFile) != 0) {
+            OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close check file");
+        }
         if (remove(mixFilePath) == 0) {
             OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Output file exists, deleted: %{public}s", mixFilePath);
         } else {
@@ -387,7 +411,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = 2;
+    audioFormatInput.channelCount = channelCount;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -431,7 +455,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = 2;
+    audioFormatOutput.channelCount = channelCount;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -449,7 +473,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioSuiteEngine_ConnectNodes(mixerNode, outputNode);
     // [End audioSuite_CreateMixingNode]
     // [Start audioSuite_StartMixingPipeline]
-    int32_t byteSize = 2; // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
+    int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
     int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
@@ -494,7 +518,9 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     } while (!finished);
     // [StartExclude audioSuite_StartMixingPipeline]
     // 关闭文件
-    fclose(fp);
+    if (fclose(fp) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close file");
+    }
     // [EndExclude audioSuite_StartMixingPipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     free(audioData);

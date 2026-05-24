@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  */
 #include <algorithm>
 // [Start audioSuite_RealTimeRenderingInclude]
@@ -10,10 +10,12 @@
 // [End audioSuite_RealTimeRenderingInclude]
 #include "realTimeRendering.h"
 
+const int channelCount = 2;
 // [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
-                                          int32_t audioDataSize, bool *finished) {
+                                          int32_t audioDataSize, bool *finished)
+{
     if ((audioNode == nullptr) || (userData == nullptr) || (audioData == nullptr) || (audioDataSize <= 0) ||
         (finished == nullptr)) {
         return -1;
@@ -36,7 +38,8 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
 
 // [Start audioSuite_AudioRendererOnWriteData]
 static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *renderer, void *userData,
-                                                             void *audioData, int32_t audioDataSize) {
+                                                             void *audioData, int32_t audioDataSize)
+{
     bool finishedFlag = false;
     int32_t writeSize = 0;
     OH_AudioSuite_Result result = OH_AudioSuiteEngine_RenderFrame(static_cast<OH_AudioSuitePipeline *>(userData),
@@ -64,7 +67,8 @@ OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
 /**
  * 均衡器效果
  */
-void EqualizerEffect(AudioDataInfo *audioInfo) {
+void EqualizerEffect(AudioDataInfo *audioInfo)
+{
     // [Start audioSuite_CreateRealTimeRendering]
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
@@ -80,7 +84,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = 2;
+    audioFormatInput.channelCount = channelCount;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -105,7 +109,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = 2;
+    audioFormatOutput.channelCount = channelCount;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -115,7 +119,6 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     // 销毁节点构造器。
     OH_AudioSuiteNodeBuilder_Destroy(nodeBuilder);
 
-
     // 连接各个节点组成组网。
     OH_AudioSuiteEngine_ConnectNodes(inputNode, eqNode);
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
@@ -123,13 +126,13 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     // [Start audioSuite_StartRealTimeRenderingPipeline]
     //  创建构建器
     OH_AudioStreamBuilder_Create(&rendererBuilder, OH_AudioStream_Type::AUDIOSTREAM_TYPE_RENDERER);
-    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, 48000);
-    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, 2);
+    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, OH_Audio_SampleRate::SAMPLE_RATE_48000);
+    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, channelCount);
     OH_AudioStreamBuilder_SetSampleFormat(rendererBuilder, AUDIOSTREAM_SAMPLE_S16LE);
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_RAW);
     OH_AudioStreamBuilder_SetRendererInfo(rendererBuilder, AUDIOSTREAM_USAGE_MUSIC);
 
-    int32_t byteSize = 2; // AUDIOSTREAM_SAMPLE_S16LE格式对应的字节大小。
+    int32_t byteSize = 2;  // AUDIOSTREAM_SAMPLE_S16LE格式对应的字节大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
     int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
     // 设置audioDataSize长度（待播放的数据大小）。
@@ -152,7 +155,8 @@ void EqualizerEffect(AudioDataInfo *audioInfo) {
     OH_AudioRenderer_Start(audioRendererEqualizerEffect);
 }
 
-void DestroyEqualizerEffect() {
+void DestroyEqualizerEffect()
+{
     OH_AudioRenderer_Stop(audioRendererEqualizerEffect);
     OH_AudioRenderer_Release(audioRendererEqualizerEffect);
     // [Start audioSuite_DestroyRealTimeRendering]

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  */
 import audioSuiteNapi from 'libentry.so';
 import { common } from '@kit.AbilityKit'

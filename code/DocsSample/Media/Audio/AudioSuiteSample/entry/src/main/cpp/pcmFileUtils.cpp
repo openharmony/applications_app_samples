@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  */
 
 #include "pcmFileUtils.h"
 #include <cstdio>
 #include <cstring>
 
-bool ReadPcmFile(const char *filePath, AudioDataInfo *info) {
+bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
+{
     if (filePath == nullptr || info == nullptr) {
         return false;
     }
@@ -16,9 +17,19 @@ bool ReadPcmFile(const char *filePath, AudioDataInfo *info) {
         return false;
     }
 
-    fseek(fp, 0, SEEK_END);
+    if (fseek(fp, 0, SEEK_END) != 0) {
+        fclose(fp);
+        return false;
+    }
     long fileSize = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
+    if (fileSize < 0) {
+        fclose(fp);
+        return false;
+    }
+    if (fseek(fp, 0, SEEK_SET) != 0) {
+        fclose(fp);
+        return false;
+    }
 
     if (fileSize <= 0) {
         fclose(fp);
@@ -44,7 +55,8 @@ bool ReadPcmFile(const char *filePath, AudioDataInfo *info) {
     return true;
 }
 
-bool WritePcmFile(const char *filePath, const AudioDataInfo *info) {
+bool WritePcmFile(const char *filePath, const AudioDataInfo *info)
+{
     if (filePath == nullptr || info == nullptr || info->buffer == nullptr || info->bufferSize <= 0) {
         return false;
     }
@@ -59,7 +71,8 @@ bool WritePcmFile(const char *filePath, const AudioDataInfo *info) {
     return writeSize == static_cast<size_t>(info->bufferSize);
 }
 
-void FreeAudioDataInfo(AudioDataInfo *info) {
+void FreeAudioDataInfo(AudioDataInfo *info)
+{
     if (info != nullptr && info->buffer != nullptr) {
         delete[] info->buffer;
         info->buffer = nullptr;
