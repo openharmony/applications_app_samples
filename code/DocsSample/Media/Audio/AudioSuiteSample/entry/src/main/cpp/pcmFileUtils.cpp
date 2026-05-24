@@ -18,27 +18,27 @@ bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
     }
 
     if (fseek(fp, 0, SEEK_END) != 0) {
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
     long fileSize = ftell(fp);
     if (fileSize < 0) {
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
     if (fseek(fp, 0, SEEK_SET) != 0) {
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
 
     if (fileSize <= 0) {
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
 
     info->buffer = new uint8_t[fileSize];
     if (info->buffer == nullptr) {
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
 
@@ -46,12 +46,12 @@ bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
     if (readSize != static_cast<size_t>(fileSize)) {
         delete[] info->buffer;
         info->buffer = nullptr;
-        fclose(fp);
+        (void)fclose(fp);
         return false;
     }
 
     info->bufferSize = static_cast<int32_t>(fileSize);
-    fclose(fp);
+    (void)fclose(fp);
     return true;
 }
 
@@ -66,7 +66,7 @@ bool WritePcmFile(const char *filePath, const AudioDataInfo *info)
     }
 
     size_t writeSize = fwrite(info->buffer, 1, info->bufferSize, fp);
-    fclose(fp);
+    (void)fclose(fp);
 
     return writeSize == static_cast<size_t>(info->bufferSize);
 }

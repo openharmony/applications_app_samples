@@ -259,12 +259,12 @@ napi_value MixingAndCascadingNapi(napi_env env, napi_callback_info info)
     return undefined;
 }
 
-AudioDataInfo audioInfoEqualizerEffect;
+AudioDataInfo g_audioInfoEqualizerEffect;
 napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
 {
-    ReadPcmFile(g_filePath.c_str(), &audioInfoEqualizerEffect);
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", audioInfoEqualizerEffect.bufferSize);
-    EqualizerEffect(&audioInfoEqualizerEffect);
+    ReadPcmFile(g_filePath.c_str(), &g_audioInfoEqualizerEffect);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", g_audioInfoEqualizerEffect.bufferSize);
+    EqualizerEffect(&g_audioInfoEqualizerEffect);
     std::stringstream ss;
     ss << "实时渲染播放成功\n";
     napi_value retVal;
@@ -284,7 +284,7 @@ FILE *g_fp = nullptr;
 int32_t g_mode = 0;
 
 const int SAMPLING_RATE_48K = 48000;
-const int channelCount = 2;
+const int CHANNEL_COUNT = 2;
 
 // 自定义写入数据函数。
 static OH_AudioData_Callback_Result MyOnWriteData_New(OH_AudioRenderer *renderer, void *userData, void *audioData,
@@ -321,7 +321,7 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     // 设置音频采样率。
     OH_AudioStreamBuilder_SetSamplingRate(builderRender, SAMPLING_RATE_48K);
     // 设置音频声道。
-    OH_AudioStreamBuilder_SetChannelCount(builderRender, channelCount);
+    OH_AudioStreamBuilder_SetChannelCount(builderRender, CHANNEL_COUNT);
     // 设置音频采样格式。
     OH_AudioStreamBuilder_SetSampleFormat(builderRender, AUDIOSTREAM_SAMPLE_S16LE);
     // 设置音频流的编码类型。
@@ -388,7 +388,7 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
     if (type == AUDIO_RENDER_MODE_REALTIME) {
         DestroyEqualizerEffect();
         // 释放音频数据资源
-        FreeAudioDataInfo(&audioInfoEqualizerEffect);
+        FreeAudioDataInfo(&g_audioInfoEqualizerEffect);
     } else {
         OH_AudioRenderer_Stop(audioRenderer);
         OH_AudioRenderer_Release(audioRenderer);

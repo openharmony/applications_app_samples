@@ -14,7 +14,7 @@
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_manual_cpp]";
-const int channelCount = 2;
+const int CHANNEL_COUNT = 2;
 // [Start audioSuite_InputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
@@ -76,7 +76,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = channelCount;
+    audioFormatInput.channelCount = CHANNEL_COUNT;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -103,7 +103,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = channelCount;
+    audioFormatOutput.channelCount = CHANNEL_COUNT;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -228,7 +228,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = channelCount;
+    audioFormatInput.channelCount = CHANNEL_COUNT;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -256,7 +256,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = channelCount;
+    audioFormatOutput.channelCount = CHANNEL_COUNT;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
@@ -411,7 +411,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioFormat audioFormatInput;
     audioFormatInput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatInput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatInput.channelCount = channelCount;
+    audioFormatInput.channelCount = CHANNEL_COUNT;
     audioFormatInput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatInput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatInput);
@@ -455,7 +455,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     OH_AudioFormat audioFormatOutput;
     audioFormatOutput.samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000;
     audioFormatOutput.channelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    audioFormatOutput.channelCount = channelCount;
+    audioFormatOutput.channelCount = CHANNEL_COUNT;
     audioFormatOutput.sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE;
     audioFormatOutput.encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW;
     OH_AudioSuiteNodeBuilder_SetFormat(nodeBuilder, audioFormatOutput);
