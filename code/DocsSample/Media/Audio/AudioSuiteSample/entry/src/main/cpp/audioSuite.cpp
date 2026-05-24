@@ -263,7 +263,8 @@ AudioDataInfo g_audioInfoEqualizerEffect;
 napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
 {
     ReadPcmFile(g_filePath.c_str(), &g_audioInfoEqualizerEffect);
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d", g_audioInfoEqualizerEffect.bufferSize);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "audioInfo : %{public}d",
+                 g_audioInfoEqualizerEffect.bufferSize);
     EqualizerEffect(&g_audioInfoEqualizerEffect);
     std::stringstream ss;
     ss << "实时渲染播放成功\n";
@@ -286,9 +287,12 @@ int32_t g_mode = 0;
 const int SAMPLING_RATE_48K = 48000;
 const int CHANNEL_COUNT = 2;
 
+// 自定义写入数据函数。
 static OH_AudioData_Callback_Result MyOnWriteData_New(OH_AudioRenderer *renderer, void *userData, void *audioData,
                                                       int32_t audioDataSize)
 {
+    // 将待播放的数据，按audioDataSize长度写入audioData。
+    // 如果开发者不希望播放某段audioData，返回AUDIO_DATA_CALLBACK_RESULT_INVALID即可。
     size_t readCount = fread(audioData, audioDataSize, 1, g_fp);
     if (readCount != 1 && !feof(g_fp)) {
         return AUDIO_DATA_CALLBACK_RESULT_INVALID;
@@ -301,43 +305,12 @@ static OH_AudioData_Callback_Result MyOnWriteData_New(OH_AudioRenderer *renderer
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
 
-static std::string GetSelectedFilePath(unsigned int type)
-{
-    switch (type) {
-        case AUDIO_FILE_ORIGINAL:
-            return g_filePath;
-        case AUDIO_FILE_EFFECT:
-            return g_filePathEffect;
-        case AUDIO_FILE_ACCOMPANIMENT:
-            return g_filePathAccompaniment;
-        case AUDIO_FILE_VOCALS:
-            return g_filePathVocals;
-        case AUDIO_FILE_MIX:
-            return g_filePathMix;
-        default:
-            return g_filePath;
-    }
-}
-
-static void ConfigureAudioStreamBuilder()
-{
-    OH_AudioStreamBuilder_SetSamplingRate(builderRender, SAMPLING_RATE_48K);
-    OH_AudioStreamBuilder_SetChannelCount(builderRender, CHANNEL_COUNT);
-    OH_AudioStreamBuilder_SetSampleFormat(builderRender, AUDIOSTREAM_SAMPLE_S16LE);
-    OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_RAW);
-    OH_AudioStreamBuilder_SetRendererInfo(builderRender, AUDIOSTREAM_USAGE_MUSIC);
-    OH_AudioRenderer_OnWriteDataCallback writeDataCb = MyOnWriteData_New;
-    OH_AudioStreamBuilder_SetRendererWriteDataCallback(builderRender, writeDataCb, nullptr);
-    OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
-    OH_AudioStreamBuilder_SetLatencyMode(builderRender, latencyMode);
-    OH_AudioStreamBuilder_SetChannelLayout(builderRender, CH_LAYOUT_STEREO);
-}
-
 napi_value CreateAudioRender(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value *argv = new napi_value[argc];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    // Determine the current work mode based on the input parameters
     unsigned int type = -1;
     napi_status status = napi_get_value_uint32(env, argv[0], &type);
     if (status != napi_ok) {
@@ -346,10 +319,50 @@ napi_value CreateAudioRender(napi_env env, napi_callback_info info)
     }
     delete[] argv;
     OH_AudioStreamBuilder_Create(&builderRender, AUDIOSTREAM_TYPE_RENDERER);
-    ConfigureAudioStreamBuilder();
+    // 设置音频采样率。
+    OH_AudioStreamBuilder_SetSamplingRate(builderRender, SAMPLING_RATE_48K);
+    // 设置音频声道。
+    OH_AudioStreamBuilder_SetChannelCount(builderRender, CHANNEL_COUNT);
+    // 设置音频采样格式。
+    OH_AudioStreamBuilder_SetSampleFormat(builderRender, AUDIOSTREAM_SAMPLE_S16LE);
+    // 设置音频流的编码类型。
+    OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    // 设置输出音频流的工作场景。
+    OH_AudioStreamBuilder_SetRendererInfo(builderRender, AUDIOSTREAM_USAGE_MUSIC);
+    // 配置写入音频数据回调函数。
+    OH_AudioRenderer_OnWriteDataCallback writeDataCb = MyOnWriteData_New;
+    OH_AudioStreamBuilder_SetRendererWriteDataCallback(builderRender, writeDataCb, nullptr);
+    // 设置时延模式
+    OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
+    OH_AudioStreamBuilder_SetLatencyMode(builderRender, latencyMode);
+
+    // 设置声道布局
+    OH_AudioStreamBuilder_SetChannelLayout(builderRender, CH_LAYOUT_STEREO);
     OH_AudioStreamBuilder_GenerateRenderer(builderRender, &audioRenderer);
+    // 设置编码类型。
     OH_AudioStreamBuilder_SetEncodingType(builderRender, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
-    std::string selectedFile = GetSelectedFilePath(type);
+    // 根据type选择播放的音频文件
+    std::string selectedFile;
+    switch (type) {
+        case AUDIO_FILE_ORIGINAL:
+            selectedFile = g_filePath;
+            break;
+        case AUDIO_FILE_EFFECT:
+            selectedFile = g_filePathEffect;
+            break;
+        case AUDIO_FILE_ACCOMPANIMENT:
+            selectedFile = g_filePathAccompaniment;
+            break;
+        case AUDIO_FILE_VOCALS:
+            selectedFile = g_filePathVocals;
+            break;
+        case AUDIO_FILE_MIX:
+            selectedFile = g_filePathMix;
+            break;
+        default:
+            selectedFile = g_filePath;
+            break;
+    }
     g_fp = fopen(selectedFile.c_str(), "rb");
     OH_AudioRenderer_Start(audioRenderer);
     std::stringstream ss;

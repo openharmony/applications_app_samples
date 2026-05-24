@@ -6,6 +6,7 @@
 #define PCM_FILE_UTILS_H
 
 #include <cstdint>
+#include <cstdio>
 // [Start audioSuite_AudioDataInfo]
 struct AudioDataInfo {
     uint8_t *buffer = nullptr;   // 音频数据。
@@ -16,5 +17,8 @@ struct AudioDataInfo {
 bool ReadPcmFile(const char *filePath, AudioDataInfo *info);
 bool WritePcmFile(const char *filePath, const AudioDataInfo *info);
 void FreeAudioDataInfo(AudioDataInfo *info);
+
+int CheckAndDeleteFile(const char *filePath);
+void SafeCloseFile(FILE *fp, const char *fileName);
 
 #endif

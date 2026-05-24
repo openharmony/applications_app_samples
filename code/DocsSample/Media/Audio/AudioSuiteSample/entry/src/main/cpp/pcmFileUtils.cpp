@@ -5,6 +5,10 @@
 #include "pcmFileUtils.h"
 #include <cstdio>
 #include <cstring>
+#include "hilog/log.h"
+
+const int GLOBAL_RESMGR = 0xFF00;
+static const char *TAG = "[AudioFileUtils]";
 
 bool ReadPcmFile(const char *filePath, AudioDataInfo *info)
 {
@@ -78,5 +82,34 @@ void FreeAudioDataInfo(AudioDataInfo *info)
         info->buffer = nullptr;
         info->bufferSize = 0;
         info->totalWriteSize = 0;
+    }
+}
+
+int CheckAndDeleteFile(const char *filePath)
+{
+    if (filePath == nullptr) {
+        return -1;
+    }
+
+    FILE *checkFile = fopen(filePath, "rb");
+    if (checkFile != nullptr) {
+        (void)fclose(checkFile);
+        if (remove(filePath) == 0) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Output file exists, deleted: %{public}s", filePath);
+        } else {
+            OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to delete existing file: %{public}s", filePath);
+        }
+    }
+    return 0;
+}
+
+void SafeCloseFile(FILE *fp, const char *fileName)
+{
+    if (fp == nullptr) {
+        return;
+    }
+    if (fclose(fp) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close file: %{public}s",
+                     fileName != nullptr ? fileName : "unknown");
     }
 }
