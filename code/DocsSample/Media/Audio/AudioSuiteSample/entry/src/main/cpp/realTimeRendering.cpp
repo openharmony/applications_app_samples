@@ -2,10 +2,12 @@
  * Copyright (c) 2026 Huawei Device Co., Ltd. 2026-2026. ALL rights reserved.
  */
 #include <algorithm>
+// [Start audioSuite_RealTimeRenderingInclude]
 #include <ohaudiosuite/native_audio_suite_base.h>
 #include <ohaudiosuite/native_audio_suite_engine.h>
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
+// [End audioSuite_RealTimeRenderingInclude]
 #include "realTimeRendering.h"
 
 // [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
