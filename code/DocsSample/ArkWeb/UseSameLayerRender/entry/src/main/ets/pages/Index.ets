@@ -44,6 +44,12 @@ struct Index {
             console.error('pushUrl error, %{public}s', error);
           });
         })
+      Button('TextureMapAlignment')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/TextureMapAlignment' }).catch((error: BusinessError) => {
+            console.error('pushUrl error, %{public}s', error);
+          });
+        })
     }.height('100%')
     .width('100%')
   }
