@@ -43,7 +43,8 @@
               "ohos.want.action.home"
             ]
           }
-        ]
+        ],
+        "orientation": "auto_rotation"
       }
     ],
     "extensionAbilities": [
