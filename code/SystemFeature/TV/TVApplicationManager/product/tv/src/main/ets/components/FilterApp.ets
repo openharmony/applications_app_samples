@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 interface filterApp {
   bundleName: string,
   abilityName: string,
@@ -21,7 +35,7 @@ const appList: filterApp[] = [
   { bundleName: 'com.ohos.smartperf', abilityName: 'MainAbility' },
   { bundleName: 'com.qcode.jsviewapp', abilityName: 'EntryAbility' },
   { bundleName: 'com.ohos.globalsearch', abilityName: 'SearchAbility' },
-]
+];
 const iconList: filterApp[] = [
 
   { bundleName: 'com.ohos.note', abilityName: 'MainAbility', icon: 'app.media.bwl' }, //备忘录
@@ -38,30 +52,30 @@ const iconList: filterApp[] = [
   { bundleName: 'com.ohos.inputsource', abilityName: 'EntryAbility', icon: 'app.media.sry1' }, //输入源
   { bundleName: 'com.samples.camera', abilityName: 'EntryAbility', icon: 'app.media.xj' }, //相机
   { bundleName: 'com.ohos.settings', abilityName: 'com.ohos.settings.MainAbility', icon: 'app.media.shezhi' }, //设置
-  { bundleName: 'com.laval.betaclub', abilityName: 'EntryAbility', icon: 'app.media.td' },// 提单应用
-  { bundleName: 'tv.fun.appstore', abilityName: 'EntryAbility', icon: 'app.media.sc' },// 橙子市场
-  { bundleName: 'com.funshion.launcher', abilityName: 'EntryAbility', icon: 'app.media.xf' },// 风行
-  { bundleName: 'com.funshion.launcher.edu', abilityName: 'EntryAbility', icon: 'app.media.lx' },// 乐学
-  { bundleName: 'com.funshion.launcher.movie', abilityName: 'EntryAbility', icon: 'app.media.bb' },// 瓣瓣
+  { bundleName: 'com.laval.betaclub', abilityName: 'EntryAbility', icon: 'app.media.td' }, // 提单应用
+  { bundleName: 'tv.fun.appstore', abilityName: 'EntryAbility', icon: 'app.media.sc' }, // 橙子市场
+  { bundleName: 'com.funshion.launcher', abilityName: 'EntryAbility', icon: 'app.media.xf' }, // 风行
+  { bundleName: 'com.funshion.launcher.edu', abilityName: 'EntryAbility', icon: 'app.media.lx' }, // 乐学
+  { bundleName: 'com.funshion.launcher.movie', abilityName: 'EntryAbility', icon: 'app.media.bb' }, // 瓣瓣
   { bundleName: 'com.funshion.launcher.child', abilityName: 'EntryAbility', icon: 'app.media.sr' },// 少儿
-]
+];
 
 export default class FilterAppList {
   handleFilter(app: string) {
-    let target = appList.filter(e => JSON.stringify(e) === app)
+    let target = appList.filter(e => JSON.stringify(e) === app);
     if (target.length > 0) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   handleIcon(app: string) {
-    let target = iconList.filter(e => JSON.stringify(e.bundleName) === app)
+    let target = iconList.filter(e => JSON.stringify(e.bundleName) === app);
     if (target.length > 0) {
-      return target[0].icon
+      return target[0].icon;
     }
-    return false
+    return false;
   }
-}
+};
 
 

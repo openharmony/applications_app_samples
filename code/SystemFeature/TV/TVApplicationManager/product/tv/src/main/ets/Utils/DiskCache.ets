@@ -1,4 +1,18 @@
-import preferences from '@ohos.data.preferences'
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import preferences from '@ohos.data.preferences';
 
 interface CacheMetadata {
   data: string; // Base64编码的图标
@@ -7,7 +21,7 @@ interface CacheMetadata {
   accessCount: number; // 访问次数
 }
 
-const TAG = 'DiskCache'
+const TAG = 'DiskCache';
 
 // 磁盘缓存实现
 export class DiskCache {
@@ -18,14 +32,14 @@ export class DiskCache {
   private cacheMetadata = new Map<string, CacheMetadata>();
 
   getStore() {
-    return preferences.getPreferences(getContext(), this.CACHE_GROUP)
+    return preferences.getPreferences(getContext(), this.CACHE_GROUP);
   }
 
   async get(key: string): Promise<string | null> {
-    const appStore = await this.getStore()
+    const appStore = await this.getStore();
     const item: CacheMetadata = appStore.getSync(key, '') as CacheMetadata;
 
-    if(!item){
+    if (!item) {
       return null;
     }
     // 更新访问信息
@@ -49,7 +63,7 @@ export class DiskCache {
       size,
       timestamp: Date.now(),
       accessCount: 0
-    }
+    };
     this.cacheMetadata.set(key, data);
     // 异步持久化
     await this.persistToDisk(key, data);
@@ -57,11 +71,11 @@ export class DiskCache {
 
   async persistToDisk(key: string, data: CacheMetadata) {
     try {
-      const appStore = await this.getStore()
-      await appStore.put(key, data)
-      await appStore.flush()
-    }catch (err) {
-      console.error(TAG, 'persistToDisk err ' + JSON.stringify(err))
+      const appStore = await this.getStore();
+      await appStore.put(key, data);
+      await appStore.flush();
+    } catch (err) {
+      console.error(TAG, 'persistToDisk err ' + JSON.stringify(err));
     }
   }
 
@@ -91,5 +105,4 @@ export class DiskCache {
       }
     }
   }
-
 }

@@ -1,12 +1,26 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 import inputConsumer from '@ohos.multimodalInput.inputConsumer';
-import CustomDialogExample from '../components/customDialog';
-import StoreAppList from '../common/utils/storage'
-import { headerBar } from '../view/headerBar'
-import { gridList } from '../view/gridList'
+import CustomDialogExample from '../components/CustomDialog';
+import StoreAppList from '../common/utils/Storage';
+import { headerBar } from '../view/HeaderBar';
+import { gridList } from '../view/GridList';
 import emitter from '@ohos.events.emitter';
-import FilterAppList from '../components/filterApp'
+import FilterAppList from '../components/FilterApp';
 import display from '@ohos.display';
 import { common } from '@kit.AbilityKit';
 import CommonEvent from '@ohos.commonEventManager';
@@ -18,8 +32,8 @@ import App from '@system.app';
 
 const TAG = 'applicationManager';
 const CURRENT_ID = 100;
-const ADD_DOCKER_SHORTCUTS:string = 'ADD_DOCKER_SHORTCUTS'
-const REMOVE_DOCKER_SHORTCUTS:string = 'REMOVE_DOCKER_SHORTCUTS'
+const ADD_DOCKER_SHORTCUTS: string = 'ADD_DOCKER_SHORTCUTS';
+const REMOVE_DOCKER_SHORTCUTS: string = 'REMOVE_DOCKER_SHORTCUTS';
 
 interface AppList {
   icon: ResourceStr;
@@ -28,18 +42,18 @@ interface AppList {
   element: Element,
   installTime: number,
   moduleName: string,
-  labelId:number,
-  iconId:number
+  labelId: number,
+  iconId: number
 }
 
 class Element {
-  public bundleName: string = ''
-  public abilityName: string = ''
+  public bundleName: string = '';
+  public abilityName: string = '';
 }
 
 interface Element1 {
-  bundleName: string
-  abilityName: string
+  bundleName: string;
+  abilityName: string;
 }
 
 let menuKey = 2067;
@@ -62,7 +76,7 @@ let keyOptionsMenu: inputConsumer.KeyOptions = {
 struct Index {
   //变量定义区域
   private infoList: Array<launcherBundleManager.LauncherAbilityInfo> = [];
-  @State appList: Array<AppList> = []
+  @State appList: Array<AppList> = [];
   @State focusIndex: number = 0;
   @State temp: number = 0;
   @State arrowXPos: number = 0;
@@ -70,15 +84,15 @@ struct Index {
   @State flag: boolean = false;
   @State bigScreen: boolean = false;
   private hasFirstPageShowHandled: boolean = false;
-  @State dialogPostion: number[] = [111 , 184.5]
+  @State dialogPostion: number[] = [111, 184.5];
   @State
-  dialogCanceled: boolean = true
-  @State startAbilityBundle: boolean = true
+  dialogCanceled: boolean = true;
+  @State startAbilityBundle: boolean = true;
   // 弹窗
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: () => {
-        this.dialogCanceled = true
+        this.dialogCanceled = true;
       },
       confirm: () => {
       },
@@ -96,24 +110,24 @@ struct Index {
     customStyle: true,
     cornerRadius: 10,
 
-  })
+  });
 
-  dialogCancel(){
-    this.dialogCanceled = true
+  dialogCancel() {
+    this.dialogCanceled = true;
   }
 
   //点击空白区域退出弹窗
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   // 退出时杀死自身进程
   onBackPress(): boolean | void {
-    if(this.ifMove === 'true'){
-      emitter.emit('exitMoveMode')
+    if (this.ifMove === 'true') {
+      emitter.emit('exitMoveMode');
       return true;
     } else {
-      (getContext(this) as common.UIAbilityContext).terminateSelf()
+      (getContext(this) as common.UIAbilityContext).terminateSelf();
     }
   }
 
@@ -126,14 +140,14 @@ struct Index {
       })
       .catch((err: BusinessError) => {
         console.log(TAG, 'getAllLauncherAbilityInfo fail, err: ' + JSON.stringify(err));
-      })
+      });
   }
 
   //系统接口删除应用
   //组合键监听功能
   compareKey() {
     let callback = (keyOptions: inputConsumer.KeyOptions) => {
-      this.flag = true
+      this.flag = true;
       if (this.dialogCanceled && this.dialogController != null && this.ifMove == 'false' && this.appList.length) {
         try {
           // 安全地获取对话框位置
@@ -146,17 +160,17 @@ struct Index {
             this.dialogPostion = [0, 0]; // 使用默认位置
           }
 
-          this.dialogCanceled = false
-          this.dialogController.open()
+          this.dialogCanceled = false;
+          this.dialogController.open();
         } catch (error) {
           console.log(`Error in callback`);
           // 即使出错，也确保对话框能正常显示
           this.dialogPostion = [0, 0];
-          this.dialogCanceled = false
-          this.dialogController.open()
+          this.dialogCanceled = false;
+          this.dialogController.open();
         }
       }
-    }
+    };
     try {
       inputConsumer.on('key', keyOptions, callback);
       inputConsumer.on('key', keyOptionsMenu, callback);
@@ -189,7 +203,7 @@ struct Index {
       try {
         obj = JSON.parse(componentJson);
       } catch (e) {
-        console.log(`JSON.parse error: ${e}`)
+        console.log(`JSON.parse error: ${e}`);
       }
 
       // 验证obj.$rect是否存在
@@ -198,10 +212,10 @@ struct Index {
         return [0, 0]; // 返回默认位置
       }
 
-      let r: string = this.replaceAll(obj.$rect, ' ', '')
-      r = this.replaceAll(r, '][', ',')
-      r = this.replaceAll(r, '[', '')
-      r = this.replaceAll(r, ']', '')
+      let r: string = this.replaceAll(obj.$rect, ' ', '');
+      r = this.replaceAll(r, '][', ',');
+      r = this.replaceAll(r, '[', '');
+      r = this.replaceAll(r, ']', '');
       let rectInfo: string[] = r.split(',');
 
       // 验证解析结果
@@ -237,103 +251,103 @@ struct Index {
   onPageHide(): void {
     inputConsumer.off('key', keyOptions);
     inputConsumer.off('key', keyOptionsMenu);
-    this.dialogController?.close()
+    this.dialogController?.close();
   }
 
   onPageShow(): void {
-    this.compareKey()
+    this.compareKey();
     if (!this.hasFirstPageShowHandled) {
-      this.hasFirstPageShowHandled = true
-      return
+      this.hasFirstPageShowHandled = true;
+      return;
     }
     // 页面重新回到前台时刷新应用列表，确保商店安装后能立即显示新应用
-    this.showState = true
-    this.getAllAppList()
+    this.showState = true;
+    this.getAllAppList();
   }
 
   //进入组件
   aboutToAppear() {
-    let dis = display.getDefaultDisplaySync()
+    let dis = display.getDefaultDisplaySync();
     if (dis.width > 1920) {
       console.log('HmLog-->', '屏幕宽度为3840');
-      this.bigScreen = true
+      this.bigScreen = true;
     } else {
       console.log('HmLog-->', '屏幕宽度为1920');
 
-      this.bigScreen = false
+      this.bigScreen = false;
     }
-    this.ifMove = 'false'
-    console.log('触发aboutToAppear')
+    this.ifMove = 'false';
+    console.log(TAG + 'aboutToAppear');
 
     interface dataP {
-      appList: Array<AppList>
+      appList: Array<AppList>;
     }
 
     emitter.on(('closeDialog'), () => {
       this.compareKey();
       this.dialogController?.close();
-      this.dialogCanceled = true
-    })
+      this.dialogCanceled = true;
+    });
 
     emitter.on('unInstallApp', (data) => {
 
       if (this.focusIndex == this.appList.length) {
-        this.focusIndex = this.focusIndex - 1 >= 0 ? this.focusIndex - 1 : 0
+        this.focusIndex = this.focusIndex - 1 >= 0 ? this.focusIndex - 1 : 0;
       }
-      this.appList = (data as dataP).appList
-    })
+      this.appList = (data as dataP).appList;
+    });
 
-    emitter.on('addShortcuts', (data)=> {
+    emitter.on('addShortcuts', (data) => {
       let bundleName: string = String(data.data);
       console.log(TAG, 'add_shortcuts ' + bundleName);
-      CommonEvent.publish(ADD_DOCKER_SHORTCUTS, {data:bundleName} ,(error) => {
-        if(!error) {
-          (getContext(this) as common.UIAbilityContext).terminateSelf()
+      CommonEvent.publish(ADD_DOCKER_SHORTCUTS, { data: bundleName }, (error) => {
+        if (!error) {
+          (getContext(this) as common.UIAbilityContext).terminateSelf();
         }
       });
-    })
+    });
 
     // after uninstall ,requir notify launcher remove the shortcuts
-    emitter.on('removeShotcuts', (data)=> {
+    emitter.on('removeShotcuts', (data) => {
       let bundleName: string = String(data.data);
       console.log(TAG, 'removeShotcuts ' + bundleName);
-      CommonEvent.publish(REMOVE_DOCKER_SHORTCUTS, {data:bundleName} ,(error) => {
-        if(!error) {
+      CommonEvent.publish(REMOVE_DOCKER_SHORTCUTS, { data: bundleName }, (error) => {
+        if (!error) {
           console.log(TAG, 'removeShotcuts sucess');
         }
       });
-    })
+    });
 
     emitter.on('menuEvent', (data) => {
-      if(data.data) {
+      if (data.data) {
         inputConsumer.off('key', keyOptions);
         inputConsumer.off('key', keyOptionsMenu);
-        this.dialogController?.close()
+        this.dialogController?.close();
       }
-    })
+    });
     EventUtil.changePointStyle(false);
 
-    this.getAllAppList()
+    this.getAllAppList();
   }
 
   // 获取历史排序
-  orderList(tempList: Array<Element1>, sortedAppList: Array<AppList>):Array<AppList> {
-    let appTempList: AppList[] = []
+  orderList(tempList: Array<Element1>, sortedAppList: Array<AppList>): Array<AppList> {
+    let appTempList: AppList[] = [];
     tempList.forEach((item) => {
-      let obj = sortedAppList.find(e => JSON.stringify(e.element) === JSON.stringify(item))
-      appTempList.push(obj as AppList)
-      sortedAppList = sortedAppList.filter(e => JSON.stringify(e.element) !== JSON.stringify(item))
-    })
-    let resultAppList = [...appTempList, ...sortedAppList]
-    resultAppList= resultAppList.filter(item => item != null && item != undefined)
-    return resultAppList
+      let obj = sortedAppList.find(e => JSON.stringify(e.element) === JSON.stringify(item));
+      appTempList.push(obj as AppList);
+      sortedAppList = sortedAppList.filter(e => JSON.stringify(e.element) !== JSON.stringify(item));
+    });
+    let resultAppList = [...appTempList, ...sortedAppList];
+    resultAppList = resultAppList.filter(item => item != null && item != undefined);
+    return resultAppList;
   }
 
   //初始化数据
   async getAppInfo(applist: Array<launcherBundleManager.LauncherAbilityInfo>) {
     let curAppInfo: launcherBundleManager.LauncherAbilityInfo;
-    let tempList: AppList[] = []
-    const uniqueElementSet: Set<string> = new Set<string>()
+    let tempList: AppList[] = [];
+    const uniqueElementSet: Set<string> = new Set<string>();
     for (let i = 0; i < this.infoList.length; i++) {
       curAppInfo = this.infoList[i];
       if (curAppInfo.elementName.bundleName === 'com.ohos.adminprovisioning' ||
@@ -351,19 +365,19 @@ struct Index {
           labelId: curAppInfo.labelId,
           iconId: curAppInfo.iconId,
           moduleName: ''
-        }
+        };
       appInfo.element.abilityName = curAppInfo.elementName.abilityName;
       appInfo.moduleName = curAppInfo.elementName.moduleName!;
       appInfo.element.bundleName = curAppInfo.elementName.bundleName;
-      appInfo.installTime = curAppInfo.installTime
-      let appFilter = new FilterAppList()
+      appInfo.installTime = curAppInfo.installTime;
+      let appFilter = new FilterAppList();
       //过滤多余应用
       if (appFilter.handleFilter(JSON.stringify(appInfo.element))) {
-        const uniqueKey = `${appInfo.element.bundleName}::${appInfo.element.abilityName}::${appInfo.moduleName}`
+        const uniqueKey = `${appInfo.element.bundleName}::${appInfo.element.abilityName}::${appInfo.moduleName}`;
         if (uniqueElementSet.has(uniqueKey)) {
-          continue
+          continue;
         }
-        uniqueElementSet.add(uniqueKey)
+        uniqueElementSet.add(uniqueKey);
         tempList.push(appInfo);
       }
     }
@@ -372,73 +386,75 @@ struct Index {
       const timeB = b.installTime;
       return timeA - timeB;
     });
-    let storageList = new StoreAppList(getContext())
-    let storageAppList = await storageList.getAppList()
-    if (tempList.length === 0){
-      this.appList=[]
-    }else if (storageAppList.length===0){
-      this.appList=[...tempList]
-    }else{
-      this.appList=this.orderList(storageAppList, tempList)
+    let storageList = new StoreAppList(getContext());
+    let storageAppList = await storageList.getAppList();
+    if (tempList.length === 0) {
+      this.appList = [];
+    } else if (storageAppList.length === 0) {
+      this.appList = [...tempList];
+    } else {
+      this.appList = this.orderList(storageAppList, tempList);
     }
     setTimeout(() => {
-      this.showState=false
+      this.showState = false;
     }, 0);
-    AppStorage.setOrCreate('time',(new Date()).getTime() )
+    AppStorage.setOrCreate('time', (new Date()).getTime());
   }
-  @State showState:boolean=true
+
+  @State showState: boolean = true;
+
   //UI代码块
   build() {
-      Column() {
-        headerBar()
-        Stack(){
-          if (this.showState){
-            Column()
-              .width('1804lpx')
-              .height('912lpx').zIndex(1).backgroundColor('#18181A')
-          }
-          gridList({
-            allList: this.appList,
-            ifMove: this.ifMove,
-            focusIndex: this.focusIndex,
-            bigScreen: this.bigScreen,
-            arrowXPos: this.arrowXPos,
-            startAbilityBundle: this.startAbilityBundle,
-            longPressAction:()=>{
-              this.flag = true
-              if (this.dialogCanceled && this.dialogController != null && this.ifMove == 'false' && this.appList.length) {
-                try {
-                  // 安全地获取对话框位置
-                  const bundleName = this.appList[this.focusIndex]?.element?.bundleName;
-                  if (bundleName) {
-                    this.dialogPostion = this.getRect(bundleName);
-                    console.log(`===Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
-                  } else {
-                    console.log('===Warning: bundleName is undefined, using default dialog position');
-                    this.dialogPostion = [0, 0]; // 使用默认位置
-                  }
-
-                  this.dialogCanceled = false
-                  this.dialogController.open()
-                } catch (error) {
-                  console.log(`===Error in callback`);
-                  // 即使出错，也确保对话框能正常显示
-                  this.dialogPostion = [0, 0];
-                  this.dialogCanceled = false
-                  this.dialogController.open()
+    Column() {
+      headerBar();
+      Stack() {
+        if (this.showState) {
+          Column()
+            .width('1804lpx')
+            .height('912lpx').zIndex(1).backgroundColor('#18181A');
+        }
+        gridList({
+          allList: this.appList,
+          ifMove: this.ifMove,
+          focusIndex: this.focusIndex,
+          bigScreen: this.bigScreen,
+          arrowXPos: this.arrowXPos,
+          startAbilityBundle: this.startAbilityBundle,
+          longPressAction: () => {
+            this.flag = true;
+            if (this.dialogCanceled && this.dialogController != null && this.ifMove == 'false' && this.appList.length) {
+              try {
+                // 安全地获取对话框位置
+                const bundleName = this.appList[this.focusIndex]?.element?.bundleName;
+                if (bundleName) {
+                  this.dialogPostion = this.getRect(bundleName);
+                  console.log(`===Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
+                } else {
+                  console.log('===Warning: bundleName is undefined, using default dialog position');
+                  this.dialogPostion = [0, 0]; // 使用默认位置
                 }
+
+                this.dialogCanceled = false;
+                this.dialogController.open();
+              } catch (error) {
+                console.log(`===Error in callback`);
+                // 即使出错，也确保对话框能正常显示
+                this.dialogPostion = [0, 0];
+                this.dialogCanceled = false;
+                this.dialogController.open();
               }
             }
-          }).focusable(true)
-        }
-      }
-      .height('100%')
-      .width('100%')
-      .focusable(true)
-      .backgroundColor('#18181A')
-      .onTouch((event) => {
-        EventUtil.isTouchEvent(event);
-      })
+          }
+        }).focusable(true);
+      };
+    }
+    .height('100%')
+    .width('100%')
+    .focusable(true)
+    .backgroundColor('#18181A')
+    .onTouch((event) => {
+      EventUtil.isTouchEvent(event);
+    });
 
   }
 }

@@ -11,6 +11,10 @@
     {
       "name": "mune_tips",
       "value": "Press the menu key for more operations"
+    },
+    {
+      "name": "move",
+      "value": "move"
     }
   ]
 }

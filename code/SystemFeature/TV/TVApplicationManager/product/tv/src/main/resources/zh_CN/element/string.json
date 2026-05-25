@@ -11,6 +11,10 @@
     {
       "name": "mune_tips",
       "value": "按菜单键进行更多操作"
+    },
+    {
+      "name": "move",
+      "value": "移动"
     }
   ]
 }
