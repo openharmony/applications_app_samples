@@ -61,7 +61,7 @@ struct DeviceList {
             .fontSize(20)
             .fontColor(Color.White)
         }.onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         }).fancy();
       }
 
