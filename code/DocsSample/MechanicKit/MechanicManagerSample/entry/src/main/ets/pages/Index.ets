@@ -46,7 +46,7 @@ struct Index {
         .type(ButtonType.Capsule)
         .align(Alignment.Start)
         .onClick(()=>{
-          router.pushUrl({url:'pages/ApiTestPage'},()=>{})
+          this.getUIContext().getRouter().pushUrl({url:'pages/ApiTestPage'},()=>{});
         })
         .margin({
           top:50,

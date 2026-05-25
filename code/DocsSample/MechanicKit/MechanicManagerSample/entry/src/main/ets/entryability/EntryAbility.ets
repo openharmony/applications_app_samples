@@ -22,7 +22,11 @@ const domain = 0x0000;
 
 export default class EntryAbility extends UIAbility {
   public onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    try {
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    } catch (error) {
+      hilog.error(domain, 'testTag', 'getApplicationContext, code: ' + error.code + ' message: ' + error.message);
+    }
     hilog.info(domain, 'testTag', '%{public}s', 'Ability onCreate');
     if (want.abilityName !== undefined) {
       hilog.info(domain, launchParam.launchReason.toString(), '%{public}s', 'Ability onCreate');
