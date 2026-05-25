@@ -25,7 +25,10 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
     // 要处理的音频大小。
     int32_t actualDataSize = std::min(audioDataSize, info->bufferSize - info->totalWriteSize);
     // 将PCM音频数据写入audioData。
-    memcpy(static_cast<void *>(audioData), info->buffer + info->totalWriteSize, actualDataSize);
+    if (actualDataSize > 0) {
+        std::copy(info->buffer + info->totalWriteSize, info->buffer + info->totalWriteSize + actualDataSize,
+                  static_cast<uint8_t *>(audioData));
+    }
     info->totalWriteSize += actualDataSize;
 
     // 音频数据全部处理完。

@@ -17,6 +17,11 @@
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
+std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
+std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
+std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
+std::string g_filePathAccompaniment = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Accompaniment.pcm";
+std::string g_filePathMix = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Mix.pcm";
 
 enum AudioFileType {
     AUDIO_FILE_ORIGINAL = 1,
@@ -44,11 +49,6 @@ static std::string SelectAudioFile(unsigned int type)
     }
 }
 
-std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
-std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
-std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
-std::string g_filePathAccompaniment = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Accompaniment.pcm";
-std::string g_filePathMix = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Mix.pcm";
 // BaseEditor 异步执行的数据结构
 struct BaseEditorData {
     napi_async_work work;
