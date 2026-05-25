@@ -108,9 +108,9 @@
 
 1.  本示例支持在标准系统上运行，支持设备：RK3568。
 
-2.  本示例支持API version 23，版本号： 6.1.0。
+2.  本示例支持API version 23，版本号： 6.0.0。
 
-3.  本示例已支持使Build Version: 6.1.0, built on May 21, 2026.
+3.  本示例已支持使Build Version: 6.0.0, built on May 21, 2026.
 
 4.  高等级APL特殊签名说明：无。
 
