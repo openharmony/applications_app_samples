@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,20 +15,19 @@
 import { AlbumModel, AlbumType, PhotoModel } from '../../models/PhotoModel';
 import { ILoader } from './ILoader';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-// import Logger from '../../common/Logger';
 import { fileModelsEquals, getThumbByUri } from './LoadUtil';
 import { image } from '@kit.ImageKit';
 import { common, Context } from '@kit.AbilityKit';
 import LogManager from '../../common/Log/LogManager';
 
-const REGISTER_CALLBACK_DELAY = 200
+const REGISTER_CALLBACK_DELAY = 200;
 
 export abstract class BasePhotoLoader implements ILoader {
   private albumModel: AlbumModel = new AlbumModel(AlbumType.ALL, $r('app.string.select_images_videos'));
-  private fileAssets: PhotoModel[] = []
-  public context?: common.UIAbilityContext
-  private callbacks: Array<(photos: PhotoModel[], albumAllPhoto: AlbumModel) => void> = []
-  private refreshing = false
+  private fileAssets: PhotoModel[] = [];
+  public context?: common.UIAbilityContext;
+  private callbacks: Array<(photos: PhotoModel[], albumAllPhoto: AlbumModel) => void> = [];
+  private refreshing = false;
 
   abstract getAlbumModel(): AlbumModel
 
@@ -36,78 +35,78 @@ export abstract class BasePhotoLoader implements ILoader {
 
   init(context: common.UIAbilityContext): void {
     LogManager.hilogIWithTag(this.getTag(), 'do init ');
-    this.context = context
-    this.albumModel = this.getAlbumModel()
-    this.refresh()
+    this.context = context;
+    this.albumModel = this.getAlbumModel();
+    this.refresh();
   }
 
 
   registerChangeCallback(callback: (photos: PhotoModel[], albumAllPhoto: AlbumModel) => void): void {
     LogManager.hilogIWithTag(this.getTag(), 'registerChangeCallback ');
-    this.callbacks.push(callback)
+    this.callbacks.push(callback);
     setTimeout(() => {
-      callback(this.fileAssetsCopy(), this.albumModel)
-    }, REGISTER_CALLBACK_DELAY)
+      callback(this.fileAssetsCopy(), this.albumModel);
+    }, REGISTER_CALLBACK_DELAY);
   };
 
   unRegisterChangeCallback(callback: (photos: PhotoModel[], albumAllPhoto: AlbumModel) => void): void {
     LogManager.hilogIWithTag(this.getTag(), 'unRegisterChangeCallback ');
     this.callbacks = this.callbacks.filter((cb) => {
-      return (cb !== callback)
-    })
+      return (cb !== callback);
+    });
   };
 
   async onFileAssetChange() {
     this.albumModel.count = this.fileAssets.length;
     if (this.albumModel.count > 0) {
       this.albumModel.cover =
-        await getThumbByUri(this.context as Context, this.fileAssets[0], 'loader_' + this.getTag())
+        await getThumbByUri(this.context as Context, this.fileAssets[0], 'loader_' + this.getTag());
     } else {
-      this.albumModel.cover = undefined
+      this.albumModel.cover = undefined;
     }
 
     LogManager.hilogIWithTag(this.getTag(), 'albumModel = ' + JSON.stringify(this.albumModel));
     LogManager.hilogIWithTag(this.getTag(), 'fileAssets = ' + JSON.stringify(this.fileAssets.map(value => value.uri)));
     this.callbacks.forEach((callback) => {
-      callback(this.fileAssetsCopy(), this.albumModel)
-    })
+      callback(this.fileAssetsCopy(), this.albumModel);
+    });
   }
 
   fileAssetsCopy(): PhotoModel[] {
-    const copy: PhotoModel[] = []
-    copy.push(...this.fileAssets)
-    return copy
+    const copy: PhotoModel[] = [];
+    copy.push(...this.fileAssets);
+    return copy;
   }
 
   async delete(photos: PhotoModel[]): Promise<void> {
     LogManager.hilogIWithTag(this.getTag(), 'do delete ' + JSON.stringify(photos));
 
-    await this.doDelete(photos)
+    await this.doDelete(photos);
     for (let index = 0; index < photos.length; index++) {
       const i = this.fileAssets.findIndex((asset) => {
-        return (asset.uri === photos[index].uri)
-      })
-      this.fileAssets.splice(i, 1)
+        return (asset.uri === photos[index].uri);
+      });
+      this.fileAssets.splice(i, 1);
     }
-    this.onFileAssetChange()
+    this.onFileAssetChange();
   };
 
   doDelete(photos: PhotoModel[]): Promise<void> {
-    let uris: string[] = photos.map(photo => photo.uri)
-    return photoAccessHelper.MediaAssetChangeRequest.deleteAssets(this.context, [...uris])
+    let uris: string[] = photos.map(photo => photo.uri);
+    return photoAccessHelper.MediaAssetChangeRequest.deleteAssets(this.context, [...uris]);
   }
 
   async refresh(): Promise<void> {
     LogManager.hilogIWithTag(this.getTag(), 'do refresh ' + this.refreshing);
     if (!this.refreshing) {
-      this.refreshing = true
+      this.refreshing = true;
       try {
-        let newFileAssets = await this.getMediaItems(this.context!!)
-        await this.refreshData(newFileAssets, false)
+        let newFileAssets = await this.getMediaItems(this.context!!);
+        await this.refreshData(newFileAssets, false);
       } catch (e) {
         LogManager.hilogIWithTag(this.getTag(), 'do refresh ' + JSON.stringify(e));
       }
-      this.refreshing = false
+      this.refreshing = false;
     }
   }
 
@@ -116,14 +115,14 @@ export abstract class BasePhotoLoader implements ILoader {
   }
 
   async recover(photos: PhotoModel[]): Promise<void> {
-    await this.doRecover(photos)
+    await this.doRecover(photos);
     for (let index = 0; index < photos.length; index++) {
       const i = this.fileAssets.findIndex((asset) => {
-        return (asset.uri === photos[index].uri)
-      })
-      this.fileAssets.splice(i, 1)
+        return (asset.uri === photos[index].uri);
+      });
+      this.fileAssets.splice(i, 1);
     }
-    this.onFileAssetChange()
+    this.onFileAssetChange();
   }
 
   async doRecover(photos: PhotoModel[]): Promise<void> {
@@ -132,26 +131,26 @@ export abstract class BasePhotoLoader implements ILoader {
 
   async refreshData(photos: PhotoModel[], force: boolean) {
     LogManager.hilogIWithTag(this.getTag(), 'do refreshData ');
-    let needUpdate = force
+    let needUpdate = force;
     if (!force) {
-      needUpdate = !fileModelsEquals(this.fileAssets, photos)
+      needUpdate = !fileModelsEquals(this.fileAssets, photos);
     }
     LogManager.hilogIWithTag(this.getTag(), 'need update ' + photos.length + '  ' + needUpdate);
 
     if (needUpdate) {
       for (let index = 0; index < photos.length; index++) {
         let model = this.fileAssets.find((oldModel) => {
-          return (oldModel.uri === photos[index].uri)
-        })
+          return (oldModel.uri === photos[index].uri);
+        });
 
         if (model) {
-          photos[index] = model
+          photos[index] = model;
         } else {
-          photos[index] = await this.createFullModel(photos[index])
+          photos[index] = await this.createFullModel(photos[index]);
         }
       }
-      this.fileAssets = photos
-      this.onFileAssetChange()
+      this.fileAssets = photos;
+      this.onFileAssetChange();
     }
   }
 
@@ -165,18 +164,18 @@ export abstract class BasePhotoLoader implements ILoader {
     } catch (err) {
       LogManager.hilogEWithTag(this.getTag(), 'getAlbumsNextPhoto get thumbnail failed with err: ' + err);
     }
-    return thumbnail
+    return thumbnail;
   }
 
   async createFullModel(photo: PhotoModel): Promise<PhotoModel> {
     if (photo.photoAsset) {
-      photo.photoType = photo.photoAsset.photoType
-      photo.duration = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DURATION) as number
-      photo.dateAdded = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DATE_DAY) as number
-      photo.dateTrashed = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DATE_TRASHED_MS) as number
-      photo.width = photo.photoAsset.get(photoAccessHelper.PhotoKeys.WIDTH) as number
-      photo.height = photo.photoAsset.get(photoAccessHelper.PhotoKeys.HEIGHT) as number
+      photo.photoType = photo.photoAsset.photoType;
+      photo.duration = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DURATION) as number;
+      photo.dateAdded = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DATE_DAY) as number;
+      photo.dateTrashed = photo.photoAsset.get(photoAccessHelper.PhotoKeys.DATE_TRASHED_MS) as number;
+      photo.width = photo.photoAsset.get(photoAccessHelper.PhotoKeys.WIDTH) as number;
+      photo.height = photo.photoAsset.get(photoAccessHelper.PhotoKeys.HEIGHT) as number;
     }
-    return photo
+    return photo;
   }
 }

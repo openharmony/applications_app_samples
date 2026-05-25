@@ -1,6 +1,20 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import LogManager from '../../../common/Log/LogManager'
-import dayjs from 'dayjs'
+import LogManager from '../../../common/Log/LogManager';
+import dayjs from 'dayjs';
 import { tabClick } from '../../Index';
 import { inputConsumer, inputEventClient, KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
@@ -27,9 +41,9 @@ export function registerInputConsumer(keyCode: number, callback: () => void): vo
     finalKey: keyCode,
     finalKeyDownDuration: 0,
     isFinalKeyDown: true
-  }
+  };
   inputConsumer.on('key', onKeyCode, () => {
-    callback && callback()
+    callback && callback();
     console.log(TAG, 'inputConsumer keyEvent start');
   });
 }
@@ -40,7 +54,7 @@ export function unregisterInputConsumer(keyCode: number): void {
     finalKey: keyCode,
     finalKeyDownDuration: 0,
     isFinalKeyDown: true
-  }
+  };
   inputConsumer.off('key', onKeyCode);
 }
 
@@ -64,30 +78,30 @@ export function enterClick() {
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err)
+    console.error('settingList inputEventClient' + err);
   }
 }
 
-const TAG = 'IssueReporterDetailItem'
-const sourceToolMouseClick: number = 7
+const TAG = 'IssueReporterDetailItem';
+const sourceToolMouseClick: number = 7;
 
 @Component
 export default struct issueReportSelectItem {
-  @Prop itemType: IssueReporterDetailItemType = IssueReporterDetailItemType.default
-  title: ResourceStr = ''
-  @Prop itemValue: string = '请选择'
-  selectedTimeHandle?: (time: string) => void
-  selectedDateHandle?: (time: string) => void
-  selectedFilterHandle?: (filter: string, index: number) => void
-  selectedPhotoHandle?: (photoInfos: photoAccessHelper.PhotoAsset[]) => void
-  @State endTime: string = ''
-  @State startTime: string = ''
-  @State selectedDate: Date = new Date()
-  @Prop filter: string = ''
-  filters: string[] = []
-  @State selectedFilterNumber: number | number[] = 0
-  @State isFocus: boolean = false
-  @State titleKey: string = ''
+  @Prop itemType: IssueReporterDetailItemType = IssueReporterDetailItemType.default;
+  title: ResourceStr = '';
+  @Prop itemValue: string = '请选择';
+  selectedTimeHandle?: (time: string) => void;
+  selectedDateHandle?: (time: string) => void;
+  selectedFilterHandle?: (filter: string, index: number) => void;
+  selectedPhotoHandle?: (photoInfos: photoAccessHelper.PhotoAsset[]) => void;
+  @State endTime: string = '';
+  @State startTime: string = '';
+  @State selectedDate: Date = new Date();
+  @Prop filter: string = '';
+  filters: string[] = [];
+  @State selectedFilterNumber: number | number[] = 0;
+  @State isFocus: boolean = false;
+  @State titleKey: string = '';
   private dataSelectController: CustomDialogController = new CustomDialogController({
     builder: DataSelect({
       range: this.filters,
@@ -97,23 +111,23 @@ export default struct issueReportSelectItem {
       selectedFilterHandle: this.selectedFilterHandle
     }),
     customStyle: true,
-  })
+  });
   @StorageLink('issueReportTime') issueReportTime: string = '';
   @StorageLink('issueReportDate') issueReportDate: string = '';
-  @State settingList: SettingItemTvModel[] = []
+  @State settingList: SettingItemTvModel[] = [];
   @State is24Hours: boolean = false;
-  dateFormat = new Intl.DateTimeFormat('zh-Cn', { year: 'numeric', month: 'long', day: 'numeric' })
+  dateFormat = new Intl.DateTimeFormat('zh-Cn', { year: 'numeric', month: 'long', day: 'numeric' });
   time12Format = new Intl.DateTimeFormat('zh-Cn', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true
-  })
+  });
   time24Format = new Intl.DateTimeFormat('zh-Cn', {
     hour: '2-digit',
     minute: '2-digit',
     hourCycle: 'h23',
     hour12: false
-  })
+  });
   @State date: string = '';
   @State time: string = '';
   private content: DialogContent = new DialogContent('', '', '', '', 400, 300);
@@ -127,7 +141,7 @@ export default struct issueReportSelectItem {
     autoCancel: true,
     alignment: DialogAlignment.Center,
     customStyle: true
-  })
+  });
   timeDialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogTvComponent({
       cancel: (): void => this.onTimeCancel(),
@@ -138,92 +152,92 @@ export default struct issueReportSelectItem {
     autoCancel: true,
     alignment: DialogAlignment.Center,
     customStyle: true
-  })
+  });
 
   onPageShow() {
-    this.issueReportTime = ''
-    this.issueReportDate = ''
+    this.issueReportTime = '';
+    this.issueReportDate = '';
   }
 
   onDateConfirm() {
-    this.setDate()
-    this.dateDialogController.close()
+    this.setDate();
+    this.dateDialogController.close();
   }
 
   onTimeConfirm() {
-    this.setTime()
-    this.timeDialogController.close()
+    this.setTime();
+    this.timeDialogController.close();
   }
 
   onDateCancel() {
-    this.dateDialogController.close()
+    this.dateDialogController.close();
   }
 
   onTimeCancel() {
-    this.timeDialogController.close()
+    this.timeDialogController.close();
   }
 
   // 日期时间显示24小时格式渲染
   setTimeFormat(type: 'date' | 'time', value: boolean, time: number): string {
     if (type === 'date') {
-      this.date = this.dateFormat.format(time)
-      return this.date
+      this.date = this.dateFormat.format(time);
+      return this.date;
     } else {
       if (value) {
-        this.time = this.time24Format.format(time)
-        return this.time
+        this.time = this.time24Format.format(time);
+        return this.time;
       } else {
-        this.time = this.time12Format.format(time)
-        return this.time
+        this.time = this.time12Format.format(time);
+        return this.time;
       }
     }
   }
 
   // 设置时间
   setTime() {
-    this.setTimeFormat('time', this.is24Hours, this.content.customTime)
-    let time = (new Date(this.content.customTime)).toTimeString()
+    this.setTimeFormat('time', this.is24Hours, this.content.customTime);
+    let time = (new Date(this.content.customTime)).toTimeString();
     let match = time.match(/^(\d{2}:\d{2}:\d{2})/);
     this.issueReportTime = match ? match[1] : '00:00:00';
     this.itemValue = match ? match[1] : '00:00:00';
   }
 
   setDate() {
-    this.setTimeFormat('date', this.is24Hours, this.content.customTime)
-    let date = (new Date(this.content.customTime)).toDateString()
+    this.setTimeFormat('date', this.is24Hours, this.content.customTime);
+    let date = (new Date(this.content.customTime)).toDateString();
     let match = date.replace(/^\w{3}\s+/, '');
-    this.itemValue = match
-    this.issueReportDate = match
+    this.itemValue = match;
+    this.issueReportDate = match;
   }
 
   async aboutToAppear() {
-    this.titleKey = await getContext(this).resourceManager.getStringValue(this.title as Resource)
-    let currentDate = new Date()
-    this.endTime = dayjs(currentDate).format('YYYY-MM-DD HH:mm:ss')
+    this.titleKey = await getContext(this).resourceManager.getStringValue(this.title as Resource);
+    let currentDate = new Date();
+    this.endTime = dayjs(currentDate).format('YYYY-MM-DD HH:mm:ss');
     // 显示当前及7天前的可选时间
-    let startDate = (new Date()).setDate(currentDate.getFullYear() - 1)
-    this.startTime = dayjs(startDate).format('YYYY-MM-DD HH:mm:ss')
+    let startDate = (new Date()).setDate(currentDate.getFullYear() - 1);
+    this.startTime = dayjs(startDate).format('YYYY-MM-DD HH:mm:ss');
     LogManager.hilogIWithTag(TAG,
-      `aboutToAppear, currentTime: ${JSON.stringify(this.endTime)}, twoDaysAgoTime: ${JSON.stringify(this.startTime)}`)
+      `aboutToAppear, currentTime: ${JSON.stringify(this.endTime)}, twoDaysAgoTime: ${JSON.stringify(this.startTime)}`);
     LogManager.hilogIWithTag(TAG,
-      `aboutToAppear, itemType: ${JSON.stringify(this.itemType)}, this.itemValue: ${JSON.stringify(this.filter)}`)
+      `aboutToAppear, itemType: ${JSON.stringify(this.itemType)}, this.itemValue: ${JSON.stringify(this.filter)}`);
 
     if (this.itemType === IssueReporterDetailItemType.filter && this.filter) {
-      this.itemValue = this.filter
+      this.itemValue = this.filter;
     }
 
     if (this.itemType === IssueReporterDetailItemType.time && this.itemValue) {
-      this.selectedDate = new Date(this.itemValue)
+      this.selectedDate = new Date(this.itemValue);
     }
 
 
     emitter.on('auto_focus', (data) => {
       let title: string = String(data?.data);
       if (this.getUniqueId().toString() == title) {
-        return
+        return;
       }
-      this.isFocus = false
-    })
+      this.isFocus = false;
+    });
   }
 
   build() {
@@ -237,44 +251,44 @@ export default struct issueReportSelectItem {
             .key(this.titleKey)
             .focusable(true)
             .onFocus(() => {
-              this.isFocus = true
+              this.isFocus = true;
             })
             .focusBox({
               margin: LengthMetrics.px(2),
               strokeColor: ColorMetrics.resourceColor($r('app.color.default_white')),
               strokeWidth: LengthMetrics.px(0)
-            })
+            });
           Text('*')
             .fontColor(Color.Red)
-            .fontSize(fpChangeLpx(36))
-        }
+            .fontSize(fpChangeLpx(36));
+        };
 
         Row({ space: vpChangeLpx(39) }) {
           Text(this.itemValue || '请选择')
             .fontColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'))
-            .fontSize(fpChangeLpx(36))
+            .fontSize(fpChangeLpx(36));
           Image($r('app.media.icon_arrow_right'))
             .width(vpChangeLpx(21))
             .height(vpChangeLpx(34))
-            .fillColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'))
-        }
+            .fillColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'));
+        };
       }
       .onFocus(() => {
         registerInputConsumer(KeyCode.KEYCODE_DPAD_LEFT, () => {
-        })
+        });
         registerInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT, () => {
-        })
+        });
       })
       .onBlur(() => {
-        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_LEFT)
-        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT)
+        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_LEFT);
+        unregisterInputConsumer(KeyCode.KEYCODE_DPAD_RIGHT);
       })
       .onTouch((event) => {
-        focusControl.requestFocus(this.titleKey)
+        focusControl.requestFocus(this.titleKey);
         try {
-          emitter.emit('auto_focus', { data: this.getUniqueId() })
+          emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e)
+          console.error(e);
         }
         if (!EventUtil.isTouchEvent(event)) {
           return;
@@ -284,30 +298,30 @@ export default struct issueReportSelectItem {
         }
       })
       .onClick(() => {
-        this.isFocus = true
+        this.isFocus = true;
         switch (this.itemType) {
           case IssueReporterDetailItemType.date: {
-            this.dateDialogController.open()
+            this.dateDialogController.open();
             setTimeout(() => {
               tabClick();
-            }, TIME_INT)
+            }, TIME_INT);
           }
-            break
+            break;
           case IssueReporterDetailItemType.time: {
-            this.timeDialogController.open()
+            this.timeDialogController.open();
             setTimeout(() => {
               tabClick();
-            }, TIME_INT)
+            }, TIME_INT);
           }
-            break
+            break;
 
           case IssueReporterDetailItemType.filter: {
-            this.dataSelectController.open()
+            this.dataSelectController.open();
             setTimeout(() => {
               tabClick();
-            }, TIME_INT)
+            }, TIME_INT);
           }
-            break
+            break;
 
         }
       })
@@ -322,25 +336,25 @@ export default struct issueReportSelectItem {
         if (event.keyCode === KeyCode.KEYCODE_DPAD_LEFT || event.keyCode === KeyCode.KEYCODE_DPAD_RIGHT) {
           setTimeout(() => {
             tabClick();
-          }, TIME_INT_VIS)
+          }, TIME_INT_VIS);
         }
-      })
+      });
     }
     .margin({ bottom: vpChangeLpx(24) })
     .focusable(true)
     .onFocus(() => {
-      this.isFocus = true
+      this.isFocus = true;
     })
     .onBlur(() => {
-      this.isFocus = false
+      this.isFocus = false;
     })
     .onHover((isHover: boolean) => {
-      focusControl.requestFocus(this.titleKey)
+      focusControl.requestFocus(this.titleKey);
       if (isHover) {
         try {
-          emitter.emit('auto_focus', { data: this.getUniqueId() })
+          emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e)
+          console.error(e);
         }
       }
     })
@@ -350,23 +364,23 @@ export default struct issueReportSelectItem {
     .justifyContent(FlexAlign.Center)
     .alignItems(VerticalAlign.Center)
     .border(this.isFocus ? { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } :
-      null)
+      null);
   }
 }
 
 @CustomDialog
 struct DataSelect {
-  controller: CustomDialogController
-  scroller: Scroller = new Scroller()
-  range: string[] = []
-  selectedFilterHandle?: (filter: string, index: number) => void
-  @Link selectedFilterNumber: number | number[]
-  @Link filter: string
-  @Link itemValue: string
-  @State valueText: string | string[] = ''
-  @State valueIndex: number | number[] = 0
-  @State isFocusCancel: boolean = false
-  @State isFocusAccept: boolean = false
+  controller: CustomDialogController;
+  scroller: Scroller = new Scroller();
+  range: string[] = [];
+  selectedFilterHandle?: (filter: string, index: number) => void;
+  @Link selectedFilterNumber: number | number[];
+  @Link filter: string;
+  @Link itemValue: string;
+  @State valueText: string | string[] = '';
+  @State valueIndex: number | number[] = 0;
+  @State isFocusCancel: boolean = false;
+  @State isFocusAccept: boolean = false;
 
   build() {
     Column() {
@@ -392,18 +406,18 @@ struct DataSelect {
         .layoutWeight(1)
         .canLoop(false)
         .onChange((value: string | string[], index: number | number[]) => {
-          this.valueText = value
-          this.valueIndex = index
+          this.valueText = value;
+          this.valueIndex = index;
         })
         .onFocus(() => {
-          enterClick()
+          enterClick();
           registerInputConsumer(KeyCode.KEYCODE_ENTER, () => {
-            tabClick()
-          })
+            tabClick();
+          });
         })
         .onBlur(() => {
-          unregisterInputConsumer(KeyCode.KEYCODE_ENTER)
-        })
+          unregisterInputConsumer(KeyCode.KEYCODE_ENTER);
+        });
 
       Row() {
         Row() {
@@ -419,15 +433,15 @@ struct DataSelect {
               focused: {
                 .border({
                   color: Color.Transparent
-                })
+                });
               }
             })
             .borderRadius('30lpx')
             .onHover(() => {
-              focusControl.requestFocus('cancel')
+              focusControl.requestFocus('cancel');
             })
             .onTouch((event) => {
-              focusControl.requestFocus('cancel')
+              focusControl.requestFocus('cancel');
               if (!EventUtil.isTouchEvent(event)) {
                 return;
               }
@@ -436,15 +450,15 @@ struct DataSelect {
               }
             })
             .onFocus(() => {
-              this.isFocusCancel = true
+              this.isFocusCancel = true;
             })
             .onBlur(() => {
-              this.isFocusCancel = false
+              this.isFocusCancel = false;
             })
             .onClick(() => {
-              focusControl.requestFocus('cancel')
-              this.controller.close()
-            })
+              focusControl.requestFocus('cancel');
+              this.controller.close();
+            });
         }
         .width('160lpx')
         .height('60lpx')
@@ -454,7 +468,7 @@ struct DataSelect {
           color: Color.White,
           style: BorderStyle.Solid
         })
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(FlexAlign.Center);
 
         Row() {
           Button($r('app.string.sure'))
@@ -472,13 +486,13 @@ struct DataSelect {
             })
             .onFocus(() => {
 
-              this.isFocusAccept = true
+              this.isFocusAccept = true;
             })
             .onHover(() => {
-              focusControl.requestFocus('confirm')
+              focusControl.requestFocus('confirm');
             })
             .onTouch((event) => {
-              focusControl.requestFocus('confirm')
+              focusControl.requestFocus('confirm');
               if (!EventUtil.isTouchEvent(event)) {
                 return;
               }
@@ -487,23 +501,23 @@ struct DataSelect {
               }
             })
             .onBlur(() => {
-              this.isFocusAccept = false
+              this.isFocusAccept = false;
             })
             .onClick(() => {
-              focusControl.requestFocus('confirm')
+              focusControl.requestFocus('confirm');
               if (this.valueIndex === 0) {
-                this.valueText = this.range[this.valueIndex]
+                this.valueText = this.range[this.valueIndex];
               }
-              this.selectedFilterNumber = this.valueIndex
+              this.selectedFilterNumber = this.valueIndex;
               // 点击确定后，被选到的文本数据展示到页面
-              this.filter = this.valueText as string
+              this.filter = this.valueText as string;
 
-              this.itemValue = this.filter
+              this.itemValue = this.filter;
               if (this.selectedFilterHandle) {
-                this.selectedFilterHandle(this.filter, this.selectedFilterNumber as number)
+                this.selectedFilterHandle(this.filter, this.selectedFilterNumber as number);
               }
-              this.controller.close()
-            })
+              this.controller.close();
+            });
         }
         .width('160lpx')
         .height('60lpx')
@@ -513,16 +527,16 @@ struct DataSelect {
           color: Color.White,
           style: BorderStyle.Solid
         })
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(FlexAlign.Center);
       }
       .width('100%')
       .height('60lpx')
-      .justifyContent(FlexAlign.SpaceAround)
+      .justifyContent(FlexAlign.SpaceAround);
     }
     .padding({ top: vpChangeLpx(5), bottom: vpChangeLpx(27) })
     .width(vpChangeLpx(739))
     .height(vpChangeLpx(433))
     .borderRadius(vpChangeLpx(24))
-    .backgroundColor($r('app.color.custom_background'))
+    .backgroundColor($r('app.color.custom_background'));
   }
 }

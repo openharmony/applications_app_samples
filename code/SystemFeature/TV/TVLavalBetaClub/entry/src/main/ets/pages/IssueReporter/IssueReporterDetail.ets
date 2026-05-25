@@ -1,65 +1,79 @@
-import NavigationBar from '../common/NavigationBar'
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import NavigationBar from '../common/NavigationBar';
 import IssueDetailInfo, {
   Attachment,
   fpChangeLpx,
   probabilityList,
   TIME_INT_VIS,
   vpChangeLpx
-} from '../IssueReporter/models/IssueDetailInfo'
+} from '../IssueReporter/models/IssueDetailInfo';
 import router from '@ohos.router';
-import LogManager from '../../common/Log/LogManager'
+import LogManager from '../../common/Log/LogManager';
 import NetworkManager from '../../common/Network/NetworkManager';
 import UrlConstant from '../../common/Constants/UrlConstant';
 import promptAction from '@ohos.promptAction';
 import DeviceManager from '../../common/Device/DeviceManager';
-import { stringToObject } from '../common/utilImage';
-import issueReportCardItem from './views/issueReportCardItem'
-import issueAttachment from './views/issueAttachment'
-import issueReportHistory from './views/issueReportHistory'
-import ImagePreViewDialog from './views/ImagePreViewDialog'
+import { stringToObject } from '../common/UtilImage';
+import issueReportCardItem from './views/IssueReportCardItem';
+import issueAttachment from './views/IssueAttachment';
+import issueReportHistory from './views/IssueReportHistory';
+import ImagePreViewDialog from './views/ImagePreViewDialog';
 import { inputEventClient, KeyCode } from '@kit.InputKit';
 
-const TAG = 'IssueReporterDetail'
+const TAG = 'IssueReporterDetail';
 
 class IssueDetailParam {
-  public issueId: string = ''
-  public devid: string = ''
+  public issueId: string = '';
+  public devid: string = '';
 }
 
 class IssueHistory {
-  public title: string = ''
-  public time: string = ''
-  public content?: string = ''
+  public title: string = '';
+  public time: string = '';
+  public content?: string = '';
 }
 
 class IssueHistoryRecord {
-  public title: string = ''
-  public createTime: string = ''
-  public content?: string = ''
+  public title: string = '';
+  public createTime: string = '';
+  public content?: string = '';
 }
 
 
 @Entry
 @Component
 export default struct IssueReporterDetail {
-  scroller: Scroller = new Scroller()
-  @State private issueId: string = ''
-  @State private statusDesc: string = ''
-  @State private probabilityDesc: string = ''
-  @State private description: string = ''
-  @State private faultTime: string = ''
-  @State private remark: string = ''
-  @State private attachment: Attachment[] = []
-  @State previewImage: boolean = false
-  @State previewImageIndex: number = 0
-  @State issueHistory: IssueHistory[] = []
-  @State private issueType: string = ''
+  scroller: Scroller = new Scroller();
+  @State private issueId: string = '';
+  @State private statusDesc: string = '';
+  @State private probabilityDesc: string = '';
+  @State private description: string = '';
+  @State private faultTime: string = '';
+  @State private remark: string = '';
+  @State private attachment: Attachment[] = [];
+  @State previewImage: boolean = false;
+  @State previewImageIndex: number = 0;
+  @State issueHistory: IssueHistory[] = [];
+  @State private issueType: string = '';
 
   aboutToAppear() {
-    LogManager.hilogIWithTag(TAG, `aboutToAppear enter`)
+    LogManager.hilogIWithTag(TAG, `aboutToAppear enter`);
 
-    this.getDetail()
-    this.getHistory()
+    this.getDetail();
+    this.getHistory();
   }
 
   tabClick() {
@@ -82,108 +96,108 @@ export default struct IssueReporterDetail {
       inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
       inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
     } catch (err) {
-      console.error('settingList inputEventClient' + err)
+      console.error('settingList inputEventClient' + err);
     }
   }
 
   private getDetail() {
-    let params = router.getParams() as IssueDetailInfo
+    let params = router.getParams() as IssueDetailInfo;
 
     let issueDetailParam: IssueDetailParam = {
       issueId: params.issueId,
       devid: DeviceManager.shareInstance().getUdid()
-    }
+    };
 
     NetworkManager.shareInstance().request(UrlConstant.ISSUE_DETAIL, issueDetailParam, (listErr, listResult) => {
-      LogManager.hilogIWithTag(TAG, `getDetail, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`)
-      LogManager.hilogIWithTag(TAG, `getDetail, err111: ${JSON.stringify(listErr)}`)
-      LogManager.hilogIWithTag(TAG, `getDetail, err111: ${listErr}`)
+      LogManager.hilogIWithTag(TAG, `getDetail, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`);
+      LogManager.hilogIWithTag(TAG, `getDetail, err111: ${JSON.stringify(listErr)}`);
+      LogManager.hilogIWithTag(TAG, `getDetail, err111: ${listErr}`);
 
       if (listErr) {
         promptAction.showToast({
           message: '详情获取失败'
-        })
-        return
+        });
+        return;
       }
-      let obj = stringToObject(listResult.result)
+      let obj = stringToObject(listResult.result);
       if (obj !== undefined) {
-        listResult.result = obj
+        listResult.result = obj;
       }
-      let code = listResult.responseCode as number
-      LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`)
+      let code = listResult.responseCode as number;
+      LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`);
 
       if (code != 200) {
         promptAction.showToast({
           message: '详情获取失败'
-        })
-        return
+        });
+        return;
       }
 
       if (listResult.result['data']) {
-        this.issueId = listResult.result['data']['issueId'] ? listResult.result['data']['issueId'] : ''
-        this.statusDesc = listResult.result['data']['statusDesc'] ? listResult.result['data']['statusDesc'] : ''
+        this.issueId = listResult.result['data']['issueId'] ? listResult.result['data']['issueId'] : '';
+        this.statusDesc = listResult.result['data']['statusDesc'] ? listResult.result['data']['statusDesc'] : '';
         this.probabilityDesc =
-          listResult.result['data']['probability'] ? listResult.result['data']['probability'] : ''
-        this.description = listResult.result['data']['description'] ? listResult.result['data']['description'] : ''
-        this.faultTime = listResult.result['data']['faultTime'] ? listResult.result['data']['faultTime'] : ''
-        this.remark = listResult.result['data']['remark'] ? listResult.result['data']['remark'] : ''
-        this.attachment = listResult.result['data']['attachment'] ? listResult.result['data']['attachment'] : []
-        this.issueType = listResult.result['data']['type'] ? listResult.result['data']['type'] : ''
+          listResult.result['data']['probability'] ? listResult.result['data']['probability'] : '';
+        this.description = listResult.result['data']['description'] ? listResult.result['data']['description'] : '';
+        this.faultTime = listResult.result['data']['faultTime'] ? listResult.result['data']['faultTime'] : '';
+        this.remark = listResult.result['data']['remark'] ? listResult.result['data']['remark'] : '';
+        this.attachment = listResult.result['data']['attachment'] ? listResult.result['data']['attachment'] : [];
+        this.issueType = listResult.result['data']['type'] ? listResult.result['data']['type'] : '';
       }
-    })
+    });
   }
 
   private getHistory() {
-    let params = router.getParams() as IssueDetailInfo
+    let params = router.getParams() as IssueDetailInfo;
 
     let issueDetailParam: IssueDetailParam = {
       issueId: params.issueId,
       devid: DeviceManager.shareInstance().getUdid()
-    }
+    };
     NetworkManager.shareInstance()
       .request(UrlConstant.ISSUE_OPERATION_RECORD, issueDetailParam, (listErr, listResult) => {
         LogManager.hilogIWithTag(TAG,
-          `getHistory, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`)
+          `getHistory, err: ${JSON.stringify(listErr)}, result: ${JSON.stringify(listResult)}`);
         if (listErr) {
           promptAction.showToast({
             message: '详情获取失败'
-          })
-          return
+          });
+          return;
         }
-        let obj = stringToObject(listResult.result)
+        let obj = stringToObject(listResult.result);
         if (obj !== undefined) {
-          listResult.result = obj
+          listResult.result = obj;
         }
 
-        let code = listResult.responseCode as number
-        LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`)
+        let code = listResult.responseCode as number;
+        LogManager.hilogIWithTag(TAG, `getDetail, code: ${JSON.stringify(code)}`);
 
         if (code != 200) {
           promptAction.showToast({
             message: '详情获取失败'
-          })
-          return
+          });
+          return;
         }
         if (listResult.result['data'] && listResult.result['data'].records) {
-          const reg: RegExp = new RegExp('\\w.*]')
+          const reg: RegExp = new RegExp('\\w.*]');
           this.issueHistory = listResult.result['data'].records.map((item: IssueHistoryRecord) => {
             if (reg.test(item.title)) {
               const history: IssueHistory = {
                 title: item.title.replace(reg, '管理员-'),
                 time: item.createTime,
                 content: item.content || ''
-              }
-              return history
+              };
+              return history;
             } else {
-              const newReg = new RegExp('\\w.*,')
-              const history: IssueHistory = { title: item.title.replace(newReg, '').trim(), time: item.createTime }
-              return history
+              const newReg = new RegExp('\\w.*,');
+              const history: IssueHistory = { title: item.title.replace(newReg, '').trim(), time: item.createTime };
+              return history;
             }
           }
-          )
+          );
         }
       }
-      )
+      );
   }
 
   @Builder
@@ -193,10 +207,10 @@ export default struct IssueReporterDetail {
         .fontSize(fpChangeLpx(36))
         .fontWeight(500)
         .fontColor($r('app.color.default_white'))
-        .margin({ bottom: vpChangeLpx(24), top: vpChangeLpx(42) })
+        .margin({ bottom: vpChangeLpx(24), top: vpChangeLpx(42) });
     }
     .width('100%')
-    .alignItems(HorizontalAlign.Start)
+    .alignItems(HorizontalAlign.Start);
   }
 
   build() {
@@ -208,7 +222,7 @@ export default struct IssueReporterDetail {
           isHiddenRight: true,
           isHiddenBack: false,
         })
-          .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) })
+          .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) });
 
         Scroll(this.scroller) {
           Column() {
@@ -217,27 +231,27 @@ export default struct IssueReporterDetail {
                 itemLabel: '问题单号:',
                 itemValue: this.issueId,
                 isBold: true,
-              })
+              });
               issueReportCardItem({
                 itemLabel: '问题概率:',
                 itemValue: this.probabilityDesc,
-              })
+              });
               issueReportCardItem({
                 itemLabel: '问题类型:',
                 itemValue: this.issueType,
-              })
+              });
               issueReportCardItem({
                 itemLabel: '创建时间:',
                 itemValue: this.faultTime,
-              })
+              });
               issueReportCardItem({
                 itemLabel: '问题描述:',
                 itemValue: this.description,
                 isDecItem: true
-              })
+              });
             }
             .backgroundColor($r('app.color.global_default_background'))
-            .borderRadius(10)
+            .borderRadius(10);
 
             issueAttachment({
               thumbnails: this.attachment,
@@ -245,44 +259,44 @@ export default struct IssueReporterDetail {
               canEdit: false,
               previewImageIndex: this.previewImageIndex,
               titleBuilderParam: this.attachmentTitle,
-            })
+            });
 
-            issueReportHistory({ issueHistory: this.issueHistory })
-          }
+            issueReportHistory({ issueHistory: this.issueHistory });
+          };
         }
         .width('100%')
         .layoutWeight(1)
         .scrollBar(BarState.Off)
         .align(Alignment.Top)
-        .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449), top: vpChangeLpx(41) })
+        .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449), top: vpChangeLpx(41) });
       }
       .width('100%')
       .height('100%')
-      .backgroundColor($r('app.color.global_default_background'))
+      .backgroundColor($r('app.color.global_default_background'));
 
       if (this.previewImage) {
         ImagePreViewDialog({
           attachment: this.attachment,
           previewImage: this.previewImage,
           previewImageIndex: this.previewImageIndex
-        })
+        });
       }
     }
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.global_default_background'))
     .onKeyEvent((event) => {
-      console.log('TextPickerDialog:onChange()' + 'onKeyEvent 3')
+      console.log('TextPickerDialog:onChange()' + 'onKeyEvent 3');
       if (event.keyCode == KeyCode.KEYCODE_ESCAPE) {
-        router.back()
+        router.back();
       }
     })
     .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
       if (isVisible && currentRatio >= 1.0) {
         setTimeout(() => {
           this.tabClick();
-        }, TIME_INT_VIS)
+        }, TIME_INT_VIS);
       }
-    })
+    });
   }
 }

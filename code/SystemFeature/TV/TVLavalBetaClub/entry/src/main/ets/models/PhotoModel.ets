@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,9 +15,9 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
 
-export const CACHE_ALBUM_MIN_WIDTH = 1920
+export const CACHE_ALBUM_MIN_WIDTH = 1920;
 
-export const DEFAULT_ALBUM_WIDTH = 640
+export const DEFAULT_ALBUM_WIDTH = 640;
 
 @Observed
 export class PhotoModel {
@@ -31,7 +31,7 @@ export class PhotoModel {
   public imageUri?: string;
   public width?: number;
   public height?: number;
-  public photoAsset?: photoAccessHelper.PhotoAsset
+  public photoAsset?: photoAccessHelper.PhotoAsset;
 
   constructor() {
   }
@@ -39,10 +39,10 @@ export class PhotoModel {
 
 @Observed
 export class AlbumModel {
-  public type: AlbumType
-  public name: ResourceStr = ''
-  public count: number = 0
-  public cover?: PixelMap | ResourceStr | DrawableDescriptor
+  public type: AlbumType;
+  public name: ResourceStr = '';
+  public count: number = 0;
+  public cover?: PixelMap | ResourceStr | DrawableDescriptor;
 
   constructor(type: AlbumType, name: ResourceStr) {
     this.type = type;
@@ -52,14 +52,14 @@ export class AlbumModel {
 
 @Observed
 export class PhotoGroupModel {
-  public createTime: number = 0
-  public photoList: PhotoModel[] = []
+  public createTime: number = 0;
+  public photoList: PhotoModel[] = [];
 }
 
 export class PhotoPosition {
-  public groupIndex: number = 0
-  public rowIndex: number = 0
-  public columIndex: number = 0
+  public groupIndex: number = 0;
+  public rowIndex: number = 0;
+  public columIndex: number = 0;
 
   constructor(groupIndex: number, rowIndex: number, columIndex: number) {
     this.groupIndex = groupIndex;
@@ -118,28 +118,28 @@ class BasicDataSource<T> implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处添加子组件
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处删除该子组件
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 }
 

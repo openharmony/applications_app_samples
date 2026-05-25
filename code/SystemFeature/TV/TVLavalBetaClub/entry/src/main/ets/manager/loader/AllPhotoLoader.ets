@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,27 +18,27 @@ import { getAllMediaItems, USE_TASK } from './MediaTasks';
 import { preferences } from '@kit.ArkData';
 import LogManager from '../../common/Log/LogManager';
 
-const TAG = 'PHOTOM_AllPhotoLoader'
-const PREF_FILE_NAME = 'preferences_album'
-const PRESET_STATE = 'preset_state'
+const TAG = 'PHOTOM_AllPhotoLoader';
+const PREF_FILE_NAME = 'preferences_album';
+const PRESET_STATE = 'preset_state';
 
 export class AllPhotoLoader extends BasePhotoLoader {
   getTag(): string {
-    return TAG
+    return TAG;
   }
 
   getAlbumModel(): AlbumModel {
-    return new AlbumModel(AlbumType.ALL, $r('app.string.selected_picture'))
+    return new AlbumModel(AlbumType.ALL, $r('app.string.selected_picture'));
   }
 
   // 获取所有照片和视频
   async getMediaItems(context: Context): Promise<PhotoModel[]> {
-    LogManager.hilogIWithTag(this.getTag(),'getMediaItems = ' + JSON.stringify(context))
+    LogManager.hilogIWithTag(this.getTag(), 'getMediaItems = ' + JSON.stringify(context));
     if (USE_TASK) {
-      let fileAssets = await getAllMediaItems(TAG, context)
-      return fileAssets
+      let fileAssets = await getAllMediaItems(TAG, context);
+      return fileAssets;
     } else {
-      return await getAllMediaItems(TAG, context)
+      return await getAllMediaItems(TAG, context);
     }
   }
 }

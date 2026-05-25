@@ -5,7 +5,7 @@
     "pages/IssueReporter/IssueReporterAdd",
     "pages/IssueReporter/IssueReporterDetail",
     "pages/Security/SecurityHome",
-    "pages/IssueReporter/attachmentVideoView",
+    "pages/IssueReporter/AttachmentVideoView",
     "pages/IssueReporter/views/IssueReporterList",
     "pages/IssueReporter/UseIntroduction"
   ],

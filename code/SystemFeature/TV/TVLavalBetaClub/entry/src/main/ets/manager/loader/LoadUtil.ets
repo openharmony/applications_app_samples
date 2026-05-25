@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import fileUtil from '../utils/FileUtils';
 import { loadImageThumb, loadVideoThumb } from '../VideoThumbLoader';
 import LogManager from '../../common/Log/LogManager';
 
-const TAG = 'PHOTOM_loadUtil'
+const TAG = 'PHOTOM_loadUtil';
 
 export const PHOTO_FETCH_COLUMNS = [photoAccessHelper.PhotoKeys.URI, photoAccessHelper.PhotoKeys.PHOTO_TYPE,
   photoAccessHelper.PhotoKeys.DISPLAY_NAME, photoAccessHelper.PhotoKeys.DURATION,
@@ -29,12 +29,12 @@ export function fileModelsEquals(models1: PhotoModel[], models2: PhotoModel[]): 
   if (models1.length === models2.length) {
     for (let i = 0; i < models1.length; i++) {
       if (models1[i].uri !== models2[i].uri) {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 
 }
@@ -42,71 +42,71 @@ export function fileModelsEquals(models1: PhotoModel[], models2: PhotoModel[]): 
 export function delay(millSeconds: number): Promise<void> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve()
-    }, millSeconds)
-  })
+      resolve();
+    }, millSeconds);
+  });
 }
 
 
 export async function getThumbByUri(context: Context, photoModel: PhotoModel, tag: string): Promise<string> {
-  LogManager.hilogIWithTag(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + ' from ' + tag)
-  const thumbPath = await getSavedThumbPath(context, photoModel.uri)
+  LogManager.hilogIWithTag(TAG, 'getThumb by uri = ' + JSON.stringify(photoModel) + ' from ' + tag);
+  const thumbPath = await getSavedThumbPath(context, photoModel.uri);
   if (thumbPath) {
-    LogManager.hilogIWithTag(TAG, 'return on cached= ' + 'file://' + thumbPath)
-    return 'file://' + thumbPath
+    LogManager.hilogIWithTag(TAG, 'return on cached= ' + 'file://' + thumbPath);
+    return 'file://' + thumbPath;
   } else {
     if (photoModel.photoType === photoAccessHelper.PhotoType.IMAGE) {
       if (photoModel.width === undefined || photoModel.width <= CACHE_ALBUM_MIN_WIDTH) {
-        LogManager.hilogIWithTag(TAG, 'return on image small= ' + photoModel.uri)
-        return photoModel.uri
+        LogManager.hilogIWithTag(TAG, 'return on image small= ' + photoModel.uri);
+        return photoModel.uri;
       } else {
         let result = await getImageThumb(context, photoModel.uri, photoModel.width ?? DEFAULT_ALBUM_WIDTH,
-          photoModel.height ?? DEFAULT_ALBUM_WIDTH)
-        LogManager.hilogIWithTag(TAG, 'return on image thumb = ' + result)
-        return result
+          photoModel.height ?? DEFAULT_ALBUM_WIDTH);
+        LogManager.hilogIWithTag(TAG, 'return on image thumb = ' + result);
+        return result;
       }
     } else {
       let result = await getVideoAlbum(context, photoModel.uri, photoModel.width ?? DEFAULT_ALBUM_WIDTH,
-        photoModel.height ?? DEFAULT_ALBUM_WIDTH)
-      LogManager.hilogIWithTag(TAG, 'return on video thumb = ' + result)
-      return result
+        photoModel.height ?? DEFAULT_ALBUM_WIDTH);
+      LogManager.hilogIWithTag(TAG, 'return on video thumb = ' + result);
+      return result;
     }
   }
 }
 
 
 async function getSavedThumbPath(context: Context, uri: string): Promise<string | undefined> {
-  const cacheDir = await fileUtil.getCacheDir(context)
-  const imageName = fileUtil.getLocalFilePathByUri(uri)
-  const localPath = cacheDir + imageName
-  const thumbExist = await fileUtil.fileExist(localPath)
+  const cacheDir = await fileUtil.getCacheDir(context);
+  const imageName = fileUtil.getLocalFilePathByUri(uri);
+  const localPath = cacheDir + imageName;
+  const thumbExist = await fileUtil.fileExist(localPath);
   if (thumbExist) {
-    return localPath
+    return localPath;
   } else {
-    return undefined
+    return undefined;
   }
 }
 
 async function getImageThumb(context: Context, uri: string, width: number,
   height: number): Promise<string> {
-  LogManager.hilogIWithTag(TAG, 'getImageThumb = ' + uri)
-  const widthScale = width / DEFAULT_ALBUM_WIDTH
-  const heightScale = height / DEFAULT_ALBUM_WIDTH
-  const scale = widthScale < heightScale ? widthScale : heightScale
-  const thumbWidth = width / scale
-  const thumbHeight = height / scale
-  const result = await loadImageThumb(context, uri, thumbWidth, thumbHeight)
-  return 'file://' + (result as string)
+  LogManager.hilogIWithTag(TAG, 'getImageThumb = ' + uri);
+  const widthScale = width / DEFAULT_ALBUM_WIDTH;
+  const heightScale = height / DEFAULT_ALBUM_WIDTH;
+  const scale = widthScale < heightScale ? widthScale : heightScale;
+  const thumbWidth = width / scale;
+  const thumbHeight = height / scale;
+  const result = await loadImageThumb(context, uri, thumbWidth, thumbHeight);
+  return 'file://' + (result as string);
 }
 
 async function getVideoAlbum(context: Context, uri: string, width: number,
   height: number): Promise<string> {
-  const widthScale = width / DEFAULT_ALBUM_WIDTH
-  const heightScale = height / DEFAULT_ALBUM_WIDTH
-  const scale = widthScale < heightScale ? widthScale : heightScale
-  const thumbWidth = width / scale
-  const thumbHeight = height / scale
+  const widthScale = width / DEFAULT_ALBUM_WIDTH;
+  const heightScale = height / DEFAULT_ALBUM_WIDTH;
+  const scale = widthScale < heightScale ? widthScale : heightScale;
+  const thumbWidth = width / scale;
+  const thumbHeight = height / scale;
 
-  const result = await loadVideoThumb(context, uri, thumbWidth, thumbHeight)
-  return 'file://' + (result as string)
+  const result = await loadVideoThumb(context, uri, thumbWidth, thumbHeight);
+  return 'file://' + (result as string);
 }

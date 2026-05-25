@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,16 +21,16 @@ import LogManager from '../common/Log/LogManager';
 @Concurrent
 export async function loadVideoThumb(context: Context, uri: string, thumbWidth: number,
   thumbHeight: number): Promise<string> {
-  const TAG = 'PHOTOM_loadVideoThumb'
-  LogManager.hilogIWithTag(TAG, 'loadVideoThumb task start')
-  const startTime = Date.now()
-  let cacheDir = await fileUtil.getCacheDir(context)
-  let imageName = fileUtil.getLocalFilePathByUri(uri)
-  let localPath = cacheDir + imageName
-  let thumbExist = await fileUtil.fileExist(localPath)
-  LogManager.hilogIWithTag(TAG, `path = ${localPath} exist = ${thumbExist}`)
+  const TAG = 'PHOTOM_loadVideoThumb';
+  LogManager.hilogIWithTag(TAG, 'loadVideoThumb task start');
+  const startTime = Date.now();
+  let cacheDir = await fileUtil.getCacheDir(context);
+  let imageName = fileUtil.getLocalFilePathByUri(uri);
+  let localPath = cacheDir + imageName;
+  let thumbExist = await fileUtil.fileExist(localPath);
+  LogManager.hilogIWithTag(TAG, `path = ${localPath} exist = ${thumbExist}`);
   if (thumbExist) {
-    return localPath
+    return localPath;
   }
 
   let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -39,16 +39,16 @@ export async function loadVideoThumb(context: Context, uri: string, thumbWidth: 
   try {
     videoFile = fileIo.openSync(uri);
     avImageGenerator = await media.createAVImageGenerator();
-    avImageGenerator.fdSrc = videoFile
-    let timeUs: number = 0
-    let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+    avImageGenerator.fdSrc = videoFile;
+    let timeUs: number = 0;
+    let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
     let param: media.PixelMapParams = {
       width: thumbWidth,
       height: thumbHeight,
-    }
-    thumbnail = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param)
+    };
+    thumbnail = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
   } catch (err) {
-    LogManager.hilogEWithTag(TAG, `createVideoThumbnail is failed, err = ${JSON.stringify(err)}`)
+    LogManager.hilogEWithTag(TAG, `createVideoThumbnail is failed, err = ${JSON.stringify(err)}`);
   } finally {
     if (avImageGenerator) {
       avImageGenerator.release();
@@ -57,29 +57,29 @@ export async function loadVideoThumb(context: Context, uri: string, thumbWidth: 
       fileIo.closeSync(videoFile);
     }
     if (thumbnail) {
-      LogManager.hilogIWithTag(TAG, `do save`)
-      await fileUtil.savePixelMap(thumbnail, localPath)
+      LogManager.hilogIWithTag(TAG, `do save`);
+      await fileUtil.savePixelMap(thumbnail, localPath);
     } else {
-      localPath = ''
+      localPath = '';
     }
-    LogManager.hilogIWithTag(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime))
+    LogManager.hilogIWithTag(TAG, 'loadVideoThumb task end =' + (Date.now() - startTime));
   }
-  return localPath
+  return localPath;
 }
 
 @Concurrent
 export async function loadImageThumb(context: Context, uri: string, thumbWidth: number,
   thumbHeight: number): Promise<string> {
-  const TAG = 'PHOTOM_loadImageThumb'
-  LogManager.hilogIWithTag(TAG, 'loadImageThumb task start')
-  const startTime = Date.now()
-  let cacheDir = await fileUtil.getCacheDir(context)
-  let imageName = fileUtil.getLocalFilePathByUri(uri)
-  let localPath = cacheDir + imageName
-  let thumbExist = await fileUtil.fileExist(localPath)
-  LogManager.hilogIWithTag(TAG, `path = ${localPath} exist = ${thumbExist}`)
+  const TAG = 'PHOTOM_loadImageThumb';
+  LogManager.hilogIWithTag(TAG, 'loadImageThumb task start');
+  const startTime = Date.now();
+  let cacheDir = await fileUtil.getCacheDir(context);
+  let imageName = fileUtil.getLocalFilePathByUri(uri);
+  let localPath = cacheDir + imageName;
+  let thumbExist = await fileUtil.fileExist(localPath);
+  LogManager.hilogIWithTag(TAG, `path = ${localPath} exist = ${thumbExist}`);
   if (thumbExist) {
-    return localPath
+    return localPath;
   }
 
   const file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
@@ -89,15 +89,15 @@ export async function loadImageThumb(context: Context, uri: string, thumbWidth: 
     desiredSize: { height: thumbHeight, width: thumbWidth }
   };
   const thumbnail: PixelMap = await imageSource.createPixelMap(options);
-  fileIo.closeSync(file)
+  fileIo.closeSync(file);
 
   if (thumbnail) {
-    LogManager.hilogIWithTag(TAG, `do save`)
-    await fileUtil.savePixelMap(thumbnail, localPath)
+    LogManager.hilogIWithTag(TAG, `do save`);
+    await fileUtil.savePixelMap(thumbnail, localPath);
   } else {
-    throw new Error(`thumbnail create fail`)
+    throw new Error(`thumbnail create fail`);
   }
-  LogManager.hilogIWithTag(TAG, 'loadImageThumb task end' + (Date.now() - startTime))
-  return localPath
+  LogManager.hilogIWithTag(TAG, 'loadImageThumb task end' + (Date.now() - startTime));
+  return localPath;
 }
 

@@ -135,6 +135,10 @@
     {
       "name": "warning_net_prompt",
       "value": "上传失败,请检查网络是否可用"
+    },
+    {
+      "name": "Video_download_failed",
+      "value": "视频下载失败"
     }
   ]
 }

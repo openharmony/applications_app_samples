@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,41 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { image } from '@kit.ImageKit'
-import fileIo from '@ohos.file.fs'
-import LogManager from '../../common/Log/LogManager'
+import { image } from '@kit.ImageKit';
+import fileIo from '@ohos.file.fs';
+import LogManager from '../../common/Log/LogManager';
 
 
-const TAG = 'FileUtil'
-const DEFAULT_IMAGE_QUALITY = 100
+const TAG = 'FileUtil';
+const DEFAULT_IMAGE_QUALITY = 100;
 
 class FileUtil {
   async getCacheDir(context: Context): Promise<string> {
-    const cacheDir = context.cacheDir + '/videoCovers/'
+    const cacheDir = context.cacheDir + '/videoCovers/';
     try {
-      let exist = false
+      let exist = false;
       try {
-        let stat = await fileIo.stat(cacheDir)
-        exist = stat.isDirectory()
+        let stat = await fileIo.stat(cacheDir);
+        exist = stat.isDirectory();
       } catch (e) {
       }
       if (!exist) {
-        fileIo.mkdirSync(cacheDir)
+        fileIo.mkdirSync(cacheDir);
       }
     } catch (e) {
-      LogManager.hilogIWithTag(TAG,'getCache dir fail ' + JSON.stringify(e))
-      throw new Error('getCache dir fail ' + JSON.stringify(e))
+      LogManager.hilogIWithTag(TAG, 'getCache dir fail ' + JSON.stringify(e));
+      throw new Error('getCache dir fail ' + JSON.stringify(e));
     }
-    return cacheDir
+    return cacheDir;
   }
 
   getLocalFilePathByUri(uri: string): string {
-    let newName = uri.replace('file://', '').replaceAll('/', '_')
-    return newName + '.thumb'
+    let newName = uri.replace('file://', '').replaceAll('/', '_');
+    return newName + '.thumb';
   }
 
   fileExist(path: string): Promise<boolean> {
-    return fileIo.access(path)
+    return fileIo.access(path);
   }
 
   async savePixelMap(pixelMap: image.PixelMap, path: string): Promise<void> {
@@ -55,17 +55,17 @@ class FileUtil {
       // 设置编码格式为 PNG
       let options: image.PackingOption = { format: 'image/png', quality: DEFAULT_IMAGE_QUALITY };
       // 将 PixelMap 编码为指定格式
-      let imageArray = await imagePacker.packing(pixelMap, options)
+      let imageArray = await imagePacker.packing(pixelMap, options);
       let imageFile = await fileIo.open(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
       await fileIo.write(imageFile.fd, imageArray);
       await fileIo.close(imageFile.fd);
     } catch (e) {
-      LogManager.hilogIWithTag(TAG,'save pixel map fail ' + JSON.stringify(e))
-      throw new Error('save pixel map fail ' + JSON.stringify(e))
+      LogManager.hilogIWithTag(TAG, 'save pixel map fail ' + JSON.stringify(e));
+      throw new Error('save pixel map fail ' + JSON.stringify(e));
     }
   }
 }
 
-let fileUtil = new FileUtil()
+let fileUtil = new FileUtil();
 
-export default fileUtil
+export default fileUtil;

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import LogManager from '../../common/Log/LogManager';
 
-export const USE_TASK = true
+export const USE_TASK = true;
 
 @Concurrent
 export async function getAllMediaItems(tag: string, context: Context): Promise<PhotoModel[]> {
@@ -50,7 +50,7 @@ export async function getAllMediaItems(tag: string, context: Context): Promise<P
     } else {
       return 1;
     }
-  })
+  });
 
   LogManager.hilogIWithTag(tag, `getAllMediaItems end ` + fileAssets.length);
   return fileAssets;
@@ -72,7 +72,7 @@ export async function getSubTypeMediaItems(tag: string, context: Context,
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
     await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, subType);
   for (let i = 0; i < albumList.getCount(); i++) {
-    let album = await albumList.getObjectByPosition(i)
+    let album = await albumList.getObjectByPosition(i);
     photoFetchResult = await album.getAssets(photoFetchOptions);
     let fileAssetList = await photoFetchResult.getAllObjects();
     for (let photoAsset of fileAssetList) {

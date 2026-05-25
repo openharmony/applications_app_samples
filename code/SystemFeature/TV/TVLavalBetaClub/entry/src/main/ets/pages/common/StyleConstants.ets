@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,9 +18,9 @@ export enum SettingItemStyle {
   switch, // 开关
   valueChange, // 左右箭头改变值
   singleChoose, // 单选框
-  ip ,// ip设置
-  info,//仅显示选项信息
-  amplifying,//默认样式放大
+  ip, // ip设置
+  info, //仅显示选项信息
+  amplifying, //默认样式放大
   loading, //网络检测中的等待状态
   finished, //网络检测中的完成状态
   error, //网络检测中的条目错误状态
@@ -37,13 +37,13 @@ export enum CustomDialogContentStyle {
   titleContent, // 文字描述（带标题）
   input, // 输入框（不带标题）
   titleInput, // 输入框（带标题）
-  DatePicker,//自定义日期选择弹窗
-  TimePicker//自定义时间选择弹窗
+  DatePicker, //自定义日期选择弹窗
+  TimePicker //自定义时间选择弹窗
 }
 
 export class StyleConstants {
   public static readonly DEFAULT_BG_COLOR = '#ff262e3c';
   public static readonly DEFAULT_DIALOG_COLOR = '#323232';
   public static readonly DEFAULT_SETTING = '#404040';
-  public static readonly DEFAULT_BACKGROUND_IMAGE='/res/image/default_background.png'
+  public static readonly DEFAULT_BACKGROUND_IMAGE = '/res/image/default_background.png';
 }

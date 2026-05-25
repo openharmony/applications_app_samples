@@ -1,5 +1,19 @@
-import NavigationBar from '../common/NavigationBar'
-import IssueReporterDetailItem, { IssueReporterDetailItemType } from './views/IssueReporterDetailItem'
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import NavigationBar from '../common/NavigationBar';
+import IssueReporterDetailItem, { IssueReporterDetailItemType } from './views/IssueReporterDetailItem';
 import {
   Probability,
   Attachment,
@@ -12,21 +26,21 @@ import {
   vpChangeLpx,
   TIME_INT,
   PROMPT_TIME
-} from '../IssueReporter/models/IssueDetailInfo'
-import IssueDetailInfo from '../IssueReporter/models/IssueDetailInfo'
+} from '../IssueReporter/models/IssueDetailInfo';
+import IssueDetailInfo from '../IssueReporter/models/IssueDetailInfo';
 import promptAction from '@ohos.promptAction';
-import LogManager from '../../common/Log/LogManager'
-import NetworkManager from '../../common/Network/NetworkManager'
+import LogManager from '../../common/Log/LogManager';
+import NetworkManager from '../../common/Network/NetworkManager';
 import DeviceManager from '../../common/Device/DeviceManager';
-import UrlConstant from '../../common/Constants/UrlConstant'
+import UrlConstant from '../../common/Constants/UrlConstant';
 import fs from '@ohos.file.fs';
 import router from '@ohos.router';
 import KeyConstant from '../../common/Constants/KeyConstant';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { attachmentParams, initImageCollection } from '../common/utilImage';
-import KvManagerService from '../../common/kvManager/kvManagerService';
-import issueReportSelectItem, { registerInputConsumer, unregisterInputConsumer } from './views/issueReportSelectItem'
-import issueAttachment, { PhotoModel } from './views/issueAttachment'
+import { attachmentParams, initImageCollection } from '../common/UtilImage';
+import KvManagerService from '../../common/kvManager/KvManagerService';
+import issueReportSelectItem, { registerInputConsumer, unregisterInputConsumer } from './views/IssueReportSelectItem';
+import issueAttachment, { PhotoModel } from './views/IssueAttachment';
 import { zlib } from '@kit.BasicServicesKit';
 import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
@@ -38,196 +52,197 @@ import { bundleManager } from '@kit.AbilityKit';
 import { PointerUtil } from '../../common/Utils/PointerUtil';
 import { EventUtil } from '../common/EventUtil';
 
-const TAG = 'IssueReporterAdd'
+const TAG = 'IssueReporterAdd';
 
 class SubmitInfo {
-  public issueId: string = '' // 问题单id
-  public devid: string = '' // 设备id
-  public faultTime: string = '' // 故障时间
-  public probability: string = '' // 问题概率
-  public description: string = '' // 问题描述
-  public logs: string = '' // 日志
-  public phone?: string = '' // 手机
-  public attachment?: Attachment[] = [] // 附件
-  public phoneModel?: string = '' // 手机型号
-  public softwareVersion?: string = '' // 软件版本
-  public type: string = '' // 问题类型
+  public issueId: string = ''; // 问题单id
+  public devid: string = ''; // 设备id
+  public faultTime: string = ''; // 故障时间
+  public probability: string = ''; // 问题概率
+  public description: string = ''; // 问题描述
+  public logs: string = ''; // 日志
+  public phone?: string = ''; // 手机
+  public attachment?: Attachment[] = []; // 附件
+  public phoneModel?: string = ''; // 手机型号
+  public softwareVersion?: string = ''; // 软件版本
+  public type: string = ''; // 问题类型
 }
 
-const BYTE_TO_MB: number = 1024 * 1024
-const sourceToolMouseClick: number = 7
+const BYTE_TO_MB: number = 1024 * 1024;
+const sourceToolMouseClick: number = 7;
 
 @Entry
 @Component
 export default struct IssueReporterAdd {
-  context = getContext(this) as Context
-  scroller: Scroller = new Scroller()
-  private probabilitys: Probability[] = []
-  private probabilityStrs: string[] = []
-  @State faultTime: string = ''
-  @State probability: string = ''
-  @State probabilityDesc: string = ''
-  @State description: string = ''
-  private photoInfos: PhotoModel[] = []
-  private photoAtts: Attachment[] = []
-  private logAtt: Attachment = new Attachment()
-  @State private isShowLoading: boolean = false
-  private isManualBack: boolean = true // 物理back是否可用
-  private timeStamp: number = 0
-  private attachment: Attachment[] = []
-  private logChange: boolean = false
-  private attachmentChange: boolean = false
-  @State private attachmentType: IssueReporterDetailItemType = IssueReporterDetailItemType.attachment
-  private hasLogTar: boolean = false
-  textAreaController: TextAreaController = new TextAreaController()
+  context = getContext(this) as Context;
+  scroller: Scroller = new Scroller();
+  private probabilitys: Probability[] = [];
+  private probabilityStrs: string[] = [];
+  @State faultTime: string = '';
+  @State probability: string = '';
+  @State probabilityDesc: string = '';
+  @State description: string = '';
+  private photoInfos: PhotoModel[] = [];
+  private photoAtts: Attachment[] = [];
+  private logAtt: Attachment = new Attachment();
+  @State private isShowLoading: boolean = false;
+  private isManualBack: boolean = true; // 物理back是否可用
+  private timeStamp: number = 0;
+  private attachment: Attachment[] = [];
+  private logChange: boolean = false;
+  private attachmentChange: boolean = false;
+  @State private attachmentType: IssueReporterDetailItemType = IssueReporterDetailItemType.attachment;
+  private hasLogTar: boolean = false;
+  textAreaController: TextAreaController = new TextAreaController();
   inputController: inputMethod.InputMethodController | null = inputMethod.getController();
-  @State previewImage: boolean = false
-  @State previewImageIndex: number = 0
-  @State issueType: string = ''
-  @State isResubmit: boolean = false
-  @State issueId: string = ''
-  private allSize = 0
-  @State newCachesBase: IssueDetailInfo[] = []
+  @State previewImage: boolean = false;
+  @State previewImageIndex: number = 0;
+  @State issueType: string = '';
+  @State isResubmit: boolean = false;
+  @State issueId: string = '';
+  private allSize = 0;
+  @State newCachesBase: IssueDetailInfo[] = [];
   private dataPreferences: preferences.Preferences =
     preferences.getPreferencesSync(getContext(this), { name: 'myStore' });
-  @State flag: boolean = false
-  @State isFocusInput: boolean = false
-  @State isFocusUpload: boolean = false
-  @State isFocusSubmit: boolean = false
-  private numberCharacters: number = 1023
+  @State flag: boolean = false;
+  @State isFocusInput: boolean = false;
+  @State isFocusUpload: boolean = false;
+  @State isFocusSubmit: boolean = false;
+  private numberCharacters: number = 1023;
   isSelectPhotoFunc: () => void = () => {
-  }
+  };
   @StorageLink('issueReportTime') issueReportTime: string = '';
   @StorageLink('issueReportDate') issueReportDate: string = '';
   @State focus_: boolean = false; //解决6320该页面在输入需求描述区域无法正常上下  false代表下键 true代表上
   focusController = this.getUIContext().getFocusController();
-  issueAttachmentFocusKey: string = 'FocusUpload'
+  issueAttachmentFocusKey: string = 'FocusUpload';
   private lastHoverTime: number = 0;
   private readonly THROTTLE_DELAY: number = 500; // 500ms内只执行一次
 
   onBackPress() {
-    return !this.isManualBack
+    return !this.isManualBack;
   }
 
   onPageShow() {
-    this.issueReportTime = ''
-    this.issueReportDate = ''
+    this.issueReportTime = '';
+    this.issueReportDate = '';
   }
 
   async aboutToAppear() {
-    let probability0 = new Probability()
-    probability0.id = '0'
+    let probability0 = new Probability();
+    probability0.id = '0';
 
-    let probability1 = new Probability()
-    probability1.id = '1'
+    let probability1 = new Probability();
+    probability1.id = '1';
 
-    let probability2 = new Probability()
-    probability2.id = '2'
+    let probability2 = new Probability();
+    probability2.id = '2';
 
-    let probability3 = new Probability()
-    probability3.id = '3'
+    let probability3 = new Probability();
+    probability3.id = '3';
 
-    this.probabilitys.push(probability3, probability2, probability1, probability0)
+    this.probabilitys.push(probability3, probability2, probability1, probability0);
 
     for (let index = 0; index < this.probabilitys.length; index++) {
-      this.probabilityStrs.push(this.probabilitys[index].des)
+      this.probabilityStrs.push(this.probabilitys[index].des);
     }
 
-    this.setIssueInfo()
+    this.setIssueInfo();
 
-    this.inputController = inputMethod.getController()
+    this.inputController = inputMethod.getController();
   }
 
   setIssueInfo() {
-    let params = router.getParams() as IssueDetailInfo
-    LogManager.hilogIWithTag(TAG, `setIssueInfo, info: ${JSON.stringify(params)}`)
+    let params = router.getParams() as IssueDetailInfo;
+    LogManager.hilogIWithTag(TAG, `setIssueInfo, info: ${JSON.stringify(params)}`);
 
     if (params) {
-      this.isResubmit = true
-      this.faultTime = params.faultTime
-      this.probability = params.probability
-      this.probabilityDesc = params.probabilityDesc
-      this.description = params.description
-      this.timeStamp = params.timeStamp || 0
-      this.logAtt = new Attachment()
-      this.logAtt.url = params.logs || ''
-      this.attachment = params.attachment || []
+      this.isResubmit = true;
+      this.faultTime = params.faultTime;
+      this.probability = params.probability;
+      this.probabilityDesc = params.probabilityDesc;
+      this.description = params.description;
+      this.timeStamp = params.timeStamp || 0;
+      this.logAtt = new Attachment();
+      this.logAtt.url = params.logs || '';
+      this.attachment = params.attachment || [];
       this.attachmentType =
-        this.attachment?.length ? IssueReporterDetailItemType.attachmentDisplay : IssueReporterDetailItemType.attachment
-      this.hasLogTar = params.hasLogTar || false
-      this.issueType = params.type || ''
+        this.attachment?.length ? IssueReporterDetailItemType.attachmentDisplay :
+        IssueReporterDetailItemType.attachment;
+      this.hasLogTar = params.hasLogTar || false;
+      this.issueType = params.type || '';
     }
   }
 
   private async submit() {
-    this.isManualBack = false
+    this.isManualBack = false;
     if (this.issueReportDate && this.issueReportTime) {
-      this.faultTime = this.issueReportDate + ' ' + this.issueReportTime
+      this.faultTime = this.issueReportDate + ' ' + this.issueReportTime;
     }
     if (this.faultTime.length == 0) {
-      this.isManualBack = true
+      this.isManualBack = true;
 
       promptAction.showToast({
         message: '请选择故障时间'
-      })
-      return
+      });
+      return;
     }
-    LogManager.hilogIWithTag(TAG, `submit, faultTime: ${JSON.stringify(this.faultTime)}`)
+    LogManager.hilogIWithTag(TAG, `submit, faultTime: ${JSON.stringify(this.faultTime)}`);
 
     if (this.probability.length == 0) {
-      this.isManualBack = true
+      this.isManualBack = true;
 
       promptAction.showToast({
         message: '请选择问题概率'
-      })
-      return
+      });
+      return;
     }
-    LogManager.hilogIWithTag(TAG, `submit, probability: ${JSON.stringify(this.probability)}`)
+    LogManager.hilogIWithTag(TAG, `submit, probability: ${JSON.stringify(this.probability)}`);
 
     if (this.description.length == 0) {
-      this.isManualBack = true
+      this.isManualBack = true;
 
       promptAction.showToast({
         message: '请填写问题描述'
-      })
-      return
+      });
+      return;
     }
-    LogManager.hilogIWithTag(TAG, `submit, description: ${JSON.stringify(this.description)}`)
+    LogManager.hilogIWithTag(TAG, `submit, description: ${JSON.stringify(this.description)}`);
 
     if (this.issueType.length == 0) {
-      this.isManualBack = true
+      this.isManualBack = true;
 
       promptAction.showToast({
         message: '请选择问题类型'
-      })
-      return
+      });
+      return;
     }
-    LogManager.hilogIWithTag(TAG, `submit, description: ${JSON.stringify(this.issueType)}`)
+    LogManager.hilogIWithTag(TAG, `submit, description: ${JSON.stringify(this.issueType)}`);
 
     if (!this.timeStamp) {
-      this.timeStamp = new Date().getTime()
+      this.timeStamp = new Date().getTime();
     }
 
     if (this.allSize / BYTE_TO_MB > 100) {
       promptAction.showToast({
         message: '附件大小不能超过100M'
-      })
-      return
+      });
+      return;
     }
-    this.issueInfoCache('5', false, false)
-    router.back()
+    this.issueInfoCache('5', false, false);
+    router.back();
 
     // 增加蒙版
-    this.isShowLoading = true
+    this.isShowLoading = true;
 
     if (this.photoInfos.length > 0 && this.attachmentChange) {
       // 每次上传前都清空所有文件和配置
-      this.photoAtts = []
-      this.deleteFiles(KeyConstant.UPLOAD_ATTACHMENT_PATH_FOLDER)
+      this.photoAtts = [];
+      this.deleteFiles(KeyConstant.UPLOAD_ATTACHMENT_PATH_FOLDER);
 
-      this.uploadAttachment()
+      this.uploadAttachment();
     } else {
-      this.submitLogs()
+      this.submitLogs();
     }
   }
 
@@ -245,7 +260,7 @@ export default struct IssueReporterAdd {
   issueInfoCache(status: string, isDelete: Boolean = false, hasAttachment: Boolean = true) {
 
     let allCache: IssueDetailInfo[] = AppStorage.get('issueInfoCaches') || [];
-    LogManager.hilogIWithTag(TAG, `issueInfoCache, ${JSON.stringify(allCache)}`)
+    LogManager.hilogIWithTag(TAG, `issueInfoCache, ${JSON.stringify(allCache)}`);
 
     let submitInfo: IssueDetailInfo = {
       issueId: this.issueId,
@@ -261,62 +276,62 @@ export default struct IssueReporterAdd {
       hasLogTar: this.hasLogTar,
       attachment: this.attachment,
       type: this.issueType
-    }
+    };
 
     if (hasAttachment && this.photoInfos?.length) {
-      submitInfo.attachment = attachmentParams()
+      submitInfo.attachment = attachmentParams();
     }
 
-    let newCaches: IssueDetailInfo[] = []
+    let newCaches: IssueDetailInfo[] = [];
     if (allCache && allCache.length) {
       if (isDelete) {
-        newCaches = allCache.filter((item: IssueDetailInfo) => item.timeStamp !== submitInfo.timeStamp)
+        newCaches = allCache.filter((item: IssueDetailInfo) => item.timeStamp !== submitInfo.timeStamp);
       } else {
-        let hasInfo: boolean = false
+        let hasInfo: boolean = false;
         newCaches = allCache.map((item: IssueDetailInfo) => {
           if (item.timeStamp === submitInfo.timeStamp) {
-            hasInfo = true
-            return submitInfo
+            hasInfo = true;
+            return submitInfo;
           } else {
-            return item
+            return item;
           }
-        })
+        });
 
         if (!hasInfo) {
-          newCaches.unshift(submitInfo)
+          newCaches.unshift(submitInfo);
         }
 
       }
     } else {
-      newCaches.push(submitInfo)
+      newCaches.push(submitInfo);
     }
-    LogManager.hilogIWithTag(TAG, `issueInfoCache-newCaches, ${JSON.stringify(newCaches)}`)
-    AppStorage.setOrCreate('issueInfoCaches', newCaches)
-    KvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(newCaches))
+    LogManager.hilogIWithTag(TAG, `issueInfoCache-newCaches, ${JSON.stringify(newCaches)}`);
+    AppStorage.setOrCreate('issueInfoCaches', newCaches);
+    KvManagerService.putValue(KeyConstant.KV_ISSUE_KEY, JSON.stringify(newCaches));
   }
 
   private async uploadAttachment() {
     let allPromise: Promise<boolean>[] = [];
     for (let index = 0; index < this.photoInfos.length; index++) {
-      let photoInfo = this.photoInfos[index]
+      let photoInfo = this.photoInfos[index];
       let file = fileIo.openSync(photoInfo.uri);
-      let photoFd = file.fd
+      let photoFd = file.fd;
       fs.copyFileSync(photoFd,
-        this.context.cacheDir + '/' + KeyConstant.UPLOAD_ATTACHMENT_PATH_FOLDER + '/' + photoInfo.displayName)
-      let photoNameArr = photoInfo.displayName.split('.')
-      let photoType = photoNameArr[photoNameArr.length - 1]
+        this.context.cacheDir + '/' + KeyConstant.UPLOAD_ATTACHMENT_PATH_FOLDER + '/' + photoInfo.displayName);
+      let photoNameArr = photoInfo.displayName.split('.');
+      let photoType = photoNameArr[photoNameArr.length - 1];
 
-      let curFileType: string = 'image'
+      let curFileType: string = 'image';
       switch (photoInfo.photoType) {
         case photoAccessHelper.PhotoType.IMAGE: {
-          curFileType = 'image'
+          curFileType = 'image';
         }
-          break
+          break;
 
         case photoAccessHelper.PhotoType.VIDEO: {
-          curFileType = 'video'
+          curFileType = 'video';
         }
-          break
+          break;
       }
 
       const promise = new Promise<boolean>((resolve, reject) => {
@@ -324,44 +339,44 @@ export default struct IssueReporterAdd {
           .upload(this.issueId, this.context, UrlConstant.UPLOAD_FILE, KeyConstant.UPLOAD_ATTACHMENT_PATH_FOLDER + '/',
             photoInfo.displayName, photoType, curFileType, (uploadErr, uploadResult) => {
               LogManager.hilogIWithTag(TAG,
-                `submit upload, err: ${JSON.stringify(uploadErr)}, result: ${JSON.stringify(uploadResult)}`)
+                `submit upload, err: ${JSON.stringify(uploadErr)}, result: ${JSON.stringify(uploadResult)}`);
 
               if (uploadErr || !uploadResult || !uploadResult['body']) {
-                LogManager.hilogIWithTag(TAG, `submit upload fail`)
-                reject(false)
+                LogManager.hilogIWithTag(TAG, `submit upload fail`);
+                reject(false);
               } else {
-                let photoAtt: Attachment = (uploadResult['body'] as UploadBody).data
+                let photoAtt: Attachment = (uploadResult['body'] as UploadBody).data;
                 if (!photoAtt) {
-                  reject(false)
+                  reject(false);
                 } else {
-                  photoAtt.type = curFileType
+                  photoAtt.type = curFileType;
 
-                  LogManager.hilogIWithTag(TAG, `submit upload, photoAtt: ${JSON.stringify(photoAtt)}`)
-                  this.photoAtts.push(photoAtt)
-                  resolve(true)
+                  LogManager.hilogIWithTag(TAG, `submit upload, photoAtt: ${JSON.stringify(photoAtt)}`);
+                  this.photoAtts.push(photoAtt);
+                  resolve(true);
                 }
 
               }
-            })
-      })
-      allPromise.push(promise)
+            });
+      });
+      allPromise.push(promise);
     }
     Promise.allSettled(allPromise).then((res: PromiseSettledResult<boolean>[]) => {
-      LogManager.hilogIWithTag(TAG, `PromiseSettledResult, res: ${JSON.stringify(res)}`)
-      this.issueInfoCache('5')
-      this.submitLogs()
-    })
+      LogManager.hilogIWithTag(TAG, `PromiseSettledResult, res: ${JSON.stringify(res)}`);
+      this.issueInfoCache('5');
+      this.submitLogs();
+    });
   }
 
   private async submitLogs() {
     if (!this.logChange) {
       if (this.logAtt.url) {
-        this.submitIssue()
-        return
+        this.submitIssue();
+        return;
       }
       if (this.hasLogTar) {
-        this.uploadLogs(`${KeyConstant.CACHE_LOG_PATH_FOLDER}/`, `allLogs${this.timeStamp}.zip`)
-        return
+        this.uploadLogs(`${KeyConstant.CACHE_LOG_PATH_FOLDER}/`, `allLogs${this.timeStamp}.zip`);
+        return;
       }
     }
 
@@ -369,28 +384,28 @@ export default struct IssueReporterAdd {
     LogManager.hilogIWithTag(TAG, `submitLogs uid: ${uid}`);
     if (uid === undefined) {
       LogManager.hilogIWithTag(TAG, `submitLogs error uid is undefined`);
-      this.issueInfoCache('6')
+      this.issueInfoCache('6');
       return;
     }
 
-    let typeIndex = issueTypeList.indexOf(this.issueType)
-    const type = typeIndex > -1 ? typeIndex : 0
+    let typeIndex = issueTypeList.indexOf(this.issueType);
+    const type = typeIndex > -1 ? typeIndex : 0;
     // 获取日志
     try {
-      let srcPathHilog = KeyConstant.SANDBOX_MAP + '/hilog'
-      let srcPathFaultLog = KeyConstant.SANDBOX_MAP + '/faultlog'
-      let dstPath = this.context.cacheDir + '/' + KeyConstant.CACHE_LOG_PATH_FOLDER
+      let srcPathHilog = KeyConstant.SANDBOX_MAP + '/hilog';
+      let srcPathFaultLog = KeyConstant.SANDBOX_MAP + '/faultlog';
+      let dstPath = this.context.cacheDir + '/' + KeyConstant.CACHE_LOG_PATH_FOLDER;
       let dstDirUriLocal: string = fileUri.getUriFromPath(dstPath);
       LogManager.hilogIWithTag(TAG, 'dstDirUriLocal ' + JSON.stringify(dstDirUriLocal));
       let srcLogUri: string = fileUri.getUriFromPath(srcPathHilog);
-      await fs.copy(srcLogUri, dstDirUriLocal)
+      await fs.copy(srcLogUri, dstDirUriLocal);
       let srcFaultLogUriLocal: string = fileUri.getUriFromPath(srcPathFaultLog);
-      await fs.copy(srcFaultLogUriLocal, dstDirUriLocal)
+      await fs.copy(srcFaultLogUriLocal, dstDirUriLocal);
       LogManager.hilogIWithTag(TAG, 'srcFaultLogUriLocal ' + JSON.stringify(srcFaultLogUriLocal));
 
-      let files: string[] = fs.listFileSync(dstPath + '/hilog')
+      let files: string[] = fs.listFileSync(dstPath + '/hilog');
       const gzFiles: string[] = files.filter(file => file.endsWith('.gz'));
-      let latestTimestamp = ''
+      let latestTimestamp = '';
       for (const file of gzFiles) {
         const timestamp = this.extractTimestamp(file);
         if (timestamp) {
@@ -399,22 +414,22 @@ export default struct IssueReporterAdd {
           }
         }
       }
-      let latestTimesFiles = this.filterFilesByTimestamp(gzFiles, latestTimestamp)
+      let latestTimesFiles = this.filterFilesByTimestamp(gzFiles, latestTimestamp);
       // 只保留最新的日志文件
       for (const file of files) {
         if (!latestTimesFiles.includes(file)) {
-          const filePath = dstPath + '/hilog' + '/' + file
+          const filePath = dstPath + '/hilog' + '/' + file;
           fs.unlinkSync(filePath);
           console.log(TAG, `已删除文件: ${filePath}`);
         }
       }
 
-      this.uploadLogs(`${KeyConstant.CACHE_LOG_PATH_FOLDER}/`, `allLogs${this.timeStamp}.zip`)
+      this.uploadLogs(`${KeyConstant.CACHE_LOG_PATH_FOLDER}/`, `allLogs${this.timeStamp}.zip`);
     } catch (err) {
       promptAction.showToast({
         message: '抓取日志失败'
-      })
-      this.issueInfoCache('6')
+      });
+      this.issueInfoCache('6');
       LogManager.hilogIWithTag(TAG, 'logCatcher.catchLog: ' + JSON.stringify(err));
     }
   }
@@ -476,16 +491,16 @@ export default struct IssueReporterAdd {
           }
         });
       });
-      LogManager.hilogIWithTag(TAG, `srcPath stst1: ${JSON.stringify(files)}`)
+      LogManager.hilogIWithTag(TAG, `srcPath stst1: ${JSON.stringify(files)}`);
       const reasonContentMap = new Map<string, string>();
 
       for (const file of files) {
-        const filePath: string = folderPath + '/' + file
-        LogManager.hilogIWithTag(TAG, `srcPath stst2: ${JSON.stringify(filePath)}`)
-        const content = fs.readTextSync(filePath)
-        LogManager.hilogIWithTag(TAG, `content: ${JSON.stringify(content)}`)
+        const filePath: string = folderPath + '/' + file;
+        LogManager.hilogIWithTag(TAG, `srcPath stst2: ${JSON.stringify(filePath)}`);
+        const content = fs.readTextSync(filePath);
+        LogManager.hilogIWithTag(TAG, `content: ${JSON.stringify(content)}`);
         const reasonContent = this.extractReasonContent(content);
-        LogManager.hilogIWithTag(TAG, `reasonContent: ${JSON.stringify(reasonContent)}`)
+        LogManager.hilogIWithTag(TAG, `reasonContent: ${JSON.stringify(reasonContent)}`);
         if (reasonContentMap.has(reasonContent) && reasonContent !== '') {
           // 如果 Reason: 后面的内容已经存在，则删除当前文件
           await this.deleteFile(filePath);
@@ -504,62 +519,62 @@ export default struct IssueReporterAdd {
   private async uploadLogs(folder: string, fileName: string) {
     // 上传日志
     if (!this.hasLogTar) {
-      this.hasLogTar = true
+      this.hasLogTar = true;
 
       // 将faultLog中的重复log进行去重
       const folderPath = `${this.context.cacheDir}/${KeyConstant.CACHE_LOG_PATH_FOLDER}/faultlog/`;
-      let logArrays: string[] = ['debug', 'faultlogger', 'temp']
+      let logArrays: string[] = ['debug', 'faultlogger', 'temp'];
       logArrays.forEach((item: string) => {
-        let path = folderPath + item
+        let path = folderPath + item;
         this.processFilesInFolder(path).then(() => {
-          LogManager.hilogIWithTag(TAG, `folderPath path: ${JSON.stringify(path)}`)
-        })
-      })
+          LogManager.hilogIWithTag(TAG, `folderPath path: ${JSON.stringify(path)}`);
+        });
+      });
       // 将所有log压缩保存
-      let path = `${this.context.cacheDir}/cache_logs`
-      let inFile = path + '/allLogs'
+      let path = `${this.context.cacheDir}/cache_logs`;
+      let inFile = path + '/allLogs';
       let outFile = path + '/' + fileName;
       let options: zlib.Options = {};
-      await zlib.compressFile(inFile, outFile, options)
+      await zlib.compressFile(inFile, outFile, options);
     }
     try {
       NetworkManager.shareInstance()
         .upload(this.issueId, this.context, UrlConstant.UPLOAD_FILE, 'cache_logs/', fileName, 'zip', 'zip',
           (uploadErr, uploadResult) => {
             LogManager.hilogIWithTag(TAG,
-              `submitRequest upload, err: ${JSON.stringify(uploadErr)}, result: ${JSON.stringify(uploadResult)}`)
+              `submitRequest upload, err: ${JSON.stringify(uploadErr)}, result: ${JSON.stringify(uploadResult)}`);
             if (uploadErr || !uploadResult!['body'] || uploadResult!['headers']['content-type'] == 'text/html') {
               promptAction.showToast({
                 message: $r('app.string.warning_net_prompt'),
                 duration: PROMPT_TIME
-              })
-              this.issueInfoCache('6')
-              return
+              });
+              this.issueInfoCache('6');
+              return;
             }
-            let logAtt: Attachment = (JSON.parse(uploadResult!['body']) as UploadBody).data
-            this.logAtt = logAtt
+            let logAtt: Attachment = (JSON.parse(uploadResult!['body']) as UploadBody).data;
+            this.logAtt = logAtt;
             if (this.hasLogTar) {
               try {
-                fs.rmdirSync(`${this.context.cacheDir}/${KeyConstant.CACHE_LOG_PATH_FOLDER}/hilog`)
-                fs.rmdirSync(`${this.context.cacheDir}/${KeyConstant.CACHE_LOG_PATH_FOLDER}/faultlog`)
-                fs.unlinkSync(`${this.context.cacheDir}/cache_logs/${fileName}`)
+                fs.rmdirSync(`${this.context.cacheDir}/${KeyConstant.CACHE_LOG_PATH_FOLDER}/hilog`);
+                fs.rmdirSync(`${this.context.cacheDir}/${KeyConstant.CACHE_LOG_PATH_FOLDER}/faultlog`);
+                fs.unlinkSync(`${this.context.cacheDir}/cache_logs/${fileName}`);
               } catch (e) {
-                LogManager.hilogIWithTag(TAG, `rmdirSync upload, error: ${JSON.stringify(e)}`)
+                LogManager.hilogIWithTag(TAG, `rmdirSync upload, error: ${JSON.stringify(e)}`);
               }
             }
 
-            LogManager.hilogIWithTag(TAG, `submitRequest upload, logAtt: ${JSON.stringify(logAtt)}`)
-            this.issueInfoCache('5')
-            this.submitIssue()
-          })
+            LogManager.hilogIWithTag(TAG, `submitRequest upload, logAtt: ${JSON.stringify(logAtt)}`);
+            this.issueInfoCache('5');
+            this.submitIssue();
+          });
     } catch (e) {
-      LogManager.hilogIWithTag(TAG, `submitRequest upload, error: ${JSON.stringify(e)}`)
+      LogManager.hilogIWithTag(TAG, `submitRequest upload, error: ${JSON.stringify(e)}`);
     }
   }
 
   private async submitIssue() {
-    let productModel: string = DeviceManager.shareInstance().getProductModel()
-    const bundleInfo = await bundleManager.getBundleInfoForSelf(0x00000000)
+    let productModel: string = DeviceManager.shareInstance().getProductModel();
+    const bundleInfo = await bundleManager.getBundleInfoForSelf(0x00000000);
     let submitInfo: SubmitInfo = {
       issueId: this.issueId,
       devid: DeviceManager.shareInstance().getUdid(),
@@ -570,66 +585,66 @@ export default struct IssueReporterAdd {
       description: this.description,
       logs: '',
       type: this.issueType,
-    }
-    LogManager.hilogIWithTag(TAG, `submitInfo.attachment 22: ${JSON.stringify(this.photoAtts)}`)
-    LogManager.hilogIWithTag(TAG, `submitInfo.attachment 22: ${JSON.stringify(this.attachment)}`)
+    };
+    LogManager.hilogIWithTag(TAG, `submitInfo.attachment 22: ${JSON.stringify(this.photoAtts)}`);
+    LogManager.hilogIWithTag(TAG, `submitInfo.attachment 22: ${JSON.stringify(this.attachment)}`);
     if (this.photoAtts.length > 0) {
-      submitInfo.attachment = attachmentParams()
-      LogManager.hilogIWithTag(TAG, `submitInfo.attachment 11: ${JSON.stringify(submitInfo)}`)
+      submitInfo.attachment = attachmentParams();
+      LogManager.hilogIWithTag(TAG, `submitInfo.attachment 11: ${JSON.stringify(submitInfo)}`);
     } else if (this.attachment?.length && !this.attachmentChange) {
-      LogManager.hilogIWithTag(TAG, `submitInfo.attachment ee: ${JSON.stringify(submitInfo)}`)
-      submitInfo.attachment = this.attachment
+      LogManager.hilogIWithTag(TAG, `submitInfo.attachment ee: ${JSON.stringify(submitInfo)}`);
+      submitInfo.attachment = this.attachment;
     }
 
     // 提单
     NetworkManager.shareInstance().request(UrlConstant.ISSUE_REPORT, submitInfo, (reporterErr, reportResult) => {
 
-      LogManager.hilogIWithTag(TAG, `submitParams: ${JSON.stringify(submitInfo)}`)
+      LogManager.hilogIWithTag(TAG, `submitParams: ${JSON.stringify(submitInfo)}`);
       LogManager.hilogIWithTag(TAG,
-        `submitRequest request, err: ${JSON.stringify(reporterErr)}, result: ${JSON.stringify(reportResult)}`)
+        `submitRequest request, err: ${JSON.stringify(reporterErr)}, result: ${JSON.stringify(reportResult)}`);
 
       // 取消蒙版
-      this.isShowLoading = false
+      this.isShowLoading = false;
       if (reporterErr) {
-        this.isManualBack = true
-        this.issueInfoCache('7')
+        this.isManualBack = true;
+        this.issueInfoCache('7');
         promptAction.showToast({
           message: '提单失败'
-        })
-        return
+        });
+        return;
       }
 
-      let code = reportResult.responseCode as number
-      LogManager.hilogIWithTag(TAG, `submitRequest request, code: ${JSON.stringify(code)}`)
+      let code = reportResult.responseCode as number;
+      LogManager.hilogIWithTag(TAG, `submitRequest request, code: ${JSON.stringify(code)}`);
 
       if (code != 200) {
-        this.isManualBack = true
-        this.issueInfoCache('7')
+        this.isManualBack = true;
+        this.issueInfoCache('7');
 
         promptAction.showToast({
           message: '提单失败'
-        })
-        return
+        });
+        return;
       }
-      this.issueInfoCache('8', true)
+      this.issueInfoCache('8', true);
 
       promptAction.showToast({
         message: '提单成功'
-      })
-      this.isManualBack = true
-      initImageCollection()
+      });
+      this.isManualBack = true;
+      initImageCollection();
       // 通知列表刷新
-      AppStorage.set(KeyConstant.IS_NEED_REFRESH, true)
-    })
+      AppStorage.set(KeyConstant.IS_NEED_REFRESH, true);
+    });
   }
 
   // 删除本地文件
   private deleteFiles(path: string) {
-    let dirPath = this.context.cacheDir + '/' + path
-    let files = fs.listFileSync(dirPath)
-    LogManager.hilogIWithTag(TAG, `deleteFiles, files: ${JSON.stringify(files)}`)
+    let dirPath = this.context.cacheDir + '/' + path;
+    let files = fs.listFileSync(dirPath);
+    LogManager.hilogIWithTag(TAG, `deleteFiles, files: ${JSON.stringify(files)}`);
     for (let index = 0; index < files.length; index++) {
-      fs.unlinkSync(dirPath + '/' + files[index])
+      fs.unlinkSync(dirPath + '/' + files[index]);
     }
   }
 
@@ -641,9 +656,9 @@ export default struct IssueReporterAdd {
       this.lastHoverTime = now;
       if (isHover) {
         focusControl.requestFocus('TextArea');
-        LogManager.hilogIWithTag(TAG, `Focus after throttling`)
+        LogManager.hilogIWithTag(TAG, `Focus after throttling`);
       } else {
-        LogManager.hilogIWithTag(TAG, `Throttle skipped`)
+        LogManager.hilogIWithTag(TAG, `Throttle skipped`);
       }
     }
   }
@@ -655,7 +670,7 @@ export default struct IssueReporterAdd {
         Text($r('app.string.attachment_uploaded'))
           .fontSize(fpChangeLpx(36))
           .fontWeight(500)
-          .fontColor($r('app.color.default_white'))
+          .fontColor($r('app.color.default_white'));
 
         Column() {
           Image(this.isFocusUpload ? $r('app.media.upload_on') : $r('app.media.upload_off'))
@@ -664,28 +679,28 @@ export default struct IssueReporterAdd {
             .key('FocusUpload')
             .focusable(true)
             .onFocus(() => {
-              this.isFocusUpload = true
+              this.isFocusUpload = true;
             })
             .onBlur(() => {
-              this.isFocusUpload = false
+              this.isFocusUpload = false;
             })
             .focusBox({
               margin: LengthMetrics.px(2),
               strokeColor: ColorMetrics.resourceColor($r('app.color.button_transParent')),
               strokeWidth: LengthMetrics.px(0)
-            })
+            });
         }
         .margin({ left: vpChangeLpx(8) })
         .justifyContent(FlexAlign.Center)
         .onClick(() => {
-          this.flag = !this.flag
-          AppStorage.setOrCreate('isSelectPhoto', this.flag)
-        })
-      }
+          this.flag = !this.flag;
+          AppStorage.setOrCreate('isSelectPhoto', this.flag);
+        });
+      };
     }
     .width('100%')
     .alignItems(HorizontalAlign.Start)
-    .margin({ bottom: '24lpx' })
+    .margin({ bottom: '24lpx' });
   }
 
   build() {
@@ -696,7 +711,7 @@ export default struct IssueReporterAdd {
         isHiddenRight: true,
         isHiddenBack: false,
       })
-        .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) })
+        .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) });
 
       List({ scroller: this.scroller }) {
         ListItem() {
@@ -707,15 +722,15 @@ export default struct IssueReporterAdd {
             filter: this.probabilityDesc,
             selectedFilterNumber: Number(this.probability),
             selectedFilterHandle: (filter, index) => {
-              this.probability = this.probabilitys[index].id
+              this.probability = this.probabilitys[index].id;
             }
-          })
+          });
         }
         .defaultFocus(true)
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(0, true, ScrollAlign.CENTER)
-        })
+          this.scroller.scrollToIndex(0, true, ScrollAlign.CENTER);
+        });
 
         ListItem() {
           issueReportSelectItem({
@@ -723,15 +738,15 @@ export default struct IssueReporterAdd {
             itemType: IssueReporterDetailItemType.date,
             itemValue: this.faultTime,
             selectedDateHandle: (time) => {
-              this.logChange = true
-              this.faultTime = time
+              this.logChange = true;
+              this.faultTime = time;
             }
-          })
+          });
         }
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(1, true, ScrollAlign.CENTER)
-        })
+          this.scroller.scrollToIndex(1, true, ScrollAlign.CENTER);
+        });
 
         ListItem() {
           issueReportSelectItem({
@@ -739,15 +754,15 @@ export default struct IssueReporterAdd {
             itemType: IssueReporterDetailItemType.time,
             itemValue: this.faultTime,
             selectedTimeHandle: (time) => {
-              this.logChange = true
-              this.faultTime = time
+              this.logChange = true;
+              this.faultTime = time;
             }
-          })
+          });
         }
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(1, true, ScrollAlign.CENTER)
-        })
+          this.scroller.scrollToIndex(1, true, ScrollAlign.CENTER);
+        });
 
         ListItem() {
           issueReportSelectItem({
@@ -757,16 +772,16 @@ export default struct IssueReporterAdd {
             filter: this.issueType,
             selectedFilterNumber: issueTypeList.indexOf(this.issueType),
             selectedFilterHandle: (filter, index) => {
-              this.issueType = issueTypeList[index]
-              this.logChange = true
+              this.issueType = issueTypeList[index];
+              this.logChange = true;
             }
-          })
+          });
         }
         .id('question_type')
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(2, true, ScrollAlign.CENTER)
-        })
+          this.scroller.scrollToIndex(2, true, ScrollAlign.CENTER);
+        });
 
         ListItem() {
           Row() {
@@ -777,16 +792,16 @@ export default struct IssueReporterAdd {
                     .fontSize(fpChangeLpx(36))
                     .fontWeight(500)
                     .fontColor(this.isFocusInput ? $r('app.color.global_default_background') :
-                    $r('app.color.default_white'))
+                    $r('app.color.default_white'));
                   Text('*')
                     .fontColor(Color.Red)
-                    .fontSize(fpChangeLpx(36))
+                    .fontSize(fpChangeLpx(36));
                 }
-                .margin({ left: vpChangeLpx(12) })
+                .margin({ left: vpChangeLpx(12) });
               }
               .width('100%')
               .alignItems(HorizontalAlign.Start)
-              .margin({ bottom: vpChangeLpx(35) })
+              .margin({ bottom: vpChangeLpx(35) });
 
               Column() {
                 TextArea({
@@ -808,38 +823,38 @@ export default struct IssueReporterAdd {
                   .enableKeyboardOnFocus(true)
                   .backgroundColor($r('app.color.button_transParent'))
                   .onChange((value: string) => {
-                    LogManager.hilogIWithTag(TAG, `TextArea onChange, value: ${JSON.stringify(value)}`)
-                    this.description = value
+                    LogManager.hilogIWithTag(TAG, `TextArea onChange, value: ${JSON.stringify(value)}`);
+                    this.description = value;
                     if (value.length > this.numberCharacters) {
                       promptAction.showToast({
                         message: $r('app.string.character_exceeding_prompt')
-                      })
+                      });
                     }
                   })
                   .onKeyEvent((event) => {
                     if (event.type === KeyType.Down) {
                       if (event.keyCode === KeyCode.KEYCODE_ENTER) {
-                        focusControl.requestFocus('TextArea')
+                        focusControl.requestFocus('TextArea');
                         return;
                       }
                       if (event.keyCode === KeyCode.KEYCODE_DPAD_DOWN) {
-                        tabClick()
+                        tabClick();
                         return;
                       }
                       if (event.keyCode === KeyCode.KEYCODE_DPAD_UP) {
-                        focusControl.requestFocus('question_type')
+                        focusControl.requestFocus('question_type');
                         return;
                       }
                     }
-                  })
+                  });
               }
               .width('100%')
               .height(vpChangeLpx(100))
-              .borderRadius(vpChangeLpx(24))
+              .borderRadius(vpChangeLpx(24));
 
             }
             .onTouch((event) => {
-              focusControl.requestFocus('TextArea')
+              focusControl.requestFocus('TextArea');
               if (!EventUtil.isTouchEvent(event)) {
                 return;
               }
@@ -853,14 +868,14 @@ export default struct IssueReporterAdd {
             .height(vpChangeLpx(239))
             .padding(vpChangeLpx(24))
             .borderRadius(vpChangeLpx(18))
-            .backgroundColor(this.isFocusInput ? $r('app.color.default_white') : $r('app.color.choose_background'))
+            .backgroundColor(this.isFocusInput ? $r('app.color.default_white') : $r('app.color.choose_background'));
           }
           .focusable(true)
           .onFocus(() => {
-            this.isFocusInput = true
+            this.isFocusInput = true;
           })
           .onBlur(() => {
-            this.isFocusInput = false
+            this.isFocusInput = false;
           })
           .height(vpChangeLpx(259))
           .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) })
@@ -869,11 +884,11 @@ export default struct IssueReporterAdd {
           .alignItems(VerticalAlign.Center)
           .border(this.isFocusInput ?
             { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } : null)
-          .margin({ bottom: vpChangeLpx(24) })
+          .margin({ bottom: vpChangeLpx(24) });
         }
         .onFocus(() => {
-          this.scroller.scrollToIndex(3, false, ScrollAlign.START)
-        })
+          this.scroller.scrollToIndex(3, false, ScrollAlign.START);
+        });
 
         ListItem() {
           issueAttachment({
@@ -883,18 +898,18 @@ export default struct IssueReporterAdd {
             canEdit: true,
             titleBuilderParam: this.attachmentTitle.bind(this),
             selectedPhotoHandle: (photoInfos, photoSize) => {
-              this.photoInfos = photoInfos
-              this.allSize = photoSize
-              this.attachmentChange = true
+              this.photoInfos = photoInfos;
+              this.allSize = photoSize;
+              this.attachmentChange = true;
             },
             keyFocus: this.issueAttachmentFocusKey
           })
-            .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) })
+            .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) });
         }
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(4, true, ScrollAlign.START)
-        })
+          this.scroller.scrollToIndex(4, true, ScrollAlign.START);
+        });
 
         ListItem() {
           Row() {
@@ -915,18 +930,18 @@ export default struct IssueReporterAdd {
                   strokeWidth: LengthMetrics.lpx(0)
                 })
                 .onClick((event) => {
-                  focusControl.requestFocus('Submit')
-                  this.dataPreferences.putSync('openLog', false)
-                  this.dataPreferences.flush()
+                  focusControl.requestFocus('Submit');
+                  this.dataPreferences.putSync('openLog', false);
+                  this.dataPreferences.flush();
                   // 生成问题单唯一Id
-                  this.issueId = this.generateRandomString()
-                  this.submit()
+                  this.issueId = this.generateRandomString();
+                  this.submit();
                 })
                 .onHover((isHover: boolean) => {
-                  focusControl.requestFocus('Submit')
+                  focusControl.requestFocus('Submit');
                 })
                 .onTouch((event) => {
-                  focusControl.requestFocus('Submit')
+                  focusControl.requestFocus('Submit');
                   if (!EventUtil.isTouchEvent(event)) {
                     return;
                   }
@@ -935,15 +950,15 @@ export default struct IssueReporterAdd {
                   }
                 })
                 .onFocus(() => {
-                  this.isFocusSubmit = true
+                  this.isFocusSubmit = true;
                   registerInputConsumer(KeyCode.KEYCODE_DPAD_DOWN, () => {
-                    tabClick()
-                  })
+                    tabClick();
+                  });
                 })
                 .onBlur(() => {
-                  this.isFocusSubmit = false
-                  unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN)
-                })
+                  this.isFocusSubmit = false;
+                  unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN);
+                });
             }
             .width(this.isResubmit ? vpChangeLpx(320) : vpChangeLpx(300))
             .height(vpChangeLpx(100))
@@ -955,15 +970,15 @@ export default struct IssueReporterAdd {
               radius: '50lpx',
               color: Color.White,
               style: BorderStyle.Solid
-            })
+            });
           }
           .width('100%')
-          .justifyContent(FlexAlign.Center)
+          .justifyContent(FlexAlign.Center);
         }
         .focusable(true)
         .onFocus(() => {
-          this.scroller.scrollToIndex(5, true, ScrollAlign.START)
-        })
+          this.scroller.scrollToIndex(5, true, ScrollAlign.START);
+        });
       }
       .margin({
         bottom: vpChangeLpx(24),
@@ -973,21 +988,21 @@ export default struct IssueReporterAdd {
       .scrollBarColor(Color.White)
       .layoutWeight(1)
       .align(Alignment.Top)
-      .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) })
+      .padding({ left: vpChangeLpx(449), right: vpChangeLpx(449) });
     }
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.global_default_background'))
     .onKeyEvent((event) => {
       if (event.keyCode == KeyCode.KEYCODE_DPAD_UP) {
-        this.focus_ = true
+        this.focus_ = true;
       } else if (event.keyCode == KeyCode.KEYCODE_DPAD_DOWN) {
-        this.focus_ = false
+        this.focus_ = false;
       }
       if (event.keyCode == KeyCode.KEYCODE_ESCAPE) {
-        router.back()
+        router.back();
       }
-    })
+    });
 
   }
 }

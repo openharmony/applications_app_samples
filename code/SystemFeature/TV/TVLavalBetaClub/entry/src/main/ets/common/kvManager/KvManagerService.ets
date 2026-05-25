@@ -1,9 +1,23 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import distributedKVStore from '@ohos.data.distributedKVStore';
 import { BusinessError } from '@ohos.base';
 import LogManager from '../Log/LogManager';
 
 
-const TAG = 'kvManagerService'
+const TAG = 'kvManagerService';
 
 
 export default class KvManagerService {
@@ -18,10 +32,10 @@ export default class KvManagerService {
     try {
       // 创建KVManager实例
       KvManagerService.kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-      LogManager.hilogIWithTag(TAG, `Succeeded in creating KVManager`)
+      LogManager.hilogIWithTag(TAG, `Succeeded in creating KVManager`);
     } catch (e) {
       let error = e as BusinessError;
-      LogManager.hilogIWithTag(TAG, `Failed to create KVManager. Code:${error.code},message:${error.message}`)
+      LogManager.hilogIWithTag(TAG, `Failed to create KVManager. Code:${error.code},message:${error.message}`);
     }
   }
 
@@ -41,16 +55,16 @@ export default class KvManagerService {
         KvManagerService.kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeId, options,
           (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
             if (err) {
-              LogManager.hilogIWithTag(TAG, `Failed to get KVStore: Code:${err.code},message:${err.message}`)
+              LogManager.hilogIWithTag(TAG, `Failed to get KVStore: Code:${err.code},message:${err.message}`);
               return;
             }
-            LogManager.hilogIWithTag(TAG, `Succeeded in getting KVStore.`)
+            LogManager.hilogIWithTag(TAG, `Succeeded in getting KVStore.`);
 
             KvManagerService.kvStore = store;
           });
       } catch (e) {
         let error = e as BusinessError;
-        LogManager.hilogIWithTag(TAG, `An unexpected error occurred. Code:${error.code},message:${error.message}`)
+        LogManager.hilogIWithTag(TAG, `An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
     }
   }
@@ -60,12 +74,12 @@ export default class KvManagerService {
       KvManagerService.kvStore.get(key, (err: BusinessError, data: string | number | boolean | Uint8Array) => {
         if (err != undefined) {
           LogManager.hilogIWithTag(TAG, `Failed to get data. Code:${err.code},message:${err.message}`);
-          callBack('[]')
+          callBack('[]');
           return;
         }
         LogManager.hilogIWithTag(TAG, `Succeeded in getting data. Data:${data}`);
         if (typeof (data) === 'string') {
-          callBack(data)
+          callBack(data);
         }
       });
     }
@@ -102,4 +116,4 @@ export default class KvManagerService {
     }
 
   }
-}
+};

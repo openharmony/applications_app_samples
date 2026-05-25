@@ -1,9 +1,23 @@
-import { Attachment, fpChangeLpx, TIME_INT, vpChangeLpx } from '../../IssueReporter/models/IssueDetailInfo'
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { Attachment, fpChangeLpx, TIME_INT, vpChangeLpx } from '../../IssueReporter/models/IssueDetailInfo';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
 import { ColorMetrics, LengthMetrics, promptAction } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
-import { registerInputConsumer, unregisterInputConsumer } from './issueReportSelectItem';
+import { registerInputConsumer, unregisterInputConsumer } from './IssueReportSelectItem';
 import { KeyCode } from '@kit.InputKit';
 import { PhotoGroupDataSource } from '../../../models/PhotoModel';
 import { tabClick } from '../../Index';
@@ -12,8 +26,9 @@ import { loadVideoThumb } from '../../../manager/VideoThumbLoader';
 import { emitter } from '@kit.BasicServicesKit';
 import { EventUtil } from '../../common/EventUtil';
 
-const TAG = 'issueAttachment'
-const  sourceToolMouseClick: number = 7
+const TAG = 'issueAttachment';
+const sourceToolMouseClick: number = 7;
+
 @Observed
 export class PhotoModel {
   public uri: string = '';
@@ -26,15 +41,15 @@ export class PhotoModel {
   public imageUri?: string;
   public thumbWidth?: number;
   public thumbHeight?: number;
-  public photoAsset?: photoAccessHelper.PhotoAsset
+  public photoAsset?: photoAccessHelper.PhotoAsset;
 
   constructor() {
   }
 }
 
 export class LazyIndex {
-  public start: number = 0
-  public end: number = 0
+  public start: number = 0;
+  public end: number = 0;
 
   constructor() {
   }
@@ -42,21 +57,21 @@ export class LazyIndex {
 
 @Component
 export default struct issueAttachment {
-  canEdit: boolean = false
-  @Prop thumbnails: Attachment[] = []
-  @Prop keyFocus: string= ''
-  @Link previewImage: boolean
-  @Link previewImageIndex: number
-  selectedPhotoHandle?: (photoInfos: PhotoModel[], size: number) => void
-  @State photoPixels: image.PixelMap[] = []
-  @State photoInfos: photoAccessHelper.PhotoAsset[] = []
-  private controller: VideoController = new VideoController()
-  private previewUris: Resource = $r('app.media.ic_video_play_btn_png')
-  @StorageProp('isSelectPhoto') @Watch('isSelectPhotoFunc') flag: boolean = false
-  context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
+  canEdit: boolean = false;
+  @Prop thumbnails: Attachment[] = [];
+  @Prop keyFocus: string = '';
+  @Link previewImage: boolean;
+  @Link previewImageIndex: number;
+  selectedPhotoHandle?: (photoInfos: PhotoModel[], size: number) => void;
+  @State photoPixels: image.PixelMap[] = [];
+  @State photoInfos: photoAccessHelper.PhotoAsset[] = [];
+  private controller: VideoController = new VideoController();
+  private previewUris: Resource = $r('app.media.ic_video_play_btn_png');
+  @StorageProp('isSelectPhoto') @Watch('isSelectPhotoFunc') flag: boolean = false;
+  context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
   @State imageInfo: PhotoGroupDataSource = new PhotoGroupDataSource();
-  @State selectedImage: PhotoModel[] = []
-  @State isFocus: boolean = false
+  @State selectedImage: PhotoModel[] = [];
+  @State isFocus: boolean = false;
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: SelectImageDialog({
       imageInfo: this.imageInfo,
@@ -71,7 +86,7 @@ export default struct issueAttachment {
     cornerRadius: 10,
     width: '70%',
     height: '80%'
-  })
+  });
 
   @Builder
   customBuilder() {
@@ -80,25 +95,27 @@ export default struct issueAttachment {
   @BuilderParam titleBuilderParam: () => void = this.customBuilder;
 
   isSelectPhotoFunc() {
-    this.dialogController?.open()
-    this.imageInfo.setData(AppStorage.get('photoGroupList') as PhotoModel[])
-    console.info('issueAttachment aboutToAppear' + JSON.stringify(this.imageInfo.getAllData()))
+    this.dialogController?.open();
+    this.imageInfo.setData(AppStorage.get('photoGroupList') as PhotoModel[]);
+    console.info('issueAttachment aboutToAppear' + JSON.stringify(this.imageInfo.getAllData()));
   }
+
   aboutToAppear(): void {
     emitter.on('auto_focus', (data) => {
       let title: string = String(data?.data);
       if (this.getUniqueId().toString() == title) {
-        return
+        return;
       }
-      this.isFocus = false
-    })
+      this.isFocus = false;
+    });
   }
+
   @Builder
   addItem(size: Length, color: ResourceColor) {
     Column() {
       Image($r('app.media.icon_add'))
         .width(vpChangeLpx(size as number))
-        .height(vpChangeLpx(size as number))
+        .height(vpChangeLpx(size as number));
     }
     .focusBox({
       margin: LengthMetrics.px(2),
@@ -107,12 +124,12 @@ export default struct issueAttachment {
     })
     .width('100%')
     .height(vpChangeLpx(100))
-    .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Center);
   }
 
   build() {
     Column() {
-      this.titleBuilderParam()
+      this.titleBuilderParam();
 
       Column() {
         if (this.canEdit) {
@@ -121,18 +138,18 @@ export default struct issueAttachment {
               ForEach(this.selectedImage, (item: PhotoModel, index: number) => {
                 GridItem() {
                   Column() {
-                    ThumbnailShow({ item: item })
+                    ThumbnailShow({ item: item });
                   }
                   .width('100%')
                   .height(vpChangeLpx(150))
-                  .justifyContent(FlexAlign.Center)
-                }
-              })
+                  .justifyContent(FlexAlign.Center);
+                };
+              });
             }
             .columnsTemplate('1fr 1fr 1fr 1fr')
             .rowsTemplate('1fr')
             .columnsGap(vpChangeLpx(14))
-            .height(vpChangeLpx(192))
+            .height(vpChangeLpx(192));
 
           } else {
             Row() {
@@ -140,13 +157,13 @@ export default struct issueAttachment {
                 Text($r('app.string.no_attachment_uploaded'))
                   .fontSize(fpChangeLpx(42))
                   .fontWeight(400)
-                  .fontColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'))
+                  .fontColor(this.isFocus ? $r('app.color.global_default_background') : $r('app.color.default_white'));
               }
               .alignItems(HorizontalAlign.Center)
               .height(vpChangeLpx(150))
               .justifyContent(FlexAlign.Center)
-              .width('85%')
-            }
+              .width('85%');
+            };
           }
         } else {
           if (this.thumbnails?.length) {
@@ -158,48 +175,48 @@ export default struct issueAttachment {
                       Image(item.thumbnail)
                         .width(vpChangeLpx(150))
                         .height(vpChangeLpx(120))
-                        .borderRadius(vpChangeLpx(29))
+                        .borderRadius(vpChangeLpx(29));
                     } else if (item.type == 'video') {
                       Image(this.previewUris)
                         .width(vpChangeLpx(150))
                         .height(vpChangeLpx(120))
-                        .borderRadius(vpChangeLpx(29))
+                        .borderRadius(vpChangeLpx(29));
                     }
                   }
                   .width('100%')
                   .height(vpChangeLpx(150))
                   .justifyContent(FlexAlign.Center)
                   .onClick(() => {
-                    this.previewImage = true
-                    this.previewImageIndex = index
-                  })
+                    this.previewImage = true;
+                    this.previewImageIndex = index;
+                  });
                 }
                 .focusable(false)
                 .focusBox({
                   margin: LengthMetrics.px(2),
                   strokeColor: ColorMetrics.resourceColor($r('app.color.default_white')),
                   strokeWidth: LengthMetrics.px(2)
-                })
-              })
+                });
+              });
             }
             .columnsTemplate('1fr 1fr 1fr 1fr')
             .rowsTemplate('1fr')
             .columnsGap(vpChangeLpx(34))
             .height(vpChangeLpx(192))
-            .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) })
+            .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) });
           } else {
             Row() {
               Column() {
                 Text($r('app.string.no_attachment_uploaded'))
                   .fontSize(fpChangeLpx(42))
                   .fontWeight(400)
-                  .fontColor($r('app.color.default_white'))
+                  .fontColor($r('app.color.default_white'));
               }
               .alignItems(HorizontalAlign.Center)
               .height(vpChangeLpx(150))
               .justifyContent(FlexAlign.Center)
-              .width('85%')
-            }
+              .width('85%');
+            };
           }
         }
       }
@@ -209,33 +226,33 @@ export default struct issueAttachment {
       .margin({ top: vpChangeLpx(20) })
       .backgroundColor(this.isFocus ? $r('app.color.default_white') : $r('app.color.choose_background'))
       .borderRadius(vpChangeLpx(24))
-      .justifyContent(FlexAlign.Center)
+      .justifyContent(FlexAlign.Center);
     }
     .backgroundColor($r('app.color.global_default_background'))
     .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) })
     .focusable(true)
     .onFocus(() => {
-      this.isFocus = true
+      this.isFocus = true;
     })
     .onBlur(() => {
-      this.isFocus = false
+      this.isFocus = false;
     })
     .onHover((isHover: boolean) => {
-        focusControl.requestFocus(this.keyFocus)
+      focusControl.requestFocus(this.keyFocus);
       if (isHover) {
         try {
-          emitter.emit('auto_focus', { data: this.getUniqueId() })
+          emitter.emit('auto_focus', { data: this.getUniqueId() });
         } catch (e) {
-          console.error(e)
+          console.error(e);
         }
       }
     })
-    .onClick(()=>{
-      focusControl.requestFocus(this.keyFocus)
-      tabClick()
+    .onClick(() => {
+      focusControl.requestFocus(this.keyFocus);
+      tabClick();
     })
     .onTouch((event) => {
-      focusControl.requestFocus(this.keyFocus)
+      focusControl.requestFocus(this.keyFocus);
       if (!EventUtil.isTouchEvent(event)) {
         return;
       }
@@ -244,53 +261,54 @@ export default struct issueAttachment {
       }
     })
     .padding({ left: vpChangeLpx(10), right: vpChangeLpx(10) })
-    .border(this.isFocus ? { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } : null)
+    .border(this.isFocus ? { width: vpChangeLpx(2), color: $r('app.color.default_white'), radius: vpChangeLpx(24) } :
+      null);
   }
 }
 
 @CustomDialog
 struct SelectImageDialog {
-  controller?: CustomDialogController
-  @State isFocusCancel: boolean = false
-  @State isFocusAccept: boolean = false
-  scroller: Scroller = new Scroller()
+  controller?: CustomDialogController;
+  @State isFocusCancel: boolean = false;
+  @State isFocusAccept: boolean = false;
+  scroller: Scroller = new Scroller();
   @Prop imageInfo: PhotoGroupDataSource = new PhotoGroupDataSource();
-  @Link selectedImage: PhotoModel[]
-  @Link thumbnails: Attachment[]
-  @State photoInfos: photoAccessHelper.PhotoAsset[] = []
-  selectedPhotoHandle?: (photoInfos: PhotoModel[], size: number) => void
-  @State currentIndex: number = 0
+  @Link selectedImage: PhotoModel[];
+  @Link thumbnails: Attachment[];
+  @State photoInfos: photoAccessHelper.PhotoAsset[] = [];
+  selectedPhotoHandle?: (photoInfos: PhotoModel[], size: number) => void;
+  @State currentIndex: number = 0;
 
   build() {
     Column() {
       Text($r('app.string.select_images_videos'))
         .fontSize(fpChangeLpx(36))
-        .fontColor($r('app.color.default_white'))
+        .fontColor($r('app.color.default_white'));
 
       Row() {
         Text($r('app.string.local_picture'))
           .fontSize(fpChangeLpx(30))
           .fontColor($r('app.color.default_white'))
-          .opacity(0.6)
+          .opacity(0.6);
       }
       .width('100%')
       .margin({ top: vpChangeLpx(42) })
       .padding({ left: vpChangeLpx(54), right: vpChangeLpx(54) })
-      .justifyContent(FlexAlign.Start)
+      .justifyContent(FlexAlign.Start);
 
       Grid() {
         LazyForEach(this.imageInfo, (item: PhotoModel, index: number) => {
           GridItem() {
             Column() {
               Row() {
-                ThumbnailShow({ item: item })
+                ThumbnailShow({ item: item });
               }
               .padding(vpChangeLpx(5))
               .border(this.currentIndex == index ? {
                 width: vpChangeLpx(2),
                 color: $r('app.color.default_white'),
                 radius: vpChangeLpx(24)
-              } : null)
+              } : null);
             }
             .width('100%')
             .height(vpChangeLpx(150))
@@ -320,32 +338,32 @@ struct SelectImageDialog {
                   });
                 }
               }
-            })
+            });
           }
-          .key('ThumbnailShow'+index)
+          .key('ThumbnailShow' + index)
           .focusable(true)
           .focusBox({
-          strokeWidth: LengthMetrics.px(0)
+            strokeWidth: LengthMetrics.px(0)
           })
           .onFocus(() => {
-            this.currentIndex = index
+            this.currentIndex = index;
           })
           .onBlur(() => {
-            this.currentIndex = -1
+            this.currentIndex = -1;
           })
-          .onHover(()=>{
-            focusControl.requestFocus('ThumbnailShow'+index)
+          .onHover(() => {
+            focusControl.requestFocus('ThumbnailShow' + index);
           })
           .onTouch((event) => {
-            focusControl.requestFocus('ThumbnailShow'+index)
+            focusControl.requestFocus('ThumbnailShow' + index);
             if (!EventUtil.isTouchEvent(event)) {
               return;
             }
             if (event.sourceTool !== SourceTool.Pen && event.sourceTool !== sourceToolMouseClick) {
               return;
             }
-          })
-        })
+          });
+        });
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .rowsGap(vpChangeLpx(24))
@@ -357,38 +375,39 @@ struct SelectImageDialog {
         right: vpChangeLpx(20),
         top: vpChangeLpx(23),
         bottom: vpChangeLpx(10)
-      })
+      });
 
 
       Row() {
         Text($r('app.string.selected_picture'))
           .fontSize(fpChangeLpx(30))
           .fontColor($r('app.color.default_white'))
-          .opacity(0.6)
+          .opacity(0.6);
       }
       .width('100%')
       .padding({ left: vpChangeLpx(54), right: vpChangeLpx(54) })
-      .justifyContent(FlexAlign.Start)
+      .justifyContent(FlexAlign.Start);
 
       Grid() {
         ForEach(this.selectedImage, (item: PhotoModel, index: number) => {
           GridItem() {
             Column() {
-              ThumbnailShow({ item: item })
+              ThumbnailShow({ item: item });
             }
             .width('100%')
             .height(vpChangeLpx(150))
-            .justifyContent(FlexAlign.Center)
-          }
-        })
+            .justifyContent(FlexAlign.Center);
+          };
+        });
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
       .rowsGap(vpChangeLpx(51))
       .columnsGap(vpChangeLpx(30))
       .layoutWeight(2)
-      .padding({ left: vpChangeLpx(20), right: vpChangeLpx(20), top: vpChangeLpx(10) })
+      .padding({ left: vpChangeLpx(20), right: vpChangeLpx(20), top: vpChangeLpx(10) });
+
       Row() {
-        Row(){
+        Row() {
           Button($r('app.string.cancel'))
             .key('cancel')
             .focusable(true)
@@ -401,15 +420,15 @@ struct SelectImageDialog {
               focused: {
                 .border({
                   color: Color.Transparent
-                })
+                });
               }
             })
             .borderRadius('30lpx')
             .onHover(() => {
-              focusControl.requestFocus('cancel')
+              focusControl.requestFocus('cancel');
             })
             .onTouch((event) => {
-              focusControl.requestFocus('cancel')
+              focusControl.requestFocus('cancel');
               if (!EventUtil.isTouchEvent(event)) {
                 return;
               }
@@ -418,30 +437,31 @@ struct SelectImageDialog {
               }
             })
             .onFocus(() => {
-              this.isFocusCancel = true
+              this.isFocusCancel = true;
               registerInputConsumer(KeyCode.KEYCODE_DPAD_DOWN, () => {
-                tabClick()
-              })
+                tabClick();
+              });
             })
             .onBlur(() => {
-              this.isFocusCancel = false
-              unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN)
+              this.isFocusCancel = false;
+              unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN);
             })
             .onClick(() => {
-              this.selectedImage = []
-              this.controller?.close()
-            })
+              this.selectedImage = [];
+              this.controller?.close();
+            });
         }
-        .width( '160lpx' )
-        .height( '60lpx' )
+        .width('160lpx')
+        .height('60lpx')
         .border({
-          width: this.isFocusCancel? '2lpx' : 0,
+          width: this.isFocusCancel ? '2lpx' : 0,
           radius: '30lpx',
           color: Color.White,
           style: BorderStyle.Solid
         })
-        .justifyContent(FlexAlign.Center)
-        Row(){
+        .justifyContent(FlexAlign.Center);
+
+        Row() {
           Button($r('app.string.sure'))
             .key('confirm')
             .width('148lpx')
@@ -456,10 +476,10 @@ struct SelectImageDialog {
               strokeWidth: LengthMetrics.lpx(0)
             })
             .onHover(() => {
-              focusControl.requestFocus('confirm')
+              focusControl.requestFocus('confirm');
             })
             .onTouch((event) => {
-              focusControl.requestFocus('confirm')
+              focusControl.requestFocus('confirm');
               if (!EventUtil.isTouchEvent(event)) {
                 return;
               }
@@ -468,33 +488,33 @@ struct SelectImageDialog {
               }
             })
             .onFocus(() => {
-              this.isFocusAccept = true
+              this.isFocusAccept = true;
               registerInputConsumer(KeyCode.KEYCODE_DPAD_DOWN, () => {
-                tabClick()
-              })
+                tabClick();
+              });
             })
             .onBlur(() => {
-              this.isFocusAccept = false
-              unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN)
+              this.isFocusAccept = false;
+              unregisterInputConsumer(KeyCode.KEYCODE_DPAD_DOWN);
             })
             .onClick(() => {
               this.selectedPhotoHandle && this.selectedPhotoHandle(this.selectedImage, 99);
-              this.controller?.close()
-            })
+              this.controller?.close();
+            });
         }
-        .width( '160lpx' )
-        .height( '60lpx' )
+        .width('160lpx')
+        .height('60lpx')
         .border({
-          width: this.isFocusAccept? '2lpx' : 0,
+          width: this.isFocusAccept ? '2lpx' : 0,
           radius: '30lpx',
           color: Color.White,
           style: BorderStyle.Solid
         })
-        .justifyContent(FlexAlign.Center)
+        .justifyContent(FlexAlign.Center);
       }
       .width('100%')
-      .height( '60lpx')
-      .justifyContent(FlexAlign.SpaceAround)
+      .height('60lpx')
+      .justifyContent(FlexAlign.SpaceAround);
     }
     .width('100%')
     .height('100%')
@@ -511,16 +531,16 @@ struct SelectImageDialog {
       if (isVisible && currentRatio >= 1.0) {
         setTimeout(() => {
           tabClick();
-        }, TIME_INT)
+        }, TIME_INT);
       }
-    })
+    });
   }
 }
 
 @Component
 export struct ThumbnailShow {
-  @Prop item: PhotoModel
-  @State album: string | undefined = undefined
+  @Prop item: PhotoModel;
+  @State album: string | undefined = undefined;
   MILLISECONDS_PER_SECOND: number = 1000;
   SECONDS_PER_MINUTE: number = 60;
   SECONDS_PER_HOUR: number = 3600;
@@ -530,43 +550,43 @@ export struct ThumbnailShow {
   aboutToAppear(): void {
     if (this.item.photoType == photoAccessHelper.PhotoType.VIDEO) {
       this.getThumbByUri(getContext(), this.item, 'videoImage').then((thumbUri) => {
-        this.album = thumbUri
-      })
+        this.album = thumbUri;
+      });
     }
   }
 
   async getThumbByUri(context: Context, photoModel: PhotoModel, tag: string): Promise<string> {
-    const thumbPath = await this.getSavedThumbPath(context, photoModel.uri)
+    const thumbPath = await this.getSavedThumbPath(context, photoModel.uri);
     if (thumbPath) {
-      return 'file://' + thumbPath
+      return 'file://' + thumbPath;
     } else {
-      let result = await this.getVideoAlbum(context, photoModel.uri, 150, 130)
-      return result
+      let result = await this.getVideoAlbum(context, photoModel.uri, 150, 130);
+      return result;
     }
   }
 
   async getSavedThumbPath(context: Context, uri: string): Promise<string | undefined> {
-    const cacheDir = await fileUtil.getCacheDir(context)
-    const imageName = fileUtil.getLocalFilePathByUri(uri)
-    const localPath = cacheDir + imageName
-    const thumbExist = await fileUtil.fileExist(localPath)
+    const cacheDir = await fileUtil.getCacheDir(context);
+    const imageName = fileUtil.getLocalFilePathByUri(uri);
+    const localPath = cacheDir + imageName;
+    const thumbExist = await fileUtil.fileExist(localPath);
     if (thumbExist) {
-      return localPath
+      return localPath;
     } else {
-      return undefined
+      return undefined;
     }
   }
 
   async getVideoAlbum(context: Context, uri: string, width: number,
     height: number): Promise<string> {
-    const widthScale = width / 150
-    const heightScale = height / 130
-    const scale = widthScale < heightScale ? widthScale : heightScale
-    const thumbWidth = width / scale
-    const thumbHeight = height / scale
+    const widthScale = width / 150;
+    const heightScale = height / 130;
+    const scale = widthScale < heightScale ? widthScale : heightScale;
+    const thumbWidth = width / scale;
+    const thumbHeight = height / scale;
 
-    const result = await loadVideoThumb(context, uri, thumbWidth, thumbHeight)
-    return 'file://' + (result as string)
+    const result = await loadVideoThumb(context, uri, thumbWidth, thumbHeight);
+    return 'file://' + (result as string);
   }
 
   getFormattedDuration(milliSecond: number): string {
@@ -612,7 +632,7 @@ export struct ThumbnailShow {
           .width(vpChangeLpx(150))
           .height(vpChangeLpx(130))
           .borderRadius(vpChangeLpx(18))
-          .autoResize(true)
+          .autoResize(true);
       } else {
         Column() {
           Stack({ alignContent: Alignment.BottomStart }) {
@@ -620,19 +640,19 @@ export struct ThumbnailShow {
               .width(vpChangeLpx(150))
               .height(vpChangeLpx(130))
               .borderRadius(vpChangeLpx(18))
-              .autoResize(true)
+              .autoResize(true);
 
             Text(this.getFormattedDuration(Number(this.item.duration)))
               .fontSize(fpChangeLpx(18))
               .fontFamily('HarmonyOS Sans')
-              .fontColor($r('app.color.default_white'))
-          }
+              .fontColor($r('app.color.default_white'));
+          };
         }
         .width('100%')
         .height('100%')
         .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
+        .alignItems(HorizontalAlign.Center);
       }
-    }
+    };
   }
 }

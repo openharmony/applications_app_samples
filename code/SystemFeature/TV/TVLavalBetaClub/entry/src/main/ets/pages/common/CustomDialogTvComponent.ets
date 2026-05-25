@@ -1,41 +1,55 @@
-import { KeyCode } from './KeyCode'
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { KeyCode } from './KeyCode';
 import InputMethod from '@ohos.inputMethod';
 import {
   CustomDialogButtonStyle, CustomDialogContentStyle, StyleConstants
-} from './StyleConstants'
+} from './StyleConstants';
 import promptAction from '@ohos.promptAction';
 import { inputEventClient } from '@kit.InputKit';
 import { i18n } from '@kit.LocalizationKit';
 import { ColorMetrics } from '@kit.ArkUI';
 import { EventUtil } from './EventUtil';
 
-const sourceToolMouseClick: number = 7
+const sourceToolMouseClick: number = 7;
 const TAG = 'CustomDialogTvComponent';
 
 @Entry
 @CustomDialog
 export struct CustomDialogTvComponent {
-  content: DialogContent = new DialogContent('标题', '内容', '取消', '确认', 0, 0)
-  controller: CustomDialogController
-  buttonStyle: CustomDialogButtonStyle = CustomDialogButtonStyle.default
-  contentStyle: CustomDialogContentStyle = CustomDialogContentStyle.default
-  @State focusIndex: number = -1
+  content: DialogContent = new DialogContent('标题', '内容', '取消', '确认', 0, 0);
+  controller: CustomDialogController;
+  buttonStyle: CustomDialogButtonStyle = CustomDialogButtonStyle.default;
+  contentStyle: CustomDialogContentStyle = CustomDialogContentStyle.default;
+  @State focusIndex: number = -1;
   @State userInputs: string = '';
-  @State userCustomTime: number = 0
-  @State selectDate: Date = new Date()
-  @State is24TimeFormat: boolean = false
+  @State userCustomTime: number = 0;
+  @State selectDate: Date = new Date();
+  @State is24TimeFormat: boolean = false;
   dateFormat = new Intl.DateTimeFormat('zh-Cn', {
     dateStyle: 'full'
-  })
+  });
   timeFormat = new Intl.DateTimeFormat('zh-Cn', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: !this.is24TimeFormat
-  })
+  });
   cancel: Function = () => {
-  }
+  };
   confirm: Function = () => {
-  }
+  };
 
   onPageShow(): void {
     this.tabClick();
@@ -60,20 +74,20 @@ export struct CustomDialogTvComponent {
       // 触发tab点击，使默认焦点组件多态样式生效
       inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
       inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
-      console.log('手动触发tab点击成功')
+      console.log('手动触发tab点击成功');
     } catch (e) {
-      console.log('手动触发tab点击失败')
+      console.log('手动触发tab点击失败');
     }
   }
 
   get24HourFormat() {
-    this.is24TimeFormat = i18n.System.is24HourClock()
+    this.is24TimeFormat = i18n.System.is24HourClock();
   }
 
   aboutToAppear() {
-    console.info(TAG + 'aboutToAppear' + '宽度' + this.content.dialogWidth + '高度' + this.content.dialogHeight)
-    this.get24HourFormat()
-    this.userCustomTime = this.selectDate.getTime()
+    console.info(TAG + 'aboutToAppear' + '宽度' + this.content.dialogWidth + '高度' + this.content.dialogHeight);
+    this.get24HourFormat();
+    this.userCustomTime = this.selectDate.getTime();
     if (this.content.content == '此操作将会连接当前wifi') {
       this.tabClick();
     }
@@ -90,7 +104,7 @@ export struct CustomDialogTvComponent {
             .fontSize('40lpx')
             .margin({
               bottom: '48lpx'
-            })
+            });
         }
 
         if (this.contentStyle == CustomDialogContentStyle.default ||
@@ -101,7 +115,7 @@ export struct CustomDialogTvComponent {
             .fontSize('24lpx')
             .margin({
               bottom: '48lpx'
-            })
+            });
         }
 
         if (this.contentStyle == CustomDialogContentStyle.titleInput ||
@@ -162,17 +176,17 @@ export struct CustomDialogTvComponent {
                         message: '自定义名称超长',
                         duration: 2000,
                         bottom: globalThis.screenHeight / 4
-                      })
+                      });
                       return;
                     }
                   }
                   break;
                 case KeyCode.KEY_ENTER:
-                  focusControl.requestFocus('textInput')
+                  focusControl.requestFocus('textInput');
                   break;
                 case KeyCode.KEY_DPAD_DOWN:
-                  focusControl.requestFocus('confirm')
-                  event.stopPropagation()
+                  focusControl.requestFocus('confirm');
+                  event.stopPropagation();
                   break;
               }
             })
@@ -184,7 +198,7 @@ export struct CustomDialogTvComponent {
                 .then((ret) => {
                   console.debug(` enterType: ${enterKey}, stopInput: ${ret}`);
                 });
-            })
+            });
         }
 
         //自定义日期选择弹窗
@@ -195,7 +209,7 @@ export struct CustomDialogTvComponent {
               .fontSize('32lpx')
               .margin({
                 bottom: '20lpx'
-              })
+              });
             DatePicker({ selected: this.selectDate })
               .focusBox({ strokeColor: ColorMetrics.rgba(255, 255, 255, 0.86) })
               .disappearTextStyle({ color: ('rgba(255, 255, 255, 0.50)'), font: { size: '18lpx' } })
@@ -204,10 +218,10 @@ export struct CustomDialogTvComponent {
               .width('100%')
               .layoutWeight(1)
               .onDateChange((date) => {
-                this.selectDate = new Date(date.getTime())
-                this.userCustomTime = date.getTime()
-                console.info(TAG + '--日期选择器onchange-result：' + date as string)
-                console.log(TAG + 'date change数据' + this.selectDate)
+                this.selectDate = new Date(date.getTime());
+                this.userCustomTime = date.getTime();
+                console.info(TAG + '--日期选择器onchange-result：' + date as string);
+                console.log(TAG + 'date change数据' + this.selectDate);
               })
               .focusable(true)
               .onFocus(() => {
@@ -216,12 +230,12 @@ export struct CustomDialogTvComponent {
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {
-                  focusControl.requestFocus('confirm')
-                  event.stopPropagation()
+                  focusControl.requestFocus('confirm');
+                  event.stopPropagation();
                 }
               })
               .onHover(() => {
-                focusControl.requestFocus('Cancel')
+                focusControl.requestFocus('Cancel');
               })
               .onTouch((event) => {
                 if (!EventUtil.isTouchEvent(event)) {
@@ -230,13 +244,13 @@ export struct CustomDialogTvComponent {
               })
               .margin({
                 bottom: '20lpx',
-              })
+              });
           }
           .width('100%')
           .justifyContent(FlexAlign.Start)
           .alignItems(HorizontalAlign.Center)
           .backgroundColor('rgb(64, 64, 64)')
-          .borderRadius('24lpx')
+          .borderRadius('24lpx');
 
         }
 
@@ -246,7 +260,7 @@ export struct CustomDialogTvComponent {
           Column() {
             Text(this.dateFormat.format(new Date()))
               .fontColor(('rgb(255, 255, 255)'))
-              .fontSize('32lpx')
+              .fontSize('32lpx');
             TimePicker()
               .focusBox({ strokeColor: ColorMetrics.rgba(255, 255, 255, 0.86) })
               .useMilitaryTime(this.is24TimeFormat)
@@ -260,15 +274,15 @@ export struct CustomDialogTvComponent {
               .layoutWeight(1)
               .loop(true)
               .onChange((result) => {
-                console.info(TAG + '滑动时间')
-                let currentTime = new Date()
+                console.info(TAG + '滑动时间');
+                let currentTime = new Date();
                 let time =
                   new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDay(), result.hour,
-                    result.minute, result.second)
-                currentTime.setHours(result.hour, result.minute)
-                this.selectDate = new Date()
-                this.userCustomTime = currentTime.getTime()
-                console.info(TAG + '--时间选择器onchange-result：' + JSON.stringify(result) + '--' + time.toString())
+                    result.minute, result.second);
+                currentTime.setHours(result.hour, result.minute);
+                this.selectDate = new Date();
+                this.userCustomTime = currentTime.getTime();
+                console.info(TAG + '--时间选择器onchange-result：' + JSON.stringify(result) + '--' + time.toString());
               })
               .focusable(true)
               .onFocus(() => {
@@ -277,16 +291,16 @@ export struct CustomDialogTvComponent {
               })
               .onKeyEvent((event) => {
                 if (event.keyCode === KeyCode.KEY_ENTER && event.type === KeyType.Up) {
-                  focusControl.requestFocus('confirm')
-                  event.stopPropagation()
+                  focusControl.requestFocus('confirm');
+                  event.stopPropagation();
                 }
-              })
+              });
           }
           .width('100%')
           .justifyContent(FlexAlign.Start)
           .alignItems(HorizontalAlign.Center)
           .backgroundColor('rgb(64, 64, 64)')
-          .borderRadius('24lpx')
+          .borderRadius('24lpx');
 
         }
 
@@ -309,14 +323,14 @@ export struct CustomDialogTvComponent {
                   focused: {
                     .border({
                       color: Color.Transparent
-                    })
+                    });
                   }
                 })
                 .onFocus(() => {
                   this.focusIndex = 1;
                 })
                 .onBlur(() => {
-                  this.focusIndex = -1
+                  this.focusIndex = -1;
                 })
                 .onKeyEvent((event) => {
                   if (event.keyCode == KeyCode.KEY_DPAD_LEFT || event.keyCode == KeyCode.KEY_DPAD_DOWN ||
@@ -331,11 +345,11 @@ export struct CustomDialogTvComponent {
                   }
                 })
                 .onClick(() => {
-                  focusControl.requestFocus('Cancel')
+                  focusControl.requestFocus('Cancel');
                   this.cancel();
                 })
                 .onTouch((event) => {
-                  focusControl.requestFocus('Cancel')
+                  focusControl.requestFocus('Cancel');
                   if (!EventUtil.isTouchEvent(event)) {
                     return;
                   }
@@ -344,8 +358,8 @@ export struct CustomDialogTvComponent {
                   }
                 })
                 .onHover(() => {
-                  focusControl.requestFocus('Cancel')
-                })
+                  focusControl.requestFocus('Cancel');
+                });
             }
             .width(this.focusIndex === 1 ? '160lpx' : '150lpx')
             .height(this.focusIndex === 1 ? '60lpx' : '50lpx')
@@ -355,7 +369,7 @@ export struct CustomDialogTvComponent {
               color: Color.White,
               style: BorderStyle.Solid
             })
-            .justifyContent(FlexAlign.Center)
+            .justifyContent(FlexAlign.Center);
           }
 
           Column() {
@@ -373,11 +387,11 @@ export struct CustomDialogTvComponent {
                 focused: {
                   .border({
                     color: Color.Transparent
-                  })
+                  });
                 }
               })
               .onTouch((event) => {
-                focusControl.requestFocus('confirm')
+                focusControl.requestFocus('confirm');
                 if (!EventUtil.isTouchEvent(event)) {
                   return;
                 }
@@ -389,7 +403,7 @@ export struct CustomDialogTvComponent {
                 this.focusIndex = 2;
               })
               .onBlur(() => {
-                this.focusIndex = -1
+                this.focusIndex = -1;
               })
               .onKeyEvent((event) => {
                 if (event.keyCode == KeyCode.KEY_DPAD_RIGHT || event.keyCode == KeyCode.KEY_DPAD_DOWN ||
@@ -400,20 +414,20 @@ export struct CustomDialogTvComponent {
                 }
                 if (event.keyCode == KeyCode.KEY_ENTER && event.type == KeyType.Up) {
                   this.content.setTextInputValue(this.userInputs);
-                  this.content.setCustomTime(this.userCustomTime)
+                  this.content.setCustomTime(this.userCustomTime);
                   this.confirm();
                   event.stopPropagation();
                 }
               })
               .onClick(() => {
-                focusControl.requestFocus('confirm')
+                focusControl.requestFocus('confirm');
                 this.content.setTextInputValue(this.userInputs);
-                this.content.setCustomTime(this.userCustomTime)
+                this.content.setCustomTime(this.userCustomTime);
                 this.confirm();
               })
               .onHover(() => {
-                focusControl.requestFocus('confirm')
-              })
+                focusControl.requestFocus('confirm');
+              });
             /*.onTouch((event) => {
               if (!EventUtil.isTouchEvent(event) || event.sourceTool !== 2) {
                 return;
@@ -432,12 +446,12 @@ export struct CustomDialogTvComponent {
             color: Color.White,
             style: BorderStyle.Solid
           })
-          .justifyContent(FlexAlign.Center)
+          .justifyContent(FlexAlign.Center);
         }
         .height('80lpx')
         .onAppear(() => {
-          focusControl.requestFocus('Cancel')
-        })
+          focusControl.requestFocus('Cancel');
+        });
 
       }
       .padding({
@@ -455,7 +469,7 @@ export struct CustomDialogTvComponent {
           this.contentStyle == CustomDialogContentStyle.TimePicker)) {
           focusControl.requestFocus('Cancel');
         }
-      })
+      });
 
     }
     .height('100%')
@@ -466,7 +480,7 @@ export struct CustomDialogTvComponent {
     })
     .backgroundColor('#b3000000')
     .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
+    .alignItems(HorizontalAlign.Center);
 
   }
 }
@@ -478,7 +492,7 @@ export class DialogContent {
   public firstValue: string;
   public secondValue: string;
   public dialogWidth: Length;
-  public dialogHeight: Length
+  public dialogHeight: Length;
   public customTime: number = 0;
 
   constructor(title: string, content: string, firstValue: string, secondValue: string, dialogWidth: Length,
@@ -502,10 +516,10 @@ export class DialogContent {
   }
 
   public setCustomTime(value: number) {
-    this.customTime = value
+    this.customTime = value;
   }
 
   public getCustomTime() {
-    return this.customTime
+    return this.customTime;
   }
 }

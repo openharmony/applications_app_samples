@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BasePhotoLoader } from './BasePhotoLoader';
 import { getSubTypeMediaItems, USE_TASK } from './MediaTasks';
 
-const TAG = 'PHOTOM_PHOTOM_SubTypeLoader'
+const TAG = 'PHOTOM_PHOTOM_SubTypeLoader';
 
 export abstract class SubTypeLoader extends BasePhotoLoader {
   abstract getAlbumModel(): AlbumModel
@@ -26,10 +26,10 @@ export abstract class SubTypeLoader extends BasePhotoLoader {
 
   async getMediaItems(context: Context): Promise<PhotoModel[]> {
     if (USE_TASK) {
-      let fileAssets = await getSubTypeMediaItems(TAG, context, this.getSubType())
-      return fileAssets
+      let fileAssets = await getSubTypeMediaItems(TAG, context, this.getSubType());
+      return fileAssets;
     } else {
-      return await getSubTypeMediaItems(TAG, context, this.getSubType())
+      return await getSubTypeMediaItems(TAG, context, this.getSubType());
     }
   }
 }

@@ -135,6 +135,10 @@
     {
       "name": "warning_net_prompt",
       "value": "Upload failed, please check if the network is available"
+    },
+    {
+      "name": "Video_download_failed",
+      "value": "Video download failed"
     }
   ]
 }
