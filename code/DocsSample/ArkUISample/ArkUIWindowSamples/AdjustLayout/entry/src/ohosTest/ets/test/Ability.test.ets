@@ -34,7 +34,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -56,7 +56,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -82,7 +82,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -108,7 +108,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -134,7 +134,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -160,7 +160,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.adjustlayout',
+          bundleName: 'com.samples.adjustlayout',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
