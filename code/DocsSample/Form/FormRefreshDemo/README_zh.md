@@ -62,7 +62,7 @@ entry/src/main/ets/
 ```git
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Form/FormUpdateDemo/ > .git/info/sparse-checkout
+echo code/FormRefreshDemo/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -1,17 +1,15 @@
 {
   "forms": [
     {
-      "name": "ReloadByUIAbility",
-      "displayName": "$string:ReloadByUIAbility_display_name",
-      "description": "$string:ReloadByUIAbility_desc",
-      "src": "./ets/reloadbyuiability/pages/ReloadByUIAbilityCard.ets",
+      "name": "UpdateByMessage",
+      "description": "$string:widget_updatebymsg_desc",
+      "src": "./ets/updatebymessage/pages/UpdateByMessageCard.ets",
       "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
       },
       "colorMode": "auto",
-      "isDynamic": true,
       "isDefault": true,
       "updateEnabled": false,
       "scheduledUpdateTime": "10:30",
@@ -22,9 +20,10 @@
       ]
     },
     {
-      "name": "UpdateByMessage",
-      "description": "$string:widget_updatebymsg_desc",
-      "src": "./ets/updatebymessage/pages/UpdateByMessageCard.ets",
+      "name": "ReloadByUIAbility",
+      "displayName": "$string:ReloadByUIAbility_display_name",
+      "description": "$string:ReloadByUIAbility_desc",
+      "src": "./ets/reloadbyuiability/pages/ReloadByUIAbilityCard.ets",
       "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,
@@ -32,6 +31,7 @@
       },
       "colorMode": "auto",
       "isDefault": false,
+      "isDynamic": true,
       "updateEnabled": false,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 1,
@@ -39,6 +39,33 @@
       "supportDimensions": [
         "2*2"
       ]
+    },
+    {
+      "name": "widget",
+      "displayName": "$string:widget_display_name",
+      "description": "$string:widget_desc",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "formConfigAbility": "ability://EntryFormEditAbility",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "transparencyEnabled": false,
+      "metadata": [],
+      "sceneAnimationParams": {
+        "abilityName": "MyLiveFormExtensionAbility"
+      }
     }
   ]
 }

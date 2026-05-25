@@ -47,6 +47,18 @@
     {
       "name": "button_update",
       "value": "点击更新卡片"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "widget_requestForm_desc",
+      "value": "requestForm"
     }
   ]
 }

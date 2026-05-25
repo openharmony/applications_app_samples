@@ -99,7 +99,7 @@ struct Index {
             let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let moduleName: string = 'entry';
             let abilityName: string = 'EntryFormAbility';
-            let formName: string = 'reloadByUIAbilityCard';
+            let formName: string = 'ReloadByUIAbility';
             formProvider.reloadForms(context, moduleName, abilityName, formName).then((reloadNum: number) => {
               console.info(`reloadForms success, reload number: ${reloadNum}`);
             }).catch((error: BusinessError) => {
@@ -131,12 +131,12 @@ struct Index {
 
   build() {
     Column() {
-      // [StartExclude update_by_formprovider]
-      this.buildFormHostUpdate()
-      // [EndExclude update_by_formprovider]
       // [StartExclude update_by_formhost]
       this.buildFormProviderUpdate()
       // [EndExclude update_by_formhost]
+      // [StartExclude update_by_formprovider]
+      this.buildFormHostUpdate()
+      // [EndExclude update_by_formprovider]
     }
     .width('100%')
     .height('100%')
