@@ -136,7 +136,7 @@ struct AttachStateChangeCallbackRegister {
             .fontSize(20)
             .fontColor(Color.White)
         }.onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         }).fancy();
 
       }.width('50%');
