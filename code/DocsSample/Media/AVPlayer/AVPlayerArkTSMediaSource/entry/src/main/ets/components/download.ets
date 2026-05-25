@@ -51,17 +51,17 @@ export class DownloadPool {
         if (data.header) {
           responseHeaders = data.header as Record<string, string>;
         }
-        mediaRequest.respondHeader(uuid,responseHeaders);
+        mediaRequest.respondHeader(uuid, responseHeaders);
         console.info('respondHeader Header: ' + JSON.stringify(responseHeaders));
 
         if (data.result instanceof ArrayBuffer) {
           fs.write(file.fd, data.result);
           let buf = new ArrayBuffer(length);
           fs.read(file.fd, buf, { offset: 0 ,length: length }).then((num: number) => {
-            console.log(`read length ${num}`);
+            console.info(`read length ${num}`);
           }) // 若需要缓存，则可在此处保存读到的数据
           mediaRequest.respondData(uuid, offset, data.result);
-          console.log(`data.result length ${data.result.byteLength}`);
+          console.info(`data.result length ${data.result.byteLength}`);
 
         }
       } else {

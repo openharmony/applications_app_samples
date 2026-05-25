@@ -505,7 +505,7 @@ static OH_AVPlayer* CreateAndConfigurePlayer(int fd, int offset, int size, const
     LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%{public}d", ret);
     // [End OH_AVPlayer_SetOnInfoCallback]
     // [Start OH_AVPlayer_SetOnErrorCallback]
-    LOG("call OH_AVPlayer_SetPlayerOnErrorCallback");
+    LOG("call OH_AVPlayer_SetOnErrorCallback");
     ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, nullptr);
     // [End OH_AVPlayer_SetOnErrorCallback]
     // [Start OH_AVPlayer_SetFDSource]
