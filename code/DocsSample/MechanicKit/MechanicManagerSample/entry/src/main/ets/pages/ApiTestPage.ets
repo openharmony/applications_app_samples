@@ -309,9 +309,7 @@ struct ApiTestPage {
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
-            router.pushUrl({
-              url: 'pages/AttachStateChangeCallbackRegister',
-            })
+            this.getUIContext().getRouter().pushUrl({url:'pages/AttachStateChangeCallbackRegister'},()=>{});
           }).fancy()
           .margin({top:50})
 
@@ -320,9 +318,7 @@ struct ApiTestPage {
               .fontSize(20)
               .fontColor(Color.White)
           }.onClick(() => {
-            router.pushUrl({
-              url: 'pages/DeviceList',
-            })
+            this.getUIContext().getRouter().pushUrl({url:'pages/DeviceList'},()=>{});
           }).fancy();
 
 
