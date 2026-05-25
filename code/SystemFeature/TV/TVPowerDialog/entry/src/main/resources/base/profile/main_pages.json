@@ -1,7 +1,7 @@
 {
   "src": [
-    "pages/powerDialog",
-    "pages/transparent"
+    "pages/PowerDialog",
+    "pages/Transparent"
   ],
   "window": {
     "designWidth": 1920,

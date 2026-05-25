@@ -1,18 +1,7 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "signature/OpenHarmony.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B09C8CCED342529DA2D397E185DF5A080E62BF3FD3D4D3727C4DCAF22C70EA3CABB10C52FB2F112",
-          "profile": "signature/OpenHarmony.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "signature/OpenHarmony.p12",
-          "storePassword": "0000001B06E6CE2B93C82D8F8E47E5D44AE91C736F8641413A8F1F4BFD8F14452A6DB2331AF05DCD1B9C1E"
-        }
-      }
+
     ],
     "products": [
       {
@@ -21,6 +10,30 @@
         "compileSdkVersion": 18,
         "compatibleSdkVersion": 18,
         "runtimeOS": "OpenHarmony"
+      },
+      {
+        "name": "TV",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        }
+      },
+      {
+        "name": "rk3568",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        }
       }
     ]
   },
