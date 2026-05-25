@@ -305,13 +305,7 @@ napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
 // 全局变量 - 用于主要功能
 OH_AudioStreamBuilder *builderRender;
 OH_AudioRenderer *audioRenderer;
-OH_AudioResourceManager *resMgr;
-int32_t g_tokenId;
-OH_AudioWorkgroup *grp = nullptr;
-OH_AudioRenderer_Callbacks callbacks;
-
 FILE *g_fp = nullptr;
-int32_t g_mode = 0;
 
 const int SAMPLING_RATE_48K = 48000;
 const int CHANNEL_COUNT = 2;
