@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例基于 AudioSuite 能力，实现了音频编辑、音源分离、混音和实时渲染等功能，包含了手动渲染和实时渲染两种模式，以及完整的 NAPI 接口调用链路。
+本示例基于 AudioSuite 能力，实现了音频编辑、音源分离、混音和实时预览渲染等功能，包含了离线编辑和实时预览渲染两种模式，以及功能调用接口的完整链路。
 
 ## 效果图预览
 
@@ -29,7 +29,7 @@
 
 点击'播放混音'按钮，即可播放混音后的音频。
 
-点击'播放实时渲染'按钮，即可实时处理并播放音频（预览效果）。
+点击'播放实时预览渲染'按钮，即可实时处理并播放音频（预览效果）。
 
 ## 工程结构&模块类型
 
@@ -40,8 +40,8 @@
 │   │   │   └── Index.d.ts         # NAPI 接口声明
 │   │   ├── CMakeLists.txt         # CMake 编译配置文件
 │   │   ├── audioSuite.cpp         # NAPI 接口和音频播放实现
-│   │   ├── manualRendering.cpp    # 手动渲染（离线编辑）实现
-│   │   ├── realTimeRendering.cpp  # 实时渲染实现
+│   │   ├── manualRendering.cpp    # 离线编辑实现
+│   │   ├── realTimeRendering.cpp  # 实时预览渲染实现
 │   │   └── pcmFileUtils.cpp      # PCM 文件工具类
 │   ├── ets/
 │   │   ├── entryability/
@@ -51,24 +51,13 @@
 │   │   └── pages/
 │   │       └── Index.ets          # 主界面
 │   └── resources/                 # 资源目录
-│       └── rawfile/               # 原始音频文件 (S16LE_2_48000.pcm)
 ```
 
 ## 具体实现
 
-### 使用 AudioRenderer 实现音频播放
+### 使用 AudioSuite 实现离线编辑（离线编辑）
 
-**源码参考：** audioSuite.cpp
-
-**使用流程：**
-
-点击'播放音频'按钮，首先调用 `OH_AudioStreamBuilder_Create` 创建音频构造器。接着配置播放参数，包括采样率、声道数、采样格式、编码类型等。然后调用 `OH_AudioStreamBuilder_SetRendererWriteDataCallback` 配置输出数据回调。再调用 `OH_AudioStreamBuilder_SetLatencyMode` 设置播放流为低时延模式。最后调用 `OH_AudioStreamBuilder_GenerateRenderer` 构造音频流并调用 `OH_AudioRenderer_Start` 开始播放。
-
-点击'停止播放'按钮，调用 `OH_AudioRenderer_Stop` 停止播放，然后调用 `OH_AudioRenderer_Release` 释放音频渲染器资源。
-
-### 使用 AudioSuite 实现手动渲染（离线编辑）
-
-**源码参考：** manualRendering.cpp
+**源码参考：** [manualRendering.cpp](entry/src/main/cpp/manualRendering.cpp)
 
 **使用流程：**
 
@@ -84,13 +73,13 @@
 
 点击'混音与级联'按钮，首先创建引擎和管线，然后创建输入节点、声场节点和输出节点。接着设置节点格式和回调，连接节点组成组网。最后处理音频帧并将混音后的音频写入文件。
 
-### 使用 AudioSuite 实现实时渲染
+### 使用 AudioSuite 实现实时预览渲染
 
-**源码参考：** realTimeRendering.cpp
+**源码参考：** [realTimeRendering.cpp](entry/src/main/cpp/realTimeRendering.cpp)
 
 **使用流程：**
 
-点击'播放实时渲染'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_REALTIME_MODE` 实时模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。再创建 AudioRenderer 并设置写入数据回调，在回调中调用 `OH_AudioSuiteEngine_RenderFrame` 实时获取处理后的音频数据。最后调用 `OH_AudioSuiteEngine_StartPipeline` 启动管线并调用 `OH_AudioRenderer_Start` 开始播放。
+点击'播放实时预览渲染'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_REALTIME_MODE` 实时模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。再创建 AudioRenderer 并设置写入数据回调，在回调中调用 `OH_AudioSuiteEngine_RenderFrame` 实时获取处理后的音频数据。最后调用 `OH_AudioSuiteEngine_StartPipeline` 启动管线并调用 `OH_AudioRenderer_Start` 开始播放。
 
 点击'停止播放'按钮，调用 `OH_AudioRenderer_Stop` 停止播放，然后调用 `OH_AudioSuiteEngine_StopPipeline` 停止管线，最后释放所有资源。
 
@@ -117,11 +106,13 @@
 
 ## 约束与限制
 
-本示例支持在标准系统上运行。
+1.  本示例支持在标准系统上运行，支持设备：RK3568。
 
-本示例支持 API version 24，版本号：6.1.1。
+2.  本示例支持API version 23，版本号： 6.1.1。
 
-本示例已支持 Build Version: 6.1.1, built on May 21, 2026.
+3.  本示例已支持使Build Version: 6.1.1, built on May 21, 2026.
+
+4.  高等级APL特殊签名说明：无。
 
 **音频格式限制：**
 - 仅支持 PCM

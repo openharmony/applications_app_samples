@@ -1,6 +1,18 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
- */
+* Copyright (C) 2026 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 #include <algorithm>
 // [Start audioSuite_RealTimeRenderingInclude]
 #include <ohaudiosuite/native_audio_suite_base.h>
@@ -60,6 +72,7 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *r
 }
 // [End audioSuite_AudioRendererOnWriteData]
 
+// [Start audioSuite_RealTimeVariable]
 OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
 OH_AudioStreamBuilder *rendererBuilder = nullptr;
 OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
@@ -67,6 +80,7 @@ OH_AudioNode *inputNode = nullptr;
 OH_AudioNode *outputNode = nullptr;
 OH_AudioNode *eqNode = nullptr;
 OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
+// [End audioSuite_RealTimeVariable]
 /**
  * 均衡器效果
  */
@@ -75,7 +89,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     // [Start audioSuite_CreateRealTimeRendering]
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
-    // 创建实时渲染的管线。
+    // 创建实时预览渲染的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // 创建节点构造器。
