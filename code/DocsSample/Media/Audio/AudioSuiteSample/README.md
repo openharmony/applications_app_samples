@@ -123,3 +123,15 @@
 ## 高等级APL特殊签名说明
 
 无。
+
+## 下载
+
+如需单独下载本工程，执行如下命令：
+
+```
+git init
+git config core.sparsecheckout true
+echo code/DocsSample/Media/Audio/AudioSuiteSample/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
+git pull origin master
+```
