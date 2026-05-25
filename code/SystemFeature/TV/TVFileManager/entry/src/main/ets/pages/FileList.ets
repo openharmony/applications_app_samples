@@ -571,22 +571,22 @@ export struct FileList {
                         this.imageMap.delete(path);
                       }
                     });
-                  })
+                  });
                 Text(item.name)
                   .fontSize(lpx(Units.px2fp(18)))
                   .fontColor(
                     this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
                   .margin({ left: lpx(Units.px2vp(22)) })
-                  .layoutWeight(1)
+                  .layoutWeight(1);
                 Text(this.isFile(item) ? Tools.byte2Str(item.size) : '')
                   .fontSize(lpx(Units.px2vp(18)))
                   .fontColor(
                     this.selectedIndex == item.id ? $r('app.color.file_list_text_sel') : $r('app.color.file_list_text'))
-                  .margin({ left: lpx(Units.px2vp(10)) })
+                  .margin({ left: lpx(Units.px2vp(10)) });
                 if (this.isRootUsbPage) {
                   Row() {
-                    StorageSpaceComponent({ storagePath: item.relativePath })
-                  }.size({ width: lpx(Units.px2vp(180)), height: lpx(Units.px2vp(50)) })
+                    StorageSpaceComponent({ storagePath: item.relativePath });
+                  }.size({ width: lpx(Units.px2vp(180)), height: lpx(Units.px2vp(50)) });
                 }
 
                 if (this.isSelect) {
@@ -594,14 +594,14 @@ export struct FileList {
                     $r('app.media.ic_public_no_select'))
                     .width(lpx(Units.px2vp(18)))
                     .height(lpx(Units.px2vp(18)))
-                    .margin({ left: lpx(Units.px2vp(32)) })
+                    .margin({ left: lpx(Units.px2vp(32)) });
                 } else {
                   if (item.isDir()) {
-                    Blank().width(lpx(Units.px2vp(18)))
+                    Blank().width(lpx(Units.px2vp(18)));
                     Image(this.selectedIndex == item.id ? $r('app.media.ic_right') : $r('app.media.right'))
-                      .size({ width: '8lpx', height: '16lpx' })
+                      .size({ width: '8lpx', height: '16lpx' });
                   } else {
-                    Blank().width(lpx(Units.px2vp(55)))
+                    Blank().width(lpx(Units.px2vp(55)));
                   }
                 }
               }
@@ -614,7 +614,7 @@ export struct FileList {
               })
               .backgroundColor(this.selectedIndex == item.id ? $r('app.color.file_list_item_bg_sel') :
                 $r('app.color.file_list_item_bg'))
-              .borderRadius(lpx(Units.px2vp(18)))
+              .borderRadius(lpx(Units.px2vp(18)));
             }
             .id(`${this.name}-fileItem-${item.id}`)
             .margin({ bottom: lpx(Units.px2vp(10)), top: lpx(Units.px2vp(12)) })
@@ -692,16 +692,16 @@ export struct FileList {
                 this.isSelect = true;
                 this.operationFiles.push(item);
               })
-            )
-          }, (item: FileBean) => `${item.id}-${item.size}-${this.operationFiles.includes(item) ? 's' : '-'}`)
+            );
+          }, (item: FileBean) => `${item.id}-${item.size}-${this.operationFiles.includes(item) ? 's' : '-'}`);
         } else {
           ListItem() {
             Text($r('app.string.no_files'))
               .fontColor($r('app.color.file_list_text'))
-              .fontSize(lpx(Units.px2vp(36)))
+              .fontSize(lpx(Units.px2vp(36)));
           }.width('100%')
           .height('100%')
-          .alignSelf(ItemAlign.Center)
+          .alignSelf(ItemAlign.Center);
         }
       }
       .width('100%')
@@ -734,7 +734,7 @@ export struct FileList {
         this.imageMap.clear();
         this.videoThumbCache.clear();
         this.loadingVideos.clear();
-      })
+      });
 
 
       Row() {
@@ -749,8 +749,8 @@ export struct FileList {
             itemClick: () => {
               this.onClickMenu(it.action);
             },
-          })
-        })
+          });
+        });
 
       }
       .borderRadius(lpx(Units.px2vp(48)))
@@ -762,7 +762,7 @@ export struct FileList {
       })
       .backgroundColor($r('app.color.dialog_bg'))
       .margin({ bottom: lpx(Units.px2vp(96)) })
-      .visibility(this.showFileOperation ? Visibility.Visible : Visibility.None)
+      .visibility(this.showFileOperation ? Visibility.Visible : Visibility.None);
     }
     .alignContent(Alignment.Bottom)
     .width('100%')
@@ -788,7 +788,7 @@ export struct FileList {
           AbilityManager.preloadShareService(getContext(this) as common.UIAbilityContext);
         }
       }
-    })
+    });
   }
 
   onBackPress(): boolean | void {

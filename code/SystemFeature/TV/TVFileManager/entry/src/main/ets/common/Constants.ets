@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { MediaType } from '../model/MediaType'
+import { MediaType } from '../model/MediaType';
 
 export const TABS: string[] = ['本机', '外部储存'];
 
@@ -25,9 +25,9 @@ export const DEFAULT_THUMB_WIDTH = 96;
 export const DEFAULT_THUMB_HEIGHT = 96;
 
 export interface MediaTypeModel {
-  image: Resource
-  title: ResourceStr
-  mediaType?: MediaType
+  image: Resource;
+  title: ResourceStr;
+  mediaType?: MediaType;
 }
 
 export const MEDIA_TYPE: MediaTypeModel[] = [
@@ -55,4 +55,4 @@ export const MEDIA_TYPE: MediaTypeModel[] = [
     image: $r('app.media.ic_phone'),
     title: $r('app.string.media_type_device', '')
   }
-]
+];

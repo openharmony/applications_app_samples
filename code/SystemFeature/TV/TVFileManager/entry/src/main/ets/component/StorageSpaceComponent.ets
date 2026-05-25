@@ -19,10 +19,11 @@ import { Units } from '../common/utils/PixelUnitConversion';
 import { Tools } from '../common/utils/Tools';
 
 const TAG = 'StorageSpaceComponent';
+
 @Component
 export default struct StorageSpaceComponent {
   @State showFreeSize: [number, number] = [0, 0];
-  @Prop @Watch('refreshPath') storagePath:string
+  @Prop @Watch('refreshPath') storagePath: string;
 
   aboutToAppear(): void {
     MLog.print(TAG, `aboutToAppear storagePath:${this.storagePath}`);
@@ -30,14 +31,14 @@ export default struct StorageSpaceComponent {
   }
 
   aboutToDisappear(): void {
-    MLog.print(TAG, `aboutToDisappear`)
+    MLog.print(TAG, `aboutToDisappear`);
   }
 
-  refreshPath(){
+  refreshPath() {
     this.refreshSize(this.storagePath);
   }
 
-  refreshSize(path:string){
+  refreshSize(path: string) {
     MLog.print(TAG, `refreshSpaceSize path:${path}`);
     let pathSize = StorageManager.getFreeSpaceSize(path);
     MLog.print(TAG, `refreshSpaceSize pathSize:${JSON.stringify(pathSize)}`);
@@ -46,13 +47,14 @@ export default struct StorageSpaceComponent {
 
   build() {
     Column() {
-      Text($r('app.string.storage_space_text', `${Tools.byte2Str(this.showFreeSize[1] - this.showFreeSize[0]) + '/' + Tools.byte2Str(this.showFreeSize[1])}`))
+      Text($r('app.string.storage_space_text',
+        `${Tools.byte2Str(this.showFreeSize[1] - this.showFreeSize[0]) + '/' + Tools.byte2Str(this.showFreeSize[1])}`))
         .minFontSize(10)
         .maxFontSize(36)
         .fontColor('#99000000')
         .maxLines(1)
         .width('100%')
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST);
       Progress({
         value: (this.showFreeSize[1] - this.showFreeSize[0]) / 1000,
         total: this.showFreeSize[1] / 1000,
@@ -63,10 +65,10 @@ export default struct StorageSpaceComponent {
         .margin({ top: lpx(Units.px2vp(8)) })
         .color($r('app.color.storage_progress_color'))
         .backgroundColor('#A5ABB7')
-        .style({ strokeWidth: lpx(Units.px2vp(10)) })
+        .style({ strokeWidth: lpx(Units.px2vp(10)) });
 
     }
     .alignItems(HorizontalAlign.Center)
-    .size({ width:'100%', height:'100%' })
+    .size({ width: '100%', height: '100%' });
   }
 }

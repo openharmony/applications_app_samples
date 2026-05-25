@@ -52,7 +52,7 @@ export class FileTaskPool {
       MLog.print(TAG, `task execute success!`);
       emitter.emit(TAG_FINISH);
     });
-  }
+  };
   private finishFun = (data: emitter.EventData) => {
     MLog.print(TAG,
       `task finish totalDuration:${this.task.totalDuration} ioDuration:${this.task.ioDuration} cpuDuration:${this.task.cpuDuration}`);
@@ -62,13 +62,13 @@ export class FileTaskPool {
     if (this.finishCall) {
       this.finishCall(data.data?.listBean);
     }
-  }
+  };
   private progressFun = (data: emitter.EventData) => {
     MLog.print(TAG, `progressFun data:${JSON.stringify(data)}`);
     if (this.progressCall) {
       this.progressCall(data.data?.progress, data.data?.progressOne, data.data?.taskResult);
     }
-  }
+  };
 
   setProgressFun(progressCall: (progress: number) => void) {
     this.progressCall = progressCall;

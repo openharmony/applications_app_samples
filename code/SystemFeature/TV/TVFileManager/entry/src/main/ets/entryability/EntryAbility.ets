@@ -19,47 +19,47 @@ import { MLog } from '../common/utils/MLog';
 
 type SystemBarKeys = 'status' | 'navigation';
 const TAG = 'EntryAbility';
-export default class EntryAbility extends UIAbility {
 
+export default class EntryAbility extends UIAbility {
   private mWindowStage: window.WindowStage | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    MLog.info(TAG,'Ability onCreate ' + want.parameters?.isFromShare);
+    MLog.info(TAG, 'Ability onCreate ' + want.parameters?.isFromShare);
     let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
-    let info = bundleManager.getBundleInfoSync(this.context.abilityInfo.bundleName,bundleFlags);
-    MLog.info(TAG,`Ability BundleInfo: ${JSON.stringify(info)}`);
+    let info = bundleManager.getBundleInfoSync(this.context.abilityInfo.bundleName, bundleFlags);
+    MLog.info(TAG, `Ability BundleInfo: ${JSON.stringify(info)}`);
     if (want.parameters) {
       AppStorage.setOrCreate('isFromShare', want.parameters?.isFromShare);
     }
   }
 
   onDestroy(): void {
-   MLog.info(TAG, 'Ability onDestroy');
+    MLog.info(TAG, 'Ability onDestroy');
   }
 
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-   AppStorage.setAndLink('Tindex',0);
+    AppStorage.setAndLink('Tindex', 0);
     // Main window is created, set main page for this ability
-   MLog.info(TAG, 'Ability onWindowStageCreate');
+    MLog.info(TAG, 'Ability onWindowStageCreate');
     this.mWindowStage = windowStage;
     let names: SystemBarKeys[] = new Array<SystemBarKeys>('navigation');
     windowStage.getMainWindow().then((window: window.Window) => {
       window.setWindowSystemBarEnable(names);
-      window.setWindowSystemBarProperties({navigationBarColor: '#1f2e4d', navigationBarContentColor: '#ffffff'});
+      window.setWindowSystemBarProperties({ navigationBarColor: '#1f2e4d', navigationBarContentColor: '#ffffff' });
       windowStage.loadContent('pages/Index', (err) => {
         if (err.code) {
-          MLog.error(TAG,'Failed to load the content. Cause: '+ JSON.stringify(err) ?? '');
+          MLog.error(TAG, 'Failed to load the content. Cause: ' + JSON.stringify(err) ?? '');
           return;
         }
-       MLog.info(TAG,'Succeeded in loading the content.');
+        MLog.info(TAG, 'Succeeded in loading the content.');
       });
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-   MLog.info(TAG, 'Ability onWindowStageDestroy');
+    MLog.info(TAG, 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
@@ -69,14 +69,13 @@ export default class EntryAbility extends UIAbility {
 
   onBackground(): void {
     // Ability has back to background
-   MLog.info(TAG,'Ability onBackground');
+    MLog.info(TAG, 'Ability onBackground');
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-   MLog.info(TAG, 'Ability onNewWant '+ JSON.stringify(want.parameters));
+    MLog.info(TAG, 'Ability onNewWant ' + JSON.stringify(want.parameters));
     if (want.parameters) {
       AppStorage.setOrCreate('isFromShare', want.parameters?.isFromShare);
     }
   }
-
-}
+};

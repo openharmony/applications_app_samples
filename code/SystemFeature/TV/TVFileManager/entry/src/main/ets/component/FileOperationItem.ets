@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Units } from '../common/utils/PixelUnitConversion'
+import { Units } from '../common/utils/PixelUnitConversion';
 import { OperationActionID } from '../model/Operation';
 
 @Component
 export struct FileOperationItem {
-  @State image: ResourceStr = ''
-  @State imageFocus: ResourceStr = ''
-  @State text: ResourceStr = ''
-  @Prop visible: boolean
-  @Prop focusId: string
-  @State isFocused: boolean = false
-  @Link specialSelectMod:boolean;
+  @State image: ResourceStr = '';
+  @State imageFocus: ResourceStr = '';
+  @State text: ResourceStr = '';
+  @Prop visible: boolean;
+  @Prop focusId: string;
+  @State isFocused: boolean = false;
+  @Link specialSelectMod: boolean;
   itemClick?: Function;
 
   build() {
@@ -40,18 +40,18 @@ export struct FileOperationItem {
           if (this.itemClick) {
             this.itemClick();
           }
-        })
+        });
       if (this.focusId === OperationActionID.SelectAll) {
         Text(!this.specialSelectMod ? $r('app.string.operation_type_all_choice') :
-        $r('app.string.operation_type_all_choice_cancel'))
+          $r('app.string.operation_type_all_choice_cancel'))
           .fontSize(Units.px2fp(24))
           .fontColor($r('app.color.title_bar_hint_text'))
-          .margin({ top: Units.px2vp(12) })
+          .margin({ top: Units.px2vp(12) });
       } else {
         Text(this.text)
           .fontSize(Units.px2fp(24))
           .fontColor($r('app.color.title_bar_hint_text'))
-          .margin({ top: Units.px2vp(12) })
+          .margin({ top: Units.px2vp(12) });
       }
     }
     .onHover((isHover) => {
@@ -71,7 +71,7 @@ export struct FileOperationItem {
     .margin({ left: Units.px2vp(24), right: Units.px2vp(24) })
     .visibility(this.visible ? Visibility.Visible : Visibility.None)
     .focusable(true)
-    .id(this.focusId)
+    .id(this.focusId);
 
   }
 }

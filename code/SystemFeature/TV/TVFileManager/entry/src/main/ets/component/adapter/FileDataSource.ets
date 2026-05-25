@@ -55,7 +55,7 @@ export default class FileDataSource extends BasicDataSource<FileBean> {
 
   public splice(bean: FileBean[]) {
     if (bean.length === this.array.length) {
-      this.array = []
+      this.array = [];
     } else {
       for (let i = 0; i < bean.length; i++) {
         if (this.array.includes(bean[i])) {
@@ -90,4 +90,4 @@ export default class FileDataSource extends BasicDataSource<FileBean> {
   public getCheckArray() {
     return this.checkArray;
   }
-}
+};

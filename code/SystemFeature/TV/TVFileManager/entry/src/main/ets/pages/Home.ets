@@ -21,7 +21,8 @@ import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 import { Units } from '../common/utils/PixelUnitConversion';
 import lpx from '../common/utils/Lpx';
 
-const TAG ='Home';
+const TAG = 'Home';
+
 @Component
 export struct Home {
   @State focusIndex: number = -1;
@@ -43,20 +44,20 @@ export struct Home {
                 Stack() {
                   Image(item.image)
                     .width(lpx(Units.px2vp(120)))
-                    .width(lpx(Units.px2vp(120)))
+                    .width(lpx(Units.px2vp(120)));
                   if (this.focusIndex == index) {
                     Image($r('app.media.ic_media_type_selected'))
                       .width('100%')
-                      .height('100%')
+                      .height('100%');
                   }
                 }
                 .width(lpx(Units.px2vp(130)))
-                .height(lpx(Units.px2vp(130)))
+                .height(lpx(Units.px2vp(130)));
 
                 Text(item.title)
                   .fontSize(lpx(Units.px2fp(18)))
                   .fontColor($r('app.color.title_bar_hint_text'))
-                  .margin({ top: lpx(Units.px2vp(16)) })
+                  .margin({ top: lpx(Units.px2vp(16)) });
               }
               .onFocus(() => {
                 this.isFocusable = true;
@@ -74,61 +75,61 @@ export struct Home {
                 }
               })
               .onClick(() => this.itemClicked(item))
-              .backgroundColor(Color.Transparent)
-          }
-          .margin({ right: lpx(Units.px2vp(20)) })
-          .focusable(true)
-          .defaultFocus(true)
-          .focusBox( {
-            strokeColor: ColorMetrics.numeric(Color.Transparent),
-            strokeWidth:LengthMetrics.px(0)
-          })
+              .backgroundColor(Color.Transparent);
+            }
+            .margin({ right: lpx(Units.px2vp(20)) })
+            .focusable(true)
+            .defaultFocus(true)
+            .focusBox({
+              strokeColor: ColorMetrics.numeric(Color.Transparent),
+              strokeWidth: LengthMetrics.px(0)
+            });
 
-          })
+          });
         }
         .width('100%')
         .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
         .padding({ top: lpx(Units.px2vp(16)) })
         .onAppear(() => {
           setTimeout(() => {
-            this.focusController.requestFocus(this.beforeFocusIndex.toString())
-          })
+            this.focusController.requestFocus(this.beforeFocusIndex.toString());
+          });
         })
         .onBlur(() => {
           this.focusIndex = -1;
           MLog.print(TAG, `onBlur Grid focusIndex:${this.focusIndex}`);
-        })
-      }//.height('100%')
-      .width('100%')
+        });
+      } //.height('100%')
+      .width('100%');
     }
     .height('100%')
     .width('100%')
     .justifyContent(FlexAlign.Start)
     .alignItems(VerticalAlign.Top)
     .backgroundColor(Color.Transparent)
-    .onAppear(()=>{
-        MLog.print(TAG,`onAppear home`);
-        NavStack.getIns().isShowHomePage = true;
-    })
+    .onAppear(() => {
+      MLog.print(TAG, `onAppear home`);
+      NavStack.getIns().isShowHomePage = true;
+    });
   }
 
   private itemClicked(item: MediaTypeModel) {
-    switch(item.mediaType){
+    switch (item.mediaType) {
       case MediaType.VIDEO:
         NavStack.getIns().pushRoot(PageType.VIDEO_PAGE);
-      break;
+        break;
       case MediaType.AUDIO:
         NavStack.getIns().pushRoot(PageType.AUDIO_PAGE);
-      break;
+        break;
       case MediaType.DOC:
         NavStack.getIns().pushRoot(PageType.DOC_PAGE);
-      break;
+        break;
       case MediaType.IMAGE:
         NavStack.getIns().pushRoot(PageType.IMAGE_PAGE);
-      break;
+        break;
       default:
         NavStack.getIns().pushRoot(PageType.ROOT_PAGE);
-      break;
+        break;
     }
 
   }

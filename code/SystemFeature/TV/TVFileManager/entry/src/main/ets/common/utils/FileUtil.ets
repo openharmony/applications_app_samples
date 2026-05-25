@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { fileIo } from '@kit.CoreFileKit'
+import { fileIo } from '@kit.CoreFileKit';
 import { MLog } from './MLog';
 import { image } from '@kit.ImageKit';
 import { taskpool } from '@kit.ArkTS';

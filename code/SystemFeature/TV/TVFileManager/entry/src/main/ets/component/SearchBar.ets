@@ -16,14 +16,14 @@
 export default struct SearchBar {
   placeholder: string = '';
   onSearchEvent?: Function;
-  onClearEvent?: Function ;
+  onClearEvent?: Function;
   @State searchText: string = '';
 
   build() {
     Row() {
       Image($r('app.media.ic_public_search_filled'))
         .width(22)
-        .height(22)
+        .height(22);
 
       TextInput({ placeholder: this.placeholder, text: this.searchText })
         .layoutWeight(1)
@@ -32,7 +32,7 @@ export default struct SearchBar {
         .padding({ left: 8, right: 8 })
         .onChange((value: string) => {
           this.searchText = value;
-        })
+        });
 
 
       if (this.searchText.length > 0) {
@@ -42,14 +42,14 @@ export default struct SearchBar {
           .onClick(() => {
             this.searchText = '';
             this.onClearEvent!();
-          })
+          });
       }
 
       Divider()
         .vertical(true)
         .width(1)
         .height(20)
-        .margin({ left: 8 })
+        .margin({ left: 8 });
 
       Button('搜索')
         .fontColor('#333333')
@@ -58,10 +58,10 @@ export default struct SearchBar {
         .onClick(() => {
           this.onSearchEvent!(this.searchText);
         })
-        .padding(6)
+        .padding(6);
     }
     .padding({ left: 10, right: 10 })
     .borderRadius(26)
-    .backgroundColor('#f5f5f5')
+    .backgroundColor('#f5f5f5');
   }
 }

@@ -112,7 +112,7 @@ struct Index {
           break;
       }
     }
-  }
+  };
   private checkExternal = () => {
     const prevUsbCount = this.getUsbDeviceCount(); // 记录之前的 USB 数量
 
@@ -142,7 +142,7 @@ struct Index {
       // 更新记录的 USB 数量
       this.setUsbDeviceCount(currentUsbCount);
     });
-  }
+  };
   // 添加成员变量记录 USB 数量
   private usbDeviceCount: number = 0;
 
@@ -232,31 +232,31 @@ struct Index {
       Row() {
         this.Tabs();
         if (this.showFreeSize && this.showFreeSize[1]) {
-          this.StorageSpace()
+          this.StorageSpace();
         }
       }
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Center)
       .width('100%')
-      .margin({ top: lpx(Units.px2vp(24)) })
+      .margin({ top: lpx(Units.px2vp(24)) });
 
       Row() {
         if (this.pageName === PageType.HOME_PAGE) {
           Home({
             isFocusable: this.isFocusable
-          })
+          });
         } else {
           FileList({
             name: this.pageName,
             isFocusable: this.isFocusable
-          })
+          });
         }
       }.layoutWeight(1)
       .focusBox({
         strokeColor: ColorMetrics.numeric(Color.Transparent),
         strokeWidth: LengthMetrics.px(0)
       })
-      .margin({ top: lpx(Units.px2vp(10)), bottom: lpx(Units.px2vp(16)) })
+      .margin({ top: lpx(Units.px2vp(10)), bottom: lpx(Units.px2vp(16)) });
 
     }
     .width('100%')
@@ -267,7 +267,7 @@ struct Index {
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
       }
-    })
+    });
   }
 
   @Builder
@@ -277,41 +277,41 @@ struct Index {
         Text($r('app.string.app_name'))
           .fontSize(lpx(Units.px2fp(32)))
           .fontColor($r('app.color.title_bar_text'))
-          .margin({ right: lpx(Units.px2vp(24)) })
+          .margin({ right: lpx(Units.px2vp(24)) });
 
         if (this.isShowPath) {
           Row() {
             Text(this.getParentDirName('', -1))
               .fontSize(lpx(Units.px2fp(16)))
-              .fontColor($r('app.color.title_bar_hint_text'))
+              .fontColor($r('app.color.title_bar_hint_text'));
             if (this.parentDirs?.length > 0) {
               Text() {
                 ForEach(this.parentDirs, (item: string, index: number) => {
-                  Span(this.getParentDirName(item, index))
-                })
+                  Span(this.getParentDirName(item, index));
+                });
               }
               .fontSize(lpx(Units.px2fp(16)))
               .fontColor($r('app.color.title_bar_hint_text'))
               .maxLines(1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .ellipsisMode(EllipsisMode.CENTER)
+              .ellipsisMode(EllipsisMode.CENTER);
 
             }
           }.width('50%')
-          .justifyContent(FlexAlign.Start)
+          .justifyContent(FlexAlign.Start);
         }
       }
-      .alignItems(VerticalAlign.Bottom)
+      .alignItems(VerticalAlign.Bottom);
 
       if (!this.isShowHomePage) {
         Text($r('app.string.title_bar_hint'))
           .fontSize(lpx(Units.px2fp(18)))
-          .fontColor($r('app.color.title_bar_hint_text'))
+          .fontColor($r('app.color.title_bar_hint_text'));
       }
     }
     .width('100%')
     .justifyContent(FlexAlign.SpaceBetween)
-    .alignItems(VerticalAlign.Center)
+    .alignItems(VerticalAlign.Center);
   }
 
   @Builder
@@ -355,10 +355,10 @@ struct Index {
             strokeColor: ColorMetrics.rgba(255, 255, 255, 1),
             strokeWidth: LengthMetrics.lpx(1),
             margin: LengthMetrics.lpx(2)
-          })
-      })
+          });
+      });
     }
-    .focusScopeId('tabs', true)
+    .focusScopeId('tabs', true);
   }
 
   @Builder
@@ -368,7 +368,7 @@ struct Index {
         `${Tools.byte2Str(this.showFreeSize[1] - this.showFreeSize[0]) + '/' + Tools.byte2Str(this.showFreeSize[1])}`))
         .fontSize(lpx(Units.px2fp(18)))
         .fontColor($r('app.color.title_bar_hint_text'))
-        .fontWeight(400)
+        .fontWeight(400);
       Progress({
         value: (this.showFreeSize[1] - this.showFreeSize[0]) / 1000,
         total: this.showFreeSize[1] / 1000,
@@ -379,10 +379,10 @@ struct Index {
         .margin({ top: lpx(Units.px2vp(10)) })
         .color($r('app.color.storage_progress_color'))
         .backgroundColor('#A5ABB7')
-        .style({ strokeWidth: lpx(Units.px2vp(10)) })
+        .style({ strokeWidth: lpx(Units.px2vp(10)) });
 
     }
-    .alignItems(HorizontalAlign.Center)
+    .alignItems(HorizontalAlign.Center);
   }
 
   private switchTab(index: number) {

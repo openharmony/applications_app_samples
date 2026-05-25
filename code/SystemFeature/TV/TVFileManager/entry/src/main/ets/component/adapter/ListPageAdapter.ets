@@ -21,7 +21,7 @@ const TAG = 'ListPageAdapter';
 
 export default class ListPageAdapter extends FileDataSource {
   constructor(ctx: Context) {
-    super(ctx, [])
+    super(ctx, []);
   }
 
   public pushRoot(beans: FileBean[]) {
@@ -34,4 +34,4 @@ export default class ListPageAdapter extends FileDataSource {
     super.clear();
     this.notifyDataReload();
   }
-}
+};
