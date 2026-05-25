@@ -20,6 +20,7 @@ import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
+// [Start hiretrieval_sample_code]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
@@ -78,3 +79,4 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+// [End hiretrieval_sample_code]
