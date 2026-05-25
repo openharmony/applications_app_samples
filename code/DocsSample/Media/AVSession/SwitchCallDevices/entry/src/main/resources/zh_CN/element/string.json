@@ -47,6 +47,10 @@
     {
       "name": "switch_InputDevice",
       "value": "在音频通话场景下，点击下方按钮切换通话输入设备"
+    },
+    {
+      "name": "switch_MediaOutputDevice",
+      "value": "切换媒体输出设备"
     }
   ]
 }

@@ -47,6 +47,10 @@
     {
       "name": "switch_InputDevice",
       "value": "SwitchInputDevice"
+    },
+    {
+      "name": "switch_MediaOutputDevice",
+      "value": "SwitchMediaOutputDevice"
     }
   ]
 }

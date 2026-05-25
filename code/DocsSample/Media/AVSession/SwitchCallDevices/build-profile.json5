@@ -20,10 +20,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 20,
-        "compatibleSdkVersion": 20,
+        "compileSdkVersion": 23,
+        "compatibleSdkVersion": 23,
         "runtimeOS": "OpenHarmony",
-        "targetSdkVersion": 20
+        "targetSdkVersion": 23
       }
     ],
     "buildModeSet": [

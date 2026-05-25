@@ -47,6 +47,10 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "switch_MediaOutputDevice",
+      "value": "MediaOutputButton"
     }
   ]
 }
