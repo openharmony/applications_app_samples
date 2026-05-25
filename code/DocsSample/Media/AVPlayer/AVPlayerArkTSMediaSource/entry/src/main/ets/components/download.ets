@@ -51,7 +51,7 @@ export class DownloadPool {
         if (data.header) {
           responseHeaders = data.header as Record<string, string>;
         }
-        mediaRequest.respondHeader(uuid,responseHeaders);
+        mediaRequest.respondHeader(uuid, responseHeaders);
         console.info('respondHeader Header: ' + JSON.stringify(responseHeaders));
 
         if (data.result instanceof ArrayBuffer) {

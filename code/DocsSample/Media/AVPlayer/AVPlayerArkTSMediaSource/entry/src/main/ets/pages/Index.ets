@@ -119,15 +119,15 @@ struct Index {
     if (this.context == undefined) {
       return;
     }
-    // [Start CreatAVPlayer_2]
+    // [Start CreateAVPlayer_2]
     if (this.avPlayer) {
-      console.info(`${this.tag}: init avPlayer release2createNew`);
+      console.info(`${this.tag}: init avPlayer releaseToCreateNew`);
       this.avPlayer.release();
       await this.msleepAsync(1500);
     }
     // 创建avPlayer实例对象
     this.avPlayer = await media.createAVPlayer();
-    // [End CreatAVPlayer_2]
+    // [End CreateAVPlayer_2]
 
     // 创建状态机变化回调函数
     await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
@@ -247,7 +247,7 @@ struct Index {
         case 'prepared': // prepare调用成功后上报该状态机
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state prepared called.`);
           this.avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-            console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}}`);
+            console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}`);
           })
           this.durationTime = this.avPlayer.duration;
           this.currentTime = this.avPlayer.currentTime;
@@ -429,7 +429,7 @@ struct Index {
     let sourceReadCallback: media.SourceReadCallback = (
       uuid: number, requestedOffset: number, requestedLength: number) => {
       console.info(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
-      // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+      // 判断uuid是否合法、存储read请求，不要在read请求阻塞时去推送数据和头信息。
       if (!this.requests.hasKey(uuid)) {
         console.log(`Reading error uuid= ${uuid}`);
         return;
