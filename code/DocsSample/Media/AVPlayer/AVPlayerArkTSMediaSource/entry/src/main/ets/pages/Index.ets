@@ -431,7 +431,7 @@ struct Index {
       console.info(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
       // 判断uuid是否合法、存储read请求，不要在read请求阻塞时去推送数据和头信息。
       if (!this.requests.hasKey(uuid)) {
-        console.log(`Reading error uuid= ${uuid}`);
+        console.info(`Reading error uuid= ${uuid}`);
         return;
       }
       this.respondData(uuid, requestedOffset, requestedLength, this.videoUrl);
