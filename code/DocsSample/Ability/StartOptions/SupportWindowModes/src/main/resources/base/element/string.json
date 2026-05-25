@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SupportWindowModesAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SupportWindowModesAbility_label",
+      "value": "label"
+    }
+  ]
+}
