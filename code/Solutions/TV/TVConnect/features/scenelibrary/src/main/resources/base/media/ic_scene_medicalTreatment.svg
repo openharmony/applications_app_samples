@@ -1,0 +1,17 @@
+<svg width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#229;&#140;&#187;&#231;&#150;&#151;2">
+<rect id="Rectangle 2423" width="69" height="69" rx="34.5" fill="#F7B500" fill-opacity="0.2"/>
+<g id="Group 5013">
+<rect id="Rectangle 2765" x="15.0938" y="15.0939" width="38.8125" height="38.8125" rx="8.625" fill="white"/>
+<g id="Group 5014">
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M31.2656 43.5564C31.2656 44.5091 32.0379 45.2814 32.9906 45.2814H36.0094C36.9621 45.2814 37.7344 44.5091 37.7344 43.5564V37.7346H43.5562C44.5089 37.7346 45.2812 36.9622 45.2812 36.0096V32.9908C45.2812 32.0381 44.5089 31.2658 43.5562 31.2658H37.7344V25.4439C37.7344 24.4912 36.9621 23.7189 36.0094 23.7189H32.9906C32.0379 23.7189 31.2656 24.4912 31.2656 25.4439V31.2658H25.4437C24.4911 31.2658 23.7188 32.0381 23.7188 32.9908V36.0096C23.7188 36.9622 24.4911 37.7346 25.4438 37.7346H31.2656V43.5564Z" fill="url(#paint0_linear_64_12867)"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_64_12867" x1="34.5" y1="23.7189" x2="34.5" y2="45.2814" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FD6752"/>
+<stop offset="1" stop-color="#F33232"/>
+</linearGradient>
+</defs>
+</svg>

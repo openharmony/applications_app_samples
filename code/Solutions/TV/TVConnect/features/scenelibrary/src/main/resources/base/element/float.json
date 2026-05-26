@@ -1,0 +1,284 @@
+{
+  "float": [
+    {
+      "name": "empty_width",
+      "value": "120vp"
+    },
+    {
+      "name": "empty_height",
+      "value": "120vp"
+    },
+    {
+      "name": "font_20",
+      "value": "20vp"
+    },
+    {
+      "name": "font_16",
+      "value": "16vp"
+    },
+    {
+      "name": "font_14",
+      "value": "14vp"
+    },
+    {
+      "name": "font_44",
+      "value": "44vp"
+    },
+    {
+      "name": "font_12",
+      "value": "12vp"
+    },
+    {
+      "name": "padding_top_17",
+      "value": "17vp"
+    },
+    {
+      "name": "line_20",
+      "value": "20vp"
+    },
+    {
+      "name": "line_22",
+      "value": "22vp"
+    },
+    {
+      "name": "line_24",
+      "value": "24vp"
+    },
+    {
+      "name": "icon_width",
+      "value": "24vp"
+    },
+    {
+      "name": "icon_height",
+      "value": "24vp"
+    },
+    {
+      "name": "switch_width",
+      "value": "36vp"
+    },
+    {
+      "name": "switch_height",
+      "value": "20vp"
+    },
+    {
+      "name": "card_width",
+      "value": "162vp"
+    },
+    {
+      "name": "card_height",
+      "value": "120vp"
+    },
+    {
+      "name": "card_border_radius",
+      "value": "16vp"
+    },
+    {
+      "name": "top_8",
+      "value": "8vp"
+    },
+    {
+      "name": "height_40",
+      "value": "40vp"
+    },
+    {
+      "name": "p_6",
+      "value": "6vp"
+    },
+    {
+      "name": "p_8",
+      "value": "8vp"
+    },
+    {
+      "name": "p_12",
+      "value": "12vp"
+    },
+    {
+      "name": "p_16",
+      "value": "16vp"
+    },
+    {
+      "name": "p_20",
+      "value": "20vp"
+    },
+    {
+      "name": "p_24",
+      "value": "24vp"
+    },
+    {
+      "name": "p_40",
+      "value": "40vp"
+    },
+    {
+      "name": "p_44",
+      "value": "44vp"
+    },
+    {
+      "name": "p_52",
+      "value": "52vp"
+    },
+    {
+      "name": "add_scene_width",
+      "value": "20vp"
+    },
+    {
+      "name": "add_scene_height",
+      "value": "20vp"
+    },
+    {
+      "name": "scene_tab_height",
+      "value": "56vp"
+    },
+    {
+      "name": "padding_tab_title_left",
+      "value": "8vp"
+    },
+    {
+      "name": "padding_tab_left",
+      "value": "24vp"
+    },
+    {
+      "name": "margin_card_top",
+      "value": "24vp"
+    },
+    {
+      "name": "btn_height",
+      "value": "40vp"
+    },
+    {
+      "name": "tip_icon_width",
+      "value": "22vp"
+    },
+    {
+      "name": "tip_icon_height",
+      "value": "22vp"
+    },
+    {
+      "name": "origin_circle_size",
+      "value": "180vp"
+    },
+    {
+      "name": "ic_arrow_left_icon_width",
+      "value": "12vp"
+    },
+    {
+      "name": "btn_margin_bottom",
+      "value": "24vp"
+    },
+    {
+      "name": "device_item_name_font_size",
+      "value": "12vp"
+    },
+    {
+      "name": "device_item_bg_size",
+      "value": "60vp"
+    },
+    {
+      "name": "device_item_ic_size",
+      "value": "35vp"
+    },
+    {
+      "name": "device_item_padding",
+      "value": "5vp"
+    },
+    {
+      "name": "device_item_name_size",
+      "value": "15vp"
+    },
+    {
+      "name": "bg_device_size",
+      "value": "100vp"
+    },
+    {
+      "name": "device_min_space",
+      "value": "16vp"
+    },
+    {
+      "name": "vp_60",
+      "value": "60vp"
+    },
+    {
+      "name": "vp_50",
+      "value": "50vp"
+    },
+    {
+      "name": "vp_40",
+      "value": "40vp"
+    },
+    {
+      "name": "vp_25",
+      "value": "25vp"
+    },
+    {
+      "name": "vp_20",
+      "value": "20vp"
+    },
+    {
+      "name": "vp_14",
+      "value": "14vp"
+    },
+    {
+      "name": "vp_13",
+      "value": "13vp"
+    },
+    {
+      "name": "vp_12",
+      "value": "12vp"
+    },
+    {
+      "name": "vp_10",
+      "value": "10vp"
+    },
+    {
+      "name": "vp_5",
+      "value": "3vp"
+    },
+    {
+      "name": "dialog_padding_top",
+      "value": "10vp"
+    },
+    {
+      "name": "dialog_padding_bottom",
+      "value": "24vp"
+    },
+    {
+      "name": "dialog_divider_height",
+      "value": "30vp"
+    },
+    {
+      "name": "menu_body_width",
+      "value": "160vp"
+    },
+    {
+      "name": "menu_body_height",
+      "value": "96vp"
+    },
+    {
+      "name": "menu_item_height",
+      "value": "40vp"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "40vp"
+    },
+    {
+      "name": "modify_scene_icon_height",
+      "value": "254vp"
+    },
+    {
+      "name": "scene_icon_width",
+      "value": "69vp"
+    },
+    {
+      "name": "scene_icon_height",
+      "value": "69vp"
+    },
+    {
+      "name": "scene_current_icon_width",
+      "value": "40vp"
+    },
+    {
+      "name": "scene_current_icon_height",
+      "value": "40vp"
+    }
+  ]
+}

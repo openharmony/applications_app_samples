@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scenelibrary",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

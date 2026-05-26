@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="20px" viewBox="0 0 36 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Switch</title>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <image id="Switch" x="0" y="0" width="36" height="20" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAUCAYAAADlep81AAAABGdBTUEAALGOfPtRkwAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAFAAAAACLL1t6AAAClUlEQVRIDa1Wv2/TQBR+75wojvcIU0WKOhYV1LFLIWHoXIlKqSATSxhoVSQG/gSGSiBAIhlgalEiMXTuQFK6ZKwoomMVyUotZSZxiePjnq9p3Pyq7foG/3j33Xfv3t297yFMalkeU+esPHJcQ+DLnIOOCLFJUL82wWEjgAGIx4Jz/++5WYX6vDU6XmCuN/Vp9xnj8FZY09d7Iv7j3OSgbHcriaqXeeiQiIqmd9+JFbz0AsJ+30sjFFcVyC0qkElJlmYb4OjUgfKBDb+aXBoRSp2Wugl1tMlw5ZC20f0s/l5IVPhnIg7w4XkcCo+UmSS7P/uw9aUHFz0B4/xTp6Jt0gDXoeTGRR7Rqcxk8NFJznx/HYfH92c7M6D6ceLA+s4/1ynHYQWrmthDyJ6pmn7nTGyVPgCGfZeLN0dmlJsiVSy5YTI658l5pt7V81E48yCDN27TqDP0X3ioAJ03sVlputmMAa5NAga10QEO24qrMqNQmmHiRC2FJfKOW1kQVCFbblHeLcp5TCSsSPJNJnV1YQO7lUnJxVACDr+swNP6G8CEJJj+oLNRzfZlopsNm9jbbDvSjmCILcPGRFRAY+33JWnAcQQ/OpWLQcBjxhnfD8ExNqR80B+z+TWQlFAj0WVWq0HiZriWWzz+GBx2DyVxEBpKjK6ucTCpAmBQz9kOwpsgJNOwW19tqJ34jxRhSc+ocWDbVI64t8z6ltwjgZs2kV87CeWTnZ6vSFFkCCvFFUqDMmSYPLK1mDa3/FG4emvFpwWQlFAGXllAUX7Iaegm0uGn80Zb7DZSejP5aqz8kL0ArvJD/30U+jbgnPI26Ki4u+MBDCPkMVIFQKIrdY4vUTaPpIRFUSVy1qCbbbVUUcLKosw79X+BU+4yzXDKlgAAAABJRU5ErkJggg=="></image>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/SceneLibraryPage",
+    "pages/AddScenePage",
+    "pages/DeviceControlPage",
+    "pages/SceneDetailPage",
+    "pages/AddConditionPage"
+  ],
+   "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

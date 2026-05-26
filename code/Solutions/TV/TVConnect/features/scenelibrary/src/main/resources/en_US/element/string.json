@@ -1,0 +1,196 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "no_scene",
+      "value": "no any scene"
+    },
+    {
+      "name": "my_scene",
+      "value": "my scene"
+    },
+    {
+      "name": "scene_library",
+      "value": "scene library"
+    },
+    {
+      "name": "to",
+      "value": "to"
+    },
+    {
+      "name": "add_scene_library",
+      "value": "add scene library"
+    },
+    {
+      "name": "add_custom_scene",
+      "value": "add custom scene"
+    },
+    {
+      "name": "edit_custom_scene",
+      "value": "edit custom scene"
+    },
+    {
+      "name": "or",
+      "value": "or"
+    },
+    {
+      "name": "smart_tunnel",
+      "value": "smart_tunnel"
+    },
+    {
+      "name": "sensor_device_control",
+      "value": "sensor device control"
+    },
+    {
+      "name": "scene_name",
+      "value": "scene name"
+    },
+    {
+      "name": "trigger_conditions",
+      "value": "trigger conditions"
+    },
+    {
+      "name": "additional_conditions",
+      "value": "additional conditions"
+    },
+    {
+      "name": "add_conditions",
+      "value": "add conditions"
+    },
+    {
+      "name": "execute_action",
+      "value": "execute action"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "execution scenario"
+    },
+    {
+      "name": "scene_description",
+      "value": "scene description"
+    },
+    {
+      "name": "scene_title_desc",
+      "value": "%s %s waiting for equipment control"
+    },
+    {
+      "name": "equipment_combination",
+      "value": "equipment combination"
+    },
+    {
+      "name": "solution_description",
+      "value": "solution description:"
+    },
+    {
+      "name": "execution_device",
+      "value": "execution device"
+    },
+    {
+      "name": "trigger_device",
+      "value": "trigger device"
+    },
+    {
+      "name": "add_trigger_condition",
+      "value": "add trigger condition"
+    },
+    {
+      "name": "add_execute_action",
+      "value": "add execute action"
+    },
+    {
+      "name": "edit_trigger_condition",
+      "value": "edit trigger condition"
+    },
+    {
+      "name": "edit_execute_action",
+      "value": "edit execute action"
+    },
+    {
+      "name": "placeholder_desc",
+      "value": "Please enter the scene name"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "edit",
+      "value": "edit"
+    },
+    {
+      "name": "device_select",
+      "value": "device select"
+    },
+    {
+      "name": "scene_save_tip",
+      "value": "The scene has been saved and opened."
+    },
+    {
+      "name": "device_unknown",
+      "value": "device unknown"
+    },
+    {
+      "name": "scene_detail_desc",
+      "value": "This scenario can be completed based on %s、%s internet of things"
+    },
+    {
+      "name": "add_scene_name_empty_tip",
+      "value": "Scene name cannot be empty."
+    },
+    {
+      "name": "add_data_fail_tip",
+      "value": "Incomplete data filling, please submit after completing the filling"
+    },
+    {
+      "name": "Topping",
+      "value": "Topping"
+    },
+    {
+      "name": "custom_scene_name",
+      "value": "custom scene name %s"
+    },
+    {
+      "name": "rename_scene_name",
+      "value": "rename scene name"
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "button_text_confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "delete_scene_tip",
+      "value": "The deleted custom scene cannot be restored. Are you sure?"
+    },
+    {
+      "name": "add_limited_tip",
+      "value": "My scene has reached the limit and cannot be added"
+    },
+    {
+      "name": "combination",
+      "value": "%s device combination"
+    },
+    {
+      "name": "modify_scene_icon",
+      "value": "modify scene icon"
+    },
+    {
+      "name": "on_line_equipment",
+      "value": "on line equipment"
+    },
+    {
+      "name": "off_line_equipment",
+      "value": "off line equipment"
+    },
+    {
+      "name": "select_scene_icon",
+      "value": "select scene icon %s"
+    }
+  ]
+}

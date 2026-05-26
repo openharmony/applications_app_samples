@@ -1,0 +1,196 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "no_scene",
+      "value": "未添加场景"
+    },
+    {
+      "name": "my_scene",
+      "value": "我的场景"
+    },
+    {
+      "name": "scene_library",
+      "value": "场景库"
+    },
+    {
+      "name": "to",
+      "value": "去"
+    },
+    {
+      "name": "add_scene_library",
+      "value": "场景库添加"
+    },
+    {
+      "name": "add_custom_scene",
+      "value": "添加自定义场景"
+    },
+    {
+      "name": "edit_custom_scene",
+      "value": "编辑自定义场景"
+    },
+    {
+      "name": "or",
+      "value": "或"
+    },
+    {
+      "name": "smart_tunnel",
+      "value": "智慧隧道"
+    },
+    {
+      "name": "sensor_device_control",
+      "value": "传感器设备控制"
+    },
+    {
+      "name": "scene_name",
+      "value": "场景名称"
+    },
+    {
+      "name": "trigger_conditions",
+      "value": "触发条件"
+    },
+    {
+      "name": "add_conditions",
+      "value": "添加条件"
+    },
+    {
+      "name": "additional_conditions",
+      "value": "附加条件"
+    },
+    {
+      "name": "execute_action",
+      "value": "执行动作"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "执行场景"
+    },
+    {
+      "name": "scene_description",
+      "value": "场景描述"
+    },
+    {
+      "name": "scene_title_desc",
+      "value": "%s %s等设备控制"
+    },
+    {
+      "name": "equipment_combination",
+      "value": "设备组合"
+    },
+    {
+      "name": "solution_description",
+      "value": "解决方案描述："
+    },
+    {
+      "name": "execution_device",
+      "value": "执行设备"
+    },
+    {
+      "name": "trigger_device",
+      "value": "触发设备"
+    },
+    {
+      "name": "add_trigger_condition",
+      "value": "添加触发条件"
+    },
+    {
+      "name": "edit_trigger_condition",
+      "value": "编辑触发条件"
+    },
+    {
+      "name": "add_execute_action",
+      "value": "添加执行动作"
+    },
+    {
+      "name": "edit_execute_action",
+      "value": "编辑执行动作"
+    },
+    {
+      "name": "placeholder_desc",
+      "value": "请输入场景名称"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "edit",
+      "value": "修改"
+    },
+    {
+      "name": "device_select",
+      "value": "设备选择"
+    },
+    {
+      "name": "scene_save_tip",
+      "value": "场景已保存并开启"
+    },
+    {
+      "name": "device_unknown",
+      "value": "未知设备"
+    },
+    {
+      "name": "scene_detail_desc",
+      "value": "该场景可以完成基于%s、%s的互联"
+    },
+    {
+      "name": "add_scene_name_empty_tip",
+      "value": "场景名称不能为空"
+    },
+    {
+      "name": "add_data_fail_tip",
+      "value": "数据填写不完整，请填写完成后提交"
+    },
+    {
+      "name": "Topping",
+      "value": "置顶"
+    },
+    {
+      "name": "custom_scene_name",
+      "value": "自定义场景%s"
+    },
+    {
+      "name": "rename_scene_name",
+      "value": "重命名场景"
+    },
+    {
+      "name": "delete_scene_tip",
+      "value": "删除的自定义场景无法复原，确定吗？"
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "button_text_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "add_limited_tip",
+      "value": "我的场景添加已达上限，无法添加"
+    },
+    {
+      "name": "combination",
+      "value": "%s 台设备组合"
+    },
+    {
+      "name": "modify_scene_icon",
+      "value": "修改场景图标"
+    },
+    {
+      "name": "on_line_equipment",
+      "value": "在线设备"
+    },
+    {
+      "name": "off_line_equipment",
+      "value": "离线设备"
+    },
+    {
+      "name": "select_scene_icon",
+      "value": "选择场景图标"
+    }
+  ]
+}
