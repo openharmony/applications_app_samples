@@ -19,9 +19,7 @@
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [StartExclude layered_image_006]
-// [StartExclude layered_image_007]
-// [StartExclude layered_image_008]
+
 @Entry
 @Component
 struct Index {
@@ -29,6 +27,8 @@ struct Index {
   build() {
     Scroll() {
       Column() {
+        // [StartExclude layered_image_008]
+        // [StartExclude layered_image_007]
         Text("SetAlternateIcon")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -37,7 +37,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude layered_image_006]
             // alternateIconName需要替换为app.json5中alternateIcons标签下配置的name字段值
             let alternateIconName: string = 'summer_theme';
             try {
@@ -50,9 +49,9 @@ struct Index {
               let message = (err as BusinessError).message;
               hilog.error(0x0000, 'testTag', 'setAlternateIcon failed. Cause: %{public}s', message);
             }
-            // [End layered_image_006]
           })
-
+        // [EndExclude  layered_image_007]
+        // [StartExclude layered_image_006]
         Text("RestoreDefaultIcon")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -61,7 +60,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude layered_image_007]
             try {
               bundleManager.setAlternateIcon('').then(() => {
                 hilog.info(0x0000, 'testTag', 'restore default icon successfully');
@@ -72,9 +70,11 @@ struct Index {
               let message = (err as BusinessError).message;
               hilog.error(0x0000, 'testTag', 'restore default icon failed. Cause: %{public}s', message);
             }
-            // [End layered_image_007]
           })
-
+        // [EndExclude layered_image_006]
+        // [EndExclude layered_image_008]
+        // [StartExclude layered_image_006]
+        // [StartExclude layered_image_007]
         Text("GetAlternateIcons")
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
@@ -83,7 +83,6 @@ struct Index {
             middle: { anchor: '__container__', align: HorizontalAlign.Center }
           })
           .onClick(() => {
-            // [EndExclude layered_image_008]
             try {
               bundleManager.getAlternateIcons().then((data) => {
                 hilog.info(0x0000, 'testTag', 'getAlternateIcons successfully. Data: %{public}s', JSON.stringify(data));
@@ -94,11 +93,15 @@ struct Index {
               let message = (err as BusinessError).message;
               hilog.error(0x0000, 'testTag', 'getAlternateIcons failed. Cause: %{public}s', message);
             }
-            // [End layered_image_008]
           })
+        // [EndExclude layered_image_007]
+        // [EndExclude layered_image_006]
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+// [End layered_image_008]
+// [End layered_image_007]
+// [End layered_image_006]
