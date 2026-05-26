@@ -1,0 +1,116 @@
+{
+  "float": [
+    {
+      "name": "Head_shot_height",
+      "value": "40vp"
+    },
+    {
+      "name": "Head_shot_width",
+      "value": "40vp"
+    },
+    {
+      "name": "Head_shot_fontSize",
+      "value": "26vp"
+    },
+    {
+      "name": "MineItem_text_margin_left",
+      "value": "20vp"
+    },
+    {
+      "name": "arrow_right_height",
+      "value": "20vp"
+    },
+    {
+      "name": "Head_shot_arrow_right_margin_right",
+      "value": "6vp"
+    },
+    {
+      "name": "Head_shot_margin_top",
+      "value": "20vp"
+    },
+    {
+      "name": "Head_shot_margin_bottom",
+      "value": "20vp"
+    },
+    {
+      "name": "Head_shot_margin_left",
+      "value": "10vp"
+    },
+    {
+      "name": "Head_shot_margin_right",
+      "value": "10vp"
+    },
+    {
+      "name": "Head_shot_ColumnSplit_margin_left",
+      "value": "15vp"
+    },
+    {
+      "name": "Head_shot_ColumnSplit_margin_right",
+      "value": "15vp"
+    },
+    {
+      "name": "Head_shot_ColumnSplit_margin_top",
+      "value": "5vp"
+    },
+    {
+      "name": "Head_shot_ColumnSplit_margin_bottom",
+      "value": "5vp"
+    },
+    {
+      "name": "Head_shot_Column_margin_left",
+      "value": "10vp"
+    },
+    {
+      "name": "Head_shot_Column_margin_right",
+      "value": "10vp"
+    },
+    {
+      "name": "Head_shot_Column_margin_top",
+      "value": "5vp"
+    },
+    {
+      "name": "Head_shot_Column_margin_bottom",
+      "value": "5vp"
+    },
+    {
+      "name": "Head_shot_Modify_Button_margin_right",
+      "value": "20vp"
+    },
+    {
+      "name": "List_items_borderRadius",
+      "value": "15vp"
+    },
+    {
+      "name": "MineMessageItem_message_fontSize",
+      "value": "15vp"
+    },
+    {
+      "name": "MineMessageItem_arrow_right_margin_right",
+      "value": "5vp"
+    },
+    {
+      "name": "MineMessageItem_margin",
+      "value": "10vp"
+    },
+    {
+      "name": "MineMessageItem_Popup_fontSize",
+      "value": "20vp"
+    },
+    {
+      "name": "MineMessageItem_Popup_text_margin_top",
+      "value": "10vp"
+    },
+    {
+      "name": "MineMessageItem_Popup_text_margin_bottom",
+      "value": "10vp"
+    },
+    {
+      "name": "MineMessageItem_Popup_TextInput_height",
+      "value": "60vp"
+    },
+    {
+      "name": "MineMessageItem_Popup_Confirmation_margin_bottom",
+      "value": "10vp"
+    }
+  ]
+}

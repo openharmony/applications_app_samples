@@ -1,0 +1,380 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "MineAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MineAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "page_mine",
+      "value": "我的"
+    },
+    {
+      "name": "page_selectFile",
+      "value": "选择文件"
+    },
+    {
+      "name": "page_settings",
+      "value": "设置"
+    },
+    {
+      "name": "page_settings_area",
+      "value": "地区"
+    },
+    {
+      "name": "page_settings_language",
+      "value": "语言"
+    },
+    {
+      "name": "page_settings_upgrade",
+      "value": "软件更新"
+    },
+    {
+      "name": "page_settings_about",
+      "value": "关于"
+    },
+    {
+      "name": "page_device_store_import",
+      "value": "设备库导入"
+    },
+    {
+      "name": "page_scene_store_import",
+      "value": "场景库导入"
+    },
+    {
+      "name": "page_device_store_sync",
+      "value": "设备库同步"
+    },
+    {
+      "name": "page_scene_store_sync",
+      "value": "场景库同步"
+    },
+    {
+      "name": "upgrade_item_title_current_version",
+      "value": "当前版本"
+    },
+    {
+      "name": "upgrade_item_title_new_version",
+      "value": "新版本"
+    },
+    {
+      "name": "upgrade_discover_new_version",
+      "value": "发现新版本"
+    },
+    {
+      "name": "upgrade_latest_version",
+      "value": "已是最新版本"
+    },
+    {
+      "name": "upgrade_confirm",
+      "value": "确认升级"
+    },
+    {
+      "name": "start",
+      "value": "开始"
+    },
+    {
+      "name": "upgrade_checking",
+      "value": "正在检查..."
+    },
+    {
+      "name": "size",
+      "value": "大小"
+    },
+    {
+      "name": "detail",
+      "value": "详情"
+    },
+    {
+      "name": "version_number",
+      "value": "版本号"
+    },
+    {
+      "name": "universal_connected_user_agreement",
+      "value": "通用互联用户协议"
+    },
+    {
+      "name": "device_management_services_and_privacy",
+      "value": "设备管理服务与隐私"
+    },
+    {
+      "name": "Content_of_user_privacy_agreement",
+      "value": "本《隐私声明》（按当地法律规定有时称为《隐私政策》）会向您说明我们的隐私实践，以及您在个人数据方面可以做出的选择和可以行使的权利。根据中华人民共和国《个人信息保护法》，本《隐私声明》包括可能从您的在线活动、设备使用情况以及与我们  的离线互动（比如与我们的客户支持代表沟通）中收集到的信息，以及我们处理前述收集到的信息的方法和种类。本《隐私声明》的目的是根据当地法律的要求，在征得您的同意之前，提供有关我们处理个人数据的必要信息，以及有关处理您的个人数据的其他相关规则。这样，您就可以做出知情决策、了解您同意的内容以及如何行使您的权利，例如，本《隐私声明》中所述的您随时撤回同意的权利。"
+    },
+    {
+      "name": "about_footer_read",
+      "value": "阅读"
+    },
+    {
+      "name": "about_footer_and",
+      "value": "内容及关于"
+    },
+    {
+      "name": "about_footer_statement",
+      "value": "的声明。"
+    },
+    {
+      "name": "sure",
+      "value": "确定"
+    },
+    {
+      "name": "open_source_license",
+      "value": "开放源代码许可"
+    },
+    {
+      "name": "about_universal_interconnection",
+      "value": "通用互联"
+    },
+    {
+      "name": "about_footer",
+      "value": "阅读%s内容及关于%s的声明。"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "page_area_switch_message",
+      "value": "切换地区后，本地数据将被清除，本地设备需重新绑定使用，但本服务已获取的权限不受影响，确定切换？"
+    },
+    {
+      "name": "import",
+      "value": "导入"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "follow_system",
+      "value": "跟随系统"
+    },
+    {
+      "name": "device_import_succ",
+      "value": "设备库导入成功"
+    },
+    {
+      "name": "scene_import_succ",
+      "value": "场景库导入成功"
+    },
+    {
+      "name": "device_parse",
+      "value": "设备库解析..."
+    },
+    {
+      "name": "scene_parse",
+      "value": "场景库解析..."
+    },
+    {
+      "name": "device_verify",
+      "value": "设备库校验..."
+    },
+    {
+      "name": "scene_verify",
+      "value": "场景库校验..."
+    },
+    {
+      "name": "device_import_fail",
+      "value": "设备库导入失败"
+    },
+    {
+      "name": "scene_import_fail",
+      "value": "场景库导入失败"
+    },
+    {
+      "name": "task_background",
+      "value": "后台执行任务"
+    },
+    {
+      "name": "check_device_version",
+      "value": "检查设备库版本..."
+    },
+    {
+      "name": "download_device",
+      "value": "下载设备库%s，进度：%s"
+    },
+    {
+      "name": "device_sync_succ",
+      "value": "设备库同步成功"
+    },
+    {
+      "name": "device_sycn_fail",
+      "value": "设备库同步失败"
+    },
+    {
+      "name": "verify_device_fail",
+      "value": "设备库校验失败"
+    },
+    {
+      "name": "parse_device_fail",
+      "value": "设备库解析失败"
+    },
+    {
+      "name": "device_import",
+      "value": "设备库导入..."
+    },
+    {
+      "name": "check_device_version_fail",
+      "value": "获取最新设备库版本信息失败"
+    },
+    {
+      "name": "check_device_version_no_update",
+      "value": "当前已是最新版本"
+    },
+    {
+      "name": "download_device_fail",
+      "value": "设备库下载失败"
+    },
+    {
+      "name": "verify_scene_fail",
+      "value": "场景库校验失败"
+    },
+    {
+      "name": "scene_import",
+      "value": "场景库导入..."
+    },
+    {
+      "name": "parse_scene_fail",
+      "value": "场景库解析失败"
+    },
+    {
+      "name": "download_scene",
+      "value": "下载场景库%s，进度：%s"
+    },
+    {
+      "name": "download_scene_fail",
+      "value": "设备库下载失败"
+    },
+    {
+      "name": "check_scene_version_no_update",
+      "value": "当前已是最新版本"
+    },
+    {
+      "name": "check_scene_version_fail",
+      "value": "获取最新场景库版本信息失败"
+    },
+    {
+      "name": "check_scene_version",
+      "value": "检查场景库版本..."
+    },
+    {
+      "name": "init_preset_device_library",
+      "value": "初始化预置设备库..."
+    },
+    {
+      "name": "input_verification",
+      "value": "6-16位数字与字母组合"
+    },
+    {
+      "name": "verification_code",
+      "value": "验证码"
+    },
+    {
+      "name": "input_verification_code",
+      "value": "请输入验证码"
+    },
+    {
+      "name": "get_verification_code",
+      "value": "获取验证码"
+    },
+    {
+      "name": "seconds",
+      "value": "秒"
+    },
+    {
+      "name": "failed_get_code",
+      "value": "获取验证码失败"
+    },
+    {
+      "name": "read_and_agree",
+      "value": "我已阅读并同意"
+    },
+    {
+      "name": "user_agreement",
+      "value": "《用户协议》"
+    },
+    {
+      "name": "and",
+      "value": "与"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "《隐私政策》"
+    },
+    {
+      "name": "mobile_number",
+      "value": "手机号"
+    },
+    {
+      "name": "input_mobile_number",
+      "value": "请输入手机号"
+    },
+    {
+      "name": "reset_password",
+      "value": "重置密码"
+    },
+    {
+      "name": "your_account_number_is",
+      "value": "您的账号为"
+    },
+    {
+      "name": "enter_new_password",
+      "value": "输入新密码"
+    },
+    {
+      "name": "enter_the_new_password_again",
+      "value": "再次输入新密码"
+    },
+    {
+      "name": "ready_reset_password",
+      "value": "输入账号密码完成密码重置"
+    },
+    {
+      "name": "click_to_login",
+      "value": "点击登录"
+    },
+    {
+      "name": "modify_profile_picture",
+      "value": "修改头像"
+    },
+    {
+      "name": "China",
+      "value": "中国"
+    },
+    {
+      "name": "Taiwan",
+      "value": "台湾"
+    },
+    {
+      "name": "Hong_Kong",
+      "value": "香港"
+    },
+    {
+      "name": "are_you_want_to_change_the",
+      "value": "确认要修改%s吗？"
+    },
+    {
+      "name": "ok",
+      "value": "确认"
+    },
+    {
+      "name": "plant",
+      "value": "生产设备"
+    },
+    {
+      "name": "Content_of_user_agreement",
+      "value": "本《用户协议》是您就使用本服务达成的具有法律效力的协议。您应使用真实有效的身份信息注册账号，合法、合规使用本服务，不得将账号转借他人，也不得从事违法活动。要保护好账号安全，若出现异常及时联系平台。平台上的内容受知识产权保护，您上传的内容需合法合规，平台有权对违规内容处理。平台会严格保护您的个人信息安全，按法规收集、使用信息，您有权查询修改，但因服务需要会保留必要记录。平台有权按业务需求调整服务内容与规则，变更会通知您。您若违规，平台可采取警告、封号等措施。本协议适用中国法律，若发生争议，先友好协商，不成可向【具体地点】有管辖权的法院起诉。您使用服务即表示接受本协议。"
+    },
+    {
+      "name": "Content_of_code_agreement",
+      "value": "本开放源码许可协议（以下简称“本协议”）适用于你使用、修改和分发本开放源码软件（以下简称“软件”）。你被授予许可，可在遵循本协议的前提下，自由使用、复制、修改和分发该软件。若你对软件进行修改并分发，必须在修改的文件中明确标明你所做的修改以及修改日期。当你分发该软件或修改后的版本时，无论以何种形式（如源代码或可执行文件），必须同时提供本协议副本，且所分发的软件必须保留原软件的版权声明和许可声明。禁止将本软件用于任何非法目的，不得删除或篡改软件中的版权信息、许可声明及相关声明。本协议的解释、适用及争议解决均适用 [具体法律地区] 法律。若你违反本协议条款，本协议终止，你需立即停止使用、修改和分发软件。你继续使用则视为接受本协议约束。"
+    }
+  ]
+}
