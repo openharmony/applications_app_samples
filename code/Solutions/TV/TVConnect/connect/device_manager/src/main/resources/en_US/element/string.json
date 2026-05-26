@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "other_devices_connecting",
+      "value": "Other devices are currently connecting, please try again later"
+    },
+    {
+      "name": "connect_failed_tip",
+      "value": "Connection failed, please try again"
+    }
+  ]
+}

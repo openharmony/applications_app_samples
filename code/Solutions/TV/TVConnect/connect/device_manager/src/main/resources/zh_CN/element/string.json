@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "other_devices_connecting",
+      "value": "其他设备正在连接中，请稍后再试"
+    },
+    {
+      "name": "connect_failed_tip",
+      "value": "连接失败，请重试"
+    }
+  ]
+}
