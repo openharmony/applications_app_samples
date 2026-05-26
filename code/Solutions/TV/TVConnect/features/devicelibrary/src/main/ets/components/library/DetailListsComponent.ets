@@ -55,7 +55,8 @@ export struct DetailListsComponent {
     if (isSuccess) {
       setTimeout(() => {
         let index = this.currentContentData.getAllData().findIndex((data) => {
-          return data.sideIndex === sideIndex && data.subIndex === subIndex && data.itemType !== ItemTypeEnum.TITLE_ITEM;
+          return data.sideIndex === sideIndex && data.subIndex === subIndex &&
+            data.itemType !== ItemTypeEnum.TITLE_ITEM;
         });
         Logger.info(TAG, `requestFocus scrollToIndex = ${index}  focusId = ${focusId}`);
         index !== -1 && this.scroller?.scrollToIndex(index, true, ScrollAlign.CENTER);

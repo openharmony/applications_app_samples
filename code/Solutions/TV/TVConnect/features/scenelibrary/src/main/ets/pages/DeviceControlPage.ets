@@ -170,7 +170,8 @@ export struct DeviceControlPage {
         });
         let data: SubsystemAction[] = JSON.parse(JSON.stringify(this.sceneDetail.flow[0].actions[0].actions));
         data.forEach((item: SubsystemAction) => {
-          this.actions.push(new DeviceItem(item.deviceInfo.devId, '', item.deviceInfo.devName, item.deviceInfo.devType));
+          this.actions.push(new DeviceItem(item.deviceInfo.devId, '', item.deviceInfo.devName,
+            item.deviceInfo.devType));
         });
       }
       this.getDefaultName();

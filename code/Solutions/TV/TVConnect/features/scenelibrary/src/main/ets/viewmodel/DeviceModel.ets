@@ -64,7 +64,8 @@ export default class DevicesModel {
     let list: DeviceItem[] = language == 'EN' ? JSON.parse(mockEN).device : JSON.parse(mock).device;
     for (let i = 0; i < list.length; i++) {
       let item =
-        new DeviceItem(list[i].deviceId, this.getDeviceIcon(list[i].deviceType), list[i].deviceName, list[i].deviceType);
+        new DeviceItem(list[i].deviceId, this.getDeviceIcon(list[i].deviceType), list[i].deviceName,
+          list[i].deviceType);
       item.point.x = this.genPointByIndex(i).x;
       item.point.y = this.genPointByIndex(i).y;
       this.devicesArray.push(item);

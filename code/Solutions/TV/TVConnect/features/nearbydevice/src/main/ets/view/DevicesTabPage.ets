@@ -61,7 +61,8 @@ export default struct DevicesTabPage {
           .margin({ right: scale(px2vp(64)) })
           .borderWidth({ bottom: this.currentIndex == index ? $r('app.string.vp_3') : 0 })
           .borderStyle(BorderStyle.Solid)
-          .borderColor(this.focusIndex == index ? $r('app.color.text_color_focus') : $r('app.color.default_text_color'));
+          .borderColor(this.focusIndex == index ? $r('app.color.text_color_focus') :
+          $r('app.color.default_text_color'));
         });
       };
     }
