@@ -49,7 +49,7 @@ static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userDat
     }
     return actualDataSize;
 }
-// [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
+// [End audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
 
 // [Start audioSuite_AudioRendererOnWriteData]
 static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *renderer, void *userData,
@@ -89,6 +89,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     // [Start audioSuite_CreateRealTimeRendering]
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
+    
     // 创建实时预览渲染的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
@@ -162,7 +163,9 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     OH_AudioSuiteEngine_StartPipeline(audioSuitePipeline);
 
     // 开发者可以自行创建renderer流，播放音频。
-    // [End audioSuite_StartRealTimeRenderingPipeline]
+    // ...
+    
+    // [StartExclude audioSuite_StartRealTimeRenderingPipeline]
     // 设置声道布局
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRendererEqualizerEffect);
     // 设置编码类型。
@@ -175,10 +178,11 @@ void DestroyEqualizerEffect()
 {
     OH_AudioRenderer_Stop(audioRendererEqualizerEffect);
     OH_AudioRenderer_Release(audioRendererEqualizerEffect);
-    // [Start audioSuite_DestroyRealTimeRendering]
+    // [EndExclude audioSuite_StartRealTimeRenderingPipeline]
     // 停止管线。
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
-    // 4.资源销毁
+    // [End audioSuite_StartRealTimeRenderingPipeline]
+    // [Start audioSuite_DestroyRealTimeRendering]
     //  销毁流构造器。
     OH_AudioStreamBuilder_Destroy(rendererBuilder);
 
