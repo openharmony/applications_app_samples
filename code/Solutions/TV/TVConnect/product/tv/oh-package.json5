@@ -1,0 +1,19 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "tv",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/nearbydevice": '../../features/nearbydevice',
+    "@ohos/common": "../../common",
+    "@ohos/scenelibrary": '../../features/scenelibrary',
+    "@ohos/mine": 'file:../../features/mine',
+    "@ohos/camera": 'file:../../features/camera',
+    "@ohos/devicelibrary": 'file:../../features/devicelibrary',
+    '@ohos/device_manager': 'file:../../connect/device_manager',
+    '@ohos/connect_cloud': 'file:../../connect/connect_cloud',
+  }
+}

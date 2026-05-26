@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/connect_wifi",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/coap": "file:./lib/libcoap.har",
+    '@ohos/common': 'file:../../common',
+  }
+}

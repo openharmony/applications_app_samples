@@ -1,0 +1,17 @@
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "externalNativeOptions": {
+      "arguments": "",
+      "cppFlags": "",
+      "abiFilters": [
+        'arm64-v8a'
+      ]
+    }
+  },
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}

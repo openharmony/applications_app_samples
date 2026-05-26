@@ -1,0 +1,15 @@
+{
+  "name": "@ohos/device_manager",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    '@ohos/common': 'file:../../common',
+    '@ohos/connect_ble': 'file:../../connect/connect_ble',
+    '@ohos/connect_wifi': 'file:../../connect/connect_wifi',
+    '@ohos/connect_iot': 'file:../../connect/connect_iot',
+    '@ohos/connect_cloud': 'file:../../connect/connect_cloud'
+  }
+}

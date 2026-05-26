@@ -1,0 +1,21 @@
+{
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.15"
+  },
+  "author": "",
+  "name": "@ohos/nearbydevice",
+  "description": "Please describe the basic information.",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    'library_communication': 'file:./lib/library_communication.har',
+    '@ohos/common': 'file:../../common',
+    '@ohos/connect_ble': 'file:../../connect/connect_ble',
+    '@ohos/connect_wifi': 'file:../../connect/connect_wifi',
+    '@ohos/connect_iot': 'file:../../connect/connect_iot',
+    '@ohos/device_manager': 'file:../../connect/device_manager',
+    '@ohos/connect_cloud': 'file:../../connect/connect_cloud',
+    '@ohos/devicelibrary': 'file:../../features/devicelibrary'
+  }
+}
