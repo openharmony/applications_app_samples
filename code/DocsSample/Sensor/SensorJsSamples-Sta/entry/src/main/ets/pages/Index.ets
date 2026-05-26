@@ -468,25 +468,26 @@ struct Index {
                       hilog.info(this.DOMAIN, TAG, 'data authResults:' + data.authResults);
                       const id = this.sensors.get(this.realSensorName) != undefined;
                       if (id != undefined) {
-                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId, (error, data) => {
-                          if (error) {
-                            hilog.info(this.DOMAIN, TAG,
-                              ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
-                          } else {
-                            try {
-                              hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
-                              sensor.onPedometerChange((data: sensor.PedometerResponse) => {
-                                console.info('Succeeded in invoking on. Step count: ' + data.steps);
-                                this.callbackContent = JSON.stringify(data);
-                              }, { interval: 100000000 });
-                            } catch (error) {
-                              error = error as BusinessError;
-                              console.info(TAG + ' catch error:' + error);
+                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId,
+                          (error, data) => {
+                            if (error) {
                               hilog.info(this.DOMAIN, TAG,
-                                ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                                ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
+                            } else {
+                              try {
+                                hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
+                                sensor.onPedometerChange((data: sensor.PedometerResponse) => {
+                                  console.info('Succeeded in invoking on. Step count: ' + data.steps);
+                                  this.callbackContent = JSON.stringify(data);
+                                }, { interval: 100000000 });
+                              } catch (error) {
+                                error = error as BusinessError;
+                                console.info(TAG + ' catch error:' + error);
+                                hilog.info(this.DOMAIN, TAG,
+                                  ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                              }
                             }
-                          }
-                        });
+                          });
                       }
                     });
                   }
@@ -507,25 +508,26 @@ struct Index {
                       hilog.info(this.DOMAIN, TAG, 'data authResults:' + data.authResults);
                       const id = this.sensors.get(this.realSensorName) != undefined;
                       if (id != undefined) {
-                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId, (error, data) => {
-                          if (error) {
-                            hilog.info(this.DOMAIN, TAG,
-                              ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
-                          } else {
-                            try {
-                              hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
-                              sensor.onPedometerDetectionChange((data: sensor.PedometerDetectionResponse) => {
-                                console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
-                                this.callbackContent = JSON.stringify(data);
-                              }, { interval: 100000000 });
-                            } catch (error) {
-                              error = error as BusinessError;
-                              console.info(TAG + ' catch error:' + error);
+                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId,
+                          (error, data) => {
+                            if (error) {
                               hilog.info(this.DOMAIN, TAG,
-                                ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                                ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
+                            } else {
+                              try {
+                                hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
+                                sensor.onPedometerDetectionChange((data: sensor.PedometerDetectionResponse) => {
+                                  console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
+                                  this.callbackContent = JSON.stringify(data);
+                                }, { interval: 100000000 });
+                              } catch (error) {
+                                error = error as BusinessError;
+                                console.info(TAG + ' catch error:' + error);
+                                hilog.info(this.DOMAIN, TAG,
+                                  ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                              }
                             }
-                          }
-                        });
+                          });
                       }
                     });
                   }
@@ -813,25 +815,26 @@ struct Index {
                       hilog.info(this.DOMAIN, TAG, 'data authResults:' + data.authResults);
                       const id = this.sensors.get(this.realSensorName) != undefined;
                       if (id != undefined) {
-                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId, (error, data) => {
-                          if (error) {
-                            hilog.info(this.DOMAIN, TAG,
-                              ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
-                          } else {
-                            try {
-                              hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
-                              sensor.onPedometerChange((data: sensor.PedometerResponse) => {
-                                console.info('Succeeded in invoking on. Step count: ' + data.steps);
-                                this.callbackContent = JSON.stringify(data);
-                              }, { interval: 100000000, sensorInfoParam: { deviceId: -1 } });
-                            } catch (error) {
-                              error = error as BusinessError;
-                              console.info(TAG + ' catch error:' + error);
+                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId,
+                          (error, data) => {
+                            if (error) {
                               hilog.info(this.DOMAIN, TAG,
-                                ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                                ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
+                            } else {
+                              try {
+                                hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
+                                sensor.onPedometerChange((data: sensor.PedometerResponse) => {
+                                  console.info('Succeeded in invoking on. Step count: ' + data.steps);
+                                  this.callbackContent = JSON.stringify(data);
+                                }, { interval: 100000000, sensorInfoParam: { deviceId: -1 } });
+                              } catch (error) {
+                                error = error as BusinessError;
+                                console.info(TAG + ' catch error:' + error);
+                                hilog.info(this.DOMAIN, TAG,
+                                  ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                              }
                             }
-                          }
-                        });
+                          });
                       }
                     });
                   }
@@ -852,25 +855,26 @@ struct Index {
                       hilog.info(this.DOMAIN, TAG, 'data authResults:' + data.authResults);
                       const id = this.sensors.get(this.realSensorName) != undefined;
                       if (id != undefined) {
-                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId, (error, data) => {
-                          if (error) {
-                            hilog.info(this.DOMAIN, TAG,
-                              ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
-                          } else {
-                            try {
-                              hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
-                              sensor.onPedometerDetectionChange((data: sensor.PedometerDetectionResponse) => {
-                                console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
-                                this.callbackContent = JSON.stringify(data);
-                              }, { interval: 100000000, sensorInfoParam: { deviceId: -1 } });
-                            } catch (error) {
-                              error = error as BusinessError;
-                              console.info(TAG + ' catch error:' + error);
+                        sensor.getSingleSensor(this.sensors.get(this.realSensorName) as sensor.SensorId,
+                          (error, data) => {
+                            if (error) {
                               hilog.info(this.DOMAIN, TAG,
-                                ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                                ' getSingleSensor failed, error: ' + error.code + ', ' + error.message);
+                            } else {
+                              try {
+                                hilog.info(this.DOMAIN, TAG, ' getSingleSensor data: ' + JSON.stringify(data));
+                                sensor.onPedometerDetectionChange((data: sensor.PedometerDetectionResponse) => {
+                                  console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
+                                  this.callbackContent = JSON.stringify(data);
+                                }, { interval: 100000000, sensorInfoParam: { deviceId: -1 } });
+                              } catch (error) {
+                                error = error as BusinessError;
+                                console.info(TAG + ' catch error:' + error);
+                                hilog.info(this.DOMAIN, TAG,
+                                  ' getSingleSensor catch errCode: ' + error.code + ' ,msg:' + error.message);
+                              }
                             }
-                          }
-                        });
+                          });
                       }
                     });
                   }
