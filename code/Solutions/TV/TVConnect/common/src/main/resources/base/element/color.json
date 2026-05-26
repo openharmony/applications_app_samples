@@ -1,0 +1,80 @@
+{
+  "color": [
+    {
+      "name": "page_background",
+      "value": "#18181A"
+    },
+    {
+      "name": "default_background",
+      "value": "#18181A"
+    },
+    {
+      "name": "default_text_color",
+      "value": "#CDCDCD"
+    },
+    {
+      "name": "text_color_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_color_black",
+      "value": "#000000"
+    },
+    {
+      "name": "default_component_color",
+      "value": "#464648"
+    },
+    {
+      "name": "default_button_bg",
+      "value": "#D8D8D8"
+    },
+    {
+      "name": "dialog_bg",
+      "value": "#535353"
+    },
+    {
+      "name": "dialog_font_color",
+      "value": "#C2C2C2"
+    },
+    {
+      "name": "dialog_button_bg",
+      "value": "#696969"
+    },
+    {
+      "name": "dialog_button_bg2",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "default_search_bg",
+      "value": "#D8D8D8"
+    },
+    {
+      "name": "scroll_bar_color",
+      "value": "#737373"
+    },
+    {
+      "name": "text_color_focus",
+      "value": "#0073FE"
+    },
+    {
+      "name": "button_opcaity",
+      "value": "#000073FE"
+    },
+    {
+      "name": "divider",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "theme_colour",
+      "value": "#0A58fe"
+    },
+    {
+      "name": "scene_empty_color",
+      "value": "#7AA6FF"
+    }
+  ]
+}
