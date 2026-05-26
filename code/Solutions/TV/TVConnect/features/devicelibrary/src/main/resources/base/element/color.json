@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "tab_color_normal",
+      "value": "#C0C7D9"
+    },
+    {
+      "name": "tab_color_select",
+      "value": "#0073FE"
+    },
+    {
+      "name": "side_list_divider",
+      "value": "#979797"
+    }
+  ]
+}
