@@ -43,6 +43,30 @@
           }
         },
         "targetSdkVersion":18
+      },
+      {
+        "name": "TV",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        }
+      },
+      {
+        "name": "rk3568",
+        "signingConfig": "default",
+        "compileSdkVersion": 18,
+        "compatibleSdkVersion": 18,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a"]
+          }
+        }
       }
     ],
     "buildModeSet": [
