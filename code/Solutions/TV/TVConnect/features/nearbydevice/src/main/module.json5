@@ -1,0 +1,91 @@
+{
+  "module": {
+    "name": "nearbydevice",
+    "routerMap": "$profile:route_map",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.SET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "reason": "$string:location_permission",
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "usedScene": {
+          "abilities": [
+            'EntryAbility'
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "reason": "$string:location_permission",
+        "name": "ohos.permission.LOCATION",
+        "usedScene": {
+          "abilities": [
+            'EntryAbility'
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.USE_BLUETOOTH",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.DISCOVER_BLUETOOTH",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
+        "reason": "$string:bluetooth_permission",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      }
+    ]
+  }
+}
