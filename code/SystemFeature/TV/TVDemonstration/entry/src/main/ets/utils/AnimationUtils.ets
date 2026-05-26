@@ -14,8 +14,8 @@
  */
 
 interface IObject {
-  duration: number
-  curve: Curve
+  duration: number;
+  curve: Curve;
 }
 
 export class AnimationUtils {
@@ -28,13 +28,13 @@ export class AnimationUtils {
     return {
       duration: 800,
       curve: Curve.EaseIn
-    }
+    };
   }
 
   static createSlideAnimation(): IObject {
     return {
       duration: 500,
       curve: Curve.EaseOut
-    }
+    };
   }
 }

@@ -26,18 +26,18 @@ interface FeatureItem {
 @Component
 export struct FeaturePage {
   // 用来左右切换图片的灵犀、触控、触摸上样式的（他并不需要焦点）
-  @State focusId: number = -1
+  @State focusId: number = -1;
   // 在组件类中添加防抖变量
-  private lastHoverTime: number = 0
-  private readonly HOVER_DEBOUNCE_TIME = 1000 // 500ms内不重复触发
-  @Link isTab: boolean
-  @Prop isOtherFocusable: boolean
+  private lastHoverTime: number = 0;
+  private readonly HOVER_DEBOUNCE_TIME = 1000; // 500ms内不重复触发
+  @Link isTab: boolean;
+  @Prop isOtherFocusable: boolean;
   childrenOnBlur = () => {
-  } // 父组件的失焦处理函数
-  @State focusIndex: number = -1
-  @State startIndex: number = -1
-  @State endIndex: number = -1
-  scroller: Scroller = new Scroller()
+  }; // 父组件的失焦处理函数
+  @State focusIndex: number = -1;
+  @State startIndex: number = -1;
+  @State endIndex: number = -1;
+  scroller: Scroller = new Scroller();
   @State features: FeatureItem[] = [
     {
       icon: $r('app.media.UniversalInterconnection'),
@@ -74,7 +74,7 @@ export struct FeaturePage {
       title: '分布式',
       description: '白板图库相机，跨端协同无界'
     },
-  ]
+  ];
 
   build() {
     Column() {
@@ -85,15 +85,15 @@ export struct FeaturePage {
 
         .lineHeight('56lpx')
         .textAlign(TextAlign.Center)
-        .margin({ top: '50lpx' })
+        .margin({ top: '50lpx' });
 
 
       // 场景列表
-      this.buildSceneList()
+      this.buildSceneList();
 
     }
     .width('100%')
-    .height('100%')
+    .height('100%');
 
   }
 
@@ -118,7 +118,7 @@ export struct FeaturePage {
                     radius: this.focusIndex === index ? 5 : 0, // 阴影模糊半径，值越大越虚化
                     color: this.focusIndex === index ? '#fff' : Color.Transparent,
                   })
-                  .blur(0.1, { grayscale: [0, 50] })
+                  .blur(0.1, { grayscale: [0, 50] });
                 // 遮罩层
                 Column() {
                 }
@@ -129,15 +129,14 @@ export struct FeaturePage {
                 .linearGradient({
                   colors: [['rgba(0, 0, 0, 0)', 0.0], ['rgba(0, 0, 0, 0.1)', 0.3],
                     ['rgba(0, 0, 0, 0.3)', 0.5], ['rgba(0, 0, 0, 0.6)', 1]]
-                })
+                });
 
                 Text(scene.title)
                   .fontSize('33lpx')
                   .fontColor('rgba(255,255,255,0.86)')
-                  // .fontColor(this.focusIndex === index ? '#0A59F7' : '#666666')
                   .margin({ bottom: '44lpx' })
                   .lineHeight('40lpx')
-                  .textAlign(TextAlign.Center)
+                  .textAlign(TextAlign.Center);
               }
               .alignContent(Alignment.Bottom)
               .onFocus(() => {
@@ -145,122 +144,120 @@ export struct FeaturePage {
                 animateTo({
                   duration: 0
                 }, () => {
-                  this.getUIContext().getFocusController().activate(true)
+                  this.getUIContext().getFocusController().activate(true);
                   this.focusIndex = index;
-                })
-                this.isTab = false
+                });
+                this.isTab = false;
               })
 
               .onHover((isOnHover) => {
-                globalIdle.resetTimer()
+                globalIdle.resetTimer();
                 if (isOnHover) {
-                  this.focusIndex = index
-                  this.isTab = false
+                  this.focusIndex = index;
+                  this.isTab = false;
                 }
               })
               .onClick(() => {
-                globalIdle.resetTimer()
+                globalIdle.resetTimer();
                 router.pushUrl({
                   url: 'Component/FeatureComponent',
                   params: { index }
-                }, router.RouterMode.Single)
+                }, router.RouterMode.Single);
               })
               .onBlur(() => {
-                this.focusIndex = -1
+                this.focusIndex = -1;
               })
               .onKeyEvent((e) => {
 
                 if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Down) {
-                  this.childrenOnBlur()
+                  this.childrenOnBlur();
                 }
               })
               .stateStyles({
                 focused: {
                   .border({
                     color: Color.White
-                  })
+                  });
                 }
-              })
+              });
             }.height('650lpx')
             .width('400lpx')
             .alignItems(VerticalAlign.Center)
-            .justifyContent(FlexAlign.Center)
-          }
+            .justifyContent(FlexAlign.Center);
+          };
 
-        })
+        });
       }
       .listDirection(Axis.Horizontal)
       .focusable(this.isOtherFocusable)
       .onScrollIndex((startIndex: number, endIndex: number, centerIndex: number) => {
-        console.log('hsqcenterIndex', startIndex)
-        this.startIndex = startIndex
-        this.endIndex = endIndex
+        console.log('hsqcenterIndex', startIndex);
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
       })
       .onKeyEvent(() => {
-        globalIdle.resetTimer()
+        globalIdle.resetTimer();
       })
-      // .width('100%')
       .height('650lpx')
-      .margin({ left: '64lpx', right: '64lpx' })
+      .margin({ left: '64lpx', right: '64lpx' });
 
       // 左右跳转图片
       Row() {
         Image($r('app.media.swiper_arrow_left'))
           .width(this.focusId == 1 ? '45lpx' : '40lpx')
           .onClick(() => {
-            globalIdle.resetTimer()
-            this.scroller.scrollToIndex(this.startIndex - 1)
+            globalIdle.resetTimer();
+            this.scroller.scrollToIndex(this.startIndex - 1);
           })
           .focusable(false)
           .onHover((isHover: boolean) => {
             if (isHover) {
-              this.focusId = 1
-              const currentTime = Date.now()
+              this.focusId = 1;
+              const currentTime = Date.now();
               if (currentTime - this.lastHoverTime > this.HOVER_DEBOUNCE_TIME) {
-                this.lastHoverTime = currentTime
+                this.lastHoverTime = currentTime;
               }
             } else {
-              this.focusId = -1
+              this.focusId = -1;
             }
           })
-          .visibility(this.startIndex >= 1 ? Visibility.Visible : Visibility.None)
+          .visibility(this.startIndex >= 1 ? Visibility.Visible : Visibility.None);
 
         Text('   ')
-          .fontSize(16)
+          .fontSize(16);
         Image($r('app.media.swiper_arrow_right'))
           .width(this.focusId == 2 ? '45lpx' : '40lpx')
           .onClick(() => {
-            globalIdle.resetTimer()
-            this.scroller.scrollToIndex(this.startIndex + 1)
+            globalIdle.resetTimer();
+            this.scroller.scrollToIndex(this.startIndex + 1);
           })
           .onHover((isHover: boolean) => {
             if (isHover) {
-              const currentTime = Date.now()
+              const currentTime = Date.now();
               if (currentTime - this.lastHoverTime > this.HOVER_DEBOUNCE_TIME) {
-                this.focusId = 2
-                this.lastHoverTime = currentTime
+                this.focusId = 2;
+                this.lastHoverTime = currentTime;
               }
             } else {
-              this.focusId = -1
+              this.focusId = -1;
             }
           })
           .focusable(false)
-          .visibility(this.startIndex + 3 >= this.features.length ? Visibility.None : Visibility.Visible)
+          .visibility(this.startIndex + 3 >= this.features.length ? Visibility.None : Visibility.Visible);
       }
       .zIndex(99)
       .width('100%')
       .padding('12lpx')
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Center)
-      .height('70lpx')
+      .height('70lpx');
 
-      // .position({ top: '46%' })
 
     }
     .height('650lpx')
     .margin({ top: '100lpx' })
     .width('100%')
-    .alignContent(Alignment.Center)
+    .alignContent(Alignment.Center);
 
   }
 }

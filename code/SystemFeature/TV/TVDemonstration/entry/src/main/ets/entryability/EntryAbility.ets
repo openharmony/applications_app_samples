@@ -69,6 +69,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    AppStorage.setOrCreate<boolean>('isOnNewWant', true)
+    AppStorage.setOrCreate<boolean>('isOnNewWant', true);
   }
-}
+};

@@ -41,7 +41,7 @@ struct ScreenSaver {
             focused: {
               .border({
                 color: Color.Transparent
-              })
+              });
             }
           })
           .onHover(() => {
@@ -54,12 +54,12 @@ struct ScreenSaver {
           .onKeyEvent((e: KeyEvent) => {
             setTimeout(() => {
               if (e.type == KeyType.Down) {
-                this.exitSaver()
+                this.exitSaver();
               }
-            }, 500)
-            return true
-          })
-      })
+            }, 500);
+            return true;
+          });
+      });
     }
     .width('100%')
     .height('100%')
@@ -67,7 +67,7 @@ struct ScreenSaver {
     .interval(this.carouselInterval) // 5秒切换一张
     .loop(true) // 无限循环
     .indicator(false) // 隐藏轮播指示器（屏保无需显示）
-    .curve(Curve.EaseInOut) // 切换动画线性过渡（更流畅）
+    .curve(Curve.EaseInOut); // 切换动画线性过渡（更流畅）
   }
 
   // 退出屏保核心逻辑：返回原页面 + 重置检测器

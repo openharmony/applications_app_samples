@@ -18,33 +18,30 @@ import { globalIdle } from '../utils/GlobalScreenSaver';
 @Entry
 @Component
 struct VideoGuide1 {
-  @State videoSrc: Resource = $rawfile('videoTest.mp4')
+  @State videoSrc: Resource = $rawfile('videoTest.mp4');
   @State previewUri: Resource = $r('app.media.cat');
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State showControls: boolean = true
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State showControls: boolean = true;
   @State sliderStartTime: string = '';
   @State currentTime: number = 0;
   @State durationTime: number = 0;
   @State durationStringTime: string = '';
-  controller: VideoController = new VideoController()
+  controller: VideoController = new VideoController();
   @State scale1: number = 1;
   @State opacity1: number = 1;
-  @State isOn: boolean = true
+  @State isOn: boolean = true;
 
   onPageShow(): void {
     globalIdle.startDetect();
   }
 
   onPageHide(): void {
-    globalIdle.stopDetect()
+    globalIdle.stopDetect();
   }
 
   build() {
 
     Column() {
-      /*if(this.isOn){
-        Image($r('app.media.preview'))
-      }else {*/
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
@@ -54,25 +51,25 @@ struct VideoGuide1 {
         .controls(false)
         .autoPlay(true)
         .onStart(() => {
-          globalIdle.stopDetect()
-          console.log('hsq onStart')
+          globalIdle.stopDetect();
+          console.log('hsq onStart');
         })
         .onPause(() => {
-          globalIdle.startDetect()
+          globalIdle.startDetect();
 
         })
         .onFinish(() => {
-          globalIdle.startDetect()
-        })
+          globalIdle.startDetect();
+        });
 
     }
     .width('100%')
     .onHover(() => {
-      globalIdle.resetTimer()
+      globalIdle.resetTimer();
     })
     .onKeyEvent(() => {
-      globalIdle.resetTimer()
-    })
+      globalIdle.resetTimer();
+    });
 
   }
 }

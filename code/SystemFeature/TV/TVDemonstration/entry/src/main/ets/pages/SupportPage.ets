@@ -20,24 +20,24 @@ import { globalIdle } from '../utils/GlobalScreenSaver';
 
 @Component
 export struct SupportPage {
-  @Link isTab: boolean
-  @State focusIndex: number = -1
+  @Link isTab: boolean;
+  @State focusIndex: number = -1;
   // 在组件类中添加防抖变量
-  private lastHoverTime: number = 0
-  private readonly HOVER_DEBOUNCE_TIME = 500 // 500ms内不重复触发
+  private lastHoverTime: number = 0;
+  private readonly HOVER_DEBOUNCE_TIME = 500; // 500ms内不重复触发
   childrenOnBlur = () => {
-  } // 父组件的失焦处理函数
+  }; // 父组件的失焦处理函数
   @State isFocus: boolean = false;
   private supportSwiperController: SwiperController = new SwiperController();
-  @State currentImageIndex: number = 0
+  @State currentImageIndex: number = 0;
   @State imageResources: ResourceStr[] = [
     $r('app.media.service'),
     $r('app.media.sm1'),
     $r('app.media.sm3')
-  ]
+  ];
   @State scale1: number = 1;
   @State opacity1: number = 1;
-  @State focusId: number = 0
+  @State focusId: number = 0;
 
   @Builder
   IndicatorBuilder() {
@@ -49,25 +49,25 @@ export struct SupportPage {
         .focusable(true)
         .defaultFocus(true)
         .onFocus(() => {
-          this.isFocus = true
-          this.isTab = false
+          this.isFocus = true;
+          this.isTab = false;
         })
         .onBlur(() => {
-          this.isFocus = false
+          this.isFocus = false;
         })
         .onKeyEvent((e) => {
-          globalIdle.resetTimer()
-          console.log('hsq', '33332')
+          globalIdle.resetTimer();
+          console.log('hsq', '33332');
           if (e.keyCode == KeyCode.KEYCODE_DPAD_RIGHT && e.type == KeyType.Down) {
-            this.supportSwiperController.showNext()
+            this.supportSwiperController.showNext();
           }
           if (e.keyCode == KeyCode.KEYCODE_DPAD_LEFT && e.type == KeyType.Down) {
-            this.supportSwiperController.showPrevious()
+            this.supportSwiperController.showPrevious();
           }
         })
         .margin({ bottom: '135lpx' })
 
-        .backgroundColor(this.isFocus ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.2)')
+        .backgroundColor(this.isFocus ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.2)');
       Row() {
         ForEach(this.imageResources, (item: ResourceStr, index: number) => {
 
@@ -76,9 +76,9 @@ export struct SupportPage {
             .height('10lpx')
             .radius(this.currentImageIndex === index ? '60lpx' : '6lpx')
             .fill(this.currentImageIndex === index ? '#FFF1F3F5' : '#33F1F3F5')
-            .margin('5lpx')
+            .margin('5lpx');
 
-        }, (item: ResourceStr, index: number) => item.toString() + index)
+        }, (item: ResourceStr, index: number) => item.toString() + index);
       }
       .width('100%')
       .height('20lpx')
@@ -86,8 +86,8 @@ export struct SupportPage {
       .margin({ bottom: '135lpx' })
 
 
-      .zIndex(188)
-    }.alignContent(Alignment.Center)
+      .zIndex(188);
+    }.alignContent(Alignment.Center);
   }
 
   build() {
@@ -98,28 +98,28 @@ export struct SupportPage {
             Image(item)
               .width('100%')
               .height('100%')
-              .objectFit(ImageFit.Fill)
+              .objectFit(ImageFit.Fill);
             Row() {
               Image($r('app.media.swiper_arrow_left'))
                 .width(this.focusId == 1 ? '45lpx' : '40lpx')
                 .id('FeatureComponent1' + index)
                 .onClick(() => {
-                  globalIdle.resetTimer()
-                  this.supportSwiperController.showPrevious()
+                  globalIdle.resetTimer();
+                  this.supportSwiperController.showPrevious();
                 })
                 .focusable(false)
                 .onFocus(() => {
-                  this.focusId = 1
-                  this.isTab = false
+                  this.focusId = 1;
+                  this.isTab = false;
                 })
                 .onHover((isHover: boolean) => {
                   if (isHover) {
-                    const currentTime = Date.now()
+                    const currentTime = Date.now();
                     if (currentTime - this.lastHoverTime > this.HOVER_DEBOUNCE_TIME) {
-                      this.focusId = 1
-                      this.isTab = false
-                      this.supportSwiperController.showPrevious()
-                      this.lastHoverTime = currentTime
+                      this.focusId = 1;
+                      this.isTab = false;
+                      this.supportSwiperController.showPrevious();
+                      this.lastHoverTime = currentTime;
                     }
                   }
                 })
@@ -128,107 +128,95 @@ export struct SupportPage {
                   focused: {
                     .border({
                       color: Color.White
-                    })
+                    });
                   }
-                })
+                });
               // 占位
               Text('    ')
-                .fontSize(16)
+                .fontSize(16);
               Image($r('app.media.swiper_arrow_right'))
                 .id('FeatureComponent2' + index)
                 .width(this.focusId == 2 ? '45lpx' : '40lpx')
                 .onClick(() => {
-                  globalIdle.resetTimer()
-                  this.supportSwiperController.showNext()
+                  globalIdle.resetTimer();
+                  this.supportSwiperController.showNext();
                 })
                 .onHover((isHover: boolean) => {
 
                   if (isHover) {
-                    const currentTime = Date.now()
+                    const currentTime = Date.now();
                     if (currentTime - this.lastHoverTime > this.HOVER_DEBOUNCE_TIME) {
-                      this.supportSwiperController.showNext()
-                      this.focusId = 2
-                      this.isTab = false
-                      this.lastHoverTime = currentTime
+                      this.supportSwiperController.showNext();
+                      this.focusId = 2;
+                      this.isTab = false;
+                      this.lastHoverTime = currentTime;
                     }
                   }
                 })
                 .focusable(false)
                 .onFocus(() => {
-                  this.focusId = 2
-                  this.isTab = false
+                  this.focusId = 2;
+                  this.isTab = false;
                 })
                 .visibility(index >= this.imageResources.length - 1 ? Visibility.None : Visibility.Visible)
                 .stateStyles({
                   focused: {
                     .border({
                       color: Color.White
-                    })
+                    });
                   }
-                })
+                });
             }
             .width('100%')
             .padding('12lpx')
             .justifyContent(FlexAlign.SpaceBetween)
             .alignItems(VerticalAlign.Center)
             .height('70lpx')
-            .position({ top: '46%' })
+            .position({ top: '46%' });
 
           }
           .alignContent(Alignment.Start)
           .width('100%')
-          .height('100%')
+          .height('100%');
 
-        })
+        });
 
       }
       .loop(false)
       .indicator(false)
-      /*      .indicator( // 设置圆点导航点样式
-              new DotIndicator()
 
-                .itemWidth('20lpx')
-                .itemHeight('20lpx')
-                .selectedItemWidth('32lpx')
-                .selectedItemHeight('20lpx')
-                .color('rgba(241, 243, 245, 0.2)')
-                .selectedColor(Color.White)
-                // .maxDisplayCount(9))
-                .bottom('160lpx')
-
-            )*/
 
       .curve(Curve.Linear)
       .index(this.currentImageIndex)
       .onChange((index) => {
-        this.currentImageIndex = index
-      })
+        this.currentImageIndex = index;
+      });
 
 
-      this.IndicatorBuilder()
+      this.IndicatorBuilder();
     }
     .alignContent(Alignment.Bottom)
     .width('100%')
     .onBlur(() => {
-      this.focusIndex = -1
+      this.focusIndex = -1;
     })
     .onHover(() => {
-      globalIdle.resetTimer()
+      globalIdle.resetTimer();
     })
     .stateStyles({
       focused: {
         .border({
           color: Color.White
-        })
+        });
       }
     })
     .onKeyEvent((e) => {
-      globalIdle.resetTimer()
+      globalIdle.resetTimer();
       if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Down) {
-        this.childrenOnBlur()
+        this.childrenOnBlur();
       }
     })
-    .height('100%')
+    .height('100%');
 
   }
 }
@@ -244,7 +232,7 @@ function textExtend(size: number, fontWeight: number, lineHeight: number) {
   .fontWeight(fontWeight)
   .lineHeight(lineHeight + 'lpx')
   .letterSpacing(0)
-  .textAlign(TextAlign.Start)
+  .textAlign(TextAlign.Start);
 }
 
 @Extend(Text)
@@ -255,7 +243,7 @@ function buttonText() {
   .width('72lpx')
   .height('24lpx')
   .fontColor('#E6FFFFFF')
-  .focusable(true)
+  .focusable(true);
 }
 
 @Extend(Button)
@@ -272,6 +260,6 @@ function buttonExtend(ifFocus: number, type: number) {
     color: 'rgba(255, 255, 255, 0.1)',
     style: BorderStyle.Solid
   })
-  .backgroundColor(ifFocus === type ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)')
+  .backgroundColor(ifFocus === type ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)');
 }
 

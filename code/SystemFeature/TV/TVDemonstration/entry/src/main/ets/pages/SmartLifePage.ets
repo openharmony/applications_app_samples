@@ -25,12 +25,12 @@ interface FeatureItem {
 
 @Component
 export struct SmartLifePage {
-  @Prop isOtherFocusable: boolean
-  @Link isTab: boolean
-  @State isFocusable: boolean = true
+  @Prop isOtherFocusable: boolean;
+  @Link isTab: boolean;
+  @State isFocusable: boolean = true;
   childrenOnBlur = () => {
-  } // 父组件的失焦处理函数
-  @State focusIndex: number = -1
+  }; // 父组件的失焦处理函数
+  @State focusIndex: number = -1;
   @State features: FeatureItem[] = [
     {
       icon: $r('app.media.Media'),
@@ -48,7 +48,7 @@ export struct SmartLifePage {
       description: '多设备协同，一键流转内容'
     }
 
-  ]
+  ];
 
   build() {
     Column() {
@@ -59,14 +59,14 @@ export struct SmartLifePage {
 
         .lineHeight('56lpx')
         .textAlign(TextAlign.Center)
-        .margin({ top: '50lpx' })
+        .margin({ top: '50lpx' });
 
 
       // 场景列表
-      this.buildSceneList()
+      this.buildSceneList();
     }
     .width('100%')
-    .height('100%')
+    .height('100%');
 
   }
 
@@ -84,8 +84,7 @@ export struct SmartLifePage {
               .border({
                 width: this.focusIndex === index ? '3lpx' : 0,
                 color: this.focusIndex === index ? '#fff' : Color.Transparent
-              })
-            // .blur(0.1, { grayscale: [0, 50] })
+              });
             // 遮罩层
             Column() {
             }
@@ -97,7 +96,7 @@ export struct SmartLifePage {
 
               colors: [['rgba(0, 0, 0, 0)', 0.0], ['rgba(0, 0, 0, 0.1)', 0.3],
                 ['rgba(0, 0, 0, 0.3)', 0.5], ['rgba(0, 0, 0, 0.6)', 1]]
-            })
+            });
 
             Text(scene.title)
               .fontSize('33lpx')
@@ -105,55 +104,55 @@ export struct SmartLifePage {
               // .fontColor(this.focusIndex === index ? '#0A59F7' : '#666666')
               .margin({ bottom: '44lpx' })
               .lineHeight('40lpx')
-              .textAlign(TextAlign.Center)
+              .textAlign(TextAlign.Center);
           }
           .alignContent(Alignment.Bottom)
           .onFocus(() => {
-            this.focusIndex = index
-            this.isTab = false
+            this.focusIndex = index;
+            this.isTab = false;
           })
           .onHover(() => {
-            globalIdle.resetTimer()
-            this.focusIndex = index
-            this.isTab = false
+            globalIdle.resetTimer();
+            this.focusIndex = index;
+            this.isTab = false;
           })
           .onClick(() => {
-            globalIdle.resetTimer()
+            globalIdle.resetTimer();
             router.pushUrl({
               url: 'Component/SmartLifeComponent',
               params: { index }
-            })
+            });
           })
           .onBlur(() => {
-            this.focusIndex = -1
+            this.focusIndex = -1;
           })
           .onKeyEvent((e) => {
-            globalIdle.resetTimer()
+            globalIdle.resetTimer();
             if (e.keyCode == KeyCode.KEYCODE_DPAD_DOWN && e.type == KeyType.Down) {
-              this.childrenOnBlur()
-              this.isFocusable = false
-              this.focusIndex = -1
+              this.childrenOnBlur();
+              this.isFocusable = false;
+              this.focusIndex = -1;
             }
           })
           .stateStyles({
             focused: {
               .border({
                 color: Color.White
-              })
+              });
             }
-          })
+          });
         }.height('650lpx')
         .width('400lpx')
         .alignItems(VerticalAlign.Center)
-        .justifyContent(FlexAlign.Center)
-      })
+        .justifyContent(FlexAlign.Center);
+      });
     }
     .focusable(this.isOtherFocusable)
     .width('100%')
     .height('650lpx')
     .margin({ top: '100lpx' })
     .justifyContent(FlexAlign.SpaceEvenly)
-    .alignItems(VerticalAlign.Center)
+    .alignItems(VerticalAlign.Center);
 
   }
 }

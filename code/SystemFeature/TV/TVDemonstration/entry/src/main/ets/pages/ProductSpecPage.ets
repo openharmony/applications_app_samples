@@ -17,15 +17,15 @@ import { display } from '@kit.ArkUI';
 import { deviceInfo } from '@kit.BasicServicesKit';
 
 interface IProduct {
-  title: string
-  content: string
-  title1: string
-  content1: string
+  title: string;
+  content: string;
+  title1: string;
+  content1: string;
 }
 
 @Component
 export struct ProductSpecPage {
-  @State product: IProduct[] = []
+  @State product: IProduct[] = [];
   product_6780: IProduct[] = [
     {
       title: '屏幕尺寸',
@@ -45,7 +45,7 @@ export struct ProductSpecPage {
       title1: '接口配置',
       content1: 'HDMI2.1'
     }
-  ]
+  ];
   product_6320: IProduct[] = [
     {
       title: '屏幕尺寸',
@@ -65,7 +65,7 @@ export struct ProductSpecPage {
       title1: '接口配置',
       content1: 'HDMI2.1'
     }
-  ]
+  ];
 
   /**
    * 计算屏幕对角线尺寸（英寸）
@@ -88,7 +88,7 @@ export struct ProductSpecPage {
       // 转换为英寸：像素 ÷ DPI = 英寸
       const inches = diagonalPixels / dpi;
       console.log('hsq', 'width', width, 'height', height, 'dpi', dpi, 'diagonalPixels', diagonalPixels, 'inches',
-        inches)
+        inches);
       return parseFloat(inches.toFixed(0));
     } catch (error) {
       console.error('获取屏幕尺寸失败:', error);
@@ -98,9 +98,9 @@ export struct ProductSpecPage {
 
   aboutToAppear() {
     if (deviceInfo.productModel == 'gk6320v100crb_b_vb') {
-      this.product = this.product_6320
+      this.product = this.product_6320;
     } else {
-      this.product = this.product_6780
+      this.product = this.product_6780;
     }
   }
 
@@ -113,7 +113,7 @@ export struct ProductSpecPage {
         .fontWeight(700)
         .lineHeight('75lpx')
         .textAlign(TextAlign.Center)
-        .margin({ top: '91lpx' })
+        .margin({ top: '91lpx' });
 
 
       // 内容区域
@@ -121,12 +121,12 @@ export struct ProductSpecPage {
         Row() {
           Image($r('app.media.page1'))
             .width('548lpx')
-            .height('318lpx')
+            .height('318lpx');
 
         }.alignItems(VerticalAlign.Center)
         .justifyContent(FlexAlign.Center)
         .width('50%')
-        .height('100%')
+        .height('100%');
 
         // 文字部分
         Column() {
@@ -140,7 +140,7 @@ export struct ProductSpecPage {
                 .lineHeight('30lpx')
                 .textAlign(TextAlign.Start)
                 .width('120lpx')
-                .margin({ right: '20lpx' })
+                .margin({ right: '20lpx' });
               Text(`${item.content}`)
                 .fontColor('rgba(255,255,255,0.86)')
                 .fontSize('30lpx')
@@ -148,7 +148,7 @@ export struct ProductSpecPage {
                 .lineHeight('35lpx')
                 .textAlign(TextAlign.Start)
                 .width('260lpx')
-                .margin({ right: '20lpx' })
+                .margin({ right: '20lpx' });
               Text(`${item.title1}`)
                 .fontColor('rgba(255,255,255,0.6)')
                 .fontSize('26lpx')
@@ -156,15 +156,15 @@ export struct ProductSpecPage {
                 .lineHeight('30lpx')
                 .textAlign(TextAlign.Start)
                 .width('120lpx')
-                .margin({ right: '20lpx' })
+                .margin({ right: '20lpx' });
               Text(`${item.content1}`)
                 .fontColor('rgba(255,255,255,0.86)')
                 .fontSize('30lpx')
                 .fontWeight('500')
                 .lineHeight('35lpx')
-                .textAlign(TextAlign.Start)
+                .textAlign(TextAlign.Start);
             }
-            .padding({ bottom: '40lpx', top: '40lpx' })
+            .padding({ bottom: '40lpx', top: '40lpx' });
 
             Divider()
               .width('680lpx')
@@ -173,9 +173,9 @@ export struct ProductSpecPage {
                 direction: 0,
                 colors: [['rgba(255, 255, 255, 0)', 0.0], ['rgba(255, 255, 255, 0.8)', 0.3],
                   ['rgba(255, 255, 255, 0.8)', 0.6], ['rgba(255, 255, 255, 0)', 1]]
-              })
+              });
 
-          })
+          });
           Row() {
             Text(`音效系统`)
               .fontColor('rgba(255,255,255,0.6)')
@@ -184,7 +184,7 @@ export struct ProductSpecPage {
               .lineHeight('30lpx')
               .textAlign(TextAlign.Start)
               .width('120lpx')
-              .margin({ right: '20lpx' })
+              .margin({ right: '20lpx' });
             Text(`杜比全景音`)
               .fontColor('rgba(255,255,255,0.86)')
               .fontSize('30lpx')
@@ -194,7 +194,7 @@ export struct ProductSpecPage {
               .margin({ right: '5lpx' })
               .width('240lpx')
               .width('260lpx')
-              .margin({ right: '20lpx' })
+              .margin({ right: '20lpx' });
             Text(`能效等级`)
               .fontColor('rgba(255,255,255,0.6)')
               .fontSize('26lpx')
@@ -202,40 +202,30 @@ export struct ProductSpecPage {
               .lineHeight('30lpx')
               .textAlign(TextAlign.Start)
               .width('120lpx')
-              .margin({ right: '20lpx' })
+              .margin({ right: '20lpx' });
             Text(`一级能效`)
               .fontColor('rgba(255,255,255,0.86)')
               .fontSize('30lpx')
               .fontWeight('500')
               .lineHeight('35lpx')
               .width('260lpx')
-              .textAlign(TextAlign.Start)
+              .textAlign(TextAlign.Start);
           }
           .width('613lpx')
-          .padding({ bottom: '40lpx', top: '40lpx' })
+          .padding({ bottom: '40lpx', top: '40lpx' });
         }.width('50%')
-        .alignItems(HorizontalAlign.Start)
+        .alignItems(HorizontalAlign.Start);
 
-        /*   .linearGradient({
-             // 0点方向顺时针旋转为正向角度，线性渐变起始角度的默认值为180°
-             colors: [
-               [0xf56c6c, 0.0], // 颜色断点1的颜色和比重，对应组件在180°方向上的起始位置
-               [0xffffff, 1.0],// 颜色断点2的颜色和比重，对应组件在180°方向上的终点位置
-             ]
-           })
-   */
       }.width('100%')
       .height('600lpx')
-      .margin({ top: '50lpx' })
-
-      // .justifyContent(FlexAlign.SpaceBetween)
+      .margin({ top: '50lpx' });
 
     }
     .width('100%')
     .height('100%')
     .onBlur(() => {
 
-    })
+    });
 
   }
 }
