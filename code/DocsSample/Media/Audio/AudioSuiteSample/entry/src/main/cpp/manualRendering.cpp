@@ -135,7 +135,7 @@ static void RunBaseEditorPipeline(OH_AudioSuitePipeline *pipeline, const char *o
     int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
-    int32_t frameSize = 20 * 48000 * CHANNEL_COUNT * byteSize / 1000;
+    int32_t frameSize = 20 * OH_Audio_SampleRate::SAMPLE_RATE_48000 * CHANNEL_COUNT * byteSize / 1000;
     // 用于接收渲染后的输出音频数据。
     uint8_t *audioData = (uint8_t *)malloc(frameSize);
     int32_t responseSize = 0;
@@ -259,7 +259,7 @@ static void RunSeparationPipeline(OH_AudioSuitePipeline *pipeline, const char *v
     int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
-    int32_t frameSize = 20 * 48000 * CHANNEL_COUNT * byteSize / 1000;
+    int32_t frameSize = 20 * OH_Audio_SampleRate::SAMPLE_RATE_48000 * CHANNEL_COUNT * byteSize / 1000;
     // 用于接收渲染后的输出音频数据。
     OH_AudioDataArray audioDataArray;
     int32_t outPutNum = 2;
@@ -419,7 +419,7 @@ static void RunMixingPipeline(OH_AudioSuitePipeline *pipeline, const char *mixFi
     int32_t byteSize = 2;  // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
     // 根据输出节点的格式计算单帧处理数据大小。
     // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
-    int32_t frameSize = 20 * 48000 * CHANNEL_COUNT * byteSize / 1000;
+    int32_t frameSize = 20 * OH_Audio_SampleRate::SAMPLE_RATE_48000 * CHANNEL_COUNT * byteSize / 1000;
     // 用于接收渲染后的输出音频数据。
     uint8_t *audioData = (uint8_t *)malloc(frameSize);
     int32_t responseSize = 0;
@@ -492,6 +492,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
     //  创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
+    
     // 创建管线。
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
