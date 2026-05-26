@@ -1,0 +1,204 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "该模板实现了分类浏览的功能"
+    },
+    {
+      "name": "ability_desc",
+      "value": "该Ability加载显示主Page的内容"
+    },
+    {
+      "name": "ability_label",
+      "value": "通用互联"
+    },
+    {
+      "name": "list_item_text",
+      "value": "分类%d"
+    },
+    {
+      "name": "tab_text",
+      "value": "页签"
+    },
+    {
+      "name": "detail_list_item_text",
+      "value": "子标题"
+    },
+    {
+      "name": "grid_item_text",
+      "value": "子类"
+    },
+    {
+      "name": "sub_title",
+      "value": "子标题"
+    },
+    {
+      "name": "title",
+      "value": "分类"
+    },
+    {
+      "name": "tab_personal",
+      "value": "我的"
+    },
+    {
+      "name": "tab_devices",
+      "value": "设备库"
+    },
+    {
+      "name": "tab_scan",
+      "value": "附近设备"
+    },
+    {
+      "name": "tab_scene",
+      "value": "互联场景"
+    },
+    {
+      "name": "launcher_text_name",
+      "value": "通用互联"
+    },
+    {
+      "name": "launcher_btn_text",
+      "value": "进入应用"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "account",
+      "value": "账号"
+    },
+    {
+      "name": "password",
+      "value": "密码"
+    },
+    {
+      "name": "input_account",
+      "value": "请输入账号"
+    },
+    {
+      "name": "input_password",
+      "value": "请输入密码"
+    },
+    {
+      "name": "account_password_login",
+      "value": "账号密码登录"
+    },
+    {
+      "name": "mobile_number_login",
+      "value": "手机号登录"
+    },
+    {
+      "name": "sign_in",
+      "value": "注册"
+    },
+    {
+      "name": "forgot_password",
+      "value": "忘记密码"
+    },
+    {
+      "name": "input_registration",
+      "value": "输入信息进行注册"
+    },
+    {
+      "name": "next",
+      "value": "下一步"
+    },
+    {
+      "name": "Create_account",
+      "value": "创建账号"
+    },
+    {
+      "name": "reenter_password",
+      "value": "再次输入密码"
+    },
+    {
+      "name": "account_management",
+      "value": "账号管理"
+    },
+    {
+      "name": "personal_information",
+      "value": "个人信息"
+    },
+    {
+      "name": "nickname",
+      "value": "昵称"
+    },
+    {
+      "name": "mail_address",
+      "value": "邮件地址"
+    },
+    {
+      "name": "account_security",
+      "value": "账号安全"
+    },
+    {
+      "name": "log_out",
+      "value": "退出登录"
+    },
+    {
+      "name": "successful_verification",
+      "value": "验证成功"
+    },
+    {
+      "name": "account_or_code_format_incorrect",
+      "value": "账号或验证码格式不正确"
+    },
+    {
+      "name": "reset_successfully",
+      "value": "重置成功"
+    },
+    {
+      "name": "two_password_format_error",
+      "value": "密码格式不正确或者两次输入不一样"
+    },
+    {
+      "name": "consent_agreement",
+      "value": "请先同意用户协议和隐私政策"
+    },
+    {
+      "name": "login_successful",
+      "value": "登录成功"
+    },
+    {
+      "name": "login_failure",
+      "value": "登录失败"
+    },
+    {
+      "name": "account_or_password_incorrect",
+      "value": "账号或密码格式不正确"
+    },
+    {
+      "name": "registered_successfully",
+      "value": "注册成功"
+    },
+    {
+      "name": "registered_failure",
+      "value": "注册失败"
+    },
+    {
+      "name": "registration_format_incorrect",
+      "value": "格式不正确"
+    },
+    {
+      "name": "please_login_first",
+      "value": "您未登录，请先登录"
+    },
+    {
+      "name": "Account_security",
+      "value": "账号安全"
+    },
+    {
+      "name": "Cancel_account",
+      "value": "注销账号"
+    },
+    {
+      "name": "Account_cancellation_failure",
+      "value": "注销失败"
+    },
+    {
+      "name": "press_again_to_exit",
+      "value": "再按一次退出应用"
+    }
+  ]
+}

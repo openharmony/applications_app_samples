@@ -1,0 +1,411 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "This module template implements Category functions."
+    },
+    {
+      "name": "ability_desc",
+      "value": "This ability loads CategoryPage."
+    },
+    {
+      "name": "ability_label",
+      "value": "Category Ability"
+    },
+    {
+      "name": "list_item_text",
+      "value": "Category %d"
+    },
+    {
+      "name": "tab_text",
+      "value": "Tab"
+    },
+    {
+      "name": "detail_list_item_text",
+      "value": "Subtype"
+    },
+    {
+      "name": "grid_item_text",
+      "value": "Subclass"
+    },
+    {
+      "name": "sub_title",
+      "value": "Sub title"
+    },
+    {
+      "name": "title",
+      "value": "Category"
+    },
+    {
+      "name": "tab_personal",
+      "value": "personal"
+    },
+    {
+      "name": "tab_devices",
+      "value": "devices"
+    },
+    {
+      "name": "tab_scan",
+      "value": "scan"
+    },
+    {
+      "name": "tab_scene",
+      "value": "scene"
+    },
+    {
+      "name": "launcher_text_name",
+      "value": "connect"
+    },
+    {
+      "name": "launcher_btn_text",
+      "value": "Enter the application"
+    },{
+      "name": "reason",
+      "value": "通用互联需要ble能力发现ble协议设备"
+    },
+    {
+      "name": "login",
+      "value": "login"
+    },
+    {
+      "name": "account",
+      "value": "account "
+    },
+    {
+      "name": "password",
+      "value": "password"
+    },
+    {
+      "name": "input_account",
+      "value": "Please enter your account number"
+    },
+    {
+      "name": "input_password",
+      "value": "Please enter password"
+    },
+    {
+      "name": "account_password_login",
+      "value": "Account password login"
+    },
+    {
+      "name": "mobile_number_login",
+      "value": "Mobile number login"
+    },
+    {
+      "name": "sign_in",
+      "value": "Sign in"
+    },
+    {
+      "name": "input_registration",
+      "value": "Enter for registration"
+    },
+    {
+      "name": "next",
+      "value": "Next"
+    },
+    {
+      "name": "Create_account",
+      "value": "Create an account"
+    },
+    {
+      "name": "reenter_password",
+      "value": "Reenter password"
+    },
+    {
+      "name": "forgot_password",
+      "value": "Forgot password"
+    },
+    {
+      "name": "account_management",
+      "value": "Forgot password"
+    },
+    {
+      "name": "personal_information",
+      "value": "Personal information"
+    },
+    {
+      "name": "nickname",
+      "value": "nickname"
+    },
+    {
+      "name": "mail_address",
+      "value": "Mail address"
+    },
+    {
+      "name": "account_security",
+      "value": "Account security"
+    },
+    {
+      "name": "log_out",
+      "value": "Log out"
+    },
+    {
+      "name": "successful_verification",
+      "value": "Successful verification"
+    },
+    {
+      "name": "account_or_code_format_incorrect",
+      "value": "The format of the account or code is incorrect"
+    },
+    {
+      "name": "reset_successfully",
+      "value": "Reset successfully"
+    },
+    {
+      "name": "two_password_format_error",
+      "value": "The password format is incorrect or the password is incorrect twice"
+    },
+    {
+      "name": "consent_agreement",
+      "value": "Please agree to the User Agreement and Privacy Policy"
+    },
+    {
+      "name": "login_successful",
+      "value": "Login successful"
+    },
+    {
+      "name": "login_failure",
+      "value": "Login failure"
+    },
+    {
+      "name": "account_or_password_incorrect",
+      "value": "The account or password is incorrect"
+    },
+    {
+      "name": "registered_successfully",
+      "value": "Registered successfully"
+    },
+    {
+      "name": "registered_failure",
+      "value": "Registered failure"
+    },
+    {
+      "name": "registration_format_incorrect",
+      "value": "Incorrect format"
+    },
+    {
+      "name": "please_login_first",
+      "value": "You are not logged in, please log in first"
+    },
+    {
+      "name": "Account_security",
+      "value": "Account security"
+    },
+    {
+      "name": "Cancel_account",
+      "value": "Cancel account"
+    },
+    {
+      "name": "Account_cancellation_failure",
+      "value": "Account cancellation failure"
+    },
+    {
+      "name": "press_again_to_exit",
+      "value": "press again to exit"
+    },
+    {
+      "name": "loginError",
+      "value": "登录失败，请检查用户名或密码！"
+    },
+        {
+          "name": "tab_text_font_size",
+          "value": "15lpx"
+        },
+        {
+          "name": "tab_text_font_size_select",
+          "value": "18lpx"
+        },
+        {
+          "name": "search_text_size",
+          "value": "24lpx"
+        },
+        {
+          "name": "search_radius",
+          "value": "30lpx"
+        },
+        {
+          "name": "title_height",
+          "value": "84lpx"
+        },
+        {
+          "name": "search_height",
+          "value": "60lpx"
+        },
+        {
+          "name": "tab_image_size",
+          "value": "60lpx"
+        },
+        {
+          "name": "tab_margin_top",
+          "value": "12lpx"
+        },
+        {
+          "name": "tab_margin_bottom",
+          "value": "7.5lpx"
+        },
+        {
+          "name": "tab_text_margin_bottom",
+          "value": "10.5lpx"
+        },
+        {
+          "name": "List_item_text_size",
+          "value": "21lpx"
+        },
+        {
+          "name": "Grid_item_text_size",
+          "value": "21lpx"
+        },
+        {
+          "name": "List_item_text_margin_top",
+          "value": "18lpx"
+        },
+        {
+          "name": "side_list_margin_top",
+          "value": "18lpx"
+        },
+        {
+          "name": "side_minWidth",
+          "value": "75lpx"
+        },
+        {
+          "name": "side_list_text_margin_bottom",
+          "value": "24lpx"
+        },
+        {
+          "name": "divider_margin_bottom",
+          "value": "12lpx"
+        },
+        {
+          "name": "detail_list_text_size",
+          "value": "24lpx"
+        },
+        {
+          "name": "detail_list_text_margin_top",
+          "value": "43.5lpx"
+        },
+        {
+          "name": "detail_list_item_height",
+          "value": "108lpx"
+        },
+        {
+          "name": "grid_item_radius",
+          "value": "24lpx"
+        },
+        {
+          "name": "detail_list_text_height",
+          "value": "33lpx"
+        },
+        {
+          "name": "tab_text_height",
+          "value": "21lpx"
+        },
+        {
+          "name": "search_margin_top",
+          "value": "30lpx"
+        },
+        {
+          "name": "search_margin_bottom",
+          "value": "12lpx"
+        },
+        {
+          "name": "title_margin_top",
+          "value": "105lpx"
+        },
+        {
+          "name": "title_margin_left",
+          "value": "-18lpx"
+        },
+        {
+          "name": "text_title_height",
+          "value": "61.5lpx"
+        },
+        {
+          "name": "title_font_size",
+          "value": "45lpx"
+        },
+        {
+          "name": "subtitle_height",
+          "value": "28.5lpx"
+        },
+        {
+          "name": "tab_bar_width",
+          "value": "144lpx"
+        },
+        {
+          "name": "tab_bar_height",
+          "value": "84lpx"
+        },
+        {
+          "name": "subtitle_font_size",
+          "value": "21lpx"
+        },
+        {
+          "name": "grid_row_margin_left",
+          "value": "36lpx"
+        },
+        {
+          "name": "grid_row_margin_right",
+          "value": "36lpx"
+        },
+        {
+          "name": "text_margin_left_normal",
+          "value": "36lpx"
+        },
+        {
+          "name": "text_margin_left_xs",
+          "value": "0lpx"
+        },
+        {
+          "name": "detail_list_item_height_xs",
+          "value": "378lpx"
+        },
+        {
+          "name": "detail_list_item_height_normal",
+          "value": "255lpx"
+        },
+        {
+          "name": "detail_list_height_xs",
+          "value": "450lpx"
+        },
+        {
+          "name": "detail_list_height_normal",
+          "value": "306lpx"
+        },
+        {
+          "name": "launcher_logo_size",
+          "value": "96lpx"
+        },
+        {
+          "name": "launcher_life_text_width",
+          "value": "307.5lpx"
+        },
+        {
+          "name": "launcher_life_text_height",
+          "value": "52.5lpx"
+        },
+        {
+          "name": "launcher_text_title_size",
+          "value": "39lpx"
+        },
+        {
+          "name": "launcher_btn_text_size",
+          "value": "24lpx"
+        },
+        {
+          "name": "launcher_text_name_size",
+          "value": "36lpx"
+        },
+        {
+          "name": "launcher_btn_size_width",
+          "value": "312lpx"
+        },
+        {
+          "name": "launcher_btn_size_height",
+          "value": "60lpx"
+        },
+        {
+          "name": "launcher_privacy_text_size",
+          "value": "15lpx"
+        }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/Index"
+  ],
+   "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}

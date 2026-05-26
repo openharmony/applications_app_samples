@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/LauncherPage",
+    "pages/HomeIndex",
+    "pages/ScenePage",
+    "pages/OrderExecution/Drug",
+    "pages/OrderExecution/Login",
+    "pages/OrderExecution/MedicalAdvice",
+    "pages/OrderExecution/PatientList",
+    "pages/OrderExecution/test",
+    "pages/ovble/SmartTunnelScene",
+    "pages/login/UserAgreementPage",
+    "pages/login/UserPrivacyPage"
+  ],
+   "window": {
+    "designWidth": 1920,
+    "autoDesignWidth": false
+  }
+}
