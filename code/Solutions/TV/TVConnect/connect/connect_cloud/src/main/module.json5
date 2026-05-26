@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "connect_cloud",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
