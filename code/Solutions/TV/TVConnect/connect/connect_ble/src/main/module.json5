@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "connect_ble",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
