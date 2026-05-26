@@ -300,13 +300,15 @@ struct AudioFormatConverterData {
 };
 
 // 异步执行函数
-void AudioFormatConverterExecute(napi_env env, void *data) {
+void AudioFormatConverterExecute(napi_env env, void *data)
+{
     AudioFormatConverterData *asyncData = static_cast<AudioFormatConverterData *>(data);
     asyncData->success = AudioFormatConverterTest(asyncData->inputFilePath.c_str(), asyncData->outputFilePath.c_str());
 }
 
 // 异步完成函数
-void AudioFormatConverterComplete(napi_env env, napi_status status, void *data) {
+void AudioFormatConverterComplete(napi_env env, napi_status status, void *data)
+{
     AudioFormatConverterData *asyncData = static_cast<AudioFormatConverterData *>(data);
 
     if (status == napi_ok) {
@@ -337,7 +339,8 @@ void AudioFormatConverterComplete(napi_env env, napi_status status, void *data) 
     delete asyncData;
 }
 
-napi_value AudioFormatConverterNapi(napi_env env, napi_callback_info info) {
+napi_value AudioFormatConverterNapi(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value argv[1];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
@@ -495,7 +498,8 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"MixingAndCascadingNapi", nullptr, MixingAndCascadingNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"EqualizerEffectNapi", nullptr, EqualizerEffectNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"AudioFormatConverterNapi", nullptr, AudioFormatConverterNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"AudioFormatConverterNapi", nullptr, AudioFormatConverterNapi, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

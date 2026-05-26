@@ -150,6 +150,13 @@ bool CreateAudioConverter(AudioConverterTestData *testData)
 // 分配输出缓冲区
 bool AllocateOutputBuffer(AudioConverterTestData *testData, int32_t estimatedOutputSize)
 {
+    if (estimatedOutputSize <= 0 || estimatedOutputSize > INT32_MAX / 2) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG,
+                     "估算的输出缓冲区大小不合法: %{public}d", estimatedOutputSize);
+        OH_AudioConverter_Destroy(testData->converter);
+        FreeAudioDataInfo(&testData->inputAudioInfo);
+        return false;
+    }
     testData->outputAudioInfo.buffer = new uint8_t[estimatedOutputSize];
     if (testData->outputAudioInfo.buffer == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "分配输出缓冲区失败");
@@ -177,7 +184,6 @@ bool ProcessAudioData(AudioConverterTestData *testData, int32_t estimatedOutputS
 
     do {
         result = OH_AudioConverter_Process(testData->converter, processBuffer, processBufferSize, &outputSize);
-
         if (result != AUDIOCONVERTER_SUCCESS) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "处理音频数据失败: %{public}d", result);
             delete[] processBuffer;
