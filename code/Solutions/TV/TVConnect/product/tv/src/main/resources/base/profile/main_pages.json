@@ -7,7 +7,7 @@
     "pages/OrderExecution/Login",
     "pages/OrderExecution/MedicalAdvice",
     "pages/OrderExecution/PatientList",
-    "pages/OrderExecution/test",
+    "pages/OrderExecution/Test",
     "pages/ovble/SmartTunnelScene",
     "pages/login/UserAgreementPage",
     "pages/login/UserPrivacyPage"
