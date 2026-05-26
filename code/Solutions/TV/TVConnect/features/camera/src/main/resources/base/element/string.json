@@ -1,0 +1,628 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CameraAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CameraAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "input_device_serial_number",
+      "value": "input device serial number"
+    },
+    {
+      "name": "equipment_qualification",
+      "value": "equipment qualification"
+    },
+    {
+      "name": "device_distribution_network_description",
+      "value": "device distribution network description"
+    },
+    {
+      "name": "device_initialize_one",
+      "value": "device initialize one"
+    },
+    {
+      "name": "device_initialize_two",
+      "value": "device initialize two"
+    },
+    {
+      "name": "device_initialize_three",
+      "value": "device initialize three"
+    },
+    {
+      "name": "device_name_and_scenario",
+      "value": "device name and scenario"
+    },
+    {
+      "name": "device_added_successfully",
+      "value": "device added successfully"
+    },
+    {
+      "name": "set",
+      "value": "set"
+    },
+    {
+      "name": "essential_information",
+      "value": "essential information"
+    },
+    {
+      "name": "devic_name",
+      "value": "devic name"
+    },
+    {
+      "name": "application_of_equipment",
+      "value": "application of equipment"
+    },
+    {
+      "name": "database_coordinate_system",
+      "value": "database coordinate system"
+    },
+    {
+      "name": "create_coordinate",
+      "value": "create coordinate"
+    },
+    {
+      "name": "end_coordinate",
+      "value": "end coordinate"
+    },
+    {
+      "name": "transcribe_transcribe",
+      "value": "transcribe transcribe"
+    },
+    {
+      "name": "device_serial_number_picture",
+      "value": "device serial number picture"
+    },
+    {
+      "name": "device_picture",
+      "value": "device picture"
+    },
+    {
+      "name": "serial_number",
+      "value": "serial number"
+    },
+    {
+      "name": "please_enter",
+      "value": "please_enter"
+    },
+    {
+      "name": "equipment_number",
+      "value": "equipment number"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
+    },
+    {
+      "name": "join",
+      "value": "join"
+    },
+    {
+      "name": "accomplish",
+      "value": "accomplish"
+    },
+    {
+      "name": "start_distribution",
+      "value": "start distribution"
+    },
+    {
+      "name": "plugin_describe",
+      "value": "plugin describe"
+    },
+    {
+      "name": "indicator_light",
+      "value": "indicator light"
+    },
+    {
+      "name": "select_router",
+      "value": "select router"
+    },
+    {
+      "name": "without_password",
+      "value": "without password"
+    },
+    {
+      "name": "switching_network",
+      "value": "switching network"
+    },
+    {
+      "name": "connected_device_hotspot",
+      "value": "connected device hotspot"
+    },
+    {
+      "name": "please_click_join",
+      "value": "please click join"
+    },
+    {
+      "name": "selective_use",
+      "value": "selective use"
+    },
+    {
+      "name": "device_qr_code",
+      "value": "device qr code"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "picture_reversal",
+      "value": "picture reversal"
+    },
+    {
+      "name": "integrated_Peripherals",
+      "value": "integrated_Peripherals"
+    },
+    {
+      "name": "click_video",
+      "value": "click video"
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "transcribe",
+      "value": "transcribe"
+    },
+    {
+      "name": "screen_shot",
+      "value": "screen shot"
+    },
+    {
+      "name": "coordinate",
+      "value": "coordinate"
+    },
+    {
+      "name": "level",
+      "value": "level"
+    },
+    {
+      "name": "pitching",
+      "value": "pitching"
+    },
+    {
+      "name": "focal_num",
+      "value": "focal num"
+    },
+    {
+      "name": "add_coordinates",
+      "value": "add coordinates"
+    },
+    {
+      "name": "manage_coordinates_camera",
+      "value": "manage coordinates camera"
+    },
+    {
+      "name": "the_camera_recording",
+      "value": "the camera recording"
+    },
+    {
+      "name": "recording",
+      "value": "recording"
+    },
+    {
+      "name": "video_saved_photo",
+      "value": "video saved photo"
+    },
+    {
+      "name": "screenshot_saved_photo",
+      "value": "screenshot saved photo"
+    },
+    {
+      "name": "super_definition",
+      "value": "super definition"
+    },
+    {
+      "name": "high_definition",
+      "value": "high definition"
+    },
+    {
+      "name": "standard_definition",
+      "value": "standard definition"
+    },
+    {
+      "name": "devicename_use_wait",
+      "value": "devicename use wait"
+    },
+    {
+      "name": "unit_type",
+      "value": "unit type"
+    },
+    {
+      "name": "equipment_erial_num",
+      "value": "equipment erial num"
+    },
+    {
+      "name": "please_select_use",
+      "value": "please select use"
+    },
+    {
+      "name": "select_coordinate",
+      "value": "select coordinate"
+    },
+    {
+      "name": "confirm_del",
+      "value": "confirm del"
+    },
+    {
+      "name": "ladata",
+      "value": "ladata"
+    },
+    {
+      "name": "coordinate_name",
+      "value": "coordinate name"
+    },
+    {
+      "name": "add_equipments",
+      "value": "add equipments"
+    },
+    {
+      "name": "scanning_pcl_devices",
+      "value": "scanning pcl devices"
+    },
+    {
+      "name": "and_near_the_phone",
+      "value": "and near the phone"
+    },
+    {
+      "name": "connect",
+      "value": "connect"
+    },
+    {
+      "name": "manually_add",
+      "value": "manually add"
+    },
+    {
+      "name": "scan_code_addition",
+      "value": "scan code addition"
+    },
+    {
+      "name": "selection_sort",
+      "value": "selection sort"
+    },
+    {
+      "name": "configuration_wizard",
+      "value": "configuration wizard"
+    },
+    {
+      "name": "device_attachment",
+      "value": "device attachment"
+    },
+    {
+      "name": "production_equipment",
+      "value": "production equipment"
+    },
+    {
+      "name": "fault_management",
+      "value": "fault management"
+    },
+    {
+      "name": "coordinate_axis",
+      "value": "coordinate axis"
+    },
+    {
+      "name": "alarm_information",
+      "value": "alarm information"
+    },
+    {
+      "name": "view_details",
+      "value": "view details"
+    },
+    {
+      "name": "distributed_camera",
+      "value": "distributed camera"
+    },
+    {
+      "name": "select_information_type",
+      "value": "select information type"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "btn_width",
+      "value": "270lpx"
+    },
+    {
+      "name": "coordinate_height",
+      "value": "640.5lpx"
+    },
+    {
+      "name": "empty_width",
+      "value": "180lpx"
+    },
+    {
+      "name": "empty_height",
+      "value": "180lpx"
+    },
+    {
+      "name": "font_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "font_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "font_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "font_44",
+      "value": "66lpx"
+    },
+    {
+      "name": "font_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "padding_top_17",
+      "value": "25.5lpx"
+    },
+    {
+      "name": "line_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "line_22",
+      "value": "33lpx"
+    },
+    {
+      "name": "line_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "icon_width",
+      "value": "36lpx"
+    },
+    {
+      "name": "icon_height",
+      "value": "36lpx"
+    },
+    {
+      "name": "switch_width",
+      "value": "54lpx"
+    },
+    {
+      "name": "switch_height",
+      "value": "30lpx"
+    },
+    {
+      "name": "card_width",
+      "value": "243lpx"
+    },
+    {
+      "name": "card_height",
+      "value": "180lpx"
+    },
+    {
+      "name": "card_border_radius",
+      "value": "24lpx"
+    },
+    {
+      "name": "top_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "height_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "p_6",
+      "value": "9lpx"
+    },
+    {
+      "name": "p_8",
+      "value": "12lpx"
+    },
+    {
+      "name": "p_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "p_16",
+      "value": "24lpx"
+    },
+    {
+      "name": "p_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "p_24",
+      "value": "36lpx"
+    },
+    {
+      "name": "p_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "p_44",
+      "value": "66lpx"
+    },
+    {
+      "name": "p_52",
+      "value": "78lpx"
+    },
+    {
+      "name": "add_scene_width",
+      "value": "30lpx"
+    },
+    {
+      "name": "add_scene_height",
+      "value": "30lpx"
+    },
+    {
+      "name": "scene_tab_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "padding_tab_title_left",
+      "value": "12lpx"
+    },
+    {
+      "name": "padding_tab_left",
+      "value": "36lpx"
+    },
+    {
+      "name": "margin_card_top",
+      "value": "36lpx"
+    },
+    {
+      "name": "btn_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "tip_icon_width",
+      "value": "33lpx"
+    },
+    {
+      "name": "tip_icon_height",
+      "value": "33lpx"
+    },
+    {
+      "name": "origin_circle_size",
+      "value": "270lpx"
+    },
+    {
+      "name": "ic_arrow_left_icon_width",
+      "value": "18lpx"
+    },
+    {
+      "name": "btn_margin_bottom",
+      "value": "36lpx"
+    },
+    {
+      "name": "device_item_name_font_size",
+      "value": "18lpx"
+    },
+    {
+      "name": "device_item_bg_size",
+      "value": "90lpx"
+    },
+    {
+      "name": "device_item_ic_size",
+      "value": "52.5lpx"
+    },
+    {
+      "name": "device_item_padding",
+      "value": "7.5lpx"
+    },
+    {
+      "name": "device_item_name_size",
+      "value": "22.5lpx"
+    },
+    {
+      "name": "bg_device_size",
+      "value": "150lpx"
+    },
+    {
+      "name": "device_min_space",
+      "value": "24lpx"
+    },
+    {
+      "name": "vp_60",
+      "value": "90lpx"
+    },
+    {
+      "name": "vp_50",
+      "value": "75lpx"
+    },
+    {
+      "name": "vp_40",
+      "value": "60lpx"
+    },
+    {
+      "name": "vp_25",
+      "value": "37.5lpx"
+    },
+    {
+      "name": "vp_20",
+      "value": "30lpx"
+    },
+    {
+      "name": "vp_14",
+      "value": "21lpx"
+    },
+    {
+      "name": "vp_13",
+      "value": "19.5lpx"
+    },
+    {
+      "name": "vp_12",
+      "value": "18lpx"
+    },
+    {
+      "name": "vp_10",
+      "value": "15lpx"
+    },
+    {
+      "name": "vp_5",
+      "value": "4.5lpx"
+    },
+    {
+      "name": "dialog_padding_top",
+      "value": "15lpx"
+    },
+    {
+      "name": "dialog_padding_bottom",
+      "value": "36lpx"
+    },
+    {
+      "name": "dialog_divider_height",
+      "value": "45lpx"
+    },
+    {
+      "name": "menu_body_width",
+      "value": "240lpx"
+    },
+    {
+      "name": "menu_body_height",
+      "value": "144lpx"
+    },
+    {
+      "name": "menu_item_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "modify_scene_icon_height",
+      "value": "381lpx"
+    },
+    {
+      "name": "scene_icon_width",
+      "value": "103.5lpx"
+    },
+    {
+      "name": "scene_icon_height",
+      "value": "103.5lpx"
+    },
+    {
+      "name": "scene_current_icon_width",
+      "value": "60lpx"
+    },
+    {
+      "name": "scene_current_icon_height",
+      "value": "60lpx"
+    }
+  ]
+}

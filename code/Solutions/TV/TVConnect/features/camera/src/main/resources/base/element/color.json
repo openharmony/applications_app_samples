@@ -1,0 +1,72 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_color_1",
+      "value": "#666666"
+    },
+    {
+      "name": "text_color_2",
+      "value": "#000000"
+    },
+    {
+      "name": "text_color_3",
+      "value": "#333333"
+    },
+    {
+      "name": "text_color_4",
+      "value": "#999999"
+    },
+    {
+      "name": "text_color_5",
+      "value": "#0a59f7"
+    },
+    {
+      "name": "text_color_6",
+      "value": "#606162"
+    },
+    {
+      "name": "text_color_7",
+      "value": "#646a73"
+    },
+    {
+      "name": "text_color_8",
+      "value": "#b7b7b7"
+    },
+    {
+      "name": "text_color_9",
+      "value": "#ff4747"
+    },
+    {
+      "name": "serial_number_img_bg",
+      "value": "#e8e8e8"
+    },
+    {
+      "name": "equipment_img_bg",
+      "value": "#ffffff"
+    },
+    {
+      "name": "operation_bg",
+      "value": "#0a58f7"
+    },
+    {
+      "name": "keyboard_bg",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "btn_text_color",
+      "value": "#1059f7"
+    },
+    {
+      "name": "btn_text_bg",
+      "value": "#e5e7e9"
+    },
+    {
+      "name": "scene_tab_color",
+      "value": "#99000000"
+    }
+  ]
+}
