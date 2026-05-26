@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "connect_wifi",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
