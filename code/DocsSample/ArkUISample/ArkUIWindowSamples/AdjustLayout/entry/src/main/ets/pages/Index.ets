@@ -125,7 +125,7 @@ struct Index {
     if (enabled) {
       const ratio = 1.5;
       // 设置可布局内容宽高比限制
-      mainWindow.setContentAspectRatio(ratio)
+      mainWindow.setAspectRatio(ratio)
         .then(() => {
           AppStorage.setOrCreate('WINDOW_ASPECT_RATIO_ENABLED', enabled);
           this.resultText = '已开启比例限制';

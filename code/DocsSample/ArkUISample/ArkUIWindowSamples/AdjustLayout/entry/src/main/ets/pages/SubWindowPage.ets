@@ -14,7 +14,6 @@
  */
 
 // [Start startMoving]
-// SubWindowPage.ets
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';

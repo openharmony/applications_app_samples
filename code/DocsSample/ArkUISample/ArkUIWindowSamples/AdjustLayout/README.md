@@ -53,7 +53,7 @@ entry/src/main/ets/
 - 注册 `windowRectChange` 监听窗口尺寸变化
 
 **Index.ets**
-- 使用 `setContentAspectRatio` 设置主窗口的宽高比例限制
+- 使用 `setAspectRatio` 设置主窗口的宽高比例限制
 - 使用 `resetAspectRatio` 取消宽高比例限制
 - 使用 `showWindow` 和 `minimize` 控制子窗口显示/隐藏
 - 使用 `setWindowLimits` 设置子窗口的尺寸限制

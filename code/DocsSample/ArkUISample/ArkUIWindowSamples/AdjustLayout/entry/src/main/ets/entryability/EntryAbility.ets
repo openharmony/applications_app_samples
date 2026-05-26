@@ -187,7 +187,7 @@ export default class MainAbility extends UIAbility {
    设置子窗口的UI内容为SubWindowPage页面
    */
   private loadSubWindowContent(subWindow: window.Window): void {
-    subWindow.setUIContent("pages/SubWindowPage").then(() => {
+    subWindow.setUIContent('pages/SubWindowPage').then(() => {
       console.info('Succeeded in loading the content.');
     }).catch((err: Error) => {
       const businessError = err as BusinessError;
