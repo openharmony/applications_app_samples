@@ -32,8 +32,8 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          ArkTSUtils.ASON.parse('{}');
-          ArkTSUtils.ASON.stringify(new collections.Array(1, 2, 3));
+          console.info(ArkTSUtils.ASON.parse('{}'));
+          console.info(ArkTSUtils.ASON.stringify(new collections.Array(1, 2, 3)));
 
           let options2: ArkTSUtils.ASON.ParseOptions = {
             bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,

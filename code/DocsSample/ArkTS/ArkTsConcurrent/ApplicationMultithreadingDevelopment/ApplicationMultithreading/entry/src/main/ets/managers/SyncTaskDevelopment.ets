@@ -53,10 +53,10 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
-// [StartExclude worker_handle_associated_sync_task]
+            // [StartExclude worker_handle_associated_sync_task]
             mainFunc();
-// [StartExclude taskpool_handle_sync_task]
-// [EndExclude worker_handle_associated_sync_task]
+            // [StartExclude taskpool_handle_sync_task]
+            // [EndExclude worker_handle_associated_sync_task]
             let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker2.ts');
             w.onmessage = (e: MessageEvents): void => {
               // 接收Worker子线程的结果
@@ -70,7 +70,7 @@ struct Index {
             w.postMessage({'type': 0, 'data': 10});
             // 向Worker子线程发送Get消息
             w.postMessage({'type': 1});
-// [EndExclude taskpool_handle_sync_task]
+            // [EndExclude taskpool_handle_sync_task]
           })
       }
       .width('100%')
