@@ -1,0 +1,498 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "scan_title",
+      "value": "Nearby Devices"
+    },
+    {
+      "name": "scan_not_start_tip0",
+      "value": "Scan did not start"
+    },
+    {
+      "name": "scan_not_start_tip1",
+      "value": "Please make sure it is turned on"
+    },
+    {
+      "name": "scanning_tip0",
+      "value": "Scanning for devices..."
+    },
+    {
+      "name": "scanning_tip1",
+      "value": "Some devices cannot be added, please make sure they are turned on"
+    },
+    {
+      "name": "scanning_tip2",
+      "value": "Make sure the device is plugged in and near your phone"
+    },
+    {
+      "name": "scan_no_result_tip",
+      "value": "No device found, click to scan again"
+    },
+    {
+      "name": "scan_no_result_button_text",
+      "value": "Rescan device"
+    },
+    {
+      "name": "scan_no_result_button_text_coap",
+      "value": "Coap Rescan device"
+    },
+    {
+      "name": "add_device_button_text",
+      "value": "Add device"
+    },
+    {
+      "name": "env_check_tip",
+      "value": "\"Interconnection\" requires turning on mobile phone wireless network and Bluetooth to discover and add devices. Enable?"
+    },
+    {
+      "name": "comma",
+      "value": ","
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "button_text_open",
+      "value": "open"
+    },
+    {
+      "name": "device_unknown",
+      "value": "device unknown"
+    },
+    {
+      "name": "button_text_switch",
+      "value": "switch"
+    },
+    {
+      "name": "device_status_text",
+      "value": "device status"
+    },
+    {
+      "name": "position_information_text",
+      "value": "position information"
+    },
+    {
+      "name": "typical_business_text",
+      "value": "typical business"
+    },
+    {
+      "name": "manufacturer_name_text",
+      "value": "manufacturer name"
+    },
+    {
+      "name": "device_type_text",
+      "value": "device type"
+    },
+    {
+      "name": "device_name_text",
+      "value": "device name"
+    },
+    {
+      "name": "operating_system_type_text",
+      "value": "operating system type"
+    },
+    {
+      "name": "operating_system_version_number_text",
+      "value": "operating system version number"
+    },
+    {
+      "name": "pop_tip",
+      "value": "Connected, click to view device details"
+    },
+    {
+      "name": "connect_not_start",
+      "value": "not connected"
+    },
+    {
+      "name": "connect_success",
+      "value": "connected"
+    },
+    {
+      "name": "connect_title",
+      "value": "Connected devices"
+    },
+    {
+      "name": "openvalley_toast_login_fail",
+      "value": "Login failed"
+    },
+    {
+      "name": "tunnel_device_sensing",
+      "value": "Sensing"
+    },
+    {
+      "name": "tunnel_device_wind_machine",
+      "value": "WindMachine"
+    },
+    {
+      "name": "tunnel_device_light",
+      "value": "Light"
+    },
+    {
+      "name": "tunnel_device_siren",
+      "value": "Siren"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "execution scenario"
+    },
+    {
+      "name": "finish_scenario",
+      "value": "finish scenario"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "Topping",
+      "value": "Topping"
+    },
+    {
+      "name": "location_permission",
+      "value": "need request location permission"
+    },
+    {
+      "name": "bluetooth_permission",
+      "value": "need request bluetooth permission"
+    },
+    {
+      "name": "previousPicture",
+      "value": "previous"
+    },
+    {
+      "name": "nextPicture",
+      "value": "next"
+    },
+    {
+      "name": "restart",
+      "value": "restart"
+    },
+    {
+      "name": "sleep",
+      "value": "sleep"
+    },
+    {
+      "name": "online",
+      "value": "online"
+    },
+    {
+      "name": "offline",
+      "value": "offline"
+    },
+    {
+      "name": "no_position",
+      "value": "no position info"
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "cmd_send_failed",
+      "value": "Command sending failed, please check the device connection status"
+    },
+    {
+      "name": "devices_online",
+      "value": "the device is offline"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "confirm_message",
+      "value": "Other devices are in a connected state. Do you want to disconnect the current connection?"
+    },
+    {
+      "name": "finish_project_select",
+      "value": "Finish"
+    },
+    {
+      "name": "project_select_text",
+      "value": "Select Project"
+    },
+    {
+      "name": "select_project_text",
+      "value": "Select a Project"
+    },
+    {
+      "name": "create_project_text",
+      "value": "Create a Project"
+    },
+    {
+      "name": "project_information_text",
+      "value": "Project Information"
+    },
+    {
+      "name": "project_name_text",
+      "value": "Project Name"
+    },
+    {
+      "name": "project_location_text",
+      "value": "Project Location"
+    },
+    {
+      "name": "project_member_text",
+      "value": "Project Members"
+    },
+    {
+      "name": "project_name_text_input_placeholder",
+      "value": "Please enter the project name"
+    },
+    {
+      "name": "project_location_select_tip",
+      "value": "Select points on the map to locate geographic locations"
+    },
+    {
+      "name": "member_addition",
+      "value": "Add Member"
+    },
+    {
+      "name": "finish_project",
+      "value": "Save"
+    },
+    {
+      "name": "devices_main",
+      "value": "devices"
+    },
+    {
+      "name": "devices_scan",
+      "value": "devices scan"
+    },
+    {
+      "name": "devices_wifi",
+      "value": "devices_wifi"
+    },
+    {
+      "name": "delete_device_tip",
+      "value": "The deleted device cannot be restored. Are you sure?"
+    },
+    {
+      "name": "project_member_demo",
+      "value": "Zhang San"
+    },
+    {
+      "name": "edit_project_text",
+      "value": "Edit Project"
+    },
+    {
+      "name": "delete_project_button",
+      "value": "Delete"
+    },
+    {
+      "name": "add_device_no_find",
+      "value": "add_device_no_find"
+    },
+    {
+      "name": "add_device",
+      "value": "add_device"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "scan_result",
+      "value": "has_scan_result"
+    },
+    {
+      "name": "next_step",
+      "value": "next_step"
+    },
+    {
+      "name": "configure_device",
+      "value": "configure device"
+    },
+    {
+      "name": "device_name",
+      "value": "device name"
+    },
+    {
+      "name": "net_configure",
+      "value": "net configure"
+    },
+    {
+      "name": "configuring",
+      "value": "configuring"
+    },
+    {
+      "name": "getIp",
+      "value": "getIp..."
+    },
+    {
+      "name": "patient_wait",
+      "value": "patient wait"
+    },
+    {
+      "name": "create_project",
+      "value": "create project"
+    },
+    {
+      "name": "project_info",
+      "value": "project info"
+    },
+    {
+      "name": "project_name",
+      "value": "project name"
+    },
+    {
+      "name": "please_input_project_name",
+      "value": "please input project name"
+    },
+    {
+      "name": "project_location",
+      "value": "project location"
+    },
+    {
+      "name": "map_location",
+      "value": "map location"
+    },
+    {
+      "name": "project_member",
+      "value": "project member"
+    },
+    {
+      "name": "select",
+      "value": "select"
+    },
+    {
+      "name": "scan_finish",
+      "value": "scan finish"
+    },
+    {
+      "name": "about_device",
+      "value": "about device"
+    },
+    {
+      "name": "delete_device",
+      "value": "delete device"
+    },
+    {
+      "name": "device_alias_name",
+      "value": "device alias name"
+    },
+    {
+      "name": "device_info",
+      "value": "device info"
+    },
+    {
+      "name": "device_net_info",
+      "value": "device net info"
+    },
+    {
+      "name": "relate_scenery_info",
+      "value": "relate scenery info"
+    },
+    {
+      "name": "factory",
+      "value": "factory"
+    },
+    {
+      "name": "MAC_addr",
+      "value": "MAC addr"
+    },
+    {
+      "name": "serial_number",
+      "value": "serial number"
+    },
+    {
+      "name": "version",
+      "value": "version"
+    },
+    {
+      "name": "WLAN_name",
+      "value": "WLAN name"
+    },
+    {
+      "name": "RSSI",
+      "value": "RSSI"
+    },
+    {
+      "name": "ip_address",
+      "value": "ip address"
+    },
+    {
+      "name": "BSSID",
+      "value": "BSSID"
+    },
+    {
+      "name": "connect",
+      "value": "connect"
+    },
+    {
+      "name": "device_number",
+      "value": "%d device number"
+    },
+    {
+      "name": "restart_scan",
+      "value": "restart scan"
+    },
+    {
+      "name": "device_control",
+      "value": "device control"
+    },
+    {
+      "name": "device_connect_success",
+      "value": "device connect success"
+    },
+    {
+      "name": "equipment_information",
+      "value": "equipment information"
+    },
+    {
+      "name": "disconnect_device",
+      "value": "disconnect"
+    },
+    {
+      "name": "please_input_net_configure_msg",
+      "value": "please input net configure msg"
+    },
+    {
+      "name": "please_retry_later",
+      "value": "please retry later"
+    },
+    {
+      "name": "device_connect_failed_retry_later",
+      "value": "device connect failed retry later"
+    },
+    {
+      "name": "to_create_project",
+      "value": "to create project"
+    },
+    {
+      "name": "connecting",
+      "value": "connecting"
+    },
+    {
+      "name": "cfg_failed",
+      "value": "configure failed"
+    },
+    {
+      "name": "cfg_success",
+      "value": "configure success"
+    },
+    {
+      "name": "delete_dev_success",
+      "value": "delete device success"
+    },
+    {
+      "name": "delete_dev_failed",
+      "value": "delete device failed"
+    },
+
+
+    {
+      "name": "no_device",
+      "value": "No devices"
+    },
+    {
+      "name": "to",
+      "value": "to"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+    "EnableSimDevice": true,
+    "Devices": [
+        {
+            "ProductID": "00001",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00002",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00003",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00004",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00005",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00006",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00007",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00008",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00009",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00010",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00011",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00012",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00013",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00014",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00015",
+            "sids": ["on", "status","location","printer"]
+        },
+        {
+            "ProductID": "00016",
+            "sids": ["on", "status","location","printer"]
+        }
+    ]
+}

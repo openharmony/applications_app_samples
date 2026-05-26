@@ -1,0 +1,520 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "scan_title",
+      "value": "附近设备"
+    },
+    {
+      "name": "scan_not_start_tip0",
+      "value": "扫描未启动"
+    },
+    {
+      "name": "scan_not_start_tip1",
+      "value": "请确保已开启"
+    },
+    {
+      "name": "scanning_tip0",
+      "value": "正在扫描设备..."
+    },
+    {
+      "name": "scanning_tip1",
+      "value": "部分设备无法添加，请确保已开启"
+    },
+    {
+      "name": "scanning_tip2",
+      "value": "请确保设备已连接电源，且位于大屏附近"
+    },
+    {
+      "name": "scan_no_result_tip",
+      "value": "未搜索到设备，点击重新扫描"
+    },
+    {
+      "name": "scan_no_result_button_text",
+      "value": "重新扫描设备"
+    },
+    {
+      "name": "scan_no_result_button_text_coap",
+      "value": "coap重新扫描设备"
+    },
+    {
+      "name": "add_device_button_text",
+      "value": "添加设备"
+    },
+    {
+      "name": "env_check_tip",
+      "value": "“通用互联”需开启手机无线网和蓝牙，以发现和添加设备。是否开启？"
+    },
+    {
+      "name": "comma",
+      "value": "、"
+    },
+    {
+      "name": "button_text_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "button_text_open",
+      "value": "开启"
+    },
+    {
+      "name": "device_unknown",
+      "value": "未知设备"
+    },
+    {
+      "name": "button_text_switch",
+      "value": "开关"
+    },
+    {
+      "name": "device_status_text",
+      "value": "设备状态"
+    },
+    {
+      "name": "position_information_text",
+      "value": "位置信息"
+    },
+    {
+      "name": "typical_business_text",
+      "value": "典型业务"
+    },
+    {
+      "name": "manufacturer_name_text",
+      "value": "厂商名称"
+    },
+    {
+      "name": "button_text_reboot",
+      "value": "重启"
+    },
+    {
+      "name": "button_text_hibernate",
+      "value": "休眠"
+    },
+    {
+      "name": "button_text_shutdown",
+      "value": "关机"
+    },
+    {
+      "name": "button_text_ScreenOn",
+      "value": "亮屏"
+    },
+    {
+      "name": "button_text_ScreenOff",
+      "value": "熄屏"
+    },
+    {
+      "name": "device_type_text",
+      "value": "设备类型"
+    },
+    {
+      "name": "device_name_text",
+      "value": "设备名称"
+    },
+    {
+      "name": "operating_system_type_text",
+      "value": "操作系统类型"
+    },
+    {
+      "name": "operating_system_version_number_text",
+      "value": "操作系统版本号"
+    },
+    {
+      "name": "pop_tip",
+      "value": "已连接，点击查看设备详情"
+    },
+    {
+      "name": "connect_not_start",
+      "value": "未连接"
+    },
+    {
+      "name": "connect_success",
+      "value": "已连接"
+    },
+    {
+      "name": "connect_title",
+      "value": "连接的设备"
+    },
+    {
+      "name": "openvalley_toast_login_fail",
+      "value": "登录失败"
+    },
+    {
+      "name": "tunnel_device_sensing",
+      "value": "传感器"
+    },
+    {
+      "name": "tunnel_device_wind_machine",
+      "value": "风机"
+    },
+    {
+      "name": "tunnel_device_light",
+      "value": "隧道灯"
+    },
+    {
+      "name": "tunnel_device_siren",
+      "value": "告警灯"
+    },
+    {
+      "name": "execution_scenario",
+      "value": "执行场景"
+    },
+    {
+      "name": "finish_scenario",
+      "value": "结束场景"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "Topping",
+      "value": "置顶"
+    },
+    {
+      "name": "location_permission",
+      "value": "need request location permission"
+    },
+    {
+      "name": "bluetooth_permission",
+      "value": "need request bluetooth permission"
+    },
+    {
+      "name": "previousPicture",
+      "value": "上一张"
+    },
+    {
+      "name": "nextPicture",
+      "value": "下一张"
+    },
+    {
+      "name": "restart",
+      "value": "重启"
+    },
+    {
+      "name": "sleep",
+      "value": "休眠"
+    },
+    {
+      "name": "online",
+      "value": "在线"
+    },
+    {
+      "name": "offline",
+      "value": "离线"
+    },
+    {
+      "name": "no_position",
+      "value": "无法访问位置信息"
+    },
+    {
+      "name": "more",
+      "value": "查看更多"
+    },
+    {
+      "name": "cmd_send_failed",
+      "value": "指令发送失败，请检查设备连接状态"
+    },
+    {
+      "name": "devices_online",
+      "value": "设备已离线"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "confirm_message",
+      "value": "其他设备处于连接状态，是否断开当前连接？"
+    },
+    {
+      "name": "finish_project_select",
+      "value": "完成"
+    },
+    {
+      "name": "project_select_text",
+      "value": "项目选择"
+    },
+    {
+      "name": "select_project_text",
+      "value": "选择项目"
+    },
+    {
+      "name": "create_project_text",
+      "value": "创建项目"
+    },
+    {
+      "name": "project_information_text",
+      "value": "项目信息"
+    },
+    {
+      "name": "project_name_text",
+      "value": "项目名称"
+    },
+    {
+      "name": "project_location_text",
+      "value": "项目位置"
+    },
+    {
+      "name": "project_member_text",
+      "value": "项目成员"
+    },
+    {
+      "name": "project_name_text_input_placeholder",
+      "value": "请输入项目名称"
+    },
+    {
+      "name": "project_location_select_tip",
+      "value": "地图点定位地理位置"
+    },
+    {
+      "name": "member_addition",
+      "value": "添加成员"
+    },
+    {
+      "name": "finish_project",
+      "value": "保存"
+    },
+    {
+      "name": "devices_main",
+      "value": "附近设备"
+    },
+    {
+      "name": "devices_scan",
+      "value": "可连接设备(ble本地控)"
+    },
+    {
+      "name": "devices_wifi",
+      "value": "局域网本地控"
+    },
+    {
+      "name": "delete_device_tip",
+      "value": "删除的设备无法复原，确定吗？"
+    },
+    {
+      "name": "project_member_demo",
+      "value": "张三"
+    },
+    {
+      "name": "edit_project_text",
+      "value": "编辑项目"
+    },
+    {
+      "name": "delete_project_button",
+      "value": "删除"
+    },
+    {
+      "name": "add_device_no_find",
+      "value": "未发现设备"
+    },
+    {
+      "name": "add_device",
+      "value": "添加设备"
+    },
+    {
+      "name": "add",
+      "value": "添加"
+    },
+    {
+      "name": "scan_result",
+      "value": "已扫描到的设备"
+    },
+    {
+      "name": "next_step",
+      "value": "下一步"
+    },
+    {
+      "name": "configure_device",
+      "value": "配置设备"
+    },
+    {
+      "name": "device_name",
+      "value": "设备名称"
+    },
+    {
+      "name": "net_configure",
+      "value": "网络配置"
+    },
+    {
+      "name": "configuring",
+      "value": "设备正在配网..."
+    },
+    {
+      "name": "getIp",
+      "value": "设备正在配网，获取Ip中..."
+    },
+    {
+      "name": "patient_wait",
+      "value": "耐心等待，请确保手机靠近设备"
+    },
+    {
+      "name": "create_project",
+      "value": "创建项目"
+    },
+    {
+      "name": "project_info",
+      "value": "项目信息"
+    },
+    {
+      "name": "project_name",
+      "value": "项目名称"
+    },
+    {
+      "name": "please_input_project_name",
+      "value": "请输入项目名称"
+    },
+    {
+      "name": "project_location",
+      "value": "项目位置"
+    },
+    {
+      "name": "map_location",
+      "value": "地图点定位地理位置"
+    },
+    {
+      "name": "project_member",
+      "value": "项目成员"
+    },
+    {
+      "name": "select",
+      "value": "√"
+    },
+    {
+      "name": "scan_finish",
+      "value": "扫描结束"
+    },
+    {
+      "name": "about_device",
+      "value": "关于设备"
+    },
+    {
+      "name": "delete_device",
+      "value": "删除设备"
+    },
+    {
+      "name": "device_alias_name",
+      "value": "设备备注名"
+    },
+    {
+      "name": "device_info",
+      "value": "设备信息"
+    },
+    {
+      "name": "device_net_info",
+      "value": "设备网络信息"
+    },
+    {
+      "name": "relate_scenery_info",
+      "value": "关联场景信息"
+    },
+    {
+      "name": "factory",
+      "value": "厂家"
+    },
+    {
+      "name": "MAC_addr",
+      "value": "MAC地址"
+    },
+    {
+      "name": "serial_number",
+      "value": "序列号"
+    },
+    {
+      "name": "version",
+      "value": "版本"
+    },
+    {
+      "name": "WLAN_name",
+      "value": "WLAN名称"
+    },
+    {
+      "name": "RSSI",
+      "value": "RSSI"
+    },
+    {
+      "name": "ip_address",
+      "value": "IP地址"
+    },
+    {
+      "name": "BSSID",
+      "value": "BSSID"
+    },
+    {
+      "name": "connect",
+      "value": "连接"
+    },
+    {
+      "name": "device_number",
+      "value": "%d个设备"
+    },
+    {
+      "name": "restart_scan",
+      "value": "重新扫描"
+    },
+    {
+      "name": "device_control",
+      "value": "设备控制"
+    },
+    {
+      "name": "device_connect_success",
+      "value": "连接成功！"
+    },
+    {
+      "name": "equipment_information",
+      "value": "设备信息"
+    },
+    {
+      "name": "disconnect_device",
+      "value": "断开连接"
+    },
+    {
+      "name": "please_input_net_configure_msg",
+      "value": "请先输入网络配置信息！"
+    },
+    {
+      "name": "please_retry_later",
+      "value": "设备正在连接中，请稍后再尝试配网！"
+    },
+    {
+      "name": "device_connect_failed_retry_later",
+      "value": "设备连接失败，尝试重新连接..."
+    },
+    {
+      "name": "to_create_project",
+      "value": "创建项目..."
+    },
+    {
+      "name": "connecting",
+      "value": "正在连接..."
+    },
+    {
+      "name": "cfg_failed",
+      "value": "配网失败"
+    },
+    {
+      "name": "cfg_success",
+      "value": "配网指令发送成功"
+    },
+    {
+      "name": "delete_dev_success",
+      "value": "设备删除成功"
+    },
+    {
+      "name": "delete_dev_failed",
+      "value": "设备删除失败"
+    },
+    {
+      "name": "dis_connect",
+      "value": "网络不可用"
+    },
+    {
+      "name": "no_device",
+      "value": "未添加设备, "
+    },
+    {
+      "name": "to",
+      "value": "去"
+    }
+  ]
+}
