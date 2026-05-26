@@ -1,0 +1,54 @@
+import { CommonConstants } from '../common/constants/CommonConstants';
+
+/**
+ * Category top component.
+ */
+@Component
+export struct TopComponent {
+  build() {
+    Column() {
+      this.Title();
+
+      Search({ placeholder: CommonConstants.SEARCH_PLACEHOLDER })
+        .height($r('app.string.search_height'))
+        .border({ radius: $r('app.string.search_radius') })
+        .placeholderFont({
+          size: $r('app.string.search_text_size'),
+          weight: CommonConstants.SEARCH_WEIGHT,
+          family: CommonConstants.SEARCH_FONT_FAMILY,
+          style: FontStyle.Normal
+        })
+        .textFont({ size: $r('app.string.search_text_size') })
+        .placeholderColor($r('app.color.search_placeholder'))
+        .margin({
+          top: $r('app.string.search_margin_top'),
+          bottom: $r('app.string.search_margin_bottom')
+        });
+    };
+  }
+
+  @Builder
+  Title() {
+    Column() {
+      Text($r('app.string.title'))
+        .height($r('app.string.text_title_height'))
+        .fontSize($r('app.string.title_font_size'))
+        .fontWeight(CommonConstants.TITLE_FONT_WEIGHT)
+        .textAlign(TextAlign.Start);
+
+      Text($r('app.string.sub_title'))
+        .height($r('app.string.subtitle_height'))
+        .fontColor($r('app.color.sub_text'))
+        .fontSize($r('app.string.subtitle_font_size'))
+        .fontWeight(CommonConstants.SUBTITLE_FONT_WEIGHT)
+        .textAlign(TextAlign.Start);
+    }
+    .width(CommonConstants.FULL_WIDTH_PERCENT)
+    .height($r('app.string.title_height'))
+    .alignItems(HorizontalAlign.Start)
+    .margin({
+      top: $r('app.string.title_margin_top'),
+      left: $r('app.string.title_margin_left')
+    });
+  }
+}
