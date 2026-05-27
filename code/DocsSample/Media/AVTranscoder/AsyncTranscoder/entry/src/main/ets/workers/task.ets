@@ -52,13 +52,13 @@ async function doSome(context: common.Context) {
     transcoder.on('complete', async () => {
       console.info(`transcode complete`);
       let fdDst = transcoder.fdDst;
-      await transcoder?.release()
       if (fdDst != undefined) {
         fs.closeSync(fdDst);
       }
       if (fileDescriptor != undefined) {
         fs.closeSync(fileDescriptor.fd);
       }
+      await transcoder?.release()
       // 向主线程发送转码结束的消息
       workerPort.postMessage('complete');
     })
