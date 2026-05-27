@@ -8,6 +8,7 @@
     "pages/EncodingPixelMap",
     "pages/ImageReceiver",
     "pages/EditExif",
+    "pages/EditXMP",
     "pages/Transcoding"
   ]
 }
