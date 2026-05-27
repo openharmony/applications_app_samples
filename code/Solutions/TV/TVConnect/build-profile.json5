@@ -1,18 +1,7 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storePassword": "00000016D9DCF063F0FC4BBD0E7FE1E3B06A67C07BECE1BDD4E2A3EFDAE20F890810EC02AA2A",
-          "certpath": "signature/OpenHarmonyApplication.pem",
-          "keyAlias": "OpenHarmony Application Release",
-          "keyPassword": "00000016FD3897FD4C46940ED39FFC652872B7B18BEDCCA07400A6EBEE307C9C41B96DB6B64D",
-          "profile": "signature/connect.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "signature/OpenHarmony.p12"
-        }
-      }
+
     ],
     "products": [
       {
