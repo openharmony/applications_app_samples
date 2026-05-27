@@ -2,7 +2,7 @@
 
 ### 介绍
 
-此Sample为开发指南中图片**开发指导(ArkTS)**章节中部分示例代码的工程。包含图片编解码，图片接收，内存分配，图片转码以及图片Exif信息的相关操作。
+此Sample为开发指南中图片**开发指导(ArkTS)**章节中部分示例代码的工程。包含图片编解码，图片接收，内存分配，图片转码、图片Exif信息和图片XMP元数据的相关操作。
 
 ### 效果预览
 
@@ -29,9 +29,11 @@
 8.从菜单页面，点击“跳转到图片Exif信息编辑页面”按钮，进入Exif信息编辑页面，首先选择propertyKey的值，然后输入要修改value值，
 点击“修改Exif信息”按钮修改Exif信息。在操作结束后点击“资源释放”按钮进行资源的释放。
 
-9.从菜单页面，点击“跳转到图片接收页面”按钮，进入图片接收页面，可获取到新创建的Receiver的surfaceID，点击“触发相机”按钮，可触发“imageArrival”回调函数。
+9.从菜单页面，点击“跳转到图片XMP信息编辑页面”按钮，进入XMP元数据编辑页面，可依次触发创建/读取/编辑/写回以及路径语法示例操作。在操作结束后点击“资源释放”按钮进行资源的释放。
 
-10.从菜单页面，点击“跳转到转码页面”按钮，进入转码页面，点击“触发相机”按钮，可将将HEIF图片转码成JPEG图片。
+10.从菜单页面，点击“跳转到图片接收页面”按钮，进入图片接收页面，可获取到新创建的Receiver的surfaceID，点击“触发相机”按钮，可触发“imageArrival”回调函数。
+
+11.从菜单页面，点击“跳转到转码页面”按钮，进入转码页面，点击“触发相机”按钮，可将将HEIF图片转码成JPEG图片。
 
 ### 工程目录
 
@@ -56,6 +58,7 @@
 │       │   │   │   └── DecodingPicture.ets // 多图解码页面。
 │       │   │   │   └── DecodingPixelMap.ets // 图片解码页面。
 │       │   │   │   └── EditExif.ets // Exif信息编辑页面。
+│       │   │   │   └── EditXMP.ets // XMP元数据编辑页面。
 │       │   │   │   └── EncodingPicture.ets // 多图解码页面。
 │       │   │   │   └── EncodingPixelMap.ets // 图片编码页面。
 │       │   │   │   └── ImageReceiver.ets // receiver调用页面。
@@ -64,6 +67,7 @@
 │       │   │       ├── CodecUtility.ets // 编解码相关接口。
 │       │   │       ├── components.ets    // 资源选择映射函数。
 │       │   │       └── ExifUtility.ets    // Exif相关接口。
+│       │   │       └── XMPUtility.ets    // XMP元数据相关接口。
 │       │   │       └── ReceiverUtility.ets    // receiver相关接口。
 │       │   │       └── TranscodingUtility.ets    // 转码相关接口。
 │       │   ├── module.json5
@@ -96,6 +100,7 @@
 
 + 图片编解码，多图编解码，内存申请等功能的接口调用均封装在CodecUtility中实现，源码参考[CodecUtility.ets](./entry/src/main/ets/tools/CodecUtility.ets)。 
 + Exif信息获取与修改功能的接口调用封装在ExifUtility中实现，源码参考[ExifUtility.ets](./entry/src/main/ets/tools/ExifUtility.ets)。
++ XMP元数据的读取、编辑与路径语法示例接口调用封装在XMPUtility中实现，源码参考[XMPUtility.ets](./entry/src/main/ets/tools/XMPUtility.ets)。
 + 图片接收功能的接口调用封装在ReceiverUtility中实现，源码参考[ReceiverUtility.ets](./entry/src/main/ets/tools/ReceiverUtility.ets)。
 + 图片转码功能的接口调用封装在TranscodingUtility中实现，源码参考[TranscodingUtility.ets](./entry/src/main/ets/tools/TranscodingUtility.ets)。
 
