@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_windowMode]
 import { common, Want, AbilityConstant, StartOptions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[StartAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
-
-
 
 @Entry
 @Component
@@ -59,6 +58,7 @@ struct StartWithSpecifiedWindowModeAbility {
     .height('100%')
   }
 }
+// [End startOptions_windowMode]
 
 
 

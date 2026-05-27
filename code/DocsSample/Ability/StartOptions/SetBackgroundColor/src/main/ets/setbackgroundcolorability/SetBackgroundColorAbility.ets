@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_bgColor_and_windowParam]
 import { AbilityConstant, StartOptions, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -22,6 +23,7 @@ const TAG: string = '[StartAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class SetBackgroundColorAbility extends UIAbility {
+  // [StartExclude startOptions_bgColor_and_windowParam]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -47,6 +49,7 @@ export default class SetBackgroundColorAbility extends UIAbility {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
+  // [EndExclude startOptions_bgColor_and_windowParam]
 
   async onForeground(): Promise<void> {
     // Ability has brought to foreground
@@ -97,8 +100,11 @@ export default class SetBackgroundColorAbility extends UIAbility {
 
   }
 
+  // [StartExclude startOptions_bgColor_and_windowParam]
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude startOptions_bgColor_and_windowParam]
 }
+// [End startOptions_bgColor_and_windowParam]

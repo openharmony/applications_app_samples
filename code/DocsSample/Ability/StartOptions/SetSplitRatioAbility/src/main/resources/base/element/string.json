@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SetSplitRatioAbilityAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SetSplitRatioAbilityAbility_label",
+      "value": "label"
+    }
+  ]
+}
