@@ -296,7 +296,7 @@ napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
                  g_audioInfoEqualizerEffect.bufferSize);
     EqualizerEffect(&g_audioInfoEqualizerEffect);
     std::stringstream ss;
-    ss << "实时预览渲染播放成功\n";
+    ss << "实时预览播放成功\n";
     napi_value retVal;
     napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
     return retVal;

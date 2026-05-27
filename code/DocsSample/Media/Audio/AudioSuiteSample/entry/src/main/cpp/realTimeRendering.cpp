@@ -95,7 +95,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
     
-    // 创建实时预览渲染的管线。
+    // 创建实时预览的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // 创建节点构造器。
