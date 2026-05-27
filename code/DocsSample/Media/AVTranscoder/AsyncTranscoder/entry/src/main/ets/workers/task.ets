@@ -51,9 +51,9 @@ async function doSome(context: common.Context) {
     // 转码完成回调函数
     transcoder.on('complete', async () => {
       console.info(`transcode complete`);
-      let fdDst = transcoder.fdDst;
-      if (fdDst != undefined) {
-        fs.closeSync(fdDst);
+      let lastFd = transcoder.fdDst;
+      if (lastFd != undefined) {
+        fs.closeSync(lastFd);
       }
       if (fileDescriptor != undefined) {
         fs.closeSync(fileDescriptor.fd);
@@ -64,9 +64,9 @@ async function doSome(context: common.Context) {
     })
     // 转码错误回调函数
     transcoder.on('error', async (err: BusinessError) => {
-      let fdDst = transcoder.fdDst;
-      if (fdDst != undefined) {
-        fs.closeSync(fdDst);
+      let lastFd = transcoder.fdDst;
+      if (lastFd != undefined) {
+        fs.closeSync(lastFd);
       }
       if (fileDescriptor != undefined) {
         fs.closeSync(fileDescriptor.fd);
