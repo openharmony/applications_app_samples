@@ -1606,7 +1606,7 @@ static void BuildMIDI2NoteOff(uint32_t channel, uint32_t note, uint32_t velocity
 static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
     // UMP格式（MIDI 1.0 Channel Voice - Note On）：第28~31位为消息类型(MT=0x2)，第24~27位为组号(Group=0x0)，
-   // 第20~23位为状态码(Status=0x9)，第16~19位为通道号(Channel)，第8~15位为音符号(Note)，第0~7位为力度值(Velocity)。
+    // 第20~23位为状态码(Status=0x9)，第16~19位为通道号(Channel)，第8~15位为音符号(Note)，第0~7位为力度值(Velocity)。
     umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
                  (MIDI_UMP_STATUS_NOTE_ON << MIDI_UMP_SHIFT_20) |
                  ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
@@ -1616,8 +1616,8 @@ static void BuildMIDI1NoteOn(uint32_t channel, uint32_t note, uint32_t velocity,
 // 构建MIDI 1.0音符关闭UMP（一个32位无符号整数）。
 static void BuildMIDI1NoteOff(uint32_t channel, uint32_t note, uint32_t velocity, uint32_t* umpData)
 {
-   // UMP格式（MIDI 1.0 Channel Voice - Note Off）：第28~31位为消息类型(MT=0x2)，第24~27位为组号(Group=0x0)，
-   // 第20~23位为状态码(Status=0x8)，第16~19位为通道号(Channel)，第8~15位为音符号(Note)，第0~7位为力度值(Velocity)。
+    // UMP格式（MIDI 1.0 Channel Voice - Note Off）：第28~31位为消息类型(MT=0x2)，第24~27位为组号(Group=0x0)，
+    // 第20~23位为状态码(Status=0x8)，第16~19位为通道号(Channel)，第8~15位为音符号(Note)，第0~7位为力度值(Velocity)。
     umpData[0] = (MIDI_UMP_MT_1_0 << MIDI_UMP_WORDS_28) | (0x0 << MIDI_UMP_SHIFT_24) |
                  (MIDI_UMP_STATUS_NOTE_OFF << MIDI_UMP_SHIFT_20) |
                  ((channel & MIDI_CHANNEL_MASK) << MIDI_UMP_WORDS_16) |
