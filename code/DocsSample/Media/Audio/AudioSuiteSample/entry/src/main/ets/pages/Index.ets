@@ -22,7 +22,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 @Component
 struct Index {
   @State message: string = 'Ready';
-  @State napiReturnLog: string = '暂无返回信息'; //
+  @State napiReturnLog: string = '暂无返回信息';
   @State isPlay: boolean = false;
   @State isReal: boolean = false;
   // Loading 状态
@@ -34,7 +34,7 @@ struct Index {
   @State isBaseEditorCompleted: boolean = false;
   @State isAudioSourceSeparationCompleted: boolean = false;
   @State isMixingAndCascadingCompleted: boolean = false;
-  @State isLoadingAudioFormatConverter: boolean = false;
+  @State isAudioFormatConverterCompleted: boolean = false;
 
   // 更新NAPI返回信息
   updateNapiLog(msg: string) {
