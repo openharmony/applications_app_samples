@@ -10,6 +10,8 @@
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
+// 内存大小安全限制系数，防止申请过大的内存
+static const int32_t MAX_MEMORY_SIZE_SAFETY_FACTOR = 2;
 
 // 输入数据回调函数
 // [Start input_callback]
@@ -150,7 +152,7 @@ bool CreateAudioConverter(AudioConverterTestData *testData)
 // 分配输出缓冲区
 bool AllocateOutputBuffer(AudioConverterTestData *testData, int32_t estimatedOutputSize)
 {
-    if (estimatedOutputSize <= 0 || estimatedOutputSize > INT32_MAX / 2) {
+    if (estimatedOutputSize <= 0 || estimatedOutputSize > INT32_MAX / MAX_MEMORY_SIZE_SAFETY_FACTOR) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG,
                      "估算的输出缓冲区大小不合法: %{public}d", estimatedOutputSize);
         OH_AudioConverter_Destroy(testData->converter);
