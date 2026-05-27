@@ -109,11 +109,14 @@ export class AVTranscoderDemo {
   async releaseTranscoderingProcess() {
     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
       if (this.avTranscoder != undefined) {
+        let fdDst = this.avTranscoder.fdDst;
         // 1.释放转码实例。
         await this.avTranscoder.release();
         this.avTranscoder = undefined;
         // 2.关闭转码目标文件fd。
-        fs.closeSync(this.avTranscoder!.fdDst);
+        if (fdDst != undefined) {
+          fs.closeSync(fdDst);
+        }
       }
     }
   }
