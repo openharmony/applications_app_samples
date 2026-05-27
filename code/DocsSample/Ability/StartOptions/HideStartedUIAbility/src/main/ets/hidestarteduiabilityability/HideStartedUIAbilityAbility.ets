@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_startupVisibility]
 import { AbilityConstant, contextConstant, StartOptions, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -22,6 +23,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 
 export default class HideStartedUIAbilityAbility extends UIAbility {
+  // [StartExclude startOptions_startupVisibility]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -47,6 +49,7 @@ export default class HideStartedUIAbilityAbility extends UIAbility {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
+  // [EndExclude startOptions_startupVisibility]
 
   onForeground(): void {
     // Ability has brought to foreground
@@ -86,8 +89,11 @@ export default class HideStartedUIAbilityAbility extends UIAbility {
 
   }
 
+  // [StartExclude startOptions_startupVisibility]
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude startOptions_startupVisibility]
 }
+// [End startOptions_startupVisibility]
