@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_withAnimation]
 import { common, Want, StartOptions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -42,7 +43,7 @@ struct ControlStartupAnimation {
             };
 
             let options: StartOptions = {
-              withAnimation: true // 关闭启动动画
+              withAnimation: false // 关闭启动动画
             };
 
             context.startAbility(want, options).then(() => {
@@ -57,6 +58,7 @@ struct ControlStartupAnimation {
     .height('100%')
   }
 }
+// [End startOptions_withAnimation]
 
 
 

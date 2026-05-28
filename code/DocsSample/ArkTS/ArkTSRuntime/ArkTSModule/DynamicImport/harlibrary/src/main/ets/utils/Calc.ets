@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 // [Start dynamic_call_add]
+// harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
   public static staticAdd(a: number, b: number): number {
     let c = a + b;
@@ -28,9 +29,9 @@ export class Calc {
   }
 }
 
-export function addHarlibrary(a: number, b: number): number {
+export function addHarLibrary(a: number, b: number): number {
   let c = a + b;
-  console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
 }
 // [End dynamic_call_add]

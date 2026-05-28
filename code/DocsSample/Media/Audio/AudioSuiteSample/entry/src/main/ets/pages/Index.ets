@@ -22,17 +22,19 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 @Component
 struct Index {
   @State message: string = 'Ready';
-  @State napiReturnLog: string = '暂无返回信息'; //
+  @State napiReturnLog: string = '暂无返回信息';
   @State isPlay: boolean = false;
   @State isReal: boolean = false;
   // Loading 状态
   @State isLoadingBaseEditor: boolean = false;
   @State isLoadingAudioSourceSeparation: boolean = false;
   @State isLoadingMixingAndCascading: boolean = false;
+  @State isLoadingAudioFormatConverter: boolean = false;
   // 效果完成状态
   @State isBaseEditorCompleted: boolean = false;
   @State isAudioSourceSeparationCompleted: boolean = false;
   @State isMixingAndCascadingCompleted: boolean = false;
+  @State isAudioFormatConverterCompleted: boolean = false;
 
   // 更新NAPI返回信息
   updateNapiLog(msg: string) {
@@ -298,6 +300,27 @@ struct Index {
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
+                Button('格式转换')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(!this.isPlay)
+                  .onClick(() => {
+                    try {
+                      this.message = '正在进行格式转换...';
+                      this.isLoadingAudioFormatConverter = true;
+                      audioSuiteNapi.AudioFormatConverterNapi((result: string) => {
+                        this.isLoadingAudioFormatConverter = false;
+                        this.isAudioFormatConverterCompleted = true;
+                        this.message = '格式转换成功';
+                        this.updateNapiLog(result);
+                      });
+                    } catch (err) {
+                      this.isLoadingAudioFormatConverter = false;
+                      this.message = '格式转换失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
               }
               .width('100%')
               .padding({ left: 16, right: 16 })
@@ -316,7 +339,7 @@ struct Index {
         .height('100%')
 
         // Loading 遮罩层
-        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading) {
+        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading || this.isLoadingAudioFormatConverter) {
           Column() {
             LoadingProgress()
               .width(40)
@@ -339,7 +362,7 @@ struct Index {
         }
 
         // Loading 遮罩层
-        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading) {
+        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading || this.isLoadingAudioFormatConverter) {
           Column() {
             LoadingProgress()
               .width(40)

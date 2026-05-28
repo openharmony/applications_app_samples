@@ -14,7 +14,7 @@
  */
 
 {
-  "modelVersion": "5.0.2",
+  "modelVersion": "26.0.0",
   "dependencies": {
   },
   "execution": {

@@ -91,6 +91,12 @@ void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
         case AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE_SUGGESTION:
           // 此分支表示其他应用的非混音音频播放结束，系统可自行决定是否取消静音。
             break;
+        case AUDIO_SESSION_STATE_CHANGE_HINT_MUTE:
+          // 此分支表示系统已将音频静音。
+            break;
+        case AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE:
+          // 此分支表示系统已将音频解除静音。
+            break;
         default:
             break;
     }
@@ -193,12 +199,48 @@ napi_value AudioSessionDeactive(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+napi_value SetAudioSessionBehavior(napi_env env, napi_callback_info info)
+{
+    // 创建音频会话管理器。
+    OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
+    
+    OH_AudioCommon_Result result = OH_AudioSessionManager_RegisterStateChangeCallback(audioSessionManager,
+        AudioSessionStateChangedCallback);
+    if (resultManager == 0) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, g_audioSessionVariable->globalResmgr, SESSION_TAG,
+                     " OH_AudioManager_GetAudioSessionManager success! ");
+    }
+    // [Start cset_session_behavior]
+    // AUDIO_SESSION_SCENE_MEDIA 仅为示例，实际使用时请根据具体情况进行修改。
+    OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
+    
+    // 本接口应在激活音频会话前调用。
+    // 若音频会话在激活状态时调用此接口后，必须重新激活音频会话使其生效。
+    // behavior参数支持位或操作，可同时设置多个会话行为标志。
+    uint32_t behavior =
+        OH_AudioSession_BehaviorFlags::MUTE_WHEN_INTERRUPTED | OH_AudioSession_BehaviorFlags::VOIP_PRIVACY_TYPE_PUBLIC;
+    OH_AudioSessionManager_SetBehavior(audioSessionManager, behavior);
+    
+    OH_AudioSession_Strategy strategy = {CONCURRENCY_PAUSE_OTHERS};
+    
+    // 设置音频并发模式并激活音频会话。
+    OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
+    // [End cset_session_behavior]
+    
+    OH_AudioCommon_Result resultRegister = OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
+        audioSessionManager, MyAudioSessionDeactivatedCallback);
+    napi_value retVal;
+    napi_create_int32(env, 0, &retVal);
+    return retVal;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"AudioSessionActive", nullptr, AudioSessionActive, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"AudioSessionDeactive", nullptr, AudioSessionDeactive, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"SetAudioSessionBehavior", nullptr, SetAudioSessionBehavior, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

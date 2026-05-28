@@ -366,7 +366,7 @@ function testAll() {
   // [End highlight_comma_correctExample]
 
   // [Start single_quotation_incorrectExample]
-  let message1 = 'world';
+  let message1 = "world";
   console.info(message1);
   // [End single_quotation_incorrectExample]
 

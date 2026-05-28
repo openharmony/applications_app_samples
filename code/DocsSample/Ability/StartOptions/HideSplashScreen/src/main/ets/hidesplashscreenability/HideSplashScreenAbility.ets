@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start startOptions_hidesplash]
 import { AbilityConstant, StartOptions, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -21,6 +22,7 @@ const TAG: string = '[StartAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class HideSplashScreenAbility extends UIAbility {
+  // [StartExclude startOptions_hidesplash]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -47,6 +49,7 @@ export default class HideSplashScreenAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
 
   }
+  // [EndExclude startOptions_hidesplash]
 
   onForeground(): void {
     // Ability has brought to foreground
@@ -73,8 +76,11 @@ export default class HideSplashScreenAbility extends UIAbility {
     });
   }
 
+  // [StartExclude startOptions_hidesplash]
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude startOptions_hidesplash]
 }
+// [End startOptions_hidesplash]

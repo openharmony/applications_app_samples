@@ -17,7 +17,7 @@
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
 // [Start ts_text_metrics_include]
-import { text } from '@kit.ArkGraphics2D';
+import { text, drawing } from '@kit.ArkGraphics2D';
 // [End ts_text_metrics_include]
 
 // 创建一个自定义的渲染节点类，用于绘制文本
@@ -88,6 +88,52 @@ class MyRenderNode extends RenderNode {
     let allLineMetrics = paragraph.getLineMetrics();
     console.info("MetricsMSG: 第1行 lineMetrics width: " + allLineMetrics[0].width);
     // [End ts_text_metrics_get_all_case]
+    // [Start ts_text_metrics_layout_with_constraints]
+    // case6: 在限定宽高区域内排版文本，获取排版结果
+    let constraint: text.TextRectSize = { width: 600, height: 200 };
+    let layoutResult: text.TextLayoutResult = paragraph.layoutWithConstraints(constraint);
+    // 获取排版后的实际尺寸
+    console.info("MetricsMSG: correctRect width: " + layoutResult.correctRect.width +
+      ", height: " + layoutResult.correctRect.height);
+    // 获取适配的字符串范围
+    for (let i = 0; i < layoutResult.fitStrRange.length; i++) {
+      console.info("MetricsMSG: fitStrRange[" + i + "] start: " + layoutResult.fitStrRange[i].start +
+        ", end: " + layoutResult.fitStrRange[i].end);
+    }
+    // [End ts_text_metrics_layout_with_constraints]
+    // [Start ts_text_metrics_get_glyph_position]
+    // case7: 根据坐标获取字形位置
+    let glyphPos: text.PositionWithAffinity = paragraph.getGlyphPositionAtCoordinate(100, 50);
+    console.info("MetricsMSG: glyphPos position: " + glyphPos.position +
+      ", affinity: " + glyphPos.affinity);
+    // [End ts_text_metrics_get_glyph_position]
+    // [Start ts_text_metrics_get_character_position]
+    // case8: 根据坐标获取字符位置（指定编码类型）
+    let charPos: text.PositionWithAffinity =
+      paragraph.getCharacterPositionAtCoordinate(100, 50, drawing.TextEncoding.TEXT_ENCODING_UTF16);
+    console.info("MetricsMSG: charPos position: " + charPos.position +
+      ", affinity: " + charPos.affinity);
+    // [End ts_text_metrics_get_character_position]
+    // [Start ts_text_metrics_glyph_character_range]
+    // case9: 根据字形范围获取字符范围
+    let glyphRange: text.Range = { start: 0, end: 2 };
+    let glyphToCharRanges: Array<text.Range> =
+      paragraph.getCharacterRangeForGlyphRange(glyphRange, drawing.TextEncoding.TEXT_ENCODING_UTF16);
+    // 返回数组第一个为字符范围，第二个为实际字形范围
+    console.info("MetricsMSG: charRange start: " + glyphToCharRanges[0].start +
+      ", end: " + glyphToCharRanges[0].end);
+    console.info("MetricsMSG: actualGlyphRange start: " + glyphToCharRanges[1].start +
+      ", end: " + glyphToCharRanges[1].end);
+    // case10: 根据字符范围获取字形范围
+    let charRange: text.Range = { start: 0, end: 2 };
+    let charToGlyphRanges: Array<text.Range> =
+      paragraph.getGlyphRangeForCharacterRange(charRange, drawing.TextEncoding.TEXT_ENCODING_UTF16);
+    // 返回数组第一个为字形范围，第二个为实际字符范围
+    console.info("MetricsMSG: glyphRange start: " + charToGlyphRanges[0].start +
+      ", end: " + charToGlyphRanges[0].end);
+    console.info("MetricsMSG: actualCharRange start: " + charToGlyphRanges[1].start +
+      ", end: " + charToGlyphRanges[1].end);
+    // [End ts_text_metrics_glyph_character_range]
     // 将文本绘制到画布上
     paragraph.paint(canvas, 0, 800);
   }

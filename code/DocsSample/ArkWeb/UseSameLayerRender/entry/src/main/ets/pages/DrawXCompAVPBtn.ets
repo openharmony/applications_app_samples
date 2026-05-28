@@ -120,7 +120,7 @@ struct VideoComponent {
         .width(300)
         .height(200)
     }
-    //自定义组件中的最外层容器组件宽高应该为同层标签的宽高。
+    // 自定义组件中的最外层容器组件宽高应该为同层标签的宽高。
     .width(this.params.width)
     .height(this.params.height)
   }
@@ -145,7 +145,7 @@ struct WebIndex {
   uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
-    // 配置web开启调试模式。
+    // 配置Web开启调试模式。
     webview.WebviewController.setWebDebuggingAccess(true);
   }
 
@@ -159,14 +159,14 @@ struct WebIndex {
               .width(this.widthMap.get(componentId))
               .height(this.heightMap.get(componentId))
           }, (embedId: string) => embedId)
-          // Web组件加载本地test.html页面。
+          // Web组件加载本地test3.html页面。
           Web({ src: $rawfile('test3.html'), controller: this.browserTabController })
             // 配置同层渲染开关开启。
             .enableNativeEmbedMode(true)
               // 获取<embed>标签的生命周期变化数据。
             .onNativeEmbedLifecycleChange((embed) => {
               console.info('NativeEmbed surfaceId' + embed.surfaceId);
-              // 1. 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id。
+              // 1. 如果使用embed.info.id作为映射nodeController的key，请在H5页面显式指定id。
               const componentId = embed.info?.id?.toString() as string;
               if (embed.status === NativeEmbedStatus.CREATE) {
                 console.info('NativeEmbed create' + JSON.stringify(embed.info));

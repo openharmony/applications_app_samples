@@ -23,6 +23,7 @@ struct AudioDataInfo {
     uint8_t *buffer = nullptr;   // 音频数据。
     int32_t bufferSize = 0;      // 音频数据总大小。
     int32_t totalWriteSize = 0;  // 处理过的音频数据总大小。
+    int32_t totalReadSize = 0;  // 已读取的音频数据总大小。
 };
 // [End audioSuite_AudioDataInfo]
 bool ReadPcmFile(const char *filePath, AudioDataInfo *info);
