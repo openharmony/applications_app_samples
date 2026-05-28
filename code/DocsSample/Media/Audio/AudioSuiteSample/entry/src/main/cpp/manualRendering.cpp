@@ -30,7 +30,7 @@ static const char *TAG = "[AudioSuiteApp_manual_cpp]";
 const int CHANNEL_COUNT = 2;
 // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
 const int SAMPLE_FORMAT_S16LE_BYTE_SIZE = 2;
-//20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
+// 20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
 const int RENDER_FRAME_DURATION_MS = 20;
 const int MS_PER_SECOND = 1000;
 
@@ -83,7 +83,7 @@ static BaseEditorNodes CreateBaseEditorNodes(OH_AudioSuitePipeline *audioSuiteEn
 {
     BaseEditorNodes nodes;
     // [Start audioSuite_CreateBaseNode]
-    //  创建节点构造器。
+    // 创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::INPUT_NODE_TYPE_DEFAULT);
@@ -185,7 +185,7 @@ static void DestroyBaseEditorResources(OH_AudioSuitePipeline *audioSuitePipeline
                                        const BaseEditorNodes &nodes)
 {
     // [Start audioSuite_DestroyBase]
-    //  销毁节点。
+    // 销毁节点。
     OH_AudioSuiteEngine_DestroyNode(nodes.inputNode);
     OH_AudioSuiteEngine_DestroyNode(nodes.eqNode);
     OH_AudioSuiteEngine_DestroyNode(nodes.outputNode);
@@ -202,7 +202,7 @@ static SeparationNodes CreateSeparationNodes(OH_AudioSuitePipeline *audioSuitePi
 {
     SeparationNodes nodes;
     // [Start audioSuite_CreateSeparationNode]
-    //  创建节点构造器。
+    // 创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::INPUT_NODE_TYPE_DEFAULT);
@@ -330,7 +330,7 @@ static void DestroySeparationResources(OH_AudioSuitePipeline *audioSuitePipeline
                                        const SeparationNodes &nodes)
 {
     // [Start audioSuite_DestroySeparation]
-    //  销毁节点。
+    // 销毁节点。
     OH_AudioSuiteEngine_DestroyNode(nodes.inputNode);
     OH_AudioSuiteEngine_DestroyNode(nodes.aissNode);
     OH_AudioSuiteEngine_DestroyNode(nodes.outputNode);
@@ -348,7 +348,7 @@ static MixingNodes CreateMixingNodes(OH_AudioSuitePipeline *audioSuitePipeline, 
 {
     MixingNodes nodes;
     // [Start audioSuite_CreateMixingNode]
-    //  创建节点构造器。
+    // 创建节点构造器。
     OH_AudioNodeBuilder *nodeBuilder = nullptr;
     OH_AudioSuiteNodeBuilder_Create(&nodeBuilder);
     OH_AudioSuiteNodeBuilder_SetNodeType(nodeBuilder, OH_AudioNode_Type::INPUT_NODE_TYPE_DEFAULT);
@@ -468,7 +468,7 @@ static void DestroyMixingResources(OH_AudioSuitePipeline *audioSuitePipeline, OH
                                    const MixingNodes &nodes)
 {
     // [Start audioSuite_DestroyMixing]
-    //  销毁节点。
+    // 销毁节点。
     OH_AudioSuiteEngine_DestroyNode(nodes.inputNodeForMix);
     OH_AudioSuiteEngine_DestroyNode(nodes.inputNodeForField);
     OH_AudioSuiteEngine_DestroyNode(nodes.fieldNode);
@@ -491,7 +491,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
 {
     CheckAndDeleteFile(newFilePath);
     // [Start audioSuite_CreateEngineAndPipeline]
-    //  创建引擎。
+    // 创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
     
@@ -517,7 +517,7 @@ void AudioSourceSeparation(AudioDataInfo *audioInfo, const char *vocalsFilePath,
     CheckAndDeleteFile(accompanimentFilePath);
 
     // [Start audioSuite_CreateSeparationEngineAndPipeline]
-    //  创建引擎。
+    // 创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
 
@@ -545,7 +545,7 @@ void MixingAndCascading(AudioDataInfo *audioInfoForField, AudioDataInfo *audioIn
     CheckAndDeleteFile(mixFilePath);
 
     // [Start audioSuite_CreateMixingEngineAndPipeline]
-    //  创建引擎。
+    // 创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
 

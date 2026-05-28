@@ -25,7 +25,7 @@
 const int CHANNEL_COUNT = 2;
 // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
 const int SAMPLE_FORMAT_S16LE_BYTE_SIZE = 2;
-//20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
+// 20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
 const int RENDER_FRAME_DURATION_MS = 20;
 const int MS_PER_SECOND = 1000;
 // [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
@@ -147,7 +147,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     OH_AudioSuiteEngine_ConnectNodes(eqNode, outputNode);
     // [End audioSuite_CreateRealTimeRendering]
     // [Start audioSuite_StartRealTimeRenderingPipeline]
-    //  创建构建器
+    // 创建构建器
     OH_AudioStreamBuilder_Create(&rendererBuilder, OH_AudioStream_Type::AUDIOSTREAM_TYPE_RENDERER);
     OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, OH_Audio_SampleRate::SAMPLE_RATE_48000);
     OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, CHANNEL_COUNT);
@@ -188,7 +188,7 @@ void DestroyEqualizerEffect()
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
     // [End audioSuite_StartRealTimeRenderingPipeline]
     // [Start audioSuite_DestroyRealTimeRendering]
-    //  销毁流构造器。
+    // 销毁流构造器。
     OH_AudioStreamBuilder_Destroy(rendererBuilder);
 
     // 销毁节点。
