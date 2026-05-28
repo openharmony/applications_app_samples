@@ -60,6 +60,7 @@ ArkUI_NodeHandle buttonFocusMove1 = nullptr;
 ArkUI_NodeHandle buttonFocusMove2 = nullptr;
 ArkUI_NodeHandle buttonFocusMove3 = nullptr;
 ArkUI_NodeHandle buttonFocusMove4 = nullptr;
+ArkUI_NodeHandle textSnapshotSizeLimitation = nullptr;
 ArkUI_NodeHandle image2 = nullptr;
 ArkUI_AttributeItem NODE_IMAGE_SRC_Item;
 ArkUI_SnapshotOptions* options_test = nullptr;
@@ -561,6 +562,16 @@ void AllRegisterNodeEventReceiver()
                         TargetIdTwo();
                         break;
                     }
+                    case TARGET_ID_3: {
+                        int32_t maxWidth = 0;
+                        int32_t maxHeight = 0;
+                        int32_t limitation = OH_ArkUI_GetNodeSnapshotSizeLimitation(&maxWidth, &maxHeight);
+                        std::ostringstream oss;
+                        oss << "result = " << limitation << " = " << maxWidth << " maxHeight = " << maxHeight;
+                        std::string labelText = oss.str();
+                        ArkUI_AttributeItem LABEL_Item3 = {.string = labelText.c_str()};
+                        Manager::nodeAPI_->setAttribute(textSnapshotSizeLimitation, NODE_TEXT_CONTENT, &LABEL_Item3);
+                    }
                     case TARGET_ID_5: {
                         TargetIdFive();
                         break;
@@ -585,6 +596,15 @@ void AllRegisterNodeEventReceiver()
 
 void SnapshotOptionsDemo(ArkUI_NodeHandle &touchEvent)
 {
+    textSnapshotSizeLimitation = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    Manager::nodeAPI_->addChild(touchEvent, textSnapshotSizeLimitation);
+    
+    auto buttonSnapshotSizeLimitation = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_AttributeItem LABEL_Item2 = {.string = "获取组件截图的最大尺寸限制"};
+    Manager::nodeAPI_->setAttribute(buttonSnapshotSizeLimitation, NODE_BUTTON_LABEL, &LABEL_Item2);
+    Manager::nodeAPI_->addChild(touchEvent, buttonSnapshotSizeLimitation);
+    Manager::nodeAPI_->registerNodeEvent(buttonSnapshotSizeLimitation, NODE_ON_CLICK, TARGET_ID_3, nullptr);
+    
     auto button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     ArkUI_AttributeItem LABEL_Item = {.string = "截图"};
     Manager::nodeAPI_->setAttribute(button, NODE_BUTTON_LABEL, &LABEL_Item);
