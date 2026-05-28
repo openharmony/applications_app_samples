@@ -72,6 +72,7 @@ struct AVCastPickerHelperForMedia {
       pickerStyle: AVCastPickerStyle.STYLE_PANEL
     };
 
+    // 需要显示设备列表时，调用此接口
     this.avCastPickerHelper?.select(avCastPickerOptions).then(() => {
       console.info('select successfully');
     }).catch((err: BusinessError) => {
@@ -82,7 +83,7 @@ struct AVCastPickerHelperForMedia {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.switch_MediaOutputDevice'))
+        Button($r('app.string.switch_MediaOutputDevice')) // 切换媒体输出设备按钮
           .onClick(async () => {
             await this.selectMediaDevice();
           })

@@ -34,7 +34,7 @@ struct AVCastPickerHelperForCall {
     } catch (err) {
       console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
     }
-    this.avCastPickerHelper = new avSession.AVCastPickerHelper(this.context);
+    this.avCastPickerHelper = new avSession.AVCastPickerHelper(this.context); // 初始化AVCastPickerHelper
   }
   // [End create_voiceCall_avsession]
 
@@ -60,6 +60,7 @@ struct AVCastPickerHelperForCall {
       menuPosition: { x: 50, y: 150, width: 50, height: 50 } // 传入需要显示菜单的位置
     };
 
+    // 需要显示设备列表时，调用此接口
     this.avCastPickerHelper?.select(avCastPickerOptions).then(() => {
       console.info('select successfully');
     }).catch((err: BusinessError) => {
@@ -70,7 +71,7 @@ struct AVCastPickerHelperForCall {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.switch_output'))
+        Button($r('app.string.switch_output')) // 切换通话输出设备按钮
           .onClick(async () => {
             await this.selectCallDevice();
           })
