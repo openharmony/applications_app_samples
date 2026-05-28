@@ -16,18 +16,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B39519AEAEFB584542044AAB4F7C03F9FCA35FAC8533037DDC1B2DED42885AAE1A1EB7DFFAFA99A",
-          "profile": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "signature/default_yanshiApp_1VUFzl4DwAUpLcUS5Vpq0rbHeE6MpztrbbZAQ1TNMEI=.p12",
-          "storePassword": "0000001B4099454506F0FAF9AA81B57D2A3D26B83A08AF18CE35BBE1A7A220EA89E5E6E4309D645227BD26"
-        }
-      }
     ],
     "products": [
       {
