@@ -150,6 +150,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
 }
 
 // ---------- 创建Picker组件 ----------
+// [Start create_picker]
 static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
 {
     ArkUI_NodeHandle picker = api->createNode(ARKUI_NODE_PICKER);
@@ -175,6 +176,7 @@ static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
     }
     return picker;
 }
+// [End create_picker]
 
 // ---------- 添加Picker部分 ----------
 static void AddPickerSection(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle rootColumn)

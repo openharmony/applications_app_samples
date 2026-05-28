@@ -51,6 +51,7 @@ constexpr int32_t K_HYBRID_PICKER_CHANGE_ID = 1005;
 constexpr int32_t K_HYBRID_PICKER_SCROLL_STOP_ID = 1006;
 } // namespace
 
+// [Start type_example]
 // ---------- 全局状态 ----------
 struct PickerTypesState {
     int32_t curTabIndex = 0;
@@ -175,12 +176,17 @@ static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api, const std::vect
     ArkUI_NumberValue widthValue = {.f32 = K_PICKER_WIDTH};
     ArkUI_AttributeItem widthItem = {&widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
     api->setAttribute(picker, NODE_WIDTH, &widthItem);
+    // [Start can_loop]
     ArkUI_NumberValue canLoopValue = {.i32 = 1};
     ArkUI_AttributeItem canLoopItem = {&canLoopValue, sizeof(canLoopValue) / sizeof(ArkUI_NumberValue)};
     api->setAttribute(picker, NODE_PICKER_CAN_LOOP, &canLoopItem);
+    // [End can_loop]
+
+    // [Start enable_haptic_feedback]
     ArkUI_NumberValue hapticValue = {.i32 = 0};
     ArkUI_AttributeItem hapticItem = {&hapticValue, sizeof(hapticValue) / sizeof(ArkUI_NumberValue)};
     api->setAttribute(picker, NODE_PICKER_ENABLE_HAPTIC_FEEDBACK, &hapticItem);
+    // [End enable_haptic_feedback]
     ArkUI_PickerIndicatorStyle *indicatorStyle = OH_ArkUI_PickerIndicatorStyle_Create(ARKUI_PICKER_INDICATOR_DIVIDER);
     if (indicatorStyle != nullptr) {
         ArkUI_PickerIndicatorDivider divider = {
@@ -306,6 +312,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
             break;
         }
 }
+// [End type_example]
 
 // ---------- 创建Tabs界面 ----------
 static ArkUI_NodeHandle CreatePickerTypesUI(ArkUI_NativeNodeAPI_1 *api)
@@ -357,3 +364,4 @@ ArkUI_NodeHandle ContainerPickerTypesMaker::CreateNativeNode()
     }
     return pickerTypesUI;
 }
+// [End type_example]

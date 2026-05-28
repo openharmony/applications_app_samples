@@ -13,16 +13,19 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
-
 interface ListCategories {
   title: string,
   url: string
 }
 
-@Entry
+@Builder
+export function ContainerPickerPageBuilder() {
+  ContainerPickerIndex()
+}
+
 @Component
-struct ContainerPickerIndex {
+export struct ContainerPickerIndex {
+  private pathStack: NavPathStack = new NavPathStack();
   private items: ListCategories[] =
     [
       { title: 'PickerCanLoop', url: 'pages/containerPicker/PageContainerPickerCanLoopIndex' },
@@ -36,9 +39,10 @@ struct ContainerPickerIndex {
     ];
 
   build() {
-    Scroll(new Scroller()) {
-      Column() {
-        Text('Picker选择页面')
+    NavDestination() {
+      Scroll(new Scroller()) {
+        Column() {
+          Text('Picker选择页面')
           .fontWeight(FontWeight.Bold)
           .fontSize('20vp')
           .textAlign(TextAlign.Center)
@@ -69,12 +73,17 @@ struct ContainerPickerIndex {
               .borderRadius($r('sys.float.select_border_radius_default'))
               .backgroundColor(Color.White)
               .onClick(() => {
-                router.pushUrl({ url: item.url })
+                this.pathStack.pushPathByName(item.url, null)
               })
             }.margin($r('sys.float.menu_item_content_align'))
           })
         }.width('95%').height('90%').alignListItem(ListItemAlign.Center)
       }.width('100%')
     }.height('100%').backgroundColor($r('app.color.background_color'))
+    }
+    .hideTitleBar(true)
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
 }

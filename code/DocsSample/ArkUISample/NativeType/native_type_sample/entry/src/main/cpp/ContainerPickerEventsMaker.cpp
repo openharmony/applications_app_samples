@@ -156,8 +156,13 @@ static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
     ArkUI_NumberValue canLoopValue = {.i32 = false};
     ArkUI_AttributeItem canLoopItem = {&canLoopValue, sizeof(canLoopValue) / sizeof(ArkUI_NumberValue)};
     api->setAttribute(picker, NODE_PICKER_CAN_LOOP, &canLoopItem);
+    // [Start on_picker_change]
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_CHANGE, K_ON_CHANGE_EVENT_ID, nullptr);
+    // [End on_picker_change]
+
+    // [Start on_scroll_stop]
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_SCROLL_STOP, K_ON_SCROLL_STOP_EVENT_ID, nullptr);
+    // [End on_scroll_stop]
     if (g_state) {
         for (const auto &item : g_state->dataArray) {
             ArkUI_NodeHandle optionNode = CreatePickerOption(api, item);
