@@ -101,13 +101,14 @@ export default function hKDFDerivationTest() {
     it('testHKDFDerivation004', 0, async () => {
       console.info('uitest: testHKDFDerivation004 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('CppTest'));
+      const button1 = await driver.findComponent(ON.text('Call Cpp Test'));
+      await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('Call Cpp Test'));
       await button2.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Cpp Test Success'));
+      await driver.assertComponentExist(ON.text('Call Success'));
       console.info('uitest: testHKDFDerivation004 end');
       await driver.pressBack();
     })

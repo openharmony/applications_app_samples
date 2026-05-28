@@ -15,7 +15,6 @@
 
 // [Start kem_encapsulate_decapsulate_sync_test]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { buffer } from '@kit.ArkTS';
 
 namespace Kem {
   export function kemDecapsulateSync() {
