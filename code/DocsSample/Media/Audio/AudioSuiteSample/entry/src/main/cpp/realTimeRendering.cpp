@@ -23,6 +23,11 @@
 #include "realTimeRendering.h"
 
 const int CHANNEL_COUNT = 2;
+// OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
+const int SAMPLE_FORMAT_S16LE_BYTE_SIZE = 2;
+//20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
+const int RENDER_FRAME_DURATION_MS = 20;
+const int MS_PER_SECOND = 1000;
 // [Start audioSuite_RealTimeRenderingInputNodeWriteDataCallBack]
 // 输入节点请求数据的回调函数。
 static int32_t InputNodeWriteDataCallBack(OH_AudioNode *audioNode, void *userData, void *audioData,
@@ -90,7 +95,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
     
-    // 创建实时预览渲染的管线。
+    // 创建实时预览的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // 创建节点构造器。
@@ -150,9 +155,9 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_RAW);
     OH_AudioStreamBuilder_SetRendererInfo(rendererBuilder, AUDIOSTREAM_USAGE_MUSIC);
 
-    int32_t byteSize = 2;  // AUDIOSTREAM_SAMPLE_S16LE格式对应的字节大小。
-    // 1000是时间转换单位，20表示的是20ms的音频采样数据，如果samplingRate为11025请使用40ms来计算。
-    int32_t frameSize = 20 * audioFormatOutput.samplingRate * audioFormatOutput.channelCount * byteSize / 1000;
+    // 如果samplingRate为11025请使用40ms来计算。
+    int32_t frameSize = RENDER_FRAME_DURATION_MS * audioFormatOutput.samplingRate * audioFormatOutput.channelCount *
+                        SAMPLE_FORMAT_S16LE_BYTE_SIZE / MS_PER_SECOND;
     // 设置audioDataSize长度（待播放的数据大小）。
     OH_AudioStreamBuilder_SetFrameSizeInCallback(rendererBuilder, frameSize);
     // 配置写入音频数据回调函数。
