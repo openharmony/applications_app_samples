@@ -31,7 +31,10 @@ static OH_Crypto_ErrCode setParams(OH_CryptoKdfParams **params)
     };
     OH_Crypto_ErrCode ret = OH_CryptoKdfParams_SetParam(*params, CRYPTO_KDF_KEY_DATABLOB, &passwordBlob);
     if (ret != CRYPTO_SUCCESS) {
-        goto end;
+        (void)memset(password, 0, sizeof(password));
+        OH_CryptoKdfParams_Destroy(*params);
+        *params = nullptr;
+        return ret;
     }
 
     // 设置盐值。
@@ -41,7 +44,10 @@ static OH_Crypto_ErrCode setParams(OH_CryptoKdfParams **params)
     };
     ret = OH_CryptoKdfParams_SetParam(*params, CRYPTO_KDF_SALT_DATABLOB, &saltBlob);
     if (ret != CRYPTO_SUCCESS) {
-        goto end;
+        (void)memset(password, 0, sizeof(password));
+        OH_CryptoKdfParams_Destroy(*params);
+        *params = nullptr;
+        return ret;
     }
 
     // 设置迭代次数。
@@ -51,13 +57,12 @@ static OH_Crypto_ErrCode setParams(OH_CryptoKdfParams **params)
     };
     ret = OH_CryptoKdfParams_SetParam(*params, CRYPTO_KDF_ITER_COUNT_INT, &iterationsBlob);
     if (ret != CRYPTO_SUCCESS) {
-        goto end;
+        (void)memset(password, 0, sizeof(password));
+        OH_CryptoKdfParams_Destroy(*params);
+        *params = nullptr;
+        return ret;
     }
-end:
-    (void)memset_s(password, sizeof(password), 0, sizeof(password));
-    OH_CryptoKdfParams_Destroy(*params);
-    *params = nullptr;
-    return ret;
+    return CRYPTO_SUCCESS;
 }
 
 OH_Crypto_ErrCode doTestPbkdf2()
