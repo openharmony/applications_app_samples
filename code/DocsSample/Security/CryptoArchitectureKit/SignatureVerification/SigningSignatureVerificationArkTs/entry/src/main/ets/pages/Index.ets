@@ -31,7 +31,7 @@ struct Index {
   }
 
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 1 }) {
       Text('SigningSignatureVerificationArkTs').fontSize(27).fontWeight(FontWeight.Bolder)
       Button($r('app.string.rsa_pkcs1_signature_validator_asynchronous'))
         .width('70%')
