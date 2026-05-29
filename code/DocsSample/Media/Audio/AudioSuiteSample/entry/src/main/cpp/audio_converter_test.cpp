@@ -90,7 +90,7 @@ bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFileP
     }
 
     // 分配输出缓冲区（估算大小，考虑采样率和声道数的变化）。
-    // 采样率从48000到192000(4倍)，声道从2到6(3倍)，采样格式从16bit到24bit(1.5倍)。
+    // 采样率从48000到192000（4倍），声道从2到6（3倍），采样格式从16bit到24bit（1.5倍）。
     // 总倍数约4 * 3 * 1.5 = 18倍。
     int32_t estimatedOutputSize = testData.inputAudioInfo.bufferSize * 18;
 
