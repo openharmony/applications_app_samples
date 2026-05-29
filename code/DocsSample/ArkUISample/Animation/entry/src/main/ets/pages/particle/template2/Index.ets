@@ -239,7 +239,7 @@ struct ParticleExample2 {
                     {
                       from: 50,
                       to: -50,
-                      startMillis: 0,
+                      startMillis: 1000,
                       endMillis: 3000,
                       curve: Curve.EaseIn
                     },
