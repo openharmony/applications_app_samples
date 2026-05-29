@@ -43,6 +43,8 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行。
 2. 本示例为Stage模型。
+3. sdk: 23
+   deveco: 6.1.0 Release
 
 ### 下载
 
