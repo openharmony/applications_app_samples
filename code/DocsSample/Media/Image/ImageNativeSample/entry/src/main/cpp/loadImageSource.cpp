@@ -61,7 +61,7 @@ napi_value ReturnErrorCode(napi_env env, Image_ErrorCode errCode, std::string fu
 napi_value GetSupportedFormats(napi_env env, napi_callback_info info)
 {
     Image_MimeType* mimeType = nullptr;
-    size_t length = 10;
+    size_t length = 0;
     Image_ErrorCode errCode = OH_ImageSourceNative_GetSupportedFormats(&mimeType, &length);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "OH_ImageSourceNative_GetSupportedFormats failed, "
@@ -108,8 +108,20 @@ napi_value GetImageInfo(napi_env env, napi_callback_info info)
     
     uint32_t width;
     uint32_t height;
-    OH_ImageSourceInfo_GetWidth(g_thisImageSource->imageInfo, &width);
-    OH_ImageSourceInfo_GetHeight(g_thisImageSource->imageInfo, &height);
+    errCode = OH_ImageSourceInfo_GetWidth(g_thisImageSource->imageInfo, &width);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "OH_ImageSourceInfo_GetWidth failed, errCode: %{public}d.", errCode);
+        OH_ImageSourceInfo_Release(g_thisImageSource->imageInfo);
+        g_thisImageSource->imageInfo = nullptr;
+        return GetJsResult(env, errCode);
+    }
+    errCode = OH_ImageSourceInfo_GetHeight(g_thisImageSource->imageInfo, &height);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "OH_ImageSourceInfo_GetHeight failed, errCode: %{public}d.", errCode);
+        OH_ImageSourceInfo_Release(g_thisImageSource->imageInfo);
+        g_thisImageSource->imageInfo = nullptr;
+        return GetJsResult(env, errCode);
+    }
     OH_LOG_INFO(LOG_APP, "OH_ImageSourceNative_GetImageInfo success,"
                "width: %{public}d, height: %{public}d.", width, height);
     OH_ImageSourceInfo_Release(g_thisImageSource->imageInfo);
@@ -136,12 +148,16 @@ napi_value GetImageProperty(napi_env env, napi_callback_info info)
     Image_String getKey;
     getKey.data = key;
     getKey.size = keySize;
-    Image_String getValue;
+    Image_String getValue = {nullptr, 0};
     OH_LOG_INFO(LOG_APP, "OH_ImageSourceNative_GetImageProperty key: %{public}s.", getKey.data);
     Image_ErrorCode errCode = OH_ImageSourceNative_GetImagePropertyWithNull(g_thisImageSource->source,
                                                                             &getKey, &getValue);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "OH_ImageSourceNative_GetImageProperty failed, errCode: %{public}d.", errCode);
+        if (getValue.data != nullptr) {
+            free(getValue.data);
+            getValue.data = nullptr;
+        }
         return GetJsResult(env, errCode);
     }
     napi_value resultNapi = nullptr;
@@ -346,12 +362,18 @@ napi_value CreatePixelmapList(napi_env env, napi_callback_info info)
 {
     OH_DecodingOptions *opts = nullptr;
     OH_DecodingOptions_Create(&opts);
-    OH_PixelmapNative** resVecPixMap = new OH_PixelmapNative* [g_thisImageSource->frameCnt];
+    OH_PixelmapNative** resVecPixMap = new OH_PixelmapNative* [g_thisImageSource->frameCnt]();
     size_t outSize = g_thisImageSource->frameCnt;
     Image_ErrorCode errCode = OH_ImageSourceNative_CreatePixelmapList(g_thisImageSource->source,
                                                                       opts, resVecPixMap, outSize);
     OH_DecodingOptions_Release(opts);
     opts = nullptr;
+    for (size_t index = 0; index < outSize; index++) {
+        if (resVecPixMap[index] != nullptr) {
+            OH_PixelmapNative_Release(resVecPixMap[index]);
+            resVecPixMap[index] = nullptr;
+        }
+    }
     delete[] resVecPixMap;
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_CreatePixelmapList");
 }
@@ -365,7 +387,13 @@ napi_value GetDelayTimeList(napi_env env, napi_callback_info info)
     size_t size = g_thisImageSource->frameCnt;
     OH_LOG_INFO(LOG_APP, "GetDelayTimeList size: %{public}zu.", size);
     Image_ErrorCode errCode = OH_ImageSourceNative_GetDelayTimeList(g_thisImageSource->source, delayTimeList, size);
+    if (errCode == IMAGE_SUCCESS) {
+        for (size_t index = 0; index < size; index++) {
+            OH_LOG_INFO(LOG_APP, "Frame %{public}zu delay time: %{public}d ms.", index, delayTimeList[index]);
+        }
+    }
     delete[] delayTimeList;
+    delayTimeList = nullptr;
     return ReturnErrorCode(env, errCode, "OH_ImageSourceNative_GetDelayTimeList");
 }
 // [End get_delayTimeList]
@@ -412,6 +440,24 @@ Image_MimeType GetMimeTypeIfEncodable(const char *format)
     return {const_cast<char *>(format), strlen(format)};
 }
 
+static Image_ErrorCode ReleaseImageSourcePackingResources(OH_ImagePackerNative *testPacker,
+    OH_PackingOptions *option)
+{
+    Image_ErrorCode errCode = OH_ImagePackerNative_Release(testPacker);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest OH_ImagePackerNative_Release failed,"
+                     "errCode: %{public}d.", errCode);
+        OH_PackingOptions_Release(option);
+        return errCode;
+    }
+    errCode = OH_PackingOptions_Release(option);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest OH_PackingOptions_Release failed,"
+                     "errCode: %{public}d.", errCode);
+    }
+    return errCode;
+}
+
 Image_ErrorCode packToFileFromImageSourceTest(int fd, OH_ImageSourceNative* imageSource)
 {
     // 创建ImagePacker实例。
@@ -422,21 +468,25 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd, OH_ImageSourceNative* imag
                               "errCode: %{public}d.", errCode);
         return errCode;
     }
-    
     // 获取编码能力范围。
     errCode = GetEncodeSupportedFormats();
     if (errCode != IMAGE_SUCCESS) {
         OH_ImagePackerNative_Release(testPacker);
         return errCode;
     }
-    
     // 指定编码参数，将ImageSource直接编码进文件。
     OH_PackingOptions *option = nullptr;
-    OH_PackingOptions_Create(&option);
+    errCode = OH_PackingOptions_Create(&option);
+    if (errCode != IMAGE_SUCCESS || option == nullptr) {
+        OH_ImagePackerNative_Release(testPacker);
+        return errCode == IMAGE_SUCCESS ? IMAGE_BAD_PARAMETER : errCode;
+    }
     Image_MimeType image_MimeType = GetMimeTypeIfEncodable(MIME_TYPE_JPEG);
     if (image_MimeType.data == nullptr || image_MimeType.size == 0) {
         OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest GetMimeTypeIfEncodable failed,"
                      "format can't support encode.");
+        OH_PackingOptions_Release(option);
+        OH_ImagePackerNative_Release(testPacker);
         return IMAGE_BAD_PARAMETER;
     }
     OH_PackingOptions_SetMimeType(option, &image_MimeType);
@@ -449,27 +499,11 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd, OH_ImageSourceNative* imag
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest OH_ImagePackerNative_PackToFileFromImageSource failed,"
                               "errCode: %{public}d.", errCode);
+        OH_PackingOptions_Release(option);
+        OH_ImagePackerNative_Release(testPacker);
         return errCode;
     }
-
-    // 释放ImagePacker实例。
-    errCode = OH_ImagePackerNative_Release(testPacker);
-    testPacker = nullptr;
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest OH_ImagePackerNative_Release failed,"
-                     "errCode: %{public}d.", errCode);
-        return errCode;
-    }
-    
-    // 释放PackingOptions实例。
-    errCode = OH_PackingOptions_Release(option);
-    option = nullptr;
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "packToFileFromImageSourceTest OH_PackingOptions_Release failed,"
-                     "errCode: %{public}d.", errCode);
-        return errCode;
-    }
-    return IMAGE_SUCCESS;
+    return ReleaseImageSourcePackingResources(testPacker, option);
 }
 
 Image_ErrorCode packToFileFromPixelmapTest(int fd, OH_PixelmapNative *pixelmap)
@@ -485,10 +519,19 @@ Image_ErrorCode packToFileFromPixelmapTest(int fd, OH_PixelmapNative *pixelmap)
 
     // 指定编码参数，将PixelMap直接编码进文件。
     OH_PackingOptions *option = nullptr;
-    OH_PackingOptions_Create(&option);
+    errCode = OH_PackingOptions_Create(&option);
+    if (errCode != IMAGE_SUCCESS || option == nullptr) {
+        OH_ImagePackerNative_Release(testPacker);
+        return errCode == IMAGE_SUCCESS ? IMAGE_BAD_PARAMETER : errCode;
+    }
     char type[] = "image/jpeg";
     Image_MimeType image_MimeType = {type, strlen(type)};
-    OH_PackingOptions_SetMimeType(option, &image_MimeType);
+    errCode = OH_PackingOptions_SetMimeType(option, &image_MimeType);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_PackingOptions_Release(option);
+        OH_ImagePackerNative_Release(testPacker);
+        return errCode;
+    }
     // 设置编码质量，quality默认为0，建议quality的值不低于80
     uint32_t quality = 90;
     OH_PackingOptions_SetQuality(option, quality);
@@ -496,6 +539,8 @@ Image_ErrorCode packToFileFromPixelmapTest(int fd, OH_PixelmapNative *pixelmap)
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "packToFileFromPixelmapTest OH_ImagePackerNative_PackToFileFromPixelmap failed,"
                               "errCode: %{public}d.", errCode);
+        OH_PackingOptions_Release(option);
+        OH_ImagePackerNative_Release(testPacker);
         return errCode;
     }
 
@@ -505,6 +550,7 @@ Image_ErrorCode packToFileFromPixelmapTest(int fd, OH_PixelmapNative *pixelmap)
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "packToFileFromPixelmapTest ReleasePacker OH_ImagePackerNative_Release failed,"
                               "errCode: %{public}d.", errCode);
+        OH_PackingOptions_Release(option);
         return errCode;
     }
     
