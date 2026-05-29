@@ -45,8 +45,8 @@ int32_t AudioConverterRequestDataCallback(
     *outInputData = testData->inputAudioInfo.buffer + testData->inputAudioInfo.totalReadSize;
 
     // 计算本次可提供的数据大小（单次回调最多返回400KB）。
-    // bufferSize: 文件的总字节数（在ReadPcmFile中赋值）。
-    // totalReadSize: 已读取的字节数（每次回调递增）。
+    // bufferSize：文件的总字节数（在ReadPcmFile中赋值）。
+    // totalReadSize：已读取的字节数（每次回调递增）。
     int32_t maxDataSize = 400 * 1024;
     int32_t remainingSize = testData->inputAudioInfo.bufferSize - testData->inputAudioInfo.totalReadSize;
     int32_t actualDataSize = (remainingSize < maxDataSize) ? remainingSize : maxDataSize;
@@ -90,7 +90,7 @@ bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFileP
     }
 
     // 分配输出缓冲区（估算大小，考虑采样率和声道数的变化）。
-    // 采样率从48000到192000(4倍)，声道从2到6(3倍)，采样格式从16bit到24bit(1.5倍)。
+    // 采样率从48000到192000（4倍），声道从2到6（3倍），采样格式从16bit到24bit（1.5倍）。
     // 总倍数约4 * 3 * 1.5 = 18倍。
     int32_t estimatedOutputSize = testData.inputAudioInfo.bufferSize * 18;
 
