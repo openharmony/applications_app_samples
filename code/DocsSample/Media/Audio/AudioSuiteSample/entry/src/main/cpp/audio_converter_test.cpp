@@ -45,8 +45,8 @@ int32_t AudioConverterRequestDataCallback(
     *outInputData = testData->inputAudioInfo.buffer + testData->inputAudioInfo.totalReadSize;
 
     // 计算本次可提供的数据大小（单次回调最多返回400KB）。
-    // bufferSize: 文件的总字节数（在ReadPcmFile中赋值）。
-    // totalReadSize: 已读取的字节数（每次回调递增）。
+    // bufferSize：文件的总字节数（在ReadPcmFile中赋值）。
+    // totalReadSize：已读取的字节数（每次回调递增）。
     int32_t maxDataSize = 400 * 1024;
     int32_t remainingSize = testData->inputAudioInfo.bufferSize - testData->inputAudioInfo.totalReadSize;
     int32_t actualDataSize = (remainingSize < maxDataSize) ? remainingSize : maxDataSize;
