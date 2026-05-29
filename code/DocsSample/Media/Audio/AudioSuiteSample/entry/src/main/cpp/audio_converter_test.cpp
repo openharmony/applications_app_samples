@@ -72,8 +72,8 @@ bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFileP
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "开始格式转换测试");
 
-    // 读取输入 PCM 文件。
-    AudioConverterTestData testData = {}; // 使用 C++ 安全初始化替代 memset。
+    // 读取输入PCM文件。
+    AudioConverterTestData testData = {}; // 使用C++安全初始化替代memset。
 
     if (!ReadPcmFile(inputFilePath, &testData.inputAudioInfo)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "读取输入文件失败: %{public}s", inputFilePath);
@@ -90,8 +90,8 @@ bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFileP
     }
 
     // 分配输出缓冲区（估算大小，考虑采样率和声道数的变化）。
-    // 采样率从 48000 到 192000 (4倍)，声道从 2 到 6 (3倍)，采样格式从 16bit 到 24bit (1.5倍)。
-    // 总倍数约 4 * 3 * 1.5 = 18 倍。
+    // 采样率从48000到192000(4倍)，声道从2到6(3倍)，采样格式从16bit到24bit(1.5倍)。
+    // 总倍数约4 * 3 * 1.5 = 18倍。
     int32_t estimatedOutputSize = testData.inputAudioInfo.bufferSize * 18;
 
     if (!AllocateOutputBuffer(&testData, estimatedOutputSize)) {
@@ -206,7 +206,7 @@ bool ProcessAudioData(AudioConverterTestData *testData, int32_t estimatedOutputS
             return false;
         }
 
-        if (outputSize > 0) { // processBuffer 是转换后的音频数据，数据长度为 outputSize，开发者根据业务场景自行使用或者保存。
+        if (outputSize > 0) { // processBuffer是转换后的音频数据，数据长度为outputSize，开发者根据业务场景自行使用或者保存。
             // 将输出数据复制到输出缓冲区。
             if (testData->outputAudioInfo.bufferSize + outputSize <= estimatedOutputSize) {
                 std::copy(processBuffer, processBuffer + outputSize,
@@ -219,7 +219,7 @@ bool ProcessAudioData(AudioConverterTestData *testData, int32_t estimatedOutputS
             }
         }
 
-        // 检查是否所有输入数据已结束，当 totalReadSize >= bufferSize 时，表示已读取完所有输入数据。
+        // 检查是否所有输入数据已结束，当totalReadSize >= bufferSize时，表示已读取完所有输入数据。
         if (testData->inputAudioInfo.totalReadSize >= testData->inputAudioInfo.bufferSize) {
             allInputDataFinished = true;
         }
