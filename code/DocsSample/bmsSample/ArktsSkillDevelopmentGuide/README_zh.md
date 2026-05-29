@@ -3,7 +3,7 @@
 ### 介绍
 
 本文面向开发者，介绍如何在自有应用中接入 **应用Skill** 能力。通过 Skill，应用可以将自身的功能暴露给系统智能体（Agent），用户用一句自然语言即可触达。
-全文以 **音乐播放** 为示例场景，贯穿 `musicAssistant` 这一 Skill 的完整开发过程。
+全文以 **音乐播放** 为示例场景，贯穿 `music-assistant` 这一 Skill 的完整开发过程。
 
 ### 效果预览
 无
@@ -14,10 +14,10 @@
 
 | 步骤 | 关键文件 |
 | ---- | -------- |
-| 1. 创建目录与文件 | `entry/skills/musicAssistant/` |
+| 1. 创建目录与文件 | `entry/skills/music-assistant/` |
 | 2. 配置 module.json5 | `entry/src/main/module.json5` |
-| 3. 实现 ETS 函数 | `entry/skills/musicAssistant/scripts/MusicSkill.ets` |
-| 4. 编写 SKILL.md | `entry/skills/musicAssistant/SKILL.md` |
+| 3. 实现 ETS 函数 | `entry/skills/music-assistant/scripts/MusicSkill.ets` |
+| 4. 编写 SKILL.md | `entry/skills/music-assistant/SKILL.md` |
 
 ### 工程目录
 ```
@@ -27,7 +27,7 @@ Application/
 │   └── resources/
 └── entry/
     ├── skills/                            ← 【固定值】当前模块所有 Skill 的根目录
-    │   └── musicAssistant/                ← Skill 名,需与 SKILL.md 的 name 一致
+    │   └── music-assistant/                ← Skill 名,需与 SKILL.md 的 name 一致
     │       ├── scripts/                   ← 【固定值】ETS 脚本目录
     │       │   └── MusicSkill.ets         ← Skill 入口脚本
     │       └── SKILL.md                   ← 【固定值】Skill 描述文件
