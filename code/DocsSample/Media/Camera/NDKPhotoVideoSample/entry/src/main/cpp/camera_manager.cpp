@@ -467,8 +467,8 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
         OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
-    return ret_;
     PreviewOutputRegisterCallback();
+    return ret_;
 }
 // [End create_preview_output]
 
