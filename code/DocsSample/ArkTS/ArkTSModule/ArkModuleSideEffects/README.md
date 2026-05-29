@@ -72,7 +72,7 @@ entry/src/main/ets/
     └── PageTwo.ets // 导入data。
     └── SideEffectModuleFive.ets // 导出data。
     └── SideEffectModuleFour.ets // 导出data。
-har/src/main/ets/
+staticLibrary/src/main/ets/
 └── ServiceManagerPartOne.ets // 导出对象ServiceManager。
 └── ServiceManagerPartThree.ets // 导出对象ServiceManager。
 └── ServiceManagerPartTwo.ets // 导出对象ServiceManager。

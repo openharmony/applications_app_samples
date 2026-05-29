@@ -14,7 +14,7 @@
 */
 
 // [Start export_numberString]
-// har/src/main/ets/NumberString.ets
+// staticLibrary/src/main/ets/NumberString.ets
 export const One: string = '1';
 console.info('har NumberString.ets execute.');
 // [End export_numberString]

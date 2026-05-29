@@ -14,7 +14,7 @@
 */
 
 // [Start export_serviceManagerPartTwo]
-// har/src/main/ets/ServiceManagerPartTwo.ets
+// staticLibrary/src/main/ets/ServiceManagerPartTwo.ets
 class ServiceManager {
   public inited: boolean = false;
 
