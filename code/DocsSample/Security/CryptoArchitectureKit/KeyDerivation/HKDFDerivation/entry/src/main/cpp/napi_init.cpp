@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 #include "types/project/file.h"
+#include <cstdio>
 
 static napi_value NAPI_Global_doTestHkdf(napi_env env, napi_callback_info info)
 {
