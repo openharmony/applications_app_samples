@@ -151,7 +151,7 @@ struct Index {
                     }
                   })
 
-                Button('添加默认均衡器效果')
+                Button('添加均衡器效果')
                   .width('90%')
                   .height(30)
                   .margin({ bottom: 12 })
@@ -162,12 +162,12 @@ struct Index {
                       audioSuiteNapi.BaseEditor((result: string) => {
                         this.isLoadingBaseEditor = false;
                         this.isBaseEditorCompleted = true;
-                        this.message = '添加默认均衡器效果成功';
+                        this.message = '添加均衡器效果成功';
                         this.updateNapiLog(result);
                       });
                     } catch (err) {
                       this.isLoadingBaseEditor = false;
-                      this.message = '添加默认均衡器效果失败';
+                      this.message = '添加均衡器效果失败';
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
