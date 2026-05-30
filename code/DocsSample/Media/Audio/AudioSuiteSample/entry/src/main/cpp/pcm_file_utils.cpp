@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-#include "pcmFileUtils.h"
+#include "pcm_file_utils.h"
 #include <cstdio>
 #include <cstring>
 #include "hilog/log.h"
