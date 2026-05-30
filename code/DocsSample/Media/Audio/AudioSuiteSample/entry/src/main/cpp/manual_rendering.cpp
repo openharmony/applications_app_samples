@@ -21,8 +21,8 @@
 // [End audioSuite_ManualRenderingInclude]
 #include <cstdint>
 #include "hilog/log.h"
-#include "pcmFileUtils.h"
-#include "manualRendering.h"
+#include "pcm_file_utils.h"
+#include "manual_rendering.h"
 
 
 const int GLOBAL_RESMGR = 0xFF00;

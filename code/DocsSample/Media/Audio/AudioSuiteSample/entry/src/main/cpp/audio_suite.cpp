@@ -21,10 +21,10 @@
 #include <ohaudio/native_audio_resource_manager.h>
 #include <cstdint>
 #include <sstream>
-#include "./manualRendering.h"
-#include "pcmFileUtils.h"
+#include "./manual_rendering.h"
+#include "pcm_file_utils.h"
 #include "hilog/log.h"
-#include "realTimeRendering.h"
+#include "real_time_rendering.h"
 #include "audio_converter_test.h"
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";

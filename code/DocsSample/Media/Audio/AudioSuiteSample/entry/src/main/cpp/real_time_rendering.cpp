@@ -20,7 +20,7 @@
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
 // [End audioSuite_RealTimeRenderingInclude]
-#include "realTimeRendering.h"
+#include "real_time_rendering.h"
 
 const int CHANNEL_COUNT = 2;
 // OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE格式对应的字节大小。
