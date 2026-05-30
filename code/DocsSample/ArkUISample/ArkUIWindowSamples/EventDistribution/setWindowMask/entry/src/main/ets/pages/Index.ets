@@ -62,19 +62,17 @@ struct Index {
 
   // [Start setWindowMask_func]
   setWindowMask(window: window.Window) {
-    let windowMask: Array<Array<number>> = new Array(this.winHeight);
+    let windowMask: Uint8Array = new Uint8Array(this.winWidth * this.winHeight);
     for (let i = 0; i < this.winHeight; i++) {
-      let row: Array<number> = new Array(this.winWidth);
       for (let k = 0; k < this.winWidth; k++) {
         if ((i + k) < (this.winHeight + this.winWidth) / 2) {
-          row[k] = 0;
+          windowMask[i * this.winWidth + k] = 0;
         } else {
-          row[k] = 1;
+          windowMask[i * this.winWidth + k] = 255;
         }
       }
-      windowMask[i] = row;
     }
-    window.setWindowMask(windowMask);
+    window.setWindowMaskWithAlpha(windowMask, this.winWidth, this.winHeight);
   }
   // [End setWindowMask_func]
 
