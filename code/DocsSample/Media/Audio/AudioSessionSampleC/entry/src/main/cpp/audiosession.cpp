@@ -217,8 +217,7 @@ napi_value SetAudioSessionBehavior(napi_env env, napi_callback_info info)
     // 本接口应在激活音频会话前调用。
     // 若音频会话在激活状态时调用此接口后，必须重新激活音频会话使其生效。
     // behavior参数支持位或操作，可同时设置多个会话行为标志。
-    uint32_t behavior =
-        OH_AudioSession_BehaviorFlags::MUTE_WHEN_INTERRUPTED;
+    uint32_t behavior = OH_AudioSession_BehaviorFlags::MUTE_WHEN_INTERRUPTED;
     OH_AudioSessionManager_SetBehavior(audioSessionManager, behavior);
     
     OH_AudioSession_Strategy strategy = {CONCURRENCY_PAUSE_OTHERS};
