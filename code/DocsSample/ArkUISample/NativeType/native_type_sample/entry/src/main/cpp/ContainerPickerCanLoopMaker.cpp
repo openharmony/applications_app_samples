@@ -31,6 +31,8 @@ constexpr bool K_CAN_LOOP = true;
 constexpr bool K_HAPTIC_FEEDBACK = true;
 constexpr uint32_t K_INDICATOR_BG_COLOR = 0xD3D3D3D3;
 constexpr float K_INDICATOR_CORNER_RADIUS = 10.0f;
+constexpr int32_t K_VISIBLE_COUNT = 5;
+constexpr float K_ITEM_HEIGHT = 48.0f;
 constexpr int32_t K_CHANGE_EVENT_ID = 2;
 constexpr int32_t K_SCROLL_STOP_EVENT_ID = 3;
 // ===== Button 配置常量 =====
@@ -43,6 +45,7 @@ constexpr uint32_t K_BUTTON_BG_COLOR = 0xFF2196F3;
 constexpr uint32_t K_BUTTON_DISABLED_COLOR = 0xFF9E9E9E;
 } // namespace
 
+// [Start dynamic_modify]
 // ---------- 生成数据 ----------
 static std::vector<std::string> MakeData() { return {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}; }
 
@@ -172,8 +175,18 @@ static void ConfigurePicker(const std::shared_ptr<ContainerPickerCanLoopMaker> &
     picker->SetPickerWidthPercent(K_PICKER_WIDTH_RATIO);
     picker->SetPickerHeightPercent(K_PICKER_HEIGHT_RATIO);
     picker->SetSelectedIndex(K_INITIAL_SELECTED_INDEX);
+    // [Start set_can_loop]
     picker->SetCanLoop(K_CAN_LOOP);
+    // [End set_can_loop]
+
+    // [Start set_haptic_feedback]
     picker->SetHapticFeedback(K_HAPTIC_FEEDBACK);
+    // [End set_haptic_feedback]
+
+    // [Start set_display_item_count]
+    picker->SetDisplayedItemCount(K_VISIBLE_COUNT);
+    picker->SetItemHeight(K_ITEM_HEIGHT);
+    // [End set_display_item_count]
     picker->SetSelectionIndicatorBackground(K_INDICATOR_BG_COLOR, K_INDICATOR_CORNER_RADIUS);
     ArkUI_NativeNodeAPI_1 *api = picker->GetNodeAPI();
     if (api && data) {
@@ -244,3 +257,4 @@ ArkUI_NodeHandle ContainerPickerCanLoopMaker::CreateNativeNode()
     api->registerNodeEventReceiver(&OnEventReceive);
     return rootContainer;
 }
+// [End dynamic_modify]

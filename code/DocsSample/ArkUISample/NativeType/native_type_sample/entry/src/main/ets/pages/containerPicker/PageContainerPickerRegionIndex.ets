@@ -16,13 +16,23 @@
 import Napi from 'libentry.so';
 import { NodeContent } from '@kit.ArkUI';
 
-@Entry
+@Builder
+export function PageContainerPickerRegionIndexPageBuilder() {
+  NavDestination() {
+    Index()
+  }
+  .hideTitleBar(true)
+}
+
 @Component
-struct Index {
+export struct Index {
   private nodeContent = new NodeContent();
   aboutToAppear() {
     // 通过C-API创建节点，并添加到管理器nodeContent上
-    Napi.createContainerPickerRegionNode(this.nodeContent);
+    Napi?.createContainerPickerRegionNode(this.nodeContent);
+  }
+  aboutToDisappear() {
+    Napi?.destroyNativeRoot(this.nodeContent);
   }
   build() {
     Column() {
