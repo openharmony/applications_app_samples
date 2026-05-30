@@ -14,9 +14,9 @@
  */
 
 // [Start input_monitor]
-import { inputConsumer, KeyEvent, inputDevice } from '@kit.InputKit';
+import { inputConsumer, KeyEvent, inputDevice, KeyCode } from '@kit.InputKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { KeyCode } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0x0000;
 
@@ -58,7 +58,8 @@ struct TestDemo14 {
     return new Promise<boolean>((resolve) => {
       inputDevice.getDeviceList((error: BusinessError, ids: Array<Number>) => {
         if (error) {
-          console.error(`keyPressed Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`keyPressed Failed to get device id list, error: ${
+            JSON.stringify(error, ["code", "message"])}`);
           resolve(false);
           return;
         }
@@ -251,7 +252,8 @@ struct TestDemo14 {
                 this.getUIContext()
                   .getPromptAction()
                   .showToast({ message: 'Failed to remove monitoring for Slide Up key!' })
-                this.text = `Failed to remove monitoring for Slide Up key: ${JSON.stringify(error, ["code", "message"])}`
+                this.text =
+                  `Failed to remove monitoring for Slide Up key: ${JSON.stringify(error, ["code", "message"])}`
               }
             })
         }.width('100%')
