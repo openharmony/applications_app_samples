@@ -22,10 +22,10 @@ struct Index {
       title: 'This is a subwindow',
       decorEnabled: true
     };
-    this.windowStage?.createSubWindowWithOptions("subWindowForWindowMask", subWindowOpts).then((subwindow: window.Window) => {
+    this.windowStage?.createSubWindowWithOptions('subWindowForWindowMask', subWindowOpts).then((subwindow: window.Window) => {
       this.windowMaskSub = subwindow;
       let storage: LocalStorage = new LocalStorage();
-      storage.setOrCreate("windowName", "Sub Window");
+      storage.setOrCreate('windowName', 'Sub Window');
       subwindow.loadContent('pages/Page_EmptyWindow', storage);
       subwindow.resize(this.winWidth, this.winHeight);
       subwindow.moveWindowTo(200, 220);
@@ -45,10 +45,10 @@ struct Index {
       decorEnabled: true
     };
 
-    this.windowStage?.createSubWindowWithOptions("subWindowTest", subWindowOpts).then((curWindow: window.Window) => {
+    this.windowStage?.createSubWindowWithOptions('subWindowTest', subWindowOpts).then((curWindow: window.Window) => {
       this.testWindow = curWindow;
       let storage: LocalStorage = new LocalStorage();
-      storage.setOrCreate("windowName", "Test Window");
+      storage.setOrCreate('windowName', 'Test Window');
       curWindow.loadContent('pages/Page_EmptyWindow', storage);
       curWindow.resize(this.winWidth, this.winHeight);
       curWindow.moveWindowTo(200, 1050);
@@ -82,7 +82,7 @@ struct Index {
       Scroll(){
         Column() {
           // [StartExclude setWindowMask_build]
-          Button("Create Test Window")
+          Button('Create Test Window')
             .type(ButtonType.Capsule)
             .margin({
               bottom: 50
@@ -93,7 +93,7 @@ struct Index {
               }
               this.createSubWindow();
             })
-          Button("Destroy Test Window")
+          Button('Destroy Test Window')
             .type(ButtonType.Capsule)
             .margin({
               top: 10,
@@ -112,7 +112,7 @@ struct Index {
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.Center)
           Row() {
-            Button("Create Sub Window")
+            Button('Create Sub Window')
               .type(ButtonType.Capsule)
               .margin({
                 top: 10
@@ -123,7 +123,7 @@ struct Index {
                 }
                 this.createSubWindowForWindowMask();
               })
-            Button("Destroy Sub Window")
+            Button('Destroy Sub Window')
               .type(ButtonType.Capsule)
               .margin({
                 top: 10
@@ -137,7 +137,7 @@ struct Index {
           }
           // [EndExclude setWindowMask_build]
           Row() {
-            Button("setWindowMask for Sub Window")
+            Button('setWindowMask for Sub Window')
               .width('90%')
               .type(ButtonType.Capsule)
               .margin({
