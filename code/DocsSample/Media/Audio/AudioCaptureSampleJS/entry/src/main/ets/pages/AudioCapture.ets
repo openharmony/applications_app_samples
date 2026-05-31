@@ -39,6 +39,7 @@ class Options {
 // [StartExclude listen_AudioCapturer]
 let audioRenderer: audio.AudioRenderer | undefined = undefined;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
+let capturerMuteHintEnabledByApp: boolean = false;
 // [EndExclude create_AudioCapturer]
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
@@ -85,6 +86,14 @@ async function initArguments(context: common.UIAbilityContext): Promise<void> {
   let filePath = path + '/S16LE_2_48000.pcm';
   file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   readDataCallback = (buffer: ArrayBuffer) => {
+    // [StartExclude listen_AudioCapturer]
+    if (capturerMuteHintEnabledByApp) {
+      let view = new DataView(buffer);
+      for (let i = 0; i < buffer.byteLength; i++) {
+        view.setUint8(i, 0);
+      }
+    }
+    // [EndExclude listen_AudioCapturer]
     let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
@@ -287,6 +296,51 @@ async function start(updateCallback?: (msg: string, isError: boolean) => void): 
   }
 }
 
+// 设置或解除录音流静音提示。
+async function setAudioCapturerMuteHint(muteHint: boolean, updateCallback?: (msg: string, isError: boolean) => void):
+  Promise<boolean> {
+  if (audioCapturer === undefined) {
+    const errorMsg = 'AudioCapturer has not been created.';
+    console.error(errorMsg);
+    if (updateCallback) {
+      updateCallback(errorMsg, true);
+    }
+    return false;
+  }
+
+  if (audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
+    const errorMsg = 'AudioCapturer is not running.';
+    console.error(errorMsg);
+    if (updateCallback) {
+      updateCallback(errorMsg, true);
+    }
+    return false;
+  }
+
+  // [Start set_mute_hint]
+  try {
+    await audioCapturer.setMuteHint(muteHint);
+    capturerMuteHintEnabledByApp = muteHint;
+    console.info(`setMuteHint ${muteHint} success.`);
+    // [StartExclude set_mute_hint]
+    if (updateCallback) {
+      updateCallback(`setMuteHint ${muteHint} success.`, false);
+    }
+    return true;
+    // [EndExclude set_mute_hint]
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`setMuteHint ${muteHint} failed. Code: ${error.code}, message: ${error.message}`);
+    // [StartExclude set_mute_hint]
+    if (updateCallback) {
+      updateCallback(`setMuteHint ${muteHint} failed. Code: ${error.code}, message: ${error.message}`, true);
+    }
+    return false;
+    // [EndExclude set_mute_hint]
+  }
+  // [End set_mute_hint]
+}
+
 // 停止采集。
 async function stop(updateCallback?: (msg: string, isError: boolean) => void): Promise<void> {
   if (audioCapturer !== undefined) {
@@ -363,6 +417,7 @@ async function release(updateCallback?: (msg: string, isError: boolean) => void)
         console.error('Capturer release failed.');
       } else {
         fs.closeSync(file);
+        capturerMuteHintEnabledByApp = false;
         console.info('Capturer release success.');
         // [StartExclude all_audioCapturer]
         // [StartExclude release_AudioCapturer]
@@ -632,6 +687,36 @@ struct Index {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             initRender(context);
             this.currentState = '已初始化';
+          });
+        }
+
+        Row() {
+          Column() {
+            Text('设置静音提示').fontColor(Color.Black).fontSize(14);
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .width('45%')
+          .height(60)
+          .justifyContent(FlexAlign.Center)
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async (): Promise<void> => {
+            const isSuccess = await setAudioCapturerMuteHint(true, (msg, isError) => this.updateLogInfo(msg, isError));
+            this.currentState = isSuccess ? '静音提示已上报' : '静音提示上报失败';
+          });
+
+          Column() {
+            Text('解除静音提示').fontColor(Color.Black).fontSize(14);
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(20)
+          .width('45%')
+          .height(60)
+          .justifyContent(FlexAlign.Center)
+          .margin({ bottom: 12 })
+          .onClick(async (): Promise<void> => {
+            const isSuccess = await setAudioCapturerMuteHint(false, (msg, isError) => this.updateLogInfo(msg, isError));
+            this.currentState = isSuccess ? '静音提示已解除' : '静音提示解除失败';
           });
         }
 
