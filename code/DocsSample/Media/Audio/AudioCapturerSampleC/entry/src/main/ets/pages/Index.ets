@@ -162,6 +162,21 @@ struct AudioCaptureDemo {
               }
             })
 
+          Button('创建采集回环音效的录制流')
+            .width('90%')
+            .height(48)
+            .margin({ bottom: 12 })
+            .onClick(() => {
+              try {
+                let result = testNapi.CreateAudioCapturerLoopbackEffect();
+                this.message = result.includes('成功') ? '创建采集回环音效的录制流成功' : '创建采集回环音效的录制流失败';
+                this.updateNapiLog(result);
+              } catch (err) {
+                this.message = '创建采集回环音效的录制流失败';
+                this.updateNapiLog('错误: ' + JSON.stringify(err));
+              }
+            })
+
           // RendererLoopback.cpp 接口
           Text('音频播放（耳返）')
             .fontSize(16)

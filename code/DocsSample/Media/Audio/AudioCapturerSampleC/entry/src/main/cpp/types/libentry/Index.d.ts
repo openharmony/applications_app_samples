@@ -18,5 +18,6 @@ export const CreateAudioCapturer: () => string;
 export const CreateAudioCapturerLegacy1: () => string;
 export const CreateAudioCapturerLegacy2: () => string;
 export const CreateAudioCapturerLoopback: () => string;
+export const CreateAudioCapturerLoopbackEffect: () => string;
 export const CreateLowLatencyModeCapturer: () => string;
 export const CreateAudioRendererLoopback: () => string;

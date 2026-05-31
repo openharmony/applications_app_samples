@@ -126,6 +126,24 @@ export default function AudioCaptureDemoTest() {
     })
 
     /**
+     * @tc.number AudioCaptureDemo_CreateLoopbackEffectCapturer_0001
+     * @tc.name AudioCaptureDemo_CreateLoopbackEffectCapturer_0001
+     * @tc.desc Create audio capturer for loopback effect recording
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it('AudioCaptureDemo_CreateLoopbackEffectCapturer_0001', Level.LEVEL1, async (done: Function) => {
+      await runTest(
+        'AudioCaptureDemo_CreateLoopbackEffectCapturer_0001',
+        '创建采集回环音效的录制流',
+        3000,
+        'Create_Loopback_Effect_Capturer',
+        done
+      );
+    })
+
+    /**
      * @tc.number AudioCaptureDemo_CreateLoopbackRenderer_0001
      * @tc.name AudioCaptureDemo_CreateLoopbackRenderer_0001
      * @tc.desc Create audio renderer for ear monitor (loopback playback)
