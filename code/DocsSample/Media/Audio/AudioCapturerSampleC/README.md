@@ -14,6 +14,7 @@
 - 点击'创建录制流（使用空指针初始化）'按钮，即可实现录制的全流程，与第一个按钮的流程差异在于使用了OH_AudioCapturer_Callbacks的方式设置回调函数，回调函数的初始化通过设置为空指针进行。
 - 点击'创建录制流（使用清零结构体初始化）'按钮，即可实现录制的全流程，与第一个按钮的流程差异在于使用了OH_AudioCapturer_Callbacks的方式设置回调函数，回调函数的初始化通过清零结构体进行。
 - 点击'创建耳返录制流'按钮，即可实现耳返录制的全流程，包括创建构造器、配置流参数、设置回调、构造录制流、设置低时延模式、销毁录制流以及注销回调监听等。
+- 点击'创建采集回环音效的录制流'按钮，即可通过`OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled`创建用于采集回环音效数据的录制流。
 - 点击'创建耳返播放流'按钮，即可实现耳返播放的全流程，包括创建构造器、配置流参数、设置回调、构造录制流、设置低时延模式、销毁录制流以及注销回调监听等。
 
 
@@ -45,6 +46,7 @@
   - 点击'创建录制流（使用空指针初始化）'按钮，流程基本与'创建录制音频流'相同，区别在于设置回调时通过`OH_AudioCapturer_Callbacks`来配置写入数据回调，并通过将监听内容赋值、非监听内容设置为`nullptr`实现初始化。
   - 点击'创建录制流（使用清零结构体初始化）'按钮，流程基本与'创建录制音频流'相同，区别在于设置回调时通过`OH_AudioCapturer_Callbacks`来配置写入数据回调，并通过`memset`将结构体清零再将监听内容赋值实现初始化。
   - 点击'创建耳返录制流'按钮，首先调用`OH_AudioStreamBuilder_Create`创建音频流构造器，接着调用`OH_AudioStreamBuilder_SetLatencyMode`设置录制流为低时延模式。然后调用`OH_AudioStreamBuilder_SetCapturerCallback`设置输入数据回调并注册音频流事件、中断事件以及错误事件监听。再调用`OH_AudioStreamBuilder_GenerateCapturer`构造音频流。最后调用`OH_AudioStreamBuilder_Destroy`销毁音频流。耳返的录制与监听数据共用同一缓存区，播放的内容与录制的内容一致。
+  - 点击'创建采集回环音效的录制流'按钮，首先调用`OH_AudioStreamBuilder_Create`创建音频流构造器，接着调用`OH_AudioStreamBuilder_SetLatencyMode`设置录制流为低时延模式，然后调用`OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled`开启采集回环音效数据能力。最后调用`OH_AudioStreamBuilder_Destroy`销毁音频流。
   - 点击'创建耳返播放流'按钮，首先调用`OH_AudioStreamBuilder_Create`创建音频流构造器，接着调用`OH_AudioStreamBuilder_SetLatencyMode`设置播放流为低时延模式。然后调用`OH_AudioStreamBuilder_SetRendererCallback`设置输出数据回调并注册音频流事件、中断事件以及错误事件监听。再调用`OH_AudioStreamBuilder_GenerateRenderer`构造音频流。最后调用`OH_AudioStreamBuilder_Destroy`销毁音频流。耳返的录制与监听数据共用同一缓存区，播放的内容与录制的内容一致。
 
 ## 相关权限
