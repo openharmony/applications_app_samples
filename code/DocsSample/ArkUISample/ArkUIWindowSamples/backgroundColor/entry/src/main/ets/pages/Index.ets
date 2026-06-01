@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ // [Start backgroundColor_srart]
 import { ColorMetrics, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -28,7 +44,7 @@ struct Index {
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
-
+ // [StartExclude backgroundColor_srart]
   // 滑块变化时默认使用 string 形式更新窗口背景色。
   private applyWindowBackgroundColor(): void {
     if (!this.mainWindow) {
@@ -84,8 +100,8 @@ struct Index {
       hilog.error(DOMAIN, 'backgroundColor', this.statusText);
     }
   }
-
-  // 直接演示用 ColorMetrics.rgba(...) 设置窗口背景色。
+ // [EndExclude backgroundColor_srart]
+  // 直接用 ColorMetrics.rgba(...) 设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
@@ -105,7 +121,7 @@ struct Index {
     }
   }
 
-  // 复用一套 ARGB 滑块 UI，滑动后立即刷新窗口背景色。
+ // [StartExclude backgroundColor_srart]
   @Builder
   @Builder
   private buildColorSlider(title: string, value: number, onChange: (value: number) => void) {
@@ -140,7 +156,6 @@ struct Index {
     .backgroundColor('#FFFFFF')
     .borderRadius(12)
   }
-
   build() {
     Column({ space: 8 }) {
       Column({ space: 4 }) {
@@ -253,5 +268,6 @@ struct Index {
     .height('100%')
     .padding(12)
   }
-
+   // [EndExclude backgroundColor_srart]
 }
+// [End backgroundColor_srart]
