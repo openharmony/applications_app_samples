@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start backgroundColor_srart]
 import { ColorMetrics, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -157,6 +157,7 @@ struct Index {
   }
 
   build() {
+    // [StartExclude backgroundColor_srart]
     Scroll() {
       Column({ space: 16 }) {
         Column({ space: 10 }) {
@@ -251,4 +252,6 @@ struct Index {
     .width('100%')
     .height('100%')
   }
+  // [EndExclude backgroundColor_srart]
 }
+// [End backgroundColor_srart]
