@@ -17,3 +17,4 @@ import { audio } from '@kit.AudioKit';
 export const AudioSessionActive: () => number;
 export const AudioSessionDeactive: () => number;
 export const SetAudioSessionBehavior: () => number;
+export const SetAudioSessionCapturerMuteHint: () => string;

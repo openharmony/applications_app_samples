@@ -19,6 +19,7 @@
 #include "ohaudio/native_audiorenderer.h"
 #include "ohaudio/native_audiostreambuilder.h"
 #include <sstream>
+#include <vector>
 
 // [Start csessionactive_process]
 #include <cstdint>
@@ -102,6 +103,37 @@ void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
     }
 }
 // [StartExclude clistencallback_process]
+
+void AudioSessionCapturerOnReadData(OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t bufferLen)
+{
+    // 此处仅用于保持录音流运行，业务侧可按需处理录音数据。
+}
+
+OH_AudioStream_Result CreateAndStartSessionCapturer(OH_AudioCapturer **capturer)
+{
+    OH_AudioStreamBuilder *builder = nullptr;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
+    if (result != AUDIOSTREAM_SUCCESS || builder == nullptr) {
+        return result;
+    }
+
+    const int samplingRate = 48000;
+    OH_AudioStreamBuilder_SetSamplingRate(builder, samplingRate);
+    const int channelCount = 2;
+    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+    OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
+    OH_AudioStreamBuilder_SetCapturerReadDataCallback(builder, AudioSessionCapturerOnReadData, nullptr);
+
+    result = OH_AudioStreamBuilder_GenerateCapturer(builder, capturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    if (result != AUDIOSTREAM_SUCCESS || capturer == nullptr || *capturer == nullptr) {
+        return result;
+    }
+
+    return OH_AudioCapturer_Start(*capturer);
+}
 
 napi_value AudioSessionActive(napi_env env, napi_callback_info info)
 {
@@ -234,6 +266,62 @@ napi_value SetAudioSessionBehavior(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+napi_value SetAudioSessionCapturerMuteHint(napi_env env, napi_callback_info info)
+{
+    std::stringstream ss;
+    OH_AudioCommon_Result managerResult = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
+    if (managerResult != AUDIOCOMMON_RESULT_SUCCESS || audioSessionManager == nullptr) {
+        ss << "获取音频会话管理器失败，错误码: " << managerResult;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
+    OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
+    OH_AudioCommon_Result activeResult = OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
+    if (activeResult != AUDIOCOMMON_RESULT_SUCCESS) {
+        ss << "激活音频会话失败，错误码: " << activeResult;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    OH_AudioCapturer *capturer = nullptr;
+    OH_AudioStream_Result startResult = CreateAndStartSessionCapturer(&capturer);
+    if (startResult != AUDIOSTREAM_SUCCESS || capturer == nullptr) {
+        if (capturer != nullptr) {
+            OH_AudioCapturer_Release(capturer);
+        }
+        ss << "启动会话录音流失败，错误码: " << startResult;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    // [Start cset_capturer_mute_hint]
+    bool mute = true;
+    OH_AudioCommon_Result setResult = OH_AudioSessionManager_SetCaptureMuteHint(audioSessionManager, mute);
+    if (setResult != AUDIOCOMMON_RESULT_SUCCESS) {
+        // 根据返回值处理异常，如AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE。
+    }
+
+    mute = false;
+    OH_AudioCommon_Result unsetResult = OH_AudioSessionManager_SetCaptureMuteHint(audioSessionManager, mute);
+    // [End cset_capturer_mute_hint]
+
+    OH_AudioCapturer_Stop(capturer);
+    OH_AudioCapturer_Release(capturer);
+
+    ss << "上报会话级录音流静音提示完成（接口不实际触发静音）\n";
+    ss << "SetCaptureMuteHint(true) 返回值: " << setResult << "\n";
+    ss << "SetCaptureMuteHint(false) 返回值: " << unsetResult;
+
+    napi_value retVal;
+    napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+    return retVal;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -241,6 +329,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"AudioSessionActive", nullptr, AudioSessionActive, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"AudioSessionDeactive", nullptr, AudioSessionDeactive, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"SetAudioSessionBehavior", nullptr, SetAudioSessionBehavior, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"SetAudioSessionCapturerMuteHint", nullptr, SetAudioSessionCapturerMuteHint, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
