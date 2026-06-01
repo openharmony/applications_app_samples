@@ -66,12 +66,10 @@ public:
         if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
-        // [Start selected_index]
         ArkUI_NumberValue selectedIndexValue = {.u32 = index};
         ArkUI_AttributeItem selectedIndexItem = {&selectedIndexValue,
                                                  sizeof(selectedIndexValue) / sizeof(ArkUI_NumberValue)};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_OPTION_SELECTED_INDEX, &selectedIndexItem);
-        // [End selected_index]
     }
 
     void SetCanLoop(bool canLoop)
@@ -93,29 +91,6 @@ public:
         ArkUI_AttributeItem enableHapticFeedbackItem = {&enableHapticFeedbackValue,
                                                         sizeof(enableHapticFeedbackValue) / sizeof(ArkUI_NumberValue)};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_ENABLE_HAPTIC_FEEDBACK, &enableHapticFeedbackItem);
-    }
-
-    void SetDisplayedItemCount(int32_t count)
-    {
-        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
-            return;
-        }
-        // [Start display_item_count]
-        ArkUI_NumberValue displayedCountValue = {.i32 = count};
-        ArkUI_AttributeItem displayedCountItem = {&displayedCountValue,
-                                                  sizeof(displayedCountValue) / sizeof(ArkUI_NumberValue)};
-        nodeApi_->setAttribute(GetHandle(), NODE_PICKER_DISPLAYED_ITEM_COUNT, &displayedCountItem);
-        // [End display_item_count]
-    }
-
-    void SetItemHeight(float heightVp)
-    {
-        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
-            return;
-        }
-        ArkUI_NumberValue itemHeightValue = {.f32 = heightVp};
-        ArkUI_AttributeItem itemHeightItem = {&itemHeightValue, sizeof(itemHeightValue) / sizeof(ArkUI_NumberValue)};
-        nodeApi_->setAttribute(GetHandle(), NODE_PICKER_ITEM_HEIGHT, &itemHeightItem);
     }
 
     void SetSelectionIndicatorBackground(uint32_t backgroundColor, float cornerRadius = 10.0f)

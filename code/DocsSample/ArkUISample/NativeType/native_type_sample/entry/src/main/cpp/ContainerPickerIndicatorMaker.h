@@ -92,7 +92,7 @@ public:
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_ENABLE_HAPTIC_FEEDBACK, &enableHapticFeedbackItem);
     }
 
-    // [Start selection_indicator_background]
+    // [Start set_indicator_background]
     void SetSelectionIndicatorBackground(uint32_t backgroundColor, float cornerRadius = 10.0f)
     {
         if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
@@ -112,8 +112,9 @@ public:
         ArkUI_AttributeItem selectionIndicatorItem = {.object = indicatorStyle};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_SELECTION_INDICATOR, &selectionIndicatorItem);
     }
-    // [End selection_indicator_background]
+    // [End set_indicator_background]
 
+    // [Start set_indicator_divider]
     void SetSelectionIndicatorDivider(uint32_t dividerColor, float strokeWidth = 2.0f, float startMargin = 20.0f,
                                       float endMargin = 20.0f)
     {
@@ -125,7 +126,6 @@ public:
         if (indicatorStyle == nullptr) {
             return;
         }
-        // [Start selection_indicator]
         ArkUI_PickerIndicatorDivider divider = {.strokeWidth = strokeWidth,
                                                 .dividerColor = dividerColor,
                                                 .startMargin = startMargin,
@@ -133,8 +133,8 @@ public:
         OH_ArkUI_PickerIndicatorStyle_ConfigureDivider(indicatorStyle, &divider);
         ArkUI_AttributeItem selectionIndicatorItem = {.object = indicatorStyle};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_SELECTION_INDICATOR, &selectionIndicatorItem);
-        // [End selection_indicator]
     }
+    // [End set_indicator_divider]
 
     // ========================================
     // 公共辅助方法

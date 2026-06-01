@@ -30,6 +30,8 @@ constexpr float K_CONTAINER_MARGIN = 20.0f;
 constexpr uint32_t K_TEXT_COLOR = 0xFF182431;
 constexpr float K_TEXT_FONT_SIZE = 16.0f;
 constexpr int32_t K_DATA_COUNT = 10;
+constexpr int32_t K_VISIBLE_COUNT = 5;
+constexpr float K_ITEM_HEIGHT = 48.0f;
 } // namespace
 
 // ---------- 数据结构 ----------
@@ -149,6 +151,30 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
     }
 }
 
+static void SetDisplayedItemCount(int32_t count)
+{
+    if (!g_state || !g_state->api || !g_state->pickerNode) {
+        return;
+    }
+    // [Start display_item_count]
+    ArkUI_NumberValue itemCountValue = {.i32 = count};
+    ArkUI_AttributeItem itemCountItem = {&itemCountValue, sizeof(itemCountValue) / sizeof(ArkUI_NumberValue)};
+    g_state->api->setAttribute(g_state->pickerNode, NODE_PICKER_DISPLAYED_ITEM_COUNT, &itemCountItem);
+    // [End display_item_count]
+}
+
+static void SetItemHeight(float heightVp)
+{
+    if (!g_state || !g_state->api || !g_state->pickerNode) {
+        return;
+    }
+    // [Start item_height]
+    ArkUI_NumberValue itemHeightValue = {.f32 = heightVp};
+    ArkUI_AttributeItem itemHeightItem = {&itemHeightValue, sizeof(itemHeightValue) / sizeof(ArkUI_NumberValue)};
+    g_state->api->setAttribute(g_state->pickerNode, NODE_PICKER_ITEM_HEIGHT, &itemHeightItem);
+    // [End item_height]
+}
+
 // ---------- 创建Picker组件 ----------
 // [Start create_picker]
 static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
@@ -164,6 +190,8 @@ static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
     ArkUI_AttributeItem widthItem = {&widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
     api->setAttribute(picker, NODE_WIDTH_PERCENT, &widthItem);
     UpdatePickerSelectedIndex();
+    SetDisplayedItemCount(K_VISIBLE_COUNT);
+    SetItemHeight(K_ITEM_HEIGHT);
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_CHANGE, K_ON_CHANGE_EVENT_ID, nullptr);
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_SCROLL_STOP, K_ON_SCROLL_STOP_EVENT_ID, nullptr);
     if (g_state) {

@@ -77,9 +77,9 @@ static void ConfigurePicker(const std::shared_ptr<ContainerPickerMonthMaker> &pi
     picker->SetPickerWidthPercent(K_PICKER_WIDTH_RATIO);
     picker->SetCanLoop(K_CAN_LOOP);
     picker->SetHapticFeedback(K_HAPTIC_FEEDBACK);
-    //[Start set_selection_indicator]
+    // [Start set_selection_indicator]
     picker->SetSelectionIndicatorDivider(0xFF0000FF, 2.0f, 20.0f, 20.0f);
-    //[End set_selection_indicator]
+    // [End set_selection_indicator]
     ArkUI_NativeNodeAPI_1 *api = picker->GetNodeAPI();
     if (api && data) {
         for (size_t i = 0; i < data->size(); ++i) {
