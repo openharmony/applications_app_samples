@@ -24,7 +24,6 @@
 #include "pcm_file_utils.h"
 #include "manual_rendering.h"
 
-
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_manual_cpp]";
 const int CHANNEL_COUNT = 2;
@@ -271,12 +270,12 @@ static void RunSeparationPipeline(OH_AudioSuitePipeline *audioSuitePipeline, con
                         SAMPLE_FORMAT_S16LE_BYTE_SIZE / MS_PER_SECOND;
     // 用于接收渲染后的输出音频数据。
     OH_AudioDataArray audioDataArray;
-    int32_t outPutNum = 2;
-    audioDataArray.audioDataArray = (void **)malloc(outPutNum * sizeof(void *));
-    for (int32_t i = 0; i < outPutNum; i++) {
+    int32_t outputNum = 2;
+    audioDataArray.audioDataArray = (void **)malloc(outputNum * sizeof(void *));
+    for (int32_t i = 0; i < outputNum; i++) {
         audioDataArray.audioDataArray[i] = (void *)malloc(frameSize);
     }
-    audioDataArray.arraySize = outPutNum;
+    audioDataArray.arraySize = outputNum;
     audioDataArray.requestFrameSize = frameSize;
     int32_t responseSize = 0;
     bool finished = false;
@@ -293,7 +292,7 @@ static void RunSeparationPipeline(OH_AudioSuitePipeline *audioSuitePipeline, con
         SafeCloseFile(fpVocals, vocalsPath);
         SafeCloseFile(fpAccompaniment, accompanimentPath);
         OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
-        for (int32_t i = 0; i < outPutNum; i++) {
+        for (int32_t i = 0; i < outputNum; i++) {
             free(audioDataArray.audioDataArray[i]);
         }
         free(audioDataArray.audioDataArray);
@@ -323,7 +322,7 @@ static void RunSeparationPipeline(OH_AudioSuitePipeline *audioSuitePipeline, con
     // [EndExclude audioSuite_StartSeparationPipeline]
     OH_AudioSuiteEngine_StopPipeline(audioSuitePipeline);
 
-    for (int32_t i = 0; i < outPutNum; i++) {
+    for (int32_t i = 0; i < outputNum; i++) {
         free(audioDataArray.audioDataArray[i]);
         audioDataArray.audioDataArray[i] = nullptr;
     }
@@ -505,7 +504,7 @@ void BaseEditorEffect(AudioDataInfo *audioInfo, const char *newFilePath)
     // 创建引擎。
     OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
-    
+
     // 创建管线。
     OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
