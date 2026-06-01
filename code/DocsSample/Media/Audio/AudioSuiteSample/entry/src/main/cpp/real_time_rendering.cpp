@@ -97,7 +97,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
     // 示例接口未包含返回值校验，实际使用时请务必添加校验逻辑。
     // 创建引擎。
     OH_AudioSuiteEngine_Create(&audioSuiteEngine);
-    
+
     // 创建实时预览的管线。
     OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
@@ -173,7 +173,7 @@ void EqualizerEffect(AudioDataInfo *audioInfo)
 
     // 开发者可以自行创建renderer流，播放音频。
     // ...
-    
+
     // [StartExclude audioSuite_StartRealTimeRenderingPipeline]
     // 设置声道布局。
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRendererEqualizerEffect);
