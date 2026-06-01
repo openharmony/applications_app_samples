@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
@@ -45,13 +45,26 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
 
-      try {
-        const mainWindow = windowStage.getMainWindowSync();
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        if (err.code) {
+          hilog.error(DOMAIN, 'testTag', 'Failed to obtain the main window. Cause: %{public}s', JSON.stringify(err));
+          return;
+        }
+
+        const mainWindow: window.Window = data;
         AppStorage.setOrCreate<window.Window>('mainWindow', mainWindow);
         mainWindow.setWindowBackgroundColor('#00000000');
-      } catch (exception) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to initialize window: %{public}s', JSON.stringify(exception));
-      }
+        // 设置自由窗口容器在激活态和非激活态下的颜色。
+        const activeColor: string = '#00000000';
+        const inactiveColor: string = '#FF000000';
+        try {
+          mainWindow.setWindowContainerModalColor(activeColor, inactiveColor);
+          hilog.info(DOMAIN, 'testTag', 'Succeeded in setting window container color.');
+        } catch (exception) {
+          hilog.error(DOMAIN, 'testTag', 'Failed to set the window container color. Cause: %{public}s',
+            JSON.stringify(exception));
+        }
+      });
     });
   }
 
