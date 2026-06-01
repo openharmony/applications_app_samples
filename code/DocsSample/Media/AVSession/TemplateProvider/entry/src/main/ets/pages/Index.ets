@@ -12,9 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2026-2026. All rights reserved.
- */
 
 @Entry
 @Component

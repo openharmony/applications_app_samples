@@ -26,7 +26,9 @@
 ```
 entry/src/main/ets/
 |---entryAbility
-|---|---EntryAbility.ets                             //逻辑实现
+|---|---EntryAbility.ets                             //主界面
+|---manager
+|---|---TemplateManager.ets                             //逻辑实现
 ```
 
 ### 具体实现
