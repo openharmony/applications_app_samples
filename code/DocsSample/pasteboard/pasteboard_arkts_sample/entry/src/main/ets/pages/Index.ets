@@ -122,7 +122,7 @@ struct Index {
           .onClick(async () => {
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
-              hilog.info(0xFF00, '[Sample_pasteboard]', 'No neded to bring up the permission pop-up window');
+              hilog.info(0xFF00, '[Sample_pasteboard]', 'No need to bring up the permission pop-up window');
               return;
             }
             let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -135,7 +135,7 @@ struct Index {
                   // 用户授权，使用get操作读取剪贴板内容。
                   // [StartExclude pasteboard_permission]
                   try {
-                    this.text = await TestJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+                    this.text = await TestJs.getPlainData()
                   } catch (err) {
                     this.printLog('get failed.');
                   }
