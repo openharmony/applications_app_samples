@@ -110,7 +110,8 @@ struct Index {
 
     try {
       const alpha = Math.round(this.alpha) / 255;
-      const colorMetrics = ColorMetrics.rgba(Math.round(this.red), Math.round(this.green), Math.round(this.blue), alpha);
+      const colorMetrics = ColorMetrics.rgba(Math.round(this.red), Math.round(this.green), 
+                            Math.round(this.blue), alpha);
       this.mainWindow.setWindowBackgroundColor(colorMetrics);
       this.applyModeText = 'Current mode: ColorMetrics.rgba(...)';
       this.statusText = `setWindowBackgroundColor(ColorMetrics.rgba(${Math.round(this.red)}, ${Math.round(this.green)}, ${Math.round(this.blue)}, ${alpha.toFixed(2)})) success`;
