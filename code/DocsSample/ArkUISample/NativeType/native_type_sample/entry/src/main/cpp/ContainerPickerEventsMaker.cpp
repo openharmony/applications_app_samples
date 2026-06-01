@@ -159,7 +159,6 @@ static ArkUI_NodeHandle CreatePicker(ArkUI_NativeNodeAPI_1 *api)
     // [Start on_picker_change]
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_CHANGE, K_ON_CHANGE_EVENT_ID, nullptr);
     // [End on_picker_change]
-
     // [Start on_scroll_stop]
     api->registerNodeEvent(picker, NODE_PICKER_EVENT_ON_SCROLL_STOP, K_ON_SCROLL_STOP_EVENT_ID, nullptr);
     // [End on_scroll_stop]
