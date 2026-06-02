@@ -12,14 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start backgroundColor1_srart]
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+  // [StartExclude backgroundColor1_srart]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -32,7 +34,7 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
+  // [EndExclude backgroundColor1_srart]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -45,16 +47,29 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
 
-      try {
-        const mainWindow = windowStage.getMainWindowSync();
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        if (err.code) {
+          hilog.error(DOMAIN, 'testTag', 'Failed to obtain the main window. Cause: %{public}s', JSON.stringify(err));
+          return;
+        }
+
+        const mainWindow: window.Window = data;
         AppStorage.setOrCreate<window.Window>('mainWindow', mainWindow);
         mainWindow.setWindowBackgroundColor('#00000000');
-      } catch (exception) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to initialize window: %{public}s', JSON.stringify(exception));
-      }
+        // 设置自由窗口容器在激活态和非激活态下的颜色。
+        const activeColor: string = '#00000000';
+        const inactiveColor: string = '#FF000000';
+        try {
+          mainWindow.setWindowContainerModalColor(activeColor, inactiveColor);
+          hilog.info(DOMAIN, 'testTag', 'Succeeded in setting window container color.');
+        } catch (exception) {
+          hilog.error(DOMAIN, 'testTag', 'Failed to set the window container color. Cause: %{public}s',
+            JSON.stringify(exception));
+        }
+      });
     });
   }
-
+  // [StartExclude backgroundColor1_srart]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     AppStorage.delete('mainWindow');
@@ -71,4 +86,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude backgroundColor1_srart]
 }
+  // [End backgroundColor1_srart]

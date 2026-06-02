@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start ImmersiveLayout_srart]
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -20,6 +20,7 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+  // [StartExclude ImmersiveLayout_srart]
   private mainWindow?: window.Window;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -57,6 +58,7 @@ export default class EntryAbility extends UIAbility {
   onBackground(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+    // [EndExclude ImmersiveLayout_srart]
 
   private async initializeMainWindow(windowStage: window.WindowStage): Promise<void> {
     try {
@@ -129,3 +131,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
+// [End ImmersiveLayout_srart]

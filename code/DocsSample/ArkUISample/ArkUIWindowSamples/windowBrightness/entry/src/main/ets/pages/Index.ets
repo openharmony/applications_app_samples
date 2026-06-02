@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start windowBrightness_srart]
+
 import { window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -153,3 +155,4 @@ struct Index {
     .alignItems(HorizontalAlign.Start)
   }
 }
+// [End windowBrightness_srart]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+ // [Start backgroundColor_srart]
 import { ColorMetrics, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -43,7 +44,7 @@ struct Index {
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
-
+ // [StartExclude backgroundColor_srart]
   // 滑块变化时默认使用 string 形式更新窗口背景色。
   private applyWindowBackgroundColor(): void {
     if (!this.mainWindow) {
@@ -99,8 +100,8 @@ struct Index {
       hilog.error(DOMAIN, 'backgroundColor', this.statusText);
     }
   }
-
-  // 直接演示用 ColorMetrics.rgba(...) 设置窗口背景色。
+ // [EndExclude backgroundColor_srart]
+  // 直接用 ColorMetrics.rgba(...) 设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
@@ -109,8 +110,8 @@ struct Index {
 
     try {
       const alpha = Math.round(this.alpha) / 255;
-      const colorMetrics = 
-                      ColorMetrics.rgba(Math.round(this.red), Math.round(this.green), Math.round(this.blue), alpha);
+      const colorMetrics = ColorMetrics.rgba(Math.round(this.red), Math.round(this.green), 
+                            Math.round(this.blue), alpha);
       this.mainWindow.setWindowBackgroundColor(colorMetrics);
       this.applyModeText = 'Current mode: ColorMetrics.rgba(...)';
       this.statusText = `setWindowBackgroundColor(ColorMetrics.rgba(${Math.round(this.red)}, ${Math.round(this.green)}, ${Math.round(this.blue)}, ${alpha.toFixed(2)})) success`;
@@ -121,18 +122,19 @@ struct Index {
     }
   }
 
-  // 复用一套 ARGB 滑块 UI，滑动后立即刷新窗口背景色。
+ // [StartExclude backgroundColor_srart]
+  @Builder
   @Builder
   private buildColorSlider(title: string, value: number, onChange: (value: number) => void) {
-    Column({ space: 8 }) {
+    Column({ space: 4 }) {
       Row() {
         Text(title)
-          .fontSize(22)
+          .fontSize(18)
           .fontWeight(FontWeight.Bold)
-          .width(36)
+          .width(28)
 
         Text(`${Math.round(value)}`)
-          .fontSize(16)
+          .fontSize(14)
           .fontColor('#666666')
           .layoutWeight(1)
           .textAlign(TextAlign.End)
@@ -151,104 +153,122 @@ struct Index {
         })
     }
     .width('100%')
-    .padding(16)
+    .padding({ left: 12, right: 12, top: 8, bottom: 8 })
     .backgroundColor('#FFFFFF')
-    .borderRadius(18)
+    .borderRadius(12)
   }
-
   build() {
-    Scroll() {
-      Column({ space: 16 }) {
-        Column({ space: 10 }) {
-          Text('当前窗口背景色：')
-            .fontSize(18)
-            .fontColor('#666666')
-            .width('100%')
-            .textAlign(TextAlign.Start)
+    Column({ space: 8 }) {
+      Column({ space: 4 }) {
+        Text('Current Window Background')
+          .fontSize(16)
+          .fontColor('#666666')
+          .width('100%')
+          .textAlign(TextAlign.Start)
 
-          Text(this.getColorValue())
-            .fontSize(34)
-            .fontWeight(FontWeight.Bold)
-            .width('100%')
-            .textAlign(TextAlign.Start)
+        Text(this.getColorValue())
+          .fontSize(28)
+          .fontWeight(FontWeight.Bold)
+          .width('100%')
+          .textAlign(TextAlign.Start)
 
-          Text(this.statusText)
-            .fontSize(13)
-            .fontColor('#666666')
-            .width('100%')
-            .textAlign(TextAlign.Start)
+        Text(this.statusText)
+          .fontSize(11)
+          .fontColor('#666666')
+          .width('100%')
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .textAlign(TextAlign.Start)
 
-          Text(this.applyModeText)
-            .fontSize(13)
-            .fontColor('#666666')
-            .width('100%')
-            .textAlign(TextAlign.Start)
-        }
-        .width('100%')
-        .padding(20)
-        .borderRadius(24)
+        Text(this.applyModeText)
+          .fontSize(11)
+          .fontColor('#666666')
+          .width('100%')
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .textAlign(TextAlign.Start)
+      }
+      .width('100%')
+      .padding({ left: 12, right: 12, top: 10, bottom: 10 })
+      .borderRadius(12)
 
-        this.buildColorSlider('A', this.alpha, (value: number) => {
-          this.alpha = value;
-        })
+      this.buildColorSlider('A', this.alpha, (value: number) => {
+        this.alpha = value;
+      })
 
-        this.buildColorSlider('R', this.red, (value: number) => {
-          this.red = value;
-        })
+      this.buildColorSlider('R', this.red, (value: number) => {
+        this.red = value;
+      })
 
-        this.buildColorSlider('G', this.green, (value: number) => {
-          this.green = value;
-        })
+      this.buildColorSlider('G', this.green, (value: number) => {
+        this.green = value;
+      })
 
-        this.buildColorSlider('B', this.blue, (value: number) => {
-          this.blue = value;
-        })
+      this.buildColorSlider('B', this.blue, (value: number) => {
+        this.blue = value;
+      })
 
-        Column({ space: 10 }) {
-          Text('设置方式')
-            .fontSize(18)
-            .fontWeight(FontWeight.Medium)
-            .width('100%')
-            .textAlign(TextAlign.Start)
+      Column({ space: 6 }) {
+        Text('Set By')
+          .fontSize(16)
+          .fontWeight(FontWeight.Medium)
+          .width('100%')
+          .textAlign(TextAlign.Start)
 
-          Button('用 string 设置')
-            .width('100%')
+        Row({ space: 8 }) {
+          Button('String')
+            .layoutWeight(1)
+            .height(34)
+            .fontSize(12)
             .onClick(() => {
               this.applyByString();
             })
 
-          Button('用 Color 枚举设置 Transparent')
-            .width('100%')
+          Button('Transparent')
+            .layoutWeight(1)
+            .height(34)
+            .fontSize(12)
             .onClick(() => {
               this.applyByColorEnum(Color.Transparent, 'Color.Transparent');
             })
+        }
+        .width('100%')
 
-          Button('用 Color 枚举设置 Black')
-            .width('100%')
+        Row({ space: 8 }) {
+          Button('Black')
+            .layoutWeight(1)
+            .height(34)
+            .fontSize(12)
             .onClick(() => {
               this.applyByColorEnum(Color.Black, 'Color.Black');
             })
 
-          Button('用 Color 枚举设置 White')
-            .width('100%')
+          Button('White')
+            .layoutWeight(1)
+            .height(34)
+            .fontSize(12)
             .onClick(() => {
               this.applyByColorEnum(Color.White, 'Color.White');
             })
-
-          Button('用 ColorMetrics 设置')
-            .width('100%')
-            .onClick(() => {
-              this.applyByColorMetrics();
-            })
         }
         .width('100%')
-        .padding(16)
-        .borderRadius(24)
+
+        Button('ColorMetrics')
+          .width('100%')
+          .height(34)
+          .fontSize(12)
+          .onClick(() => {
+            this.applyByColorMetrics();
+          })
       }
       .width('100%')
-      .padding(20)
+      .padding({ left: 12, right: 12, top: 8, bottom: 8 })
+      .borderRadius(12)
     }
     .width('100%')
     .height('100%')
+    .padding(12)
   }
+   // [EndExclude backgroundColor_srart]
 }
+// [End backgroundColor_srart]
