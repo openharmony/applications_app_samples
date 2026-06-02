@@ -220,7 +220,7 @@ bool ProcessAudioData(AudioConverterData *audioData, int32_t estimatedOutputSize
             }
         }
         // 检查是否所有输入数据已结束，当totalReadSize >= bufferSize时，表示已读取完所有输入数据。
-    } while (outputSize > 0 || !(audioData->inputAudioInfo.totalReadSize >= audioData->inputAudioInfo.bufferSize));
+    } while (outputSize > 0 || audioData->inputAudioInfo.totalReadSize < audioData->inputAudioInfo.bufferSize);
 
     delete[] processBuffer;
     processBuffer = nullptr;
