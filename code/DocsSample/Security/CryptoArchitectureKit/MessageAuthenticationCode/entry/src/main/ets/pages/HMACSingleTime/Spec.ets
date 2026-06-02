@@ -18,8 +18,8 @@ import { buffer } from '@kit.ArkTS';
 
 async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-  let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
-  let symKey = await aesGenerator.convertKey(symKeyBlob);
+  let hmacGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
+  let symKey = await hmacGenerator.convertKey(symKeyBlob);
   console.info('convertKey success');
   return symKey;
 }
