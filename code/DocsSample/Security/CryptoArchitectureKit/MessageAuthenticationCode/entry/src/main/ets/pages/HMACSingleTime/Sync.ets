@@ -18,34 +18,27 @@ import { buffer } from '@kit.ArkTS';
 
 function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-  let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
-  let symKey = aesGenerator.convertKeySync(symKeyBlob);
+  let hmacGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
+  let symKey = hmacGenerator.convertKeySync(symKeyBlob);
   console.info('[Sync]convertKey result: success.');
   return symKey;
 }
 
-function doLoopHmacBySync() {
+function doHmacBySync() {
   // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
   let keyData = new Uint8Array(buffer.from('12345678abcdefgh', 'utf-8').buffer);
   let key = genSymKeyByData(keyData);
   let macAlgName = 'SHA256'; // 摘要算法名
+  let message = 'hmacTestMessage'; // 待进行HMAC的数据
   let mac = cryptoFramework.createMac(macAlgName);
-  // 假设信息总共43字节，根据utf-8解码后，也是43字节
-  let messageText = 'aaaaa.....bbbbb.....ccccc.....ddddd.....eee';
-  let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-  let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
   mac.initSync(key);
-  for (let i = 0; i < messageData.length; i += updateLength) {
-    let updateMessage = messageData.subarray(i, i + updateLength);
-    let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-    mac.updateSync(updateMessageBlob);
-  }
-  let macOutput = mac.doFinalSync();
-  console.info('[Sync]HMAC result: ' + macOutput.data);
+  // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+  mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
+  let macResult = mac.doFinalSync();
+  console.info('[Sync]HMAC result: ' + macResult.data);
   let macLen = mac.getMacLength();
   console.info('HMAC len: ' + macLen);
 }
-
 
 // [End message_authentication_code_calculated_as_fragmented_hmac_sync]
 @Entry
@@ -60,7 +53,7 @@ struct Index {
         .width('70%')
         .onClick(() => {
           try {
-            doLoopHmacBySync();
+            doHmacBySync();
             this.message = 'SingleTime Sync Success';
           } catch {
             this.message = 'SingleTime Sync Fail';

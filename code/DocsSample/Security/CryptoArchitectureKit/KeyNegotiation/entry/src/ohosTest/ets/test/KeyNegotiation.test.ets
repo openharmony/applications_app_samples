@@ -51,10 +51,10 @@ export default function keyNegotiationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      const button2 = await driver.findComponent(ON.text('Call EDCH Async'));
+      const button2 = await driver.findComponent(ON.text('Call ECDH Async'));
       await button2.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('EDCH Async Success'));
+      await driver.assertComponentExist(ON.text('ECDH Async Success'));
       console.info('uitest: testKeyNegotiation001 end');
       await driver.pressBack();
     })
@@ -69,10 +69,10 @@ export default function keyNegotiationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      const button2 = await driver.findComponent(ON.text('Call EDCH Sync'));
+      const button2 = await driver.findComponent(ON.text('Call ECDH Sync'));
       await button2.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('EDCH Sync Success'));
+      await driver.assertComponentExist(ON.text('ECDH Sync Success'));
       console.info('uitest: testKeyNegotiation002 end');
       await driver.pressBack();
     })
