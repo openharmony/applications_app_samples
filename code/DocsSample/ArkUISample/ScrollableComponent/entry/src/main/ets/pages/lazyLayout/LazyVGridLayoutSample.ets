@@ -14,8 +14,10 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start lazy_grid_gap]
 import { LengthMetrics } from '@kit.ArkUI';
 
+// [StartExclude lazy_grid_gap]
 @Entry
 @Component
 export struct LazyVGridLayoutSample {
@@ -37,9 +39,12 @@ export struct LazyVGridLayoutSample {
         // 请将$r('app.string.lazyVGridLayout_columns_equal')替换为实际资源文件
         // 在本示例中该资源文件的value值为"设置多列等宽的网格示例"
         ComponentCard({ title: $r('app.string.lazyVGridLayout_columns_equal') }) {
+          // [Start create_lazy_grid]
           Scroll() {
-            // [Start build_a_lazy_vGrid]
+            // [Start lazy_grid_columns_template]
             LazyVGridLayout() {
+              // [StartExclude create_lazy_grid]
+              // [StartExclude lazy_grid_columns_template]
               ForEach(this.arr1, (item: number) => {
                 Text()
                   .height(64)
@@ -48,13 +53,18 @@ export struct LazyVGridLayoutSample {
                   .backgroundColor('#ffe0e2e4')
                   .textAlign(TextAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_grid_columns_template]
+              // [EndExclude create_lazy_grid]
             }
-            .columnsTemplate('1fr 1fr 1fr')
+            // [StartExclude create_lazy_grid]
+            .columnsTemplate('1fr 1fr 1fr') // 设置为3列，每列等宽
+            // [StartExclude lazy_grid_columns_template]
             .rowsGap(LengthMetrics.vp(10))
             .columnsGap(LengthMetrics.vp(10))
-            // [End build_a_lazy_vGrid]
+            // [EndExclude create_lazy_grid]
           }
           .scrollable(ScrollDirection.Vertical)
+          // [End create_lazy_grid]
           .layoutWeight(1)
         }
 
@@ -62,8 +72,11 @@ export struct LazyVGridLayoutSample {
         // 在本示例中该资源文件的value值为"设置多列不等宽的网格示例"
         ComponentCard({ title: $r('app.string.lazyVGridLayout_columns_unequal') }) {
           Scroll() {
-            // [Start build_a_lazy_vGrid]
+            // [EndExclude lazy_grid_gap]
+            // [EndExclude lazy_grid_columns_template]
             LazyVGridLayout() {
+              // [StartExclude lazy_grid_columns_template]
+              // [StartExclude lazy_grid_gap]
               ForEach(this.arr2, (item: number) => {
                 Text()
                   .height(64)
@@ -72,11 +85,16 @@ export struct LazyVGridLayoutSample {
                   .backgroundColor('#ffe0e2e4')
                   .textAlign(TextAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_grid_gap]
+              // [EndExclude lazy_grid_columns_template]
             }
-            .columnsTemplate('1fr 2fr')
+            // [StartExclude lazy_grid_gap]
+            .columnsTemplate('1fr 2fr') // 设置为2列，第一列占1份，第二列占2份
+            // [EndExclude lazy_grid_gap]
+            // [End lazy_grid_columns_template]
             .rowsGap(LengthMetrics.vp(10))
             .columnsGap(LengthMetrics.vp(10))
-            // [End build_a_lazy_vGrid]
+            // [End lazy_grid_gap]
           }
           .scrollable(ScrollDirection.Vertical)
           .layoutWeight(1)

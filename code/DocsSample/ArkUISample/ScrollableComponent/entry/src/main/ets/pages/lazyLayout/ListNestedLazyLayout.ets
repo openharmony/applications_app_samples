@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
+// [Start list_nested_lazy_layout]
+// [Start lazy_water_flow_load_data]
 import { LengthMetrics, LazyVWaterFlowLayout, LazyVWaterFlowLayoutAttribute } from '@kit.ArkUI';
 
+// [StartExclude lazy_water_flow_load_data]
 class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];
   protected dataArray: T[] = [];
@@ -69,8 +72,10 @@ class MyDataSource<T> extends BasicDataSource<T> {
 @Entry
 @Component
 export struct ListNestedLazyLayout {
-  private arr1: MyDataSource<number> = new MyDataSource<number>();
-  private arr2: MyDataSource<number> = new MyDataSource<number>();
+  // 网格区域数据源
+  private gridData: MyDataSource<number> = new MyDataSource<number>();
+  // 瀑布流区域数据源
+  private flowData: MyDataSource<number> = new MyDataSource<number>();
 
   private itemHeight(index: number): number {
     return 80 + (index * 37 % 121)
@@ -78,17 +83,21 @@ export struct ListNestedLazyLayout {
 
   aboutToAppear(): void {
     for (let i = 0; i < 6; i++) {
-      this.arr1.pushData(i);
+      this.gridData.pushData(i);
     }
     for (let i = 0; i < 100; i++) {
-      this.arr2.pushData(i);
+      this.flowData.pushData(i);
     }
   }
 
   build() {
+    // [StartExclude list_nested_lazy_layout]
     NavDestination() {
+      // [EndExclude list_nested_lazy_layout]
       Column() {
+        // [EndExclude lazy_water_flow_load_data]
         List({ space: 10 }) {
+          // [StartExclude lazy_water_flow_load_data]
           ListItem() {
             // 请将$r('app.string.list_nested_lazyLayout_grid')替换为实际资源文件
             // 在本示例中该资源文件的value值为"网格布局"
@@ -98,7 +107,7 @@ export struct ListNestedLazyLayout {
           }
 
           LazyVGridLayout() {
-            LazyForEach(this.arr1, (item: number) => {
+            LazyForEach(this.gridData, (item: number) => {
               Text('item' + item.toString())
                 .height(96)
                 .width('100%')
@@ -110,13 +119,15 @@ export struct ListNestedLazyLayout {
           .columnsTemplate('1fr 1fr 1fr')
           .rowsGap(LengthMetrics.vp(10))
           .columnsGap(LengthMetrics.vp(10))
+          // [StartExclude list_nested_lazy_layout]
           .onVisibleIndexesChange((start: number, end: number) => {
             console.info('LazyVGridLayout visible indexes: start: ' + start + ', end: ' + end);
           })
+          // [EndExclude list_nested_lazy_layout]
 
           LazyVGridLayout() {
-            LazyForEach(this.arr1, (item: number) => {
-              Text('item' + (this.arr1.totalCount() + item).toString())
+            LazyForEach(this.gridData, (item: number) => {
+              Text('item' + (this.gridData.totalCount() + item).toString())
                 .height(96)
                 .width('100%')
                 .borderRadius(5)
@@ -128,10 +139,12 @@ export struct ListNestedLazyLayout {
           .rowsGap(LengthMetrics.vp(10))
           .columnsGap(LengthMetrics.vp(10))
           .margin({ bottom: 16 })
+          // [StartExclude list_nested_lazy_layout]
           .onVisibleIndexesChange((start: number, end: number) => {
-            console.info('LazyVGridLayout visible indexes: start: ' + (this.arr1.totalCount() + start) + ', end: ' +
-              (this.arr1.totalCount() + end));
+            console.info('LazyVGridLayout visible indexes: start: ' + (this.gridData.totalCount() + start) + ', end: ' +
+              (this.gridData.totalCount() + end));
           })
+          // [EndExclude list_nested_lazy_layout]
 
           ListItem() {
             // 请将$r('app.string.list_nested_lazyLayout_waterFlow')替换为实际资源文件
@@ -141,14 +154,17 @@ export struct ListNestedLazyLayout {
               .fontColor(Color.Gray)
           }
 
+          // [EndExclude lazy_water_flow_load_data]
           LazyVWaterFlowLayout() {
-            LazyForEach(this.arr2, (item: number) => {
+            LazyForEach(this.flowData, (item: number) => {
+              // [StartExclude lazy_water_flow_load_data]
               Text('item' + item.toString())
                 .height(this.itemHeight(item))
                 .width('100%')
                 .borderRadius(5)
                 .backgroundColor('#ffe0e2e4')
                 .textAlign(TextAlign.Center)
+              // [EndExclude lazy_water_flow_load_data]
             }, (item: number) => item.toString())
           }
           .columnsTemplate('1fr 1fr')
@@ -157,15 +173,16 @@ export struct ListNestedLazyLayout {
           .onVisibleIndexesChange((start: number, end: number) => {
             console.info('LazyVWaterFlowLayout visible indexes: start: ' + start + ', end: ' + end);
             // 滚动监听：即将触底时提前加载更多数据
-            if (end + 20 >= this.arr2.totalCount()) {
-              let currentCount = this.arr2.totalCount();
+            if (end + 20 >= this.flowData.totalCount()) {
+              let currentCount = this.flowData.totalCount();
               for (let i = currentCount; i < currentCount + 100; i++) {
-                this.arr2.pushData(i);
+                this.flowData.pushData(i);
               }
             }
           })
         }
         .listDirection(Axis.Vertical)
+        // [End lazy_water_flow_load_data]
         .backgroundColor(Color.White)
         .borderRadius(12)
         .padding(12)
@@ -176,9 +193,12 @@ export struct ListNestedLazyLayout {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude list_nested_lazy_layout]
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.list_nested_lazyLayout_title')替换为实际资源文件
     // 在本示例中该资源文件的value值为"List嵌套懒加载布局容器"
     .title($r('app.string.list_nested_lazyLayout_title'))
   }
+  // [EndExclude list_nested_lazy_layout]
 }
+// [End list_nested_lazy_layout]
