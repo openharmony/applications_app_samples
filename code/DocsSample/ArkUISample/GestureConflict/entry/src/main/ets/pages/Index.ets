@@ -40,6 +40,11 @@ let demandList: listItem[] = [
     name: 'Preventing gesture participation in recognition',
     description: 'When the user presses, by controlling the participation status of the gesture recognizer in the response chain, efficient dynamic intervention of gesture processing is achieved.',
     router: 'Component/PreventGestureRecognition/PreventGestureRecognition'
+  },
+  {
+    name: 'Custom intercepting gesture collection',
+    description: 'Developers can intervene in the collection results through the onGestureCollectIntercept callback, and dynamically control the collection behavior by returning different intervention strategies.',
+    router: 'Component/InterceptGestureCollection/InterceptGestureCollection'
   }
 ];
 
