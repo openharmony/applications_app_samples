@@ -101,6 +101,10 @@
       "value": "@Extend使用场景2"
     },
     {
+      "name": "extend_support_ifelse",
+      "value": "@Extend支持if else语句转换"
+    },
+    {
       "name": "local",
       "value": "@Local装饰器：组件内部状态"
     },
