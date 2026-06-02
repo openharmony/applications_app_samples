@@ -39,12 +39,12 @@ struct Index {
       Button($r('app.string.ecdh_async'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/ECDH/EDCHAsync')
+          this.goToSample('pages/ECDH/ECDHAsync')
         })
       Button($r('app.string.ecdh_sync'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/ECDH/EDCHSync')
+          this.goToSample('pages/ECDH/ECDHSync')
         })
       Button($r('app.string.x25519_async'))
         .width('70%')

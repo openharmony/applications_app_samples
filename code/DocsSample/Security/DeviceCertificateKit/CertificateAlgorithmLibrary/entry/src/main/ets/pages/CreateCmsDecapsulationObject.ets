@@ -94,7 +94,7 @@ async function testCmsDecryptTest() {
     console.info('[XTS] decryptEnvelopedData result: success, decPlainText = ' + decPlainText);
     console.info('decryptEnvelopedData result: success.');
   } catch (error) {
-    console.error(`verifySignedData failed: errCode: ${error.code}, message: ${error.message}`);
+    console.error(`decryptEnvelopedData failed: errCode: ${error.code}, message: ${error.message}`);
   }
 }
 

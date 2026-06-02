@@ -93,7 +93,7 @@ export default function signingSignatureVerificationTest() {
       await driver.delayMs(1000);
       await button.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('PSSSignatureSegSuccess Result:false'));
+      await driver.assertComponentExist(ON.text('PSSSignatureSegSuccess Result:true'));
       console.info('uitest: testSigningSignatureVerificationTest004 end');
     })
 
@@ -107,7 +107,7 @@ export default function signingSignatureVerificationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('ECDSASignatureSuccess Result:false'));
+      await driver.assertComponentExist(ON.text('ECDSASignatureSuccess Result:true'));
       console.info('uitest: testSigningSignatureVerificationTest005 end');
     })
 
@@ -121,7 +121,7 @@ export default function signingSignatureVerificationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('SM2SignatureSuccess Result:false'));
+      await driver.assertComponentExist(ON.text('SM2SignatureSuccess Result:true'));
       console.info('uitest: testSigningSignatureVerificationTest006 end');
     })
     /**
