@@ -45,12 +45,12 @@
       "value": "Call DH Sync"
     },
     {
-      "name": "call_edch_async",
-      "value": "Call EDCH Async"
+      "name": "call_ecdh_async",
+      "value": "Call ECDH Async"
     },
     {
-      "name": "call_edch_sync",
-      "value": "Call EDCH Sync"
+      "name": "call_ecdh_sync",
+      "value": "Call ECDH Sync"
     },
     {
       "name": "call_x25519_async",
