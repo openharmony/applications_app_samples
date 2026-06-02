@@ -69,8 +69,7 @@ struct Index {
               currentAVSession = data;
             }
           });
-
-          //设置后台播放模式
+          // 设置后台播放模式
           if (currentAVSession !== undefined) {
             try {
               (currentAVSession as avSession.AVSession)
