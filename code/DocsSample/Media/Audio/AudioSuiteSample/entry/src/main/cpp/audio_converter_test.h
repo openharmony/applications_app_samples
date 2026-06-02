@@ -17,7 +17,7 @@
 #define AUDIO_CONVERTER_TEST_H
 
 #include <ohaudiosuite/native_audio_converter.h>
-#include "pcmFileUtils.h"
+#include "pcm_file_utils.h"
 
 // 格式转换测试数据结构（前向声明）
 struct AudioConverterTestData {

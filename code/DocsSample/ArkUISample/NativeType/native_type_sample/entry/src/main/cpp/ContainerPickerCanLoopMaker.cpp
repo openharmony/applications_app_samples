@@ -43,6 +43,7 @@ constexpr uint32_t K_BUTTON_BG_COLOR = 0xFF2196F3;
 constexpr uint32_t K_BUTTON_DISABLED_COLOR = 0xFF9E9E9E;
 } // namespace
 
+// [Start dynamic_modify]
 // ---------- 生成数据 ----------
 static std::vector<std::string> MakeData() { return {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}; }
 
@@ -244,3 +245,4 @@ ArkUI_NodeHandle ContainerPickerCanLoopMaker::CreateNativeNode()
     api->registerNodeEventReceiver(&OnEventReceive);
     return rootContainer;
 }
+// [End dynamic_modify]

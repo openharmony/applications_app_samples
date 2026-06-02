@@ -65,10 +65,12 @@ public:
         if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
+        // [Start selected_index]
         ArkUI_NumberValue selectedIndexValue = {.u32 = index};
         ArkUI_AttributeItem selectedIndexItem = {&selectedIndexValue,
                                                  sizeof(selectedIndexValue) / sizeof(ArkUI_NumberValue)};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_OPTION_SELECTED_INDEX, &selectedIndexItem);
+        // [End selected_index]
     }
 
     void SetCanLoop(bool canLoop)
@@ -76,9 +78,11 @@ public:
         if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
+        // [Start can_loop]
         ArkUI_NumberValue canLoopValue = {.i32 = canLoop ? 1 : 0};
         ArkUI_AttributeItem canLoopItem = {&canLoopValue, sizeof(canLoopValue) / sizeof(ArkUI_NumberValue)};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_CAN_LOOP, &canLoopItem);
+        // [End can_loop]
     }
 
     void SetHapticFeedback(bool enabled)
@@ -86,10 +90,12 @@ public:
         if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
+        // [Start enable_haptic_feedback]
         ArkUI_NumberValue enableHapticFeedbackValue = {.i32 = enabled ? 1 : 0};
         ArkUI_AttributeItem enableHapticFeedbackItem = {&enableHapticFeedbackValue,
                                                         sizeof(enableHapticFeedbackValue) / sizeof(ArkUI_NumberValue)};
         nodeApi_->setAttribute(GetHandle(), NODE_PICKER_ENABLE_HAPTIC_FEEDBACK, &enableHapticFeedbackItem);
+        // [End enable_haptic_feedback]
     }
 
     void SetSelectionIndicatorBackground(uint32_t backgroundColor, float cornerRadius = 10.0f)

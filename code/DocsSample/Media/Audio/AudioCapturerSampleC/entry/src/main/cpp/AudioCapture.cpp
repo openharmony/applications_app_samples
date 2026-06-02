@@ -317,6 +317,41 @@ napi_value CreateAudioCapturerLoopback(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+// 创建采集回环音效的录制流
+napi_value CreateAudioCapturerLoopbackEffect(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder;
+    OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
+
+    OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
+    OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
+    const int SAMPLING_RATE_48K = 48000;
+    OH_AudioStreamBuilder_SetSamplingRate(builder, SAMPLING_RATE_48K);
+    const int channelCount = 2;
+    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+    OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
+
+    // [Start SetCapturerLoopbackEffectEnabled]
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled != nullptr ?
+        OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(builder, true) :
+        AUDIOSTREAM_ERROR_ILLEGAL_STATE;
+    // [End SetCapturerLoopbackEffectEnabled]
+
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    std::stringstream ss;
+    ss << "创建采集回环音效的录制流" << (result == AUDIOSTREAM_SUCCESS ? "成功" : "失败") << "\n";
+    ss << "接口: OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled\n";
+    ss << "启用状态: true\n";
+    ss << "返回码: " << result;
+
+    napi_value retVal;
+    napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+    return retVal;
+}
+
 // 创建低时延模式录制流
 napi_value CreateLowLatencyModeCapturer(napi_env env, napi_callback_info info)
 {
@@ -404,6 +439,70 @@ napi_value CreateAudioRendererLoopback(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+// 设置录音流静音提示
+napi_value SetAudioCapturerMuteHint(napi_env env, napi_callback_info info)
+{
+    std::stringstream ss;
+    OH_AudioStreamBuilder* builder = nullptr;
+    OH_AudioCapturer* audioCapturer = nullptr;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
+    if (result != AUDIOSTREAM_SUCCESS || builder == nullptr) {
+        ss << "创建录制音频流构造器失败，错误码: " << result;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    const int SAMPLING_RATE_48K = 48000;
+    OH_AudioStreamBuilder_SetSamplingRate(builder, SAMPLING_RATE_48K);
+    const int channelCount = 2;
+    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+    OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
+    OH_AudioStreamBuilder_SetCapturerReadDataCallback(builder, MyOnReadData_NewAPI, nullptr);
+
+    result = OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    if (result != AUDIOSTREAM_SUCCESS || audioCapturer == nullptr) {
+        ss << "构造录制音频流失败，错误码: " << result;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    result = OH_AudioCapturer_Start(audioCapturer);
+    if (result != AUDIOSTREAM_SUCCESS) {
+        OH_AudioCapturer_Release(audioCapturer);
+        ss << "启动录制音频流失败，错误码: " << result;
+        napi_value retVal;
+        napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+        return retVal;
+    }
+
+    // [Start cset_mute_hint]
+    bool mute = true;
+    OH_AudioStream_Result setResult = OH_AudioCapturer_SetMuteHint(audioCapturer, mute);
+    if (setResult != AUDIOSTREAM_SUCCESS) {
+        // 根据返回值处理异常，如AUDIOSTREAM_ERROR_ILLEGAL_STATE。
+    }
+
+    mute = false;
+    OH_AudioStream_Result unsetResult = OH_AudioCapturer_SetMuteHint(audioCapturer, mute);
+    // [End cset_mute_hint]
+
+    OH_AudioCapturer_Stop(audioCapturer);
+    OH_AudioCapturer_Release(audioCapturer);
+
+    ss << "上报录音流静音提示完成（接口不实际触发静音）\n";
+    ss << "setMuteHint(true) 返回值: " << setResult << "\n";
+    ss << "setMuteHint(false) 返回值: " << unsetResult;
+
+    napi_value retVal;
+    napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+    return retVal;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -415,9 +514,13 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"CreateAudioCapturerLoopback", nullptr, CreateAudioCapturerLoopback, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"CreateAudioCapturerLoopbackEffect", nullptr, CreateAudioCapturerLoopbackEffect, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
         {"CreateLowLatencyModeCapturer", nullptr, CreateLowLatencyModeCapturer, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"CreateAudioRendererLoopback", nullptr, CreateAudioRendererLoopback, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"SetAudioCapturerMuteHint", nullptr, SetAudioCapturerMuteHint, nullptr, nullptr, nullptr, napi_default,
          nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

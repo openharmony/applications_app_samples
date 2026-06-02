@@ -51,8 +51,12 @@ export default function secureRandomNumberGenerationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('AsyncSuccess'));
+      const button2 = await driver.findComponent(ON.text('Call Await'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Await Success'));
       console.info('uitest: testSecureRandomNumberGeneration001 end');
+      await driver.pressBack();
     })
 
     /**
@@ -65,8 +69,12 @@ export default function secureRandomNumberGenerationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('SyncSuccess'));
+      const button2 = await driver.findComponent(ON.text('Call Sync'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Sync Success'));
       console.info('uitest: testSecureRandomNumberGeneration002 end');
+      await driver.pressBack();
     })
     /**
      * 点击按钮，安全随机数生成，调用native接口
@@ -77,6 +85,9 @@ export default function secureRandomNumberGenerationTest() {
       const button1 = await driver.findComponent(ON.text('Call Cpp Test'));
       await driver.delayMs(1000);
       await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call Cpp Test'));
+      await button2.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Cpp Test Success'));
       console.info('uitest: testSecureRandomNumberGeneration003 end');

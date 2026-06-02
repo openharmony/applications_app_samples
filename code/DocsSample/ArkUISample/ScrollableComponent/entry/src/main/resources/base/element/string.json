@@ -1399,6 +1399,106 @@
     {
       "name": "waterFlow_text2",
       "value": "切换列数 "
+    },
+    {
+      "name": "lazyLayout_Title",
+      "value": "懒加载布局容器"
+    },
+    {
+      "name": "lazyVGridLayout_title",
+      "value": "懒加载网格布局/LazyVGridLayout"
+    },
+    {
+      "name": "lazyVGridLayout_description",
+      "value": "示例设置了网格中子组件列数占比和行列间距。"
+    },
+    {
+      "name": "lazyVGridLayout_columns_equal",
+      "value": "设置多列等宽的网格示例"
+    },
+    {
+      "name": "lazyVGridLayout_columns_unequal",
+      "value": "设置多列不等宽的网格示例"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_title",
+      "value": "懒加载瀑布流布局/LazyVWaterFlowLayout"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_description",
+      "value": "示例设置了瀑布流中子组件列数占比和行列间距。"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_columns_equal",
+      "value": "设置多列等宽的瀑布流示例"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_columns_unequal",
+      "value": "设置多列不等宽的瀑布流示例"
+    },
+    {
+      "name": "lazyColumnLayout_title",
+      "value": "懒加载线性布局/LazyColumnLayout"
+    },
+    {
+      "name": "lazyColumnLayout_description",
+      "value": "示例设置了行间距和水平对齐方式。"
+    },
+    {
+      "name": "lazyColumnLayout_space_alignItemsStart",
+      "value": "设置行间距和水平起始位置对齐方式示例"
+    },
+    {
+      "name": "lazyColumnLayout_space_alignItemsCenter",
+      "value": "设置行间距和水平居中对齐方式示例"
+    },
+    {
+      "name": "list_nested_lazyLayout_title",
+      "value": "List嵌套懒加载布局容器"
+    },
+    {
+      "name": "list_nested_lazyLayout_description",
+      "value": "在List组件中嵌套多个不同的懒加载布局容器，分别为每个容器内容配置独立的列数和行列间距，实现多种布局方式的混合展示。"
+    },
+    {
+      "name": "list_nested_lazyLayout_grid",
+      "value": "网格布局"
+    },
+    {
+      "name": "list_nested_lazyLayout_waterFlow",
+      "value": "瀑布流布局"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_title",
+      "value": "LazyColumnLayout嵌套懒加载布局容器"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_description",
+      "value": "在Scroll组件中使用LazyColumnLayout作为主布局容器，其内部嵌套多个不同的懒加载布局容器，实现多种布局方式的混合展示。"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_following",
+      "value": "推荐关注"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_item",
+      "value": "列表项"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_popular",
+      "value": "热门分类"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_category",
+      "value": "分类"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_recommend",
+      "value": "为你推荐"
+    },
+    {
+      "name": "lazyColumnLayout_nested_lazyLayout_recommendation",
+      "value": "推荐内容"
     }
   ]
 }

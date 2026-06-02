@@ -43,9 +43,9 @@ struct DecodingPixelmap {
 
   // [Start release_pixelMapDecoder]
   async release(pixelMap: image.PixelMap | undefined, imageSource: image.ImageSource | undefined) {
-    pixelMap?.release();
+    await pixelMap?.release();
     pixelMap = undefined;
-    imageSource?.release();
+    await imageSource?.release();
     imageSource = undefined;
   }
   // [End release_pixelMapDecoder]

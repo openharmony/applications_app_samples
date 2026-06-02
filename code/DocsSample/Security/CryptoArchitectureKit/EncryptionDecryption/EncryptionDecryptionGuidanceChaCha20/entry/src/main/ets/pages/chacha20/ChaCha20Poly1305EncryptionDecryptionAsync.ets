@@ -59,13 +59,13 @@ async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: 
 async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
   let decoder = cryptoFramework.createCipher('ChaCha20|Poly1305');
   await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, poly1305Params);
-  let decryptData = await decoder.update(cipherText);
+  let decryptUpdata = await decoder.update(cipherText);
   // poly1305模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
   let decryptData = await decoder.doFinal(null);
   if (decryptData === null) {
     console.info('poly1305 decrypt result: success, decryptData is null.');
   }
-  return decryptData;
+  return decryptUpdata;
 }
 async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };

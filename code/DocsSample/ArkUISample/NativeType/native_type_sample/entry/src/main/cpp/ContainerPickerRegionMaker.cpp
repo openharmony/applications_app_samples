@@ -45,6 +45,7 @@ constexpr int32_t K_COUNTY_SCROLL_STOP_ID = 1005;
 constexpr uint32_t K_DIVIDER_COLOR = 0xFF0000FF;
 } // namespace
 
+// [Start cascade_example]
 // ---------- 全局状态 ----------
 struct RegionPickerState {
     RegionData regionData;
@@ -389,6 +390,7 @@ static ArkUI_NodeHandle CreateRegionPicker(ArkUI_NativeNodeAPI_1 *api)
     api->addChild(rootContainer, rowContainer);
     return rootContainer;
 }
+// [End cascade_example]
 
 // ---------- 主创建函数 ----------
 ArkUI_NodeHandle ContainerPickerRegionMaker::CreateNativeNode()

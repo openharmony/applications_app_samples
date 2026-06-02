@@ -78,9 +78,7 @@ struct Index {
         // [Start TestHiTraceChain_Button]
         Button("testHiTraceIdPassedAutomatically").backgroundColor('#FFFF00FF')
           .onClick(testHiTraceIdPassedAutomatically)
-        // [End TestHiTraceChain_Button]
 
-        // [Start TestHiTraceChain_Button]
         Button("testHiTraceIdPassedManually").backgroundColor('#FFFF00FF')
           .onClick(testHiTraceIdPassedManually)
         // [End TestHiTraceChain_Button]

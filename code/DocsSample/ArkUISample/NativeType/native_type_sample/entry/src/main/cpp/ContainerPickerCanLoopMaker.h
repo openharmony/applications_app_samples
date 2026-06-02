@@ -25,6 +25,7 @@
 #include "ScrollableNode.h"
 #include "ScrollableUtils.h"
 
+// [Start container_picker_can_loop_maker_class]
 class ContainerPickerCanLoopMaker : public BaseNode {
 public:
     static ArkUI_NodeHandle CreateNativeNode();
@@ -143,5 +144,5 @@ protected:
 private:
     ArkUI_NativeNodeAPI_1 *nodeApi_ = nullptr;
 };
-
+// [End container_picker_can_loop_maker_class]
 #endif // NATIVE_TYPE_SAMPLE_CONTAINER_PICKER_CAN_LOOP_MAKER_H

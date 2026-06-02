@@ -14,6 +14,7 @@
 - 依次点击'初始化audioRenderer'、'监听audioRenderer焦点变化'、'使用音频会话修改焦点策略'、'开始播放'按钮，即可使用音频会话修改焦点策略并播放音频。
 - 依次点击'初始化audioRenderer'、'使用音频会话申请焦点策略'、'开始播放'按钮，即可使用音频会话申请焦点策略并播放音频。
 - 依次点击'初始化audioRenderer'、'使用音频会话修改焦点策略'、'开始播放'、'切换到听筒播放'按钮，即可切换到听筒播放音频。
+- 音频会话激活后，依次点击'初始化audioCapturer'、'开始录制'、'设置会话录音静音提示'按钮，即可调用`audioSessionManager.setCapturerMuteHint`上报会话级录音流静音提示；点击'解除会话录音静音提示'按钮即可解除提示。该接口不会实际触发静音，仅告知音频系统当前会话内录音流已由应用静音或期望按静音状态处理。
 - 播放时依次点击'停止播放'、'停用音频会话'按钮，即可结束本次会话。
 
 ## 工程结构&模块类型
@@ -37,15 +38,17 @@
   - 点击'监听audioRenderer焦点变化'按钮，调用`audioRenderer.on('audioInterrupt')`注册监听焦点变化。
   - 点击'使用音频会话修改焦点策略'按钮，首先配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionDeactivated')`监听音频会话停用事件。
   - 点击'使用音频会话申请焦点策略'按钮，首先设置音频会话场景为`AUDIO_SESSION_SCENE_MEDIA`并配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`，接着调用`audioSessionManager.enableMuteSuggestionWhenMixWithOthers`接口后调用`audioSessionManager.activateAudioSession`激活音频焦点，然后通过`audioSessionManager.on('audioSessionStateChanged')`监听AudioSession焦点和状态变化事件。
+  - 点击'初始化audioCapturer'按钮，申请麦克风权限并创建一条录音流；点击'开始录制'按钮，调用`audioCapturer.start`启动录音流。录音流处于运行状态后，点击'设置会话录音静音提示'按钮，调用`audioSessionManager.setCapturerMuteHint(true)`告知音频系统当前会话内录音流已由应用业务侧静音或期望按静音状态处理；点击'解除会话录音静音提示'按钮，调用`audioSessionManager.setCapturerMuteHint(false)`解除提示。该接口从API version 24开始支持，不会实际触发录音流静音。
   - 点击'开始播放'按钮，调用`audioRenderer.start`开始播放音频。
   - 点击'切换到听筒播放'按钮，调用`audioSessionManager.setDefaultOutputDevice`切换到听筒播放音频。
   - 点击'停止播放'按钮，调用`audioRenderer.stop`停止播放音频。
+  - 点击'释放audioCapturer'按钮，停止并释放会话中的录音流。
   - 点击'停用音频会话'按钮，首先调用`audioSessionManager.off`来取消所有监听事件，再调用`audioSessionManager.deactivateAudioSession`结束当前应用的音频会话。
 
 
 ## 相关权限
 
-不涉及。
+麦克风使用权限：ohos.permission.MICROPHONE
 
 ## 模块依赖
 

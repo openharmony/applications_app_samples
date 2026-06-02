@@ -80,7 +80,6 @@ export default function PrikeyOperationTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Prikey Decoding Success'));
       console.info('uitest: PrikeyOperationTest003 end');
-      await driver.pressBack();
     })
     /**
      * 点击按钮，私钥获取公钥对象(ArkTS 异步方式)
@@ -126,12 +125,8 @@ export default function PrikeyOperationTest() {
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      const button2 = await driver.findComponent(ON.text('Call Prikey Encoding'));
-      await button2.click();
-      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Prikey Encoding Success'));
       console.info('uitest: PrikeyOperationTest006 end');
-      await driver.pressBack();
     })
     /**
      * 点击按钮，私钥解码(ArkTS)
@@ -142,9 +137,6 @@ export default function PrikeyOperationTest() {
       const button1 = await driver.findComponent(ON.text('Prikey Decoding'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(1000);
-      const button2 = await driver.findComponent(ON.text('Call Prikey Decoding'));
-      await button2.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Prikey Decoding Success'));
       console.info('uitest: PrikeyOperationTest007 end');
