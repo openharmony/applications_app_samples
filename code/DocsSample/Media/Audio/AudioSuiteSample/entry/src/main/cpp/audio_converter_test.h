@@ -20,7 +20,7 @@
 #include "pcm_file_utils.h"
 
 // 格式转换测试数据结构（前向声明）
-struct AudioConverterTestData {
+struct AudioConverterData {
     AudioDataInfo inputAudioInfo;
     AudioDataInfo outputAudioInfo;
     OH_AudioConverter *converter;
@@ -29,10 +29,10 @@ struct AudioConverterTestData {
 bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFilePath);
 
 // 子函数声明
-bool CreateAudioConverter(AudioConverterTestData *testData);
-bool AllocateOutputBuffer(AudioConverterTestData *testData, int32_t estimatedOutputSize);
-bool ProcessAudioData(AudioConverterTestData *testData, int32_t estimatedOutputSize);
-bool WriteOutputFile(const char *outputFilePath, AudioConverterTestData *testData);
-void CleanupResources(AudioConverterTestData *testData);
+bool CreateAudioConverter(AudioConverterData *audioData);
+bool AllocateOutputBuffer(AudioConverterData *audioData, int32_t estimatedOutputSize);
+bool ProcessAudioData(AudioConverterData *audioData, int32_t estimatedOutputSize);
+bool WriteOutputFile(const char *outputFilePath, AudioConverterData *audioData);
+void CleanupResources(AudioConverterData *audioData);
 
 #endif
