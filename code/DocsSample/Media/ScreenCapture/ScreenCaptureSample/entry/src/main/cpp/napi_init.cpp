@@ -385,6 +385,7 @@ int GetInputSurface()
         g_avCapture = nullptr;
         return result;
     }
+    close(outputFd);
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
     return result;
 }
