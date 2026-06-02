@@ -4,7 +4,7 @@
       "name": "widget",
       "displayName": "$string:widget_display_name",
       "description": "$string:widget_desc",
-      "src": "./ets/widget/pages/WidgetCard.ets",
+      "src": "./ets/widget/pages/AnimationCard.ets",
       "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,
@@ -16,9 +16,30 @@
       "updateEnabled": false,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 1,
-      "defaultDimension": "2*2",
+      "defaultDimension": "4*4",
       "supportDimensions": [
-        "2*2"
+        "4*4"
+      ]
+    },
+    {
+      "name": "widget1",
+      "displayName": "$string:widget1_display_name",
+      "description": "$string:widget1_desc",
+      "src": "./ets/widget/pages/TransitionEffectExample1.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": true,
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "4*4",
+      "supportDimensions": [
+        "4*4"
       ]
     }
   ]

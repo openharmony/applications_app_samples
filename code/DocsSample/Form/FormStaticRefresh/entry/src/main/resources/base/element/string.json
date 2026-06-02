@@ -11,6 +11,46 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a normal service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "UpdateByMessage_desc",
+      "value": "This is a UpdateByMessage service widget."
+    },
+    {
+      "name": "UpdateByMessage_display_name",
+      "value": "widget1"
+    },
+    {
+      "name": "default_title",
+      "value": "Title default."
+    },
+    {
+      "name": "DescriptionDefault",
+      "value": "Description default."
+    },
+    {
+      "name": "update",
+      "value": "update"
+    },
+    {
+      "name": "button_update",
+      "value": "点击更新卡片"
     }
   ]
 }
