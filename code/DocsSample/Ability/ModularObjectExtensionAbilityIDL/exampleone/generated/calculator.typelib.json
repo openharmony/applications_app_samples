@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "taihe_version": "1.0.0",
+  "enums": [],
+  "structs": [],
+  "interfaces": [
+    {
+      "memberId": 1,
+      "name": "ICalculator",
+      "descriptor": "OHOS.IPC.ICalculator",
+      "interface_type": 1,
+      "methods": [
+        {
+          "memberId": 4,
+          "name": "Add",
+          "code": 1001,
+          "oneway": false,
+          "return_type": {
+            "type": "i32"
+          },
+          "parameters": [
+            {
+              "memberId": 2,
+              "name": "a",
+              "type_info": {
+                "type": "i32"
+              }
+            },
+            {
+              "memberId": 3,
+              "name": "b",
+              "type_info": {
+                "type": "i32"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
