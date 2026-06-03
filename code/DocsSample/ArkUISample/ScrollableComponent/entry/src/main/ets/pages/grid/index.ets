@@ -91,9 +91,9 @@ const routes: Route[] = [
   },
   {
     name: `${GRID_ROUTE_PREFIX}/GridSwipeSelect`,
-    // 请将$r('app.string.GridSwipeSelect_title')替换为实际资源文件，在本示例中该资源文件的value值为"实现多选"
+    // 请将$r('app.string.GridSwipeSelect_title')替换为实际资源文件，在本示例中该资源文件的value值为"手指滑动多选"
     title: (context: Context) => { return resource.resourceToString(context, $r('app.string.GridSwipeSelect_title'))},
-    // 请将$r('app.string.GridSwipeSelect_description')替换为实际资源文件，在本示例中该资源文件的value值为"网格在编辑模式下实现手指滑动多选能力"
+    // 请将$r('app.string.GridSwipeSelect_description')替换为实际资源文件，在本示例中该资源文件的value值为"网格在编辑模式下实现手指滑动多选能力。"
     description: $r('app.string.GridSwipeSelect_description')
   }
 ];

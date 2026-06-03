@@ -184,6 +184,7 @@ export struct GridSwipeSelect {
 
         // [Start Add_grid_select]
         Grid() {
+          // [StartExclude Add_grid_select]
           LazyForEach(this.dataSource, (item: GridMultiSelectData, index: number) => {
             // [Start Add_grid_item_select]
             GridItem() {
@@ -191,6 +192,10 @@ export struct GridSwipeSelect {
             }
             .selectable(true)
             .selected(this.isSelected(item.id))
+            .onSelect((selected: boolean) => {
+              this.updateSelected(item.id, selected);
+            })
+            // [End Add_grid_item_select]
             .borderRadius(12)
             .stateStyles({
               normal: {
@@ -204,24 +209,21 @@ export struct GridSwipeSelect {
                 .borderColor('#317AF7')
               }
             })
-            .onSelect((selected: boolean) => {
-              this.updateSelected(item.id, selected);
-            })
-            // [End Add_grid_item_select]
           }, (item: GridMultiSelectData): string => item.id.toString())
+          // [EndExclude Add_grid_select]
         }
-        .columnsTemplate('1fr 1fr 1fr')
-        .columnsGap(10)
-        .rowsGap(10)
-        .layoutWeight(1)
-        .width('100%')
-        .scrollBar(BarState.Auto)
         .enableEditMode(this.enableEditMode)
         .onEditModeChange((enabled: boolean) => {
           this.setEditMode(enabled);
         })
         .editModeOptions({ useDefaultMultiSelectStyle: true, enableTwoFingerMultiSelect: true })
         // [End Add_grid_select]
+        .columnsTemplate('1fr 1fr 1fr')
+        .columnsGap(10)
+        .rowsGap(10)
+        .layoutWeight(1)
+        .width('100%')
+        .scrollBar(BarState.Auto)
       }
       .width('100%')
       .height('100%')
