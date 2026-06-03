@@ -28,7 +28,7 @@ napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info)
     napi_get_boolean(env, false, &result);
 
     // [EndExclude audioSuite_PrintInfo]
-    // engine为已创建的OH_AudioSuiteEngine实例，必须确保`engine`参数有效，否则输出内容为空。
+    // engine为已创建的OH_AudioSuiteEngine实例，必须确保engine参数有效，否则输出内容为空。
     // pipeline为nullptr时输出所有管线，传入具体管线实例则仅输出该管线。
     OH_AudioSuiteEngine *engine = audioSuiteEngine;
     if (!engine) {
