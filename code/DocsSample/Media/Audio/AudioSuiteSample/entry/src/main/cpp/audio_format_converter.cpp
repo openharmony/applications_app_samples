@@ -65,7 +65,7 @@ int32_t AudioConverterRequestDataCallback(
     return actualDataSize;
 }
 
-void SafeCloseConverterFile(FILE *fp, const char *fileName)
+void SafeCloseFile(FILE *fp, const char *fileName)
 {
     if (fp == nullptr) {
         return;
@@ -74,6 +74,48 @@ void SafeCloseConverterFile(FILE *fp, const char *fileName)
         OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close file: %{public}s",
                      fileName != nullptr ? fileName : "unknown");
     }
+}
+
+// 获取文件大小。
+long GetFileSize(FILE *fp)
+{
+    if (fseek(fp, 0, SEEK_END) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file end");
+        return -1;
+    }
+
+    long fileSize = ftell(fp);
+    if (fileSize < 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to get file size");
+        return -1;
+    }
+
+    if (fseek(fp, 0, SEEK_SET) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file start");
+        return -1;
+    }
+
+    return fileSize;
+}
+
+// 读取文件数据到缓冲区。
+bool ReadFileData(FILE *fp, uint8_t **buffer, long fileSize)
+{
+    *buffer = new uint8_t[fileSize];
+    if (*buffer == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to allocate buffer");
+        return false;
+    }
+
+    size_t readSize = fread(*buffer, 1, fileSize, fp);
+    if (readSize != static_cast<size_t>(fileSize)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to read file data");
+        delete[] *buffer;
+        *buffer = nullptr;
+        return false;
+    }
+
+    return true;
 }
 
 bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
@@ -89,44 +131,15 @@ bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
         return false;
     }
 
-    if (fseek(fp, 0, SEEK_END) != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file end");
-        SafeCloseConverterFile(fp, filePath);
-        return false;
-    }
-
-    long fileSize = ftell(fp);
-    if (fileSize < 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to get file size");
-        SafeCloseConverterFile(fp, filePath);
-        return false;
-    }
-
-    if (fseek(fp, 0, SEEK_SET) != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file start");
-        SafeCloseConverterFile(fp, filePath);
-        return false;
-    }
-
+    long fileSize = GetFileSize(fp);
     if (fileSize <= 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid file size: %{public}ld", fileSize);
-        SafeCloseConverterFile(fp, filePath);
+        SafeCloseFile(fp, filePath);
         return false;
     }
 
-    dataInfo->buffer = new uint8_t[fileSize];
-    if (dataInfo->buffer == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to allocate buffer");
-        SafeCloseConverterFile(fp, filePath);
-        return false;
-    }
-
-    size_t readSize = fread(dataInfo->buffer, 1, fileSize, fp);
-    if (readSize != static_cast<size_t>(fileSize)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to read file data");
-        delete[] dataInfo->buffer;
-        dataInfo->buffer = nullptr;
-        SafeCloseConverterFile(fp, filePath);
+    if (!ReadFileData(fp, &dataInfo->buffer, fileSize)) {
+        SafeCloseFile(fp, filePath);
         return false;
     }
 
@@ -134,7 +147,7 @@ bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
     dataInfo->readDataOffSet = 0;
     dataInfo->readDataFinish = false;
 
-    SafeCloseConverterFile(fp, filePath);
+    SafeCloseFile(fp, filePath);
     return true;
 }
 
@@ -207,7 +220,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
         if (result != AUDIOCONVERTER_SUCCESS) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Audio data processing failed: %{public}d", result);
             delete[] processBuffer;
-            SafeCloseConverterFile(outputFile, outputFilePath);
+            SafeCloseFile(outputFile, outputFilePath);
             return false;
         }
         
@@ -217,7 +230,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
             if (written != static_cast<size_t>(outputSize)) {
                 OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to write output data");
                 delete[] processBuffer;
-                SafeCloseConverterFile(outputFile, outputFilePath);
+                SafeCloseFile(outputFile, outputFilePath);
                 return false;
             }
             totalOutputSize += outputSize;
@@ -227,7 +240,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
 
     delete[] processBuffer;
     processBuffer = nullptr;
-    SafeCloseConverterFile(outputFile, outputFilePath);
+    SafeCloseFile(outputFile, outputFilePath);
     // [End converter_process]
 
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
@@ -251,7 +264,7 @@ bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Start format conversion test");
 
-    // 读取输入PCM文件到 AudioConverterDataInfo。
+    // 读取输入PCM文件到AudioConverterDataInfo。
     AudioConverterDataInfo dataInfo = {};
     dataInfo.readDataFinish = false;
     if (!ReadPcmFile(inputFilePath, &dataInfo)) {
