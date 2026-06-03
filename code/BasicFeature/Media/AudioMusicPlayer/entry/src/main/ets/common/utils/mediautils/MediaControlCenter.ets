@@ -183,6 +183,12 @@ export class MediaControlCenter {
       await this.initAudioManager();
     }
     this.setVolumeFromPrefer();
+    
+    let currentProgress = AppStorage.get<number>('progress') ?? 0;
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(currentProgress);
+    }
+    
     this.updateIsPlay(true);
     this.mediaControlCenterHandle.play();
     BackgroundUtil.startContinuousTask(this.context);
@@ -194,6 +200,12 @@ export class MediaControlCenter {
       return;
     }
     this.mediaControlCenterHandle.pause();
+    
+    let currentProgress = AppStorage.get<number>('progress') ?? 0;
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(currentProgress);
+    }
+    
     this.updateIsPlay(false);
     BackgroundUtil.stopContinuousTask(this.context!);
   }
@@ -420,13 +432,13 @@ export class MediaControlCenter {
     }
     this.mediaControlCenterHandle.seek(ms);
     this.updateProgress(ms);
+    
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(ms);
+    }
   }
 
   public updateProgress(ms: number) {
-    if (!this.avSessionController) {
-      return;
-    }
-    this.avSessionController.setProgressState(ms);
     AppStorage.setOrCreate('progress', ms);
     AppStorage.setOrCreate('currentTime', MediaTools.msToCountdownTime(ms));
   }
