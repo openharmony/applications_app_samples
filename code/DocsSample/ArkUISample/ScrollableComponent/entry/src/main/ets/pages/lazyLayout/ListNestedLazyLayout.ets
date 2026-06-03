@@ -14,10 +14,8 @@
  */
 
 // [Start list_nested_lazy_layout]
-// [Start lazy_water_flow_load_data]
 import { LengthMetrics, LazyVWaterFlowLayout, LazyVWaterFlowLayoutAttribute } from '@kit.ArkUI';
 
-// [StartExclude lazy_water_flow_load_data]
 class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];
   protected dataArray: T[] = [];
@@ -91,11 +89,9 @@ export struct ListNestedLazyLayout {
   }
 
   build() {
-    // [StartExclude list_nested_lazy_layout]
     NavDestination() {
-      // [EndExclude list_nested_lazy_layout]
       Column() {
-        // [EndExclude lazy_water_flow_load_data]
+        // [Start lazy_water_flow_load_data]
         List({ space: 10 }) {
           // [StartExclude lazy_water_flow_load_data]
           ListItem() {
@@ -119,11 +115,9 @@ export struct ListNestedLazyLayout {
           .columnsTemplate('1fr 1fr 1fr')
           .rowsGap(LengthMetrics.vp(10))
           .columnsGap(LengthMetrics.vp(10))
-          // [StartExclude list_nested_lazy_layout]
           .onVisibleIndexesChange((start: number, end: number) => {
             console.info('LazyVGridLayout visible indexes: start: ' + start + ', end: ' + end);
           })
-          // [EndExclude list_nested_lazy_layout]
 
           LazyVGridLayout() {
             LazyForEach(this.gridData, (item: number) => {
@@ -139,12 +133,10 @@ export struct ListNestedLazyLayout {
           .rowsGap(LengthMetrics.vp(10))
           .columnsGap(LengthMetrics.vp(10))
           .margin({ bottom: 16 })
-          // [StartExclude list_nested_lazy_layout]
           .onVisibleIndexesChange((start: number, end: number) => {
             console.info('LazyVGridLayout visible indexes: start: ' + (this.gridData.totalCount() + start) + ', end: ' +
               (this.gridData.totalCount() + end));
           })
-          // [EndExclude list_nested_lazy_layout]
 
           ListItem() {
             // 请将$r('app.string.list_nested_lazyLayout_waterFlow')替换为实际资源文件
@@ -193,12 +185,10 @@ export struct ListNestedLazyLayout {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    // [StartExclude list_nested_lazy_layout]
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.list_nested_lazyLayout_title')替换为实际资源文件
     // 在本示例中该资源文件的value值为"List嵌套懒加载布局容器"
     .title($r('app.string.list_nested_lazyLayout_title'))
   }
-  // [EndExclude list_nested_lazy_layout]
 }
 // [End list_nested_lazy_layout]

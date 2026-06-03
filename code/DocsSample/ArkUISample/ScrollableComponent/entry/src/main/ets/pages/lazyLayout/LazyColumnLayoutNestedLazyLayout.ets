@@ -14,18 +14,14 @@
  */
 
 // [Start lazy_column_nested_lazy_layout]
-import { LengthMetrics } from '@kit.ArkUI';
-// [Start lazy_column_nested]
-// [Start lazy_layout_on_visible_indexes_change]
 import {
+  LengthMetrics,
   LazyVWaterFlowLayout,
   LazyVWaterFlowLayoutAttribute,
   LazyColumnLayout,
   LazyColumnLayoutAttribute
 } from '@kit.ArkUI';
 
-// [StartExclude lazy_column_nested]
-// [StartExclude lazy_layout_on_visible_indexes_change]
 class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];
   protected dataArray: T[] = [];
@@ -103,11 +99,9 @@ export struct LazyColumnLayoutNestedLazyLayout {
   }
 
   build() {
-    // [StartExclude lazy_column_nested_lazy_layout]
     NavDestination() {
-      // [EndExclude lazy_column_nested_lazy_layout]
       Column() {
-        // [EndExclude lazy_column_nested]
+        // [Start lazy_column_nested]
         Scroll() {
           LazyColumnLayout() {
             // [StartExclude lazy_column_nested]
@@ -117,9 +111,9 @@ export struct LazyColumnLayoutNestedLazyLayout {
               .fontSize(14)
               .fontColor(Color.Gray)
               .margin({ bottom: 8 })
-            // [EndExclude lazy_layout_on_visible_indexes_change]
             // [EndExclude lazy_column_nested]
 
+            // [Start lazy_layout_on_visible_indexes_change]
             // 区域一：线性列表
             LazyColumnLayout() {
               // [StartExclude lazy_column_nested]
@@ -261,12 +255,10 @@ export struct LazyColumnLayoutNestedLazyLayout {
       .padding({ left: 12, right: 12 })
       .backgroundColor('#f1f2f3')
     }
-    // [StartExclude lazy_column_nested_lazy_layout]
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_title')替换为实际资源文件
     // 在本示例中该资源文件的value值为"LazyColumnLayout嵌套懒加载布局容器"
     .title($r('app.string.lazyColumnLayout_nested_lazyLayout_title'))
   }
-  // [EndExclude lazy_column_nested_lazy_layout]
 }
 // [End lazy_column_nested_lazy_layout]
