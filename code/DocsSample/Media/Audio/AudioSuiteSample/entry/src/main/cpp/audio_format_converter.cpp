@@ -24,6 +24,7 @@
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
 static const int32_t MAX_DATA_SIZE = 400 * 1024;
+static const long MAX_ALLOC_SIZE = 1024 * 1024 * 1024;
 
 // 输入数据回调函数。
 int32_t AudioConverterRequestDataCallback(
@@ -101,6 +102,10 @@ long GetFileSize(FILE *fp)
 // 读取文件数据到缓冲区。
 bool ReadFileData(FILE *fp, uint8_t **buffer, long fileSize)
 {
+    if (fileSize <= 0 || fileSize > MAX_ALLOC_SIZE) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid file size: %{public}ld", fileSize);
+        return false;
+    }
     *buffer = new uint8_t[fileSize];
     if (*buffer == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to allocate buffer");
@@ -277,19 +282,19 @@ bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath)
 
     // 创建转换器并设置回调。
     OH_AudioConverter *converter = nullptr;
-    if (!CreateAudioConverter(&dataInfo,converter)) {
+    if (!CreateAudioConverter(&dataInfo, converter)) {
         delete[] dataInfo.buffer;
         return false;
     }
 
     // 处理音频数据并直接写入输出文件。
-    if (!ProcessAudioData(&dataInfo, outputFilePath,converter)) {
-        CleanupResources(&dataInfo,converter);
+    if (!ProcessAudioData(&dataInfo, outputFilePath, converter)) {
+        CleanupResources(&dataInfo, converter);
         return false;
     }
 
     // 清理资源。
-    CleanupResources(&dataInfo,converter);
+    CleanupResources(&dataInfo, converter);
 
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Format conversion test completed successfully");
     return true;
