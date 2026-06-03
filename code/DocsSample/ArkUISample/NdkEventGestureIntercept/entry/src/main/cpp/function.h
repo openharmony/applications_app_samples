@@ -35,6 +35,7 @@
 #define BLANK_10 10.0
 
 namespace NativeXComponentSample {
+// [Start create_interception_function]
 // 处理手势识别器
 bool GestureRecognizerModule(ArkUI_GestureRecognizerHandleArray &array, int32_t &uniqueId, int32_t size,
                              ArkUI_GestureCollectInterceptInfo *info)
@@ -69,6 +70,7 @@ void TouchRecognizerModule(ArkUI_TouchRecognizerHandleArray &arrayTouch, int32_t
         }
     }
 }
+// [End create_interception_function]
 void ThirdModule()
 {
     // 判断是否支持创建手势
@@ -107,6 +109,7 @@ void ThirdModule()
 
 void SecondModule()
 {
+    // [Start gesture_intercepting]
     nodeAPI->registerNodeEvent(row2, NODE_ON_GESTURE_COLLECT_INTERCEPT, 1, &row2);
     nodeAPI->addNodeEventReceiver(row2, [](ArkUI_NodeEvent *event) {
         if (OH_ArkUI_NodeEvent_GetEventType(event) == NODE_ON_GESTURE_COLLECT_INTERCEPT) {
@@ -129,6 +132,7 @@ void SecondModule()
                          "NdkEventGestureIntercept_SampleLog, row2 NODE_TOUCH_EVENT NodeEvent");
         }
     });
+    // [End gesture_intercepting]
 }
 void FirstModule(ArkUI_NodeHandle &root)
 {
