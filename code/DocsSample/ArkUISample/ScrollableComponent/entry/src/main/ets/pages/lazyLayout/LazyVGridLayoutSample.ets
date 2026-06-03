@@ -14,10 +14,8 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start lazy_grid_gap]
 import { LengthMetrics } from '@kit.ArkUI';
 
-// [StartExclude lazy_grid_gap]
 @Entry
 @Component
 export struct LazyVGridLayoutSample {
@@ -43,6 +41,7 @@ export struct LazyVGridLayoutSample {
           Scroll() {
             // [Start lazy_grid_columns_template]
             LazyVGridLayout() {
+              // 子组件
               // [StartExclude create_lazy_grid]
               // [StartExclude lazy_grid_columns_template]
               ForEach(this.arr1, (item: number) => {
@@ -72,9 +71,10 @@ export struct LazyVGridLayoutSample {
         // 在本示例中该资源文件的value值为"设置多列不等宽的网格示例"
         ComponentCard({ title: $r('app.string.lazyVGridLayout_columns_unequal') }) {
           Scroll() {
-            // [EndExclude lazy_grid_gap]
             // [EndExclude lazy_grid_columns_template]
+            // [Start lazy_grid_gap]
             LazyVGridLayout() {
+              // 子组件
               // [StartExclude lazy_grid_columns_template]
               // [StartExclude lazy_grid_gap]
               ForEach(this.arr2, (item: number) => {

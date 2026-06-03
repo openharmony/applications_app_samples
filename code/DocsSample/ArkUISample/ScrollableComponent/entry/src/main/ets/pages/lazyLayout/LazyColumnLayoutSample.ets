@@ -14,15 +14,8 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start lazy_column_space]
-// [Start lazy_column_align_items]
-import { LengthMetrics } from '@kit.ArkUI';
-// [Start create_lazy_column]
-import { LazyColumnLayout, LazyColumnLayoutAttribute } from '@kit.ArkUI';
+import { LengthMetrics, LazyColumnLayout, LazyColumnLayoutAttribute } from '@kit.ArkUI';
 
-// [StartExclude create_lazy_column]
-// [StartExclude lazy_column_space]
-// [StartExclude lazy_column_align_items]
 @Entry
 @Component
 export struct LazyColumnLayoutSample {
@@ -40,10 +33,11 @@ export struct LazyColumnLayoutSample {
         // 请将$r('app.string.lazyColumnLayout_space_alignItemsStart')替换为实际资源文件
         // 在本示例中该资源文件的value值为"设置行间距和水平起始位置对齐方式示例"
         ComponentCard({ title: $r('app.string.lazyColumnLayout_space_alignItemsStart') }) {
-          // [EndExclude create_lazy_column]
+          // [Start create_lazy_column]
           Scroll() {
-            // [EndExclude lazy_column_align_items]
+            // [Start lazy_column_align_items]
             LazyColumnLayout() {
+              // 子组件
               // [StartExclude create_lazy_column]
               // [StartExclude lazy_column_align_items]
               ForEach(this.numbers, (item: number) => {
@@ -74,8 +68,9 @@ export struct LazyColumnLayoutSample {
         // 在本示例中该资源文件的value值为"设置行间距和水平居中对齐方式示例"
         ComponentCard({ title: $r('app.string.lazyColumnLayout_space_alignItemsCenter') }) {
           Scroll() {
-            // [EndExclude lazy_column_space]
+            // [Start lazy_column_space]
             LazyColumnLayout() {
+              // 子组件
               // [StartExclude lazy_column_space]
               ForEach(this.numbers, (item: number) => {
                 Text()

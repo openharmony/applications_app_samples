@@ -104,7 +104,9 @@ struct LazyLayoutExample {
       .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-    .title('LazyLayout', {
+    // 请将$r('app.string.lazyLayout_Title')替换为实际资源文件
+    // 在本示例中该资源文件的value值为"懒加载布局"
+    .title($r('app.string.lazyLayout_Title'), {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })

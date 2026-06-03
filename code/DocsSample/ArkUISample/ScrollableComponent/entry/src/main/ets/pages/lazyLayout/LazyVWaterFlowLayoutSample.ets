@@ -14,15 +14,8 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start lazy_water_flow_gap]
-import { LengthMetrics } from '@kit.ArkUI';
-// [Start create_lazy_water_flow]
-// [Start lazy_water_flow_columns_template]
-import { LazyVWaterFlowLayout, LazyVWaterFlowLayoutAttribute } from '@kit.ArkUI';
+import { LengthMetrics, LazyVWaterFlowLayout, LazyVWaterFlowLayoutAttribute } from '@kit.ArkUI';
 
-// [StartExclude create_lazy_water_flow]
-// [StartExclude lazy_water_flow_columns_template]
-// [StartExclude lazy_water_flow_gap]
 @Entry
 @Component
 export struct LazyVWaterFlowLayoutSample {
@@ -53,10 +46,11 @@ export struct LazyVWaterFlowLayoutSample {
         // 请将$r('app.string.lazyVWaterFlowLayout_columns_equal')替换为实际资源文件
         // 在本示例中该资源文件的value值为"设置多列等宽的瀑布流示例"
         ComponentCard({ title: $r('app.string.lazyVWaterFlowLayout_columns_equal') }) {
-          // [EndExclude create_lazy_water_flow]
+          // [Start create_lazy_water_flow]
           Scroll() {
-            // [EndExclude lazy_water_flow_columns_template]
+            // [Start lazy_water_flow_columns_template]
             LazyVWaterFlowLayout() {
+              // 子组件
               // [StartExclude create_lazy_water_flow]
               // [StartExclude lazy_water_flow_columns_template]
               ForEach(this.arr1, (item: number) => {
@@ -86,9 +80,10 @@ export struct LazyVWaterFlowLayoutSample {
         // 在本示例中该资源文件的value值为"设置多列不等宽的瀑布流示例"
         ComponentCard({ title: $r('app.string.lazyVWaterFlowLayout_columns_unequal') }) {
           Scroll() {
-            // [EndExclude lazy_water_flow_gap]
             // [EndExclude lazy_water_flow_columns_template]
+            // [Start lazy_water_flow_gap]
             LazyVWaterFlowLayout() {
+              // 子组件
               // [StartExclude lazy_water_flow_columns_template]
               // [StartExclude lazy_water_flow_gap]
               ForEach(this.arr2, (item: number) => {
