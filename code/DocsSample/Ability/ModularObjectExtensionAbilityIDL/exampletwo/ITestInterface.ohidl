@@ -35,6 +35,6 @@ interface ITestEventCallback {
 @main_service(version = "1.0.0")
 interface ITestCallbackService {
     RegisterCallback(callback: ITestEventCallback): i32;
-    GetPrimaryCalculatorGetPrimaryCalculator(userId: i32): ICalculator;
+    GetPrimaryCalculator(userId: i32): ICalculator;
 }
 // [End example]
