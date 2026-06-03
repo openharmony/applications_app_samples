@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start smartgesture_case1]
+// [Start smartgesture_case1_proposal]
 import {
   BaseGestureHandlingProposal,
   ClickActionProposal,
@@ -21,17 +23,21 @@ import {
   SelectActionProposal,
   TargetedGestureProposal,
 } from '@kit.ArkUI';
+// [StartExclude smartgesture_case1_proposal]
 
 @Entry
 @Component
 struct Demo1 {
+  // [Start smartgesture_case1_controller]
   private controller = this.getUIContext().getSmartGestureController();
+  // [StartExclude smartgesture_case1_controller]
   @State hint: string = 'Demo1: 长页面Scroll + Button\n划一划滚动至按钮区域 → 划一划切换选中按钮 → 敲一敲触发点击';
   @State btn0Count: number = 0;
   @State btn1Count: number = 0;
   @State btn2Count: number = 0;
   @State btn3Count: number = 0;
 
+  // [EndExclude smartgesture_case1_proposal]
   private callback = (proposal: BaseGestureHandlingProposal): GestureHandlingResolution => {
     let targetProposal = proposal as TargetedGestureProposal;
     let nodeId = targetProposal.node ? targetProposal.node.getId() : '';
@@ -61,7 +67,9 @@ struct Demo1 {
 
     return resolution;
   };
+  // [End smartgesture_case1_proposal]
 
+  // [EndExclude smartgesture_case1_controller]
   aboutToAppear(): void {
     this.controller.enableSmartTapAndSlideGestures(true);
     this.controller.registerMonitor(this.callback);
@@ -71,6 +79,7 @@ struct Demo1 {
     this.controller.clearMonitors();
     this.controller.enableSmartTapAndSlideGestures(false);
   }
+  // [End smartgesture_case1_controller]
 
   build() {
     Scroll() {
@@ -108,6 +117,7 @@ struct Demo1 {
           .textAlign(TextAlign.Center)
           .margin({ top: 8 })
 
+        // [Start smartgesture_case1_button]
         Button(`按钮A / 点击=${this.btn0Count}`)
           .id('btn_a')
           .width('100%')
@@ -116,6 +126,7 @@ struct Demo1 {
             this.btn0Count += 1;
             this.hint = '按钮A onClick 触发';
           })
+        // [End smartgesture_case1_button]
 
         Button(`按钮B / 点击=${this.btn1Count}`)
           .id('btn_b')
@@ -153,3 +164,4 @@ struct Demo1 {
     .backgroundColor('#f1f3f5')
   }
 }
+// [End smartgesture_case1]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start smartgesture_case2]
 import {
   BaseGestureHandlingProposal,
   ClickActionProposal,
@@ -126,3 +127,4 @@ struct Demo2 {
     .backgroundColor('#f1f3f5')
   }
 }
+// [End smartgesture_case2]
