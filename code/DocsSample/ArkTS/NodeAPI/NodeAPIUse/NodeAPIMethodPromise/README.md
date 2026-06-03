@@ -4,7 +4,7 @@
 
 当ArkTS的返回值为promise，开发者可以按照以下方式在自己创建的ArkTS运行环境中调用异步的ArkTS接口。
 
-- [使用Node-API调用返回值为promise的ArkTS方法](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/napi/use-napi-method-promise.md)
+- [使用Node-API调用返回值为promise的ArkTS方法](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/napi/use-napi-method-promise.md)
 
 ### 效果预览
 
@@ -68,6 +68,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/NodeAPI/NodeAPIUse/NodeAPIMethodPromise > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -99,6 +99,7 @@ class ConsumerTest {
     let res = gBufferQueue.take(num);
     if (res != null) {
       // 添加消费逻辑
+      console.info('Add logic');
     }
   }
 }

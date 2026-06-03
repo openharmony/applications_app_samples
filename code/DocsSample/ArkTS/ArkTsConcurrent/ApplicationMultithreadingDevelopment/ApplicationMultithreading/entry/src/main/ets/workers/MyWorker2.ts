@@ -38,6 +38,9 @@ workerPort.onmessage = (e : MessageEvents): void => {
       console.info("worker: num is " + num);
       workerPort.postMessage({'message': 'the result of syncGet() is ' + num, 'isTerminate': true});
       break;
+    default:
+      workerPort.postMessage({ type: 'message', value: 'send message is invalid' });
+      break;
   }
 }
 // [End worker_handle_associated_sync_task]
