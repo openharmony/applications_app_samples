@@ -25,8 +25,6 @@ const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
 static const int32_t MAX_DATA_SIZE = 400 * 1024;
 
-//OH_AudioConverter *converter = nullptr;
-
 // 输入数据回调函数。
 int32_t AudioConverterRequestDataCallback(
     void *userData, const void **outInputData, OH_AudioConverter_InputStatus *outStatus)
