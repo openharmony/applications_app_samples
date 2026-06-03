@@ -51,7 +51,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-创建WindowType.TYPE_FLOAT即全局悬浮窗类型的窗口，需要申请ohos.permission.SYSTEM_FLOAT_WINDOW权限，该权限为受控开放权限，仅符合指定场景的在2in1设备上的应用可申请该权限。申请方式请参考：[申请使用受限权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/declare-permissions-in-acl)
+创建WindowType.TYPE_FLOAT即全局悬浮窗，需要申请ohos.permission.SYSTEM_FLOAT_WINDOW权限，仅符合指定场景的PC/2in1设备应用可申请该权限。申请方式请参考：[申请使用受限权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/declare-permissions-in-acl)
 
 ### 依赖
 
@@ -59,9 +59,9 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行, 支持设备：2in1、平板。
+1.本示例仅支持标准系统上运行, 支持设备：2in1。
 
-2.本示例为Stage模型，支持API Version 26及以上版本SDK。
+2.本示例为Stage模型，支持API Version 26.0.0及以上版本SDK。
 
 3.本示例需要使用DevEco Studio 26.0.0 Canary及以上版本才可编译运行。
 
@@ -72,7 +72,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo ArkUISample/ArkUIWindowSamples/CreateFloatWindow > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/harmonyos_samples/guide-snippets.git
+echo ArkUISample/ArkUIWindowSamples/AuxiliaryWindowSample > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
