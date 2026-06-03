@@ -18,7 +18,7 @@
 
 #include <cstdint>
 
-// 格式转换测试数据结构（前向声明）
+// 格式转换测试数据结构（前向声明）。
 struct AudioConverterDataInfo {
     uint8_t *buffer = nullptr;   // 音频数据。
     int32_t bufferSize = 0;      // 音频数据总大小。
