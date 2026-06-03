@@ -16,6 +16,7 @@
 import audioSuiteNapi from 'libentry.so';
 import { common } from '@kit.AbilityKit'
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { DirInitHelper } from '../utils/DirInit';
 
 
 @Entry
@@ -301,20 +302,20 @@ struct Index {
                     }
                   })
 
-                Button('播放实时预览')
+                Button('调试')
                   .width('90%')
                   .height(30)
                   .margin({ bottom: 12 })
-                  .enabled(!this.isPlay)
+                  .enabled(this.isReal)
+                  .backgroundColor(this.isReal ? '#8B0000' : '#CCCCCC')
                   .onClick(async () => {
                     try {
-                      this.isPlay = true;
-                      this.isReal = true;
-                      let result: string = await audioSuiteNapi.EqualizerEffectNapi();
-                      this.message = '播放实时预览成功';
-                      this.updateNapiLog(result);
+                      await DirInitHelper.ensureDirExists();
+                      let ret = audioSuiteNapi.TestPrintInfoToFile();
+                      this.message = ret ? 'PrintInfo测试成功' : 'PrintInfo测试失败';
+                      this.updateNapiLog(ret ? 'PrintInfo已输出到文件' : 'PrintInfo输出失败');
                     } catch (err) {
-                      this.message = '播放实时预览失败';
+                      this.message = 'PrintInfo测试失败';
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
