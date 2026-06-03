@@ -25,7 +25,7 @@ const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
 static const int32_t MAX_DATA_SIZE = 400 * 1024;
 
-OH_AudioConverter *converter = nullptr;
+//OH_AudioConverter *converter = nullptr;
 
 // 输入数据回调函数。
 int32_t AudioConverterRequestDataCallback(
@@ -47,6 +47,9 @@ int32_t AudioConverterRequestDataCallback(
     // bufferSize：文件的总字节数。
     // readDataOffSet：已读取的字节数偏移量。
     int32_t remainingSize = dataInfo->bufferSize - dataInfo->readDataOffSet;
+    if (remainingSize < 0) {
+        return -1;
+    }
     int32_t actualDataSize = (remainingSize < MAX_DATA_SIZE) ? remainingSize : MAX_DATA_SIZE;
 
     // 更新已读取位置。
@@ -64,7 +67,6 @@ int32_t AudioConverterRequestDataCallback(
     return actualDataSize;
 }
 
-// 安全关闭文件。
 void SafeCloseConverterFile(FILE *fp, const char *fileName)
 {
     if (fp == nullptr) {
@@ -76,7 +78,6 @@ void SafeCloseConverterFile(FILE *fp, const char *fileName)
     }
 }
 
-// 读取PCM文件到 AudioConverterDataInfo。
 bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
 {
     if (filePath == nullptr || dataInfo == nullptr) {
@@ -140,10 +141,10 @@ bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
 }
 
 // 创建音频转换器并设置回调。
-bool CreateAudioConverter(AudioConverterDataInfo *dataInfo)
+bool CreateAudioConverter(AudioConverterDataInfo *dataInfo, OH_AudioConverter *&converter)
 {
     // [Start converter_create]
-    // 设置输入格式。
+    // 用户需按照实际情况设置输入格式。
     OH_AudioConverter_Format inputFormat = {
         .encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW,
         .samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000,
@@ -151,7 +152,7 @@ bool CreateAudioConverter(AudioConverterDataInfo *dataInfo)
         .sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE
     };
 
-    // 设置输出格式。
+    // 用户需按照实际情况设置输出格式。
     OH_AudioConverter_Format outputFormat = {
         .encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW,
         .samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_192000,
@@ -184,7 +185,7 @@ bool CreateAudioConverter(AudioConverterDataInfo *dataInfo)
 }
 
 // 处理音频数据。
-bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePath)
+bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePath, OH_AudioConverter *converter)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Start processing audio data...");
 
@@ -213,7 +214,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
         }
         
         if (outputSize > 0) {
-            //用户可以根据自己的业务要求做相应的处理
+            // 用户可以根据自己的业务要求做相应的处理。
             size_t written = fwrite(processBuffer, 1, outputSize, outputFile);
             if (written != static_cast<size_t>(outputSize)) {
                 OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to write output data");
@@ -223,6 +224,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
             }
             totalOutputSize += outputSize;
         }
+        // outputSize返回0，且用户写入数据完成。
     } while (outputSize > 0 || !dataInfo->readDataFinish);
 
     delete[] processBuffer;
@@ -238,7 +240,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
 }
 
 // 清理资源。
-void CleanupResources(AudioConverterDataInfo *dataInfo)
+void CleanupResources(AudioConverterDataInfo *dataInfo, OH_AudioConverter *converter)
 {
     // [Start converter_destroy]
     OH_AudioConverter_Destroy(converter);
@@ -263,19 +265,20 @@ bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath)
                  "Input file read successfully: %{public}d byte", dataInfo.bufferSize);
 
     // 创建转换器并设置回调。
-    if (!CreateAudioConverter(&dataInfo)) {
+    OH_AudioConverter *converter = nullptr;
+    if (!CreateAudioConverter(&dataInfo,converter)) {
         delete[] dataInfo.buffer;
         return false;
     }
 
     // 处理音频数据并直接写入输出文件。
-    if (!ProcessAudioData(&dataInfo, outputFilePath)) {
-        CleanupResources(&dataInfo);
+    if (!ProcessAudioData(&dataInfo, outputFilePath,converter)) {
+        CleanupResources(&dataInfo,converter);
         return false;
     }
 
     // 清理资源。
-    CleanupResources(&dataInfo);
+    CleanupResources(&dataInfo,converter);
 
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Format conversion test completed successfully");
     return true;

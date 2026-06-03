@@ -20,10 +20,10 @@
 
 // 格式转换测试数据结构（前向声明）
 struct AudioConverterDataInfo {
-    uint8_t *buffer = nullptr;    // 音频数据。
-    int32_t bufferSize = 0;       // 音频数据总大小。
-    int32_t readDataOffSet = 0;   // 处理过的音频数据偏移量。
-    bool readDataFinish = false;  // 输入数据读取是否完成。
+    uint8_t *buffer = nullptr;   // 音频数据。
+    int32_t bufferSize = 0;      // 音频数据总大小。
+    int32_t readDataOffSet = 0;  // 处理过的音频数据偏移量。
+    bool readDataFinish = false; // 输入数据读取是否完成。
 };
 
 bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath);
