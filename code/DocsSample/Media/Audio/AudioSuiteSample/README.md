@@ -46,6 +46,7 @@
 │   │   ├── audio_suite.cpp         # NAPI 接口和音频播放实现
 │   │   ├── manual_rendering.cpp    # 离线编辑实现
 │   │   ├── real_time_rendering.cpp  # 实时预览实现
+│   │   ├── audio_format_converter.cpp  # PCM音频格式转换实现
 │   │   ├── pcm_file_utils.cpp       # PCM 文件工具类
 │   │   └── print_info_to_file.cpp   # 打印信息到文件
 │   ├── ets/
@@ -98,7 +99,7 @@
 - '播放伴奏'和'播放人声'：需先完成音源分离
 - '混音与级联'：需先完成音源分离
 - '播放混音'：需先完成混音与级联
-- '调试'：需先启动播放实时预览渲染
+- '调试'：需先启动播放实时预览
 
 异步操作（均衡器效果、音源分离、混音与级联）处理过程中会显示 Loading 遮罩，处理完成后自动启用相关播放按钮。
 
