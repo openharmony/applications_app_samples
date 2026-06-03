@@ -20,7 +20,6 @@
 #include <unistd.h>
 // [StartExclude audioSuite_PrintInfo]
 
-extern OH_AudioSuiteEngine *audioSuiteEngine;
 static OH_AudioSuiteEngine *g_printInfoEngine = nullptr;
 
 napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info)
@@ -29,7 +28,7 @@ napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info)
     napi_get_boolean(env, false, &result);
 
     // [EndExclude audioSuite_PrintInfo]
-    // engine为已创建的OH_AudioSuiteEngine实例。
+    // engine为已创建的OH_AudioSuiteEngine实例，必须确保 `engine` 参数有效，否则输出内容为空
     // pipeline为nullptr时输出所有管线，传入具体管线实例则仅输出该管线。
     OH_AudioSuiteEngine *engine = audioSuiteEngine;
     if (!engine) {
@@ -38,9 +37,9 @@ napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info)
     }
 
     // 打印编创快照到文件。
-    const char *filePath = "/storage/Users/currentUser/Download/com.example.audiosuitesample/printfile/audio_snapshot.txt";
+    const char *filePath =
+        "/storage/Users/currentUser/Download/com.example.audiosuitesample/printfile/audio_snapshot.txt";
     int fd = open(filePath, O_WRONLY | O_CREAT | O_APPEND, 0644);
-
     if (fd < 0) {
         // 文件打开失败，回退到日志输出。
         // fd < 0 表示输出到日志。

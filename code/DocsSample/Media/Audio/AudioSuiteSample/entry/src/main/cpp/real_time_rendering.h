@@ -16,9 +16,6 @@
 #ifndef REALTIME_RENDERING_H
 #define REALTIME_RENDERING_H
 #include "pcm_file_utils.h"
-#include <ohaudiosuite/native_audio_suite_engine.h>
-// 全局引擎变量（定义在 realTimeRendering.cpp）。
-extern OH_AudioSuiteEngine *audioSuiteEngine;
 void EqualizerEffect(AudioDataInfo *audioInfo);
 void DestroyEqualizerEffect();
 #endif
