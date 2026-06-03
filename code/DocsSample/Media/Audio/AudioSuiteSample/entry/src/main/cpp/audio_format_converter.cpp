@@ -23,8 +23,6 @@
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
-// 内存大小安全限制系数，防止申请过大的内存。
-static const int32_t MAX_MEMORY_SIZE_SAFETY_FACTOR = 2;
 static const int32_t MAX_DATA_SIZE = 400 * 1024;
 
 OH_AudioConverter *converter = nullptr;
