@@ -303,7 +303,7 @@ struct AudioFormatConverterData {
 void AudioFormatConverterExecute(napi_env env, void *data)
 {
     AudioFormatConverterData *asyncData = static_cast<AudioFormatConverterData *>(data);
-    asyncData->success = AudioFormatConverterTest(asyncData->inputFilePath.c_str(), asyncData->outputFilePath.c_str());
+    asyncData->success = AudioFormatConverter(asyncData->inputFilePath.c_str(), asyncData->outputFilePath.c_str());
 }
 
 // 异步完成函数

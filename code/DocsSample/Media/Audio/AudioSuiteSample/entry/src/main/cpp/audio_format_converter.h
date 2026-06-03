@@ -13,26 +13,19 @@
 * limitations under the License.
 */
 
-#ifndef AUDIO_CONVERTER_TEST_H
-#define AUDIO_CONVERTER_TEST_H
+#ifndef AUDIO_FORMAT_CONVERTER_H
+#define AUDIO_FORMAT_CONVERTER_H
 
-#include <ohaudiosuite/native_audio_converter.h>
-#include "pcm_file_utils.h"
+#include <cstdint>
 
 // 格式转换测试数据结构（前向声明）
-struct AudioConverterData {
-    AudioDataInfo inputAudioInfo;
-    AudioDataInfo outputAudioInfo;
-    OH_AudioConverter *converter;
+struct AudioConverterDataInfo {
+    uint8_t *buffer = nullptr;    // 音频数据。
+    int32_t bufferSize = 0;       // 音频数据总大小。
+    int32_t readDataOffSet = 0;   // 处理过的音频数据偏移量。
+    bool readDataFinish = false;  // 输入数据读取是否完成。
 };
 
-bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFilePath);
-
-// 子函数声明
-bool CreateAudioConverter(AudioConverterData *audioData);
-bool AllocateOutputBuffer(AudioConverterData *audioData, int32_t estimatedOutputSize);
-bool ProcessAudioData(AudioConverterData *audioData, int32_t estimatedOutputSize);
-bool WriteOutputFile(const char *outputFilePath, AudioConverterData *audioData);
-void CleanupResources(AudioConverterData *audioData);
+bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath);
 
 #endif
