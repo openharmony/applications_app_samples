@@ -68,21 +68,24 @@ struct InterceptGestureCollection {
         if (!touchRecognizers) {
           return GestureCollectIntervention.CONTINUE;
         }
+        // 遍历所有触摸识别器，获取目标组件信息
         for (let i = 0; i < touchRecognizers.length; i++) {
           let touchRecognizer = touchRecognizers[i];
           let targetInfo = touchRecognizer.getEventTargetInfo();
           let uniqueId = targetInfo.getUniqueId();
+          // 使用 isHostBelongsTo 判断识别器是否属于 innerColumn 的后代
           if (touchRecognizer.isHostBelongsTo(uniqueId)) {
             console.info('Touch belongs to innerColumn subtree');
           }
           if (targetInfo.getId() == 'button2') {
+            // 丢弃低优先级节点的收集，阻止事件透传到 outerColumn
             return GestureCollectIntervention.DISCARD_LOWER;
           }
         }
         return GestureCollectIntervention.CONTINUE;
       })
+      // [End gesture_collection]
     }
-    // [End gesture_collection]
     .id('outerColumn')
     .padding(15)
     .onTouch((e?: TouchEvent) => {
