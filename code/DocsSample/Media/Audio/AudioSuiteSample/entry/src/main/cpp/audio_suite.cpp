@@ -26,6 +26,12 @@
 #include "hilog/log.h"
 #include "real_time_rendering.h"
 #include "audio_converter_test.h"
+#include <ohaudiosuite/native_audio_suite_base.h>
+#include <ohaudiosuite/native_audio_suite_engine.h>
+#include <iomanip>
+#include <ctime>
+#include "print_info_to_file.h"
+
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
@@ -500,6 +506,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"EqualizerEffectNapi", nullptr, EqualizerEffectNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"AudioFormatConverterNapi", nullptr, AudioFormatConverterNapi, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+         {"TestPrintInfoToFile", nullptr, TestPrintInfoToFile, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

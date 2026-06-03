@@ -300,6 +300,25 @@ struct Index {
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
+
+                Button('播放实时预览')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(!this.isPlay)
+                  .onClick(async () => {
+                    try {
+                      this.isPlay = true;
+                      this.isReal = true;
+                      let result: string = await audioSuiteNapi.EqualizerEffectNapi();
+                      this.message = '播放实时预览成功';
+                      this.updateNapiLog(result);
+                    } catch (err) {
+                      this.message = '播放实时预览失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
+
                 Button('格式转换')
                   .width('90%')
                   .height(30)
