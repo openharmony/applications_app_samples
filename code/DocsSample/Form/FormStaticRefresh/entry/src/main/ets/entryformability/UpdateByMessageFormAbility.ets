@@ -1,3 +1,4 @@
+'use static'
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -21,17 +22,22 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // entry/src/main/ets/entryformability/UpdateByMessageFormAbility.ts
-const TAG: string = 'EntryFormAbility';
-const DOMAIN_NUMBER: number = 0xFF00;
+const TAG: string = 'UpdateByMessageFormAbility';
+const DOMAIN_NUMBER: int = 0xFF00;
+
+class FormDataClass {
+  title: string = 'Title Update.'; // 和卡片布局中对应
+  detail: string = 'Description update success.'; // 和卡片布局中对应
+}
 
 export default class UpdateByMessageFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
     // 卡片使用方创建卡片时触发，卡片提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
-      'title': 'titleOnAddForm',
-      'detail': 'detailOnAddForm'
+      'title': 'Title: ' + Math.random(),
+      'detail': 'Description: ' + Math.random()
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
@@ -41,19 +47,19 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // [StartExclude update_by_message_form_ability]
     // 当前卡片使用方不会涉及该场景，无需实现该回调函数
     // [EndExclude update_by_message_form_ability]
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onCastToNormalForm');
   }
 
   onUpdateForm(formId: string): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onUpdateForm');
     let obj: Record<string, string> = {
-      'title': 'titleOnUpdateForm',
-      'detail': 'detailOnUpdateForm'
+      'title': 'Title: ' + Math.random(),
+      'detail': 'Description: ' + Math.random()
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+    formProvider.updateForm(formId, formData).catch((error) => {
+      hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
 
@@ -61,24 +67,19 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // [StartExclude update_by_message_form_ability]
     // 卡片使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     // [EndExclude update_by_message_form_ability]
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onChangeFormVisibility');
   }
 
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
-    class FormDataClass {
-      title: string = 'Title Update.'; // 和卡片布局中对应
-      detail: string = 'Description update success.'; // 和卡片布局中对应
-    }
-
     // 请根据业务替换为实际刷新的卡片数据
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-    }).catch((error: BusinessError) => {
+    }).catch((error) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
     });
   }
@@ -88,7 +89,7 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // [StartExclude update_by_message_form_ability]
     // 删除卡片实例数据
     // [EndExclude update_by_message_form_ability]
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onRemoveForm');
     // [StartExclude update_by_message_form_ability]
     // 删除之前持久化的卡片实例数据
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
@@ -100,14 +101,7 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
     // 需注意：formExtensionAbility创建后10秒内无操作将会被清理。
     // [EndExclude update_by_message_form_ability]
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
-  }
-
-  onAcquireFormState(want: Want): formInfo.FormState {
-    // [StartExclude update_by_message_form_ability]
-    // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
-    // [EndExclude update_by_message_form_ability]
-    return formInfo.FormState.READY;
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 }
 

@@ -14,12 +14,12 @@
  */
 
 // [Start ReloadByUIAbilityCard]
-// entry/src/main/ets/widget/pages/ReloadByUIAbilityCard.ets
+// entry/src/main/ets/widget/pages/WidgetCard.ets
 let storageReloadForm = new LocalStorage();
 
 @Entry(storageReloadForm)
 @Component
-struct ReloadByUIAbilityCard {
+struct WidgetCard {
   // 创建两个待刷新的Text，Text初始内容分别为'Title default'、'Description default'。资源文件定义请参见下方步骤5
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
   @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');

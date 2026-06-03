@@ -40,7 +40,7 @@ struct Index {
       FormComponent({
         id: 0,
         name: 'WidgetCard',
-        bundle: 'com.zglee.app3', // 请开发者替换为实际的bundlename
+        bundle: 'com.samples.formstaticrefresh', // 请开发者替换为实际的bundlename
         ability: 'EntryFormAbility',
         module: 'entry',
         dimension: FormDimension.Dimension_2_2,

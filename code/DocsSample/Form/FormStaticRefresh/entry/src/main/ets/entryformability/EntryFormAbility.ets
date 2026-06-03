@@ -1,3 +1,4 @@
+'use static'
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -22,7 +23,12 @@ import { formProvider, formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'EntryFormAbility';
-const DOMAIN_NUMBER: number = 0xFF00;
+const DOMAIN_NUMBER: int = 0xFF00;
+
+class FormDataClass {
+  title: string = 'Title: ' + Math.random();
+  detail: string = 'Description: ' + Math.random();
+}
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
@@ -38,17 +44,13 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onUpdateForm(formId: string): void {
     // Called to notify the form provider to update a specified form.
-    class FormDataClass {
-      title: string = 'Title: ' + Math.random();
-      detail: string = 'Description: ' + Math.random();
-    }
 
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     // 更新卡片数据
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-    }).catch((error: BusinessError) => {
+    }).catch((error) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. code: ${error.code}, message: ${error.message}`);
     });
   }
@@ -59,11 +61,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onRemoveForm(formId: string): void {
     // Called to notify the form provider that a specified form has been destroyed.
-  }
-
-  onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
-    return formInfo.FormState.READY;
   }
 }
 // [End EntryFormAbility]
