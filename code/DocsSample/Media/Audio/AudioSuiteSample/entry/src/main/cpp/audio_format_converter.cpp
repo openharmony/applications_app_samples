@@ -65,7 +65,7 @@ int32_t AudioConverterRequestDataCallback(
     return actualDataSize;
 }
 
-void SafeCloseFile(FILE *fp, const char *fileName)
+void SafeCloseConverterFile(FILE *fp, const char *fileName)
 {
     if (fp == nullptr) {
         return;
@@ -134,12 +134,12 @@ bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
     long fileSize = GetFileSize(fp);
     if (fileSize <= 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid file size: %{public}ld", fileSize);
-        SafeCloseFile(fp, filePath);
+        SafeCloseConverterFile(fp, filePath);
         return false;
     }
 
     if (!ReadFileData(fp, &dataInfo->buffer, fileSize)) {
-        SafeCloseFile(fp, filePath);
+        SafeCloseConverterFile(fp, filePath);
         return false;
     }
 
@@ -147,7 +147,7 @@ bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
     dataInfo->readDataOffSet = 0;
     dataInfo->readDataFinish = false;
 
-    SafeCloseFile(fp, filePath);
+    SafeCloseConverterFile(fp, filePath);
     return true;
 }
 
@@ -220,7 +220,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
         if (result != AUDIOCONVERTER_SUCCESS) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Audio data processing failed: %{public}d", result);
             delete[] processBuffer;
-            SafeCloseFile(outputFile, outputFilePath);
+            SafeCloseConverterFile(outputFile, outputFilePath);
             return false;
         }
         
@@ -230,7 +230,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
             if (written != static_cast<size_t>(outputSize)) {
                 OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to write output data");
                 delete[] processBuffer;
-                SafeCloseFile(outputFile, outputFilePath);
+                SafeCloseConverterFile(outputFile, outputFilePath);
                 return false;
             }
             totalOutputSize += outputSize;
@@ -240,7 +240,7 @@ bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePa
 
     delete[] processBuffer;
     processBuffer = nullptr;
-    SafeCloseFile(outputFile, outputFilePath);
+    SafeCloseConverterFile(outputFile, outputFilePath);
     // [End converter_process]
 
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
