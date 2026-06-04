@@ -221,8 +221,8 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
 
     OH_RecorderInfo recorderInfo;
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
-    std::string fileUrl = "fd://" + std::to_string(outputFd);
+    g_fileOutputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
+    std::string fileUrl = "fd://" + std::to_string(g_fileOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
@@ -428,9 +428,9 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
 
     OH_RecorderInfo recorderInfo;
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
+    g_windowOutputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
         FILE_PERMISSION_FULL_ACCESS);
-    std::string fileUrl = "fd://" + std::to_string(outputFd);
+    std::string fileUrl = "fd://" + std::to_string(g_windowOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
@@ -520,6 +520,14 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         g_avCapture = nullptr;
         m_scSaveFileIsRunning = false;
+        if (g_fileOutputFd != -1) {
+            close(g_fileOutputFd);
+            g_fileOutputFd = -1;
+        }
+        if (g_windowOutputFd != -1) {
+            close(g_windowOutputFd);
+            g_windowOutputFd = -1;
+        }
     } else {
         result = OH_AVScreenCapture_StopScreenCapture(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
