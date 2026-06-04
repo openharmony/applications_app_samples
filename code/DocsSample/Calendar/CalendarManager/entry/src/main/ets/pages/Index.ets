@@ -17,9 +17,6 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 import { calendarManager } from '@kit.CalendarKit';
-import { console } from '@kit.PerformanceAnalysisKit';
-
-const DOMAIN = 0x0000;
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 // 指定日历账户信息
