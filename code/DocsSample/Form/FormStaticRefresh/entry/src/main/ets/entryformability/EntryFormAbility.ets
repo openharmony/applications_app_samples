@@ -21,18 +21,39 @@ import { Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formProvider, formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import common from '@ohos.app.ability.common';
+import { AppStorage } from '@ohos.arkui.stateManagement';
 
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: int = 0xFF00;
 
-class FormDataClass {
-  title: string = 'Title: ' + Math.random();
-  detail: string = 'Description: ' + Math.random();
+function onAcquireFormStateCallback(want: Want): formInfo.FormState {
+  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
+  hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
+  return formInfo.FormState.READY;
 }
 
 export default class EntryFormAbility extends FormExtensionAbility {
+  constructor() {
+    hilog.info(DOMAIN_NUMBER, TAG, 'constructor register call');
+    try {
+      this.onStop = () => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'OnStop callback success');
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'OnStop register success');
+    } catch (err) {
+      hilog.info(DOMAIN_NUMBER, TAG, `OnStop catch error code: ${err?.code}, message: ${err?.message}`);
+    }
+
+    this.onAcquireFormState = onAcquireFormStateCallback;
+  }
+
   onAddForm(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
+    let obj: Record<string, string> = {
+      'title': 'Title: ' + Math.random(),
+      'detail': 'Description: ' + Math.random()
+    };
     const formData = '';
     return formBindingData.createFormBindingData(formData);
   }
@@ -42,11 +63,13 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // converted to a normal form.
   }
 
-  onUpdateForm(formId: string): void {
+  onUpdateForm(formId: string, wantParams?: Record<string, Object>): void {
     // Called to notify the form provider to update a specified form.
-
-    let formData = new FormDataClass();
-    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+    let obj: Record<string, string> = {
+      'title': 'Title: ' + Math.random(),
+      'detail': 'Description: ' + Math.random()
+    };
+    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     // 更新卡片数据
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');

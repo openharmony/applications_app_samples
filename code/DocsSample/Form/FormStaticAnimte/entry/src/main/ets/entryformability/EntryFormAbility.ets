@@ -16,8 +16,34 @@
 
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import common from '@ohos.app.ability.common';
+import { AppStorage } from '@ohos.arkui.stateManagement';
 
+const TAG: string = 'EntryFormAbility';
+const DOMAIN_NUMBER: int = 0xFF00;
+
+function onAcquireFormStateCallback(want: Want): formInfo.FormState {
+  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
+  hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
+  return formInfo.FormState.READY;
+}
+   
 export default class EntryFormAbility extends FormExtensionAbility {
+  constructor() {
+    hilog.info(DOMAIN_NUMBER, TAG, 'constructor register call');
+    try {
+      this.onStop = () => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'OnStop callback success');
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'OnStop register success');
+    } catch (err) {
+      hilog.error(DOMAIN_NUMBER, TAG, `OnStop catch error code: ${err?.code}, message: ${err?.message}`);
+    }
+
+    this.onAcquireFormState = onAcquireFormStateCallback;
+  }
+
   onAddForm(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
     const formData = '';

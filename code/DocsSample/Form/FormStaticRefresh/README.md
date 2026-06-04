@@ -8,16 +8,23 @@
 
 ## 效果预览
 
-| 卡片未更新状态                                 | 卡片更新状态                                    |
-|-----------------------------------------|-------------------------------------------|
-| ![image](./screenshots/formupdate1.png) | ![image](./screenshots/formupdate2.png) |
+| 卡片未更新状态                                 | 卡片更新状态                                    | 卡片更新状态                                    |
+|-----------------------------------------|-------------------------------------------|-------------------------------------------|
+| ![image](./screenshots/formupdate1.gif) | ![image](./screenshots/formupdate2.gif) | ![image](./screenshots/formupdate3.gif) |
 
 ## 使用说明
 
-1. 应用启动后会通过FormComponent组件自动添加卡片，并且获取formId
+1. 长按应用图片，点击卡片，点击添加至桌面，完成两张卡片加卡。
 
-2. 点击更新卡片按钮，会通过formHost提供的requestForm（仅支持系统应用使用）接口请求更新卡片，卡片管理服务会进而通知卡片提供方完成卡片更新。
+2. 应用启动后切换到formProvier，点击reloadForms、reloadAllForms， 会通过formProvier提供的reloadForms、reloadAllForms仅支持系统应用使用）接口请求更新卡片，卡片管理服务会进而通知卡片提供方完成卡片更新。
 
+3. 应用启动后切换到FormHost会通过FormComponent组件自动添加卡片，并且获取formId。
+
+4. 点击更新卡片按钮，会通过formHost提供的requestForm（仅支持系统应用使用）接口请求更新卡片，卡片管理服务会进而通知卡片提供方完成卡片更新。
+
+5. 长按应用图片，点击卡片，左滑选择第二张卡片，点击添加至桌面。
+
+6. 点击update按钮，触发postCardAction()接口的message事件，由UpdateByMessageFormAbility的onFormEvent接口处理，通过formProvider提供的updateForm（仅支持系统应用使用）接口请求更新卡片，卡片管理服务会进而通知卡片提供方完成卡片更新。
 
 ### 工程结构&模块类型
 

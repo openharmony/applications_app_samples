@@ -20,17 +20,33 @@ import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import common from '@ohos.app.ability.common';
+import { AppStorage } from '@ohos.arkui.stateManagement';
 
-// entry/src/main/ets/entryformability/UpdateByMessageFormAbility.ts
 const TAG: string = 'UpdateByMessageFormAbility';
 const DOMAIN_NUMBER: int = 0xFF00;
 
-class FormDataClass {
-  title: string = 'Title Update.'; // 和卡片布局中对应
-  detail: string = 'Description update success.'; // 和卡片布局中对应
+function onAcquireFormStateCallback(want: Want): formInfo.FormState {
+  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
+  hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
+  return formInfo.FormState.READY;
 }
 
 export default class UpdateByMessageFormAbility extends FormExtensionAbility {
+  constructor() {
+    hilog.info(DOMAIN_NUMBER, TAG, 'constructor register call');
+    try {
+      this.onStop = () => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'OnStop callback success');
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'OnStop register success');
+    } catch (err) {
+      hilog.error(DOMAIN_NUMBER, TAG, `OnStop catch error code: ${err?.code}, message: ${err?.message}`);
+    }
+
+    this.onAcquireFormState = onAcquireFormStateCallback;
+  }
+
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
@@ -50,7 +66,7 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onCastToNormalForm');
   }
 
-  onUpdateForm(formId: string): void {
+  onUpdateForm(formId: string, wantParams?: Record<string, Object>): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onUpdateForm');
     let obj: Record<string, string> = {
@@ -63,7 +79,7 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     });
   }
 
-  onChangeFormVisibility(newStatus: Record<string, number>): void {
+  onChangeFormVisibility(newStatus: Record<string, int>): void {
     // [StartExclude update_by_message_form_ability]
     // 卡片使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     // [EndExclude update_by_message_form_ability]
