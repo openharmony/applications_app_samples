@@ -24,6 +24,7 @@ const TAG = '[SerialSample]';
 struct Index {
   private port: serial.SerialPort | null = null;
   private dataCallback: ((data: Uint8Array) => void) | null = null;
+  private disconnectedCallback: (() => void) | null = null;
 
   build() {
     Scroll() {
@@ -90,6 +91,14 @@ struct Index {
           .width('90%')
           .onClick(() => this.testGetCts())
 
+        Button('setDtr')
+          .width('90%')
+          .onClick(() => this.testSetDtr())
+
+        Button('getDsr')
+          .width('90%')
+          .onClick(() => this.testGetDsr())
+
         Button('sendBrk')
           .width('90%')
           .onClick(() => this.testSendBrk())
@@ -103,6 +112,14 @@ struct Index {
         Button('close')
           .width('90%')
           .onClick(() => this.testClose())
+
+        Button('onDisconnect')
+          .width('90%')
+          .onClick(() => this.testOnDisconnect())
+
+        Button('offDisconnect')
+          .width('90%')
+          .onClick(() => this.testOffDisconnect())
       }
       .width('100%')
       .padding({ left: '5%', right: '5%', bottom: 30 })
@@ -302,6 +319,78 @@ struct Index {
       console.error(`${TAG} sendBrk failed, code: ${e.code}, message: ${e.message}`);
     }
     // [End sendBrk]
+  }
+
+  async testSetDtr(): Promise<void> {
+    // [Start setDtr]
+    try {
+      if (!this.port) {
+        console.error(`${TAG} No serial port found, please call getSerialPortList first`);
+        return;
+      }
+      await this.port.setDtr(true);
+      console.info(`${TAG} setDtr(true) success`);
+    } catch (err) {
+      const e = err as BusinessError;
+      console.error(`${TAG} setDtr failed, code: ${e.code}, message: ${e.message}`);
+    }
+    // [End setDtr]
+  }
+
+  async testGetDsr(): Promise<void> {
+    // [Start getDsr]
+    try {
+      if (!this.port) {
+        console.error(`${TAG} No serial port found, please call getSerialPortList first`);
+        return;
+      }
+      const dsrStatus = await this.port.getDsr();
+      console.info(`${TAG} getDsr success, DSR: ${dsrStatus}`);
+    } catch (err) {
+      const e = err as BusinessError;
+      console.error(`${TAG} getDsr failed, code: ${e.code}, message: ${e.message}`);
+    }
+    // [End getDsr]
+  }
+
+  async testOnDisconnect(): Promise<void> {
+    // [Start onDisconnect]
+    try {
+      if (!this.port) {
+        console.error(`${TAG} No serial port found, please call getSerialPortList first`);
+        return;
+      }
+      this.disconnectedCallback = () => {
+        console.info(`${TAG} onDisconnect: serial port disconnected`);
+      };
+      this.port.onDisconnect(this.disconnectedCallback);
+      console.info(`${TAG} onDisconnect registered`);
+    } catch (err) {
+      const e = err as BusinessError;
+      console.error(`${TAG} onDisconnect failed, code: ${e.code}, message: ${e.message}`);
+    }
+    // [End onDisconnect]
+  }
+
+  async testOffDisconnect(): Promise<void> {
+    // [Start offDisconnect]
+    try {
+      if (!this.port) {
+        console.error(`${TAG} No serial port found, please call getSerialPortList first`);
+        return;
+      }
+      if (!this.disconnectedCallback) {
+        console.error(`${TAG} No disconnected callback registered, please call onDisconnect first`);
+        return;
+      }
+      this.port.offDisconnect(this.disconnectedCallback);
+      this.disconnectedCallback = null;
+      console.info(`${TAG} offDisconnect success`);
+    } catch (err) {
+      const e = err as BusinessError;
+      console.error(`${TAG} offDisconnect failed, code: ${e.code}, message: ${e.message}`);
+    }
+    // [End offDisconnect]
   }
 
   async testClose(): Promise<void> {
