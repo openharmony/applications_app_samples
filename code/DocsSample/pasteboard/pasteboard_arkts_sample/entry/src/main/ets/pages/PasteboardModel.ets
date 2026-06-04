@@ -34,10 +34,10 @@ export namespace TestJs {
       await systemPasteboard.setData(pasteData);
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Set data to pasteboard successfully');
     } catch (error) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to set data to pasteboard, error:' + error);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to set data to pasteboard, error: ${error.message}`);
     }
   }
-  export async function getPlainData(type: string): Promise<string> {
+  export async function getPlainData(): Promise<string> {
     try {
       // 从系统剪贴板中读取数据
       let data = await systemPasteboard.getData();
@@ -47,12 +47,12 @@ export namespace TestJs {
       let result = '';
       for (let i = 0; i < recordCount; i++) {
         let record = data.getRecord(i).toPlainText();
-        hilog.info(0xFF00, '[Sample_pasteboard]', 'Get data success, record:' + record);
+        hilog.info(0xFF00, '[Sample_pasteboard]', `Get data success, record: ${record}`);
         result = record;
       }
       return result;
     } catch (error) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get data from pasteboard, error:' + error);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to get data from pasteboard, error: ${error.message}`);
       return '';
     }
   }
@@ -76,7 +76,7 @@ export namespace TestJs {
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Succeeded in setting UnifiedData.');
       // 存入成功，处理正常场景
     }).catch((err: BusinessError) => {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to set UnifiedData. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to set UnifiedData. Cause: ${err.message}`);
       // 处理异常场景
     });
     // 3.从系统剪贴板中读取这条text数据
@@ -89,7 +89,7 @@ export namespace TestJs {
         }
       }
     }).catch((err: BusinessError) => {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get UnifiedData. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to get UnifiedData. Cause: ${err.message}`);
       // 处理异常场景
     });
   }
@@ -120,7 +120,7 @@ export namespace TestJs {
         hilog.info(0xFF00, '[Sample_pasteboard]', 'Succeeded in set PlainText.');
         // 存入成功，处理正常场景
       }).catch((error: BusinessError) => {
-        hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to set PlainText. Cause: ' + error.message);
+        hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to set PlainText. Cause: ${error.message}`);
         // 处理异常场景
       });
     }
@@ -132,13 +132,13 @@ export namespace TestJs {
         let records = outputData.getRecords();
         if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
           let record = records[0] as unifiedDataChannel.PlainText;
-          hilog.info(0xFF00, '[Sample_pasteboard]', 'GetPlainText success, type:' + records[0].getType());
+          hilog.info(0xFF00, '[Sample_pasteboard]', `GetPlainText success, type: ${records[0].getType()}`);
           // 注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
         } else {
-          hilog.info(0xFF00, '[Sample_pasteboard]', 'Get Plain Text Data No Success, Type is: ' + records[0].getType());
+          hilog.info(0xFF00, '[Sample_pasteboard]', `Get Plain Text Data No Success, Type is: ${records[0].getType()}`);
         }
       }).catch((error: BusinessError) => {
-        hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get PlainTextUnifiedData. Cause: ' + error.message);
+        hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to get PlainTextUnifiedData. Cause: ${error.message}`);
         // 处理异常场景
       })
     })
@@ -148,7 +148,7 @@ export namespace TestJs {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Set app share options success.');
     } catch (err) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to Set app share options. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to Set app share options. Cause: ${err.message}`);
       // 处理异常场景
     }
     // [End pasteboard_timelaps_PasteData5]
@@ -157,7 +157,7 @@ export namespace TestJs {
       systemPasteboard.removeAppShareOptions();
       hilog.info(0xFF00, '[Sample_pasteboard]', 'Remove app share options success.');
     } catch (err) {
-      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to Remove app share options. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', `Failed to Remove app share options. Cause: ${err.message}`);
       // 处理异常场景
     }
     // [End pasteboard_timelaps_PasteData6]

@@ -33,9 +33,13 @@ export struct LazyColumnLayoutSample {
         // 请将$r('app.string.lazyColumnLayout_space_alignItemsStart')替换为实际资源文件
         // 在本示例中该资源文件的value值为"设置行间距和水平起始位置对齐方式示例"
         ComponentCard({ title: $r('app.string.lazyColumnLayout_space_alignItemsStart') }) {
+          // [Start create_lazy_column]
           Scroll() {
-            // [Start build_a_lazy_column]
+            // [Start lazy_column_align_items]
             LazyColumnLayout() {
+              // 子组件
+              // [StartExclude create_lazy_column]
+              // [StartExclude lazy_column_align_items]
               ForEach(this.numbers, (item: number) => {
                 Text()
                   .height(64)
@@ -44,12 +48,19 @@ export struct LazyColumnLayoutSample {
                   .backgroundColor('#ffe0e2e4')
                   .textAlign(TextAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_column_align_items]
+              // [EndExclude create_lazy_column]
             }
+            // [StartExclude create_lazy_column]
+            // [StartExclude lazy_column_align_items]
             .space(LengthMetrics.vp(10))
+            // [EndExclude lazy_column_align_items]
             .alignItems(HorizontalAlign.Start)
-            // [End build_a_lazy_column]
+            // [End lazy_column_align_items]
+            // [EndExclude create_lazy_column]
           }
           .scrollable(ScrollDirection.Vertical)
+          // [End create_lazy_column]
           .layoutWeight(1)
         }
 
@@ -57,8 +68,10 @@ export struct LazyColumnLayoutSample {
         // 在本示例中该资源文件的value值为"设置行间距和水平居中对齐方式示例"
         ComponentCard({ title: $r('app.string.lazyColumnLayout_space_alignItemsCenter') }) {
           Scroll() {
-            // [Start build_a_lazy_column]
+            // [Start lazy_column_space]
             LazyColumnLayout() {
+              // 子组件
+              // [StartExclude lazy_column_space]
               ForEach(this.numbers, (item: number) => {
                 Text()
                   .height(64)
@@ -67,10 +80,11 @@ export struct LazyColumnLayoutSample {
                   .backgroundColor('#ffe0e2e4')
                   .textAlign(TextAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_column_space]
             }
             .space(LengthMetrics.vp(10))
+            // [End lazy_column_space]
             .alignItems(HorizontalAlign.Center)
-            // [End build_a_lazy_column]
           }
           .scrollable(ScrollDirection.Vertical)
           .layoutWeight(1)

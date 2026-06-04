@@ -17,7 +17,7 @@
 // [Start use_dh_for_key_negotiation_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-function dhAwait() {
+function dhSync() {
   let keyGen = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
   // 随机生成公私钥对A
   let keyPairA = keyGen.generateKeyPairSync();
@@ -49,7 +49,7 @@ struct Index {
         .width('70%')
         .onClick(() => {
           try {
-            dhAwait();
+            dhSync();
             this.message = 'DH Sync Success';
           } catch {
             this.message = 'DH Async Fail';

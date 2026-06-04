@@ -15,7 +15,7 @@
 // [Start use_x25519a_for_key_negotiation_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-function x25519Await() {
+function x25519Sync() {
   // 假设此公私钥对数据为外部传入
   let pubKeyArray =
     new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 110, 3, 33, 0, 36, 98, 216, 106, 74, 99, 179, 203, 81, 145, 147, 101,
@@ -54,7 +54,7 @@ struct Index {
         .width('70%')
         .onClick(() => {
           try {
-            x25519Await();
+            x25519Sync();
             this.message = 'X25519 Sync Success';
           } catch {
             this.message = 'X25519 Sync Fail';

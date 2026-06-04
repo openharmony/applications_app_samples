@@ -17,6 +17,11 @@
 import { avSession, AVCastPickerStyle } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG = 'AVCastPickerHelperForMedia';
+const FORMAT = '%{public}s';
 
 @Entry
 @Component
@@ -26,13 +31,13 @@ struct AVCastPickerHelperForMedia {
   private avCastPickerHelper: avSession.AVCastPickerHelper | undefined = undefined;
 
   async aboutToAppear() {
-    console.log('about to appear');
+    hilog.info(DOMAIN, TAG, FORMAT, 'about to appear');
     try {
       // 应用传入的AVSessionType类型与应用实际类型(如音视频应用)保持一致。
       // 创建audio类型的avsession。'audio'代表音频，'video'代表视频。
       this.session = await avSession.createAVSession(this.context, 'audiotest', 'audio');
     } catch (err) {
-      console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
+      hilog.error(DOMAIN, TAG, FORMAT, `AVSession create: Error: Code: ${err.code}, message: ${err.message}`);
     }
 
     let metadata: avSession.AVMetadata = {  // 传入当前正在播放的媒体信息
@@ -42,9 +47,9 @@ struct AVCastPickerHelperForMedia {
       artist: 'ARTIST'
     };
     this.session?.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
+      hilog.info(DOMAIN, TAG, FORMAT, `SetAVMetadata successfully`);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+      hilog.error(DOMAIN, TAG, FORMAT, `Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
 
     this.avCastPickerHelper = new avSession.AVCastPickerHelper(this.context); // 初始化AVCastPickerHelper
@@ -53,13 +58,13 @@ struct AVCastPickerHelperForMedia {
 
   // [Start destroy_session]
   async aboutToDisappear() {
-    console.log('about to disappear');
+    hilog.info(DOMAIN, TAG, FORMAT, 'about to disappear');
     // 应用销毁后，销毁avsession。
     this.session?.destroy((err) => {
       if (err) {
-        console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+        hilog.error(DOMAIN, TAG, FORMAT, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Destroy : SUCCESS `);
+        hilog.info(DOMAIN, TAG, FORMAT, `Destroy: SUCCESS `);
       }
     });
   }
@@ -74,9 +79,9 @@ struct AVCastPickerHelperForMedia {
 
     // 需要显示设备列表时，调用此接口
     this.avCastPickerHelper?.select(avCastPickerOptions).then(() => {
-      console.info('select successfully');
+      hilog.info(DOMAIN, TAG, FORMAT, 'select successfully');
     }).catch((err: BusinessError) => {
-      console.error(`AVCastPicker.select failed with err: ${err.code}, ${err.message}`);
+      hilog.error(DOMAIN, TAG, FORMAT, `avCastPickerHelper.select failed with err: ${err.code}, ${err.message}`);
     });
   }
 

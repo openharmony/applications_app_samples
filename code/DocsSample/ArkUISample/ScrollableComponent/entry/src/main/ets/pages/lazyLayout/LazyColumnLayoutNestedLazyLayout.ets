@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start lazy_column_nested_lazy_layout]
 import {
   LengthMetrics,
   LazyVWaterFlowLayout,
@@ -100,17 +101,23 @@ export struct LazyColumnLayoutNestedLazyLayout {
   build() {
     NavDestination() {
       Column() {
+        // [Start lazy_column_nested]
         Scroll() {
           LazyColumnLayout() {
+            // [StartExclude lazy_column_nested]
             // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_following')替换为实际资源文件
             // 在本示例中该资源文件的value值为"推荐关注"
             Text($r('app.string.lazyColumnLayout_nested_lazyLayout_following'))
               .fontSize(14)
               .fontColor(Color.Gray)
               .margin({ bottom: 8 })
+            // [EndExclude lazy_column_nested]
 
+            // [Start lazy_layout_on_visible_indexes_change]
             // 区域一：线性列表
             LazyColumnLayout() {
+              // [StartExclude lazy_column_nested]
+              // [StartExclude lazy_layout_on_visible_indexes_change]
               LazyForEach(this.listData, (item: number) => {
                 Row() {
                   Text() {
@@ -130,11 +137,15 @@ export struct LazyColumnLayoutNestedLazyLayout {
                 .borderRadius(8)
                 .backgroundColor(Color.White)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_layout_on_visible_indexes_change]
+              // [EndExclude lazy_column_nested]
             }
-            .space(LengthMetrics.vp(10))
+            // [StartExclude lazy_column_nested]
             .onVisibleIndexesChange((start: number, end: number) => {
               console.info('LazyColumnLayout visible indexes: start: ' + start + ', end: ' + end);
             })
+            // [StartExclude lazy_layout_on_visible_indexes_change]
+            .space(LengthMetrics.vp(10))
 
             // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_popular')替换为实际资源文件
             // 在本示例中该资源文件的value值为"热门分类"
@@ -142,9 +153,13 @@ export struct LazyColumnLayoutNestedLazyLayout {
               .fontSize(14)
               .fontColor(Color.Gray)
               .margin({ top: 12, bottom: 8 })
+            // [EndExclude lazy_layout_on_visible_indexes_change]
+            // [EndExclude lazy_column_nested]
 
             // 区域二：网格布局
             LazyVGridLayout() {
+              // [StartExclude lazy_column_nested]
+              // [StartExclude lazy_layout_on_visible_indexes_change]
               LazyForEach(this.gridData, (item: number) => {
                 Column() {
                   SymbolGlyph($r('sys.symbol.folder_fill'))
@@ -165,13 +180,17 @@ export struct LazyColumnLayoutNestedLazyLayout {
                 .backgroundColor(Color.White)
                 .justifyContent(FlexAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_layout_on_visible_indexes_change]
+              // [EndExclude lazy_column_nested]
             }
-            .columnsTemplate('1fr 1fr 1fr')
-            .rowsGap(LengthMetrics.vp(10))
-            .columnsGap(LengthMetrics.vp(10))
+            // [StartExclude lazy_column_nested]
             .onVisibleIndexesChange((start: number, end: number) => {
               console.info('LazyVGridLayout visible indexes: start: ' + start + ', end: ' + end);
             })
+            // [StartExclude lazy_layout_on_visible_indexes_change]
+            .columnsTemplate('1fr 1fr 1fr')
+            .rowsGap(LengthMetrics.vp(10))
+            .columnsGap(LengthMetrics.vp(10))
 
             // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_recommend')替换为实际资源文件
             // 在本示例中该资源文件的value值为"为你推荐"
@@ -179,9 +198,13 @@ export struct LazyColumnLayoutNestedLazyLayout {
               .fontSize(14)
               .fontColor(Color.Gray)
               .margin({ top: 12, bottom: 8 })
+            // [EndExclude lazy_layout_on_visible_indexes_change]
+            // [EndExclude lazy_column_nested]
 
             // 区域三：瀑布流布局
             LazyVWaterFlowLayout() {
+              // [StartExclude lazy_column_nested]
+              // [StartExclude lazy_layout_on_visible_indexes_change]
               LazyForEach(this.flowData, (item: number) => {
                 Text() {
                   // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_recommendation')替换为实际资源文件
@@ -195,12 +218,13 @@ export struct LazyColumnLayoutNestedLazyLayout {
                 .backgroundColor(this.itemColor(item))
                 .textAlign(TextAlign.Center)
               }, (item: number) => item.toString())
+              // [EndExclude lazy_layout_on_visible_indexes_change]
+              // [EndExclude lazy_column_nested]
             }
-            .columnsTemplate('1fr 1fr')
-            .rowsGap(LengthMetrics.vp(10))
-            .columnsGap(LengthMetrics.vp(10))
+            // [StartExclude lazy_column_nested]
             .onVisibleIndexesChange((start: number, end: number) => {
               console.info('LazyVWaterFlowLayout visible indexes: start: ' + start + ', end: ' + end);
+              // [StartExclude lazy_layout_on_visible_indexes_change]
               // 即将触底时加载更多数据
               if (end + 20 >= this.flowData.totalCount()) {
                 let currentCount = this.flowData.totalCount();
@@ -208,11 +232,20 @@ export struct LazyColumnLayoutNestedLazyLayout {
                   this.flowData.pushData(i);
                 }
               }
+              // [EndExclude lazy_layout_on_visible_indexes_change]
             })
+            // [End lazy_layout_on_visible_indexes_change]
+            .columnsTemplate('1fr 1fr')
+            .rowsGap(LengthMetrics.vp(10))
+            .columnsGap(LengthMetrics.vp(10))
+            // [EndExclude lazy_column_nested]
           }
+          // [StartExclude lazy_column_nested]
           .alignItems(HorizontalAlign.Start)
+          // [EndExclude lazy_column_nested]
         }
         .scrollable(ScrollDirection.Vertical)
+        // [End lazy_column_nested]
         .padding(12)
         .width('100%')
         .layoutWeight(1)
@@ -220,6 +253,7 @@ export struct LazyColumnLayoutNestedLazyLayout {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      .backgroundColor('#f1f2f3')
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_title')替换为实际资源文件
@@ -227,3 +261,4 @@ export struct LazyColumnLayoutNestedLazyLayout {
     .title($r('app.string.lazyColumnLayout_nested_lazyLayout_title'))
   }
 }
+// [End lazy_column_nested_lazy_layout]

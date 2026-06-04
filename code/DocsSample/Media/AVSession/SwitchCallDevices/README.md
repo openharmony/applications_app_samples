@@ -39,6 +39,7 @@ entry/src/main/ets/
 |---|---AVCastPickerHelperForMedia.ets // 媒体类应用AVCastPickerHelper样式实现
 |---utils
 |---|---AudioRenderer.ets // AudioRenderer工具类
+|---|---AVCastPickerHelper.ets // AVCastPickerHelper工具类
 ```
 
 ### 具体实现

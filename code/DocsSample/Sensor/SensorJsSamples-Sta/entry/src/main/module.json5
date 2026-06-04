@@ -25,6 +25,23 @@
     "requestPermissions": [
       {
         "name":"ohos.permission.ACCELEROMETER"
+      },
+      {
+        "name":"ohos.permission.GYROSCOPE"
+      },
+      {
+        "name":"ohos.permission.READ_HEALTH_DATA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name":"ohos.permission.ACTIVITY_MOTION",
+        "reason": "$string:reason",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ],
     // [End sensor_js_permission_example]
