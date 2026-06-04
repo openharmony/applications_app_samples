@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
+// [Start index_component]
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [Start index_component]
 @Entry
 @Component
 struct Index {
@@ -29,8 +29,8 @@ struct Index {
   private windowMaskSub: window.Window | undefined = undefined;
   // [End index_component]
 
-  private winWidth: number = 800;
-  private winHeight: number = 800;
+  private winWidth: number = 800; // window width for test
+  private winHeight: number = 800; // window height for test
 
   createSubWindowForWindowMask() {
     const subWindowOpts: window.SubWindowOptions = {
