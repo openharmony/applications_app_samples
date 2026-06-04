@@ -22,7 +22,7 @@
 struct AudioConverterDataInfo {
     uint8_t *buffer = nullptr;   // 音频数据。
     int32_t bufferSize = 0;      // 音频数据总大小。
-    int32_t readDataOffSet = 0;  // 处理过的音频数据偏移量。
+    int32_t readDataOffset = 0;  // 处理过的音频数据偏移量。
     bool readDataFinish = false; // 输入数据读取是否完成。
 };
 
