@@ -52,6 +52,7 @@ static FILE *micFile_ = nullptr;
 static FILE *vFile_ = nullptr;
 static FILE *innerFile_ = nullptr;
 std::unique_ptr<Muxer> g_muxer;
+int32_t g_surfaceOutputFd = -1;
 
 static char filename[100] = {0};
 bool m_isRunning = false;
@@ -74,3 +75,5 @@ const int MICROSECOND_PER_MILLISECOND = 1000;
 
 int64_t g_lastFrameTimestampPts = 0;
 int64_t g_lastFrameEncodePts = 0;
+
+constexpr int32_t FILE_PERMISSION_FULL_ACCESS = 0777;
