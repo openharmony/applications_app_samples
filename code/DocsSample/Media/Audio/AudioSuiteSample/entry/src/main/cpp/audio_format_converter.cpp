@@ -13,10 +13,9 @@
 * limitations under the License.
 */
 
-// [Start audio_format_converter_example]
-#include "audio_converter_test.h"
+#include "audio_format_converter.h"
 #include <cstring>
-#include <algorithm>
+#include <cstdio>
 #include "hilog/log.h"
 // [Start format_conversion_header_file]
 #include "ohaudiosuite/native_audio_converter.h"
@@ -24,106 +23,144 @@
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioConverterTest]";
-// 内存大小安全限制系数，防止申请过大的内存。
-static const int32_t MAX_MEMORY_SIZE_SAFETY_FACTOR = 2;
+static const int32_t MAX_DATA_SIZE = 400 * 1024;
+static const long MAX_ALLOC_SIZE = 1024 * 1024 * 1024;
 
 // 输入数据回调函数。
-// [Start input_callback]
 int32_t AudioConverterRequestDataCallback(
     void *userData, const void **outInputData, OH_AudioConverter_InputStatus *outStatus)
 {
     if ((userData == nullptr) || (outInputData == nullptr) || (outStatus == nullptr)) {
         return -1;
     }
-
-    AudioConverterTestData *testData = static_cast<AudioConverterTestData *>(userData);
-
+    AudioConverterDataInfo *dataInfo = static_cast<AudioConverterDataInfo *>(userData);
+    
+    // [Start input_callback]
     // 设置输出数据指针。
     // 注意：数据指针的值并不一定要从userData中获取，也可以是存储数据的缓存地址。
     // 例如：从文件中读取数据放入缓存，然后将该缓存地址赋值给输出数据指针。
     // 只要确保数据指针在OH_AudioConverter_Process()返回前保持有效即可。
-    *outInputData = testData->inputAudioInfo.buffer + testData->inputAudioInfo.totalReadSize;
+    *outInputData = dataInfo->buffer + dataInfo->readDataOffSet;
 
     // 计算本次可提供的数据大小（单次回调最多返回400KB）。
-    // bufferSize：文件的总字节数（在ReadPcmFile中赋值）。
-    // totalReadSize：已读取的字节数（每次回调递增）。
-    int32_t maxDataSize = 400 * 1024;
-    int32_t remainingSize = testData->inputAudioInfo.bufferSize - testData->inputAudioInfo.totalReadSize;
-    int32_t actualDataSize = (remainingSize < maxDataSize) ? remainingSize : maxDataSize;
+    // bufferSize：文件的总字节数。
+    // readDataOffSet：已读取的字节数偏移量。
+    int32_t remainingSize = dataInfo->bufferSize - dataInfo->readDataOffSet;
+    if (remainingSize < 0) {
+        return -1;
+    }
+    int32_t actualDataSize = (remainingSize < MAX_DATA_SIZE) ? remainingSize : MAX_DATA_SIZE;
 
     // 更新已读取位置。
-    testData->inputAudioInfo.totalReadSize += actualDataSize;
+    dataInfo->readDataOffSet += actualDataSize;
 
     // 设置输入数据状态。
-    if (actualDataSize == 0) {
-        *outStatus = OH_AudioConverter_InputStatus::AUDIOCONVERTER_INPUT_NO_AVAILABLE_DATA;
-    } else if (testData->inputAudioInfo.totalReadSize >= testData->inputAudioInfo.bufferSize) {
+    if (dataInfo->readDataOffSet >= dataInfo->bufferSize) {
         *outStatus = OH_AudioConverter_InputStatus::AUDIOCONVERTER_INPUT_DATA_FINISHED;
+        dataInfo->readDataFinish = true;
     } else {
         *outStatus = OH_AudioConverter_InputStatus::AUDIOCONVERTER_INPUT_HAVE_DATA;
     }
+    // [End input_callback]
 
     return actualDataSize;
 }
-// [End input_callback]
 
-// 执行格式转换。
-bool AudioFormatConverterTest(const char *inputFilePath, const char *outputFilePath)
+void SafeCloseConverterFile(FILE *fp, const char *fileName)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "开始格式转换测试");
+    if (fp == nullptr) {
+        return;
+    }
+    if (fclose(fp) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, GLOBAL_RESMGR, TAG, "Failed to close file: %{public}s",
+                     fileName != nullptr ? fileName : "unknown");
+    }
+}
 
-    // 读取输入PCM文件。
-    AudioConverterTestData testData = {}; // 使用C++安全初始化替代memset。
+// 获取文件大小。
+long GetFileSize(FILE *fp)
+{
+    if (fseek(fp, 0, SEEK_END) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file end");
+        return -1;
+    }
 
-    if (!ReadPcmFile(inputFilePath, &testData.inputAudioInfo)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "读取输入文件失败: %{public}s", inputFilePath);
+    long fileSize = ftell(fp);
+    if (fileSize < 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to get file size");
+        return -1;
+    }
+
+    if (fseek(fp, 0, SEEK_SET) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to seek file start");
+        return -1;
+    }
+
+    return fileSize;
+}
+
+// 读取文件数据到缓冲区。
+bool ReadFileData(FILE *fp, uint8_t **buffer, long fileSize)
+{
+    if (fileSize <= 0 || fileSize > MAX_ALLOC_SIZE) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid file size: %{public}ld", fileSize);
+        return false;
+    }
+    *buffer = new uint8_t[fileSize];
+    if (*buffer == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to allocate buffer");
         return false;
     }
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
-                 "读取输入文件成功: %{public}d 字节", testData.inputAudioInfo.bufferSize);
-
-    // 创建转换器并设置回调。
-    if (!CreateAudioConverter(&testData)) {
-        FreeAudioDataInfo(&testData.inputAudioInfo);
+    size_t readSize = fread(*buffer, 1, fileSize, fp);
+    if (readSize != static_cast<size_t>(fileSize)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to read file data");
+        delete[] *buffer;
+        *buffer = nullptr;
         return false;
     }
 
-    // 分配输出缓冲区（估算大小，考虑采样率和声道数的变化）。
-    // 采样率从48000到192000（4倍），声道从2到6（3倍），采样格式从16bit到24bit（1.5倍）。
-    // 总倍数约4 * 3 * 1.5 = 18倍。
-    int32_t estimatedOutputSize = testData.inputAudioInfo.bufferSize * 18;
+    return true;
+}
 
-    if (!AllocateOutputBuffer(&testData, estimatedOutputSize)) {
-        OH_AudioConverter_Destroy(testData.converter);
-        FreeAudioDataInfo(&testData.inputAudioInfo);
+bool ReadPcmFile(const char *filePath, AudioConverterDataInfo *dataInfo)
+{
+    if (filePath == nullptr || dataInfo == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid parameters");
         return false;
     }
 
-    // 处理音频数据。
-    if (!ProcessAudioData(&testData, estimatedOutputSize)) {
-        CleanupResources(&testData);
+    FILE *fp = fopen(filePath, "rb");
+    if (fp == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to open file: %{public}s", filePath);
         return false;
     }
 
-    // 写入输出文件。
-    if (!WriteOutputFile(outputFilePath, &testData)) {
-        CleanupResources(&testData);
+    long fileSize = GetFileSize(fp);
+    if (fileSize <= 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Invalid file size: %{public}ld", fileSize);
+        SafeCloseConverterFile(fp, filePath);
         return false;
     }
 
-    // 清理资源。
-    CleanupResources(&testData);
+    if (!ReadFileData(fp, &dataInfo->buffer, fileSize)) {
+        SafeCloseConverterFile(fp, filePath);
+        return false;
+    }
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "格式转换测试成功完成");
+    dataInfo->bufferSize = static_cast<int32_t>(fileSize);
+    dataInfo->readDataOffSet = 0;
+    dataInfo->readDataFinish = false;
+
+    SafeCloseConverterFile(fp, filePath);
     return true;
 }
 
 // 创建音频转换器并设置回调。
-bool CreateAudioConverter(AudioConverterTestData *testData)
+bool CreateAudioConverter(AudioConverterDataInfo *dataInfo, OH_AudioConverter *&converter)
 {
     // [Start converter_create]
-    // 设置输入格式。
+    // 用户需按照实际情况设置输入格式。
     OH_AudioConverter_Format inputFormat = {
         .encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW,
         .samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_48000,
@@ -131,7 +168,7 @@ bool CreateAudioConverter(AudioConverterTestData *testData)
         .sampleFormat = OH_Audio_SampleFormat::AUDIO_SAMPLE_S16LE
     };
 
-    // 设置输出格式。
+    // 用户需按照实际情况设置输出格式。
     OH_AudioConverter_Format outputFormat = {
         .encodingType = OH_Audio_EncodingType::AUDIO_ENCODING_TYPE_RAW,
         .samplingRate = OH_Audio_SampleRate::SAMPLE_RATE_192000,
@@ -140,121 +177,125 @@ bool CreateAudioConverter(AudioConverterTestData *testData)
     };
 
     // 创建转换器。
-    OH_AudioConverter_Result result = OH_AudioConverter_Create(&inputFormat, &outputFormat, &testData->converter);
+    OH_AudioConverter_Result result = OH_AudioConverter_Create(&inputFormat, &outputFormat, &converter);
     if (result != AUDIOCONVERTER_SUCCESS) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "创建转换器失败: %{public}d", result);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to create converter: %{public}d", result);
         return false;
     }
     // [End converter_create]
     
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "创建转换器成功");
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Converter created successfully");
     
     // [Start set_input_callback]
     // 设置输入回调。
-    result = OH_AudioConverter_SetInputCallback(testData->converter, AudioConverterRequestDataCallback, testData);
+    result = OH_AudioConverter_SetInputCallback(converter, AudioConverterRequestDataCallback, dataInfo);
     if (result != AUDIOCONVERTER_SUCCESS) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "设置输入回调失败: %{public}d", result);
-        OH_AudioConverter_Destroy(testData->converter);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to set input callback: %{public}d", result);
+        OH_AudioConverter_Destroy(converter);
         return false;
     }
     // [End set_input_callback]
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "设置输入回调成功");
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Set input callback successfully");
     return true;
 }
 
-// 分配输出缓冲区。
-bool AllocateOutputBuffer(AudioConverterTestData *testData, int32_t estimatedOutputSize)
-{
-    if (estimatedOutputSize <= 0 || estimatedOutputSize > INT32_MAX / MAX_MEMORY_SIZE_SAFETY_FACTOR) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG,
-                     "估算的输出缓冲区大小不合法: %{public}d", estimatedOutputSize);
-        OH_AudioConverter_Destroy(testData->converter);
-        FreeAudioDataInfo(&testData->inputAudioInfo);
-        return false;
-    }
-    testData->outputAudioInfo.buffer = new uint8_t[estimatedOutputSize];
-    if (testData->outputAudioInfo.buffer == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "分配输出缓冲区失败");
-        return false;
-    }
-
-    testData->outputAudioInfo.bufferSize = 0;
-    testData->inputAudioInfo.totalReadSize = 0;
-    return true;
-}
-
-// [Start converter_process]
 // 处理音频数据。
-bool ProcessAudioData(AudioConverterTestData *testData, int32_t estimatedOutputSize)
+bool ProcessAudioData(AudioConverterDataInfo *dataInfo, const char *outputFilePath, OH_AudioConverter *converter)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "开始处理音频数据...");
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Start processing audio data...");
+
+    // 打开输出文件。
+    FILE *outputFile = fopen(outputFilePath, "wb");
+    if (outputFile == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to open output file: %{public}s", outputFilePath);
+        return false;
+    }
     
-    // 分配输出缓冲区。
+    // [Start converter_process]
+    // 分配处理缓冲区。
     const int32_t processBufferSize = 4096 * 4; // 16KB。
     uint8_t *processBuffer = new uint8_t[processBufferSize];
-    // 标记是否所有输入数据已结束。
-    bool allInputDataFinished = false;
     int32_t outputSize = 0;
+    int32_t totalOutputSize = 0;
     OH_AudioConverter_Result result;
 
     do {
-        result = OH_AudioConverter_Process(testData->converter, processBuffer, processBufferSize, &outputSize);
+        result = OH_AudioConverter_Process(converter, processBuffer, processBufferSize, &outputSize);
         if (result != AUDIOCONVERTER_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "处理音频数据失败: %{public}d", result);
+            OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Audio data processing failed: %{public}d", result);
             delete[] processBuffer;
+            SafeCloseConverterFile(outputFile, outputFilePath);
             return false;
         }
-
-        if (outputSize > 0) { // processBuffer是转换后的音频数据，数据长度为outputSize，开发者根据业务场景自行使用或者保存。
-            // 将输出数据复制到输出缓冲区。
-            if (testData->outputAudioInfo.bufferSize + outputSize <= estimatedOutputSize) {
-                std::copy(processBuffer, processBuffer + outputSize,
-                          testData->outputAudioInfo.buffer + testData->outputAudioInfo.bufferSize);
-                testData->outputAudioInfo.bufferSize += outputSize;
-            } else {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "输出缓冲区溢出");
+        
+        if (outputSize > 0) {
+            // 用户可以根据自己的业务要求做相应的处理。
+            size_t written = fwrite(processBuffer, 1, outputSize, outputFile);
+            if (written != static_cast<size_t>(outputSize)) {
+                OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to write output data");
                 delete[] processBuffer;
+                SafeCloseConverterFile(outputFile, outputFilePath);
                 return false;
             }
+            totalOutputSize += outputSize;
         }
-
-        // 检查是否所有输入数据已结束，当totalReadSize >= bufferSize时，表示已读取完所有输入数据。
-        if (testData->inputAudioInfo.totalReadSize >= testData->inputAudioInfo.bufferSize) {
-            allInputDataFinished = true;
-        }
-    } while (outputSize > 0 || !allInputDataFinished);
+        // outputSize返回0，且用户写入数据完成。
+    } while (outputSize > 0 || !dataInfo->readDataFinish);
 
     delete[] processBuffer;
     processBuffer = nullptr;
+    SafeCloseConverterFile(outputFile, outputFilePath);
+    // [End converter_process]
 
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
-                 "格式转换完成: 输入 %{public}d 字节, 输出 %{public}d 字节",
-                 testData->inputAudioInfo.bufferSize, testData->outputAudioInfo.bufferSize);
+                 "Format conversion completed: enter %{public}d byte, output %{public}d byte",
+                 dataInfo->bufferSize, totalOutputSize);
 
-    return true;
-}
-// [End converter_process]
-
-// 写入输出文件。
-bool WriteOutputFile(const char *outputFilePath, AudioConverterTestData *testData)
-{
-    if (!WritePcmFile(outputFilePath, &testData->outputAudioInfo)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "写入输出文件失败: %{public}s", outputFilePath);
-        return false;
-    }
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "写入输出文件成功: %{public}s", outputFilePath);
     return true;
 }
 
 // 清理资源。
-void CleanupResources(AudioConverterTestData *testData)
+void CleanupResources(AudioConverterDataInfo *dataInfo, OH_AudioConverter *converter)
 {
-    delete[] testData->outputAudioInfo.buffer;
     // [Start converter_destroy]
-    OH_AudioConverter_Destroy(testData->converter);
+    OH_AudioConverter_Destroy(converter);
     // [End converter_destroy]
-    FreeAudioDataInfo(&testData->inputAudioInfo);
+    delete[] dataInfo->buffer;
 }
-// [End audio_format_converter_example]
+
+// 执行格式转换。
+bool AudioFormatConverter(const char *inputFilePath, const char *outputFilePath)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Start format conversion test");
+
+    // 读取输入PCM文件到AudioConverterDataInfo。
+    AudioConverterDataInfo dataInfo = {};
+    dataInfo.readDataFinish = false;
+    if (!ReadPcmFile(inputFilePath, &dataInfo)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "Failed to read input file: %{public}s", inputFilePath);
+        return false;
+    }
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
+                 "Input file read successfully: %{public}d byte", dataInfo.bufferSize);
+
+    // 创建转换器并设置回调。
+    OH_AudioConverter *converter = nullptr;
+    if (!CreateAudioConverter(&dataInfo, converter)) {
+        delete[] dataInfo.buffer;
+        return false;
+    }
+
+    // 处理音频数据并直接写入输出文件。
+    if (!ProcessAudioData(&dataInfo, outputFilePath, converter)) {
+        CleanupResources(&dataInfo, converter);
+        return false;
+    }
+
+    // 清理资源。
+    CleanupResources(&dataInfo, converter);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "Format conversion test completed successfully");
+    return true;
+}
