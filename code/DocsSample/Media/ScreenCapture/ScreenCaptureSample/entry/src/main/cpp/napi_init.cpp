@@ -349,8 +349,8 @@ int GetInputSurface()
     g_videoEnc = OH_VideoEncoder_CreateByName(name);
     g_muxer = std::make_unique<Muxer>();
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, 0777);
-    g_muxer->Create(outputFd);
+    g_surfaceOutputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, 0777);
+    g_muxer->Create(g_surfaceOutputFd);
     g_encContext = new CodecUserData;
     g_encContext->sampleInfo = &sampleInfo_;
     // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
@@ -385,7 +385,6 @@ int GetInputSurface()
         g_avCapture = nullptr;
         return result;
     }
-    close(outputFd);
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
     return result;
 }
@@ -488,10 +487,15 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         (void)OH_VideoEncoder_Destroy(g_videoEnc);
         g_videoEnc = nullptr;
         g_muxer->Stop();
+        g_muxer.reset();
         m_scSurfaceIsRunning = false;
         isStarted_.store(false);
         if (inputVideoThread_ && inputVideoThread_->joinable()) {
             inputVideoThread_->join();
+        }
+        if (g_surfaceOutputFd != -1) {
+            close(g_surfaceOutputFd);
+            g_surfaceOutputFd = -1;
         }
     }
     if (g_avCapture == nullptr) {
