@@ -545,6 +545,22 @@
       "value": "示例通过数据集合动态地创建列表。"
     },
     {
+      "name": "ListSwipeSelect_title",
+      "value": "手指滑动多选"
+    },
+    {
+      "name": "ListSwipeSelect_description",
+      "value": "列表在编辑模式下实现手指滑动多选能力。"
+    },
+    {
+      "name": "GridSwipeSelect_title",
+      "value": "手指滑动多选"
+    },
+    {
+      "name": "GridSwipeSelect_description",
+      "value": "网格在编辑模式下实现手指滑动多选能力。"
+    },
+    {
       "name": "CustomListStyle_title",
       "value": "自定义列表样式"
     },

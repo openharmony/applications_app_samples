@@ -69,6 +69,7 @@ export struct ListFingerSwipeMultiSelectDyn {
   private avatarColors: string[] = ['#317AF7', '#00A878', '#F7A531', '#8A5CF6', '#D94854', '#2A8C9C'];
   @State enableEditMode: boolean = false;
   @State selectedIds: number[] = [];
+  @State useDefaultMultiSelectStyle: boolean = true;
 
   aboutToAppear(): void {
     if (this.dataSource.totalCount() > 0) {
@@ -194,6 +195,7 @@ export struct ListFingerSwipeMultiSelectDyn {
 
         // [Start Add_list_select]
         List({ space: 10 }) {
+          // [StartExclude Add_list_select]
           LazyForEach(this.dataSource, (item: ListMultiSelectData, index: number) => {
             // [Start Add_list_item_select]
             ListItem() {
@@ -219,16 +221,32 @@ export struct ListFingerSwipeMultiSelectDyn {
               }
             })
           }, (item: ListMultiSelectData): string => item.id.toString())
+          // [EndExclude Add_list_select]
         }
-        .layoutWeight(1)
-        .width('100%')
-        .scrollBar(BarState.Off)
         .enableEditMode(this.enableEditMode)
         .onEditModeChange((enabled: boolean) => {
           this.setEditMode(enabled);
         })
         .editModeOptions({ useDefaultMultiSelectStyle: true, enableTwoFingerMultiSelect: true })
         // [End Add_list_select]
+        // [Start Add_list_GestureRecognizerJudgeBegin]
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          recognizers: Array<GestureRecognizer>) => {
+          // [StartExclude Add_list_GestureRecognizerJudgeBegin]
+          if (this.useDefaultMultiSelectStyle) {
+            return GestureJudgeResult.CONTINUE;
+          }
+          // [EndExclude Add_list_GestureRecognizerJudgeBegin]
+          // 以滑动多选的判定热区在列表左边，且宽度为48vp为例
+          if (current.getTag() !== 'SWIPESELECT' && this.enableEditMode && event.fingerList[0].localX < 48) {
+            return GestureJudgeResult.REJECT;
+          }
+          return GestureJudgeResult.CONTINUE;
+        })
+        // [End Add_list_GestureRecognizerJudgeBegin]
+        .layoutWeight(1)
+        .width('100%')
+        .scrollBar(BarState.Off)
       }
       .width('100%')
       .height('100%')
