@@ -59,7 +59,7 @@ import { testNapi2, testNapi3 as myNapi } from 'libentry.so'; // testNapi2 和 t
 // [End etsOptionExample_useKeepInSource]
 
 // [EndExclude etsOptionExample_keepPropertyName1]
-testNapi.addNum(2, 3); // add需要保留，示例如：-keep-property-name add
+testNapi.addNum(2, 3); // addNum需要保留，示例如：-keep-property-name addNum
 // [End etsOptionExample_keepPropertyName1]
 
 // [EndExclude etsOptionExample_keepPropertyName2]
