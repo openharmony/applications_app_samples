@@ -250,8 +250,8 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
 
     OH_RecorderInfo recorderInfo;
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, 0777);
-    std::string fileUrl = "fd://" + std::to_string(outputFd);
+    g_fileOutputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
+    std::string fileUrl = "fd://" + std::to_string(g_fileOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
@@ -378,8 +378,8 @@ int GetInputSurface()
     g_videoEnc = OH_VideoEncoder_CreateByName(name);
     g_muxer = std::make_unique<Muxer>();
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, 0777);
-    g_muxer->Create(outputFd);
+    g_surfaceOutputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, FILE_PERMISSION_FULL_ACCESS);
+    g_muxer->Create(g_surfaceOutputFd);
     g_encContext = new CodecUserData;
     g_encContext->sampleInfo = &sampleInfo_;
     // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
@@ -459,8 +459,9 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
 
     OH_RecorderInfo recorderInfo;
     const std::string filePath = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT, 0777);
-    std::string fileUrl = "fd://" + std::to_string(outputFd);
+    g_windowOutputFd = open((filePath + "saving_window_file.mp4").c_str(), O_RDWR | O_CREAT,
+        FILE_PERMISSION_FULL_ACCESS);
+    std::string fileUrl = "fd://" + std::to_string(g_windowOutputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
@@ -506,24 +507,34 @@ static napi_value StartScreenCapture_04(napi_env env, napi_callback_info info)
     return res;
 }
 
-// 停止
+static void StopSurfaceCapture()
+{
+    if (!m_scSurfaceIsRunning) {
+        return;
+    }
+    (void)OH_VideoEncoder_NotifyEndOfStream(g_videoEnc);
+    (void)OH_VideoEncoder_Stop(g_videoEnc);
+    (void)OH_VideoEncoder_Destroy(g_videoEnc);
+    g_videoEnc = nullptr;
+    g_muxer->Stop();
+    g_muxer.reset();
+    m_scSurfaceIsRunning = false;
+    isStarted_.store(false);
+    if (inputVideoThread_ && inputVideoThread_->joinable()) {
+        inputVideoThread_->join();
+    }
+    if (g_surfaceOutputFd != -1) {
+        close(g_surfaceOutputFd);
+        g_surfaceOutputFd = -1;
+    }
+}
+
 static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Stop");
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     napi_value res;
-    if (m_scSurfaceIsRunning) {
-        (void)OH_VideoEncoder_NotifyEndOfStream(g_videoEnc);
-        (void)OH_VideoEncoder_Stop(g_videoEnc);
-        (void)OH_VideoEncoder_Destroy(g_videoEnc);
-        g_videoEnc = nullptr;
-        g_muxer->Stop();
-        m_scSurfaceIsRunning = false;
-        isStarted_.store(false);
-        if (inputVideoThread_ && inputVideoThread_->joinable()) {
-            inputVideoThread_->join();
-        }
-    }
+    StopSurfaceCapture();
     if (g_avCapture == nullptr) {
         OH_LOG_ERROR(LOG_APP, "capture_ is null.");
     }
@@ -542,6 +553,14 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         g_avCapture = nullptr;
         m_scSaveFileIsRunning = false;
+        if (g_fileOutputFd != -1) {
+            close(g_fileOutputFd);
+            g_fileOutputFd = -1;
+        }
+        if (g_windowOutputFd != -1) {
+            close(g_windowOutputFd);
+            g_windowOutputFd = -1;
+        }
     } else {
         result = OH_AVScreenCapture_StopScreenCapture(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
