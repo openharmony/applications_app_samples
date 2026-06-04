@@ -76,9 +76,9 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API23版本SDK，版本号：6.1.0.105，镜像版本号：OpenHarmony_6.1.0.105。
+2.本示例为Stage模型，支持API26版本SDK，版本号：7.0.0.26，镜像版本号：OpenHarmony_7.0.0.26。
 
-3.本示例需要使用DevEco Studio 6.1.0 Release (Build Version: 6.1.0.830)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.1.0 Release(6.1.0.850)及以上版本才可编译运行。
 
 ### 下载
 
