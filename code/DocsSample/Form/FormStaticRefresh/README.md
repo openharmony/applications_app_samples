@@ -61,10 +61,10 @@
 
 | 权限名                                     | 权限说明                                         | 级别         |
 | ------------------------------------------ | ------------------------------------------------ | ------------ |
-| [ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissiongetbundleinfoprivileged) | 允许应用查询其他应用的信息。                     | system_basic |
-| [ohos.permission.LISTEN_BUNDLE_CHANGE](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionlistenbundlechange)      | 允许应用监听其他应用安装、更新、卸载状态的变化。 | system_basic |
-| [ohos.permission.REQUIRE_FORM](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionrequireform)               | 允许应用获取Ability Form。                       | system_basic |
-| [ohos.permission.OBSERVE_FORM_RUNNING](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionobserveformrunning)       | 允许应用监听卡片运行状态                      | system_basic |
+| [ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissiongetbundleinfoprivileged) | 允许应用查询其他应用的详细信息（如元数据、配置等）。 | system_basic |
+| [ohos.permission.LISTEN_BUNDLE_CHANGE](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionlistenbundlechange) | 允许应用监听其他应用安装、更新、卸载状态的变化。 | system_basic |
+| [ohos.permission.REQUIRE_FORM](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionrequireform) | 允许应用获取Ability Form。 | system_basic |
+| [ohos.permission.OBSERVE_FORM_RUNNING](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md#ohospermissionobserveformrunning) | 允许应用监听卡片运行状态 | system_basic |
 
 ### 依赖
 

@@ -33,7 +33,7 @@ class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (err: BusinessError<void> | null): void => {
       hilog.info(DOMAIN_NUMBER, 'testTag', 'loadContent entering');
       if (err && err.code) {
-        hilog.error(DOMAIN_NUMBER, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN_NUMBER, 'testTag', `Failed to load the content. code: ${err?.code}, message: ${err?.message}`);
         return;
       }
       hilog.info(DOMAIN_NUMBER, 'testTag', 'loadContent ok');

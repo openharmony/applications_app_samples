@@ -74,8 +74,8 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
       'detail': 'Description: ' + Math.random()
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error) => {
-      hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] updateForm, error:' + JSON.stringify(error));
+    formProvider.updateForm(formId, formData).catch((err) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `[UpdateByMessageFormAbility] updateForm, code: ${err?.code}, message: ${err?.message}`);
     });
   }
 
@@ -95,8 +95,8 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-    }).catch((error) => {
-      hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
+    }).catch((err) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. code: ${err?.code}, message: ${err?.message}`);
     });
   }
 
@@ -117,7 +117,7 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
     // 需注意：formExtensionAbility创建后10秒内无操作将会被清理。
     // [EndExclude update_by_message_form_ability]
-    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
+    hilog.info(DOMAIN_NUMBER, TAG, '[UpdateByMessageFormAbility] onConfigurationUpdate');
   }
 }
 

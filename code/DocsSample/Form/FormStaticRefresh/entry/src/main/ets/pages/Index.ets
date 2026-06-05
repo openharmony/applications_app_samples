@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// [Start update_by_formprovider]
+// [Start update_by_formhost]
+// entry/src/main/ets/pages/Index.ets
+
 import { Entry, Text, Column, ColumnOptions, Component, Button, ClickEvent } from '@ohos.arkui.component';
 import { Tabs, TabContent, Color, FlexAlign  } from '@ohos.arkui.component';
 import { FormComponent, FormInfo, FormDimension, FormCallbackInfo, $r } from '@ohos.arkui.component';
@@ -146,3 +150,6 @@ struct Index {
     }.width('100%')
   }
 }
+
+// [End update_by_formprovider]
+// [End update_by_formhost]

@@ -14,7 +14,7 @@
  */
 
 // [Start update_by_message_card]
-// entry/src/main/ets/updatebymessage/pages/UpdateByMessageCard.ets
+// entry/src/main/ets/widget/pages/UpdateByMessageCard.ets
 let storageUpdateByMsg = new LocalStorage();
 
 @Entry(storageUpdateByMsg)
