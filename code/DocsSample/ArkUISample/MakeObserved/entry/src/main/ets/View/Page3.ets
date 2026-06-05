@@ -50,7 +50,7 @@ struct Page3 {
       Button('task').onClick(() => {
         // 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。
         taskpool.execute(threadGetData, this.send.name)
-          .catch((err) => {
+          .catch((err: Error) => {
             hilog.error(DOMAIN, 'testTag', `taskpool execute fail. code is ${err.name}, message is ${err.message}`);
           })
           .then(val => {
