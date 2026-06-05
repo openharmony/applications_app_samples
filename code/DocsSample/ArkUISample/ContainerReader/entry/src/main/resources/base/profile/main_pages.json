@@ -1,0 +1,21 @@
+{
+  "src": [
+    "pages/MainPage",
+    "pages/layoutSpecifications/FillTheSpace",
+    "pages/layoutSpecifications/DivideRemainingSpaceEqually",
+    "pages/layoutSpecifications/DivideRemainingSpace",
+    "pages/layoutSpecifications/LayoutSpecificationsIndex",
+    "pages/developmentSteps/DevelopmentSteps",
+    "pages/combineWithFlexRowColumn/CombineWithLayoutWeight",
+    "pages/combineWithFlexRowColumn/CombineWithLowDisplayPriority",
+    "pages/combineWithFlexRowColumn/CombineWithHighDisplayPriority",
+    "pages/combineWithFlexRowColumn/CombineWithFlexShrink",
+    "pages/combineWithFlexRowColumn/CombineWithFlexGrow",
+    "pages/combineWithFlexRowColumn/CombineWithFlexColumnRowIndex",
+    "pages/developmentDemo/IndependentBreakpoints",
+    "pages/developmentDemo/GridComponentAdaptiveColumnSettings",
+    "pages/developmentDemo/CustomComponentAdaptiveLayout",
+    "pages/developmentDemo/LeftOrRightSplitLayout"
+
+  ]
+}
