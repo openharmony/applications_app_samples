@@ -24,7 +24,7 @@ const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: int = 0xFF00;
 
 function onAcquireFormStateCallback(want: Want): formInfo.FormState {
-  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
+  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
   hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
   return formInfo.FormState.READY;
 }
