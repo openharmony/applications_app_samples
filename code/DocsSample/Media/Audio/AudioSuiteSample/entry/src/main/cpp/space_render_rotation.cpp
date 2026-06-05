@@ -96,9 +96,9 @@ static OH_AudioNode *spaceNodeForMix = nullptr;
 static OH_AudioNode *mixerNode = nullptr;
 static OH_AudioNode *outputNode = nullptr;
 static OH_AudioRenderer *audioSpaceRenderRotationEffect = nullptr;
-static std::atomic<bool> isRotating(false);
-static std::thread rotationThread;
-static std::atomic<int> angle(0);
+static std::atomic<bool> g_isRotating(false);
+static std::thread g_rotationThread;
+static std::atomic<int> g_angle(0);
 // [End audioSuite_SpaceRenderRotationVariable]
 
 static void ConfigureAudioFormat(OH_AudioFormat &audioFormat)
@@ -271,15 +271,15 @@ void SpaceRenderEffect(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInf
 
 void StartAutoRotation()
 {
-    if (isRotating) {
+    if (g_isRotating) {
         return;
     }
-    isRotating = true;
-    angle = 0;
-    rotationThread = std::thread([]() {
-        while (isRotating) {
-            angle = (angle + ROTATION_STEP_DEGREES) % FULL_CIRCLE_DEGREES;
-            float radians = angle * PI / DEGREES_TO_RADIANS;
+    g_isRotating = true;
+    g_angle = 0;
+    g_rotationThread = std::thread([]() {
+        while (g_isRotating) {
+            g_angle = (g_angle + ROTATION_STEP_DEGREES) % FULL_CIRCLE_DEGREES;
+            float radians = g_angle * PI / DEGREES_TO_RADIANS;
             float radius = SPACE_RENDER_RADIUS;
             float x = radius * cos(radians);
             float z = POSITION_ORIGIN;
@@ -291,12 +291,12 @@ void StartAutoRotation()
             std::this_thread::sleep_for(std::chrono::milliseconds(ROTATION_INTERVAL_MS));
         }
     });
-    rotationThread.detach();
+    g_rotationThread.detach();
 }
 
 void StopAutoRotation()
 {
-    isRotating = false;
+    g_isRotating = false;
 }
 
 void DestroySpaceRenderEffect()
