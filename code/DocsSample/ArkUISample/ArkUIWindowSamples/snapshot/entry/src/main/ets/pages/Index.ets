@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Snapshot_srart]
-// [Start SnapshotMore_srart]
-// [Start SnapshotScreen_srart]
+// [Start Snapshot_start]
+// [Start SnapshotMore_start]
+// [Start SnapshotScreen_start]
 import { display, screenshot, window } from '@kit.ArkUI';
 import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -40,7 +40,7 @@ struct Index {
     void this.initWindow();
     this.initDisplayInfo();
   }
-  // [StartExclude SnapshotScreen_srart]
+  // [StartExclude SnapshotScreen_start]
   // 在页面中记录接口调用结果，同时输出到 hilog，便于调试。
   private appendLog(message: string): void {
     this.statusText = message;
@@ -71,7 +71,7 @@ struct Index {
       this.appendLog(this.statusText);
     }
   }
-  // [StartExclude SnapshotMore_srart]
+  // [StartExclude SnapshotMore_start]
   // 获取当前设备可用的 displayId，供 screenshot.capture 使用。
   private async initDisplayInfo(): Promise<void> {
     try {
@@ -80,7 +80,7 @@ struct Index {
 
       const displays = await display.getAllDisplays();
       this.displayInfoText = displays.map((item) => `${item.id}`).join(', ');
-      this.statusText = `available dsplayIds=${this.displayInfoText}`;
+      this.statusText = `available displayIds=${this.displayInfoText}`;
     } catch (err) {
       this.statusText = `init display info failed: $JSON.stringify(err)}`;
       hilog.error(DOMAIN, 'screenshotSample', this.statusText);
@@ -169,9 +169,9 @@ struct Index {
       this.appendLog(this.statusText);
     }
   }
-  // [EndExclude SnapshotScreen_srart]
-  // [EndExclude SnapshotMore_srart]
-  // [StartExclude Snapshot_srart]
+  // [EndExclude SnapshotScreen_start]
+  // [EndExclude SnapshotMore_start]
+  // [StartExclude Snapshot_start]
   // getMainWindowSnapshot 需要使用 ohos.permission.CUSTOM_SCREEN_CAPTURE 权限。
   private async requestCapturePermission(): Promise<boolean> {
     try {
@@ -233,7 +233,7 @@ struct Index {
       this.appendLog(`getMainWindowSnapshot failed: ${JSON.stringify(err)}`);
     }
   }
-  // [StartExclude SnapshotMore_srart]
+  // [StartExclude SnapshotMore_start]
   // 通过手势框选屏幕区域，仅支持主屏区域截图。
   private async pickScreenArea(): Promise<void> {
     try {
@@ -267,13 +267,13 @@ struct Index {
       hilog.error(DOMAIN, 'screenshotSample', this.statusText);
     }
   }
-  // [EndExclude SnapshotMore_srart]
-  // [EndExclude Snapshot_srart]
+  // [EndExclude SnapshotMore_start]
+  // [EndExclude Snapshot_start]
 
   build() {
-  // [StartExclude Snapshot_srart]
-  // [StartExclude SnapshotMore_srart]
-  // [StartExclude SnapshotScreen_srart]
+  // [StartExclude Snapshot_start]
+  // [StartExclude SnapshotMore_start]
+  // [StartExclude SnapshotScreen_start]
     Scroll() {
       Column({ space: 16 }) {
         Text('Window Snapshot Sample')
@@ -397,10 +397,10 @@ struct Index {
     .width('100%')
     .height('100%')
   }
-// [EndExclude Snapshot_srart]
-// [EndExclude SnapshotMore_srart]
-// [EndExclude SnapshotScreen_srart]
+// [EndExclude Snapshot_start]
+// [EndExclude SnapshotMore_start]
+// [EndExclude SnapshotScreen_start]
 }
-// [End Snapshot_srart]
-// [End SnapshotMore_srart]
-// [End SnapshotScreen_srart]
+// [End Snapshot_start]
+// [End SnapshotMore_start]
+// [End SnapshotScreen_start]

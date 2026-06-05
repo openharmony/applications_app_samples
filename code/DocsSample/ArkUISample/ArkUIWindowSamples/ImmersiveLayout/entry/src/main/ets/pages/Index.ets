@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start ImmersiveLayout_srart]
+// [Start ImmersiveLayout_start]
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -21,7 +21,7 @@ const DOMAIN = 0x0000;
 @Entry
 @Component
 struct Index {
-  // [StartExclude ImmersiveLayout_srart]
+  // [StartExclude ImmersiveLayout_start]
   @StorageProp('topAvoidHeight')
   topAvoidHeight: number = 0;
   @StorageProp('bottomAvoidHeight')
@@ -71,7 +71,7 @@ struct Index {
       hilog.error(DOMAIN, 'ImmersiveLayout', this.statusText);
     }
   }
-  // [EndExclude ImmersiveLayout_srart]
+  // [EndExclude ImmersiveLayout_start]
   build() {
     Column() {
       // 避让顶部和挖孔区域
@@ -171,4 +171,4 @@ struct Index {
     .justifyContent(FlexAlign.SpaceBetween)
   }
 }
-// [End ImmersiveLayout_srart]
+// [End ImmersiveLayout_start]

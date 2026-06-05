@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start SystemBarEnabled_srart]
+// [Start SystemBarEnabled_start]
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -20,7 +20,7 @@ import { window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
-    // [StartExclude SystemBarEnabled_srart]
+    // [StartExclude SystemBarEnabled_start]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -33,7 +33,7 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-  // [EndExclude SystemBarEnabled_srart]
+  // [EndExclude SystemBarEnabled_start]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', async (err) => {
@@ -50,7 +50,7 @@ export default class EntryAbility extends UIAbility {
       }
     });
   }
-  // [StartExclude SystemBarEnabled_srart]
+  // [StartExclude SystemBarEnabled_start]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
@@ -66,5 +66,5 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
-// [EndExclude SystemBarEnabled_srart]
-// [End SystemBarEnabled_srart]
+// [EndExclude SystemBarEnabled_start]
+// [End SystemBarEnabled_start]
