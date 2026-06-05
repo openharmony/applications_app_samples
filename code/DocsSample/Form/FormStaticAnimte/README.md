@@ -6,18 +6,17 @@
 
 [卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-overview.md)
 [卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
-[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-custom-drawing.md)
 
 ### 效果预览
-|默认卡片|动效卡片|自定义绘制卡片|
-|--------------------------------|--------------------------------|--------------------------------|
-|![FormHelloWorld](./screenshots/device/FormHelloWorld.jpeg)|![FormAnimation](./screenshots/device/FormAnimation.jpeg)|![FormCanvas](./screenshots/device/FormCanvas.jpeg)|
+|动效卡片|隐藏动效卡片|
+|--------------------------------|--------------------------------|
+|![FormAnimation](./screenshots/device/FormAnimation.jpeg)|![FormShowFolwer](./screenshots/device/FormShowFolwer.jpeg)|
 
 使用说明：
 
 1.长按ArkTSCardDemo应用图标，弹出菜单后点击**服务卡片**选项进入卡片预览界面。
 
-2.卡片预览界面默认显示第一张默认卡片(helloworld卡片)，向右滑动可以看到第二张(动效卡片)和第三张(自定义绘制)卡片。
+2.卡片预览界面默认显示第一张默认卡片(动效卡片)，向右滑动可以看到第二张(隐藏动效)卡片。
 
 3.点击下方**添加到桌面**按钮即可以将卡片添加到桌面。
 
@@ -108,8 +107,6 @@
 [卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-overview.md)
 
 [卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
-
-[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-custom-drawing.md)
 
 
 ### 相关权限
