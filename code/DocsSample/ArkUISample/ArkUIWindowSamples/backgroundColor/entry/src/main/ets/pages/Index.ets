@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
- // [Start backgroundColor_srart]
+ // [Start backgroundColor_start]
 import { ColorMetrics, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -44,7 +44,7 @@ struct Index {
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
- // [StartExclude backgroundColor_srart]
+ // [StartExclude backgroundColor_start]
   // 滑块变化时默认使用 string 形式更新窗口背景色。
   private applyWindowBackgroundColor(): void {
     if (!this.mainWindow) {
@@ -100,7 +100,7 @@ struct Index {
       hilog.error(DOMAIN, 'backgroundColor', this.statusText);
     }
   }
- // [EndExclude backgroundColor_srart]
+ // [EndExclude backgroundColor_start]
   // 直接用 ColorMetrics.rgba(...) 设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
@@ -122,7 +122,7 @@ struct Index {
     }
   }
 
- // [StartExclude backgroundColor_srart]
+ // [StartExclude backgroundColor_start]
   @Builder
   @Builder
   private buildColorSlider(title: string, value: number, onChange: (value: number) => void) {
@@ -269,6 +269,6 @@ struct Index {
     .height('100%')
     .padding(12)
   }
-   // [EndExclude backgroundColor_srart]
+   // [EndExclude backgroundColor_start]
 }
-// [End backgroundColor_srart]
+// [End backgroundColor_start]

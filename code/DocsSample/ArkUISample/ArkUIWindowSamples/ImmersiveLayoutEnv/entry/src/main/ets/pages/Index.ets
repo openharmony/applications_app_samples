@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start ImmersiveLayoutEnv_srart]
-// [Start ImmersiveLayoutEnv3_srart]
- // [StartExclude ImmersiveLayoutEnv3_srart]
+// [Start ImmersiveLayoutEnv_start]
+// [Start ImmersiveLayoutEnv3_start]
+ // [StartExclude ImmersiveLayoutEnv3_start]
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -34,7 +34,7 @@ struct Index {
   rightAvoidWidth: number = 0;
   @StorageLink('mainWindow')
   mainWindow: window.Window | undefined = undefined;
-  // [StartExclude ImmersiveLayoutEnv_srart]
+  // [StartExclude ImmersiveLayoutEnv_start]
   @State orientationText: string = 'Unknown';
   @State statusText: string = 'Rotate the device or use the buttons below to test avoid areas and cutout handling.';
 
@@ -73,7 +73,7 @@ struct Index {
       hilog.error(DOMAIN, 'ImmersiveLayout', this.statusText);
     }
   }
-  // [EndExclude ImmersiveLayoutEnv3_srart]
+  // [EndExclude ImmersiveLayoutEnv3_start]
   build() {
     Column() {
       Row() {
@@ -169,7 +169,7 @@ struct Index {
     .backgroundColor('#d5d5d5')
     .justifyContent(FlexAlign.SpaceBetween)
   }
-  // [EndExclude ImmersiveLayoutEnv_srart]
+  // [EndExclude ImmersiveLayoutEnv_start]
 }
-// [Start ImmersiveLayoutEnv_srart]
-// [Start ImmersiveLayoutEnv3_srart]
+// [Start ImmersiveLayoutEnv_start]
+// [Start ImmersiveLayoutEnv3_start]
