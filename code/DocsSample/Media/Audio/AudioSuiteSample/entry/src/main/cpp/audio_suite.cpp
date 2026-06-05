@@ -25,7 +25,7 @@
 #include "pcm_file_utils.h"
 #include "hilog/log.h"
 #include "real_time_rendering.h"
-#include "audio_converter_test.h"
+#include "audio_format_converter.h"
 #include "print_info_to_file.h"
 #include "space_render_rotation.h"
 
