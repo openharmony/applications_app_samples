@@ -27,10 +27,12 @@
 #include "real_time_rendering.h"
 #include "audio_converter_test.h"
 #include "print_info_to_file.h"
+#include "space_render_rotation.h"
 
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
+const int AUDIO_RENDER_MODE_SPACE = 3;
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
 std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
@@ -383,6 +385,24 @@ napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+AudioDataInfo g_audioInfoSpaceEffectField;
+AudioDataInfo g_audioInfoSpaceEffectMix;
+napi_value SpaceRenderRotationNapi(napi_env env, napi_callback_info info)
+{
+    ReadPcmFile(g_filePathVocals.c_str(), &g_audioInfoSpaceEffectField);
+    ReadPcmFile(g_filePathAccompaniment.c_str(), &g_audioInfoSpaceEffectMix);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectField : %{public}d",
+                 g_audioInfoSpaceEffectField.bufferSize);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectMix : %{public}d",
+                 g_audioInfoSpaceEffectMix.bufferSize);
+    SpaceRenderEffect(&g_audioInfoSpaceEffectField, &g_audioInfoSpaceEffectMix);
+    std::stringstream ss;
+    ss << "播放空间渲染成功\n";
+    napi_value retVal;
+    napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+    return retVal;
+}
+
 // 全局变量 - 用于主要功能
 OH_AudioStreamBuilder *builderRender;
 OH_AudioRenderer *audioRenderer;
@@ -474,6 +494,11 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
         DestroyEqualizerEffect();
         // 释放音频数据资源
         FreeAudioDataInfo(&g_audioInfoEqualizerEffect);
+    } else if (type == AUDIO_RENDER_MODE_SPACE) {
+        DestroySpaceRenderEffect();
+        // 释放音频数据资源AudioDataInfo
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectField);
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectMix);
     } else {
         OH_AudioRenderer_Stop(audioRenderer);
         OH_AudioRenderer_Release(audioRenderer);
@@ -503,6 +528,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"AudioFormatConverterNapi", nullptr, AudioFormatConverterNapi, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"TestPrintInfoToFile", nullptr, TestPrintInfoToFile, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"SpaceRenderRotationNapi", nullptr, SpaceRenderRotationNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

@@ -25,7 +25,7 @@ struct Index {
   @State message: string = 'Ready';
   @State napiReturnLog: string = '暂无返回信息';
   @State isPlay: boolean = false;
-  @State isReal: boolean = false;
+  @State type: number = 1;
   // Loading 状态
   @State isLoadingBaseEditor: boolean = false;
   @State isLoadingAudioSourceSeparation: boolean = false;
@@ -121,6 +121,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(1);
                       this.message = '播放原始音频成功';
                       this.updateNapiLog(result);
@@ -138,12 +139,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = false;
-                      let type: number = 1;
-                      if (this.isReal) {
-                        type = 2;
-                        this.isReal = false;
-                      }
-                      let result: string = await audioSuiteNapi.DestroyAudioRender(type);
+                      let result: string = await audioSuiteNapi.DestroyAudioRender(this.type);
                       this.message = '停止播放成功';
                       this.updateNapiLog(result);
                     } catch (err) {
@@ -181,6 +177,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(2);
                       this.message = '播放加均衡器效果后音频成功';
                       this.updateNapiLog(result);
@@ -219,6 +216,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(3);
                       this.message = '播放伴奏成功';
                       this.updateNapiLog(result);
@@ -236,6 +234,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(4);
                       this.message = '播放人声成功';
                       this.updateNapiLog(result);
@@ -275,6 +274,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(5);
                       this.message = '播放混音成功';
                       this.updateNapiLog(result);
@@ -292,7 +292,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
-                      this.isReal = true;
+                      this.type = 2;
                       let result: string = await audioSuiteNapi.EqualizerEffectNapi();
                       this.message = '播放实时预览成功';
                       this.updateNapiLog(result);
@@ -302,12 +302,30 @@ struct Index {
                     }
                   })
 
+                Button('播放空间渲染')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(!this.isPlay && this.isAudioSourceSeparationCompleted)
+                  .onClick(async () => {
+                    try {
+                      this.isPlay = true;
+                      this.type = 3;
+                      let result: string = await audioSuiteNapi.SpaceRenderRotationNapi();
+                      this.message = '播放空间渲染成功';
+                      this.updateNapiLog(result);
+                    } catch (err) {
+                      this.message = '播放空间渲染失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
+
                 Button('调试')
                   .width('90%')
                   .height(30)
                   .margin({ bottom: 12 })
-                  .enabled(this.isReal)
-                  .backgroundColor(this.isReal ? '#8B0000' : '#CCCCCC')
+                  .enabled(this.type == 2)
+                  .backgroundColor(this.type == 2 ? '#8B0000' : '#CCCCCC')
                   .onClick(async () => {
                     try {
                       await DirInitHelper.ensureDirExists();
