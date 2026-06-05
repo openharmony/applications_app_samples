@@ -44,6 +44,8 @@ export class MediaControlCenterHandle {
     await this.init();
   }
 
+  // Use a timer to update the progress bar at 500ms intervals
+  // [Start onProgress]
   onProgress() {
     clearInterval(this.interval);
     this.interval = setInterval(() => {
@@ -61,10 +63,14 @@ export class MediaControlCenterHandle {
       }
     }, 500)
   }
+  // [End onProgress]
 
   registerCallback() {
     audioPlayer.onPlayStatus((state) => {
       Logger.info(TAG, `onPlayStateChange is ${state}`)
+      if (state === 4) {
+        MediaControlCenterCallbackAction.getInstance().doPlayCompleteAction();
+      }
       if (state === 3) {
         MediaControlCenterCallbackAction.getInstance().doStopAction();
       }
@@ -74,9 +80,6 @@ export class MediaControlCenterHandle {
       if (state === 1) {
         MediaControlCenterCallbackAction.getInstance().doPlayAction();
       }
-      if (state === 4) {
-        MediaControlCenterCallbackAction.getInstance().doPlayCompleteAction();
-      }
     })
     this.onProgress();
   }
@@ -85,7 +88,6 @@ export class MediaControlCenterHandle {
   loadSongAssent(songRawFileDescriptor: resourceManager.RawFileDescriptor, fileName: string) {
     audioPlayer.loadSongInfo(fileName, songRawFileDescriptor.fd, songRawFileDescriptor.length,
     songRawFileDescriptor.offset);
-
 
       Logger.info(TAG, `loadSongAssent is ${fileName} fd ${songRawFileDescriptor.fd},
         songFileSize ${songRawFileDescriptor.length}, songOffset ${songRawFileDescriptor.offset}`);

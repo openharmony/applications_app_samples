@@ -64,10 +64,9 @@ struct AudioFileOprInfo {
     AudioBufferQueue* audioBufferQueue = nullptr;
     std::atomic<bool> isFileEnd{false};
     std::atomic<bool> isCompletionCallbackTriggered{false};
-    std::atomic<uint64_t> totalFramesWritten{0};
     std::atomic<uint64_t> currentFramesWritten{0};
     uint64_t songTotalFrames{0};
-    int32_t targetPositionMs = 0;
+    int32_t basePositionMs = 0;
     int32_t producerThreadTokenId = 0;
 
     std::mutex songInfoMutex;
