@@ -25,10 +25,12 @@
 #include "pcm_file_utils.h"
 #include "hilog/log.h"
 #include "real_time_rendering.h"
-#include "audio_converter_test.h"
+#include "audio_format_converter.h"
+#include "space_render_rotation.h"
 const int GLOBAL_RESMGR = 0xFF00;
 static const char *TAG = "[AudioSuiteApp_init_cpp]";
 const int AUDIO_RENDER_MODE_REALTIME = 2;
+const int AUDIO_RENDER_MODE_SPACE = 3;
 std::string g_filePath = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000.pcm";
 std::string g_filePathEffect = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Effect.pcm";
 std::string g_filePathVocals = "/data/storage/el2/base/haps/entry/files/S16LE_2_48000_Vocals.pcm";
@@ -381,6 +383,24 @@ napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
     return retVal;
 }
 
+AudioDataInfo g_audioInfoSpaceEffectVocals;
+AudioDataInfo g_audioInfoSpaceEffectAccompaniment;
+napi_value SpaceRenderRotationNapi(napi_env env, napi_callback_info info)
+{
+    ReadPcmFile(g_filePathVocals.c_str(), &g_audioInfoSpaceEffectVocals);
+    ReadPcmFile(g_filePathAccompaniment.c_str(), &g_audioInfoSpaceEffectAccompaniment);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectVocals : %{public}d",
+                 g_audioInfoSpaceEffectVocals.bufferSize);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectAccompaniment : %{public}d",
+                 g_audioInfoSpaceEffectAccompaniment.bufferSize);
+    SpaceRenderEffect(&g_audioInfoSpaceEffectVocals, &g_audioInfoSpaceEffectAccompaniment);
+    std::stringstream ss;
+    ss << "播放空间渲染成功\n";
+    napi_value retVal;
+    napi_create_string_utf8(env, ss.str().c_str(), NAPI_AUTO_LENGTH, &retVal);
+    return retVal;
+}
+
 // 全局变量 - 用于主要功能
 OH_AudioStreamBuilder *builderRender;
 OH_AudioRenderer *audioRenderer;
@@ -472,6 +492,11 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
         DestroyEqualizerEffect();
         // 释放音频数据资源
         FreeAudioDataInfo(&g_audioInfoEqualizerEffect);
+    } else if (type == AUDIO_RENDER_MODE_SPACE) {
+        DestroySpaceRenderEffect();
+        // 释放音频数据资源AudioDataInfo
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectVocals);
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectAccompaniment);
     } else {
         OH_AudioRenderer_Stop(audioRenderer);
         OH_AudioRenderer_Release(audioRenderer);
@@ -500,6 +525,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"EqualizerEffectNapi", nullptr, EqualizerEffectNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"AudioFormatConverterNapi", nullptr, AudioFormatConverterNapi, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"SpaceRenderRotationNapi", nullptr, SpaceRenderRotationNapi, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

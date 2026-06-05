@@ -81,12 +81,12 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *r
 
 // [Start audioSuite_RealTimeVariable]
 OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
-OH_AudioStreamBuilder *rendererBuilder = nullptr;
-OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
-OH_AudioNode *inputNode = nullptr;
-OH_AudioNode *outputNode = nullptr;
-OH_AudioNode *eqNode = nullptr;
-OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
+static OH_AudioStreamBuilder *rendererBuilder = nullptr;
+static OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
+static OH_AudioNode *inputNode = nullptr;
+static OH_AudioNode *outputNode = nullptr;
+static OH_AudioNode *eqNode = nullptr;
+static OH_AudioRenderer *audioRendererEqualizerEffect = nullptr;
 // [End audioSuite_RealTimeVariable]
 /**
  * 均衡器效果

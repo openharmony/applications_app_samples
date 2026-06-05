@@ -31,6 +31,8 @@
 
 点击'播放实时预览'按钮，即可实时处理并播放音频（预览效果）。
 
+点击'播放空间渲染'按钮，即可播放添加空间渲染后的音频。
+
 点击'格式转换'按钮，即可对PCM音频进行格式转换（预览效果）。
 
 ## 工程结构&模块类型
@@ -44,7 +46,9 @@
 │   │   ├── audio_suite.cpp         # NAPI 接口和音频播放实现
 │   │   ├── manual_rendering.cpp    # 离线编辑实现
 │   │   ├── real_time_rendering.cpp  # 实时预览实现
-│   │   └── pcm_file_utils.cpp      # PCM 文件工具类
+│   │   ├── audio_format_converter.cpp  # PCM音频格式转换实现
+│   │   ├── pcm_file_utils.cpp       # PCM 文件工具类
+│   │   └── space_render_rotation.cpp     # 空间渲染实现
 │   ├── ets/
 │   │   ├── entryability/
 │   │   │   └── EntryAbility.ets   # Ability 的生命周期回调内容
@@ -93,6 +97,7 @@
 - '播放伴奏'和'播放人声'：需先完成音源分离
 - '混音与级联'：需先完成音源分离
 - '播放混音'：需先完成混音与级联
+- '播放空间渲染'：需先完成音源分离
 
 异步操作（均衡器效果、音源分离、混音与级联）处理过程中会显示 Loading 遮罩，处理完成后自动启用相关播放按钮。
 
