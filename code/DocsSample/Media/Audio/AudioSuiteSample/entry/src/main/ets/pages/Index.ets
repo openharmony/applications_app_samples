@@ -16,7 +16,6 @@
 import audioSuiteNapi from 'libentry.so';
 import { common } from '@kit.AbilityKit'
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { DirInitHelper } from '../utils/DirInit';
 
 
 @Entry
