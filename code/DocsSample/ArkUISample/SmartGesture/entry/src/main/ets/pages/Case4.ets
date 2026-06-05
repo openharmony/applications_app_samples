@@ -90,17 +90,11 @@ struct Demo4 {
         .borderRadius(8)
         .backgroundColor('#e8e8e8')
 
-      Text(`当前页: ${this.swiperIndex}`)
-        .fontSize(14)
-        .fontColor('#555')
-        .textAlign(TextAlign.Center)
-
       Swiper() {
         Column({ space: 16 }) {
           Text('第0页 - 首页')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-            .padding(8)
           Button(`首页按钮 / 点击=${this.page0Btn}`)
             .id('page0_btn')
             .width('80%')
@@ -123,7 +117,6 @@ struct Demo4 {
           Text('第1页 - 设置')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-            .padding(8)
           Button(`设置按钮 / 点击=${this.page1Btn}`)
             .id('page1_btn')
             .width('80%')
@@ -146,7 +139,6 @@ struct Demo4 {
           Text('第2页 - 关于')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-            .padding(8)
           Button(`关于按钮 / 点击=${this.page2Btn}`)
             .id('page2_btn')
             .width('80%')
@@ -176,22 +168,6 @@ struct Demo4 {
       })
       .borderRadius(12)
       .borderWidth(1)
-
-      Row({ space: 8 }) {
-        Button('选中首页按钮').layoutWeight(1)
-          .onClick(() => this.controller.requestSelected('page0_btn'))
-        Button('选中设置按钮').layoutWeight(1)
-          .onClick(() => this.controller.requestSelected('page1_btn'))
-        Button('选中关于按钮').layoutWeight(1)
-          .onClick(() => this.controller.requestSelected('page2_btn'))
-      }.width('100%')
-
-      Button('清空选中')
-        .width('100%')
-        .onClick(() => {
-          this.controller.clearSelected();
-          this.hint = '选中已清空';
-        })
     }
     .width('100%')
     .height('100%')
