@@ -1,4 +1,4 @@
-# ohos-connect
+# 通用互联
 
 ## 介绍
 通用互联APP用于openharmony生态设备控制，能够运行在HOS Next大屏和OHOS大屏设备上。
