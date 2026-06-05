@@ -91,8 +91,11 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
     // 请根据业务替换为实际刷新的卡片数据
-    let formData = new FormDataClass();
-    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
+    let obj: Record<string, string> = {
+      'title': 'Title: ' + Math.random(),
+      'detail': 'Description: ' + Math.random()
+    };
+    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
     }).catch((err) => {
