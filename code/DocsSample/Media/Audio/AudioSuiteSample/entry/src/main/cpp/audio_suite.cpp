@@ -385,17 +385,17 @@ napi_value EqualizerEffectNapi(napi_env env, napi_callback_info info)
     return retVal;
 }
 
-AudioDataInfo g_audioInfoSpaceEffectField;
-AudioDataInfo g_audioInfoSpaceEffectMix;
+AudioDataInfo g_audioInfoSpaceEffectVocals;
+AudioDataInfo g_audioInfoSpaceEffectAccompaniment;
 napi_value SpaceRenderRotationNapi(napi_env env, napi_callback_info info)
 {
-    ReadPcmFile(g_filePathVocals.c_str(), &g_audioInfoSpaceEffectField);
-    ReadPcmFile(g_filePathAccompaniment.c_str(), &g_audioInfoSpaceEffectMix);
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectField : %{public}d",
-                 g_audioInfoSpaceEffectField.bufferSize);
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectMix : %{public}d",
-                 g_audioInfoSpaceEffectMix.bufferSize);
-    SpaceRenderEffect(&g_audioInfoSpaceEffectField, &g_audioInfoSpaceEffectMix);
+    ReadPcmFile(g_filePathVocals.c_str(), &g_audioInfoSpaceEffectVocals);
+    ReadPcmFile(g_filePathAccompaniment.c_str(), &g_audioInfoSpaceEffectAccompaniment);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectVocals : %{public}d",
+                 g_audioInfoSpaceEffectVocals.bufferSize);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "g_audioInfoSpaceEffectAccompaniment : %{public}d",
+                 g_audioInfoSpaceEffectAccompaniment.bufferSize);
+    SpaceRenderEffect(&g_audioInfoSpaceEffectVocals, &g_audioInfoSpaceEffectAccompaniment);
     std::stringstream ss;
     ss << "播放空间渲染成功\n";
     napi_value retVal;
@@ -497,8 +497,8 @@ napi_value DestroyAudioRender(napi_env env, napi_callback_info info)
     } else if (type == AUDIO_RENDER_MODE_SPACE) {
         DestroySpaceRenderEffect();
         // 释放音频数据资源AudioDataInfo
-        FreeAudioDataInfo(&g_audioInfoSpaceEffectField);
-        FreeAudioDataInfo(&g_audioInfoSpaceEffectMix);
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectVocals);
+        FreeAudioDataInfo(&g_audioInfoSpaceEffectAccompaniment);
     } else {
         OH_AudioRenderer_Stop(audioRenderer);
         OH_AudioRenderer_Release(audioRenderer);

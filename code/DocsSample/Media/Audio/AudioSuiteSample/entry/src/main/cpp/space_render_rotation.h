@@ -22,7 +22,7 @@
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
 // [End audioSuite_SpaceRenderEffectInclude]
-void SpaceRenderEffect(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInfoForMix);
+void SpaceRenderEffect(AudioDataInfo *audioInfoForVocals, AudioDataInfo *audioInfoForAccompaniment);
 void DestroySpaceRenderEffect();
 void StartAutoRotation();
 void StopAutoRotation();
