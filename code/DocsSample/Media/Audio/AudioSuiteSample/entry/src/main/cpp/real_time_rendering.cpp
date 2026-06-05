@@ -80,7 +80,7 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *r
 // [End audioSuite_AudioRendererOnWriteData]
 
 // [Start audioSuite_RealTimeVariable]
-static OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
+OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
 static OH_AudioStreamBuilder *rendererBuilder = nullptr;
 static OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
 static OH_AudioNode *inputNode = nullptr;

@@ -140,6 +140,7 @@ struct Index {
                     try {
                       this.isPlay = false;
                       let result: string = await audioSuiteNapi.DestroyAudioRender(this.type);
+                      this.type = 1;
                       this.message = '停止播放成功';
                       this.updateNapiLog(result);
                     } catch (err) {

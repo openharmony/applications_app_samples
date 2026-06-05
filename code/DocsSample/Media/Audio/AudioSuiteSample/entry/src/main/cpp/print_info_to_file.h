@@ -23,7 +23,7 @@
 extern "C" {
 #endif
 
-static OH_AudioSuiteEngine *audioSuiteEngine;
+extern OH_AudioSuiteEngine *audioSuiteEngine;
 
 napi_value TestPrintInfoToFile(napi_env env, napi_callback_info info);
 

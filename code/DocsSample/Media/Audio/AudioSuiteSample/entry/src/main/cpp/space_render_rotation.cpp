@@ -86,7 +86,7 @@ static OH_AudioData_Callback_Result AudioRendererOnWriteData(OH_AudioRenderer *r
 // [End audioSuite_SpaceRenderRotationAudioRendererOnWriteData]
 
 // [Start audioSuite_SpaceRenderRotationVariable]
-static OH_AudioSuiteEngine *audioSuiteEngine = nullptr;
+static OH_AudioSuiteEngine *audioSuiteEngineSpace = nullptr;
 static OH_AudioStreamBuilder *rendererBuilder = nullptr;
 static OH_AudioSuitePipeline *audioSuitePipeline = nullptr;
 static OH_AudioNode *inputNodeForField = nullptr;
@@ -247,7 +247,7 @@ static void DestroySpaceRenderResources()
     OH_AudioSuiteEngine_DestroyPipeline(audioSuitePipeline);
 
     // 销毁引擎。
-    OH_AudioSuiteEngine_Destroy(audioSuiteEngine);
+    OH_AudioSuiteEngine_Destroy(audioSuiteEngineSpace);
     // [End audioSuite_DestroySpaceRenderRotation]
 }
 
@@ -259,10 +259,10 @@ void SpaceRenderEffect(AudioDataInfo *audioInfoForField, AudioDataInfo *audioInf
     // [Start audioSuite_CreateSpaceRenderRotationEngineAndPipeline]
     // 示例接口未包含返回值校验，实际使用时请务必添加校验逻辑。
     // 创建引擎。
-    OH_AudioSuiteEngine_Create(&audioSuiteEngine);
+    OH_AudioSuiteEngine_Create(&audioSuiteEngineSpace);
 
     // 创建实时播放空间渲染的管线。
-    OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngine, &audioSuitePipeline,
+    OH_AudioSuiteEngine_CreatePipeline(audioSuiteEngineSpace, &audioSuitePipeline,
                                        OH_AudioSuite_PipelineWorkMode::AUDIOSUITE_PIPELINE_REALTIME_MODE);
     // [End audioSuite_CreateSpaceRenderRotationEngineAndPipeline]
     CreateSpaceRenderNodes(audioInfoForField, audioInfoForMix);
