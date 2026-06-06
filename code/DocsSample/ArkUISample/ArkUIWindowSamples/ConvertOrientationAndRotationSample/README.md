@@ -19,10 +19,10 @@
 ## 工程目录
 
 ```
-ConvertOrientationAdnRotationSample
+ConvertOrientationAndRotationSample
 ├──entry/src/main/ets
 │  │  ├──entryability
-│  │  │  ├──EntryAbility.ts
+│  │  │  ├──EntryAbility.ets
 |  |  ├──entrybackupability
 |  |  |  ├──EntryBackupAbility.ets
 │  │  ├──pages
@@ -50,7 +50,7 @@ ConvertOrientationAdnRotationSample
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/WindowRotation/ConvertOrientationAndRotationSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/ArkUIWindowSamples/ConvertOrientationAndRotationSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
