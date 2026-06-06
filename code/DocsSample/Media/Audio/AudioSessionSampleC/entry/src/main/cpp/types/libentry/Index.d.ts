@@ -18,3 +18,4 @@ export const AudioSessionActive: () => number;
 export const AudioSessionDeactive: () => number;
 export const SetAudioSessionBehavior: () => number;
 export const SetAudioSessionCapturerMuteHint: () => string;
+export const printAudioSessionInfo: (fd: number) => number;

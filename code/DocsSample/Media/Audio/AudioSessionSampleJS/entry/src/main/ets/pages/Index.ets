@@ -24,6 +24,7 @@
 // [Start enable_mute_suggestion]
 // [Start set_default_output_device]
 // [Start set_session_behavior]
+// [start print_session_info]
 import { audio } from '@kit.AudioKit';
 // [StartExclude get_session_manager]
 // [StartExclude on_audio_session_deactivated]
@@ -41,8 +42,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude enable_mute_suggestion]
 // [StartExclude set_default_output_device]
 // [StartExclude set_session_behavior]
+// [StartExclude print_session_info]
 import { common, abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+// [EndExclude print_session_info]
 import { fileIo as fs } from '@kit.CoreFileKit';
+// [StartExclude print_session_info]
 
 // 全局UI更新回调
 let globalLogUpdate: ((msg: string, isError: boolean) => void) | undefined;
@@ -711,6 +715,35 @@ async function setDefaultOutputDeviceToDefault(){
   // [End set_default_output_device]
 }
 
+async function printAudioSessionInfo(){
+  // [EndExclude print_session_info]
+  // 设置音频并发模式。
+  let strategy: audio.AudioSessionStrategy = {
+    concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+  };
+  // 激活音频会话。
+  audioSessionManager.activateAudioSession(strategy).then(() => {
+    console.info('Succeeded in activating audio session.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to activate audio session. Code: ${err.code}, message: ${err.message}`);
+  });
+
+  // 创建音频调试管理器。
+  let audioDebuggingManager: audio.AudioDebuggingManager = audioManager.getDebuggingManager();
+
+  // 输出到hilog日志。
+  audioDebuggingManager.printSessionInfo(audioSessionManager, -1);
+
+  // fd 文件描述符，实际使用时请根据具体情况获取
+  let filePath = getContext().filesDir + '/audio_session_info.txt';
+  let fd = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.WRITE_ONLY | fs.OpenMode.TRUNC).fd;
+  // 输出到文件。
+  audioDebuggingManager.printSessionInfo(audioSessionManager, fd);
+  fs.closeSync(fd);
+  // [End print_session_info]
+  console.info('print audio session info filePath: ' + filePath);
+}
+
 @Entry
 @Component
 struct Index {
@@ -1029,6 +1062,21 @@ struct Index {
           .onClick(async (): Promise<void> => {
             await deactivateAudioSession();
             this.runningResult = 'Deactivate audioSession success.';
+          })
+        }
+        .width('80%')
+        .height(50)
+        .justifyContent(FlexAlign.Center)
+
+        Row() {
+          Button() {
+            Text('打印音频会话调试信息').fontSize(15).fontColor(Color.White)
+          }
+          .width('80%')
+          .height(40)
+          .onClick(async (): Promise<void> => {
+            await printAudioSessionInfo();
+            this.runningResult = 'Print audioSession info success.';
           })
         }
         .width('80%')
