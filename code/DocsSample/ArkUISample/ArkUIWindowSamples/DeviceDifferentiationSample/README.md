@@ -18,10 +18,10 @@
 ## 工程目录
 
 ```
-DeviceDifferentiation
+DeviceDifferentiationSample
 ├──entry/src/main/ets
 │  │  ├──entryability
-│  │  │  ├──EntryAbility.ts
+│  │  │  ├──EntryAbility.ets
 |  |  ├──entrybackupability
 |  |  |  ├──EntryBackupAbility.ets
 │  │  ├──pages
@@ -49,7 +49,7 @@ DeviceDifferentiation
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/WindowRotation/DeviceDifferentiationSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/ArkUIWindowSamples/DeviceDifferentiationSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
