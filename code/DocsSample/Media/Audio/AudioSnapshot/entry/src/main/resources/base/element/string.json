@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Audio Snapshot Sample Module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Audio snapshot demo for capture, playback and debugging info"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AudioSnapshot"
+    },
+    {
+      "name": "APP_TITLE",
+      "value": "Audio Snapshot Console"
+    }
+  ]
+}
