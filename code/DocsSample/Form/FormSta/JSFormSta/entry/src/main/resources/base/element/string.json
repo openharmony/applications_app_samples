@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "JSForm"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "Form extension ability"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "cards"
+    },
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "widget_desc",
+      "value": "基于JS开发的卡片"
+    },
+    {
+      "name": "widget_display_name",
+      "value": "JS 卡片"
+    }
+  ]
+}
