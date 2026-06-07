@@ -519,6 +519,7 @@ export class ImageInterfaceCalled {
     return undefined;
   }
 
+  // [Start createImageRawData]
   async createImageRawData(imageSource: image.ImageSource | undefined) : Promise<image.ImageRawData | undefined> {
     if (!imageSource) {
       console.error('imageSource is undefined.');
@@ -543,4 +544,5 @@ export class ImageInterfaceCalled {
     })
     return undefined;
   }
+  // [End createImageRawData]
 }
