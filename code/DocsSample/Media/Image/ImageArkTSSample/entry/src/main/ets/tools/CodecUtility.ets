@@ -544,7 +544,6 @@ export class ImageInterfaceCalled {
     })
     return undefined;
   }
-}
   // [End createImageRawData]
 
   // [Start read_imageMetadata]
