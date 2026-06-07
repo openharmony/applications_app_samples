@@ -544,8 +544,8 @@ export class ImageInterfaceCalled {
     })
     return undefined;
   }
-  // [End createImageRawData]
 }
+  // [End createImageRawData]
 
   // [Start read_imageMetadata]
   async readImageMetadata(imageSource: image.ImageSource | undefined) : Promise<image.ImageMetadata | undefined> {
