@@ -14,6 +14,7 @@
  */
 
 // [Start concurrent_taskpool_instruction]
+// [Start example_concurrent_foo]
 function bar() {
 }
 
@@ -23,6 +24,7 @@ function bar() {
  *  bar(); // 违反闭包原则，编译报错
  *}
  */
+// [end example_concurrent_foo]
 
 @Entry
 @Component

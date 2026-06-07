@@ -15,6 +15,6 @@
 
 // [Start scenario_1]
 // entry/src/main/ets/pages/outer1.ets
-import { a } from './1' // outer文件从1文件中加载了a变量
-console.info('example ', a); // a变量在outer文件执行时就被使用
+import { a } from './1' // outer1文件从1文件中加载了a变量
+console.info('example ', a); // a变量在outer1文件执行时就被使用
 // [End scenario_1]

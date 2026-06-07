@@ -13,6 +13,8 @@
 - **SetWindowSizeConstraints**：演示如何设置窗口大小约束
 - **SpecifyDisplayScreen**：演示如何指定显示屏幕
 - **StartWithSpecifiedWindowMode**：演示如何以指定窗口模式启动
+- **SupportWindowModes**：演示如何设置Ability支持的窗口模式
+- **SetSplitRatioAbility**：演示如何以分屏模式启动Ability
 
 ### 效果预览
 - ControlStartupAnimation：控制启动动画的显示
@@ -32,6 +34,10 @@
 ![指定Ability显示在特定屏幕](screenshots/SpecifyDisplayScreen.gif)
 - StartWithSpecifiedWindowMode：以全屏、分屏或浮窗模式启动
 ![以分屏启动](screenshots/StartWithSpecifiedWindowMode.gif)
+- SupportWindowModes：设置Ability支持的窗口显示模式
+![设置Ability支持的窗口模式](screenshots/SupportWindowModes.gif)
+- SetSplitRatioAbility：以分屏模式启动Ability
+![以分屏模式启动Ability](screenshots/SetSplitRatioAbility.gif)
 
 ### 使用说明
 
@@ -160,6 +166,22 @@ StartOptions/
 │   └── src/ohosTest/ets/test
 │       ├── Ability.test.ets
 │       └── List.test.ets
+├── SupportWindowModes                   // 设置支持的窗口模式
+│   ├── src/main/ets
+│   │   ├── supportwindowmodesability
+│   │   │   └── SupportWindowModesAbility.ets
+│   │   └── pages/Index.ets
+│   └── src/ohosTest/ets/test
+│       ├── Ability.test.ets
+│       └── List.test.ets
+├── SetSplitRatioAbility                 // 以分屏模式启动
+│   ├── src/main/ets
+│   │   ├── setsplitratioabilityability
+│   │   │   └── SetSplitRatioAbilityAbility.ets
+│   │   └── pages/Index.ets
+│   └── src/ohosTest/ets/test
+│       ├── Ability.test.ets
+│       └── List.test.ets
 ├── entry                                // 主模块
 │   ├── src/main/ets
 │   │   ├── entryability
@@ -195,6 +217,18 @@ StartOptions/
 
 #### 启动动画控制
 演示如何控制Ability启动时的动画效果，包括隐藏启动画面、控制动画时长等。
+
+#### 支持窗口模式设置
+演示如何设置Ability支持的窗口模式，源码参考：[SupportWindowModesAbility.ets](SupportWindowModes/src/main/ets/supportwindowmodesability/SupportWindowModesAbility.ets)
+- 使用supportWindowModes参数设置Ability支持的窗口模式
+- 支持全屏、分屏主/副模式、浮窗模式
+- 系统根据Ability支持的窗口模式进行启动
+
+#### 分屏模式启动
+演示如何以分屏模式启动Ability，源码参考：[SetSplitRatioAbilityAbility.ets](SetSplitRatioAbility/src/main/ets/setsplitratioabilityability/SetSplitRatioAbilityAbility.ets)
+- 使用windowMode参数设置分屏模式
+- 支持WINDOW_MODE_SPLIT_PRIMARY和WINDOW_MODE_SPLIT_SECONDARY两种分屏模式
+- 适用于需要分屏显示的应用场景
 
 ### 相关权限
 不涉及

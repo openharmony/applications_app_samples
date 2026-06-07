@@ -91,6 +91,10 @@
     {
       "name": "EntryAbility_label",
       "value": "SensorJsSamples"
+    },
+    {
+      "name": "reason",
+      "value": "user grant permission"
     }
   ]
 }

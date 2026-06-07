@@ -53,6 +53,7 @@ entry/src/main/ets/
 |   |       |---ExtendUsageScenario.ets
 |   |       |---ExtendUsageScenariotwo.ets
 |   |       |---GlobalFunctionExtension.ets
+|   |       |---ExtendSupportIfelse.ets
 |   |       |---index.ets 
 |   |---syncStateManager              		   //$$语法：系统组件双向同步
 |   |       |---SyncUsageExample.ets

@@ -31,6 +31,7 @@ import { CollapseAndExpand } from './CollapseAndExpand';
 import { LongList } from './LongList';
 import { ListChatRoom } from './ListChatRoom';
 import { SupportSlidingHand } from './SupportSlidingHand';
+import { ListSwipeSelect } from './ListSwipeSelect';
 import resource from '../../common/resource';
 
 export const List_ROUTE_PREFIX: string = 'list';
@@ -115,6 +116,11 @@ const routes: Route[] = [
     name: `${List_ROUTE_PREFIX}/SupportSlidingHand`,
     title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Support_Sliding_Hand_Event'))},
     description: $r('app.string.Sliding_Hand_Event')
+  },
+  {
+    name: `${List_ROUTE_PREFIX}/ListSwipeSelect`,
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.ListSwipeSelect_title'))},
+    description: $r('app.string.ListSwipeSelect_description')
   }
 ];
 
@@ -153,7 +159,9 @@ export function listDestination(name: string) {
   } else if (name === routes[14].name) {
     ListChatRoom();
   } else if (name === routes[15].name) {
-    SupportSlidingHand()
+    SupportSlidingHand();
+  } else if (name === routes[16].name) {
+    ListSwipeSelect();
   }
 }
 

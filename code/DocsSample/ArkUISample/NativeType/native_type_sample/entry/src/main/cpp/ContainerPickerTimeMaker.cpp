@@ -58,6 +58,7 @@ constexpr int32_t EVENT_TOGGLE_MILITARY = 2103;
 constexpr int32_t EVENT_TOGGLE_DIGITS = 2104;
 } // namespace
 
+// [Start time_picker_example]
 // ---------- 全局状态管理 ----------
 struct TimePickerState {
     // 时间选择器组件
@@ -730,6 +731,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
         OnToggleDigits();
     }
 }
+// [End time_picker_example]
 
 // ---------- 主创建函数 ----------
 ArkUI_NodeHandle ContainerPickerTimeMaker::CreateNativeNode()

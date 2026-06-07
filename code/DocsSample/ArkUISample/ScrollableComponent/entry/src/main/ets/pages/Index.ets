@@ -25,6 +25,7 @@ import { arcSwiperDestination, ARCSWIPER_ROUTE_PREFIX } from './arcSwiper';
 import { arcListDestination, ARCLIST_ROUTE_PREFIX } from './arcList';
 import resource from '../common/resource';
 import { Scroll_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
+import { LAZY_LAYOUT_ROUTE_PREFIX, lazyLayoutDestination } from './lazyLayout/Index'
 
 const routes: Route[] = [
   {
@@ -58,6 +59,10 @@ const routes: Route[] = [
   {
     title: (context: Context) => { return resource.resourceToString(context, $r('app.string.Scroll_Title'))},
     name: Scroll_ROUTE_PREFIX
+  },
+  {
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.lazyLayout_Title'))},
+    name: LAZY_LAYOUT_ROUTE_PREFIX
   }
 ];
 
@@ -79,6 +84,8 @@ function destination(name: string) {
     arcListDestination(name);
   } else if (name.startsWith(Scroll_ROUTE_PREFIX)) {
     scrollDestination(name);
+  } else if (name.startsWith(LAZY_LAYOUT_ROUTE_PREFIX)) {
+    lazyLayoutDestination(name);
   }
 }
 

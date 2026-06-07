@@ -16,23 +16,26 @@
 import audioSuiteNapi from 'libentry.so';
 import { common } from '@kit.AbilityKit'
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { DirInitHelper } from '../utils/DirInit';
 
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Ready';
-  @State napiReturnLog: string = '暂无返回信息'; //
+  @State napiReturnLog: string = '暂无返回信息';
   @State isPlay: boolean = false;
-  @State isReal: boolean = false;
+  @State type: number = 1;
   // Loading 状态
   @State isLoadingBaseEditor: boolean = false;
   @State isLoadingAudioSourceSeparation: boolean = false;
   @State isLoadingMixingAndCascading: boolean = false;
+  @State isLoadingAudioFormatConverter: boolean = false;
   // 效果完成状态
   @State isBaseEditorCompleted: boolean = false;
   @State isAudioSourceSeparationCompleted: boolean = false;
   @State isMixingAndCascadingCompleted: boolean = false;
+  @State isAudioFormatConverterCompleted: boolean = false;
 
   // 更新NAPI返回信息
   updateNapiLog(msg: string) {
@@ -118,6 +121,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(1);
                       this.message = '播放原始音频成功';
                       this.updateNapiLog(result);
@@ -135,12 +139,8 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = false;
-                      let type: number = 1;
-                      if (this.isReal) {
-                        type = 2;
-                        this.isReal = false;
-                      }
-                      let result: string = await audioSuiteNapi.DestroyAudioRender(type);
+                      let result: string = await audioSuiteNapi.DestroyAudioRender(this.type);
+                      this.type = 1;
                       this.message = '停止播放成功';
                       this.updateNapiLog(result);
                     } catch (err) {
@@ -149,7 +149,7 @@ struct Index {
                     }
                   })
 
-                Button('添加默认均衡器效果')
+                Button('添加均衡器效果')
                   .width('90%')
                   .height(30)
                   .margin({ bottom: 12 })
@@ -160,12 +160,12 @@ struct Index {
                       audioSuiteNapi.BaseEditor((result: string) => {
                         this.isLoadingBaseEditor = false;
                         this.isBaseEditorCompleted = true;
-                        this.message = '添加默认均衡器效果成功';
+                        this.message = '添加均衡器效果成功';
                         this.updateNapiLog(result);
                       });
                     } catch (err) {
                       this.isLoadingBaseEditor = false;
-                      this.message = '添加默认均衡器效果失败';
+                      this.message = '添加均衡器效果失败';
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
@@ -178,6 +178,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(2);
                       this.message = '播放加均衡器效果后音频成功';
                       this.updateNapiLog(result);
@@ -216,6 +217,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(3);
                       this.message = '播放伴奏成功';
                       this.updateNapiLog(result);
@@ -233,6 +235,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(4);
                       this.message = '播放人声成功';
                       this.updateNapiLog(result);
@@ -272,6 +275,7 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
+                      this.type = 1;
                       let result: string = await audioSuiteNapi.CreateAudioRender(5);
                       this.message = '播放混音成功';
                       this.updateNapiLog(result);
@@ -281,7 +285,7 @@ struct Index {
                     }
                   })
 
-                Button('播放实时预览渲染')
+                Button('播放实时预览')
                   .width('90%')
                   .height(30)
                   .margin({ bottom: 12 })
@@ -289,12 +293,70 @@ struct Index {
                   .onClick(async () => {
                     try {
                       this.isPlay = true;
-                      this.isReal = true;
+                      this.type = 2;
                       let result: string = await audioSuiteNapi.EqualizerEffectNapi();
-                      this.message = '播放实时预览渲染成功';
+                      this.message = '播放实时预览成功';
                       this.updateNapiLog(result);
                     } catch (err) {
-                      this.message = '播放实时预览渲染失败';
+                      this.message = '播放实时预览失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
+
+                Button('播放空间渲染')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(!this.isPlay && this.isAudioSourceSeparationCompleted)
+                  .onClick(async () => {
+                    try {
+                      this.isPlay = true;
+                      this.type = 3;
+                      let result: string = await audioSuiteNapi.SpaceRenderRotationNapi();
+                      this.message = '播放空间渲染成功';
+                      this.updateNapiLog(result);
+                    } catch (err) {
+                      this.message = '播放空间渲染失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
+
+                Button('调试')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(this.type == 2)
+                  .backgroundColor(this.type == 2 ? '#8B0000' : '#CCCCCC')
+                  .onClick(async () => {
+                    try {
+                      await DirInitHelper.ensureDirExists();
+                      let ret = audioSuiteNapi.TestPrintInfoToFile();
+                      this.message = ret ? 'PrintInfo测试成功' : 'PrintInfo测试失败';
+                      this.updateNapiLog(ret ? 'PrintInfo已输出到文件' : 'PrintInfo输出失败');
+                    } catch (err) {
+                      this.message = 'PrintInfo测试失败';
+                      this.updateNapiLog('错误: ' + JSON.stringify(err));
+                    }
+                  })
+
+                Button('格式转换')
+                  .width('90%')
+                  .height(30)
+                  .margin({ bottom: 12 })
+                  .enabled(!this.isPlay)
+                  .onClick(() => {
+                    try {
+                      this.message = '正在进行格式转换...';
+                      this.isLoadingAudioFormatConverter = true;
+                      audioSuiteNapi.AudioFormatConverterNapi((result: string) => {
+                        this.isLoadingAudioFormatConverter = false;
+                        this.isAudioFormatConverterCompleted = true;
+                        this.message = '格式转换成功';
+                        this.updateNapiLog(result);
+                      });
+                    } catch (err) {
+                      this.isLoadingAudioFormatConverter = false;
+                      this.message = '格式转换失败';
                       this.updateNapiLog('错误: ' + JSON.stringify(err));
                     }
                   })
@@ -316,7 +378,7 @@ struct Index {
         .height('100%')
 
         // Loading 遮罩层
-        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading) {
+        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading || this.isLoadingAudioFormatConverter) {
           Column() {
             LoadingProgress()
               .width(40)
@@ -339,7 +401,7 @@ struct Index {
         }
 
         // Loading 遮罩层
-        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading) {
+        if (this.isLoadingBaseEditor || this.isLoadingAudioSourceSeparation || this.isLoadingMixingAndCascading || this.isLoadingAudioFormatConverter) {
           Column() {
             LoadingProgress()
               .width(40)

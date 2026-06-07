@@ -22,15 +22,13 @@ struct Index {
   @State message: string = 'PrikeyOperation';
 
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
-    }, router.RouterMode.Single, (err) => {
-      if (err) {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
+    }).then(() => {
       console.info('pushUrl success');
-    })
+    }).catch((err: BusinessError) => {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 
   build() {
@@ -76,7 +74,7 @@ struct Index {
       Button($r('app.string.prikey_get_pubkey_sync'))
         .width('70%')
         .onClick(() => {
-          this.goToSample('pages/prikeyGetPubkeySync')
+          this.goToSample('pages/prikeyGetPubKeySync')
         })
       Button($r('app.string.prikey_encoding'))
         .width('70%')

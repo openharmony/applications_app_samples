@@ -11,6 +11,7 @@
 <img src='./screenshots/focus_c.png' width=320> 
 
 - 点击'设置场景+启用静音建议+激活焦点+注册监听'按钮，即可激活音频焦点。音频焦点的配置中，音频场景为媒体，启用混音播放下静音建议通知，焦点策略为混音播放。
+- 点击'设置会话级录音流静音提示'按钮，即可激活音频会话并启动一条录音流，调用`OH_AudioSessionManager_SetCaptureMuteHint`上报和解除会话级录音流静音提示。该接口不会实际触发静音，仅告知音频系统当前会话内录音流已由应用静音或期望按静音状态处理。
 - 点击'注销焦点+注销监听'按钮，即可注销音频焦点。
 
 ## 工程结构&模块类型
@@ -37,12 +38,13 @@
 - 源码参考：[audiosession.cpp](entry/src/main/ets/cpp/audiosession.cpp)  
 - 使用流程：
   - 点击'设置场景+启用静音建议+激活焦点+注册监听'按钮，首先调用`OH_AudioSessionManager_SetScene`设置当前音频场景为`MEDIA`。再调用`OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers`启用混音播放下静音建议通知。然后配置焦点策略为`CONCURRENCY_MIX_WITH_OTHERS`并调用`OH_AudioSessionManager_ActivateAudioSession`激活音频焦点。最后通过调用`OH_AudioSessionManager_RegisterSessionDeactivatedCallback`与`OH_AudioSessionManager_RegisterStateChangeCallback`监听焦点变化事件与焦点注销事件，监听事件触发后回调内容在返回信息栏打印。
+  - 点击'设置会话级录音流静音提示'按钮，先创建并启动一条录音流，再调用`OH_AudioSessionManager_SetCaptureMuteHint(audioSessionManager, true)`告知音频系统当前音频会话内录音流已由应用业务侧静音或期望按静音状态处理，随后调用`OH_AudioSessionManager_SetCaptureMuteHint(audioSessionManager, false)`解除提示。该接口从API version 24开始支持，不会实际触发录音流静音。
   - 点击'注销焦点+注销监听'按钮，首先调用`OH_AudioSessionManager_DeactivateAudioSession`停用当前应用的音频会话。再调用`OH_AudioSessionManager_UnregisterSessionDeactivatedCallback`与`OH_AudioSessionManager_UnregisterStateChangeCallback`注销对焦点变化事件与焦点注销事件的监听。
 
 
 ## 相关权限
 
-不涉及。
+麦克风使用权限：ohos.permission.MICROPHONE
 
 ## 模块依赖
 

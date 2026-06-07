@@ -103,7 +103,6 @@ static void OnAudioDeviceChangeEvent([[maybe_unused]] OH_AudioRenderer* renderer
     }
 }
 
-// [Start ApplyAudioEffect]
 // Apply audio effect with gain coefficient 0.4
 static void ApplyAudioEffect(void *audioData, int32_t audioDataSize)
 {
@@ -122,10 +121,9 @@ static void ApplyAudioEffect(void *audioData, int32_t audioDataSize)
         samples[i] = static_cast<int16_t>(sample);
     }
 }
-// [End ApplyAudioEffect]
 
-// [Start OnAudioRendererWriteDataEvent]
 // Custom data write function
+// Please avoid performing time-consuming operations here.
 static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused]] OH_AudioRenderer *audioRenderer,
     void *userData, void *audioData,
     int32_t audioDataSize)
@@ -143,6 +141,7 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
     }
 
     size_t actualSize = 0;
+    // Here we use a producer-consumer queue to save/get data
     bool success = audioFileOprInfo->audioBufferQueue->Pop(
         reinterpret_cast<uint8_t*>(audioData), static_cast<size_t>(audioDataSize), actualSize);
     if (!success || actualSize == 0) {
@@ -152,7 +151,7 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
         }
         return AUDIO_DATA_CALLBACK_RESULT_INVALID;
     }
-
+    
     if (OHAudioPlayer::GetInstance().isEffectOn) {
         ApplyAudioEffect(audioData, static_cast<int32_t>(actualSize));
     }
@@ -169,7 +168,6 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
         return AUDIO_DATA_CALLBACK_RESULT_INVALID;
     }
     uint64_t framesWritten = actualSize / bytesPerFrame;
-    audioFileOprInfo->totalFramesWritten += framesWritten;
     audioFileOprInfo->currentFramesWritten += framesWritten;
 
     if (workgroup != nullptr) {
@@ -177,7 +175,6 @@ static OH_AudioData_Callback_Result OnAudioRendererWriteDataEvent([[maybe_unused
     }
     return AUDIO_DATA_CALLBACK_RESULT_VALID;
 }
-// [End OnAudioRendererWriteDataEvent]
 
 static bool ReadWavBasicHeader(int32_t fd)
 {
@@ -341,23 +338,6 @@ static uint32_t GetAudioFileOffset(AudioFileOprInfo* info, uint32_t targetTimeSt
     return alignedOffset;
 }
 
-static uint32_t GetAudioCurrentTime(uint32_t songDuration, float currentOffset, uint32_t fileSize)
-{
-    if (fileSize == 0) {
-        OH_LOG_ERROR(LOG_APP, "Invalid fileSize: %{public}u", fileSize);
-        return 0;
-    }
-    uint32_t currentTime = floor((currentOffset / fileSize) * songDuration);
-    OH_LOG_INFO(LOG_APP,
-        "Get audio current time successfully. "
-        "Song duration: %{public}d, "
-        "currentOffset: %{public}d, "
-        "file size: %{public}d, "
-        "current time : %{public}d",
-        songDuration, currentOffset, fileSize, currentTime);
-    return currentTime;
-}
-
 static OH_AudioStreamBuilder* CreateAudioStreamBuilder()
 {
     OH_AudioStreamBuilder* builder = nullptr;
@@ -433,7 +413,6 @@ void OHAudioPlayer::InitPlayer()
             OH_LOG_INFO(LOG_APP, "Restored silent mode: %{public}d", isSilentMode);
         }
     }
-    OH_LOG_INFO(LOG_APP, "Restored effect mode: %{public}d", isEffectOn);
 
     InitAudioWorkgroup(*this);
     OH_LOG_INFO(LOG_APP, "Init player successfully.");
@@ -488,10 +467,7 @@ void OHAudioPlayer::ReconfigurePlayer()
             OH_LOG_INFO(LOG_APP, "Restored silent mode: %{public}d", isSilentMode);
         }
     }
-    OH_LOG_INFO(LOG_APP, "Restored effect mode: %{public}d", isEffectOn);
 }
-// [End ReconfigurePlayer]
-// [End InitPlayer]
 
 static AudioFileOprInfo* InitAudioFileOprInfo(uint32_t songFd, uint32_t songFileSize, uint32_t songFileOffset)
 {
@@ -500,7 +476,7 @@ static AudioFileOprInfo* InitAudioFileOprInfo(uint32_t songFd, uint32_t songFile
     info->songFileSize = songFileSize;
     info->songFileOffset = songFileOffset;
     info->songCurrentOffset = 0;
-    info->targetPositionMs = 0;
+    info->basePositionMs = 0;
     info->isWavFile = false;
     info->wavDataOffset = 0;
     (void)lseek(info->songFd, songFileOffset, SEEK_SET);
@@ -551,7 +527,6 @@ static void CalculateSongDuration(AudioFileOprInfo* info)
     info->songDuration = static_cast<uint32_t>(
         static_cast<double>(info->songFileSize) / bytesPerSecond * MILLIS_PER_SECOND);
     info->songTotalFrames = static_cast<uint64_t>(info->songDuration) * sampleRate / MILLIS_PER_SECOND;
-    info->totalFramesWritten = 0;
     info->currentFramesWritten = 0;
     OH_LOG_INFO(LOG_APP, "Audio params: rate=%{public}u, channels=%{public}u, bits=%{public}u, duration=%{public}u ms",
         sampleRate, channels, bitsPerSample, info->songDuration);
@@ -622,7 +597,6 @@ void OHAudioPlayer::LoadSongInfo(const char *fileName, uint32_t songFd, uint32_t
         "offset=%{public}d", songFd, songFileSize, audioFileOprInfo->songDuration, songFileOffset);
 }
 
-// [Start PlaySong]
 void OHAudioPlayer::PlaySong()
 {
     if (audioRenderer == nullptr) {
@@ -646,20 +620,15 @@ void OHAudioPlayer::PlaySong()
     isPlaying = true;
     OH_LOG_INFO(LOG_APP, "Play song successfully.");
 }
-// [End PlaySong]
 
-// [Start PauseSong]
 void OHAudioPlayer::PauseSong()
 {
     if (audioRenderer == nullptr) {
         OH_LOG_ERROR(LOG_APP, "The audioRenderer is null.");
         return;
     }
-
-    audioFileOprInfo->targetPositionMs = GetProgress();
+    
     audioFileOprInfo->currentFramesWritten = 0;
-    OH_LOG_INFO(LOG_APP, "Pause song, saved targetPosition: %{public}d ms",
-        audioFileOprInfo->targetPositionMs);
 
     auto ret = OH_AudioRenderer_Pause(audioRenderer);
     if (ret != AUDIOSTREAM_SUCCESS) {
@@ -670,9 +639,7 @@ void OHAudioPlayer::PauseSong()
     isPlaying = false;
     OH_LOG_INFO(LOG_APP, "Pause song successfully.");
 }
-// [End PauseSong]
 
-// [Start StopSong]
 void OHAudioPlayer::StopSong()
 {
     if (audioRenderer == nullptr) {
@@ -696,14 +663,15 @@ void OHAudioPlayer::StopSong()
     }
 
     if (audioFileOprInfo) {
-        audioFileOprInfo->targetPositionMs = 0;
+        audioFileOprInfo->basePositionMs = 0;
     }
 
     isPlaying = false;
     OH_LOG_INFO(LOG_APP, "Stop song successfully.");
 }
-// [End StopSong]
 
+// This function is used to update the current progress bar based on the framePosition.
+// [Start GetProgress]
 int32_t OHAudioPlayer::GetProgress()
 {
     if (audioFileOprInfo == nullptr) {
@@ -713,14 +681,21 @@ int32_t OHAudioPlayer::GetProgress()
     uint32_t sampleRate = audioFileOprInfo->sampleRate;
     if (sampleRate == 0) {
         OH_LOG_ERROR(LOG_APP, "Invalid sampleRate: %{public}u", sampleRate);
-        return audioFileOprInfo->targetPositionMs;
+        return audioFileOprInfo->basePositionMs;
     }
-
-    uint64_t framesWritten = audioFileOprInfo->currentFramesWritten.load();
-    int32_t currentTimeMs = static_cast<int32_t>((framesWritten * MILLIS_PER_SECOND) / sampleRate);
-
-    return audioFileOprInfo->targetPositionMs + currentTimeMs;
+    
+    int64_t currentFramePosition;
+    int64_t timestamp;
+    // GetAudioTimestampInfo() will return the framePosition that has been played and the corresponding timestamp.
+    OH_AudioRenderer_GetAudioTimestampInfo(audioRenderer, &currentFramePosition, &timestamp);
+    int32_t currentTimeMs = static_cast<int32_t>((currentFramePosition * MILLIS_PER_SECOND) / sampleRate);
+    
+    // Since each seek operation will pause and flush, and after flushing the system will reset framePosition.
+    // Therefore, after a seek operation, only the current clicked reference position and the number of frames
+    // that have been played need to be obtained to update the progress.
+    return audioFileOprInfo->basePositionMs + currentTimeMs;
 }
+// [End GetProgress]
 
 int32_t OHAudioPlayer::GetSongDuration()
 {
@@ -730,6 +705,9 @@ int32_t OHAudioPlayer::GetSongDuration()
     return audioFileOprInfo->songDuration;
 }
 
+// In offload mode, the data may have been sent out, but the actual playback has not been completed.
+// Therefore, it is necessary to estimate the remaining playing time at present.
+// [Start GetRemainingTime]
 uint32_t OHAudioPlayer::GetRemainingTime()
 {
     if (audioRenderer == nullptr || audioFileOprInfo == nullptr) {
@@ -743,16 +721,17 @@ uint32_t OHAudioPlayer::GetRemainingTime()
         return 0;
     }
 
-    uint64_t framesWritten = audioFileOprInfo->totalFramesWritten.load();
-
     int64_t currentFramePosition;
     int64_t timestamp;
     OH_AudioRenderer_GetAudioTimestampInfo(audioRenderer, &currentFramePosition, &timestamp);
-
-    uint64_t remainingFrames = framesWritten - currentFramePosition;
+    
+    uint64_t remainingFrames = audioFileOprInfo->currentFramesWritten.load() - currentFramePosition;
     remainingFrames = remainingFrames < 0 ? 0 : remainingFrames;
-    return static_cast<uint32_t>((remainingFrames * MILLIS_PER_SECOND) / sampleRate);
+    uint32_t remainingTime = static_cast<uint32_t>((remainingFrames * MILLIS_PER_SECOND) / sampleRate);
+    OH_LOG_INFO(LOG_APP, "remaining time: %{public}u", remainingTime);
+    return remainingTime;
 }
+// [End GetRemainingTime]
 
 static uint32_t CalculateSeekOffset(AudioFileOprInfo* info, uint32_t timeStamp)
 {
@@ -768,13 +747,12 @@ static uint32_t CalculateSeekOffset(AudioFileOprInfo* info, uint32_t timeStamp)
 
 static void ResetAfterSeek(AudioFileOprInfo* info, uint32_t seekOffset, uint32_t timeStamp)
 {
-    info->totalFramesWritten = 0;
     info->currentFramesWritten = 0;
     info->seekOffset = seekOffset;
     info->isSeekRequested = true;
     info->isFileEnd = false;
     info->isCompletionCallbackTriggered = false;
-    info->targetPositionMs = timeStamp;
+    info->basePositionMs = timeStamp;
     if (info->audioBufferQueue) {
         info->audioBufferQueue->Reset();
         info->audioBufferQueue->ResumeProducer();
@@ -796,7 +774,9 @@ void OHAudioPlayer::SeekPlaySong(uint32_t timeStamp)
             OH_LOG_ERROR(LOG_APP, "Pause failed in seek, ret: %{public}d", pauseRet);
         }
     }
-
+    
+    // In seek operation, flush() should be performed after pause() to prevent the influence of redundant cached data
+    // on the next playback.
     auto flushRet = OH_AudioRenderer_Flush(audioRenderer);
     if (flushRet != AUDIOSTREAM_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "Flush failed in seek, ret: %{public}d", flushRet);
@@ -815,7 +795,6 @@ void OHAudioPlayer::SeekPlaySong(uint32_t timeStamp)
     OH_LOG_INFO(LOG_APP, "Seek position successfully");
 }
 
-// [Start SetPlayingSpeed]
 void OHAudioPlayer::SetPlayingSpeed(float speed)
 {
     if (audioRenderer == nullptr) {
@@ -830,7 +809,6 @@ void OHAudioPlayer::SetPlayingSpeed(float speed)
 
     OH_LOG_INFO(LOG_APP, "Set playing speed successfully.");
 }
-// [End SetPlayingSpeed]
 
 float OHAudioPlayer::GetPlayingVolume()
 {
@@ -852,7 +830,6 @@ float OHAudioPlayer::GetPlayingVolume()
     return currentVolume;
 }
 
-// [Start SetPlayingVolume]
 void OHAudioPlayer::SetPlayingVolume(float volume)
 {
     if (audioRenderer == nullptr) {
@@ -868,9 +845,7 @@ void OHAudioPlayer::SetPlayingVolume(float volume)
 
     OH_LOG_INFO(LOG_APP, "Set stream volume successfully.");
 }
-// [End SetPlayingVolume]
 
-// [Start SetSilentMode]
 void OHAudioPlayer::SetSilentMode(bool isSilentModeOn)
 {
     this->isSilentMode = isSilentModeOn;
@@ -888,9 +863,7 @@ void OHAudioPlayer::SetSilentMode(bool isSilentModeOn)
 
     OH_LOG_INFO(LOG_APP, "Set silent mode successfully.");
 }
-// [End SetSilentMode]
 
-// [Start SetEffectMode]
 void OHAudioPlayer::SetEffectMode(bool isEffectModeOn)
 {
     this->isEffectOn = isEffectModeOn;
@@ -902,9 +875,7 @@ void OHAudioPlayer::SetEffectMode(bool isEffectModeOn)
 
     OH_LOG_INFO(LOG_APP, "Set effect mode successfully: %{public}d", isEffectModeOn);
 }
-// [End SetEffectMode]
 
-// [Start ReleaseCurrentSong]
 void OHAudioPlayer::ReleaseCurrentSong()
 {
     if (audioFileOprInfo && audioFileOprInfo->audioBufferQueue) {
@@ -933,9 +904,7 @@ void OHAudioPlayer::ReleaseCurrentSong()
 
     OH_LOG_INFO(LOG_APP, "Release current song successfully.");
 }
-// [End ReleaseCurrentSong]
 
-// [Start ReleasePlayer]
 void OHAudioPlayer::ReleasePlayer()
 {
     ReleaseCurrentSong();
@@ -956,7 +925,6 @@ void OHAudioPlayer::ReleasePlayer()
 
     OH_LOG_INFO(LOG_APP, "Release player successfully.");
 }
-// [End ReleasePlayer]
 
 static void HandleSeekRequest(AudioFileOprInfo* audioFileOpr)
 {
@@ -1110,7 +1078,6 @@ void OHAudioPlayer::FileReaderThreadFunc(AudioFileOprInfo* audioFileOpr)
     OH_LOG_INFO(LOG_APP, "File reader thread exited");
 }
 
-// [Start TriggerPlayCompletionCallback]
 void OHAudioPlayer::TriggerPlayCompletionCallback(AudioFileOprInfo* audioFileOpr)
 {
     if (!audioFileOpr) {
@@ -1127,4 +1094,3 @@ void OHAudioPlayer::TriggerPlayCompletionCallback(AudioFileOprInfo* audioFileOpr
         }
     }
 }
-// [End TriggerPlayCompletionCallback]

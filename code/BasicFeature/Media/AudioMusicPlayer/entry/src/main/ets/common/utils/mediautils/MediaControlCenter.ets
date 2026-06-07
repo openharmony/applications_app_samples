@@ -16,7 +16,7 @@
 import { songList } from '../../../model/SongListData';
 import { SongItem } from '../../../viewmodel/SongData';
 import SongItemBuilder from '../../../viewmodel/SongItemBuilder';
-import { DEFAULT_VOLUME, EFFECT_ID, MusicPlayMode, SILENT_ID, VOLUME_ID } from '../../constants/PlayerConstants';
+import { DEFAULT_SPEED, DEFAULT_VOLUME, EFFECT_ID, MusicPlayMode, SILENT_ID, SPEED_ID, VOLUME_ID } from '../../constants/PlayerConstants';
 import Logger from '../Logger';
 import { AVSessionController } from './AVSessionController';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -134,6 +134,7 @@ export class MediaControlCenter {
     await this.initAudioManager();
     this.setSilentModeFromPrefer();
     this.setVolumeFromPrefer();
+    this.setSpeedFromPrefer();
     this.isInitted = true;
   }
 
@@ -183,6 +184,13 @@ export class MediaControlCenter {
       await this.initAudioManager();
     }
     this.setVolumeFromPrefer();
+    this.setSpeedFromPrefer();
+    
+    let currentProgress = AppStorage.get<number>('progress') ?? 0;
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(currentProgress);
+    }
+    
     this.updateIsPlay(true);
     this.mediaControlCenterHandle.play();
     BackgroundUtil.startContinuousTask(this.context);
@@ -194,6 +202,12 @@ export class MediaControlCenter {
       return;
     }
     this.mediaControlCenterHandle.pause();
+    
+    let currentProgress = AppStorage.get<number>('progress') ?? 0;
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(currentProgress);
+    }
+    
     this.updateIsPlay(false);
     BackgroundUtil.stopContinuousTask(this.context!);
   }
@@ -354,7 +368,13 @@ export class MediaControlCenter {
       Logger.error(TAG, 'mediaControlCenterHandle is undefined');
       return;
     }
-    this.mediaControlCenterHandle.setSpeed(speed)
+    this.mediaControlCenterHandle.setSpeed(speed);
+    PreferencesUtil.getInstance().preferencesPut(SPEED_ID, speed);
+    AppStorage.setOrCreate('currentSpeed', speed);
+    
+    if (this.avSessionController) {
+      this.avSessionController.setSpeedState(speed);
+    }
   }
 
   // Set silent mode
@@ -413,6 +433,19 @@ export class MediaControlCenter {
     AppStorage.setOrCreate('currentVolume', volume);
   }
 
+  private async setSpeedFromPrefer() {
+    if (!this.context) {
+      return;
+    }
+    let speed: number | undefined = PreferencesUtil.getInstance().getValue(SPEED_ID) as number | undefined;
+    if (speed === undefined) {
+      speed = DEFAULT_SPEED;
+    }
+    Logger.info(TAG, `setSpeedFromPrefer speed is ${speed}`)
+    this.setSpeed(speed);
+    AppStorage.setOrCreate('currentSpeed', speed);
+  }
+
   public seek(ms: number) {
     if (!this.mediaControlCenterHandle) {
       Logger.error(TAG, 'mediaControlCenterHandle is undefined');
@@ -420,13 +453,13 @@ export class MediaControlCenter {
     }
     this.mediaControlCenterHandle.seek(ms);
     this.updateProgress(ms);
+    
+    if (this.avSessionController) {
+      this.avSessionController.setProgressState(ms);
+    }
   }
 
   public updateProgress(ms: number) {
-    if (!this.avSessionController) {
-      return;
-    }
-    this.avSessionController.setProgressState(ms);
     AppStorage.setOrCreate('progress', ms);
     AppStorage.setOrCreate('currentTime', MediaTools.msToCountdownTime(ms));
   }

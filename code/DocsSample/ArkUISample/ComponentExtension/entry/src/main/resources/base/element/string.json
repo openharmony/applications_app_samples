@@ -35,6 +35,10 @@
     {
       "name": "StylesDecorator2",
       "value": "StylesDecoratorTwo"
+    },
+    {
+      "name": "StylesDecorator3",
+      "value": "StylesDecoratorThree"
     }
   ]
 }

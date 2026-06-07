@@ -15,11 +15,12 @@
 
 #include "napi/native_api.h"
 #include "types/project/file.h"
+#include <cstdio>
 
 static napi_value NAPI_Global_doTestPBKDF2(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    napi_create_int32(env, doTestPBKDF2(), &ret);
+    napi_create_int32(env, doTestPbkdf2(), &ret);
     return ret;
 }
 
@@ -27,7 +28,7 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"doTestPBKDF2", nullptr, NAPI_Global_doTestPBKDF2, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"doTestPbkdf2", nullptr, NAPI_Global_doTestPBKDF2, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

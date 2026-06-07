@@ -59,7 +59,11 @@ export default function abilityTest() {
       } catch (e) {
         expect(number(e.code)).assertEqual(360000001)
       }
-      hiRetrieval.init();
+      try {
+        hiRetrieval.init();
+      } catch (e) {
+        expect(number(e.code)).assertEqual(360000002)
+      }
       try {
         hiRetrieval.participate(cfg);
         hiRetrieval.run();

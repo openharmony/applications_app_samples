@@ -135,6 +135,26 @@ export default function abilityTest() {
       }
       hilog.info(DOMAIN, TAG, BUNDLE + `GetCts_001, end`);
     })
+    it('SerialManagerSample_SetDtr_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + `SetDtr_001, begin`);
+      await driver.swipe(400, 1200, 400, 400, 500);
+      let btnAccept = await driver.findComponent(ON.text('setDtr'))
+      if (btnAccept !== null && btnAccept !== undefined) {
+        await btnAccept.click();
+        await driver.delayMs(500);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + `SetDtr_001, end`);
+    })
+    it('SerialManagerSample_GetDsr_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + `GetDsr_001, begin`);
+      await driver.swipe(400, 1200, 400, 400, 500);
+      let btnAccept = await driver.findComponent(ON.text('getDsr'))
+      if (btnAccept !== null && btnAccept !== undefined) {
+        await btnAccept.click();
+        await driver.delayMs(500);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + `GetDsr_001, end`);
+    })
     it('SerialManagerSample_SendBrk_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + `SendBrk_001, begin`);
       await driver.swipe(400, 1200, 400, 400, 500);
@@ -154,6 +174,26 @@ export default function abilityTest() {
         await driver.delayMs(500);
       }
       hilog.info(DOMAIN, TAG, BUNDLE + `Close_001, end`);
+    })
+    it('SerialManagerSample_OnDisconnect_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + `OnDisconnect_001, begin`);
+      await driver.swipe(400, 1200, 400, 400, 500);
+      let btnAccept = await driver.findComponent(ON.text('onDisconnect'))
+      if (btnAccept !== null && btnAccept !== undefined) {
+        await btnAccept.click();
+        await driver.delayMs(500);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + `OnDisconnect_001, end`);
+    })
+    it('SerialManagerSample_OffDisconnect_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + `OffDisconnect_001, begin`);
+      await driver.swipe(400, 1200, 400, 400, 500);
+      let btnAccept = await driver.findComponent(ON.text('offDisconnect'))
+      if (btnAccept !== null && btnAccept !== undefined) {
+        await btnAccept.click();
+        await driver.delayMs(500);
+      }
+      hilog.info(DOMAIN, TAG, BUNDLE + `OffDisconnect_001, end`);
     })
   })
 }

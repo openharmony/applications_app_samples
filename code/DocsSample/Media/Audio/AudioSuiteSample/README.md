@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例基于 AudioSuite 能力，实现了音频编辑、音源分离、混音和实时预览渲染等功能，包含了离线编辑和实时预览渲染两种模式，以及功能调用接口的完整链路。
+本示例基于 AudioSuite 能力，实现了音频编辑、音源分离、混音和实时预览等功能，包含了离线编辑和实时预览两种模式，以及功能调用接口的完整链路。
 
 ## 效果图预览
 
@@ -15,7 +15,7 @@
 
 点击'停止播放'按钮，即可销毁音频流。
 
-点击'添加默认均衡器效果'按钮，即可对音频添加均衡器效果（异步处理）。
+点击'添加均衡器效果'按钮，即可对音频添加均衡器效果（异步处理）。
 
 点击'播放加均衡器效果后音频'按钮，即可播放添加均衡器效果后的音频。
 
@@ -29,7 +29,13 @@
 
 点击'播放混音'按钮，即可播放混音后的音频。
 
-点击'播放实时预览渲染'按钮，即可实时处理并播放音频（预览效果）。
+点击'播放实时预览'按钮，即可实时处理并播放音频（预览效果）。
+
+点击'播放空间渲染'按钮，即可播放添加空间渲染后的音频。
+
+点击'格式转换'按钮，即可对PCM音频进行格式转换（预览效果）。
+
+点击'调试'按钮，即可输出当前音频引擎的状态信息到文件（仅在播放实时预览渲染时可用）。
 
 ## 工程结构&模块类型
 
@@ -39,17 +45,22 @@
 │   │   ├── types/libentry/
 │   │   │   └── Index.d.ts         # NAPI 接口声明
 │   │   ├── CMakeLists.txt         # CMake 编译配置文件
-│   │   ├── audioSuite.cpp         # NAPI 接口和音频播放实现
-│   │   ├── manualRendering.cpp    # 离线编辑实现
-│   │   ├── realTimeRendering.cpp  # 实时预览渲染实现
-│   │   └── pcmFileUtils.cpp      # PCM 文件工具类
+│   │   ├── audio_suite.cpp         # NAPI 接口和音频播放实现
+│   │   ├── manual_rendering.cpp    # 离线编辑实现
+│   │   ├── real_time_rendering.cpp  # 实时预览实现
+│   │   ├── audio_format_converter.cpp  # PCM音频格式转换实现
+│   │   ├── pcm_file_utils.cpp       # PCM 文件工具类
+│   │   ├── space_render_rotation.cpp     # 空间渲染实现
+│   │   └── print_info_to_file.cpp   # 打印信息到文件
 │   ├── ets/
 │   │   ├── entryability/
 │   │   │   └── EntryAbility.ets   # Ability 的生命周期回调内容
 │   │   ├── entrybackupability/
 │   │   │   └── EntryBackupAbility.ets  # BackupAbility 的生命周期回调内容
-│   │   └── pages/
-│   │       └── Index.ets          # 主界面
+│   │   ├── pages/
+│   │   │   └── Index.ets          # 主界面
+│   │   └── utils/
+│   │       └── DirInit.ets        # 目录初始化工具面
 │   └── resources/                 # 资源目录
 ```
 
@@ -57,13 +68,13 @@
 
 ### 使用 AudioSuite 实现离线编辑（离线编辑）
 
-**源码参考：** [manualRendering.cpp](entry/src/main/cpp/manualRendering.cpp)
+**源码参考：** [manual_rendering.cpp](entry/src/main/cpp/manual_rendering.cpp)
 
 **使用流程：**
 
 #### 均衡器效果
 
-点击'添加默认均衡器效果'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_EDIT_MODE` 编辑模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。最后调用 `OH_AudioSuiteEngine_ProcessFrame` 处理音频帧并将结果写入文件。
+点击'添加均衡器效果'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_EDIT_MODE` 编辑模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。最后调用 `OH_AudioSuiteEngine_ProcessFrame` 处理音频帧并将结果写入文件。
 
 #### 音源分离
 
@@ -73,13 +84,13 @@
 
 点击'混音与级联'按钮，首先创建引擎和管线，然后创建输入节点、声场节点和输出节点。接着设置节点格式和回调，连接节点组成组网。最后处理音频帧并将混音后的音频写入文件。
 
-### 使用 AudioSuite 实现实时预览渲染
+### 使用 AudioSuite 实现实时预览
 
-**源码参考：** [realTimeRendering.cpp](entry/src/main/cpp/realTimeRendering.cpp)
+**源码参考：** [real_time_rendering.cpp](entry/src/main/cpp/real_time_rendering.cpp)
 
 **使用流程：**
 
-点击'播放实时预览渲染'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_REALTIME_MODE` 实时模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。再创建 AudioRenderer 并设置写入数据回调，在回调中调用 `OH_AudioSuiteEngine_RenderFrame` 实时获取处理后的音频数据。最后调用 `OH_AudioSuiteEngine_StartPipeline` 启动管线并调用 `OH_AudioRenderer_Start` 开始播放。
+点击'播放实时预览'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_REALTIME_MODE` 实时模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。再创建 AudioRenderer 并设置写入数据回调，在回调中调用 `OH_AudioSuiteEngine_RenderFrame` 实时获取处理后的音频数据。最后调用 `OH_AudioSuiteEngine_StartPipeline` 启动管线并调用 `OH_AudioRenderer_Start` 开始播放。
 
 点击'停止播放'按钮，调用 `OH_AudioRenderer_Stop` 停止播放，然后调用 `OH_AudioSuiteEngine_StopPipeline` 停止管线，最后释放所有资源。
 
@@ -91,6 +102,8 @@
 - '播放伴奏'和'播放人声'：需先完成音源分离
 - '混音与级联'：需先完成音源分离
 - '播放混音'：需先完成混音与级联
+- '播放空间渲染'：需先完成音源分离
+- '调试'：需先启动播放实时预览
 
 异步操作（均衡器效果、音源分离、混音与级联）处理过程中会显示 Loading 遮罩，处理完成后自动启用相关播放按钮。
 

@@ -8,6 +8,8 @@
 | 全屏模式启动 | 应用已启动 | 设置全屏模式 | 以全屏模式启动 | Yes | Pass |
 | 分屏模式启动 | 应用已启动 | 设置分屏模式 | 以分屏模式启动 | Yes | Pass |
 | 浮窗模式启动 | 应用已启动 | 设置浮窗模式 | 以浮窗模式启动 | Yes | Pass |
+| 支持窗口模式设置 | 应用已启动 | 设置supportWindowModes | Ability支持指定窗口模式 | Yes | Pass |
+| 分屏比例启动 | 应用已启动 | 设置分屏窗口模式 | 以分屏模式启动Ability | Yes | Pass |
 | 启动结果回调 | 应用已启动 | 设置CompletionHandler | 正确接收启动结果 | Yes | Pass |
 | 窗口位置设置 | 应用已启动 | 设置left、top | 窗口在指定位置显示 | Yes | Pass |
 | 窗口大小设置 | 应用已启动 | 设置width、height | 窗口以指定大小显示 | Yes | Pass |
@@ -27,6 +29,8 @@
 2. **启动结果测试**：验证CompletionHandler的成功/失败回调是否正确触发
 3. **窗口属性测试**：验证位置、大小、背景色等属性是否正确设置
 4. **多屏显示测试**：验证Ability能否在指定屏幕上显示
+5. **支持窗口模式测试**：验证supportWindowModes参数设置Ability支持的窗口模式
+6. **分屏比例测试**：验证以分屏模式启动Ability时的分屏效果
 
 ### 自动化测试
 - Ability.test.ets：包含25+个自动化测试用例，覆盖：

@@ -13,6 +13,19 @@
 * limitations under the License.
 */
 import testNapi from 'libentry.so';
+import { common, abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+
+async function requestMicrophonePermission(context: common.UIAbilityContext): Promise<boolean> {
+  let atManager = abilityAccessCtrl.createAtManager();
+  try {
+    let result: PermissionRequestResult = await atManager
+      .requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE']);
+    return result.authResults[0] === 0;
+  } catch (err) {
+    console.error(`request microphone permission failed: ${JSON.stringify(err)}`);
+    return false;
+  }
+}
 
 @Entry
 @Component
@@ -103,6 +116,28 @@ struct AudioCaptureDemo {
               }
             })
 
+          Button('设置录音流静音提示')
+            .width('90%')
+            .height(48)
+            .margin({ bottom: 12 })
+            .onClick(async () => {
+              try {
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                let hasPermission = await requestMicrophonePermission(context);
+                if (!hasPermission) {
+                  this.message = '麦克风权限未授权';
+                  this.updateNapiLog('错误: 麦克风权限未授权，无法启动录制流');
+                  return;
+                }
+                let result: string = testNapi.SetAudioCapturerMuteHint();
+                this.message = '上报录音流静音提示完成';
+                this.updateNapiLog(result);
+              } catch (err) {
+                this.message = '设置录音流静音提示失败';
+                this.updateNapiLog('错误: ' + JSON.stringify(err));
+              }
+            })
+
           // CaptureCallback.cpp 接口
           Text('音频录制（使用Callbacks写入数据）')
             .fontSize(16)
@@ -158,6 +193,21 @@ struct AudioCaptureDemo {
                 this.updateNapiLog(result);
               } catch (err) {
                 this.message = '创建耳返录制流失败';
+                this.updateNapiLog('错误: ' + JSON.stringify(err));
+              }
+            })
+
+          Button('创建采集回环音效的录制流')
+            .width('90%')
+            .height(48)
+            .margin({ bottom: 12 })
+            .onClick(() => {
+              try {
+                let result = testNapi.CreateAudioCapturerLoopbackEffect();
+                this.message = result.includes('成功') ? '创建采集回环音效的录制流成功' : '创建采集回环音效的录制流失败';
+                this.updateNapiLog(result);
+              } catch (err) {
+                this.message = '创建采集回环音效的录制流失败';
                 this.updateNapiLog('错误: ' + JSON.stringify(err));
               }
             })

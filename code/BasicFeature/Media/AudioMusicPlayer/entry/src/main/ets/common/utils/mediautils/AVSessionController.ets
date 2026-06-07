@@ -370,6 +370,19 @@ export class AVSessionController {
     }
   }
 
+  // Set speed state.
+  public async setSpeedState(speed: number) {
+    if (this.avSession) {
+      this.avSession.setAVPlaybackState({ speed: speed }, (err: BusinessError) => {
+        if (err) {
+          Logger.error(TAG, `setSpeedState BusinessError: code: ${err.code}, message: ${err.message}`);
+        } else {
+          Logger.info(TAG, 'setSpeedState successfully');
+        }
+      });
+    }
+  }
+
   async unregisterSessionListener() {
     if (!this.avSession) {
       return;

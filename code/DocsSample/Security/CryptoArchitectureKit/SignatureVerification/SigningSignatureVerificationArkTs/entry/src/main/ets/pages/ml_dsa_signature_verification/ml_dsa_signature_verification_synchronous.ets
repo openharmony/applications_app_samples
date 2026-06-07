@@ -16,6 +16,7 @@
 // [Start signature_verification_with_ml_dsa_key_pair_ark_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from('This is Sign test plan', 'utf-8').buffer) };
 let context: Uint8Array = new Uint8Array(buffer.from('test', 'utf-8').buffer);
@@ -52,7 +53,8 @@ function main() {
       return 'Fail';
     }
   } catch (error) {
-    console.error(`verify failed, error: ${JSON.stringify(error)}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`verify failed: errCode: ${e.code}, errMessage: ${e.message}`);
     return 'Fail';
   }
 }

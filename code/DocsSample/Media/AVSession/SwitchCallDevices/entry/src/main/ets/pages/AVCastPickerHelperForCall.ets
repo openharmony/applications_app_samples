@@ -17,6 +17,11 @@
 import { avSession, AVCastPickerStyle } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG = 'AVCastPickerHelperForCall';
+const FORMAT = '%{public}s';
 
 @Entry
 @Component
@@ -26,27 +31,27 @@ struct AVCastPickerHelperForCall {
   private avCastPickerHelper: avSession.AVCastPickerHelper | undefined = undefined;
 
   async aboutToAppear() {
-    console.log('about to appear');
+    hilog.info(DOMAIN, TAG, FORMAT, 'about to appear');
     try {
       // 应用传入的AVSessionType类型与应用实际类型(如通话类应用)保持一致。
       // 创建voice_call类型的avsession。 'voice_call'代表语音通话，'video_call'代表视频通话。
       this.session = await avSession.createAVSession(this.context, 'voiptest', 'voice_call');
     } catch (err) {
-      console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
+      hilog.error(DOMAIN, TAG, FORMAT, `AVSession create: Error: Code: ${err.code}, message: ${err.message}`);
     }
-    this.avCastPickerHelper = new avSession.AVCastPickerHelper(this.context);
+    this.avCastPickerHelper = new avSession.AVCastPickerHelper(this.context); // 初始化AVCastPickerHelper
   }
   // [End create_voiceCall_avsession]
 
   // [Start destroy_session]
   async aboutToDisappear() {
-    console.log('about to disappear');
+    hilog.info(DOMAIN, TAG, FORMAT, 'about to disappear');
     // 通话结束后销毁avsession。
     this.session?.destroy((err) => {
       if (err) {
-        console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+        hilog.error(DOMAIN, TAG, FORMAT, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
       } else {
-        console.info(`Destroy : SUCCESS `);
+        hilog.info(DOMAIN, TAG, FORMAT, `Destroy: SUCCESS `);
       }
     });
   }
@@ -60,17 +65,18 @@ struct AVCastPickerHelperForCall {
       menuPosition: { x: 50, y: 150, width: 50, height: 50 } // 传入需要显示菜单的位置
     };
 
+    // 需要显示设备列表时，调用此接口
     this.avCastPickerHelper?.select(avCastPickerOptions).then(() => {
-      console.info('select successfully');
+      hilog.info(DOMAIN, TAG, FORMAT, 'select successfully');
     }).catch((err: BusinessError) => {
-      console.error(`AVCastPicker.select failed with err: ${err.code}, ${err.message}`);
+      hilog.error(DOMAIN, TAG, FORMAT, `avCastPickerHelper.select failed with err: ${err.code}, ${err.message}`);
     });
   }
 
   build() {
     Row() {
       Column() {
-        Button($r('app.string.switch_output'))
+        Button($r('app.string.switch_output')) // 切换通话输出设备按钮
           .onClick(async () => {
             await this.selectCallDevice();
           })

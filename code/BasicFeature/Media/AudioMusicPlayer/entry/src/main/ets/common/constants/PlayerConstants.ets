@@ -126,6 +126,10 @@ export const EFFECT_ID = 'effectId';
 
 export const DEFAULT_VOLUME = 1;
 
+export const SPEED_ID = 'speedId';
+
+export const DEFAULT_SPEED = 1;
+
 export class Options {
   public offset?: number;
   public length?: number;

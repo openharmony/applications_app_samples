@@ -24,3 +24,9 @@ export const AudioSourceSeparationNapi: (callback: (result: string) => void) => 
 export const MixingAndCascadingNapi: (callback: (result: string) => void) => void;
 
 export const EqualizerEffectNapi: () => string;
+
+export const AudioFormatConverterNapi: (callback: (result: string) => void) => void;
+
+export const TestPrintInfoToFile: () => boolean;
+
+export const SpaceRenderRotationNapi: () => string;
