@@ -51,9 +51,9 @@
 #include "muxer.h"
 
 static struct OH_AVScreenCapture *g_avCapture = {};
-extern static FILE *g_micFile;
-extern static FILE *g_vFile;
-extern static FILE *g_innerFile;
+extern FILE *g_micFile;
+extern FILE *g_vFile;
+extern FILE *g_innerFile;
 std::unique_ptr<Muxer> g_muxer;
 int32_t g_surfaceOutputFd = -1;
 int32_t g_fileOutputFd = -1;
