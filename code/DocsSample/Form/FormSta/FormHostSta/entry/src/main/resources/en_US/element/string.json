@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "formHost"
+    },
+    {
+      "name": "deleteForm",
+      "value": "deleteForm"
+    },
+    {
+      "name": "updateForm",
+      "value": "updateForm"
+    },
+    {
+      "name": "visibleForms",
+      "value": "visibleForms"
+    },
+    {
+      "name": "invisibleForms",
+      "value": "invisibleForms"
+    },
+    {
+      "name": "enableFormsUpdate",
+      "value": "enableFormsUpdate"
+    },
+    {
+      "name": "disableFormsUpdate",
+      "value": "disableFormsUpdate"
+    },
+    {
+      "name": "Host",
+      "value": "Host"
+    },
+    {
+      "name": "formOperation",
+      "value": "formOperation"
+    },
+    {
+      "name": "inquiryForm",
+      "value": "inquiryForm"
+    },
+    {
+      "name": "formType",
+      "value": "formType"
+    },
+    {
+      "name": "selectAddForm",
+      "value": "selectAddForm"
+    },
+    {
+      "name": "execute",
+      "value": "execute"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    }
+  ]
+}
