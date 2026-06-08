@@ -18,9 +18,9 @@
 using namespace std;
 #define LOG_TAG "ScreenCaptureSample"
 
-FILE * g_micFile = nullptr;
-FILE * g_vFile = nullptr;
-FILE * g_innerFile = nullptr;
+FILE *g_micFile = nullptr;
+FILE *g_vFile = nullptr;
+FILE *g_innerFile = nullptr;
 
 void OpenFile(std::string fileName)
 {
