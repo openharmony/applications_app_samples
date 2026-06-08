@@ -66,7 +66,7 @@ export function insertUnifiedData() {
       if (err === undefined) {
         hilog.info(0xFF00, '[Sample_Udmf]', `Succeeded in inserting data. key = ${key}`);
       } else {
-        hilog.error(0xFF00, '[Sample_Udmf]', `Succeeded in inserting data. key = ${key})`);
+        hilog.error(0xFF00, '[Sample_Udmf]', `Failed to insert data. code is ${err.code},message is ${err.message}`);
       }
     });
   } catch (e) {
