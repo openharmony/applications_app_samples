@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ImmersiveLightSense"
+    },
+    {
+      "name": "page_material_info",
+      "value": "MaterialState配置示例"
+    },
+    {
+      "name": "page_column_material",
+      "value": "Column通用属性设置材质"
+    },
+    {
+      "name": "page_button_interactive",
+      "value": "Button交互形变"
+    },
+    {
+      "name": "page_light_effect",
+      "value": "光感交互反馈"
+    },
+    {
+      "name": "page_toast_material",
+      "value": "Toast系统材质"
+    },
+    {
+      "name": "page_popup_material",
+      "value": "Popup系统材质"
+    },
+    {
+      "name": "page_tips_material",
+      "value": "Tips系统材质"
+    },
+    {
+      "name": "page_sheet_material",
+      "value": "bindSheet系统材质"
+    },
+    {
+      "name": "page_menu_material",
+      "value": "Menu系统材质"
+    },
+    {
+      "name": "page_close_material",
+      "value": "关闭组件材质"
+    },
+    {
+      "name": "page_all_styles",
+      "value": "五种材质样式展示"
+    },
+    {
+      "name": "page_color_invert",
+      "value": "自动反色"
+    }
+  ]
+}

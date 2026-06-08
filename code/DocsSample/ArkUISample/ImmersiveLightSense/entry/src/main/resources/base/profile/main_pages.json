@@ -1,0 +1,17 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/immersiveLightSense/MaterialInfo",
+    "pages/immersiveLightSense/ColumnMaterial",
+    "pages/immersiveLightSense/ButtonInteractive",
+    "pages/immersiveLightSense/LightEffect",
+    "pages/immersiveLightSense/ToastMaterial",
+    "pages/immersiveLightSense/PopupMaterial",
+    "pages/immersiveLightSense/TipsMaterial",
+    "pages/immersiveLightSense/SheetMaterial",
+    "pages/immersiveLightSense/MenuMaterial",
+    "pages/immersiveLightSense/CloseMaterial",
+    "pages/immersiveLightSense/AllStyles",
+    "pages/immersiveLightSense/ColorInvert"
+  ]
+}
