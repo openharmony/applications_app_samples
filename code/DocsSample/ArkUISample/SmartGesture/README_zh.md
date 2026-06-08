@@ -10,11 +10,11 @@
 
 | 首页                          | Case1: 长页面Scroll + Button   |
 |-----------------------------|-----------------------------|
-| ![](screenshots/Home.jpeg)  | ![](screenshots/Case1.jpeg) |
+| ![](screenshots/Home.png)  | ![](screenshots/Case1.png) |
 | Case2: 长列表List              | Case3: 单页面 + 多组件            |
-| ![](screenshots/Case2.jpeg) | ![](screenshots/Case3.jpeg) |
+| ![](screenshots/Case2.png) | ![](screenshots/Case3.png) |
 | Case4: Swiper + Button      |                             |
-| ![](screenshots/Case4.jpeg) |                             |
+| ![](screenshots/Case4.png) |                             |
 
 ### 使用说明
 
