@@ -1,0 +1,9 @@
+{
+  "modelVersion": "6.0.0",
+  "description": "AudioSnapshot sample demonstrating audio capture, playback, and snapshot with OHAudio C API and AudioKit TS API.",
+  "dependencies": {},
+  "devDependencies": {
+    "@ohos/hypium": "1.0.24",
+    "@ohos/hamock": "1.0.0"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "libentry.so",
+  "types": "./index.d.ts",
+  "version": "0.0.1",
+  "description": "AudioSnapshot native audio capture, playback and debugging bindings"
+}
