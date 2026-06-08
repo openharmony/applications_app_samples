@@ -29,7 +29,7 @@ struct StrokeMiterLimit {
         // 设置折线拐角处为尖角
         .strokeLineJoin(LineJoinStyle.Miter)
         // 设置斜接长度与线宽的比值
-        .strokeMiterLimit(1/Math.sin(45))
+        .strokeMiterLimit(1 / Math.sin(45 * Math.PI / 180))
       Polyline()
         .width(100)
         .height(100)
