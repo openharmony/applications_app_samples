@@ -17,9 +17,6 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 import { calendarManager } from '@kit.CalendarKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-const DOMAIN = 0x0000;
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 // 指定日历账户信息
@@ -117,19 +114,19 @@ struct Index {
     // [Start calendarEvent_createCalendar]
     // 创建日历账户
     calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in creating calendar data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
       calendar = data;
       // 请确保日历账户创建成功后，再进行相关日程的管理
 
       // 设置日历配置信息，打开日程提醒、设置日历账户颜色
       calendar.setConfig(config).then(() => {
-        hilog.info(DOMAIN, 'testTag', `Succeeded in setting config, data->${JSON.stringify(config)}`);
+        console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
       }).catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'testTag', `Failed to set config. Code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
       });
       // ...
     }).catch((error: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
+      console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
     });
     // [End calendarEvent_createCalendar]
   }
@@ -139,7 +136,7 @@ struct Index {
   // 方式二：在获取到日历管理器对象后，可通过editEvent()接口创建单个日程。调用此接口创建日程时，会跳转到日程创建页面，在日程创建页面进行相关操作完成日程的创建, editEvent()不支持自定义周期性日程创建。
   addEvent() {
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to add event. calendar is null');
+      console.error('Failed to add event. calendar is null');
       return;
     }
     // [Start calendarEvent_addEvent]
@@ -181,10 +178,10 @@ struct Index {
     };
     // 方式一
     calendar.addEvent(event).then((data: number) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in adding event, id -> ${data}`);
+      console.info(`Succeeded in adding event, id -> ${data}`);
       eventId = data;
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
     });
     // 方式二
     const eventInfo: calendarManager.Event = {
@@ -198,9 +195,9 @@ struct Index {
       endTime: date.getTime() + 60 * 60 * 1000
     };
     calendarMgr?.editEvent(eventInfo).then((id: number): void => {
-      hilog.info(DOMAIN, 'testTag', `create Event id = ${id}`);
+      console.info(`create Event id = ${id}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to create Event. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create Event. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarEvent_addEvent]
   }
@@ -208,7 +205,7 @@ struct Index {
   // 按照日程id进行当前日历账户指定日程的更新，更新日程相关信息。
   updateEvent() {
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to update event. calendar is null');
+      console.error('Failed to update event. calendar is null');
       return;
     }
     // [Start calendarEvent_updateEvent]
@@ -221,23 +218,23 @@ struct Index {
       endTime: date.getTime() + 60 * 60 * 1000
     };
     calendar.updateEvent(updateEvent).then(() => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in updating event`);
+      console.info(`Succeeded in updating event`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to update event. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to update event. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarEvent_updateEvent]
   }
 
   getEvents() {
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to get events. calendar is null');
+      console.error('Failed to get events. calendar is null');
       return;
     }
     // [Start calendarEvent_getEvents]
     calendar.getEvents().then((data: calendarManager.Event[]) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in getting events, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get events. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarEvent_getEvents]
   }
@@ -245,46 +242,46 @@ struct Index {
   // 还支持根据日程id、日程开始和结束时间、日程标题等查询条件来查询日程。
   getEvent() {
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to get event. calendar is null');
+      console.error('Failed to get event. calendar is null');
       return;
     }
     // [Start calendarEvent_getEvent]
     // 根据日程id查询
     const filterId = calendarManager.EventFilter.filterById([eventId]);
     calendar.getEvents(filterId).then((data: calendarManager.Event[]) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in getting events filter by eventId, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by eventId, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get events. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
     });
 
     // 根据日程标题查询
     const filterTitle = calendarManager.EventFilter.filterByTitle('update');
     calendar.getEvents(filterTitle).then((data: calendarManager.Event[]) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in getting events filter by title, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by title, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get events. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get events. Code: ${err.code}, message: ${err.message}`);
     });
 
     // 根据日程开始和结束时间查询
     const filterTime = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
     calendar.getEvents(filterTime).then((data: calendarManager.Event[]) => {
-      hilog.info(DOMAIN, 'testTag', `Succeeded in getting events filter by time, data -> ${JSON.stringify(data)}`);
+      console.info(`Succeeded in getting events filter by time, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to filter by time. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to filter by time. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarEvent_getEvent]
   }
 
   deleteEvent() {
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to delete event. calendar is null');
+      console.error('Failed to delete event. calendar is null');
       return;
     }
     // [Start calendarEvent_deleteEvent]
     calendar.deleteEvent(eventId).then(() => {
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in deleting event');
+      console.info('Succeeded in deleting event');
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to delete event. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarEvent_deleteEvent]
   }

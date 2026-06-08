@@ -17,9 +17,6 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarMgr } from '../entryability/EntryAbility';
 import { calendarManager } from '@kit.CalendarKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-const DOMAIN = 0x0000;
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 // 指定日历账户信息
@@ -112,12 +109,12 @@ struct Index {
     // [Start calendarData_createAccount]
     // 创建日历账户
     calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', `Succeeded in creating calendar data->${JSON.stringify(data)}`);
+      console.info('%{public}s', `Succeeded in creating calendar data->${JSON.stringify(data)}`);
       calendar = data;
       // 请确保日历账户创建成功后，再进行后续相关操作
       // ...
     }).catch((error: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
+      console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
     });
     // [End calendarData_createAccount]
   }
@@ -134,7 +131,7 @@ struct Index {
     calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
       // 获取日历账户
       if (err) {
-        hilog.error(DOMAIN, 'testTag', `Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
+        console.error(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
       } else {
         const config: calendarManager.CalendarConfig = {
           // 打开日程提醒
@@ -144,9 +141,9 @@ struct Index {
         };
         // 设置日历配置信息
         data.setConfig(config).then(() => {
-          hilog.info(DOMAIN, 'testTag', '%{public}s', `Succeeded in setting config, data->${JSON.stringify(config)}`);
+          console.info('%{public}s', `Succeeded in setting config, data->${JSON.stringify(config)}`);
         }).catch((err: BusinessError) => {
-          hilog.error(DOMAIN, 'testTag', `Failed to set config. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
         })
       }
     });
@@ -157,9 +154,9 @@ struct Index {
   getCalendarByParam() {
     // [Start calendarData_getAccountByParam]
     calendarMgr?.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', `Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
+      console.info('%{public}s', `Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarData_getAccountByParam]
   }
@@ -168,9 +165,9 @@ struct Index {
   getDefaultCalendar() {
     // [Start calendarData_getDefaultAccount]
     calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', `Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
+      console.info('%{public}s', `Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarData_getDefaultAccount]
   }
@@ -179,13 +176,13 @@ struct Index {
   getAllCalendars() {
     // [Start calendarData_getAllCalendars]
     calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', `Succeeded in getting all calendars, data -> ${JSON.stringify(data)}`);
+      console.info('%{public}s', `Succeeded in getting all calendars, data -> ${JSON.stringify(data)}`);
       data.forEach((calendar) => {
         const account = calendar.getAccount();
-        hilog.info(DOMAIN, 'testTag', '%{public}s', `account -> ${JSON.stringify(account)}`);
+        console.info('%{public}s', `account -> ${JSON.stringify(account)}`);
       })
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to get all calendars. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to get all calendars. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarData_getAllCalendars]
   }
@@ -194,13 +191,13 @@ struct Index {
   deleteCalendar() {
     // [Start calendarData_deleteCalendar]
     if (!calendar || calendar === null) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to delete calendar. calendar is null');
+      console.error('Failed to delete calendar. calendar is null');
       return;
     }
     calendarMgr?.deleteCalendar(calendar).then(() => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', 'Succeeded in deleting calendar');
+      console.info('%{public}s', 'Succeeded in deleting calendar');
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN, 'testTag', `Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
     });
     // [End calendarData_deleteCalendar]
   }
