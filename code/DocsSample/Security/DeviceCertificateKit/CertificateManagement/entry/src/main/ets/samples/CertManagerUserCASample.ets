@@ -49,24 +49,17 @@ async function userCASample(): Promise<void> {
   } catch (error) {
     console.error(`Failed to install user CA certificate.`);
   }
-  /* 获取用户CA证书详情。 */
-  getUserCACertInfo(certUri);
-  /* 获取用户CA证书列表。 */
-  getUserCACertList();
+  /* 获取CA证书 */
+  getUserCaCertSample();
   /* 场景1：在BYOD设备卸载用户CA证书 */
   uninstallUserCACertDialog(certUri);
 
   /* 场景2：MDM应用在企业设备安装用户CA证书 */
   certUri = installUserCACertEnterprise(userCAData);
-  /* 获取用户CA证书详情。 */
-  getUserCACertInfo(certUri);
-  /* 获取用户CA证书列表。 */
-  getUserCACertList();
+  /* 获取CA证书 */
+  getUserCaCertSample();
   /* 场景2：MDM应用在企业设备卸载用户CA证书 */
   uninstallUserCACertEnterprise(certUri);
-
-  /* 获取CA证书的存储目录 */
-  getUserCaPathSample();
 }
 
 async function installUserCACertDialog(userCAData: Uint8Array): Promise<string> {
@@ -112,39 +105,6 @@ function installUserCACertEnterprise(userCAData: Uint8Array): string {
   return '';
 }
 
-async function getUserCACertInfo(certUri: string): Promise<void> {
-  try {
-    /* 获取用户CA证书详情。 */
-    let result = await certificateManager.getUserTrustedCertificate(certUri);
-    if (result === undefined || result.certInfo == undefined) {
-      console.error('The result of getting user ca cert is undefined.');
-    } else {
-      let certInfo = result.certInfo;
-      console.info('Succeeded in getting user ca cert.');
-    }
-  } catch (err) {
-    console.error(`Failed to get user ca certificate. Code: ${err.code}, message: ${err.message}`);
-  }
-}
-
-async function getUserCACertList(): Promise<void> {
-  try {
-    /* 获取当前用户下的用户CA证书列表。 */
-    let certScope = certificateManager.CertScope.CURRENT_USER;
-    let result = await certificateManager.getAllUserTrustedCertificates(certScope);
-    if (result == undefined) { /* 用户根CA证书个数为0时，返回result为undefined。 */
-      console.info('the count of the user trusted certificates is 0');
-    } else if (result.certList == undefined) {
-      console.error('The result of getting current user trusted certificates is undefined.');
-    } else {
-      let list = result.certList;
-      console.info('Succeeded in getting user ca cert list.');
-    }
-  } catch (err) {
-    console.error(`Failed to get user ca certificate. Code: ${err.code}, message: ${err.message}`);
-  }
-}
-
 async function uninstallUserCACertDialog(certUri: string): Promise<void> {
   try {
     /* 场景2：在BYOD设备卸载用户CA证书 */
@@ -164,12 +124,13 @@ async function uninstallUserCACertDialog(certUri: string): Promise<void> {
   }
 }
 
-function getUserCaPathSample(): void {
+function getUserCaCertSample(): void {
   try {
     /* 获取系统CA的存储位置。 */
     let property1: certificateManager.CertStoreProperty = {
       certType: certificateManager.CertType.CA_CERT_SYSTEM,
     }
+    /* 您可以从systemCAPath目录读取CA证书。 */
     let systemCAPath = certificateManager.getCertificateStorePath(property1);
     console.info(`Success to get system ca path: ${systemCAPath}`);
 
@@ -178,6 +139,7 @@ function getUserCaPathSample(): void {
       certType: certificateManager.CertType.CA_CERT_USER,
       certScope: certificateManager.CertScope.CURRENT_USER,
     }
+    /* 您可以从userCACurrentPath目录读取CA证书。 */
     let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
     console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
 
@@ -186,6 +148,7 @@ function getUserCaPathSample(): void {
       certType: certificateManager.CertType.CA_CERT_USER,
       certScope: certificateManager.CertScope.GLOBAL_USER,
     }
+    /* 您可以从globalCACurrentPath目录读取CA证书。 */
     let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
     console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
   } catch (error) {
