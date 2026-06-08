@@ -49,17 +49,24 @@ async function userCASample(): Promise<void> {
   } catch (error) {
     console.error(`Failed to install user CA certificate.`);
   }
+  /* 获取用户CA证书详情。 */
   getUserCACertInfo(certUri);
+  /* 获取用户CA证书列表。 */
   getUserCACertList();
   /* 场景1：在BYOD设备卸载用户CA证书 */
   uninstallUserCACertDialog(certUri);
 
   /* 场景2：MDM应用在企业设备安装用户CA证书 */
   certUri = installUserCACertEnterprise(userCAData);
+  /* 获取用户CA证书详情。 */
   getUserCACertInfo(certUri);
+  /* 获取用户CA证书列表。 */
   getUserCACertList();
   /* 场景2：MDM应用在企业设备卸载用户CA证书 */
   uninstallUserCACertEnterprise(certUri);
+
+  /* 获取CA证书的存储目录 */
+  getUserCaPathSample();
 }
 
 async function installUserCACertDialog(userCAData: Uint8Array): Promise<string> {
@@ -154,6 +161,35 @@ async function uninstallUserCACertDialog(certUri: string): Promise<void> {
     });
   } catch (err) {
     console.error(`Failed to uninstall user ca certificate. Code: ${err.code}, message: ${err.message}`);
+  }
+}
+
+function getUserCaPathSample(): void {
+  try {
+    /* 获取系统CA的存储位置。 */
+    let property1: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_SYSTEM,
+    }
+    let systemCAPath = certificateManager.getCertificateStorePath(property1);
+    console.info(`Success to get system ca path: ${systemCAPath}`);
+
+    /* 获取当前用户的用户CA存储位置。 */
+    let property2: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_USER,
+      certScope: certificateManager.CertScope.CURRENT_USER,
+    }
+    let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
+    console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+
+    /* 获取设备公共的用户CA存储位置。 */
+    let property3: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_USER,
+      certScope: certificateManager.CertScope.GLOBAL_USER,
+    }
+    let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
+    console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+  } catch (error) {
+    console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
   }
 }
 
