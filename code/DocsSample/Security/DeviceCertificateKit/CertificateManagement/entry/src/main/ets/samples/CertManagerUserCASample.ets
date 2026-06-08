@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 // [Start certificate_management_user_ca]
-import { certificateManager } from '@kit.DeviceCertificateKit';
+import { certificateManager, certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { util } from '@kit.ArkTS';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 async function userCASample(): Promise<void> {
   /* 安装的用户CA证书数据需要业务赋值。 */
@@ -40,16 +42,77 @@ async function userCASample(): Promise<void> {
     '-----END CERTIFICATE-----');
 
   let certUri: string = '';
-  let certScope = certificateManager.CertScope.CURRENT_USER;
+
+  /* 场景1：在BYOD设备安装用户CA证书 */
+  try {
+    certUri = await installUserCACertDialog(userCAData);
+  } catch (error) {
+    console.error(`Failed to install user CA certificate.`);
+  }
+  /* 获取用户CA证书详情。 */
+  getUserCACertInfo(certUri);
+  /* 获取用户CA证书列表。 */
+  getUserCACertList();
+  /* 场景1：在BYOD设备卸载用户CA证书 */
+  uninstallUserCACertDialog(certUri);
+
+  /* 场景2：MDM应用在企业设备安装用户CA证书 */
+  certUri = installUserCACertEnterprise(userCAData);
+  /* 获取用户CA证书详情。 */
+  getUserCACertInfo(certUri);
+  /* 获取用户CA证书列表。 */
+  getUserCACertList();
+  /* 场景2：MDM应用在企业设备卸载用户CA证书 */
+  uninstallUserCACertEnterprise(certUri);
+
+  /* 获取CA证书的存储目录 */
+  getUserCaPathSample();
+}
+
+async function installUserCACertDialog(userCAData: Uint8Array): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    /* 场景1：在BYOD设备安装用户CA证书 */
+    try {
+      /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
+      let context: common.Context = new UIContext().getHostContext() as common.Context;
+      /* 安装用户证书凭据 */
+      certificateManagerDialog.openInstallCertificateDialog(
+        context,
+        certificateManagerDialog.CertificateType.CA_CERT,
+        certificateManagerDialog.CertificateScope.CURRENT_USER,
+        userCAData
+      ).then((keyUri: string) => {
+        console.info(`Installing user CA certificate successful, keyUri: ${keyUri}`);
+        resolve(keyUri);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to install user CA certificate. Code: ${error.code}, message: ${error.message}`);
+        reject(error);
+      });
+    } catch (error) {
+      console.error(`Failed to install user CA credential. Code: ${error.code}, message: ${error.message}`);
+      reject(error);
+    }
+  })
+}
+
+function installUserCACertEnterprise(userCAData: Uint8Array): string {
+  /* 场景2：MDM应用在企业设备安装用户CA证书 */
   try {
     /* 在当前用户下，安装用户CA证书。 */
-    let result = certificateManager.installUserTrustedCertificateSync(userCAData, certScope);
-    certUri = result.uri ?? '';
-    console.info(`Succeeded in install user ca cert, certUri is ${certUri}`);
+    let result = certificateManager.installUserTrustedCertificateSync(
+      userCAData,
+      certificateManager.CertScope.CURRENT_USER
+    );
+    let certUri = result.uri ?? '';
+    console.info(`Sync install user CA certificate successful, certUri is ${certUri}`);
+    return certUri
   } catch (err) {
-    console.error(`Failed to install user ca cert. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to sync install user CA certificate. Code: ${err.code}, message: ${err.message}`);
   }
+  return '';
+}
 
+async function getUserCACertInfo(certUri: string): Promise<void> {
   try {
     /* 获取用户CA证书详情。 */
     let result = await certificateManager.getUserTrustedCertificate(certUri);
@@ -62,9 +125,12 @@ async function userCASample(): Promise<void> {
   } catch (err) {
     console.error(`Failed to get user ca certificate. Code: ${err.code}, message: ${err.message}`);
   }
+}
 
+async function getUserCACertList(): Promise<void> {
   try {
     /* 获取当前用户下的用户CA证书列表。 */
+    let certScope = certificateManager.CertScope.CURRENT_USER;
     let result = await certificateManager.getAllUserTrustedCertificates(certScope);
     if (result == undefined) { /* 用户根CA证书个数为0时，返回result为undefined。 */
       console.info('the count of the user trusted certificates is 0');
@@ -77,10 +143,61 @@ async function userCASample(): Promise<void> {
   } catch (err) {
     console.error(`Failed to get user ca certificate. Code: ${err.code}, message: ${err.message}`);
   }
+}
 
+async function uninstallUserCACertDialog(certUri: string): Promise<void> {
   try {
-    /* 删除安装的用户CA证书。 */
+    /* 场景2：在BYOD设备卸载用户CA证书 */
+    /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
+    let context: common.Context = new UIContext().getHostContext() as common.Context;
+    certificateManagerDialog.openUninstallCertificateDialog(
+      context,
+      certificateManagerDialog.CertificateType.CA_CERT,
+      certUri
+    ).then(() => {
+      console.info(`Uninstall user ca certificate successful.`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to uninstall user ca certificate. Code: ${error.code}, message: ${error.message}`);
+    });
+  } catch (err) {
+    console.error(`Failed to uninstall user ca certificate. Code: ${err.code}, message: ${err.message}`);
+  }
+}
+
+function getUserCaPathSample(): void {
+  try {
+    /* 获取系统CA的存储位置。 */
+    let property1: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_SYSTEM,
+    }
+    let systemCAPath = certificateManager.getCertificateStorePath(property1);
+    console.info(`Success to get system ca path: ${systemCAPath}`);
+
+    /* 获取当前用户的用户CA存储位置。 */
+    let property2: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_USER,
+      certScope: certificateManager.CertScope.CURRENT_USER,
+    }
+    let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
+    console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+
+    /* 获取设备公共的用户CA存储位置。 */
+    let property3: certificateManager.CertStoreProperty = {
+      certType: certificateManager.CertType.CA_CERT_USER,
+      certScope: certificateManager.CertScope.GLOBAL_USER,
+    }
+    let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
+    console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+  } catch (error) {
+    console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
+  }
+}
+
+async function uninstallUserCACertEnterprise(certUri: string): Promise<void> {
+  try {
+    /* 场景2：MDM应用在企业设备卸载用户CA证书 */
     certificateManager.uninstallUserTrustedCertificateSync(certUri);
+    console.info(`Uninstall user ca certificate successful.`);
   } catch (err) {
     console.error(`Failed to uninstall user ca certificate. Code: ${err.code}, message: ${err.message}`);
   }
