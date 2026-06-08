@@ -18,9 +18,9 @@
 using namespace std;
 #define LOG_TAG "ScreenCaptureSample"
 
-g_micFile = nullptr;
-g_vFile = nullptr;
-g_innerFile = nullptr;
+FILE * g_micFile = nullptr;
+FILE * g_vFile = nullptr;
+FILE * g_innerFile = nullptr;
 
 void OpenFile(std::string fileName)
 {
@@ -35,8 +35,8 @@ void OpenFile(std::string fileName)
         OH_LOG_ERROR(LOG_APP, "OpenFile g_innerFile audio open failed. %{public}s", strerror(errno));
     }
     filePath = "data/storage/el2/base/files/VIDEO_" + fileName + ".yuv";
-    vFile_ = fopen(filePath.c_str(), "wb");
-    if (vFile_ == nullptr) {
+    g_vFile = fopen(filePath.c_str(), "wb");
+    if (g_vFile == nullptr) {
         OH_LOG_ERROR(LOG_APP, "OpenFile vFile video open failed. %{public}s", strerror(errno));
     }
 }
@@ -51,9 +51,9 @@ void CloseFile(void)
         fclose(g_innerFile);
         g_innerFile = nullptr;
     }
-    if (vFile_ != nullptr) {
-        fclose(vFile_);
-        vFile_ = nullptr;
+    if (g_vFile != nullptr) {
+        fclose(g_vFile);
+        g_vFile = nullptr;
     }
 }
 
