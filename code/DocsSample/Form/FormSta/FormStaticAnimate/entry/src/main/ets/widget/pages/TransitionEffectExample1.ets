@@ -47,4 +47,5 @@ struct TransitionEffectExample1 {
     }.width('100%')
   }
 }
+
 // [End TransitionEffectExample1_card]

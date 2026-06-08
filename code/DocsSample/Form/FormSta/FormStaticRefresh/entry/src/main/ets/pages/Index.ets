@@ -19,7 +19,7 @@
 // entry/src/main/ets/pages/Index.ets
 
 import { Entry, Text, Column, ColumnOptions, Component, Button, ClickEvent } from '@ohos.arkui.component';
-import { Tabs, TabContent, Color, FlexAlign  } from '@ohos.arkui.component';
+import { Tabs, TabContent, Color, FlexAlign } from '@ohos.arkui.component';
 import { FormComponent, FormInfo, FormDimension, FormCallbackInfo, $r } from '@ohos.arkui.component';
 import { formProvider, formHost } from '@kit.FormKit';
 import { State } from '@ohos.arkui.stateManagement'
@@ -33,7 +33,6 @@ const DOMAIN_NUMBER: int = 0xFF00;
 @Entry
 @Component
 struct Index {
-
   // [StartExclude update_by_formprovider]
   @State formId: string = '0';
 
@@ -91,6 +90,7 @@ struct Index {
     }
     .width('100%')
   }
+
   // [EndExclude update_by_formprovider]
 
   // [StartExclude update_by_formhost]
@@ -131,6 +131,7 @@ struct Index {
     .width('100%')
     .justifyContent(FlexAlign.Center)
   }
+
   // [EndExclude update_by_formhost]
 
   build() {
@@ -139,6 +140,7 @@ struct Index {
         TabContent() {
           this.buildFormProviderUpdate()
         }.tabBar('formProvider').id('formProvider')
+
         TabContent() {
           this.buildFormHostUpdate()
         }.tabBar('formHost').id('formHost')
