@@ -4,7 +4,7 @@ import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { UIContext } from '@kit.ArkUI';
-import { util } from '@kit.ArkTS';
+import { JSON, util } from '@kit.ArkTS';
 
 function userCredSample(): void {
   /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
@@ -96,7 +96,7 @@ function userCredSample(): void {
       console.error(`Failed to install user credential. Code: ${error.code}, message: ${error.message}`);
     });
   } catch (error) {
-    console.error(`Failed to install system credential. Code: ${error.code}, message: ${error.message}`);
+    console.error(`Failed to install user credential. Code: ${error.code}, message: ${error.message}`);
   }
   return;
 }
@@ -108,7 +108,9 @@ function requestUserCredAuth() {
     certificateManagerDialog.openAuthorizeDialog(context, {
       certTypes: [certificateManagerDialog.CertificateType.CREDENTIAL_USER]
     }).then((authUri: certificateManagerDialog.CertReference) => {
-      console.info(`Auth user credential successful, authUri: ${authUri.keyUri}`);
+      console.info(`Auth user credential successful. AuthUri: ${authUri.keyUri}`);
+      /* 读取用户证书凭据。 */
+      getUserCredInfo(authUri.keyUri);
       /* 使用用户证书凭据进行签名验签。 */
       signAndVerify(authUri.keyUri);
     }).catch((error: BusinessError) => {
@@ -116,6 +118,19 @@ function requestUserCredAuth() {
     });
   } catch (error) {
     console.error(`Failed to auth user credential. Code: ${error.code}, message: ${error.message}`);
+  }
+}
+
+function getUserCredInfo(keyUri: string): void {
+  try {
+    certificateManager.getPublicCertificate(keyUri)
+      .then((result: certificateManager.CMResult) => {
+        console.info(`Get user credential info successful. Info: ${JSON.stringify(result.credential)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to get user credential info. Code: ${error.code}, message: ${error.message}`);
+      });
+  } catch (error) {
+    console.error(`Failed to get user credential info. Code: ${error.code}, message: ${error.message}`);
   }
 }
 
