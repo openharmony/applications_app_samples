@@ -608,11 +608,11 @@ void MockOnAudioBufferAvailable(OH_AVScreenCapture *screenCapture, bool isReady,
         }
         if (OH_AVScreenCapture_AcquireAudioBuffer(screenCapture, &audioBuffer, type) == AV_SCREEN_CAPTURE_ERR_OK) {
             if ((g_micFile != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_MIC)) {
-                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, g_micFile);
+                fwrite(audioBuffer->buf, 1, audioBuffer->size, g_micFile);
                 free(audioBuffer->buf);
                 audioBuffer->buf = nullptr;
             } else if ((g_innerFile != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_ALL_PLAYBACK)) {
-                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, g_innerFile);
+                fwrite(audioBuffer->buf, 1, audioBuffer->size, g_innerFile);
                 free(audioBuffer->buf);
                 audioBuffer->buf = nullptr;
             }
