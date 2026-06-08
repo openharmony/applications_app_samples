@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import { userCASample } from '../samples/CertManagerUserCASample';
-import { getUserCaPathSample } from '../samples/CertManagerGetCAPathSample';
 
 @Entry
 @Component
@@ -30,12 +29,6 @@ struct Index {
         .onClick(() => {
           userCASample();
           this.message = 'userCASample Success';
-        })
-      Button($r('app.string.call_getUserCAPathSample'))
-        .width('70%')
-        .onClick(() => {
-          getUserCaPathSample();
-          this.message = 'getUserCaPathSample Success';
         })
     }
     .height('100%')
