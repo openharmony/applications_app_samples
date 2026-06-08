@@ -18,17 +18,21 @@
 using namespace std;
 #define LOG_TAG "ScreenCaptureSample"
 
+g_micFile = nullptr;
+g_vFile = nullptr;
+g_innerFile = nullptr;
+
 void OpenFile(std::string fileName)
 {
     std::string filePath = "data/storage/el2/base/files/MIC_" + fileName + ".pcm";
-    micFile_ = fopen(filePath.c_str(), "wb");
-    if (micFile_ == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "OpenFile micFile_ audio open failed. %{public}s", strerror(errno));
+    g_micFile = fopen(filePath.c_str(), "wb");
+    if (g_micFile == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_micFile audio open failed. %{public}s", strerror(errno));
     }
     filePath = "data/storage/el2/base/files/INNER_" + fileName + ".pcm";
-    innerFile_ = fopen(filePath.c_str(), "wb");
-    if (innerFile_ == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "OpenFile innerFile_ audio open failed. %{public}s", strerror(errno));
+    g_innerFile = fopen(filePath.c_str(), "wb");
+    if (g_innerFile == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "OpenFile g_innerFile audio open failed. %{public}s", strerror(errno));
     }
     filePath = "data/storage/el2/base/files/VIDEO_" + fileName + ".yuv";
     vFile_ = fopen(filePath.c_str(), "wb");
@@ -39,13 +43,13 @@ void OpenFile(std::string fileName)
 
 void CloseFile(void)
 {
-    if (micFile_ != nullptr) {
-        fclose(micFile_);
-        micFile_ = nullptr;
+    if (g_micFile != nullptr) {
+        fclose(g_micFile);
+        g_micFile = nullptr;
     }
-    if (innerFile_ != nullptr) {
-        fclose(innerFile_);
-        innerFile_ = nullptr;
+    if (g_innerFile != nullptr) {
+        fclose(g_innerFile);
+        g_innerFile = nullptr;
     }
     if (vFile_ != nullptr) {
         fclose(vFile_);
@@ -216,7 +220,7 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
-    m_isRunning = true;
+    g_isRunning = true;
 
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -553,7 +557,7 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         g_avCapture = nullptr;
         CloseFile();
-        m_isRunning = false;
+        g_isRunning = false;
     }
     napi_create_int32(env, result, &res);
     return res;
@@ -570,12 +574,12 @@ void MockOnAudioBufferAvailable(OH_AVScreenCapture *screenCapture, bool isReady,
             return;
         }
         if (OH_AVScreenCapture_AcquireAudioBuffer(screenCapture, &audioBuffer, type) == AV_SCREEN_CAPTURE_ERR_OK) {
-            if ((micFile_ != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_MIC)) {
-                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, micFile_);
+            if ((g_micFile != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_MIC)) {
+                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, g_micFile);
                 free(audioBuffer->buf);
                 audioBuffer->buf = nullptr;
-            } else if ((innerFile_ != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_ALL_PLAYBACK)) {
-                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, innerFile_);
+            } else if ((g_innerFile != nullptr) && (audioBuffer->buf != nullptr) && (type == OH_ALL_PLAYBACK)) {
+                int32_t ret = fwrite(audioBuffer->buf, 1, audioBuffer->size, g_innerFile);
                 free(audioBuffer->buf);
                 audioBuffer->buf = nullptr;
             }
