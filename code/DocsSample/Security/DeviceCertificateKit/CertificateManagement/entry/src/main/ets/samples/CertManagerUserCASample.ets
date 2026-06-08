@@ -75,7 +75,7 @@ async function installUserCACertDialog(userCAData: Uint8Array): Promise<string> 
     try {
       /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
       let context: common.Context = new UIContext().getHostContext() as common.Context;
-      /* 安装用户证书凭据 */
+      /* 安装用户CA证书 */
       certificateManagerDialog.openInstallCertificateDialog(
         context,
         certificateManagerDialog.CertificateType.CA_CERT,
