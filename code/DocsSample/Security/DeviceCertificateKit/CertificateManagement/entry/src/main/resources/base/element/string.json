@@ -69,10 +69,6 @@
       "value": "Call UserCaSample"
     },
     {
-      "name": "call_getUserCAPathSample",
-      "value": "Call GetUserCaPathSample"
-    },
-    {
       "name": "call_certManagerSystemCredGuidelines",
       "value": "Call CertManagerSystemCredGuidelines"
     },
