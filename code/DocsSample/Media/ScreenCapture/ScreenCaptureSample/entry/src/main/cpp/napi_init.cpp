@@ -103,53 +103,66 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     (void)userData;
 }
 
+void HandleVideoBuffer(OH_AVBuffer *buffer)
+{
+    OH_NativeBuffer *nativebuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+    if (nativebuffer == nullptr) {
+        return;
+    }
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    OH_AVCodecBufferAttr info;
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture size %{public}d", info.size);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture bufferLen %{public}d", bufferLen);
+
+    OH_NativeBuffer_Config config;
+    OH_NativeBuffer_GetConfig(nativebuffer, &config);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture height %{public}d width %{public}d",
+        config.height, config.width);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    size_t written = fwrite(buf, 1, bufferLen, g_vFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+    OH_NativeBuffer_Unreference(nativebuffer);
+    buffer = nullptr;
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
+}
+
+void HandleAudioBuffer(OH_AVBuffer *buffer, FILE *file, const char *logMsg)
+{
+    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+    if (buf == nullptr) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
+    size_t written = fwrite(buf, 1, bufferLen, g_innerFile);
+    if (written != bufferLen) {
+        OH_LOG_ERROR(LOG_APP, "fwrite failed");
+    }
+}
+
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType,
                        int64_t timestamp, void *userData)
 {
-    if (m_isRunning) {
-        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable bufferType is %{public}d",
-            bufferType);
-        if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
-            // 处理视频buffer
-            OH_NativeBuffer *nativebuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-            if (nativebuffer != nullptr) {
-                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-                OH_AVCodecBufferAttr info;
-                int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture size %{public}d", info.size);
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture bufferLen %{public}d", bufferLen);
-
-                OH_NativeBuffer_Config config;
-                OH_NativeBuffer_GetConfig(nativebuffer, &config);
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture height %{public}d width %{public}d",
-                    config.height, config.width);
-                // int32_t length = config.height * config.width * 4;
-                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf == nullptr) {
-                    return;
-                }
-                fwrite(buf, 1, bufferLen, vFile_);
-                OH_NativeBuffer_Unreference(nativebuffer);
-                buffer = nullptr;
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
-            }
-        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-            // 处理内录buffer
-            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
-                fwrite(buf, 1, bufferLen, innerFile_);
-            }
-        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-            // 处理麦克风buffer
-            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
-                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable mic audio");
-                fwrite(buf, 1, bufferLen, micFile_);
-            }
-        }
+    if (!g_isRunning) {
+        return;
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable bufferType is %{public}d",
+        bufferType);
+    if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+        // 处理视频buffer
+        HandleVideoBuffer(buffer);
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+        // 处理内录buffer
+        HandleAudioBuffer(buffer, g_innerFile, "ScreenCapture OnBufferAvailable inner audio");
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+        // 处理麦克风buffer
+        HandleAudioBuffer(buffer, g_micFile, "ScreenCapture OnBufferAvailable mic audio");
     }
     return;
 }
