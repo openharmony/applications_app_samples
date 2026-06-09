@@ -35,8 +35,6 @@ entry/src/main/ets/
 |---|---SelfAVInputCastPicker.ets // 自定义InputCastPicker样式实现
 |---|---SwitchInputDevice.ets // 默认CastPicker样式实现
 |---|---SwitchOutputDevice.ets // 默认InputCastPicker样式实现
-|---|---AVCastPickerHelperForCall.ets // 通话类应用AVCastPickerHelper样式实现
-|---|---AVCastPickerHelperForMedia.ets // 媒体类应用AVCastPickerHelper样式实现
 |---utils
 |---|---AudioRenderer.ets // AudioRenderer工具类
 |---|---AVCastPickerHelper.ets // AVCastPickerHelper工具类
