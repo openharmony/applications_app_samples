@@ -148,7 +148,8 @@ entry/src/ohosTest/
 5. 轮播 (Swiper)：使用Swiper组件实现轮播效果，配置loop循环、autoPlay自动播放、自定义指示器样式、多页显示、自定义过渡动画、方向切换等属性。
 6. 弧形轮播 (ArcSwiper)（圆形屏幕推荐使用）：使用ArcSwiper组件实现弧形轮播，配置arcDirection样式，支持水平/垂直方向切换、侧滑手势和ArcSwiperController操作交互。
 7. 选项卡 (Tabs)：使用Tabs容器包裹多个TabContent子组件，通过barPosition设置导航栏位置，barMode设置固定或可滚动模式，支持自定义页签、页签与内容联动、切换拦截和页面缓存控制。
-8. 懒加载布局（LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout）：在Scroll或List内使用LazyVGridLayout、LazyVWaterFlowLayout、LazyColumnLayout三种懒加载布局容器，配置columnsTemplate、rowsGap、columnsGap、space、alignItems等布局属性，支持多种布局容器混合组合使用，各容器使用独立LazyForEach数据源，通过onVisibleIndexesChange回调实现触底加载更多数据。
+8. 滚动 (Scroll)：使用Scroll组件实现通用滚动容器，包含ScrollSnap（滚动翻页对齐）和ScrollModifier（滚动修饰）两个子示例，分别展示了在List、Grid、WaterFlow、Scroll中的滚动吸附和滚动修饰效果。
+9. 懒加载布局（LazyColumnLayout/LazyVGridLayout/LazyVWaterFlowLayout）：在Scroll或List内使用LazyVGridLayout、LazyVWaterFlowLayout、LazyColumnLayout三种懒加载布局容器，配置columnsTemplate、rowsGap、columnsGap、space、alignItems、header、footer、sticky等布局属性，支持多种布局容器混合组合使用，各容器使用独立LazyForEach数据源，通过onVisibleIndexesChange回调实现触底加载更多数据。
 
 ### 相关权限
 
