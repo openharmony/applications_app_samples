@@ -70,6 +70,7 @@ entry/src/main/ets/
 |   |       |---Index.ets
 |   |       |---LazyColumnLayoutNestedLazyLayout.ets
 |   |       |---LazyColumnLayoutSample.ets
+|   |       |---LazyLayoutGroup.ets
 |   |       |---LazyVGridLayoutSample.ets
 |   |       |---LazyVWaterFlowLayoutSample.ets
 |   |       |---ListNestedLazyLayout.ets
