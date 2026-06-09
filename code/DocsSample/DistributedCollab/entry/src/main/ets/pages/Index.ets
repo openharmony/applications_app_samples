@@ -191,14 +191,14 @@ struct Index {
     }
     console.log(TAG + `sendMessage, sessionId is ` + this.sessionId );
     this.receiveMessage = 'send message';
-    // [start sendMessage]
+    // [Start sendmessage]
     abilityConnectionManager.sendMessage(this.sessionId, 'message send success').then(() => {
       hilog.info(0x0000, 'testTag', 'sendMessage success');
       console.log(TAG + `sendMessage success, sessionId is ` + this.sessionId );
     }).catch((error: BusinessError) => {
-      hilog.error(0x0000, 'testTag', 'connect failed');
+      hilog.error(0x0000, 'testTag', 'sendMessage failed');
     });
-  // [end sendMessage]
+    // [End sendmessage]
   }
 
   sendData(): void {
@@ -209,11 +209,13 @@ struct Index {
     let textEncoder = util.TextEncoder.create('utf-8');
     const arrayBuffer  = textEncoder.encodeInto('data send success');
     console.log(TAG + `sendData, sessionId is ` + this.sessionId );
+    // [Start senddata]
     abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
       console.log(`sendData success, sessionId is ` + this.sessionId );
     }).catch((error: BusinessError) => {
       hilog.error(0x0000, 'testTag', 'send data failed');
     });
+    // [End senddata]
   }
 // [Start disconnect]
   disconnectRemoteAbility(): void {
