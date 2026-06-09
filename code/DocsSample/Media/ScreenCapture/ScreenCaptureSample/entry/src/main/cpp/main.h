@@ -51,13 +51,16 @@
 #include "muxer.h"
 
 static struct OH_AVScreenCapture *g_avCapture = {};
-static FILE *micFile_ = nullptr;
-static FILE *vFile_ = nullptr;
-static FILE *innerFile_ = nullptr;
+extern FILE *g_micFile;
+extern FILE *g_vFile;
+extern FILE *g_innerFile;
 std::unique_ptr<Muxer> g_muxer;
+int32_t g_surfaceOutputFd = -1;
+int32_t g_fileOutputFd = -1;
+int32_t g_windowOutputFd = -1;
 
 static char filename[100] = {0};
-bool m_isRunning = false;
+bool g_isRunning = false;
 bool m_scSaveFileIsRunning = false;
 bool m_scSurfaceIsRunning = false;
 OH_AVCodec *g_videoEnc;
@@ -77,3 +80,5 @@ const int MICROSECOND_PER_MILLISECOND = 1000;
 
 int64_t g_lastFrameTimestampPts = 0;
 int64_t g_lastFrameEncodePts = 0;
+
+constexpr int32_t FILE_PERMISSION_FULL_ACCESS = 0777;

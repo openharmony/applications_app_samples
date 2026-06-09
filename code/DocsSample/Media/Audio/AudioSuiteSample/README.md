@@ -15,7 +15,7 @@
 
 点击'停止播放'按钮，即可销毁音频流。
 
-点击'添加默认均衡器效果'按钮，即可对音频添加均衡器效果（异步处理）。
+点击'添加均衡器效果'按钮，即可对音频添加均衡器效果（异步处理）。
 
 点击'播放加均衡器效果后音频'按钮，即可播放添加均衡器效果后的音频。
 
@@ -31,6 +31,8 @@
 
 点击'播放实时预览'按钮，即可实时处理并播放音频（预览效果）。
 
+点击'播放空间渲染'按钮，即可播放添加空间渲染后的音频。
+
 点击'格式转换'按钮，即可对PCM音频进行格式转换（预览效果）。
 
 ## 工程结构&模块类型
@@ -41,10 +43,12 @@
 │   │   ├── types/libentry/
 │   │   │   └── Index.d.ts         # NAPI 接口声明
 │   │   ├── CMakeLists.txt         # CMake 编译配置文件
-│   │   ├── audioSuite.cpp         # NAPI 接口和音频播放实现
-│   │   ├── manualRendering.cpp    # 离线编辑实现
-│   │   ├── realTimeRendering.cpp  # 实时预览实现
-│   │   └── pcmFileUtils.cpp      # PCM 文件工具类
+│   │   ├── audio_suite.cpp         # NAPI 接口和音频播放实现
+│   │   ├── manual_rendering.cpp    # 离线编辑实现
+│   │   ├── real_time_rendering.cpp  # 实时预览实现
+│   │   ├── audio_format_converter.cpp  # PCM音频格式转换实现
+│   │   ├── pcm_file_utils.cpp       # PCM 文件工具类
+│   │   └── space_render_rotation.cpp     # 空间渲染实现
 │   ├── ets/
 │   │   ├── entryability/
 │   │   │   └── EntryAbility.ets   # Ability 的生命周期回调内容
@@ -59,13 +63,13 @@
 
 ### 使用 AudioSuite 实现离线编辑（离线编辑）
 
-**源码参考：** [manualRendering.cpp](entry/src/main/cpp/manualRendering.cpp)
+**源码参考：** [manual_rendering.cpp](entry/src/main/cpp/manual_rendering.cpp)
 
 **使用流程：**
 
 #### 均衡器效果
 
-点击'添加默认均衡器效果'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_EDIT_MODE` 编辑模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。最后调用 `OH_AudioSuiteEngine_ProcessFrame` 处理音频帧并将结果写入文件。
+点击'添加均衡器效果'按钮，首先调用 `OH_AudioSuiteEngine_Create` 创建音频编创引擎，然后调用 `OH_AudioSuiteEngine_CreatePipeline` 创建管线（使用 `AUDIOSUITE_PIPELINE_EDIT_MODE` 编辑模式）。接着创建输入节点、均衡器节点和输出节点，并设置节点格式和回调。然后调用 `OH_AudioSuiteEngine_ConnectNodes` 连接各个节点组成组网。最后调用 `OH_AudioSuiteEngine_ProcessFrame` 处理音频帧并将结果写入文件。
 
 #### 音源分离
 
@@ -77,7 +81,7 @@
 
 ### 使用 AudioSuite 实现实时预览
 
-**源码参考：** [realTimeRendering.cpp](entry/src/main/cpp/realTimeRendering.cpp)
+**源码参考：** [real_time_rendering.cpp](entry/src/main/cpp/real_time_rendering.cpp)
 
 **使用流程：**
 
@@ -93,6 +97,7 @@
 - '播放伴奏'和'播放人声'：需先完成音源分离
 - '混音与级联'：需先完成音源分离
 - '播放混音'：需先完成混音与级联
+- '播放空间渲染'：需先完成音源分离
 
 异步操作（均衡器效果、音源分离、混音与级联）处理过程中会显示 Loading 遮罩，处理完成后自动启用相关播放按钮。
 

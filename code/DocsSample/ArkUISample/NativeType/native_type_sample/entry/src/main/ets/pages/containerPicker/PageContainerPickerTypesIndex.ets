@@ -16,14 +16,20 @@
 import Napi from 'libentry.so';
 import { NodeContent } from '@kit.ArkUI';
 
+@Builder
+export function PageContainerPickerTypesIndexPageBuilder() {
+  PageContainerPickerTypesIndex()
+}
+
 @Entry
 @Component
-struct Index {
+export struct PageContainerPickerTypesIndex {
   private nodeContent = new NodeContent();
+
   aboutToAppear() {
-    // 通过C-API创建节点，并添加到管理器nodeContent上
-    Napi.createContainerPickerTypesNode(this.nodeContent);
+    Napi?.createContainerPickerTypesNode(this.nodeContent);
   }
+
   build() {
     Column() {
       ContentSlot(this.nodeContent)

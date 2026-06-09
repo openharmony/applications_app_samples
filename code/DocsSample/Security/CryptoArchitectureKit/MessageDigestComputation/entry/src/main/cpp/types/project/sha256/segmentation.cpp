@@ -37,6 +37,7 @@ OH_Crypto_ErrCode doLoopSha256Md()
 
     ret = OH_CryptoDigest_Create("SHA256", &ctx);
     if (ret != CRYPTO_SUCCESS) {
+        free(testData);
         return ret;
     }
     do {
@@ -56,6 +57,7 @@ OH_Crypto_ErrCode doLoopSha256Md()
         }
         mdLen = OH_CryptoDigest_GetLength(ctx);
     } while (0);
+    free(testData);
     OH_Crypto_FreeDataBlob(&out);
     OH_DigestCrypto_Destroy(ctx);
     return ret;

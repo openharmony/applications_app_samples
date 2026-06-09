@@ -284,7 +284,7 @@ export default function encryptionDecryptionGuidanceAesArkTsTest() {
       const button2 = await driver.findComponent(ON.text('Call AES_XTS Synchronous'));
       await button2.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('AES_XTSSynchronousSuccess'));
+      await driver.assertComponentExist(ON.text('AES_XTSSuccess'));
       console.info('uitest: testEncryptionDecryptionGuidanceAesArkTs014 end');
       await driver.pressBack();
     })

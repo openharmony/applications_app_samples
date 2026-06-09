@@ -35,7 +35,7 @@ async function doLoopCmac() {
   };
   let mac = cryptoFramework.createMac(spec);
   // 假设消息共43字节，根据UTF-8解码后，仍是43字节。
-  let messageText = 'aaaaa......bbbbb......ccccc......ddddd......eee';
+  let messageText = 'aaaaa.....bbbbb.....ccccc.....ddddd.....eee';
   let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
   let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无具体要求。
   await mac.init(key);

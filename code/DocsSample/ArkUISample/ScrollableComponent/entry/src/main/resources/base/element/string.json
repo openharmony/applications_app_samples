@@ -1399,6 +1399,58 @@
     {
       "name": "waterFlow_text2",
       "value": "切换列数 "
+    },
+    {
+      "name": "lazyLayout_Title",
+      "value": "懒加载布局"
+    },
+    {
+      "name": "lazyVGridLayout_title",
+      "value": "懒加载网格布局/LazyVGridLayout"
+    },
+    {
+      "name": "lazyVGridLayout_description",
+      "value": "示例设置了网格中子组件列数占比和行列间距。"
+    },
+    {
+      "name": "lazyVGridLayout_columns_equal",
+      "value": "设置多列等宽的网格示例"
+    },
+    {
+      "name": "lazyVGridLayout_columns_unequal",
+      "value": "设置多列不等宽的网格示例"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_title",
+      "value": "懒加载瀑布流布局/LazyVWaterFlowLayout"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_description",
+      "value": "示例设置了瀑布流中子组件列数占比和行列间距。"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_columns_equal",
+      "value": "设置多列等宽的瀑布流示例"
+    },
+    {
+      "name": "lazyVWaterFlowLayout_columns_unequal",
+      "value": "设置多列不等宽的瀑布流示例"
+    },
+    {
+      "name": "list_nested_lazyLayout_title",
+      "value": "List嵌套懒加载布局容器"
+    },
+    {
+      "name": "list_nested_lazyLayout_description",
+      "value": "在List组件中嵌套多个不同的懒加载布局容器，分别为每个容器内容配置独立的列数和行列间距，实现多种布局方式的混合展示。"
+    },
+    {
+      "name": "list_nested_lazyLayout_grid",
+      "value": "网格布局"
+    },
+    {
+      "name": "list_nested_lazyLayout_waterFlow",
+      "value": "瀑布流布局"
     }
   ]
 }

@@ -499,6 +499,7 @@ export class ImageInterfaceCalled {
     return undefined;
   }
 
+  // [Start creatImageRawData]
   async createImageRawData(imageSource: image.ImageSource | undefined) : Promise<image.ImageRawData | undefined> {
     if (!imageSource) {
       console.error('imageSource is undefined.');
@@ -523,4 +524,49 @@ export class ImageInterfaceCalled {
     })
     return undefined;
   }
+  // [End creatImageRawData]
+
+  // [Start read_imageMetadata]
+  async readImageMetadata(imageSource: image.ImageSource | undefined) : Promise<image.ImageMetadata | undefined> {
+    if (imageSource == undefined) {
+      console.error('imageSource is undefined.');
+      return undefined;
+    }
+    try {
+      let properties: string[] = [image.GifPropertyKey.GIF_DELAY_TIME];
+      let index: number = 0;
+      let imageMetadata: image.ImageMetadata = await imageSource.readImageMetadata(properties, index);
+      if (imageMetadata.gifMetadata != undefined) {
+        console.info(`GIF_DELAY_TIME: ${JSON.stringify(imageMetadata.gifMetadata?.delayTime)}`);
+      }
+      return imageMetadata
+    } catch (error) {
+      console.error(`ReadImageMetadata failed, error.code: ${error.code},
+                 error.message: ${error.message}`)
+      return undefined;
+    }
+  }
+  // [End read_imageMetadata]
+
+  // [Start read_imageMetadataByType]
+  async readImageMetadataByType(imageSource: image.ImageSource | undefined) : Promise<image.ImageMetadata | undefined> {
+    if (imageSource == undefined) {
+      console.error('imageSource is undefined.');
+      return undefined;
+    }
+    try {
+      let types: image.MetadataType[] = [image.MetadataType.GIF_METADATA];
+      let index: number = 0;
+      let imageMetadata: image.ImageMetadata = await imageSource.readImageMetadataByType(types, index);
+      if (imageMetadata.gifMetadata != undefined) {
+        console.info(`GIF_DELAY_TIME: ${JSON.stringify(imageMetadata.gifMetadata?.delayTime)}`);
+      }
+      return imageMetadata;
+    } catch (error) {
+      console.error(`ReadImageMetadataByType failed, error.code: ${error.code},
+                 error.message: ${error.message}`)
+      return undefined;
+    }
+  }
+  // [End read_imageMetadataByType]
 }

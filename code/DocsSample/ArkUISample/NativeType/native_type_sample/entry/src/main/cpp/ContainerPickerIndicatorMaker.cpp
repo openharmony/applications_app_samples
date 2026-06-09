@@ -492,8 +492,12 @@ static void ConfigurePicker(const std::shared_ptr<ContainerPickerIndicatorMaker>
     picker->SetPickerWidthPercent(K_PICKER_WIDTH_RATIO);
     picker->SetPickerHeightPercent(K_PICKER_HEIGHT_RATIO);
     picker->SetSelectedIndex(K_INITIAL_SELECTED_INDEX);
+    // [Start set_can_loop]
     picker->SetCanLoop(K_CAN_LOOP);
+    // [End set_can_loop]
+    // [Start set_haptic_feedback]
     picker->SetHapticFeedback(K_HAPTIC_FEEDBACK);
+    // [End set_haptic_feedback]
     ArkUI_NativeNodeAPI_1 *api = picker->GetNodeAPI();
     if (api && data) {
         for (size_t i = 0; i < data->size(); ++i) {

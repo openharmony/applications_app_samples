@@ -27,7 +27,7 @@ struct SpecifyDisplayScreen {
   build() {
     Row() {
       Column() {
-        Button("在主屏幕上启动")
+        Button("在当前屏幕上启动")
           .onClick(() => {
             // context为调用方UIAbility的UIAbilityContext
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -43,7 +43,7 @@ struct SpecifyDisplayScreen {
             };
 
             let options: StartOptions = {
-              displayId: -1 // 在主屏幕上启动
+              displayId: -1 // 在当前屏幕上启动
             };
 
             context.startAbility(want, options).then(() => {
