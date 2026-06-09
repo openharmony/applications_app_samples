@@ -21,6 +21,7 @@ import { LazyVWaterFlowLayoutSample } from './LazyVWaterFlowLayoutSample';
 import { LazyColumnLayoutSample } from './LazyColumnLayoutSample';
 import { ListNestedLazyLayout } from './ListNestedLazyLayout';
 import { LazyColumnLayoutNestedLazyLayout } from './LazyColumnLayoutNestedLazyLayout';
+import { LazyLayoutGroup } from './LazyLayoutGroup';
 
 export const LAZY_LAYOUT_ROUTE_PREFIX: string = 'lazyLayout';
 
@@ -43,7 +44,7 @@ const routes: Route[] = [
     name: `${LAZY_LAYOUT_ROUTE_PREFIX}/LazyColumnLayoutSample`,
     // 请将$r('app.string.LazyColumnLayout_title')替换为实际资源文件，在本示例中该资源文件的value值为"懒加载线性布局/LazyColumnLayout"
     title: (context: Context) => { return resource.resourceToString(context, $r('app.string.lazyColumnLayout_title'))},
-    // 请将$r('app.string.LazyColumnLayout_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例设置了行间距和水平对齐方式。"
+    // 请将$r('app.string.LazyColumnLayout_description')替换为实际资源文件，在本示例中该资源文件的value值为"示例设置了线性布局中子组件行间距和水平对齐方式。"
     description: $r('app.string.lazyColumnLayout_description')
   },
   {
@@ -61,6 +62,14 @@ const routes: Route[] = [
     // 请将$r('app.string.lazyColumnLayout_nested_lazyLayout_description')替换为实际资源文件
     // 在本示例中该资源文件的value值为"在Scroll组件中使用LazyColumnLayout作为主布局容器，其内部嵌套多个不同的懒加载布局容器，实现多种布局方式的混合展示。"
     description: $r('app.string.lazyColumnLayout_nested_lazyLayout_description')
+  },
+  {
+    name: `${LAZY_LAYOUT_ROUTE_PREFIX}/LazyLayoutGroup`,
+    // 请将$r('app.string.lazyLayout_group_title')替换为实际资源文件，在本示例中该资源文件的value值为"分组展示与粘性标题"
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.lazyLayout_group_title'))},
+    // 请将$r('app.string.lazyLayout_group_description')替换为实际资源文件
+    // 在本示例中该资源文件的value值为"示例展示了懒加载布局的分组能力，通过LazyForEach动态创建按月份分组的照片网格，配合sticky属性实现分组标题吸顶和底部工具栏吸底。"
+    description: $r('app.string.lazyLayout_group_description')
   }
 ];
 
@@ -78,6 +87,8 @@ export function lazyLayoutDestination(name: string) {
     ListNestedLazyLayout();
   } else if (name === routes[4].name) {
     LazyColumnLayoutNestedLazyLayout();
+  } else if (name === routes[5].name) {
+    LazyLayoutGroup();
   }
 }
 

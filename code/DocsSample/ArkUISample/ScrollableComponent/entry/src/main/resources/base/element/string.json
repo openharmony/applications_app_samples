@@ -1458,7 +1458,7 @@
     },
     {
       "name": "lazyColumnLayout_description",
-      "value": "示例设置了行间距和水平对齐方式。"
+      "value": "示例设置了线性布局中子组件行间距和水平对齐方式。"
     },
     {
       "name": "lazyColumnLayout_space_alignItemsStart",
@@ -1515,6 +1515,34 @@
     {
       "name": "lazyColumnLayout_nested_lazyLayout_recommendation",
       "value": "推荐内容"
+    },
+    {
+      "name": "lazyLayout_group_title",
+      "value": "分组展示与粘性标题"
+    },
+    {
+      "name": "lazyLayout_group_description",
+      "value": "示例展示了懒加载布局的分组能力，通过LazyForEach动态创建按月份分组的照片网格，配合sticky属性实现分组标题吸顶和底部工具栏吸底。"
+    },
+    {
+      "name": "lazyLayout_photo",
+      "value": "照片"
+    },
+    {
+      "name": "lazyLayout_album",
+      "value": "相册"
+    },
+    {
+      "name": "lazyLayout_select",
+      "value": "选择"
+    },
+    {
+      "name": "lazyLayout_photo_count",
+      "value": "%d张"
+    },
+    {
+      "name": "lazyLayout_no_more_content",
+      "value": "—— 已经到底了 ——"
     }
   ]
 }

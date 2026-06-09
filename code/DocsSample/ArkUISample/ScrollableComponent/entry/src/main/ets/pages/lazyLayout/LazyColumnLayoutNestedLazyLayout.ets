@@ -114,7 +114,7 @@ export struct LazyColumnLayoutNestedLazyLayout {
             // [EndExclude lazy_column_nested]
 
             // [Start lazy_layout_on_visible_indexes_change]
-            // 区域一：线性列表
+            // 区域一：线性布局
             LazyColumnLayout() {
               // [StartExclude lazy_column_nested]
               // [StartExclude lazy_layout_on_visible_indexes_change]
