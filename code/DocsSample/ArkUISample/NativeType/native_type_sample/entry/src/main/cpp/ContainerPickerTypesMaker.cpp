@@ -51,7 +51,6 @@ constexpr int32_t K_HYBRID_PICKER_CHANGE_ID = 1005;
 constexpr int32_t K_HYBRID_PICKER_SCROLL_STOP_ID = 1006;
 } // namespace
 
-// [Start type_example]
 // ---------- 全局状态 ----------
 struct PickerTypesState {
     int32_t curTabIndex = 0;
@@ -307,7 +306,6 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
             break;
         }
 }
-// [End type_example]
 
 // ---------- 创建Tabs界面 ----------
 static ArkUI_NodeHandle CreatePickerTypesUI(ArkUI_NativeNodeAPI_1 *api)
