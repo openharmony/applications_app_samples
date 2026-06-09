@@ -29,17 +29,18 @@ import { preferences } from '@kit.ArkData';
 // [Start JSForm_JsCardFormAbility_onRemoveFormSta]
 // [Start JSForm_JsCardFormAbility_onUpdateFormSta]
 // [Start JSForm_JsCardFormAbility_onFormEventSta]
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
 
 const TAG: string = 'JsCardFormAbility';
-// [Start JSForm_JsCardFormAbility_onUpdateFormSta]
+// [StartExclude JSForm_JsCardFormAbility_onUpdateFormSta]
 // [StartExclude JSForm_JsCardFormAbility_onFormEventSta]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
 // [EndExclude JSForm_JsCardFormAbility_onFormEventSta]
-// [Start JSForm_JsCardFormAbility_onUpdateFormSta]
+// [EndExclude JSForm_JsCardFormAbility_onUpdateFormSta]
 const DOMAIN_NUMBER: int = 0xFF00;
 // [StartExclude JSForm_JsCardFormAbility_onFormEventSta]
-// [Start JSForm_JsCardFormAbility_onRemoveFormSta]
-// [Start JSForm_JsCardFormAbility_onUpdateFormSta]
+// [StartExclude JSForm_JsCardFormAbility_onRemoveFormSta]
+// [StartExclude JSForm_JsCardFormAbility_onUpdateFormSta]
 let storeFormInfo =
   async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
     // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
@@ -72,12 +73,12 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
 };
 
 // [EndExclude JSForm_JsCardFormAbility_onAddFormSta]
-// [Start JSForm_JsCardFormAbility_onUpdateFormSta]
+// [EndExclude JSForm_JsCardFormAbility_onUpdateFormSta]
 // [EndExclude JSForm_JsCardFormAbility_onFormEventSta]
 
 export default class JsCardFormAbility extends FormExtensionAbility {
-  // [EndExclude JSForm_JsCardFormAbility_onRemoveFormSta]
-  // [Start JSForm_JsCardFormAbility_onUpdateFormSta]
+  // [StartExclude JSForm_JsCardFormAbility_onRemoveFormSta]
+  // [StartExclude JSForm_JsCardFormAbility_onUpdateFormSta]
   // [StartExclude JSForm_JsCardFormAbility_onFormEventSta]
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[JsCardFormAbility] onAddForm');
@@ -99,8 +100,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   }
 
   // [EndExclude JSForm_JsCardFormAbility_onRemoveFormSta]
-
-  // [EndExclude JSForm_JsCardFormAbility_onAddFormSta]
+  // [StartExclude JSForm_JsCardFormAbility_onAddFormSta]
   onRemoveForm(formId: string): void {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, 'onRemoveForm');
@@ -109,7 +109,6 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   }
 
   // [StartExclude JSForm_JsCardFormAbility_onRemoveFormSta]
-
   // [EndExclude JSForm_JsCardFormAbility_onUpdateFormSta]
   onUpdateForm(formId: string): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则卡片提供方需要重写该方法以支持数据更新
@@ -127,7 +126,6 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   }
 
   // [EndExclude JSForm_JsCardFormAbility_onFormEventSta]
-
   // [StartExclude JSForm_JsCardFormAbility_onUpdateFormSta]
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
