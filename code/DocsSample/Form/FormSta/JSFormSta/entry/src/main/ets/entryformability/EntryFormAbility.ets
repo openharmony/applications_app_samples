@@ -140,6 +140,6 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 // [End JSForm_JsCardFormAbility_onFormEventSta]
 // [End JSForm_JsCardFormAbility_onAddFormSta]
-// [EndExclude JSForm_JsCardFormAbility_onRemoveFormSta]
+// [End JSForm_JsCardFormAbility_onRemoveFormSta]
 // [End JSForm_JsCardFormAbility_onUpdateFormSta]
 // [End JSForm_JsCardFormAbility_FormExtensionAbilitySta]
