@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AI FaceAuth"
+    },
+    {
+      "name": "gallery_entry_tips",
+      "value": "Please select an image"
+    },
+    {
+      "name": "no_image_tips",
+      "value": "No image at the moment"
+    }
+  ]
+}

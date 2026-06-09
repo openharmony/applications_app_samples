@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AI人脸识别"
+    },
+    {
+      "name": "gallery_entry_tips",
+      "value": "请选择一张图片"
+    },
+    {
+      "name": "no_image_tips",
+      "value": "暂无图片"
+    }
+  ]
+}
