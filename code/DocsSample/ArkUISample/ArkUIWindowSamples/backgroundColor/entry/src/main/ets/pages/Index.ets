@@ -35,17 +35,17 @@ struct Index {
     this.applyWindowBackgroundColor();
   }
 
-  // 将 0~255 的通道值转换成两位十六进制字符串，用于拼接 #AARRGGBB。
+  // 将0~255的通道值转换成两位十六进制字符串，用于拼接 #AARRGGBB。
   private toHex(value: number): string {
     return Math.round(value).toString(16).padStart(2, '0').toUpperCase();
   }
 
-  // 按 ARGB 顺序生成当前窗口背景色的十六进制字符串。
+  // 按ARGB顺序生成当前窗口背景色的十六进制字符串。
   private getColorValue(): string {
     return `#${this.toHex(this.alpha)}${this.toHex(this.red)}${this.toHex(this.green)}${this.toHex(this.blue)}`;
   }
  // [StartExclude backgroundColor_start]
-  // 滑块变化时默认使用 string 形式更新窗口背景色。
+  // 滑块变化时默认使用string形式更新窗口背景色。
   private applyWindowBackgroundColor(): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
@@ -63,7 +63,7 @@ struct Index {
     }
   }
 
-  // 显式演示用 string（#AARRGGBB）设置窗口背景色。
+  // 显式演示用string（#AARRGGBB）设置窗口背景色。
   private applyByString(): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
@@ -82,7 +82,7 @@ struct Index {
     }
   }
 
-  // Color 枚举本身不能直接传给接口，这里先转成 ColorMetrics 再设置。
+  // Color枚举本身不能直接传给接口，这里先转成ColorMetrics再设置。
   private applyByColorEnum(color: ResourceColor, label: string): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
@@ -101,7 +101,7 @@ struct Index {
     }
   }
  // [EndExclude backgroundColor_start]
-  // 直接用 ColorMetrics.rgba(...) 设置窗口背景色。
+  // 直接用ColorMetrics.rgba(...)设置窗口背景色。
   private applyByColorMetrics(): void {
     if (!this.mainWindow) {
       this.statusText = 'Current window is unavailable.';
