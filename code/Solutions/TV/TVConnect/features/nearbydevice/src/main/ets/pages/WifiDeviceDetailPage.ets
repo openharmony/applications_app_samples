@@ -41,14 +41,14 @@ export function registrationMonitoring(keyValue: KeyCode, callbackVoid: () => vo
     finalKeyDownDuration: 0
   };
   let callback = (keyOptions: inputConsumer.KeyOptions) => {
-    console.log('registrationMonitoring  keyOptions ', JSON.stringify(keyOptions));
+    Logger.info('registrationMonitoring  keyOptions ', JSON.stringify(keyOptions));
     callbackVoid();
   };
   try {
     inputConsumer.on('key', keyOptions, callback);
-    console.log(`Subscribe success`);
+    Logger.info(`Subscribe success`);
   } catch (error) {
-    console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    Logger.info(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 }
 
@@ -62,9 +62,9 @@ export function unRegistrationMonitoring(keyValue: KeyCode) {
   };
   try {
     inputConsumer.off('key', keyOption);
-    console.log(`Unsubscribe success`);
+    Logger.info(`Unsubscribe success`);
   } catch (error) {
-    console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    Logger.info(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 }
 
@@ -197,7 +197,7 @@ export struct WifiDeviceDetailPage {
     .margin({ bottom: $r('app.string.default_page_padding') })
     .onVisibleAreaChange([0.0], (isVisible: boolean, currentRatio: number) => {
       if (!isVisible) {
-        console.log(`DeviceDetailPage isVisible: ${isVisible}, currentRatio: ${currentRatio}`);
+        Logger.info(`DeviceDetailPage isVisible: ${isVisible}, currentRatio: ${currentRatio}`);
         unRegistrationMonitoring(KeyCode.KEYCODE_DPAD_UP);
         unRegistrationMonitoring(KeyCode.KEYCODE_DPAD_DOWN);
       }

@@ -319,7 +319,7 @@ export struct ProductionDifficulty {
           .fontColor($r('app.color.text_color_4'))
           .fontSize($r('app.string.font_14'));
 
-        Text('坐标名称1')
+        Text($r('app.string.Coordinate_Name1'))
           .fontColor($r('app.color.text_color_3'))
           .fontSize($r('app.string.font_14'));
       }.justifyContent(FlexAlign.SpaceBetween).width('100%').padding({ bottom: $r('app.string.p_16') })
@@ -369,7 +369,7 @@ export struct ProductionDifficulty {
           .fontColor($r('app.color.text_color_4'))
           .fontSize($r('app.string.font_14'));
 
-        Text('坐标名称1')
+        Text($r('app.string.Coordinate_Name1'))
           .fontColor($r('app.color.text_color_3'))
           .fontSize($r('app.string.font_14'));
       }.justifyContent(FlexAlign.SpaceBetween).width('100%').padding({ top: $r('app.string.p_16') });
@@ -417,10 +417,10 @@ export struct ProductionDifficulty {
 
       Row() {
         Row({ space: 6 }) {
-          Text('报警').fontColor($r('app.color.text_color_9'))
+          Text($r('app.string.Call_police')).fontColor($r('app.color.text_color_9'))
             .fontSize($r('app.string.font_14'));
 
-          Text('外部故障-3N12看门狗').fontColor($r('app.color.text_color_1'))
+          Text($r('app.string.External_Fault')).fontColor($r('app.color.text_color_1'))
             .fontSize($r('app.string.font_14'));
         };
 
@@ -711,7 +711,7 @@ export struct ProductionDifficulty {
 
                   Row() {
                     Row({ space: 6 }) {
-                      Text('器件号')
+                      Text($r('app.string.Device_number'))
                         .fontColor('rgba(102,102,102,1)')
                         .fontSize($r('app.string.font_14'));
                       Text(item.deviceNumber || '')
@@ -720,7 +720,7 @@ export struct ProductionDifficulty {
                     }.width('50%');
 
                     Row({ space: 6 }) {
-                      Text('类型')
+                      Text($r('app.string.Type'))
                         .fontColor('rgba(102,102,102,1)')
                         .fontSize($r('app.string.font_14'));
                       Text(item.type || '')
@@ -731,7 +731,7 @@ export struct ProductionDifficulty {
 
                   Row() {
                     Row({ space: 6 }) {
-                      Text('可屏蔽')
+                      Text($r('app.string.Can_be_blocked'))
                         .fontColor('rgba(102,102,102,1)')
                         .fontSize($r('app.string.font_14'));
                       Text(item.maskable || '')
@@ -740,7 +740,7 @@ export struct ProductionDifficulty {
                     }.width('50%');
 
                     Row({ space: 6 }) {
-                      Text('无效')
+                      Text($r('app.string.Invalid'))
                         .fontColor('rgba(102,102,102,1)')
                         .fontSize($r('app.string.font_14'));
                       Text(item.invalid || '')
@@ -768,7 +768,7 @@ export struct ProductionDifficulty {
             ListItem() {
               Row({ space: 8 }) {
                 if (this.isLoadMore) {
-                  Text('加载中...')
+                  Text($r('app.string.Loading'))
                     .fontSize(14)
                     .fontColor('#818181');
                   LoadingProgress()
@@ -776,7 +776,7 @@ export struct ProductionDifficulty {
                     .aspectRatio(1);
                 }
                 if (!this.haveData && !this.isLoadMore) {
-                  Text('没有更多数据啦')
+                  Text($r('app.string.no_more_data'))
                     .fontSize(14)
                     .fontColor('#818181');
                 }

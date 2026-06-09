@@ -515,6 +515,30 @@
     {
       "name": "to",
       "value": "去"
+    },
+    {
+      "name": "Switch",
+      "value": "开关"
+    },
+    {
+      "name": "CoAP_network",
+      "value": "coap配网需连接无线网和开启蓝牙"
+    },
+    {
+      "name": "Location_failed",
+      "value": "定位失败，可能未打开定位"
+    },
+    {
+      "name": "Location_permission",
+      "value": "未授权定位权限，无法定位"
+    },
+    {
+      "name": "Scan_failed",
+      "value": "扫描失败，请检查网络连接/只能连接无线网络"
+    },
+    {
+      "name": "Bluetooth_switch",
+      "value": "请开启蓝牙开关"
     }
   ]
 }

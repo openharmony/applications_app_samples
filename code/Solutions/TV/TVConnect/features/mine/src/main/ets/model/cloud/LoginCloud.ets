@@ -37,9 +37,9 @@ export class LoginCloud {
   public static async getLoginCode(phone: string): Promise<string> {
     Logger.info('getLoginCode start');
     let url = LoginCloud.URL_USER_LOGIN_GET_CODE + phone;
-    console.log('getLoginCode start url' + url);
+    Logger.info('getLoginCode start url' + url);
     let validCodeReqNoVOData = await HttpRequest.get<PhoneValidCodeReqNoVO>(url);
-    console.log('getLoginCode start validCodeReqNoVOData' + JSON.stringify(validCodeReqNoVOData));
+    Logger.info('getLoginCode start validCodeReqNoVOData' + JSON.stringify(validCodeReqNoVOData));
     return validCodeReqNoVOData.validCodeReqNo;
   }
 

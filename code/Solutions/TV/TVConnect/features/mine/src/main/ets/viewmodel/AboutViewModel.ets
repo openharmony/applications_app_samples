@@ -14,6 +14,7 @@
  */
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
+import { Logger } from '@ohos/common';
 
 /**
  * 关于信息
@@ -37,7 +38,7 @@ export async function getBundleInfo() {
     } catch (error) {
       let code = (error as BusinessError).code;
       let message = (error as BusinessError).message;
-      console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
+      Logger.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
     }
     appInfo.versionCode = data.versionName;
     return appInfo;

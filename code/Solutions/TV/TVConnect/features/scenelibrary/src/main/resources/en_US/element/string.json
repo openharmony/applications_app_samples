@@ -191,6 +191,22 @@
     {
       "name": "select_scene_icon",
       "value": "select scene icon %s"
+    },
+    {
+      "name": "Choose",
+      "value": "Choose %s"
+    },
+    {
+      "name": "Finish_preparing",
+      "value": "Finish preparing the solution and double-check it"
+    },
+    {
+      "name": "Finish_preparing_solution",
+      "value": "Finish preparing the solution"
+    },
+    {
+      "name": "choose_scene_icon",
+      "value": "Please choose a scene icon"
     }
   ]
 }

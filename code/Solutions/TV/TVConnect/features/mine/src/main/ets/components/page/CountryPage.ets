@@ -75,12 +75,12 @@ export struct CountryPage {
       rightText: $r('app.string.sure'),
       cancel: () => {
         this.showFunc(this.selectCountry!, false);
-        console.info('Callback when the first button is clicked');
+        Logger.info('Callback when the first button is clicked');
         this.dialogController.close();
       },
       confirm: () => {
         this.selectCountry!.handleFunc();
-        console.info('Callback when the second button is clicked');
+        Logger.info('Callback when the second button is clicked');
         this.dialogController.close();
       }
     }),

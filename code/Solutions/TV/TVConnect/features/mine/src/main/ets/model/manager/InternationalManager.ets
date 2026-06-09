@@ -101,10 +101,10 @@ export class InternationalManager {
     commonEventManager.createSubscriber(subscribeInfo,
       (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
         if (err) {
-          console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+          Logger.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in creating subscriber.');
+        Logger.info('Succeeded in creating subscriber.');
         this.subscriber = data;
         _this.systemLanguageChangeListenerOpen();
       });
@@ -116,7 +116,7 @@ export class InternationalManager {
   async getLocalCountryInfo(): Promise<boolean> {
     let currentCountryCode: string =
       (await PreferencesHelper.get(InternationalManager.CURRENT_COUNTRY_KEY, '')) as string;
-    console.error('InternationalManager getLocalCountryInfo currentCountryCode:', currentCountryCode);
+    Logger.error('InternationalManager getLocalCountryInfo currentCountryCode:', currentCountryCode);
     if (currentCountryCode == '') {
       return false;
     }
@@ -288,14 +288,14 @@ export class InternationalManager {
       commonEventManager.subscribe(this.subscriber,
         (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
           if (err) {
-            console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+            Logger.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
             return;
           }
           I18n.System.setAppPreferredLanguage(this.systemLanguage());
           InternationalManager.onLanguageChange();
         });
     } else {
-      console.error(`Need create subscriber`);
+      Logger.error(`Need create subscriber`);
     }
   }
 
@@ -306,13 +306,13 @@ export class InternationalManager {
     if (this.subscriber !== null) {
       commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
         if (err) {
-          console.error(`UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+          Logger.error(`UnsubscribeCallBack err = ${JSON.stringify(err)}`);
         } else {
-          console.error(`UnsubscribeCallBack`);
+          Logger.error(`UnsubscribeCallBack`);
         }
       });
     } else {
-      console.error(`UnsubscribeCallBack err`);
+      Logger.error(`UnsubscribeCallBack err`);
     }
   }
 

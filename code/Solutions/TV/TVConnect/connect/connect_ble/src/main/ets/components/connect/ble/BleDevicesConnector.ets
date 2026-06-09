@@ -99,7 +99,7 @@ export default class BleDevicesConnector implements InfDevicesConnector {
         this.notifyOnDataCallback(value);
       });
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 
@@ -119,7 +119,7 @@ export default class BleDevicesConnector implements InfDevicesConnector {
         Logger.debug('writeCharacteristicValue success');
       });
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 };

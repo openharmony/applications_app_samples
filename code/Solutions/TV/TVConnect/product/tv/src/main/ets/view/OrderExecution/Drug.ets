@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import cert from '@ohos.security.cert';
+import { Logger } from '@ohos/common';
 
 class P {
   public id?: string;
@@ -132,9 +133,9 @@ export struct Drug {
                     }.width('100%').margin({ top: 4, bottom: 4 });
 
                     Row() {
-                      Text('频次：' + item.frequency).fontSize(8).fontColor(Color.Gray).margin({ right: 10 });
+                      Text($r('app.string.Frequency',item.frequency)).fontSize(8).fontColor(Color.Gray).margin({ right: 10 });
                       Text(item.type).fontSize(8).fontColor(Color.Gray).margin({ right: 40 });
-                      Text('收药时间：' + item.time).fontSize(8).fontColor(Color.Gray);
+                      Text($r('app.string.Medicine_pickup_time',item.time)).fontSize(8).fontColor(Color.Gray);
                     }.width('100%');
                   }
                   .width('96%')
@@ -156,8 +157,8 @@ export struct Drug {
             .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
             .chainAnimation(false) // 联动特效关闭
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              console.info('first' + firstIndex);
-              console.info('last' + lastIndex);
+              Logger.info('first' + firstIndex);
+              Logger.info('last' + lastIndex);
             })
             .width('100%')
             .height('100%')

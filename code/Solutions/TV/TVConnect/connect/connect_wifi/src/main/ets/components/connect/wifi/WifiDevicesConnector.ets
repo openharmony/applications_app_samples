@@ -20,6 +20,7 @@ import Want from '@ohos.app.ability.Want';
 import WifiDevicesController from './WifiDevicesController';
 import WifiDevice from './WifiDevice';
 import { InfDevice, InfDevicesConnector } from '@ohos/common/Index';
+import { Logger } from '@ohos/common';
 
 export default class WifiDevicesConnector implements InfDevicesConnector {
   public controller: WifiDevicesController;
@@ -66,11 +67,11 @@ export default class WifiDevicesConnector implements InfDevicesConnector {
     context.startAbility(want, (error) => {
       if (error.code) {
         // 处理错误逻辑
-        console.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+        Logger.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
           ' error.message: ' + JSON.stringify(error.message));
         return;
       }
-      console.info('startAbility succeed');
+      Logger.info('startAbility succeed');
     });
   }
 

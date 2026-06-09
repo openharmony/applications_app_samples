@@ -19,6 +19,7 @@ import { LoginUtil } from '../model/utils/LoginUtil';
 import { HMRouterMgr } from '@hadss/hmrouter';
 import { KeyCode } from '@kit.InputKit';
 import { scale } from '../model/utils/ScreenAdaptation';
+import { Logger } from '@ohos/common';
 
 // 手机号输入框
 @Component
@@ -190,12 +191,12 @@ export struct CodeInputItem {
         .onClick(() => {
           LoginCloud.getLoginCode(this.inputPhoneNumber)
             .then((validCodeReqNo) => {
-              console.log('LoginCloud.getLoginCode success' + JSON.stringify(validCodeReqNo));
+              Logger.info('LoginCloud.getLoginCode success' + JSON.stringify(validCodeReqNo));
               this.validCodeReqNo = validCodeReqNo;
               this.materOnClick();
             })
             .catch((err: BusinessError) => {
-              console.log('LoginCloud.getLoginCode fail' + JSON.stringify(err));
+              Logger.info('LoginCloud.getLoginCode fail' + JSON.stringify(err));
               promptAction.showToast({
                 message: $r('app.string.failed_get_code'),
                 duration: 2000

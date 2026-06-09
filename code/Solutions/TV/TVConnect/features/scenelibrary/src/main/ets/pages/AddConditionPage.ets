@@ -187,7 +187,7 @@ export struct AddConditionPage {
         });
       }
     }
-    console.log(JSON.stringify(this.isEdit), 'isEdit', JSON.stringify(this.type));
+    Logger.info(JSON.stringify(this.isEdit), 'isEdit', JSON.stringify(this.type));
   }
 
   toast(msg: string | Resource) {

@@ -493,6 +493,30 @@
     {
       "name": "to",
       "value": "to"
+    },
+    {
+      "name": "Switch",
+      "value": "Switch"
+    },
+    {
+      "name": "CoAP_network",
+      "value": "CoAP network setup requires connecting to Wi-Fi and turning on Bluetooth"
+    },
+    {
+      "name": "Location_failed",
+      "value": "Location failed, maybe location services aren't turned on"
+    },
+    {
+      "name": "Location_permission",
+      "value": "Location permission not granted, unable to locate"
+    },
+    {
+      "name": "Scan_failed",
+      "value": "Scan failed, please check your network connection / Wi-Fi only"
+    },
+    {
+      "name": "Bluetooth_switch",
+      "value": "Please turn on the Bluetooth switch"
     }
   ]
 }

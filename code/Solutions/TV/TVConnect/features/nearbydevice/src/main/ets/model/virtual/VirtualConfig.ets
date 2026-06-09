@@ -14,6 +14,7 @@
  */
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
+import { Logger } from '@ohos/common';
 
 
 class SimulateDev {
@@ -48,13 +49,13 @@ export default class VirtualConfig {
       let value = context.resourceManager.getRawFileContentSync('simulate_device.json');
       let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true });
       let retStr = textDecoder.decodeWithStream(value, { stream: false });
-      console.info('lxlx' + JSON.stringify(retStr));
+      Logger.info('lxlx' + JSON.stringify(retStr));
       this.simulateDev = JSON.parse(retStr as string) as SimulateDev;
-      console.info('lxlx' + JSON.stringify(this.simulateDev));
+      Logger.info('lxlx' + JSON.stringify(this.simulateDev));
     } catch (error) {
       let code = (error as BusinessError).code;
       let message = (error as BusinessError).message;
-      console.error(`getRawFileContentSync failed, error code: ${code}, message: ${message}.`);
+      Logger.error(`getRawFileContentSync failed, error code: ${code}, message: ${message}.`);
     }
   }
 };

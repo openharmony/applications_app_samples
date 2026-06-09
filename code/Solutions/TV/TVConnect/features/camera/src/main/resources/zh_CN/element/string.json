@@ -335,6 +335,98 @@
     {
       "name": "delete",
       "value": "删除"
+    },
+    {
+      "name": "Step_one",
+      "value": "第一步"
+    },
+    {
+      "name": "Turn_on_the_device",
+      "value": "接通设备电源,看到指示灯亮起"
+    },
+    {
+      "name": "Step_Two",
+      "value": "第二步"
+    },
+    {
+      "name": "The_above_operations",
+      "value": "已完成上述操作"
+    },
+    {
+      "name": "equipment_powered_on",
+      "value": "设备已通电"
+    },
+    {
+      "name": "networkIsSmooth",
+      "value": "设备网络畅通"
+    },
+    {
+      "name": "Connection_successful",
+      "value": "连接成功"
+    },
+    {
+      "name": "Coordinate_Name1",
+      "value": "坐标名称1"
+    },
+    {
+      "name": "Device_number",
+      "value": "器件号"
+    },
+    {
+      "name": "Type",
+      "value": "类型"
+    },
+    {
+      "name": "Can_be_blocked",
+      "value": "可屏蔽"
+    },
+    {
+      "name": "Invalid",
+      "value": "无效"
+    },
+    {
+      "name": "Loading",
+      "value": "加载中..."
+    },
+    {
+      "name": "Drug_preparation",
+      "value": "药品配液"
+    },
+    {
+      "name": "Equipment",
+      "value": "设备"
+    },
+    {
+      "name": "no_more_data",
+      "value": "没有更多数据啦"
+    },
+    {
+      "name": "Connecting_device",
+      "value": "设备连接中…"
+    },
+    {
+      "name": "Connecting_device_process",
+      "value": "连接过程中，请确保："
+    },
+    {
+      "name": "close_to_the_phone",
+      "value": "设备靠近手机放置位置"
+    },
+    {
+      "name": "Call_police",
+      "value": "报警"
+    },
+    {
+      "name": "External_Fault",
+      "value": "外部故障-3N12看门狗"
+    },
+    {
+      "name": "reset_button",
+      "value": "使用顶针按压复位键约3秒，听到“重置成功”的提示音后，设备将会重启进入配网状态。"
+    },
+    {
+      "name": "SendTurn_signal",
+      "value": "发送转向"
     }
   ]
 }

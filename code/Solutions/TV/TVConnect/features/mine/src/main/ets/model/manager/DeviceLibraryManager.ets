@@ -16,7 +16,7 @@
 import { UpdateLibraryCallback } from '../callback/UpdateLibraryCallback';
 import { LibraryManager, UpdateLibraryCode } from './LibraryManager';
 import fs, { ReadTextOptions } from '@ohos.file.fs';
-import { ConnectDatabaseHelperImpl, DeviceLibraryDao, LibraryDevice, PreferencesHelper } from '@ohos/common';
+import { ConnectDatabaseHelperImpl, DeviceLibraryDao, LibraryDevice, Logger, PreferencesHelper } from '@ohos/common';
 import { StatusCode, SyncCloudApi } from '../cloud/SyncCloudApi';
 import { UpgradeDeviceLibraryRequest } from '../cloud/Request';
 import { BaseCallback } from '../callback/BaseCallback';
@@ -71,19 +71,19 @@ export class DeviceLibraryManager extends LibraryManager {
         if (code == StatusCode.SUCCESS) {
           let response: CommonResponse = data as CommonResponse; // 检查版本号是否需要更新
           if (response.code == 200) {
-            console.info('deviceLibraryManager get version succ');
+            Logger.info('deviceLibraryManager get version succ');
             let rspData = response.data as UpgradeDeviceLibrarySuccData;
             callback?.onCheckVersionEnd(UpdateLibraryCode.CHECK_VERSION_END_SUCC_NEED_UPDATE, rspData);
             this.onCheckLibraryVersionEnd(rspData.url, callback);
           } else if (response.code == 1001) {
-            console.info('deviceLibraryManager get version succ no update');
+            Logger.info('deviceLibraryManager get version succ no update');
             callback?.onCheckVersionEnd(UpdateLibraryCode.CHECK_VERSION_END_SUCC_NO_UPDATE);
           } else {
-            console.info('deviceLibraryManager get version fail other code');
+            Logger.info('deviceLibraryManager get version fail other code');
             callback?.onCheckVersionEnd(UpdateLibraryCode.CHECK_VERSION_END_FAIL);
           }
         } else {
-          console.info('deviceLibraryManager get version fail request fail');
+          Logger.info('deviceLibraryManager get version fail request fail');
           callback?.onCheckVersionEnd(UpdateLibraryCode.CHECK_VERSION_END_FAIL);
         }
       }
@@ -101,13 +101,13 @@ export class DeviceLibraryManager extends LibraryManager {
   protected downloadLibrary(url: string, callback?: UpdateLibraryCallback) {
     let downloadCallback: DownloadCallback = {
       onSuccess: () => {
-        console.info('deviceLibraryManager downloadLibrary success');
+        Logger.info('deviceLibraryManager downloadLibrary success');
         callback?.onDownLoadEnd(UpdateLibraryCode.DOWNLOAD_END_SUCC);
         this.onDownloadLibraryEnd(callback);
         this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_DOWNLOAD_DEVICE_PATH);
       },
       onFailure: () => {
-        console.info('deviceLibraryManager downloadLibrary fail');
+        Logger.info('deviceLibraryManager downloadLibrary fail');
         this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_DOWNLOAD_DEVICE_PATH);
         callback?.onDownLoadEnd(UpdateLibraryCode.DOWNLOAD_END_FAIL);
       },
@@ -146,10 +146,10 @@ export class DeviceLibraryManager extends LibraryManager {
     let jsonIsAccess = fs.accessSync(jsonFilePath);
     checkTag = xmlIsAccess && jsonIsAccess;
     if (checkTag) {
-      console.info('deviceLibraryManager checkLibrary succ');
+      Logger.info('deviceLibraryManager checkLibrary succ');
       this.onCheckLibraryEnd(callback);
     } else {
-      console.info('deviceLibraryManager checkLibrary fail');
+      Logger.info('deviceLibraryManager checkLibrary fail');
       callback?.onParseEnd(UpdateLibraryCode.PARSE_END_CHECK_FAIL);
       this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_DEVICE_PATH);
       this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_DEVICE_PATH);
@@ -174,26 +174,26 @@ export class DeviceLibraryManager extends LibraryManager {
           let devicedescContentJson = fs.readTextSync(jsonFilePath, readTextOptions);
           this.saveLibraryInfo(devicedescContentJson).then((isSaveSucc: boolean) => {
             if (isSaveSucc) {
-              console.info('deviceLibraryManager saveLibraryInfo succ');
+              Logger.info('deviceLibraryManager saveLibraryInfo succ');
               callback?.onParseEnd(UpdateLibraryCode.PARSE_END_SUCC);
               this.onParseLibraryEnd(callback);
               this.onLibraryUpdate();
             } else {
-              console.info('deviceLibraryManager saveLibraryInfo fail');
+              Logger.info('deviceLibraryManager saveLibraryInfo fail');
               callback?.onParseEnd(UpdateLibraryCode.PARSE_END_SAVE_FAIL);
               this.revertToPreVersion(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_PRE_DEVICE_PATH,
                 LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_DEVICE_PATH, callback);
             }
           });
         } else {
-          console.info('deviceLibraryManager parseVersionXmlFile fail');
+          Logger.info('deviceLibraryManager parseVersionXmlFile fail');
           callback?.onParseEnd(UpdateLibraryCode.PARSE_END_XML_FAIL);
           this.revertToPreVersion(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_PRE_DEVICE_PATH,
             LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_DEVICE_PATH, callback);
         }
       });
     } catch (errData) {
-      console.info('deviceLibraryManager parseVersionXmlFile error');
+      Logger.info('deviceLibraryManager parseVersionXmlFile error');
       callback?.onParseEnd(UpdateLibraryCode.FAIL);
       this.printErrData(errData);
     }
@@ -261,7 +261,7 @@ export class DeviceLibraryManager extends LibraryManager {
       await dao.addDeviceList(deviceList, iconRootPath);
       resTag = true;
     } catch (errData) {
-      console.info('deviceLibraryManager saveLibraryInfo error');
+      Logger.info('deviceLibraryManager saveLibraryInfo error');
       resTag = false;
       this.printErrData(errData);
     }

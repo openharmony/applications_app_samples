@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonConstants, PageViewUtils } from '@ohos/common';
+import { CommonConstants, Logger, PageViewUtils } from '@ohos/common';
 import DevicesTabPage from '../view/DevicesTabPage';
 import TabsConfig from '../model/TabsConfig';
 import { DevicesScanPage } from './DevicesScanPage';
@@ -49,27 +49,27 @@ export struct DevicesMainPage {
   };
 
   async aboutToAppear(): Promise<void> {
-    console.log(TAG, '===>aboutToAppear ');
+    Logger.info(TAG, '===>aboutToAppear ');
     // 初始化默认值
     this.networkStateType = 0;
     // 启动定时器，每隔一秒执行一次查询
     this.startPolling();
     try {
       this.updateConnectState();
-      console.log(TAG, '===>aboutToAppear after updateConnectState');
+      Logger.info(TAG, '===>aboutToAppear after updateConnectState');
       const params = HMRouterMgr.getCurrentParam(HMParamType.all) as HMPageParam;
       DeviceLibraryManager.getInstance().registerInitCallback((inited) => {
       });
       await DeviceLibraryManager.getInstance().updateData();
     } catch (e) {
-      console.log(TAG, '===>aboutToAppear updateData error:' + e);
+      Logger.info(TAG, '===>aboutToAppear updateData error:' + e);
     }
 
   }
 
   //根据网络连接情况来判断网络类型
   getNetBearerType(): boolean {
-    console.log('getNetBearerType start');
+    Logger.info('getNetBearerType start');
     //是否连接网络
     const isHasDefaultNet = connection.hasDefaultNetSync();
     if (isHasDefaultNet) {
@@ -110,7 +110,7 @@ export struct DevicesMainPage {
   private async pollNetworkState(): Promise<void> {
     try {
       const isWifiActive = wifiManager.isWifiActive();
-      console.info('pollNetworkState isWifiActive:' + isWifiActive);
+      Logger.info('pollNetworkState isWifiActive:' + isWifiActive);
       if (isWifiActive) {
         const wifiInfo = await wifiManager.getLinkedInfo();
         if (wifiInfo?.ssid) {
@@ -124,32 +124,32 @@ export struct DevicesMainPage {
         this.networkStateType = 0; // 可根据实际需求调整
       }
     } catch (error) {
-      console.error('pollNetworkState error：', JSON.stringify(error));
+      Logger.error('pollNetworkState error：', JSON.stringify(error));
     }
   }
 
   private async handleEthernetConfig(): Promise<void> {
     try {
       const iFaces = await ethernet.getAllActiveIfaces();
-      console.info('handleEthernetConfig getAllActiveIfaces iFaces ==> ' + JSON.stringify(iFaces));
+      Logger.info('handleEthernetConfig getAllActiveIfaces iFaces ==> ' + JSON.stringify(iFaces));
       if (iFaces.length > 0) {
         this.curActiveIFace = iFaces[iFaces.length - 1];
-        console.info('handleEthernetConfig this.curActiveIFace ==> ' + JSON.stringify(this.curActiveIFace));
+        Logger.info('handleEthernetConfig this.curActiveIFace ==> ' + JSON.stringify(this.curActiveIFace));
         const data = await ethernet.getIfaceConfig(this.curActiveIFace);
-        console.info('handleEthernetConfig getIfaceConfig data ==> ' + JSON.stringify(data));
+        Logger.info('handleEthernetConfig getIfaceConfig data ==> ' + JSON.stringify(data));
         this.networkStateType = data?.ipAddr ? 0 : 1;
       } else {
         this.networkStateType = 1;
       }
     } catch (error) {
-      console.error('handleEthernetConfig error：', JSON.stringify(error));
+      Logger.error('handleEthernetConfig error：', JSON.stringify(error));
       this.networkStateType = 1;
     }
   }
 
   promptActionShowToast() {
     promptAction.showToast({
-      message: 'coap配网需连接无线网和开启蓝牙',
+      message: $r('app.string.CoAP_network'),
       duration: 1000,
     });
   }
@@ -160,7 +160,7 @@ export struct DevicesMainPage {
         tabItems: TabsConfig.tabItems,
         currentIndex: this.currentIndex,
         changeTab: (tab: number) => {
-          console.log('===>tab:' + tab);
+          Logger.info('===>tab:' + tab);
           this.currentIndex = tab;
         },
         addClick: () => {
@@ -192,20 +192,20 @@ export struct DevicesMainPage {
                   btnStyle: {
                     btnRes: 'coap配网',
                     clickEvent: () => {
-                      console.info('getCurActiveIFaceConfig coapButton' + this.networkStateType);
+                      Logger.info('getCurActiveIFaceConfig coapButton' + this.networkStateType);
                       if (this.networkStateType == 0) {
                         this.promptActionShowToast();
                       } else if (this.networkStateType == 1) {
                         try {
                           let state = access.getState();
-                          console.log('bleStartScan state==' + state);
+                          Logger.info('bleStartScan state==' + state);
                           if (state == 2) {
                             HMRouterMgr.push({ pageUrl: 'WifiAddDevicePage' });
                           } else {
                             this.promptActionShowToast();
                           }
                         } catch (err) {
-                          console.error('bleStartScan errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+                          Logger.error('bleStartScan errCode: ' + (err as BusinessError).code + ', errMessage: ' +
                           (err as BusinessError).message);
                           this.promptActionShowToast();
                         }

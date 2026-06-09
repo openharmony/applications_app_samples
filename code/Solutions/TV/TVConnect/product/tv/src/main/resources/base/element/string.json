@@ -59,7 +59,8 @@
     {
       "name": "launcher_btn_text",
       "value": "Enter the application"
-    },{
+    },
+    {
       "name": "reason",
       "value": "通用互联需要ble能力发现ble协议设备"
     },
@@ -207,205 +208,301 @@
       "name": "loginError",
       "value": "登录失败，请检查用户名或密码！"
     },
-        {
-          "name": "tab_text_font_size",
-          "value": "15lpx"
-        },
-        {
-          "name": "tab_text_font_size_select",
-          "value": "18lpx"
-        },
-        {
-          "name": "search_text_size",
-          "value": "24lpx"
-        },
-        {
-          "name": "search_radius",
-          "value": "30lpx"
-        },
-        {
-          "name": "title_height",
-          "value": "84lpx"
-        },
-        {
-          "name": "search_height",
-          "value": "60lpx"
-        },
-        {
-          "name": "tab_image_size",
-          "value": "60lpx"
-        },
-        {
-          "name": "tab_margin_top",
-          "value": "12lpx"
-        },
-        {
-          "name": "tab_margin_bottom",
-          "value": "7.5lpx"
-        },
-        {
-          "name": "tab_text_margin_bottom",
-          "value": "10.5lpx"
-        },
-        {
-          "name": "List_item_text_size",
-          "value": "21lpx"
-        },
-        {
-          "name": "Grid_item_text_size",
-          "value": "21lpx"
-        },
-        {
-          "name": "List_item_text_margin_top",
-          "value": "18lpx"
-        },
-        {
-          "name": "side_list_margin_top",
-          "value": "18lpx"
-        },
-        {
-          "name": "side_minWidth",
-          "value": "75lpx"
-        },
-        {
-          "name": "side_list_text_margin_bottom",
-          "value": "24lpx"
-        },
-        {
-          "name": "divider_margin_bottom",
-          "value": "12lpx"
-        },
-        {
-          "name": "detail_list_text_size",
-          "value": "24lpx"
-        },
-        {
-          "name": "detail_list_text_margin_top",
-          "value": "43.5lpx"
-        },
-        {
-          "name": "detail_list_item_height",
-          "value": "108lpx"
-        },
-        {
-          "name": "grid_item_radius",
-          "value": "24lpx"
-        },
-        {
-          "name": "detail_list_text_height",
-          "value": "33lpx"
-        },
-        {
-          "name": "tab_text_height",
-          "value": "21lpx"
-        },
-        {
-          "name": "search_margin_top",
-          "value": "30lpx"
-        },
-        {
-          "name": "search_margin_bottom",
-          "value": "12lpx"
-        },
-        {
-          "name": "title_margin_top",
-          "value": "105lpx"
-        },
-        {
-          "name": "title_margin_left",
-          "value": "-18lpx"
-        },
-        {
-          "name": "text_title_height",
-          "value": "61.5lpx"
-        },
-        {
-          "name": "title_font_size",
-          "value": "45lpx"
-        },
-        {
-          "name": "subtitle_height",
-          "value": "28.5lpx"
-        },
-        {
-          "name": "tab_bar_width",
-          "value": "144lpx"
-        },
-        {
-          "name": "tab_bar_height",
-          "value": "84lpx"
-        },
-        {
-          "name": "subtitle_font_size",
-          "value": "21lpx"
-        },
-        {
-          "name": "grid_row_margin_left",
-          "value": "36lpx"
-        },
-        {
-          "name": "grid_row_margin_right",
-          "value": "36lpx"
-        },
-        {
-          "name": "text_margin_left_normal",
-          "value": "36lpx"
-        },
-        {
-          "name": "text_margin_left_xs",
-          "value": "0lpx"
-        },
-        {
-          "name": "detail_list_item_height_xs",
-          "value": "378lpx"
-        },
-        {
-          "name": "detail_list_item_height_normal",
-          "value": "255lpx"
-        },
-        {
-          "name": "detail_list_height_xs",
-          "value": "450lpx"
-        },
-        {
-          "name": "detail_list_height_normal",
-          "value": "306lpx"
-        },
-        {
-          "name": "launcher_logo_size",
-          "value": "96lpx"
-        },
-        {
-          "name": "launcher_life_text_width",
-          "value": "307.5lpx"
-        },
-        {
-          "name": "launcher_life_text_height",
-          "value": "52.5lpx"
-        },
-        {
-          "name": "launcher_text_title_size",
-          "value": "39lpx"
-        },
-        {
-          "name": "launcher_btn_text_size",
-          "value": "24lpx"
-        },
-        {
-          "name": "launcher_text_name_size",
-          "value": "36lpx"
-        },
-        {
-          "name": "launcher_btn_size_width",
-          "value": "312lpx"
-        },
-        {
-          "name": "launcher_btn_size_height",
-          "value": "60lpx"
-        },
-        {
-          "name": "launcher_privacy_text_size",
-          "value": "15lpx"
-        }
+    {
+      "name": "tab_text_font_size",
+      "value": "15lpx"
+    },
+    {
+      "name": "tab_text_font_size_select",
+      "value": "18lpx"
+    },
+    {
+      "name": "search_text_size",
+      "value": "24lpx"
+    },
+    {
+      "name": "search_radius",
+      "value": "30lpx"
+    },
+    {
+      "name": "title_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "search_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "tab_image_size",
+      "value": "60lpx"
+    },
+    {
+      "name": "tab_margin_top",
+      "value": "12lpx"
+    },
+    {
+      "name": "tab_margin_bottom",
+      "value": "7.5lpx"
+    },
+    {
+      "name": "tab_text_margin_bottom",
+      "value": "10.5lpx"
+    },
+    {
+      "name": "List_item_text_size",
+      "value": "21lpx"
+    },
+    {
+      "name": "Grid_item_text_size",
+      "value": "21lpx"
+    },
+    {
+      "name": "List_item_text_margin_top",
+      "value": "18lpx"
+    },
+    {
+      "name": "side_list_margin_top",
+      "value": "18lpx"
+    },
+    {
+      "name": "side_minWidth",
+      "value": "75lpx"
+    },
+    {
+      "name": "side_list_text_margin_bottom",
+      "value": "24lpx"
+    },
+    {
+      "name": "divider_margin_bottom",
+      "value": "12lpx"
+    },
+    {
+      "name": "detail_list_text_size",
+      "value": "24lpx"
+    },
+    {
+      "name": "detail_list_text_margin_top",
+      "value": "43.5lpx"
+    },
+    {
+      "name": "detail_list_item_height",
+      "value": "108lpx"
+    },
+    {
+      "name": "grid_item_radius",
+      "value": "24lpx"
+    },
+    {
+      "name": "detail_list_text_height",
+      "value": "33lpx"
+    },
+    {
+      "name": "tab_text_height",
+      "value": "21lpx"
+    },
+    {
+      "name": "search_margin_top",
+      "value": "30lpx"
+    },
+    {
+      "name": "search_margin_bottom",
+      "value": "12lpx"
+    },
+    {
+      "name": "title_margin_top",
+      "value": "105lpx"
+    },
+    {
+      "name": "title_margin_left",
+      "value": "-18lpx"
+    },
+    {
+      "name": "text_title_height",
+      "value": "61.5lpx"
+    },
+    {
+      "name": "title_font_size",
+      "value": "45lpx"
+    },
+    {
+      "name": "subtitle_height",
+      "value": "28.5lpx"
+    },
+    {
+      "name": "tab_bar_width",
+      "value": "144lpx"
+    },
+    {
+      "name": "tab_bar_height",
+      "value": "84lpx"
+    },
+    {
+      "name": "subtitle_font_size",
+      "value": "21lpx"
+    },
+    {
+      "name": "grid_row_margin_left",
+      "value": "36lpx"
+    },
+    {
+      "name": "grid_row_margin_right",
+      "value": "36lpx"
+    },
+    {
+      "name": "text_margin_left_normal",
+      "value": "36lpx"
+    },
+    {
+      "name": "text_margin_left_xs",
+      "value": "0lpx"
+    },
+    {
+      "name": "detail_list_item_height_xs",
+      "value": "378lpx"
+    },
+    {
+      "name": "detail_list_item_height_normal",
+      "value": "255lpx"
+    },
+    {
+      "name": "detail_list_height_xs",
+      "value": "450lpx"
+    },
+    {
+      "name": "detail_list_height_normal",
+      "value": "306lpx"
+    },
+    {
+      "name": "launcher_logo_size",
+      "value": "96lpx"
+    },
+    {
+      "name": "launcher_life_text_width",
+      "value": "307.5lpx"
+    },
+    {
+      "name": "launcher_life_text_height",
+      "value": "52.5lpx"
+    },
+    {
+      "name": "launcher_text_title_size",
+      "value": "39lpx"
+    },
+    {
+      "name": "launcher_btn_text_size",
+      "value": "24lpx"
+    },
+    {
+      "name": "launcher_text_name_size",
+      "value": "36lpx"
+    },
+    {
+      "name": "launcher_btn_size_width",
+      "value": "312lpx"
+    },
+    {
+      "name": "launcher_btn_size_height",
+      "value": "60lpx"
+    },
+    {
+      "name": "launcher_privacy_text_size",
+      "value": "15lpx"
+    },
+    {
+      "name": "Hepatobiliary_Surgery_Ward1",
+      "value": "Hepatobiliary Surgery Ward 1"
+    },
+    {
+      "name": "DeviceNumber_001",
+      "value": "Device Number: 001"
+    },
+    {
+      "name": "operating_system_settings",
+      "value": "Click to open the operating system settings"
+    },
+    {
+      "name": "Carrying_out_medical_orders",
+      "value": "Carrying out medical orders"
+    },
+    {
+      "name": "Bed",
+      "value": "Bed"
+    },
+    {
+      "name": "Seriously_ill",
+      "value": "Seriously ill"
+    },
+    {
+      "name": "Female",
+      "value": "Female"
+    },
+    {
+      "name": "76_years_old",
+      "value": "76 years old"
+    },
+    {
+      "name": "Injection_Medication_Orders",
+      "value": "Injection Medication Orders"
+    },
+    {
+      "name": "Patient_List",
+      "value": "Patient List"
+    },
+    {
+      "name": "My_patient",
+      "value": "My patient"
+    },
+    {
+      "name": "Frequency",
+      "value": "Frequency: %s"
+    },
+    {
+      "name": "Medicine_pickup_time",
+      "value": "Medicine pick-up time: %s"
+    },
+    {
+      "name": "enter_face_recognition",
+      "value": "Click to enter face recognition"
+    },
+    {
+      "name": "Nursing_orders",
+      "value": "Nursing orders"
+    },
+    {
+      "name": "Read_agree",
+      "value": "Read and agree"
+    },
+    {
+      "name": "User_Agreement",
+      "value": "General Internet User Agreement"
+    },
+    {
+      "name": "Content_About",
+      "value": "Content and About"
+    },
+    {
+      "name": "Services_Privacy",
+      "value": "Statement on Device Management Services and Privacy"
+    },
+    {
+      "name": "UserAgreement_PrivacyPolicy",
+      "value": "Please read and agree to the User Agreement and Privacy Policy"
+    },
+    {
+      "name": "closeToPatient",
+      "value": "Get close to the patient"
+    },
+    {
+      "name": "StayAwayFromPatient",
+      "value": "Stay away from the patient"
+    },
+    {
+      "name": "Calculation_started",
+      "value": "Calculation started"
+    },
+    {
+      "name": "Record_data",
+      "value": "Record %s data and calculate"
+    }
   ]
 }

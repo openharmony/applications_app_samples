@@ -21,13 +21,14 @@ import {
   registrationMonitoring,
   unRegistrationMonitoring
 } from '@ohos/nearbydevice/src/main/ets/pages/DeviceDetailPage';
+import { Logger } from '@ohos/common';
 
 
 async function getlogin(loginName: string, loginPassword: string): Promise<Array<LoginData> | null> {
   let httpPostRequest = http.createHttp();
 
   httpPostRequest.on('headersReceive', (header) => {
-    console.info('Get header: ' + JSON.stringify(header));
+    Logger.info('Get header: ' + JSON.stringify(header));
   });
 
   return new Promise((resolve, reject) => {
@@ -56,11 +57,11 @@ async function getlogin(loginName: string, loginPassword: string): Promise<Array
           resolve(null);
         }
       } catch (err) {
-        console.error('JSON parse error: ' + err);
+        Logger.error('JSON parse error: ' + err);
         reject(err);
       }
     }).catch((err: Error) => {
-      console.error('Request error: ' + JSON.stringify(err));
+      Logger.error('Request error: ' + JSON.stringify(err));
       reject(err);
     });
   });
@@ -104,9 +105,9 @@ export default struct Login {
         }
         .focusable(true);
 
-        Text('点击进入人脸识别').fontSize(8).fontColor(Color.Gray).margin({ top: 10, bottom: 15 });
-        Text('肝胆外科一病区').fontSize(20).fontColor($r('app.color.nurse_blue')).margin({ top: 10 });
-        Text('设备编号：001').fontSize(14).fontColor($r('app.color.nurse_blue')).margin({ top: 5, bottom: 30 });
+        Text($r('app.string.enter_face_recognition')).fontSize(8).fontColor(Color.Gray).margin({ top: 10, bottom: 15 });
+        Text($r('app.string.Hepatobiliary_Surgery_Ward1')).fontSize(20).fontColor($r('app.color.nurse_blue')).margin({ top: 10 });
+        Text($r('app.string.DeviceNumber_001')).fontSize(14).fontColor($r('app.color.nurse_blue')).margin({ top: 5, bottom: 30 });
         //账号
         Row() {
           Row() {
@@ -146,7 +147,7 @@ export default struct Login {
               }
             })
             .inputFilter('[a-z]', (e) => {
-              console.log(JSON.stringify(e));
+              Logger.info(JSON.stringify(e));
             })
             .onChange((value: string) => {
               this.userName = value;
@@ -294,7 +295,7 @@ export default struct Login {
           });
         });
 
-        Text('登录')
+        Text($r('app.string.login'))
           .key('login')
           .focusable(true)
           .fontSize(16)
@@ -325,7 +326,7 @@ export default struct Login {
                   message: $r('app.string.loginError'),
                   duration: 2000,
                 });
-                console.error('Error during login and redirect:', error);
+                Logger.error('Error during login and redirect:', error);
               }
             }
           });
@@ -345,7 +346,7 @@ export default struct Login {
       .zIndex(2);
 
       Row() {
-        Text('点击开启操作系统的设置')
+        Text($r('app.string.operating_system_settings'))
           .fontSize(12)
           .fontColor($r('app.color.nurse_blue'))
           .lineHeight(20)
@@ -389,11 +390,11 @@ export function tabClick() {
   };
 
   try {
-    console.log('settingList inputEventClient', 'TAB');
+    Logger.info('settingList inputEventClient', 'TAB');
     // 触发tab点击，使默认焦点组件多态样式生效
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err);
+    Logger.error('settingList inputEventClient' + err);
   }
 }

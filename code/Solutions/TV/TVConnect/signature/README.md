@@ -1,1 +1,0 @@
-java -jar hap-sign-tool.jar  sign-profile -keyAlias "OpenHarmony Application Release" -signAlg "SHA256withECDSA" -mode "localSign" -profileCertFile "OpenHarmonyApplication.pem" -inFile "UnsgnedReleasedProfileTemplate.json" -keystoreFile "OpenHarmony.p12" -outFile "connect.p7b" -keyPwd "123456" -keystorePwd "123456"

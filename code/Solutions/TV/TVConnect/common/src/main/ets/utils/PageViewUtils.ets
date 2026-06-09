@@ -14,6 +14,7 @@
  */
 
 import { inputEventClient, KeyCode } from '@kit.InputKit';
+import { Logger } from './Logger';
 
 
 export class PageViewUtils {
@@ -35,7 +36,7 @@ export class PageViewUtils {
       };
       inputEventClient.injectEvent({ KeyEvent: backKeyUp });
     } catch (error) {
-      console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      Logger.info(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   }
 }

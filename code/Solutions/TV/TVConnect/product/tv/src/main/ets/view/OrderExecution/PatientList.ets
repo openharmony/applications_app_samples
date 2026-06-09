@@ -14,6 +14,7 @@
  */
 import { MedicalAdvice } from './MedicalAdvice';
 import { Drug } from './Drug';
+import { Logger } from '@ohos/common';
 
 class Pe {
   public id?: string;
@@ -54,7 +55,7 @@ export default struct PatientList {
         }.backgroundColor('#6fa7ff').width('100%').height(30).justifyContent(FlexAlign.Center);
 
         Row() {
-          Text('患者列表')
+          Text($r('app.string.Patient_List'))
             .height(22)
             .border({
               width: 0.5,
@@ -70,7 +71,7 @@ export default struct PatientList {
             .fontColor(this.currentIndex === 0 ? $r('app.color.nurse_blue') : Color.White)
             .backgroundColor(this.currentIndex === 0 ? Color.White : '')
             .padding({ left: 10, right: 10 });
-          Text('我的患者')
+          Text($r('app.string.My_patient'))
             .height(22)
             .border({
               width: 0.5,
@@ -152,8 +153,8 @@ export default struct PatientList {
             .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
             .chainAnimation(false) // 联动特效关闭
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              console.info('first' + firstIndex);
-              console.info('last' + lastIndex);
+              Logger.info('first' + firstIndex);
+              Logger.info('last' + lastIndex);
             })
             .width('100%')
             .height('100%')

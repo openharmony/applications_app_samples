@@ -1,3 +1,0 @@
-keystorePwd VjaJXSQTFBI
-keyAlias debugKey
-keyPwd VjaJXSQTFBI

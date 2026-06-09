@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { promptAction } from '@kit.ArkUI';
+import { Logger } from '@ohos/common';
 import { EventActionUIInfoDataItem, IUiInfo } from '../../model/SceneCondition';
 
 @Component
@@ -27,7 +28,7 @@ struct TitleHeader {
         .fontColor('#0A59F7')
         .fontSize($r('app.string.font_14'))
         .onClick(() => this.cancel && this.cancel());
-      Text('选择' + this.title).fontColor('#000000').fontSize($r('app.string.font_16'));
+      Text($r('app.string.Choose',this.title)).fontColor('#000000').fontSize($r('app.string.font_16'));
       Text($r('app.string.button_text_confirm'))
         .fontColor('#0A59F7')
         .fontSize($r('app.string.font_14'))
@@ -103,7 +104,7 @@ export struct modifySceneAction {
                       .onChange((isChecked: boolean) => {
                         if (isChecked) {
                           this.actionVal = item.enumVal;
-                          console.log('Radio1 status is2 ' + JSON.stringify(this.actionVal));
+                          Logger.info('Radio1 status is2 ' + JSON.stringify(this.actionVal));
                         }
                       });
                   };
@@ -124,7 +125,7 @@ export struct modifySceneAction {
                 .onChange((value: number, mode: SliderChangeMode) => {
                   if (Number(this.data.min) <= value && Number(this.data.max) >= value) {
                     this.actionVal = `${value}`;
-                    console.info('value:' + this.actionVal + 'mode:' + mode.toString());
+                    Logger.info('value:' + this.actionVal + 'mode:' + mode.toString());
                   }
                 })
                 .width('90%');

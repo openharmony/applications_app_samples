@@ -14,6 +14,7 @@
  */
 import { InternationalManager } from '../model/manager/InternationalManager';
 import { Language } from '../model/entity/Language';
+import { Logger } from '@ohos/common';
 
 /**
  * 语言组件信息
@@ -44,7 +45,7 @@ export class LanguageComponentInfo {
     LanguageComponentInfo.languageList = [];
     if (LanguageComponentInfo.internationalManager != null) {
       for (let i of LanguageComponentInfo.internationalManager.getLanguageList()) {
-        console.error(`ppppppp ${i.languageDisplay}`);
+        Logger.error(`ppppppp ${i.languageDisplay}`);
         LanguageComponentInfo.languageList.push(new LanguageItemInfo(i));
       }
       let old = new LanguageItemInfo(LanguageComponentInfo.internationalManager.getCurrentLanguage());

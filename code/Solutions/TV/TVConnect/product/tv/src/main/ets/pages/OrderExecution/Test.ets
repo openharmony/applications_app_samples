@@ -16,19 +16,20 @@ import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { prompt, router } from '@kit.ArkUI';
+import { prompt, promptAction, router } from '@kit.ArkUI';
 import dataPreferences from '@ohos.data.preferences';
 import emitter from '@ohos.events.emitter';
+import { Logger } from '@ohos/common';
 
 let preferences: dataPreferences.Preferences | null = null;
 let context = getContext();
 dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
   if (err) {
-    console.error('Failed to get preferences. code =' + err.code + ', message =' + err.message);
+    Logger.error('Failed to get preferences. code =' + err.code + ', message =' + err.message);
     return;
   }
   preferences = val;
-  console.info('Succeeded in getting preferences.');
+  Logger.info('Succeeded in getting preferences.');
 });
 
 let manufactureValueBuffer = new Uint8Array(2);
@@ -66,7 +67,7 @@ function onReceiveEvent(data: Array<ble.ScanResult>) {
   if (data[0].deviceName.startsWith('Oh-YHBSScreen-100022')) {
     if (calibration) {
       let arr = new Uint8Array(data[0].data);
-      console.info('' + JSON.stringify(arr));
+      Logger.info('' + JSON.stringify(arr));
       dat = dat + '  ' + arr[11].toString();
       calibration = false;
     }
@@ -107,12 +108,12 @@ export function startbluscan() {
     };
     try {
       ble.startBLEScan(null, scanOptions);
-      console.info(' succes');
+      Logger.info(' succes');
     } catch (err) {
-      console.error(' errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      Logger.error(' errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   } catch (err) {
-    console.error(' errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    Logger.error(' errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   }
 }
 
@@ -145,9 +146,9 @@ function openadv() {
     };
     ble.startAdvertising(setting, advData, advResponse);
 
-    console.info(' sucess openadv');
+    Logger.info(' sucess openadv');
   } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   }
 }
 
@@ -180,9 +181,9 @@ function closeadv() {
     };
     ble.startAdvertising(setting, advData, advResponse);
 
-    console.info(' sucess closeadv');
+    Logger.info(' sucess closeadv');
   } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   }
 }
 
@@ -199,36 +200,36 @@ export function start() {
   if (preferences != null) {
     preferences.get('average1', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
       if (err) {
-        console.error('Failed to get value of "startup". code =' + err.code + ', message =' + err.message);
+        Logger.error('Failed to get value of "startup". code =' + err.code + ', message =' + err.message);
         return;
       }
       if (val != 'default') {
         average1 = Number(val);
       }
-      console.info('Succeeded in getting value of "startup". val： ' + val);
+      Logger.info('Succeeded in getting value of "startup". val： ' + val);
     });
     preferences.get('average2', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
       if (err) {
-        console.error('Failed to get value of "startup". code =' + err.code + ', message =' + err.message);
+        Logger.error('Failed to get value of "startup". code =' + err.code + ', message =' + err.message);
         return;
       }
       if (val != 'default') {
         average2 = Number(val);
       }
-      console.info('Succeeded in getting value of "startup". val： ' + val);
+      Logger.info('Succeeded in getting value of "startup". val： ' + val);
     });
   }
   setInterval2 = setInterval(() => {
     if (avtimes05 > average1 && openadvstatus == false) {
-      prompt.showToast({
-        message: '接近患者',
+      promptAction.showToast({
+        message: $r('app.string.closeToPatient'),
         duration: 1000
       });
       openadv();
       try {
         ble.stopAdvertising();
       } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       }
       setTimeout(() => {
         openadv();
@@ -236,15 +237,15 @@ export function start() {
       openadvstatus = true;
       closeadvstatus = false;
     } else if (closeadvstatus == false && avtimes05 < average2) {
-      prompt.showToast({
-        message: '远离患者',
+      promptAction.showToast({
+        message: $r('app.string.StayAwayFromPatient'),
         duration: 1000
       });
       closeadv();
       try {
         ble.stopAdvertising();
       } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       }
       setTimeout(() => {
         closeadv();
@@ -270,12 +271,12 @@ struct Index {
     try {
       atManager.requestPermissionsFromUser(context, ['ohos.permission.ACCESS_BLUETOOTH']).then((data) => {
         startbluscan();
-        console.log('data: ' + JSON.stringify(data));
+        Logger.info('data: ' + JSON.stringify(data));
       }).catch((err: object) => {
-        console.log('err: ' + JSON.stringify(err));
+        Logger.info('err: ' + JSON.stringify(err));
       });
     } catch (err) {
-      console.log('catch err->' + JSON.stringify(err));
+      Logger.info('catch err->' + JSON.stringify(err));
     }
   }
 
@@ -290,59 +291,59 @@ struct Index {
             if (preferences != null) {
               preferences.put('average1', average1, (err: BusinessError) => {
                 if (err) {
-                  console.error('Failed to put value of "startup". code =' + err.code + ', message =' + err.message);
+                  Logger.error('Failed to put value of "startup". code =' + err.code + ', message =' + err.message);
                   return;
                 }
-                console.info('Succeeded in putting value of "startup".');
+                Logger.info('Succeeded in putting value of "startup".');
               });
               preferences.put('average2', average2, (err: BusinessError) => {
                 if (err) {
-                  console.error('Failed to put value of "startup". code =' + err.code + ', message =' + err.message);
+                  Logger.error('Failed to put value of "startup". code =' + err.code + ', message =' + err.message);
                   return;
                 }
-                console.info('Succeeded in putting value of "startup".');
+                Logger.info('Succeeded in putting value of "startup".');
               });
               preferences.flush((err: BusinessError) => {
                 if (err) {
-                  console.error('Failed to flush. code =' + err.code + ', message =' + err.message);
+                  Logger.error('Failed to flush. code =' + err.code + ', message =' + err.message);
                   return;
                 }
-                console.info('Succeeded in flushing.');
+                Logger.info('Succeeded in flushing.');
               });
             }
             start();
             router.back();
           });
-        Button('记录3m数据并计算')
+        Button($r('app.string.Record_data','3m'))
           .margin(20)
           .onClick(() => {
             open = true;
             setTimeout(() => {
-              prompt.showToast({
-                message: '计算开始',
+              promptAction.showToast({
+                message: $r('app.string.Calculation_started'),
                 duration: 2000
               });
               open = false;
               average1 = average(scanResult);
-              console.info('average1：' + average1);
-              prompt.showToast({
+              Logger.info('average1：' + average1);
+              promptAction.showToast({
                 message: 'average：' + average1,
                 duration: 1000
               });
             }, 10000);
           });
-        Button('记录8m数据并计算')
+        Button($r('app.string.Record_data','8m'))
           .margin(20)
           .onClick(() => {
             open1 = true;
             setTimeout(() => {
-              prompt.showToast({
-                message: '计算开始',
+              promptAction.showToast({
+                message: $r('app.string.Calculation_started'),
                 duration: 2000
               });
               open1 = false;
               average2 = average(scanResult1);
-              console.info('average2：' + average2);
+              Logger.info('average2：' + average2);
               prompt.showToast({
                 message: 'average：' + average2,
                 duration: 1000

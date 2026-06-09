@@ -15,7 +15,7 @@
 
 import { LibraryManager, UpdateLibraryCode } from './LibraryManager';
 import fs, { ReadTextOptions } from '@ohos.file.fs';
-import { ConnectDatabaseHelperImpl, PreferencesHelper, SceneLibraryDao } from '@ohos/common';
+import { ConnectDatabaseHelperImpl, Logger, PreferencesHelper, SceneLibraryDao } from '@ohos/common';
 import { StatusCode, SyncCloudApi } from '../cloud/SyncCloudApi';
 import { UpgradeSceneLibraryRequest } from '../cloud/Request';
 import { BaseCallback } from '../callback/BaseCallback';
@@ -93,13 +93,13 @@ export class SceneLibraryManager extends LibraryManager {
   protected downloadLibrary(url: string, callback?: UpdateLibraryCallback) {
     let downloadCallback: DownloadCallback = {
       onSuccess: () => {
-        console.info('sceneLibraryManager downloadLibrary success');
+        Logger.info('sceneLibraryManager downloadLibrary success');
         callback?.onDownLoadEnd(UpdateLibraryCode.DOWNLOAD_END_SUCC);
         this.onDownloadLibraryEnd(callback);
         this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_DOWNLOAD_SCENE_PATH);
       },
       onFailure: () => {
-        console.info('sceneLibraryManager downloadLibrary fail');
+        Logger.info('sceneLibraryManager downloadLibrary fail');
         this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_DOWNLOAD_SCENE_PATH);
         callback?.onDownLoadEnd(UpdateLibraryCode.DOWNLOAD_END_FAIL);
       },
@@ -136,14 +136,14 @@ export class SceneLibraryManager extends LibraryManager {
     let jsonFilePath = LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_SCENE_PATH + '/' +
     LibraryManager.SCENE_INFO_FILE_NAME;
     let jsonIsAccess = fs.accessSync(jsonFilePath);
-    console.info('sceneLibraryManager xmlIsAccess ', xmlIsAccess);
-    console.info('sceneLibraryManager jsonIsAccess ', jsonIsAccess);
+    Logger.info('sceneLibraryManager xmlIsAccess ' + xmlIsAccess);
+    Logger.info('sceneLibraryManager jsonIsAccess ' + jsonIsAccess);
     checkTag = xmlIsAccess && jsonIsAccess;
     if (checkTag) {
-      console.info('sceneLibraryManager checkLibrary succ');
+      Logger.info('sceneLibraryManager checkLibrary succ');
       this.onCheckLibraryEnd(callback);
     } else {
-      console.info('sceneLibraryManager checkLibrary fail');
+      Logger.info('sceneLibraryManager checkLibrary fail');
       callback?.onParseEnd(UpdateLibraryCode.PARSE_END_CHECK_FAIL);
       this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_SCENE_PATH);
       this.resetDir(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_SCENE_PATH);
@@ -163,12 +163,12 @@ export class SceneLibraryManager extends LibraryManager {
           this.parseSceneLibraryJsonFiles().then((data) => {
             this.saveLibraryInfo(data).then((isSaveSucc: boolean) => {
               if (isSaveSucc) {
-                console.info('sceneLibraryManager saveLibraryInfo succ');
+                Logger.info('sceneLibraryManager saveLibraryInfo succ');
                 callback?.onParseEnd(UpdateLibraryCode.PARSE_END_SUCC);
                 this.onLibraryUpdate();
                 this.onParseLibraryEnd(callback);
               } else {
-                console.info('sceneLibraryManager saveLibraryInfo fail');
+                Logger.info('sceneLibraryManager saveLibraryInfo fail');
                 callback?.onParseEnd(UpdateLibraryCode.PARSE_END_SAVE_FAIL);
                 this.revertToPreVersion(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_PRE_DEVICE_PATH,
                   LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_DEVICE_PATH, callback);
@@ -176,14 +176,14 @@ export class SceneLibraryManager extends LibraryManager {
             });
           });
         } else {
-          console.info('sceneLibraryManager parseVersionXmlFile fail');
+          Logger.info('sceneLibraryManager parseVersionXmlFile fail');
           callback?.onParseEnd(UpdateLibraryCode.PARSE_END_XML_FAIL);
           this.revertToPreVersion(LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_PRE_SCENE_PATH,
             LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_ZIP_SCENE_PATH, callback);
         }
       });
     } catch (errData) {
-      console.info('sceneLibraryManager parseVersionXmlFile error');
+      Logger.info('sceneLibraryManager parseVersionXmlFile error');
       callback?.onParseEnd(UpdateLibraryCode.FAIL);
       this.printErrData(errData);
     }
@@ -215,7 +215,7 @@ export class SceneLibraryManager extends LibraryManager {
         try {
           let sceneFilePath: string =
             LibraryManager.workspaceRootPath + LibraryManager.LIBRARY_TMP_SCENE_PATH + i.path.substring(1) + s;
-          console.error('parseSceneLibraryJsonFiles file path:', sceneFilePath);
+          Logger.error('parseSceneLibraryJsonFiles file path:', sceneFilePath);
           let sceneReadTextOptions: ReadTextOptions = { offset: 0, length: 0, encoding: 'utf-8' };
           let sceneStat = fs.statSync(sceneFilePath);
           sceneReadTextOptions.length = sceneStat.size;

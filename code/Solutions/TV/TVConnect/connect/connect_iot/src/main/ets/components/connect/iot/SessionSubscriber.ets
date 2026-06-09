@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { Logger } from '@ohos/common';
 import { DeviceManager } from 'iotmanagementkit';
 
 export class SessionSubscriber implements DeviceManager.EventObserver {
@@ -26,7 +27,7 @@ export class SessionSubscriber implements DeviceManager.EventObserver {
   }
 
   onEvent(eventName: string, data: object): void {
-    console.info('SessionSubscriber onEvent: ' + eventName);
+    Logger.info('SessionSubscriber onEvent: ' + eventName);
     this.callback(eventName, data);
   }
 }

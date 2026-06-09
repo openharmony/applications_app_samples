@@ -16,6 +16,7 @@ import { SimpleItem } from './ListComponents';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import { Logger } from '@ohos/common';
 
 
 /**
@@ -39,9 +40,9 @@ struct UpgradeItem {
     };
     const context = getContext(this) as common.UIAbilityContext;
     context.startAbility(want).then(() => {
-      console.info('start appgallery success');
+      Logger.info('start appgallery success');
     }).catch((err: BusinessError) => {
-      console.info(`start appgallery error,code:${err.code},msg:${err.message}`);
+      Logger.info(`start appgallery error,code:${err.code},msg:${err.message}`);
     });
   }
 

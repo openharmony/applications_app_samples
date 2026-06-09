@@ -191,6 +191,22 @@
     {
       "name": "select_scene_icon",
       "value": "选择场景图标"
+    },
+    {
+      "name": "Choose",
+      "value": "选择 %s"
+    },
+    {
+      "name": "Finish_preparing",
+      "value": "完成配液并复核"
+    },
+    {
+      "name": "Finish_preparing_solution",
+      "value": "完成配液"
+    },
+    {
+      "name": "choose_scene_icon",
+      "value": "请选择场景图标"
     }
   ]
 }

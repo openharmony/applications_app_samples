@@ -20,6 +20,7 @@ import { HMRouter } from '@hadss/hmrouter';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 import { inputMethod } from '@kit.IMEKit';
+import { Logger } from '@ohos/common';
 
 export function tabClick() {
   let keyDownOpt: inputEventClient.KeyEvent = {
@@ -36,12 +37,12 @@ export function tabClick() {
   };
 
   try {
-    console.log('settingList inputEventClient', 'TAB');
+    Logger.info('settingList inputEventClient', 'TAB');
     // 触发tab点击，使默认焦点组件多态样式生效
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err);
+    Logger.error('settingList inputEventClient' + err);
   }
 }
 

@@ -98,7 +98,7 @@ export struct SelectionSort {
                 .width($r('app.string.p_52'))
                 .height($r('app.string.p_52'));
 
-              Text('设备').fontColor($r('app.color.text_color_2'))
+              Text($r('app.string.Equipment')).fontColor($r('app.color.text_color_2'))
                 .fontSize($r('app.string.font_14'));
             }.onClick(() => this.succ());
           }.padding({ left: $r('app.string.p_24'), right: $r('app.string.p_24'), top: $r('app.string.p_16') });

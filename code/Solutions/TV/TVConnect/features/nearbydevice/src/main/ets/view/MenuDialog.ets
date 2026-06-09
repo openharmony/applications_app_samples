@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonConstants, PageViewUtils } from '@ohos/common';
+import { CommonConstants, Logger, PageViewUtils } from '@ohos/common';
 import DeleteDeviceAlertDialog from './DeleteDeviceAlertDialog';
 
 @CustomDialog
@@ -31,7 +31,7 @@ export default struct MenuDialog {
   deleteController: CustomDialogController | null = new CustomDialogController({
     builder: DeleteDeviceAlertDialog({
       onConfirm: () => {
-        console.log(this.deviceId);
+        Logger.info(this.deviceId);
         this.deleteDevice(this.deviceId);
       }
     })

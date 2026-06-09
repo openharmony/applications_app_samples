@@ -238,7 +238,7 @@ export struct DevicesDragView {
       showClose: true,
       preferType: SheetType.CENTER,
       shouldDismiss: ((sheetDismiss: SheetDismiss) => {
-        console.log('bind sheet shouldDismiss');
+        Logger.info('bind sheet shouldDismiss');
         sheetDismiss.dismiss();
       })
     });

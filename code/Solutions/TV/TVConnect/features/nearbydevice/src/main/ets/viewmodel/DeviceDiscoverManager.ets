@@ -41,7 +41,7 @@ export default class DeviceDiscoverManager {
     this.scanModel.startScan(DragSceneConstants.SCAN_TIME_OUT);
 
     DeviceManagerFactory.getDeviceManager().startDeviceDiscover(options, (_error, device: InfDevice) => {
-      console.log('===>返回的====>' + JSON.stringify(device));
+      Logger.info('===>返回的====>' + JSON.stringify(device));
       DevicesManager.getInstance().addDevice(device);
       if (callback != null) {
         callback(device);

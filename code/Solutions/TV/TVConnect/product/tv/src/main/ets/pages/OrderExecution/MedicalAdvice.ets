@@ -19,13 +19,14 @@ import http from '@ohos.net.http';
 import { DrugClass, DrugData, DrugObject } from '../../viewmodel/OrderExecution/MediacalData';
 import Net from '../../viewmodel/OrderExecution/netConfig';
 import emitter from '@ohos.events.emitter';
+import { Logger } from '@ohos/common';
 
 export let drugsList: DrugClass[] = [];
 
 export async function Post(typeId: string, orgId: string, deptId: string): Promise<Array<DrugClass> | null> {
   let httpPostRequest = http.createHttp();
   httpPostRequest.on('headersReceive', (header) => {
-    console.info('Get header: ' + JSON.stringify(header));
+    Logger.info('Get header: ' + JSON.stringify(header));
   });
   return new Promise((resolve, reject) => {
     let promise =
@@ -56,11 +57,11 @@ export async function Post(typeId: string, orgId: string, deptId: string): Promi
         });
         resolve(drugsList);
       } else {
-        console.error('Expected resultObject.data to be an array');
+        Logger.error('Expected resultObject.data to be an array');
         resolve(null);
       }
     }).catch((err: Error) => {
-      console.info('error:' + JSON.stringify(err));
+      Logger.info('error:' + JSON.stringify(err));
       reject(err);
     });
   });
@@ -163,10 +164,10 @@ export struct MedicalAdvice {
           if (data != null) {
             this.drugsList = [];
             this.drugsList = data;
-            console.info('Data updated from event:', this.drugsList);
+            Logger.info('Data updated from event:' + this.drugsList);
           }
         } catch (error) {
-          console.error('Error fetching data from event:', error);
+          Logger.error('Error fetching data from event:', error);
         }
       };
       emitter.on(innerEvent, eventCallback);
@@ -175,7 +176,7 @@ export struct MedicalAdvice {
         this.drugsList = data;
       }
     } catch (error) {
-      console.error('Error fetching data: ' + error);
+      Logger.error('Error fetching data: ' + error);
     }
   }
 
@@ -194,7 +195,7 @@ export struct MedicalAdvice {
           .onClick(() => {
             router.back();
           });
-        Text('医嘱执行')
+        Text($r('app.string.Carrying_out_medical_orders'))
           .height(22)
           .fontColor('#fff')
           .fontSize(20);
@@ -227,7 +228,7 @@ export struct MedicalAdvice {
         Column() {
           Row() {
             Text(name.bedName).fontSize(30).fontColor(Color.Orange);
-            Text('床').fontSize(16).fontColor(Color.Gray).margin({ right: 10, bottom: 3 });
+            Text($r('app.string.Bed')).fontSize(16).fontColor(Color.Gray).margin({ right: 10, bottom: 3 });
             Text(name.patientName).fontSize(30).fontColor($r('app.color.nurse_blue')).margin({ right: 10 });
             Text(name.illnessStatus).fontSize(16).fontColor(Color.Gray).margin({ bottom: 3 });
           }.margin({ top: 15, bottom: 10 }).alignItems(VerticalAlign.Bottom);
@@ -282,8 +283,8 @@ export struct MedicalAdvice {
             .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
             .chainAnimation(false) // 联动特效关闭
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              console.info('first' + firstIndex);
-              console.info('last' + lastIndex);
+              Logger.info('first' + firstIndex);
+              Logger.info('last' + lastIndex);
             })
             .width('100%')
             .height('100%')
@@ -293,7 +294,7 @@ export struct MedicalAdvice {
       }
       .margin({ top: 70 })
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus);
+        Logger.info('Refresh onStatueChange state is ' + refreshStatus);
       })
       .onRefreshing(() => {
         Post(Net.getInstance().typeId, Net.getInstance().orgId, Net.getInstance().deptId).then((data) => {
@@ -302,7 +303,7 @@ export struct MedicalAdvice {
           }
           this.isRefreshing = false;
         });
-        console.log('onRefreshing test');
+        Logger.info('onRefreshing test');
       });
     }.backgroundColor('#f1f2f6');
   }

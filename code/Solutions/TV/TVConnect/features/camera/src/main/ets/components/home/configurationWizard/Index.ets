@@ -39,12 +39,12 @@ export struct ConfigurationWizard {
         Column() {
           Flex() {
             Column({ space: 12 }) {
-              Text('第一步').fontSize($r('app.string.font_16'))
+              Text($r('app.string.Step_one')).fontSize($r('app.string.font_16'))
                 .fontColor($r('app.color.text_color_2'))
                 .fontWeight(500)
                 .width('100%');
 
-              Text('接通设备电源，看到指示灯亮起').fontSize($r('app.string.font_14'))
+              Text($r('app.string.Turn_on_the_device')).fontSize($r('app.string.font_14'))
                 .fontColor($r('app.color.text_color_1'))
                 .width('100%');
             }.height('100%').width('calc(100% - 188vp)');
@@ -58,12 +58,12 @@ export struct ConfigurationWizard {
         Column() {
           Flex() {
             Column({ space: 12 }) {
-              Text('第二步').fontSize($r('app.string.font_16'))
+              Text($r('app.string.Step_Two')).fontSize($r('app.string.font_16'))
                 .fontColor($r('app.color.text_color_2'))
                 .fontWeight(500)
                 .width('100%');
 
-              Text('使用顶针按压复位键约3秒，听到“重置成功”的提示音后，设备将会重启进入配网状态。')
+              Text($r('app.string.reset_button'))
                 .fontSize($r('app.string.font_14'))
                 .fontColor($r('app.color.text_color_1'))
                 .width('100%');
@@ -87,7 +87,7 @@ export struct ConfigurationWizard {
             .width(20)
             .height(20);
 
-          Text('已完成上述操作').fontSize($r('app.string.font_14'))
+          Text($r('app.string.The_above_operations')).fontSize($r('app.string.font_14'))
             .fontColor($r('app.color.text_color_3'));
         }.width('100%').justifyContent(FlexAlign.Center);
 

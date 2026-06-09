@@ -34,7 +34,7 @@ export default class WifiDevicesDiscover implements InfDevicesDiscover {
 
   startScan(options: ScanOptions, callback: Callback<InfDevice>) {
     setTimeout(async () => {
-      console.log('delay 1s');
+      Logger.info('delay 1s');
       if (wifiManager.isWifiActive() == false) {
         throw Error('wifi is not open');
       } else {

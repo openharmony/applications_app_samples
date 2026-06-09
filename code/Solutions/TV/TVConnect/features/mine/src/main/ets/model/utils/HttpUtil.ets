@@ -15,6 +15,7 @@
 
 import http from '@ohos.net.http';
 import util from '@ohos.util';
+import { Logger } from '@ohos/common';
 import { HttpCallback } from '../callback/HttpCallback';
 import { CommErr } from '../utils/CommErr';
 
@@ -72,13 +73,13 @@ export class HttpUtil {
     };
 
     let request = http.createHttp();
-    console.info('HttpUtil url:', url);
-    console.info('HttpUtil request body:', JSON.stringify(body));
+    Logger.info('HttpUtil url:', url);
+    Logger.info('HttpUtil request body:', JSON.stringify(body));
     request.request(url, options, (err, response) => {
       if (err) {
         callback.onFailure(err.code, err, 'fail');
       } else {
-        console.info('HttpUtil response body:', JSON.stringify(response.result));
+        Logger.info('HttpUtil response body:', JSON.stringify(response.result));
         let code = response.responseCode;
         // 新建资源201标识成功
         if (code == 200 || code == 201) {

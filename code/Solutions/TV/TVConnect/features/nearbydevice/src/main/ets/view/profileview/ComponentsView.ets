@@ -59,7 +59,7 @@ export struct PowerComponents {
   build() {
     Row() {
       Row() {
-        Text('开关')
+        Text($r('app.string.Switch'))
           .titleStyle();
         Button() {
           Image(this.profileManager.isPowerOn() ? $r('app.media.button_open') : $r('app.media.button_off'))

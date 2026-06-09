@@ -64,12 +64,12 @@ export struct ConnectingDevice {
                 .fontSize($r('app.string.font_44'))
                 .padding({ top: 93 });
 
-              Text('设备连接中…')
+              Text($r('app.string.Connecting_device'))
                 .fontColor($r('app.color.text_color_1'))
                 .fontSize($r('app.string.font_14'))
                 .padding({ top: 12 });
 
-              Text('连接过程中，请确保：')
+              Text($r('app.string.Connecting_device_process'))
                 .fontColor($r('app.color.text_color_1'))
                 .fontSize($r('app.string.font_14'))
                 .padding({ top: 44 });
@@ -77,19 +77,19 @@ export struct ConnectingDevice {
               Column({ space: 12 }) {
                 Row({ space: 4 }) {
                   Row().width(4).height(4).borderRadius(4).backgroundColor($r('app.color.text_color_1'));
-                  Text('设备已通电').fontColor($r('app.color.text_color_2'))
+                  Text($r('app.string.equipment_powered_on')).fontColor($r('app.color.text_color_2'))
                     .fontSize($r('app.string.font_14'));
                 };
 
                 Row({ space: 4 }) {
                   Row().width(4).height(4).borderRadius(4).backgroundColor($r('app.color.text_color_1'));
-                  Text('设备网络畅通').fontColor($r('app.color.text_color_2'))
+                  Text($r('app.string.networkIsSmooth')).fontColor($r('app.color.text_color_2'))
                     .fontSize($r('app.string.font_14'));
                 };
 
                 Row({ space: 4 }) {
                   Row().width(4).height(4).borderRadius(4).backgroundColor($r('app.color.text_color_1'));
-                  Text('设备靠近手机放置位置').fontColor($r('app.color.text_color_2'))
+                  Text($r('app.string.close_to_the_phone')).fontColor($r('app.color.text_color_2'))
                     .fontSize($r('app.string.font_14'));
                 };
               }
@@ -104,7 +104,7 @@ export struct ConnectingDevice {
                 .width(44)
                 .height(44);
 
-              Text('连接成功').fontWeight(500).fontColor($r('app.color.text_color_2'))
+              Text($r('app.string.Connection_successful')).fontWeight(500).fontColor($r('app.color.text_color_2'))
                 .fontSize($r('app.string.font_16'));
             };
 

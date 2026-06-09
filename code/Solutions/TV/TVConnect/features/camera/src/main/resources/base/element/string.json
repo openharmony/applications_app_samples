@@ -623,6 +623,98 @@
     {
       "name": "scene_current_icon_height",
       "value": "60lpx"
+    },
+    {
+      "name": "Step_one",
+      "value": "Step one"
+    },
+    {
+      "name": "Turn_on_the_device",
+      "value": "Turn on the device, and see the indicator light turn on"
+    },
+    {
+      "name": "Step_Two",
+      "value": "Step Two"
+    },
+    {
+      "name": "The_above_operations",
+      "value": "The above operations have been completed"
+    },
+    {
+      "name": "equipment_powered_on",
+      "value": "The equipment is powered on"
+    },
+    {
+      "name": "networkIsSmooth",
+      "value": "The device network is smooth"
+    },
+    {
+      "name": "Connection_successful",
+      "value": "Connection successful"
+    },
+    {
+      "name": "Coordinate_Name1",
+      "value": "Coordinate Name 1"
+    },
+    {
+      "name": "Device_number",
+      "value": "Device number"
+    },
+    {
+      "name": "Type",
+      "value": "Type"
+    },
+    {
+      "name": "Can_be_blocked",
+      "value": "Can be blocked"
+    },
+    {
+      "name": "Invalid",
+      "value": "Invalid"
+    },
+    {
+      "name": "Loading",
+      "value": "Loading..."
+    },
+    {
+      "name": "Drug_preparation",
+      "value": "Drug preparation"
+    },
+    {
+      "name": "Equipment",
+      "value": "Equipment"
+    },
+    {
+      "name": "no_more_data",
+      "value": "There is no more data."
+    },
+    {
+      "name": "Connecting_device",
+      "value": "Connecting device…"
+    },
+    {
+      "name": "Connecting_device_process",
+      "value": "During the connection process, please ensure:"
+    },
+    {
+      "name": "close_to_the_phone",
+      "value": "Place the device close to the phone"
+    },
+    {
+      "name": "Call_police",
+      "value": "Call the police"
+    },
+    {
+      "name": "External_Fault",
+      "value": "External Fault - 3N12 Watchdog"
+    },
+    {
+      "name": "reset_button",
+      "value": "Press the reset button with a thimble for about 3 seconds, and after you hear the 'Reset Successful' beep, the device will restart and enter network setup mode."
+    },
+    {
+      "name": "SendTurn_signal",
+      "value": "Send turn signal"
     }
   ]
 }

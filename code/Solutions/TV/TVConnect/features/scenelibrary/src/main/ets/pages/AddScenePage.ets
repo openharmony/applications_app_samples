@@ -63,7 +63,7 @@ export function registerInputConsumer(keyCode: number, callback: () => void): vo
   };
   inputConsumer.on('key', onKeyCode, () => {
     callback && callback();
-    console.log(TAG, 'inputConsumer keyEvent start');
+    Logger.info(TAG, 'inputConsumer keyEvent start');
   });
 }
 
@@ -96,7 +96,7 @@ export function tabClick() {
     inputEventClient.injectEvent({ KeyEvent: keyDownOpt });
     inputEventClient.injectEvent({ KeyEvent: keyUpOpt });
   } catch (err) {
-    console.error('settingList inputEventClient' + err);
+    Logger.error('settingList inputEventClient' + err);
   }
 }
 
@@ -496,7 +496,7 @@ export struct AddScenePage {
                           {
                             value: $r('app.string.delete'),
                             action: () => {
-                              console.info('handle Menu1 select');
+                              Logger.info('handle Menu1 select');
                               this.triggerConditions.splice(index, 1);
                             }
                           },
@@ -586,7 +586,7 @@ export struct AddScenePage {
                           {
                             value: $r('app.string.delete'),
                             action: () => {
-                              console.info('handle Menu1 select');
+                              Logger.info('handle Menu1 select');
                               this.executeActions.splice(index, 1);
                             }
                           },

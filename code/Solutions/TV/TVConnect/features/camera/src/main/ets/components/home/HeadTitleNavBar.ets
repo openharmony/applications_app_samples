@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonConstants } from '@ohos/common';
+import { CommonConstants, Logger } from '@ohos/common';
 import { HMRouterMgr } from '@hadss/hmrouter';
 
 @Component
@@ -60,7 +60,7 @@ export struct HeadTitleNavBar {
               {
                 value: $r('app.string.delete'),
                 action: () => {
-                  console.info('handle Menu1 select');
+                  Logger.info('handle Menu1 select');
                   this.deleteConfirm();
                 }
               }

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { Logger } from '@ohos/common';
 import ActionItem from '../common/bean/ActionItem';
 import DeviceItem from '../common/bean/DeviceItem';
 import DevicesModel from '../viewmodel/DeviceModel';
@@ -97,13 +98,13 @@ export struct SelectorList {
                 this.deviceType = item.type;
                 this.actionName = '';
                 this.actionId = '';
-                console.info('this.modeId===' + this.modeId);
+                Logger.info('this.modeId===' + this.modeId);
               }
             } else if (this.type == 2) {
               if (this.actionId !== item.id) {
                 this.actionId = item.id;
                 this.actionName = item.name;
-                console.info('this.actionId===' + this.actionId);
+                Logger.info('this.actionId===' + this.actionId);
               }
             }
             this.showSelector = false;

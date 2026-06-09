@@ -14,6 +14,7 @@
  */
 import cert from '@ohos.security.cert';
 import { promptAction } from '@kit.ArkUI';
+import { Logger } from '@ohos/common';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
@@ -134,7 +135,7 @@ export struct MedicalAdvice {
             .onClick(() => {
               this.pageInfos.clear();
             });
-          Text('医嘱执行')
+          Text($r('app.string.Carrying_out_medical_orders'))
             .height(22)
             .fontColor('#fff')
             .fontSize(12);
@@ -167,14 +168,14 @@ export struct MedicalAdvice {
           Column() {
             Row() {
               Text('12').fontSize(20).fontColor(Color.Orange);
-              Text('床').fontSize(10).fontColor(Color.Gray).margin({ right: 10, bottom: 3 });
+              Text($r('app.string.Bed')).fontSize(10).fontColor(Color.Gray).margin({ right: 10, bottom: 3 });
               Text(this.name).fontSize(16).fontColor($r('app.color.nurse_blue')).margin({ right: 10 });
-              Text('病重').fontSize(10).fontColor(Color.Gray).margin({ bottom: 3 });
+              Text($r('app.string.Seriously_ill')).fontSize(10).fontColor(Color.Gray).margin({ bottom: 3 });
             }.margin({ top: 15, bottom: 10 }).alignItems(VerticalAlign.Bottom);
 
             Row() {
-              Text('女').fontSize(10).fontColor(Color.Gray).margin({ right: 10 });
-              Text('76岁').fontSize(10).fontColor(Color.Gray);
+              Text($r('app.string.Female')).fontSize(10).fontColor(Color.Gray).margin({ right: 10 });
+              Text($r('app.string.76_years_old')).fontSize(10).fontColor(Color.Gray);
             };
           }
           .width('84%')
@@ -206,7 +207,7 @@ export struct MedicalAdvice {
 
         // TAB
         Row() {
-          Text('注射药品类医嘱')
+          Text($r('app.string.Injection_Medication_Orders'))
             .height(22)
             .border({
               width: { bottom: 2 },
@@ -215,7 +216,7 @@ export struct MedicalAdvice {
             .fontSize(10)
             .fontColor(this.currentIndex === 0 ? $r('app.color.nurse_blue') : Color.Gray)
             .margin({ right: 10 });
-          Text('护理类医嘱')
+          Text($r('app.string.Nursing_orders'))
             .height(22)
             .border({
               width: { bottom: 2 },
@@ -281,7 +282,7 @@ export struct MedicalAdvice {
                             ],
                           }).then(data => {
                             item.status = '已执行';
-                            console.info('showActionMenu success, click button: ' + data.index);
+                            Logger.info('showActionMenu success, click button: ' + data.index);
                           });
                         });
                     }
@@ -306,8 +307,8 @@ export struct MedicalAdvice {
             .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
             .chainAnimation(false) // 联动特效关闭
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              console.info('first' + firstIndex);
-              console.info('last' + lastIndex);
+              Logger.info('first' + firstIndex);
+              Logger.info('last' + lastIndex);
             })
             .width('100%')
             .height('100%')

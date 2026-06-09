@@ -22,7 +22,7 @@ import { ColorMetrics, LengthMetrics, promptAction } from '@kit.ArkUI';
 import { LoginCloud } from '@ohos/mine/src/main/ets/model/cloud/LoginCloud';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { LoginUtil } from '@ohos/mine/src/main/ets/model/utils/LoginUtil';
-import { NavBar, PageViewUtils } from '@ohos/common';
+import { Logger, NavBar, PageViewUtils } from '@ohos/common';
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
 import { KeyCode } from '@kit.InputKit';
 import {
@@ -268,7 +268,7 @@ export struct AccountRegistrationPagePage {
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
     .onVisibleAreaChange([0.0], (isVisible: boolean, currentRatio: number) => {
       if (!isVisible) {
-        console.log(`DeviceDetailPage isVisible: ${isVisible}, currentRatio: ${currentRatio}`);
+        Logger.info(`DeviceDetailPage isVisible: ${isVisible}, currentRatio: ${currentRatio}`);
         unRegistrationMonitoring(KeyCode.KEYCODE_ENTER);
       }
     });

@@ -29,7 +29,7 @@ export struct ProductionEquipmentPage {
   build() {
     Column() {
       Row() {
-        Button('发送转向').onClick(() => {
+        Button($r('app.string.SendTurn_signal')).onClick(() => {
 
         });
       }.width('100%').padding({ left: 12, top: 12 });

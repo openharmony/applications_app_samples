@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import dataPreferences from '@ohos.data.preferences'; // 假设 HarmonyOS 提供的存储模块
+import { Logger } from '@ohos/common';
 
 export default class Net {
   public context: Context = getContext();
@@ -36,10 +37,10 @@ export default class Net {
   private saveProperties() {
     dataPreferences.getPreferences(this.context, 'netConfig', (err, preferences) => {
       if (err) {
-        console.error('Failed to get preferences:', err);
+        Logger.error('Failed to get preferences:' + err);
         return;
       }
-      console.info(`Saving properties: Ip=${this.ip}, typeId=${this.typeId}, orgId=${this.orgId}, deptId=${this.deptId}`);
+      Logger.info(`Saving properties: Ip=${this.ip}, typeId=${this.typeId}, orgId=${this.orgId}, deptId=${this.deptId}`);
       preferences.putSync('Ip', this.ip);
       preferences.putSync('typeId', this.typeId);
       preferences.putSync('orgId', this.orgId);
@@ -51,7 +52,7 @@ export default class Net {
   private loadProperties() {
     dataPreferences.getPreferences(this.context, 'netConfig', (err, preferences) => {
       if (err) {
-        console.error('Failed to get preferences:', err);
+        Logger.error('Failed to get preferences:' + err);
         return;
       }
       this.ip = preferences.getSync('Ip', '222.173.253.70:18080') as string;

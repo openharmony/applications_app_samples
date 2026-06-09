@@ -34,17 +34,19 @@ export struct CreateProjectPage {
   private icBackIsVisibility: boolean = true;
   private projectName: string = '';
   @StorageLink('currentBreakpoint') currentBreakpoint: string = '';
-
+  getResourceStr(res: Resource) {
+    return getContext().resourceManager.getStringSync(res.id)
+  }
   onPageShow() {
     this.requestLocationPermission().then((result) => {
       if (result) {
         this.getLocation().then((result) => {
           if (!result) {
-            Prompt.showToast({ message: '定位失败，可能未打开定位' });
+            Prompt.showToast({ message: this.getResourceStr($r('app.string.Location_failed')) });
           }
         });
       } else {
-        Prompt.showToast({ message: '未授权定位权限，无法定位' });
+        Prompt.showToast({ message: this.getResourceStr($r('app.string.Location_permission')) });
       }
     });
 

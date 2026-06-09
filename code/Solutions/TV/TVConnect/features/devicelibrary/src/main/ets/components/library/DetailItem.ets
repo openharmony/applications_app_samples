@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { HMRouterMgr } from '@hadss/hmrouter';
+import { Logger } from '@ohos/common';
 import {
   DetailItemInfo,
   DeviceLibraryManager,
@@ -78,7 +79,7 @@ export struct DetailItem {
       try {
         this.getUIContext().getFocusController().requestFocus(this.deviceId);
       } catch (e) {
-        console.error(e);
+        Logger.error(e);
       }
     })
     .margin({

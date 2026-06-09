@@ -48,15 +48,15 @@ export class HttpRequest {
     }
     options.header = headerRecord;
     try {
-      console.log('createRequest begin');
+      Logger.info('createRequest begin');
       let urls = `${BASE_URL}${url}`;
-      console.log('createRequest begin urls==' + JSON.stringify(urls) + '==options==' + JSON.stringify(options));
+      Logger.info('createRequest begin urls==' + JSON.stringify(urls) + '==options==' + JSON.stringify(options));
       let response = await client.request(urls, options);
-      console.log('createRequest response' + JSON.stringify(response));
+      Logger.info('createRequest response' + JSON.stringify(response));
       if (typeof response.result === 'string') {
-        console.log('createRequest response response.result');
+        Logger.info('createRequest response response.result');
         let base = JSON.parse(response.result) as BaseEntry<T>;
-        console.log('createRequest response base' + JSON.stringify(base));
+        Logger.info('createRequest response base' + JSON.stringify(base));
         if (base.code == 200) {
           return base.data;
         }
@@ -70,7 +70,7 @@ export class HttpRequest {
       Logger.error(TAG, 'http response analysis failed');
       return Promise.reject('http response analysis failed');
     } catch (err) {
-      console.log('createRequest err' + JSON.stringify(err));
+      Logger.info('createRequest err' + JSON.stringify(err));
       Logger.error(TAG, `http request error code=${err?.code} message=${err?.message}`);
       return Promise.reject(err);
     } finally {

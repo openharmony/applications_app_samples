@@ -162,7 +162,7 @@ export struct CoapDevicesScanPage {
   }
 
   aboutToDisappear() {
-    console.log('aboutToDisappear()');
+    Logger.info('aboutToDisappear()');
   }
 
   build() {

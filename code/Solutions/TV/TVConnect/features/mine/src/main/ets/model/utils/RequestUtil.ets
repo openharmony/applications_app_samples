@@ -15,6 +15,7 @@
 import request from '@ohos.request';
 import { DownloadCallback } from '../callback/DownloadCallback';
 import { BusinessError } from '@ohos.base';
+import { Logger } from '@ohos/common';
 
 /*
  * 文件上传下载工具类
@@ -33,7 +34,7 @@ export class RequestUtil {
     };
     let failCallback = (err: number) => {
       callback?.onFailure();
-      console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+      Logger.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
     };
     try {
       request.downloadFile(getContext(), {
@@ -42,7 +43,7 @@ export class RequestUtil {
       }, (err: BusinessError, data: request.DownloadTask) => {
         if (err) {
           callback?.onFailure();
-          console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+          Logger.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         downloadTask = data;
@@ -52,7 +53,7 @@ export class RequestUtil {
       });
     } catch (err) {
       callback?.onFailure();
-      console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+      Logger.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
     }
   }
 }

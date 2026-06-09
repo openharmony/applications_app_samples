@@ -17,6 +17,7 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import { UpdateLibraryCallback } from '../callback/UpdateLibraryCallback';
 import zlib from '@ohos.zlib';
+import { Logger } from '@ohos/common';
 
 /*
  * 库管理
@@ -101,7 +102,7 @@ export class LibraryManager {
     } catch (errData) {
       let code = (errData as BusinessError).code;
       let message = (errData as BusinessError).message;
-      console.error(`resetTmpPath errData is errCode:${code}  message:${message}}`);
+      Logger.error(`resetTmpPath errData is errCode:${code}  message:${message}}`);
     }
   }
 
@@ -232,10 +233,10 @@ export class LibraryManager {
       zlib.decompressFile(resPath, destPath, options, (errData: BusinessError) => {
         if (errData !== null) {
           callback?.onParseEnd(UpdateLibraryCode.PARSE_END_CHECK_FAIL);
-          console.error('unzipLibrary errData !== null');
+          Logger.error('unzipLibrary errData !== null');
           _this.printErrData(errData);
         } else {
-          console.error('unzipLibrary else');
+          Logger.error('unzipLibrary else');
           _this.onUnzipLibraryEnd(callback);
         }
       });
@@ -367,7 +368,7 @@ export class LibraryManager {
   protected printErrData(errData: BusinessError) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
-    console.error(`library errData is errCode:${code}  message:${message}}`);
+    Logger.error(`library errData is errCode:${code}  message:${message}}`);
   }
 
   /**

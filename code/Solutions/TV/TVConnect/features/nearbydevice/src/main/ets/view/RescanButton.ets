@@ -16,6 +16,7 @@ import DeviceDiscoverManager from '../viewmodel/DeviceDiscoverManager';
 import { ColorMetrics, LengthMetrics, promptAction } from '@kit.ArkUI';
 import { access } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Logger } from '@ohos/common';
 
 /**
  * 重新扫描按钮
@@ -26,7 +27,7 @@ export struct RescanButton {
 
   promptActionShowToast() {
     promptAction.showToast({
-      message: '请开启蓝牙开关',
+      message: $r('app.string.Bluetooth_switch'),
       duration: 1000,
     });
   }
@@ -38,17 +39,17 @@ export struct RescanButton {
     )
       .onClick(() => {
         this.isDragMode = true;
-        console.log('bleStartScan button');
+        Logger.info('bleStartScan button');
         try {
           let state = access.getState();
-          console.log('bleStartScan state==' + state);
+          Logger.info('bleStartScan state==' + state);
           if (state == 2) {
             DeviceDiscoverManager.getInstance().startScan();
           } else {
             this.promptActionShowToast();
           }
         } catch (err) {
-          console.error('bleStartScan errCode: ' + (err as BusinessError).code + ', errMessage: ' +
+          Logger.error('bleStartScan errCode: ' + (err as BusinessError).code + ', errMessage: ' +
           (err as BusinessError).message);
           this.promptActionShowToast();
         }

@@ -20,6 +20,7 @@ import { LibraryManagerFactory, LibraryManagerType } from '../model/manager/Libr
 import { UpdateLibraryCallback } from '../model/callback/UpdateLibraryCallback';
 import { LibraryManager, UpdateLibraryCode } from '../model/manager/LibraryManager';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Logger } from '@ohos/common';
 
 /**
  * 我的页面-设备库导入
@@ -126,7 +127,7 @@ struct DeviceLibraryFileImportComponent {
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+      Logger.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
     }
   }
 

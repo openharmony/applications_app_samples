@@ -16,6 +16,7 @@ import { ColorMetrics, LengthMetrics, promptAction } from '@kit.ArkUI';
 import CoapDeviceDiscoverManager from '../viewmodel/CoapDeviceDiscoverManager';
 import { wifiManager } from '@kit.ConnectivityKit';
 import ethernet from '@ohos.net.ethernet';
+import { Logger } from '@ohos/common';
 
 /**
  * 重新扫描按钮
@@ -58,7 +59,7 @@ export struct CoapRescanButton {
   private async pollNetworkState(): Promise<void> {
     try {
       const isWifiActive = wifiManager.isWifiActive();
-      console.info('pollNetworkState isWifiActive:' + isWifiActive);
+      Logger.info('pollNetworkState isWifiActive:' + isWifiActive);
       if (isWifiActive) {
         const wifiInfo = await wifiManager.getLinkedInfo();
         if (wifiInfo?.ssid) {
@@ -72,25 +73,25 @@ export struct CoapRescanButton {
         this.networkStateType = 0; // 可根据实际需求调整
       }
     } catch (error) {
-      console.error('pollNetworkState error：', JSON.stringify(error));
+      Logger.error('pollNetworkState error：', JSON.stringify(error));
     }
   }
 
   private async handleEthernetConfig(): Promise<void> {
     try {
       const iFaces = await ethernet.getAllActiveIfaces();
-      console.info('handleEthernetConfig getAllActiveIfaces iFaces ==> ' + JSON.stringify(iFaces));
+      Logger.info('handleEthernetConfig getAllActiveIfaces iFaces ==> ' + JSON.stringify(iFaces));
       if (iFaces.length > 0) {
         this.curActiveIFace = iFaces[iFaces.length - 1];
-        console.info('handleEthernetConfig this.curActiveIFace ==> ' + JSON.stringify(this.curActiveIFace));
+        Logger.info('handleEthernetConfig this.curActiveIFace ==> ' + JSON.stringify(this.curActiveIFace));
         const data = await ethernet.getIfaceConfig(this.curActiveIFace);
-        console.info('handleEthernetConfig getIfaceConfig data ==> ' + JSON.stringify(data));
+        Logger.info('handleEthernetConfig getIfaceConfig data ==> ' + JSON.stringify(data));
         this.networkStateType = data?.ipAddr ? 0 : 1;
       } else {
         this.networkStateType = 1;
       }
     } catch (error) {
-      console.error('handleEthernetConfig error：', JSON.stringify(error));
+      Logger.error('handleEthernetConfig error：', JSON.stringify(error));
       this.networkStateType = 1;
     }
   }
@@ -102,10 +103,10 @@ export struct CoapRescanButton {
     )
       .onClick(() => {
         this.isDragMode = true;
-        console.info('getCurActiveIFaceConfig coapButton' + this.networkStateType);
+        Logger.info('getCurActiveIFaceConfig coapButton' + this.networkStateType);
         if (this.networkStateType == 0) {
           promptAction.showToast({
-            message: '扫描失败，请检查网络连接/只能连接无线网络',
+            message: $r('app.string.Scan_failed'),
             duration: 1000,
           });
         } else if (this.networkStateType == 1) {

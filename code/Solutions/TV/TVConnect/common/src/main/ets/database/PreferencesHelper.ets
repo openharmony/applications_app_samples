@@ -20,7 +20,7 @@ import dataPreferences from '@ohos.data.preferences';
  * */
 export class PreferencesHelper {
   private static mPreferences: dataPreferences.Preferences | null = null;
-  private static PREFER_NAME: string = 'com.huawei.ohos.connect';
+  private static PREFER_NAME: string = 'com.samples.connect';
 
   public static async initPreferences(): Promise<dataPreferences.Preferences> {
     return dataPreferences.getPreferences(getContext(), PreferencesHelper.PREFER_NAME);

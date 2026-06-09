@@ -114,7 +114,7 @@ export struct WifiDeviceDetailDialog {
       DeviceManagerFactory.getDeviceManager().queryDeviceState(queryOption).then((result) => {
         Logger.warn('DeviceDetailDialog aboutToAppear', `===>queryOption queryDeviceState.then `);
       }).catch((error: BusinessError) => {
-        console.error(`===>DeviceDetailPage queryDeviceState(switch) error code= ${error.code}`);
+        Logger.error(`===>DeviceDetailPage queryDeviceState(switch) error code= ${error.code}`);
         if (error.code != InfConstants.SID_NOT_SUPPORT) {
           this.online = false;
         }
@@ -125,7 +125,7 @@ export struct WifiDeviceDetailDialog {
           Logger.warn('DeviceDetailDialog aboutToAppear',
             `===>ConnectStateChanged() state= ${connectChangeAction.action}`);
           if (connectChangeAction.unionCode != device?.getUnionCode()) {
-            console.warn(`DeviceDetailPage ConnectStateChanged device not match`);
+            Logger.warn(`DeviceDetailPage ConnectStateChanged device not match`);
             return;
           }
           let action = connectChangeAction.action;
@@ -146,7 +146,7 @@ export struct WifiDeviceDetailDialog {
               `===>MessageReceivers() messageAction: ${JSON.stringify(messageAction)}, message= ${JSON.stringify(messageAction.message)}`);
             let messages = messageAction.message;
             if (messageAction.unionCode != device?.getUnionCode()) {
-              console.warn(`DeviceDetailPage MessageReceivers device not match`);
+              Logger.warn(`DeviceDetailPage MessageReceivers device not match`);
               return;
             }
             messages.forEach((item): void => this.processMessage(item));
@@ -166,17 +166,17 @@ export struct WifiDeviceDetailDialog {
     if (infDeviceState.sid == 'switch') {
       let state = data['on'];
       this.switch = state == 1;
-      console.debug(`===>DeviceDetailPage processMessage state= ${state}`);
+      Logger.debug(`===>DeviceDetailPage processMessage state= ${state}`);
     } else if (infDeviceState.sid == 'gps') {
       this.locationStr = `(${data['longitude']},${data['latitude']})`;
-      console.debug(`===>DeviceDetailPage processMessage gps= ${this.locationStr}`);
+      Logger.debug(`===>DeviceDetailPage processMessage gps= ${this.locationStr}`);
     } else if (infDeviceState.sid == 'thing_model') {
       Logger.debug('DeviceDetailPage', `===>processMessage() data= ${JSON.stringify(data)}`);
       Logger.warn('DeviceDetailPage', `===>typeof services= ${typeof data['services']}`);
       const jsonString = JSON.stringify(data['services']);
       const servicesDto = JSON.parse(jsonString) as ServiceDto[];
       this.thingModelServices = parseProfileServices(servicesDto);
-      console.debug(`===>DeviceDetailPage model= ${infDeviceState.sid}`);
+      Logger.debug(`===>DeviceDetailPage model= ${infDeviceState.sid}`);
       Logger.warn('DeviceDetailPage', `===>processMessage() data= ${JSON.stringify(this.thingModelServices)}`);
     }
   }
@@ -220,7 +220,7 @@ export struct WifiDeviceDetailDialog {
     DeviceManagerFactory.getDeviceManager()
       .controlDevice(option)     //最后走到了IotHelper里面的controlDevice，向设备发消息主要是connectSession?.sendCommand
       .then((result) => {
-        console.debug('===>deviceSwitch DeviceDetailDialog controlDevice success!');
+        Logger.debug('===>deviceSwitch DeviceDetailDialog controlDevice success!');
       })
       .catch(() => {
         Logger.warn(`===>deviceSwitch: 指令发送失败，请检查设备连接状态`);

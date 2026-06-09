@@ -199,6 +199,102 @@
     {
       "name": "press_again_to_exit",
       "value": "再按一次退出应用"
+    },
+    {
+      "name": "Hepatobiliary_Surgery_Ward1",
+      "value": "肝胆外科一病区"
+    },
+    {
+      "name": "DeviceNumber_001",
+      "value": "设备编号：001"
+    },
+    {
+      "name": "operating_system_settings",
+      "value": "点击开启操作系统的设置"
+    },
+    {
+      "name": "Carrying_out_medical_orders",
+      "value": "医嘱执行"
+    },
+    {
+      "name": "Bed",
+      "value": "床"
+    },
+    {
+      "name": "Seriously_ill",
+      "value": "病重"
+    },
+    {
+      "name": "Female",
+      "value": "女"
+    },
+    {
+      "name": "76_years_old",
+      "value": "76岁"
+    },
+    {
+      "name": "Injection_Medication_Orders",
+      "value": "注射药品类医嘱"
+    },
+    {
+      "name": "Patient_List",
+      "value": "患者列表"
+    },
+    {
+      "name": "My_patient",
+      "value": "我的患者"
+    },
+    {
+      "name": "Frequency",
+      "value": "频次: %s"
+    },
+    {
+      "name": "Medicine_pickup_time",
+      "value": "收药时间: %s"
+    },
+    {
+      "name": "enter_face_recognition",
+      "value": "点击进入人脸识别"
+    },
+    {
+      "name": "Nursing_orders",
+      "value": "护理类医嘱"
+    },
+    {
+      "name": "Read_agree",
+      "value": "阅读并同意"
+    },
+    {
+      "name": "User_Agreement",
+      "value": "通用互联用户协议"
+    },
+    {
+      "name": "Content_About",
+      "value": "内容及关于"
+    },
+    {
+      "name": "Services_Privacy",
+      "value": "设备管理服务与隐私的声明"
+    },
+    {
+      "name": "UserAgreement_PrivacyPolicy",
+      "value": "请阅读并同意用户协议与隐私声明"
+    },
+    {
+      "name": "closeToPatient",
+      "value": "接近患者"
+    },
+    {
+      "name": "StayAwayFromPatient",
+      "value": "远离患者"
+    },
+    {
+      "name": "Calculation_started",
+      "value": "计算开始"
+    },
+    {
+      "name": "Record_data",
+      "value": "记录%s数据并计算"
     }
   ]
 }

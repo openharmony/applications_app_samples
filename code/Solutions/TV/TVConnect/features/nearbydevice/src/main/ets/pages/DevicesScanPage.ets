@@ -148,7 +148,7 @@ export struct DevicesScanPage {
   }
 
   aboutToDisappear() {
-    console.log('aboutToDisappear()');
+    Logger.info('aboutToDisappear()');
   }
 
   build() {

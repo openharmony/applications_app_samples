@@ -18,6 +18,7 @@ import { router } from '@kit.ArkUI';
 import { PatientData, ResultObject, Patient } from '../../viewmodel/OrderExecution/ConfigData';
 import http from '@ohos.net.http';
 import Net from '../../viewmodel/OrderExecution/netConfig';
+import { Logger } from '@ohos/common';
 
 
 let patientsList: Patient[] = [];
@@ -25,7 +26,7 @@ let patientsList: Patient[] = [];
 function get(deptId: string): Promise<Array<Patient> | null> {
   let httpGetRequest = http.createHttp();
   httpGetRequest.on('headersReceive', (header) => {
-    console.info('Get header: ' + JSON.stringify(header));
+    Logger.info('Get header: ' + JSON.stringify(header));
   });
 
   return new Promise((resolve, reject) => {
@@ -48,11 +49,11 @@ function get(deptId: string): Promise<Array<Patient> | null> {
         });
         resolve(patients);
       } else {
-        console.error('Expected resultObject.data to be an array');
+        Logger.error('Expected resultObject.data to be an array');
         resolve(null);
       }
     }).catch((err: Error) => {
-      console.info('Get error:' + JSON.stringify(err));
+      Logger.info('Get error:' + JSON.stringify(err));
       reject(err);
     });
   });
@@ -75,7 +76,7 @@ export default struct PatientList {
         this.patientsList = data;
       }
     } catch (error) {
-      console.error('Error fetching data: ' + error);
+      Logger.error('Error fetching data: ' + error);
     }
   }
 
@@ -88,7 +89,7 @@ export default struct PatientList {
       }.backgroundColor('#6fa7ff').width('100%').height(50).justifyContent(FlexAlign.Center);
 
       Row() {
-        Text('患者列表')
+        Text($r('app.string.Patient_List'))
           .height(40)
           .border({
             width: 0.5,
@@ -104,7 +105,7 @@ export default struct PatientList {
           .fontColor(this.currentIndex === 0 ? $r('app.color.nurse_blue') : Color.White)
           .backgroundColor(this.currentIndex === 0 ? Color.White : '')
           .padding({ left: 10, right: 10 });
-        Text('我的患者')
+        Text($r('app.string.My_patient'))
           .height(40)
           .border({
             width: 0.5,
@@ -203,8 +204,8 @@ export default struct PatientList {
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .chainAnimation(false) // 联动特效关闭
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            console.info('first' + firstIndex);
-            console.info('last' + lastIndex);
+            Logger.info('first' + firstIndex);
+            Logger.info('last' + lastIndex);
           })
           .width('100%')
           .height('100%')

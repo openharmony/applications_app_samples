@@ -16,7 +16,7 @@
 import ConfigData from '../viewmodel/ConfigData';
 import { Callback } from '@kit.BasicServicesKit';
 import { scale } from '../util/ScreenAdaptation';
-import { PageViewUtils } from '@ohos/common';
+import { Logger, PageViewUtils } from '@ohos/common';
 
 @Component
 export struct LocationInfo {
@@ -390,7 +390,7 @@ export struct deviceRadio {
         .height('25lpx')
         .width('25lpx')
         .onChange((isChecked: boolean) => {
-          console.log('===>isChecked', isChecked);
+          Logger.info('===>isChecked' + isChecked);
           if (isChecked) {
             this.selectedValue = this.value;
             if (this.onChange) {
@@ -419,7 +419,7 @@ export struct cloudDeviceRadio {
   private switchTime = 0;
 
   aboutToAppear(): void {
-    console.log('aboutToAppear radio');
+    Logger.info('aboutToAppear radio');
     PageViewUtils.tabClick();
   }
 
@@ -455,7 +455,7 @@ export struct cloudDeviceRadio {
       Radio({ value: this.value, group: 'radioGroup' }).checked(this.isChecked)
         .margin({ right: scale(8) })
         .onChange((isChecked: boolean) => {
-          console.log('===>isChecked', isChecked);
+          Logger.info('===>isChecked' + isChecked);
           if (isChecked) {
             if (this.onChange) {
               this.onChange(this.value);
@@ -468,7 +468,7 @@ export struct cloudDeviceRadio {
     .borderRadius($r('app.string.radius_16'))
     .backgroundColor($r('app.color.default_component_color'))
     .onAppear(() => {
-      console.log('onAppear radio');
+      Logger.info('onAppear radio');
     });
   }
 }
@@ -520,8 +520,8 @@ export struct coapDeviceRadio {
         .height('25lpx')
         .width('25lpx')
         .onChange((isChecked: boolean) => {
-          console.log('===>isChecked', isChecked);
-          console.log('===>isCheckedtitle1', this.settingTitle);
+          Logger.info('===>isChecked' + isChecked);
+          Logger.info('===>isCheckedtitle1' + this.settingTitle);
           if (isChecked) {
             this.selectedValue = this.value;
             if (this.onChange) {

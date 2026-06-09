@@ -64,7 +64,7 @@ export default class BleScanner {
       try {
         ble.stopBLEScan();
       } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+        Logger.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       }
       this.isScanning = false;
     }

@@ -37,12 +37,12 @@ export default class EntryAbility extends UIAbility {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
       atManager.requestPermissionsFromUser((this.context), ['ohos.permission.ACCESS_BLUETOOTH']).then((data) => {
-        console.log('data: ' + JSON.stringify(data));
+        Logger.info('data: ' + JSON.stringify(data));
       }).catch((err: object) => {
-        console.log('err: ' + JSON.stringify(err));
+        Logger.info('err: ' + JSON.stringify(err));
       });
     } catch (err) {
-      console.log('catch err->' + JSON.stringify(err));
+      Logger.info('catch err->' + JSON.stringify(err));
     }
     HMRouterMgr.init({
       context: this.context

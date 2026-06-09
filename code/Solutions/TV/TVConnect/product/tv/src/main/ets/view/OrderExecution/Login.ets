@@ -14,6 +14,7 @@
  */
 import cert from '@ohos.security.cert';
 import { router } from '@kit.ArkUI';
+import { Logger } from '@ohos/common';
 
 let i = 0;
 
@@ -48,9 +49,9 @@ export default struct Login {
           .stroke($r('app.color.nurse_blue'))
           .position({ x: 0 });
         Image($r('app.media.login_face')).width(40).margin({ top: 20 });
-        Text('肝胆外科一病区').fontSize(10).fontColor($r('app.color.nurse_blue')).margin({ top: 20 });
-        Text('设备编号：001').fontSize(8).fontColor($r('app.color.nurse_blue')).margin({ top: 15, bottom: 30 });
-        //账号
+        Text($r('app.string.Hepatobiliary_Surgery_Ward1')).fontSize(10).fontColor($r('app.color.nurse_blue')).margin({ top: 20 });
+        Text($r('app.string.DeviceNumber_001')).fontSize(8).fontColor($r('app.color.nurse_blue')).margin({ top: 15, bottom: 30 });
+        // 账号
         Row() {
           Row() {
             Image($r('app.media.nurse_icon_user')).width(10);
@@ -88,7 +89,7 @@ export default struct Login {
               }
             })
             .inputFilter('[a-z]', (e) => {
-              console.log(JSON.stringify(e));
+              Logger.info(JSON.stringify(e));
             })
             .onChange((value: string) => {
               this.userName = value;
@@ -149,7 +150,7 @@ export default struct Login {
           });
       }.margin({ top: 61 }).width('88%').height('62%');
 
-      Text('点击开启操作系统的设置')
+      Text($r('app.string.operating_system_settings'))
         .fontSize(8)
         .fontColor($r('app.color.nurse_blue'))
         .lineHeight(16)

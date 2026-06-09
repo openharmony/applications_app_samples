@@ -16,6 +16,7 @@ import { router } from '@kit.ArkUI';
 import { name } from './PatientList';
 import { drugsList } from './MedicalAdvice';
 import { DrugClass, DrugData, DrugObject } from '../../viewmodel/OrderExecution/MediacalData';
+import { Logger } from '@ohos/common';
 
 @Entry
 @Component
@@ -23,11 +24,11 @@ export struct Drug {
   @State currentIndex: number = 0;
 
   onCancel() {
-    console.info('Callback when the first button is clicked');
+    Logger.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked');
+    Logger.info('Callback when the second button is clicked');
   }
 
   build() {
@@ -38,7 +39,7 @@ export struct Drug {
           .onClick(() => {
             router.back();
           });
-        Text('药品配液')
+        Text($r('app.string.Drug_preparation'))
           .height(22)
           .fontSize(20);
       }
@@ -81,9 +82,9 @@ export struct Drug {
 
                   Divider().strokeWidth(1).color('#999').margin({ top: 5 });
                   Row() {
-                    Text('频次：' + item.field9).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
+                    Text($r('app.string.Frequency',item.field9) ).fontSize(16).fontColor(Color.Gray).margin({ right: 10 });
                     Text(item.field8).fontSize(16).fontColor(Color.Gray).margin({ right: 20 });
-                    Text('收药时间：' + item.field10).fontSize(16).fontColor(Color.Gray);
+                    Text($r('app.string.Medicine_pickup_time',item.field10)).fontSize(16).fontColor(Color.Gray);
                   }.width('100%').padding(10);
                 }.width('92%')
                 .margin({ top: 15, left: 15 })
@@ -97,8 +98,8 @@ export struct Drug {
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .chainAnimation(false) // 联动特效关闭
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            console.info('first' + firstIndex);
-            console.info('last' + lastIndex);
+            Logger.info('first' + firstIndex);
+            Logger.info('last' + lastIndex);
           })
           .width('100%')
           .height('100%')
@@ -107,7 +108,7 @@ export struct Drug {
       };
 
       Row() {
-        Button('完成配液并复核', { type: ButtonType.Normal, stateEffect: true })
+        Button($r('app.string.Finish_preparing'), { type: ButtonType.Normal, stateEffect: true })
           .borderRadius(8)
           .backgroundColor(0xeaf3ff)
           .fontColor($r('app.color.nurse_blue'))
@@ -116,7 +117,7 @@ export struct Drug {
           .onClick(() => {
             router.back();
           });
-        Button('完成配液', { type: ButtonType.Normal, stateEffect: true })
+        Button($r('app.string.Finish_preparing_solution'), { type: ButtonType.Normal, stateEffect: true })
           .borderRadius(8)
           .backgroundColor($r('app.color.nurse_blue'))
           .width(150)

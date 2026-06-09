@@ -199,6 +199,102 @@
     {
       "name": "press_again_to_exit",
       "value": "press again to exit"
+    },
+    {
+      "name": "Hepatobiliary_Surgery_Ward1",
+      "value": "Hepatobiliary Surgery Ward 1"
+    },
+    {
+      "name": "DeviceNumber_001",
+      "value": "Device Number: 001"
+    },
+    {
+      "name": "operating_system_settings",
+      "value": "Click to open the operating system settings"
+    },
+    {
+      "name": "Carrying_out_medical_orders",
+      "value": "Carrying out medical orders"
+    },
+    {
+      "name": "Bed",
+      "value": "Bed"
+    },
+    {
+      "name": "Seriously_ill",
+      "value": "Seriously ill"
+    },
+    {
+      "name": "Female",
+      "value": "Female"
+    },
+    {
+      "name": "76_years_old",
+      "value": "76 years old"
+    },
+    {
+      "name": "Injection_Medication_Orders",
+      "value": "Injection Medication Orders"
+    },
+    {
+      "name": "Patient_List",
+      "value": "Patient List"
+    },
+    {
+      "name": "My_patient",
+      "value": "My patient"
+    },
+    {
+      "name": "Frequency",
+      "value": "Frequency: %s"
+    },
+    {
+      "name": "Medicine_pickup_time",
+      "value": "Medicine pick-up time: %s"
+    },
+    {
+      "name": "enter_face_recognition",
+      "value": "Click to enter face recognition"
+    },
+    {
+      "name": "Nursing_orders",
+      "value": "Nursing orders"
+    },
+    {
+      "name": "Read_agree",
+      "value": "Read and agree"
+    },
+    {
+      "name": "User_Agreement",
+      "value": "General Internet User Agreement"
+    },
+    {
+      "name": "Content_About",
+      "value": "Content and About"
+    },
+    {
+      "name": "Services_Privacy",
+      "value": "Statement on Device Management Services and Privacy"
+    },
+    {
+      "name": "UserAgreement_PrivacyPolicy",
+      "value": "Please read and agree to the User Agreement and Privacy Policy"
+    },
+    {
+      "name": "closeToPatient",
+      "value": "Get close to the patient"
+    },
+    {
+      "name": "StayAwayFromPatient",
+      "value": "Stay away from the patient"
+    },
+    {
+      "name": "Calculation_started",
+      "value": "Calculation started"
+    },
+    {
+      "name": "Record_data",
+      "value": "Record %s data and calculate"
     }
   ]
 }

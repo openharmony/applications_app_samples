@@ -1,3 +1,5 @@
+import { Logger } from '@ohos/common';
+
 /*
  * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +28,7 @@ export class BasicDataSource implements IDataSource {
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
+      Logger.info('add listener');
       this.listeners.push(listener);
     }
   }
@@ -34,7 +36,7 @@ export class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
+      Logger.info('remove listener');
       this.listeners.splice(pos, 1);
     }
   }
