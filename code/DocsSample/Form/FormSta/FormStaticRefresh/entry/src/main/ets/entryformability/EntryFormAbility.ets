@@ -86,4 +86,5 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // Called to notify the form provider that a specified form has been destroyed.
   }
 }
+
 // [End EntryFormAbility]

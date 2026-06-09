@@ -37,4 +37,5 @@ struct AnimationCard {
     .alignItems(VerticalAlign.Center)
   }
 }
+
 // [End animation_card]

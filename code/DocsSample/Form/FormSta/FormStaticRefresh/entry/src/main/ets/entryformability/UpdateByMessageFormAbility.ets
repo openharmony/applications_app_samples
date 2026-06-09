@@ -75,7 +75,8 @@ export default class UpdateByMessageFormAbility extends FormExtensionAbility {
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     formProvider.updateForm(formId, formData).catch((err) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `[UpdateByMessageFormAbility] updateForm, code: ${err?.code}, message: ${err?.message}`);
+      hilog.info(DOMAIN_NUMBER, TAG,
+        `[UpdateByMessageFormAbility] updateForm, code: ${err?.code}, message: ${err?.message}`);
     });
   }
 
