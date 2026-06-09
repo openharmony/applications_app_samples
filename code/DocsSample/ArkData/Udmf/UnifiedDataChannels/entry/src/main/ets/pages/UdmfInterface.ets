@@ -72,7 +72,7 @@ export function insertUnifiedData() {
   } catch (e) {
     let error: BusinessError = e as BusinessError;
     hilog.error(0xFF00, '[Sample_Udmf]',
-      `Insert data throws an exception. code is ${error.code},message is ${error.message}`);
+      `Insert data throws an exception. code is ${error.code}, message is ${error.message}`);
   }
   // [End unified_data_channels_insert_data]
 }
