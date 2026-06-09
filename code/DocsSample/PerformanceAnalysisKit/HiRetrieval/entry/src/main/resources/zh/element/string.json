@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "init",
+      "value": "初始化"
+    },
+    {
+      "name": "participate",
+      "value": "参与"
+    },
+    {
+      "name": "run",
+      "value": "运行"
+    },
+    {
+      "name": "quit",
+      "value": "退出"
+    },
+    {
+      "name": "user_type",
+      "value": "用户类型："
+    },
+    {
+      "name": "device_type",
+      "value": "设备类型："
+    },
+    {
+      "name": "device_model",
+      "value": "设备型号："
+    },
+    {
+      "name": "user_type_input",
+      "value": "输入用户类型"
+    },
+    {
+      "name": "device_type_input",
+      "value": "输入设备类型"
+    },
+    {
+      "name": "device_model_input",
+      "value": "输入设备型号"
+    }
+  ]
+}
