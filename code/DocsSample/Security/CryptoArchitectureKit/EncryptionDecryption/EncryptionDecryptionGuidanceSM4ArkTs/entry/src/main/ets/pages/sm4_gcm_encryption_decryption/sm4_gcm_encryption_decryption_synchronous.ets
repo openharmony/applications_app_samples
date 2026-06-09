@@ -47,7 +47,7 @@ let gcmParams = genGcmParamsSpec();
 
 // 加密消息
 function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-  let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
+  let cipher = cryptoFramework.createCipher('SM4_128|GCM');
   cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
   let encryptUpdate = cipher.updateSync(plainText);
   // gcm模式加密doFinal时传入空，获得tag数据，并更新至gcmParams对象中。
@@ -57,7 +57,7 @@ function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramewo
 
 // 解密消息
 function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-  let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
+  let decoder = cryptoFramework.createCipher('SM4_128|GCM');
   decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
   let decryptUpdate = decoder.updateSync(cipherText);
   // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。

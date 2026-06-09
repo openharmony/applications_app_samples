@@ -20,7 +20,7 @@ async function genSymKeyByData(symKeyData: Uint8Array) {
   let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
   let hmacGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
   let symKey = await hmacGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
+  console.info('convertKey result: success.');
   return symKey;
 }
 async function doHmac() {
@@ -37,9 +37,9 @@ async function doHmac() {
   // 数据量较少时，可以只做一次update，将所有数据传入，接口不对参数长度设限。
   await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let macResult = await mac.doFinal();
-  console.info('HMAC result:' + macResult.data);
+  console.info('HMAC result: ' + macResult.data);
   let macLen = mac.getMacLength();
-  console.info('HMAC len:' + macLen);
+  console.info('HMAC len: ' + macLen);
 }
 
 
