@@ -83,6 +83,7 @@ int32_t VideoDecoder::SetCallback(CodecUserData *codecUserData)
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
+// [Start configure_full_baseline]
 int32_t VideoDecoder::Configure(const SampleInfo &sampleInfo)
 {
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -96,11 +97,11 @@ int32_t VideoDecoder::Configure(const SampleInfo &sampleInfo)
     if (sampleInfo.codecSyncMode) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, sampleInfo.codecSyncMode);
     }
-
-    AVCODEC_SAMPLE_LOGI("====== VideoDecoder config ======");
-    AVCODEC_SAMPLE_LOGI("%{public}d*%{public}d, %{public}.1ffps", sampleInfo.videoWidth, sampleInfo.videoHeight,
-                        sampleInfo.frameRate);
-    AVCODEC_SAMPLE_LOGI("====== VideoDecoder config ======");
+    if (sampleInfo.isSmartFluencySupported) {
+        // 配置 FULL 模式，为后续 ADAPTIVE 模式性能体验最大化准备好运行环境。
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE,
+                                OH_FRAME_RETENTION_MODE_FULL);
+    }
 
     int ret = OH_VideoDecoder_Configure(decoder_, format);
     OH_AVFormat_Destroy(format);
@@ -108,6 +109,7 @@ int32_t VideoDecoder::Configure(const SampleInfo &sampleInfo)
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Config failed, ret: %{public}d", ret);
     return AVCODEC_SAMPLE_ERR_OK;
 }
+// [End configure_full_baseline]
 
 int32_t VideoDecoder::Config(const SampleInfo &sampleInfo, CodecUserData *codecUserData)
 {
@@ -309,6 +311,59 @@ int32_t VideoDecoder::FreeOutputBuffer(uint32_t bufferIndex, bool render, int64_
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Free output data failed");
     return AVCODEC_SAMPLE_ERR_OK;
 }
+
+// [Start onUserSpeedChanged]
+int32_t VideoDecoder::OnUserSpeedChanged(double targetSpeed)
+{
+    OH_AVFormat *param = OH_AVFormat_Create();
+    CHECK_AND_RETURN_RET_LOG(param != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "AVFormat create failed");
+
+    // 引入 epsilon 处理 double 类型的精度比较。
+    const double EPSILON = 1e-6;
+
+    if (targetSpeed > 1.0 + EPSILON) {
+        // 场景：高倍速播放 (如 1.5x, 2.0x, 3.0x 等)。
+        // 策略：使能感知自适应模式。
+        OH_AVFormat_SetIntValue(param, OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE,
+                                OH_FRAME_RETENTION_MODE_ADAPTIVE);
+        OH_AVFormat_SetDoubleValue(param, OH_MD_KEY_VIDEO_DECODER_SPEED, targetSpeed);
+    } else {
+        // 场景：正常播放 (1.0x) 或 慢速播放 (< 1.0x)。
+        // 策略：切换到全量直通模式，保障帧帧送显。
+        OH_AVFormat_SetIntValue(param, OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE,
+                                OH_FRAME_RETENTION_MODE_FULL);
+    }
+
+    // 实时下发参数，动态调整系统帧保留策略。
+    int32_t ret = OH_VideoDecoder_SetParameter(decoder_, param);
+    OH_AVFormat_Destroy(param);
+    CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
+                             "SetParameter failed, ret: %{public}d", ret);
+    return AVCODEC_SAMPLE_ERR_OK;
+}
+// [End onUserSpeedChanged]
+
+// [Start onThermalWarningReceived]
+int32_t VideoDecoder::OnThermalWarningReceived(double ratio)
+{
+    OH_AVFormat *param = OH_AVFormat_Create();
+    CHECK_AND_RETURN_RET_LOG(param != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "AVFormat create failed");
+
+    // 采用 UNIFORM 平滑定比模式。
+    OH_AVFormat_SetIntValue(param, OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE,
+                            OH_FRAME_RETENTION_MODE_UNIFORM);
+
+    // 设定保留比例（如 0.3 表示仅保留 30% 的解码帧输出）。
+    OH_AVFormat_SetDoubleValue(param, OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO, ratio);
+
+    // 实时下发生效，系统将执行均匀的抽帧剔除，降低整机负载。
+    int32_t ret = OH_VideoDecoder_SetParameter(decoder_, param);
+    OH_AVFormat_Destroy(param);
+    CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR,
+                             "SetParameter failed, ret: %{public}d", ret);
+    return AVCODEC_SAMPLE_ERR_OK;
+}
+// [End onThermalWarningReceived]
 
 int32_t VideoDecoder::Release()
 {

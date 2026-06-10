@@ -41,6 +41,8 @@ public:
     int32_t Start();
     int32_t Release();
     OH_AVFormat *GetOutputDescription();
+    int32_t OnUserSpeedChanged(double targetSpeed);
+    int32_t OnThermalWarningReceived(double ratio);
 
 private:
     int32_t SetCallback(CodecUserData *codecUserData);

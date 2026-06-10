@@ -142,6 +142,8 @@ int32_t Player::Init(SampleInfo &sampleInfo)
                              AVCODEC_SAMPLE_ERR_ERROR, "Already started.");
 
     sampleInfo_ = sampleInfo;
+    isSmartFluencySupported_ = sampleInfo.isSmartFluencySupported;
+    AVCODEC_SAMPLE_LOGI("Smart fluency supported: %{public}d", isSmartFluencySupported_);
 
     videoDecoder_ = std::make_unique<VideoDecoder>();
     audioDecoder_ = std::make_unique<AudioDecoder>();
@@ -296,6 +298,40 @@ void Player::SetSpeed(float multiplier)
     this->speed = multiplier;
     if (audioDecContext_) {
         audioDecContext_->speed = multiplier;
+    }
+
+    if (isSmartFluencySupported_ && videoDecoder_ != nullptr) {
+        videoDecoder_->OnUserSpeedChanged(multiplier);
+    }
+}
+
+void Player::SetSmartFluencySupported(bool supported)
+{
+    isSmartFluencySupported_ = supported;
+    AVCODEC_SAMPLE_LOGI("SetSmartFluencySupported: %{public}d", supported);
+}
+
+void Player::OnThermalWarningReceived(double ratio)
+{
+    if (!isSmartFluencySupported_ || videoDecoder_ == nullptr) {
+        AVCODEC_SAMPLE_LOGW("Smart fluency not supported or decoder null, skip thermal warning");
+        return;
+    }
+    thermalWarningActive_ = true;
+    AVCODEC_SAMPLE_LOGI("Thermal warning received, switching to UNIFORM mode with ratio=%.2f", ratio);
+    videoDecoder_->OnThermalWarningReceived(ratio);
+}
+
+void Player::OnThermalLevelRecovered()
+{
+    if (!thermalWarningActive_) {
+        return;
+    }
+    thermalWarningActive_ = false;
+    AVCODEC_SAMPLE_LOGI("Thermal level recovered, restoring speed-based mode");
+    // 温度恢复后，按当前倍速切回对应的帧保留模式
+    if (isSmartFluencySupported_ && videoDecoder_ != nullptr) {
+        videoDecoder_->OnUserSpeedChanged(speed);
     }
 }
 

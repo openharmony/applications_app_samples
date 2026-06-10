@@ -31,5 +31,8 @@ public:
     static napi_value Play(napi_env env, napi_callback_info info);
     static napi_value SetPlaybackSpeed(napi_env env, napi_callback_info info);
     static napi_value SetTransform(napi_env env, napi_callback_info info);
+    static napi_value SetSmartFluencyEnabled(napi_env env, napi_callback_info info);
+    static napi_value OnThermalWarningReceived(napi_env env, napi_callback_info info);
+    static napi_value OnThermalLevelRecovered(napi_env env, napi_callback_info info);
 };
 #endif

@@ -20,6 +20,7 @@ export const playNative: (
   videoDecoderType: number,
   videoDecoderRunMode: number,
   videoDecoderSyncMode: number,
+  isSmartFluencySupported: boolean,
   cbFn: () => void
 ) => void
 
@@ -30,3 +31,13 @@ export const setPlaybackSpeed: (
 export const setTransform: (
   transformHint: number,
 ) => void
+
+export const setSmartFluencyEnabled: (
+  enabled: boolean,
+) => void
+
+export const onThermalWarningReceived: (
+  ratio: number,
+) => void
+
+export const onThermalLevelRecovered: () => void

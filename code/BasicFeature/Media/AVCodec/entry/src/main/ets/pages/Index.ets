@@ -17,6 +17,8 @@ import { fileIo } from '@kit.CoreFileKit'
 import { display } from '@kit.ArkUI'
 import { camera } from '@kit.CameraKit'
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
+import { deviceInfo } from '@kit.BasicServicesKit'
+import thermal from '@ohos.thermal'
 import player from 'libplayer.so'
 import recorder from 'librecorder.so'
 import Logger from '../common/utils/Logger'
@@ -35,6 +37,8 @@ export struct Player {
   @State buttonEnabled: boolean = true;
   @State isShow: boolean = false;
   @State isShowFlv: boolean = false;
+  @State isSmartFluencySupported: boolean = false;
+  @State thermalWarningActive: boolean = false;
   private transformType: number = 0;
   private videoDecoderType: number = 0;
   private videoDecoderRunMode: number = 0;
@@ -45,6 +49,28 @@ export struct Player {
   private sourcePath: string[] =
     [globalThis.context.resourceManager.getStringSync($r('app.string.select_from_filemanager').id),
       globalThis.context.resourceManager.getStringSync($r('app.string.select_from_album').id)];
+
+  aboutToAppear() {
+    // API 26+ 设备支持智能流畅倍速解码
+    const apiVersion = deviceInfo.sdkApiVersion;
+    this.isSmartFluencySupported = apiVersion >= 26;
+    if (this.isSmartFluencySupported) {
+      player.setSmartFluencyEnabled(true);
+      // 注册温控回调，当设备过热时自动切入 UNIFORM 低比例模式降低负载
+      thermal.registerThermalLevelCallback((level: number) => {
+        if (level >= thermal.ThermalLevel.OVERHEATED) {
+          this.thermalWarningActive = true;
+          player.onThermalWarningReceived(0.3);
+          Logger.info(TAG, 'Thermal warning: level=' + level + ', UNIFORM mode activated');
+        } else if (this.thermalWarningActive && level <= thermal.ThermalLevel.WARM) {
+          this.thermalWarningActive = false;
+          player.onThermalLevelRecovered();
+          Logger.info(TAG, 'Thermal recovered: level=' + level);
+        }
+      });
+    }
+    Logger.info(TAG, 'Smart fluency supported: ' + this.isSmartFluencySupported + ', apiVersion: ' + apiVersion);
+  }
 
   selectFile() {
     TextPickerDialog.show({
@@ -126,7 +152,7 @@ export struct Player {
     }
     this.buttonEnabled = false;
     player.playNative(inputFile.fd, Const.DEFAULT_VALUE, inputFileState.size, this.videoDecoderType,
-      this.videoDecoderRunMode, this.videoDecoderSyncMode, () => {
+      this.videoDecoderRunMode, this.videoDecoderSyncMode, this.isSmartFluencySupported, () => {
         Logger.info(TAG, 'player JSCallback');
         this.buttonEnabled = true;
         fileIo.close(inputFile);
@@ -425,7 +451,8 @@ export struct Player {
               .onAction((event: GestureEvent | undefined) => {
                 if (!this.buttonEnabled) {
                   this.setPlaybackSpeed(2);
-                  this.getUIContext().getPromptAction().showToast({ message: 'X2' });
+                  let msg = this.isSmartFluencySupported ? $r('app.string.smart_fluency_adaptive_tip') : 'X2';
+                  this.getUIContext().getPromptAction().showToast({ message: msg });
                 }
               })// 长按动作一结束触发
               .onActionEnd(() => {
@@ -606,12 +633,14 @@ export struct Player {
                     }
                     case Const.PLAYBACK_SPEED[1]: {
                       this.setPlaybackSpeed(2);
-                      this.getUIContext().getPromptAction().showToast({ message: 'X2' });
+                      let msg = this.isSmartFluencySupported ? $r('app.string.smart_fluency_adaptive_tip') : 'X2';
+                      this.getUIContext().getPromptAction().showToast({ message: msg });
                       break;
                     }
                     case Const.PLAYBACK_SPEED[2]: {
                       this.setPlaybackSpeed(3);
-                      this.getUIContext().getPromptAction().showToast({ message: 'X3' });
+                      let msg = this.isSmartFluencySupported ? $r('app.string.smart_fluency_adaptive_tip') : 'X3';
+                      this.getUIContext().getPromptAction().showToast({ message: msg });
                       break;
                     }
                     default:

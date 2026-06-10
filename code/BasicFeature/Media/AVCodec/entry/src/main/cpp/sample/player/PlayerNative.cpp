@@ -72,13 +72,43 @@ napi_value PlayerNative::SetTransform(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+napi_value PlayerNative::SetSmartFluencyEnabled(napi_env env, napi_callback_info info)
+{
+    bool enabled;
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    napi_get_value_bool(env, args[0], &enabled);
+    Player::GetInstance().SetSmartFluencySupported(enabled);
+    return nullptr;
+}
+
+napi_value PlayerNative::OnThermalWarningReceived(napi_env env, napi_callback_info info)
+{
+    double ratio;
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    napi_get_value_double(env, args[0], &ratio);
+    Player::GetInstance().OnThermalWarningReceived(ratio);
+    return nullptr;
+}
+
+napi_value PlayerNative::OnThermalLevelRecovered(napi_env env, napi_callback_info info)
+{
+    Player::GetInstance().OnThermalLevelRecovered();
+    return nullptr;
+}
+
 napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
 {
     SampleInfo sampleInfo;
-    size_t argc = 7;
-    napi_value args[7] = {nullptr};
+    size_t argc = 8;
+    napi_value args[8] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    
+
     int index = 0;
     napi_get_value_int32(env, args[index++], &sampleInfo.inputFd);
     napi_get_value_int64(env, args[index++], &sampleInfo.inputFileOffset);
@@ -86,11 +116,12 @@ napi_value PlayerNative::Play(napi_env env, napi_callback_info info)
     napi_get_value_int32(env, args[index++], &sampleInfo.codecType);
     napi_get_value_int32(env, args[index++], &sampleInfo.codecRunMode);
     napi_get_value_int32(env, args[index++], &sampleInfo.codecSyncMode);
-    
+    napi_get_value_bool(env, args[index++], &sampleInfo.isSmartFluencySupported);
+
     auto asyncContext = new CallbackContext();
     asyncContext->env = env;
     napi_create_reference(env, args[index], 1, &asyncContext->callbackRef);
-    
+
     sampleInfo.playDoneCallback = &Callback;
     sampleInfo.playDoneCallbackData = asyncContext;
     int32_t ret = Player::GetInstance().Init(sampleInfo);
@@ -107,6 +138,9 @@ static napi_value Init(napi_env env, napi_value exports)
         {"playNative", nullptr, PlayerNative::Play, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"setPlaybackSpeed", nullptr, PlayerNative::SetPlaybackSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"setTransform", nullptr, PlayerNative::SetTransform, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setSmartFluencyEnabled", nullptr, PlayerNative::SetSmartFluencyEnabled, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"onThermalWarningReceived", nullptr, PlayerNative::OnThermalWarningReceived, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"onThermalLevelRecovered", nullptr, PlayerNative::OnThermalLevelRecovered, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     
     NativeXComponentSample::PluginManager::GetInstance()->Export(env, exports);
