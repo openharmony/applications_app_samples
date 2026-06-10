@@ -7,7 +7,7 @@
         "signingConfig": "default",
         "targetSdkVersion": "6.0.2(22)",
         "arkTSVersion": "1.2",
-        "compatibleSdkVersion": "6.0.2(22)",
+        "compatibleSdkVersion": "26.0.0",
         "runtimeOS": "HarmonyOS",
         "buildOption": {
           "strictMode": {

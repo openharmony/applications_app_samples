@@ -15,8 +15,8 @@
 
 {
   "app": {
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "compileSdkVersion": "26.0.0",
+    "compatibleSdkVersion": "26.0.0",
     "products": [
       {
         "name": "default",
