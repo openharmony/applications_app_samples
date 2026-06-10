@@ -14,7 +14,7 @@
 */
 
 // [Start head]
-// 导入usbManager模块
+// 导入serialManager模块
 import { serialManager } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
