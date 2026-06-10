@@ -94,7 +94,7 @@ export struct LazyLayoutGroup {
     }
   }
 
-  // 外层 footer：底部工具栏，始终吸底
+  // 外层footer：底部工具栏，始终吸底
   @Builder
   BottomToolBarBuilder() {
     Row() {
@@ -135,7 +135,7 @@ export struct LazyLayoutGroup {
   }
 
   // [Start lazy_layout_header]
-  // 内层分组 header：月份标题，滚动时吸顶
+  // 内层分组header：月份标题，滚动时吸顶
   @Builder
   MonthHeaderBuilder(title: string, count: number) {
     Row() {
@@ -143,7 +143,7 @@ export struct LazyLayoutGroup {
         .fontSize(16)
         .fontWeight(FontWeight.Bold)
       Blank()
-      // 请将$r('app.string.lazyLayout_photo_count')替换为实际资源文件，在本示例中该资源文件的value值为"%d张"
+      // 请将$r('app.string.lazyLayout_photo_count')替换为实际资源文件，在本示例中该资源文件的value值为"%d张"，表示照片的张数
       Text($r('app.string.lazyLayout_photo_count', count))
         .fontSize(14)
         .fontColor(Color.Gray)
@@ -157,18 +157,16 @@ export struct LazyLayoutGroup {
 
   // [StartExclude lazy_layout_header]
   // [Start lazy_layout_footer]
-  // 分组 footer：仅最后一组底部显示"已经到底了"
+  // 分组footer：仅最后一组底部显示"已经到底了"
   @Builder
-  GroupFooterBuilder(index: number) {
-    if (index === this.groupData.totalCount() - 1) {
-      // 请将$r('app.string.lazyLayout_no_more_content')替换为实际资源文件，在本示例中该资源文件的value值为"—— 已经到底了 ——"
-      Text($r('app.string.lazyLayout_no_more_content'))
-        .fontSize(14)
-        .fontColor(Color.Gray)
-        .width('100%')
-        .height(48)
-        .textAlign(TextAlign.Center)
-    }
+  GroupFooterBuilder() {
+    // 请将$r('app.string.lazyLayout_no_more_content')替换为实际资源文件，在本示例中该资源文件的value值为"—— 已经到底了 ——"
+    Text($r('app.string.lazyLayout_no_more_content'))
+      .fontSize(14)
+      .fontColor(Color.Gray)
+      .width('100%')
+      .height(48)
+      .textAlign(TextAlign.Center)
   }
   // [EndExclude lazy_layout_header]
 
@@ -183,7 +181,7 @@ export struct LazyLayoutGroup {
           // [EndExclude lazy_layout_header]
           // 通过LazyForEach动态创建每个月份分组
           LazyForEach(this.groupData, (group: PhotoGroup, index: number) => {
-            // 内层：每个分组为一个网格布局，header吸顶
+            // 内层：每个分组为一个网格布局
             LazyVGridLayout() {
               // 子组件
               // [StartExclude lazy_layout_header]
@@ -209,10 +207,10 @@ export struct LazyLayoutGroup {
             .rowsGap(LengthMetrics.vp(2))
             .columnsGap(LengthMetrics.vp(2))
             // [EndExclude lazy_layout_header]
-            .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount()))
+            .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount())) // header吸顶
             // [EndExclude lazy_layout_footer]
             // [StartExclude lazy_layout_header]
-            .footer(this.GroupFooterBuilder(index))
+            .footer(index === this.groupData.totalCount() - 1 ? this.GroupFooterBuilder() : undefined) // footer吸底
             // [StartExclude lazy_layout_footer]
             .sticky(StickyStyle.Header)
             // [EndExclude lazy_layout_footer]
