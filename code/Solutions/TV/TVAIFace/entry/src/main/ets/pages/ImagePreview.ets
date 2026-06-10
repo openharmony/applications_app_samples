@@ -32,7 +32,7 @@ export function ImagePreviewBuilder() {
 }
 
 @Concurrent
-async function Argb2BgrTaskPoolFunc(rgba: Uint8ClampedArray, size: number): Promise<ArrayBuffer> {
+async function argb2BgrTaskPoolFunc(rgba: Uint8ClampedArray, size: number): Promise<ArrayBuffer> {
   let bgr = new Float32Array(size * 3);
   for (let i = 0; i < size; i++) {
     bgr[i * 3 + 0] = rgba[i * 4 + 2];
@@ -45,9 +45,9 @@ async function Argb2BgrTaskPoolFunc(rgba: Uint8ClampedArray, size: number): Prom
 
 async function mainTaskPoolFunc(rgba: Uint8ClampedArray, size: number): Promise<ArrayBuffer> {
   // 创建任务并执行
-  let Argb2BgrTask: taskpool.Task = new taskpool.Task(Argb2BgrTaskPoolFunc, rgba, size);
-  let Argb2BgrTaskResult: ArrayBuffer = await taskpool.execute(Argb2BgrTask) as ArrayBuffer;
-  return Argb2BgrTaskResult;
+  let argb2BgrTask: taskpool.Task = new taskpool.Task(argb2BgrTaskPoolFunc, rgba, size);
+  let argb2BgrTaskResult: ArrayBuffer = await taskpool.execute(argb2BgrTask) as ArrayBuffer;
+  return argb2BgrTaskResult;
 }
 
 @Component
@@ -64,7 +64,7 @@ struct ImagePreview {
   canvasRatioW: number = 1; // canvas比率
   canvasRatioH: number = 1; // canvas比率
   imgBuffer: ArrayBuffer | null = null;
-  @StorageLink('image_fd') image_fd: number | string = 0;
+  @StorageLink('image_fd') imageFd: number | string = 0;
   @StorageLink('shouldScan') shouldScan: boolean = false;
   @State isScanning: boolean = false;
   @State focusId: string | number = 1;
@@ -73,7 +73,7 @@ struct ImagePreview {
   @State pageW: number = 1920;
   @State pageH: number = 1080;
   image: image.PixelMap | null = null;
-  @State faces: Array<FaceObject> = [];
+  @State faces: FaceObject[] = [];
   @State offsetX: number = 0;
   @State offsetY: number = 0;
   @Consume('NavPathStack') pageStack: NavPathStack;
@@ -115,10 +115,10 @@ struct ImagePreview {
   async loadImg() {
     this.canvasContext.clearRect(0, 0, this.canvasW, this.canvasH);
     let imageSourceApi: image.ImageSource;
-    if (typeof this.image_fd === 'number') {
-      imageSourceApi = image.createImageSource(this.image_fd);
+    if (typeof this.imageFd === 'number') {
+      imageSourceApi = image.createImageSource(this.imageFd);
     } else {
-      const value = await this.context.resourceManager.getRawFd(this.image_fd);
+      const value = await this.context.resourceManager.getRawFd(this.imageFd);
       imageSourceApi = image.createImageSource(value);
 
     }
@@ -166,8 +166,6 @@ struct ImagePreview {
       let faces: FaceObject[] = [];
       data.forEach((item: FaceObject) => {
         let finalbox = item.finalbox;
-        //      let score = item.score;
-        //      let pts = item.pts;
 
         let x: number = finalbox.x + this.offsetX;
         let y: number = finalbox.y + this.offsetY;
@@ -199,9 +197,9 @@ struct ImagePreview {
 
   // 数据后处理
   acFilterAnchor(acArray: AcInfo[]) {
-    let anchor_num = 2;
+    let anchorNum = 2;
     let stride = [32, 16, 8];
-    let anchor_cfg: Array<AnchorCfg> = [
+    let anchor_cfg: AnchorCfg[] = [
       { SCALES: [32, 16], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [8, 4], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [2, 1], RATIOS: [1], BASE_SIZE: 16 }
@@ -218,16 +216,8 @@ struct ImagePreview {
     acArray.forEach((ac: AcInfo, index: number) => {
       let clsData = new Float32Array(ac.cls!.getData());
       let regData = new Float32Array(ac.reg!.getData());
-      // let ptsData = new Float32Array(ac.pts!.getData());
-
-      // log(`clsData length: ${clsData.length}`);
-      // log(`regData length: ${regData.length}`);
-      // log(`ptsData length: ${ptsData.length}`);
 
       let pts_length = 0;
-      //      if (ptsData) {
-      //        pts_length = ac['pts'].shape[1]/anchor_num/2;
-      //      }
 
       let w = ac.cls!.shape[3];
       let h = ac.cls!.shape[2];
@@ -243,8 +233,8 @@ struct ImagePreview {
       for (let i = 0; i < w; i++) {
         for (let j = 0; j < h; j++) {
           let id = j * w + i;
-          for (let a = 0; a < anchor_num; a++) {
-            let cls_score = clsData[(anchor_num + a) * step + id];
+          for (let a = 0; a < anchorNum; a++) {
+            let cls_score = clsData[(anchorNum + a) * step + id];
             if (cls_score > confidence_threshold) {
               let boxObj = new CRect2f(i * anchor_stride + preset_anchors[a][0],
                 j * anchor_stride + preset_anchors[a][1],
@@ -289,10 +279,6 @@ struct ImagePreview {
       target: ['cpu']
     };
 
-    // let modelName = "mnet.ms";
-    // let option: mindSporeLite.Context = {
-    //   target: ["nnrt"]
-    // };
     this.context.resourceManager.getRawFileContent(modelName)
       .then(async (modelData) => {
         try {
@@ -313,12 +299,7 @@ struct ImagePreview {
 
           let modelOutputs = await msliteModel.predict(modelInputs); // 执行推理
           log(`predict`);
-          // if (modelInputs) {
-          //   log(`modelOutputs length:` + modelOutputs.length);
-          // } else {
-          //   log(`modelOutputs:` + JSON.stringify(modelOutputs));
-          // }
-          let acArray: Array<AcInfo> = [{}, {}, {}]; // {32, 16, 8}
+          let acArray: AcInfo[] = [{}, {}, {}]; // {32, 16, 8}
           modelOutputs.forEach((item, index) => {
             let name = item.name;
             let key = '';
@@ -327,9 +308,6 @@ struct ImagePreview {
             } else if (name.includes('face_rpn_bbox_pred_stride')) {
               key = 'reg';
             }
-            // else if (name.includes('face_rpn_landmark_pred_stride')) {
-            //   key = "pts";
-            // }
             if (name.includes('32')) {
               Object(acArray[0])[key] = item;
             } else if (name.includes('16')) {

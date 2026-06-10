@@ -18,16 +18,16 @@ import { window as Window } from '@kit.ArkUI';
 import { display } from '@kit.ArkUI';
 import { deviceInfo } from '@kit.BasicServicesKit';
 import { getAppWindowSize } from '../utils/Utils';
-import { globalThis } from '../common/GlobalThis';
+import { GlobalThis } from '../common/GlobalThis';
 import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    globalThis.get().setCameraSettingContext(this.context);
-    globalThis.get().setObject('deviceType', 'default');
+    GlobalThis.get().setCameraSettingContext(this.context);
+    GlobalThis.get().setObject('deviceType', 'default');
     let softwareModel = deviceInfo.softwareModel.toLowerCase();
     if (softwareModel.startsWith('tv')) {
-      globalThis.get().setObject('deviceType', 'tv');
+      GlobalThis.get().setObject('deviceType', 'tv');
     }
   }
 
@@ -42,10 +42,10 @@ export default class MainAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     // 屏幕宽高
-    globalThis.get().setObject('screenWidth', (await this.getWindowDisplayData())!.width);
-    globalThis.get().setObject('screenHeight', (await this.getWindowDisplayData())!.height);
+    GlobalThis.get().setObject('screenWidth', (await this.getWindowDisplayData())!.width);
+    GlobalThis.get().setObject('screenHeight', (await this.getWindowDisplayData())!.height);
     windowStage.getMainWindow().then((win) => {
-      globalThis.get().setObject('mainWindow', win);
+      GlobalThis.get().setObject('mainWindow', win);
       win.setWindowKeepScreenOn(true).then(() => {
       });
       getAppWindowSize(win).then((data) => {
@@ -55,9 +55,9 @@ export default class MainAbility extends Ability {
         AppStorage.setOrCreate<number>('screen_lpx_h', data.height);
         AppStorage.setOrCreate<number>('screen_dpi', data.dpi);
         AppStorage.setOrCreate<number>('screen_lpi', data.lpi);
-        globalThis.get().setObject('lpi', data.lpi);
-        globalThis.get().setObject('lpiPx', (num: number) => {
-          return (globalThis.get().getObject('lpi') as number) * num + 'px';
+        GlobalThis.get().setObject('lpi', data.lpi);
+        GlobalThis.get().setObject('lpiPx', (num: number) => {
+          return (GlobalThis.get().getObject('lpi') as number) * num + 'px';
         });
 
         windowStage.loadContent('pages/index', (err, data) => {

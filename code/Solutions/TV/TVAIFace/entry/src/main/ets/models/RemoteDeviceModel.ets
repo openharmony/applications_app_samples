@@ -16,19 +16,19 @@ import { distributedDeviceManager as deviceManager } from '@kit.DistributedServi
 import { BusinessError } from '@ohos.base';
 import { Logger } from '../utils/Log';
 
-class bindTargetData {
+class BindTargetData {
   public deviceId: string = '';
 }
 
-class deviceNameChangeData {
+class DeviceNameChangeData {
   public deviceName: string = '';
 }
 
-class discoverFailureData {
+class DiscoverFailureData {
   public reason: number = 0;
 }
 
-class discoverSuccessData {
+class DiscoverSuccessData {
   public device: deviceManager.DeviceBasicInfo = {
     deviceId: '',
     deviceName: '',
@@ -67,8 +67,8 @@ const TAG = 'RemoteDeviceModel';
 class RemoteDeviceModel {
   private static dmInstance: RemoteDeviceModel = new RemoteDeviceModel();
   private deviceManager?: deviceManager.DeviceManager;
-  private unTrustDeviceList: Array<deviceManager.DeviceBasicInfo> = [];
-  private trustDeviceList: Array<deviceManager.DeviceBasicInfo> = [];
+  private unTrustDeviceList: deviceManager.DeviceBasicInfo[] = [];
+  private trustDeviceList: deviceManager.DeviceBasicInfo[] = [];
 
   constructor() {
   }
@@ -124,7 +124,7 @@ class RemoteDeviceModel {
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       Logger.err(TAG, 'getAvailableDeviceList errCode:' + e.code + ',errMessage:' + e.message);
-      return []
+      return [];
     }
   }
 
@@ -133,7 +133,6 @@ class RemoteDeviceModel {
    * @returns
    */
   getUnTrustDeviceList(): Array<deviceManager.DeviceBasicInfo> {
-    // Logger.info(TAG,'getUnTrustDeviceList: ' + JSON.stringify(this.unTrustDeviceList));
     return this.unTrustDeviceList;
   }
 
@@ -160,7 +159,7 @@ class RemoteDeviceModel {
 
     // 注册发现设备成功回调监听
     try {
-      this.deviceManager?.on('discoverSuccess', (data: discoverSuccessData) => {
+      this.deviceManager?.on('discoverSuccess', (data: DiscoverSuccessData) => {
         let tmp: deviceManager.DeviceBasicInfo = {
           deviceId: data.device.deviceId,
           deviceName: data.device.deviceName,
@@ -180,7 +179,7 @@ class RemoteDeviceModel {
 
     // 注册设备名称变更回调，以便在设备名称改变时通知应用程序
     try {
-      this.deviceManager?.on('deviceNameChange', (data: deviceNameChangeData) => {
+      this.deviceManager?.on('deviceNameChange', (data: DeviceNameChangeData) => {
         Logger.info(TAG, 'deviceNameChange on:' + JSON.stringify(data));
       });
     } catch (err) {
@@ -190,7 +189,7 @@ class RemoteDeviceModel {
 
     // 注册设备发现失败回调监听
     try {
-      this.deviceManager?.on('discoverFailure', (data: discoverFailureData) => {
+      this.deviceManager?.on('discoverFailure', (data: DiscoverFailureData) => {
         Logger.info(TAG, 'discoverFailure on:' + JSON.stringify(data));
       });
     } catch (err) {
@@ -223,7 +222,7 @@ class RemoteDeviceModel {
 
     // 取消注册发现设备成功回调监听
     try {
-      this.deviceManager?.off('discoverSuccess', (data: discoverSuccessData) => {
+      this.deviceManager?.off('discoverSuccess', (data: DiscoverSuccessData) => {
         Logger.info(TAG, 'discoverSuccess:' + JSON.stringify(data));
       });
     } catch (err) {
@@ -233,7 +232,7 @@ class RemoteDeviceModel {
 
     // 取消注册设备名称变更回调，以便在设备名称改变时通知应用程序
     try {
-      this.deviceManager?.off('deviceNameChange', (data: deviceNameChangeData) => {
+      this.deviceManager?.off('deviceNameChange', (data: DeviceNameChangeData) => {
         Logger.info(TAG, 'deviceNameChange on:' + JSON.stringify(data));
       });
     } catch (err) {
@@ -243,7 +242,7 @@ class RemoteDeviceModel {
 
     // 取消注册设备发现失败回调监听
     try {
-      this.deviceManager?.off('discoverFailure', (data: discoverFailureData) => {
+      this.deviceManager?.off('discoverFailure', (data: DiscoverFailureData) => {
         Logger.info(TAG, 'discoverFailure on:' + JSON.stringify(data));
       });
     } catch (err) {
@@ -269,7 +268,7 @@ class RemoteDeviceModel {
    */
   bindTarget(deviceId: string) {
     try {
-      this.deviceManager?.bindTarget(deviceId, bindParam, (err: BusinessError, data: bindTargetData) => {
+      this.deviceManager?.bindTarget(deviceId, bindParam, (err: BusinessError, data: BindTargetData) => {
         if (err) {
           Logger.err(TAG, 'bindTarget errCode:' + err.code + ',errMessage:' + err.message);
           return;

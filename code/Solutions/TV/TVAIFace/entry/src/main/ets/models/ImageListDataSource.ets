@@ -15,7 +15,7 @@
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { image } from '@kit.ImageKit';
 
-class imageInfo {
+class ImageInfo {
   public fileAsset?: ResourceStr | photoAccessHelper.PhotoAsset; // 媒体文件的FileAsset,应该是资源类型
   public uri?: ResourceStr = ''; //媒体文件的uri,应该是资源类型不是any类型
   public name?: string = '';
@@ -25,13 +25,13 @@ class imageInfo {
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: imageInfo[] = [];
+  private originDataArray: ImageInfo[] = [];
 
   public totalCount(): number {
     return 0;
   }
 
-  public getData(index: number): imageInfo {
+  public getData(index: number): ImageInfo {
     return this.originDataArray[index];
   }
 
@@ -89,31 +89,29 @@ class BasicDataSource implements IDataSource {
 
 
 class ImageListDataSource extends BasicDataSource {
-  private dataArray: imageInfo[] = [];
+  private dataArray: ImageInfo[] = [];
 
   public totalCount(): number {
     console.log('aidemo this.dataArray.length', this.dataArray.length);
     return this.dataArray.length;
   }
 
-  public getData(index: number): imageInfo {
+  public getData(index: number): ImageInfo {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: imageInfo): void {
+  public addData(index: number, data: ImageInfo): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
-  public pushData(data: imageInfo): void {
+  public pushData(data: ImageInfo): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 
-  public reloadData(data: imageInfo[]): void {
+  public reloadData(data: ImageInfo[]): void {
     this.dataArray = data;
-    // this.dataArray.splice(0, 0, ...data);
-    // this.notifyDataAdd(this.dataArray.length - 1);
     this.notifyDataReload();
   }
 }

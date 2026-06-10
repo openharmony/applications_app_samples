@@ -23,7 +23,7 @@ import { EventUtil } from '../common/EventUtil';
 
 let log = initInfo('imageSelect.ets');
 
-class imageInfo {
+class ImageInfo {
   public fileAsset?: ResourceStr | photoAccessHelper.PhotoAsset; // 媒体文件的FileAsset,应该是资源类型
   public uri?: ResourceStr = ''; //媒体文件的uri,应该是资源类型不是any类型
   public name?: string = '';
@@ -31,7 +31,7 @@ class imageInfo {
   public smallImg?: image.PixelMap;
 }
 
-let rawImgs: imageInfo[] = [
+let rawImgs: ImageInfo[] = [
   {
     fileAsset: '',
     name: 'h_1.jpg',
@@ -56,7 +56,7 @@ struct ImageSelect {
   private context = getContext(this) as common.UIAbilityContext;
   private phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
   private scroller: Scroller = new Scroller();
-  @State imageData: imageInfo[] = [];
+  @State imageData: ImageInfo[] = [];
   private lazyImageData: ImageListDataSource = new ImageListDataSource();
   @State focusId: number = 0;
   @State isLoading: boolean = true;
@@ -100,7 +100,7 @@ struct ImageSelect {
                     uri: fileAsset[i].uri,
                     name: fileAsset[i].displayName,
                     type: 'media'
-                  } as imageInfo;
+                  } as ImageInfo;
                   try {
                     if (i < 24) {
                       let thumbnailPixelMap: image.PixelMap = await fileAsset[i].getThumbnail();
@@ -219,7 +219,7 @@ struct ImageSelect {
             Row() {
               if (this.imageData.length > 0) {
                 Grid(this.scroller) {
-                  LazyForEach(this.lazyImageData, (item: imageInfo, index: number) => {
+                  LazyForEach(this.lazyImageData, (item: ImageInfo, index: number) => {
                     GridItem() {
                       Image(item.smallImg || item.uri)
                         .width('248lpx')

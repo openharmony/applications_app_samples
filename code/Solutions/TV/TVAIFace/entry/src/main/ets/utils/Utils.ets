@@ -15,9 +15,10 @@
 import { display } from '@kit.ArkUI';
 import { window } from '@kit.ArkUI';
 import { initInfo } from './Log';
-import { globalThis } from '../common/GlobalThis';
+import { GlobalThis } from '../common/GlobalThis';
 
 let log = initInfo('utils');
+
 interface ScreenMss {
   width: number,
   height: number,
@@ -26,12 +27,14 @@ interface ScreenMss {
   dpi: number,
   lpi: number
 }
+
 interface ImgSize {
   x: number,
   y: number,
   width: number,
   height: number
 }
+
 export async function getAppWindowSize(win: window.Window): Promise<ScreenMss> {
   let width = 1920; // src/main/resources/base/profile/main_pages.json 中的designWidth
 
@@ -58,7 +61,7 @@ export async function getAppWindowSize(win: window.Window): Promise<ScreenMss> {
 export async function getScreenSize(): Promise<ScreenMss> {
   let width = 1920;
   // 应用所在window尺寸
-  let win = await window.getLastWindow(globalThis.get().getCameraSettingContext());
+  let win = await window.getLastWindow(GlobalThis.get().getCameraSettingContext());
 
   let avoidArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
   let avoidAreaHeight = avoidArea.topRect.height + avoidArea.bottomRect.height;
@@ -85,26 +88,26 @@ export function drawImageSize(imgW: number, imgH: number, canvasW: number, canva
   let cW = canvasW;
   let cH = canvasH;
 
-  let canvas_s = cW / cH;
-  let img_s = imgW / imgH;
+  let canvasSize = cW / cH;
+  let imgSize = imgW / imgH;
 
-  let img_w = cW;
-  let img_h = cH;
+  let imgWidth = cW;
+  let imgHeight = cH;
 
 
-  if (canvas_s > img_s) {
-    img_w = parseInt((cH * img_s).toFixed(0));
+  if (canvasSize > imgSize) {
+    imgWidth = parseInt((cH * imgSize).toFixed(0));
   } else {
-    img_h = parseInt((cW / img_s).toFixed(0));
+    imgHeight = parseInt((cW / imgSize).toFixed(0));
   }
 
-  let x = Math.floor((canvasW - img_w) / 2);
-  let y = Math.floor((canvasH - img_h) / 2);
+  let x = Math.floor((canvasW - imgWidth) / 2);
+  let y = Math.floor((canvasH - imgHeight) / 2);
 
   return {
     x,
     y,
-    width: img_w,
-    height: img_h
+    width: imgWidth,
+    height: imgHeight
   };
 }

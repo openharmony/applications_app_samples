@@ -15,10 +15,12 @@
 import { initInfo } from './Log';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { common, Permissions } from '@kit.AbilityKit';
-import bundleManager from '@ohos.bundle.bundleManager'
+import bundleManager from '@ohos.bundle.bundleManager';
+
 interface PermissionsType {
-  name: Permissions
+  name: Permissions;
 }
+
 interface userGrantPermissionParam {
   permissions: PermissionsType[],
   bundleName?: string,
@@ -28,11 +30,12 @@ interface userGrantPermissionParam {
 
 let log = initInfo('UserGrantPermission');
 
-export async function userGrantPermission(context: common.UIAbilityContext, opts: userGrantPermissionParam, call?: Function) {
-  let permissions = opts.permissions
-  let bundleName = opts.bundleName
-  let bundleFlag = opts.bundleFlag // 数字枚举
-  let userID = opts.userID // 系统设置默认100
+export async function userGrantPermission(context: common.UIAbilityContext, opts: userGrantPermissionParam,
+  call?: Function) {
+  let permissions = opts.permissions;
+  let bundleName = opts.bundleName;
+  let bundleFlag = opts.bundleFlag; // 数字枚举
+  let userID = opts.userID; // 系统设置默认100
   if (!bundleName) {
     bundleName = context.abilityInfo.bundleName;
   }
@@ -52,7 +55,7 @@ export async function userGrantPermission(context: common.UIAbilityContext, opts
     }
   }));
   // 申请动态授权，使用接口：requestPermissionsFromUser
-  let res = await atManager.requestPermissionsFromUser(context,noPermissions)
+  let res = await atManager.requestPermissionsFromUser(context, noPermissions);
   if (res && res.authResults) {
     res.authResults.forEach((r, i) => {
       if (r == 0) {

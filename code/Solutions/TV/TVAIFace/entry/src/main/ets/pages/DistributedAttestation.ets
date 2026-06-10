@@ -33,9 +33,9 @@ export struct DeviceMangerPage {
   @State buttonColor: string = '#33FFFFFF';
   @State fontColor: string = '#DBFFFFFF';
   @State title: string = '可信设备（已认证设备）';
-  @State trustDeviceList: Array<deviceManager.DeviceBasicInfo> = [];
-  @State unTrustDeviceList: Array<deviceManager.DeviceBasicInfo> = [];
-  @State showDeviceList: Array<deviceManager.DeviceBasicInfo> = [];
+  @State trustDeviceList: deviceManager.DeviceBasicInfo[] = [];
+  @State unTrustDeviceList: deviceManager.DeviceBasicInfo[] = [];
+  @State showDeviceList: deviceManager.DeviceBasicInfo[] = [];
   @State focusId: string = 'button';
   private listScroller: Scroller = new Scroller();
   private unTrustDeviceLisTimer: number = 0;

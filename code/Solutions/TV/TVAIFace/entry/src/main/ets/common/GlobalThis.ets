@@ -14,20 +14,20 @@
  */
 import { common } from '@kit.AbilityKit';
 
-export class globalThis {
+export class GlobalThis {
   private constructor() {
 
   }
 
   private cameraSettingContext?: common.UIAbilityContext;
-  private static instance: globalThis;
+  private static instance: GlobalThis;
   private _objects = new Map<string, Object>();
 
-  public static get(): globalThis {
-    if (!Boolean(globalThis.instance).valueOf()) {
-      globalThis.instance = new globalThis();
+  public static get(): GlobalThis {
+    if (!Boolean(GlobalThis.instance).valueOf()) {
+      GlobalThis.instance = new GlobalThis();
     }
-    return globalThis.instance;
+    return GlobalThis.instance;
   }
 
   getObject(value: string): Object {

@@ -21,7 +21,7 @@ const domainStr = '0xc000';
 const privateNum = 3;
 
 export const log = (tag: string | number = '', log?: string | number) => {
-  let Tag = 'OH';
+  let Tag = 'oh';
   if (tag) {
     if (log) {
       isConsole ?
@@ -45,7 +45,7 @@ export const log = (tag: string | number = '', log?: string | number) => {
 };
 
 export const debug = (tag: string | number = '', log?: string | number) => {
-  let Tag = 'OH';
+  let Tag = 'oh';
   if (tag) {
     if (log) {
       isConsole ?
@@ -69,7 +69,7 @@ export const debug = (tag: string | number = '', log?: string | number) => {
 };
 
 export const info = (tag: string | number = '', log?: string | number) => {
-  let Tag = 'OH';
+  let Tag = 'oh';
   if (tag) {
     if (log) {
       isConsole ?
@@ -93,7 +93,7 @@ export const info = (tag: string | number = '', log?: string | number) => {
 };
 
 export const err = (tag: string | number = '', log?: string | number) => {
-  let Tag = 'OH';
+  let Tag = 'oh';
   if (tag) {
     if (log) {
       isConsole ?
@@ -117,7 +117,7 @@ export const err = (tag: string | number = '', log?: string | number) => {
 };
 
 export const warn = (tag: string | number = '', log?: string | number) => {
-  let Tag = 'OH';
+  let Tag = 'oh';
   if (tag) {
     if (log) {
       isConsole ?
@@ -141,7 +141,7 @@ export const warn = (tag: string | number = '', log?: string | number) => {
 };
 
 export const initLog = (str?: string) => {
-  let Tag = str ? str : 'OH';
+  let Tag = str ? str : 'oh';
   return (tag: string | number = '', log?: string | number) => {
     if (tag) {
       if (log) {
@@ -168,7 +168,7 @@ export const initLog = (str?: string) => {
 };
 
 export const initDebug = (str?: string) => {
-  let Tag = str ? str : 'OH';
+  let Tag = str ? str : 'oh';
   return (tag: string | number = '', log?: string | number) => {
     if (tag) {
       if (log) {
@@ -195,7 +195,7 @@ export const initDebug = (str?: string) => {
 };
 
 export const initInfo = (str?: string) => {
-  let Tag = str ? str : 'OH';
+  let Tag = str ? str : 'oh';
   return (tag: string | number = '', log?: string | number) => {
     if (tag) {
       if (log) {
@@ -222,7 +222,7 @@ export const initInfo = (str?: string) => {
 };
 
 export const initErr = (str?: string) => {
-  let Tag = str ? str : 'OH';
+  let Tag = str ? str : 'oh';
   return (tag: string | number = '', log?: string | number) => {
     if (tag) {
       if (log) {
@@ -249,7 +249,7 @@ export const initErr = (str?: string) => {
 };
 
 export const initWarn = (str?: string) => {
-  let Tag = str ? str : 'OH';
+  let Tag = str ? str : 'oh';
   return (tag: string | number = '', log?: string | number) => {
     if (tag) {
       if (log) {

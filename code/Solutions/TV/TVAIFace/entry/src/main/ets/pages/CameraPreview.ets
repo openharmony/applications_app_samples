@@ -42,7 +42,7 @@ export function CameraPreviewBuilder() {
 }
 
 @Concurrent
-async function Argb2BgrTaskPoolFunc(rgba: Uint8Array, size: number): Promise<ArrayBuffer> {
+async function argb2BgrTaskPoolFunc(rgba: Uint8Array, size: number): Promise<ArrayBuffer> {
   let bgr = new Float32Array(size * 3);
   for (let i = 0; i < size; i++) {
     bgr[i * 3 + 0] = rgba[i * 4 + 2];
@@ -55,9 +55,9 @@ async function Argb2BgrTaskPoolFunc(rgba: Uint8Array, size: number): Promise<Arr
 
 async function mainTaskPoolFunc(rgba: Uint8Array, size: number): Promise<ArrayBuffer> {
   // 创建任务并执行
-  let Argb2BgrTask: taskpool.Task = new taskpool.Task(Argb2BgrTaskPoolFunc, rgba, size);
-  let Argb2BgrTaskResult: ArrayBuffer = await taskpool.execute(Argb2BgrTask) as ArrayBuffer;
-  return Argb2BgrTaskResult;
+  let argb2BgrTask: taskpool.Task = new taskpool.Task(argb2BgrTaskPoolFunc, rgba, size);
+  let argb2BgrTaskResult: ArrayBuffer = await taskpool.execute(argb2BgrTask) as ArrayBuffer;
+  return argb2BgrTaskResult;
 }
 
 @Component
@@ -71,7 +71,7 @@ struct CameraPreview {
     new CanvasRenderingContext2D(new RenderingContextSettings(true), LengthMetricsUnit.PX);
   private canvasContext2: CanvasRenderingContext2D =
     new CanvasRenderingContext2D(new RenderingContextSettings(true), LengthMetricsUnit.PX);
-  @State camerasList: Array<camera.CameraDevice> = [];
+  @State camerasList: camera.CameraDevice[] = [];
   @State currentCameraDevice: camera.CameraDevice = {} as camera.CameraDevice; // 当前选中的相机Id
   @State pageW: number = 720;
   @State pageH: number = 480;
@@ -83,7 +83,7 @@ struct CameraPreview {
   canvasRatioH: number = 1; // canvas比率
   @State offsetX: number = 0;
   @State offsetY: number = 0;
-  @State faces: Array<FaceObject> = [];
+  @State faces: FaceObject[] = [];
   timerId: number | null = null;
   imgBuffer: ArrayBuffer | null = null;
   msliteModel: mindSporeLite.Model | null = null;
@@ -197,9 +197,9 @@ struct CameraPreview {
 
   // 数据后处理
   acFilterAnchor(acArray: AcInfo[]) {
-    let anchor_num = 2;
+    let anchorNum = 2;
     let stride = [32, 16, 8];
-    let anchor_cfg: Array<AnchorCfg> = [
+    let anchor_cfg: AnchorCfg[] = [
       { SCALES: [32, 16], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [8, 4], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [2, 1], RATIOS: [1], BASE_SIZE: 16 }
@@ -216,16 +216,8 @@ struct CameraPreview {
     acArray.forEach((ac: AcInfo, index: number) => {
       let clsData = new Float32Array(ac.cls!.getData());
       let regData = new Float32Array(ac.reg!.getData());
-      // let ptsData = new Float32Array(ac.pts!.getData());
-
-      // log(`clsData length: ${clsData.length}`);
-      // log(`regData length: ${regData.length}`);
-      // log(`ptsData length: ${ptsData.length}`);
 
       let pts_length = 0;
-      //      if (ptsData) {
-      //        pts_length = ac['pts'].shape[1]/anchor_num/2;
-      //      }
 
       let w = ac.cls!.shape[3];
       let h = ac.cls!.shape[2];
@@ -241,8 +233,8 @@ struct CameraPreview {
       for (let i = 0; i < w; i++) {
         for (let j = 0; j < h; j++) {
           let id = j * w + i;
-          for (let a = 0; a < anchor_num; a++) {
-            let cls_score = clsData[(anchor_num + a) * step + id];
+          for (let a = 0; a < anchorNum; a++) {
+            let cls_score = clsData[(anchorNum + a) * step + id];
             if (cls_score > confidence_threshold) {
               let boxObj = new CRect2f(i * anchor_stride + preset_anchors[a][0],
                 j * anchor_stride + preset_anchors[a][1],
@@ -269,17 +261,6 @@ struct CameraPreview {
 
               res.finalbox = bbox_pred(box, delta, this.canvasRatioW, this.canvasRatioH) as finalboxModel;
               res.score = cls_score;
-              //              if (ptsData) {
-              //                let pts_delta = [];
-              //                for (let p = 0; p < pts_length; p++) {
-              //                  pts_delta[p] = {
-              //                    x: ptsData[(a * 10 + p * 2) * step+id],
-              //                    y: ptsData[(a * 10 + p * 2 + 1) * step+id]
-              //                  }
-              //                }
-              //                res.pts = landmark_pred(box, pts_delta);
-              //              }
-              //              log(`proposals data: ${JSON.stringify(res)}`);
               proposals.push(res);
             }
           }
@@ -299,8 +280,6 @@ struct CameraPreview {
       let faces: FaceObject[] = [];
       data.forEach((item: FaceObject) => {
         let finalbox = item.finalbox;
-        //      let score = item.score;
-        //      let pts = item.pts;
 
         let x: number = finalbox.x + this.offsetX;
         let y: number = finalbox.y + this.offsetY;
@@ -332,10 +311,6 @@ struct CameraPreview {
 
   // 加载模型
   async getModelBuffer(modelName: string) {
-    // let modelName = "mnet.ms";
-    // let option: mindSporeLite.Context = {
-    //   target: ["nnrt"]
-    // };
     try {
       let modelBuffer = await this.context.resourceManager.getRawFileContent(modelName);
       let option: mindSporeLite.Context = {
@@ -361,12 +336,7 @@ struct CameraPreview {
       item.setData(this.imgBuffer); // 将图片输入
     });
     let modelOutputs = await this.msliteModel.predict(modelInputs); // 执行推理
-    // if (modelInputs) {
-    //   console.log(`modelOutputs length:` + modelOutputs.length);
-    // } else {
-    //   console.log(`modelOutputs:` + JSON.stringify(modelOutputs));
-    // }
-    let acArray: Array<AcInfo> = [{}, {}, {}]; // {32, 16, 8}
+    let acArray: AcInfo[] = [{}, {}, {}]; // {32, 16, 8}
     modelOutputs.forEach((item, index) => {
       let name = item.name;
       let key = '';
@@ -375,17 +345,12 @@ struct CameraPreview {
       } else if (name.includes('face_rpn_bbox_pred_stride')) {
         key = 'reg';
       }
-      // else if (name.includes('face_rpn_landmark_pred_stride')) {
-      //   key = "pts";
-      // }
+
       if (name.includes('32')) {
-        // acArray[0][key] = item;
         Object(acArray[0])[key] = item;
       } else if (name.includes('16')) {
-        //acArray[1][key] = item;
         Object(acArray[1])[key] = item;
       } else if (name.includes('8')) {
-        //acArray[2][key] = item;
         Object(acArray[2])[key] = item;
       }
     });
@@ -403,8 +368,6 @@ struct CameraPreview {
           }).onLoad(async () => {
             Logger.info(this.tag, 'onLoad is called');
             this.mXComponentController.setXComponentSurfaceRect({ surfaceWidth: 720, surfaceHeight: 480 });
-            // this.mXComponentController.setXComponentSurfaceRect({ surfaceWidth: 1920, surfaceHeight: 1080 });
-            // this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
             this.camerasList = this.cameraService.getCamerasList();
             if (this.camerasList.length > 0) {
