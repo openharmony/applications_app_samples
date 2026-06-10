@@ -18,14 +18,9 @@ interface ListCategories {
   url: string
 }
 
-@Builder
-export function ContainerPickerPageBuilder() {
-  ContainerPickerIndex()
-}
-
+@Entry
 @Component
 export struct ContainerPickerIndex {
-  private pathStack: NavPathStack = new NavPathStack();
   private items: ListCategories[] =
     [
       { title: 'PickerCanLoop', url: 'pages/containerPicker/PageContainerPickerCanLoopIndex' },
@@ -43,47 +38,43 @@ export struct ContainerPickerIndex {
       Scroll(new Scroller()) {
         Column() {
           Text('Picker选择页面')
-          .fontWeight(FontWeight.Bold)
-          .fontSize('20vp')
-          .textAlign(TextAlign.Center)
-          .height('5%')
-          .margin($r('sys.float.titlebar_title_margin_right'))
-        List() {
-          ForEach(this.items, (item: ListCategories) => {
-            ListItem() {
-              Row() {
-                Text(item.title)
-                  .fontSize($r('sys.float.text_button_font_size'))
-                  .fontColor(Color.Black)
-                  .textAlign(TextAlign.Start)
-                  .height('100%')
-                  .width('50%')
-                  .padding($r('sys.float.padding_level10'))
-                Text('>')
-                  .fontSize('25vp')
-                  .fontColor(Color.Black)
-                  .textAlign(TextAlign.End)
-                  .fontColor(Color.Gray)
-                  .height('100%')
-                  .width('50%')
-                  .padding($r('sys.float.padding_level10'))
-              }
-              .width('100%')
-              .height('10%')
-              .borderRadius($r('sys.float.select_border_radius_default'))
-              .backgroundColor(Color.White)
-              .onClick(() => {
-                this.pathStack.pushPathByName(item.url, null)
-              })
-            }.margin($r('sys.float.menu_item_content_align'))
-          })
-        }.width('95%').height('90%').alignListItem(ListItemAlign.Center)
-      }.width('100%')
-    }.height('100%').backgroundColor($r('app.color.background_color'))
+            .fontWeight(FontWeight.Bold)
+            .fontSize('20vp')
+            .textAlign(TextAlign.Center)
+            .height('5%')
+            .margin($r('sys.float.titlebar_title_margin_right'))
+          List() {
+            ForEach(this.items, (item: ListCategories) => {
+              ListItem() {
+                Row() {
+                  Text(item.title)
+                    .fontSize($r('sys.float.text_button_font_size'))
+                    .fontColor(Color.Black)
+                    .textAlign(TextAlign.Start)
+                    .height('100%')
+                    .width('50%')
+                    .padding($r('sys.float.padding_level10'))
+                  Text('>')
+                    .fontSize('25vp')
+                    .fontColor(Color.Black)
+                    .textAlign(TextAlign.End)
+                    .fontColor(Color.Gray)
+                    .height('100%')
+                    .width('50%')
+                    .padding($r('sys.float.padding_level10'))
+                }
+                .width('100%')
+                .height('10%')
+                .borderRadius($r('sys.float.select_border_radius_default'))
+                .backgroundColor(Color.White)
+                .onClick(() => {
+                  this.getUIContext().getRouter().pushUrl({ url: item.url })
+                })
+              }.margin($r('sys.float.menu_item_content_align'))
+            })
+          }.width('95%').height('90%').alignListItem(ListItemAlign.Center)
+        }.width('100%')
+      }.height('100%').backgroundColor($r('app.color.background_color'))
     }
-    .hideTitleBar(true)
-    .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack;
-    })
   }
 }
