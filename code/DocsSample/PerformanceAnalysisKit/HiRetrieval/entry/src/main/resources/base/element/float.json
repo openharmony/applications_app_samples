@@ -1,0 +1,36 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "btn_font_size",
+      "value": "40fp"
+    },
+    {
+      "name": "btn_width",
+      "value": "200vp"
+    },
+    {
+      "name": "btn_height",
+      "value": "60vp"
+    },
+    {
+      "name": "btn_margin",
+      "value": "10vp"
+    },
+    {
+      "name": "text_font_size",
+      "value": "30fp"
+    },
+    {
+      "name": "config_item_height",
+      "value": "70vp"
+    },
+    {
+      "name": "config_item_container_padding",
+      "value": "5vp"
+    }
+  ]
+}
