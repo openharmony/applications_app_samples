@@ -10,7 +10,6 @@
         "compileSdkVersion": 18,
         "compatibleSdkVersion": 18,
         "targetSdkVersion": 18,
-        //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
         "runtimeOS": "OpenHarmony"
       },
       {
