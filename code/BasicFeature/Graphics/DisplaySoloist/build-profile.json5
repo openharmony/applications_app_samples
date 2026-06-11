@@ -18,8 +18,8 @@
     "signingConfigs": [],
     "products": [
       {
-        "compileSdkVersion": "26.0.0",
-        "compatibleSdkVersion": "26.0.0",
+        "compileSdkVersion": 12,
+        "compatibleSdkVersion": 12,
         "runtimeOS": "OpenHarmony",
         "name": "default",
         "signingConfig": "default",
