@@ -202,7 +202,7 @@ export struct Scene4 {
           List({ space: 40 }) {
             ListItem() {
               Button($r('app.string.start_desc'), { type: ButtonType.Circle, stateEffect: true })
-                .id(getContext().resourceManager.getStringSync($r('app.string.start_desc')))
+                .id(this.getUIContext()?.getHostContext()?.resourceManager.getStringByNameSync('start_desc'))
                 .backgroundColor(0xF55A42)
                 .width(90)
                 .height(90)
@@ -213,7 +213,7 @@ export struct Scene4 {
             }
             ListItem() {
               Button($r('app.string.stop_desc'), { type: ButtonType.Normal, stateEffect: true })
-                .id(getContext().resourceManager.getStringSync($r('app.string.stop_desc')))
+                .id(this.getUIContext()?.getHostContext()?.resourceManager.getStringByNameSync('stop_desc'))
                 .backgroundColor(0x000000)
                 .width(85)
                 .height(85)
