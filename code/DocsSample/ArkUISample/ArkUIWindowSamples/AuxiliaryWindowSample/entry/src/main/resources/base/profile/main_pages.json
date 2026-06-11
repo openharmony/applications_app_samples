@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/SubWindow",
+    "pages/IndependentSubWindow",
+    "pages/FloatWindow",
+    "pages/DialogWindow"
+  ]
+}
