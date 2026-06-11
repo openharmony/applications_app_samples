@@ -20,7 +20,7 @@
 
 #include <arkui/native_node.h>
 #include <arkui/native_interface.h>
-#include <cassert>
+#include <hilog/log.h>
 
 namespace NativeModule {
 // [StartExclude native_module_start]
@@ -59,7 +59,9 @@ public:
     {
         // 获取多线程NDK接口的函数指针结构体对象，用于后续操作。
         OH_ArkUI_GetModuleInterface(ARKUI_MULTI_THREAD_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativeNodeApi_);
-        assert(arkUINativeNodeApi_);
+        if (arkUINativeNodeApi_ == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "OH_ArkUI_GetModuleInterface Failed");
+        }
     }
     // 暴露给其他模块使用。
     ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI()
