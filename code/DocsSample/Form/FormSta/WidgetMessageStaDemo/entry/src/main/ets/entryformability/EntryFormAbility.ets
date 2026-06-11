@@ -68,7 +68,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   // [StartExclude update_by_message_form_ability]
-<<<<<<< HEAD
   onCastToNormalForm(formId: string): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm testing');
   }
@@ -107,46 +106,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void {
-=======
-  onCastToNormalForm(formId: string) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm testing');
-  }
-
-  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
-    hilog.info(DOMAIN_NUMBER, TAG, `onUpdateForm callback, formid:${formId}`);
-  }
-
-  onChangeFormVisibility(newStatus: Record<string, int>) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onChangeFormVisibility testing');
-  }
-
-  // [EndExclude update_by_message_form_ability]
-  onFormEvent(formId: string, message: string) {
-    // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-    hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
-
-    // 请根据业务替换为实际刷新的卡片数据
-    let formData = new FormDataClass();
-    let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
-    formProvider.updateForm(formId, formInfo).then(() => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-    }).catch((error) => {
-      hilog.error(DOMAIN_NUMBER, TAG,
-        `FormAbility updateForm success. code: ${error?.code}, message: ${error.message}`);
-    });
-  }
-
-  // [StartExclude update_by_message_form_ability]
-  onRemoveForm(formId: string) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoveForm testing');
-  }
-
-  onConfigurationUpdate(newConfig: Configuration) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onConfigurationUpdate testing');
-  }
-
-  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     hilog.info(DOMAIN_NUMBER, TAG, 'onFormLocationChanged testing');
   }
 
