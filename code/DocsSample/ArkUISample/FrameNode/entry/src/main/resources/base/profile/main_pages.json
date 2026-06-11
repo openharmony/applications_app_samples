@@ -11,6 +11,8 @@
     "pages/framenode/FrameNodeLazyForEach",
     "pages/framenode/FrameNodeLazyForEachSelect",
     "pages/framenode/FrameNodeCanvas",
-    "pages/framenode/FrameNodeDisposed"
+    "pages/framenode/FrameNodeDisposed",
+    "pages/framenode/FrameNodeInvalidateAttributes",
+    "pages/framenode/FrameNodeIsInRenderState"
   ]
 }

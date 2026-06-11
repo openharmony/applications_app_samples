@@ -110,6 +110,22 @@ struct Index {
             url: 'pages/framenode/FrameNodeCanvas'
           })
         })
+      Button('ShowFrameNodeInvalidateAttributes')
+        .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
+          router.pushUrl({
+            url: 'pages/framenode/FrameNodeInvalidateAttributes'
+          })
+        })
+      Button('ShowFrameNodeIsInRenderState')
+        .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
+          router.pushUrl({
+            url: 'pages/framenode/FrameNodeIsInRenderState'
+          })
+        })
     }
     .height('100%')
     .width('100%')

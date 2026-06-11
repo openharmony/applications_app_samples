@@ -20,6 +20,10 @@
 |----------------------------------------------|-----------------------------------------------|-----------------------------------------------------|-------------------------------|
 | ![ShowFrameNodeIsDisposed](screenshots/ShowFrameNodeIsDisposed.png) | ![ShowFrameNodeLazyForEach](screenshots/ShowFrameNodeLazyForEach.png) | ![ShowFrameNodeLazyForEachSelect](screenshots/ShowFrameNodeLazyForEachSelect.png) | ![ShowFrameNodeCanvas](screenshots/ShowFrameNodeCanvas.png) 
 
+| 更新当前帧节点                          | 判断节点是否处于渲染状态                             |
+|----------------------------------------------|-----------------------------------------------|
+| ![ShowFrameNodeInvalidateAttributes](screenshots/ShowFrameNodeInvalidateAttributes.png) | ![ShowFrameNodeIsInRenderState](screenshots/ShowFrameNodeIsInRenderState.png) |
+
 ### 使用说明
 
 1. 在主界面，通过点击不同的按钮，创建需要的组件。
@@ -57,8 +61,10 @@ entry/src/main/ets/
 |   |   |---FrameNodeCanvas.ets               // FrameNode画布页
 |   |   |---FrameNodeCommon.ets               // FrameNode通用属性页
 |   |   |---FrameNodeDisposed.ets               // FrameNode解除引用关系页
-|   |   |---FrameNodeDraw.ets               // FrameNodeh绘制页
+|   |   |---FrameNodeDraw.ets               // FrameNode绘制页
+|   |   |---FrameNodeIsInRenderState.ets               // FrameNode节点渲染页
 |   |   |---FrameNodeIsDisposed.ets               // FrameNode是否解除引用页
+|   |   |---FrameNodeInvalidateAttributes.ets               // FrameNode属性更新页
 |   |   |---FrameNodeLazyForEach.ets               // FrameNode懒加载页
 |   |   |---FrameNodeLazyForEachSelect.ets               // FrameNode懒加载查询页
 |   |   |---FrameNodeMoveTo.ets               // FrameNode移动页
