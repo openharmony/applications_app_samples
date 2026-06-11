@@ -18,9 +18,9 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": "26.0.0",
+        "compileSdkVersion": 20,
         //指定OpenHarmony应用/服务编译时的版本
-        "compatibleSdkVersion": "26.0.0",
+        "compatibleSdkVersion": 20,
         //指定OpenHarmony应用/服务兼容的最低版本。
         "targetSdkVersion": 20,
         //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
