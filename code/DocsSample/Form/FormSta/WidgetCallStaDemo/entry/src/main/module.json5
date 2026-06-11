@@ -69,15 +69,9 @@
     //src/main/module.json5
     "requestPermissions": [
       {
-<<<<<<< HEAD
         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
       }
     ]
-=======
-        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
-      }
-    ],
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     // [End module_json5_request_permissions]
   }
 }
