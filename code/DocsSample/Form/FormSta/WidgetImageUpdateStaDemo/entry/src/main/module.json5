@@ -69,11 +69,7 @@
           "abilities": [
             "EntryFormAbility"
           ],
-<<<<<<< HEAD
           "when": "inuse"
-=======
-          "when": "inuse",
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
         }
       }
     ]
