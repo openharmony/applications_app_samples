@@ -207,12 +207,12 @@ export struct LazyLayoutGroup {
             .rowsGap(LengthMetrics.vp(2))
             .columnsGap(LengthMetrics.vp(2))
             // [EndExclude lazy_layout_header]
-            .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount())) // header吸顶
+            .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount()))
             // [EndExclude lazy_layout_footer]
             // [StartExclude lazy_layout_header]
-            .footer(index === this.groupData.totalCount() - 1 ? this.GroupFooterBuilder() : undefined) // footer吸底
+            .footer(index === this.groupData.totalCount() - 1 ? this.GroupFooterBuilder() : undefined)
             // [StartExclude lazy_layout_footer]
-            .sticky(StickyStyle.Header)
+            .sticky(StickyStyle.Header) // header吸顶
             // [EndExclude lazy_layout_footer]
             // [EndExclude lazy_layout_header]
           }, (group: PhotoGroup) => group.title)
@@ -221,7 +221,7 @@ export struct LazyLayoutGroup {
         }
         .space(LengthMetrics.vp(12))
         .footer(this.BottomToolBarBuilder())
-        .sticky(StickyStyle.Footer)
+        .sticky(StickyStyle.Footer) // footer吸底
       }
       .scrollBar(BarState.Off)
       .scrollable(ScrollDirection.Vertical)
