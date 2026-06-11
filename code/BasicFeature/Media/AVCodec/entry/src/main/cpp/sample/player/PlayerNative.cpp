@@ -136,11 +136,15 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor classProp[] = {
         {"playNative", nullptr, PlayerNative::Play, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"setPlaybackSpeed", nullptr, PlayerNative::SetPlaybackSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setPlaybackSpeed", nullptr, PlayerNative::SetPlaybackSpeed,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"setTransform", nullptr, PlayerNative::SetTransform, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"setSmartFluencyEnabled", nullptr, PlayerNative::SetSmartFluencyEnabled, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"onThermalWarningReceived", nullptr, PlayerNative::OnThermalWarningReceived, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"onThermalLevelRecovered", nullptr, PlayerNative::OnThermalLevelRecovered, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setSmartFluencyEnabled", nullptr, PlayerNative::SetSmartFluencyEnabled,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"onThermalWarningReceived", nullptr, PlayerNative::OnThermalWarningReceived,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"onThermalLevelRecovered", nullptr, PlayerNative::OnThermalLevelRecovered,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     
     NativeXComponentSample::PluginManager::GetInstance()->Export(env, exports);
