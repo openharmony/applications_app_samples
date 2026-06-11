@@ -116,6 +116,10 @@ export class CommonConstants {
    */
   public static readonly PLAYBACK_SPEED: string[] = ['X1', 'X2', 'X3'];
   /**
+   * Frame retention mode for smart fluency decoding (API 26+).
+   */
+  public static readonly FRAME_RETENTION_MODE: string[] = ['FULL(全量直通)', 'ADAPTIVE(感知自适应)', 'UNIFORM(平滑定比)'];
+  /**
    * Default value.
    */
   public static readonly DEFAULT_VALUE: number = 0;

@@ -151,6 +151,18 @@
     {
       "name": "record_flv",
       "value": "FLV Record"
+    },
+    {
+      "name": "smart_fluency_enabled",
+      "value": "Smart Fluency Enabled"
+    },
+    {
+      "name": "smart_fluency_not_supported",
+      "value": "Smart fluency decoding requires API 26+"
+    },
+    {
+      "name": "smart_fluency_adaptive_tip",
+      "value": "X2/X3 (智能流畅已启用)"
     }
   ]
 }

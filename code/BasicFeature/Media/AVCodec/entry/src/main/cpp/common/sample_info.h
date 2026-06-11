@@ -84,6 +84,9 @@ struct SampleInfo {
     int32_t rotation = 0;
     OHNativeWindow *window = nullptr;
 
+    bool isSmartFluencySupported = false; // 标记设备是否支持智能流畅倍速解码(API>=26)
+    double speed = 1.0;                   // 当前播放倍速
+
     void (*playDoneCallback)(void *context) = nullptr;
     void *playDoneCallbackData = nullptr;
     uint8_t codecConfig[1024];
