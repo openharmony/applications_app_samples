@@ -13,62 +13,7 @@
  * limitations under the License.
  */
 
-/*
 // [Start create_node_h_start]
-// CreateNode.h
-#ifndef MYAPPLICATION_CREATENODE_H
-#define MYAPPLICATION_CREATENODE_H
-
-// 封装的ArkUINode对象，参考接入ArkTS页面指导文档。
-#include "ArkUINode.h"
-
-#include <js_native_api.h>
-
-namespace NativeModule {
-// 封装Button组件。
-class ArkUIButtonNode: public ArkUINode {
-public:
-    ArkUIButtonNode() :
-        ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_BUTTON)) {}
-    int32_t SetLabel(ArkUI_AttributeItem& label_item) {
-        return nativeModule_->setAttribute(handle_, NODE_BUTTON_LABEL, &label_item);
-    }
-    int32_t SetMargin(ArkUI_AttributeItem& item) {
-        return nativeModule_->setAttribute(handle_, NODE_MARGIN, &item);
-    }
-};
-
-// 封装Row组件。
-class ArkUIRowNode: public ArkUINode {
-public:
-    ArkUIRowNode() :
-        ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_ROW)) {}
-};
-
-// 封装Scroll组件。
-class ArkUIScrollNode: public ArkUINode {
-public:
-    ArkUIScrollNode() :
-        ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_SCROLL)) {}
-};
-
-// 封装Column组件。
-class ArkUIColumnNode: public ArkUINode {
-public:
-    ArkUIColumnNode() :
-        ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_COLUMN)) {}
-};
-
-// 多线程创建组件。
-napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
-// 释放多线程创建的组件。
-napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
-} // namespace NativeModule
-
-#endif // MYAPPLICATION_CREATENODE_H
-// [End create_node_h_start]
-*/
-
 #ifndef MYAPPLICATION_CREATENODE_H
 #define MYAPPLICATION_CREATENODE_H
 
@@ -81,3 +26,4 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info);
 } // namespace NativeModule
 
 #endif //MYAPPLICATION_CREATENODE_H
+// [End create_node_h_start]

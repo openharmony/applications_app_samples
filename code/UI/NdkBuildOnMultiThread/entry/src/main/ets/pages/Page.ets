@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start index_ets_start]
 import { NodeContent, router } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
@@ -44,6 +45,7 @@ struct CAPIComponent {
     .width('100%')
   }
 }
+// [End index_ets_start]
 
 @Component
 struct TitleComponent {
