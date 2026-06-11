@@ -19,7 +19,6 @@
 
 import { Want } from '@kit.AbilityKit';
 import preferences from '@ohos.data.preferences';
-import common from '@ohos.app.ability.common';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -35,7 +34,6 @@ class JsonData {
 }
 
 function onAcquireFormStateCallback(want: Want): formInfo.FormState {
-  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
   hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
   return formInfo.FormState.READY;
 }

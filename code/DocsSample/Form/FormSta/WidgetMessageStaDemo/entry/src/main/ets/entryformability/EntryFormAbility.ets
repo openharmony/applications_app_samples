@@ -27,8 +27,8 @@ const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: int = 0xFF00;
 
 class FormDataClass {
-  title: string = 'Title Update.'; // 和卡片布局中对应
-  detail: string = 'Description update success.'; // 和卡片布局中对应
+  public title: string = 'Title Update.'; // 和卡片布局中对应
+  public detail: string = 'Description update success.'; // 和卡片布局中对应
 }
 
 function onAcquireFormStateCallback(want: Want): formInfo.FormState {
