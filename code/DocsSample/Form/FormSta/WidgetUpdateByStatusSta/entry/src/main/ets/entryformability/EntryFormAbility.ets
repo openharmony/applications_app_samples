@@ -30,13 +30,8 @@ const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: int = 0xFF00;
 
 class JsonData {
-<<<<<<< HEAD
   public selectA: boolean = false;
   public selectB: boolean = false;
-=======
-  selectA: boolean = false;
-  selectB: boolean = false;
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
 }
 
 function onAcquireFormStateCallback(want: Want): formInfo.FormState {
@@ -80,11 +75,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formBindingData.createFormBindingData(formData);
   }
 
-<<<<<<< HEAD
   onUpdateForm(formId: string, wantParams?: Record<string, Object>): void {
-=======
-  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
     promise.then(async (storeDB: preferences.Preferences) => {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences from onUpdateForm.');
@@ -110,7 +101,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }).catch((err) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
     });
-<<<<<<< HEAD
   }
 
   onFormEvent(formId: string, message: string): void {
@@ -141,32 +131,11 @@ export default class EntryFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
       await storeDB.delete('A' + formId);
       await storeDB.delete('B' + formId);
-=======
-  }
-
-  onFormEvent(formId: string, message: string) {
-    // 存放卡片状态
-    hilog.info(DOMAIN_NUMBER, TAG, `doy onFormEvent formId ${formId}, message ${message}`);
-    let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
-    promise.then(async (storeDB: preferences.Preferences) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
-      let msg: JsonData = JSON.parse<JsonData>(message, Type.from<JsonData>())!;
-      if (msg.selectA !== undefined) {
-        hilog.info(DOMAIN_NUMBER, TAG, `onFormEvent selectA info: ${msg.selectA}`);
-        await storeDB.put('A' + formId, msg.selectA);
-      }
-      if (msg.selectB !== undefined) {
-        hilog.info(DOMAIN_NUMBER, TAG, `onFormEvent selectB info: ${msg.selectB}`);
-        await storeDB.put('B' + formId, msg.selectB);
-      }
-      await storeDB.flush();
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     }).catch((err) => {
       hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. code: ${err.code}, message: ${err.message}`);
     });
   }
 
-<<<<<<< HEAD
   onConfigurationUpdate(newConfig: Configuration): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onConfigurationUpdate testing');
   }
@@ -180,33 +149,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onCastToNormalForm(formId: string): void {
-=======
-  onRemoveForm(formId: string) {
-    hilog.info(DOMAIN_NUMBER, TAG, `onRemoveForm, formId: ${formId}`);
-    let promise = preferences.getPreferences(this.context, 'myStore');
-    promise.then(async (storeDB: preferences.Preferences) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
-      await storeDB.delete('A' + formId);
-      await storeDB.delete('B' + formId);
-    }).catch((err) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. code: ${err.code}, message: ${err.message}`);
-    });
-  }
-
-  onConfigurationUpdate(newConfig: Configuration) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onConfigurationUpdate testing');
-  }
-
-  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onFormLocationChanged testing');
-  }
-
-  onChangeFormVisibility(newStatus: Record<string, int>) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onChangeFormVisibility testing');
-  }
-
-  onCastToNormalForm(formId: string) {
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm testing');
   }
 }
