@@ -103,11 +103,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   // [EndExclude network_file_refresh]
   // [StartExclude local_file_refresh]
-<<<<<<< HEAD
   onFormEvent(formId: string, message: string): void {
-=======
-  onFormEvent(formId: string, message: string) {
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     let param: Record<string, string> = {
       'text': TEXT1
     };
@@ -129,13 +125,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
           let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
           imgMap[fileName] = imgFile.fd;
           let writeLen: long = fileIo.writeSync(imgFile.fd, data.result as ArrayBuffer);
-<<<<<<< HEAD
           hilog.info(DOMAIN_NUMBER, TAG, `write data to file succeed and size is: ${writeLen}`);
           hilog.info(DOMAIN_NUMBER, TAG, `ArkTSCard download complete: ${tmpFile}`);
-=======
-          hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
-          hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
           let formData = new FormDataClass();
           formData.text = 'Image: Bear' + fileName;
           formData.loaded = true;
@@ -167,7 +158,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   // [EndExclude local_file_refresh]
-<<<<<<< HEAD
   onCastToNormalForm(formId: string): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm testing');
   }
@@ -189,29 +179,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void {
-=======
-  onCastToNormalForm(formId: string) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm testing');
-  }
-
-  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
-    hilog.info(DOMAIN_NUMBER, TAG, `onUpdateForm callback, formid:${formId}`);
-  }
-
-  onChangeFormVisibility(newStatus: Record<string, int>) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onChangeFormVisibility testing ' + JSON.stringify(newStatus));
-  }
-
-  onRemoveForm(formId: string) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoveForm testing');
-  }
-
-  onConfigurationUpdate(newConfig: Configuration) {
-    hilog.info(DOMAIN_NUMBER, TAG, 'onConfigurationUpdate testing');
-  }
-
-  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
->>>>>>> 39476b51603fbaab6d787ff04a4d26c885e22a28
     hilog.info(DOMAIN_NUMBER, TAG, 'onFormLocationChanged testing');
   }
 }
