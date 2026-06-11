@@ -21,7 +21,7 @@ import { text } from '@kit.ArkGraphics2D'
 // [End arkts_custom_font_include]
 
 // 获取全局字体集实例
-let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
+let fontCollection = text.FontCollection.getGlobalInstance() // 获取Arkui全局FC
 const familyName = "myFamilyName"
 
 // 创建一个自定义的渲染节点类，用于绘制文本
