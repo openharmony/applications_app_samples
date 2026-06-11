@@ -70,7 +70,7 @@ OH_Crypto_ErrCode doTestSm4Gcm()
     }
 
     // 加密
-    ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &encCtx);
+    ret = OH_CryptoSymCipher_Create("SM4_128|GCM", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
@@ -88,7 +88,7 @@ OH_Crypto_ErrCode doTestSm4Gcm()
     }
 
     // 解密
-    ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &decCtx);
+    ret = OH_CryptoSymCipher_Create("SM4_128|GCM", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }

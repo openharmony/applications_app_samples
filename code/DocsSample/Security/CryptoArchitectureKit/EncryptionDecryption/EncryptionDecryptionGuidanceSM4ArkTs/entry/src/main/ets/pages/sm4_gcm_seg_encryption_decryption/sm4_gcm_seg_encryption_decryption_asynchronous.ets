@@ -32,7 +32,7 @@ function genGcmParamsSpec() {
   let dataTag = new Uint8Array(arr);
   let tagBlob: cryptoFramework.DataBlob = {
     data: dataTag
-  }; // The GCM authTag is obtained by doFinal() in encryption and passed in params of init() in decryption.
+  };
   let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
     iv: ivBlob,
     aad: aadBlob,
@@ -46,7 +46,7 @@ let gcmParams = genGcmParamsSpec();
 
 // 分段加密消息
 async function encryptMessageUpdateBySegment(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-  let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
+  let cipher = cryptoFramework.createCipher('SM4_128|GCM');
   await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
   let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
   let cipherText = new Uint8Array();
@@ -69,7 +69,7 @@ async function encryptMessageUpdateBySegment(symKey: cryptoFramework.SymKey, pla
 
 // 分段解密消息
 async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-  let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
+  let decoder = cryptoFramework.createCipher('SM4_128|GCM');
   await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
   let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
   let decryptText = new Uint8Array();
