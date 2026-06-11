@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "WidgetEventRouter_desc",
+      "value": "router widget."
+    },
+    {
+      "name": "WidgetEventRouter_display_name",
+      "value": "router"
+    },
+    {
+      "name": "JumpLabel",
+      "value": "router jump"
+    },
+    {
+      "name": "ButtonA_label",
+      "value": "FunA"
+    },
+    {
+      "name": "ButtonB_label",
+      "value": "FunB"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "NoContentAvailable"
+    },
+    {
+      "name": "WidgetEventCallCard_desc",
+      "value": "This is Call widget."
+    },
+    {
+      "name": "WidgetEventCallCard_display_name",
+      "value": "Call"
+    }
+  ]
+}
