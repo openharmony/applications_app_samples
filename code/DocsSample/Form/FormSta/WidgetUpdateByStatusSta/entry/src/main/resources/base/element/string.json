@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "WidgetUpdateByStatus_desc",
+      "value": "This is a status widget."
+    },
+    {
+      "name": "WidgetUpdateByStatus_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "to_be_refreshed",
+      "value": "to be refreshed"
+    },
+    {
+      "name": "status_a",
+      "value": "status A "
+    },
+    {
+      "name": "status_b",
+      "value": "status B "
+    }
+  ]
+}
