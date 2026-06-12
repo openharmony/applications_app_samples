@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start insight_intent_play_music_list]
+// [Start appIntentEntity_AppPlaylistEntity]
 import { insightIntent, InsightIntentEntity, InsightIntentEntry, InsightIntentEntryExecutor } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -101,6 +101,10 @@ export class AppPlaylistEntity extends insightIntent.AppIntentEntity<AppPlaylist
   }
 }
 
+// [End appIntentEntity_AppPlaylistEntity]
+
+// [Start appIntentEntity_PlayMusicListImpl]
+
 // 使用@InsightIntentEntry装饰器定义意图
 @InsightIntentEntry({
   intentName: 'PlayMusicList',
@@ -169,4 +173,4 @@ export default class PlayMusicListImpl extends InsightIntentEntryExecutor<string
   }
 }
 
-// [End insight_intent_play_music_list]
+// [End appIntentEntity_PlayMusicListImpl]
