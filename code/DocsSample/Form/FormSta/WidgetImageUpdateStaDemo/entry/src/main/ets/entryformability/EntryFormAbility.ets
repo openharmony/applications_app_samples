@@ -33,7 +33,7 @@ const TEXT1: string = '刷新中...'
 const TEXT2: string = '刷新失败'
 
 function onAcquireFormStateCallback(want: Want): formInfo.FormState {
-  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>("abilityContext");
+  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
   hilog.info(DOMAIN_NUMBER, TAG, 'OnAcquireFormState register success');
   return formInfo.FormState.READY;
 }
@@ -57,12 +57,12 @@ function onShareFormCallback(formId: string): Record<string, Object> {
 }
 
 class FormDataClass {
-  text: string = '';
-  loaded: boolean = false;
+  public text: string = '';
+  public loaded: boolean = false;
   // 卡片需要显示图片场景,必须和下列字段formImages中的key 'imgBear'相同。
-  imgName: string = '';
+  public imgName: string = '';
   // 卡片需要显示图片场景,必填字段(formImages不可缺省或改名), 'imgBear'对应fd
-  formImages: Record<string, number> = {};
+  public formImages: Record<string, number> = {};
 }
 
 export default class EntryFormAbility extends FormExtensionAbility {
