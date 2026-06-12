@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_node_cpp_start]
 #include "node/NodeCreator.h"
 
 #include <cstdint>
@@ -194,3 +195,4 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     return nullptr;
 }
 } // namespace NativeModule
+// [End create_node_cpp_start]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_node_h_start]
 #ifndef MYAPPLICATION_CREATENODE_H
 #define MYAPPLICATION_CREATENODE_H
 
@@ -25,3 +26,4 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info);
 } // namespace NativeModule
 
 #endif //MYAPPLICATION_CREATENODE_H
+// [End create_node_h_start]

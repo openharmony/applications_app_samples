@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start index_dts_start]
 import { NodeContent, UIContext } from "@kit.ArkUI";
 
 export const CreateNodeTreeOnUIThread: (slot: NodeContent, context: UIContext) => void;
 export const CreateNodeTreeOnMultiThread: (slot: NodeContent, context: UIContext) => void;
 export const DisposeNodeTree: (slot: NodeContent) => void;
+// [End index_dts_start]

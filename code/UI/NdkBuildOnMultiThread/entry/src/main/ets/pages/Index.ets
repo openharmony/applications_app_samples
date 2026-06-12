@@ -13,22 +13,36 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct Index {
-  build() {
-    Column() {
-      Button("CreatePageOnMultiThread")
-        .onClick(() => {
-          router.pushUrl({ url:"pages/Page", params: { isOnUIThread: false } })
-        })
-      Button("CreatePageOnUIThread")
-        .onClick(() => {
-          router.pushUrl({ url:"pages/Page", params: { isOnUIThread: true } })
-        })
-    }.width('100%').height('100%')
+  private pathStack: NavPathStack = new NavPathStack();
+
+  private createPageParams(isOnUIThread: boolean): PageParams {
+    const params = new PageParams();
+    params.isOnUIThread = isOnUIThread;
+    return params;
   }
+
+  build() {
+    Navigation(this.pathStack) {
+      Column() {
+        Button("CreatePageOnMultiThread")
+          .onClick(() => {
+            this.pathStack.pushPathByName('Page', this.createPageParams(false));
+          })
+        Button("CreatePageOnUIThread")
+          .onClick(() => {
+            this.pathStack.pushPathByName('Page', this.createPageParams(true));
+          })
+      }.width('100%').height('100%')
+    }
+    .hideTitleBar(true)
+    .mode(NavigationMode.Stack)
+  }
+}
+
+class PageParams {
+  isOnUIThread: boolean = false;
 }
 

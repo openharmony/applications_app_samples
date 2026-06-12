@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_init_start]
 #include "napi/native_api.h"
 #include "node/NodeCreator.h"
 
@@ -46,3 +47,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&entryModule);
 }
+// [End napi_init_start]

@@ -1,3 +1,4 @@
+# [Start cmake_start]
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.5.0)
 project(myapp)
@@ -17,3 +18,4 @@ add_library(entry SHARED
     card/CardCreator.cpp
     )
 target_link_libraries(entry PUBLIC libace_napi.z.so ace_ndk.z.so hilog_ndk.z.so)
+# [End cmake_start]

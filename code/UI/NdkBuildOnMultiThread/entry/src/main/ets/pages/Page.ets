@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { NodeContent, router } from '@kit.ArkUI';
+// [Start index_ets_start]
+import { NodeContent } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
 @Component
@@ -44,10 +45,20 @@ struct CAPIComponent {
     .width('100%')
   }
 }
+// [End index_ets_start]
+
+interface paramsObj{
+  isOnUIThread: boolean
+}
+
+@Builder
+export function PageBuilder(name: string, param: Object) {
+  Page({ isOnUIThread: (param as paramsObj).isOnUIThread });
+}
 
 @Component
 struct TitleComponent {
-  @Link message: string;
+  message: string = '';
 
   build() {
     Column() {
@@ -66,19 +77,12 @@ struct TitleComponent {
   }
 }
 
-interface paramsObj{
-  isOnUIThread: boolean
-}
-
-@Entry
 @Component
-struct Page {
+export struct Page {
   isOnUIThread: boolean = false;
   @State message: string = 'CreateNodeTreeOnMultiThread';
 
   aboutToAppear(): void {
-    const params = router.getParams() as paramsObj;
-    this.isOnUIThread = params.isOnUIThread;
     if (this.isOnUIThread) {
       this.message = 'CreateNodeTreeOnUIThread';
     } else {
@@ -87,19 +91,22 @@ struct Page {
   }
 
   build() {
-    Flex() {
-      Column() {
-        TitleComponent({message : this.message})
-          .width('100%')
-          .align(Alignment.Center)
-        CAPIComponent({isOnUIThread : this.isOnUIThread})
-          .width('100%')
+    NavDestination() {
+      Flex() {
+        Column() {
+          TitleComponent({message : this.message})
+            .width('100%')
+            .align(Alignment.Center)
+          CAPIComponent({isOnUIThread : this.isOnUIThread})
+            .width('100%')
+        }
+        .backgroundColor('#EEEEEE')
+        .width('100%')
+        .height('100%')
       }
-      .backgroundColor('#EEEEEE')
       .width('100%')
       .height('100%')
     }
-    .width('100%')
-    .height('100%')
+    .hideTitleBar(true)
   }
 }
