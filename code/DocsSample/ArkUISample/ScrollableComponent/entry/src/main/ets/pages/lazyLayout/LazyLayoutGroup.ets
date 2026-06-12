@@ -94,7 +94,7 @@ export struct LazyLayoutGroup {
     }
   }
 
-  // 外层footer：底部工具栏，始终吸底
+  // 底部工具栏
   @Builder
   BottomToolBarBuilder() {
     Row() {
@@ -135,7 +135,7 @@ export struct LazyLayoutGroup {
   }
 
   // [Start lazy_layout_header]
-  // 内层分组header：月份标题，滚动时吸顶
+  // 内层分组header：显示月份标题，滚动时吸顶
   @Builder
   MonthHeaderBuilder(title: string, count: number) {
     Row() {
@@ -157,7 +157,7 @@ export struct LazyLayoutGroup {
 
   // [StartExclude lazy_layout_header]
   // [Start lazy_layout_footer]
-  // 分组footer：仅最后一组底部显示"已经到底了"
+  // 外层footer：显示"已经到底了"
   @Builder
   GroupFooterBuilder() {
     // 请将$r('app.string.lazyLayout_no_more_content')替换为实际资源文件，在本示例中该资源文件的value值为"—— 已经到底了 ——"
@@ -174,60 +174,61 @@ export struct LazyLayoutGroup {
     // [StartExclude lazy_layout_header]
     // [StartExclude lazy_layout_footer]
     NavDestination() {
-      Scroll() {
-        // 外层容器：footer吸底
-        LazyColumnLayout() {
-          // [EndExclude lazy_layout_footer]
-          // [EndExclude lazy_layout_header]
-          // 通过LazyForEach动态创建每个月份分组
-          LazyForEach(this.groupData, (group: PhotoGroup, index: number) => {
-            // 内层：每个分组为一个网格布局
-            LazyVGridLayout() {
-              // 子组件
+      Column() {
+        // [EndExclude lazy_layout_footer]
+        Scroll() {
+          LazyColumnLayout() {
+            // [EndExclude lazy_layout_header]
+            // [StartExclude lazy_layout_footer]
+            // 通过LazyForEach动态创建每个月份分组
+            LazyForEach(this.groupData, (group: PhotoGroup, index: number) => {
+              // 内层：每个分组为一个网格布局
+              LazyVGridLayout() {
+                LazyForEach(group.photos, (item: number) => {
+                  // [StartExclude lazy_layout_header]
+                  Column() {
+                    SymbolGlyph($r('sys.symbol.picture'))
+                      .fontSize(24)
+                      .fontColor([Color.Gray])
+                  }
+                  .width('100%')
+                  .aspectRatio(1)
+                  .borderRadius(4)
+                  .backgroundColor('#e8e8e8')
+                  .justifyContent(FlexAlign.Center)
+                  // [EndExclude lazy_layout_header]
+                }, (item: number) => `${index}_${item}`)
+              }
               // [StartExclude lazy_layout_header]
-              // [StartExclude lazy_layout_footer]
-              LazyForEach(group.photos, (item: number) => {
-                Column() {
-                  SymbolGlyph($r('sys.symbol.picture'))
-                    .fontSize(24)
-                    .fontColor([Color.Gray])
-                }
-                .width('100%')
-                .aspectRatio(1)
-                .borderRadius(4)
-                .backgroundColor('#e8e8e8')
-                .justifyContent(FlexAlign.Center)
-              }, (item: number) => `${index}_${item}`)
-              // [EndExclude lazy_layout_footer]
+              .columnsTemplate('1fr 1fr 1fr')
+              .rowsGap(LengthMetrics.vp(2))
+              .columnsGap(LengthMetrics.vp(2))
               // [EndExclude lazy_layout_header]
-            }
-            // [StartExclude lazy_layout_header]
-            // [StartExclude lazy_layout_footer]
-            .columnsTemplate('1fr 1fr 1fr')
-            .rowsGap(LengthMetrics.vp(2))
-            .columnsGap(LengthMetrics.vp(2))
-            // [EndExclude lazy_layout_header]
-            .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount()))
+              .header(this.MonthHeaderBuilder(group.title, group.photos.totalCount()))
+              // [StartExclude lazy_layout_header]
+              .sticky(StickyStyle.Header) // header吸顶
+              // [EndExclude lazy_layout_header]
+            }, (group: PhotoGroup) => group.title)
             // [EndExclude lazy_layout_footer]
             // [StartExclude lazy_layout_header]
-            .footer(index === this.groupData.totalCount() - 1 ? this.GroupFooterBuilder() : undefined)
-            // [StartExclude lazy_layout_footer]
-            .sticky(StickyStyle.Header) // header吸顶
-            // [EndExclude lazy_layout_footer]
-            // [EndExclude lazy_layout_header]
-          }, (group: PhotoGroup) => group.title)
-          // [StartExclude lazy_layout_header]
+          }
           // [StartExclude lazy_layout_footer]
+          .space(LengthMetrics.vp(12))
+          // [EndExclude lazy_layout_footer]
+          .footer(this.GroupFooterBuilder())
         }
-        .space(LengthMetrics.vp(12))
-        .footer(this.BottomToolBarBuilder())
-        .sticky(StickyStyle.Footer) // footer吸底
+        .scrollable(ScrollDirection.Vertical)
+        .width('100%')
+        .layoutWeight(1)
+        // [StartExclude lazy_layout_footer]
+        .scrollBar(BarState.Off)
+        .backgroundColor(Color.White)
+
+        // 底部工具栏
+        this.BottomToolBarBuilder()
       }
-      .scrollBar(BarState.Off)
-      .scrollable(ScrollDirection.Vertical)
       .width('100%')
-      .layoutWeight(1)
-      .backgroundColor(Color.White)
+      .height('100%')
     }
     .backgroundColor('#f1f2f3')
     // 请将$r('app.string.lazyLayout_group_title')替换为实际资源文件
@@ -236,7 +237,7 @@ export struct LazyLayoutGroup {
     // [EndExclude lazy_layout_footer]
     // [EndExclude lazy_layout_header]
   }
-  // [End lazy_layout_footer]
   // [End lazy_layout_header]
+  // [End lazy_layout_footer]
 }
 // [End lazy_layout_group]
