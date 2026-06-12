@@ -32,7 +32,7 @@ struct Example {
         .width('100%')
         .height('100%')
       }
-      .backgroundColor(('#F7F7F7'))
+      .backgroundColor('#F7F7F7')
     }
     .padding(10)
     .width('100%')

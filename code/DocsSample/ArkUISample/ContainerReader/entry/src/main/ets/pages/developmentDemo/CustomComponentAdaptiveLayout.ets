@@ -29,54 +29,12 @@ struct AdaptiveCard {
       size: this.containerSize!!,
       widthBreakpoint: this.widthBp!!
     }) {
-      Text('width'+this.containerSize?.width)
+      Text('width' + this.containerSize?.width)
     }
     .width('100%')
     .height('100%')
     .backgroundColor('#D5D5D5')
     .border({ width: 1, color: '#D5D5D5', radius: 8 })
-  }
-
-  // 根据断点切换卡片内容布局：小尺寸纵向排列，大尺寸横向排列
-  @Builder
-  buildCardContent() {
-    if (this.widthBp === WidthBreakpoint.WIDTH_XS || this.widthBp === WidthBreakpoint.WIDTH_SM) {
-      // 小尺寸：纵向排列，文本最多2行
-      Column({ space: 10 }) {
-        Column({ space: 5 }) {
-          Text(this.title)
-            .fontSize(16)
-            .fontWeight(FontWeight.Bold)
-          Text(this.content)
-            .fontSize(12)
-            .fontColor('#707070')
-            .maxLines(2)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-        }
-        .width('100%')
-        .padding(10)
-        .alignItems(HorizontalAlign.Start)
-      }
-      .width('100%')
-    } else {
-      // 大尺寸：横向排列，文本最多3行
-      Row({ space: 10 }) {
-        Column({ space: 5 }) {
-          Text(this.title)
-            .fontSize(16)
-            .fontWeight(FontWeight.Bold)
-          Text(this.content)
-            .fontSize(12)
-            .fontColor('#707070')
-            .maxLines(3)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-        }
-        .layoutWeight(1)
-        .alignItems(HorizontalAlign.Start)
-      }
-      .width('100%')
-      .padding(10)
-    }
   }
 }
 
@@ -95,7 +53,6 @@ struct AdaptiveCardExample {
         .fontColor('#707070')
         .alignSelf(ItemAlign.Start)
 
-      // 小容器：触发小尺寸断点，纵向布局
       AdaptiveCard({
         title: 'Small Card',
         content: 'This card adapts to small containers with vertical layout.'
@@ -108,7 +65,6 @@ struct AdaptiveCardExample {
         .fontColor('#707070')
         .alignSelf(ItemAlign.Start)
 
-      // 大容器：触发大尺寸断点，横向布局
       AdaptiveCard({
         title: 'Large Card',
         content: 'This card adapts to large containers with horizontal layout.'
