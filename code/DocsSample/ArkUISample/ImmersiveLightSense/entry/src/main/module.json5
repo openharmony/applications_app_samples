@@ -12,20 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start MaterialStateConfig]
 {
   "module": {
     "name": "entry",
     "type": "entry",
+    // [StartExclude MaterialStateConfig]
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default"
     ],
+    // [EndExclude MaterialStateConfig]
     "metadata": [{
       "name": "ohos.arkui.UIMaterial.state",
       "value": "enable"
     }],
+    // [StartExclude MaterialStateConfig]
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
@@ -65,5 +68,7 @@
         ]
       }
     ]
+    // [EndExclude MaterialStateConfig]
   }
 }
+// [End MaterialStateConfig]

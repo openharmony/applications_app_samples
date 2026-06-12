@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start AllStyles]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -96,3 +97,4 @@ struct AllStylesPage {
     .justifyContent(FlexAlign.Center)
   }
 }
+// [End AllStyles]

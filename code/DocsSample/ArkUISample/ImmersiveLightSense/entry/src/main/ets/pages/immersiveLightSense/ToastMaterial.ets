@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ToastMaterial]
 import { PromptAction, uiMaterial } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -48,3 +49,4 @@ struct ToastMaterialPage {
     .backgroundImageSize({ width: '100%', height: '100%' })
   }
 }
+// [End ToastMaterial]

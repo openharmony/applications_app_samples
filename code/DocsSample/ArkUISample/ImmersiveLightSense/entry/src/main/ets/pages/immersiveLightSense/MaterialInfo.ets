@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start MaterialInfo]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -57,3 +58,4 @@ struct MaterialInfoPage {
     .backgroundImageSize(ImageSize.FILL)
   }
 }
+// [End MaterialInfo]

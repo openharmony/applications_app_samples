@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start SheetMaterial]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -59,3 +60,4 @@ struct SheetMaterialPage {
     }
   }
 }
+// [End SheetMaterial]

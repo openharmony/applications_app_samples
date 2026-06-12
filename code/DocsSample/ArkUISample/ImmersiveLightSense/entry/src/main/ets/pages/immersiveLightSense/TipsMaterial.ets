@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start TipsMaterial]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -33,3 +34,4 @@ struct TipsMaterialPage {
     .backgroundImageSize({ width: '100%', height: '100%' })
   }
 }
+// [End TipsMaterial]
