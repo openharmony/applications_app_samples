@@ -25,7 +25,7 @@ class MyRenderNode extends RenderNode {
       fontSize: 40
     };
     // [Start arkts_punctuation_compress_example_text]
-    // 开启行首标点挤压
+    // 开启行首标点压缩
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
       compressHeadPunctuation: true
