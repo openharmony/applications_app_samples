@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ColorInvert]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -62,3 +63,4 @@ struct ColorInvertPage {
     .height('100%')
   }
 }
+// [End ColorInvert]

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start PopupMaterial]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -40,3 +41,4 @@ struct PopupMaterialPage {
     .backgroundImageSize({ width: '100%', height: '100%' })
   }
 }
+// [End PopupMaterial]

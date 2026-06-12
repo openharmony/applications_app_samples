@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ColumnMaterial]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -38,3 +39,4 @@ struct ColumnMaterialPage {
     .backgroundImageSize(ImageSize.FILL)
   }
 }
+// [End ColumnMaterial]

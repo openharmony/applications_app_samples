@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start CloseMaterial]
 import { uiMaterial } from '@kit.ArkUI';
 
 @Entry
@@ -49,3 +50,4 @@ struct CloseMaterialPage {
     .justifyContent(FlexAlign.Center)
   }
 }
+// [End CloseMaterial]
