@@ -1522,7 +1522,7 @@
     },
     {
       "name": "lazyLayout_group_description",
-      "value": "示例展示了懒加载布局的分组能力，通过LazyForEach动态创建按月份分组的照片网格，配合sticky属性实现分组标题吸顶和底部工具栏吸底。"
+      "value": "示例展示了懒加载布局的分组能力，通过LazyForEach动态创建按月份分组的照片网格，配合sticky属性实现分组标题吸顶。"
     },
     {
       "name": "lazyLayout_photo",

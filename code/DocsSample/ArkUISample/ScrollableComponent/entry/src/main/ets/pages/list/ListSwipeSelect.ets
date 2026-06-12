@@ -64,7 +64,7 @@ class ListMultiSelectDataSource implements IDataSource {
 
 @Entry
 @Component
-export struct ListFingerSwipeMultiSelectDyn {
+export struct ListSwipeSelect {
   private dataSource: ListMultiSelectDataSource = new ListMultiSelectDataSource();
   private avatarColors: string[] = ['#317AF7', '#00A878', '#F7A531', '#8A5CF6', '#D94854', '#2A8C9C'];
   @State enableEditMode: boolean = false;
