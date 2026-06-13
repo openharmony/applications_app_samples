@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/MainPage",
+    "pages/specifications/NestedScopes",
+    "pages/developmentDemo/CustomEnv",
+    "pages/developmentDemo/FontScale",
+    "pages/developmentDemo/LayoutDirection"
+
+  ]
+}
