@@ -24,7 +24,7 @@
 // [Start enable_mute_suggestion]
 // [Start set_default_output_device]
 // [Start set_session_behavior]
-// [start print_session_info]
+// [Start print_session_info]
 import { audio } from '@kit.AudioKit';
 // [StartExclude get_session_manager]
 // [StartExclude on_audio_session_deactivated]

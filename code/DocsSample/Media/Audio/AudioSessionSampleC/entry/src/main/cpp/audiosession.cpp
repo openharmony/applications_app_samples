@@ -20,7 +20,7 @@
 #include "ohaudio/native_audiostreambuilder.h"
 #include <sstream>
 #include <vector>
-// [start print_session_info]
+// [Start print_session_info]
 #include "ohaudio/native_audio_debugging_manager.h"
 // [StartExclude print_session_info]
 
