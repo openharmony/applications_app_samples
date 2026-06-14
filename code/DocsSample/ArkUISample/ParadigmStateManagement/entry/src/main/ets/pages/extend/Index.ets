@@ -23,7 +23,6 @@ import { LocalExtendUIStateVariable } from './ExtendUIStateVariable';
 import { LocalExtendUsageScenario } from './ExtendUsageScenario';
 import { LocalExtendUsageScenario2 } from './ExtendUsageScenariotwo';
 import { LocalGlobalFunctionExtension } from './GlobalFunctionExtension';
-import { LocalExtendSupportIfelse } from './ExtendSupportIfelse';
 
 export const EXTEND: string = 'extend';
 
@@ -55,10 +54,6 @@ const routes: Route[] = [
   {
     name: `${EXTEND}/ExtendUsageScenariotwo`,
     title: resource.resourceToString($r('app.string.extend_usage_scenario_two')),
-  },
-  {
-    name: `${EXTEND}/ExtendSupportIfelse`,
-    title: resource.resourceToString($r('app.string.extend_support_ifelse')),
   }
 ];
 
@@ -80,8 +75,6 @@ export function extendDestination(name: string) {
     LocalExtendUsageScenario();
   } else if (name === `${EXTEND}/ExtendUsageScenariotwo`) {
     LocalExtendUsageScenario2();
-  } else if (name === `${EXTEND}/ExtendSupportIfelse`) {
-    LocalExtendSupportIfelse();
   }
 }
 

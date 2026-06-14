@@ -40,8 +40,7 @@ entry/src/main/ets/
     ├── Index.ets
     ├── StylesDecorator
     │   ├── StylesDecorator1.ets                   // 全局@Styles的用法
-    │   ├── StylesDecorator2.ets                   // 组件内的@Styles用法
-    │   └── StylesDecorator3.ets                   // @Styles函数和方法支持if else
+    │   └── StylesDecorator2.ets                   // 组件内的@Styles用法
     └── common
         └── Index.ets
 entry/src/ohosTest/
