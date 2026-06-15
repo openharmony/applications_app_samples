@@ -115,10 +115,16 @@ constexpr uint32_t TEXT_DECORATION_COLOR = 0xFF00FFFF;
 #define EVENT_TEXT_AREA_ON_CUT 53
 #define EVENT_TEXT_AREA_ON_PASTE_ALLOW 54
 #define EVENT_TEXT_AREA_ON_PASTE_FORBIDDEN 55
+#define EVENT_TEXT_PUNCTUATION_OVERFLOW_ON_CLICK 56
+#define EVENT_TEXT_INPUT_PUNCTUATION_OVERFLOW_ON_CLICK 57
+#define EVENT_TEXT_AREA_PUNCTUATION_OVERFLOW_ON_CLICK 58
 #define FLOAT_50 50.0f
 
 ArkUI_NodeHandle TextMaker::text17 = nullptr;
 ArkUI_NodeHandle TextMaker::text22 = nullptr;
+ArkUI_NodeHandle TextMaker::textPunctuationOverflow = nullptr;
+ArkUI_NodeHandle TextMaker::textInputPunctuationOverflow = nullptr;
+ArkUI_NodeHandle TextMaker::textAreaPunctuationOverflow = nullptr;
 
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
@@ -869,6 +875,60 @@ void setTextInput5(ArkUI_NodeHandle &textInput5, ArkUI_NodeHandle &textInput5_2)
     ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(textInput5, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item0);
     Manager::nodeAPI_->setAttribute(textInput5_2, NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION, &item1);
+}
+
+void setComponentStyle(ArkUI_NodeHandle &component, float componentWidth, float borderWidth)
+{
+    ArkUI_NumberValue widthValue[] = {{.f32 = componentWidth}};
+    ArkUI_AttributeItem widthItem = {widthValue, sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(component, NODE_WIDTH, &widthItem);
+
+    ArkUI_NumberValue value3[] = {{.f32 = borderWidth}};
+    ArkUI_AttributeItem item3 = {value3, sizeof(value3) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(component, NODE_BORDER_WIDTH, &item3);
+
+    ArkUI_NumberValue topMargin = {.f32 = TOP_MARGIN};
+    ArkUI_NumberValue bottomMargin = {.f32 = BOTTOM_MARGIN};
+    ArkUI_NumberValue noMargin = {.f32 = 0};
+    ArkUI_NumberValue marginValue[] = {topMargin, noMargin, bottomMargin, noMargin};
+    ArkUI_AttributeItem marginItem = {marginValue, SIZE_4};
+    Manager::nodeAPI_->setAttribute(component, NODE_MARGIN, &marginItem);
+}
+
+void setTextInputPunctuationOverflow(ArkUI_NodeHandle &textInputPunctuationOverButton)
+{
+    const int32_t eventId = EVENT_TEXT_INPUT_PUNCTUATION_OVERFLOW_ON_CLICK;
+    ArkUI_AttributeItem buttonLabel{.string = "切换行尾标点符号悬挂"};
+    Manager::nodeAPI_->setAttribute(textInputPunctuationOverButton, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textInputPunctuationOverButton, NODE_ON_CLICK_EVENT, eventId, nullptr);
+
+    ArkUI_AttributeItem textInputText = {.string = "0123456789！\n0123456789："};
+    Manager::nodeAPI_->setAttribute(TextMaker::textInputPunctuationOverflow, NODE_TEXT_INPUT_TEXT, &textInputText);
+
+    // 初始化组件样式
+    setComponentStyle(TextMaker::textInputPunctuationOverflow, 120.0f, 0.0f);
+
+    // 行尾标点符号悬挂在TextInput内联输入风格时生效。
+    ArkUI_NumberValue textInputStyle = {.i32 = ARKUI_TEXTINPUT_STYLE_INLINE};
+    ArkUI_AttributeItem textInputStyleItem = {&textInputStyle, VALUE_1};
+    Manager::nodeAPI_->setAttribute(TextMaker::textInputPunctuationOverflow, NODE_TEXT_INPUT_STYLE,
+                                    &textInputStyleItem);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textInputPunctuationOverButton, [](ArkUI_NodeEvent *event) {
+        auto eventType{OH_ArkUI_NodeEvent_GetEventType(event)};
+        auto eventId{OH_ArkUI_NodeEvent_GetTargetId(event)};
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == EVENT_TEXT_INPUT_PUNCTUATION_OVERFLOW_ON_CLICK) {
+            auto currentPunctuationOverflow =
+                Manager::nodeAPI_
+                    ->getAttribute(TextMaker::textInputPunctuationOverflow, NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW)
+                    ->value[VALUE_0]
+                    .i32;
+            ArkUI_NumberValue punctuationOverflow = {.i32 = !currentPunctuationOverflow};
+            ArkUI_AttributeItem punctuationOverflowItem = {&punctuationOverflow, SIZE_1};
+            Manager::nodeAPI_->setAttribute(TextMaker::textInputPunctuationOverflow,
+                                            NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW, &punctuationOverflowItem);
+        }
+    });
 }
 
 void setTextInput6(ArkUI_NodeHandle &textInput6, ArkUI_NodeHandle &textInput6_2)
@@ -1668,6 +1728,36 @@ void setText11(ArkUI_NodeHandle &text11, ArkUI_NodeHandle &text11_2)
     ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text11, NODE_BORDER_WIDTH, &item3);
     Manager::nodeAPI_->setAttribute(text11_2, NODE_BORDER_WIDTH, &item3);
+}
+
+void setTextPunctuationOverflow(ArkUI_NodeHandle &textPunctuationOverButton)
+{
+    const int32_t eventId = EVENT_TEXT_PUNCTUATION_OVERFLOW_ON_CLICK;
+    ArkUI_AttributeItem buttonLabel{.string = "切换行尾标点符号悬挂"};
+    Manager::nodeAPI_->setAttribute(textPunctuationOverButton, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textPunctuationOverButton, NODE_ON_CLICK_EVENT, eventId, nullptr);
+
+    ArkUI_AttributeItem textItem = {.string = "0123456789！\n0123456789："};
+    Manager::nodeAPI_->setAttribute(TextMaker::textPunctuationOverflow, NODE_TEXT_CONTENT, &textItem);
+    
+    // 初始化组件样式
+    setComponentStyle(TextMaker::textPunctuationOverflow, 100.0f, 1.0f);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textPunctuationOverButton, [](ArkUI_NodeEvent *event) {
+        auto eventType{OH_ArkUI_NodeEvent_GetEventType(event)};
+        auto eventId{OH_ArkUI_NodeEvent_GetTargetId(event)};
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == EVENT_TEXT_PUNCTUATION_OVERFLOW_ON_CLICK) {
+            auto currentPunctuationOverflow =
+                Manager::nodeAPI_
+                    ->getAttribute(TextMaker::textPunctuationOverflow, NODE_TEXT_PUNCTUATION_OVERFLOW)
+                    ->value[VALUE_0]
+                    .i32;
+            ArkUI_NumberValue punctuationOverflow = {.i32 = !currentPunctuationOverflow};
+            ArkUI_AttributeItem punctuationOverflowItem = {&punctuationOverflow, SIZE_1};
+            Manager::nodeAPI_->setAttribute(TextMaker::textPunctuationOverflow,
+                                            NODE_TEXT_PUNCTUATION_OVERFLOW, &punctuationOverflowItem);
+        }
+    });
 }
 
 void setText12(ArkUI_NodeHandle &text12, ArkUI_NodeHandle &text12_2)
@@ -2632,6 +2722,36 @@ void setTextArea6(ArkUI_NodeHandle &textArea6, ArkUI_NodeHandle &textArea6_2)
     Manager::nodeAPI_->setAttribute(textArea6_2, NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION, &item1);
 }
 
+void setTextAreaPunctuationOverflow(ArkUI_NodeHandle &textAreaPunctuationOverButton)
+{
+    const int32_t eventId = EVENT_TEXT_AREA_PUNCTUATION_OVERFLOW_ON_CLICK;
+    ArkUI_AttributeItem buttonLabel{.string = "切换行尾标点符号悬挂"};
+    Manager::nodeAPI_->setAttribute(textAreaPunctuationOverButton, NODE_BUTTON_LABEL, &buttonLabel);
+    Manager::nodeAPI_->registerNodeEvent(textAreaPunctuationOverButton, NODE_ON_CLICK_EVENT, eventId, nullptr);
+
+    ArkUI_AttributeItem textAreaText = {.string = "012345678！\n012345678："};
+    Manager::nodeAPI_->setAttribute(TextMaker::textAreaPunctuationOverflow, NODE_TEXT_AREA_TEXT, &textAreaText);
+
+    // 初始化组件样式
+    setComponentStyle(TextMaker::textAreaPunctuationOverflow, 125.0f, 0.0f);
+
+    Manager::nodeAPI_->addNodeEventReceiver(textAreaPunctuationOverButton, [](ArkUI_NodeEvent *event) {
+        auto eventType{OH_ArkUI_NodeEvent_GetEventType(event)};
+        auto eventId{OH_ArkUI_NodeEvent_GetTargetId(event)};
+        if (eventType == NODE_ON_CLICK_EVENT && eventId == EVENT_TEXT_AREA_PUNCTUATION_OVERFLOW_ON_CLICK) {
+            auto currentPunctuationOverflow =
+                Manager::nodeAPI_
+                    ->getAttribute(TextMaker::textAreaPunctuationOverflow, NODE_TEXT_AREA_PUNCTUATION_OVERFLOW)
+                    ->value[VALUE_0]
+                    .i32;
+            ArkUI_NumberValue punctuationOverflow = {.i32 = !currentPunctuationOverflow};
+            ArkUI_AttributeItem punctuationOverflowItem = {&punctuationOverflow, SIZE_1};
+            Manager::nodeAPI_->setAttribute(TextMaker::textAreaPunctuationOverflow,
+                                            NODE_TEXT_AREA_PUNCTUATION_OVERFLOW, &punctuationOverflowItem);
+        }
+    });
+}
+
 void setTextArea7(ArkUI_NodeHandle &textArea7, ArkUI_NodeHandle &textArea7_2)
 {
     ArkUI_AttributeItem textItem = {
@@ -3138,9 +3258,12 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text21 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     TextMaker::text22 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    TextMaker::textPunctuationOverflow = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle textPunctuationOverButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setText9(text9);
     setText10(text10);
     setText11(text11, text11_2);
+    setTextPunctuationOverflow(textPunctuationOverButton);
     setTextDirection(text19);
     setText20(text20, text21);
     setText22(TextMaker::text22, button);
@@ -3148,6 +3271,8 @@ void setAllTextPart2(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text10);
     Manager::nodeAPI_->addChild(textContainer, text11);
     Manager::nodeAPI_->addChild(textContainer, text11_2);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::textPunctuationOverflow);
+    Manager::nodeAPI_->addChild(textContainer, textPunctuationOverButton);
     Manager::nodeAPI_->addChild(textContainer, text19);
     Manager::nodeAPI_->addChild(textContainer, text20);
     Manager::nodeAPI_->addChild(textContainer, text21);
@@ -3259,11 +3384,15 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textInputKeyBoard = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoard2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
     ArkUI_NodeHandle textInputKeyBoardButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    TextMaker::textInputPunctuationOverflow = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInputPunctuationOverButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
     setTextInputSelectAI(textInputAISelect);
     setTextInput13(textInput13, textInput13_2);
     setTextInput14(textInput14, true);
     setTextInput15(textInput15, textInput15_2);
     setTextInputKeyboard(textInputKeyBoard, textInputKeyBoard2, textInputKeyBoardButton);
+    setTextInputPunctuationOverflow(textInputPunctuationOverButton);
+    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput13);
     Manager::nodeAPI_->addChild(textContainer, textInput13_2);
@@ -3273,6 +3402,8 @@ void setAllTextInputPart2(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoard2);
     Manager::nodeAPI_->addChild(textContainer, textInputKeyBoardButton);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::textInputPunctuationOverflow);
+    Manager::nodeAPI_->addChild(textContainer, textInputPunctuationOverButton);
 }
 
 void setAllTextInput(ArkUI_NodeHandle &textContainer)
@@ -3313,9 +3444,12 @@ void SetAllTextAreaPart2(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea8_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textArea9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    TextMaker::textAreaPunctuationOverflow = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textAreaPunctuationOverButton = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
 
     setCustomKeyboard(textArea5);
     setTextArea6(textArea6, textArea6_2);
+    setTextAreaPunctuationOverflow(textAreaPunctuationOverButton);
     setTextAreaSelectAI(textAreaAISelect);
     setTextArea7(textArea7, textArea7_2);
     setTextArea8(textArea8, textArea8_2);
@@ -3324,6 +3458,8 @@ void SetAllTextAreaPart2(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, textArea6);
     Manager::nodeAPI_->addChild(textContainer, textArea6_2);
+    Manager::nodeAPI_->addChild(textContainer, TextMaker::textAreaPunctuationOverflow);
+    Manager::nodeAPI_->addChild(textContainer, textAreaPunctuationOverButton);
     Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
     Manager::nodeAPI_->addChild(textContainer, textArea7);
     Manager::nodeAPI_->addChild(textContainer, textArea7_2);

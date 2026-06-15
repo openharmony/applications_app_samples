@@ -37,6 +37,9 @@ public:
     static ArkUI_NodeHandle CreateNativeNode();
     static ArkUI_Node* text17;
     static ArkUI_Node* text22;
+    static ArkUI_Node* textPunctuationOverflow;
+    static ArkUI_Node* textInputPunctuationOverflow;
+    static ArkUI_Node* textAreaPunctuationOverflow;
 };
 
 #endif // NATIVE_TYPE_SAMPLE_SWIPERMAKER_H
