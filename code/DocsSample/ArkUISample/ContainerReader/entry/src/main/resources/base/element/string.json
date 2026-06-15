@@ -14,7 +14,7 @@
     },
     {
       "name": "build_layout",
-      "value": "动态布局"
+      "value": "容器断点"
     },
     {
       "name": "custom_layout",
@@ -22,7 +22,7 @@
     },
     {
       "name": "responsive_layout",
-      "value": "布局切换能力"
+      "value": "布局规格"
     }
   ]
 }
