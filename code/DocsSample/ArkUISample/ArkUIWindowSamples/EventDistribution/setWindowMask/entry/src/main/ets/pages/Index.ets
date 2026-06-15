@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-// [Start index_component]
+// [Start setWindowMaskSample]
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  // [StartExclude index_component]
+  // [StartExclude setWindowMaskSample]
   @State message: string = 'set windowMask test';
   private storage: LocalStorage | undefined = this.getUIContext()?.getSharedLocalStorage();
   private windowStage: window.WindowStage | undefined = this.storage?.get<window.WindowStage>('windowStage');
   private testWindow: window.Window | undefined = undefined;
-  // [EndExclude index_component]
+  // [EndExclude setWindowMaskSample]
   private windowMaskSub: window.Window | undefined = undefined;
-  // [End index_component]
 
+  // [StartExclude setWindowMaskSample]
   private winWidth: number = 800; // window width for test
   private winHeight: number = 800; // window height for test
 
@@ -74,8 +74,7 @@ struct Index {
       }, 500);
     });
   }
-
-  // [Start setWindowMask_func]
+  // [EndExclude setWindowMaskSample]
   setWindowMask(window: window.Window) {
     let windowMask: Uint8Array = new Uint8Array(this.winWidth * this.winHeight);
     for (let i = 0; i < this.winHeight; i++) {
@@ -89,14 +88,12 @@ struct Index {
     }
     window.setWindowMaskWithAlpha(windowMask, this.winWidth, this.winHeight);
   }
-  // [End setWindowMask_func]
 
-  // [Start setWindowMask_build]
   build() {
     Row() {
       Scroll(){
         Column() {
-          // [StartExclude setWindowMask_build]
+          // [StartExclude setWindowMaskSample]
           Button('Create Test Window')
             .type(ButtonType.Capsule)
             .margin({
@@ -150,7 +147,7 @@ struct Index {
                 }
               })
           }
-          // [EndExclude setWindowMask_build]
+          // [EndExclude setWindowMaskSample]
           Row() {
             Button('setWindowMask for Sub Window')
               .width('90%')
@@ -172,4 +169,4 @@ struct Index {
   }
 
 }
-// [End setWindowMask_build]
+// [End setWindowMaskSample]
