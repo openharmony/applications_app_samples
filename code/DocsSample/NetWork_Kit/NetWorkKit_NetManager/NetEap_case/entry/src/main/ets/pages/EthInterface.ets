@@ -75,7 +75,7 @@ function logOffEthEap() {
   // [EndExclude eap_case_log_off_eth_eap]
   try{
     eap.logOffEthEap(netId);
-    hilog.error(0x0000, 'testTag', 'logOffEthEap success');
+    hilog.info(0x0000, 'testTag', 'logOffEthEap success');
     // [StartExclude eap_case_log_off_eth_eap]
     promptAction.showToast({
       message: '退出认证成功',

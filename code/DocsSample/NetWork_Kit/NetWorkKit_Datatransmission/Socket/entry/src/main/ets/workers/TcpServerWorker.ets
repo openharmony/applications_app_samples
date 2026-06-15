@@ -59,7 +59,7 @@ function startServer(tcpMessage: TcpMessage) {
     workerPort.postMessage({ type: 'listen success' });
     // [EndExclude tcp_server_worker_ipAddress]
   }).catch(() => {
-    hilog.info(0x0000, 'testTag', 'listen fail');
+    hilog.error(0x0000, 'testTag', 'listen fail');
     // [StartExclude tcp_server_worker_ipAddress]
     workerPort.postMessage({ type: 'listen fail' });
     // [EndExclude tcp_server_worker_ipAddress]
@@ -149,7 +149,7 @@ function disConnect() {
       workerPort.postMessage({ type: 'close success' });
       // [EndExclude tcp_server_worker_socketInfo]
     }).catch((err: BusinessError) => {
-      hilog.info(0x0000, 'testTag', 'close fail');
+      hilog.error(0x0000, 'testTag', 'close fail');
       // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'close fail', message: JSON.stringify(err) });
       // [EndExclude tcp_server_worker_socketInfo]
