@@ -17,15 +17,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { formInfo } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { image } from '@kit.ImageKit';
 import { Constants } from '../common/Constants';
-import { subjectSegmentation } from '@kit.CoreVisionKit';
+import { SegmentationUtil } from '../common/SegmentationUtil';
 import { Want } from '@kit.AbilityKit';
 
 const DOMAIN = 0x0000;
 const TAG  = 'testTag';
 const scaleMax = 1.2;
-const subjectMaxCount = '2';
 
 @Entry
 @Component
@@ -42,7 +40,6 @@ struct Page {
   private formRect: formInfo.Rect | undefined = undefined;
   private formBorderRadius: number | undefined = undefined;
   private liveFormContext: common.LiveFormExtensionContext | undefined = undefined;
-  private isInit: boolean = false;
 
   aboutToAppear(): void {
     hilog.info(DOMAIN, TAG, '%{public}s', 'aboutToAppear');
@@ -51,16 +48,10 @@ struct Page {
       return;
     }
     this.initParams();
-    subjectSegmentation.init().then((isInit) => {
-      this.isInit = isInit;
-      hilog.info(DOMAIN, TAG, 'Subject segmentation initialization result:%{public}d', isInit);
-    })
   }
 
   aboutToDisappear(): void {
-    subjectSegmentation.release().then(()=>{
-      hilog.info(DOMAIN, TAG, '%{public}s', 'Subject segmentation released successfully');
-    })
+    hilog.info(DOMAIN, TAG, '%{public}s', 'aboutToDisappear');
   }
 
   private initParams(): void {
@@ -97,49 +88,6 @@ struct Page {
         });
     } catch (e) {
       hilog.error(DOMAIN, TAG, 'startAbilityByLiveForm failed: %{public}s', JSON.stringify(e));
-    }
-  }
-
-  async loadImage(resource: Resource): Promise<image.PixelMap | undefined> {
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // 获取resourceManager资源管理
-    const resourceManager = context.resourceManager; // 获取图片数据
-    let fileData: Uint8Array;
-    try {
-      fileData = await resourceManager.getMediaContent(resource.id); // 返回对应的媒体文件内容。
-    } catch (e) {
-      return undefined;
-    }
-    let buffer: ArrayBuffer = fileData.buffer.slice(0);
-    const imageSource: image.ImageSource = image.createImageSource(buffer);
-    const pixelMap: image.PixelMap = await imageSource.createPixelMap();
-    imageSource.release();
-    return pixelMap;
-  }
-
-  async doImageSegmentation() {
-    if (!this.chooseImage) {
-      return;
-    }
-    let img: image.PixelMap | undefined = await this.loadImage(this.chooseImage);
-    if (!img) {
-      return;
-    }
-    let visionInfo: subjectSegmentation.VisionInfo = {
-      pixelMap: img,
-    };
-    let config: subjectSegmentation.SegmentationConfig = {
-      maxCount: parseInt(subjectMaxCount),
-      enableSubjectDetails: true,
-      enableSubjectForegroundImage: true
-    };
-    try {
-      let data: subjectSegmentation.SegmentationResult = await subjectSegmentation.doSegmentation(visionInfo, config);
-      if (data.fullSubject && data.fullSubject.foregroundImage) {
-        this.segmentedImage = data.fullSubject.foregroundImage;
-      }
-    } catch (e) {
-      hilog.error(DOMAIN, TAG, 'Image segmentation failed: %{public}s', JSON.stringify(e));
-      this.segmentedImage = undefined;
     }
   }
 
@@ -204,7 +152,8 @@ struct Page {
     .width('100%')
     .height('100%')
     .onAppear(async () => {
-      await this.doImageSegmentation();
+      this.segmentedImage = await SegmentationUtil.getInstance().SegmentationImage(this.chooseImage,
+        this.getUIContext().getHostContext() as common.UIAbilityContext)
       if (!this.segmentedImage) {
         return;
       }
