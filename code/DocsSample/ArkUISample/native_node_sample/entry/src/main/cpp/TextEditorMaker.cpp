@@ -199,7 +199,7 @@ void SetTextEditorSingleLine()
 void SetTextEditorStyle()
 {
     StyledStringBase::SetTextTitle(textContainer,
-        "autoSpacing(True)  fontPadding(True)  lineSpacing(True)  符号压缩(True)");
+        "autoSpacing(True)  fontPadding(True)  lineSpacing(True)  行首标点符号压缩(True)  行尾标点符号悬挂(True)");
     ArkUI_NodeHandle textEditor = InitTextEditor();
     // 配置enableAutoSpacing
     ArkUI_NumberValue enableAutoSpacing = {.i32 = true};
@@ -218,6 +218,11 @@ void SetTextEditorStyle()
     ArkUI_AttributeItem compressLeadingPunctuationItem = {&compressLeadingPunctuation, SIZE_1};
     Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
                                     &compressLeadingPunctuationItem);
+    // 配置punctuationOverflow
+    ArkUI_NumberValue punctuationOverflow = {.i32 = true};
+    ArkUI_AttributeItem punctuationOverflowItem = {&punctuationOverflow, SIZE_1};
+    Manager::nodeAPI_->setAttribute(textEditor, NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
+                                    &punctuationOverflowItem);
 }
 
 /**
