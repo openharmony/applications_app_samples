@@ -23,6 +23,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { AppIconCacheManager } from '../Utils/AppIconCacheManager';
 import { AppNameCacheManager } from '../Utils/AppNameCacheManager';
+import { Logger } from '../Utils/Logger';
 
 const TAG: string = 'CustomDialogExample';
 
@@ -82,7 +83,7 @@ export default struct CustomDialogExample {
     });
     emitter.once('uninstall', () => {
       if (!this.focusIndex && this.focusIndex != 0) {
-        console.log('focus error', this.focusIndex + '');
+        Logger.info('focus error', this.focusIndex + '');
         return;
       }
       this.unInstallList(this.appList[this.focusIndex].element.bundleName);
@@ -121,7 +122,7 @@ export default struct CustomDialogExample {
     try {
       this.getUIContext().getFocusController()?.activate(false);
     } catch (e) {
-      console.log('Close focus error');
+      Logger.info('Close focus error');
     }
   }
 
@@ -140,7 +141,7 @@ export default struct CustomDialogExample {
 
   //系统接口删除应用
   unInstallApp(bundleName: string, installParam: bundleInstall.InstallParam) {
-    console.log(bundleName, '正在被下载的应用bundleName');
+    Logger.info(bundleName, '正在被下载的应用bundleName');
     let appList = this.appList;
     bundleInstall.getBundleInstaller().then(installer => {
       installer.uninstall(bundleName, installParam, err => {
@@ -148,10 +149,10 @@ export default struct CustomDialogExample {
         if (err) {
           let dealErr = new ErrorCodeHandler();
           this.getUIContext().getPromptAction().showToast({
-            message: '卸载失败,' + dealErr.handleErrorCode(err.code as number),
+            message: 'uninstall failed,' + dealErr.handleErrorCode(err.code as number),
             duration: 2000
           });
-          console.error('uninstall failed:' + JSON.stringify(err));
+          Logger.error('uninstall failed:' + JSON.stringify(err));
         } else {
 
           appList.splice(this.focusIndex, 1);
@@ -161,7 +162,7 @@ export default struct CustomDialogExample {
           } else {
             this.focusIndex = appList.length - 1;
           }
-          console.log(this.focusIndex + 'this.focusIndex', appList.length, 'appList.length');
+          Logger.info(this.focusIndex + 'this.focusIndex' + appList.length + 'appList.length');
           this.localStorageApp();
           this.controller?.close();
           this.cancel();
@@ -170,16 +171,16 @@ export default struct CustomDialogExample {
             emitter.emit('removeShotcuts', { data: bundleName });
           }
 
-          console.log('卸载清理成功');
+          Logger.info('Uninstall and cleanup successful');
           this.getUIContext().getPromptAction().showToast({
-            message: '卸载清理成功',
+            message: 'Uninstall and cleanup successful',
             duration: 2000
           });
         }
       });
     }).catch((error: BusinessError) => {
       let message = (error as BusinessError).message;
-      console.error('getBundleInstaller failed. Cause: ' + message);
+      Logger.error('getBundleInstaller failed. Cause: ' + message);
     });
   }
 
@@ -234,7 +235,7 @@ export default struct CustomDialogExample {
 
         Column({ space: 8 }) {
           Row() {
-            Button('添加到桌面快捷方式', { type: ButtonType.Normal, stateEffect: true })
+            Button($r('app.string.Desktop_shortcut'), { type: ButtonType.Normal, stateEffect: true })
               .defaultFocus(this.withAddShortCuts(this.appList[this.focusIndex].element.bundleName) ? true : false)
               .fontColor(this.ifFocus === 'add_shortcuts' ? $r('app.color.focus_true') : $r('app.color.focus_false'))
               .backgroundColor(this.ifFocus === 'add_shortcuts' ? $r('app.color.focus_BG_true') :
@@ -273,7 +274,7 @@ export default struct CustomDialogExample {
           $r('app.color.focus_BG_false'));
 
           Row() {
-            Button('卸载', { type: ButtonType.Normal, stateEffect: true })
+            Button($r('app.string.uninstall'), { type: ButtonType.Normal, stateEffect: true })
               .defaultFocus(this.withAddShortCuts(this.appList[this.focusIndex].element.bundleName) ? false : true)
               .fontColor(this.ifFocus === 'uninstall' ? $r('app.color.focus_true') : $r('app.color.focus_false'))
               .backgroundColor(this.ifFocus === 'uninstall' ? $r('app.color.focus_BG_true') :
@@ -308,7 +309,7 @@ export default struct CustomDialogExample {
           .borderColor(this.ifFocus === 'uninstall' ? $r('app.color.focus_BG_true') : $r('app.color.focus_BG_false'));
 
           Row() {
-            Button('移动', { type: ButtonType.Normal, stateEffect: true })
+            Button($r('app.string.move'), { type: ButtonType.Normal, stateEffect: true })
               .fontColor(this.ifFocus === 'move' ? $r('app.color.focus_true') : $r('app.color.focus_false'))
               .backgroundColor(this.ifFocus === 'move' ? $r('app.color.focus_BG_true') :
               $r('app.color.focus_BG_false'))

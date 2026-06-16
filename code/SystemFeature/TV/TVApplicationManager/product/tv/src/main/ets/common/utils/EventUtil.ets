@@ -17,6 +17,7 @@ import { image } from '@kit.ImageKit';
 import { window } from '@kit.ArkUI';
 import { inputDevice, pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Logger } from '../../Utils/Logger';
 
 /**
  * 事件相关公共类
@@ -62,9 +63,9 @@ export class EventUtil {
             try {
               let windowId = win?.getWindowProperties()?.id;
               pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-              console.log(`setCustomCursorSync success`);
+              Logger.info(`setCustomCursorSync success`);
             } catch (error) {
-              console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+              Logger.info(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
             }
           });
         });
@@ -79,9 +80,9 @@ export class EventUtil {
       try {
         let windowId = win.getWindowProperties().id;
         pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT);
-        console.log(`setCustomCursorSync success`);
+        Logger.info(`setCustomCursorSync success`);
       } catch (error) {
-        console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        Logger.info(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       }
     });
   }

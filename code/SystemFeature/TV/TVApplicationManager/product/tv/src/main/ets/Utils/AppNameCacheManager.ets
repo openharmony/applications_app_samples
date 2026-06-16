@@ -14,6 +14,7 @@
  */
 import { application } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
+import { Logger } from './Logger';
 
 const TAG = 'AppNameCacheManager';
 
@@ -72,7 +73,7 @@ export class AppNameCacheManager {
       await appStore.put(key, data);
       await appStore.flush();
     } catch (err) {
-      console.error(TAG, 'persistToDisk err ' + JSON.stringify(err));
+      Logger.error(TAG, 'persistToDisk err ' + JSON.stringify(err));
     }
   }
 

@@ -15,6 +15,14 @@
     {
       "name": "move",
       "value": "移动"
+    },
+    {
+      "name": "Desktop_shortcut",
+      "value": "添加到桌面快捷方式"
+    },
+    {
+      "name": "uninstall",
+      "value": "卸载"
     }
   ]
 }

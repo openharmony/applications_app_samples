@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import preferences from '@ohos.data.preferences';
+import { Logger } from './Logger';
 
 interface CacheMetadata {
   data: string; // Base64编码的图标
@@ -75,7 +76,7 @@ export class DiskCache {
       await appStore.put(key, data);
       await appStore.flush();
     } catch (err) {
-      console.error(TAG, 'persistToDisk err ' + JSON.stringify(err));
+      Logger.error(TAG, 'persistToDisk err ' + JSON.stringify(err));
     }
   }
 

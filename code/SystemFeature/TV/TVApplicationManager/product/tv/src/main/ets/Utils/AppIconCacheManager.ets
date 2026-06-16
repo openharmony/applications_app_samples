@@ -17,6 +17,7 @@ import { MemoryCache } from './MemoryCache';
 import { image } from '@kit.ImageKit';
 import { buffer, util } from '@kit.ArkTS';
 import { application } from '@kit.AbilityKit';
+import { Logger } from './Logger';
 
 const TAG = 'AppIconCacheManager';
 
@@ -45,8 +46,8 @@ export class AppIconCacheManager {
     // 1. 检查内存缓存
     const cachedIcon = this.getFromMemoryCache(cacheKey);
     if (cachedIcon) {
-      console.log('0getAppIcon from disk cache', bundleName,
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('0getAppIcon from disk cache', bundleName,
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       return cachedIcon;
     }
@@ -60,8 +61,8 @@ export class AppIconCacheManager {
 
     // 3. 从系统加载图标
     const originalIcon = await this.loadSystemIcon(bundleName, moduleName, iconId);
-    console.log('3getAppIcon from disk cache', bundleName,
-      (new Date().getTime()) - (AppStorage.get('time') as number));
+    Logger.info('3getAppIcon from disk cache', bundleName,
+      ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
     if (originalIcon) {
       this.saveToMemoryCache(cacheKey, originalIcon);
@@ -91,11 +92,11 @@ export class AppIconCacheManager {
           }
           resolve(pixelMap);
         }).catch((e: Error) => {
-          console.log(TAG, 'createModuleContext error:' + JSON.stringify(e));
+          Logger.info(TAG, 'createModuleContext error:' + JSON.stringify(e));
           reject(new Error('createModuleContext error'));
         });
       } catch (error) {
-        console.error(TAG, 'loadSystemIcon error:' + JSON.stringify(error));
+        Logger.error(TAG, 'loadSystemIcon error:' + JSON.stringify(error));
         reject(error);
       }
     });
@@ -128,10 +129,10 @@ export class AppIconCacheManager {
     try {
       const base64Icon = await this.pixelMapToBase64(icon);
       await this.diskCache.set(key, base64Icon);
-      console.log('saveToDiskCache success:', key, 'Base64 length:', base64Icon.length, 'Time-consuming:',
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('saveToDiskCache success:', key, 'Base64 length:', base64Icon.length.toString(), 'Time-consuming:',
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
     } catch (error) {
-      console.error(TAG, 'saveToDiskCache error ', JSON.stringify(error));
+      Logger.error(TAG, 'saveToDiskCache error ', JSON.stringify(error));
     }
   }
 
@@ -140,8 +141,8 @@ export class AppIconCacheManager {
     try {
       const width = pixelMap.getImageInfoSync().size.width;
       const height = pixelMap.getImageInfoSync().size.height;
-      console.log('熊 pixelMapToBase64 原始尺寸:', width, 'x', height, '耗时:',
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊 pixelMapToBase64 原始尺寸:', width.toString(), 'x', height.toString(), '耗时:',
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       let sourcePixelMap = pixelMap;
 
@@ -149,8 +150,8 @@ export class AppIconCacheManager {
         const scale = Math.min(288 / width, 288 / height);
         const scaledWidth = Math.floor(width * scale);
         const scaledHeight = Math.floor(height * scale);
-        console.log('熊 pixelMapToBase64 缩放比例:', scale, '目标尺寸:', scaledWidth, 'x', scaledHeight, '耗时:',
-          (new Date().getTime()) - (AppStorage.get('time') as number));
+        Logger.info('熊 pixelMapToBase64 缩放比例:', scale.toString(), '目标尺寸:', scaledWidth.toString(), 'x', scaledHeight.toString(), '耗时:',
+          ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
         try {
           const packOpts: image.PackingOption = {
@@ -160,8 +161,8 @@ export class AppIconCacheManager {
 
           const imagePacker: image.ImagePacker = image.createImagePacker();
           const packedData = await imagePacker.packing(pixelMap, packOpts);
-          console.log('熊 pixelMapToBase64 PNG 中间转换完成，数据大小:', packedData.byteLength, '耗时:',
-            (new Date().getTime()) - (AppStorage.get('time') as number));
+          Logger.info('熊 pixelMapToBase64 PNG 中间转换完成，数据大小:', packedData.byteLength.toString(), '耗时:',
+            ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
           const tempImageSource = image.createImageSource(packedData);
           const decodeOpts: image.DecodingOptions = {
@@ -171,12 +172,12 @@ export class AppIconCacheManager {
             }
           };
           sourcePixelMap = await tempImageSource.createPixelMap(decodeOpts);
-          console.log('熊 pixelMapToBase64 缩放后尺寸:', sourcePixelMap.getImageInfoSync().size.width, 'x',
-            sourcePixelMap.getImageInfoSync().size.height, '耗时:',
-            (new Date().getTime()) - (AppStorage.get('time') as number));
+          Logger.info('熊 pixelMapToBase64 缩放后尺寸:', sourcePixelMap.getImageInfoSync().size.width.toString(), 'x',
+            sourcePixelMap.getImageInfoSync().size.height.toString(), '耗时:',
+            ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
         } catch (scaleError) {
-          console.error('熊 pixelMapToBase64 缩放失败，使用原图:', JSON.stringify(scaleError), '耗时:',
-            (new Date().getTime()) - (AppStorage.get('time') as number));
+          Logger.error('熊 pixelMapToBase64 缩放失败，使用原图:', JSON.stringify(scaleError), '耗时:',
+            ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
           sourcePixelMap = pixelMap;
         }
       }
@@ -184,13 +185,13 @@ export class AppIconCacheManager {
       const imagePacker: image.ImagePacker = image.createImagePacker();
 
       const estimatedSize = sourcePixelMap.getPixelBytesNumber();
-      console.log('熊 pixelMapToBase64 预估大小:', estimatedSize, 'bytes', '耗时:',
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊 pixelMapToBase64 预估大小:', estimatedSize.toString(), 'bytes', '耗时:',
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       let compressQuality = 100;
 
-      console.log('熊 pixelMapToBase64 压缩质量设置:', compressQuality, '耗时:',
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊 pixelMapToBase64 压缩质量设置:', compressQuality.toString(), '耗时:',
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       const packOpts: image.PackingOption = {
         format: 'image/webp',
@@ -200,11 +201,11 @@ export class AppIconCacheManager {
       let data: ArrayBuffer;
       try {
         data = await imagePacker.packing(sourcePixelMap, packOpts);
-        console.log('熊 pixelMapToBase64 WebP 压缩成功，耗时:',
-          (new Date().getTime()) - (AppStorage.get('time') as number));
+        Logger.info('熊 pixelMapToBase64 WebP 压缩成功，耗时:',
+          ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
       } catch (webpError) {
-        console.log('熊 pixelMapToBase64 WebP 失败，切换到 PNG:', JSON.stringify(webpError), '耗时:',
-          (new Date().getTime()) - (AppStorage.get('time') as number));
+        Logger.info('熊 pixelMapToBase64 WebP 失败，切换到 PNG:', JSON.stringify(webpError), '耗时:',
+          ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
         packOpts.format = 'image/png';
         data = await imagePacker.packing(sourcePixelMap, packOpts);
       }
@@ -212,12 +213,12 @@ export class AppIconCacheManager {
       const buf: buffer.Buffer = buffer.from(data);
       const base64 = `data:image/${packOpts.format === 'image/webp' ? 'webp' : 'png'};base64,${buf.toString('base64', 0,
         buf.length)}`;
-      console.log('熊 pixelMapToBase64 最终 Base64 长度:', base64.length, '格式:', packOpts.format, '耗时:',
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊 pixelMapToBase64 最终 Base64 长度:' + base64.length + '格式:' + packOpts.format + '耗时:' +
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       return base64;
     } catch (error) {
-      console.error(`pixelMapToBase64 err`, JSON.stringify(error));
+      Logger.error(`pixelMapToBase64 err`, JSON.stringify(error));
       return '';
     }
   }
@@ -231,15 +232,15 @@ export class AppIconCacheManager {
       const base64Helper = new util.Base64Helper();
       const uint8Array: Uint8Array = base64Helper.decodeSync(pureBase64);
       const arrayBuffer: ArrayBuffer = uint8Array.buffer as ArrayBuffer;
-      console.log('熊base64ToPixelMap', arrayBuffer.byteLength,
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊base64ToPixelMap' + arrayBuffer.byteLength,
+        ((new Date().getTime()) - (AppStorage.get('time') as number)).toString());
 
       // 创建 PixelMap
       const imageSource: image.ImageSource = image.createImageSource(arrayBuffer);
       const pixelMap: image.PixelMap = await imageSource.createPixelMap();
       return pixelMap;
     } catch (err) {
-      console.log(TAG, 'base64ToPixelMap err', JSON.stringify(err));
+      Logger.info(TAG, 'base64ToPixelMap err', JSON.stringify(err));
       return null;
     }
   }

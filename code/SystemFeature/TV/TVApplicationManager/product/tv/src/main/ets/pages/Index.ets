@@ -27,6 +27,7 @@ import CommonEvent from '@ohos.commonEventManager';
 import { inputEventClient, KeyCode } from '@kit.InputKit';
 import { EventUtil } from '../common/utils/EventUtil';
 import App from '@system.app';
+import { Logger } from '../Utils/Logger';
 
 // import display from '@ohos.display';
 
@@ -118,7 +119,7 @@ struct Index {
 
   //点击空白区域退出弹窗
   existApp() {
-    console.info('Click the callback in the blank area');
+    Logger.info('Click the callback in the blank area');
   }
 
   // 退出时杀死自身进程
@@ -139,7 +140,7 @@ struct Index {
         return this.getAppInfo(infoList);
       })
       .catch((err: BusinessError) => {
-        console.log(TAG, 'getAllLauncherAbilityInfo fail, err: ' + JSON.stringify(err));
+        Logger.info(TAG, 'getAllLauncherAbilityInfo fail, err: ' + JSON.stringify(err));
       });
   }
 
@@ -154,16 +155,16 @@ struct Index {
           const bundleName = this.appList[this.focusIndex]?.element?.bundleName;
           if (bundleName) {
             this.dialogPostion = this.getRect(bundleName);
-            console.log(`Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
+            Logger.info(`Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
           } else {
-            console.log('Warning: bundleName is undefined, using default dialog position');
+            Logger.info('Warning: bundleName is undefined, using default dialog position');
             this.dialogPostion = [0, 0]; // 使用默认位置
           }
 
           this.dialogCanceled = false;
           this.dialogController.open();
         } catch (error) {
-          console.log(`Error in callback`);
+          Logger.info(`Error in callback`);
           // 即使出错，也确保对话框能正常显示
           this.dialogPostion = [0, 0];
           this.dialogCanceled = false;
@@ -175,7 +176,7 @@ struct Index {
       inputConsumer.on('key', keyOptions, callback);
       inputConsumer.on('key', keyOptionsMenu, callback);
     } catch (error) {
-      console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      Logger.info(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
     }
   }
 
@@ -185,7 +186,7 @@ struct Index {
 
       // 验证返回的JSON字符串是否有效
       if (!componentJson || typeof componentJson !== 'string') {
-        console.log(`getRect: Invalid componentJson for ${componentId}, using default position`);
+        Logger.info(`getRect: Invalid componentJson for ${componentId}, using default position`);
         return [0, 0]; // 返回默认位置
       }
 
@@ -194,7 +195,7 @@ struct Index {
 
       // 验证是否为有效的JSON格式
       if (!componentJson.startsWith('{') || !componentJson.endsWith('}')) {
-        console.log(`getRect: Invalid JSON format for ${componentId}: ${componentJson}`);
+        Logger.info(`getRect: Invalid JSON format for ${componentId}: ${componentJson}`);
         return [0, 0]; // 返回默认位置
       }
 
@@ -203,12 +204,12 @@ struct Index {
       try {
         obj = JSON.parse(componentJson);
       } catch (e) {
-        console.log(`JSON.parse error: ${e}`);
+        Logger.info(`JSON.parse error: ${e}`);
       }
 
       // 验证obj.$rect是否存在
       if (!obj.$rect) {
-        console.log(`getRect: $rect property not found for ${componentId}`);
+        Logger.info(`getRect: $rect property not found for ${componentId}`);
         return [0, 0]; // 返回默认位置
       }
 
@@ -220,7 +221,7 @@ struct Index {
 
       // 验证解析结果
       if (rectInfo.length < 2) {
-        console.log(`getRect: Invalid rect format for ${componentId}: ${obj.$rect}`);
+        Logger.info(`getRect: Invalid rect format for ${componentId}: ${obj.$rect}`);
         return [0, 0]; // 返回默认位置
       }
 
@@ -229,14 +230,14 @@ struct Index {
 
       // 验证解析的数值是否有效
       if (isNaN(x) || isNaN(y)) {
-        console.log(`getRect: Invalid coordinate values for ${componentId}: x=${x}, y=${y}`);
+        Logger.info(`getRect: Invalid coordinate values for ${componentId}: x=${x}, y=${y}`);
         return [0, 0]; // 返回默认位置
       }
 
       return [x, y];
 
     } catch (error) {
-      console.log(`getRect: JSON parse error for ${componentId}: ${JSON.stringify(error)}`);
+      Logger.info(`getRect: JSON parse error for ${componentId}: ${JSON.stringify(error)}`);
       return [0, 0]; // 返回默认位置，避免崩溃
     }
   }
@@ -269,15 +270,15 @@ struct Index {
   aboutToAppear() {
     let dis = display.getDefaultDisplaySync();
     if (dis.width > 1920) {
-      console.log('HmLog-->', '屏幕宽度为3840');
+      Logger.info('HmLog-->', '屏幕宽度为3840');
       this.bigScreen = true;
     } else {
-      console.log('HmLog-->', '屏幕宽度为1920');
+      Logger.info('HmLog-->', '屏幕宽度为1920');
 
       this.bigScreen = false;
     }
     this.ifMove = 'false';
-    console.log(TAG + 'aboutToAppear');
+    Logger.info(TAG + 'aboutToAppear');
 
     interface dataP {
       appList: Array<AppList>;
@@ -299,7 +300,7 @@ struct Index {
 
     emitter.on('addShortcuts', (data) => {
       let bundleName: string = String(data.data);
-      console.log(TAG, 'add_shortcuts ' + bundleName);
+      Logger.info(TAG, 'add_shortcuts ' + bundleName);
       CommonEvent.publish(ADD_DOCKER_SHORTCUTS, { data: bundleName }, (error) => {
         if (!error) {
           (getContext(this) as common.UIAbilityContext).terminateSelf();
@@ -310,10 +311,10 @@ struct Index {
     // after uninstall ,requir notify launcher remove the shortcuts
     emitter.on('removeShotcuts', (data) => {
       let bundleName: string = String(data.data);
-      console.log(TAG, 'removeShotcuts ' + bundleName);
+      Logger.info(TAG, 'removeShotcuts ' + bundleName);
       CommonEvent.publish(REMOVE_DOCKER_SHORTCUTS, { data: bundleName }, (error) => {
         if (!error) {
-          console.log(TAG, 'removeShotcuts sucess');
+          Logger.info(TAG, 'removeShotcuts sucess');
         }
       });
     });
@@ -351,7 +352,7 @@ struct Index {
     for (let i = 0; i < this.infoList.length; i++) {
       curAppInfo = this.infoList[i];
       if (curAppInfo.elementName.bundleName === 'com.ohos.adminprovisioning' ||
-        curAppInfo.elementName.bundleName === 'com.ohos.applicationmanager') {
+        curAppInfo.elementName.bundleName === 'com.samples.applicationmanager') {
         continue;
       }
 
@@ -428,16 +429,16 @@ struct Index {
                 const bundleName = this.appList[this.focusIndex]?.element?.bundleName;
                 if (bundleName) {
                   this.dialogPostion = this.getRect(bundleName);
-                  console.log(`===Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
+                  Logger.info(`===Dialog position set to: [${this.dialogPostion[0]}, ${this.dialogPostion[1]}] for ${bundleName}`);
                 } else {
-                  console.log('===Warning: bundleName is undefined, using default dialog position');
+                  Logger.info('===Warning: bundleName is undefined, using default dialog position');
                   this.dialogPostion = [0, 0]; // 使用默认位置
                 }
 
                 this.dialogCanceled = false;
                 this.dialogController.open();
               } catch (error) {
-                console.log(`===Error in callback`);
+                Logger.info(`===Error in callback`);
                 // 即使出错，也确保对话框能正常显示
                 this.dialogPostion = [0, 0];
                 this.dialogCanceled = false;

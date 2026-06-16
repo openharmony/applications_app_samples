@@ -25,6 +25,7 @@ import { image } from '@kit.ImageKit';
 import { AppIconCacheManager } from '../Utils/AppIconCacheManager';
 import { AppNameCacheManager } from '../Utils/AppNameCacheManager';
 import json from '@ohos.util.json';
+import { Logger } from '../Utils/Logger';
 
 const TAG: string = 'gridList';
 const sourceToolMouseClick: number = 7;
@@ -378,7 +379,7 @@ export struct gridList {
 
     let item = this.appList.splice(fromIndex, 1); // 移除拖拽项
     this.appList.splice(toIndex, 0, item[0]); // 插入到新位置
-    console.log('=====changeIndex', toIndex);
+    Logger.info('=====changeIndex' + toIndex);
     this.allList = this.appList; //同步
     this.focusIndex = toIndex;
     this.localStorageApp();
@@ -389,7 +390,7 @@ export struct gridList {
     try {
       focusControl.requestFocus('itemid_' + this.focusIndex);
     } catch (e) {
-      console.log('====err');
+      Logger.info('====err');
     }
   }
 
@@ -574,13 +575,13 @@ export struct gridList {
           })
           .onActionEnd((e) => {
             this.isLongPressed = false;
-            console.log('=====22222', this.isPanMove);
+            Logger.info('=====22222' + this.isPanMove);
             if (!this.isPanMove) {
               this.longPressAction();
             }
           }),
         PanGesture().onActionUpdate((e) => {
-          console.log('=====33333', e.offsetX, e.offsetY, this.isPanMove);
+          Logger.info('=====33333' + e.offsetX + e.offsetY + this.isPanMove);
           // if (Math.abs(e.offsetX) > 30 || Math.abs(e.offsetY) > 30) {
           //滑动不执行长按操作
           this.isPanMove = true;
@@ -659,8 +660,8 @@ struct itemGrid {
       this.info.labelId || 0
     ).then(res => {
       this.appName = res;
-      console.log('熊appName', this.info.element.bundleName,
-        (new Date().getTime()) - (AppStorage.get('time') as number));
+      Logger.info('熊appName' + this.info.element.bundleName +
+        ((new Date().getTime()) - (AppStorage.get('time') as number)));
     });
   }
 
