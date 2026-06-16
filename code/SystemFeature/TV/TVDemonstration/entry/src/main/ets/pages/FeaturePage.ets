@@ -19,8 +19,8 @@ import { globalIdle } from '../utils/GlobalScreenSaver';
 
 interface FeatureItem {
   icon: Resource;
-  title: string;
-  description: string;
+  title: ResourceStr;
+  description: ResourceStr;
 }
 
 @Component
@@ -41,44 +41,44 @@ export struct FeaturePage {
   @State features: FeatureItem[] = [
     {
       icon: $r('app.media.UniversalInterconnection'),
-      title: '通用互联',
-      description: '多设备协同，一键流转内容'
+      title: $r('app.string.feature_universal_interconnection'),
+      description: $r('app.string.feature_universal_interconnection_desc')
     },
     {
       icon: $r('app.media.Cast'),
-      title: '投屏',
-      description: 'Miracast+DLNA，小屏轻松上大屏'
+      title: $r('app.string.feature_screen_cast'),
+      description: $r('app.string.feature_screen_cast_desc')
     },
     {
       icon: $r('app.media.AI'),
-      title: '智能AI',
-      description: 'DeepSeek大模型，有问必答懂你所想'
+      title: $r('app.string.feature_smart_ai'),
+      description: $r('app.string.feature_smart_ai_desc')
     },
     {
       icon: $r('app.media.PointingRemoteControl'),
-      title: '指向遥控',
-      description: '远场语音，无需遥控器操作'
+      title: $r('app.string.feature_pointing_remote'),
+      description: $r('app.string.feature_pointing_remote_desc')
     },
     {
       icon: $r('app.media.ScreenSaver'),
-      title: '智慧屏保',
-      description: '待机艺术，回忆名画轮播'
+      title: $r('app.string.feature_smart_screensaver'),
+      description: $r('app.string.feature_smart_screensaver_desc')
     },
     {
       icon: $r('app.media.Voice'),
-      title: '语音交互',
-      description: '一键语音，搜片调机动口不动手'
+      title: $r('app.string.feature_voice_interaction'),
+      description: $r('app.string.feature_voice_interaction_desc')
     },
     {
       icon: $r('app.media.Distributed'),
-      title: '分布式',
-      description: '白板图库相机，跨端协同无界'
+      title: $r('app.string.feature_distributed'),
+      description: $r('app.string.feature_distributed_desc')
     },
   ];
 
   build() {
     Column() {
-      Text('功能目录')
+      Text($r('app.string.Function_Directory'))
         .fontSize('48lpx')
         .fontColor('rgba(255,255,255,0.9)')
         .fontWeight(700)

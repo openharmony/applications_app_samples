@@ -25,7 +25,12 @@ import { SupportPage } from './SupportPage';
 @Component
 struct Index {
   @State currentTab: number = 0;
-  @State tabs: string[] = ['产品规格', '功能特性', '智慧生活', '服务支持'];
+  @State tabs: ResourceStr[] = [
+    $r('app.string.Product_Specifications'),
+    $r('app.string.tab_function_features'),
+    $r('app.string.Smart_Life'),
+    $r('app.string.tab_service_support')
+  ];
   @State FocusId: number = -1;
   @State isFocusable: boolean = true;
   @State isTab: boolean = false;

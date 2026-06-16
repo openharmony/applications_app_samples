@@ -50,7 +50,7 @@ export class GlobalIdleDetector {
 
   resetTimer() {
     if (this.idleTimer !== null) {
-      console.log('执行了', JSON.stringify(this.idleTimer));
+      console.log('Executed', JSON.stringify(this.idleTimer));
       clearTimeout(this.idleTimer);
     }
     this.isScreensaverActive = false;
@@ -69,7 +69,7 @@ export class GlobalIdleDetector {
     this.triggerPageUrl = pages.path;
     router.pushUrl({ url: 'pages/ScreenSaver' }, (err) => {
       if (err) {
-        console.error('跳屏保失败：', err);
+        console.error('Failed to jump to screensaver:', err);
       }
     });
   }

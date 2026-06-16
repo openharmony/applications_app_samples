@@ -20,7 +20,7 @@ export struct MediaExperiencePage {
 
   build() {
     Column() {
-      Text('影音体验')
+      Text($r('app.string.audio_visual_experience'))
         .fontSize(32)
         .fontColor('#333333')
         .fontWeight(FontWeight.Bold)
@@ -87,7 +87,7 @@ export struct MediaExperiencePage {
                   this.isPlaying = false;
                 });
 
-              Text('4K演示视频 - 自然风光')
+              Text($r('app.string.media_4k_demo_title'))
                 .fontSize(16)
                 .fontColor(Color.White)
                 .layoutWeight(1)
@@ -114,16 +114,16 @@ export struct MediaExperiencePage {
   @Builder
   buildAudioFeatures() {
     Column() {
-      Text('音频特性')
+      Text($r('app.string.Audio_characteristics'))
         .fontSize(24)
         .fontColor('#333333')
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: 15 });
 
       Row() {
-        AudioFeatureItem({ title: '杜比全景声', icon: $r('app.media.dolby_icon') });
-        AudioFeatureItem({ title: '智能音场', icon: $r('app.media.sound_icon') });
-        AudioFeatureItem({ title: '语音增强', icon: $r('app.media.page1') });
+        AudioFeatureItem({ title: $r('app.string.media_dolby_atmos_sound'), icon: $r('app.media.dolby_icon') });
+        AudioFeatureItem({ title: $r('app.string.media_smart_sound_field'), icon: $r('app.media.sound_icon') });
+        AudioFeatureItem({ title: $r('app.string.media_voice_enhancement'), icon: $r('app.media.page1') });
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceAround)
@@ -136,17 +136,17 @@ export struct MediaExperiencePage {
   @Builder
   buildTechSpecs() {
     Column() {
-      Text('技术规格')
+      Text($r('app.string.Technical_Specifications'))
         .fontSize(24)
         .fontColor('#333333')
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: 15 });
 
       Column() {
-        TechSpecItem({ name: 'HDR支持', value: 'HDR10+, Dolby Vision' });
-        TechSpecItem({ name: '刷新率', value: '120Hz MEMC' });
-        TechSpecItem({ name: '色彩深度', value: '10.7亿色' });
-        TechSpecItem({ name: '对比度', value: '1000000:1' });
+        TechSpecItem({ name: $r('app.string.media_hdr_support'), value: $r('app.string.media_hdr10plus') });
+        TechSpecItem({ name: $r('app.string.media_refresh_rate'), value: $r('app.string.media_120hz_memc') });
+        TechSpecItem({ name: $r('app.string.media_color_depth'), value: $r('app.string.media_1_07_billion_colors') });
+        TechSpecItem({ name: $r('app.string.media_contrast_ratio'), value: $r('app.string.media_1000000_1') });
       };
     }
     .width('100%')
@@ -171,7 +171,7 @@ export struct MediaExperiencePage {
 
 @Component
 struct AudioFeatureItem {
-  @Prop title: string;
+  @Prop title: ResourceStr;
   @Prop icon: Resource;
 
   build() {
@@ -194,8 +194,8 @@ struct AudioFeatureItem {
 
 @Component
 struct TechSpecItem {
-  @Prop name: string;
-  @Prop value: string;
+  @Prop name: ResourceStr;
+  @Prop value: ResourceStr;
 
   build() {
     Row() {

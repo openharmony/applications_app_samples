@@ -19,8 +19,8 @@ import { globalIdle } from '../utils/GlobalScreenSaver';
 
 interface FeatureItem {
   icon: Resource;
-  title: string;
-  description: string;
+  title: ResourceStr;
+  description: ResourceStr;
 }
 
 @Component
@@ -34,25 +34,25 @@ export struct SmartLifePage {
   @State features: FeatureItem[] = [
     {
       icon: $r('app.media.Media'),
-      title: '娱乐影音',
-      description: '智能场景识别，自动优化画面参数'
+      title: $r('app.string.smartlife_entertainment_av'),
+      description: $r('app.string.smartlife_entertainment_av_desc')
     },
     {
       icon: $r('app.media.ChildCare'),
-      title: '儿童关怀',
-      description: '远场语音，无需遥控器操作'
+      title: $r('app.string.smartlife_child_care'),
+      description: $r('app.string.smartlife_child_care_desc')
     },
     {
       icon: $r('app.media.remoteAssistance'),
-      title: '高效办公',
-      description: '多设备协同，一键流转内容'
+      title: $r('app.string.smartlife_efficient_office'),
+      description: $r('app.string.smartlife_efficient_office_desc')
     }
 
   ];
 
   build() {
     Column() {
-      Text('智慧生活')
+      Text($r('app.string.Smart_Life'))
         .fontSize('48lpx')
         .fontColor('rgba(255,255,255,0.9)')
         .fontWeight(700)

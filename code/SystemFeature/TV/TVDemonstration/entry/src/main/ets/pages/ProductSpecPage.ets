@@ -17,10 +17,10 @@ import { display } from '@kit.ArkUI';
 import { deviceInfo } from '@kit.BasicServicesKit';
 
 interface IProduct {
-  title: string;
-  content: string;
-  title1: string;
-  content1: string;
+  title: ResourceStr;
+  content: ResourceStr;
+  title1: ResourceStr;
+  content1: ResourceStr;
 }
 
 @Component
@@ -28,42 +28,42 @@ export struct ProductSpecPage {
   @State product: IProduct[] = [];
   product_6780: IProduct[] = [
     {
-      title: '屏幕尺寸',
-      content: '75英寸 4K超清',
-      title1: '显示技术',
-      content1: 'MiniLED全阵列背光'
+      title: $r('app.string.product_screen_size'),
+      content: $r('app.string.product_75inch_4k'),
+      title1: $r('app.string.product_display_tech'),
+      content1: $r('app.string.product_miniled_backlight')
     },
     {
-      title: '操作系统',
-      content: 'OpenHarmony5.1',
-      title1: '内存配置',
-      content1: '4GB+64GB'
+      title: $r('app.string.product_os'),
+      content: $r('app.string.product_openharmony'),
+      title1: $r('app.string.product_memory_config'),
+      content1: $r('app.string.product_4gb_64gb')
     },
     {
-      title: '处理器',
-      content: 'GK6780V100',
-      title1: '接口配置',
-      content1: 'HDMI2.1'
+      title: $r('app.string.product_processor'),
+      content: $r('app.string.product_gk6780'),
+      title1: $r('app.string.product_interface_config'),
+      content1: $r('app.string.product_hdmi21')
     }
   ];
   product_6320: IProduct[] = [
     {
-      title: '屏幕尺寸',
-      content: '27英寸 1080P',
-      title1: '显示技术',
-      content1: 'MiniLED全阵列背光'
+      title: $r('app.string.product_screen_size'),
+      content: $r('app.string.product_27inch_1080p'),
+      title1: $r('app.string.product_display_tech'),
+      content1: $r('app.string.product_miniled_backlight')
     },
     {
-      title: '操作系统',
-      content: 'OpenHarmony5.1',
-      title1: '内存配置',
-      content1: '4GB+64GB'
+      title: $r('app.string.product_os'),
+      content: $r('app.string.product_openharmony'),
+      title1: $r('app.string.product_memory_config'),
+      content1: $r('app.string.product_4gb_64gb')
     },
     {
-      title: '处理器',
-      content: 'GK6320',
-      title1: '接口配置',
-      content1: 'HDMI2.1'
+      title: $r('app.string.product_processor'),
+      content: $r('app.string.product_gk6320'),
+      title1: $r('app.string.product_interface_config'),
+      content1: $r('app.string.product_hdmi21')
     }
   ];
 
@@ -78,7 +78,7 @@ export struct ProductSpecPage {
       const dpi = displayInfo.densityDPI / displayInfo.densityPixels;
 
       if (width <= 0 || height <= 0 || dpi <= 0) {
-        console.error('屏幕参数无效');
+        console.error('Invalid screen parameters');
         return 0;
       }
 
@@ -91,7 +91,7 @@ export struct ProductSpecPage {
         inches);
       return parseFloat(inches.toFixed(0));
     } catch (error) {
-      console.error('获取屏幕尺寸失败:', error);
+      console.error('Failed to get screen size:', error);
       return 0;
     }
   }
@@ -107,7 +107,7 @@ export struct ProductSpecPage {
   build() {
     Column() {
       // 标题
-      Text('产品规格')
+      Text($r('app.string.Product_Specifications'))
         .fontSize('64lpx')
         .fontColor(Color.White)
         .fontWeight(700)
@@ -177,7 +177,7 @@ export struct ProductSpecPage {
 
           });
           Row() {
-            Text(`音效系统`)
+            Text($r('app.string.Sound_system'))
               .fontColor('rgba(255,255,255,0.6)')
               .fontSize('26lpx')
               .fontWeight('500')
@@ -185,7 +185,7 @@ export struct ProductSpecPage {
               .textAlign(TextAlign.Start)
               .width('120lpx')
               .margin({ right: '20lpx' });
-            Text(`杜比全景音`)
+            Text($r('app.string.Dolby_Atmos'))
               .fontColor('rgba(255,255,255,0.86)')
               .fontSize('30lpx')
               .fontWeight('500')
@@ -195,7 +195,7 @@ export struct ProductSpecPage {
               .width('240lpx')
               .width('260lpx')
               .margin({ right: '20lpx' });
-            Text(`能效等级`)
+            Text($r('app.string.energy_efficiency_rating'))
               .fontColor('rgba(255,255,255,0.6)')
               .fontSize('26lpx')
               .fontWeight('500')
@@ -203,7 +203,7 @@ export struct ProductSpecPage {
               .textAlign(TextAlign.Start)
               .width('120lpx')
               .margin({ right: '20lpx' });
-            Text(`一级能效`)
+            Text($r('app.string.Class_1_Energy_Efficiency'))
               .fontColor('rgba(255,255,255,0.86)')
               .fontSize('30lpx')
               .fontWeight('500')

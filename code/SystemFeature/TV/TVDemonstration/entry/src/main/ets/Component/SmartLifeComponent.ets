@@ -18,8 +18,8 @@ import { KeyCode } from '@kit.InputKit';
 import { globalIdle } from '../utils/GlobalScreenSaver';
 
 export interface ContentList {
-  label: string;
-  content: string;
+  label: ResourceStr;
+  content: ResourceStr;
 }
 
 export interface ExperienceList {
@@ -32,7 +32,7 @@ interface IDetails {
   previewUri: Resource;
   curRate: PlaybackSpeed;
   imageResources: ResourceStr;
-  title: string;
+  title: ResourceStr;
   maskVideoIntroduction: boolean;
   experienceAble: boolean;
   contentList: ContentList[];
@@ -77,38 +77,38 @@ struct SmartLifeComponent {
   ];
   // 影音娱乐
   mediaList1: ContentList = {
-    label: '沉浸式视听，客厅变身私人影院',
-    content: '搭载4K超高清画质引擎与影院级音效系统，让每一次观影都身临其境。暗场细节层次分明，亮部色彩鲜活通透，配合杜比全景声的立体环绕音效，无论是科幻大片的宇宙激战，还是文艺电影的雨滴落地，都能精准还原导演镜头下的每一个情绪细节。关灯，打开电视，客厅即刻升级为专属家庭影院。'
+    label: $r('app.string.media_label_1'),
+    content: $r('app.string.media_content_1')
   };
   mediaList2: ContentList = {
-    label: '海量内容聚合，全家人各有所爱',
-    content: '整合主流视频平台资源，电影、电视剧、综艺、纪录片、少儿动漫一站式配齐。基于家庭成员的观看习惯，智能推荐算法为每个人定制专属内容页。爸妈追的年代剧、孩子看的启蒙动画、你想补档的经典老片，打开电视就能找到，不再为遥控器争夺发愁，让全家人的闲暇时光各得其所。'
+    label: $r('app.string.media_label_2'),
+    content: $r('app.string.media_content_2')
   };
   mediaList3: ContentList = {
-    label: 'K歌娱乐升级，聚会氛围随时点燃',
-    content: '内置专业卡拉OK系统，海量正版伴奏曲库持续更新，从经典老歌到抖音热曲一应俱全。支持双麦克风连接，智能评分、混响调节、一键消原唱等功能，让家庭聚会瞬间升温。朋友来做客、家人过生日，不用转场KTV，在客厅就能尽情欢唱，把每一次团聚都变成难忘的欢乐派对。'
+    label: $r('app.string.media_label_3'),
+    content: $r('app.string.media_content_3')
   };
   // 儿童关怀
   ChildCareContentList1: ContentList = {
-    label: '健康用眼守护，平衡娱乐与健康',
-    content: '具备距离感应与时长管控功能，孩子离屏幕过近时自动弹窗提醒并降低亮度，累计观看达到设定时长后，电视会温和提示休息并锁定画面。同时支持蓝光过滤模式，减少屏幕蓝光对孩子视力的伤害，从用眼距离、时间、光线三方面守护，让孩子健康享受观影时光。'
+    label: $r('app.string.childcare_label_1'),
+    content: $r('app.string.childcare_content_1')
   };
   ChildCareContentList2: ContentList = {
-    label: '互动成长引导，边玩边学更高效',
-    content: '融合互动式教育内容，如语音问答、动画绘本、益智游戏等，将知识融入趣味互动中，激发孩子学习兴趣。家长可通过手机端查看孩子的观看与学习记录，了解兴趣偏好与成长进度，还能推送定制化教育内容，让电视从娱乐工具转变为助力孩子成长的智能伙伴'
+    label: $r('app.string.childcare_label_2'),
+    content: $r('app.string.childcare_content_2')
   };
   // 高效办公
   officeList1: ContentList = {
-    label: '大屏文档处理，视野更开阔',
-    content: '将笔记本电脑的文档、表格、演示文稿一键投射至电视大屏，告别长时间低头伏案的疲惫。4K超清画质让文字锐利清晰，数据图表细节分毫毕现。无论是审阅百页报告、校对复杂报表，还是修改设计稿，大屏呈现让信息一目了然，办公效率倍增。'
+    label: $r('app.string.office_label_1'),
+    content: $r('app.string.office_content_1')
   };
   officeList2: ContentList = {
-    label: '无线投屏演示，会议更流畅',
-    content: '支持Miracast、DLNA等多种无线投屏协议，无需繁琐接线，会议开始前即可快速将方案投射至电视。演讲者在会议室自由走动，用指向遥控翻页批注，重点内容实时圈画。客户到访或团队讨论，无需围挤在小屏幕前，让每一次演示都从容自信。'
+    label: $r('app.string.office_label_2'),
+    content: $r('app.string.office_content_2')
   };
   officeList3: ContentList = {
-    label: '分屏协作模式，多任务并行',
-    content: '电视支持分屏显示功能，一边开启视频会议，一边展示相关文档资料。远程沟通时，对方画面与讨论内容同屏呈现，无需频繁切换窗口。团队成员可同时接入，共享屏幕、共同批注，异地协作如同面对面，让办公突破空间限制。'
+    label: $r('app.string.office_label_3'),
+    content: $r('app.string.office_content_3')
   };
   ContentList1: ContentList[] = [this.mediaList1, this.mediaList2, this.mediaList3];
   ContentList2: ContentList[] = [this.ChildCareContentList1, this.ChildCareContentList1];
@@ -119,7 +119,7 @@ struct SmartLifeComponent {
       previewUri: $r('app.media.cat'),
       curRate: PlaybackSpeed.Speed_Forward_1_00_X,
       imageResources: $r('app.media.cat'),
-      title: '娱乐影音',
+      title: $r('app.string.smartlife_entertainment_av'),
       maskVideoIntroduction: true,
       experienceAble: true,
       contentList: this.ContentList1
@@ -129,7 +129,7 @@ struct SmartLifeComponent {
       previewUri: $r('app.media.cat'),
       curRate: PlaybackSpeed.Speed_Forward_1_00_X,
       imageResources: $r('app.media.cat'),
-      title: '儿童关怀',
+      title: $r('app.string.smartlife_child_care'),
       maskVideoIntroduction: true,
       experienceAble: true,
       contentList: this.ContentList2
@@ -139,7 +139,7 @@ struct SmartLifeComponent {
       previewUri: $r('app.media.cat'),
       curRate: PlaybackSpeed.Speed_Forward_1_00_X,
       imageResources: $r('app.media.cat'),
-      title: '高效办公',
+      title: $r('app.string.smartlife_efficient_office'),
       maskVideoIntroduction: true,
       experienceAble: true,
       contentList: this.ContentList3
@@ -331,7 +331,7 @@ struct SmartLifeComponent {
           .width('100%')
           .height('100%');
 
-        }, (item: IDetails, index) => item.title + index);
+        }, (item: IDetails, index) => `${item.title} ${index}`);
       }
       .loop(false)
       .cachedCount(2)
