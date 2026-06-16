@@ -18,20 +18,26 @@ import {ContainerReader, ContainerReaderAttribute, Size} from '@kit.ArkUI';
 @Entry
 @Component
 struct Example {
+  // [Start DevelopmentSteps1]
   @State containerSize: Size = { width: 0, height: 0 };
   @State widthBp: WidthBreakpoint = WidthBreakpoint.WIDTH_MD;
+  // [End DevelopmentSteps1]
   build() {
     Flex({ direction: FlexDirection.Row }) {
+      // [Start DevelopmentSteps2]
       ContainerReader({
         size: this.containerSize!!,
         widthBreakpoint: this.widthBp!!
       }) {
+        // [StartExclude ExcDevelopmentSteps2]
         Column() {
           Text('Adaptive Content')
         }
         .width('100%')
         .height('100%')
+        // [EndExclude ExcDevelopmentSteps2]
       }
+      // [End DevelopmentSteps2]
       .backgroundColor('#F7F7F7')
     }
     .padding(10)
