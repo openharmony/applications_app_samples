@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Logger from '../common/Logger';
+import { Logger } from '../common/Logger';
 import CameraService from '../common/CameraService';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
@@ -22,8 +22,7 @@ import { KeyCode } from '@kit.InputKit';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
 import { LengthMetricsUnit, promptAction } from '@kit.ArkUI';
-import { CRect2f, _ratio_enum, _scale_enum, bbox_pred, nms_cpu } from '../utils/Caffe';
-import { log } from '../utils/Log';
+import { CRect2f, ratioEnum, scaleEnum, bboxPred, nmsCpu } from '../utils/Caffe';
 import { getScreenSize } from '../utils/Utils';
 import { taskpool } from '@kit.ArkTS';
 import { AcInfo, AnchorCfg, FaceObject, finalboxModel } from '../Types/ParamsType';
@@ -121,10 +120,6 @@ struct CameraPreview {
       AppStorage.setOrCreate<number>('screen_lpx_h', data.height);
       AppStorage.setOrCreate<number>('screen_dpi', data.dpi);
       AppStorage.setOrCreate<number>('screen_lpi', data.lpi);
-      // this.screenW = data.width;
-      // this.screenH = data.height;
-      // this.pageW = data.pageW;
-      // this.pageH = data.pageH;
       // 计算canvas宽高、比率
       if (this.pageW > this.pageH) {
         this.canvasH2 = this.pageH;
@@ -178,7 +173,7 @@ struct CameraPreview {
               }
             })
             .catch((error: BusinessError) => {
-              log('Failed to create pixelmap', JSON.stringify(error));
+              Logger.error('Failed to create pixelmap', JSON.stringify(error));
             });
         } catch (err) {
           this.isNextRound = true;
@@ -199,14 +194,14 @@ struct CameraPreview {
   acFilterAnchor(acArray: AcInfo[]) {
     let anchorNum = 2;
     let stride = [32, 16, 8];
-    let anchor_cfg: AnchorCfg[] = [
+    let anchorCfg: AnchorCfg[] = [
       { SCALES: [32, 16], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [8, 4], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [2, 1], RATIOS: [1], BASE_SIZE: 16 }
     ];
 
-    let confidence_threshold = 0.5;
-    let nms_threshold = 0.4;
+    let confidenceThreshold = 0.5;
+    let nmsThreshold = 0.4;
 
     let ratiow = 1.0;
     let ratioh = 1.0;
@@ -217,29 +212,29 @@ struct CameraPreview {
       let clsData = new Float32Array(ac.cls!.getData());
       let regData = new Float32Array(ac.reg!.getData());
 
-      let pts_length = 0;
+      let ptsLength = 0;
 
       let w = ac.cls!.shape[3];
       let h = ac.cls!.shape[2];
       let step = h * w;
 
-      let anchor_stride = stride[index];
-      let cfg: AnchorCfg = anchor_cfg[index];
+      let anchorStride = stride[index];
+      let cfg: AnchorCfg = anchorCfg[index];
 
-      let base_anchor = new CRect2f(0, 0, cfg.BASE_SIZE - 1, cfg.BASE_SIZE - 1);
-      let ratio_anchors: number[][] = _ratio_enum(base_anchor.val, cfg.RATIOS);
-      let preset_anchors: number[][] = _scale_enum(ratio_anchors, cfg.SCALES);
+      let baseAnchor = new CRect2f(0, 0, cfg.BASE_SIZE - 1, cfg.BASE_SIZE - 1);
+      let ratioAnchors: number[][] = ratioEnum(baseAnchor.val, cfg.RATIOS);
+      let presetAnchors: number[][] = scaleEnum(ratioAnchors, cfg.SCALES);
 
       for (let i = 0; i < w; i++) {
         for (let j = 0; j < h; j++) {
           let id = j * w + i;
           for (let a = 0; a < anchorNum; a++) {
-            let cls_score = clsData[(anchorNum + a) * step + id];
-            if (cls_score > confidence_threshold) {
-              let boxObj = new CRect2f(i * anchor_stride + preset_anchors[a][0],
-                j * anchor_stride + preset_anchors[a][1],
-                i * anchor_stride + preset_anchors[a][2],
-                j * anchor_stride + preset_anchors[a][3]);
+            let clsScore = clsData[(anchorNum + a) * step + id];
+            if (clsScore > confidenceThreshold) {
+              let boxObj = new CRect2f(i * anchorStride + presetAnchors[a][0],
+                j * anchorStride + presetAnchors[a][1],
+                i * anchorStride + presetAnchors[a][2],
+                j * anchorStride + presetAnchors[a][3]);
               let box: number[] = boxObj.val;
 
               let deltaObj = new CRect2f(regData[(a * 4 + 0) * step + id], regData[(a * 4 + 1) * step + id],
@@ -259,8 +254,8 @@ struct CameraPreview {
                 pts: []
               };
 
-              res.finalbox = bbox_pred(box, delta, this.canvasRatioW, this.canvasRatioH) as finalboxModel;
-              res.score = cls_score;
+              res.finalbox = bboxPred(box, delta, this.canvasRatioW, this.canvasRatioH) as finalboxModel;
+              res.score = clsScore;
               proposals.push(res);
             }
           }
@@ -268,7 +263,7 @@ struct CameraPreview {
       }
     });
 
-    let data: FaceObject[] = nms_cpu(proposals, nms_threshold);
+    let data: FaceObject[] = nmsCpu(proposals, nmsThreshold);
     this.drawFace(data);
   }
 
@@ -319,7 +314,7 @@ struct CameraPreview {
       this.msliteModel = await mindSporeLite.loadModelFromBuffer(modelBuffer.buffer as ArrayBuffer, option); // 加载模型
     } catch (e) {
       promptAction.showToast({
-        message: 'AI模型加载失败，请重试！',
+        message: $r('app.string.AI_model_failed'),
         duration: 3000,
         bottom: `${px2vp(1080 + 100) / 2}`
       });
@@ -336,7 +331,7 @@ struct CameraPreview {
       item.setData(this.imgBuffer); // 将图片输入
     });
     let modelOutputs = await this.msliteModel.predict(modelInputs); // 执行推理
-    let acArray: AcInfo[] = [{}, {}, {}]; // {32, 16, 8}
+    let acArray: AcInfo[] = [{}, {}, {}];
     modelOutputs.forEach((item, index) => {
       let name = item.name;
       let key = '';
@@ -427,7 +422,7 @@ struct CameraPreview {
               .justifyContent(FlexAlign.Center)
               .alignItems(VerticalAlign.Center);
 
-              Text('多机位切换')
+              Text($r('app.string.Multi_camera_switching'))
                 .fontColor('#dbffffff')
                 .fontSize('24lpx')
                 .lineHeight('35lpx')
@@ -478,7 +473,7 @@ struct CameraPreview {
           focusControl.requestFocus('dialog');
         } else {
           promptAction.showToast({
-            message: '无可用摄像头',
+            message: $r('app.string.No_available_camera'),
             duration: 2000
           });
         }

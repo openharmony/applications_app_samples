@@ -19,6 +19,106 @@
     {
       "name": "no_image_tips",
       "value": "暂无图片"
+    },
+    {
+      "name": "Local_image",
+      "value": "本地图片"
+    },
+    {
+      "name": "face_recognition",
+      "value": "图片人脸识别"
+    },
+    {
+      "name": "choose_camera",
+      "value": "请选择摄像头"
+    },
+    {
+      "name": "Camera_face_recognition",
+      "value": "摄像头人脸识别"
+    },
+    {
+      "name": "Multi_camera_switching",
+      "value": "多机位切换"
+    },
+    {
+      "name": "Device_Connection_Authentication",
+      "value": "设备连接认证"
+    },
+    {
+      "name": "Please_connect_the_camera",
+      "value": "请接入摄像头"
+    },
+    {
+      "name": "AI_model_failed",
+      "value": "AI模型加载失败，请重试！"
+    },
+    {
+      "name": "Image_failed_to_load",
+      "value": "图片加载失败，请重新选择图片。"
+    },
+    {
+      "name": "No_face_detected",
+      "value": "未识别到人脸，请重试。"
+    },
+    {
+      "name": "No_available_camera",
+      "value": "无可用摄像头"
+    },
+    {
+      "name": "Confirm",
+      "value": "确认"
+    },
+    {
+      "name": "Cancel",
+      "value": "取消"
+    },
+    {
+      "name": "Unknown",
+      "value": "未知"
+    },
+    {
+      "name": "Rear",
+      "value": "后置"
+    },
+    {
+      "name": "Front",
+      "value": "前置"
+    },
+    {
+      "name": "Folded_state",
+      "value": "折叠态"
+    },
+    {
+      "name": "Wide_angle",
+      "value": "广角"
+    },
+    {
+      "name": "Ultra_wideAngle",
+      "value": "超广角"
+    },
+    {
+      "name": "telephoto",
+      "value": "长焦"
+    },
+    {
+      "name": "Depth_field",
+      "value": "景深"
+    },
+    {
+      "name": "Built_in",
+      "value": "内置"
+    },
+    {
+      "name": "USB_connection",
+      "value": "USB连接"
+    },
+    {
+      "name": "Remote_connection",
+      "value": "远程连接"
+    },
+    {
+      "name": "Camera",
+      "value": "相机"
     }
   ]
 }

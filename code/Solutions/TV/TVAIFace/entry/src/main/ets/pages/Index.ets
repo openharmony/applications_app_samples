@@ -14,14 +14,13 @@
  */
 /* AI人脸识别主页 */
 import { KeyCode } from '@kit.InputKit';
-import { initInfo } from '../utils/Log';
 import CameraService from '../common/CameraService';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { PointerUtil } from '../common/PointerUtil';
 import { EventUtil } from '../common/EventUtil';
+import { Logger } from '../common/Logger';
 
 const TAG = 'Index';
-let log = initInfo('index.ets');
 
 @Builder
 export function IndexBuilder() {
@@ -80,7 +79,7 @@ struct Index {
         'ohos.permission.DISTRIBUTED_DATASYNC'
       ]);
     } catch (err) {
-      log(TAG, `requestPermissionsFromUser call Failed! error: ${err.code}`);
+      Logger.error(TAG, `requestPermissionsFromUser call Failed! error: ${err.code}`);
     }
   }
 
@@ -158,7 +157,7 @@ struct Index {
               .borderStyle(BorderStyle.Solid);
 
               Row() {
-                Text('图片人脸识别')
+                Text($r('app.string.face_recognition'))
                   .textStyle('1');
               };
             }
@@ -184,7 +183,7 @@ struct Index {
               .alignItems(VerticalAlign.Center);
 
               Row() {
-                Text('摄像头人脸识别')
+                Text($r('app.string.Camera_face_recognition'))
                   .textStyle('0');
               };
             }
@@ -209,7 +208,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .alignItems(VerticalAlign.Center);
 
-              Text('设备连接认证')
+              Text($r('app.string.Device_Connection_Authentication'))
                 .textStyle('-1');
             }
             .onHover(() => {
@@ -230,7 +229,7 @@ struct Index {
 
           if (this.showNoCamera) {
             Row() {
-              Text('请接入摄像头')
+              Text($r('app.string.Please_connect_the_camera'))
                 .fontSize(50)
                 .fontWeight(FontWeight.Bold)
                 .fontColor(0x58D68D);

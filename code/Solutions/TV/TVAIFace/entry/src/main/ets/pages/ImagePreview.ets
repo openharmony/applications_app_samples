@@ -15,16 +15,15 @@
 /* AI人脸识别主页 */
 import { KeyCode } from '@kit.InputKit';
 import { getScreenSize, drawImageSize } from '../utils/Utils';
-import { initInfo } from '../utils/Log';
-import { CRect2f, _ratio_enum, _scale_enum, bbox_pred, nms_cpu } from '../utils/Caffe';
+import { CRect2f, ratioEnum, scaleEnum, bboxPred, nmsCpu } from '../utils/Caffe';
 import { image } from '@kit.ImageKit';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { LengthMetricsUnit, promptAction } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { taskpool } from '@kit.ArkTS';
 import { AcInfo, AnchorCfg, FaceObject, finalboxModel } from '../Types/ParamsType';
+import { Logger } from '../common/Logger';
 
-let log = initInfo('index.ets');
 
 @Builder
 export function ImagePreviewBuilder() {
@@ -146,7 +145,7 @@ struct ImagePreview {
       } else {
         this.isScanning = false;
         promptAction.showToast({
-          message: '图片加载失败，请重新选择图片。',
+          message: $r('app.string.Image_failed_to_load'),
           duration: 3000,
           bottom: `${px2vp(this.pageH + 100) / 2}`
         });
@@ -158,7 +157,7 @@ struct ImagePreview {
   drawFace(data: FaceObject[]) {
     if (data.length < 1) {
       promptAction.showToast({
-        message: '未识别到人脸，请重试。',
+        message: $r('app.string.No_face_detected'),
         duration: 3000,
         bottom: `${px2vp(this.pageH + 100) / 2}`
       });
@@ -199,14 +198,14 @@ struct ImagePreview {
   acFilterAnchor(acArray: AcInfo[]) {
     let anchorNum = 2;
     let stride = [32, 16, 8];
-    let anchor_cfg: AnchorCfg[] = [
+    let anchorCfg: AnchorCfg[] = [
       { SCALES: [32, 16], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [8, 4], RATIOS: [1], BASE_SIZE: 16 },
       { SCALES: [2, 1], RATIOS: [1], BASE_SIZE: 16 }
     ];
 
-    let confidence_threshold = 0.5;
-    let nms_threshold = 0.4;
+    let confidenceThreshold = 0.5;
+    let nmsThreshold = 0.4;
 
     let ratiow = 1.0;
     let ratioh = 1.0;
@@ -217,29 +216,29 @@ struct ImagePreview {
       let clsData = new Float32Array(ac.cls!.getData());
       let regData = new Float32Array(ac.reg!.getData());
 
-      let pts_length = 0;
+      let ptsLength = 0;
 
       let w = ac.cls!.shape[3];
       let h = ac.cls!.shape[2];
       let step = h * w;
 
-      let anchor_stride = stride[index];
-      let cfg: AnchorCfg = anchor_cfg[index];
+      let anchorStride = stride[index];
+      let cfg: AnchorCfg = anchorCfg[index];
 
-      let base_anchor = new CRect2f(0, 0, cfg.BASE_SIZE - 1, cfg.BASE_SIZE - 1);
-      let ratio_anchors: number[][] = _ratio_enum(base_anchor.val, cfg.RATIOS);
-      let preset_anchors: number[][] = _scale_enum(ratio_anchors, cfg.SCALES);
+      let baseAnchor = new CRect2f(0, 0, cfg.BASE_SIZE - 1, cfg.BASE_SIZE - 1);
+      let ratioAnchors: number[][] = ratioEnum(baseAnchor.val, cfg.RATIOS);
+      let presetAnchors: number[][] = scaleEnum(ratioAnchors, cfg.SCALES);
 
       for (let i = 0; i < w; i++) {
         for (let j = 0; j < h; j++) {
           let id = j * w + i;
           for (let a = 0; a < anchorNum; a++) {
-            let cls_score = clsData[(anchorNum + a) * step + id];
-            if (cls_score > confidence_threshold) {
-              let boxObj = new CRect2f(i * anchor_stride + preset_anchors[a][0],
-                j * anchor_stride + preset_anchors[a][1],
-                i * anchor_stride + preset_anchors[a][2],
-                j * anchor_stride + preset_anchors[a][3]);
+            let clsScore = clsData[(anchorNum + a) * step + id];
+            if (clsScore > confidenceThreshold) {
+              let boxObj = new CRect2f(i * anchorStride + presetAnchors[a][0],
+                j * anchorStride + presetAnchors[a][1],
+                i * anchorStride + presetAnchors[a][2],
+                j * anchorStride + presetAnchors[a][3]);
               let box: number[] = boxObj.val;
 
               let deltaObj = new CRect2f(regData[(a * 4 + 0) * step + id], regData[(a * 4 + 1) * step + id],
@@ -259,8 +258,8 @@ struct ImagePreview {
                 pts: []
               };
 
-              res.finalbox = bbox_pred(box, delta, this.canvasRatioW, this.canvasRatioH) as finalboxModel;
-              res.score = cls_score;
+              res.finalbox = bboxPred(box, delta, this.canvasRatioW, this.canvasRatioH) as finalboxModel;
+              res.score = clsScore;
               proposals.push(res);
             }
           }
@@ -268,7 +267,7 @@ struct ImagePreview {
       }
     });
 
-    let data: FaceObject[] = nms_cpu(proposals, nms_threshold);
+    let data: FaceObject[] = nmsCpu(proposals, nmsThreshold);
     this.drawFace(data);
   }
 
@@ -284,13 +283,13 @@ struct ImagePreview {
         try {
           let modelBuffer = modelData.buffer as ArrayBuffer; // 模型文件数据 ArrayBufferLike
           let msliteModel = await mindSporeLite.loadModelFromBuffer(modelBuffer, option); // 加载模型
-          log(`loadModel`);
+          Logger.info(`loadModel`);
           let modelInputs = msliteModel.getInputs(); // 获取模型输入 返回数组类型
-          log(`getInputs`);
+          Logger.info(`getInputs`);
           if (modelInputs) {
-            log(`modelInputs length:` + modelInputs.length);
+            Logger.info(`modelInputs length:` + modelInputs.length);
           } else {
-            log(`modelInputs:` + JSON.stringify(modelInputs));
+            Logger.info(`modelInputs:` + JSON.stringify(modelInputs));
           }
 
           modelInputs.forEach((item, index) => {
@@ -298,8 +297,8 @@ struct ImagePreview {
           });
 
           let modelOutputs = await msliteModel.predict(modelInputs); // 执行推理
-          log(`predict`);
-          let acArray: AcInfo[] = [{}, {}, {}]; // {32, 16, 8}
+          Logger.info(`predict`);
+          let acArray: AcInfo[] = [{}, {}, {}];
           modelOutputs.forEach((item, index) => {
             let name = item.name;
             let key = '';
@@ -324,7 +323,7 @@ struct ImagePreview {
       .catch((e: Error) => {
         this.isScanning = false;
         promptAction.showToast({
-          message: 'AI模型加载失败，请重试！',
+          message: $r('app.string.AI_model_failed'),
           duration: 3000,
           bottom: `${px2vp(this.pageH + 100) / 2}`
         });

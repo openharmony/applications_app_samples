@@ -12,33 +12,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class Logger {
-  private domain: number;
-  private prefix: string;
-  private format: string = '%{public}s, %{public}s';
+import hilog from '@ohos.hilog';
 
-  constructor(prefix: string) {
-    this.prefix = prefix;
-    this.domain = 0xFF00;
+/**
+ * Common log for all features.
+ *
+ * @param {string} prefix Identifies the log tag.
+ */
+
+
+let domain: number = 0xFF00;
+let prefix: string = 'TVAIFace';
+let format: string = `%{public}s, %{public}s`;
+
+export class Logger {
+  public static debug(...args: string[]) {
+    hilog.debug(domain, prefix, format, args);
   }
 
-  debug(...args: string[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args);
+  public static info(...args: string[]) {
+    hilog.info(domain, prefix, format, args);
   }
 
-  info(...args: string[]) {
-    hilog.info(this.domain, this.prefix, this.format, args);
+  public static warn(...args: string[]) {
+    hilog.warn(domain, prefix, format, args);
   }
 
-  warn(...args: string[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args);
+  public static error(...args: string[]) {
+    hilog.error(domain, prefix, format, args);
   }
 
-  error(...args: string[]) {
-    hilog.error(this.domain, this.prefix, this.format, args);
+  public static fatal(...args: string[]) {
+    hilog.fatal(domain, prefix, format, args);
+  }
+
+  public static isLoggable(level: LogLevel) {
+    hilog.isLoggable(domain, prefix, level);
   }
 }
 
-export default new Logger('[mslite]');
+/**
+ * Log level define
+ *
+ * @syscap SystemCapability.HiviewDFX.HiLog
+ */
+enum LogLevel {
+  DEBUG = 3,
+  INFO = 4,
+  WARN = 5,
+  ERROR = 6,
+  FATAL = 7
+}

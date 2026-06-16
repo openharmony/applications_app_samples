@@ -18,29 +18,26 @@ import { KeyCode } from '@kit.InputKit';
 import { EventUtil } from '../common/EventUtil';
 
 // 相机位置
-enum cameraPositionEnum {
-  '未知',
-  '后置',
-  '前置',
-  '折叠态'
-}
-
+const cameraPositionEnum = [
+  $r('app.string.Unknown'),
+  $r('app.string.Rear'),
+  $r('app.string.Front'),
+  $r('app.string.Folded_state')
+]
 // 相机类型
-enum cameraTypeEnum {
-  '未知',
-  '广角',
-  '超广角',
-  '长焦',
-  '景深',
-}
-
+const cameraTypeEnum = [
+  $r('app.string.Unknown'),
+  $r('app.string.Wide_angle'),
+  $r('app.string.Ultra_wideAngle'),
+  $r('app.string.telephoto'),
+  $r('app.string.Depth_field')
+]
 // 连接方式
-enum cameraConnectionType {
-  '内置',
-  'USB连接',
-  '远程连接',
-}
-
+const cameraConnectionType = [
+  $r('app.string.Built_in'),
+  $r('app.string.USB_connection'),
+  $r('app.string.Remote_connection')
+]
 @CustomDialog
 export struct CamerasListDialog {
   @Prop camerasList: Array<camera.CameraDevice>;
@@ -67,19 +64,35 @@ export struct CamerasListDialog {
 
   build() {
     Column() {
-      Text('请选择摄像头')
+      Text($r('app.string.choose_camera'))
         .fontSize('40lpx')
         .fontColor('#fff');
       List({ space: '24lpx' }) {
         ForEach(this.camerasList, (item: camera.CameraDevice) => {
           ListItem() {
             Row() {
-              Text(cameraConnectionType[item.connectionType] + cameraPositionEnum[item.cameraPosition] +
-              cameraTypeEnum[item.cameraType] + '相机')
-                .fontSize('36lpx')
-                .fontWeight(500)
-                .lineHeight('42lpx')
-                .fontColor('#dbffffff');
+              Row() {
+                Text(cameraConnectionType[item.connectionType])
+                  .fontSize('36lpx')
+                  .fontWeight(500)
+                  .lineHeight('42lpx')
+                  .fontColor('#dbffffff');
+                Text(cameraPositionEnum[item.cameraPosition])
+                  .fontSize('36lpx')
+                  .fontWeight(500)
+                  .lineHeight('42lpx')
+                  .fontColor('#dbffffff');
+                Text(cameraTypeEnum[item.cameraType])
+                  .fontSize('36lpx')
+                  .fontWeight(500)
+                  .lineHeight('42lpx')
+                  .fontColor('#dbffffff');
+                Text($r('app.string.Camera'))
+                  .fontSize('36lpx')
+                  .fontWeight(500)
+                  .lineHeight('42lpx')
+                  .fontColor('#dbffffff');
+              };
               Image(this.currentCameraDevice.cameraId == item.cameraId ? $rawfile('Radio_On.svg') :
                 $rawfile('Radio_Off.svg'))
                 .width('42lpx')

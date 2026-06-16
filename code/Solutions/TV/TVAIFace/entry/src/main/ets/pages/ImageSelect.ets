@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { initInfo } from '../utils/Log';
 import { KeyCode } from '@kit.InputKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -20,8 +19,7 @@ import { common } from '@kit.AbilityKit';
 import { ImageListDataSource } from '../models/ImageListDataSource';
 import { image } from '@kit.ImageKit';
 import { EventUtil } from '../common/EventUtil';
-
-let log = initInfo('imageSelect.ets');
+import { Logger } from '../common/Logger';
 
 class ImageInfo {
   public fileAsset?: ResourceStr | photoAccessHelper.PhotoAsset; // 媒体文件的FileAsset,应该是资源类型
@@ -87,10 +85,10 @@ struct ImageSelect {
 
     try {
       this.phAccessHelper.getAssets(fetchOptions).then((fetchFileResult) => { //获取图片和视频资源
-        log('getPhotoAssets success');
+        Logger.info('getPhotoAssets success');
         if (fetchFileResult != undefined) {
           fetchFileResult.getAllObjects().then(async (fileAsset) => {
-            log('getAllObjects success');
+            Logger.info('getAllObjects success');
             let len = fileAsset.length;
             if (len > 0) {
               for (let i = 0; i < fileAsset.length; i++) {
@@ -105,10 +103,10 @@ struct ImageSelect {
                     if (i < 24) {
                       let thumbnailPixelMap: image.PixelMap = await fileAsset[i].getThumbnail();
                       iInfo.smallImg = thumbnailPixelMap;
-                      log('getThumbnail success');
+                      Logger.info('getThumbnail success');
                     }
                   } catch (e) {
-                    log('getThumbnail err', JSON.stringify(e));
+                    Logger.info('getThumbnail err', JSON.stringify(e));
                   } finally {
                     imageData.push(iInfo);
                   }
@@ -123,17 +121,17 @@ struct ImageSelect {
               this.isLoading = false;
             }, 300);
           }).catch((error1: Error) => {
-            log('getAllObject err', JSON.stringify(error1));
+            Logger.info('getAllObject err', JSON.stringify(error1));
           });
         }
       }).catch((err: Error) => {
-        log('getPhotoAssets err', JSON.stringify(err));
+        Logger.info('getPhotoAssets err', JSON.stringify(err));
         setTimeout(() => {
           this.isLoading = false;
         }, 300);
       });
     } catch (e1) {
-      log('getPhotoAccessHelper err', JSON.stringify(e1));
+      Logger.info('getPhotoAccessHelper err', JSON.stringify(e1));
       setTimeout(() => {
         this.isLoading = false;
       }, 300);
@@ -187,7 +185,7 @@ struct ImageSelect {
         let fd = await photoAsset.requestSource();
         AppStorage.setOrCreate('image_fd', fd);
       } catch (err) {
-        log(`media open err ${JSON.stringify(err)}`);
+        Logger.error(`media open err ${JSON.stringify(err)}`);
         return;
       }
     } else {
@@ -211,7 +209,7 @@ struct ImageSelect {
           .position({ x: 0, y: 0 });
 
           Column() {
-            Text('本地图片')
+            Text($r('app.string.Local_image'))
               .fontSize('64lpx')
               .width('100%')
               .margin({ bottom: '46lpx' })

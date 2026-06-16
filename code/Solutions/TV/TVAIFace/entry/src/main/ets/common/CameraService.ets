@@ -14,7 +14,7 @@
  */
 
 import { camera } from '@kit.CameraKit';
-import Logger from '../common/Logger';
+import { Logger } from '../common/Logger';
 
 export default class CameraService {
   private tag: string = 'CameraService';
@@ -83,7 +83,7 @@ export default class CameraService {
     await this.cameraInput.open();
     this.cameraOutputCapability =
       this.cameraManager.getSupportedOutputCapability(mCamera, camera.SceneMode.NORMAL_PHOTO);
-    let previewProfiles: Array<camera.Profile> = this.cameraOutputCapability.previewProfiles;
+    let previewProfiles: camera.Profile[] = this.cameraOutputCapability.previewProfiles;
     let previewProfile: camera.Profile = previewProfiles[0];
 
     try {

@@ -58,7 +58,7 @@ export default struct DeviceConfirmDialog {
 
         Row() {
           Row() {
-            Button('取消')
+            Button($r('app.string.Cancel'))
               .width('248lpx')
               .height('72lpx')
               .fontWeight(500)
@@ -81,7 +81,7 @@ export default struct DeviceConfirmDialog {
 
           // 3.按钮
           Row() {
-            Button('确认')
+            Button($r('app.string.Confirm'))
               .width('248lpx')
               .height('72lpx')
               .fontSize('36lpx')

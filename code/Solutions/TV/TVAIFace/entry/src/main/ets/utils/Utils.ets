@@ -14,10 +14,7 @@
  */
 import { display } from '@kit.ArkUI';
 import { window } from '@kit.ArkUI';
-import { initInfo } from './Log';
 import { GlobalThis } from '../common/GlobalThis';
-
-let log = initInfo('utils');
 
 interface ScreenMss {
   width: number,

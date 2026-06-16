@@ -39,36 +39,36 @@ export class CRect2f {
 }
 ;
 
-export function _ratio_enum(anchor: number[], ratios: number[]) {
+export function ratioEnum(anchor: number[], ratios: number[]) {
   let w = anchor[2] - anchor[0] + 1;
   let h = anchor[3] - anchor[1] + 1;
-  let x_ctr = anchor[0] + 0.5 * (w - 1);
-  let y_ctr = anchor[1] + 0.5 * (h - 1);
+  let xCtr = anchor[0] + 0.5 * (w - 1);
+  let yCtr = anchor[1] + 0.5 * (h - 1);
 
   let sz = w * h;
 
   let res: number[][] = [];
   for (let s = 0; s < ratios.length; s++) {
     let r = ratios[s];
-    let size_ratios = sz / r;
-    let ws = Math.sqrt(size_ratios);
+    let sizeRatios = sz / r;
+    let ws = Math.sqrt(sizeRatios);
     let hs = ws * r;
     let ratioAnchor =
-      new CRect2f(x_ctr - 0.5 * (ws - 1), y_ctr - 0.5 * (hs - 1), x_ctr + 0.5 * (ws - 1), y_ctr + 0.5 * (hs - 1));
+      new CRect2f(xCtr - 0.5 * (ws - 1), yCtr - 0.5 * (hs - 1), xCtr + 0.5 * (ws - 1), yCtr + 0.5 * (hs - 1));
     res.push(ratioAnchor.val);
   }
   return res;
 }
 
-export function _scale_enum(ratio_anchor: number[][], scales: number[]) {
+export function scaleEnum(ratioAnchor: number[][], scales: number[]) {
   let res: number[][] = [];
-  for (let a = 0; a < ratio_anchor.length; a++) {
-    let anchor = ratio_anchor[a];
+  for (let a = 0; a < ratioAnchor.length; a++) {
+    let anchor = ratioAnchor[a];
 
     let w = anchor[2] - anchor[0] + 1;
     let h = anchor[3] - anchor[1] + 1;
-    let x_ctr = anchor[0] + 0.5 * (w - 1);
-    let y_ctr = anchor[1] + 0.5 * (h - 1);
+    let xCtr = anchor[0] + 0.5 * (w - 1);
+    let yCtr = anchor[1] + 0.5 * (h - 1);
 
 
     for (let s = 0; s < scales.length; s++) {
@@ -76,30 +76,30 @@ export function _scale_enum(ratio_anchor: number[][], scales: number[]) {
       let hs = h * scales[s];
 
       let scaleAnchor =
-        new CRect2f(x_ctr - 0.5 * (ws - 1), y_ctr - 0.5 * (hs - 1), x_ctr + 0.5 * (ws - 1), y_ctr + 0.5 * (hs - 1));
+        new CRect2f(xCtr - 0.5 * (ws - 1), yCtr - 0.5 * (hs - 1), xCtr + 0.5 * (ws - 1), yCtr + 0.5 * (hs - 1));
       res.push(scaleAnchor.val);
     }
   }
   return res;
 }
 
-export function landmark_pred(anchor: number[], delta: Delta[], ratiow = 1, ratioh = 1) {
+export function landmarkPred(anchor: number[], delta: Delta[], ratiow = 1, ratioh = 1) {
   let w = anchor[2] - anchor[0] + 1;
   let h = anchor[3] - anchor[1] + 1;
-  let x_ctr = anchor[0] + 0.5 * (w - 1);
-  let y_ctr = anchor[1] + 0.5 * (h - 1);
+  let xCtr = anchor[0] + 0.5 * (w - 1);
+  let yCtr = anchor[1] + 0.5 * (h - 1);
   let ptsDelta: Delta[] = [];
   for (let i = 0; i < delta.length; i++) {
     ptsDelta[i] = {
-      x: (delta[i].x * w + x_ctr) * ratiow,
-      y: (delta[i].y * h + y_ctr) * ratioh
+      x: (delta[i].x * w + xCtr) * ratiow,
+      y: (delta[i].y * h + yCtr) * ratioh
     };
   }
   return ptsDelta;
 }
 
 //得到最后的box
-export function bbox_pred(anchor: number[], delta: number[], ratiow = 1, ratioh = 1): finalboxModel {
+export function bboxPred(anchor: number[], delta: number[], ratiow = 1, ratioh = 1): finalboxModel {
   let w = anchor[2] - anchor[0] + 1;
   let h = anchor[3] - anchor[1] + 1;
   let xCtr = anchor[0] + 0.5 * (w - 1);
@@ -126,15 +126,15 @@ export function bbox_pred(anchor: number[], delta: number[], ratiow = 1, ratioh 
   };
 }
 
-export function nms_cpu(boxes: FaceObject[], threshold: number) {
+export function nmsCpu(boxes: FaceObject[], threshold: number) {
   let filterOutBoxes: FaceObject[] = [];
-  let boxes_len = boxes.length;
-  if (boxes_len == 0) {
+  let boxesLen = boxes.length;
+  if (boxesLen == 0) {
     return filterOutBoxes;
   }
 
   let idx: number[] = [];
-  for (let i = 0; i < boxes_len; i++) {
+  for (let i = 0; i < boxesLen; i++) {
     idx.push(i);
   }
   boxes.sort((a: FaceObject, b: FaceObject) => {
@@ -145,31 +145,31 @@ export function nms_cpu(boxes: FaceObject[], threshold: number) {
   });
 
   while (idx.length > 0) {
-    let good_idx = idx[0];
-    filterOutBoxes.push(boxes[good_idx]);
+    let goodIdx = idx[0];
+    filterOutBoxes.push(boxes[goodIdx]);
     let tmp = [...idx];
     idx = [];
 
     for (let i = 1; i < tmp.length; i++) {
-      let tmp_i = tmp[i];
+      let tmpI = tmp[i];
 
-      let inter_x1 = Math.max(boxes[good_idx].finalbox.x, boxes[tmp_i].finalbox.x);
-      let inter_y1 = Math.max(boxes[good_idx].finalbox.y, boxes[tmp_i].finalbox.y);
-      let inter_x2 = Math.min(boxes[good_idx].finalbox.w, boxes[tmp_i].finalbox.w);
-      let inter_y2 = Math.min(boxes[good_idx].finalbox.h, boxes[tmp_i].finalbox.h);
+      let interX1 = Math.max(boxes[goodIdx].finalbox.x, boxes[tmpI].finalbox.x);
+      let interY1 = Math.max(boxes[goodIdx].finalbox.y, boxes[tmpI].finalbox.y);
+      let interX2 = Math.min(boxes[goodIdx].finalbox.w, boxes[tmpI].finalbox.w);
+      let interY2 = Math.min(boxes[goodIdx].finalbox.h, boxes[tmpI].finalbox.h);
 
-      let w = Math.max((inter_x2 - inter_x1 + 1), 0.0);
-      let h = Math.max((inter_y2 - inter_y1 + 1), 0.0);
-      let inter_area = w * h;
-      let area_1 = (boxes[good_idx].finalbox.w - boxes[good_idx].finalbox.x + 1) *
-        (boxes[good_idx].finalbox.h - boxes[good_idx].finalbox.y + 1);
-      let area2 = (boxes[tmp_i].finalbox.w - boxes[tmp_i].finalbox.x + 1) *
-        (boxes[tmp_i].finalbox.h - boxes[tmp_i].finalbox.y + 1);
+      let w = Math.max((interX2 - interX1 + 1), 0.0);
+      let h = Math.max((interY2 - interY1 + 1), 0.0);
+      let interArea = w * h;
+      let area1 = (boxes[goodIdx].finalbox.w - boxes[goodIdx].finalbox.x + 1) *
+        (boxes[goodIdx].finalbox.h - boxes[goodIdx].finalbox.y + 1);
+      let area2 = (boxes[tmpI].finalbox.w - boxes[tmpI].finalbox.x + 1) *
+        (boxes[tmpI].finalbox.h - boxes[tmpI].finalbox.y + 1);
 
-      let o = inter_area / (area_1 + area2 - inter_area);
+      let o = interArea / (area1 + area2 - interArea);
 
       if (o <= threshold) {
-        idx.push(tmp_i);
+        idx.push(tmpI);
       }
 
     }

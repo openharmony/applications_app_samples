@@ -14,7 +14,7 @@
  */
 import { distributedDeviceManager as deviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@ohos.base';
-import { Logger } from '../utils/Log';
+import { Logger } from '../common/Logger';
 
 class BindTargetData {
   public deviceId: string = '';
@@ -39,7 +39,7 @@ class DiscoverSuccessData {
 
 const bindParam: Record<string, string | number> = {
   'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
-  'targetPkgName': 'com.ohos.aiface',
+  'targetPkgName': 'com.samples.aiface',
   'appName': 'applications_ai_face',
   'appOperation': 'appOperationsReason',
   'customDescription': 'customDescription'
@@ -83,10 +83,10 @@ class RemoteDeviceModel {
   createRemoteDeviceModel() {
     if (this.deviceManager === undefined) {
       try {
-        this.deviceManager = deviceManager.createDeviceManager('com.ohos.aiface');
+        this.deviceManager = deviceManager.createDeviceManager('com.samples.aiface');
         Logger.info(TAG, 'createDeviceManager success');
       } catch (e) {
-        Logger.err(TAG, `createDeviceManager fail,${JSON.stringify(e)}`);
+        Logger.error(TAG, `createDeviceManager fail,${JSON.stringify(e)}`);
       }
     } else {
       return;
@@ -119,11 +119,13 @@ class RemoteDeviceModel {
   getAvailableDeviceList(): Array<deviceManager.DeviceBasicInfo> {
     try {
       this.trustDeviceList = this.deviceManager!.getAvailableDeviceListSync();
-      this.trustDeviceList.forEach(item => this.deleteDeviceIdInUnTrustList(item.deviceId));
+      this.trustDeviceList.forEach((item: deviceManager.DeviceBasicInfo) => {
+        this.deleteDeviceIdInUnTrustList(item.deviceId)
+      });
       return this.trustDeviceList;
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'getAvailableDeviceList errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'getAvailableDeviceList errCode:' + e.code + ',errMessage:' + e.message);
       return [];
     }
   }
@@ -154,7 +156,7 @@ class RemoteDeviceModel {
       this.deviceManager?.startDiscovering(discoverParam, filterOptions);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 注册发现设备成功回调监听
@@ -174,7 +176,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 注册设备名称变更回调，以便在设备名称改变时通知应用程序
@@ -184,7 +186,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 注册设备发现失败回调监听
@@ -194,7 +196,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 注册设备管理服务死亡回调，以便在服务死亡时通知应用程序
@@ -204,7 +206,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'serviceDie errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'serviceDie errCode:' + e.code + ',errMessage:' + e.message);
     }
 
   }
@@ -217,7 +219,7 @@ class RemoteDeviceModel {
       this.deviceManager?.stopDiscovering();
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'stopDiscovering errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'stopDiscovering errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 取消注册发现设备成功回调监听
@@ -227,7 +229,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 取消注册设备名称变更回调，以便在设备名称改变时通知应用程序
@@ -237,7 +239,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 取消注册设备发现失败回调监听
@@ -247,7 +249,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
     }
 
     // 取消注册设备管理服务死亡回调，以便在服务死亡时通知应用程序
@@ -257,7 +259,7 @@ class RemoteDeviceModel {
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'serviceDie errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'serviceDie errCode:' + e.code + ',errMessage:' + e.message);
     }
 
   }
@@ -270,14 +272,14 @@ class RemoteDeviceModel {
     try {
       this.deviceManager?.bindTarget(deviceId, bindParam, (err: BusinessError, data: BindTargetData) => {
         if (err) {
-          Logger.err(TAG, 'bindTarget errCode:' + err.code + ',errMessage:' + err.message);
+          Logger.error(TAG, 'bindTarget errCode:' + err.code + ',errMessage:' + err.message);
           return;
         }
 
       });
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'bindTarget errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'bindTarget errCode:' + e.code + ',errMessage:' + e.message);
     }
   }
 
@@ -291,7 +293,7 @@ class RemoteDeviceModel {
       Logger.info(TAG, 'unBindTarget :' + deviceId);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
-      Logger.err(TAG, 'unbindTarget errCode:' + e.code + ',errMessage:' + e.message);
+      Logger.error(TAG, 'unbindTarget errCode:' + e.code + ',errMessage:' + e.message);
     }
   }
 
@@ -304,7 +306,7 @@ class RemoteDeviceModel {
       deviceManager.releaseDeviceManager(this.deviceManager);
       Logger.info(TAG, 'releaseDeviceManager success');
     } catch (e) {
-      Logger.err(TAG, `releaseDeviceManager fail,${JSON.stringify(e)}`);
+      Logger.error(TAG, `releaseDeviceManager fail,${JSON.stringify(e)}`);
     }
   }
 }
