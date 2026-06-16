@@ -98,7 +98,7 @@
     },
     {
       "name": "feature_smart_screensaver_desc",
-      "value": "Standby art, masterpieces and memories on display"
+      "value": "Art with curated images and memories"
     },
     {
       "name": "feature_voice_interaction_desc",
@@ -234,7 +234,7 @@
     },
     {
       "name": "screensaver_content_1",
-      "value": "When the TV is idle, it automatically cycles through world masterpieces like Van Gogh's Sunflowers and Monet's Water Lilies, paired with elegant frames and soothing music, instantly transforming the living room into a private art gallery. Supports setting art movement preferences, refreshing daily to elevate home aesthetics."
+      "value": "When the TV is idle automatically cycles through classic artworks, paired with elegant frames and soothing music, instantly transforming the space into a gallery experience"
     },
     {
       "name": "screensaver_label_2",
@@ -306,7 +306,7 @@
     },
     {
       "name": "media_content_1",
-      "value": "Equipped with a 4K ultra-high-definition picture engine and cinema-grade sound system, every viewing experience is immersive. Dark scene details are layered and distinct, bright colors are vivid and transparent, paired with Dolby Atmos three-dimensional surround sound — whether it's epic space battles in sci-fi blockbusters or raindrops falling in art films, every emotional detail from the director's lens is precisely restored. Turn off the lights, turn on the TV, and your living room instantly upgrades to a private home cinema."
+      "value": "Equipped with a 4K high-definition picture engine and high-quality sound system, viewing experiences are enhanced. Dark scene details are clearly rendered and colors are vibrant and vivid."
     },
     {
       "name": "media_label_2",

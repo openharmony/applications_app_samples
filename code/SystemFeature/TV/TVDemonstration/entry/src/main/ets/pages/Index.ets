@@ -31,7 +31,7 @@ struct Index {
     $r('app.string.Smart_Life'),
     $r('app.string.tab_service_support')
   ];
-  @State FocusId: number = -1;
+  @State focusId: number = -1;
   @State isFocusable: boolean = true;
   @State isTab: boolean = false;
   @State isOtherFocusable: boolean = true;
@@ -136,12 +136,12 @@ struct Index {
             .lineHeight('38lpx')
             .textAlign(TextAlign.Center)
             .fontColor(this.currentTab === index ?
-              (this.FocusId == index ? 'rgba(0,0,0,0.86)' : 'rgba(255,255,255,0.86)') : 'rgba(255,255,255,0.86)')
+              (this.focusId == index ? 'rgba(0,0,0,0.86)' : 'rgba(255,255,255,0.86)') : 'rgba(255,255,255,0.86)')
             .fontWeight(500)
             .backgroundColor(Color.Transparent)
             .borderRadius('34lpx')
             .backgroundColor(this.currentTab === index ?
-              (this.FocusId == index ? 'rgba(255,255,255,0.86)' : 'rgba(255,255,255,0.3)') : 'rgba(255,255,255,0)')
+              (this.focusId == index ? 'rgba(255,255,255,0.86)' : 'rgba(255,255,255,0.3)') : 'rgba(255,255,255,0)')
             .padding({
               left: '24lpx',
               right: '24lpx',
@@ -161,13 +161,13 @@ struct Index {
               } else {
                 this.currentTab = index;
               }
-              this.FocusId = this.currentTab;
+              this.focusId = this.currentTab;
             })
             .onHover((isOnHover) => {
               globalIdle.resetTimer();
               if (isOnHover) {
                 this.currentTab = index;
-                this.FocusId = index;
+                this.focusId = index;
                 this.isTab = true;
               }
             })
@@ -205,7 +205,7 @@ struct Index {
       this.isTab = true;
     })
     .onBlur(() => {
-      this.FocusId = -1;
+      this.focusId = -1;
       this.isFocusable = false;
     })
     .border({
