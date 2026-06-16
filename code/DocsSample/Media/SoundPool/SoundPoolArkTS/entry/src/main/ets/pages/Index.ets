@@ -56,6 +56,7 @@ struct Index {
 
   async create() {
     try {
+      // [Start SoundPool_Creat]
       // audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE。
       // STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
       let audioRendererInfo: audio.AudioRendererInfo = {
@@ -64,45 +65,55 @@ struct Index {
       }
       //创建soundPool实例。
       this.soundPool = await media.createSoundPool(14,audioRendererInfo);
+      // [End SoundPool_Creat]
       //注册监听。
       this.loadCallback();
       this.finishPlayCallback();
       this.setErrorCallback();
 
       // 加载音频资源。
+      // [Start SoundPool_Load]
       let context = this.getUIContext().getHostContext();;
       let fileDescriptor = await context!.resourceManager.getRawFd('test.ogg');
       this.soundId = await this.soundPool!.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
       console.info(`load soundPool soundId: ${this.soundId}`)
+      // [End SoundPool_Load]
     } catch (e) {
       console.error('createSoundPool error: ' + e);
     }
   }
 
   async loadCallback() {
+    // [Start SoundPool_onLoadComplete]
     // 加载完成回调。
     this.soundPool!.on('loadComplete', (soundId_: number) => {
       this.soundId = soundId_;
       console.info('loadComplete soundId: ' + soundId_);
     })
+    // [End SoundPool_onLoadComplete]
   }
 
   //设置播放完成监听。
   async finishPlayCallback() {
+    // [Start SoundPool_onPlayFinshed]
     this.soundPool!.on('playFinished', () => {
       console.info('receive play finished message');
       // 可进行下次播放。
     })
+    // [End SoundPool_onPlayFinshed]
   }
   //设置错误类型监听。
   async setErrorCallback() {
+    // [Start SoundPool_onError]
     this.soundPool!.on('error', (error: BusinessError) => {
       console.error('error happened,message is :' + error.code);
       console.error('error happened,message is :' + error.message);
     })
+    // [End SoundPool_onError]
   }
 
   async PlaySoundPool() {
+    // [Start SoundPool_Play]
     let playParameters: media.PlayParameters = {
       loop: 1, // 循环1次，即播放2次。
       rate: 1, // 1倍速播放。
@@ -119,30 +130,49 @@ struct Index {
         console.info('play success soundid:' + this.streamId);
       }
     });
+    // [End SoundPool_Play]
+    // [Start SoundPool_SetLoop]
     // 设置循环播放次数。
     await this.soundPool!.setLoop(this.streamId, 2); // 播放3次。
+    // [End SoundPool_SetLoop]
+    // [Start SoundPool_SetPriority]
     // 设置对应流的优先级。
     await this.soundPool!.setPriority(this.streamId, 1);
+    // [End SoundPool_SetPriority]
+    // [Start SoundPool_SetVolume]
     // 设置音量。
     await this.soundPool!.setVolume(this.streamId, 0.5, 0.5);
+    // [End SoundPool_SetVolume]
   }
 
   async release() {
+    // [Start SoundPool_Stop]
     // 终止指定流的播放。
     await this.soundPool!.stop(this.streamId);
+    // [End SoundPool_Stop]
+    // [Start SoundPool_Unload]
     // 卸载音频资源。
     await this.soundPool!.unload(this.soundId);
+    // [End SoundPool_Unload]
     //关闭监听。
     this.setOffCallback();
+    // [Start SoundPool_Release]
     // 释放SoundPool。
     await this.soundPool!.release();
+    // [End SoundPool_Release]
   }
 
 
 
   async setOffCallback() {
+    // [Start SoundPool_offLoadComplete]
     this.soundPool!.off('loadComplete');
+    // [End SoundPool_offLoadComplete]
+    // [Start SoundPool_offPlayFinished]
     this.soundPool!.off('playFinished');
+    // [End SoundPool_offPlayFinished]
+    // [Start SoundPool_offError]
     this.soundPool!.off('error');
+    // [End SoundPool_offError]
   }
 }
