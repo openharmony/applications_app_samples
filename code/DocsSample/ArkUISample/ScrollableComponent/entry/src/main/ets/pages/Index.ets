@@ -26,6 +26,7 @@ import { arcListDestination, ARCLIST_ROUTE_PREFIX } from './arcList';
 import resource from '../common/resource';
 import { Scroll_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
 import { LAZY_LAYOUT_ROUTE_PREFIX, lazyLayoutDestination } from './lazyLayout/Index'
+import { LAZY_CUSTOM_LAYOUT_ROUTE_PREFIX, lazyCustomLayoutDestination } from './lazyCustomLayout/Index'
 
 const routes: Route[] = [
   {
@@ -63,6 +64,10 @@ const routes: Route[] = [
   {
     title: (context: Context) => { return resource.resourceToString(context, $r('app.string.lazyLayout_Title'))},
     name: LAZY_LAYOUT_ROUTE_PREFIX
+  },
+  {
+    title: (context: Context) => { return resource.resourceToString(context, $r('app.string.lazyCustomLayout_Title'))},
+    name: LAZY_CUSTOM_LAYOUT_ROUTE_PREFIX
   }
 ];
 
@@ -86,6 +91,8 @@ function destination(name: string) {
     scrollDestination(name);
   } else if (name.startsWith(LAZY_LAYOUT_ROUTE_PREFIX)) {
     lazyLayoutDestination(name);
+  } else if (name.startsWith(LAZY_CUSTOM_LAYOUT_ROUTE_PREFIX)) {
+    lazyCustomLayoutDestination(name);
   }
 }
 

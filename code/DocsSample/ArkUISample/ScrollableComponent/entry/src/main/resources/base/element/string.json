@@ -1543,6 +1543,34 @@
     {
       "name": "lazyLayout_no_more_content",
       "value": "—— 已经到底了 ——"
+    },
+    {
+      "name": "lazyCustomLayout_Title",
+      "value": "懒加载自定义布局"
+    },
+    {
+      "name": "customLazyColumnLayout_title",
+      "value": "自定义懒加载列布局"
+    },
+    {
+      "name": "customLazyColumnLayout_description",
+      "value": "示例展示自定义懒加载列布局的实现。"
+    },
+    {
+      "name": "customLazyGridLayout_title",
+      "value": "自定义懒加载网格布局"
+    },
+    {
+      "name": "customLazyGridLayout_description",
+      "value": "示例展示自定义懒加载网格布局的实现。"
+    },
+    {
+      "name": "customLazyWaterFlowLayout_title",
+      "value": "自定义懒加载瀑布流布局"
+    },
+    {
+      "name": "customLazyWaterFlowLayout_description",
+      "value": "示例展示自定义懒加载瀑布流布局的实现。"
     }
   ]
 }
