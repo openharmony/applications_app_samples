@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 export default class Constants {
-  // static BUNDLE_NAME='com.ohos.powerdialog'
+  // static BUNDLE_NAME='com.samples.powerdialog'
   public static FULL_WIDTH = '100%';
   public static FULL_HEIGHT = '100%';
   public static DIALOG_WIDTH = 395;

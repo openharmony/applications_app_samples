@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import commonEvent from '@ohos.commonEventManager';
+import Logger from './Logger';
 
 export function commonEventPowerDataFunc(powerBoolean: boolean) {
   let commonEventData: commonEvent.CommonEventPublishData = {
@@ -22,9 +23,9 @@ export function commonEventPowerDataFunc(powerBoolean: boolean) {
   };
   try {
     commonEvent.publish('powerBoolean', commonEventData, (err) => {
-      console.log('onSystemEvent powerBoolean Err:' + JSON.stringify(err));
+      Logger.info('onSystemEvent powerBoolean Err:' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('onSystemEvent  powerBoolean catch Err:' + JSON.stringify(err));
+    Logger.info('onSystemEvent  powerBoolean catch Err:' + JSON.stringify(err));
   }
 }
